@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+		<action-mappings>
+	
+	<!-- 仓库操作开始 -->
+    <!-- 储存仓库操作 -->
+   <action
+      parameter="cmd"
+      path="/menu/storage"
+      type="com.ls.web.action.menu.storage.StorageAction">
+      <forward name="storage_list" path="/jsp/menu/storage/storage_list.jsp" />
+      <forward name="input_num" path="/jsp/menu/storage/input_num.jsp" />
+      <forward name="storage_hint" path="/jsp/menu/storage/storage_hint.jsp" />
+       <forward name="equip_view" path="/jsp/menu/storage/storage_zb_view.jsp" />
+       <forward name="goods_view" path="/jsp/menu/storage/storage_prop_view.jsp" />
+       <forward name="submit" path="/jsp/menu/storage/storage_buy_submit.jsp" />
+       <forward name="display" path="/jsp/liveskill/display.jsp" />
+    </action>
+    
+    <!-- 取出仓库操作 -->
+     <action
+      parameter="cmd"
+      path="/menu/getStorage"
+      type="com.ls.web.action.menu.getStorage.GetStorageAction">
+      <forward name="getStorage_list" path="/jsp/menu/getStorage/getStorage_list.jsp" />
+      <forward name="input_num" path="/jsp/menu/getStorage/input_num.jsp" />
+      <forward name="warehouseequipview" path="/jsp/menu/getStorage/zb_view.jsp" />
+      <forward name="warehousepropview" path="/jsp/menu/getStorage/prop_view.jsp" />
+      <forward name="getStorage_hint" path="/jsp/menu/getStorage/getStorage_hint.jsp" />
+    </action>
+    
+    <!-- 取出金钱仓库操作 -->
+     <action
+      parameter="cmd"
+      path="/menu/getMoneyStorage"
+      type="com.ls.web.action.menu.getStorage.GetMoneyStorageAction">
+      <forward name="sussend" path="/jsp/menu/moneyStorage/getMoneySuccend.jsp" />
+      <forward name="money_list" path="/jsp/menu/moneyStorage/getMoneyStorage.jsp" />
+      <forward name="input_num" path="/jsp/menu/moneyStorage/input_getMoney_Num.jsp" />
+      
+    </action>
+    
+     <!-- 储存金钱仓库操作 -->
+     <action
+      parameter="cmd"
+      path="/menu/addMoneyStorage"
+      type="com.ls.web.action.menu.storage.AddMoneyStorageAction">
+      <forward name="input_num" path="/jsp/menu/moneyStorage/input_money_Num.jsp" />
+      <forward name="money_list" path="/jsp/menu/moneyStorage/moneyStorage.jsp" />
+      <forward name="sussend" path="/jsp/menu/moneyStorage/moneySuccend.jsp" />
+    </action>
+    
+    
+     <!-- 储存宠物仓库操作 -->
+     <action
+      parameter="cmd"
+      path="/menu/addPetStorage"
+      type="com.ls.web.action.menu.storage.AddPetStorageAction">
+      <forward name="sussend" path="/jsp/menu/petStorage/addSussend.jsp" />
+      <forward name="findnot" path="/jsp/menu/petStorage/addPetFailed.jsp" />
+      <forward name="pet_list" path="/jsp/menu/petStorage/input_pet_Num.jsp" />
+      <forward name="display" path="/jsp/menu/petStorage/display.jsp" />
+    </action>
+    
+    <!-- 取出宠物仓库操作 -->
+     <action
+      parameter="cmd"
+      path="/menu/getPetStorage"
+      type="com.ls.web.action.menu.getStorage.GetPetStorageAction">
+      <forward name="sussend" path="/jsp/menu/petStorage/getSucdend.jsp" />
+      <forward name="pet_list" path="/jsp/menu/petStorage/input_getPet_Num.jsp" />
+      <forward name="findnot" path="/jsp/menu/petStorage/getPetFailed.jsp" />
+      <forward name="display" path="/jsp/menu/petStorage/display.jsp" />
+      
+    </action>
+     <!-- 仓库操作结束 -->
+    
+    
+    <!-- 拍卖场操作开始 -->
+    <!-- 拍卖场拍卖 -->
+     <action
+      parameter="cmd"
+      path="/menu/auction"
+      type="com.pm.action.auction.AuctionAction">
+       <forward name="prop_display" path="/jsp/auction/auctionGoods/prop_view.jsp" />
+        <forward name="equip_display" path="/jsp/auction/auctionGoods/equip_view.jsp" />
+       <forward name="input_prop_numPrice" path="/jsp/auction/auctionGoods/reput_prop_price.jsp" />
+       <forward name="cure_list" path="/jsp/auction/auctionGoods/auction_cure_list.jsp" />
+       <forward name="equip_list" path="/jsp/auction/auctionGoods/auction_list_zb.jsp" />
+       <forward name="task_list" path="/jsp/auction/auctionGoods/auction_list_rw.jsp" />
+       <forward name="book_list" path="/jsp/auction/auctionGoods/auction_list_shu.jsp" />
+       <forward name="rest_list" path="/jsp/auction/auctionGoods/auction_list_qt.jsp" />
+       <forward name="shop_list" path="/jsp/auction/auctionGoods/auction_list_shop.jsp" />
+       <forward name="input_num" path="/jsp/auction/auctionGoods/input_num.jsp" />
+       <forward name="auction_hint" path="/jsp/auction/auctionGoods/auction_hint.jsp" />
+       <forward name="input_zb_price" path="/jsp/auction/auctionGoods/reput_zb_price.jsp" />
+       <forward name="reput_zb_price" path="/jsp/auction/auctionGoods/input_zb_price.jsp" />
+       <forward name="reput_prop_price" path="/jsp/auction/auctionGoods/input_prop_price.jsp" />
+    </action>
+    
+     <!-- 拍卖场物品显示 -->
+     <action
+      parameter="cmd"
+      path="/menu/auctionBuy"
+      type="com.pm.action.auction.AuctionBuyAction">
+      <forward name="auctionDisPlay" path="/jsp/auction/searchGoods/goods_menu.jsp" />
+      <forward name="cure_list" path="/jsp/auction/searchGoods/auction_cure.jsp" />
+      <forward name="book_list" path="/jsp/auction/searchGoods/auction_book.jsp" />
+      <forward name="material_list" path="/jsp/auction/searchGoods/auction_material.jsp" />
+      <forward name="shop_list" path="/jsp/auction/searchGoods/auction_shop.jsp" />
+      <forward name="acc_list" path="/jsp/auction/searchGoods/auction_acc.jsp" />
+      <forward name="arm_list" path="/jsp/auction/searchGoods/auction_arm.jsp" />
+      <forward name="jew_list" path="/jsp/auction/searchGoods/auction_jew.jsp" />
+      <forward name="other_list" path="/jsp/auction/searchGoods/auction_other.jsp" />
+      <forward name="use_hint" path="/jsp/auction/searchGoods/use_hint.jsp" />
+      <forward name="nameList" path="/jsp/auction/searchGoods/nameList.jsp" />
+      <forward name="goodsview" path="/jsp/auction/searchGoods/goods_view.jsp" />
+    </action>
+    
+    <!-- 拍卖场买 -->
+     <action
+      parameter="cmd"
+      path="/menu/auctionGet"
+      type="com.pm.action.auction.AuctionGetAction">
+      <forward name="auctionHouse" path="/jsp/auction/auctionBuy/auction_house.jsp" />
+       <forward name="auction_hint" path="/jsp/auction/auctionBuy/auction_hint.jsp" />
+       <forward name="prop_display" path="/jsp/auction/auctionBuy/prop_display.jsp" />
+       <forward name="equip_display" path="/jsp/auction/auctionBuy/equip_display.jsp" />
+       
+       <forward name="auction_info" path="/jsp/auction/auctionBuy/auction_info.jsp" />
+       <forward name="auction_help" path="/jsp/auction/auctionBuy/auction_help.jsp" />
+       <forward name="auction_buy_info" path="/jsp/auction/auctionGoods/auction_buy_info.jsp" />
+       <forward name="resure" path="/jsp/auction/auctionBuy/resure.jsp" />
+       <forward name="auctionresure" path="/jsp/auction/auctionMainPage/auctionresure.jsp" />
+       <forward name="house" path="/jsp/auction/auctionMainPage/auction_house.jsp" />
+      </action>
+      
+       
+       
+    <!-- 拍卖场操作结束 -->
+
+	<!-- 邮件阅读 -->
+     <action
+      parameter="cmd"
+      path="/mail"
+      type="com.pm.action.mail.MailInfoAction">
+       <forward name="mailList" path="/jsp/mail/mail_list.jsp" />
+        <forward name="mailView" path="/jsp/mail/mail_view.jsp" />
+        <forward name="deleteMail" path="/jsp/mail/display.jsp" />
+         <forward name="deletesure" path="/jsp/mail/deleteSure.jsp" />
+         <forward name="send_hint" path="/jsp/mail/send_hint.jsp" />
+       </action>
+       
+       <!-- 邮件发送 -->
+       <action
+      parameter="cmd"
+      path="/sendMail"
+      type="com.pm.action.mail.SendMailAction">
+        <forward name="blacklisthint" path="/jsp/friend/blacklist/blacklist_hint.jsp" />
+        <forward name="send_hint" path="/jsp/mail/send_hint.jsp" />
+        <forward name="writeMail" path="/jsp/mail/writeMailZhi.jsp" />
+        <forward name="write_back" path="/jsp/mail/writeMail.jsp" />
+       </action>
+       
+      <!-- 宠物拍卖场卖宠物 -->
+      <action
+      parameter="cmd"
+      path="/menu/auctionPetSell"
+      type="com.pm.action.auctionpet.AuctionSellAction">
+        <forward name="pet_list" path="/jsp/auctionpet/petList.jsp" />
+        <forward name="petinfoview" path="/jsp/auctionpet/petView.jsp" />
+        <forward name="pet_display" path="/jsp/auctionpet/pet_display.jsp" />
+       </action>
+       
+      <!-- 宠物拍卖场买宠物 -->
+      <action
+      parameter="cmd"
+      path="/menu/auctionPetBuy"
+      type="com.pm.action.auctionpet.AuctionBuyAction">
+        <forward name="auction_pet_list" path="/jsp/auctionpet/auctionpetbuy/auction_pet_list.jsp" />
+        <forward name="petinfoview" path="/jsp/auctionpet/auctionpetbuy/petView.jsp" />
+        <forward name="display" path="/jsp/auctionpet/auctionpetbuy/display.jsp" />
+      	<forward name="nameList" path="/jsp/auctionpet/auctionpetbuy/auctionPetDisPlay.jsp" /> 
+      	<forward name="petinfoviewsearch" path="/jsp/auctionpet/auctionpetbuy/search_pet_view.jsp" /> 
+      
+       </action>
+	
+	
+	  <!-- 宠物拍卖场拍卖助手 -->
+      <action
+      parameter="cmd"
+      path="/menu/auctionPetHelp"
+      type="com.pm.action.auctionpet.AuctionHouseAction">
+        <forward name="auction_pet_info"  path="/jsp/auctionpet/auctionInfo/petInfoList.jsp" />
+        <forward name="auction_pet_house" path="/jsp/auctionpet/auctionInfo/auctionPethouse.jsp" />
+        <forward name="pet_display" path="/jsp/auctionpet/auctionInfo/pet_info_display.jsp" />
+      </action>
+       
+      <!-- 宠物拍卖场仓库 -->
+      <action
+      parameter="cmd"
+      path="/menu/auctionPetHouse"
+      type="com.pm.action.auctionpet.AuctionHouseAction">
+       <forward name="auction_pet_info" path="/jsp/auctionpet/auctionInfo/petInfoList.jsp" />
+       <forward name="auction_pet_house" path="/jsp/auctionpet/auctionInfo/auctionPethouse.jsp" />
+       <forward name="pet_display" path="/jsp/auctionpet/auctionInfo/pet_info_display.jsp" /> 
+       </action>
+       
+       <!-- 系统设置 -->
+      <action
+      parameter="cmd"
+      path="/syssetting"
+      type="com.pm.action.setting.SysSettingAction">
+         <forward name="index" path="/jsp/function/function.jsp" />
+         <forward name="pic_setting" path="/jsp/function/setting/pic_setting.jsp" />
+         <forward name="chat_setting" path="/jsp/function/setting/chat_setting.jsp" />
+         <forward name="errors" path="/jsp/function/setting/errors.jsp" />
+         <forward name="settingpage" path="/jsp/function/setting/setting_page.jsp" />
+         <forward name="other_setting" path="/jsp/function/setting/other_setting.jsp" />
+       </action>
+       
+       
+        <!-- 元宝拍卖场卖宠物 -->
+      <action
+      parameter="cmd"
+      path="/auctionyb"
+      type="com.pm.action.auction.AuctionYbAction">
+        <forward name="yb_list" path="/jsp/auctionyb/auction_yb_list.jsp" />
+        <forward name="want_to_buy" path="/jsp/auctionyb/want_to_buy.jsp" />
+        <forward name="buy_hint" path="/jsp/auctionyb/buy_hint.jsp" />
+        <forward name="ready_auction" path="/jsp/auctionyb/ready_auction.jsp" />
+        <forward name="paimaiYuanBao" path="/jsp/auctionyb/paimaiYuanBao.jsp" />
+        <forward name="auction_sure" path="/jsp/auctionyb/auction_sure.jsp" />
+        <forward name="return_mail" path="/jsp/auctionyb/return_mail.jsp" />
+       </action>
+       
+       
+       
+       
+         <!-- 查看图片 -->
+      <action
+      parameter="cmd"
+      path="/viewpic"
+      type="com.pm.action.viewpic.ViewPicAction">
+         <forward name="sceneView" path="/jsp/pic/mappic/mapView.jsp" />
+       </action> 
+        
+         <!-- 防止回退 -->
+      <action
+      parameter="cmd"
+      path="/backActive"
+      type="com.pm.action.backActive.backActiveAction">
+         <forward name="back" path="/jsp/back/back.jsp" />
+         </action>
+         
+         <!-- 答题系统 -->
+      <action
+      parameter="cmd"
+      path="/question"
+      type="com.pm.action.question.QuestionAction">
+         <forward name="firstPage" path="/jsp/question/firstPage.jsp" />
+           <forward name="failed" path="/jsp/question/failed.jsp" />
+             <forward name="questionPage" path="/jsp/question/questionPage.jsp" />
+             <forward name="answer_over" path="/jsp/question/answer_over.jsp" />
+             <forward name="ranklist" path="/jsp/question/ranklist.jsp" />
+       </action>
+       
+      <!-- buff菜单 -->
+      <action
+      parameter="cmd"
+      path="/buffMenu"
+      type="com.ls.web.action.menu.buff.BuffMenuAction">
+         <forward name="buffmenuview" path="/jsp/menu/buffmenu/buffMenuView.jsp" />
+         <forward name="buffAddSussend" path="/jsp/menu/buffmenu/buffAddSussend.jsp" />
+         <forward name="display" path="/jsp/menu/buffmenu/display.jsp" />
+         <forward name="reconfirm" path="/jsp/menu/buffmenu/reconfirm.jsp" />
+       </action>
+       
+       <!-- 点化 -->
+      <action
+      parameter="cmd"
+      path="/enchantment"
+      type="com.pm.action.enchant.EnchantmentAction">
+         <forward name="enchantList" path="/jsp/enchant/enchantList.jsp" />
+         <forward name="gradeno" path="/jsp/enchant/enchant_hint.jsp" />
+         <forward name="sussend" path="/jsp/enchant/sussend.jsp" />
+         <forward name="view" path="/jsp/enchant/view.jsp" />
+         <forward name="resure" path="/jsp/enchant/enchant_resure.jsp" />
+       </action>
+       
+       
+        <!-- 二级密码 -->
+      <action
+      parameter="cmd"
+      path="/secondPass"
+      type="com.pm.action.secondPass.SecondPassAction">
+         <forward name="failedPass" path="/jsp/function/secondpass/failed_pass.jsp" />
+         <forward name="sussendPass" path="/jsp/function/secondpass/sussend_pass.jsp" />
+         <forward name="sussendupdateLoginPsw" path="/jsp/function/secondpass/sussend_update_login.jsp" />
+         <forward name="password_wrong" path="/jsp/function/secondpass/password_wrong.jsp" />
+       </action>
+       
+     <!-- 修改密码 -->
+      <action
+      parameter="cmd"
+      path="/modifyPassword"
+      type="com.pm.action.secondPass.ModifyPasswordAction">
+         <forward name="failedPass" path="/jsp/function/modifyPassword/failed_pass.jsp" />
+         <forward name="sussendPass" path="/jsp/function/modifyPassword/sussend_pass.jsp" />
+         <forward name="firstpassword_true" path="/jsp/function/modifyPassword/reput_password.jsp" />
+         <forward name="sussend_set_psw" path="/jsp/function/secondpass/sussend_update_login.jsp" />
+       </action>
+       
+       <!-- 直接修改密码 -->
+      <action
+      parameter="cmd"
+      path="/zhiModifyPassword"
+      type="com.pm.action.secondPass.ZhiModifyPasswordAction">
+         <forward name="failedPass" path="/jsp/function/zhijieModify/failed_pass.jsp" />
+          <forward name="sussendPass" path="/jsp/function/zhijieModify/sussend_pass.jsp" />
+         <forward name="startPass" path="/jsp/function/zhijieModify/startReput.jsp" />
+         
+        <forward name="sussendupdateLoginPsw" path="/jsp/function/zhijieModify/sussend_update.jsp" />
+         <forward name="password_wrong" path="/jsp/function/zhijieModify/password_wrong.jsp" />
+       </action>
+       
+        <!-- 论坛 -->
+      <action parameter="cmd" path="/forum" type="com.pm.action.forum.ForumAction">
+         <forward name="indexList" path="/jsp/forum/index.jsp" />
+         <forward name="forumclassList" path="/jsp/forum/forum_class_list.jsp" />
+         <forward name="contentView" path="/jsp/forum/contentView.jsp" />
+         <forward name="revert_view" path="/jsp/forum/revert_view.jsp" />
+         <forward name="sussendRevert" path="/jsp/forum/sussend_revert.jsp" />
+         <forward name="return_revert" path="/jsp/forum/return_revert.jsp" />
+         <forward name="reput_content" path="/jsp/forum/add_forum_content.jsp" />
+          <forward name="sussendAddFriend" path="/jsp/forum/part_info_view.jsp" />
+       </action>
+       
+       <!-- 论坛管理 -->
+      <action parameter="cmd" path="/forumInfo" type="com.pm.action.forum.ForumInfoAction">
+         <forward name="indexList" path="/jsp/forum/index.jsp" />
+         <forward name="contentView" path="/jsp/forum/manager/manager.jsp" />
+         <forward name="hint" path="/jsp/forum/manager/hint.jsp" />
+      </action>
+
+         <!-- 书城菜单 -->
+      <action path="/bookMenu" parameter="cmd" type="com.dp.action.bookaction.BookProceAction">
+      	 <forward name="booklist" path="/jsp/bookinfo/book_list.jsp"/>
+      	 <forward name="typelist" path="/jsp/bookinfo/type_list.jsp"/>
+      	 <forward name="bookresult" path="/jsp/bookinfo/book_result.jsp"/>
+      	 <forward name="showphb" path="/jsp/bookinfo/phb_show.jsp"/>
+      	 <forward name="zjinfo" path="/jsp/bookinfo/zj_list.jsp"/>
+      	 <forward name="readline" path="/jsp/bookinfo/line_read.jsp"/>
+      	 <forward name="mybookbox" path="/jsp/bookinfo/my_box.jsp"/>
+      	 <forward name="message" path="/jsp/bookinfo/message.jsp"/>
+      	 <forward name="allphb" path="/jsp/bookinfo/all_phb.jsp"/>
+      	 <forward name="exmess" path="/jsp/bookinfo/exmessage.jsp"/>
+      	 <forward name="clewmess" path="/jsp/bookinfo/clewmess.jsp"/>
+      </action>
+      
+         <!-- 外部链接的入门 
+      <action
+      path="/outSideLogin"
+      type="com.pm.action.outSideLogin.OutSideLoginAction">
+         <forward name="buffmenuview" path="/jsp/menu/buffmenu/buffMenuView.jsp" />
+         <forward name="buffAddSussend" path="/jsp/menu/buffmenu/buffAddSussend.jsp" />
+         <forward name="display" path="/jsp/menu/buffmenu/display.jsp" />
+       </action>-->
+       
+        <!-- 排行榜 -->
+      <action path="/untangle" parameter="cmd" type="com.pm.action.untangle.UnTangleAction">
+         <forward name="paiminglist" path="/jsp/function/untangle/untangle.jsp" />
+         <forward name="paimingview" path="/jsp/function/untangle/untangle_view.jsp" />
+         <forward name="arm_ranking" path="/jsp/function/untangle/arm_ranking.jsp" />
+         <forward name="arm_view" path="/jsp/function/untangle/arm_view.jsp" />
+         <forward name="instance_view" path="/jsp/function/instance/result.jsp" />
+       </action>
+       
+       <!-- 装备升级 -->
+      <action
+      path="/upgrade"
+      parameter="cmd"
+      type="com.pm.action.accdispose.AccUpGradeAction">
+      	<forward name="upgradepose" path="/jsp/accdispose/upgradepose/start_upgradepose.jsp" />
+      	<forward name="acc_list" path="/jsp/accdispose/upgradepose/equip_list.jsp" />
+        <forward name="upgradePorp" path="/jsp/accdispose/upgradepose/upgradePorp.jsp" />
+         <forward name="sussend_deco" path="/jsp/accdispose/upgradepose/sussend_deco.jsp" />
+      </action>
+      
+      <!-- 装备转化 -->
+      <action
+      path="/translate"
+      parameter="cmd"
+      type="com.pm.action.accdispose.AccTranslateAction">
+      	<forward name="accTranslate" path="/jsp/accdispose/acctranslate/acctranslate.jsp" />
+      	<forward name="acc_list" path="/jsp/accdispose/acctranslate/equip_list.jsp" />
+        <forward name="upgradePorp" path="/jsp/accdispose/acctranslate/upgradePorp.jsp" />
+        <forward name="sussend_deco" path="/jsp/accdispose/acctranslate/sussend_deco.jsp" />
+      </action>
+       
+       <!-- 装备分解 -->
+      <action
+      path="/updecompose"
+      parameter="cmd"
+      type="com.pm.action.accdispose.AccDecomposeAction">
+         <forward name="accdecopose" path="/jsp/accdispose/accdecompose/start_decompose.jsp" />
+         <forward name="acc_list" path="/jsp/accdispose/accdecompose/equip_list.jsp" />
+         <forward name="upgradePorp" path="/jsp/accdispose/accdecompose/upgradePorp.jsp" />
+         <forward name="sussend_deco" path="/jsp/accdispose/accdecompose/sussend_deco.jsp" />
+      	 <forward name="equip_display" path="/jsp/accdispose/accdecompose/equip_display.jsp" />
+      	 <forward name="prop_display" path="/jsp/accdispose/accdecompose/prop_display.jsp" />
+      </action>
+       
+       
+      <!-- 小喇叭 -->
+      <action path="/speaker" 
+      	parameter="cmd" type="com.pm.action.speaker.SpeakerAction">
+         <forward name="start_speak" path="/jsp/communion/speaker/start_speaker.jsp" />
+         <forward name="sussenno" path="/jsp/communion/speaker/sussenno.jsp" />
+         <forward name="walk" path="/walk.do" />
+       </action>
+       
+       <!-- 战场开始-->
+        	<!-- 演武管理员 -->
+      <action path="/fieldmanager" 
+      	parameter="cmd" 
+      	type="com.pm.action.field.FieldManagerAction">
+         <forward name="display_previous" path="/jsp/field/fieldManager/display_previous.jsp" />
+         <forward name="no_camp_display" path="/jsp/laborage/display.jsp" />
+       </action>
+       
+      <!-- 演武排行榜 -->
+      <action path="/fielduntangle" 
+      	parameter="cmd" 
+      	type="com.pm.action.field.FieldUntangleAction">
+         <forward name="viewFieldHistory" path="/jsp/field/fieldUntangle/fieldViewFieldHistory.jsp" />
+         <forward name="mouthKill" path="/jsp/field/fieldUntangle/fieldMouthRecordView.jsp" />
+         <forward name="field_kill" path="/jsp/field/fieldUntangle/fieldSequeKillNum.jsp" />
+       </action>
+       
+     <!-- 旗杆 -->
+      <action path="/fieldmast" 
+      	parameter="cmd" 
+      	type="com.pm.action.field.FieldMastAction">
+         <forward name="sussendUpdate" path="/jsp/field/fieldmast/fieldmast_sussend_update.jsp" />
+         <forward name="sussenno" path="/jsp/communion/speaker/sussenno.jsp" />
+       </action>
+        <!-- 战场结束-->
+       
+        <!-- 黄金宝箱 -->
+      <action path="/goldBox" 
+      			parameter="cmd" 
+      			type="com.ls.web.action.wrap.goldbox.GoldBoxAction">
+         <forward name="gold_box_list" path="/jsp/menu/goldbox/gold_box_list.jsp" />
+         <forward name="goods_list" path="/jsp/menu/goldbox/goods_list.jsp" />
+         <forward name="hint" path="/jsp/menu/goldbox/hint.jsp" />
+          <forward name="goods_display" path="/jsp/menu/goldbox/goods_display.jsp" />
+       </action>
+       
+       <!-- 普通传送符 -->
+      <action path="/suibianchuan" 
+      			parameter="cmd" 
+      			type="com.pm.action.chuansong.SuiBianChuanAction">
+         <forward name="list" path="/jsp/wrapinfo/suibianchuang/carry_table_list.jsp" />
+         <forward name="scene_list" path="/jsp/wrapinfo/suibianchuang/scene_list.jsp" />
+         <forward name="hint" path="/jsp/wrapinfo/suibianchuang/use_hint.jsp" />
+       </action>
+       
+       <!-- 队员传送符 -->
+      <action path="/groupchuan" 
+      			parameter="cmd" 
+      			type="com.pm.action.chuansong.GroupChuanAction">
+         <forward name="list" path="/jsp/wrapinfo/groupchuan/group_list.jsp" />
+         <forward name="scene_list" path="/jsp/wrapinfo/suibianchuang/scene_list.jsp" />
+         <forward name="hint" path="/jsp/wrapinfo/groupchuan/use_hint.jsp" />
+       </action>
+       
+       
+    <!-- 九转还魂的跳转 -->
+    <action parameter="cmd" path="/attackMallAction" type="com.ls.web.action.mall.AttackMallAction" >
+     <forward name="prop_display" path="/jsp/attack/buy/prop_display.jsp" />
+      <forward name="buy_hint" path="/jsp/attack/buy/buy_hint.jsp" />
+    </action>
+    
+    
+     <!-- 装备显示 -->
+    <action parameter="cmd" path="/equiprelela" type="com.ls.web.action.wrap.equiprelela.EquipRelelationAction" >
+      <forward name="displayfalse" path="/jsp/wrapinfo/equiprelela/relelafailed.jsp" />
+      <forward name="sussend" path="/jsp/wrapinfo/tijiao/hint.jsp" />
+    </action>
+    
+    
+    <!-- 奖励菜单 -->
+    <action parameter="cmd" path="/horta" 
+    	type="com.pm.action.hortation.Hortation" >
+    	
+      <forward name="main_list" path="/jsp/goods/horta/horta_mainlist.jsp" />
+      <forward name="son_list" path="/jsp/goods/horta/horta_son_list.jsp" />
+      <forward name="jieguoString" path="/jsp/goods/horta/jieguoString.jsp" />
+      <forward name="displayString" path="/jsp/goods/horta/displayString.jsp" />
+      
+    </action>
+    
+       
+	</action-mappings>
+	<message-resources parameter="ApplicationResources_zh" />
+</struts-config>

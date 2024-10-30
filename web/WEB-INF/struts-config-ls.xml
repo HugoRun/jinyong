@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<global-forwards>
+		<!-- 返回登陆账号页面 -->
+		<forward name="login_index" path="/index.jsp" />
+		<!-- 游戏处于内部测试状态 -->
+		<forward name="game_test_state"
+			path="/jsp/login/game_test_state.jsp" />
+		<!-- 返回场景不刷新 -->
+		<forward name="no_refurbish_scene" path="/scene.do" />
+		<!-- 返回场景刷新 -->
+		<forward name="refurbish_scene" path="/scene.do?isRefurbish=1" />
+		<!-- 带返回游戏的提示页面 -->
+		<forward name="return_hint" path="/comm/return_hint.jsp" />
+		<!-- 带返回包裹的提示页面 -->
+		<forward name="return_wrap_hint" path="/comm/return_wrap_hint.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<!-- 场景 -->
+		<action path="/function"
+			type="com.ls.web.action.system.FunctionAction">
+			<forward name="index" path="/jsp/function/function.jsp" />
+		</action>
+
+		<!-- 场景 -->
+		<action path="/scene"
+			type="com.ls.web.action.map.SceneAction">
+			<forward name="success" path="/jsp/map/part_map.jsp" />
+			<forward name="fight_scene" path="/attackNPC.do?cmd=n4" />
+			<forward name="auto" path="/guaji.do?cmd=n11"></forward>
+		</action>
+
+		<!-- 走地图 -->
+		<action path="/walk" type="com.ls.web.action.map.WalkAction">
+		</action>
+
+		<!-- 返回场景不刷新 -->
+		<action path="/pubbuckaction"
+			type="com.web.action.pubaction.PubBackAction">
+		</action>
+
+		<!-- 返回场景刷新 -->
+		<action path="/pubaction"
+			type="com.web.action.pubaction.PubAction">
+		</action>
+
+		<!-- LS-->
+		<action parameter="cmd" path="/attackNPC"
+			type="com.ls.web.action.attack.NpcAttackAction">
+			<forward name="display_bak"
+				path="/jsp/attack/npc/display.jsp">
+			</forward>
+			<forward name="skillhint"
+				path="/jsp/attack/npc/skill_hint.jsp" />
+			<forward name="display"
+				path="/jsp/attack/npc/attack_display.jsp" />
+			<forward name="list" path="/jsp/attack/npc/npclist.jsp" />
+			<forward name="lose" path="/jsp/attack/npc/attack_lose.jsp" />
+			<forward name="attack"
+				path="/jsp/attack/npc/attack_act.jsp" />
+			<forward name="win" path="/jsp/attack/npc/attack_win.jsp" />
+			<forward name="npc_display"
+				path="/jsp/attack/npc/npc_display.jsp" />
+			<forward name="list_type_a"
+				path="/jsp/operate/attackShortcut/list_type.jsp" />
+			<forward name="okpet" path="/jsp/attack/npc/pzpetok.jsp" />
+			<forward name="skilllist"
+				path="/jsp/attack/automatism/automatism_skill.jsp" />
+			<forward name="skillok"
+				path="/jsp/attack/automatism/automatism_skill_ok.jsp" />
+			<forward name="attack_warning" path="/pk.do?cmd=n3" />
+			<forward name="dead_prop"
+				path="/jsp/attack/npc/dead_prop.jsp" />
+			<forward name="prop_effect"
+				path="/jsp/attack/npc/prop_effect.jsp" />
+			<forward name="fleeok" path="/pubbuckaction.do" />
+			<forward name="buy_prop_hint"
+				path="/jsp/attack/npc/buy_prop_effect.jsp" />
+			<forward name="langjun" path="/WEB-INF/inc/mess.jsp"></forward>
+		</action>
+		<action parameter="cmd" path="/pk" type="com.ls.web.action.attack.PKAttackAction">
+			<forward name="display" path="/jsp/attack/pk/attack_display.jsp" />
+			<forward name="attack" path="/jsp/attack/pk/attack_act.jsp" />
+			<forward name="playerlist" path="/jsp/attack/pk/player_list.jsp" />
+			<forward name="other_display" path="/jsp/attack/pk/other_display.jsp" />
+			<forward name="playerlistInTongBattle" path="/jsp/attack/pk/playerlistInTongBattle.jsp" />
+			<forward name="win" path="/jsp/attack/pk/attack_win.jsp" />
+			<forward name="over" path="/jsp/attack/pk/attack_over.jsp" />
+			<forward name="list_type_a" path="/jsp/operate/attackShortcut/list_type.jsp" />
+			<forward name="skillhint" path="/jsp/attack/pk/skill_hint.jsp" />
+			<forward name="pickup" path="/jsp/attack/pk/pickup.jsp" />
+			<forward name="dead_prop" path="/jsp/attack/npc/dead_prop.jsp" />
+			<forward name="prop_effect" path="/jsp/attack/npc/prop_effect.jsp" />
+			<forward name="list" path="/jsp/goods/goods_list.jsp" />
+			<forward name="pkhint" path="/jsp/attack/pk/pk_hint.jsp" />
+			<forward name="leitai" path="/jsp/attack/pk/leitai.jsp"></forward>
+			<forward name="pkactive" path="/jsp/attack/pk/regist_ok.jsp"></forward>
+		</action>
+		<action parameter="cmd" path="/hite" type="com.ls.web.action.attack.PKHiteAction">
+		<forward name="hitelist" path="/jsp/attack/pk/hitelist.jsp" />
+		<forward name="hintdisplay" path="/jsp/attack/pk/hintdisplay.jsp" />
+		</action>
+
+		<!-- 菜单操作 -->
+
+		<action parameter="cmd" path="/menu"
+			type="com.ls.web.action.menu.MenuAction">
+			<forward name="display" path="/jsp/menu/menu_display.jsp" />
+			<forward name="citydoordisplay"
+				path="/jsp/tongsiege/cityview.jsp" />
+			<forward name="jieyi" path="/jieyi.do?cmd=n1"></forward>
+			<forward name="jiechujieyi" path="/jieyi.do?cmd=n10"></forward>
+			<forward name="jiehun" path="/jiehun.do?cmd=nn1"></forward>
+			<forward name="lihun" path="/jiehun.do?cmd=n10"></forward>
+			<forward name="zhaotu" path="/shitu.do?cmd=n1"></forward>
+			<forward name="baishi" path="/baishi.do?cmd=n1"></forward>
+			<forward name="leitai" path="/leitai.do?cmd=n1"></forward>
+			<forward name="intoleitai" path="/leitai.do?cmd=n3"></forward>
+			<forward name="view_com_result" path="/leitai.do?cmd=nn4"></forward>
+			<forward name="active_leitai"
+				path="/activeLeitai.do?cmd=n1">
+			</forward>
+			<forward name="langjun" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="mess" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="liyong" path="/WEB-INF/lost/liyong.jsp"></forward>
+			<forward name="leitaibaoming"
+				path="/leitaiactive.do?cmd=n1">
+			</forward>
+			<forward name="challengeleitai"
+				path="/challengeLeitai.do?cmd=n1">
+			</forward>
+			<forward name="battle" path="/battle.do?cmd=n1"></forward>
+		</action>
+
+		<!-- 拜师系统 -->
+		<action parameter="cmd" path="/baishi"
+			type="com.ben.shitu.action.BaishiAction">
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="teacher" path="/WEB-INF/shitu/teacher.jsp"></forward>
+			<forward name="teadetail"
+				path="/WEB-INF/shitu/teadetail.jsp">
+			</forward>
+		</action>
+
+		<!-- 师徒系统 -->
+		<action parameter="cmd" path="/shitu"
+			type="com.ben.shitu.action.ShituAction">
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="index" path="/WEB-INF/shitu/index.jsp"></forward>
+			<forward name="studetail"
+				path="/WEB-INF/shitu/studetail.jsp">
+			</forward>
+			<forward name="asteacher"
+				path="/WEB-INF/shitu/asteacher.jsp">
+			</forward>
+			<forward name="asstudent"
+				path="/WEB-INF/shitu/asstudent.jsp">
+			</forward>
+			<forward name="studetaill"
+				path="/WEB-INF/shitu/studetaill.jsp">
+			</forward>
+			<forward name="jiechu" path="/WEB-INF/shitu/jiechu.jsp"></forward>
+			<forward name="stujiechu"
+				path="/WEB-INF/shitu/stujiechu.jsp">
+			</forward>
+			<forward name="chuangong"
+				path="/WEB-INF/shitu/chuangong.jsp">
+			</forward>
+			<forward name="chuangongok"
+				path="/WEB-INF/shitu/chuangongok.jsp">
+			</forward>
+		</action>
+
+		<!-- 结婚操作 -->
+		<action parameter="cmd" path="/jiehun"
+			type="com.ls.web.action.menu.JieHunAction">
+			<forward name="errorgender"
+				path="/WEB-INF/jiehun/errorgender.jsp">
+			</forward>
+			<forward name="jiehunshenqing"
+				path="/WEB-INF/jiehun/jiehunshenqing.jsp">
+			</forward>
+			<forward name="tongyijiehun"
+				path="/WEB-INF/jiehun/tongyijiehun.jsp">
+			</forward>
+			<forward name="merry" path="/WEB-INF/jiehun/merry.jsp"></forward>
+			<forward name="index" path="/WEB-INF/jiehun/index.jsp"></forward>
+			<forward name="error" path="/WEB-INF/jieyi/error.jsp"></forward>
+			<forward name="goodlist"
+				path="/WEB-INF/jiehun/goodlist.jsp">
+			</forward>
+			<forward name="friendlist"
+				path="/WEB-INF/jiehun/friendlist.jsp">
+			</forward>
+			<forward name="lihunconmit"
+				path="/WEB-INF/jiehun/jieyilist.jsp">
+			</forward>
+			<forward name="goodnotenough"
+				path="/WEB-INF/jiehun/goodnotenough.jsp">
+			</forward>
+			<forward name="merrysuccess"
+				path="/WEB-INF/jiehun/merrysuccess.jsp">
+			</forward>
+			<forward name="qiangzhi"
+				path="/WEB-INF/jiehun/qiangzhi.jsp">
+			</forward>
+			<forward name="mess" path="/WEB-INF/inc/mess.jsp"></forward>
+		</action>
+
+		<!-- 结义操作 -->
+		<action parameter="cmd" path="/jieyi"
+			type="com.ls.web.action.menu.JieYiAction">
+			<forward name="index" path="/WEB-INF/jieyi/index.jsp"></forward>
+			<forward name="error" path="/WEB-INF/jieyi/error.jsp"></forward>
+			<forward name="goodlist"
+				path="/WEB-INF/jieyi/goodlist.jsp">
+			</forward>
+			<forward name="friendlist"
+				path="/WEB-INF/jieyi/friendlist.jsp">
+			</forward>
+			<forward name="jieyilist"
+				path="/WEB-INF/jieyi/jieyilist.jsp">
+			</forward>
+			<forward name="conmit" path="/WEB-INF/jieyi/conmit.jsp"></forward>
+			<forward name="jiechujieyi"
+				path="/WEB-INF/jieyi/jiechujieyi.jsp">
+			</forward>
+			<forward name="mess" path="/WEB-INF/inc/mess.jsp"></forward>
+		</action>
+		<!-- 卖菜单操作 -->
+		<action parameter="cmd" path="/menu/sale"
+			type="com.ls.web.action.menu.sale.SaleAction">
+			<forward name="prop_reconfirm" path="/jsp/menu/sale/prop_reconfirm.jsp" />
+			<forward name="equip_reconfirm" path="/jsp/menu/sale/equip_reconfirm.jsp" />
+			<forward name="goods_display" path="/jsp/menu/sale/wrapinfo/goods/goods_display.jsp" />
+			<forward name="equip_display" path="/jsp/menu/sale/wrapinfo/equip/equip_display.jsp" />
+			<forward name="sale_hint" path="/jsp/menu/sale/sale_hint.jsp" />
+			<forward name="wrap_list" path="/jsp/menu/sale/wrapinfo/wrapinfo_list.jsp" />
+			<forward name="input_num" path="/jsp/menu/sale/input_num.jsp" />
+		</action>
+
+		<!-- 买菜单操作 -->
+		<action parameter="cmd" path="/buy"
+			type="com.ls.web.action.menu.buy.BuyAction">
+			<forward name="goods_display"
+				path="/jsp/menu/buy/goods_display.jsp" />
+			<forward name="buy_list" path="/jsp/menu/buy/buy_list.jsp" />
+			<forward name="buy_hint" path="/jsp/menu/buy/buy_hint.jsp" />
+		</action>
+
+		<!-- 兑换单操作 -->
+		<action parameter="cmd" path="/menu/exchange"
+			type="com.ls.web.action.menu.exchange.ExchangeAction">
+			<forward name="list"
+				path="/jsp/menu/exchange/exchange_list.jsp" />
+			<forward name="display"
+				path="/jsp/menu/exchange/exchange_display.jsp" />
+			<forward name="goodsView"
+				path="/jsp/menu/exchange/goodsView.jsp" />
+		</action>
+
+
+		<!-- 物品操作 -->
+		<action parameter="cmd" path="/goods"
+			type="com.ls.web.action.goods.GoodsAction">
+			<forward name="list" path="/jsp/goods/goods_list.jsp" />
+			<forward name="box_list" path="/jsp/goods/box_list.jsp" />
+			<forward name="cure_list"
+				path="/jsp/menu/wrapinfo/wrapinfo_list.jsp" />
+			<forward name="hint" path="/jsp/goods/hint.jsp" />
+			<forward name="submit" path="/jsp/goods/submit.jsp" />
+			<forward name="display" path="/jsp/goods/display.jsp" />
+			<forward name="chongzhi" path="/jsp/goods/chongzhi.jsp" />
+			<forward name="chongzhidisplay"
+				path="/jsp/goods/chongzhidisplay.jsp" />
+		</action>
+
+
+
+		<!-- 功能快捷键设置 -->
+		<action parameter="cmd" path="/shortcut"
+			type="com.ls.web.action.shortcut.ShortcutAction">
+			<forward name="list" path="/jsp/operate/shortcut/list.jsp" />
+			<forward name="list_type"
+				path="/jsp/operate/shortcut/list_type.jsp" />
+			<forward name="list_skill"
+				path="/jsp/operate/shortcut/list_skill.jsp" />
+			<forward name="list_cure"
+				path="/jsp/operate/shortcut/list_cure.jsp" />
+			<forward name="list_book"
+				path="/jsp/operate/shortcut/list_book.jsp" />
+			<forward name="skill_shortcut"
+				path="/jsp/operate/shortcut/skill_shortcut.jsp" />
+		</action>
+
+
+
+
+		<!-- ___________________________________________________________- -->
+
+
+
+
+		<action parameter="cmd" path="/attackshortcut"
+			type="com.ls.web.action.shortcut.AttackShortcutAction">
+			<forward name="list_a"
+				path="/jsp/operate/attackShortcut/list.jsp" />
+			<forward name="list_type_a"
+				path="/jsp/operate/attackShortcut/list_type.jsp" />
+			<forward name="list_skill_a"
+				path="/jsp/operate/attackShortcut/list_skill.jsp" />
+			<forward name="list_cure_a"
+				path="/jsp/operate/attackShortcut/list_cure.jsp" />
+			<forward name="list_book_a"
+				path="/jsp/operate/attackShortcut/list_book.jsp" />
+			<forward name="list_pet_a"
+				path="/jsp/operate/attackShortcut/list_pet.jsp" />
+		</action>
+
+
+		<!-- 卖宠物 -->
+		<action parameter="cmd" path="/menu/petsale"
+			type="com.ls.web.action.menu.petsale.PetSaleAction">
+			<forward name="pet_list"
+				path="/jsp/menu/petsale/pet_list.jsp" />
+			<forward name="pet_info"
+				path="/jsp/menu/petsale/pet_info.jsp" />
+			<forward name="pet_sale_info"
+				path="/jsp/menu/petsale/pet_sale_info.jsp" />
+		</action>
+
+
+		<action parameter="cmd" path="/wrap"
+			type="com.ls.web.action.wrap.WrapAction">
+			<forward name="wrap_list"
+				path="/jsp/wrapinfo/wrapinfo_list.jsp" />
+			<forward name="goods_display"
+				path="/jsp/wrapinfo/goods/goods_display.jsp" />
+			<forward name="pet_egg" path="/wrap/pet.do?cmd=n3" />
+			<forward name="equip_display"
+				path="/jsp/wrapinfo/equip/equip_display.jsp" />
+			<forward name="addwrapno"
+				path="/jsp/wrapinfo/equip/equip_display_no.jsp" />
+			<forward name="use_hint"
+				path="/jsp/wrapinfo/goods/use_hint.jsp" />
+			<forward name="use_vip_hint"
+				path="/jsp/wrapinfo/goods/use_vip_hint.jsp" />
+			<forward name="skillbook_use_hint"
+				path="/jsp/wrapinfo/goods/skillbook_use_hint.jsp" />
+			<forward name="quiz_content"
+				path="/jsp/wrapinfo/quiz/quiz_content.jsp" />
+			<forward name="init_pet" path="/wrap/pet.do?cmd=n1" />
+			<forward name="markup" path="/wrap/markup.do?cmd=n1" />
+			<forward name="rare_box" path="/goods.do?cmd=n2" />
+			<forward name="gei_rare_box" path="/goods.do?cmd=n4" />
+			<forward name="delete_goods_page"
+				path="/jsp/wrapinfo/wrapinfo_delete_prop.jsp" />
+			<forward name="delete_goods_page_ok" path="/wrap.do?cmd=n1" />
+			<forward name="havingpetpetsinew"
+				path="/jsp/pet/feedpet/feed_pet_list.jsp" />
+			<forward name="petfeedsubmit"
+				path="/jsp/pet/feedpet/feed_pet_submit.jsp" />
+			<forward name="wrap_list_pet"
+				path="/jsp/pet/feedpet/feed_prop_list.jsp" />
+			<forward name="wrap_list_pet_hint"
+				path="/jsp/pet/feedpet/use_hint.jsp" />
+			<forward name="useBuffReconfirm"
+				path="/jsp/wrapinfo/goods/useBuffReconfirm.jsp" />
+			<forward name="delete_goods_page_ask"
+				path="/jsp/wrapinfo/wrapinfo_delete_prop_ask.jsp" />
+			<forward name="delete_goods_equip_ask"
+				path="/jsp/wrapinfo/wrapinfo_delete_equip_ask.jsp" />
+			<forward name="pet_skillbook_use"
+				path="/jsp/pet/petskillbook/pet_list.jsp" />
+			<forward name="pet_skillbook_use_result"
+				path="/jsp/pet/petskillbook/use.jsp" />
+			<forward name="speaker" path="/speaker.do?cmd=n1" />
+			<forward name="equip_prop_submit"
+				path="/jsp/specialprop/prop_submit.jsp" />
+			<forward name="HPMP_list"
+				path="/jsp/specialprop/hpmp_list.jsp" />
+			<forward name="HPMP_submit"
+				path="/jsp/specialprop/hpmp_submit.jsp" />
+			<forward name="prop_display"
+				path="/jsp/specialprop/prop_display.jsp" />
+			<forward name="display" path="/jsp/wrapinfo/display.jsp" />
+			<forward name="submit"
+				path="/jsp/wrapinfo/wrapinfo_submit.jsp" />
+			<forward name="sprop_submit"
+				path="/jsp/specialprop/prop_submit.jsp" />
+			<forward name="propmaintain" path="/equip.do?cmd=propMaintainIndex" />
+			<forward name="equip_protect" path="/equip.do?cmd=protectEquipList" />
+			<forward name="walk" path="/walk.do" />
+			<forward name="gold_box" path="/goldBox.do?cmd=n1" />
+			<forward name="gold_key" path="/goldBox.do?cmd=n6" />
+			<forward name="friendchuan" path="/friendscs.do?cmd=n1" />
+			<forward name="suibianchuan" path="/suibianchuan.do?cmd=n1" />
+			<forward name="groupchuan" path="/groupchuan.do?cmd=n1" />
+			<forward name="brother" path="/brother.do?cmd=n1"></forward>
+			<forward name="merry" path="/brother.do?cmd=n3"></forward>
+			<forward name="addlovedear" path="/brother.do?cmd=n4"></forward>
+			<forward name="adddear" path="/brother.do?cmd=n5"></forward>
+			<forward name="xinyinfu" path="/WEB-INF/inc/mess1.jsp"></forward>
+			<forward name="langjun" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="xianhai"
+				path="/WEB-INF/langjun/xianhai.jsp">
+			</forward>
+			<forward name="message" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="inlost" path="/WEB-INF/lost/inlost.jsp"></forward>
+			<forward name="tiaozhan"
+				path="/WEB-INF/tiaozhan/index.jsp">
+			</forward>
+			<forward name="scratchticket"
+				path="/scratchticket.do?cmd=n1">
+			</forward>
+			<forward name="buff_use" path="/buffrandom.do?cmd=use"></forward>
+			<forward name="ttbox" path="/ttbox.do?cmd=open"></forward>
+			<forward name="toLabaBox" path="/laba.do?cmd=n0"></forward>
+			<forward name="equip_upgrade_quality" path="/equip.do?cmd=qualityEquipList"></forward>
+		</action>
+		<action parameter="cmd" path="/brother"
+			type="com.ls.web.action.menu.BrotherAction">
+			<forward name="index" path="/WEB-INF/brother/index.jsp"></forward>
+			<forward name="fuqi" path="/WEB-INF/brother/fuqi.jsp"></forward>
+			<forward name="lovedear"
+				path="/WEB-INF/brother/lovedear.jsp">
+			</forward>
+			<forward name="getexp" path="/WEB-INF/brother/getexp.jsp"></forward>
+			<forward name="addlove"
+				path="/WEB-INF/brother/addlove.jsp">
+			</forward>
+		</action>
+		<action parameter="cmd" path="/wrap/quiz"
+			type="com.ls.web.action.wrap.quiz.QuizAction">
+			<forward name="answer_over"
+				path="/jsp/wrapinfo/quiz/answer_over.jsp" />
+		</action>
+		<action parameter="cmd" path="/wrap/markup"
+			type="com.ls.web.action.wrap.markup.MarkupAction">
+			<forward name="markup_display"
+				path="/jsp/wrapinfo/markup/markup_display.jsp" />
+			<forward name="walk" path="/walk.do" />
+		</action>
+		<action parameter="cmd" path="/goback"
+			type="com.ls.web.action.system.GoBackControlAction" />
+		<action parameter="cmd" path="/group"
+			type="com.ls.web.action.group.GroupAction">
+			<forward name="captain_group_list"
+				path="/jsp/group/captain_group_list.jsp" />
+			<forward name="null_group_list"
+				path="/jsp/group/null_group_list.jsp" />
+			<forward name="kick_hint"
+				path="/jsp/group/notify/kick_hint.jsp" />
+			<forward name="leave_hint"
+				path="/jsp/group/notify/leave_hint.jsp" />
+			<forward name="disband_hint"
+				path="/jsp/group/notify/disband_hint.jsp" />
+			<forward name="accept_hint"
+				path="/jsp/group/notify/accept_hint.jsp" />
+			<forward name="member_group_list"
+				path="/jsp/group/member_group_list.jsp" />
+			<forward name="group_hint"
+				path="/jsp/group/notify/group_hint.jsp" />
+			<forward name="group_add_hint"
+				path="/jsp/group/notify/group_add_hint.jsp" />
+			<forward name="player_display"
+				path="/jsp/group/notify/player_display.jsp" />
+			<forward name="group_menu" path="/jsp/group/group_menu.jsp" />
+			<forward name="group_list" path="/jsp/group/group_list.jsp" />
+			<forward name="group_member"
+				path="/jsp/group/group_member.jsp" />
+			<forward name="display" path="/jsp/group/display.jsp" />
+			<forward name="hint" path="/jsp/group/hint.jsp" />
+		</action>
+		<action parameter="cmd" path="/wrap/pet"
+			type="com.ls.web.action.wrap.pet.PetAction">
+			<forward name="init_pet_list"
+				path="/jsp/wrapinfo/pet/init_pet/pet_info_list.jsp" />
+			<forward name="init_pet_info"
+				path="/jsp/wrapinfo/pet/init_pet/init_pet_info.jsp" />
+			<forward name="pet_info"
+				path="/jsp/wrapinfo/pet/init_pet/pet_info_view.jsp" />
+			<forward name="pet_egg_info"
+				path="/jsp/wrapinfo/pet/pet_egg/pet_info_view.jsp" />
+		</action>
+		<!-- 博彩 -->
+		<action parameter="cmd" path="/lottery"
+			type="com.lw.action.lottery.LotteryAction">
+			<forward name="lottery_menu"
+				path="/jsp/lottery/lotteryguess/lottery_menu.jsp" />
+			<forward name="lottery_set_money"
+				path="/jsp/lottery/lotteryguess/lottery_set_money.jsp" />
+			<forward name="lottery_number_one"
+				path="/jsp/lottery/lotteryguess/lottery_number1.jsp" />
+			<forward name="lottery_number_two"
+				path="/jsp/lottery/lotteryguess/lottery_number2.jsp" />
+			<forward name="lottery_number_three"
+				path="/jsp/lottery/lotteryguess/lottery_number3.jsp" />
+			<forward name="lottery_number_four"
+				path="/jsp/lottery/lotteryguess/lottery_number4.jsp" />
+			<forward name="lottery_get_money"
+				path="/jsp/lottery/lotteryguess/player_get_money.jsp" />
+			<forward name="lottery_build"
+				path="/jsp/lottery/lotteryguess/lottery_build.jsp" />
+			<forward name="lottery_display"
+				path="/jsp/lottery/lotteryguess/lottery_display.jsp" />
+			<forward name="lottery_rank"
+				path="/jsp/lottery/lotteryrank/lottery_rank.jsp" />
+		</action>
+		<!-- 领取工资 -->
+		<action parameter="cmd" path="/laborage"
+			type="com.lw.action.laborage.LaborageAction">
+			<forward name="laborage_menu"
+				path="/jsp/laborage/laborage_menu.jsp" />
+			<forward name="display" path="/jsp/laborage/display.jsp" />
+		</action>
+		<action parameter="cmd" path="/information"
+			type="com.lw.action.information.InformationAction">
+			<forward name="information_menu"
+				path="/jsp/information/information_menu.jsp" />
+			<forward name="information_put"
+				path="/jsp/information/information_put.jsp" />
+			<forward name="display" path="/jsp/information/display.jsp" />
+		</action>
+		<!-- 生活技能 -->
+		<action parameter="cmd" path="/liveskill"
+			type="com.lw.action.liveskill.LiveSkillAction">
+			<forward name="liveskill_menu"
+				path="/jsp/liveskill/liveskill_menu.jsp" />
+			<forward name="liveskill_list"
+				path="/jsp/liveskill/liveskill_list.jsp" />
+			<forward name="submit"
+				path="/jsp/liveskill/skill_submit.jsp" />
+			<forward name="display" path="/jsp/liveskill/display.jsp" />
+		</action>
+		<!-- 配方合成 -->
+		<action parameter="cmd" path="/synthesize"
+			type="com.lw.action.synthesize.SynthesizeAction">
+			<forward name="synthesize_menu"
+				path="/jsp/liveskill/synthesize_menu.jsp" />
+			<forward name="synthesize_list"
+				path="/jsp/liveskill/synthesize_list.jsp" />
+			<forward name="synthesize_submit"
+				path="/jsp/liveskill/synthesize_submit.jsp" />
+			<forward name="display" path="/jsp/liveskill/display.jsp" />
+		</action>
+
+		<!-- 跳网平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/tiao/login"
+			type="com.ls.web.action.cooperate.tiao.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/tiao/login/fail.jsp" />
+		</action>
+
+		<!-- 跳网充值对接 -->
+		<action parameter="cmd" path="/tiao/bill"
+			type="com.ls.web.action.cooperate.tiao.bill.BillAction">
+			<forward name="index" path="/cooperate/tiao/bill/index.jsp" />
+			<forward name="result"
+				path="/cooperate/tiao/bill/result.jsp" />
+		</action>
+		<!-- 跳网平台对接结束 -->
+		<!-- 当乐平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/pingtai/login"
+			type="com.ls.web.action.cooperate.pingtai.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/pingtai/fail.jsp" />
+		</action>
+
+		<!-- 当乐平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/dl/login"
+			type="com.ls.web.action.cooperate.dl.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<!-- <forward name="success" path="/login.do?cmd=n3" /> -->
+			<forward name="fail" path="/cooperate/dl/login/fail.jsp" />
+			<forward name="loginpcverdict"
+				path="/cooperate/dl/login/loginpcverdict.jsp" />
+			<forward name="loginpcexception"
+				path="/cooperate/dl/login/loginpcexception.jsp" />
+		</action>
+		<!-- 注销对接 -->
+		<action path="/dl/logout"
+			type="com.ls.web.action.cooperate.dl.login.LoginOutAction">
+		</action>
+		<!-- 当乐平台对接结束 -->
+
+		<!-- 登陆对接 -->
+		<action path="/game/login"
+			type="com.ls.web.action.cooperate.game.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="error" path="/cooperate/pingtai/error.jsp"></forward>
+			<forward name="fail" path="/cooperate/game/login/fail.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+		</action>
+
+		<!-- 悠乐渠道登陆对接 -->
+
+		<action path="/youle/login"
+			type="com.ls.web.action.cooperate.youle.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/youle/login/fail.jsp" />
+		</action>
+
+		<!-- 思凯平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/sky/login"
+			type="com.ls.web.action.cooperate.sky.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/sky/login/fail.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+		</action>
+
+		<!-- 思凯充值对接 -->
+		<action parameter="cmd" path="/sky/bill"
+			type="com.ls.web.action.cooperate.sky.bill.BillAction">
+			<forward name="index" path="/cooperate/sky/bill/index.jsp" />
+			<forward name="success"
+				path="/cooperate/sky/bill/success.jsp" />
+			<forward name="fail"
+				path="/cooperate/sky/bill/fail_hint.jsp" />
+			<forward name="dl_bill_index"
+				path="/cooperate/dl/bill/index.jsp" />
+			<forward name="yeepay_bill_index"
+				path="/cooperate/yeepay/bill/index.jsp" />
+			<forward name="sina_bill_index"
+				path="/cooperate/sina/bill/index.jsp" />
+			<forward name="juu_bill_index"
+				path="/cooperate/juu/bill/index.jsp" />
+			<forward name="youvb_bill_index"
+				path="/cooperate/youvb/bill/index.jsp" />
+			<forward name="tiao_bill_index"
+				path="/cooperate/yeepay/bill/index.jsp" />
+			<forward name="tiao_bill_index"
+				path="/cooperate/tiao/bill/index.jsp" />
+			<forward name="air_bill_index"
+				path="/cooperate/air/bill/index.jsp" />
+			<forward name="txw_bill_index"
+				path="/cooperate/txw/bill/index.jsp" />
+			<forward name="ok_bill_index"
+				path="/cooperate/ok/bill/index.jsp" />
+			<forward name="tele_bill_index"
+				path="/cooperate/tele/bill/index.jsp" />
+		</action>
+
+		<!-- 思凯平台对接结束 -->
+
+		<!-- 电信渠道平台对接 -->
+		<!-- 电信登陆对接 -->
+		<action path="/telecom/login"
+			type="com.ls.web.action.cooperate.tele.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/tele/login/fail.jsp" />
+		</action>
+		<!-- 电信登陆对接同步 -->
+		<action path="/telecom/synuserinterface"
+			type="com.ls.web.action.cooperate.tele.login.SynuserinterfaceAction">
+		</action>
+		<!--电信充值对接 -->
+		<action parameter="cmd" path="/telecom/bill"
+			type="com.ls.web.action.cooperate.tele.bill.BillAction">
+			<forward name="index" path="/cooperate/tele/bill/index.jsp" />
+			<forward name="success" path="/cooperate/tele/bill/success.jsp" />
+		</action>
+		<!--电信对接结束-->
+
+		<!-- 新浪平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/sina/login"
+			type="com.ls.web.action.cooperate.sina.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail"
+				path="/cooperate/sina/visitor/visitor_choose.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+			<forward name="passport_relation"
+				path="/cooperate/sina/visitor/passport_relation.jsp" />
+		</action>
+
+
+		<!-- 游客系统 -->
+		<action parameter="cmd" path="/sina/vis"
+			type="com.ls.web.action.cooperate.sina.login.VisitorLoginAction">
+			<forward name="passport_relation"
+				path="/cooperate/sina/visitor/passport_relation.jsp" />
+			<forward name="relation_sucess"
+				path="/cooperate/sina/visitor/relation_sucess.jsp" />
+			<forward name="role_choose"
+				path="/cooperate/sina/visitor/role_choose.jsp" />
+			<forward name="visitor_choose"
+				path="/cooperate/sina/visitor/visitor_choose.jsp" />
+			<forward name="login_game" path="/login.do?cmd=n3" />
+		</action>
+
+		<!-- 新浪充值对接-->
+			<action path="/sina/callback"
+			type="com.ls.web.action.cooperate.sina.bill.CallBackAction">
+			<forward name="success"
+			path="/cooperate/dl/bill/callback.jsp" />
+			</action> 
+
+		<!-- 新浪充值对接 -->
+		<action parameter="cmd" path="/sina/bill"
+			type="com.ls.web.action.cooperate.sina.bill.BillAction">
+			<forward name="index" path="/cooperate/sina/bill/index.jsp" />
+			<forward name="success"
+				path="/cooperate/sina/bill/success.jsp" />
+			<forward name="fail"
+				path="/cooperate/sina/bill/fail_hint.jsp" />
+			<forward name="sina_bill_index"
+				path="/cooperate/sina/bill/index.jsp" />
+			<forward name="yeepay_bill_index"
+				path="/cooperate/yeepay/bill/index.jsp" />
+			<forward name="submit"
+				path="/cooperate/sina/bill/submit.jsp" />
+		</action>
+		<!-- 新浪平台对接结束 -->
+
+
+
+		<!-- ok平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/ok/login"
+			type="com.ls.web.action.cooperate.ok.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail"
+				path="/cooperate/ok/fail.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+		</action>
+
+		<!-- ok充值对接-->
+			<action path="/ok/callback"
+			type="com.ls.web.action.cooperate.ok.bill.CallBackAction">
+			<forward name="success"
+			path="/cooperate/dl/bill/callback.jsp" />
+			</action> 
+
+		<!-- ok充值对接 -->
+		<action parameter="cmd" path="/ok/bill"
+			type="com.ls.web.action.cooperate.ok.bill.BillAction">
+			<forward name="success"
+				path="/cooperate/sky/bill/success.jsp" />
+			<forward name="fail"
+				path="/cooperate/sky/bill/fail_hint.jsp" />
+		</action>
+		<!-- ok平台对接结束 -->
+
+		<!-- 天下平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/tx/login"
+			type="com.ls.web.action.cooperate.tx.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail"
+				path="/cooperate/txw/fail.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+		</action>
+
+		<!-- 天下充值对接-->
+			<action path="/tx/callback"
+			type="com.ls.web.action.cooperate.tx.CallBackAction">
+			<forward name="success"
+			path="/cooperate/dl/bill/callback.jsp" />
+			</action> 
+		<!-- ok平台对接结束 -->
+
+		<!-- 游玩吧平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/youvb/login"
+			type="com.ls.web.action.cooperate.youvb.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/youvb/fail.jsp" />
+		</action>
+
+		<!-- 充值对接 -->
+		<action path="/youvb/callback"
+			type="com.ls.web.action.cooperate.youvb.bill.CallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+
+		<!-- 游玩吧平台对接结束 -->
+		<!--JUU平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/juu/login"
+			type="com.ls.web.action.cooperate.juu.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/juu/login/fail.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+		</action>
+		<!--JUU平台对接结束 -->
+
+		<!-- 大家网平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/djw/login"
+			type="com.ls.web.action.cooperate.djw.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/djw/login/fail.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+		</action>
+		<!-- 大家网平台对接结束 -->
+		<!-- 空中网平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/air/login"
+			type="com.ls.web.action.cooperate.air.login.LoginAction">
+			<forward name="success" path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/air/login/fail.jsp" />
+		</action>
+
+		<!-- 充值对接 -->
+		<action path="/air/callback"
+			type="com.ls.web.action.cooperate.air.bill.CallBackAction">
+			<forward name="success"
+				path="/cooperate/air/bill/callback.jsp" />
+		</action>
+
+		<!-- 游玩吧平台对接结束 -->
+		<!-- 金银岛平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/jy/login"
+			type="com.ls.web.action.cooperate.jy.login.LoginAction">
+			<forward name="success"
+				path="/cooperate/dl/login/login.jsp" />
+			<forward name="fail" path="/cooperate/dl/login/fail.jsp" />
+		</action>
+		<!-- 金银岛平台对接结束 -->
+
+		<!-- 游戏公共平台对接 -->
+		<!-- 登陆对接 -->
+		<action path="/ganmelogin"
+			type="com.ls.web.action.cooperate.game.LoginNormalAction">
+			<forward name="success"
+				path="/login.do?cmd=n3" />
+			<forward name="fail" path="/cooperate/game/login/fail.jsp" />
+		</action>
+		<!-- 充值对接 -->
+		<action path="/ganmecallback"
+			type="com.ls.web.action.cooperate.game.bill.CallbackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+		<!-- 游戏公共平台对接结束 -->
+
+		<!-- 各充值通道管理 -->
+		<action path="/bill"
+			type="com.ls.web.action.cooperate.dl.bill.BillAction">
+			<forward name="szx_index"
+				path="/cooperate/dl/bill/szx/index.jsp" />
+			<forward name="sd_index"
+				path="/cooperate/dl/bill/sd/index.jsp" />
+			<forward name="jun_index"
+				path="/cooperate/dl/bill/jun/index.jsp" />
+		</action>
+
+		<!-- 神州付对接 -->
+		<action path="/szf/callback"
+			type="com.ls.web.action.cooperate.szf.CallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+		<!-- 短信对接 -->
+		<action path="/sms/ptcallback"
+			type="com.ls.web.action.cooperate.sms.PTCallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+		<!-- 短信对接 -->
+		<action path="/sms/mocallback"
+			type="com.ls.web.action.cooperate.sms.MOCallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+
+
+		<!-- 易宝充值 -->
+
+		<!-- 确认输入内容 -->
+		<action parameter="cmd" path="/yeepay/comfirm"
+			type="com.ls.web.action.cooperate.dl.bill.yeepay.ComfirmAction">
+			<forward name="index" path="/cooperate/dl/bill/index.jsp" />
+			<forward name="szx_comfirm"
+				path="/cooperate/dl/bill/szx/comfirm.jsp" />
+			<forward name="sd_comfirm"
+				path="/cooperate/dl/bill/sd/comfirm.jsp" />
+		</action>
+		<!-- 充值 -->
+		<action parameter="cmd" path="/yeepay/req"
+			type="com.ls.web.action.cooperate.dl.bill.yeepay.ReqAction">
+			<forward name="index" path="/cooperate/dl/bill/index.jsp" />
+			<forward name="szx_index"
+				path="/cooperate/dl/bill/szx/index.jsp" />
+			<forward name="sd_index"
+				path="/cooperate/dl/bill/sd/index.jsp" />
+			<forward name="fail" path="/cooperate/dl/bill/fail.jsp" />
+			<forward name="success"
+				path="/cooperate/dl/bill/success.jsp" />
+		</action>
+		<!-- 回调应答 -->
+		<action parameter="cmd" path="/yeepay/callback"
+			type="com.ls.web.action.cooperate.dl.bill.yeepay.CallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+		<!-- ***JUU充值结束*** -->
+
+		<!-- 回调应答 -->
+		<action parameter="cmd" path="/juu/callback"
+			type="com.ls.web.action.cooperate.juu.bill.CallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+		<!-- ***易宝充值结束*** -->
+
+		<!-- TOM充值 -->
+		<!-- TOM回调请求 -->
+		<action parameter="cmd" path="/tomrecvorder"
+			type="com.ls.web.action.cooperate.tom.login.TomRecvOrderAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/success.jsp" />
+		</action>
+
+		<!-- 骏网充值 -->
+		<!-- 充值 -->
+		<action parameter="cmd" path="/jun/recvOrder"
+			type="com.ls.web.action.cooperate.dl.bill.jun.RecvOrderAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/success.jsp" />
+		</action>
+		<!-- 回调应答 -->
+		<action parameter="cmd" path="/jun/callback"
+			type="com.ls.web.action.cooperate.dl.bill.jun.CallBackAction">
+			<forward name="success"
+				path="/cooperate/dl/bill/callback.jsp" />
+		</action>
+		<!-- 弹出式消息 -->
+		<action parameter="cmd" path="/popupmsg"
+			type="com.ls.web.action.system.PopUpMsgAction">
+			<forward name="result" path="/jsp/system/message.jsp" />
+			<forward name="msghint" path="/jsp/system/message.jsp" />
+			<forward name="jieyi" path="/WEB-INF/jieyi/message.jsp"></forward>
+			<forward name="jiehun" path="/WEB-INF/jiehun/message.jsp"></forward>
+			<forward name="lihun" path="/WEB-INF/jiehun/message1.jsp"></forward>
+			<forward name="new_player_guide" path="/jsp/system/new_player_guide.jsp"></forward>
+			<forward name="merryagree" path="/WEB-INF/jiehun/merryagree.jsp"></forward>
+			<forward name="merryresult" path="/WEB-INF/jiehun/merryresult.jsp"></forward>
+			<forward name="chushi" path="/WEB-INF/shitu/chushi.jsp"></forward>
+			<forward name="leitai" path="/jsp/attack/pk/leitai1.jsp"></forward>
+			<forward name="leitaiResult" path="/jsp/attack/pk/leitaiResult.jsp"></forward>
+			<forward name="langjun" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="mijing" path="/WEB-INF/mijing/mijing.jsp"></forward>
+			<forward name="tiaozhan" path="/WEB-INF/tiaozhan/tiaozhan.jsp">
+			</forward>
+		</action>
+		<!-- *****骏网充值结束***** -->
+
+
+		<!-- 用户登陆流程 -->
+		<action parameter="cmd" path="/login"
+			type="com.ls.web.action.login.LoginAction">
+			<forward name="login_index" path="/index.jsp" />
+			<forward name="kick_outline_hint"
+				path="/comm/kick_outline_hint.jsp" />
+			<forward name="login_fail" path="/index.jsp" />
+			<forward name="login_error_page"
+				path="/jsp/login_error_page.jsp" />
+			<forward name="login_success"
+				path="/jsp/login/login_success.jsp" />
+			<forward name="onlineNumLimitHint"
+				path="/jsp/login/onlineNumLimitHint.jsp" />
+			<forward name="area_list" path="/jsp/login/area_list.jsp" />
+			<forward name="role_list" path="/jsp/login/role_list.jsp" />
+			<forward name="role_list_test"
+				path="/jsp/login/role_list_test.jsp" />
+			<forward name="enter_game" path="/jsp/login/enter_game.jsp" />
+			<forward name="envelop" path="/jsp/login/envelop.jsp" />
+			<forward name="user_num_limit_hint"
+				path="/comm/user_num_limit_hint.jsp" />
+
+			<forward name="register_index"
+				path="/jsp/login/register/register_index.jsp" />
+			<forward name="register_success"
+				path="/jsp/login/register/register_success.jsp" />
+
+			<forward name="cartoon1"
+				path="/jsp/login/born_cartoon/cartoon1.jsp" />
+			<forward name="cartoon2"
+				path="/jsp/login/born_cartoon/cartoon2.jsp" />
+			<forward name="cartoon3"
+				path="/jsp/login/born_cartoon/cartoon3.jsp" />
+			<forward name="new_player_choose"
+				path="/jsp/login/born_cartoon/new_player_choose.jsp" />
+			<forward name="new_player_one"
+				path="/jsp/login/born_cartoon/new_player_one.jsp" />
+			<forward name="new_player_two"
+				path="/jsp/login/born_cartoon/new_player_two.jsp" />
+			<forward name="kongzhong"
+				path="/jsp/login/born_cartoon/kongzhong.jsp" />
+			<forward name="logintransmit"
+				path="/logintransmit.do?cmd=n1" />
+		</action>
+
+		<!-- 用户退出流程 -->
+		<action parameter="cmd" path="/loginout"
+			type="com.ls.web.action.login.LoginOutAction">
+			<forward name="role_loginout" path="/login.do?cmd=n3" />
+			<forward name="user_loginout" path="/index.jsp" />
+		</action>
+
+		<!-- 创建角色 -->
+		<action parameter="cmd" path="/role"
+			type="com.ls.web.action.role.RoleAction">
+			<forward name="role_list" path="/login.do?cmd=n3" />
+			<forward name="born_list" path="/jsp/role/born_list.jsp" />
+			<forward name="input_role_info"
+				path="/jsp/role/input_role_info.jsp" />
+			<forward name="delete_role_comfirm"
+				path="/jsp/role/delete_role_comfirm.jsp" />
+				
+			<forward name="return_second_psd"
+				path="/jsp/part/deletepart/delete_reput_psw.jsp" />
+			<forward name="return_second_sure"
+				path="/jsp/part/deletepart/delete_sure.jsp" />
+			<forward name="resumepartpage"
+				path="/jsp/part/deletepart/resume_part.jsp" />
+			<forward name="sussendPass"
+				path="/jsp/part/deletepart/delete_part.jsp" />
+			<forward name="failedPass"
+				path="/jsp/part/deletepart/failed_put.jsp" />
+		</action>
+		<!-- 商城 -->
+		<action parameter="cmd" path="/mall"
+			type="com.ls.web.action.mall.MallAction">
+			<forward name="prop_display"
+				path="/jsp/mall/prop_display.jsp" />
+			<forward name="commodity_list"
+				path="/jsp/mall/commodity_list.jsp" />
+			<forward name="mall_index" path="/jsp/mall/mall_index.jsp" />
+			<forward name="mall_prop_list"
+				path="/jsp/mall/mall_prop_list.jsp" />
+			<forward name="mall_nomral_index"
+				path="/jsp/mall/mall_nomral_index.jsp" />
+			<forward name="vip_index"
+				path="/jsp/mall/vip/vip_index.jsp" />
+			<forward name="vip_intro"
+				path="/jsp/mall/vip/vip_intro.jsp" />
+			<forward name="jifen_index_for_normal"
+				path="/jsp/mall/jifen/jifen_index_for_normal.jsp" />
+			<forward name="jifen_index_for_vip"
+				path="/jsp/mall/jifen/jifen_index_for_vip.jsp" />
+			<forward name="jifen_intro"
+				path="/jsp/mall/jifen/consume_intro.jsp" />
+			<forward name="commodity_show"
+				path="/jsp/mall/jifen/commodity_show.jsp" />
+			<forward name="buy" path="/jsp/mall/buy/buy.jsp" />
+			<forward name="buy_hint" path="/jsp/mall/buy/buy_hint.jsp" />
+			<forward name="buy_wrap_space"
+				path="/jsp/mall/buy/buy_wrap_space.jsp" />
+			<forward name="buy_wrap_space_hint"
+				path="/jsp/mall/buy/buy_wrap_space_hint.jsp" />
+			<forward name="mall_store_list"
+				path="/jsp/mall/mallStore/mall_store_list.jsp" />
+			<forward name="mall_log_list"
+				path="/jsp/mall/mallStore/mall_log_list.jsp" />
+			<forward name="input_takeout_num"
+				path="/jsp/mall/mallStore/input_takeout_num.jsp" />
+			<forward name="jifen_index"
+				path="/jsp/mall/jifen/jifen_index.jsp" />
+			<forward name="mall_prop_list_jifen"
+				path="/jsp/mall/jifen/jifen_list.jsp" />
+			<forward name="nomral_list"
+				path="/jsp/mall/nomral_index.jsp" />
+			<forward name="serchpoint"
+				path="/jsp/mall/serchpoint.jsp" />
+		</action>
+
+		<!-- 返回商城首页 -->
+		<action path="/returnMall"
+			type="com.ls.web.action.mall.ReturnMallAction">
+			<forward name="return_mall" path="/mall.do?cmd=n0" />
+		</action>
+		
+		<!-- 坐骑系统 -->
+		<action parameter="cmd" path="/mounts"
+			type="com.ls.web.action.mounts.MountsAction">
+			<forward name="scencelist" path="/jsp/mounts/scenceCarry.jsp" />
+			<forward name="lianjilist" path="/jsp/mounts/lianjiCarry.jsp" />
+			<forward name="bosslist" path="/jsp/mounts/bossCarry.jsp" />
+			<forward name="fubenlist" path="/jsp/mounts/fubenCarry.jsp" />
+			<forward name="duiyoulist" path="/jsp/mounts/duiyouCarry.jsp" />
+			<forward name="friendlist" path="/jsp/mounts/friendCarry.jsp" />
+			<forward name="enemylist" path="/jsp/mounts/enemyCarry.jsp" />
+			<forward name="hint" path="/jsp/mounts/hint.jsp" />
+			<forward name="confirmup" path="/jsp/mounts/confirmUpgrade.jsp" />
+			<forward name="confirmdelete" path="/jsp/mounts/confirmdelete.jsp" />
+			<forward name="confirmbuy" path="/jsp/mounts/confirmBuy.jsp" />
+			<forward name="buymounts" path="/jsp/mounts/buyMounts.jsp" />
+			<forward name="mountslist" path="/jsp/mounts/mountsList.jsp" />
+			<forward name="mountsinfo" path="/jsp/mounts/mountsInfo.jsp" />
+			<forward name="mountsup" path="/jsp/mounts/mountsUpgrade.jsp" />
+			<forward name="mountinfo" path="/jsp/mounts/mountsInfo.jsp" />
+			<forward name="factionlist" path="/jsp/mounts/factionlist.jsp" />
+			<forward name="lianji" path="/jsp/mounts/lianji/lianji.jsp" />
+			<forward name="npcinfo" path="/jsp/mounts/lianji/npcinfo.jsp" />
+			<forward name="chongzhi" path="/jsp/mounts/hintRecharge.jsp" />
+		</action>
+		<!-- 玩家领取奖励 -->
+		<action parameter="cmd" path="/sysprize"
+			type="com.lw.action.player.PlayerGetGamePrizeAction">
+			<forward name="menu"
+				path="/jsp/system/sysprize/systemprize_menu.jsp" />
+			<forward name="list"
+				path="/jsp/system/sysprize/systemprize_list.jsp" />
+			<forward name="display"
+				path="/jsp/system/sysprize/systemprize_display.jsp" />
+			<forward name="prop_display"
+				path="/jsp/system/sysprize/systemprize_prop_display.jsp" />
+		</action>
+
+		<!-- GM踢人 -->
+		<action parameter="cmd" path="/gmkick"
+			type="com.lw.action.player.GmKickAction">
+			<forward name="menu" path="/jsp/system/gm_kick_menu.jsp" />
+			<forward name="input" path="/jsp/system/gm_kick_input.jsp" />
+			<forward name="display"
+				path="/jsp/system/systemprize_display.jsp" />
+		</action>
+
+		<!-- 玩家领取奖励 -->
+		<action parameter="cmd" path="/sysnotify"
+			type="com.lw.action.systemnotify.SystemNotifyAction">
+			<forward name="display"
+				path="/jsp/systemnotify/display.jsp" />
+			<forward name="display_game"
+				path="/jsp/systemnotify/display_game.jsp" />
+			<forward name="system_notify_list"
+				path="/jsp/systemnotify/system_notify_list.jsp" />
+		</action>
+
+		<!--给GM发邮件 -->
+		<action parameter="cmd" path="/gmmail"
+			type="com.lw.action.gmmail.GmMailAction">
+			<forward name="hint" path="/jsp/gmmail/hint.jsp" />
+			<forward name="GMmail_menu" path="/jsp/gmmail/menu.jsp" />
+			<forward name="bugreport" path="/jsp/gmmail/bugreport.jsp" />
+			<forward name="reporthint" path="/jsp/gmmail/reporthint.jsp" />
+		</action>
+
+		<!--挂机 -->
+		<action parameter="cmd" path="/guaji"
+			type="com.ls.web.action.menu.GuajiAction">
+			<forward name="n1" path="/WEB-INF/guaji/index.jsp" />
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="chose" path="/WEB-INF/guaji/chose.jsp"></forward>
+			<forward name="chosegood"
+				path="/WEB-INF/guaji/chosegood.jsp">
+			</forward>
+			<forward name="goodlist"
+				path="/WEB-INF/guaji/goodlist.jsp">
+			</forward>
+			<forward name="pinzhi" path="/WEB-INF/guaji/pinzhi.jsp"></forward>
+			<forward name="enter" path="/WEB-INF/guaji/enter.jsp"></forward>
+			<forward name="start" path="/WEB-INF/guaji/start.jsp"></forward>
+		</action>
+
+		<!--排行榜 -->
+		<action parameter="cmd" path="/rank"
+			type="com.ls.web.action.paihang.RankAction">
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"/>
+			<forward name="comein" path="/WEB-INF/rank/comein.jsp"/>
+			<forward name="index" path="/WEB-INF/rank/index.jsp"/>
+			<forward name="detail" path="/WEB-INF/rank/detail.jsp"/>
+			<forward name="partinfoview" path="/WEB-INF/rank/part_info_view.jsp" />
+			<forward name="arm_ranking" path="/WEB-INF/rank/arm_ranking.jsp"/>
+			<forward name="arm_view" path="/WEB-INF/rank/arm_view.jsp" />
+			<forward name="faction_ranking_list" path="/WEB-INF/rank/faction_ranking.jsp" />
+			<forward name="faction_ranking_view" path="/WEB-INF/rank/faction_ranking_view.jsp" />
+			<forward name="faction_apply" path="/WEB-INF/rank/faction_apply.jsp" />
+			<forward name="chongwu" path="/WEB-INF/rank/chongwu.jsp"/>
+			<forward name="pet_info" path="/WEB-INF/rank/pet_info_view.jsp" />
+			<forward name="boyi" path="/WEB-INF/rank/boyi.jsp"/>
+		</action>
+
+		<!--帮助 -->
+		<action parameter="cmd" path="/help"
+			type="com.ben.help.HelpAction">
+			<forward name="index" path="/WEB-INF/help/index.jsp"></forward>
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="each" path="/WEB-INF/help/each.jsp"></forward>
+			<forward name="one" path="/WEB-INF/help/one.jsp"></forward>
+			<forward name="task" path="/WEB-INF/help/task.jsp"></forward>
+			<forward name="gm" path="/gmmail.do?cmd=n1"></forward>
+			<forward name="diaoluo" path="/WEB-INF/help/diaoluo.jsp"></forward>
+			<forward name="diaoluosercher"
+				path="/WEB-INF/help/diaoluosercher.jsp">
+			</forward>
+			<forward name="jieguo" path="/WEB-INF/help/jieguo.jsp"></forward>
+		</action>
+
+		<!-- 擂台 -->
+		<action parameter="cmd" path="/leitai"
+			type="com.ben.leitai.LeitaiAction">
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="index" path="/WEB-INF/leitai/index.jsp"></forward>
+			<forward name="partinfoview"
+				path="/WEB-INF/leitai/partinfoview.jsp">
+			</forward>
+			<forward name="viewOwnRank"
+				path="/WEB-INF/leitai/viewOwnRank.jsp">
+			</forward>
+			<forward name="partinfovieww"
+				path="/WEB-INF/leitai/partinfovieww.jsp">
+			</forward>
+			<forward name="leitailist"
+				path="/WEB-INF/leitai/leitailist.jsp">
+			</forward>
+			<forward name="viewOwnRank1"
+				path="/WEB-INF/leitai/viewOwnRank1.jsp">
+			</forward>
+			<forward name="partinfovieww1"
+				path="/WEB-INF/leitai/partinfovieww1.jsp">
+			</forward>
+		</action>
+
+		<!-- 活动擂台 -->
+		<action parameter="cmd" path="/activeLeitai"
+			type="com.ben.leitai.ActiveLeitaiAction">
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="index"
+				path="/WEB-INF/leitai/activeLeitai/index.jsp">
+			</forward>
+		</action>
+
+		<!--彩票 -->
+		<action parameter="cmd" path="/newlottery"
+			type="com.lw.action.lotterynew.LotteryAction">
+			<forward name="display" path="/jsp/lottery_new/display.jsp" />
+			<forward name="rule"
+				path="/jsp/lottery_new/lottery_rule.jsp" />
+			<forward name="yb"
+				path="/jsp/lottery_new/content/input_yb.jsp" />
+			<forward name="num1"
+				path="/jsp/lottery_new/content/input_num_one.jsp" />
+			<forward name="num2"
+				path="/jsp/lottery_new/content/input_num_two.jsp" />
+			<forward name="num3"
+				path="/jsp/lottery_new/content/input_num_three.jsp" />
+			<forward name="num4"
+				path="/jsp/lottery_new/content/input_num_four.jsp" />
+			<forward name="menu" path="/jsp/lottery_new/menu.jsp" />
+		</action>
+		<!-- 迷宫 -->
+		<action parameter="cmd" path="/lost"
+			type="com.ben.lost.LostAction">
+			<forward name="mess" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="zhoujianren" path="/zhoujianren.jsp"></forward>
+			<forward name="questionPagea"
+				path="/WEB-INF/lost/questionPage.jsp" />
+		</action>
+		<!-- PK活动 -->
+		<action parameter="cmd" path="/pkactive"
+			type="com.ben.pk.active.PkActiveAction">
+			<forward name="pkactivedisplay" path="/jsp/attack/pk/regist_ok.jsp"></forward>
+			<forward name="vs_result" path="/jsp/attack/pk/vs_result.jsp"></forward>
+			<forward name="rs_result" path="/jsp/attack/pk/rs_result.jsp"></forward>
+		</action>
+		<!-- 挑战插旗 -->
+		<action parameter="cmd" path="/tiaozhan"
+			type="com.ben.tiaozhan.TiaoZhanAction">
+			<forward name="tiaozhan"
+				path="/WEB-INF/tiaozhan/index.jsp">
+			</forward>
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="display"
+				path="/jsp/attack/pk/attack_display.jsp" />
+		</action>
+		<!-- 秘境 -->
+		<action parameter="cmd" path="/urs"
+			type="com.lw.action.UnchartedRoom.UnchartedRoomAction">
+			<forward name="display"
+				path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+		</action>
+		<!--对战擂台-->
+		<action parameter="cmd" path="/battle"
+			type="com.ben.leitai.battle.BattleAction">
+			<forward name="error" path="/WEB-INF/inc/mess.jsp"></forward>
+			<forward name="index" path="/WEB-INF/battle/index.jsp"></forward>
+			<forward name="baoming"
+				path="/WEB-INF/battle/baoming.jsp">
+			</forward>
+			<forward name="duizheng"
+				path="/WEB-INF/battle/duizheng.jsp">
+			</forward>
+		</action>
+		<!--许愿树 -->
+		<action parameter="cmd" path="/wishingtree"
+			type="com.lw.action.wishingtree.WishingTreeAction">
+			<forward name="wishing_index"
+				path="/jsp/wishingtree/index.jsp">
+			</forward>
+			<forward name="wishing_index_gm"
+				path="/jsp/wishingtree/index_gm.jsp">
+			</forward>
+			<forward name="write" path="/jsp/wishingtree/write.jsp"></forward>
+			<forward name="set_top"
+				path="/jsp/wishingtree/top_submit.jsp">
+			</forward>
+			<forward name="display"
+				path="/jsp/wishingtree/display.jsp">
+			</forward>
+		</action>
+		<!--刮刮乐 scratchticket-->
+		<action parameter="cmd" path="/scratchticket"
+			type="com.lw.action.scratchticket.ScratchTicketAction">
+			<forward name="index" path="/jsp/scratchticket/index.jsp"></forward>
+			<forward name="over" path="/jsp/scratchticket/over.jsp"></forward>
+			<forward name="display"
+				path="/jsp/scratchticket/display.jsp">
+			</forward>
+		</action>
+		<!--门派大弟子-->
+		<action parameter="cmd" path="/menpai"
+			type="com.lw.action.menpaicontest.MenpaiContestAction">
+			<forward name="menpai_rank_display"
+				path="/jsp/menpaicontest/menpaicontest_rank_list.jsp">
+			</forward>
+			<forward name="display"
+				path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+		</action>
+		<!--随机BUFF-->
+		<action parameter="cmd" path="/buffrandom"
+			type="com.lw.action.buffrandom.BuffRandomAction">
+			<forward name="display"
+				path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+		</action>
+		<!--TTBOX-->
+		<action parameter="cmd" path="/ttbox"
+			type="com.lw.action.scratchticket.TTBOXAction">
+			<forward name="index" path="/jsp/ttbox/index.jsp"></forward>
+			<forward name="display"
+				path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+		</action>
+		<!--拉霸-->
+		<action parameter="cmd" path="/laba"
+			type="com.ls.web.action.wrap.goldbox.LaBaAction">
+			<forward name="toOpenLaba"
+				path="/jsp/lababox/the_laba_open.jsp">
+			</forward>
+			<forward name="toLingQu" path="/jsp/lababox/ling_qu.jsp"></forward>
+			<forward name="display"
+				path="/jsp/scratchticket/display.jsp">
+			</forward>
+			<forward name="the_laba_ok"
+				path="/jsp/lababox/the_laba_ok.jsp">
+			</forward>
+			<forward name="to_shangcheng" path="/mall.do?cmd=n0"></forward>
+			<forward name="to_tishi"
+				path="/jsp/lababox/ling_qu_two.jsp">
+			</forward>
+			<forward name="toOpenLaba_again"
+				path="/jsp/lababox/the_laba_open.jsp">
+			</forward>
+			<forward name="to_laba_ok_for_gj"
+				path="/laba.do?cmd=n3">
+			</forward>
+		</action>
+		<!--天关-->
+		<action parameter="cmd" path="/tianguan"
+			type="com.lw.action.tianguan.TianGuanAction">
+			<forward name="display"
+				path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+			<forward name="return"
+				path="/pubbuckaction.do" />
+		</action>
+		<!--门派NPC-->
+		<action parameter="cmd" path="/menpainpc"
+			type="com.lw.action.menpaicontest.MenpaiNpcAction">
+			<forward name="display"
+				path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+			<forward name="go"
+				path="/pubbuckaction.do" />
+		</action>
+		
+		<!-- 装备 -->
+		<action parameter="cmd" path="/equip" type="com.ls.web.action.goods.EquipAction">
+			<!-- 保护装备 -->
+			<forward name="protect_equip_list" path="/jsp/equip/protect/protect_equip_list.jsp" />
+			<forward name="protect_hint" path="/jsp/equip/protect/protect_hint.jsp" />
+			<forward name="protect_end" path="/jsp/equip/protect/protect_end.jsp" />
+			<!-- 升级装备的品质 -->
+			<forward name="quality_equip_list" path="/jsp/equip/upgrade_quality/quality_equip_list.jsp" />
+			<forward name="upgrade_quality_hint" path="/jsp/equip/upgrade_quality/upgrade_quality_hint.jsp" />
+			<!-- 解除装备的绑定状态 -->
+			<forward name="bind_equip_list" path="/jsp/equip/unbind/bind_equip_list.jsp" />
+			<forward name="unbind_hint" path="/jsp/equip/unbind/unbind_hint.jsp" />
+			<!-- （道具）修理身上破损的装备 -->
+			<forward name="bad_equip_list" path="/jsp/equip/maintain/bad/bad_equip_list.jsp" />
+			<forward name="maintain_bad_hint" path="/jsp/equip/maintain/bad/maintain_bad_hint.jsp" />
+			<!-- （道具）修理身上的装备 -->
+			<forward name="prop_maintain_index" path="/jsp/equip/maintain/prop/prop_maintain_index.jsp" />
+			<!-- （菜单）修理身上的装备 -->
+			<forward name="maintain_index" path="/jsp/equip/maintain/all/maintain_index.jsp" />
+			<!-- 装备升级,五行转换 -->
+			<forward name="upgrade_index" path="/jsp/equip/upgrade/upgrade_index.jsp" />
+			<forward name="upgrade_hint" path="/jsp/equip/upgrade/upgrade_hint.jsp" />
+			<forward name="upgrade_equip_list" path="/jsp/equip/upgrade/upgrade_equip_list.jsp" />
+			<forward name="input_stone_num" path="/jsp/equip/input_stone_num.jsp" />
+			<forward name="stone_list" path="/jsp/equip/stone_list.jsp" />
+			<forward name="protect_stone" path="/jsp/equip/upgrade/protect_stone.jsp" />
+			<!-- 装备打孔 -->
+			<forward name="punch_equip_list" path="/jsp/equip/punch/punch_equip_list.jsp" />
+			<forward name="punch_hint" path="/jsp/equip/punch/punch_hint.jsp" />
+			<forward name="punch_end" path="/jsp/equip/punch/punch_end.jsp" />
+			<!-- 装备镶嵌 -->
+			<forward name="inlay_stone_list" path="/jsp/equip/inlay/inlay_stone_list.jsp" />
+			<forward name="inlay_equip_list" path="/jsp/equip/inlay/inlay_equip_list.jsp" />
+			<forward name="inlay_hint" path="/jsp/equip/inlay/inlay_hint.jsp" />
+			<forward name="inlay_end" path="/jsp/equip/inlay/inlay_end.jsp" />
+			
+			<!-- 其他 -->
+			<forward name="equip_des" path="/jsp/equip/equip_des.jsp" />
+		</action>
+		
+		<!-- 道具 -->
+		<action parameter="cmd" path="/prop" type="com.ls.web.action.goods.PropAction">
+			<!-- 宝石合成 -->
+			<forward name="upgrade_index" path="/jsp/prop/upgrade/upgrade_index.jsp" />
+			<forward name="upgrade_hint" path="/jsp/prop/upgrade/upgrade_hint.jsp" />
+			<forward name="equip_list" path="/jsp/prop/upgrade/equip_list.jsp" />
+			<forward name="input_stone_num" path="/jsp/prop/upgrade/input_stone_num.jsp" />
+			<forward name="stone_list" path="/jsp/prop/upgrade/stone_list.jsp" />
+			<!-- 其他 -->
+			<forward name="prop_des" path="/jsp/prop/prop_des.jsp" />
+		</action>
+		
+		<!-- 帮派仓库 -->
+		<action parameter="cmd" path="/fStorage" type="com.ls.web.action.organize.FStorageAction">
+			<forward name="faction_material_list" path="/jsp/faction/manage/storage/faction_material_list.jsp" />
+			<forward name="wrap_material_list" path="/jsp/faction/manage/storage/wrap_material_list.jsp" />
+			<forward name="input_material_num" path="/jsp/faction/manage/storage/input_material_num.jsp" />
+		</action>
+		
+		<!-- 帮派建筑 -->
+		<action parameter="cmd" path="/fBuild" type="com.ls.web.action.organize.FBuildAction">
+			<forward name="build_index" path="/jsp/faction/manage/build/build_index.jsp" />
+			<!-- 图腾 -->
+			<forward name="tuteng_index" path="/jsp/faction/manage/build/tuteng/tuteng_index.jsp" />
+			<forward name="tuteng_des" path="/jsp/faction/manage/build/tuteng/tuteng_des.jsp" />
+			<!-- 领取图腾祝福 -->
+			<forward name="use_hint" path="/jsp/faction/manage/build/tuteng/use/use_hint.jsp" />
+			<forward name="use_end" path="/jsp/faction/manage/build/tuteng/use/use_end.jsp" />
+			<!-- 建设图腾 -->
+			<forward name="create_index" path="/jsp/faction/manage/build/tuteng/create/create_index.jsp" />
+			<forward name="create_success" path="/jsp/faction/manage/build/tuteng/create/create_success.jsp" />
+			<forward name="create_fail" path="/jsp/faction/manage/build/tuteng/create/create_fail.jsp" />
+			<!-- 图腾升级 -->
+			<forward name="upgrade_index" path="/jsp/faction/manage/build/tuteng/upgrade/upgrade_index.jsp" />
+			<forward name="upgrade_success" path="/jsp/faction/manage/build/tuteng/upgrade/upgrade_success.jsp" />
+			<forward name="upgrade_fail" path="/jsp/faction/manage/build/tuteng/upgrade/upgrade_fail.jsp" />
+		</action>
+		
+		<!-- 帮派 -->
+		<action parameter="cmd" path="/faction" type="com.ls.web.action.organize.FactionAction">
+			<!-- 帮派全局相关 -->
+			<forward name="faction_index" path="/jsp/faction/faction_index.jsp" />
+			<forward name="return_faction_hint" path="/jsp/faction/return_faction_hint.jsp" />
+			<forward name="other_faction_list" path="/jsp/faction/other_faction_list.jsp" />
+			<!-- 帮派管理 -->
+			<forward name="return_manage_hint" path="/jsp/faction/manage/return_manage_hint.jsp" />
+			<forward name="member_list" path="/jsp/faction/manage/member_list.jsp" />
+			<forward name="my_faction" path="/jsp/faction/manage/my_faction.jsp" />
+			<forward name="faction_info" path="/jsp/faction/manage/faction_info.jsp" />
+			<forward name="other_faction_info" path="/jsp/faction/manage/other_faction_info.jsp" />
+			<!-- 帮派，祠堂升级 -->
+			<forward name="upgrade_end" path="/jsp/faction/manage/upgrade/upgrade_end.jsp" />
+			<forward name="upgrade_hint" path="/jsp/faction/manage/upgrade/upgrade_hint.jsp" />
+			<forward name="upgrade_citang_hint" path="/jsp/faction/manage/upgrade/upgrade_citang_hint.jsp" />
+			<!-- 退出帮派 -->
+			<forward name="exit_hint" path="/jsp/faction/manage/exit/exit_hint.jsp" />
+			<forward name="zuzhang_exit_hint" path="/jsp/faction/manage/exit/zuzhang_exit_hint.jsp" />
+			<!-- 解散帮派 -->
+			<forward name="disband_hint" path="/jsp/faction/manage/disband/disband_hint.jsp" />
+			<!-- 申请管理 -->
+			<forward name="apply_list" path="/jsp/faction/manage/apply/apply_list.jsp" />
+			<!-- 邀请 -->
+			<forward name="invite_hint" path="/jsp/faction/manage/invite/invite_hint.jsp" />
+			<!-- 管理首页 -->
+			<forward name="manage_index_0" path="/jsp/faction/manage/index/manage_index_0.jsp" />
+			<forward name="manage_index_1" path="/jsp/faction/manage/index/manage_index_1.jsp" />
+			<forward name="manage_index_2" path="/jsp/faction/manage/index/manage_index_2.jsp" />
+			<forward name="manage_index_3" path="/jsp/faction/manage/index/manage_index_3.jsp" />
+			<!-- 成员管理 -->
+			<forward name="del_member_list" path="/jsp/faction/manage/member/del_member_list.jsp" />
+			<forward name="del_member_hint" path="/jsp/faction/manage/member/del_member_hint.jsp" />
+			<forward name="del_member_end" path="/jsp/faction/manage/member/del_member_end.jsp" />
+			<!-- 转让族长 -->
+			<forward name="change_zuzhang_hint" path="/jsp/faction/manage/changezuzhang/change_zuzhang_hint.jsp" />
+			<forward name="change_zuzhang_end" path="/jsp/faction/manage/changezuzhang/change_zuzhang_end.jsp" />
+			<!-- 帮派招募 -->
+			<forward name="input_recruit" path="/jsp/faction/manage/recruit/input_recruit.jsp" />
+			<forward name="recruit_end" path="/jsp/faction/manage/recruit/recruit_end.jsp" />
+			<!-- 成员称号管理 -->
+			<forward name="input_title" path="/jsp/faction/manage/title/input_title.jsp" />
+			<forward name="change_title_hint" path="/jsp/faction/manage/title/change_title_hint.jsp" />
+			<forward name="change_title_end" path="/jsp/faction/manage/title/change_title_end.jsp" />
+			<!-- 帮派职位管理 -->
+			<forward name="select_job" path="/jsp/faction/manage/job/select_job.jsp" />
+			<forward name="change_job_hint" path="/jsp/faction/manage/job/change_job_hint.jsp" />
+			<forward name="change_job_end" path="/jsp/faction/manage/job/change_job_end.jsp" />
+			<!-- 帮派公告 -->
+			<forward name="notice_list" path="/jsp/faction/manage/notice/notice_list.jsp" />
+			<forward name="input_notice" path="/jsp/faction/manage/notice/input_notice.jsp" />
+			<forward name="del_notice_hint" path="/jsp/faction/manage/notice/del_notice_hint.jsp" />
+			<!-- 申请加入帮派 -->
+			<forward name="apply_faction_list" path="/jsp/faction/apply/apply_faction_list.jsp" />
+			<forward name="apply_hint" path="/jsp/faction/apply/apply_hint.jsp" />
+			<!-- 创建帮派 -->
+			<forward name="create_index" path="/jsp/faction/create/create_index.jsp" />
+			<forward name="create_fail_hint" path="/jsp/faction/create/create_fail_hint.jsp" />
+			<forward name="input_faction_name" path="/jsp/faction/create/input_faction_name.jsp" />
+		</action>
+		
+		<!-- 新手引导 -->
+		<action path="/guide" type="com.ls.web.action.login.GuideAction">
+		
+			<forward name="guide_over" path="/jsp/login/guide/guide_over.jsp" />
+		<!--领取任务 -->
+			<forward name="accept_task_1" path="/jsp/login/guide/task/accept_task_1.jsp" />
+			<forward name="accept_task_2" path="/jsp/login/guide/task/accept_task_2.jsp" />
+		<!--出生动画 -->
+			<forward name="cartoon1" path="/jsp/login/guide/born_cartoon/cartoon1.jsp" />
+			<forward name="cartoon2" path="/jsp/login/guide/born_cartoon/cartoon2.jsp" />
+			<forward name="cartoon3" path="/jsp/login/guide/born_cartoon/cartoon3.jsp" />
+		<!--结束动画 -->
+			<forward name="end_cartoon1" path="/jsp/login/guide/end_cartoon/end_cartoon1.jsp" />
+			<forward name="end_cartoon2" path="/jsp/login/guide/end_cartoon/end_cartoon2.jsp" />
+			<forward name="end_cartoon3" path="/jsp/login/guide/end_cartoon/end_cartoon3.jsp" />
+		<!-- 包裹使用引导 -->
+			<forward name="wrap_guide" path="/jsp/login/guide/wrap/wrap_guide.jsp" />
+			<forward name="use_box" path="/jsp/login/guide/wrap/use_box.jsp" />
+			<forward name="use_box_hint" path="/jsp/login/guide/wrap/use_box_hint.jsp" />
+			<forward name="use_skillbook" path="/jsp/login/guide/wrap/use_skillbook.jsp" />
+			<forward name="use_skillbook_hint" path="/jsp/login/guide/wrap/use_skillbook_hint.jsp" />
+			<forward name="use_equip" path="/jsp/login/guide/wrap/use_equip.jsp" />
+			<forward name="use_equip_hint" path="/jsp/login/guide/wrap/use_equip_hint.jsp" />
+		
+		<!-- 战斗引导 -->
+			<forward name="fight_guide" path="/jsp/login/guide/fight/fight_guide.jsp" />
+			<forward name="fight_attack" path="/jsp/login/guide/fight/fight_attack.jsp" />
+			<forward name="fight_over" path="/jsp/login/guide/fight/fight_over.jsp" />
+			
+			<forward name="fight_page_1" path="/jsp/login/guide/fight/page/fight_page_1.jsp" />
+			<forward name="fight_page_2" path="/jsp/login/guide/fight/page/fight_page_2.jsp" />
+			<forward name="fight_page_3" path="/jsp/login/guide/fight/page/fight_page_3.jsp" />
+			<forward name="fight_page_4" path="/jsp/login/guide/fight/page/fight_page_4.jsp" />
+			<forward name="fight_page_5" path="/jsp/login/guide/fight/page/fight_page_5.jsp" />
+			<forward name="fight_page_6" path="/jsp/login/guide/fight/page/fight_page_6.jsp" />
+		<!-- 快捷键引导 -->
+			<forward name="cure_shortcut" path="/jsp/login/guide/shortcut/cure_shortcut.jsp" />
+			<forward name="cure_list" path="/jsp/login/guide/shortcut/cure_list.jsp" />
+			<forward name="skill_shortcut" path="/jsp/login/guide/shortcut/skill_shortcut.jsp" />
+			<forward name="skill_list" path="/jsp/login/guide/shortcut/skill_list.jsp" />
+			<forward name="attack_shortcut" path="/jsp/login/guide/shortcut/attack_shortcut.jsp" />
+		</action>
+		
+	</action-mappings>
+	<message-resources parameter="ApplicationResources_zh" />
+</struts-config>
+

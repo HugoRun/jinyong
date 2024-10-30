@@ -1,0 +1,2 @@
+<%@page contentType="text/vnd.wap.wml" pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
+<anchor><go href="<%=response.encodeURL("/cooperate/dl/bill/index.jsp")%>" method="get"></go>快速充值</anchor>

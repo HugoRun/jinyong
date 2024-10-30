@@ -1,0 +1,2008 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/menu/storage.do" location="50,50" dimension="269,88" />
+  <StrutsActivity path="/menu/getStorage.do" location="650,50" dimension="303,88" />
+  <StrutsActivity path="/menu/getMoneyStorage.do" location="1250,50" dimension="335,88" />
+  <StrutsActivity path="/menu/addMoneyStorage.do" location="1850,50" dimension="320,88" />
+  <StrutsActivity path="/menu/addPetStorage.do" location="2450,50" dimension="304,88" />
+  <StrutsActivity path="/menu/getPetStorage.do" location="3050,50" dimension="319,88" />
+  <StrutsActivity path="/menu/auction.do" location="3650,50" dimension="218,88" />
+  <StrutsActivity path="/menu/auctionBuy.do" location="3950,50" dimension="236,88" />
+  <StrutsActivity path="/menu/auctionGet.do" location="4250,50" dimension="235,88" />
+  <StrutsActivity path="/mail.do" location="50,250" dimension="203,88" />
+  <StrutsActivity path="/sendMail.do" location="350,250" dimension="207,88" />
+  <StrutsActivity path="/menu/auctionPetSell.do" location="650,250" dimension="250,88" />
+  <StrutsActivity path="/menu/auctionPetBuy.do" location="950,250" dimension="252,88" />
+  <StrutsActivity path="/menu/auctionPetHelp.do" location="1550,250" dimension="264,88" />
+  <StrutsActivity path="/menu/auctionPetHouse.do" location="2150,250" dimension="264,88" />
+  <StrutsActivity path="/syssetting.do" location="2750,250" dimension="231,88" />
+  <StrutsActivity path="/auctionyb.do" location="3050,250" dimension="230,88" />
+  <StrutsActivity path="/viewpic.do" location="3350,250" dimension="217,88" />
+  <StrutsActivity path="/backActive.do" location="3650,250" dimension="251,88" />
+  <StrutsActivity path="/question.do" location="4250,250" dimension="231,88" />
+  <StrutsActivity path="/buffMenu.do" location="50,450" dimension="260,88" />
+  <StrutsActivity path="/enchantment.do" location="650,450" dimension="249,88" />
+  <StrutsActivity path="/secondPass.do" location="950,450" dimension="260,88" />
+  <StrutsActivity path="/modifyPassword.do" location="1550,450" dimension="281,88" />
+  <StrutsActivity path="/zhiModifyPassword.do" location="2150,450" dimension="295,88" />
+  <StrutsActivity path="/forum.do" location="2750,450" dimension="205,88" />
+  <StrutsActivity path="/forumInfo.do" location="3050,450" dimension="225,88" />
+  <StrutsActivity path="/bookMenu.do" location="3350,450" dimension="247,88" />
+  <StrutsActivity path="/untangle.do" location="3650,450" dimension="234,88" />
+  <StrutsActivity path="/upgrade.do" location="3950,450" dimension="258,88" />
+  <StrutsActivity path="/translate.do" location="50,650" dimension="261,88" />
+  <StrutsActivity path="/updecompose.do" location="650,650" dimension="271,88" />
+  <StrutsActivity path="/speaker.do" location="1250,650" dimension="224,88" />
+  <StrutsActivity path="/fieldmanager.do" location="1550,650" dimension="231,88" />
+  <StrutsActivity path="/fielduntangle.do" location="1850,650" dimension="232,88" />
+  <StrutsActivity path="/fieldmast.do" location="2150,650" dimension="212,88" />
+  <StrutsActivity path="/goldBox.do" location="2450,650" dimension="269,88" />
+  <StrutsActivity path="/suibianchuan.do" location="650,850" dimension="264,88" />
+  <StrutsActivity path="/groupchuan.do" location="1250,850" dimension="259,88" />
+  <StrutsActivity path="/attackMallAction.do" location="1850,850" dimension="231,88" />
+  <StrutsActivity path="/equiprelela.do" location="2150,850" dimension="317,88" />
+  <StrutsActivity path="/horta.do" location="2750,850" dimension="206,88" />
+  <StrutsActivity path="/jsp/liveskill/display.jsp" location="3050,850" dimension="138,49" />
+  <StrutsActivity path="/jsp/menu/storage/storage_zb_view.jsp" location="3350,850" dimension="222,49" />
+  <StrutsActivity path="/jsp/menu/storage/storage_list.jsp" location="3650,850" dimension="196,49" />
+  <StrutsActivity path="/jsp/menu/storage/storage_buy_submit.jsp" location="3950,850" dimension="238,49" />
+  <StrutsActivity path="/jsp/menu/storage/storage_prop_view.jsp" location="4250,850" dimension="233,49" />
+  <StrutsActivity path="/jsp/menu/storage/input_num.jsp" location="3050,950" dimension="190,49" />
+  <StrutsActivity path="/jsp/menu/storage/storage_hint.jsp" location="3350,950" dimension="201,49" />
+  <StrutsActivity path="/jsp/menu/getStorage/getStorage_list.jsp" location="3650,950" dimension="230,49" />
+  <StrutsActivity path="/jsp/menu/getStorage/getStorage_hint.jsp" location="3950,950" dimension="235,49" />
+  <StrutsActivity path="/jsp/menu/getStorage/zb_view.jsp" location="4250,950" dimension="196,49" />
+  <StrutsActivity path="/jsp/menu/getStorage/input_num.jsp" location="50,1050" dimension="207,49" />
+  <StrutsActivity path="/jsp/menu/getStorage/prop_view.jsp" location="350,1050" dimension="207,49" />
+  <StrutsActivity path="/jsp/menu/moneyStorage/getMoneySuccend.jsp" location="650,1050" dimension="261,49" />
+  <StrutsActivity path="/jsp/menu/moneyStorage/input_getMoney_Num.jsp" location="1250,1050" dimension="278,49" />
+  <StrutsActivity path="/jsp/menu/moneyStorage/getMoneyStorage.jsp" location="1850,1050" dimension="259,49" />
+  <StrutsActivity path="/jsp/menu/moneyStorage/moneySuccend.jsp" location="2450,1050" dimension="245,49" />
+  <StrutsActivity path="/jsp/menu/moneyStorage/input_money_Num.jsp" location="2750,1050" dimension="262,49" />
+  <StrutsActivity path="/jsp/menu/moneyStorage/moneyStorage.jsp" location="3350,1050" dimension="243,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/display.jsp" location="3650,1050" dimension="190,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/input_pet_Num.jsp" location="3950,1050" dimension="230,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/addPetFailed.jsp" location="4250,1050" dimension="219,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/addSussend.jsp" location="50,1150" dimension="215,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/getPetFailed.jsp" location="350,1150" dimension="217,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/input_getPet_Num.jsp" location="650,1150" dimension="246,49" />
+  <StrutsActivity path="/jsp/menu/petStorage/getSucdend.jsp" location="950,1150" dimension="214,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/equip_view.jsp" location="1250,1150" dimension="231,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_hint.jsp" location="1550,1150" dimension="236,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/input_prop_price.jsp" location="2450,1150" dimension="258,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_list_shu.jsp" location="1850,1150" dimension="254,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_cure_list.jsp" location="3050,1150" dimension="258,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_list_qt.jsp" location="3650,1150" dimension="247,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/reput_zb_price.jsp" location="3950,1150" dimension="249,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/input_zb_price.jsp" location="4250,1150" dimension="247,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_list_zb.jsp" location="2150,2450" dimension="294,53" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_list_rw.jsp" location="50,1250" dimension="249,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/prop_view.jsp" location="350,1250" dimension="227,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/reput_prop_price.jsp" location="650,1250" dimension="260,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/input_num.jsp" location="1250,1250" dimension="227,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_list_shop.jsp" location="1550,1250" dimension="260,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_acc.jsp" location="2150,1250" dimension="231,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/goods_menu.jsp" location="2450,1250" dimension="235,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_other.jsp" location="2750,1250" dimension="241,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_jew.jsp" location="3050,1250" dimension="232,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/goods_view.jsp" location="3350,1250" dimension="231,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/use_hint.jsp" location="3650,1250" dimension="215,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_arm.jsp" location="3950,1250" dimension="233,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_book.jsp" location="4250,1250" dimension="238,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_cure.jsp" location="50,1350" dimension="236,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_material.jsp" location="350,1350" dimension="253,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/nameList.jsp" location="950,1350" dimension="216,49" />
+  <StrutsActivity path="/jsp/auction/searchGoods/auction_shop.jsp" location="1250,1350" dimension="238,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/auction_help.jsp" location="1550,1350" dimension="226,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/equip_display.jsp" location="1850,1350" dimension="230,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/auction_hint.jsp" location="2150,1350" dimension="224,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/resure.jsp" location="2450,1350" dimension="196,49" />
+  <StrutsActivity path="/jsp/auction/auctionMainPage/auctionresure.jsp" location="2750,1350" dimension="259,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/auction_info.jsp" location="3350,1350" dimension="224,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/prop_display.jsp" location="3650,1350" dimension="226,49" />
+  <StrutsActivity path="/jsp/auction/auctionMainPage/auction_house.jsp" location="3950,1350" dimension="263,49" />
+  <StrutsActivity path="/jsp/auction/auctionBuy/auction_house.jsp" location="50,1450" dimension="235,49" />
+  <StrutsActivity path="/jsp/auction/auctionGoods/auction_buy_info.jsp" location="350,1450" dimension="260,49" />
+  <StrutsActivity path="/jsp/mail/send_hint.jsp" location="950,1450" dimension="138,49" />
+  <StrutsActivity path="/jsp/mail/deleteSure.jsp" location="1250,1450" dimension="143,49" />
+  <StrutsActivity path="/jsp/mail/display.jsp" location="1550,1450" dimension="124,49" />
+  <StrutsActivity path="/jsp/mail/mail_list.jsp" location="1850,1450" dimension="128,49" />
+  <StrutsActivity path="/jsp/mail/mail_view.jsp" location="2150,1450" dimension="137,49" />
+  <StrutsActivity path="/jsp/mail/writeMail.jsp" location="2450,1450" dimension="133,49" />
+  <StrutsActivity path="/jsp/friend/blacklist/blacklist_hint.jsp" location="2750,1450" dimension="203,49" />
+  <StrutsActivity path="/jsp/mail/writeMailZhi.jsp" location="3050,1450" dimension="147,49" />
+  <StrutsActivity path="/jsp/auctionpet/petList.jsp" location="3350,1450" dimension="156,49" />
+  <StrutsActivity path="/jsp/auctionpet/pet_display.jsp" location="3650,1450" dimension="179,49" />
+  <StrutsActivity path="/jsp/auctionpet/petView.jsp" location="3950,1450" dimension="162,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionpetbuy/display.jsp" location="4250,1450" dimension="230,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionpetbuy/auctionPetDisPlay.jsp" location="50,1550" dimension="282,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionpetbuy/petView.jsp" location="650,1550" dimension="235,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionpetbuy/auction_pet_list.jsp" location="950,1550" dimension="273,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionpetbuy/search_pet_view.jsp" location="1550,1550" dimension="279,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionInfo/pet_info_display.jsp" location="2150,1550" dimension="262,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionInfo/auctionPethouse.jsp" location="2750,1550" dimension="263,49" />
+  <StrutsActivity path="/jsp/auctionpet/auctionInfo/petInfoList.jsp" location="3350,1550" dimension="235,49" />
+  <StrutsActivity path="/jsp/function/setting/setting_page.jsp" location="3650,1550" dimension="212,49" />
+  <StrutsActivity path="/jsp/function/setting/errors.jsp" location="3950,1550" dimension="178,49" />
+  <StrutsActivity path="/jsp/function/setting/chat_setting.jsp" location="4250,1550" dimension="209,49" />
+  <StrutsActivity path="/jsp/function/setting/pic_setting.jsp" location="50,1650" dimension="201,49" />
+  <StrutsActivity path="/jsp/function/setting/other_setting.jsp" location="350,1650" dimension="214,49" />
+  <StrutsActivity path="/jsp/auctionyb/paimaiYuanBao.jsp" location="650,1650" dimension="192,49" />
+  <StrutsActivity path="/jsp/auctionyb/auction_sure.jsp" location="950,1650" dimension="182,49" />
+  <StrutsActivity path="/jsp/auctionyb/auction_yb_list.jsp" location="1250,1650" dimension="192,49" />
+  <StrutsActivity path="/jsp/auctionyb/ready_auction.jsp" location="1550,1650" dimension="189,49" />
+  <StrutsActivity path="/jsp/auctionyb/want_to_buy.jsp" location="1850,1650" dimension="184,49" />
+  <StrutsActivity path="/jsp/auctionyb/buy_hint.jsp" location="2150,1650" dimension="162,49" />
+  <StrutsActivity path="/jsp/auctionyb/return_mail.jsp" location="2450,1650" dimension="174,49" />
+  <StrutsActivity path="/jsp/pic/mappic/mapView.jsp" location="2750,1650" dimension="165,49" />
+  <StrutsActivity path="/jsp/back/back.jsp" location="3050,1650" dimension="117,49" />
+  <StrutsActivity path="/jsp/question/failed.jsp" location="3350,1650" dimension="140,49" />
+  <StrutsActivity path="/jsp/question/answer_over.jsp" location="3650,1650" dimension="177,49" />
+  <StrutsActivity path="/jsp/question/ranklist.jsp" location="3950,1650" dimension="148,49" />
+  <StrutsActivity path="/jsp/question/questionPage.jsp" location="4250,1650" dimension="179,49" />
+  <StrutsActivity path="/jsp/question/firstPage.jsp" location="50,1750" dimension="157,49" />
+  <StrutsActivity path="/jsp/menu/buffmenu/display.jsp" location="350,1750" dimension="182,49" />
+  <StrutsActivity path="/jsp/menu/buffmenu/buffAddSussend.jsp" location="650,1750" dimension="228,49" />
+  <StrutsActivity path="/jsp/menu/buffmenu/reconfirm.jsp" location="950,1750" dimension="194,49" />
+  <StrutsActivity path="/jsp/menu/buffmenu/buffMenuView.jsp" location="1250,1750" dimension="217,49" />
+  <StrutsActivity path="/jsp/enchant/view.jsp" location="1550,1750" dimension="134,49" />
+  <StrutsActivity path="/jsp/enchant/enchant_resure.jsp" location="1850,1750" dimension="188,49" />
+  <StrutsActivity path="/jsp/enchant/sussend.jsp" location="2150,1750" dimension="151,49" />
+  <StrutsActivity path="/jsp/enchant/enchant_hint.jsp" location="2450,1750" dimension="175,49" />
+  <StrutsActivity path="/jsp/enchant/enchantList.jsp" location="2750,1750" dimension="167,49" />
+  <StrutsActivity path="/jsp/function/secondpass/failed_pass.jsp" location="3050,1750" dimension="226,49" />
+  <StrutsActivity path="/jsp/function/secondpass/sussend_update_login.jsp" location="3350,1750" dimension="279,49" />
+  <StrutsActivity path="/jsp/function/secondpass/sussend_pass.jsp" location="3950,1750" dimension="239,49" />
+  <StrutsActivity path="/jsp/function/secondpass/password_wrong.jsp" location="4250,1750" dimension="254,49" />
+  <StrutsActivity path="/jsp/function/modifyPassword/failed_pass.jsp" location="50,1850" dimension="248,49" />
+  <StrutsActivity path="/jsp/function/modifyPassword/sussend_pass.jsp" location="350,1850" dimension="261,49" />
+  <StrutsActivity path="/jsp/function/modifyPassword/reput_password.jsp" location="950,1850" dimension="272,49" />
+  <StrutsActivity path="/jsp/function/zhijieModify/failed_pass.jsp" location="1550,1850" dimension="226,49" />
+  <StrutsActivity path="/jsp/function/zhijieModify/sussend_update.jsp" location="1850,1850" dimension="251,49" />
+  <StrutsActivity path="/jsp/function/zhijieModify/startReput.jsp" location="2450,1850" dimension="224,49" />
+  <StrutsActivity path="/jsp/function/zhijieModify/sussend_pass.jsp" location="2750,1850" dimension="239,49" />
+  <StrutsActivity path="/jsp/function/zhijieModify/password_wrong.jsp" location="3050,1850" dimension="254,49" />
+  <StrutsActivity path="/jsp/forum/return_revert.jsp" location="3650,1850" dimension="167,49" />
+  <StrutsActivity path="/jsp/forum/revert_view.jsp" location="3950,1850" dimension="159,49" />
+  <StrutsActivity path="/jsp/forum/sussend_revert.jsp" location="4250,1850" dimension="176,49" />
+  <StrutsActivity path="/jsp/forum/index.jsp" location="50,1950" dimension="127,49" />
+  <StrutsActivity path="/jsp/forum/contentView.jsp" location="350,1950" dimension="160,49" />
+  <StrutsActivity path="/jsp/forum/add_forum_content.jsp" location="650,1950" dimension="196,49" />
+  <StrutsActivity path="/jsp/forum/forum_class_list.jsp" location="950,1950" dimension="177,49" />
+  <StrutsActivity path="/jsp/forum/part_info_view.jsp" location="1250,1950" dimension="173,49" />
+  <StrutsActivity path="/jsp/forum/manager/manager.jsp" location="1550,1950" dimension="189,49" />
+  <StrutsActivity path="/jsp/forum/manager/hint.jsp" location="1850,1950" dimension="165,49" />
+  <StrutsActivity path="/jsp/bookinfo/my_box.jsp" location="2150,1950" dimension="152,49" />
+  <StrutsActivity path="/jsp/bookinfo/clewmess.jsp" location="2450,1950" dimension="159,49" />
+  <StrutsActivity path="/jsp/bookinfo/exmessage.jsp" location="2750,1950" dimension="168,49" />
+  <StrutsActivity path="/jsp/bookinfo/line_read.jsp" location="3050,1950" dimension="158,49" />
+  <StrutsActivity path="/jsp/bookinfo/type_list.jsp" location="3350,1950" dimension="155,49" />
+  <StrutsActivity path="/jsp/bookinfo/message.jsp" location="3650,1950" dimension="156,49" />
+  <StrutsActivity path="/jsp/bookinfo/phb_show.jsp" location="3950,1950" dimension="163,49" />
+  <StrutsActivity path="/jsp/bookinfo/book_result.jsp" location="4250,1950" dimension="170,49" />
+  <StrutsActivity path="/jsp/bookinfo/all_phb.jsp" location="50,2050" dimension="148,49" />
+  <StrutsActivity path="/jsp/bookinfo/zj_list.jsp" location="350,2050" dimension="141,49" />
+  <StrutsActivity path="/jsp/bookinfo/book_list.jsp" location="650,2050" dimension="156,49" />
+  <StrutsActivity path="/jsp/function/untangle/arm_view.jsp" location="950,2050" dimension="204,49" />
+  <StrutsActivity path="/jsp/function/untangle/untangle_view.jsp" location="1250,2050" dimension="228,49" />
+  <StrutsActivity path="/jsp/function/instance/result.jsp" location="1550,2050" dimension="183,49" />
+  <StrutsActivity path="/jsp/function/untangle/arm_ranking.jsp" location="1850,2050" dimension="217,49" />
+  <StrutsActivity path="/jsp/function/untangle/untangle.jsp" location="2150,2050" dimension="200,49" />
+  <StrutsActivity path="/jsp/accdispose/upgradepose/equip_list.jsp" location="2450,2050" dimension="237,49" />
+  <StrutsActivity path="/jsp/accdispose/upgradepose/sussend_deco.jsp" location="2750,2050" dimension="260,49" />
+  <StrutsActivity path="/jsp/accdispose/upgradepose/upgradePorp.jsp" location="3350,2050" dimension="254,49" />
+  <StrutsActivity path="/jsp/accdispose/upgradepose/start_upgradepose.jsp" location="3950,2050" dimension="284,49" />
+  <StrutsActivity path="/jsp/accdispose/acctranslate/equip_list.jsp" location="50,2150" dimension="233,49" />
+  <StrutsActivity path="/jsp/accdispose/acctranslate/sussend_deco.jsp" location="350,2150" dimension="256,49" />
+  <StrutsActivity path="/jsp/accdispose/acctranslate/upgradePorp.jsp" location="950,2150" dimension="250,49" />
+  <StrutsActivity path="/jsp/accdispose/acctranslate/acctranslate.jsp" location="1250,2150" dimension="247,49" />
+  <StrutsActivity path="/jsp/accdispose/accdecompose/equip_list.jsp" location="1550,2150" dimension="244,49" />
+  <StrutsActivity path="/jsp/accdispose/accdecompose/equip_display.jsp" location="1850,2150" dimension="264,49" />
+  <StrutsActivity path="/jsp/accdispose/accdecompose/prop_display.jsp" location="2450,2150" dimension="260,49" />
+  <StrutsActivity path="/jsp/accdispose/accdecompose/sussend_deco.jsp" location="3050,2150" dimension="267,49" />
+  <StrutsActivity path="/jsp/accdispose/accdecompose/upgradePorp.jsp" location="3650,2150" dimension="261,49" />
+  <StrutsActivity path="/jsp/accdispose/accdecompose/start_decompose.jsp" location="4250,2150" dimension="282,49" />
+  <StrutsActivity path="/jsp/communion/speaker/sussenno.jsp" location="50,2250" dimension="213,49" />
+  <StrutsActivity path="/walk.do" location="350,2250" dimension="80,75" />
+  <StrutsActivity path="/jsp/communion/speaker/start_speaker.jsp" location="650,2250" dimension="235,49" />
+  <StrutsActivity path="/jsp/laborage/display.jsp" location="950,2250" dimension="148,49" />
+  <StrutsActivity path="/jsp/field/fieldManager/display_previous.jsp" location="1250,2250" dimension="239,49" />
+  <StrutsActivity path="/jsp/field/fieldUntangle/fieldSequeKillNum.jsp" location="1550,2250" dimension="243,49" />
+  <StrutsActivity path="/jsp/field/fieldUntangle/fieldMouthRecordView.jsp" location="1850,2250" dimension="266,49" />
+  <StrutsActivity path="/jsp/field/fieldUntangle/fieldViewFieldHistory.jsp" location="2450,2250" dimension="258,49" />
+  <StrutsActivity path="/jsp/field/fieldmast/fieldmast_sussend_update.jsp" location="3050,2250" dimension="268,49" />
+  <StrutsActivity path="/jsp/menu/goldbox/goods_list.jsp" location="3650,2250" dimension="189,49" />
+  <StrutsActivity path="/jsp/menu/goldbox/goods_display.jsp" location="3950,2250" dimension="209,49" />
+  <StrutsActivity path="/jsp/menu/goldbox/gold_box_list.jsp" location="4250,2250" dimension="204,49" />
+  <StrutsActivity path="/jsp/menu/goldbox/hint.jsp" location="50,2350" dimension="159,49" />
+  <StrutsActivity path="/jsp/wrapinfo/suibianchuang/carry_table_list.jsp" location="2750,2350" dimension="261,49" />
+  <StrutsActivity path="/jsp/wrapinfo/suibianchuang/scene_list.jsp" location="3350,2350" dimension="234,49" />
+  <StrutsActivity path="/jsp/wrapinfo/suibianchuang/use_hint.jsp" location="3650,2350" dimension="228,49" />
+  <StrutsActivity path="/jsp/wrapinfo/groupchuan/group_list.jsp" location="3950,2350" dimension="223,49" />
+  <StrutsActivity path="/jsp/wrapinfo/groupchuan/use_hint.jsp" location="4250,2350" dimension="217,49" />
+  <StrutsActivity path="/jsp/attack/buy/prop_display.jsp" location="50,2450" dimension="186,49" />
+  <StrutsActivity path="/jsp/attack/buy/buy_hint.jsp" location="350,2450" dimension="167,49" />
+  <StrutsActivity path="/jsp/wrapinfo/tijiao/hint.jsp" location="950,2350" dimension="160,49" />
+  <StrutsActivity path="/jsp/wrapinfo/equiprelela/relelafailed.jsp" location="650,2450" dimension="223,49" />
+  <StrutsActivity path="/jsp/goods/horta/horta_mainlist.jsp" location="950,2450" dimension="199,49" />
+  <StrutsActivity path="/jsp/goods/horta/jieguoString.jsp" location="1250,2450" dimension="189,49" />
+  <StrutsActivity path="/jsp/goods/horta/horta_son_list.jsp" location="1550,2450" dimension="200,49" />
+  <StrutsActivity path="/jsp/goods/horta/displayString.jsp" location="1850,2450" dimension="193,49" />
+  <StrutsActivity path="/jsp/wrapinfo/tijiao/start_tijiao.jsp" location="650,2350" dimension="194,49" />
+  <StrutsActivity path="/jsp/tongsiege/signup/start_signup.jsp" location="1250,2350" dimension="215,49" />
+  <StrutsActivity path="/jsp/tongsiege/signup/hint.jsp" location="1550,2350" dimension="173,49" />
+  <StrutsActivity path="/jsp/tongsiege/tongBattle/hint.jsp" location="1850,2350" dimension="192,49" />
+  <StrutsActivity path="/jsp/tongsiege/recofirm.jsp" location="2150,2350" dimension="159,49" />
+  <StrutsActivity path="/jsp/tongsiege/buff_hint.jsp" location="2450,2350" dimension="164,49" />
+  <StrutsActivity path="/jsp/function/function.jsp" />
+  <StrutsTransition id="/bookMenu.do,mybookbox,/jsp/bookinfo/my_box.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3597,504" />
+      <AbsolutePoint location="3636,504" />
+      <AbsolutePoint location="3636,1820" />
+      <AbsolutePoint location="2226,1820" />
+      <AbsolutePoint location="2226,1950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,want_to_buy,/jsp/auctionyb/want_to_buy.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3165,338" />
+      <AbsolutePoint location="3165,376" />
+      <AbsolutePoint location="1216,376" />
+      <AbsolutePoint location="1216,1525" />
+      <AbsolutePoint location="1942,1525" />
+      <AbsolutePoint location="1942,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getStorage.do,warehousepropview,/jsp/menu/getStorage/prop_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="801,50" />
+      <AbsolutePoint location="801,-25" />
+      <AbsolutePoint location="35,-25" />
+      <AbsolutePoint location="35,583" />
+      <AbsolutePoint location="433,583" />
+      <AbsolutePoint location="433,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,contentView,/jsp/forum/contentView.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2852,450" />
+      <AbsolutePoint location="2852,389" />
+      <AbsolutePoint location="1545,389" />
+      <AbsolutePoint location="1545,1922" />
+      <AbsolutePoint location="430,1922" />
+      <AbsolutePoint location="430,1950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addPetStorage.do,display,/jsp/menu/petStorage/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2602,138" />
+      <AbsolutePoint location="2602,636" />
+      <AbsolutePoint location="2907,636" />
+      <AbsolutePoint location="2907,812" />
+      <AbsolutePoint location="3590,812" />
+      <AbsolutePoint location="3590,1005" />
+      <AbsolutePoint location="3745,1005" />
+      <AbsolutePoint location="3745,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetHelp.do,auction_pet_house,/jsp/auctionpet/auctionInfo/auctionPethouse.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1682,294" />
+      <AbsolutePoint location="1682,1574" />
+      <AbsolutePoint location="2881,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/syssetting.do,chat_setting,/jsp/function/setting/chat_setting.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2865,294" />
+      <AbsolutePoint location="2865,1574" />
+      <AbsolutePoint location="4354,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/upgrade.do,sussend_deco,/jsp/accdispose/upgradepose/sussend_deco.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4208,494" />
+      <AbsolutePoint location="4264,494" />
+      <AbsolutePoint location="4264,848" />
+      <AbsolutePoint location="3271,848" />
+      <AbsolutePoint location="3271,1088" />
+      <AbsolutePoint location="3344,1088" />
+      <AbsolutePoint location="3344,2074" />
+      <AbsolutePoint location="3010,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,message,/jsp/bookinfo/message.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3501,538" />
+      <AbsolutePoint location="3501,547" />
+      <AbsolutePoint location="3944,547" />
+      <AbsolutePoint location="3944,1974" />
+      <AbsolutePoint location="3806,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/speaker.do,sussenno,/jsp/communion/speaker/sussenno.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1250,685" />
+      <AbsolutePoint location="1124,685" />
+      <AbsolutePoint location="1124,1017" />
+      <AbsolutePoint location="2184,1017" />
+      <AbsolutePoint location="2184,1195" />
+      <AbsolutePoint location="2122,1195" />
+      <AbsolutePoint location="2122,2225" />
+      <AbsolutePoint location="156,2225" />
+      <AbsolutePoint location="156,2250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/suibianchuan.do,hint,/jsp/wrapinfo/suibianchuang/use_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="786,938" />
+      <AbsolutePoint location="786,956" />
+      <AbsolutePoint location="2160,956" />
+      <AbsolutePoint location="2160,1225" />
+      <AbsolutePoint location="2144,1225" />
+      <AbsolutePoint location="2144,2331" />
+      <AbsolutePoint location="3764,2331" />
+      <AbsolutePoint location="3764,2350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updecompose.do,sussend_deco,/jsp/accdispose/accdecompose/sussend_deco.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="785,694" />
+      <AbsolutePoint location="785,2174" />
+      <AbsolutePoint location="3183,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,auction_help,/jsp/auction/auctionBuy/auction_help.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4485,94" />
+      <AbsolutePoint location="4492,94" />
+      <AbsolutePoint location="4492,1136" />
+      <AbsolutePoint location="1518,1136" />
+      <AbsolutePoint location="1518,1388" />
+      <AbsolutePoint location="1550,1388" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,reput_content,/jsp/forum/add_forum_content.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2852,538" />
+      <AbsolutePoint location="2852,813" />
+      <AbsolutePoint location="917,813" />
+      <AbsolutePoint location="917,1974" />
+      <AbsolutePoint location="846,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zhiModifyPassword.do,startPass,/jsp/function/zhijieModify/startReput.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2297,450" />
+      <AbsolutePoint location="2297,404" />
+      <AbsolutePoint location="609,404" />
+      <AbsolutePoint location="609,1447" />
+      <AbsolutePoint location="2627,1447" />
+      <AbsolutePoint location="2627,1850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/mail.do,deletesure,/jsp/mail/deleteSure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,294" />
+      <AbsolutePoint location="-86,294" />
+      <AbsolutePoint location="-86,554" />
+      <AbsolutePoint location="1056,554" />
+      <AbsolutePoint location="1056,1145" />
+      <AbsolutePoint location="1494,1145" />
+      <AbsolutePoint location="1494,1474" />
+      <AbsolutePoint location="1393,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,equip_display,/jsp/auction/auctionGoods/equip_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3729,50" />
+      <AbsolutePoint location="3729,-25" />
+      <AbsolutePoint location="1238,-25" />
+      <AbsolutePoint location="1238,1174" />
+      <AbsolutePoint location="1250,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,reput_prop_price,/jsp/auction/auctionGoods/input_prop_price.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3789,138" />
+      <AbsolutePoint location="3789,213" />
+      <AbsolutePoint location="3028,213" />
+      <AbsolutePoint location="3028,1174" />
+      <AbsolutePoint location="2708,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getPetStorage.do,pet_list,/jsp/menu/petStorage/input_getPet_Num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3209,94" />
+      <AbsolutePoint location="3209,1174" />
+      <AbsolutePoint location="773,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,typelist,/jsp/bookinfo/type_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3473,538" />
+      <AbsolutePoint location="3473,637" />
+      <AbsolutePoint location="3046,637" />
+      <AbsolutePoint location="3046,2008" />
+      <AbsolutePoint location="3427,2008" />
+      <AbsolutePoint location="3427,1999" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/mail.do,mailList,/jsp/mail/mail_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="151,294" />
+      <AbsolutePoint location="151,1474" />
+      <AbsolutePoint location="1914,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fieldmanager.do,no_camp_display,/jsp/laborage/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1665,694" />
+      <AbsolutePoint location="1665,2274" />
+      <AbsolutePoint location="1024,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,equip_list,/jsp/auction/auctionGoods/auction_list_zb.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3759,94" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/equiprelela.do,displayfalse,/jsp/wrapinfo/equiprelela/relelafailed.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2313,938" />
+      <AbsolutePoint location="2313,1240" />
+      <AbsolutePoint location="3016,1240" />
+      <AbsolutePoint location="3016,2426" />
+      <AbsolutePoint location="761,2426" />
+      <AbsolutePoint location="761,2450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/backActive.do,back,/jsp/back/back.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3775,294" />
+      <AbsolutePoint location="3775,1674" />
+      <AbsolutePoint location="3108,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetHouse.do,auction_pet_info,/jsp/auctionpet/auctionInfo/petInfoList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2282,294" />
+      <AbsolutePoint location="2282,1574" />
+      <AbsolutePoint location="3467,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/syssetting.do,pic_setting,/jsp/function/setting/pic_setting.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2865,250" />
+      <AbsolutePoint location="2865,200" />
+      <AbsolutePoint location="1212,200" />
+      <AbsolutePoint location="1212,1239" />
+      <AbsolutePoint location="4,1239" />
+      <AbsolutePoint location="4,1674" />
+      <AbsolutePoint location="50,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/mail.do,deleteMail,/jsp/mail/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="151,338" />
+      <AbsolutePoint location="151,437" />
+      <AbsolutePoint location="507,437" />
+      <AbsolutePoint location="507,987" />
+      <AbsolutePoint location="308,987" />
+      <AbsolutePoint location="308,1408" />
+      <AbsolutePoint location="1612,1408" />
+      <AbsolutePoint location="1612,1450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetHelp.do,auction_pet_info,/jsp/auctionpet/auctionInfo/petInfoList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1682,294" />
+      <AbsolutePoint location="1682,1574" />
+      <AbsolutePoint location="3467,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/buffMenu.do,buffmenuview,/jsp/menu/buffmenu/buffMenuView.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,494" />
+      <AbsolutePoint location="180,1774" />
+      <AbsolutePoint location="1358,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/secondPass.do,password_wrong,/jsp/function/secondpass/password_wrong.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1084,538" />
+      <AbsolutePoint location="1084,1023" />
+      <AbsolutePoint location="2228,1023" />
+      <AbsolutePoint location="2228,1231" />
+      <AbsolutePoint location="4490,1231" />
+      <AbsolutePoint location="4490,1750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,sussendRevert,/jsp/forum/sussend_revert.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2955,503" />
+      <AbsolutePoint location="2963,503" />
+      <AbsolutePoint location="2963,945" />
+      <AbsolutePoint location="4673,945" />
+      <AbsolutePoint location="4673,1874" />
+      <AbsolutePoint location="4426,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,auction_hint,/jsp/auction/auctionBuy/auction_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4250,94" />
+      <AbsolutePoint location="4219,94" />
+      <AbsolutePoint location="4219,445" />
+      <AbsolutePoint location="1846,445" />
+      <AbsolutePoint location="1846,1314" />
+      <AbsolutePoint location="2262,1314" />
+      <AbsolutePoint location="2262,1350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,book_list,/jsp/auction/searchGoods/auction_book.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4158,138" />
+      <AbsolutePoint location="4158,383" />
+      <AbsolutePoint location="4415,383" />
+      <AbsolutePoint location="4415,613" />
+      <AbsolutePoint location="-85,613" />
+      <AbsolutePoint location="-85,2574" />
+      <AbsolutePoint location="4547,2574" />
+      <AbsolutePoint location="4547,1274" />
+      <AbsolutePoint location="4488,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/untangle.do,paiminglist,/jsp/function/untangle/untangle.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3767,494" />
+      <AbsolutePoint location="3767,2074" />
+      <AbsolutePoint location="2250,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetBuy.do,auction_pet_list,/jsp/auctionpet/auctionpetbuy/auction_pet_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1076,294" />
+      <AbsolutePoint location="1076,1574" />
+      <AbsolutePoint location="1086,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,acc_list,/jsp/auction/searchGoods/auction_acc.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4038,138" />
+      <AbsolutePoint location="4038,383" />
+      <AbsolutePoint location="3333,383" />
+      <AbsolutePoint location="3333,1014" />
+      <AbsolutePoint location="2265,1014" />
+      <AbsolutePoint location="2265,1250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,shop_list,/jsp/auction/searchGoods/auction_shop.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4002,138" />
+      <AbsolutePoint location="4002,235" />
+      <AbsolutePoint location="1535,235" />
+      <AbsolutePoint location="1535,1374" />
+      <AbsolutePoint location="1488,1374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/buffMenu.do,display,/jsp/menu/buffmenu/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,494" />
+      <AbsolutePoint location="180,1774" />
+      <AbsolutePoint location="441,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updecompose.do,accdecopose,/jsp/accdispose/accdecompose/start_decompose.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="785,650" />
+      <AbsolutePoint location="785,561" />
+      <AbsolutePoint location="1827,561" />
+      <AbsolutePoint location="1827,1438" />
+      <AbsolutePoint location="4507,1438" />
+      <AbsolutePoint location="4507,2150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addPetStorage.do,pet_list,/jsp/menu/petStorage/input_pet_Num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2607,138" />
+      <AbsolutePoint location="2607,555" />
+      <AbsolutePoint location="3250,555" />
+      <AbsolutePoint location="3250,819" />
+      <AbsolutePoint location="3575,819" />
+      <AbsolutePoint location="3575,1026" />
+      <AbsolutePoint location="4065,1026" />
+      <AbsolutePoint location="4065,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/translate.do,sussend_deco,/jsp/accdispose/acctranslate/sussend_deco.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,694" />
+      <AbsolutePoint location="180,2174" />
+      <AbsolutePoint location="478,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendMail.do,write_back,/jsp/mail/writeMail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="453,294" />
+      <AbsolutePoint location="453,1474" />
+      <AbsolutePoint location="2516,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/untangle.do,arm_view,/jsp/function/untangle/arm_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3882,538" />
+      <AbsolutePoint location="3882,1039" />
+      <AbsolutePoint location="3340,1039" />
+      <AbsolutePoint location="3340,2017" />
+      <AbsolutePoint location="1052,2017" />
+      <AbsolutePoint location="1052,2050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/equiprelela.do,sussend,/jsp/wrapinfo/tijiao/hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2308,938" />
+      <AbsolutePoint location="2308,1191" />
+      <AbsolutePoint location="2118,1191" />
+      <AbsolutePoint location="2118,2345" />
+      <AbsolutePoint location="1030,2345" />
+      <AbsolutePoint location="1030,2350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/goldBox.do,gold_box_list,/jsp/menu/goldbox/gold_box_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2584,738" />
+      <AbsolutePoint location="2584,948" />
+      <AbsolutePoint location="2383,948" />
+      <AbsolutePoint location="2383,1547" />
+      <AbsolutePoint location="4576,1547" />
+      <AbsolutePoint location="4576,2274" />
+      <AbsolutePoint location="4454,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addMoneyStorage.do,money_list,/jsp/menu/moneyStorage/moneyStorage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2010,94" />
+      <AbsolutePoint location="2010,1074" />
+      <AbsolutePoint location="3471,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,cure_list,/jsp/auction/searchGoods/auction_cure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4186,94" />
+      <AbsolutePoint location="4201,94" />
+      <AbsolutePoint location="4201,353" />
+      <AbsolutePoint location="4295,353" />
+      <AbsolutePoint location="4295,753" />
+      <AbsolutePoint location="35,753" />
+      <AbsolutePoint location="35,1374" />
+      <AbsolutePoint location="50,1374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zhiModifyPassword.do,failedPass,/jsp/function/zhijieModify/failed_pass.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2301,538" />
+      <AbsolutePoint location="2301,636" />
+      <AbsolutePoint location="1804,636" />
+      <AbsolutePoint location="1804,1221" />
+      <AbsolutePoint location="1490,1221" />
+      <AbsolutePoint location="1490,1874" />
+      <AbsolutePoint location="1550,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,allphb,/jsp/bookinfo/all_phb.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3463,538" />
+      <AbsolutePoint location="3463,631" />
+      <AbsolutePoint location="-55,631" />
+      <AbsolutePoint location="-55,2074" />
+      <AbsolutePoint location="50,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getMoneyStorage.do,money_list,/jsp/menu/moneyStorage/getMoneyStorage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1505,138" />
+      <AbsolutePoint location="1505,793" />
+      <AbsolutePoint location="1629,793" />
+      <AbsolutePoint location="1629,1074" />
+      <AbsolutePoint location="1850,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/syssetting.do,settingpage,/jsp/function/setting/setting_page.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2750,294" />
+      <AbsolutePoint location="2583,294" />
+      <AbsolutePoint location="2583,419" />
+      <AbsolutePoint location="455,419" />
+      <AbsolutePoint location="455,971" />
+      <AbsolutePoint location="2402,971" />
+      <AbsolutePoint location="2402,1534" />
+      <AbsolutePoint location="3756,1534" />
+      <AbsolutePoint location="3756,1550" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,clewmess,/jsp/bookinfo/clewmess.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3495,538" />
+      <AbsolutePoint location="3495,559" />
+      <AbsolutePoint location="3908,559" />
+      <AbsolutePoint location="3908,1920" />
+      <AbsolutePoint location="2529,1920" />
+      <AbsolutePoint location="2529,1950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addMoneyStorage.do,input_num,/jsp/menu/moneyStorage/input_money_Num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2010,94" />
+      <AbsolutePoint location="2010,1074" />
+      <AbsolutePoint location="2881,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,revert_view,/jsp/forum/revert_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2858,538" />
+      <AbsolutePoint location="2858,843" />
+      <AbsolutePoint location="4216,843" />
+      <AbsolutePoint location="4216,1874" />
+      <AbsolutePoint location="4109,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,exmess,/jsp/bookinfo/exmessage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3350,494" />
+      <AbsolutePoint location="3313,494" />
+      <AbsolutePoint location="3313,1936" />
+      <AbsolutePoint location="2834,1936" />
+      <AbsolutePoint location="2834,1950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/question.do,failed,/jsp/question/failed.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4365,294" />
+      <AbsolutePoint location="4365,1674" />
+      <AbsolutePoint location="3420,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/horta.do,jieguoString,/jsp/goods/horta/jieguoString.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2853,938" />
+      <AbsolutePoint location="2853,956" />
+      <AbsolutePoint location="2172,956" />
+      <AbsolutePoint location="2172,1247" />
+      <AbsolutePoint location="1245,1247" />
+      <AbsolutePoint location="1245,2474" />
+      <AbsolutePoint location="1250,2474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fielduntangle.do,field_kill,/jsp/field/fieldUntangle/fieldSequeKillNum.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1966,694" />
+      <AbsolutePoint location="1966,2274" />
+      <AbsolutePoint location="1671,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fielduntangle.do,viewFieldHistory,/jsp/field/fieldUntangle/fieldViewFieldHistory.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1966,694" />
+      <AbsolutePoint location="1966,2274" />
+      <AbsolutePoint location="2579,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/goldBox.do,hint,/jsp/menu/goldbox/hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2584,694" />
+      <AbsolutePoint location="2584,2374" />
+      <AbsolutePoint location="129,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/attackMallAction.do,buy_hint,/jsp/attack/buy/buy_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1965,894" />
+      <AbsolutePoint location="1965,2474" />
+      <AbsolutePoint location="433,2474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/enchantment.do,sussend,/jsp/enchant/sussend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="774,494" />
+      <AbsolutePoint location="774,1774" />
+      <AbsolutePoint location="2225,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fielduntangle.do,mouthKill,/jsp/field/fieldUntangle/fieldMouthRecordView.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1850,694" />
+      <AbsolutePoint location="1792,694" />
+      <AbsolutePoint location="1792,1013" />
+      <AbsolutePoint location="2212,1013" />
+      <AbsolutePoint location="2212,1231" />
+      <AbsolutePoint location="2136,1231" />
+      <AbsolutePoint location="2136,2274" />
+      <AbsolutePoint location="2116,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,nameList,/jsp/auction/searchGoods/nameList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4098,138" />
+      <AbsolutePoint location="4098,435" />
+      <AbsolutePoint location="942,435" />
+      <AbsolutePoint location="942,1374" />
+      <AbsolutePoint location="950,1374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/translate.do,accTranslate,/jsp/accdispose/acctranslate/acctranslate.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,694" />
+      <AbsolutePoint location="180,2174" />
+      <AbsolutePoint location="1373,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updecompose.do,acc_list,/jsp/accdispose/accdecompose/equip_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="921,694" />
+      <AbsolutePoint location="1203,694" />
+      <AbsolutePoint location="1203,1420" />
+      <AbsolutePoint location="1518,1420" />
+      <AbsolutePoint location="1518,2174" />
+      <AbsolutePoint location="1550,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/enchantment.do,gradeno,/jsp/enchant/enchant_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="774,494" />
+      <AbsolutePoint location="774,1774" />
+      <AbsolutePoint location="2537,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/modifyPassword.do,failedPass,/jsp/function/modifyPassword/failed_pass.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1690,494" />
+      <AbsolutePoint location="1690,1874" />
+      <AbsolutePoint location="174,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addPetStorage.do,findnot,/jsp/menu/petStorage/addPetFailed.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2602,94" />
+      <AbsolutePoint location="2602,1074" />
+      <AbsolutePoint location="4359,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,ready_auction,/jsp/auctionyb/ready_auction.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3165,294" />
+      <AbsolutePoint location="3165,1674" />
+      <AbsolutePoint location="1644,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetBuy.do,petinfoviewsearch,/jsp/auctionpet/auctionpetbuy/search_pet_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1076,294" />
+      <AbsolutePoint location="1076,1574" />
+      <AbsolutePoint location="1689,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendMail.do,blacklisthint,/jsp/friend/blacklist/blacklist_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="453,294" />
+      <AbsolutePoint location="453,1474" />
+      <AbsolutePoint location="2851,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,book_list,/jsp/auction/auctionGoods/auction_list_shu.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3759,138" />
+      <AbsolutePoint location="3759,183" />
+      <AbsolutePoint location="2131,183" />
+      <AbsolutePoint location="2131,1174" />
+      <AbsolutePoint location="2104,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/untangle.do,paimingview,/jsp/function/untangle/untangle_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3767,494" />
+      <AbsolutePoint location="3767,2074" />
+      <AbsolutePoint location="1364,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetHelp.do,pet_display,/jsp/auctionpet/auctionInfo/pet_info_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1682,294" />
+      <AbsolutePoint location="1682,1574" />
+      <AbsolutePoint location="2281,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/groupchuan.do,hint,/jsp/wrapinfo/groupchuan/use_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1379,894" />
+      <AbsolutePoint location="1379,2374" />
+      <AbsolutePoint location="4358,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/syssetting.do,errors,/jsp/function/setting/errors.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2973,338" />
+      <AbsolutePoint location="2973,914" />
+      <AbsolutePoint location="3626,914" />
+      <AbsolutePoint location="3626,1508" />
+      <AbsolutePoint location="4039,1508" />
+      <AbsolutePoint location="4039,1550" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendMail.do,send_hint,/jsp/mail/send_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="453,294" />
+      <AbsolutePoint location="453,1474" />
+      <AbsolutePoint location="1019,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/speaker.do,start_speak,/jsp/communion/speaker/start_speaker.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1250,681" />
+      <AbsolutePoint location="1028,681" />
+      <AbsolutePoint location="1028,1031" />
+      <AbsolutePoint location="1792,1031" />
+      <AbsolutePoint location="1792,1225" />
+      <AbsolutePoint location="2140,1225" />
+      <AbsolutePoint location="2140,2313" />
+      <AbsolutePoint location="767,2313" />
+      <AbsolutePoint location="767,2299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,readline,/jsp/bookinfo/line_read.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3597,494" />
+      <AbsolutePoint location="3646,494" />
+      <AbsolutePoint location="3646,2026" />
+      <AbsolutePoint location="3129,2026" />
+      <AbsolutePoint location="3129,1999" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,resure,/jsp/auction/auctionBuy/resure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4367,94" />
+      <AbsolutePoint location="4367,1374" />
+      <AbsolutePoint location="2548,1374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/secondPass.do,sussendupdateLoginPsw,/jsp/function/secondpass/sussend_update_login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1080,538" />
+      <AbsolutePoint location="1080,1039" />
+      <AbsolutePoint location="2330,1039" />
+      <AbsolutePoint location="2330,1225" />
+      <AbsolutePoint location="3587,1225" />
+      <AbsolutePoint location="3587,1750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,reput_zb_price,/jsp/auction/auctionGoods/input_zb_price.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3819,50" />
+      <AbsolutePoint location="3819,-85" />
+      <AbsolutePoint location="4637,-85" />
+      <AbsolutePoint location="4637,1174" />
+      <AbsolutePoint location="4497,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/enchantment.do,view,/jsp/enchant/view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,499" />
+      <AbsolutePoint location="532,499" />
+      <AbsolutePoint location="532,994" />
+      <AbsolutePoint location="2448,994" />
+      <AbsolutePoint location="2448,1709" />
+      <AbsolutePoint location="1617,1709" />
+      <AbsolutePoint location="1617,1750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/horta.do,son_list,/jsp/goods/horta/horta_son_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2853,894" />
+      <AbsolutePoint location="2853,2474" />
+      <AbsolutePoint location="1650,2474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,auctionDisPlay,/jsp/auction/searchGoods/goods_menu.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4068,138" />
+      <AbsolutePoint location="4068,413" />
+      <AbsolutePoint location="2734,413" />
+      <AbsolutePoint location="2734,1274" />
+      <AbsolutePoint location="2685,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,prop_display,/jsp/auction/auctionGoods/prop_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3699,50" />
+      <AbsolutePoint location="3699,5" />
+      <AbsolutePoint location="626,5" />
+      <AbsolutePoint location="626,1274" />
+      <AbsolutePoint location="577,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,forumclassList,/jsp/forum/forum_class_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2864,450" />
+      <AbsolutePoint location="2864,371" />
+      <AbsolutePoint location="924,371" />
+      <AbsolutePoint location="924,1974" />
+      <AbsolutePoint location="950,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetHouse.do,auction_pet_house,/jsp/auctionpet/auctionInfo/auctionPethouse.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2282,338" />
+      <AbsolutePoint location="2282,408" />
+      <AbsolutePoint location="496,408" />
+      <AbsolutePoint location="496,980" />
+      <AbsolutePoint location="1800,980" />
+      <AbsolutePoint location="1800,1201" />
+      <AbsolutePoint location="2090,1201" />
+      <AbsolutePoint location="2090,1605" />
+      <AbsolutePoint location="2881,1605" />
+      <AbsolutePoint location="2881,1599" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fieldmast.do,sussendUpdate,/jsp/field/fieldmast/fieldmast_sussend_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2256,694" />
+      <AbsolutePoint location="2256,2274" />
+      <AbsolutePoint location="3184,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,material_list,/jsp/auction/searchGoods/auction_material.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4186,116" />
+      <AbsolutePoint location="4241,116" />
+      <AbsolutePoint location="4241,1336" />
+      <AbsolutePoint location="476,1336" />
+      <AbsolutePoint location="476,1350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,goodsview,/jsp/auction/searchGoods/goods_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4016,138" />
+      <AbsolutePoint location="4016,353" />
+      <AbsolutePoint location="5,353" />
+      <AbsolutePoint location="5,1114" />
+      <AbsolutePoint location="3465,1114" />
+      <AbsolutePoint location="3465,1250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getStorage.do,getStorage_list,/jsp/menu/getStorage/getStorage_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="902,138" />
+      <AbsolutePoint location="902,648" />
+      <AbsolutePoint location="3848,648" />
+      <AbsolutePoint location="3848,950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/buffMenu.do,reconfirm,/jsp/menu/buffmenu/reconfirm.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="310,494" />
+      <AbsolutePoint location="364,494" />
+      <AbsolutePoint location="364,1005" />
+      <AbsolutePoint location="2200,1005" />
+      <AbsolutePoint location="2200,1239" />
+      <AbsolutePoint location="1229,1239" />
+      <AbsolutePoint location="1229,1774" />
+      <AbsolutePoint location="1144,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zhiModifyPassword.do,sussendupdateLoginPsw,/jsp/function/zhijieModify/sussend_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2297,494" />
+      <AbsolutePoint location="2297,1874" />
+      <AbsolutePoint location="1975,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/horta.do,main_list,/jsp/goods/horta/horta_mainlist.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2853,894" />
+      <AbsolutePoint location="2853,2474" />
+      <AbsolutePoint location="1049,2474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/upgrade.do,upgradePorp,/jsp/accdispose/upgradepose/upgradePorp.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4079,494" />
+      <AbsolutePoint location="4079,2074" />
+      <AbsolutePoint location="3477,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updecompose.do,prop_display,/jsp/accdispose/accdecompose/prop_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="791,738" />
+      <AbsolutePoint location="791,843" />
+      <AbsolutePoint location="2713,843" />
+      <AbsolutePoint location="2713,2174" />
+      <AbsolutePoint location="2710,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/goldBox.do,goods_list,/jsp/menu/goldbox/goods_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2588,738" />
+      <AbsolutePoint location="2588,1039" />
+      <AbsolutePoint location="2391,1039" />
+      <AbsolutePoint location="2391,1519" />
+      <AbsolutePoint location="3925,1519" />
+      <AbsolutePoint location="3925,2274" />
+      <AbsolutePoint location="3839,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,auction_hint,/jsp/auction/auctionGoods/auction_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3868,94" />
+      <AbsolutePoint location="3926,94" />
+      <AbsolutePoint location="3926,783" />
+      <AbsolutePoint location="1668,783" />
+      <AbsolutePoint location="1668,1150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,display,/jsp/liveskill/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="194,138" />
+      <AbsolutePoint location="194,189" />
+      <AbsolutePoint location="1495,189" />
+      <AbsolutePoint location="1495,823" />
+      <AbsolutePoint location="3119,823" />
+      <AbsolutePoint location="3119,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,yb_list,/jsp/auctionyb/auction_yb_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3179,250" />
+      <AbsolutePoint location="3179,145" />
+      <AbsolutePoint location="564,145" />
+      <AbsolutePoint location="564,1136" />
+      <AbsolutePoint location="1504,1136" />
+      <AbsolutePoint location="1504,1674" />
+      <AbsolutePoint location="1442,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,auctionHouse,/jsp/auction/auctionBuy/auction_house.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4372,138" />
+      <AbsolutePoint location="4372,193" />
+      <AbsolutePoint location="3944,193" />
+      <AbsolutePoint location="3944,541" />
+      <AbsolutePoint location="3749,541" />
+      <AbsolutePoint location="3749,837" />
+      <AbsolutePoint location="315,837" />
+      <AbsolutePoint location="315,1474" />
+      <AbsolutePoint location="285,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getPetStorage.do,display,/jsp/menu/petStorage/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3209,94" />
+      <AbsolutePoint location="3209,1074" />
+      <AbsolutePoint location="3745,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forumInfo.do,indexList,/jsp/forum/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3162,494" />
+      <AbsolutePoint location="3162,1974" />
+      <AbsolutePoint location="113,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updecompose.do,upgradePorp,/jsp/accdispose/accdecompose/upgradePorp.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="790,650" />
+      <AbsolutePoint location="790,636" />
+      <AbsolutePoint location="1796,636" />
+      <AbsolutePoint location="1796,1213" />
+      <AbsolutePoint location="3878,1213" />
+      <AbsolutePoint location="3878,2150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,storage_hint,/jsp/menu/storage/storage_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="184,138" />
+      <AbsolutePoint location="184,207" />
+      <AbsolutePoint location="2105,207" />
+      <AbsolutePoint location="2105,1032" />
+      <AbsolutePoint location="3450,1032" />
+      <AbsolutePoint location="3450,999" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,prop_display,/jsp/auction/auctionBuy/prop_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4367,138" />
+      <AbsolutePoint location="4367,182" />
+      <AbsolutePoint location="3907,182" />
+      <AbsolutePoint location="3907,492" />
+      <AbsolutePoint location="3894,492" />
+      <AbsolutePoint location="3894,1013" />
+      <AbsolutePoint location="4205,1013" />
+      <AbsolutePoint location="4205,1345" />
+      <AbsolutePoint location="3763,1345" />
+      <AbsolutePoint location="3763,1350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addPetStorage.do,sussend,/jsp/menu/petStorage/addSussend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2602,94" />
+      <AbsolutePoint location="2602,1174" />
+      <AbsolutePoint location="157,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getPetStorage.do,sussend,/jsp/menu/petStorage/getSucdend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3209,94" />
+      <AbsolutePoint location="3209,1174" />
+      <AbsolutePoint location="1057,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,submit,/jsp/menu/storage/storage_buy_submit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,100" />
+      <AbsolutePoint location="-43,100" />
+      <AbsolutePoint location="-43,1726" />
+      <AbsolutePoint location="4222,1726" />
+      <AbsolutePoint location="4222,874" />
+      <AbsolutePoint location="4188,874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/question.do,answer_over,/jsp/question/answer_over.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4376,338" />
+      <AbsolutePoint location="4376,792" />
+      <AbsolutePoint location="4194,792" />
+      <AbsolutePoint location="4194,1021" />
+      <AbsolutePoint location="4658,1021" />
+      <AbsolutePoint location="4658,1619" />
+      <AbsolutePoint location="3738,1619" />
+      <AbsolutePoint location="3738,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zhiModifyPassword.do,sussendPass,/jsp/function/zhijieModify/sussend_pass.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2297,494" />
+      <AbsolutePoint location="2297,1874" />
+      <AbsolutePoint location="2869,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forumInfo.do,hint,/jsp/forum/manager/hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3162,494" />
+      <AbsolutePoint location="3162,1974" />
+      <AbsolutePoint location="1932,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,return_mail,/jsp/auctionyb/return_mail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3050,280" />
+      <AbsolutePoint location="3004,280" />
+      <AbsolutePoint location="3004,219" />
+      <AbsolutePoint location="1516,219" />
+      <AbsolutePoint location="1516,899" />
+      <AbsolutePoint location="1817,899" />
+      <AbsolutePoint location="1817,1506" />
+      <AbsolutePoint location="2537,1506" />
+      <AbsolutePoint location="2537,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/enchantment.do,resure,/jsp/enchant/enchant_resure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,494" />
+      <AbsolutePoint location="483,494" />
+      <AbsolutePoint location="483,1024" />
+      <AbsolutePoint location="-61,1024" />
+      <AbsolutePoint location="-61,1738" />
+      <AbsolutePoint location="1944,1738" />
+      <AbsolutePoint location="1944,1750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/suibianchuan.do,list,/jsp/wrapinfo/suibianchuang/carry_table_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="782,938" />
+      <AbsolutePoint location="782,1001" />
+      <AbsolutePoint location="2240,1001" />
+      <AbsolutePoint location="2240,1247" />
+      <AbsolutePoint location="3027,1247" />
+      <AbsolutePoint location="3027,2374" />
+      <AbsolutePoint location="3011,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/mail.do,mailView,/jsp/mail/mail_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="156,338" />
+      <AbsolutePoint location="156,418" />
+      <AbsolutePoint location="384,418" />
+      <AbsolutePoint location="384,944" />
+      <AbsolutePoint location="2387,944" />
+      <AbsolutePoint location="2387,1474" />
+      <AbsolutePoint location="2287,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,input_num,/jsp/auction/auctionGoods/input_num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3759,50" />
+      <AbsolutePoint location="3759,-55" />
+      <AbsolutePoint location="-25,-55" />
+      <AbsolutePoint location="-25,1214" />
+      <AbsolutePoint location="1363,1214" />
+      <AbsolutePoint location="1363,1250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,input_num,/jsp/menu/storage/input_num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,94" />
+      <AbsolutePoint location="-61,94" />
+      <AbsolutePoint location="-61,961" />
+      <AbsolutePoint location="3050,961" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forumInfo.do,contentView,/jsp/forum/manager/manager.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3255,538" />
+      <AbsolutePoint location="3255,905" />
+      <AbsolutePoint location="3561,905" />
+      <AbsolutePoint location="3561,1031" />
+      <AbsolutePoint location="4662,1031" />
+      <AbsolutePoint location="4662,1945" />
+      <AbsolutePoint location="1644,1945" />
+      <AbsolutePoint location="1644,1950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,use_hint,/jsp/auction/searchGoods/use_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4128,138" />
+      <AbsolutePoint location="4128,413" />
+      <AbsolutePoint location="4355,413" />
+      <AbsolutePoint location="4355,813" />
+      <AbsolutePoint location="3608,813" />
+      <AbsolutePoint location="3608,1274" />
+      <AbsolutePoint location="3650,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,storage_list,/jsp/menu/storage/storage_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,88" />
+      <AbsolutePoint location="-67,88" />
+      <AbsolutePoint location="-67,807" />
+      <AbsolutePoint location="3581,807" />
+      <AbsolutePoint location="3581,874" />
+      <AbsolutePoint location="3650,874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/suibianchuan.do,scene_list,/jsp/wrapinfo/suibianchuang/scene_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="782,894" />
+      <AbsolutePoint location="782,2374" />
+      <AbsolutePoint location="3467,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,house,/jsp/auction/auctionMainPage/auction_house.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4361,138" />
+      <AbsolutePoint location="4361,153" />
+      <AbsolutePoint location="4182,153" />
+      <AbsolutePoint location="4182,437" />
+      <AbsolutePoint location="4457,437" />
+      <AbsolutePoint location="4457,783" />
+      <AbsolutePoint location="4210,783" />
+      <AbsolutePoint location="4210,1350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getMoneyStorage.do,sussend,/jsp/menu/moneyStorage/getMoneySuccend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1417,138" />
+      <AbsolutePoint location="1417,554" />
+      <AbsolutePoint location="1144,554" />
+      <AbsolutePoint location="1144,1074" />
+      <AbsolutePoint location="911,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,equip_display,/jsp/auction/auctionBuy/equip_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4377,138" />
+      <AbsolutePoint location="4377,245" />
+      <AbsolutePoint location="1840,245" />
+      <AbsolutePoint location="1840,1374" />
+      <AbsolutePoint location="1850,1374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,auction_info,/jsp/auction/auctionBuy/auction_info.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4367,94" />
+      <AbsolutePoint location="4367,1374" />
+      <AbsolutePoint location="3462,1374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,equip_view,/jsp/menu/storage/storage_zb_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="315,138" />
+      <AbsolutePoint location="315,801" />
+      <AbsolutePoint location="3461,801" />
+      <AbsolutePoint location="3461,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getMoneyStorage.do,input_num,/jsp/menu/moneyStorage/input_getMoney_Num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1481,138" />
+      <AbsolutePoint location="1481,791" />
+      <AbsolutePoint location="971,791" />
+      <AbsolutePoint location="971,1083" />
+      <AbsolutePoint location="1250,1083" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/syssetting.do,index,/jsp/function/function.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2865,294" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/storage.do,goods_view,/jsp/menu/storage/storage_prop_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="319,94" />
+      <AbsolutePoint location="574,94" />
+      <AbsolutePoint location="574,1044" />
+      <AbsolutePoint location="4449,1044" />
+      <AbsolutePoint location="4449,899" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,indexList,/jsp/forum/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2858,450" />
+      <AbsolutePoint location="2858,383" />
+      <AbsolutePoint location="-49,383" />
+      <AbsolutePoint location="-49,1974" />
+      <AbsolutePoint location="50,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/groupchuan.do,list,/jsp/wrapinfo/groupchuan/group_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1379,894" />
+      <AbsolutePoint location="1379,2374" />
+      <AbsolutePoint location="4061,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,cure_list,/jsp/auction/auctionGoods/auction_cure_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3729,138" />
+      <AbsolutePoint location="3729,153" />
+      <AbsolutePoint location="3295,153" />
+      <AbsolutePoint location="3295,1150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetSell.do,pet_display,/jsp/auctionpet/pet_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="775,294" />
+      <AbsolutePoint location="775,1474" />
+      <AbsolutePoint location="3739,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,paimaiYuanBao,/jsp/auctionyb/paimaiYuanBao.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3050,304" />
+      <AbsolutePoint location="3004,304" />
+      <AbsolutePoint location="3004,971" />
+      <AbsolutePoint location="2433,971" />
+      <AbsolutePoint location="2433,1620" />
+      <AbsolutePoint location="746,1620" />
+      <AbsolutePoint location="746,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetBuy.do,petinfoview,/jsp/auctionpet/auctionpetbuy/petView.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1076,294" />
+      <AbsolutePoint location="1076,1574" />
+      <AbsolutePoint location="767,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetBuy.do,display,/jsp/auctionpet/auctionpetbuy/display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1076,294" />
+      <AbsolutePoint location="1076,1474" />
+      <AbsolutePoint location="4365,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/attackMallAction.do,prop_display,/jsp/attack/buy/prop_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1965,894" />
+      <AbsolutePoint location="1965,2474" />
+      <AbsolutePoint location="143,2474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,shop_list,/jsp/auction/auctionGoods/auction_list_shop.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3789,50" />
+      <AbsolutePoint location="3789,-85" />
+      <AbsolutePoint location="592,-85" />
+      <AbsolutePoint location="592,1314" />
+      <AbsolutePoint location="1680,1314" />
+      <AbsolutePoint location="1680,1299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/addMoneyStorage.do,sussend,/jsp/menu/moneyStorage/moneySuccend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2098,138" />
+      <AbsolutePoint location="2098,948" />
+      <AbsolutePoint location="2302,948" />
+      <AbsolutePoint location="2302,1074" />
+      <AbsolutePoint location="2450,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/secondPass.do,failedPass,/jsp/function/secondpass/failed_pass.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1080,494" />
+      <AbsolutePoint location="1080,1774" />
+      <AbsolutePoint location="3163,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetHouse.do,pet_display,/jsp/auctionpet/auctionInfo/pet_info_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2282,294" />
+      <AbsolutePoint location="2282,1574" />
+      <AbsolutePoint location="2281,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetSell.do,petinfoview,/jsp/auctionpet/petView.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="775,294" />
+      <AbsolutePoint location="775,1474" />
+      <AbsolutePoint location="4031,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,rest_list,/jsp/auction/auctionGoods/auction_list_qt.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3819,138" />
+      <AbsolutePoint location="3819,213" />
+      <AbsolutePoint location="4607,213" />
+      <AbsolutePoint location="4607,1114" />
+      <AbsolutePoint location="3773,1114" />
+      <AbsolutePoint location="3773,1150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,zjinfo,/jsp/bookinfo/zj_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3483,538" />
+      <AbsolutePoint location="3483,643" />
+      <AbsolutePoint location="644,643" />
+      <AbsolutePoint location="644,2074" />
+      <AbsolutePoint location="491,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/upgrade.do,acc_list,/jsp/accdispose/upgradepose/equip_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4079,494" />
+      <AbsolutePoint location="4079,2074" />
+      <AbsolutePoint location="2568,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getStorage.do,warehouseequipview,/jsp/menu/getStorage/zb_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="801,94" />
+      <AbsolutePoint location="801,974" />
+      <AbsolutePoint location="4348,974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/modifyPassword.do,firstpassword_true,/jsp/function/modifyPassword/reput_password.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1812,538" />
+      <AbsolutePoint location="1812,872" />
+      <AbsolutePoint location="1600,872" />
+      <AbsolutePoint location="1600,1145" />
+      <AbsolutePoint location="2106,1145" />
+      <AbsolutePoint location="2106,1837" />
+      <AbsolutePoint location="1086,1837" />
+      <AbsolutePoint location="1086,1850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fieldmast.do,sussenno,/jsp/communion/speaker/sussenno.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2256,694" />
+      <AbsolutePoint location="2256,2274" />
+      <AbsolutePoint location="156,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zhiModifyPassword.do,password_wrong,/jsp/function/zhijieModify/password_wrong.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2297,538" />
+      <AbsolutePoint location="2297,554" />
+      <AbsolutePoint location="1788,554" />
+      <AbsolutePoint location="1788,1205" />
+      <AbsolutePoint location="3284,1205" />
+      <AbsolutePoint location="3284,1850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getPetStorage.do,findnot,/jsp/menu/petStorage/getPetFailed.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3050,94" />
+      <AbsolutePoint location="2808,94" />
+      <AbsolutePoint location="2808,206" />
+      <AbsolutePoint location="2148,206" />
+      <AbsolutePoint location="2148,940" />
+      <AbsolutePoint location="295,940" />
+      <AbsolutePoint location="295,1174" />
+      <AbsolutePoint location="350,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,auction_buy_info,/jsp/auction/auctionGoods/auction_buy_info.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4367,94" />
+      <AbsolutePoint location="4367,1474" />
+      <AbsolutePoint location="480,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getStorage.do,getStorage_hint,/jsp/menu/getStorage/getStorage_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="907,138" />
+      <AbsolutePoint location="907,547" />
+      <AbsolutePoint location="3262,547" />
+      <AbsolutePoint location="3262,932" />
+      <AbsolutePoint location="4067,932" />
+      <AbsolutePoint location="4067,950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/question.do,questionPage,/jsp/question/questionPage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4372,338" />
+      <AbsolutePoint location="4372,774" />
+      <AbsolutePoint location="4190,774" />
+      <AbsolutePoint location="4190,1145" />
+      <AbsolutePoint location="4606,1145" />
+      <AbsolutePoint location="4606,1674" />
+      <AbsolutePoint location="4429,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,sussendAddFriend,/jsp/forum/part_info_view.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2846,450" />
+      <AbsolutePoint location="2846,395" />
+      <AbsolutePoint location="1834,395" />
+      <AbsolutePoint location="1834,2038" />
+      <AbsolutePoint location="1336,2038" />
+      <AbsolutePoint location="1336,1999" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/forum.do,return_revert,/jsp/forum/return_revert.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2955,494" />
+      <AbsolutePoint location="2995,494" />
+      <AbsolutePoint location="2995,1039" />
+      <AbsolutePoint location="3332,1039" />
+      <AbsolutePoint location="3332,1874" />
+      <AbsolutePoint location="3650,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,booklist,/jsp/bookinfo/book_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3451,538" />
+      <AbsolutePoint location="3451,541" />
+      <AbsolutePoint location="930,541" />
+      <AbsolutePoint location="930,2074" />
+      <AbsolutePoint location="806,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/translate.do,acc_list,/jsp/accdispose/acctranslate/equip_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,738" />
+      <AbsolutePoint location="180,782" />
+      <AbsolutePoint location="1000,782" />
+      <AbsolutePoint location="1000,1145" />
+      <AbsolutePoint location="-4,1145" />
+      <AbsolutePoint location="-4,2174" />
+      <AbsolutePoint location="50,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,input_prop_numPrice,/jsp/auction/auctionGoods/reput_prop_price.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3650,94" />
+      <AbsolutePoint location="3612,94" />
+      <AbsolutePoint location="3612,583" />
+      <AbsolutePoint location="1181,583" />
+      <AbsolutePoint location="1181,1274" />
+      <AbsolutePoint location="910,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/question.do,ranklist,/jsp/question/ranklist.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4365,294" />
+      <AbsolutePoint location="4365,1674" />
+      <AbsolutePoint location="4024,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updecompose.do,equip_display,/jsp/accdispose/accdecompose/equip_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="785,738" />
+      <AbsolutePoint location="785,819" />
+      <AbsolutePoint location="-67,819" />
+      <AbsolutePoint location="-67,2126" />
+      <AbsolutePoint location="1982,2126" />
+      <AbsolutePoint location="1982,2150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,input_zb_price,/jsp/auction/auctionGoods/reput_zb_price.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3849,50" />
+      <AbsolutePoint location="3849,5" />
+      <AbsolutePoint location="4547,5" />
+      <AbsolutePoint location="4547,1214" />
+      <AbsolutePoint location="4074,1214" />
+      <AbsolutePoint location="4074,1199" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/speaker.do,walk,/walk.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1362,694" />
+      <AbsolutePoint location="1362,2287" />
+      <AbsolutePoint location="390,2287" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auction.do,task_list,/jsp/auction/auctionGoods/auction_list_rw.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3669,50" />
+      <AbsolutePoint location="3669,35" />
+      <AbsolutePoint location="347,35" />
+      <AbsolutePoint location="347,1274" />
+      <AbsolutePoint location="299,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/enchantment.do,enchantList,/jsp/enchant/enchantList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="774,494" />
+      <AbsolutePoint location="774,1774" />
+      <AbsolutePoint location="2833,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/goldBox.do,goods_display,/jsp/menu/goldbox/goods_display.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2584,694" />
+      <AbsolutePoint location="2584,2274" />
+      <AbsolutePoint location="4054,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/syssetting.do,other_setting,/jsp/function/setting/other_setting.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2865,294" />
+      <AbsolutePoint location="2865,1674" />
+      <AbsolutePoint location="457,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,buy_hint,/jsp/auctionyb/buy_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3050,294" />
+      <AbsolutePoint location="2989,294" />
+      <AbsolutePoint location="2989,987" />
+      <AbsolutePoint location="2443,987" />
+      <AbsolutePoint location="2443,1674" />
+      <AbsolutePoint location="2312,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,other_list,/jsp/auction/searchGoods/auction_other.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4098,50" />
+      <AbsolutePoint location="4098,35" />
+      <AbsolutePoint location="4519,35" />
+      <AbsolutePoint location="4519,1314" />
+      <AbsolutePoint location="2870,1314" />
+      <AbsolutePoint location="2870,1299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetBuy.do,nameList,/jsp/auctionpet/auctionpetbuy/auctionPetDisPlay.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1076,338" />
+      <AbsolutePoint location="1076,444" />
+      <AbsolutePoint location="400,444" />
+      <AbsolutePoint location="400,970" />
+      <AbsolutePoint location="301,970" />
+      <AbsolutePoint location="301,1550" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/untangle.do,instance_view,/jsp/function/instance/result.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3767,494" />
+      <AbsolutePoint location="3767,2074" />
+      <AbsolutePoint location="1641,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/upgrade.do,upgradepose,/jsp/accdispose/upgradepose/start_upgradepose.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4079,494" />
+      <AbsolutePoint location="4079,2074" />
+      <AbsolutePoint location="4092,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/translate.do,upgradePorp,/jsp/accdispose/acctranslate/upgradePorp.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="311,694" />
+      <AbsolutePoint location="544,694" />
+      <AbsolutePoint location="544,1043" />
+      <AbsolutePoint location="291,1043" />
+      <AbsolutePoint location="291,1243" />
+      <AbsolutePoint location="1233,1243" />
+      <AbsolutePoint location="1233,2174" />
+      <AbsolutePoint location="1200,2174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/sendMail.do,writeMail,/jsp/mail/writeMailZhi.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="380,338" />
+      <AbsolutePoint location="380,848" />
+      <AbsolutePoint location="3242,848" />
+      <AbsolutePoint location="3242,1076" />
+      <AbsolutePoint location="3324,1076" />
+      <AbsolutePoint location="3324,1474" />
+      <AbsolutePoint location="3197,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/secondPass.do,sussendPass,/jsp/function/secondpass/sussend_pass.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1080,494" />
+      <AbsolutePoint location="1080,1774" />
+      <AbsolutePoint location="4069,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/question.do,firstPage,/jsp/question/firstPage.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4365,294" />
+      <AbsolutePoint location="4365,1774" />
+      <AbsolutePoint location="128,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionPetSell.do,pet_list,/jsp/auctionpet/petList.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="775,338" />
+      <AbsolutePoint location="775,436" />
+      <AbsolutePoint location="520,436" />
+      <AbsolutePoint location="520,1009" />
+      <AbsolutePoint location="2192,1009" />
+      <AbsolutePoint location="2192,1201" />
+      <AbsolutePoint location="3328,1201" />
+      <AbsolutePoint location="3328,1474" />
+      <AbsolutePoint location="3350,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/auctionyb.do,auction_sure,/jsp/auctionyb/auction_sure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3165,250" />
+      <AbsolutePoint location="3165,159" />
+      <AbsolutePoint location="2089,159" />
+      <AbsolutePoint location="2089,985" />
+      <AbsolutePoint location="2419,985" />
+      <AbsolutePoint location="2419,1634" />
+      <AbsolutePoint location="1041,1634" />
+      <AbsolutePoint location="1041,1650" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,jew_list,/jsp/auction/searchGoods/auction_jew.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4068,50" />
+      <AbsolutePoint location="4068,-25" />
+      <AbsolutePoint location="4577,-25" />
+      <AbsolutePoint location="4577,1414" />
+      <AbsolutePoint location="3166,1414" />
+      <AbsolutePoint location="3166,1299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionBuy.do,arm_list,/jsp/auction/searchGoods/auction_arm.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4038,50" />
+      <AbsolutePoint location="4038,-55" />
+      <AbsolutePoint location="4667,-55" />
+      <AbsolutePoint location="4667,914" />
+      <AbsolutePoint location="3926,914" />
+      <AbsolutePoint location="3926,1274" />
+      <AbsolutePoint location="3950,1274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/modifyPassword.do,sussendPass,/jsp/function/modifyPassword/sussend_pass.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1690,494" />
+      <AbsolutePoint location="1690,1874" />
+      <AbsolutePoint location="480,1874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/untangle.do,arm_ranking,/jsp/function/untangle/arm_ranking.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3852,538" />
+      <AbsolutePoint location="3852,923" />
+      <AbsolutePoint location="2972,923" />
+      <AbsolutePoint location="2972,952" />
+      <AbsolutePoint location="2148,952" />
+      <AbsolutePoint location="2148,2074" />
+      <AbsolutePoint location="2067,2074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/viewpic.do,sceneView,/jsp/pic/mappic/mapView.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3458,294" />
+      <AbsolutePoint location="3458,1674" />
+      <AbsolutePoint location="2832,1674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/getStorage.do,input_num,/jsp/menu/getStorage/input_num.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="924,138" />
+      <AbsolutePoint location="924,234" />
+      <AbsolutePoint location="1525,234" />
+      <AbsolutePoint location="1525,1013" />
+      <AbsolutePoint location="153,1013" />
+      <AbsolutePoint location="153,1050" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,showphb,/jsp/bookinfo/phb_show.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3489,538" />
+      <AbsolutePoint location="3489,643" />
+      <AbsolutePoint location="4228,643" />
+      <AbsolutePoint location="4228,1974" />
+      <AbsolutePoint location="4113,1974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/fieldmanager.do,display_previous,/jsp/field/fieldManager/display_previous.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1665,694" />
+      <AbsolutePoint location="1665,2274" />
+      <AbsolutePoint location="1369,2274" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/buffMenu.do,buffAddSussend,/jsp/menu/buffmenu/buffAddSussend.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,494" />
+      <AbsolutePoint location="180,1774" />
+      <AbsolutePoint location="764,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/menu/auctionGet.do,auctionresure,/jsp/auction/auctionMainPage/auctionresure.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="4250,99" />
+      <AbsolutePoint location="4227,99" />
+      <AbsolutePoint location="4227,582" />
+      <AbsolutePoint location="3890,582" />
+      <AbsolutePoint location="3890,1145" />
+      <AbsolutePoint location="2993,1145" />
+      <AbsolutePoint location="2993,1350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/groupchuan.do,scene_list,/jsp/wrapinfo/suibianchuang/scene_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1509,890" />
+      <AbsolutePoint location="1808,890" />
+      <AbsolutePoint location="1808,1221" />
+      <AbsolutePoint location="3035,1221" />
+      <AbsolutePoint location="3035,2374" />
+      <AbsolutePoint location="3350,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/mail.do,send_hint,/jsp/mail/send_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="151,294" />
+      <AbsolutePoint location="151,1474" />
+      <AbsolutePoint location="1019,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/horta.do,displayString,/jsp/goods/horta/displayString.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2956,931" />
+      <AbsolutePoint location="3249,931" />
+      <AbsolutePoint location="3249,1060" />
+      <AbsolutePoint location="3320,1060" />
+      <AbsolutePoint location="3320,2474" />
+      <AbsolutePoint location="2043,2474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/bookMenu.do,bookresult,/jsp/bookinfo/book_result.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3457,538" />
+      <AbsolutePoint location="3457,561" />
+      <AbsolutePoint location="2112,561" />
+      <AbsolutePoint location="2112,1908" />
+      <AbsolutePoint location="4335,1908" />
+      <AbsolutePoint location="4335,1950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/modifyPassword.do,sussend_set_psw,/jsp/function/secondpass/sussend_update_login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1690,494" />
+      <AbsolutePoint location="1690,1774" />
+      <AbsolutePoint location="3489,1774" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

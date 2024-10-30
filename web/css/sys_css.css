@@ -1,0 +1,27 @@
+td,body {
+    font-family: "ËÎÌו";
+    font-size: 12px;
+}
+body {
+    margin:0;
+}
+form {
+ margin:0;
+}
+input {
+    border-top:1;
+    border-left:1;
+    border-right:1;
+    border-bottom:1;
+    border-style:solid;
+    border-color:#666666;
+    background-color:#e0e0e0;
+    vertical-align:text-bottom;
+    font-family: "ËÎÌו" ;
+    font-size: 12px
+}
+table {
+	border: 1px solid #000000;
+	color: #000000;
+	background-position: center center;
+}

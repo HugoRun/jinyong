@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>  
+  
+<quartz>  
+  <!--job>  
+   测试类，每隔10秒执行一次  
+    <job-detail>  
+        <name>ForTestJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.TestJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>        
+    </job-detail>  
+    
+    
+    <trigger>  
+    <cron>  
+     <name>ForTestJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>ForTestJob</job-name>  
+     <job-group>DEFAULT</job-group>       
+     <cron-expression>0/10 * * ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>     -->
+  
+</quartz>  

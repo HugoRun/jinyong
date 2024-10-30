@@ -1,0 +1,51 @@
+package com.ls.pub.filter;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * 功能:判断是否是电脑用户
+ * @author 刘帅
+ * 3:19:41 PM
+ */
+public class PCUserFilter implements Filter
+{
+	int control_switch = 0;//是否使用此过滤器的开关
+	public void destroy()
+	{
+
+	}
+
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+			FilterChain chain) throws IOException, ServletException
+	{
+
+		if( control_switch==0 )//不使用此过滤器
+		{
+			chain.doFilter(servletRequest, servletResponse);
+			return;
+		}
+		
+		HttpServletRequest request = (HttpServletRequest)servletRequest;
+		String ua = request.getHeader("user-agent").toLowerCase();
+		if( ua.indexOf("nt")!=-1 )//如果ua里有nt则表示是电脑用户
+		{
+			request.getRequestDispatcher("/comm/pc_user_hint.jsp").forward(request, servletResponse); 
+			return;
+		}
+		chain.doFilter(request, servletResponse);
+	}
+
+	public void init(FilterConfig filterConfig) throws ServletException
+	{
+		control_switch = Integer.parseInt(filterConfig.getInitParameter("control_switch"));
+	}
+
+}

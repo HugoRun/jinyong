@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<action-mappings>
+		<!-- Tom登录 -->
+		<action parameter="cmd" path="/tomlogin" type="com.ls.web.action.cooperate.tom.login.TomLoginAction">
+			<forward name="tomindexpage" path="/cooperate/tom/login/index.jsp" />
+			<forward name="ischeckpc" path="/cooperate/tom/login/ischeckpc.jsp" />
+			<forward name="tomvalidatepage" path="/cooperate/tom/login/loginMain.jsp" />
+			<forward name="fail" path="/cooperate/tom/login/fail.jsp" />
+			<forward name="success" path="/cooperate/tom/login/login.jsp" />
+		</action>
+
+        <!-- 角色进入游戏转发 -->
+		<action parameter="cmd" path="/logintransmit" type="com.web.action.logintransmit.LoginTransmitAction">
+			<forward name="tomindexpage" path="/cooperate/tom/login/index.jsp" />
+			<forward name="refurbish_scene" path="/scene.do?isRefurbish=1" />
+		</action>
+
+		<!-- 挂牌销售 -->
+		<action path="/xiaoshou"
+			type="com.web.action.sellinfo.SellInfoAddAction">
+			<forward name="goods_list"
+				path="/jsp/sellinfo/sell_info.jsp" />
+			<forward name="blacklisthint"
+				path="/jsp/friend/blacklist/blacklist_hint.jsp" />
+		</action>
+		<!-- 遗弃宠物-->
+		<action path="/petchuckaction"
+			type="com.web.action.pet.PetChuckAction">
+			<forward name="success" path="/petinfoaction.do?cmd=n1" />
+		</action>
+
+		<!-- 公共频道发言 -->
+		<action path="/publicjl"
+			type="com.web.action.communion.publica.UPublicAddAction">
+			<forward name="successno"
+				path="/jsp/communion/publica/publica_fou.jsp" />
+			<forward name="success"
+				path="/communioninfoaction.do?cmd=n1" />
+		</action>
+		<!-- 阵营频道发言 -->
+		<action path="/campjl"
+			type="com.web.action.communion.camp.CampAddAction">
+			<forward name="successno"
+				path="/jsp/communion/camp/camp_fou.jsp" />
+			<forward name="success"
+				path="/communioninfoaction.do?cmd=n2" />
+		</action>
+		<!-- 组队频道发言 -->
+		<action path="/groupjl"
+			type="com.web.action.communion.group.GroupAddAction">
+			<forward name="successno"
+				path="/jsp/communion/group/group_fou.jsp" />
+			<forward name="success"
+				path="/communioninfoaction.do?cmd=n3" />
+		</action>
+		<!-- 帮会频道发言 -->
+		<action path="/tongjl"
+			type="com.web.action.communion.tong.TongAddAction">
+			<forward name="successno"
+				path="/jsp/communion/tong/tong_fou.jsp" />
+			<forward name="success"
+				path="/communioninfoaction.do?cmd=n4" />
+		</action>
+		<!-- 密聊频道发言 -->
+		<action path="/privatelyjl"
+			type="com.web.action.communion.privately.PrivatelyAddAction">
+			<forward name="successnoss"
+				path="/jsp/communion/privately/privately.jsp" />
+			<forward name="success"
+				path="/communioninfoaction.do?cmd=n5" />
+		</action>
+
+
+		<action parameter="cmd" path="/attackshortcut"
+			type="com.ls.web.action.shortcut.AttackShortcutAction">
+			<forward name="list_a"
+				path="/jsp/operate/attackShortcut/list.jsp" />
+			<forward name="list_type_a"
+				path="/jsp/operate/attackShortcut/list_type.jsp" />
+			<forward name="list_skill_a"
+				path="/jsp/operate/attackShortcut/list_skill.jsp" />
+			<forward name="list_cure_a"
+				path="/jsp/operate/attackShortcut/list_cure.jsp" />
+			<forward name="list_book_a"
+				path="/jsp/operate/attackShortcut/list_book.jsp" />
+			<forward name="list_pet_a"
+				path="/jsp/operate/attackShortcut/list_pet.jsp" />
+		</action>
+
+
+		<!-- 领取对话任务 -->
+		<action path="/taskadd" type="com.web.action.task.TaskAction">
+			<forward name="success" path="/pubbuckaction.do" />
+			<forward name="successpub" path="/pubaction.do" />
+			<forward name="successon" path="/jsp/menu/menu_display_view.jsp" />
+			<forward name="taskhint" path="/jsp/task/task_hint.jsp" />
+			<forward name="menudo" path="/menu.do?cmd=n1" />
+		</action>
+
+		<action parameter="cmd" path="/menu/petsale"
+			type="com.ls.web.action.menu.petsale.PetSaleAction">
+			<forward name="pet_list"
+				path="/jsp/menu/petsale/pet_list.jsp" />
+		</action>
+
+		<!-- 宠物参加战斗状态 -->
+		<action path="/petbattleaction"
+			type="com.web.action.pet.PetBattleAction">
+			<forward name="success"
+				path="/jsp/petinfo/pet_info_list.jsp" />
+		</action>
+
+		<!-- 好友-->
+		<action parameter="cmd" path="/friendaction"
+			type="com.web.action.friend.FriendAction">
+			<forward name="friendlist"
+				path="/jsp/friend/friend_list.jsp" />
+			<forward name="friendview"
+				path="/jsp/friend/friend_view.jsp" />
+			<forward name="friendcolloguepage"
+				path="/jsp/friend/friend_collogue.jsp" />
+			<forward name="friendcollogue"
+				path="/jsp/friend/friend_collogue_other.jsp" />
+			<forward name="frienddelete"
+				path="/jsp/friend/friend_delete.jsp" />
+			<forward name="frienddeleteok"
+				path="/friendaction.do?cmd=n2" />
+			<forward name="friendaddpage"
+				path="/jsp/friend/friend_add.jsp" />
+			<forward name="friendaddpageOK"
+				path="/friendaction.do?cmd=n2" />
+		</action>
+		<!-- 黑名单-->
+		<action parameter="cmd" path="/blacklistaction"
+			type="com.web.action.friend.BlacklistAction">
+			<forward name="blacklistadd" path="/friendaction.do?cmd=n2" />
+			<forward name="friendadd" path="/friendaction.do?cmd=n3" />
+			<forward name="blacklist" path="/jsp/friend/blacklist/blacklist_list.jsp" />
+			<forward name="blackdelete" path="/blacklistaction.do?cmd=n3" />
+		</action>
+		<!-- 状态-->
+		<action parameter="cmd" path="/stateaction"
+			type="com.web.action.state.StateAction">
+			<forward name="State"
+				path="/jsp/info/partinfo/part_info.jsp" />
+			<forward name="other_state"
+				path="/jsp/map/part_info_view.jsp" />
+			<forward name="buff_list"
+				path="/jsp/info/partinfo/buff/buff_list.jsp" />
+			<forward name="attribute"
+				path="/jsp/info/partinfo/part_info_shuxing.jsp" />
+			<forward name="accouter"
+				path="/jsp/info/partinfo/part_info_zhuangbei.jsp" />
+			<forward name="skill_list"
+				path="/jsp/info/partinfo/part_info_skill.jsp" />
+			<forward name="skill_display"
+				path="/jsp/info/partinfo/display/skill_display.jsp" />
+			<forward name="accouterview"
+				path="/jsp/traitinfo/zb_view.jsp" />
+			<forward name="replacinglist"
+				path="/jsp/traitinfo/zb_replacing.jsp" />
+			<forward name="replacingupdate"
+				path="/stateaction.do?cmd=n3" />
+			<forward name="replacingview"
+				path="/jsp/traitinfo/zb_replacing_view.jsp" />
+			<forward name="attackState"
+				path="/jsp/attack/partinfo/attack_info.jsp" />
+			<forward name="attackattribute"
+				path="/jsp/attack/partinfo/attack_info_shuxing.jsp" />
+			<forward name="attackaccouter"
+				path="/jsp/attack/partinfo/attack_info_zhuangbei.jsp" />
+			<forward name="other_accouter"
+				path="/jsp/info/other_info/other_info_zhuangbei.jsp" />
+			<forward name="other_accouterview"
+				path="/jsp/info/other_info/equip_display.jsp" />
+			<forward name="prop_list"
+				path="/jsp/specialprop/prop_list.jsp" />
+			<forward name="prop_display"
+				path="/jsp/specialprop/prop_display.jsp" />
+			<forward name="prop_submit"
+				path="/jsp/specialprop/prop_submit.jsp" />
+			<forward name="petview"
+				path="/jsp/map/petview.jsp" />
+			<forward name="shuxing"
+				path="/jsp/info/partinfo/part_info_shuxing.jsp" />
+		</action>
+		<!-- 任务-->
+		<action parameter="cmd" path="/taskinfoaction"
+			type="com.web.action.task.TaskInfoAction">
+			<forward name="taskinfo" path="/jsp/task/task.jsp" />
+			<forward name="taskinfoview" path="/jsp/task/task_view.jsp" />
+			<forward name="nowtaskinfoview" path="/jsp/task/now_task_view.jsp" />
+			<forward name="nowtaskinfohint" path="/jsp/task/now_task_hint.jsp" />
+			<forward name="xunzhaorenwuview" path="/jsp/task/xunzhaorenwuxinxi.jsp" />
+			<forward name="langjun" path="/WEB-INF/inc/mess.jsp"></forward>
+		</action>
+		<!-- 聊天-->
+		<action parameter="cmd" path="/communioninfoaction"
+			type="com.web.action.communion.CommunionInfoAction">
+			<forward name="public"
+				path="/jsp/communion/publica/publica.jsp" />
+			<forward name="camp" path="/jsp/communion/camp/camp.jsp" />
+			<forward name="group" path="/jsp/communion/group/group.jsp" />
+			<forward name="tong" path="/jsp/communion/tong/tong.jsp" />
+			<forward name="privately"
+				path="/jsp/communion/privately/privately.jsp" />
+			<forward name="otherwhisper"
+				path="/jsp/communion/privately/privately_other.jsp" />
+		</action>
+		<!-- 宠物-->
+		<action parameter="cmd" path="/petinfoaction"
+			type="com.web.action.pet.PetInfoAction">
+			<forward name="petinfolist"
+				path="/jsp/petinfo/pet_info_list.jsp" />
+			<forward name="petinfoview"
+				path="/jsp/pet/pet_info_view.jsp" />
+			<forward name="pet_rename"
+				path="/jsp/pet/pet_info_rename.jsp" />
+			<forward name="pet_delete"
+				path="/jsp/pet/pet_info_delete.jsp" />
+			<forward name="pet_skill_list"
+				path="/jsp/pet/pet_info_skill_list.jsp" />
+				<forward name="pet_skill_display"
+				path="/jsp/pet/pet_skill_display.jsp" />
+		</action>
+
+		<!-- 金钱交易-->
+		<action parameter="cmd" path="/swapaction"
+			type="com.web.action.swap.SwapAction">
+			<forward name="moneyswappage" path="/jsp/sellinfo/money/money_sell_info.jsp" />
+			<forward name="moneyswap" path="/jsp/sellinfo/money/money_sell_info_shi.jsp" />
+			<forward name="moneyswapno" path="/jiaoyi.do?cmd=n2" />
+			<forward name="goodspage" path="/jsp/sellinfo/wusell/wusell_zbview.jsp" />
+			<forward name="goodsmoney" path="/jsp/sellinfo/wusell/wusell_info.jsp" />
+			<forward name="goodsmoneyok" path="/jsp/sellinfo/wusell/wusell_info_ok.jsp" />
+			<forward name="partinfoview" path="/jsp/map/part_info_view.jsp" />
+			<forward name="privately" path="/jsp/map/privately/privately.jsp" />
+			<forward name="privatelyok" path="/jsp/map/privately/privately_ok.jsp" />
+			<forward name="petblacklisthint" path="/jsp/friend/blacklist/blacklist_hint.jsp" />
+			<forward name="petsells" path="/jsp/petinfo/petsell/pet_sell.jsp" />
+			<forward name="petsellsview" path="/jsp/petinfo/petsell/pet_sell_view.jsp" />
+			<forward name="petsellsok" path="/jsp/petinfo/petsell/pet_sell_view_ok.jsp" />
+			<forward name="petsellsokyew" path="/jsp/petinfo/petsell/pet_sell_ok.jsp" />
+		</action>
+		<!-- 道具交易-->
+		<action parameter="cmd" path="/sellpropaction"
+			type="com.web.action.sellinfo.sellprop.SellPropAction">
+			<forward name="propview" path="/jsp/sellinfo/sellprop/sellprop_view.jsp" />
+			<forward name="propnumber" path="/jsp/sellinfo/sellprop/sellprop_number.jsp" />
+			<forward name="propmoney" path="/jsp/sellinfo/sellprop/sellprop_money.jsp" />
+			<forward name="propmoneyover" path="/jsp/sellinfo/sellprop/sellprop_money_ok.jsp" />
+		</action>
+
+		<!-- 删除角色-->
+		<action parameter="cmd" path="/deletepartaction"
+			type="com.web.action.deletepart.DeletePartAction">
+			<forward name="deletepart" path="/login.do?cmd=n3" />
+			<forward name="resumepartpage"
+				path="/jsp/part/deletepart/resume_part.jsp" />
+			<forward name="sussendPass"
+				path="/jsp/part/deletepart/delete_part.jsp" />
+			<forward name="failedPass"
+				path="/jsp/part/deletepart/failed_put.jsp" />
+		</action>
+
+
+		<!-- 任务菜单-->
+		<action parameter="cmd" path="/taskmenuaction"
+			type="com.web.action.task.TaskMenuAction">
+			<forward name="taskmenu"
+				path="/jsp/menu/menu_task_view.jsp" />
+			<forward name="taskadddd" path="/taskadd.do" />
+		</action>
+
+		<!-- 系统聊天页面-->
+		<action parameter="cmd" path="/systemcommaction"
+			type="com.web.action.communion.system.SystemCommAction">
+			<forward name="systemcomm"
+				path="/jsp/communion/system/system.jsp" />
+		</action>
+
+		<!-- 跳转地图-->
+		<action parameter="cmd" path="/walkmapaction"
+			type="com.web.action.info.map.WalkMapAction">
+			<forward name="walkmap" path="/zouditutiao.do" />
+		</action>
+		<!-- 9级任务跳转-->
+		<action parameter="cmd" path="/visitleadaction"
+			type="com.web.action.task.visitlead.VisitLeadAction">
+			<forward name="visitlead"
+				path="/jsp/task/visitlead/visit_lead.jsp" />
+			<forward name="visitleadok"
+				path="/jsp/task/visitlead/visit_lead_ok.jsp" />
+		</action>
+
+		<!-- 出生前奏跳转 -->
+		<action parameter="cmd" path="/prelude"
+			type="com.web.action.info.partinfo.prelude.PreludeAction">
+			<forward name="preludepageone"
+				path="/jsp/part/prelude/prelude_one.jsp" />
+			<forward name="preludepagetwo"
+				path="/jsp/part/prelude/prelude_two.jsp" />
+		</action>
+		<!-- 声望 -->
+		<action parameter="cmd" path="/credit"
+			type="com.dp.action.creditaction.CreditAction">
+			<forward name="shengwangview"
+				path="/jsp/info/partinfo/part_info_shengwang.jsp" />
+			<forward name="displayview"
+				path="/jsp/info/partinfo/part_info_creditdisplay.jsp" />
+		</action>
+		<!-- 交易 -->
+		<action parameter="cmd" path="/sellinfoaction"
+			type="com.web.action.sellinfo.SellInfoAction">
+			<forward name="sellmoeypage" path="/jsp/sellinfo/tiaozhuan/sell_money.jsp" />
+			<forward name="sellmoeyok" path="/jsp/sellinfo/tiaozhuan/sell_money_ok.jsp" />
+			<forward name="sellarmpage" path="/jsp/sellinfo/bjyym/bjyym_sell_info.jsp" />
+			<forward name="sellproppage" path="/jsp/sellinfo/prop/prop_sell_info.jsp" />
+			<forward name="sellpetpage" path="/jsp/petinfo/petsellby/pet_sell_by.jsp" />
+			<forward name="sellaccviewpage" path="/jsp/sellinfo/bjyym/sellacc_view.jsp" />
+			<forward name="sellpropviewpage" path="/jsp/sellinfo/prop/sellprop_view.jsp" />
+			<forward name="sellpetviewpage" path="/jsp/petinfo/petsellby/pet_view.jsp" />
+		</action>
+		<!-- 菜单触发任务 -->
+		<action parameter="cmd" path="/menutouchtask"
+			type="com.web.action.menutouchtask.MenuTouchTaskAction">
+			<forward name="menutouchtaskpage"
+				path="/jsp/menutouchtask/menutouchtask_page.jsp" />
+		</action>
+		<!-- 免PK道具 -->
+		<action parameter="cmd" path="/avoidpkprop"
+			type="com.web.action.avoidpkprop.AvoidPkPropAction">
+			<forward name="avoidpkproppage"
+				path="/jsp/avoidpkprop/avoidpkprop_page.jsp" />
+		</action>
+		<!-- 充值通道跳转 --> 
+		<action parameter="cmd" path="/billtype" type="com.ls.web.action.bill.BillAction">
+			<forward name="tompage" path="/cooperate/tom/pay/tom_pay_page.jsp" />
+			<forward name="nottompage" path="/cooperate/tom/pay/not_tom_pay_page.jsp" />
+		</action>
+		<!-- 系统过滤 --> 
+		<action parameter="cmd" path="/unfilter" type="com.ls.web.action.system.UnfilterAction">
+			<forward name="automatism" path="/attackNPC.do?cmd=n4" />
+		</action>
+		<!-- 离线经验 --> 
+		<action parameter="cmd" path="/rolebeoffaction" type="com.web.action.rolebeoff.RoleBeOffAction">
+			<forward name="rolebeoffpage" path="/jsp/login/rolebeoff/role_be_off.jsp" />
+			<forward name="rolebeoffview" path="/jsp/login/rolebeoff/by_be_off_view.jsp" />
+			<forward name="rolebeoffok" path="/jsp/login/rolebeoff/by_be_off.jsp" />
+		</action>
+		
+		<!-- 称号 --> 
+		<action parameter="cmd" path="/title" type="com.web.action.honour.TitleAction">
+			<forward name="title_list" path="/jsp/info/partinfo/title/title_list.jsp" />
+			<forward name="title_view" path="/jsp/info/partinfo/title/title_view.jsp" />
+		</action>
+		
+		<!-- 好友传送道具 --> 
+		<action parameter="cmd" path="/friendscs" type="com.lw.action.chuansong.FriendChuanSongAction">
+			<forward name="friendslist" path="/jsp/chuansongprop/friendchuansong/friendslist.jsp" />
+			<forward name="display" path="/jsp/chuansongprop/friendchuansong/display.jsp" />
+			<forward name="hint" path="/jsp/chuansongprop/friendchuansong/hint.jsp" />
+			<forward name="walk" path="/walk.do" />
+		</action>
+		<!-- 优化交易增加一个类 --> 
+		<action parameter="cmd" path="/jiaoyi" type="com.web.action.sellinfo.JiaoYiAction">
+			<forward name="jiaiyipage" path="/jsp/sellinfo/jiaoyi_page.jsp" />
+			<forward name="blacklisthint" path="/jsp/friend/blacklist/blacklist_hint.jsp" />
+			<forward name="zengsongqianpage" path="/jsp/sellinfo/zengsongqian/zengsongqian.jsp" />
+			<forward name="zengsonggoodspage" path="/jsp/sellinfo/zensonggoods/zensonggoods.jsp" />
+			<forward name="zengsonggoodsview" path="/jsp/sellinfo/zensonggoods/prop/zensong_prop_view.jsp" />
+			<forward name="zengsonggoodsnumber" path="/jsp/sellinfo/zensonggoods/prop/zensong_prop_number.jsp" />
+			<forward name="zengsongpropok" path="/jsp/sellinfo/zensonggoods/prop/zensong_prop_ok.jsp" />
+			<forward name="zengsongequipview" path="/jsp/sellinfo/zensonggoods/equip/zensong_equip_view.jsp" />
+			<forward name="zengsongequipnumber" path="/jsp/sellinfo/zensonggoods/equip/zensong_equip_number.jsp" />
+			<forward name="zengsongequipok" path="/jsp/sellinfo/zensonggoods/equip/zensong_equip_ok.jsp" />
+			<forward name="armview" path="/jsp/sellinfo/zensonggoods/equip/sellacc_view.jsp" />
+			<forward name="sellmoeyok" path="/jsp/sellinfo/tiaozhuan/sell_money_ok.jsp" />
+			<forward name="sellarmpage" path="/jsp/sellinfo/zensonggoods/equip/bjyym_sell_info.jsp" />
+			<forward name="sellpropviewpage" path="/jsp/sellinfo/zensonggoods/prop/sellprop_view.jsp" />
+			<forward name="sellproppage" path="/jsp/sellinfo/zensonggoods/prop/prop_sell_info.jsp" />
+		</action>
+		<!-- vip --> 
+		<action parameter="cmd" path="/vip" type="com.web.action.vip.VipAction">
+			<forward name="vippage" path="/jsp/vip/vip_page.jsp" />
+			<forward name="mallvipprop" path="/jsp/vip/mallvip_prop.jsp" />
+			<forward name="getlaorage" path="/jsp/vip/getlaorage.jsp" />
+			<forward name="buyvip" path="/jsp/vip/buyvip.jsp" />
+			<forward name="chongzhi" path="/jsp/vip/chongzhi.jsp" />
+		</action>
+		<!-- 绝学 --> 
+		<action parameter="cmd" path="/juexue" type="com.lw.action.juexue.JiayiAction">
+			<forward name="display" path="/jsp/juexue/display.jsp" />
+			<forward name="buy" path="/jsp/juexue/buy.jsp" />
+			<forward name="hint" path="/jsp/juexue/hint.jsp" />
+		</action>
+		<!-- 管理员登陆 --> 
+		<action parameter="cmd" path="/systemresources" type="com.web.action.systemresources.SystemResourcesAction">
+			<forward name="notlogin" path="/jsp/systemresources/system_login.jsp" />
+			<forward name="login" path="/jsp/systemresources/system_page.jsp" />
+			<forward name="syspage" path="/systemresources.do?cmd=n1" />
+		</action>
+	</action-mappings>
+	  <message-resources parameter="ApplicationResources_zh" />
+</struts-config>

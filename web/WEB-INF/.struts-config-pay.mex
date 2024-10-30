@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/yeepay/bill.do" location="1334,0" dimension="346,84" />
+  <StrutsActivity path="/game/yeepay/callback.do" location="0,327" dimension="370,84" />
+  <StrutsActivity path="/air/login.do" location="50,850" dimension="340,84" />
+  <StrutsActivity path="/air/bill.do" location="650,650" dimension="370,84" />
+  <StrutsActivity path="/cooperate/yeepay/bill/index.jsp" location="0,234" dimension="232,48" />
+  <StrutsActivity path="/cooperate/szf/unicom/input.jsp" location="650,450" dimension="226,48" />
+  <StrutsActivity path="/cooperate/szf/unicom/index.jsp" location="950,450" dimension="226,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/jun/index.jsp" location="332,234" dimension="256,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/sd/input.jsp" location="1032,234" dimension="250,48" />
+  <StrutsActivity path="/cooperate/szf/szx/index.jsp" location="950,350" dimension="208,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/sd/index.jsp" location="1382,234" dimension="250,48" />
+  <StrutsActivity path="/cooperate/szf/telecom/input.jsp" location="350,650" dimension="232,48" />
+  <StrutsActivity path="/cooperate/szf/szx/input.jsp" location="650,350" dimension="208,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/szx/index.jsp" location="2444,234" dimension="256,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/comfirm.jsp" location="688,234" dimension="244,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/jun/input.jsp" location="1732,234" dimension="256,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/szx/input.jsp" location="2088,234" dimension="256,48" />
+  <StrutsActivity path="/cooperate/szf/telecom/index.jsp" location="50,650" dimension="232,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/success.jsp" location="2800,234" dimension="244,48" />
+  <StrutsActivity path="/cooperate/szf/szf_comfirm.jsp" location="950,550" dimension="220,48" />
+  <StrutsActivity path="/cooperate/yeepay/bill/callback.jsp" location="60,511" dimension="250,48" />
+  <StrutsActivity path="/comm/user_num_limit_hint.jsp" location="1250,450" dimension="214,48" />
+  <StrutsActivity path="/login.do" location="1250,550" dimension="100,72" />
+  <StrutsActivity path="/cooperate/sky/login/fail.jsp" location="1250,750" dimension="214,48" />
+  <StrutsActivity path="/cooperate/air/bill/result.jsp" location="50,750" dimension="220,48" />
+  <StrutsActivity path="/cooperate/air/bill/index.jsp" location="350,750" dimension="214,48" />
+  <StrutsActivity path="/cooperate/szf_comfirm.jsp" location="650,550" dimension="196,48" />
+  <StrutsActivity path="/cooperate/air/bill/submit.jsp" location="650,850" dimension="220,48" />
+  <StrutsTransition id="/game/yeepay/callback.do,success,/cooperate/yeepay/bill/callback.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="185,411" />
+      <AbsolutePoint location="185,511" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,jun_index,/cooperate/yeepay/bill/jun/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1391,84" />
+      <AbsolutePoint location="1391,144" />
+      <AbsolutePoint location="460,144" />
+      <AbsolutePoint location="460,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,sd_index,/cooperate/yeepay/bill/sd/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1507,84" />
+      <AbsolutePoint location="1507,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,pay_comfirm,/cooperate/yeepay/bill/comfirm.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1430,84" />
+      <AbsolutePoint location="1430,174" />
+      <AbsolutePoint location="810,174" />
+      <AbsolutePoint location="810,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/air/login.do,user_num_limit_hint,/comm/user_num_limit_hint.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="220,892" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szftelecom_index,/cooperate/szf/telecom/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1334,12" />
+      <AbsolutePoint location="-150,12" />
+      <AbsolutePoint location="-150,674" />
+      <AbsolutePoint location="50,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szfszx_input,/cooperate/szf/szx/input.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1507,42" />
+      <AbsolutePoint location="754,374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/air/login.do,fail,/cooperate/sky/login/fail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="220,892" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/air/login.do,success,/login.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="220,892" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szfszx_index,/cooperate/szf/szx/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1334,72" />
+      <AbsolutePoint location="1017,72" />
+      <AbsolutePoint location="1017,350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/air/bill.do,result,/cooperate/air/bill/result.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="835,692" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szfunicom_input,/cooperate/szf/unicom/input.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1334,42" />
+      <AbsolutePoint location="633,42" />
+      <AbsolutePoint location="633,474" />
+      <AbsolutePoint location="650,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,jun_input,/cooperate/yeepay/bill/jun/input.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1545,84" />
+      <AbsolutePoint location="1545,204" />
+      <AbsolutePoint location="1860,204" />
+      <AbsolutePoint location="1860,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/air/bill.do,success,/cooperate/air/bill/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="835,692" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/air/bill.do,submit,/cooperate/air/bill/submit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="835,734" />
+      <AbsolutePoint location="835,850" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szf_pay_comfirm,/cooperate/szf/szf_comfirm.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1507,42" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,success,/cooperate/yeepay/bill/success.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1660,84" />
+      <AbsolutePoint location="1660,114" />
+      <AbsolutePoint location="2922,114" />
+      <AbsolutePoint location="2922,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,sd_input,/cooperate/yeepay/bill/sd/input.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1507,42" />
+      <AbsolutePoint location="1157,258" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szx_index,/cooperate/yeepay/bill/szx/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1622,84" />
+      <AbsolutePoint location="1622,144" />
+      <AbsolutePoint location="2572,144" />
+      <AbsolutePoint location="2572,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szftelecom_input,/cooperate/szf/telecom/input.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1477,84" />
+      <AbsolutePoint location="1477,204" />
+      <AbsolutePoint location="603,204" />
+      <AbsolutePoint location="603,674" />
+      <AbsolutePoint location="582,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szx_input,/cooperate/yeepay/bill/szx/input.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1583,84" />
+      <AbsolutePoint location="1583,174" />
+      <AbsolutePoint location="2216,174" />
+      <AbsolutePoint location="2216,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,index,/cooperate/yeepay/bill/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1353,84" />
+      <AbsolutePoint location="1353,114" />
+      <AbsolutePoint location="116,114" />
+      <AbsolutePoint location="116,234" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/yeepay/bill.do,szfunicom_index,/cooperate/szf/unicom/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1680,12" />
+      <AbsolutePoint location="2033,12" />
+      <AbsolutePoint location="2033,474" />
+      <AbsolutePoint location="1176,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

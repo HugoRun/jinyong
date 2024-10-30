@@ -1,0 +1,577 @@
+<?xml version='1.0' encoding='utf-8'?>  
+  
+<quartz>  
+  <!-- <job>  
+   测试类，每隔10秒执行一次  
+    <job-detail>  
+        <name>ForTestJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.TestJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>  
+        
+        <job-data-map allows-transient-data="true">  
+          <entry>  
+            <key>java.naming.security.credentials</key>  
+            <value>manager</value>  
+          </entry>  
+        </job-data-map>  
+    </job-detail>  
+    
+    <! trigger>  
+      <simple>  
+          <name>ForTestJob</name>  
+          <group>DEFAULT</group>  
+          <job-name>ForTestJob</job-name>  
+          <job-group>DEFAULT</job-group>  
+          <start-time>2009-03-24T11:40:00</start-time>  
+            repeat indefinitely every 10 seconds >  
+          <repeat-count>-1</repeat-count>  
+          <repeat-interval>10000</repeat-interval>  
+      </simple>  
+    </trigger>  
+    
+     <trigger>  
+    <cron>  
+     <name>ForTestJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>ForTestJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!- Fire 7:30am Monday through Friday ->  
+     <cron-expression>50 * * ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>   -->
+  
+  
+  <job>  
+  <!--   每日凌晨4点执行，收集游戏信息   -->
+    <job-detail>  
+        <name>GameDataRecordJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.GameDataRecordJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>   
+    
+     <trigger>  
+    <cron>  
+     <name>GameDataRecordJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GameDataRecordJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>0 0 4 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  <job>  
+  <!--   每十分钟统计一次，在线玩家人数统计   -->
+    <job-detail>  
+        <name>GameOnlineNumRecordJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.GameOnlineNumRecordJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>
+   
+     <trigger>  
+    <cron>  
+     <name>GameOnlineNumRecordJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GameOnlineNumRecordJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>0 0/10 * ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+    <job>  
+  <!--   每十分钟一次，减除夫妻甜蜜度   -->
+    <job-detail>  
+        <name>DelLoveDear</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.DelLoveDear</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  
+     <name>DelLoveDear</name>  
+     <group>DEFAULT</group>  
+     <job-name>DelLoveDear</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>30 0/10 * ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+   <job>  
+   <!--   每5分钟删除一次交易表   -->
+    <job-detail>  
+        <name>GameOnlineSellDeleteJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.GameOnlineSellDeleteJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  
+     <name>GameOnlineSellDeleteJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GameOnlineSellDeleteJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>0 0/5 * ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  <job>  
+   <!--   每日凌晨4点每天的定时执行操作   -->
+    <job-detail>  
+        <name>EveryDayJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.day.EveryDayJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   <trigger>  
+    <cron>  
+     <name>EveryDayJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>EveryDayJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+     <cron-expression>0 0 4 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  <job>  
+  <!--   每日凌晨3点开始，彩票信息   -->
+    <job-detail>  
+        <name>GameLotteryAndLaborageJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.GameLotteryAndLaborageJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  	
+     <name>GameLotteryAndLaborageJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GameLotteryAndLaborageJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>0 0 3 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  
+   <job>  
+  <!--   每日凌晨20点开始，彩票生成   -->
+    <job-detail>  
+        <name>GameLotteryNumJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.GameLotteryNumJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  
+     <name>GameLotteryNumJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GameLotteryNumJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>0 0 20 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  
+    <job>  
+  <!--   每日凌晨1点开始， 统计库存   -->
+    <job-detail>  
+        <name>GameStatisticsKucunJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.GameStatisticsKucunJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  
+     <name>GameStatisticsKucunJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GameStatisticsKucunJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->  
+     <cron-expression>0 0 1 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  <job> 
+  <!--   每日凌晨23点开始，统计渠道信息   -->
+    <job-detail>  
+        <name>QudaoJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.QudaoJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  
+     <name>QudaoJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>QudaoJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+     <cron-expression>0 0 23 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+  <job> 
+  <!--   每日凌晨2点开始，清理垃圾   -->
+    <job-detail>  
+        <name>ClearJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.ClearJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>  
+   
+     <trigger>  
+    <cron>  
+     <name>ClearJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>ClearJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+     <cron-expression>0 0 2 ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>  
+  
+   <!--   每周统计排行  -->
+    <job>  
+ 	<job-detail>
+        <name>WeekRankStatisticsJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.weekly.WeekRankStatisticsJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>  
+    
+     	<job-data-map allows-transient-data="true">  
+     		<entry>  
+            <key>path</key>  
+            <value>d:/rank</value>  
+          </entry>
+          <entry> 
+            <key>key1</key>  
+            <value>killnpc</value>  
+          </entry>
+          <entry> 
+            <key>key2</key>  
+            <value>ans</value>  
+          </entry>
+          <entry> 
+            <key>key3</key>  
+            <value>dear</value>  
+          </entry>
+          <entry> 
+            <key>key4</key>  
+            <value>zhong</value>  
+          </entry>
+          <entry> 
+            <key>key5</key>  
+            <value>yi</value>  
+          </entry>
+          <entry>
+            <key>key6</key>  
+            <value>money</value>  
+          </entry>
+          <entry> 
+            <key>key7</key>  
+            <value>dead</value>  
+          </entry>
+          <entry>
+            <key>key8</key>  
+            <value>open</value>  
+          </entry>  
+          
+          <entry> 
+            <key>key9</key>  
+            <value>yuanbao</value>  
+          </entry>
+          <entry> 
+            <key>key10</key>  
+            <value>kuangshou</value>  
+          </entry>
+          <entry> 
+            <key>key11</key>  
+            <value>shenbin</value>  
+          </entry>
+          <entry>
+            <key>key12</key>  
+            <value>credit</value>  
+          </entry>
+          <entry> 
+            <key>key13</key>  
+            <value>wei_task</value>  
+          </entry>
+          <!-- 江湖圣榜 -->
+          <entry> 
+            <key>key14</key>  
+            <value>shengbang</value>  
+          </entry>  
+        </job-data-map>  
+   	</job-detail>   
+   	
+   	
+     <trigger>  
+    <cron>  
+     <name>WeekRankStatisticsJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>WeekRankStatisticsJob</job-name>  
+     <job-group>DEFAULT</job-group>
+      <cron-expression>0 0 3 ? * WED *</cron-expression>  
+    </cron>
+   </trigger>
+  </job>
+  
+  
+  <job>  
+  <!--   每个月会执行一次   -->
+    <job-detail>  
+        <name>MonthlyJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.MonthlyJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>    
+        
+        <job-data-map allows-transient-data="true">  
+     		<entry>  
+            <key>path</key>  
+            <value>d:/rank</value>  
+          </entry>
+          <entry> 
+            <key>key1</key>  
+            <value>p_exp</value>  
+          </entry>
+          <entry> 
+            <key>key2</key>  
+            <value>kill</value>  
+          </entry>
+          <entry> 
+            <key>key3</key>  
+            <value>tuxue</value>  
+          </entry>
+          <entry> 
+            <key>key4</key>  
+            <value>evil</value>  
+          </entry>
+          <entry> 
+            <key>key5</key>  
+            <value>killboss</value>  
+          </entry>
+          <entry>
+            <key>key6</key>  
+            <value>meng</value>  
+          </entry>
+          <entry> 
+            <key>key7</key>  
+            <value>sale</value>  
+          </entry>
+          <entry> 
+            <key>key8</key>  
+            <value>vip</value>  
+          </entry>  
+           <entry> 
+            <key>key9</key>  
+            <value>glory</value>  
+          </entry> 
+          <entry> 
+            <key>key10</key>  
+            <value>congwu</value>  
+          </entry>
+          <entry> 
+            <key>key11</key>  
+            <value>boyi</value>  
+          </entry>
+          <entry> 
+            <key>key12</key>  
+            <value>lost</value>  
+          </entry> 
+        </job-data-map>  
+   	</job-detail>   
+   	      
+     <trigger>  
+    <cron>  
+     <name>MonthlyJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>MonthlyJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+     <cron-expression>0 0 3 1 * ? *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>
+  
+  <!-- 清除无效玩家 
+    <job>  
+    <job-detail>  
+        <name>GCRoleJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.gc.GCRoleJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>
+   
+     <trigger>  
+    <cron>  
+     <name>GCRoleJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>GCRoleJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+     <cron-expression>0 0/1 * ? * *</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job> 
+  -->
+  
+   <!--   千面郎君定时器  
+    <job>  
+ 	<job-detail>
+        <name>LangjunJob1</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.ben.langjun.util.LangjunJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>  
+    
+     	<job-data-map allows-transient-data="true">  
+     		<entry>  
+            <key>endtime</key>  
+            <value>23:59:59</value>  
+          </entry>
+        </job-data-map>  
+   	</job-detail>   
+     <trigger>  
+    <cron>  
+     <name>LangjunJob1</name>  
+     <group>DEFAULT</group>  
+     <job-name>LangjunJob1</job-name>  
+     <job-group>DEFAULT</job-group>
+      <cron-expression>0 3 22 ? * *</cron-expression>  
+    </cron>
+   </trigger>
+  </job>-->
+  
+  <!--   挑战擂台定时器,每十分钟一次  
+    <job>  
+ 	<job-detail>
+        <name>Challenge</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.ben.leitai.challenge.ChallengeTimer</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>  
+   	</job-detail>   
+     <trigger>  
+    <cron>  
+     <name>Challenge</name>  
+     <group>DEFAULT</group>  
+     <job-name>Challenge</job-name>  
+     <job-group>DEFAULT</job-group>
+      <cron-expression>15 0/10 * ? * *</cron-expression>  
+    </cron>
+   </trigger>
+  </job>-->
+  
+ <job>  
+     每二十分钟统计一次，在线玩家人数统计  
+    <job-detail>  
+        <name>JUUGameOnlinePlayerJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.pm.service.job.JUUGameOnlinePlayerJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>          
+    </job-detail>
+   
+     <trigger>  
+    <cron>  
+     <name>JUUGameOnlinePlayerJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>JUUGameOnlinePlayerJob</job-name>  
+     <job-group>DEFAULT</job-group>  
+  
+      <!-- Fire 7:30am Monday through Friday -->   
+     <cron-expression>0 0/20 * * * ?</cron-expression>  
+    </cron>  
+   </trigger>  
+  </job>   
+  
+  
+  
+     <!--   迷宫定时器  
+    <job>  
+ 	<job-detail>
+        <name>LostJob</name>  
+        <group>DEFAULT</group>  
+        <job-class>com.ben.lost.LostJob</job-class>  
+        <volatility>false</volatility>  
+        <durability>false</durability>  
+        <recover>false</recover>  
+    
+     	<job-data-map allows-transient-data="true">  
+     		<entry>  
+            <key>endtime</key>  
+            <value>15:59:59</value>  
+          </entry>
+        </job-data-map>  
+   	</job-detail>   
+     <trigger>  
+    <cron>  
+     <name>LostJob</name>  
+     <group>DEFAULT</group>  
+     <job-name>LostJob</job-name>  
+     <job-group>DEFAULT</job-group>
+      <cron-expression>0 0 13 ? * SAT,SUN</cron-expression>  
+    </cron>
+   </trigger>
+  </job> -->
+</quartz>  

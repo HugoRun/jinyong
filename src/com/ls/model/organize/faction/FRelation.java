@@ -1,0 +1,12 @@
+package com.ls.model.organize.faction;
+
+/**
+ * @author ls
+ * ∞Ô≈…πÿœµ
+ */
+public class FRelation
+{
+	private int fIdA;//∞Ô≈…A
+	private int fIdB;//∞Ô≈…B
+	private int hatred;//≥∫ﬁ÷µ
+}
