@@ -19,7 +19,7 @@ public class RedNameDao extends DaoBase {
 	public int getPerionRandomMapid(int map_type)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT scene_id from scene where scene_mapqy = (select map_id from map where map_type = "+map_type+")";
+		String sql = "SELECT scene_id FROM scene WHERE scene_mapqy = (SELECT map_id FROM map WHERE map_type = "+map_type+")";
 		logger.debug("随即选择一个监狱id="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -62,7 +62,7 @@ public class RedNameDao extends DaoBase {
 	public List<Integer> getRedNameMapidList()
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT scene_id from scene where scene_mapqy = (select map_id from map where map_type = 5)";
+		String sql = "SELECT scene_id FROM scene WHERE scene_mapqy = (SELECT map_id FROM map WHERE map_type = 5)";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -95,7 +95,7 @@ public class RedNameDao extends DaoBase {
 	public List<Integer> getRedNameMapidList(int map_Id)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT scene_id from scene where scene_mapqy = "+map_Id+"";
+		String sql = "SELECT scene_id FROM scene WHERE scene_mapqy = "+map_Id+"";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -129,7 +129,7 @@ public class RedNameDao extends DaoBase {
 	public int getUserElimiId(String pk)
 	{
 		int elimi_id = -1;
-		String sql = "SELECT elimi_id from u_pkvalue_elimi where p_pk="+pk;
+		String sql = "SELECT elimi_id FROM u_pkvalue_elimi WHERE p_pk="+pk;
 		logger.debug("获得消除pk值表id的sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -164,7 +164,7 @@ public class RedNameDao extends DaoBase {
 	 */
 	public void insertIntoElimi(String pk, int pk_value, String mapid)
 	{
-		String sql = "INSERT INTO u_pkvalue_elimination values(null,'"+pk+"','"+pk_value+"','"+mapid+"',now())";
+		String sql = "INSERT INTO u_pkvalue_elimination VALUES(null,'"+pk+"','"+pk_value+"','"+mapid+"',now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -187,7 +187,7 @@ public class RedNameDao extends DaoBase {
 	public PKValueElimiVO getUserPkvalueElimi(String pk)
 	{ 
 		PKValueElimiVO	vo = null;
-		String sql = "SELECT * FROM u_pkvalue_elimi where p_pk="+pk;
+		String sql = "SELECT * FROM u_pkvalue_elimi WHERE p_pk="+pk;
 		logger.debug("获得消除pk值表id的sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -225,7 +225,7 @@ public class RedNameDao extends DaoBase {
 	 */
 	public void updatePkVlueElimi(String pk, int reduce_pk_value, Date dt3)
 	{
-		String sql = "update u_pkvlaue_elimination set pk_value= pkvalue - "+reduce_pk_value+" and last_time = "+dt3+" where p_pk = "+pk;
+		String sql = "UPDATE u_pkvlaue_elimination SET pk_value= pkvalue - "+reduce_pk_value+" AND last_time = "+dt3+" WHERE p_pk = "+pk;
 		logger.debug("更新消除pk值表="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -247,7 +247,7 @@ public class RedNameDao extends DaoBase {
 	 */
 	public void deleteRedNameByPPk(String pk)
 	{
-		String sql = "delete from u_pkvlaue_elimination where p_pk = "+pk;
+		String sql = "DELETE FROM u_pkvlaue_elimination WHERE p_pk = "+pk;
 		logger.debug("删除红名记录表="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{

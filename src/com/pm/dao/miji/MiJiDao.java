@@ -20,7 +20,7 @@ public class MiJiDao extends DaoBase {
 	 * 
 	 */
 	public MiJiVO getMiJiById ( int mijiId) {
-		String sql = "SELECT * FROM miji_info where mj_id = "+mijiId;
+		String sql = "SELECT * FROM miji_info WHERE mj_id = "+mijiId;
 		MiJiVO miJiVO = null;
 		logger.debug("战场中的旗杆阵营属性还原="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

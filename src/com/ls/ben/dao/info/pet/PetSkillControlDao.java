@@ -28,8 +28,8 @@ public class PetSkillControlDao extends DaoBase
 	public PetSkillControlVO getByPetAndSkillGroup(int pet_id, int pet_skill_group)
 	{
 		PetSkillControlVO petControl = null;
-		String sql = "SELECT * FROM pet_skill_control where pet_id=" + pet_id
-				+ " and pet_skill_group=" + pet_skill_group + " limit 1";
+		String sql = "SELECT * FROM pet_skill_control WHERE pet_id=" + pet_id
+				+ " AND pet_skill_group=" + pet_skill_group + " LIMIT 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try

@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 1.答题系统每天12点至14点开放<br/>
 2.20级以上玩家每天可以免费回答一轮<br/>

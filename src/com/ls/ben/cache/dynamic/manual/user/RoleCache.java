@@ -38,7 +38,7 @@ public class RoleCache extends CacheBase {
             try {
                 roleEntity = new RoleEntity(p_pk);
             } catch (Exception e) {
-                DataErrorLog.debugData("RoleCache.getByPpk参数错误：无该角色,p_pk=" + p_pk);
+                DataErrorLog.debugData("RoleCache.getByPpk参数错误：无该角色, p_pk = " + p_pk);
                 return null;
             }
             element = new Element(roleEntity.getPPk(), roleEntity);

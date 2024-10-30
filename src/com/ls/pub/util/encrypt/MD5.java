@@ -123,8 +123,8 @@ public class MD5 {
 
   /*
      FF,GG,HH鍜孖I灏嗚皟鐢‵,G,H,I杩涜�杩戜竴姝ュ彉鎹�
-     FF, GG, HH, and II transformations for rounds 1, 2, 3, and 4.
-     Rotation is separate from addition to prevent recomputation.
+     FF, GG, HH, AND II transformations for rounds 1, 2, 3, AND 4.
+     Rotation is separate FROM addition to prevent recomputation.
    */
 
   private long FF(long a, long b, long c, long d, long x, long s,
@@ -175,7 +175,7 @@ public class MD5 {
 
     partLen = 64 - index;
 
-    // Transform as many times as possible.
+    // Transform AS many times AS possible.
     if (inputLen >= partLen) {
       md5Memcpy(buffer, inbuf, index, 0, partLen);
       md5Transform(buffer);

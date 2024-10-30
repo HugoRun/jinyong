@@ -22,7 +22,7 @@ public class FieldHistoryDao extends DaoBase {
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT fh_victor from s_field_history where fh_type = "+field_type+" order by fh_id desc limit 1";
+		String sql = "SELECT fh_victor FROM s_field_history WHERE fh_type = "+field_type+" ORDER BY fh_id DESC LIMIT 1";
 		logger.debug("获得上场战斗的胜利者="+sql);
 		int victor = 0;
 		try
@@ -70,7 +70,7 @@ public class FieldHistoryDao extends DaoBase {
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT fh_sequence from s_field_history where fh_type = "+field_type+" order by fh_create_time desc limit 1";
+		String sql = "SELECT fh_sequence FROM s_field_history WHERE fh_type = "+field_type+" ORDER BY fh_create_time DESC LIMIT 1";
 		logger.debug("获得上场战斗的场次序号="+sql);
 		int fh_id = 0;
 		try
@@ -134,16 +134,16 @@ public class FieldHistoryDao extends DaoBase {
 		
 		int field_barea = FinalNumber.FIELDBAREA;
 		//这是采取跨库查询的方法写的,效率高, 但移植性差
-		//String sql = "SELECT count(1) as has_exist from jygame_user_test.u_part_info where p_pk = "+pPk+" and p_map in " +
-		//		"(select scene_ID from jygame_test.scene,jygame_test.map,jygame_test.barea where " +
-		//		"map.map_from = barea.barea_ID and scene.scene_mapqy = map.map_ID and barea.barea_ID = "+field_barea+")";
+		//String sql = "SELECT COUNT(1) AS has_exist FROM jygame_user_test.u_part_info WHERE p_pk = "+pPk+" AND p_map IN " +
+		//		"(SELECT scene_ID FROM jygame_test.scene,jygame_test.map,jygame_test.barea WHERE " +
+		//		"map.map_from = barea.barea_ID AND scene.scene_mapqy = map.map_ID AND barea.barea_ID = "+field_barea+")";
 		
 		PartInfoDAO partInfoDao = new PartInfoDAO();
 		int p_map = partInfoDao.getPartMap(pPk);
 
-		String sql = "SELECT count(1) as has_exist from scene where scene_ID = "+p_map+" and "+p_map+" in (select scene_ID from scene,map, " +
-				"barea where map.map_from = barea.barea_ID " +
-				"and scene.scene_mapqy = map.map_ID and barea_ID = "+field_barea+" ) ";
+		String sql = "SELECT COUNT(1) AS has_exist FROM scene WHERE scene_ID = "+p_map+" AND "+p_map+" IN (SELECT scene_ID FROM scene,map, " +
+				"barea WHERE map.map_from = barea.barea_ID " +
+				"AND scene.scene_mapqy = map.map_ID AND barea_ID = "+field_barea+" ) ";
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -179,7 +179,7 @@ public class FieldHistoryDao extends DaoBase {
 	public int getCampWinNum(int camp)
 	{
 		
-		String sql = "SELECT count(1) as win_num from s_field_history where fh_victor = "+camp;
+		String sql = "SELECT COUNT(1) AS win_num FROM s_field_history WHERE fh_victor = "+camp;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug("获得某一阵营的胜利次数="+sql);

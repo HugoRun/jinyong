@@ -8,7 +8,7 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 
 <%
 	String ss = (String)request.getAttribute("ss");
@@ -17,7 +17,7 @@
 	DropGoodsVO dropGoods = null;
 %>
 
-<card id="login" title="<s:message key = "gamename"/>">
+<card id="login" title="<bean:message key="gamename"/>">
 <p> 
 	<%	
 		if( goods_name!=null && !goods_name.equals(""))

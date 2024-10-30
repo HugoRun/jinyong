@@ -24,7 +24,7 @@ public class SysResourcesDAO extends BasicDaoSupport
 	 */
 	public boolean isLogin(String name ,String paw)
 	{
-		String condition_sql = "where u_name = '"+name+"' and u_paw='"+paw+"'";
+		String condition_sql = "where u_name = '"+name+"' AND u_paw='"+paw+"'";
 		return super.isHaveBySql(condition_sql);
 	}
 	

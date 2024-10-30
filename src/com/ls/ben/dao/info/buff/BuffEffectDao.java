@@ -25,7 +25,7 @@ public class BuffEffectDao extends DaoBase {
 			logger.debug("参数为空");
 		}
 		buffEffect.log();
-		String sql = "INSERT INTO u_buffeffect_info  values (null,?,?,?,?,?,?,?,?,now(),?,?,?,?,?)";
+		String sql = "INSERT INTO u_buffeffect_info  VALUES (null,?,?,?,?,?,?,?,?,now(),?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -64,7 +64,7 @@ public class BuffEffectDao extends DaoBase {
 	 * @param bf_pk
 	 */
 	public void deleteByID(int bf_pk) {
-		String sql = "delete from u_buffeffect_info where bf_pk=" + bf_pk;
+		String sql = "DELETE FROM u_buffeffect_info WHERE bf_pk=" + bf_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -89,7 +89,7 @@ public class BuffEffectDao extends DaoBase {
 	{
 		List<BuffEffectVO> buffEffects = new ArrayList<BuffEffectVO>();
 		BuffEffectVO buffEffect = null;
-		String sql = "SELECT * FROM u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" group by buff_type order by  bf_pk,buff_type desc";
+		String sql = "SELECT * FROM u_buffeffect_info WHERE effect_object=" + effect_object+" AND effect_object_type="+effect_object_type+" GROUP BY buff_type ORDER BY  bf_pk,buff_type desc";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -142,7 +142,7 @@ public class BuffEffectDao extends DaoBase {
 	public String getBuffListDescribe( int effect_object,int effect_object_type )
 	{
 		StringBuffer buff_list_describe = new StringBuffer();
-		String sql = "SELECT * FROM u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" group by buff_type order by  bf_pk,buff_type desc ";
+		String sql = "SELECT * FROM u_buffeffect_info WHERE effect_object=" + effect_object+" AND effect_object_type="+effect_object_type+" GROUP BY buff_type ORDER BY  bf_pk,buff_type DESC ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -188,7 +188,7 @@ public class BuffEffectDao extends DaoBase {
 	public BuffEffectVO getBuffEffectByBuffType( int effect_object,int effect_object_type,int buff_type )
 	{
 		BuffEffectVO buffEffect = null;
-		String sql = "SELECT * FROM u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" and buff_type="+buff_type + " order by bf_pk limit 1";
+		String sql = "SELECT * FROM u_buffeffect_info WHERE effect_object=" + effect_object+" AND effect_object_type="+effect_object_type+" AND buff_type="+buff_type + " ORDER BY bf_pk LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -236,7 +236,7 @@ public class BuffEffectDao extends DaoBase {
 	 */
 	public void updateSpareBout( int p_pk )
 	{
-		String sql = "update  u_buffeffect_info  set spare_bout=spare_bout-1 where buff_bout<>0 and effect_object="+p_pk;
+		String sql = "UPDATE  u_buffeffect_info  SET spare_bout=spare_bout-1 WHERE buff_bout<>0 AND effect_object="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -256,7 +256,7 @@ public class BuffEffectDao extends DaoBase {
 	 */
 	public void clearBuffEffect( int object_id,int object_type )
 	{
-		String sql = "delete from u_buffeffect_info where effect_object=" + object_id+ " and effect_object_type="+object_type;
+		String sql = "DELETE FROM u_buffeffect_info WHERE effect_object=" + object_id+ " AND effect_object_type="+object_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -277,7 +277,7 @@ public class BuffEffectDao extends DaoBase {
 	 */
 	public void clearBuffEffectByBuffId( int object_id,int object_type,int buff_id )
 	{
-		String sql = "delete from u_buffeffect_info where effect_object=" + object_id+ " and effect_object_type="+object_type+" and buff_id="+buff_id;
+		String sql = "DELETE FROM u_buffeffect_info WHERE effect_object=" + object_id+ " AND effect_object_type="+object_type+" AND buff_id="+buff_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -302,8 +302,8 @@ public class BuffEffectDao extends DaoBase {
 	public int hasAlreadyBuff(int object_id, int object_type, int buff_type)
 	{
 		int i = 0;
-		String sql = "SELECT count(1) as all_num from u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
-						+" and buff_type="+buff_type;
+		String sql = "SELECT COUNT(1) AS all_num FROM u_buffeffect_info WHERE effect_object="+object_id+" AND effect_object_type="+object_type
+						+" AND buff_type="+buff_type;
 		
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -337,8 +337,8 @@ public class BuffEffectDao extends DaoBase {
 	public BuffEffectVO hasAlreadyBuff(int object_id, int object_type, String buff_type)
 	{
 		
-		String sql = "SELECT * FROM u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
-						+" and buff_type="+buff_type;
+		String sql = "SELECT * FROM u_buffeffect_info WHERE effect_object="+object_id+" AND effect_object_type="+object_type
+						+" AND buff_type="+buff_type;
 		
 		logger.debug(sql);
 		BuffEffectVO buffEffect = null;
@@ -388,8 +388,8 @@ public class BuffEffectDao extends DaoBase {
 	 */
 	public void deleteAlreadyBuff(int object_id, int object_type, int buff_type)
 	{
-		String sql = "delete from u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
-						+" and buff_type="+buff_type;
+		String sql = "DELETE FROM u_buffeffect_info WHERE effect_object="+object_id+" AND effect_object_type="+object_type
+						+" AND buff_type="+buff_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -412,7 +412,7 @@ public class BuffEffectDao extends DaoBase {
 	 */
 	public void updateBuffEffect(int pPk, int buff_id, int buff_time)
 	{
-		String sql = "update u_buffeffect_info set buff_time = buff_time +"+ buff_time+" where effect_object = "+pPk+" and buff_id = "+buff_id;
+		String sql = "UPDATE u_buffeffect_info SET buff_time = buff_time +"+ buff_time+" WHERE effect_object = "+pPk+" AND buff_id = "+buff_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -437,7 +437,7 @@ public class BuffEffectDao extends DaoBase {
 	 */
 	public void updateBuffBoutEffect(int pPk, int buff_id, int buff_bout)
 	{
-		String sql = "update u_buffeffect_info set buff_bout = buff_bout +"+ buff_bout+" where pPk = "+pPk+" and buff_id = "+buff_id;
+		String sql = "UPDATE u_buffeffect_info SET buff_bout = buff_bout +"+ buff_bout+" WHERE pPk = "+pPk+" AND buff_id = "+buff_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

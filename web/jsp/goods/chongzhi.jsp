@@ -12,13 +12,13 @@
 	RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="bill" title="充值">
 <p>
 <%=roleInfo.getBasicInfo().getName()%>您的<%=GameConfig.getYuanbaoName() %>余额不足,请充值元宝.
 <%@ include file="/init/system/error_hint.jsp"%>
-<s:message key = "gamename"/>充值通道<br/>
-欢迎您使用<s:message key = "gamename"/>【<%=GameConfig.getYuanbaoName() %>】充值服务,祝您游戏愉快!<br/> 
+<bean:message key="gamename"/>充值通道<br/>
+欢迎您使用<bean:message key="gamename"/>【<%=GameConfig.getYuanbaoName() %>】充值服务,祝您游戏愉快!<br/>
 输入要兑换K币的数量:<input name="kbamt" type="text" format="*N" size="3"/><br/>
 <anchor>
 <go method="post" href="<%=response.encodeURL(GameConfig.getContextPath()+"/goods.do?cmd=n8")%>">

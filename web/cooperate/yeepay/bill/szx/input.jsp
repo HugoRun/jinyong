@@ -5,7 +5,7 @@
     String money = (String)request.getParameter("money");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%
     String b_type = (String)request.getAttribute("b_type");
 %>

@@ -3,7 +3,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="com.ben.guaji.vo.GoodVo"%>
 你设置了拾取以下物品：<br/>
-<%Set<GoodVo> set = (Set)request.getAttribute("set"); 
+<%Set<GoodVo> set = (Set)request.getAttribute("set");
 String mess = (String)request.getAttribute("mess");
 String pinzhi1 = (String)request.getAttribute("pinzhi1");
 if(set!=null&&set.size()>0){

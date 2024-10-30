@@ -12,7 +12,7 @@ public class InformationDAO extends DaoBase
 	/** 给玩家插入大礼包的信息 */
 	public void setId(int u_pk, String id, String type)
 	{
-		String sql = "INSERT INTO u_information values  (?,?,?)";
+		String sql = "INSERT INTO u_information VALUES  (?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -41,8 +41,8 @@ public class InformationDAO extends DaoBase
 	public InformationVO getInfotmationByUpk(int u_pk, String type)
 	{
 		InformationVO vo = null;
-		String sql = "SELECT * FROM u_information where u_pk = " + u_pk
-				+ " and type = '" + type + "'";
+		String sql = "SELECT * FROM u_information WHERE u_pk = " + u_pk
+				+ " AND type = '" + type + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -73,7 +73,7 @@ public class InformationDAO extends DaoBase
 	public int getInfotmationByTong(int p_pk)
 	{
 		int t_id = 0;
-		String sql = "SELECT t_pk from u_tong_member where tm_rights = 1 and p_pk = "
+		String sql = "SELECT t_pk FROM u_tong_member WHERE tm_rights = 1 AND p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

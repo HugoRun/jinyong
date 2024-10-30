@@ -22,11 +22,11 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "SELECT * FROM npcdrop where npc_ID=" + npc_ID + " and npcdrop_taskid in ("+task_condition+") " +
-					" and ( (begin_time='' and begin_day='') " +//无刷新时间限制
-					"or (curtime()>TIME(begin_time) and curtime()<TIME(end_time)) " +//判断相对时间限制
-					"or (now()>TIMESTAMP(begin_day) and now()<TIMESTAMP(end_day)) )"+//判断绝对时间限制
-					" order by rand()";
+			String sql = "SELECT * FROM npcdrop WHERE npc_ID = " + npc_ID + " AND npcdrop_taskid IN ("+task_condition+") " +
+					" AND ( (begin_time='' AND begin_day='') " +//无刷新时间限制
+					"or (curtime()>TIME(begin_time) AND curtime()<TIME(end_time)) " +//判断相对时间限制
+					"or (now()>TIMESTAMP(begin_day) AND now()<TIMESTAMP(end_day)) )"+//判断绝对时间限制
+					" ORDER BY rand()";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -49,7 +49,7 @@ public class NpcdropDao extends DaoBase {
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			DataErrorLog.debugData("NpcdropDao.getNpcdropsByNpcID:掉落数据错误，条件npc_ID="+npc_ID+";task_condition="+task_condition);
+			DataErrorLog.debugData("NpcdropDao.getNpcdropsByNpcID:掉落数据错误，条件npc_ID = "+npc_ID+";task_condition = "+task_condition);
 		} finally {
 			dbConn.closeConn();
 		}
@@ -57,7 +57,7 @@ public class NpcdropDao extends DaoBase {
 	}
 	
 	public NpcdropVO getNpcdropsById(String npc_drop_id) {
-		String sql = "SELECT * FROM npcdrop where npcdrop_ID='"+npc_drop_id+"'";
+		String sql = "SELECT * FROM npcdrop WHERE npcdrop_ID='"+npc_drop_id+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		NpcdropVO vo = null;
@@ -96,7 +96,7 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "INSERT INTO npcdrop values(null,'" + npcID + "','"
+			String sql = "INSERT INTO npcdrop VALUES(null,'" + npcID + "','"
 					+ goodsType + "','" + goodsId + "','" + npcdropProbability
 					+ "','" + npcdropLuck + "')";
 			logger.debug(sql);
@@ -117,10 +117,10 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "update npcdrop set npc_ID='" + npcID
+			String sql = "UPDATE npcdrop SET npc_ID='" + npcID
 					+ "',goods_type='" + goodsType + "',goods_id='" + goodsId
 					+ "',npcdrop_probability='" + npcdropProbability
-					+ "',npcdrop_luck='" + npcdropLuck + "' where npcdrop_ID="
+					+ "',npcdrop_luck='" + npcdropLuck + "' WHERE npcdrop_ID = "
 					+ id;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
@@ -139,8 +139,8 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "SELECT * FROM npcdrop where npc_ID in (" + npc_ID + ") and npcdrop_taskid in ("+task_condition+
-					") order by rand() limit 11";
+			String sql = "SELECT * FROM npcdrop WHERE npc_ID IN (" + npc_ID + ") AND npcdrop_taskid IN ("+task_condition+
+					") ORDER BY rand() LIMIT 11";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -176,7 +176,7 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "SELECT * FROM npcdrop where npc_ID in (" + npc_ID + ") order by rand() limit 11";
+			String sql = "SELECT * FROM npcdrop WHERE npc_ID IN (" + npc_ID + ") ORDER BY rand() LIMIT 11";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -211,7 +211,7 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "SELECT * FROM npcdrop where npc_ID="+npcId+" and npcdrop_taskid=0";
+			String sql = "SELECT * FROM npcdrop WHERE npc_ID = "+npcId+" AND npcdrop_taskid=0";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 

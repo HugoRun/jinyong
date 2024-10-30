@@ -53,7 +53,7 @@ public abstract class BasicDaoSupport<Item> {
      * 得到满足字符串条件的数量
      */
     protected int getNumBySql(String condition_sql) {
-        String sql = "SELECT count(*) from " + this.table_name + condition_sql;
+        String sql = "SELECT COUNT(*) FROM " + this.table_name + condition_sql;
         int result = 0;
         DBConnection dbConn = new DBConnection(db_type);
         conn = dbConn.getConn();
@@ -81,7 +81,7 @@ public abstract class BasicDaoSupport<Item> {
      * @return
      */
     protected boolean isHaveBySql(String condition_sql) {
-        String sql = "SELECT * FROM " + this.table_name + condition_sql + " limit 1";
+        String sql = "SELECT * FROM " + this.table_name + condition_sql + " LIMIT 1";
         boolean result = false;
         DBConnection dbConn = new DBConnection(db_type);
         conn = dbConn.getConn();
@@ -164,7 +164,7 @@ public abstract class BasicDaoSupport<Item> {
      * @return 删除的数量
      */
     protected int delBySql(String condition_sql) {
-        String sql = "delete from " + this.table_name + condition_sql;
+        String sql = "DELETE FROM " + this.table_name + condition_sql;
         int result = 0;
         DBConnection dbConn = new DBConnection(db_type);
         conn = dbConn.getConn();
@@ -230,7 +230,7 @@ public abstract class BasicDaoSupport<Item> {
         int count = 0;
         try {
             stmt = conn.createStatement();
-            count_sql = "SELECT count(*) FROM " + this.table_name + condition_sql;
+            count_sql = "SELECT COUNT(*) FROM " + this.table_name + condition_sql;
             logger.debug(count_sql);
             rs = stmt.executeQuery(count_sql);
             if (rs.next()) {
@@ -241,7 +241,7 @@ public abstract class BasicDaoSupport<Item> {
             queryPage = new QueryPage(page_no, count);
 
             page_sql = "SELECT * FROM " + this.table_name + " " + condition_sql + " " + order_sql
-                    + "  limit " + queryPage.getStartOfPage()
+                    + "  LIMIT " + queryPage.getStartOfPage()
                     + "," + queryPage.getPageSize();
             logger.debug(page_sql);
             rs = stmt.executeQuery(page_sql);

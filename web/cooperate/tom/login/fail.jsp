@@ -5,8 +5,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="fail" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="fail" title="<bean:message key="gamename"/>">
 <p>
 用户验证失败!<br/> 
 <anchor><go href="http://189hi.cn/plaf/wml/gacs.jw?act=gogame&amp;gameid=10" method="get"></go>返回重新登陆</anchor>

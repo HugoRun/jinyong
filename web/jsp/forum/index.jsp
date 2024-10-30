@@ -7,11 +7,11 @@
 <%@ page import="com.pub.*,com.ls.pub.util.*,com.ls.pub.bean.*"%>
 <%@ page import="java.util.List" %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <head><meta http-equiv='Cache-Control' content='no-cache'/>
 <meta http-equiv="Content-Type" content="text/vnd.wap.wml; charset=utf-8" />
 </head>
-<card id='login' title="<s:message key = "gamename"/>">
+<card id='login' title="<bean:message key="gamename"/>">
 <p>
 <% 
 	QueryPage forum_page = (QueryPage)request.getAttribute("forum_page");

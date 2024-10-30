@@ -17,7 +17,7 @@ public class PKActiveDao extends DaoBase {
 
     // PK玩家报名
     public int pkActiveRegist(PKActiveRegist role) {
-        String sql = "INSERT INTO pk_active_regist (roleID,roleLevel,roleName,registTime,isWin,isEnter) values (" + role.getRoleID() + "," + role.getRoleLevel() + ",'" + role.getRoleName() + "',now()," + role.getIsWin() + ",0)";
+        String sql = "INSERT INTO pk_active_regist (roleID,roleLevel,roleName,registTime,isWin,isEnter) VALUES (" + role.getRoleID() + "," + role.getRoleLevel() + ",'" + role.getRoleName() + "',now()," + role.getIsWin() + ",0)";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -65,7 +65,7 @@ public class PKActiveDao extends DaoBase {
 
     // 如果玩家已经有历史报名记录则更新报名记录
     public int refreshRegist(PKActiveRegist role) {
-        String sql = "update pk_active_regist set roleLevel=" + role.getRoleLevel() + ",roleName='" + role.getRoleName() + "',registTime=now(),isWin=" + role.getIsWin() + ",isEnter=0 WHERE roleId=" + role.getRoleID();
+        String sql = "UPDATE pk_active_regist SET roleLevel=" + role.getRoleLevel() + ",roleName='" + role.getRoleName() + "',registTime=now(),isWin=" + role.getIsWin() + ",isEnter=0 WHERE roleId=" + role.getRoleID();
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -84,7 +84,7 @@ public class PKActiveDao extends DaoBase {
 
     // 生成PK对阵表时删除上次生成的对阵信息
     public int deleteVsInfo() {
-        String sql = "delete FROM pk_vs";
+        String sql = "DELETE FROM pk_vs";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -103,7 +103,7 @@ public class PKActiveDao extends DaoBase {
 
     // 插入新的对阵信息
     public int addVsInfo(PKVs vs) {
-        String sql = "INSERT INTO pk_vs (roleAID,roleBID,roleAName,roleBName,winRoleID)values(" + vs.getRoleAID() + "," + vs.getRoleBID() + ",'" + vs.getRoleAName() + "','" + vs.getRoleBName() + "'," + vs.getWinRoleID() + ")";
+        String sql = "INSERT INTO pk_vs (roleAID,roleBID,roleAName,roleBName,winRoleID)VALUES(" + vs.getRoleAID() + "," + vs.getRoleBID() + ",'" + vs.getRoleAName() + "','" + vs.getRoleBName() + "'," + vs.getWinRoleID() + ")";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -122,7 +122,7 @@ public class PKActiveDao extends DaoBase {
 
     // 查询对阵信息
     public List<PKVs> getVsInfo(int index, int limit) {
-        String sql = "SELECT * FROM pk_vs limit " + index * limit + "," + limit;
+        String sql = "SELECT * FROM pk_vs LIMIT " + index * limit + ", " + limit;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -153,7 +153,7 @@ public class PKActiveDao extends DaoBase {
     // 获取有资格参加下一轮PK的玩家id数组
 
     public int[] getRoleIDs() {
-        String sql = "SELECT * FROM pk_active_regist WHERE isWin=0  order by roleLevel ";
+        String sql = "SELECT * FROM pk_active_regist WHERE isWin=0  ORDER BY roleLevel ";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -207,7 +207,7 @@ public class PKActiveDao extends DaoBase {
 
     //更新pk_active_regist表中isWin字段
     public int updateIsWin(int roleID, int iswin) {
-        String sql = "update pk_active_regist set isWin=" + iswin + " WHERE roleID=" + roleID;
+        String sql = "UPDATE pk_active_regist SET isWin=" + iswin + " WHERE roleID=" + roleID;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -226,7 +226,7 @@ public class PKActiveDao extends DaoBase {
 
     //更新pk_vs表中的winroleID字段
     public int updateWinRoleID(int winRoleId) {
-        String sql = "update pk_vs set winRoleID=" + winRoleId + " WHERE roleAID=" + winRoleId + " or roleBID=" + winRoleId;
+        String sql = "UPDATE pk_vs SET winRoleID=" + winRoleId + " WHERE roleAID=" + winRoleId + " or roleBID=" + winRoleId;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -245,7 +245,7 @@ public class PKActiveDao extends DaoBase {
 
     //得到对阵信息的总条数
     public int getTotalNum() {
-        String sql = "SELECT count(*) as total FROM pk_vs";
+        String sql = "SELECT COUNT(*) AS total FROM pk_vs";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -342,7 +342,7 @@ public class PKActiveDao extends DaoBase {
 
     //更新玩家进入场景的状态
     public int updateEnterState(int roleId, int state) {
-        String sql = "update pk_active_regist set isEnter=" + state + " WHERE roleId=" + roleId;
+        String sql = "UPDATE pk_active_regist SET isEnter=" + state + " WHERE roleId=" + roleId;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -361,7 +361,7 @@ public class PKActiveDao extends DaoBase {
 
     //恢复玩家进入场景的初始状态
     public int updateEnterState() {
-        String sql = "update pk_active_regist set isEnter=0";
+        String sql = "UPDATE pk_active_regist SET isEnter=0";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -380,7 +380,7 @@ public class PKActiveDao extends DaoBase {
 
     // 到时间没有进入比赛场地的玩家的更新 更新其为败
     public int updateOutofTime() {
-        String sql = "UPDATE `pk_active_regist` SET isWin=1 WHERE isWin=0 and isEnter=0";
+        String sql = "UPDATE `pk_active_regist` SET isWin=1 WHERE isWin=0 AND isEnter=0";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -399,7 +399,7 @@ public class PKActiveDao extends DaoBase {
 
     // 得到到时见没有进入场地的角色ID
     public List<Integer> getOutofEnterIDs() {
-        String sql = "SELECT roleID FROM `pk_active_regist` WHERE iswin = 0 and isEnter = 0";
+        String sql = "SELECT roleID FROM `pk_active_regist` WHERE iswin = 0 AND isEnter = 0";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -468,7 +468,7 @@ public class PKActiveDao extends DaoBase {
 
     // 判断是否有资格领取奖品
     public boolean isGetPrice(int roleID) {
-        String sql = "SELECT * FROM `pk_active_regist` WHERE isGetprice = 1 and roleID = " + roleID;
+        String sql = "SELECT * FROM `pk_active_regist` WHERE isGetprice = 1 AND roleID = " + roleID;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);
@@ -505,7 +505,7 @@ public class PKActiveDao extends DaoBase {
 
     //判断参赛人数是否进了八强 四强 或者半决赛
     public int getPlayerNum() {
-        String sql = "SELECT count(*) AS num FROM `pk_active_regist` WHERE isGetPrice = 1";
+        String sql = "SELECT COUNT(*) AS num FROM `pk_active_regist` WHERE isGetPrice = 1";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug(sql);

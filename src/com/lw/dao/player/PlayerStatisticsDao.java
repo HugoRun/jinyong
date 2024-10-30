@@ -12,7 +12,7 @@ public class PlayerStatisticsDao extends DaoBase
 	public void insertPlayerStatistics(int u_pk, int p_pk, int grade,
 			String date, String time)
 	{
-		String sql = "INSERT INTO game_player_statistics_info values (null,"
+		String sql = "INSERT INTO game_player_statistics_info VALUES (null,"
 				+ u_pk + "," + p_pk + "," + grade + ",0,'" + date + "','"
 				+ time + "',now(),now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -38,8 +38,8 @@ public class PlayerStatisticsDao extends DaoBase
 	public PlayerStatisticsVO getPlayerInfo(int u_pk, int p_pk, String date)
 	{
 		PlayerStatisticsVO vo = null;
-		String sql = "SELECT * FROM game_player_statistics_info where u_pk = "
-				+ u_pk + " and p_pk = " + p_pk + " and p_date = '" + date + "'";
+		String sql = "SELECT * FROM game_player_statistics_info WHERE u_pk = "
+				+ u_pk + " AND p_pk = " + p_pk + " AND p_date = '" + date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -79,13 +79,13 @@ public class PlayerStatisticsDao extends DaoBase
 	public void updatePlayerInfo(int u_pk, int p_pk, int grade, String date,
 			String time, int id)
 	{
-		String sql = "update game_player_statistics_info set p_grade = "
+		String sql = "UPDATE game_player_statistics_info SET p_grade = "
 				+ grade
 				+ ",p_date = '"
 				+ date
 				+ "',p_time = '"
 				+ time
-				+ "',p_login_time_old = p_login_time , p_login_time = now() where id = "
+				+ "',p_login_time_old = p_login_time , p_login_time = now() WHERE id = "
 				+ id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -109,8 +109,8 @@ public class PlayerStatisticsDao extends DaoBase
 	/** 更新玩家在线时间* */
 	public void updatePlayerOnlineTime(int u_pk, int p_pk, int time, int id)
 	{
-		String sql = "update game_player_statistics_info set p_onlinetime = p_onlinetime + "
-				+ time + " where id = " + id;
+		String sql = "UPDATE game_player_statistics_info SET p_onlinetime = p_onlinetime + "
+				+ time + " WHERE id = " + id;
 		//统计需要
 		new RankService().updateAdd(p_pk, "zhong", time);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -136,7 +136,7 @@ public class PlayerStatisticsDao extends DaoBase
 	public int getOnlineTime(String date)
 	{
 		int num = 0;
-		String sql = "SELECT sum(p_onlinetime) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT SUM (p_onlinetime) AS num FROM game_player_statistics_info WHERE p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -168,7 +168,7 @@ public class PlayerStatisticsDao extends DaoBase
 	public int getOnlineGrade(String date)
 	{
 		int num = 0;
-		String sql = "SELECT sum(p_grade) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT SUM (p_grade) AS num FROM game_player_statistics_info WHERE p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -200,8 +200,8 @@ public class PlayerStatisticsDao extends DaoBase
 	public int getOnlineAvgGrade(int grade, String date)
 	{
 		int num = 0;
-		String sql = "SELECT avg(p_grade) as num from game_player_statistics_info where p_grade > "
-				+ grade + " and p_date = '" + date + "'";
+		String sql = "SELECT avg(p_grade) AS num FROM game_player_statistics_info WHERE p_grade > "
+				+ grade + " AND p_date = '" + date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -232,7 +232,7 @@ public class PlayerStatisticsDao extends DaoBase
 	public int getOnlinePlayer(String date)
 	{
 		int num = 0;
-		String sql = "SELECT count(distinct(p_pk)) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT COUNT(distinct(p_pk)) AS num FROM game_player_statistics_info WHERE p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -264,7 +264,7 @@ public class PlayerStatisticsDao extends DaoBase
 	public int getPlayerOnlineActivity(String date)
 	{
 		int num = 0;
-		String sql = "SELECT count(distinct(u_pk)) as num from game_player_statistics_info where p_login_time > '"
+		String sql = "SELECT COUNT(distinct(u_pk)) AS num FROM game_player_statistics_info WHERE p_login_time > '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -296,7 +296,7 @@ public class PlayerStatisticsDao extends DaoBase
 	public int getOnlinePassport(String date)
 	{
 		int num = 0;
-		String sql = "SELECT count(distinct(u_pk)) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT COUNT(distinct(u_pk)) AS num FROM game_player_statistics_info WHERE p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);

@@ -23,7 +23,7 @@ public class HortaDao extends DaoBase
 	 */
 	public List<HortaVO> getMainList()
 	{
-		String sql = "SELECT * FROM system_hortation_info group by horta_type";
+		String sql = "SELECT * FROM system_hortation_info GROUP BY horta_type";
 		List<HortaVO> list = new ArrayList<HortaVO>();
 		
 		HortaVO hortaVO = null;
@@ -64,7 +64,7 @@ public class HortaDao extends DaoBase
 	 */
 	public List<HortaVO> getHortaSonList(String main_type)
 	{
-		String sql = "SELECT * FROM system_hortation_info where isuseable != 0 and horta_type="+main_type  +" order by horta_son_id desc ";
+		String sql = "SELECT * FROM system_hortation_info WHERE isuseable != 0 AND horta_type="+main_type  +" ORDER BY horta_son_id DESC ";
 		List<HortaVO> list = new ArrayList<HortaVO>();
 		
 		HortaVO hortaVO = null;
@@ -114,7 +114,7 @@ public class HortaDao extends DaoBase
 	 */
 	public HortaVO getHortaByHorId(String hor_id)
 	{
-		String sql = "SELECT * FROM system_hortation_info where horta_id="+hor_id;
+		String sql = "SELECT * FROM system_hortation_info WHERE horta_id="+hor_id;
 		
 		HortaVO hortaVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

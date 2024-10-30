@@ -11,7 +11,7 @@
 
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="logout" title="注销">
 <p>
 <anchor>

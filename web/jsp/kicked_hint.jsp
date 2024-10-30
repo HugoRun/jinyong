@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %> 
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="relogin" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="relogin" title="<bean:message key="gamename"/>">
 <p>
 此账号已在其它地方登陆！<br/>
 <%@ include file="/init/return_url/return_zhuanqu.jsp"%>

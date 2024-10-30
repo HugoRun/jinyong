@@ -23,7 +23,7 @@ public class SysInfoDao extends DaoBase {
      */
     public int insertSysInfo(int p_pk, int info_type, String info) {
         int i = -1;
-        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "',now())";
+        String sql = "INSERT INTO s_system_info VALUES (null,'" + p_pk + "','" + info_type + "','" + info + "',now())";
         logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -53,7 +53,7 @@ public class SysInfoDao extends DaoBase {
      */
     public int insertSysInfoTongTime(int p_pk, int info_type, String info, String time) {
         int i = -1;
-        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "','" + time + "')";
+        String sql = "INSERT INTO s_system_info VALUES (null,'" + p_pk + "','" + info_type + "','" + info + "','" + time + "')";
         logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -83,7 +83,7 @@ public class SysInfoDao extends DaoBase {
      */
     public int insertSysInfo(int p_pk, int info_type, String info, int second) {
         int i = -1;
-        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "',NOW()+INTERVAL " + second + " second)";
+        String sql = "INSERT INTO s_system_info VALUES (null,'" + p_pk + "','" + info_type + "','" + info + "',NOW()+INTERVAL " + second + " second)";
         logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -113,7 +113,7 @@ public class SysInfoDao extends DaoBase {
      */
     public int insertSysInfo(int p_pk, int info_type, String info, String sendTime) {
         int i = -1;
-        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "','" + sendTime + "')";
+        String sql = "INSERT INTO s_system_info VALUES (null,'" + p_pk + "','" + info_type + "','" + info + "','" + sendTime + "')";
         logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -143,7 +143,7 @@ public class SysInfoDao extends DaoBase {
      */
     public List<SystemInfoVO> selectSysInfo(int p_pk, int info_type, int number) {
         List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
-        String sql = "SELECT * FROM s_system_info where p_pk=" + p_pk + " and info_type='" + info_type + "' limit " + number;
+        String sql = "SELECT * FROM s_system_info WHERE p_pk=" + p_pk + " AND info_type='" + info_type + "' LIMIT " + number;
         logger.debug("选择系统消息的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
@@ -181,8 +181,8 @@ public class SysInfoDao extends DaoBase {
      * @return SystemInfoVO
      */
     public SystemInfoVO getSystemSelfInfo(String pPk) {
-        String sql = "SELECT * FROM s_system_info where sysInfo_id = (select min(sysInfo_id) from s_system_info " +
-                "where NOW() >= happen_time and (happen_time + INTERVAL 10 second) >= NOW() and p_pk=" + pPk + " )";
+        String sql = "SELECT * FROM s_system_info WHERE sysInfo_id = (SELECT MIN (sysInfo_id) FROM s_system_info " +
+                "where NOW() >= happen_time AND (happen_time + INTERVAL 10 second) >= NOW() AND p_pk=" + pPk + " )";
         //logger.debug("选择确定一条系统消息的sql="+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         SystemInfoVO sIvo = null;
@@ -217,11 +217,11 @@ public class SysInfoDao extends DaoBase {
      */
     public List<SystemInfoVO> getSystemInfoThree(int p_pk) {
         List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
-		/*String sql = "SELECT * FROM s_system_info where NOW() > happen_time and " +
-				"(happen_time + INTERVAL 10 second) > NOW() and ( p_pk=0 or p_pk="
-				+p_pk+" ) order by info_type desc,happen_time asc limit 3";*/
-        String sql = "SELECT * FROM s_system_info where NOW() >= happen_time and (happen_time + INTERVAL 10 second) >= NOW() " +
-                "and ( (info_type = 1 and p_pk = " + p_pk + ") or info_type not in (1,5) ) order by happen_time desc limit 3";
+		/*String sql = "SELECT * FROM s_system_info WHERE NOW() > happen_time AND " +
+				"(happen_time + INTERVAL 10 second) > NOW() AND ( p_pk=0 or p_pk="
+				+p_pk+" ) ORDER BY info_type desc,happen_time ASC LIMIT 3";*/
+        String sql = "SELECT * FROM s_system_info WHERE NOW() >= happen_time AND (happen_time + INTERVAL 10 second) >= NOW() " +
+                "AND ( (info_type = 1 AND p_pk = " + p_pk + ") or info_type not IN (1,5) ) ORDER BY happen_time DESC LIMIT 3";
 
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -259,9 +259,9 @@ public class SysInfoDao extends DaoBase {
      */
     public List<SystemInfoVO> getSystemInfoThreeTime(String p_pk) {
         List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
-        String sql = "SELECT * FROM s_system_info where NOW() > happen_time and " +
-                "(happen_time + INTERVAL 20 minute) > NOW() and ( (info_type = 1 and p_pk = " + p_pk
-                + ") or info_type not in (1,5) ) order by happen_time desc limit 5";
+        String sql = "SELECT * FROM s_system_info WHERE NOW() > happen_time AND " +
+                "(happen_time + INTERVAL 20 minute) > NOW() AND ( (info_type = 1 AND p_pk = " + p_pk
+                + ") or info_type not IN (1,5) ) ORDER BY happen_time DESC LIMIT 5";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         logger.debug(" 获得三条系统消息=" + sql);
         SystemInfoVO sIvo = null;
@@ -296,7 +296,7 @@ public class SysInfoDao extends DaoBase {
      */
     public SystemInfoVO getSystemInfo() {
         String sql = "SELECT * FROM s_system_info " +
-                "where sysInfo_id = (select min(sysInfo_id) from s_system_info where NOW() > happen_time " +
+                "where sysInfo_id = (SELECT MIN (sysInfo_id) FROM s_system_info WHERE NOW() > happen_time " +
                 "AND (happen_time + INTERVAL 10 second) > NOW() " +
                 "AND p_pk=0 " +
                 "GROUP BY info_type DESC)";
@@ -333,7 +333,7 @@ public class SysInfoDao extends DaoBase {
      * @return SystemInfoVO
      */
     public SystemInfoVO getSystemInfo(int sysInfoId) {
-        String sql = "SELECT * FROM s_system_info where sysInfo_id=" + sysInfoId;
+        String sql = "SELECT * FROM s_system_info WHERE sysInfo_id=" + sysInfoId;
         logger.debug("选择确定一条系统消息的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         SystemInfoVO sIvo = null;
@@ -384,7 +384,7 @@ public class SysInfoDao extends DaoBase {
      * 获得系统控制表中的控制条件的关于等级控制的条件
      */
     public List<SystemControlInfoVO> getSystemInfoControlByPGrade() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 1";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 1";
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
         logger.debug("查找系统消息控制表的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -423,7 +423,7 @@ public class SysInfoDao extends DaoBase {
      * 获得系统控制表中的控制条件的关于任务控制的条件
      */
     public Map<Integer, String> getSystemInfoControlByTaskId() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 2";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 2";
         Map<Integer, String> map = new HashMap<Integer, String>();
         logger.debug("查找系统消息控制表的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -450,7 +450,7 @@ public class SysInfoDao extends DaoBase {
      * 获得系统控制表中的控制条件的关于任务控制的条件
      */
     public List<SystemControlInfoVO> getSystemInfoControlListByTaskId() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 2";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 2";
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
         logger.debug("查找系统消息控制表的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -488,7 +488,7 @@ public class SysInfoDao extends DaoBase {
      * 获得系统控制表中的控制条件的关于声望控制的条件
      */
     public Map<Integer, String> getSystemInfoControlByPopularity() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 3";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 3";
         Map<Integer, String> map = new HashMap<Integer, String>();
         logger.debug("查找系统消息控制表的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -515,7 +515,7 @@ public class SysInfoDao extends DaoBase {
      * 获得系统控制表中的控制条件的关于称谓控制的条件
      */
     public Map<String, String> getSystemInfoControlByTitle() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 4";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 4";
         Map<String, String> map = new HashMap<String, String>();
         logger.debug("查找系统消息控制表的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -544,7 +544,7 @@ public class SysInfoDao extends DaoBase {
      * @param title_id
      */
     public Map<String, String> getSystemInfoControlByTitle(String title_id) {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 4 and title ='" + title_id + "'";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 4 AND title ='" + title_id + "'";
         Map<String, String> map = new HashMap<String, String>();
         logger.debug("查找系统消息控制表的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -573,7 +573,7 @@ public class SysInfoDao extends DaoBase {
      * @param title_id
      */
     public List<SystemControlInfoVO> getSystemInfoControlListByTitle(String title_id) {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 4 and title ='" + title_id + "'";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 4 AND title ='" + title_id + "'";
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
 
         logger.debug("查找系统消息控制表的sql=" + sql);
@@ -611,7 +611,7 @@ public class SysInfoDao extends DaoBase {
      * 获得系统控制表中的控制条件的关于综合控制的条件
      */
     public List<SystemControlInfoVO> getSystemInfoControlByPCollage() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 6 ";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 6 ";
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
         SystemControlInfoVO infovo = null;
         logger.debug("选择确定一条系统消息的sql=" + sql);
@@ -646,7 +646,7 @@ public class SysInfoDao extends DaoBase {
 
 
     public List<SystemControlInfoVO> getSystemInfoControlByNewPlayer() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 7 ";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 7 ";
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
         SystemControlInfoVO infovo = null;
         logger.debug("选择确定一条系统消息的sql=" + sql);
@@ -686,7 +686,7 @@ public class SysInfoDao extends DaoBase {
      * @return
      */
     public List getSystemInfoCOntrolByTime() {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 5 ";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = 5 ";
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
         SystemControlInfoVO infovo = null;
         logger.debug("选择确定一条系统消息的sql=" + sql);
@@ -720,7 +720,7 @@ public class SysInfoDao extends DaoBase {
      * @return
      */
     public SystemControlInfoVO getSystemInfoByTypeAndID(String type, String id) {
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = '" + type + "' and task_id = '" + id + "' limit 1";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = '" + type + "' AND task_id = '" + id + "' LIMIT 1";
         SystemControlInfoVO infovo = null;
         logger.debug("选择确定一条系统消息的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -753,7 +753,7 @@ public class SysInfoDao extends DaoBase {
      */
     public List<SystemControlInfoVO> getSystemInfoByNewPlayerGuide(String type, String id) {
         List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-        String sql = "SELECT * FROM u_systeminfo_control where condition_type = '" + type + "' and task_id = '" + id + "'";
+        String sql = "SELECT * FROM u_systeminfo_control WHERE condition_type = '" + type + "' AND task_id = '" + id + "'";
         SystemControlInfoVO infovo = null;
         logger.debug("选择确定一条系统消息的sql=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -796,7 +796,7 @@ public class SysInfoDao extends DaoBase {
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
-        String sql = "INSERT INTO s_system_info values (null,?,1,'" + systemInfo + "',now())";
+        String sql = "INSERT INTO s_system_info VALUES (null,?,1,'" + systemInfo + "',now())";
         logger.debug("给所有在sceneStr中人发信息=" + sql);
         try {
             conn = dbConn.getConn();
@@ -834,8 +834,8 @@ public class SysInfoDao extends DaoBase {
      * @param propName
      */
     public void updateTimeReducePkValue(int p_pk, int buffEffectTime, String propName) {
-        String sql = "update s_system_info set happen_time = (happen_time +  INTERVAL " + buffEffectTime
-                + " minute) where p_pk = " + p_pk + " and info_type = 1 and system_info like '%" + propName + "%'";
+        String sql = "UPDATE s_system_info SET happen_time = (happen_time +  INTERVAL " + buffEffectTime
+                + " minute) WHERE p_pk = " + p_pk + " AND info_type = 1 AND system_info LIKE '%" + propName + "%'";
         logger.debug("=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -882,7 +882,7 @@ public class SysInfoDao extends DaoBase {
      */
     public boolean selectByPPkInfo(int pPk, String propName) {
         boolean flag = false;
-        String sql = "SELECT * FROM s_system_info where info_type = 1 and p_pk=" + pPk + " and system_info like '%" + propName + "%' ";
+        String sql = "SELECT * FROM s_system_info WHERE info_type = 1 AND p_pk=" + pPk + " AND system_info LIKE '%" + propName + "%' ";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         logger.debug("查询是否有 特定的 系统消息=" + sql);
         try {
@@ -909,7 +909,7 @@ public class SysInfoDao extends DaoBase {
 
     public void updateByPPkInfo(int pPk, String propName,int buffTime)
     {
-    String sql = "update s_system_info set happen_time = happen_time + "+  +" where info_type = 1 and p_pk="+pPk+" and system_info like '%"+propName+"%' ";
+    String sql = "UPDATE s_system_info SET happen_time = happen_time + "+  +" WHERE info_type = 1 AND p_pk="+pPk+" AND system_info LIKE '%"+propName+"%' ";
     DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
     logger.debug("根据pPk和系统消息的一些关键词来删除不需要的系统消息="+sql);
     try{

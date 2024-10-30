@@ -78,7 +78,7 @@ public class CompassService {
                 // 到达迷宫的出口
                 // 经验公式:玩家等级*50*(1-(30-玩家等级)/30)*层数+(u_grow_info表的当前g_grade中的g_next_exp - g_exp)/200
 
-//				银两公式:玩家等级*5文*(1-(30-玩家等级)/30)* 层数
+                // 银两公式:玩家等级*5文*(1-(30-玩家等级)/30)* 层数
                 int grade = bi.getGrade();
                 double addExp = grade * 50 * (1 - (30 - grade) / (double) 30) * scene_info.getSceneSkill() + (Integer.valueOf(bi.getNextGradeExp().trim()) - Integer.valueOf(bi.getCurExp().trim())) / 200;
                 double addmoney = grade * 5 * (1 - (30 - grade) / (double) 30) * scene_info.getSceneSkill();

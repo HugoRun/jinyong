@@ -6,8 +6,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 您好,欢迎您进入《<%=GameConfig.getGameName() %>》的新手指导,在游戏中,您可以通过杀怪物、做任务进行升级,等级越高,穿戴的装备也越强大.游戏中带有红色“!”号的人物为可以领取任务的人物,您可以和该人物对话后领取任务.当您完成任务后,可以在带有红色“?”的人物处交还任务,获取任务奖励.<br/>
 <anchor> 

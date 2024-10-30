@@ -11,7 +11,7 @@ public class GmMailDao extends DaoBase
 	public int getGmPpk()
 	{
 		int p_pk = 0;
-		String sql = "SELECT p_pk from u_part_info where p_name = 'GM'";
+		String sql = "SELECT p_pk FROM u_part_info WHERE p_name = 'GM'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

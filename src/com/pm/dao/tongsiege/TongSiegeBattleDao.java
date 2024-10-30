@@ -33,8 +33,8 @@ public class TongSiegeBattleDao extends DaoBase
 	public int isInFight(String siege_id)
 	{
 		int now_phase = 0;
-		String sql = "SELECT now_phase from tong_siege_control where siege_id="
-				+ siege_id + " order by siege_number desc limit 1";
+		String sql = "SELECT now_phase FROM tong_siege_control WHERE siege_id="
+				+ siege_id + " ORDER BY siege_number DESC LIMIT 1";
 		logger.debug("查询是否在攻城战时间内=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -70,8 +70,8 @@ public class TongSiegeBattleDao extends DaoBase
 	{
 		TongSiegeControlVO tongSiegeControlVO = null;
 
-		String sql = "SELECT * FROM tong_siege_control where siege_id="
-				+ siege_id + " order by siege_number desc limit 1";
+		String sql = "SELECT * FROM tong_siege_control WHERE siege_id="
+				+ siege_id + " ORDER BY siege_number DESC LIMIT 1";
 		logger.debug("查询是否在攻城战时间内=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -116,11 +116,11 @@ public class TongSiegeBattleDao extends DaoBase
 	public int getPreviousWinTong(String siege_id, int siegeFightNumber)
 	{
 		int tong_pk = 0;
-		String sql = "SELECT last_win_tongid from tong_siege_control where siege_id = "
+		String sql = "SELECT last_win_tongid FROM tong_siege_control WHERE siege_id = "
 				+ siege_id
-				+ " and siege_number="
+				+ " AND siege_number="
 				+ siegeFightNumber
-				+ " order by siege_number desc";
+				+ " ORDER BY siege_number desc";
 		logger.debug(" 查找本战场上次胜利的帮派ID=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -155,8 +155,8 @@ public class TongSiegeBattleDao extends DaoBase
 	public int getPreiousFightNumber(String siege_id)
 	{
 		int siege_number = 0;
-		String sql = "SELECT siege_number from tong_siege_control where siege_id="
-				+ siege_id + " order by siege_number desc limit 1,2";
+		String sql = "SELECT siege_number FROM tong_siege_control WHERE siege_id="
+				+ siege_id + " ORDER BY siege_number DESC LIMIT 1,2";
 		logger.debug("获得上一次战斗序号=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -194,8 +194,8 @@ public class TongSiegeBattleDao extends DaoBase
 			int siegeFightNumber)
 	{
 		boolean flag = false;
-		String sql = "SELECT * FROM tong_siege_list where siege_id=" + siege_id
-				+ " and siege_number=" + siegeFightNumber + " and tong_pk="
+		String sql = "SELECT * FROM tong_siege_list WHERE siege_id=" + siege_id
+				+ " AND siege_number=" + siegeFightNumber + " AND tong_pk="
 				+ tong_pk;
 		logger.debug("查询是否报过名了=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -232,7 +232,7 @@ public class TongSiegeBattleDao extends DaoBase
 	public int insertSignUp(int tong_pk, String siege_id, int siegeFightNumber)
 	{
 		int result = 0;
-		String sql = "INSERT INTO tong_siege_list values (null," + siege_id
+		String sql = "INSERT INTO tong_siege_list VALUES (null," + siege_id
 				+ "," + siegeFightNumber + "," + tong_pk + ",now())";
 		logger.debug("插入帮派战报名=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -263,7 +263,7 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public TongSiegeBattleVO getSiegeByMapId(int mapID)
 	{
-		String sql = "SELECT * FROM tong_siege_battle where map_id=" + mapID;
+		String sql = "SELECT * FROM tong_siege_battle WHERE map_id=" + mapID;
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 
 		logger.debug("根据mapID来确定攻城战场的ID=" + sql);
@@ -310,7 +310,7 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public TongSiegeBattleVO getSiegeByAffectMapId(int mapID)
 	{
-		String sql = "SELECT * FROM tong_siege_battle where affect_map_id="
+		String sql = "SELECT * FROM tong_siege_battle WHERE affect_map_id="
 				+ mapID;
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 
@@ -358,7 +358,7 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public TongSiegeBattleVO getSiegeBySiegeId(String siegeId)
 	{
-		String sql = "SELECT * FROM tong_siege_battle where siege_id="
+		String sql = "SELECT * FROM tong_siege_battle WHERE siege_id="
 				+ siegeId;
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 
@@ -452,8 +452,8 @@ public class TongSiegeBattleDao extends DaoBase
 	public void updateTongSiegeNowPhase(int siegeId, int siegeNumber,
 			int now_phase)
 	{
-		String sql = "update tong_siege_control set now_phase = " + now_phase
-				+ " where siege_id=" + siegeId + " and siege_number="
+		String sql = "UPDATE tong_siege_control SET now_phase = " + now_phase
+				+ " WHERE siege_id=" + siegeId + " AND siege_number="
 				+ siegeNumber;
 		logger.debug("更新战场的状态=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -481,9 +481,9 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public void updateTongSiegeNowPhase(int siegeId, int now_phase)
 	{
-		String sql = "update tong_siege_control set now_phase = " + now_phase
-				+ " where siege_id=" + siegeId
-				+ " order by control_id desc limit 1";
+		String sql = "UPDATE tong_siege_control SET now_phase = " + now_phase
+				+ " WHERE siege_id=" + siegeId
+				+ " ORDER BY control_id DESC LIMIT 1";
 		logger.debug("更新战场的状态=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -512,8 +512,8 @@ public class TongSiegeBattleDao extends DaoBase
 	public List<TongSiegeControlVO> getSiegeBattleVOByTongId(int tongId)
 	{
 
-		String sql = "SELECT * FROM tong_siege_control where last_win_tongid = "
-				+ tongId + " order by control_id desc limit 1";
+		String sql = "SELECT * FROM tong_siege_control WHERE last_win_tongid = "
+				+ tongId + " ORDER BY control_id DESC LIMIT 1";
 		TongSiegeControlVO tongSiegeControlVO = new TongSiegeControlVO();
 		logger.debug("获得 帮派战场信息 根据tongId=" + sql);
 		List<TongSiegeControlVO> list = new ArrayList<TongSiegeControlVO>();
@@ -562,7 +562,7 @@ public class TongSiegeBattleDao extends DaoBase
 	public List<TongSiegeControlVO> getSiegeBattleVOByTongId()
 	{
 
-		String sql = "SELECT * FROM (select * from tong_siege_control order by control_id desc )   ts group by siege_id";
+		String sql = "SELECT * FROM (SELECT * FROM tong_siege_control ORDER BY control_id DESC )   ts GROUP BY siege_id";
 		TongSiegeControlVO tongSiegeControlVO = new TongSiegeControlVO();
 		logger.debug("获得 帮派战场信息 根据tongId=" + sql);
 		List<TongSiegeControlVO> list = new ArrayList<TongSiegeControlVO>();
@@ -611,8 +611,8 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public void changeTax(String tax, int siegeId)
 	{
-		String sql = "update tong_siege_battle set tax = " + tax
-				+ " where siege_id=" + siegeId;
+		String sql = "UPDATE tong_siege_battle SET tax = " + tax
+				+ " WHERE siege_id=" + siegeId;
 		logger.debug("修改税率=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -641,8 +641,8 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public void updateTaxMoney(String sceneMapqy, int money)
 	{
-		String sql = "update tong_siege_battle set tax_money = tax_money+"
-				+ money + " where affect_map_id=" + sceneMapqy;
+		String sql = "UPDATE tong_siege_battle SET tax_money = tax_money+"
+				+ money + " WHERE affect_map_id=" + sceneMapqy;
 		logger.debug(" 更新税收款=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -672,8 +672,8 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public void reduceTaxMoney(String siegeId, int money)
 	{
-		String sql = "update tong_siege_battle set tax_money = tax_money-"
-				+ money + " where siege_id=" + siegeId;
+		String sql = "UPDATE tong_siege_battle SET tax_money = tax_money-"
+				+ money + " WHERE siege_id=" + siegeId;
 		logger.debug(" 更新税收款=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -704,13 +704,13 @@ public class TongSiegeBattleDao extends DaoBase
 	public List<Integer> getAllKillMostThreehundred(int siegeId, int siegeNumber)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT tsp.p_pk from tong_siege_pklog tsp,u_part_info upi "
+		String sql = "SELECT tsp.p_pk FROM tong_siege_pklog tsp,u_part_info upi "
 				+ "where siege_id = "
 				+ siegeId
-				+ " and siege_number = "
+				+ " AND siege_number = "
 				+ siegeNumber
-				+ " and tsp.p_pk=upi.p_pk "
-				+ "order by pk_number desc,p_experience desc limit 300";
+				+ " AND tsp.p_pk=upi.p_pk "
+				+ "ORDER BY pk_number desc,p_experience DESC LIMIT 300";
 		logger.debug("获得前300名的情况=" + sql);
 
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -746,9 +746,9 @@ public class TongSiegeBattleDao extends DaoBase
 	 */
 	public void updateWinTongId(int winTongId, int siegeId, int siegeNumber)
 	{
-		String sql = "update tong_siege_control set last_win_tongid="
-				+ winTongId + " where siege_id=" + siegeId
-				+ " and siege_number=" + siegeNumber;
+		String sql = "UPDATE tong_siege_control SET last_win_tongid="
+				+ winTongId + " WHERE siege_id=" + siegeId
+				+ " AND siege_number=" + siegeNumber;
 		logger.debug(" 将胜利帮派置为此次战斗的胜利帮派=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -771,7 +771,7 @@ public class TongSiegeBattleDao extends DaoBase
 
 	public TongSiegeBattleVO getSiegeByOutScene(String sceneId)
 	{
-		String sql = "SELECT * FROM tong_siege_battle where out_scene="
+		String sql = "SELECT * FROM tong_siege_battle WHERE out_scene="
 				+ sceneId;
 		logger.debug(" 更新税收款=" + sql);
 		TongSiegeBattleVO tongSiegeBattleVO = null;
@@ -811,8 +811,8 @@ public class TongSiegeBattleDao extends DaoBase
 
 	public int getTongBattleID(int siege_id)
 	{
-		String sql = "SELECT control_id from tong_siege_control where siege_id = "
-				+ siege_id + " order by siege_number desc limit 1 ";
+		String sql = "SELECT control_id FROM tong_siege_control WHERE siege_id = "
+				+ siege_id + " ORDER BY siege_number DESC LIMIT 1 ";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		int id = 0;
 		try

@@ -13,8 +13,8 @@ public class SinaDAO extends DaoBase
 	{
 		List<SinaUserVO> list = new ArrayList<SinaUserVO>();
 		SinaUserVO vo = null;
-		String sql = "SELECT a.create_time,a.u_pk,(CASE WHEN p_grade is not null THEN p_grade+1 ELSE '1' end) as p_grade,a.qudao from u_login_info as a left join u_part_info as b on a.u_pk = b.u_pk where a.create_time like '%"
-				+ time + "%' group by a.u_pk order by a.u_pk";
+		String sql = "SELECT a.create_time,a.u_pk,(CASE WHEN p_grade is not null THEN p_grade+1 ELSE '1' end) AS p_grade,a.qudao FROM u_login_info AS a left join u_part_info AS b ON a.u_pk = b.u_pk WHERE a.create_time LIKE '%"
+				+ time + "%' GROUP BY a.u_pk ORDER BY a.u_pk";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

@@ -29,7 +29,7 @@ public class MallLogDao extends DaoBase
 			logger.info("插入商城日志错误。。。。");
 		}
 		
-		String sql = "INSERT INTO u_mall_log values (null,"+u_pk+",'"+role_name+"','"+propName+"',"+propNum+","+propPrice+","+buyType+",'"+mall_log+"',now())";
+		String sql = "INSERT INTO u_mall_log VALUES (null,"+u_pk+",'"+role_name+"','"+propName+"',"+propNum+","+propPrice+","+buyType+",'"+mall_log+"',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -58,7 +58,7 @@ public class MallLogDao extends DaoBase
 		
 		int count=0;
 		
-		String count_sql = "SELECT count(*) from u_mall_log where now() < (create_time + INTERVAL 7 DAY) and u_pk="+u_pk;
+		String count_sql = "SELECT COUNT(*) FROM u_mall_log WHERE now() < (create_time + INTERVAL 7 DAY) AND u_pk = "+u_pk;
 		String page_sql = null;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -74,7 +74,7 @@ public class MallLogDao extends DaoBase
 			
 			queryPage = new QueryPage(page_no, count);
 			
-			page_sql = "SELECT mall_log from u_mall_log where now() < (create_time + INTERVAL 7 DAY) and u_pk="+u_pk+"  order by create_time desc limit "
+			page_sql = "SELECT mall_log FROM u_mall_log WHERE now() < (create_time + INTERVAL 7 DAY) AND u_pk = "+u_pk+"  ORDER BY create_time DESC LIMIT "
 			+ queryPage.getStartOfPage() + ","
 			+ queryPage.getPageSize();
 			

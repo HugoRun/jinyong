@@ -4,8 +4,8 @@
 <%
     response.setContentType("text/vnd.wap.wml");
 %>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ page isELIgnored="true"%>
 <wml>
-<card id="login" title="<s:message key = "gamename"/>">
+<card id="login" title="<bean:message key="gamename"/>">
 <p>

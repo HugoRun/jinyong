@@ -3,7 +3,7 @@
 <%@page import="com.ls.ben.vo.info.pet.PetInfoVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ls.web.service.player.RoleService"%>
-<% String from = (String)request.getAttribute("from");
+<% String FROM = (String)request.getAttribute("from");
 if(from==null||"".equals(from.trim())||"0".equals(from.trim())){
 %>
 【宠物榜】*依据宠物等级进行排行*（每月重置）<br/>

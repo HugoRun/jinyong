@@ -44,7 +44,7 @@ public class PetInfoDAO
 					+ "pet_gj_da,pet_sale,pet_img,pet_grow,pet_wx,"
 					+ "pet_wx_value,pet_skill_one,pet_skill_two,pet_skill_three,pet_skill_four,pet_skill_five,pet_life,pet_isAutoGrow,pet_isBring,"
 					+ "pet_fatigue,pet_longe,longe_number,longe_number_ok,"
-					+ "skill_control,pet_type,pet_violence_drop) values(null,'"
+					+ "skill_control,pet_type,pet_violence_drop) VALUES(null,'"
 					+ pPk
 					+ "','"
 					+ petId
@@ -170,11 +170,11 @@ public class PetInfoDAO
 					+ Integer.parseInt(dfs.format(cc));
 
 			int petGjXiao = petGjDa * 95 / 100;
-			String sql = "update p_pet_info set pet_grade='"
+			String sql = "UPDATE p_pet_info SET pet_grade='"
 					+ petInfoVO.getPetGrade() + "',pet_exp='" + petExp + "'"
 					+ ",pet_ben_exp='" + petExp + "',pet_xia_exp='" + petXiaExp
 					+ "',pet_gj_xiao='" + petGjXiao + "',pet_gj_da='" + petGjDa
-					+ "' where pet_pk='" + petInfoVO.getPetPk() + "'";
+					+ "' WHERE pet_pk='" + petInfoVO.getPetPk() + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -195,8 +195,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set pet_ben_exp='" + BjExp
-					+ "'  where pet_pk='" + PetPk + "'";
+			String sql = "UPDATE p_pet_info SET pet_ben_exp='" + BjExp
+					+ "'  WHERE pet_pk='" + PetPk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -217,7 +217,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "delete from p_pet_info where pet_pk='" + PetPk + "'";
+			String sql = "DELETE FROM p_pet_info WHERE pet_pk='" + PetPk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -239,7 +239,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT pet_sale from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_sale FROM p_pet_info WHERE pet_pk='"
 					+ PetPk + "'";
 			ResultSet rs = con.query(sql);
 			while (rs.next())
@@ -266,8 +266,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where pet_pk='" + pet_pk
-					+ "' and p_pk=" + pPk;
+			String sql = "SELECT * FROM p_pet_info WHERE pet_pk='" + pet_pk
+					+ "' AND p_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			if (rs.next())
 			{
@@ -293,8 +293,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk
-					+ "' order by pet_pk";
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' ORDER BY pet_pk";
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
 			while (rs.next())
@@ -352,8 +352,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk + "' "
-					+ "and pet_id='" + petid + "' and pet_isBring='"
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk + "' "
+					+ "AND pet_id='" + petid + "' AND pet_isBring='"
 					+ petIsBring + "'";
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
@@ -413,9 +413,9 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk + "' "
-					+ "and pet_id='" + petid + "' and pet_nickname='" + petName
-					+ "' and pet_isBring='" + petIsBring + "'";
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk + "' "
+					+ "AND pet_id='" + petid + "' AND pet_nickname='" + petName
+					+ "' AND pet_isBring='" + petIsBring + "'";
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
 			while (rs.next())
@@ -473,8 +473,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk + "' "
-					+ " and pet_isBring='" + petIsBring + "'";
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk + "' "
+					+ " AND pet_isBring='" + petIsBring + "'";
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
 			while (rs.next())
@@ -532,9 +532,9 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "delete from p_pet_info where p_pk='" + pPk
-					+ "' and  pet_id='" + PetId + "' and pet_nickname='"
-					+ petName + "' limit 1";
+			String sql = "DELETE FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' AND  pet_id='" + PetId + "' AND pet_nickname='"
+					+ petName + "' LIMIT 1";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -555,8 +555,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk
-					+ "' and pet_isBring=1";
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' AND pet_isBring=1";
 			ResultSet rs = con.query(sql);
 			if (rs.next())
 			{
@@ -582,7 +582,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where pet_pk='" + petPk
+			String sql = "SELECT * FROM p_pet_info WHERE pet_pk='" + petPk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
@@ -643,8 +643,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where pet_pk='" + petPk
-					+ "' and p_pk=" + pPk;
+			String sql = "SELECT * FROM p_pet_info WHERE pet_pk='" + petPk
+					+ "' AND p_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
 			if (rs.next())
@@ -704,8 +704,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where  p_pk='" + pPk
-					+ "' and pet_isBring = 1";
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' AND pet_isBring = 1";
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
 			if (rs.next())
@@ -764,8 +764,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where pet_pk='" + pet_pk
-					+ "' and p_pk='" + pPk + "'";
+			String sql = "SELECT * FROM p_pet_info WHERE pet_pk='" + pet_pk
+					+ "' AND p_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
 			if (rs.next())
@@ -825,8 +825,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where  p_pk='" + pPk
-					+ "' and pet_isBring = 1";
+			String sql = "SELECT * FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' AND pet_isBring = 1";
 			ResultSet rs = con.query(sql);
 			int petpk = 0;
 			while (rs.next())
@@ -854,8 +854,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set pet_isBring='" + petIsBring
-					+ "' where p_pk='" + pPk + "' and pet_pk='" + pet_pk + "'";
+			String sql = "UPDATE p_pet_info SET pet_isBring='" + petIsBring
+					+ "' WHERE p_pk='" + pPk + "' AND pet_pk='" + pet_pk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -876,8 +876,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set pet_fatigue='" + petFatigue
-					+ "' where p_pk='" + pPk + "' and pet_pk='" + petId + "'";
+			String sql = "UPDATE p_pet_info SET pet_fatigue='" + petFatigue
+					+ "' WHERE p_pk='" + pPk + "' AND pet_pk='" + petId + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -898,9 +898,9 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set pet_longe='" + petLonge
-					+ "',longe_number_ok='" + longeNumberOk + "' where p_pk='"
-					+ pPk + "' and pet_pk='" + petId + "'";
+			String sql = "UPDATE p_pet_info SET pet_longe='" + petLonge
+					+ "',longe_number_ok='" + longeNumberOk + "' WHERE p_pk='"
+					+ pPk + "' AND pet_pk='" + petId + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -921,8 +921,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set p_pk='" + pPk
-					+ "' where p_pk='" + BypPk + "' and pet_pk='" + petId + "'";
+			String sql = "UPDATE p_pet_info SET p_pk='" + pPk
+					+ "' WHERE p_pk='" + BypPk + "' AND pet_pk='" + petId + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -943,8 +943,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set p_pk='" + pPk
-					+ "',pet_nickname='" + petName + "' where pet_pk='" + petId
+			String sql = "UPDATE p_pet_info SET p_pk='" + pPk
+					+ "',pet_nickname='" + petName + "' WHERE pet_pk='" + petId
 					+ "'";
 			con.update(sql);
 		}
@@ -966,7 +966,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "delete from u_pet_sell where ps_pk='" + psPk + "'";
+			String sql = "DELETE FROM u_pet_sell WHERE ps_pk='" + psPk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -987,8 +987,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT pet_longe from p_pet_info where p_pk='" + pPk
-					+ "' and pet_pk='" + pet_pk + "'";
+			String sql = "SELECT pet_longe FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' AND pet_pk='" + pet_pk + "'";
 			int pet_longe = 0;
 			ResultSet rs = con.query(sql);
 			if (rs.next())
@@ -1016,8 +1016,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT pet_longe from p_pet_info where p_pk='" + pPk
-					+ "' and pet_isBring=1";
+			String sql = "SELECT pet_longe FROM p_pet_info WHERE p_pk='" + pPk
+					+ "' AND pet_isBring=1";
 			int pet_longe = 0;
 			ResultSet rs = con.query(sql);
 			if (rs.next())
@@ -1045,7 +1045,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT pet_isBring from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_isBring FROM p_pet_info WHERE pet_pk='"
 					+ pet_pk + "'";
 			int pet_isBring = 0;
 			ResultSet rs = con.query(sql);
@@ -1074,7 +1074,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT pet_longe from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_longe FROM p_pet_info WHERE pet_pk='"
 					+ petPk + "' ";
 			int pet_longe = 0;
 			ResultSet rs = con.query(sql);
@@ -1103,7 +1103,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT pet_name from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_name FROM p_pet_info WHERE pet_pk='"
 					+ petPk + "' ";
 			String pet_name = null;
 			ResultSet rs = con.query(sql);
@@ -1132,8 +1132,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update p_pet_info set pet_longe=pet_longe-1 where p_pk='"
-					+ pPk + "' and pet_isBring=1";
+			String sql = "UPDATE p_pet_info SET pet_longe=pet_longe-1 WHERE p_pk='"
+					+ pPk + "' AND pet_isBring=1";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -1155,7 +1155,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "INSERT INTO u_pet_sell values(null,'" + pPk + "','"
+			String sql = "INSERT INTO u_pet_sell VALUES(null,'" + pPk + "','"
 					+ pByPk + "','" + petPk + "','" + pSilver + "','" + pCopper + "','" + Time + "')";
 			con.update(sql);
 		}
@@ -1174,7 +1174,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM u_pet_sell where p_by_pk=" + pPk;
+			String sql = "SELECT * FROM u_pet_sell WHERE p_by_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			PetSellVO vo = new PetSellVO();
 			while (rs.next())
@@ -1202,7 +1202,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM u_pet_sell where p_by_pk=" + pPk;
+			String sql = "SELECT * FROM u_pet_sell WHERE p_by_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			if (rs.next())
 			{
@@ -1225,8 +1225,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM u_pet_sell where p_pk='" + BypPk
-					+ "' and p_by_pk='" + pPk + "'";
+			String sql = "SELECT * FROM u_pet_sell WHERE p_pk='" + BypPk
+					+ "' AND p_by_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PetSellVO vo = new PetSellVO();
 			while (rs.next())
@@ -1256,7 +1256,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM u_pet_sell where ps_pk='" + ps_pk + "'";
+			String sql = "SELECT * FROM u_pet_sell WHERE ps_pk='" + ps_pk + "'";
 			// //System.out.println("sql============= "+sql);
 			ResultSet rs = con.query(sql);
 			PetSellVO vo = null;
@@ -1293,8 +1293,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT ps_pk from u_pet_sell where p_by_pk='" + pByPk
-					+ "' limit 1";
+			String sql = "SELECT ps_pk FROM u_pet_sell WHERE p_by_pk='" + pByPk
+					+ "' LIMIT 1";
 			ResultSet rs = con.query(sql);
 			int ps_pk = 0;
 			if (rs.next())
@@ -1321,8 +1321,8 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM p_pet_info where pet_isBring = 0 and pet_skill_one = 0 and pet_skill_two = 0 and pet_skill_three = 0 and pet_skill_four = 0 and pet_skill_five = 0 and p_pk = "
-					+ pPk + " and pet_id = " + petid;
+			String sql = "SELECT * FROM p_pet_info WHERE pet_isBring = 0 AND pet_skill_one = 0 AND pet_skill_two = 0 AND pet_skill_three = 0 AND pet_skill_four = 0 AND pet_skill_five = 0 AND p_pk = "
+					+ pPk + " AND pet_id = " + petid;
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
 			while (rs.next())

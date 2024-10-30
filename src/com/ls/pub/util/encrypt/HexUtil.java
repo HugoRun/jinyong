@@ -2,7 +2,7 @@ package com.ls.pub.util.encrypt;
 
 
 /**
- * This class provides convenient functions to convert hex string to byte array and vice versa.
+ * This class provides convenient functions to convert hex string to byte array AND vice versa.
  * @author 99bill
  *
  */
@@ -33,7 +33,7 @@ public class HexUtil {
      * 
      * @param s -
      *            string to be converted
-     * @return byte array converted from s
+     * @return byte array converted FROM s
      */
     public static byte[] toByteArray(String s) {
         byte[] buf = new byte[s.length() / 2];

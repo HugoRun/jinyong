@@ -10,5 +10,4 @@ package com.ben.dao.communion.privately;
  * 9:53:26 AM
  */
 public class UPrivatelyDAO {
-	
 }

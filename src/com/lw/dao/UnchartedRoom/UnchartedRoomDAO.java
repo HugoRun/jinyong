@@ -47,7 +47,7 @@ public class UnchartedRoomDAO extends DaoBase
 	// 第一次进入秘境
 	public void insertInUnchartedRoomState(int p_pk)
 	{
-		String sql = "INSERT INTO p_unchartedroom (id,p_pk,into_state,into_num,into_time,out_time) values (null,"
+		String sql = "INSERT INTO p_unchartedroom (id,p_pk,into_state,into_num,into_time,out_time) VALUES (null,"
 				+ p_pk + ",1,1,now(),now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -71,7 +71,7 @@ public class UnchartedRoomDAO extends DaoBase
 	// 更新玩家跳出秘境的状态
 	public void updateInUnchartedRoomState(int p_pk)
 	{
-		String sql = "update p_unchartedroom set into_time = now(),into_state = 1,into_num = into_num + 1 where p_pk = "
+		String sql = "UPDATE p_unchartedroom SET into_time = now(),into_state = 1,into_num = into_num + 1 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -95,7 +95,7 @@ public class UnchartedRoomDAO extends DaoBase
 	// 更新玩家进入秘境的状态
 	public void updateOutUnchartedRoomState(int p_pk)
 	{
-		String sql = "update p_unchartedroom set out_time = now(),into_state = 0 where p_pk = "
+		String sql = "UPDATE p_unchartedroom SET out_time = now(),into_state = 0 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -120,7 +120,7 @@ public class UnchartedRoomDAO extends DaoBase
 	public int getUnchartedRoomPlayerNum()
 	{
 		int num = 0;
-		String sql = "SELECT count(*) as num from p_unchartedroom where into_state = 1";
+		String sql = "SELECT COUNT(*) AS num FROM p_unchartedroom WHERE into_state = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -150,7 +150,7 @@ public class UnchartedRoomDAO extends DaoBase
 	public UnchartedRoomVO getUnchartedRoomPlayerVO(int p_pk)
 	{
 		UnchartedRoomVO vo = null;
-		String sql = "SELECT * FROM p_unchartedroom where p_pk = " + p_pk;
+		String sql = "SELECT * FROM p_unchartedroom WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

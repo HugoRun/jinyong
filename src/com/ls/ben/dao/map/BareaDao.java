@@ -23,7 +23,7 @@ public class BareaDao extends DaoBase {
 		int total_num = 0;
 		BareaVO barea_info = null;
 		
-		String total_sql = "SELECT count(*) from `barea`";
+		String total_sql = "SELECT COUNT(*) FROM `barea`";
 		String sql = "SELECT * FROM `barea`";
 		logger.debug(sql);
 		
@@ -50,7 +50,7 @@ public class BareaDao extends DaoBase {
 				
 				if( barea_info.getBareaPoint()<=0 )
 				{
-					throw new Exception("barea表数据错误：中心点错误，barea_Name="+barea_info.getBareaName());
+					throw new Exception("barea表数据错误：中心点错误，barea_Name = "+barea_info.getBareaName());
 				}
 				
 				result.put(barea_info.getBareaID()+"", barea_info);

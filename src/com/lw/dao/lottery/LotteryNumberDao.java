@@ -55,8 +55,8 @@ public class LotteryNumberDao extends DaoBase
 	public String getLotteryNumber(int p_pk, int lottery_type)
 	{
 		String lottery_number = null;
-		String sql = "SELECT lottery_number from u_lottery_number where p_pk = "
-				+ p_pk + " and lottery_type = " + lottery_type;
+		String sql = "SELECT lottery_number FROM u_lottery_number WHERE p_pk = "
+				+ p_pk + " AND lottery_type = " + lottery_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -87,7 +87,7 @@ public class LotteryNumberDao extends DaoBase
 	public void insertPlayerLottery(int p_pk, String lottery, int lottery_type,
 			int p_add_money)
 	{
-		String sql = "INSERT INTO u_lottery_number values  (null,?,?,?,?)";
+		String sql = "INSERT INTO u_lottery_number VALUES  (null,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -116,7 +116,7 @@ public class LotteryNumberDao extends DaoBase
 	/** 清空彩票表 */
 	public void delAll()
 	{
-		String sql = "delete from u_lottery_number ";
+		String sql = "DELETE FROM u_lottery_number ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -139,7 +139,7 @@ public class LotteryNumberDao extends DaoBase
 	/** 清空玩家慈善彩票内容 */
 	public void delCharityNum(int p_pk)
 	{
-		String sql = "delete * from u_lottery_number where lottery_type = 1 and p_pk = "
+		String sql = "DELETE * FROM u_lottery_number WHERE lottery_type = 1 AND p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -166,8 +166,8 @@ public class LotteryNumberDao extends DaoBase
 		int lottery_per_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT count(*) from u_lottery_number where lottery_number = '"
-				+ lottery_number + "'" + " and lottery_type = " + lottery_type;
+		String sql = "SELECT COUNT(*) FROM u_lottery_number WHERE lottery_number = '"
+				+ lottery_number + "'" + " AND lottery_type = " + lottery_type;
 		logger.debug(sql);
 		try
 		{
@@ -197,7 +197,7 @@ public class LotteryNumberDao extends DaoBase
 		int lottery_per_mum = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT sum(lottery_per_money) from u_lottery_number where lottery_number = '"
+		String sql = "SELECT SUM (lottery_per_money) FROM u_lottery_number WHERE lottery_number = '"
 				+ lottery_number + "'";
 		logger.debug(sql);
 		try
@@ -228,7 +228,7 @@ public class LotteryNumberDao extends DaoBase
 		int lottery_per_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT count(*) from u_lottery_number where lottery_type = 0";
+		String sql = "SELECT COUNT(*) FROM u_lottery_number WHERE lottery_type = 0";
 		logger.debug(sql);
 		try
 		{
@@ -259,8 +259,8 @@ public class LotteryNumberDao extends DaoBase
 		int p_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT p_pk from u_lottery_number where lottery_number = '"
-				+ lottery_number + "'" + " and lottery_type = " + lottery_type;
+		String sql = "SELECT p_pk FROM u_lottery_number WHERE lottery_number = '"
+				+ lottery_number + "'" + " AND lottery_type = " + lottery_type;
 		logger.debug(sql);
 		try
 		{
@@ -292,8 +292,8 @@ public class LotteryNumberDao extends DaoBase
 		int p_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT p_pk from u_lottery_number where lottery_number != '"
-				+ lottery_number + "'" + " and lottery_type = " + lottery_type;
+		String sql = "SELECT p_pk FROM u_lottery_number WHERE lottery_number != '"
+				+ lottery_number + "'" + " AND lottery_type = " + lottery_type;
 		logger.debug(sql);
 		try
 		{
@@ -325,7 +325,7 @@ public class LotteryNumberDao extends DaoBase
 		int p_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT p_pk from u_lottery_number where lottery_type = "
+		String sql = "SELECT p_pk FROM u_lottery_number WHERE lottery_type = "
 				+ lottery_type;
 		logger.debug(sql);
 		try

@@ -16,7 +16,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	{
 
 		PlayerLotteryInfoVO lotteryInfo = null;
-		String sql = "SELECT * FROM  u_lottery_info where p_pk =" + p_pk;
+		String sql = "SELECT * FROM  u_lottery_info WHERE p_pk =" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -58,7 +58,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	{
 		int p_pk = 0;
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT p_pk from  u_lottery_info order by lottery_all_bonus desc limit 10";
+		String sql = "SELECT p_pk FROM  u_lottery_info ORDER BY lottery_all_bonus DESC LIMIT 10";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -88,7 +88,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 插入玩家彩票信息 */
 	public void setPlayerLotteryMessage(int p_pk)
 	{
-		String sql = "INSERT INTO u_lottery_info values  (null,?,0,0,0,0,1,0,0)";
+		String sql = "INSERT INTO u_lottery_info VALUES  (null,?,0,0,0,0,1,0,0)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -117,7 +117,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		int lottery_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT lottery_num from u_lottery_info where p_pk ="
+		String sql = "SELECT lottery_num FROM u_lottery_info WHERE p_pk ="
 				+ p_pk;
 		logger.debug(sql);
 		try
@@ -145,7 +145,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 插入中奖单注奖金金额 */
 	public void setPerMoney(int lottery_per_bonus)
 	{
-		String sql = "update u_lottery_info set lottery_per_bonus = "
+		String sql = "UPDATE u_lottery_info SET lottery_per_bonus = "
 				+ lottery_per_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -169,7 +169,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 玩家信息请零 */
 	public void delPlayerMessage()
 	{
-		String sql = "update u_lottery_info set lottery_per_bonus = 0 ";
+		String sql = "UPDATE u_lottery_info SET lottery_per_bonus = 0 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -192,7 +192,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 按月给玩家清零彩票信息 */
 	public void delPlayerMessageByMonth()
 	{
-		String sql = "update u_lottery_info set lottery_num = 0,lottery_win_num = 0";
+		String sql = "UPDATE u_lottery_info SET lottery_num = 0,lottery_win_num = 0";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -218,7 +218,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 
 	public void updatePlayerCatch(int p_pk)
 	{
-		String sql = "update u_lottery_info set lottery_catch_money = 1 where p_pk = "
+		String sql = "UPDATE u_lottery_info SET lottery_catch_money = 1 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -245,7 +245,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 
 	public void updatePlayerCatchBySys()
 	{
-		String sql = "update u_lottery_info set lottery_catch_money = 0";
+		String sql = "UPDATE u_lottery_info SET lottery_catch_money = 0";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -268,8 +268,8 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 玩家在领取奖金的同时给玩家的总奖金额增加 */
 	public void updatePlayerAllBonus(int lottery_bonus, int p_pk)
 	{
-		String sql = "update u_lottery_info set lottery_all_bonus = lottery_all_bonus + "
-				+ lottery_bonus + " where p_pk = " + p_pk;
+		String sql = "UPDATE u_lottery_info SET lottery_all_bonus = lottery_all_bonus + "
+				+ lottery_bonus + " WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -292,7 +292,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 给玩家投注数+1 */
 	public void addPlayerLotteryNum(int p_pk)
 	{
-		String sql = "update u_lottery_info set lottery_num = lottery_num + 1 where p_pk = "
+		String sql = "UPDATE u_lottery_info SET lottery_num = lottery_num + 1 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -316,7 +316,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 玩家赢取彩票时候 给玩家 倍数+1 赢取次数+1 */
 	public void addPlayerWinNum(int p_pk)
 	{
-		String sql = "update u_lottery_info set lottery_win_num = lottery_win_num + 1 , lottery_bonus_multiple = lottery_bonus_multiple + 1 where p_pk = "
+		String sql = "UPDATE u_lottery_info SET lottery_win_num = lottery_win_num + 1 , lottery_bonus_multiple = lottery_bonus_multiple + 1 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -340,7 +340,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	/** 给玩家的倍数清空 */
 	public void delPlayerLotteryMultiple(int p_pk)
 	{
-		String sql = "update u_lottery_info set  lottery_bonus_multiple = 1 where p_pk = "
+		String sql = "UPDATE u_lottery_info SET  lottery_bonus_multiple = 1 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -365,7 +365,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	public int getPlayerAllBonus(int p_pk)
 	{
 		int lottery_all_bonus = 0;
-		String sql = "SELECT lottery_all_bonus from u_lottery_info where p_pk = "
+		String sql = "SELECT lottery_all_bonus FROM u_lottery_info WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -396,7 +396,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	public int playerRank(int lottery_all_bonus)
 	{
 		int rank = 0;
-		String sql = "SELECT count(distinct lottery_all_bonus) allc from u_lottery_info where lottery_all_bonus >= "
+		String sql = "SELECT COUNT(distinct lottery_all_bonus) allc FROM u_lottery_info WHERE lottery_all_bonus >= "
 				+ lottery_all_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -429,7 +429,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		int lottery_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT lottery_per_bonus from u_lottery_info ";
+		String sql = "SELECT lottery_per_bonus FROM u_lottery_info ";
 		try
 		{
 			stmt = conn.createStatement();

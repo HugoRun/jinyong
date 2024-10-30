@@ -7,8 +7,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="mall" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="mall" title="<bean:message key="gamename"/>">
 <p>
 <%
 	QueryPage queryPage= (QueryPage)request.getAttribute("queryPage");	

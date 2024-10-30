@@ -15,8 +15,8 @@ public class GameSystemStatisticsMessageDao extends DaoBase
 	public int getGameSystemStatisticsMessage(int propID, int propType)
 	{
 		int id = 0;
-		String sql = "SELECT gsp_id from game_statistics_prop where prop_id = "
-				+ propID + " and prop_type = " + propType;
+		String sql = "SELECT gsp_id FROM game_statistics_prop WHERE prop_id = "
+				+ propID + " AND prop_type = " + propType;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

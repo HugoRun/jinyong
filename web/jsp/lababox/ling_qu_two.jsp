@@ -6,7 +6,7 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%>
 <card id="map">
 <%
 	String mes = (String) request.getAttribute("mes");

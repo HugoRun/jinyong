@@ -6,11 +6,11 @@
 <%@ page import="com.pm.service.forum.ForumRevertService" %>
 <%@ page import="java.util.List,com.pm.service.forum.*,java.text.*" %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <head><meta http-equiv='Cache-Control' content='no-cache'/>
 <meta http-equiv="Content-Type" content="text/vnd.wap.wml; charset=utf-8" />
 </head>
-<card id='login' title="<s:message key = "gamename"/>"> 
+<card id='login' title="<bean:message key="gamename"/>">
 <p>
 <% 
 	DateFormat df = new SimpleDateFormat("MM-dd HH:mm");

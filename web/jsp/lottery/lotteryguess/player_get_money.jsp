@@ -8,8 +8,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="ID" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="ID" title="<bean:message key="gamename"/>">
 <p><%   
 		String lotterydisplay =request.getAttribute("lotterydisplay").toString();
 		String prop =request.getAttribute("prop").toString();

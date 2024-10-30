@@ -104,7 +104,7 @@ public class PetDAO {
 	public PetShapeVO getPetShapeView(int petType, int petLevel) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM pet_shape WHERE pet_type='"+petType+"' and shape_rating='"+petLevel+"'";
+			String sql = "SELECT * FROM pet_shape WHERE pet_type='"+petType+"' AND shape_rating='"+petLevel+"'";
 			ResultSet rs = con.query(sql);
 			PetShapeVO vo = null;
 			if (rs.next()) {
@@ -135,7 +135,7 @@ public class PetDAO {
 	public int npcType(int npcId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT npc_type from npc WHERE npc_ID='" + npcId + "'";
+			String sql = "SELECT npc_type FROM npc WHERE npc_ID='" + npcId + "'";
 			ResultSet rs = con.query(sql);
 			int npcType = 0;
 			if (rs.next()) {
@@ -156,7 +156,7 @@ public class PetDAO {
 	public int getNpcId(int petId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT npc_id from pet WHERE pet_id='" + petId + "'";
+			String sql = "SELECT npc_id FROM pet WHERE pet_id='" + petId + "'";
 			ResultSet rs = con.query(sql);
 			int npc_id = 0;
 			if (rs.next()) {
@@ -177,7 +177,7 @@ public class PetDAO {
 	public String getPetName(int petId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT pet_name from pet WHERE pet_id='" + petId + "'";
+			String sql = "SELECT pet_name FROM pet WHERE pet_id='" + petId + "'";
 			ResultSet rs = con.query(sql);
 			String pet_name = null;
 			if (rs.next()) {
@@ -213,7 +213,7 @@ public class PetDAO {
 	public HashMap<Integer, PetVO> getAllPet()
 	{
 		int total_num = 0;
-		String total_num_sql = "SELECT count(*) from pet";
+		String total_num_sql = "SELECT COUNT(*) FROM pet";
 		String sql = "SELECT * FROM pet";
 		HashMap<Integer,PetVO> map = null;
 		PetVO vo = null;

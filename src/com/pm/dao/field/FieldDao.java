@@ -26,8 +26,8 @@ public class FieldDao extends DaoBase {
 		SceneDao scenedao = new SceneDao();
 		String sceneStr = scenedao.getSceneIdByMap(barea_point);
 		
-		String sql = "SELECT p_pk from jygame_user_test.u_part_info where p_map in " +
-				"( select scene_ID from jygame_test.scene where scene_mapqy = 3)";
+		String sql = "SELECT p_pk FROM jygame_user_test.u_part_info WHERE p_map IN " +
+				"( SELECT scene_ID FROM jygame_test.scene WHERE scene_mapqy = 3)";
 		List<Integer> personlist =  new ArrayList<Integer>();
 		try
 		{
@@ -75,7 +75,7 @@ public class FieldDao extends DaoBase {
 	{
 		/**DBConnection dbConn = new DBConnection(DBConnection.JYGAME_DB);
 		conn = dbConn.getConn();
-		String sql1 = "select map_ID from map where map_from = 9";
+		String sql1 = "SELECT map_ID FROM map WHERE map_from = 9";
 		int map_id = 0;
 		try
 		{
@@ -107,10 +107,9 @@ public class FieldDao extends DaoBase {
 			return 0;
 		}
 		
-		String sql = "SELECT p_pk from u_part_info where p_camp = "+p_camp+
-				" and p_map in " + sceneStr;
+		String sql = "SELECT `p_pk` FROM `u_part_info` WHERE `p_camp` = " + p_camp + " AND `p_map` IN " + sceneStr;
 		
-		logger.debug("执行数据库统计的="+sql);
+		logger.debug("执行数据库统计的 = " + sql);
 		List<Integer> personlist =  new ArrayList<Integer>();
 		DBConnection dbConn1 = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn1.getConn();
@@ -145,7 +144,7 @@ public class FieldDao extends DaoBase {
 	 */
 	public void rebackFlagCamp()
 	{
-		String sql = "update operate_menu_info set menu_camp = menu_operate3 where menu_type = "+MenuType.MAST;
+		String sql = "UPDATE operate_menu_info SET menu_camp = menu_operate3 WHERE menu_type = "+MenuType.MAST;
 		logger.debug("战场中的旗杆阵营属性还原="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

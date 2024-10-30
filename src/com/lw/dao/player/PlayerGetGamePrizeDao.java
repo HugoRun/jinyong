@@ -16,8 +16,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	{
 		List<PlayerGetGamePrizeVO> list = new ArrayList<PlayerGetGamePrizeVO>();
 		PlayerGetGamePrizeVO vo = null;
-		String sql = "SELECT * FROM game_prize where state != 1 and u_passprot = '"
-				+ u_passprot + "' limit " + pageno + "," + perpage;
+		String sql = "SELECT * FROM game_prize WHERE state != 1 AND u_passprot = '"
+				+ u_passprot + "' LIMIT " + pageno + "," + perpage;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -57,8 +57,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	/** 更新玩家的领取状态 */
 	public void updatePlayerPrizeState(String u_passprot, int id)
 	{
-		String sql = "update game_prize set state = 1 , create_time = now() where id = "
-				+ id + " and u_passprot = '" + u_passprot + "'";
+		String sql = "UPDATE game_prize SET state = 1 , create_time = now() WHERE id = "
+				+ id + " AND u_passprot = '" + u_passprot + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -81,7 +81,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	/** 给玩家领取记录表里添加数据 */
 	public void insertPlayerPrizeInfo(int u_pk, int p_pk, String content)
 	{
-		String sql = "INSERT INTO game_prize_info values (null," + u_pk + ","
+		String sql = "INSERT INTO game_prize_info VALUES (null," + u_pk + ","
 				+ p_pk + ",'" + content + "',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -105,8 +105,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	/** 得到玩家的单条数据 */
 	public PlayerGetGamePrizeVO getPrizeByID(int id, String u_passprot)
 	{
-		String sql = "SELECT * FROM game_prize where id = " + id
-				+ " and u_passprot = '" + u_passprot + "'";
+		String sql = "SELECT * FROM game_prize WHERE id = " + id
+				+ " AND u_passprot = '" + u_passprot + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		PlayerGetGamePrizeVO vo = new PlayerGetGamePrizeVO();
@@ -147,7 +147,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	public int getPlayerPrizeNum(int u_pk)
 	{
 		int x = 0;
-		String sql = "SELECT count(*) as num from game_prize where state != 1 and u_pk = "
+		String sql = "SELECT COUNT(*) AS num FROM game_prize WHERE state != 1 AND u_pk = "
 				+ u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -179,7 +179,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	public PlayerGetGamePrizeVO getPlayerPrize(int id)
 	{
 		PlayerGetGamePrizeVO vo = new PlayerGetGamePrizeVO();
-		String sql = "SELECT * FROM game_prize where id = " + id;
+		String sql = "SELECT * FROM game_prize WHERE id = " + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -217,7 +217,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	public String getUserID(int u_pk)
 	{
 		String user_id = null;
-		String sql = "SELECT user_id from u_passport_info where u_pk = " + u_pk;
+		String sql = "SELECT user_id FROM u_passport_info WHERE u_pk = " + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -250,8 +250,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	{
 		List<PlayerGetGamePrizeVO> list = new ArrayList<PlayerGetGamePrizeVO>();
 		PlayerGetGamePrizeVO vo = null;
-		String sql = "SELECT * FROM game_prize where state != 1 and u_pk = '"
-				+ u_pk + "' limit " + pageno + "," + perpage;
+		String sql = "SELECT * FROM game_prize WHERE state != 1 AND u_pk = '"
+				+ u_pk + "' LIMIT " + pageno + "," + perpage;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -291,8 +291,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	/** 更新玩家的领取状态 */
 	public void updatePlayerPrizeStateByUpk(String u_pk, int id)
 	{
-		String sql = "update game_prize set state = 1 , create_time = now() where id = "
-				+ id + " and u_pk = '" + u_pk + "'";
+		String sql = "UPDATE game_prize SET state = 1 , create_time = now() WHERE id = "
+				+ id + " AND u_pk = '" + u_pk + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -315,8 +315,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	/** 得到玩家的单条数据 */
 	public PlayerGetGamePrizeVO getPrizeByIDByUpk(int id, String u_pk)
 	{
-		String sql = "SELECT * FROM game_prize where id = " + id
-				+ " and u_pk = '" + u_pk + "'";
+		String sql = "SELECT * FROM game_prize WHERE id = " + id
+				+ " AND u_pk = '" + u_pk + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		PlayerGetGamePrizeVO vo = new PlayerGetGamePrizeVO();
@@ -358,9 +358,9 @@ public class PlayerGetGamePrizeDao extends DaoBase
 			String prize_name, int u_pk, int p_pk, int state, String time,
 			String prize_content)
 	{
-		String sql = "SELECT * FROM game_prize where u_pk = " + u_pk
-				+ " and p_pk = " + p_pk + " and create_time like '%" + time
-				+ "%' and prop = '" + prize_content + "'";
+		String sql = "SELECT * FROM game_prize WHERE u_pk = " + u_pk
+				+ " AND p_pk = " + p_pk + " AND create_time LIKE '%" + time
+				+ "%' AND prop = '" + prize_content + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		PlayerGetGamePrizeVO vo = null;
@@ -401,7 +401,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 			String prize_display, String u_passport, int u_pk, String name,
 			int p_pk, int state, String prize_content)
 	{
-		String sql = "INSERT INTO game_prize values (null,'" + prize_name
+		String sql = "INSERT INTO game_prize VALUES (null,'" + prize_name
 				+ "','" + prize_display + "','" + u_passport + "'," + u_pk
 				+ ",'" + name + "'," + p_pk + "," + state + ",'"
 				+ prize_content + "',now())";
@@ -426,8 +426,8 @@ public class PlayerGetGamePrizeDao extends DaoBase
 
 	public void delPlayerOnlinePrize(String time, int state)
 	{
-		String sql = "delete from game_prize where create_time < '" + time
-				+ "' and state = " + state;
+		String sql = "DELETE FROM game_prize WHERE create_time < '" + time
+				+ "' AND state = " + state;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

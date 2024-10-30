@@ -22,7 +22,7 @@ public class PassportDao extends DaoBase
 	 */
 	public void addNewPassport(String user_id,String user_name,int u_pk,int channel_id)
 	{
-		String sql = "INSERT INTO u_passport_info (user_id,user_name,channel_id,u_pk,create_time) values (?,?,?,?,now())";
+		String sql = "INSERT INTO u_passport_info (user_id,user_name,channel_id,u_pk,create_time) VALUES (?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -53,7 +53,7 @@ public class PassportDao extends DaoBase
 	{
 		boolean result = false;
 		
-		String sql = "SELECT id from u_passport_info where user_id="+user_id+" and channel_id="+channel_id;
+		String sql = "SELECT id FROM u_passport_info WHERE user_id="+user_id+" AND channel_id="+channel_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -89,7 +89,7 @@ public class PassportDao extends DaoBase
 	{
 		PassportVO passport = null;
 		
-		String sql = "SELECT * FROM u_passport_info where user_id='"+user_id+"' and channel_id="+channel_id;
+		String sql = "SELECT * FROM u_passport_info WHERE user_id='"+user_id+"' AND channel_id="+channel_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -129,7 +129,7 @@ public class PassportDao extends DaoBase
 	{
 		PassportVO passport = null;
 		
-		String sql = "SELECT * FROM u_passport_info where user_name='"+user_name+"' and channel_id='"+channel_id+"'";
+		String sql = "SELECT * FROM u_passport_info WHERE user_name='"+user_name+"' AND channel_id='"+channel_id+"'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -166,7 +166,7 @@ public class PassportDao extends DaoBase
 	{
 		PassportVO passport = null;
 		
-		String sql = "SELECT * FROM u_passport_info where u_pk="+u_pk;
+		String sql = "SELECT * FROM u_passport_info WHERE u_pk = "+u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

@@ -37,7 +37,6 @@ public class PopUpMsgFilter implements Filter {
 
             if (roleInfo != null) {
                 int cur_state = roleInfo.getStateInfo().getCurState();
-
                 if (cur_state == PlayerState.GENERAL) {
                     // 只有玩家在平常状态才弹出消息
                     UMsgService uMsgService = new UMsgService();
@@ -53,7 +52,6 @@ public class PopUpMsgFilter implements Filter {
                         request.getRequestDispatcher("/pk.do?cmd=n7").forward(request, response);
                         return;
                     }
-                } else if (cur_state == PlayerState.EXTRA) {
                 }
             }
             filterChain.doFilter(request, response);

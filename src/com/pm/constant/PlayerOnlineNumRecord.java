@@ -30,7 +30,7 @@ public class PlayerOnlineNumRecord
 //    		writer.flush();
 //    		writer.close();
 			con=new SqlData();
-			String sql="update t_online set onlinecount=onlinecount+1";
+			String sql="UPDATE t_online SET onlinecount = onlinecount + 1";
 			con.update(sql);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class PlayerOnlineNumRecord
 	public void setOnlineNumToZero(){
 		try{
 			con=new SqlData();
-			String sql="update t_online set onlinecount = 0";
+			String sql="UPDATE t_online SET onlinecount = 0";
 			con.update(sql);
 			
 		}catch(Exception e){

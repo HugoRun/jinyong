@@ -22,7 +22,7 @@ public class LoginInfoDAO {
     public LoginInfoVO getUserInfoLoginName(String name) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_login_info where u_name='" + name + "'";
+            String sql = "SELECT * FROM u_login_info WHERE u_name = '" + name + "'";
             ResultSet rs = con.query(sql);
             LoginInfoVO vo = new LoginInfoVO();
             while (rs.next()) {
@@ -45,7 +45,7 @@ public class LoginInfoDAO {
     public LoginInfoVO getUserInfoByUPk(String uPk) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_login_info where u_pk=" + uPk;
+            String sql = "SELECT * FROM u_login_info WHERE u_pk = " + uPk;
             ResultSet rs = con.query(sql);
             LoginInfoVO vo = new LoginInfoVO();
             if (rs.next()) {
@@ -69,7 +69,7 @@ public class LoginInfoDAO {
         int login_state = 0;
         try {
             con = new SqlData();
-            String sql = "SELECT login_state from u_login_info where u_pk=" + uPk;
+            String sql = "SELECT login_state FROM u_login_info WHERE u_pk = " + uPk;
             ResultSet rs = con.query(sql);
             if (rs.next()) {
                 login_state = rs.getInt("login_state");
@@ -87,7 +87,7 @@ public class LoginInfoDAO {
         LoginInfoVO vo = null;
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_login_info where u_name='" + name + "' and u_paw='" + paw + "'";
+            String sql = "SELECT * FROM u_login_info WHERE u_name = '" + name + "' AND u_paw = '" + paw + "'";
             ResultSet rs = con.query(sql);
             if (rs.next()) {
                 vo = new LoginInfoVO();
@@ -109,7 +109,7 @@ public class LoginInfoDAO {
     public String getUserLoginPawByUPk(int upk) {
         try {
             con = new SqlData();
-            String sql = "SELECT u_paw from u_login_info where u_pk='" + upk + "'";
+            String sql = "SELECT u_paw FROM u_login_info WHERE u_pk = '" + upk + "'";
             ResultSet rs = con.query(sql);
             String paw = "";
             while (rs.next()) {
@@ -129,7 +129,7 @@ public class LoginInfoDAO {
     public void getloginStateTC(String loginState, String uPk) {
         try {
             con = new SqlData();
-            String sql = "UPDATE `u_login_info` SET login_state = '" + loginState + "' where u_pk=" + uPk;
+            String sql = "UPDATE `u_login_info` SET login_state = '" + loginState + "' WHERE u_pk = " + uPk;
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,7 +160,7 @@ public class LoginInfoDAO {
     public void updatePassWord(int u_pk, String newPass) {
         try {
             con = new SqlData();
-            String sql = "update u_login_info set u_paw='" + newPass + "' where u_pk=" + u_pk;
+            String sql = "UPDATE u_login_info SET u_paw = '" + newPass + "' WHERE u_pk = " + u_pk;
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,7 +179,7 @@ public class LoginInfoDAO {
     public boolean isLoginInfoName(String name) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_login_sift where u_name='" + name + "'";
+            String sql = "SELECT * FROM u_login_sift WHERE u_name = '" + name + "'";
             ResultSet rs = con.query(sql);
             while (rs.next()) {
                 return true;

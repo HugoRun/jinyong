@@ -24,7 +24,7 @@ public class TongMoneyInfoDao extends DaoBase
 	 */
 	public int addTongMoneyInfo(int pPk, int tPk, int personMoney)
 	{
-		String sql = "INSERT INTO tong_money_info values (null,"+pPk+","+tPk+",1,"+personMoney+",now())";
+		String sql = "INSERT INTO tong_money_info VALUES (null,"+pPk+","+tPk+",1,"+personMoney+",now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug("增加 发送奖金的情况="+sql);
@@ -57,7 +57,7 @@ public class TongMoneyInfoDao extends DaoBase
 	 */
 	public TongMoneyInfoVO getBackMoneyInfo(int pPk, String infoId)
 	{
-		String sql = "SELECT * FROM tong_money_info where back_type = 1 and  p_pk="+pPk+" and info_id = "+infoId;
+		String sql = "SELECT * FROM tong_money_info WHERE back_type = 1 AND  p_pk="+pPk+" AND info_id = "+infoId;
 		TongMoneyInfoVO tongMoneyInfoVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("获得未取回的金钱信息="+sql);
@@ -96,7 +96,7 @@ public class TongMoneyInfoDao extends DaoBase
 	 */
 	public void updateBackType(int pPk, String infoId)
 	{
-		String sql = "update tong_money_info set back_type = 2  where p_pk="+pPk+" and info_id = "+infoId;
+		String sql = "UPDATE tong_money_info SET back_type = 2  WHERE p_pk="+pPk+" AND info_id = "+infoId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("更新取回状态="+sql);
 		conn = dbConn.getConn();

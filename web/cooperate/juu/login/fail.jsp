@@ -6,11 +6,11 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="fail" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="fail" title="<bean:message key="gamename"/>">
 <p>
 <%
-    String key = "3IOJ3934KJ3493KJ94K";
+    String key="3IOJ3934KJ3493KJ94K";
     String username = (String)request.getSession().getAttribute("ssid");
     String time = Long.toString(new Date().getTime()/1000);
     String sign = MD5Util.md5Hex("51"+username+time+key);

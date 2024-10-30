@@ -47,7 +47,7 @@ public class PlayerLaborageDao extends DaoBase
 	/** 创建玩家在线时间表 */
 	public void buildPlayerLaborage(int p_pk)
 	{
-		String sql = "INSERT INTO u_laborage values  (null,?,0,0,0)";
+		String sql = "INSERT INTO `u_laborage` VALUES (null, ?, 0, 0, 0)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -74,7 +74,7 @@ public class PlayerLaborageDao extends DaoBase
 	public int getPlayerOnlineTime(int p_pk)
 	{
 		int time = 0;
-		String sql = "SELECT laborage_old_time from u_laborage where p_pk = "
+		String sql = "SELECT laborage_old_time FROM u_laborage WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -105,7 +105,7 @@ public class PlayerLaborageDao extends DaoBase
 	public int getPlayerOnlineTimeNOW(int p_pk)
 	{
 		int time = 0;
-		String sql = "SELECT laborage_this_time from u_laborage where p_pk = "
+		String sql = "SELECT laborage_this_time FROM u_laborage WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -136,7 +136,7 @@ public class PlayerLaborageDao extends DaoBase
 	public int getPlayerCatch(int p_pk)
 	{
 		int i = 0;
-		String sql = "SELECT laborage_catch from u_laborage where p_pk = "
+		String sql = "SELECT laborage_catch FROM u_laborage WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -166,8 +166,8 @@ public class PlayerLaborageDao extends DaoBase
 	/** 更新玩家本周在线时间 */
 	public void updatePlayerOnlineTime(int p_pk, int laborage_this_time)
 	{
-		String sql = "update u_laborage set laborage_this_time = laborage_this_time + "
-				+ laborage_this_time + " where p_pk = " + p_pk;
+		String sql = "UPDATE u_laborage SET laborage_this_time = laborage_this_time + "
+				+ laborage_this_time + " WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -190,7 +190,7 @@ public class PlayerLaborageDao extends DaoBase
 	/** 玩家领取奖励后给玩家标记领取过 */
 	public void updatePlayerCatchMoney(int p_pk)
 	{
-		String sql = "update u_laborage set laborage_catch = 1 where p_pk = "
+		String sql = "UPDATE u_laborage SET laborage_catch = 1 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -214,7 +214,7 @@ public class PlayerLaborageDao extends DaoBase
 	/** 更新玩家领取标记 */
 	public void updatePlayerCatch()
 	{
-		String sql = "update u_laborage set laborage_catch = 0 ";
+		String sql = "UPDATE u_laborage SET laborage_catch = 0 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -237,7 +237,7 @@ public class PlayerLaborageDao extends DaoBase
 	/** 更新统计到的上一周的时间 */
 	public void updatePlayerTime()
 	{
-		String sql = "update u_laborage set laborage_old_time = laborage_this_time";
+		String sql = "UPDATE u_laborage SET laborage_old_time = laborage_this_time";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -260,7 +260,7 @@ public class PlayerLaborageDao extends DaoBase
 	/** 更新统计到的上一周的时间 */
 	public void updatePlayerTimeZreo()
 	{
-		String sql = "update u_laborage set laborage_this_time = 0";
+		String sql = "UPDATE u_laborage SET laborage_this_time = 0";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

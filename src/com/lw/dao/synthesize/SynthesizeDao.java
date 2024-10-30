@@ -14,7 +14,7 @@ public class SynthesizeDao extends DaoBase
 	public SynthesizeVO getSynthesize(int s_id)
 	{
 		SynthesizeVO vo = null;
-		String sql = "SELECT * FROM synthesize where  s_id = " + s_id;
+		String sql = "SELECT * FROM synthesize WHERE s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -52,8 +52,8 @@ public class SynthesizeDao extends DaoBase
 	{
 		List<SynthesizeVO> list = new ArrayList<SynthesizeVO>();
 		SynthesizeVO vo = null;
-		String sql = "SELECT * FROM synthesize where  s_type = " + s_type
-				+ " and s_level <= " + s_level;
+		String sql = "SELECT * FROM synthesize WHERE s_type = " + s_type
+				+ " AND s_level <= " + s_level;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -91,7 +91,7 @@ public class SynthesizeDao extends DaoBase
 	public int getSynthesizeMaxSleight(int s_id)
 	{
 		int s_max_sleight = 0;
-		String sql = "SELECT s_max_sleight from synthesize where  s_id = "
+		String sql = "SELECT s_max_sleight FROM synthesize WHERE s_id = "
 				+ s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -122,7 +122,7 @@ public class SynthesizeDao extends DaoBase
 	public int getSynthesizeMinSleight(int s_id)
 	{
 		int s_min_sleight = 0;
-		String sql = "SELECT s_min_sleight from synthesize where  s_id = "
+		String sql = "SELECT s_min_sleight FROM synthesize WHERE s_id = "
 				+ s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -153,7 +153,7 @@ public class SynthesizeDao extends DaoBase
 	public int getSynthesizeSleight(int s_id)
 	{
 		int s_sleight = 0;
-		String sql = "SELECT s_sleight from synthesize where  s_id = " + s_id;
+		String sql = "SELECT s_sleight FROM synthesize WHERE s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -183,7 +183,7 @@ public class SynthesizeDao extends DaoBase
 	public int getSynthesizeHaveBook(int s_id)
 	{
 		int s_book = 0;
-		String sql = "SELECT s_book from synthesize where  s_id = " + s_id;
+		String sql = "SELECT s_book FROM synthesize WHERE s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -213,7 +213,7 @@ public class SynthesizeDao extends DaoBase
 	public String getPropInfo(String prop_name)
 	{
 		String info = null;
-		String sql = "SELECT prop_display from prop where  prop_name = '"
+		String sql = "SELECT prop_display FROM prop WHERE prop_name = '"
 				+ prop_name + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -246,8 +246,8 @@ public class SynthesizeDao extends DaoBase
 	{
 		List<SynthesizeVO> list = new ArrayList<SynthesizeVO>();
 		SynthesizeVO vo = null;
-		String sql = "SELECT * FROM synthesize where  s_type = " + s_type
-				+ " and s_level <= " + s_level + " limit " + perpagenum
+		String sql = "SELECT * FROM synthesize WHERE s_type = " + s_type
+				+ " AND s_level <= " + s_level + " LIMIT " + perpagenum
 				+ " offset " + perpagenum * (thispage - 1);
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

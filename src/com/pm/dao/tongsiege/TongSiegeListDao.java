@@ -28,7 +28,7 @@ public class TongSiegeListDao extends DaoBase
 	public List<Integer> getNowJoinTongId(int siegeFightNumber, String siegeId)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT tong_pk from tong_siege_list where siege_id="+siegeId+" and siege_number = "+siegeFightNumber;
+		String sql = "SELECT tong_pk FROM tong_siege_list WHERE siege_id="+siegeId+" AND siege_number = "+siegeFightNumber;
 		logger.debug("查询此战场当前波数的参战帮派列表="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int tong_pk = 0;
@@ -68,7 +68,7 @@ public class TongSiegeListDao extends DaoBase
 			String siege_number, int attack_type,int join_type, String tong_pk,
 			int secondlimitdead)
 	{
-		String sql = "INSERT INTO tong_siege_info values (null,?,?,?,?,0,?,?,?)";
+		String sql = "INSERT INTO tong_siege_info VALUES (null,?,?,?,?,0,?,?,?)";
 		
 		logger.debug("插入战场上的个人信息=0"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -114,7 +114,7 @@ public class TongSiegeListDao extends DaoBase
 	public TongSiegeInfoVO getPersonInfo(int p_pk, String siege_id,
 			int siege_number)
 	{
-		String sql = "SELECT * FROM tong_siege_info where p_pk="+p_pk+" and siege_id="+siege_id+" and siege_number="+siege_number;
+		String sql = "SELECT * FROM tong_siege_info WHERE p_pk="+p_pk+" AND siege_id="+siege_id+" AND siege_number="+siege_number;
 		TongSiegeInfoVO tongSiegeInfoVO = null;
 		logger.debug("查询此战场当前波数的参战帮派列表="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -154,7 +154,7 @@ public class TongSiegeListDao extends DaoBase
 	 */
 	public TongSiegeInfoVO getPersonInfo(int p_pk)
 	{
-		String sql = "SELECT * FROM tong_siege_info where p_pk="+p_pk+" order by info_id desc";
+		String sql = "SELECT * FROM tong_siege_info WHERE p_pk="+p_pk+" ORDER BY info_id desc";
 		TongSiegeInfoVO tongSiegeInfoVO = null;
 		logger.debug("查询此战场当前波数的参战帮派列表="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

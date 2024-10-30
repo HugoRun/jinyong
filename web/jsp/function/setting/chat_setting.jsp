@@ -5,11 +5,11 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%
 	SettingInfo settingInfo = (SettingInfo)request.getAttribute("settingInfo");
 %>
-<card id="setting" title="<s:message key = "gamename"/>">
+<card id="setting" title="<bean:message key="gamename"/>">
 <p>
 聊天设置<br/>
 公共聊天频道

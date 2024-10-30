@@ -86,7 +86,7 @@ public class ShituDao {
     }
 
     public void delAsTeacher(Object id) {
-        String sql = "delete from shitu where te_id = " + id;
+        String sql = "DELETE FROM shitu WHERE te_id = " + id;
         try {
             con = new SqlData();
             con.update(sql);
@@ -100,7 +100,7 @@ public class ShituDao {
     }
 
     public void delAll(Object id) {
-        String sql = "delete from shitu where te_id = " + id + " or stu_id = " + id;
+        String sql = "DELETE FROM shitu WHERE te_id = " + id + " or stu_id = " + id;
         try {
             con = new SqlData();
             con.update(sql);
@@ -114,7 +114,7 @@ public class ShituDao {
     }
 
     public void delAsStudent(Object id) {
-        String sql = "delete from shitu where stu_id = " + id;
+        String sql = "DELETE FROM shitu WHERE stu_id = " + id;
         try {
             con = new SqlData();
             con.update(sql);
@@ -128,7 +128,7 @@ public class ShituDao {
     }
 
     public void delbyId(Object id) {
-        String sql = "delete from shitu where id = " + id;
+        String sql = "DELETE FROM shitu WHERE id = " + id;
         try {
             con = new SqlData();
             con.update(sql);
@@ -198,7 +198,7 @@ public class ShituDao {
     }
 
     public void delShitu(Object stu_id) {
-        String sql = "delete from shitu where stu_id = " + stu_id + " and te_id = 0";
+        String sql = "DELETE FROM shitu WHERE stu_id = " + stu_id + " AND te_id = 0";
         try {
             con = new SqlData();
             con.update(sql);

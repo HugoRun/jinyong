@@ -6,7 +6,7 @@
     String b_type = (String)request.getAttribute("b_type");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="index" title="联通一卡充充值方式">
 <p>
 联通一卡充充值【<%=GameConfig.getYuanbaoName() %>】快速通道<br/>

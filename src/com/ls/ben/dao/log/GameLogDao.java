@@ -71,7 +71,7 @@ public class GameLogDao extends DaoBase
 					}
 					catch (SQLException e)
 					{
-						DataErrorLog.debugLogic("gamelog语句问题，sql="+sql);
+						DataErrorLog.debugLogic("gamelog语句问题，sql = "+sql);
 					}
 				}
 				

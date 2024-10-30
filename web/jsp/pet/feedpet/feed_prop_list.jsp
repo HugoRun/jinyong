@@ -10,8 +10,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
-<card id="ID" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%>
+<card id="ID" title="<bean:message key="gamename"/>">
 <p>
 	宠物食物:
 	<br />

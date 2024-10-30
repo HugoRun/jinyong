@@ -28,7 +28,7 @@ public class CreditProceDAO {
      */
     public List<PlayerCreditVO> getPlayerCredit(Integer ppk) {
         try {
-            String sql = "SELECT * FROM p_credit_relation where ppk=" + ppk;
+            String sql = "SELECT * FROM p_credit_relation WHERE ppk = " + ppk;
             udb = new SqlData();
             ResultSet rs = udb.query(sql);
             List<PlayerCreditVO> pcvlist = new ArrayList<PlayerCreditVO>();
@@ -56,7 +56,7 @@ public class CreditProceDAO {
     public PlayerCreditVO getPcvDisplay(Integer pcid) {
         try {
             db = new JyGameDB();
-            String sql = "SELECT * FROM p_credit pc where pc.cid=" + pcid;
+            String sql = "SELECT * FROM p_credit pc WHERE pc.cid = " + pcid;
             ResultSet rs = db.query(sql);
             if (rs.next()) {
                 PlayerCreditVO pcv = new PlayerCreditVO();
@@ -79,8 +79,8 @@ public class CreditProceDAO {
     public Integer checkHaveCondition(Integer ppk, Integer cid, Integer ncount) {
         try {
             udb = new SqlData();
-            String sql = "SELECT pcount from p_credit_relation where ppk="
-                    + ppk + " and cid=" + cid;
+            String sql = "SELECT pcount FROM p_credit_relation WHERE ppk = "
+                    + ppk + " AND cid = " + cid;
             ResultSet rs = udb.query(sql);
             if (rs.next()) {
                 Integer pcount = rs.getInt(1);
@@ -104,8 +104,8 @@ public class CreditProceDAO {
      * 兑换成功后减掉玩家的声望
      **************************************************************************/
     public void subtractCredit(Integer ppk, Integer cid, Integer ncount) {
-        String sql = "update p_credit_relation set pcount=pcount-" + ncount
-                + " where ppk=" + ppk + " and cid=" + cid;
+        String sql = "UPDATE p_credit_relation SET pcount=pcount-" + ncount
+                + " WHERE ppk = " + ppk + " AND cid = " + cid;
         try {
             udb = new SqlData();
             udb.update(sql);
@@ -125,10 +125,10 @@ public class CreditProceDAO {
      * 添加玩家角色声望
      */
     public void addPlayerCredit(Integer ppk, Integer cid, Integer ncount) {
-        String sql1 = "INSERT INTO p_credit_relation values(null," + ppk + ","
+        String sql1 = "INSERT INTO p_credit_relation VALUES(null," + ppk + ","
                 + cid + "," + ncount + ")";
-        String sql2 = "update p_credit_relation set pcount=pcount+" + ncount
-                + " where ppk=" + ppk + " and cid=" + cid;
+        String sql2 = "UPDATE p_credit_relation SET pcount=pcount+" + ncount
+                + " WHERE ppk = " + ppk + " AND cid = " + cid;
         try {
             Integer i = this.checkPlayerHasTheCredit(ppk, cid);
             udb = new SqlData();
@@ -158,7 +158,7 @@ public class CreditProceDAO {
     public void deletePlayerCredit(int ppk, int cid) {
         try {
             udb = new SqlData();
-            String sql1 = "delete from p_credit_relation where ppk = " + ppk + " and cid=" + cid;
+            String sql1 = "DELETE FROM p_credit_relation WHERE ppk = " + ppk + " AND cid = " + cid;
             udb.update(sql1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -171,8 +171,8 @@ public class CreditProceDAO {
      * 判断玩家是否有该声望
      **************************************************************************/
     public Integer checkPlayerHasTheCredit(Integer ppk, Integer cid) {
-        String sql = "SELECT pcount from p_credit_relation where ppk=" + ppk
-                + " and cid=" + cid;
+        String sql = "SELECT pcount FROM p_credit_relation WHERE ppk = " + ppk
+                + " AND cid = " + cid;
         try {
             udb = new SqlData();
             ResultSet rs = udb.query(sql);
@@ -193,7 +193,7 @@ public class CreditProceDAO {
      * 判断荣誉条件是否满足
      **************************************************************************/
     public Integer checkHonorCondition(Integer ppk, Integer excount) {
-        String sql = "SELECT glory_value from u_tong_glory where p_pk=" + ppk;
+        String sql = "SELECT glory_value FROM u_tong_glory WHERE p_pk = " + ppk;
         try {
             udb = new SqlData();
             ResultSet rs = udb.query(sql);
@@ -225,11 +225,11 @@ public class CreditProceDAO {
     public void addPlayerHonor(Integer ppk, Integer excount) {
         Integer tpk = this.getRoleTpk(ppk);
         String pname = this.getTheRoleName(ppk);
-        String sql1 = "INSERT INTO u_tong_glory values(null," + tpk + "," + ppk
+        String sql1 = "INSERT INTO u_tong_glory VALUES(null," + tpk + "," + ppk
                 + "," + pname + ",0," + excount + "," + excount + ")";
-        String sql2 = "update u_tong_glory set intraday_value=intraday+"
+        String sql2 = "UPDATE u_tong_glory SET intraday_value=intraday+"
                 + excount + ",glory_value = glory_value" + excount
-                + " where p_pk=" + ppk;
+                + " WHERE p_pk = " + ppk;
         try {
             udb = new SqlData();
             Integer i = this.checkRoleHaveTheHoner(ppk);
@@ -253,7 +253,7 @@ public class CreditProceDAO {
      * 减掉玩家的荣誉值
      */
     public void subtractHonor(Integer ppk, Integer excount) {
-        String sql = "UPDATE `u_tong_glory` SET glory_value = glory_value - " + excount + " WHERE p_pk=" + ppk;
+        String sql = "UPDATE `u_tong_glory` SET glory_value = glory_value - " + excount + " WHERE p_pk = " + ppk;
         try {
             udb = new SqlData();
             udb.update(sql);
@@ -270,7 +270,7 @@ public class CreditProceDAO {
      * 获取角色的帮会ID
      **************************************************************************/
     public Integer getRoleTpk(Integer ppk) {
-        String sql = "SELECT p_tong from u_part_info where p_pk=" + ppk;
+        String sql = "SELECT p_tong FROM u_part_info WHERE p_pk = " + ppk;
         try {
             udb = new SqlData();
             ResultSet rs = udb.query(sql);
@@ -289,7 +289,7 @@ public class CreditProceDAO {
      * 判断该角色是否有荣誉
      **************************************************************************/
     public Integer checkRoleHaveTheHoner(Integer ppk) {
-        String sql = "SELECT * FROM u_tong_glory where p_pk=" + ppk;
+        String sql = "SELECT * FROM u_tong_glory WHERE p_pk = " + ppk;
         try {
             udb = new SqlData();
             ResultSet rs = udb.query(sql);
@@ -310,7 +310,7 @@ public class CreditProceDAO {
      * 查询该角色的角色名
      **************************************************************************/
     public String getTheRoleName(Integer ppk) {
-        String sql = "SELECT p_name from u_part_info where p_pk=" + ppk;
+        String sql = "SELECT p_name FROM u_part_info WHERE p_pk = " + ppk;
         try {
             udb = new SqlData();
             ResultSet rs = udb.query(sql);

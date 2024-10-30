@@ -14,7 +14,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		boolean x = false;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT p_pk from u_envelop where e_state = 1 and e_type = 0 and p_pk = " + p_pk;
+		String sql = "SELECT p_pk FROM u_envelop WHERE e_state = 1 AND e_type = 0 AND p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -44,7 +44,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		Date x = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT end_time from u_envelop where p_pk = " + p_pk;
+		String sql = "SELECT end_time FROM u_envelop WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -73,7 +73,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "delete from u_envelop where p_pk = " + p_pk;
+		String sql = "DELETE FROM u_envelop WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -96,7 +96,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "update u_envelop set e_state = 0 where p_pk = " + p_pk;
+		String sql = "UPDATE u_envelop SET e_state = 0 WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -120,7 +120,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		boolean x = false;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT p_pk from u_envelop where e_type = 1 and p_pk = " + p_pk;
+		String sql = "SELECT p_pk FROM u_envelop WHERE e_type = 1 AND p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{

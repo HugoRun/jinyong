@@ -6,10 +6,10 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
-    <s:message key = "gamename"/>4月3日更新，清明节活动上线！4月3日～4月10日，<br/>
+    <bean:message key="gamename"/>4月3日更新，清明节活动上线！4月3日～4月10日，<br/>
     10级以上的玩家每天可在临安天街广场王重阳处领取5次清明节活动任务，
     <br/>
     每完成一次任务即可获得【青团】×1（【青团】使用后可获得30分钟5倍经验祝福效果），<br/>

@@ -26,7 +26,7 @@ public class FUpgradeMaterialDao extends BasicDaoSupport<FUpgradeMaterial>
 	 */
 	public FUpgradeMaterial getOneByType(int type,int grade)
 	{
-		return super.getOneBySql("where type = "+type+" and grade="+grade);
+		return super.getOneBySql("where type = "+type+" AND grade="+grade);
 	}
 	
 	@Override

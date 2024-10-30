@@ -226,10 +226,10 @@ public class LoginAction extends ActionBase {
                 }
             }
         }
-    				
-    	/*好友上线系统消息提示
-    	 * ClewService clewService = new ClewService();
-    	clewService.loginClew(pPk);*/
+
+        /* 好友上线系统消息提示 */
+        // ClewService clewService = new ClewService();
+        // clewService.loginClew(pPk);
 
         int oneline_time = playerService.getOnlineTimeInThisWeek(pPk);//本周在线时间
         request.setAttribute("role_name", role_info.getName());
@@ -386,6 +386,7 @@ public class LoginAction extends ActionBase {
      * 测试登陆页面  万能密码使用页面
      */
     public ActionForward n10(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         String name = request.getParameter("name");
         String pwd = request.getParameter("paw");
         String hint = null;

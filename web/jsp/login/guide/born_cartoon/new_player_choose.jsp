@@ -7,8 +7,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 您好，欢迎您进入《<%=GameConfig.getGameName() %>》,您是否是第一次玩,如果您从未玩过这款游戏,您可以选择观看新手指导.<br/>
 <anchor> 

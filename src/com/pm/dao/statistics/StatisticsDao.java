@@ -14,12 +14,13 @@ public class StatisticsDao extends DaoBase {
     /**
      * 获得在线时间表中是否有此uPk的记录
      *
-     * @param pk
-     * @return
+     * @param uPk
+     * @param today
+     * @return int
      */
     public int hasOnlineTimeRecord(String uPk, String today) {
         int flag = 0;
-        String sql = "SELECT id from user_online_time where u_pk=" + uPk + " and recordTime = '" + today + "'";
+        String sql = "SELECT id FROM user_online_time WHERE u_pk = " + uPk + " AND recordTime = '" + today + "'";
         logger.debug("查询是否有统计记录:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -47,7 +48,7 @@ public class StatisticsDao extends DaoBase {
      */
     public void updateOnLineTime(String uPk, long onlinetime, String today) {
 
-        String sql = "update user_online_time set onlinetime = onlinetime + " + onlinetime + " where u_pk=" + uPk + " and recordTime = '" + today + "'";
+        String sql = "UPDATE user_online_time SET onlinetime = onlinetime + " + onlinetime + " WHERE u_pk = " + uPk + " AND recordTime = '" + today + "'";
         logger.debug("更新玩家的在线时间:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -69,7 +70,7 @@ public class StatisticsDao extends DaoBase {
      * @param uPk
      */
     public void insertToLoginInfo(int uPk) {
-        String sql = "INSERT INTO p_record_login values (null,'" + uPk + "',1,now())";
+        String sql = "INSERT INTO p_record_logIN VALUES (null,'" + uPk + "',1,now())";
         logger.debug("创建角色时创建系统设置:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -93,7 +94,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int hasRecord(int uPk) {
         int flag = 0;
-        String sql = "SELECT id from p_record_login where u_pk=" + uPk;
+        String sql = "SELECT id FROM p_record_logIN WHERE u_pk = " + uPk;
         logger.debug("查询是否有统计记录:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -121,7 +122,7 @@ public class StatisticsDao extends DaoBase {
      */
     public void updateLoginInfo(int uPk) {
 
-        String sql = "update p_record_login set loginTime = now(), loginStatus = 1 where u_pk=" + uPk;
+        String sql = "UPDATE p_record_logIN SET loginTime = now(), loginStatus = 1 WHERE u_pk = " + uPk;
         logger.debug("创建角色时创建系统设置:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -145,7 +146,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int hasRecordPPk(String pPk) {
         int flag = 0;
-        String sql = "SELECT id from user_record_login where p_pk=" + pPk;
+        String sql = "SELECT id FROM user_record_logIN WHERE p_pk=" + pPk;
         logger.debug("查询是否有统计记录:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -170,11 +171,11 @@ public class StatisticsDao extends DaoBase {
     /**
      * 插入角色信息记录表
      *
-     * @param pk
+     * @param pPk
      * @param p_grade
      */
     public void insertToPersonLoginInfo(String pPk, int p_grade) {
-        String sql = "INSERT INTO user_record_login values (null,'" + pPk + "','" + p_grade + "',1,now())";
+        String sql = "INSERT INTO user_record_logIN VALUES (null,'" + pPk + "','" + p_grade + "',1,now())";
         logger.debug("插入角色信息记录表:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -194,11 +195,11 @@ public class StatisticsDao extends DaoBase {
     /**
      * 更新角色登陆信息统计表
      *
-     * @param pk
-     * @param p_grade
+     * @param pPk pPk
+     * @param p_grade p_grade
      */
     public void updatePersonLoginInfo(String pPk, int p_grade) {
-        String sql = "update user_record_login set loginTime = now(), loginStatus = 1, p_grade = " + p_grade + " where p_pk=" + pPk;
+        String sql = "UPDATE user_record_logIN SET loginTime = now(), loginStatus = 1, p_grade = " + p_grade + " WHERE p_pk=" + pPk;
         logger.debug("更新角色登陆信息统计表:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -218,12 +219,13 @@ public class StatisticsDao extends DaoBase {
     /**
      * 插入角色在线时间
      *
-     * @param pk
-     * @param pk2
+     * @param uPk
+     * @param pPk
      * @param onlineTime
+     * @param today
      */
     public void insertOnLineTime(String uPk, String pPk, long onlineTime, String today) {
-        String sql = "INSERT INTO user_online_time values (null," + uPk + "," + pPk + "," + onlineTime + ",'" + today + "',now())";
+        String sql = "INSERT INTO user_online_time VALUES (null," + uPk + "," + pPk + "," + onlineTime + ",'" + today + "',now())";
         logger.debug(" 插入在线时间:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -250,7 +252,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getAllUserGradeInfo(int startGrade, int endGrade) {
         int person_num = 0;
-        String sql = "SELECT sum(1) as person_num from u_part_info where p_grade >" + startGrade + " and p_grade < " + endGrade;
+        String sql = "SELECT SUM (1) AS person_num FROM u_part_info WHERE p_grade >" + startGrade + " AND p_grade < " + endGrade;
         logger.debug("选择开始等级和结束等级的人数量=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -285,7 +287,7 @@ public class StatisticsDao extends DaoBase {
      * @param today
      */
     public void insertEveryDayPlayerGrade(int grade1, int grade2to9, int grade10to19, int grade20to29, int grade30to39, int grade40to49, int grade50to59, int grade60, int avg_grade, String today) {
-        String sql = "INSERT INTO user_everyday_grade values (null," + grade1 + "," + grade2to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + "," + avg_grade + ",'" + today + "',now())";
+        String sql = "INSERT INTO user_everyday_grade VALUES (null," + grade1 + "," + grade2to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + "," + avg_grade + ",'" + today + "',now())";
         logger.debug("插入到每日玩家等级信息表中:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -310,7 +312,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getOnlinePlayerGrade(int startGrade, int endGrade) {
         int person_num = 0;
-        String sql = "SELECT sum(1) as person_num from user_record_login where p_grade >" + startGrade + " and p_grade < " + endGrade + " and now() < (loginTime + INTERVAL 1 DAY)";
+        String sql = "SELECT SUM (1) AS person_num FROM user_record_logIN WHERE p_grade >" + startGrade + " AND p_grade < " + endGrade + " AND now() < (loginTime + INTERVAL 1 DAY)";
         logger.debug("在一天内选择开始等级和结束等级的人数量=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -334,8 +336,7 @@ public class StatisticsDao extends DaoBase {
     /**
      * 插入到每日上线玩家等级表中
      *
-     * @param grade1
-     * @param grade2to9
+     * @param grade1to9
      * @param grade10to19
      * @param grade20to29
      * @param grade30to39
@@ -345,7 +346,7 @@ public class StatisticsDao extends DaoBase {
      * @param today
      */
     public void insertIntoOnlinePlayerGrade(int grade1to9, int grade10to19, int grade20to29, int grade30to39, int grade40to49, int grade50to59, int grade60, String today) {
-        String sql = "INSERT INTO user_login_grade values (null," + grade1to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'" + today + "',now())";
+        String sql = "INSERT INTO user_login_grade VALUES (null," + grade1to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'" + today + "',now())";
         logger.debug("插入到每日上线玩家等级信息表中:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -373,7 +374,7 @@ public class StatisticsDao extends DaoBase {
         int person_num = 0;
         // 联合查询, 取出在p_record_login表中登陆最后时间超过七天的u_pk的集合，再取出
         // u_part_info表中在此集合中的所有角色的数量，此数量由在参数所决定的等级段决定.
-        String sql = "SELECT sum(1) as num from u_part_info u where p_grade > " + startGrade + " and p_grade < " + endGrade + " and u.u_pk in (select u_pk from (select p.u_pk from u_login_info p where now() > " + " (p.last_login_time + INTERVAL 7 DAY)) aaa)";
+        String sql = "SELECT SUM (1) AS num FROM u_part_info u WHERE p_grade > " + startGrade + " AND p_grade < " + endGrade + " AND u.u_pk IN (SELECT u_pk FROM (SELECT p.u_pk FROM u_login_info p WHERE now() > " + " (p.last_login_time + INTERVAL 7 DAY)) aaa)";
         logger.debug("选择开始等级和结束等级的沉默角色数量=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -407,7 +408,7 @@ public class StatisticsDao extends DaoBase {
      * @param today
      */
     public void insertIntoSilverPlayerGrade(int grade1to9, int grade10to19, int grade20to29, int grade30to39, int grade40to49, int grade50to59, int grade60, String today) {
-        String sql = "INSERT INTO user_silence_grade values (null," + grade1to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'" + today + "',now())";
+        String sql = "INSERT INTO user_silence_grade VALUES (null," + grade1to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'" + today + "',now())";
         logger.debug("插入到沉默玩家等级信息表中:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -432,7 +433,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getOnlinePlayerTime(int least, int most) {
         int person_num = 0;
-        String sql = "SELECT sum(1) as person_num from user_online_time where onlinetime > " + least * 60 + " and onlinetime < " + most * 60;
+        String sql = "SELECT SUM (1) AS person_num FROM user_online_time WHERE onlinetime > " + least * 60 + " AND onlinetime < " + most * 60;
         logger.debug("获得在最少时间和最多时间之间的玩家角色数=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -464,7 +465,7 @@ public class StatisticsDao extends DaoBase {
      * @param today
      */
     public void insertIntoOnlineTime(int time10min, int time30min, int time60min, int time120min, int time120minUp, String today) {
-        String sql = "INSERT INTO user_grade_statistics values (null," + time10min + "," + time30min + "," + time60min + "," + time120min + "," + time120minUp + ",'" + today + "',now())";
+        String sql = "INSERT INTO user_grade_statistics VALUES (null," + time10min + "," + time30min + "," + time60min + "," + time120min + "," + time120minUp + ",'" + today + "',now())";
         logger.debug("插入到每日上线时间信息表中:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -487,7 +488,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getAllRegistNum() {
         int allRegistNum = 0;
-        String sql = "SELECT sum(1) as person_num from u_login_info";
+        String sql = "SELECT SUM (1) AS person_num FROM u_login_info";
         logger.debug("获得注册总人数=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -516,7 +517,7 @@ public class StatisticsDao extends DaoBase {
     public int getAllUserNum() {
 
         int allUserNum = 0;
-        String sql = "SELECT sum(1) as person_num from u_part_info";
+        String sql = "SELECT SUM (1) AS person_num FROM u_part_info";
         logger.debug("获得角色总数=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -544,7 +545,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getTodayRegistNum(String date) {
         int allTodayRegistNum = 0;
-        String sql = "SELECT sum(1) as person_num from u_login_info where create_time like '%" + date + "%'";
+        String sql = "SELECT SUM (1) AS person_num FROM u_login_info WHERE create_time LIKE '%" + date + "%'";
         logger.debug("获得今日注册玩家数=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -572,7 +573,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getTodayOnlineNum() {
         int allTodayOnlineNum = 0;
-        String sql = "SELECT sum(1) as all_num from u_login_info where now() < (last_login_time + INTERVAL 1 DAY)";
+        String sql = "SELECT SUM (1) AS all_num FROM u_login_info WHERE now() < (last_login_time + INTERVAL 1 DAY)";
         logger.debug("今日在线玩家=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -600,7 +601,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getTodayActiveNum(String today) {
         int allTodayActiveNum = 0;
-        String sql = "SELECT sum(1) as active_num from user_online_time where onlinetime > 1800 and createTime like '%" + today + "%'";
+        String sql = "SELECT SUM (1) AS active_num FROM user_online_time WHERE onlinetime > 1800 AND createTime LIKE '%" + today + "%'";
         logger.debug("今日活跃用户=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -628,7 +629,7 @@ public class StatisticsDao extends DaoBase {
      */
     public long getAllPlayerOnlineTime() {
         long allPlayerOnlineTime = 0L;
-        String sql = "SELECT sum(onlinetime) as all_online_time from user_online_time where now() < (createTime + INTERVAL 1 DAY)";
+        String sql = "SELECT SUM (onlinetime) AS all_online_time FROM user_online_time WHERE now() < (createTime + INTERVAL 1 DAY)";
         logger.debug("获得所有用户在线时间=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -656,7 +657,7 @@ public class StatisticsDao extends DaoBase {
      */
     public double getAvgPlayerOnlineGrade(int grade) {
         double avgPlayerOnlineGrade = 0L;
-        String sql = "SELECT avg(p_grade) as avg_grade from user_record_login where p_grade > " + grade + " and now() < (loginTime + INTERVAL 1 DAY)";
+        String sql = "SELECT avg(p_grade) AS avg_grade FROM user_record_logIN WHERE p_grade > " + grade + " AND now() < (loginTime + INTERVAL 1 DAY)";
         logger.debug("获得平均角色在线等级=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -684,7 +685,7 @@ public class StatisticsDao extends DaoBase {
      */
     public double getAvgPlayerOnlineNum(String today) {
         double avgPlayerOnlineNum = 0;
-        String sql = "SELECT (hour_0+hour_1+hour_2+hour_3+hour_4+hour_5+hour_6" + "+hour_7+hour_8+hour_9+hour_10+hour_11+hour_12+hour_13+hour_14+hour_15" + "+hour_16+hour_17+hour_18+hour_19+hour_20+hour_21+hour_22+hour_23) as " + "avg_player_num,createTime from user_online_num where createTime = '" + today + "'";
+        String sql = "SELECT (hour_0+hour_1+hour_2+hour_3+hour_4+hour_5+hour_6" + "+hour_7+hour_8+hour_9+hour_10+hour_11+hour_12+hour_13+hour_14+hour_15" + "+hour_16+hour_17+hour_18+hour_19+hour_20+hour_21+hour_22+hour_23) AS " + "avg_player_num,createTime FROM user_online_num WHERE createTime = '" + today + "'";
         logger.debug("获得平均在线人数=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -717,13 +718,13 @@ public class StatisticsDao extends DaoBase {
                 + " WHERE createTime = '" + today + "'";
         String sql2 = "INSERT INTO `user_online_num` (id, hour_" + Integer.parseInt(hours) + ", createTime) VALUES"
                 + "(null, " + nowOnlineNum + ", date(now()))";
-        logger.debug(" 插入玩家在线时间段人数=" + sql1);
+        logger.debug(" 插入玩家在线时间段人数 = " + sql1);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
             conn = dbConn.getConn();
             ps = conn.prepareStatement(sql1);
             int i = ps.executeUpdate();
-            logger.debug("更新的返回值=" + i);
+            logger.debug("更新的返回值 = " + i);
             if (i == 0) {
                 ps = conn.prepareStatement(sql2);
                 int a = ps.executeUpdate();
@@ -752,7 +753,7 @@ public class StatisticsDao extends DaoBase {
      * @param today
      */
     public void insertPlayerInfoOverview(int allRegeistNum, int allUserNum, int todayRegistNum, int todayOnlineNum, int todayActiveNum, int avgPlaerOnlineTime, double avgPlayerOnlineGrade, double avgPlayerOnlineNum, int grade9today, String today) {
-        String sql = "INSERT INTO user_info_overview values (null," + allRegeistNum + "," + allUserNum + "," + todayRegistNum + "," + todayOnlineNum + "," + todayActiveNum + "," + avgPlaerOnlineTime + "," + avgPlayerOnlineGrade + "," + avgPlayerOnlineNum + "," + grade9today + ",'" + today + "',now())";
+        String sql = "INSERT INTO user_info_overview VALUES (null," + allRegeistNum + "," + allUserNum + "," + todayRegistNum + "," + todayOnlineNum + "," + todayActiveNum + "," + avgPlaerOnlineTime + "," + avgPlayerOnlineGrade + "," + avgPlayerOnlineNum + "," + grade9today + ",'" + today + "',now())";
         logger.debug(" 插入玩家总览表=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -773,8 +774,8 @@ public class StatisticsDao extends DaoBase {
      * 删除不需要的数据
      */
     public void deleteUnneedRecordData() {
-        String sql = "delete from user_record_login where now() < (loginTime + INTERVAL 1 DAY)";
-        String sql1 = "delete from user_online_time where now() < (createTime + INTERVAL 1 DAY)";
+        String sql = "DELETE FROM user_record_logIN WHERE now() < (loginTime + INTERVAL 1 DAY)";
+        String sql1 = "DELETE FROM user_online_time WHERE now() < (createTime + INTERVAL 1 DAY)";
         logger.debug(" 删除不需要的数据=" + sql + " ,sql1=" + sql1);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -794,13 +795,13 @@ public class StatisticsDao extends DaoBase {
     /**
      * 获取平均等级
      *
-     * @param i
+     * @param minGrade
      * @return
      */
     public int getAvgGrade(int minGrade) {
         int avg_grade = 0;
-        String sql = "SELECT avg(p_grade) as avg_grade from u_part_info where p_grade > " + minGrade;
-        logger.debug("获取平均等级=" + sql);
+        String sql = "SELECT avg(p_grade) AS avg_grade FROM u_part_info WHERE p_grade > " + minGrade;
+        logger.debug("获取平均等级 = " + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
             conn = dbConn.getConn();
@@ -830,8 +831,8 @@ public class StatisticsDao extends DaoBase {
     public int getNowHourNum(String nowHours, String today) {
 
         int nowNum = 0;
-        String sql = "SELECT hour_" + Integer.parseInt(nowHours) + " as num from user_online_num where createTime = '" + today + "'";
-        logger.debug("获取平均等级=" + sql);
+        String sql = "SELECT hour_" + Integer.parseInt(nowHours) + " AS num FROM user_online_num WHERE createTime = '" + today + "'";
+        logger.debug("获取平均等级 = " + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
             conn = dbConn.getConn();
@@ -856,7 +857,7 @@ public class StatisticsDao extends DaoBase {
      */
     public int getGrade9today(int grade, String today) {
         int num = 0;
-        String sql = "SELECT count(*) as num from u_part_info where p_grade > " + grade + " and create_time like '%" + today + "%'";
+        String sql = "SELECT COUNT(*) AS num FROM u_part_info WHERE p_grade > " + grade + " AND create_time LIKE '%" + today + "%'";
         logger.debug("每天超过9级的玩家=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         try {
@@ -882,7 +883,7 @@ public class StatisticsDao extends DaoBase {
  * 查看玩家在线时间段表中是否有当天的记录
  *
  * @return public int hasOnlineNumRecord(String today) { int flag = 0; String sql =
- * "select sum(1) as has_num from user_online_num where record_time =
+ * "SELECT SUM (1) AS has_num FROM user_online_num WHERE record_time =
  * '"+today+"'"; logger.debug("查看玩家在线时间段表中是否有当天的记录="+sql); DBConnection dbConn =
  * new DBConnection(DBConnection.JYGAMEUSER_DB); try{ conn = dbConn.getConn();
  * stmt = conn.createStatement(); rs = stmt.executeQuery(sql); if (rs.next()) {
@@ -900,8 +901,8 @@ public class StatisticsDao extends DaoBase {
  * @param today
  *
  * public void updatePlayerOnlineNumRecord(int nowOnlineNum, String nowHours,
- * String today) { String col = "hours"+nowHours; String sql = "update
- * user_online_num set hour_time = "+nowOnlineNum+" where record_time =
+ * String today) { String col = "hours"+nowHours; String sql = "UPDATE
+ * user_online_num SET hour_time = "+nowOnlineNum+" WHERE record_time =
  * '"+today+"'"; logger.debug("更新插入用户在线时间段表="+sql); DBConnection dbConn = new
  * DBConnection(DBConnection.JYGAMEUSER_DB); try{ conn = dbConn.getConn(); ps =
  * conn.prepareStatement(sql); ps.executeUpdate(); ps.close();

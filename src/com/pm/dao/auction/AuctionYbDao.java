@@ -35,7 +35,7 @@ public class AuctionYbDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "SELECT count(*) from u_auction_yb where uyb_state=" + AuctionNumber.YUANSELLING + "";
+			count_sql = "SELECT COUNT(*) FROM u_auction_yb WHERE uyb_state=" + AuctionNumber.YUANSELLING + "";
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -46,8 +46,8 @@ public class AuctionYbDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			String page_sql = "SELECT * FROM u_auction_yb where  uyb_state = " + AuctionNumber.YUANSELLING + 
-					" limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
+			String page_sql = "SELECT * FROM u_auction_yb WHERE uyb_state = " + AuctionNumber.YUANSELLING + 
+					" LIMIT " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			
 			logger.debug(page_sql);
 			
@@ -88,7 +88,7 @@ public class AuctionYbDao extends DaoBase {
 	 */
 	public AuctionYBVO getAuctionYbByUybId(String uyb_id,int uyb_state)
 	{
-		String sql = "SELECT * FROM u_auction_yb where uyb_id = "+uyb_id+" and uyb_state = "+uyb_state;
+		String sql = "SELECT * FROM u_auction_yb WHERE uyb_id = "+uyb_id+" AND uyb_state = "+uyb_state;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionYBVO vo = null;
 		logger.debug("根据 拍卖"+GameConfig.getYuanbaoName()+"表id 获得 "+GameConfig.getYuanbaoName()+"拍卖信息="+sql);
@@ -126,7 +126,7 @@ public class AuctionYbDao extends DaoBase {
 	 */
 	public AuctionYBVO getAuctionYbByUybId(String uyb_id,int uyb_state,int pPk)
 	{
-		String sql = "SELECT * FROM u_auction_yb where uyb_id = "+uyb_id+" and uyb_state = "+uyb_state + " and p_pk="+pPk;
+		String sql = "SELECT * FROM u_auction_yb WHERE uyb_id = "+uyb_id+" AND uyb_state = "+uyb_state + " AND p_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionYBVO vo = null;
 		logger.debug("根据 拍卖"+GameConfig.getYuanbaoName()+"表id 获得"+GameConfig.getYuanbaoName()+"拍卖信息="+sql);
@@ -164,7 +164,7 @@ public class AuctionYbDao extends DaoBase {
 	public List<AuctionYBVO> getAllAuctionYbList()
 	{
 		List<AuctionYBVO> list = new ArrayList<AuctionYBVO>();
-		String sql = "SELECT * FROM u_auction_yb where now() > (auction_time + INTERVAL 3 DAY) and uyb_state="+AuctionNumber.YUANSELLING;
+		String sql = "SELECT * FROM u_auction_yb WHERE now() > (auction_time + INTERVAL 3 DAY) AND uyb_state="+AuctionNumber.YUANSELLING;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionYBVO vo = null;
 		logger.debug("获得所有超过三天的正在卖出的"+GameConfig.getYuanbaoName()+" 信息="+sql);
@@ -201,7 +201,7 @@ public class AuctionYbDao extends DaoBase {
 	 */
 	public void updateAllSailedYuanbaoToUnSaleEd()
 	{
-		String sql = "update u_auction_yb set uyb_state = "+AuctionNumber.YUANNOTSELL+" where now() > (auction_time + INTERVAL 3 DAY) and uyb_state="+AuctionNumber.YUANSELLING;
+		String sql = "UPDATE u_auction_yb SET uyb_state = "+AuctionNumber.YUANNOTSELL+" WHERE now() > (auction_time + INTERVAL 3 DAY) AND uyb_state="+AuctionNumber.YUANSELLING;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("将超过三天拍卖失败的"+GameConfig.getYuanbaoName()+"置于下架状态="+sql);
 		conn = dbConn.getConn();
@@ -227,7 +227,7 @@ public class AuctionYbDao extends DaoBase {
 	
 	public void updateYuanbaoState(int uybId, int sellState)
 	{
-		String sql = "update u_auction_yb set uyb_state = "+sellState+" where uyb_id="+uybId;
+		String sql = "UPDATE u_auction_yb SET uyb_state = "+sellState+" WHERE uyb_id="+uybId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug("将此条"+GameConfig.getYuanbaoName()+"拍卖信息的状态置为sellState="+sql);
@@ -253,7 +253,7 @@ public class AuctionYbDao extends DaoBase {
 	 */
 	public void insertYuanbao(int pPk, int paimaiYuanBao, long money)
 	{
-		String sql = "INSERT INTO u_auction_yb values (null,"+pPk+",1,"+paimaiYuanBao+","+money+",now())";
+		String sql = "INSERT INTO u_auction_yb VALUES (null,"+pPk+",1,"+paimaiYuanBao+","+money+",now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug("将拍卖信息插入到"+GameConfig.getYuanbaoName()+"拍卖场中="+sql);
@@ -280,7 +280,7 @@ public class AuctionYbDao extends DaoBase {
 	public void insertYuanbaoInfo(int pPk, AuctionYBVO auctionYBVO,
 			String jiluString)
 	{
-		String sql = "INSERT INTO u_auctionyb_auctioninfo values (null,"+pPk+
+		String sql = "INSERT INTO u_auctionyb_auctioninfo VALUES (null,"+pPk+
 					","+auctionYBVO.getPPk()+",'"+jiluString+"',now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

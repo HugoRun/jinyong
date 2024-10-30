@@ -25,7 +25,7 @@ public class EquipAppendAttributeDao extends DaoBase
 	{
 		List<EquipAppendAttributeVO> appendAttributes = new ArrayList<EquipAppendAttributeVO>();
 		EquipAppendAttributeVO appendAttribute = null;
-		String sql = "SELECT * FROM equip_append_attribute where attribute_type not in (1,2) and equip_type=" + equip_type + " and quality="+quality+" and level_lower <=" + equip_level + " and "+ equip_level+"<=level_upper order by rand() limit " + attribute_num;
+		String sql = "SELECT * FROM equip_append_attribute WHERE attribute_type not IN (1,2) AND equip_type=" + equip_type + " AND quality="+quality+" AND level_lower <=" + equip_level + " AND "+ equip_level+"<=level_upper ORDER BY rand() LIMIT " + attribute_num;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -63,7 +63,7 @@ public class EquipAppendAttributeDao extends DaoBase
 	{
 		List<EquipAppendAttributeVO> appendAttributes = new ArrayList<EquipAppendAttributeVO>();
 		EquipAppendAttributeVO appendAttribute = null;
-		String sql = "SELECT * FROM equip_append_attribute where attribute_type in (1,2) and equip_type=" + equip_type + " and quality="+quality+" and level_lower <=" + equip_level + " and "+ equip_level+"<=level_upper order by rand() ";
+		String sql = "SELECT * FROM equip_append_attribute WHERE attribute_type IN (1,2) AND equip_type=" + equip_type + " AND quality="+quality+" AND level_lower <=" + equip_level + " AND "+ equip_level+"<=level_upper ORDER BY rand() ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

@@ -28,25 +28,28 @@ public class SessionValidityFilter implements Filter {
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
         try {
-            HttpServletResponse response = (HttpServletResponse) servletResponse;
             HttpServletRequest request = (HttpServletRequest) servletRequest;
-
-            String uPk = (String) request.getSession().getAttribute("uPk");
-
-            RoleService roleService = new RoleService();
-            RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-
+            HttpServletResponse response = (HttpServletResponse) servletResponse;
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/vnd.wap.wml; charset=UTF-8");
-
+            // 排除过滤的文件
+            if(request.getServletPath().startsWith("/login")){
+                filterChain.doFilter(request, response);
+                return;
+            }
+            //
+            String uPk = (String) request.getSession().getAttribute("uPk");
+            RoleService roleService = new RoleService();
+            RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+            // 进行过滤
             if (uPk == null || roleInfo == null) {
                 // 如果用户信息无效则跳转到登陆界面
-                logger.info("session监听器中的跳转到登陆界面时的uPk = " + uPk + ", roleInfo = " + roleInfo);
+                logger.debug("session监听器中的跳转到登陆界面时的uPk = " + uPk + ", roleInfo = " + roleInfo);
                 request.getRequestDispatcher("/jsp/out_page.jsp").forward(request, response);
                 return;
             } else if (roleInfo.getBasicInfo().getUPk() != Integer.parseInt(uPk)) {
                 // 如果该角色不是登录账号的角色，让用重新登陆，防止用户篡改p_pk
-                logger.info("session监听器中的跳转到登陆界面时的uPk = " + uPk + ", roleInfo中的uPk = " + roleInfo.getBasicInfo().getUPk());
+                logger.debug("session监听器中的跳转到登陆界面时的uPk = " + uPk + ", roleInfo中的uPk = " + roleInfo.getBasicInfo().getUPk());
                 request.getRequestDispatcher("/jsp/out_page.jsp").forward(request, response);
                 return;
             }

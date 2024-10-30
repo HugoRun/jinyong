@@ -39,7 +39,7 @@ public class LostAction extends BaseAction
 		try
 		{
 			String where = request.getParameter("where");
-			if (where == null || "".equals(where.trim()))
+			if (where == null || where.trim().isEmpty())
 			{
 				setMessage(request, "出错了");
 				return mapping.findForward("mess");

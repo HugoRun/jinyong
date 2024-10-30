@@ -8,7 +8,7 @@
 <%@page import="com.ls.pub.config.GameConfig"%>
 
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="index" title="充值确认">
 <p>
 <%

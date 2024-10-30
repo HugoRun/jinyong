@@ -83,7 +83,7 @@ public class NpcAttackDao extends DaoBase {
 		NpcAttackVO temp_npc = null;
 		String sql = "INSERT INTO n_attack_info (p_pk,n_current_HP,n_attackswitch,npc_ID,npc_Name,npc_HP," +
 		"npc_defence_da,npc_defence_xiao,npc_jin_fy," +
-		"npc_mu_fy,npc_shui_fy,npc_huo_fy,npc_tu_fy,npc_drop,npc_Level,npc_EXP,npc_money,npc_take,npc_refurbish_time,scene_id,npc_isAttack,create_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
+		"npc_mu_fy,npc_shui_fy,npc_huo_fy,npc_tu_fy,npc_drop,npc_Level,npc_EXP,npc_money,npc_take,npc_refurbish_time,scene_id,npc_isAttack,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try
@@ -144,7 +144,7 @@ public class NpcAttackDao extends DaoBase {
 //		
 //			String sql = "INSERT INTO n_attack_info (p_pk,n_current_HP,n_attackswitch,npc_ID,npc_Name,npc_HP," +
 //					"npc_defence_da,npc_defence_xiao,npc_jin_fy," +
-//					"npc_mu_fy,npc_shui_fy,npc_huo_fy,npc_tu_fy,npc_drop,npc_Level,npc_EXP,npc_money,npc_take,scene_id,npc_key,npc_isAttack,npc_type,create_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
+//					"npc_mu_fy,npc_shui_fy,npc_huo_fy,npc_tu_fy,npc_drop,npc_Level,npc_EXP,npc_money,npc_take,scene_id,npc_key,npc_isAttack,npc_type,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
 //			logger.debug(sql);
 //			PreparedStatement ps = conn.prepareStatement(sql);
 //			int i=1;
@@ -194,7 +194,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "SELECT n_pk from n_attack_info where npc_key="+key;
+			String sql = "SELECT n_pk FROM n_attack_info WHERE npc_key = "+key;
 			logger.debug(sql);
 			stmt = conn.createStatement(); // 生成prepareStatement 对象
 			rs = stmt.executeQuery(sql); 
@@ -231,7 +231,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "SELECT * FROM n_attack_info where n_pk="+id;
+			String sql = "SELECT * FROM n_attack_info WHERE n_pk = "+id;
 			logger.debug(sql);
 			stmt = conn.createStatement(); // 生成prepareStatement 对象
 			rs = stmt.executeQuery(sql); 
@@ -302,7 +302,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update n_attack_info set n_current_HP = n_current_HP -" + characterInjure + "-"+petInjure+"  where n_pk=" + id;
+			String sql = "UPDATE n_attack_info SET n_current_HP = n_current_HP -" + characterInjure + "-"+petInjure+"  WHERE n_pk = " + id;
 			logger.debug(sql);
 			stmt = conn.createStatement(); // 生成prepareStatement 对象
 			result = stmt.executeUpdate(sql); 
@@ -333,7 +333,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update n_attack_info set n_current_HP = n_current_HP -" + injure+"  where n_pk=" + id;
+			String sql = "UPDATE n_attack_info SET n_current_HP = n_current_HP -" + injure+"  WHERE n_pk = " + id;
 			logger.debug(sql);
 			stmt = conn.createStatement(); // 生成prepareStatement 对象
 			result = stmt.executeUpdate(sql); 
@@ -365,7 +365,7 @@ public class NpcAttackDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT * FROM n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + "  and scene_id = "+scene_id+"  order by n_pk limit 1";
+			String sql = "SELECT * FROM n_attack_info WHERE npc_isAttack=1 AND p_pk = " + p_pk + "  AND scene_id = "+scene_id+"  ORDER BY n_pk LIMIT 1";
 
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
@@ -429,7 +429,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "delete from n_attack_info where p_pk=" + p_pk;
+			String sql = "DELETE FROM n_attack_info WHERE p_pk = " + p_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -458,7 +458,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "delete from n_attack_info where p_pk='"+p_pk+"' and npc_isAttack="+state;
+			String sql = "DELETE FROM n_attack_info WHERE p_pk='"+p_pk+"' AND npc_isAttack = "+state;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -487,7 +487,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "delete from n_attack_info where n_pk=" + n_pk;
+			String sql = "DELETE FROM n_attack_info WHERE n_pk = " + n_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -517,7 +517,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set npc_isAttack=1   where  n_pk=" + n_pk;
+			String sql = "UPDATE  n_attack_info SET npc_isAttack=1   WHERE n_pk = " + n_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -545,7 +545,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set npc_isAttack=1   where n_attackswitch=1 and p_pk=" + p_pk;
+			String sql = "UPDATE  n_attack_info SET npc_isAttack=1   WHERE n_attackswitch=1 AND p_pk = " + p_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -573,7 +573,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set npc_bout_injure=0,npc_pet_injure=0   where npc_isAttack=1 and p_pk=" + p_pk;
+			String sql = "UPDATE  n_attack_info SET npc_bout_injure=0,npc_pet_injure=0   WHERE npc_isAttack=1 AND p_pk = " + p_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -599,7 +599,7 @@ public class NpcAttackDao extends DaoBase {
 	{
 		List<NpcFighter> list = new ArrayList<NpcFighter>();
 		NpcFighter vo = null;
-		String sql = "SELECT * FROM n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + " and scene_id = "+scene_id+" order by n_pk";
+		String sql = "SELECT * FROM n_attack_info WHERE npc_isAttack=1 AND p_pk = " + p_pk + " AND scene_id = "+scene_id+" ORDER BY n_pk";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
@@ -661,7 +661,7 @@ public class NpcAttackDao extends DaoBase {
 	{
 		boolean isHave = false;
 		String sql = "";
-		sql = "SELECT count(*) as sum from n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + " and scene_id = "+scene_id+"  order by n_pk";
+		sql = "SELECT COUNT(*) AS sum FROM n_attack_info WHERE npc_isAttack=1 AND p_pk = " + p_pk + " AND scene_id = "+scene_id+"  ORDER BY n_pk";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
@@ -698,7 +698,7 @@ public class NpcAttackDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT * FROM n_attack_info where p_pk=" + p_pk + " and scene_id = "+scene_id+"  order by n_pk";
+			String sql = "SELECT * FROM n_attack_info WHERE p_pk = " + p_pk + " AND scene_id = "+scene_id+"  ORDER BY n_pk";
 			logger.debug(sql);
 			stmt = conn.createStatement(); // 生成prepareStatement 对象
 			rs = stmt.executeQuery(sql); 
@@ -760,7 +760,7 @@ public class NpcAttackDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT  * from n_attack_info where p_pk=" + p_pk + " and n_attackswitch=1  limit 1";
+			String sql = "SELECT  * FROM n_attack_info WHERE p_pk = " + p_pk + " AND n_attackswitch=1  LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -817,7 +817,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "SELECT n_pk from n_attack_info where p_pk=" + p_pk + " limit 1";
+			String sql = "SELECT n_pk FROM n_attack_info WHERE p_pk=" + p_pk + " LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -849,7 +849,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set dizzy_bout_num = dizzy_bout_num+"+change_bout+"  where n_pk=" + n_pk;
+			String sql = "UPDATE  n_attack_info SET dizzy_bout_num = dizzy_bout_num+"+change_bout+"  WHERE n_pk=" + n_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -879,7 +879,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set dizzy_bout_num = "+dizzy_bout_num+"  where npc_isAttack=1 && dizzy_bout_num=0  && p_pk=" + p_pk;
+			String sql = "UPDATE  n_attack_info SET dizzy_bout_num = "+dizzy_bout_num+"  WHERE npc_isAttack=1 && dizzy_bout_num=0  && p_pk=" + p_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -906,7 +906,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set poison_bout_num = poison_bout_num+"+change_bout+"  where n_pk=" + n_pk;
+			String sql = "UPDATE  n_attack_info SET poison_bout_num = poison_bout_num+"+change_bout+"  WHERE n_pk=" + n_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -935,7 +935,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update  n_attack_info set poison_bout_num= "+poison_bout_num+"  where npc_isAttack=1 && poison_bout_num=0  && p_pk=" + p_pk;
+			String sql = "UPDATE  n_attack_info SET poison_bout_num= "+poison_bout_num+"  WHERE npc_isAttack=1 && poison_bout_num=0  && p_pk=" + p_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			result = stmt.executeUpdate(sql); 
@@ -962,7 +962,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "update n_attack_info set n_current_HP = n_current_HP -" + injure+"  where n_pk=" + id;
+			String sql = "UPDATE n_attack_info SET n_current_HP = n_current_HP -" + injure+"  WHERE n_pk=" + id;
 			logger.debug(sql);
 			stmt = conn.createStatement(); // 生成prepareStatement 对象
 			result = stmt.executeUpdate(sql); 
@@ -992,7 +992,7 @@ public class NpcAttackDao extends DaoBase {
 	 *//*
 	public int deleteNpcByMapNpcPPk(int p_pk, int npc_id, String mapid)
 	{
-		String sql = "delete from n_attack_info where p_pk="+p_pk+" and npc_ID="+npc_id+" and scene_id="+mapid+" limit 1";
+		String sql = "DELETE FROM n_attack_info WHERE p_pk="+p_pk+" AND npc_ID="+npc_id+" AND scene_id="+mapid+" LIMIT 1";
 		int result = -1;
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
@@ -1024,7 +1024,7 @@ public class NpcAttackDao extends DaoBase {
 	 *//*
 	public int deleteNpcByMapNpcSwitch(int p_pk, int npc_id, String mapid)
 	{
-		String sql = "delete from n_attack_info where npc_isAttack = 1 and p_pk="+p_pk+" and npc_ID="+npc_id+" and scene_id="+mapid+" limit 1";
+		String sql = "DELETE FROM n_attack_info WHERE npc_isAttack = 1 AND p_pk="+p_pk+" AND npc_ID="+npc_id+" AND scene_id="+mapid+" LIMIT 1";
 		int result = -1;
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
@@ -1058,7 +1058,7 @@ public class NpcAttackDao extends DaoBase {
 	public int getNpcIsDropGoods(int pk, String map, int npcID)
 	{
 		int i = -1;
-		String sql = "SELECT count(1) as all_num from n_attack_info where n_attackswitch=1 and p_pk="+pk+" and npc_ID="+npcID+" and scene_id="+map;
+		String sql = "SELECT COUNT(1) AS all_num FROM n_attack_info WHERE n_attackswitch=1 AND p_pk="+pk+" AND npc_ID="+npcID+" AND scene_id="+map;
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		logger.debug(" 判断此地是否还有其他的同类型主动攻击型怪="+sql);

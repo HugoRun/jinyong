@@ -15,8 +15,8 @@ public class PlayerLiveSkillDao extends DaoBase
 	public int PlayerLiveSkillNum(int p_pk)
 	{
 		int num = 0;
-		String sql = "SELECT count(*) from u_skill_info  where p_pk = " + p_pk
-				+ " and sk_type = 2 ";
+		String sql = "SELECT COUNT(*) FROM u_skill_info  WHERE p_pk = " + p_pk
+				+ " AND sk_type = 2 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -46,8 +46,8 @@ public class PlayerLiveSkillDao extends DaoBase
 	{
 		List list = new ArrayList();
 		PlayerSkillVO vo = new PlayerSkillVO();
-		String sql = "SELECT * FROM u_skill_info where p_pk = " + p_pk
-				+ " and sk_type = 2";
+		String sql = "SELECT * FROM u_skill_info WHERE p_pk = " + p_pk
+				+ " AND sk_type = 2";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -79,7 +79,7 @@ public class PlayerLiveSkillDao extends DaoBase
 
 	public void delLiveSkill(int s_pk)
 	{
-		String sql = "delete from u_skill_info where s_pk = " + s_pk;
+		String sql = "DELETE FROM u_skill_info WHERE s_pk = " + s_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

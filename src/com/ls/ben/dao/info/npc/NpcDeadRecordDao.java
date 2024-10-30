@@ -24,7 +24,7 @@ public class NpcDeadRecordDao extends DaoBase
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "INSERT INTO npc_dead_record values (null,"+npcDeadRecord.getPPk()+
+		String sql = "INSERT INTO npc_dead_record VALUES (null,"+npcDeadRecord.getPPk()+
 		","+npcDeadRecord.getNpcId()+","+npcDeadRecord.getSceneId()+","+npcDeadRecord.getMapId()+",now())";
 		logger.debug(sql);
 		try
@@ -54,7 +54,7 @@ public class NpcDeadRecordDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "update npc_dead_record set npc_deadtime=now() where p_pk ="+p_pk+"  and scene_id = "+scene_id+" and npc_id="+npc_id;
+		String sql = "UPDATE npc_dead_record SET npc_deadtime=now() WHERE p_pk ="+p_pk+"  AND scene_id = "+scene_id+" AND npc_id="+npc_id;
 		logger.debug(sql);
 		try
 		{
@@ -81,7 +81,7 @@ public class NpcDeadRecordDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "delete from npc_dead_record where p_pk ="+caption_pk;
+		String sql = "DELETE FROM npc_dead_record WHERE p_pk ="+caption_pk;
 		logger.debug(sql);
 		try
 		{
@@ -108,7 +108,7 @@ public class NpcDeadRecordDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "delete from npc_dead_record where p_pk ="+caption_pk+" and map_id="+map_id;
+		String sql = "DELETE FROM npc_dead_record WHERE p_pk ="+caption_pk+" AND map_id="+map_id;
 		logger.debug(sql);
 		try
 		{
@@ -136,7 +136,7 @@ public class NpcDeadRecordDao extends DaoBase
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT *  from npc_dead_record where p_pk ="+p_pk+" and scene_id="+scene_id;
+		String sql = "SELECT *  FROM npc_dead_record WHERE p_pk ="+p_pk+" AND scene_id="+scene_id;
 		logger.debug(sql);
 		try
 		{

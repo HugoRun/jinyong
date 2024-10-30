@@ -73,7 +73,7 @@ public class SceneVO {
 			jumpScene = SceneCache.getById(sceneJumpterm+"");
 			if( jumpScene==null )
 			{
-				DataErrorLog.debugData("该场景的跳转场景id错误：scene_id="+this.sceneID+";sceneJumpterm="+sceneJumpterm);
+				DataErrorLog.debugData("该场景的跳转场景id错误：scene_id = "+this.sceneID+";sceneJumpterm = "+sceneJumpterm);
 			}
 		}
 		return jumpScene;

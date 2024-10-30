@@ -20,7 +20,7 @@ public class UMessageInfoDao extends DaoBase
 	 */
 	public void deleteById(int p_pk, int id)
 	{
-		String sql = "delete from u_popup_msg where id=" + id;
+		String sql = "DELETE FROM u_popup_msg WHERE id=" + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -46,7 +46,7 @@ public class UMessageInfoDao extends DaoBase
 	 */
 	public void clear(int p_pk)
 	{
-		String sql = "delete from u_popup_msg where p_pk=" + p_pk;
+		String sql = "DELETE FROM u_popup_msg WHERE p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -73,7 +73,7 @@ public class UMessageInfoDao extends DaoBase
 	public void clear(int p_pk, int msg_type)
 	{
 		clearByPlayer(p_pk,msg_type);
-		String sql = "delete from u_popup_msg where p_pk=" + p_pk+" and msg_type="+msg_type;
+		String sql = "DELETE FROM u_popup_msg WHERE p_pk=" + p_pk+" AND msg_type="+msg_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -99,8 +99,8 @@ public class UMessageInfoDao extends DaoBase
 	public UMessageInfoVO get(int p_pk)
 	{
 		// UMessageInfoVO msg = null;
-		// String sql = "SELECT * FROM u_popup_msg where p_pk="+p_pk +" order by
-		// msg_priority,id limit 1";
+		// String sql = "SELECT * FROM u_popup_msg WHERE p_pk="+p_pk +" ORDER BY
+		// msg_priority,id LIMIT 1";
 		// logger.debug(sql);
 		// DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		// conn = dbConn.getConn();
@@ -142,11 +142,11 @@ public class UMessageInfoDao extends DaoBase
 			logger
 					.debug("######################msg为空#########################");
 		}
-		String sql = "INSERT INTO u_popup_msg values (null,'" + msg.getPPk()
+		String sql = "INSERT INTO u_popup_msg VALUES (null,'" + msg.getPPk()
 				+ "','" + msg.getMsgType() + "','" + msg.getMsgOperate1()
 				+ "','" + msg.getMsgOperate2() + "','" + msg.getMsgPriority()
 				+ "',now())";
-		String sql1 = "select LAST_INSERT_ID()";
+		String sql1 = "SELECT LAST_INSERT_ID()";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -275,7 +275,7 @@ public class UMessageInfoDao extends DaoBase
 //	// 查找出所有的弹出式消息，放入内存
 //	public List<UMessageInfoVO> selectAll()
 //	{
-//		String sql = "SELECT * FROM u_popup_msg  order by msg_priority,id ";
+//		String sql = "SELECT * FROM u_popup_msg  ORDER BY msg_priority,id ";
 //		List<UMessageInfoVO> list = new ArrayList<UMessageInfoVO>();
 //		logger.debug(sql);
 //		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
@@ -318,7 +318,7 @@ public class UMessageInfoDao extends DaoBase
 		if(p_pk==null){
 			return list;
 		}
-		String sql = "SELECT * FROM u_popup_msg where p_pk = "+p_pk+" order by msg_priority,id ";
+		String sql = "SELECT * FROM u_popup_msg WHERE p_pk = "+p_pk+" ORDER BY msg_priority,id ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

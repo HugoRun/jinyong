@@ -7,14 +7,14 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 
 <%
 	String hint = (String)request.getAttribute("jieguoString");
 	String main_type = (String)request.getAttribute("main_type");
 %>
 
-<card id="login" title="<s:message key = "gamename"/>">
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 	<%	
 	if ( hint != null && !hint.equals("") && !hint.equals("null")) {

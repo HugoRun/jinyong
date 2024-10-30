@@ -23,7 +23,7 @@ public class FriendDAO {
     public void friendAdd(int pPk, String pByPk, String pByName, int online, String time) {
         try {
             con = new SqlData();
-            String sql = "INSERT INTO u_friend(p_pk,fd_pk,fd_name,fd_online,create_time) values('" + pPk + "','" + pByPk + "','" + pByName + "','" + online + "','" + time + "')";
+            String sql = "INSERT INTO `u_friend` (p_pk, fd_pk, fd_name, fd_online, create_time) VALUES('" + pPk + "', '" + pByPk + "', '" + pByName + "', '" + online + "', '" + time + "')";
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class FriendDAO {
     public boolean whetherfriend(int pPk, String pByPk) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_friend WHERE p_pk='" + pPk + "' AND fd_pk='" + pByPk + "'";
+            String sql = "SELECT * FROM `u_friend` WHERE p_pk = '" + pPk + "' AND fd_pk = '" + pByPk + "'";
             ResultSet rs = con.query(sql);
             if (rs.next()) {
                 return true;
@@ -58,10 +58,9 @@ public class FriendDAO {
         try {
             String sql = null;
             con = new SqlData();
+            sql = "SELECT upf.p_map, f_pk, uf.p_pk, uf.dear, uf.love_dear, uf.relation, uf.exp_share, fd_pk, fd_name, uf.fd_online, uf.create_time, uli.login_state FROM u_friend AS uf, u_part_info AS upf, u_login_info AS uli WHERE uf.fd_pk = upf.p_pk AND  upf.u_pk = uli.u_pk AND uf.p_pk =" + pPk + " ORDER BY uli.login_state DESC";
             if (perpage != 0) {
-                sql = "SELECT upf.p_map,f_pk,uf.p_pk,uf.dear,uf.love_dear,uf.relation,uf.exp_share,fd_pk,fd_name,uf.fd_online,uf.create_time,uli.login_state FROM u_friend as uf,u_part_info as upf ,u_login_info as uli WHERE uf.fd_pk=upf.p_pk AND  upf.u_pk=uli.u_pk AND uf.p_pk =" + pPk + " order by uli.login_state desc limit " + pageno + "," + perpage;
-            } else {
-                sql = "SELECT upf.p_map,f_pk,uf.p_pk,uf.dear,uf.love_dear,uf.relation,uf.exp_share,fd_pk,fd_name,uf.fd_online,uf.create_time,uli.login_state FROM u_friend as uf,u_part_info as upf ,u_login_info as uli WHERE uf.fd_pk=upf.p_pk AND  upf.u_pk=uli.u_pk AND uf.p_pk =" + pPk + " order by uli.login_state desc";
+                sql += " LIMIT " + pageno + ", " + perpage;
             }
             ResultSet rs = con.query(sql);
             List<FriendVO> list = new ArrayList<FriendVO>();
@@ -99,7 +98,7 @@ public class FriendDAO {
             String sql = null;
             con = new SqlData();
 
-            sql = "SELECT upf.p_map,f_pk,uf.p_pk,uf.dear,uf.love_dear,uf.relation,uf.exp_share,fd_pk,fd_name,uf.fd_online,uf.create_time FROM u_friend uf join u_part_info upf on uf.p_pk = upf.p_pk WHERE uf.fd_pk =" + pPk + " order by uf.fd_online desc";
+            sql = "SELECT upf.p_map, f_pk, uf.p_pk, uf.dear, uf.love_dear, uf.relation, uf.exp_share, fd_pk, fd_name, uf.fd_online, uf.create_time FROM u_friend uf JOIN u_part_info upf ON uf.p_pk = upf.p_pk WHERE uf.fd_pk =" + pPk + " ORDER BY uf.fd_online DESC";
 
             // //System.out.println(sql);
             ResultSet rs = con.query(sql);
@@ -135,7 +134,7 @@ public class FriendDAO {
     public FriendVO getFriendView(int pPk, String pByPk) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_friend WHERE p_pk='" + pPk + "' AND fd_pk='" + pByPk + "'";
+            String sql = "SELECT * FROM u_friend WHERE p_pk = '" + pPk + "' AND fd_pk = '" + pByPk + "'";
             ResultSet rs = con.query(sql);
             FriendVO vo = null;
             if (rs.next()) {
@@ -166,7 +165,7 @@ public class FriendDAO {
     public void getDeleteFriend(int pPk, String pByPk) {
         try {
             con = new SqlData();
-            String sql = "delete FROM u_friend WHERE p_pk='" + pPk + "' AND fd_pk='" + pByPk + "'";
+            String sql = "DELETE FROM u_friend WHERE p_pk = '" + pPk + "' AND fd_pk = '" + pByPk + "'";
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -184,7 +183,7 @@ public class FriendDAO {
     public void updateFriendOnline(int pPk, int fdOnline) {
         try {
             con = new SqlData();
-            String sql = "update u_friend set fd_online='" + fdOnline + "' WHERE fd_pk=" + pPk;
+            String sql = "UPDATE u_friend SET fd_online='" + fdOnline + "' WHERE fd_pk = " + pPk;
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -202,9 +201,9 @@ public class FriendDAO {
             String sql = null;
             con = new SqlData();
             if (perpage != 0) {
-                sql = "SELECT upf.p_map,f_pk,uf.dear,uf.love_dear,uf.relation,uf.exp_share,uf.p_pk,fd_pk,fd_name,uf.fd_online,uf.create_time FROM u_friend uf join u_part_info upf on uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.fd_online = 1  limit " + pageno + "," + perpage;
+                sql = "SELECT upf.p_map, f_pk, uf.dear, uf.love_dear, uf.relation, uf.exp_share, uf.p_pk, fd_pk, fd_name, uf.fd_online, uf.create_time FROM u_friend uf JOIN u_part_info upf ON uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.fd_online = 1 LIMIT " + pageno + ", " + perpage;
             } else {
-                sql = "SELECT upf.p_map,f_pk,uf.dear,uf.love_dear,uf.relation,uf.exp_share,uf.p_pk,fd_pk,fd_name,uf.fd_online,uf.create_time FROM u_friend uf join u_part_info upf on uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.fd_online = 1";
+                sql = "SELECT upf.p_map, f_pk, uf.dear, uf.love_dear, uf.relation, uf.exp_share, uf.p_pk, fd_pk, fd_name, uf.fd_online, uf.create_time FROM u_friend uf JOIN u_part_info upf ON uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.fd_online = 1";
             }
             ResultSet rs = con.query(sql);
             List<FriendVO> list = new ArrayList<FriendVO>();
@@ -241,9 +240,9 @@ public class FriendDAO {
             String sql = null;
             con = new SqlData();
             if (perpage != 0) {
-                sql = "SELECT upf.p_map,uf.dear,uf.love_dear,uf.relation,uf.exp_share,f_pk,uf.p_pk,fd_pk,fd_name,uf.fd_online,uf.create_time,uf.tim FROM u_friend uf join u_part_info upf on uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.relation = " + relation + " order by uf.fd_online desc limit " + pageno + "," + perpage;
+                sql = "SELECT upf.p_map, uf.dear, uf.love_dear, uf.relation, uf.exp_share, f_pk, uf.p_pk, fd_pk, fd_name, uf.fd_online, uf.create_time, uf.tim FROM u_friend uf JOIN u_part_info upf ON uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.relation = " + relation + " ORDER BY uf.fd_online DESC LIMIT " + pageno + ", " + perpage;
             } else {
-                sql = "SELECT upf.p_map,uf.dear,uf.love_dear,uf.relation,uf.exp_share,f_pk,uf.p_pk,fd_pk,fd_name,uf.fd_online,uf.create_time,uf.tim FROM u_friend uf join u_part_info upf on uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.relation = " + relation + " order by uf.fd_online desc";
+                sql = "SELECT upf.p_map, uf.dear, uf.love_dear, uf.relation, uf.exp_share, f_pk, uf.p_pk, fd_pk, fd_name, uf.fd_online, uf.create_time, uf.tim FROM u_friend uf JOIN u_part_info upf ON uf.fd_pk = upf.p_pk WHERE uf.p_pk =" + pPk + " AND uf.relation = " + relation + " ORDER BY uf.fd_online DESC";
             }
             ResultSet rs = con.query(sql);
 
@@ -283,12 +282,12 @@ public class FriendDAO {
             con = new SqlData();
             String add = "";
             if (relation == 0) {
-                add = " , u.dear = 0 ,u.exp_share = 0,u.love_dear = 0 ";
+                add = ", u.dear = 0, u.exp_share = 0, u.love_dear = 0 ";
             }
             if (relation == 2) {
-                add = " ,u.love_dear = " + Constant.INIT_LOVE_DEAR;
+                add = ", u.love_dear = " + Constant.INIT_LOVE_DEAR;
             }
-            String sql = "update u_friend u set u.tim = now() , u.relation = " + relation + add + " WHERE u.p_pk = " + pPk.trim() + " AND u.fd_pk = " + pByPk.trim();
+            String sql = "UPDATE u_friend u SET u.tim = now(), u.relation = " + relation + add + " WHERE u.p_pk = " + pPk.trim() + " AND u.fd_pk = " + pByPk.trim();
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -305,7 +304,7 @@ public class FriendDAO {
         try {
 
             con = new SqlData();
-            String sql = "SELECT * FROM u_friend u WHERE u.p_pk='" + pPk.trim() + "' AND u.relation in  (2,3) ";
+            String sql = "SELECT * FROM u_friend u WHERE u.p_pk = '" + pPk.trim() + "' AND u.relation IN  (2, 3) ";
             ResultSet rs = con.query(sql);
             list = get(rs);
         } catch (Exception e) {
@@ -330,9 +329,9 @@ public class FriendDAO {
             String sql = null;
             con = new SqlData();
             if (perpage != 0) {
-                sql = "SELECT upf.p_map,uf.dear,uf.love_dear,uf.relation,uf.exp_share,f_pk,uf.p_pk,fd_pk,fd_name,uf.fd_online,uf.create_time,uf.tim FROM u_friend uf,u_part_info upf WHERE uf.p_pk = " + pPk + " AND uf.relation = 0 AND uf.fd_pk = upf.p_pk AND upf.p_sex != " + gender + " order by uf.fd_online desc limit " + pageno + "," + perpage;
+                sql = "SELECT upf.p_map, uf.dear, uf.love_dear, uf.relation, uf.exp_share, f_pk, uf.p_pk, fd_pk, fd_name, uf.fd_online, uf.create_time, uf.tim FROM u_friend uf, u_part_info upf WHERE uf.p_pk = " + pPk + " AND uf.relation = 0 AND uf.fd_pk = upf.p_pk AND upf.p_sex != " + gender + " ORDER BY uf.fd_online DESC LIMIT " + pageno + ", " + perpage;
             } else {
-                sql = "SELECT upf.p_map,uf.dear,uf.love_dear,uf.relation,uf.exp_share,f_pk,uf.p_pk,fd_pk,fd_name,uf.fd_online,uf.create_time,uf.tim FROM u_friend uf,u_part_info upf WHERE uf.p_pk = " + pPk + " AND uf.relation = 0 AND  uf.fd_pk = upf.p_pk AND upf.p_sex != " + gender;
+                sql = "SELECT upf.p_map, uf.dear, uf.love_dear, uf.relation, uf.exp_share, f_pk, uf.p_pk, fd_pk, fd_name, uf.fd_online, uf.create_time, uf.tim FROM u_friend uf, u_part_info upf WHERE uf.p_pk = " + pPk + " AND uf.relation = 0 AND  uf.fd_pk = upf.p_pk AND upf.p_sex != " + gender;
             }
             ResultSet rs = con.query(sql);
 
@@ -348,16 +347,16 @@ public class FriendDAO {
     /**
      * 增加亲密度
      *
-     * @param p_pk p_pk
-     * @param fd_pk fd_pk
-     * @param dear 增加或者减少多少，带有符号
-     * @param f_name f_name
+     * @param p_pk    p_pk
+     * @param fd_pk   fd_pk
+     * @param dear    增加或者减少多少，带有符号
+     * @param f_name  f_name
      * @param fd_name fd_name
      */
     public void addDear(String p_pk, String fd_pk, String dear, String f_name, String fd_name) {
         if (getFriendView(Integer.parseInt(p_pk.trim()), fd_pk) != null && getFriendView(Integer.parseInt(fd_pk.trim()), p_pk) != null) {
-            String sql = "update u_friend u set u.dear = u.dear " + dear + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
-            String sql1 = "update u_friend u set u.dear = u.dear " + dear + " WHERE u.p_pk = " + fd_pk + " AND u.fd_pk = " + p_pk;
+            String sql = "UPDATE u_friend u SET u.dear = u.dear " + dear + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
+            String sql1 = "UPDATE u_friend u SET u.dear = u.dear " + dear + " WHERE u.p_pk = " + fd_pk + " AND u.fd_pk = " + p_pk;
             new RankService().updateYiqi(p_pk, 1, fd_name);
             new RankService().updateYiqi(fd_pk, 1, f_name);
             try {
@@ -373,7 +372,7 @@ public class FriendDAO {
     }
 
     public int jieyiCount(String p_pk, String ids, int relation) {
-        String sql = "SELECT count(*) as ccc FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.fd_pk IN (" + ids.trim() + ") AND u.relation IN (1,2) ";
+        String sql = "SELECT COUNT(*) AS ccc FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.fd_pk IN (" + ids.trim() + ") AND u.relation IN (1, 2) ";
         try {
             con = new SqlData();
             ResultSet rs = con.query(sql);
@@ -393,7 +392,7 @@ public class FriendDAO {
         if (p_pk == null || "".equals(p_pk.trim()) || fp_pks == null || fp_pks.trim().equals("")) {
             return list;
         }
-        String sql = "SELECT * FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.fd_pk IN (" + ((fp_pks.lastIndexOf(",") + 1 == fp_pks.length()) ? fp_pks.substring(0, fp_pks.lastIndexOf(",")) : fp_pks) + ")";
+        String sql = "SELECT * FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.fd_pk IN (" + ((fp_pks.lastIndexOf(", ") + 1 == fp_pks.length()) ? fp_pks.substring(0, fp_pks.lastIndexOf(", ")) : fp_pks) + ")";
         try {
             con = new SqlData();
             ResultSet rs = con.query(sql);
@@ -408,7 +407,7 @@ public class FriendDAO {
 
     // 共享经验
     public void setExpShare(int p_pk, int fd_pk, int exp) {
-        String sql = "update u_friend u set u.exp_share = " + exp + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
+        String sql = "UPDATE u_friend u SET u.exp_share = " + exp + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
         try {
             con = new SqlData();
             con.update(sql);
@@ -423,7 +422,7 @@ public class FriendDAO {
     public List<FriendVO> findCanGetExp(int p_pk, int relation, int start, int count) {
         String sql = "";
         if (count != 0) {
-            sql = "SELECT * FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.relation = " + relation + " AND u.exp_share > 0 limit " + start + "," + count;
+            sql = "SELECT * FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.relation = " + relation + " AND u.exp_share > 0 LIMIT " + start + ", " + count;
         } else {
             sql = "SELECT * FROM u_friend u WHERE u.p_pk = " + p_pk + " AND u.relation = " + relation + " AND u.exp_share > 0 ";
         }
@@ -442,7 +441,7 @@ public class FriendDAO {
 
     // 领取经验
     public void getExp(int f_pk) {
-        String sql = "update u_friend u set u.exp_share = 0 WHERE u.f_pk = " + f_pk;
+        String sql = "UPDATE u_friend u SET u.exp_share = 0 WHERE u.f_pk = " + f_pk;
         try {
             con = new SqlData();
             con.update(sql);
@@ -470,7 +469,7 @@ public class FriendDAO {
 
     // 每十分钟减少1点爱情甜蜜度
     public void delLoveDear(int f_pk) {
-        String sql = "update u_friend u set u.love_dear = u.love_dear -1 WHERE u.f_pk = " + f_pk;
+        String sql = "UPDATE u_friend u SET u.love_dear = u.love_dear -1 WHERE u.f_pk = " + f_pk;
         try {
             con = new SqlData();
             con.update(sql);
@@ -483,8 +482,8 @@ public class FriendDAO {
 
     public void addLoveDear(int p_pk, int fd_pk, int love_dear, String fd_name, String f_name) {
         if (love_dear > 0) {
-            String sql = "update u_friend u set u.love_dear = u.love_dear + " + love_dear + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
-            String sql1 = "update u_friend u set u.love_dear = u.love_dear + " + love_dear + " WHERE u.p_pk = " + fd_pk + " AND u.fd_pk = " + p_pk;
+            String sql = "UPDATE u_friend u SET u.love_dear = u.love_dear + " + love_dear + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
+            String sql1 = "UPDATE u_friend u SET u.love_dear = u.love_dear + " + love_dear + " WHERE u.p_pk = " + fd_pk + " AND u.fd_pk = " + p_pk;
             // 统计需要
             new RankService().updateDear(p_pk, love_dear, fd_name);
             // 统计需要
@@ -504,7 +503,7 @@ public class FriendDAO {
     public int isFuQi(int p_pk, String fp_pks, int relation) {
         int i = 0;
         if (fp_pks != null && !"".equals(fp_pks.trim())) {
-            String sql = "SELECT count(*) as coo FROM u_friend u WHERE u.relation = " + relation + " AND u.p_pk = " + p_pk + " AND u.fd_pk IN (" + ((fp_pks.lastIndexOf(",") + 1 == fp_pks.length()) ? fp_pks.substring(0, fp_pks.lastIndexOf(",")) : fp_pks) + ")";
+            String sql = "SELECT COUNT(*) AS coo FROM u_friend u WHERE u.relation = " + relation + " AND u.p_pk = " + p_pk + " AND u.fd_pk IN (" + ((fp_pks.lastIndexOf(", ") + 1 == fp_pks.length()) ? fp_pks.substring(0, fp_pks.lastIndexOf(", ")) : fp_pks) + ")";
             try {
                 con = new SqlData();
                 ResultSet rs = con.query(sql);
@@ -568,8 +567,8 @@ public class FriendDAO {
     public void addLove(Object p_pk, Object fd_pk, int addlovel) {
         try {
             con = new SqlData();
-            String sql = "update u_friend u set u.dear = u.dear + " + addlovel + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
-            String sql1 = "update u_friend u set u.dear = u.dear + " + addlovel + " WHERE u.p_pk = " + fd_pk + " AND u.fd_pk = " + p_pk;
+            String sql = "UPDATE u_friend u SET u.dear = u.dear + " + addlovel + " WHERE u.p_pk = " + p_pk + " AND u.fd_pk = " + fd_pk;
+            String sql1 = "UPDATE u_friend u SET u.dear = u.dear + " + addlovel + " WHERE u.p_pk = " + fd_pk + " AND u.fd_pk = " + p_pk;
             con.update(sql);
             con.update(sql1);
         } catch (Exception e) {
@@ -627,13 +626,13 @@ public class FriendDAO {
         String sql = "";
         String sql1 = "";
         if (relation == 1) {
-            sq = "SELECT max(u.dear) FROM u_friend u WHERE u.relation = 1 AND u.p_pk = " + p_pk;
-            sql = "SELECT count(*) FROM u_friend u WHERE  u.relation = 1 AND u.dear > (select max(a.dear) FROM u_friend a WHERE a.p_pk =" + p_pk + " )";
-            sql1 = "SELECT count(*) FROM u_friend u WHERE u.relation = 1 AND " + " u.dear = (select a.dear FROM u_friend a WHERE a.p_pk = " + p_pk + " AND a.relation = 1 order by a.dear desc limit 1 )  " + " AND u.tim <=  (select b.tim FROM u_friend b WHERE b.p_pk = " + p_pk + " AND b.relation = 1 order by b.dear desc limit 1 )";
+            sq = "SELECT MAX(u.dear) FROM u_friend u WHERE u.relation = 1 AND u.p_pk = " + p_pk;
+            sql = "SELECT COUNT(*) FROM u_friend u WHERE u.relation = 1 AND u.dear > (SELECT MAX(a.dear) FROM u_friend a WHERE a.p_pk =" + p_pk + " )";
+            sql1 = "SELECT COUNT(*) FROM u_friend u WHERE u.relation = 1 AND " + " u.dear = (SELECT a.dear FROM u_friend a WHERE a.p_pk = " + p_pk + " AND a.relation = 1 ORDER BY a.dear DESC LIMIT 1 )  " + " AND u.tim <=  (SELECT b.tim FROM u_friend b WHERE b.p_pk = " + p_pk + " AND b.relation = 1 ORDER BY b.dear DESC LIMIT 1 )";
         } else {
-            sq = "SELECT max(u.love_dear) FROM u_friend u WHERE u.relation = 2 AND u.p_pk = " + p_pk;
-            sql = "SELECT count(*) FROM u_friend u WHERE  u.relation = 2 AND u.love_dear > (select max(a.love_dear) FROM u_friend a WHERE a.p_pk =" + p_pk + " )";
-            sql1 = "SELECT count(*) FROM u_friend u WHERE u.relation = 2 AND " + " u.love_dear = (select a.love_dear FROM u_friend a WHERE a.p_pk = " + p_pk + " AND a.relation = 2 order by a.love_dear desc limit 1 )  " + " AND u.tim <=  (select b.tim FROM u_friend b WHERE b.p_pk = " + p_pk + " AND b.relation = 2 order by b.love_dear desc limit 1 )";
+            sq = "SELECT MAX(u.love_dear) FROM u_friend u WHERE u.relation = 2 AND u.p_pk = " + p_pk;
+            sql = "SELECT COUNT(*) FROM u_friend u WHERE u.relation = 2 AND u.love_dear > (SELECT MAX(a.love_dear) FROM u_friend a WHERE a.p_pk =" + p_pk + " )";
+            sql1 = "SELECT COUNT(*) FROM u_friend u WHERE u.relation = 2 AND " + " u.love_dear = (SELECT a.love_dear FROM u_friend a WHERE a.p_pk = " + p_pk + " AND a.relation = 2 ORDER BY a.love_dear DESC LIMIT 1 )  " + " AND u.tim <=  (SELECT b.tim FROM u_friend b WHERE b.p_pk = " + p_pk + " AND b.relation = 2 ORDER BY b.love_dear DESC LIMIT 1 )";
 
         }
         int i = 0;
@@ -670,7 +669,7 @@ public class FriendDAO {
      * *******玩家删除角色的时候删除所有关联的好友信息******
      */
     public void removeFriendInfo(int ppk) {
-        String sql = "delete FROM u_friend WHERE p_pk=" + ppk + " or fd_pk=" + ppk;
+        String sql = "DELETE FROM u_friend WHERE p_pk = " + ppk + " OR fd_pk = " + ppk;
         try {
             con = new SqlData();
             con.update(sql);

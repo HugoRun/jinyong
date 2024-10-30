@@ -25,8 +25,8 @@ public class RecordDao extends DaoBase
 	public void updateInjure(int tongId, int recordValue, int npcId, int npcType)
 	{
 		int result = 0;
-		String sqlString = "update injure_recond_info set injure_number = injure_number + "+recordValue+" where tong_id="+tongId
-					+" and npc_Type="+npcType;
+		String sqlString = "UPDATE injure_recond_info SET injure_number = injure_number + "+recordValue+" WHERE tong_id="+tongId
+					+" AND npc_Type="+npcType;
 		DBConnection dbConn2 = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn2.getConn();
@@ -41,7 +41,7 @@ public class RecordDao extends DaoBase
 		
 		// 如果为零,意味着此帮派还没有数据
 		if ( result == 0) {
-    		String sql = "INSERT INTO injure_recond_info values (null,"+tongId+","+recordValue+","+npcId+","+npcType+")";
+    		String sql = "INSERT INTO injure_recond_info VALUES (null,"+tongId+","+recordValue+","+npcId+","+npcType+")";
     		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
     		logger.debug(" 更新记录玩家对npc伤害sql="+sql);		
     		try{
@@ -68,7 +68,7 @@ public class RecordDao extends DaoBase
 	public List<Integer> getKillNumMaxFiveTongId(int npc_type)
 	{
 		List<Integer> ranklist = new ArrayList<Integer>();
-		String sql = "SELECT tong_id from injure_recond_info where npc_Type = "+npc_type+" and tong_id != 0 order by injure_number desc limit 5 ";
+		String sql = "SELECT tong_id FROM injure_recond_info WHERE npc_Type = "+npc_type+" AND tong_id != 0 ORDER BY injure_number DESC LIMIT 5 ";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();

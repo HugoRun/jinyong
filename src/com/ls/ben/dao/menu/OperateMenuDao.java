@@ -30,10 +30,10 @@ public class OperateMenuDao extends DaoBase {
         OperateMenuVO menu = null;
         SceneVO scene = null;
 
-        String total_sql = "SELECT COUNT(id) FROM `operate_menu_info`";
-        String all_data_sql = "SELECT * FROM `operate_menu_info` ORDER BY id, menu_order ";
-        logger.debug("total_sql:" + total_sql);
-        logger.debug("all_data_sql:" + all_data_sql);
+        String total_sql = "SELECT COUNT(`id`) FROM `operate_menu_info`";
+        String all_data_sql = "SELECT * FROM `operate_menu_info` ORDER BY `id`, `menu_order` ";
+        logger.debug("total_sql: " + total_sql);
+        logger.debug("all_data_sql: " + all_data_sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
         try {
@@ -345,7 +345,7 @@ public class OperateMenuDao extends DaoBase {
      */
     public OperateMenuVO getOperateMenuVOBySceneAndOperate1(String sceneId, String menuOperate1) {
 
-        String sql = "SELECT * FROM `operate_menu_info` where menu_map=" + sceneId + " and menu_operate1=" + menuOperate1;
+        String sql = "SELECT * FROM `operate_menu_info` WHERE menu_map=" + sceneId + " AND menu_operate1=" + menuOperate1;
 
         OperateMenuVO menu = null;
         logger.debug(sql);
@@ -452,7 +452,7 @@ public class OperateMenuDao extends DaoBase {
      * @param p_camp
      */
     public void updateOperateMenuCamp(String menu_id, int menu_camp) {
-        String sql = "update operate_menu_info set menu_camp=" + menu_camp + " where id=" + menu_id;
+        String sql = "UPDATE operate_menu_info SET menu_camp=" + menu_camp + " WHERE id=" + menu_id;
         logger.debug(sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
@@ -475,7 +475,7 @@ public class OperateMenuDao extends DaoBase {
      * @return
      */
     public String getJoinPointByFieldManager(int field_manager_type, int map_ID) {
-        String sql = "SELECT menu_operate1 from operate_menu_info where menu_type = " + field_manager_type + " and menu_operate2 like '%" + map_ID + "%'";
+        String sql = "SELECT menu_operate1 FROM operate_menu_info WHERE menu_type = " + field_manager_type + " AND menu_operate2 LIKE '%" + map_ID + "%'";
         logger.debug("根据演武管理员类型和所在地图id来确定进入点=" + sql);
         String menu_operate1 = "";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -506,7 +506,7 @@ public class OperateMenuDao extends DaoBase {
      * @return
      */
     public String getOutPointByFieldManager(int field_manager_type, int map_ID) {
-        String sql = "SELECT menu_operate2 from operate_menu_info where menu_type = " + field_manager_type + " and menu_operate2 like '%" + map_ID + "%'";
+        String sql = "SELECT menu_operate2 FROM operate_menu_info WHERE menu_type = " + field_manager_type + " AND menu_operate2 LIKE '%" + map_ID + "%'";
 
         logger.debug("根据演武管理员类型和所在地图id来确定进入点=" + sql);
         String menu_operate2 = "";
@@ -538,7 +538,7 @@ public class OperateMenuDao extends DaoBase {
      * @return
      */
     public String getFieldTypeByFieldManager(int field_manager_type, int map_ID) {
-        String sql = "SELECT menu_operate3 from operate_menu_info where menu_type = " + field_manager_type + " and menu_operate3 like '%" + map_ID + "%'";
+        String sql = "SELECT menu_operate3 FROM operate_menu_info WHERE menu_type = " + field_manager_type + " AND menu_operate3 LIKE '%" + map_ID + "%'";
 
         logger.debug("根据演武管理员类型和所在地图id来确定进入点=" + sql);
         String menu_operate3 = "";
@@ -568,7 +568,7 @@ public class OperateMenuDao extends DaoBase {
      * @param camp
      */
     public void updateMastCamp(int menu_type, int camp, int map) {
-        String sql = "update operate_menu_info set menu_camp = " + camp + " where menu_type = " + menu_type + " and menu_map =" + map;
+        String sql = "UPDATE operate_menu_info SET menu_camp = " + camp + " WHERE menu_type = " + menu_type + " AND menu_map =" + map;
         logger.debug("旗杆npc死亡转化阵营=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
@@ -592,7 +592,7 @@ public class OperateMenuDao extends DaoBase {
     public int updateZHAOHUN(String sceneId, String menuOperate1, int tongPk) {
         menuOperate1 = menuOperate1 + ",1";
         int menu_id = 0;
-        String sql = "update operate_menu_info set menu_operate3 = '" + tongPk + "' where menu_map = " + sceneId + " and menu_operate1 like '%" + menuOperate1 + "%'";
+        String sql = "UPDATE operate_menu_info SET menu_operate3 = '" + tongPk + "' WHERE menu_map = " + sceneId + " AND menu_operate1 LIKE '%" + menuOperate1 + "%'";
         logger.debug("旗杆npc死亡转化阵营=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
@@ -604,7 +604,7 @@ public class OperateMenuDao extends DaoBase {
             logger.debug(e.getStackTrace());
         }
 
-        String sql2 = "select id from operate_menu_info where menu_map = " + sceneId + " and menu_operate1 ='" + menuOperate1 + "'";
+        String sql2 = "SELECT id FROM operate_menu_info WHERE menu_map = " + sceneId + " AND menu_operate1 ='" + menuOperate1 + "'";
         conn = dbConn.getConn();
         try {
             stmt = conn.createStatement();
@@ -631,7 +631,7 @@ public class OperateMenuDao extends DaoBase {
      * @param camp
      */
     public void updateZHAOHUN() {
-        String sql = "update operate_menu_info set menu_operate3 = '-1' where menu_type = " + MenuType.ZHAOHUN;
+        String sql = "UPDATE operate_menu_info SET menu_operate3 = '-1' WHERE menu_type = " + MenuType.ZHAOHUN;
         logger.debug("招魂幡的初始化=" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
@@ -733,7 +733,7 @@ public class OperateMenuDao extends DaoBase {
     }
 
     public List<OperateMenuVO> findAll_Sheare_menu() {
-        String sql = "SELECT * FROM `operate_menu_info` o where o.menu_type = " + MenuType.SHEARE;
+        String sql = "SELECT * FROM `operate_menu_info` o WHERE o.menu_type = " + MenuType.SHEARE;
         List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
@@ -753,7 +753,7 @@ public class OperateMenuDao extends DaoBase {
     }
 
     public void updateOperateMenuMenpaiConstant(String menu_id, String menu_name) {
-        String sql = "update operate_menu_info set menu_name= '" + menu_name + "' where id=" + menu_id;
+        String sql = "UPDATE operate_menu_info SET menu_name= '" + menu_name + "' WHERE id=" + menu_id;
         logger.debug(sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
@@ -769,7 +769,7 @@ public class OperateMenuDao extends DaoBase {
     }
 
     public void updateOperateMenuMenpaiNpc(String menu_id, int menu_operate4) {
-        String sql = "update operate_menu_info set menu_operate4=" + menu_operate4 + " where id=" + menu_id;
+        String sql = "UPDATE operate_menu_info SET menu_operate4=" + menu_operate4 + " WHERE id=" + menu_id;
         logger.debug(sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();

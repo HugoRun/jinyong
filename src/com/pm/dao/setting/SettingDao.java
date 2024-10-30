@@ -15,7 +15,7 @@ public class SettingDao extends DaoBase
 	 */
 	public void createSysSetting (int pPk)
 	{
-		String sql = "INSERT INTO s_setting_info (p_pk) values ("+pPk+")";
+		String sql = "INSERT INTO s_setting_info (p_pk) VALUES ("+pPk+")";
 		logger.debug("创建角色时创建系统设置:"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -41,7 +41,7 @@ public class SettingDao extends DaoBase
 	public SettingVO getSettingInfo(String p_pk)
 	{
 		
-		String sql = "SELECT * FROM s_setting_info where p_pk="+p_pk;
+		String sql = "SELECT * FROM s_setting_info WHERE p_pk="+p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("得到设置参数="+sql);
 		SettingVO vo = null;

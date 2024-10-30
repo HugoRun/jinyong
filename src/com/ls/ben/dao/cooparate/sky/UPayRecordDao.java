@@ -19,7 +19,7 @@ public class UPayRecordDao extends DaoBase
 	public int insert(String skyid,String kbamt,int p_pk)
 	{
 		int id = -1;
-		String sql = "INSERT INTO u_sky_pay_record (skyid,kbamt,pay_time,p_pk) values ('"
+		String sql = "INSERT INTO u_sky_pay_record (skyid,kbamt,pay_time,p_pk) VALUES ('"
 				+skyid+"',"
 				+kbamt+",now(),"+p_pk+")";
 		logger.debug(sql);
@@ -51,7 +51,7 @@ public class UPayRecordDao extends DaoBase
 	 */
 	public void update( int id,String billid,String skybillid1,String skybillid2,String balance,String respones_result )
 	{
-		String sql = "update u_sky_pay_record  set billid='"+billid+"',skybillid1='"+skybillid1+ "',skybillid2='"+skybillid2+"',balance='"+balance+"',respones_result='"+respones_result+"' where id ="+id;
+		String sql = "UPDATE u_sky_pay_record  SET billid='"+billid+"',skybillid1='"+skybillid1+ "',skybillid2='"+skybillid2+"',balance='"+balance+"',respones_result='"+respones_result+"' WHERE id ="+id;
     	logger.debug(sql);
     	DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
     	conn = dbConn.getConn();
@@ -71,7 +71,7 @@ public class UPayRecordDao extends DaoBase
 	public int getMoney(int p_id)
 	{
 		int id = 0;
-		String sql = "SELECT kbamt from u_sky_pay_record where id = "+p_id;
+		String sql = "SELECT kbamt FROM u_sky_pay_record WHERE id = "+p_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

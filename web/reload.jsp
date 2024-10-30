@@ -10,8 +10,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-    <%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s" %>
-    <card id="act" title="<s:message key = "gamename"/>">
+    <%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+    <card id="act" title="<bean:message key="gamename"/>">
         <p>
             <anchor>
                 <go method="post" href="/systemresources.do?cmd=n6">

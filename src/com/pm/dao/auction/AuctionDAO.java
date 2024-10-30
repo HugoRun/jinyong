@@ -26,11 +26,11 @@ public class AuctionDAO extends DaoBase {
      * @param propPrice     卖家出的价格
      * @param remove_num    物品的数量
      */
-    public void addPropToAuction(int uPk, int pPk, int accouter_id, int accouter_type, int propPrice, String goodsName, int remove_num, PlayerPropGroupVO propGroup, int payType, int auctionPrice) {
+    public void addPropToAuction(int uPk,  int pPk,  int accouter_id,  int accouter_type,  int propPrice,  String goodsName,  int remove_num,  PlayerPropGroupVO propGroup,  int payType,  int auctionPrice) {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date dt = new Date();
 
-        String sql = "INSERT INTO u_auction(u_pk,p_pk,auction_type,pay_type,goods_id,goods_name,goods_number,auction_price,auction_price_auction,buy_price,auction_time,auction_failed,auction_sell,prop_use_control,w_Bonding,w_protect,w_isReconfirm) values('" + uPk + "','" + pPk + "','" + accouter_type + "'," + payType + ",'" + accouter_id + "','" + StringUtil.gbToISO(goodsName) + "','" + remove_num + "','" + propPrice + "'," + auctionPrice + ",0,'" + sf.format(dt) + "',1,1,'" + propGroup.getPropUseControl() + "','" + propGroup.getPropBonding() + "','" + propGroup.getPropProtect() + "','" + propGroup.getPropIsReconfirm() + "')";
+        String sql = "INSERT INTO u_auction(u_pk, p_pk, auction_type, pay_type, goods_id, goods_name, goods_number, auction_price, auction_price_auction, buy_price, auction_time, auction_failed, auction_sell, prop_use_control, w_Bonding, w_protect, w_isReconfirm) VALUES('" + uPk + "', '" + pPk + "', '" + accouter_type + "', " + payType + ", '" + accouter_id + "', '" + StringUtil.gbToISO(goodsName) + "', '" + remove_num + "', '" + propPrice + "', " + auctionPrice + ", 0, '" + sf.format(dt) + "', 1, 1, '" + propGroup.getPropUseControl() + "', '" + propGroup.getPropBonding() + "', '" + propGroup.getPropProtect() + "', '" + propGroup.getPropIsReconfirm() + "')";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         logger.debug("auctionDAO中的 addToAuction的sql : " + sql);
         try {
@@ -54,7 +54,7 @@ public class AuctionDAO extends DaoBase {
      * @param auctionType 拍卖场道具分类
      * @return
      */
-    public QueryPage getPagePropsByPpk(int p_pk, int auctionType, int page_no, String sortType, int payType) {
+    public QueryPage getPagePropsByPpk(int p_pk,  int auctionType,  int page_no,  String sortType,  int payType) {
         QueryPage queryPage = null;
 
         List<AuctionVO> props = new ArrayList<AuctionVO>();
@@ -62,11 +62,11 @@ public class AuctionDAO extends DaoBase {
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
-        String count_sql, page_sql;
+        String count_sql,  page_sql;
         int count = 0;
         try {
             stmt = conn.createStatement();
-            count_sql = "SELECT count(*) from u_auction where auction_type=" + auctionType + " and auction_failed = 1 and auction_sell != 2 and pay_type=" + payType;
+            count_sql = "SELECT COUNT(*) FROM u_auction WHERE auction_type=" + auctionType + " AND auction_failed = 1 AND auction_sell != 2 AND pay_type=" + payType;
             logger.debug(count_sql);
             rs = stmt.executeQuery(count_sql);
             if (rs.next()) {
@@ -74,15 +74,15 @@ public class AuctionDAO extends DaoBase {
             }
             rs.close();
 
-            queryPage = new QueryPage(page_no, count);
+            queryPage = new QueryPage(page_no,  count);
 
             if (sortType.equals("time")) {
 
-                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell != 2 and auction_type=" + auctionType + " and pay_type=" + payType + " order by auction_time desc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+                page_sql = "SELECT * FROM u_auction WHERE auction_failed = 1 AND auction_sell != 2 AND auction_type=" + auctionType + " AND pay_type=" + payType + " ORDER BY auction_time DESC LIMIT " + queryPage.getStartOfPage() + ", " + queryPage.getPageSize();
             } else if (sortType.equals("value")) {
-                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell != 2 and auction_type=" + auctionType + " and pay_type=" + payType + " order by CAST(auction_price as UNSIGNED  INTEGER) asc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+                page_sql = "SELECT * FROM u_auction WHERE auction_failed = 1 AND auction_sell != 2 AND auction_type=" + auctionType + " AND pay_type=" + payType + " ORDER BY CAST(auction_price AS UNSIGNED  INTEGER) ASC LIMIT " + queryPage.getStartOfPage() + ", " + queryPage.getPageSize();
             } else {
-                page_sql = "SELECT * FROM u_auction where  auction_failed = 1 and auction_sell != 2 and auction_type=" + auctionType + "and pay_type=" + payType + " limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+                page_sql = "SELECT * FROM u_auction WHERE auction_failed = 1 AND auction_sell != 2 AND auction_type=" + auctionType + " AND pay_type=" + payType + " LIMIT " + queryPage.getStartOfPage() + ", " + queryPage.getPageSize();
             }
             logger.debug(page_sql);
 
@@ -136,7 +136,7 @@ public class AuctionDAO extends DaoBase {
      * @param auctionType 拍卖场道具分类
      * @return
      */
-    public QueryPage getPagePropByName(int p_pk, String propName, int page_no, String sortType, int payType, int auctionType) {
+    public QueryPage getPagePropByName(int p_pk,  String propName,  int page_no,  String sortType,  int payType,  int auctionType) {
         QueryPage queryPage = null;
 
         List<AuctionVO> props = new ArrayList<AuctionVO>();
@@ -144,11 +144,11 @@ public class AuctionDAO extends DaoBase {
 
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
-        String count_sql, page_sql;
+        String count_sql,  page_sql;
         int count = 0;
         try {
             stmt = conn.createStatement();
-            count_sql = "SELECT count(*) from u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%'";
+            count_sql = "SELECT COUNT(*) FROM u_auction WHERE auction_failed = 1 AND auction_sell = 1 AND pay_type=" + payType + " AND auction_type=" + auctionType + " AND goods_name LIKE '%" + StringUtil.gbToISO(propName) + "%'";
             logger.debug(count_sql);
             rs = stmt.executeQuery(count_sql);
             if (rs.next()) {
@@ -156,13 +156,13 @@ public class AuctionDAO extends DaoBase {
             }
             rs.close();
 
-            queryPage = new QueryPage(page_no, count);
+            queryPage = new QueryPage(page_no,  count);
             if (sortType.equals("time")) {
-                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%' order by auction_time desc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+                page_sql = "SELECT * FROM u_auction WHERE auction_failed = 1 AND auction_sell = 1 AND pay_type=" + payType + " AND auction_type=" + auctionType + " AND goods_name LIKE '%" + StringUtil.gbToISO(propName) + "%' ORDER BY auction_time DESC " + "LIMIT " + queryPage.getStartOfPage() + ", " + queryPage.getPageSize();
             } else if (sortType.equals("value")) {
-                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%' order by CAST(auction_price as UNSIGNED  INTEGER) asc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+                page_sql = "SELECT * FROM u_auction WHERE auction_failed = 1 AND auction_sell = 1 AND pay_type=" + payType + " AND auction_type=" + auctionType + " AND goods_name LIKE '%" + StringUtil.gbToISO(propName) + "%' ORDER BY CAST(auction_price AS UNSIGNED  INTEGER) ASC " + "LIMIT " + queryPage.getStartOfPage() + ", " + queryPage.getPageSize();
             } else {
-                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%' order by auction_time desc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+                page_sql = "SELECT * FROM u_auction WHERE auction_failed = 1 AND auction_sell = 1 AND pay_type=" + payType + " AND auction_type=" + auctionType + " AND goods_name LIKE '%" + StringUtil.gbToISO(propName) + "%' ORDER BY auction_time DESC " + "LIMIT " + queryPage.getStartOfPage() + ", " + queryPage.getPageSize();
             }
             logger.debug(page_sql);
 
@@ -211,7 +211,7 @@ public class AuctionDAO extends DaoBase {
         AuctionVO vo = new AuctionVO();
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
-        String sql = "SELECT * FROM u_auction where auction_id = " + auction_id;
+        String sql = "SELECT * FROM u_auction WHERE auction_id = " + auction_id;
 
         try {
             stmt = conn.createStatement();
@@ -300,11 +300,11 @@ public class AuctionDAO extends DaoBase {
     }
 
     /**
-     * 拍卖成功后，根据拍卖id更新拍卖信息,返回1代表成功，返回-1代表失败
+     * 拍卖成功后，根据拍卖id更新拍卖信息, 返回1代表成功，返回-1代表失败
      */
-    public void updateFromAuction(int auction_id, int auction_ppk) {
-        String sql1 = "update u_auction set auction_sell = 2,auction_ppk=" + auction_ppk + " where auction_id=" + auction_id;
-        String sql2 = "update u_auction set auction_time = now() where auction_id=" + auction_id;
+    public void updateFromAuction(int auction_id,  int auction_ppk) {
+        String sql1 = "UPDATE u_auction SET auction_sell = 2, auction_ppk=" + auction_ppk + " WHERE auction_id=" + auction_id;
+        String sql2 = "UPDATE u_auction SET auction_time = now() WHERE auction_id=" + auction_id;
         logger.debug("更新拍卖信息状态的sql :" + sql1 + "sql2 : " + sql2);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
@@ -326,8 +326,8 @@ public class AuctionDAO extends DaoBase {
     /**
      * 玩家竞拍后更新拍卖场物品的竞拍信息
      */
-    public void updateFromAuctionByAuction(int auction_id, int upk, int ppk, int auctionPrice, String buyName) {
-        String sql = "update u_auction set auction_upk=" + upk + ",auction_ppk=" + ppk + ",auction_start_time=now(),buy_price=" + auctionPrice + ",auction_sell=3 ,buy_name='" + buyName + "' where auction_id=" + auction_id;
+    public void updateFromAuctionByAuction(int auction_id,  int upk,  int ppk,  int auctionPrice,  String buyName) {
+        String sql = "UPDATE u_auction SET auction_upk=" + upk + ", auction_ppk=" + ppk + ", auction_start_time=now(), buy_price=" + auctionPrice + ", auction_sell=3 , buy_name='" + buyName + "' WHERE auction_id=" + auction_id;
         logger.debug("更新拍卖信息状态的sql :" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
@@ -346,8 +346,8 @@ public class AuctionDAO extends DaoBase {
     /***************************************************************************
      * 退还给竞拍失败着灵石
      */
-    public void addCoopperForFalseAuction(int p_pk, int cooper) {
-        String sql = "update u_part_info set p_copper=p_copper+" + cooper + " where p_pk=" + p_pk;
+    public void addCoopperForFalseAuction(int p_pk,  int cooper) {
+        String sql = "UPDATE u_part_info SET p_copper=p_copper+" + cooper + " WHERE p_pk=" + p_pk;
         logger.debug("更新玩家灵石sql :" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
@@ -370,7 +370,7 @@ public class AuctionDAO extends DaoBase {
      */
     public List getAuctionSuccess() {
         String sql = "SELECT * FROM `u_auction` WHERE `auction_failed` = 1 AND auction_sell = 3 AND (now() - auction_start_time) > 60 * 10";
-        logger.debug("得到竞拍成功的sql :" + sql);
+        logger.debug("得到竞拍成功的sql:" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         List list = new ArrayList();
@@ -461,7 +461,7 @@ public class AuctionDAO extends DaoBase {
      */
     public void updateThanThreeDay() {
 
-        String sql = "update u_auction set auction_failed = 2 where auction_sell = 1 and now() > (auction_time + INTERVAL 2 DAY)";
+        String sql = "UPDATE u_auction SET auction_failed = 2 WHERE auction_sell = 1 AND now() > (auction_time + INTERVAL 2 DAY)";
         logger.debug("更新拍卖信息的sql :" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
@@ -482,7 +482,7 @@ public class AuctionDAO extends DaoBase {
      * 拍卖时间超过六天的将被没收
      */
     public void deleteThanSixDay() {
-        String sql = "delete from u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 5 DAY)";
+        String sql = "DELETE FROM u_auction WHERE auction_sell = 1 AND now() > (auction_time + INTERVAL 5 DAY)";
         logger.debug("更新拍卖信息的sql :" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
@@ -503,7 +503,7 @@ public class AuctionDAO extends DaoBase {
      * 拍卖成功的金钱七天内还没有取回的将被没收
      */
     public void updateMoneySevenDay() {
-        String sql = "delete from u_auction where auction_sell = 2 and now() > (auction_time + INTERVAL 5 DAY)";
+        String sql = "DELETE FROM u_auction WHERE auction_sell = 2 AND now() > (auction_time + INTERVAL 5 DAY)";
         logger.debug("更新拍卖信息的sql :" + sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
@@ -526,11 +526,11 @@ public class AuctionDAO extends DaoBase {
      * @param pPk 个人角色id
      * @return list
      */
-    public List<AuctionVO> getGoodsList(String pPk, int auctionType) {
+    public List<AuctionVO> getGoodsList(String pPk,  int auctionType) {
         List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
 
-        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 2 and auction_sell = 1 and auction_type=" + auctionType;
-        String sql1 = "SELECT * FROM u_auction where auction_ppk=" + pPk + " and auction_failed =1 and auction_sell =2 and auction_type=" + auctionType;
+        String sql = "SELECT * FROM u_auction WHERE p_pk=" + pPk + " AND auction_failed = 2 AND auction_sell = 1 AND auction_type=" + auctionType;
+        String sql1 = "SELECT * FROM u_auction WHERE auction_ppk=" + pPk + " AND auction_failed =1 AND auction_sell =2 AND auction_type=" + auctionType;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug("拍卖场仓库里的物品的sql :" + sql);
@@ -598,7 +598,7 @@ public class AuctionDAO extends DaoBase {
     public List<AuctionVO> getMoneyList(String pPk) {
         List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
 
-        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 1 and auction_sell = 2 and u_pk!=-1";
+        String sql = "SELECT * FROM u_auction WHERE p_pk=" + pPk + " AND auction_failed = 1 AND auction_sell = 2 AND u_pk!=-1";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug("拍卖场仓库里的金钱sql :" + sql);
@@ -638,11 +638,11 @@ public class AuctionDAO extends DaoBase {
     }
 
     /**
-     * 删除id更新拍卖信息,返回1代表成功，返回-1代表失败
+     * 删除id更新拍卖信息, 返回1代表成功，返回-1代表失败
      */
     public int deleteFromAuction(int auction_id) {
         int i = -1;
-        String sql1 = "delete from u_auction where auction_id=" + auction_id;
+        String sql1 = "DELETE FROM u_auction WHERE auction_id=" + auction_id;
 
         logger.debug("更新拍卖信息状态的sql :" + sql1);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -664,11 +664,11 @@ public class AuctionDAO extends DaoBase {
     }
 
     /**
-     * 删除id更新拍卖信息,返回1代表成功，返回-1代表失败
+     * 删除id更新拍卖信息, 返回1代表成功，返回-1代表失败
      */
-    public int updateFromAuction(String fieldName, int auction_id) {
+    public int updateFromAuction(String fieldName,  int auction_id) {
         int i = -1;
-        String sql1 = "update u_auction set " + fieldName + "=-1 where auction_id=" + auction_id;
+        String sql1 = "UPDATE u_auction SET " + fieldName + "=-1 WHERE auction_id=" + auction_id;
 
         logger.debug("更新拍卖信息状态的sql :" + sql1);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -699,7 +699,7 @@ public class AuctionDAO extends DaoBase {
     public List<AuctionVO> getNotSellList(int pPk) {
         List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
 
-        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 2 and auction_sell = 1";
+        String sql = "SELECT * FROM u_auction WHERE p_pk=" + pPk + " AND auction_failed = 2 AND auction_sell = 1";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug("拍卖场仓库里的未卖出sql :" + sql);
@@ -747,7 +747,7 @@ public class AuctionDAO extends DaoBase {
     public List<AuctionVO> getNotSellGoodsList(int pPk) {
         List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
 
-        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 2 and auction_sell = 1 order by auction_time desc";
+        String sql = "SELECT * FROM u_auction WHERE p_pk=" + pPk + " AND auction_failed = 2 AND auction_sell = 1 ORDER BY auction_time desc";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         logger.debug("拍卖场仓库里的未卖出sql :" + sql);
@@ -795,7 +795,7 @@ public class AuctionDAO extends DaoBase {
     public List<AuctionVO> getLostGoodsLists(int pPk) {
         List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
 
-        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 3 order by auction_time desc";
+        String sql = "SELECT * FROM u_auction WHERE p_pk=" + pPk + " AND auction_failed = 3 ORDER BY auction_time desc";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         // logger.debug("拍卖场仓库里的被没收sql :"+sql);
@@ -836,7 +836,7 @@ public class AuctionDAO extends DaoBase {
 
     // 获取拍卖时间超过三天的列表
     public List<AuctionVO> getThanThreeDayList() {
-        String sql = "SELECT * FROM u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 2 DAY)";
+        String sql = "SELECT * FROM u_auction WHERE auction_sell = 1 AND now() > (auction_time + INTERVAL 2 DAY)";
         logger.debug("获取超过一定天数的拍卖信息的sql :" + sql);
         List<AuctionVO> list = new ArrayList<AuctionVO>();
         AuctionVO vo = null;
@@ -866,7 +866,7 @@ public class AuctionDAO extends DaoBase {
 
     // 获得物品六天后未取回的物品清单
     public List<AuctionVO> getThanSixDayList() {
-        String sql = "SELECT * FROM u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 5 DAY)";
+        String sql = "SELECT * FROM u_auction WHERE auction_sell = 1 AND now() > (auction_time + INTERVAL 5 DAY)";
         logger.debug("获取超过一定天数的拍卖信息的sql :" + sql);
         List<AuctionVO> list = new ArrayList<AuctionVO>();
         AuctionVO vo = null;
@@ -895,7 +895,7 @@ public class AuctionDAO extends DaoBase {
 
     // 获得物品拍卖成功后七天内未取回银两的清单
     public List<AuctionVO> getThanSevenDay() {
-        String sql = "SELECT * FROM u_auction where auction_sell = 2 and now() > (auction_time + INTERVAL 5 DAY)";
+        String sql = "SELECT * FROM u_auction WHERE auction_sell = 2 AND now() > (auction_time + INTERVAL 5 DAY)";
         logger.debug("获取超过一定天数的拍卖信息的sql :" + sql);
         List<AuctionVO> list = new ArrayList<AuctionVO>();
         AuctionVO vo = null;
@@ -925,8 +925,8 @@ public class AuctionDAO extends DaoBase {
     }
 
     // 将装备加入增加拍卖表
-    public void addToAuction(int u_pk, int p_pk, PlayerEquipVO vo, int auctionType, int propPrice, int payType, int auctionPrice) {
-        String sql = "INSERT INTO u_auction values (null," + u_pk + "," + p_pk + "," + auctionType + "," + payType + "," + vo.getPwPk() + ",'" + vo.getFullName() + "',1," + propPrice + "," + auctionPrice + ",0,now(),0,0,now(),1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'',0,'','','','',0,0,0)";
+    public void addToAuction(int u_pk,  int p_pk,  PlayerEquipVO vo,  int auctionType,  int propPrice,  int payType,  int auctionPrice) {
+        String sql = "INSERT INTO u_auction VALUES (null, " + u_pk + ", " + p_pk + ", " + auctionType + ", " + payType + ", " + vo.getPwPk() + ", '" + vo.getFullName() + "', 1, " + propPrice + ", " + auctionPrice + ", 0, now(), 0, 0, now(), 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '', '', '', '', 0, 0, 0)";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         logger.debug("auctionDAO中的 addToAuction的sql : " + sql);
         logger.info(sql);
@@ -950,9 +950,9 @@ public class AuctionDAO extends DaoBase {
      * @param auctionVO
      * @return
      */
-    public int putGoodsToWrap(int pk, AuctionVO vo) {
+    public int putGoodsToWrap(int pk,  AuctionVO vo) {
         int i = 0;
-        String sql = "INSERT INTO u_part_equip values(null,'" + pk + "','" + vo.getTableType() + "','" + vo.getGoodsType() + "','" + vo.getGoodsId() + "','" + vo.getGoodsName() + "','" + vo.getWDurability() + "','" + vo.getWDuraConsume() + "','" + vo.getWBonding() + "','" + vo.getWProtect() + "','" + vo.getWIsReconfirm() + "','" + vo.getWPrice() + "','" + vo.getWFyXiaoYuan() + "','" + vo.getWFyDaYuan() + "','" + vo.getWGjXiaoYuan() + "','" + vo.getWGjDaYuan() + "','" + vo.getWHp() + "','" + vo.getWMp() + "','" + vo.getWJinFy() + "','" + vo.getWMuFy() + "','" + vo.getWShuiFy() + "','" + vo.getWHuoFy() + "','" + vo.getWTuFy() + "','" + vo.getWJinGj() + "','" + vo.getWMuGj() + "','" + vo.getWShuiGj() + "','" + vo.getWHuoGj() + "','" + vo.getWTuGj() + "','0','" + vo.getWQuality() + "','" + vo.getSuitId() + "','" + vo.getWWxType() + "','" + vo.getWBuffIsEffected() + "','" + vo.getEnchantType() + "'," + vo.getEnchantValue() + "," + vo.getWZjHp() + "," + vo.getWZjMp() + "," + vo.getWZjWxGj() + "," + vo.getWZjWxFy() + "," + vo.getWZbGrade() + ",now(),0," + vo.getWBondingNum() + "," + vo.getSpecialcontent() + ")";
+        String sql = "INSERT INTO u_part_equip VALUES(null, '" + pk + "', '" + vo.getTableType() + "', '" + vo.getGoodsType() + "', '" + vo.getGoodsId() + "', '" + vo.getGoodsName() + "', '" + vo.getWDurability() + "', '" + vo.getWDuraConsume() + "', '" + vo.getWBonding() + "', '" + vo.getWProtect() + "', '" + vo.getWIsReconfirm() + "', '" + vo.getWPrice() + "', '" + vo.getWFyXiaoYuan() + "', '" + vo.getWFyDaYuan() + "', '" + vo.getWGjXiaoYuan() + "', '" + vo.getWGjDaYuan() + "', '" + vo.getWHp() + "', '" + vo.getWMp() + "', '" + vo.getWJinFy() + "', '" + vo.getWMuFy() + "', '" + vo.getWShuiFy() + "', '" + vo.getWHuoFy() + "', '" + vo.getWTuFy() + "', '" + vo.getWJinGj() + "', '" + vo.getWMuGj() + "', '" + vo.getWShuiGj() + "', '" + vo.getWHuoGj() + "', '" + vo.getWTuGj() + "', '0', '" + vo.getWQuality() + "', '" + vo.getSuitId() + "', '" + vo.getWWxType() + "', '" + vo.getWBuffIsEffected() + "', '" + vo.getEnchantType() + "', " + vo.getEnchantValue() + ", " + vo.getWZjHp() + ", " + vo.getWZjMp() + ", " + vo.getWZjWxGj() + ", " + vo.getWZjWxFy() + ", " + vo.getWZbGrade() + ", now(), 0, " + vo.getWBondingNum() + ", " + vo.getSpecialcontent() + ")";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         logger.debug("auctionDAO中的 addToAuction的sql : " + sql);
         try {
@@ -976,9 +976,9 @@ public class AuctionDAO extends DaoBase {
      * @param pk
      * @param auctionVO
      */
-    public int insertPropGroupInfo(int pk, AuctionVO auctionVO, int pg_type, int prop_type, int prop_price) {
+    public int insertPropGroupInfo(int pk,  AuctionVO auctionVO,  int pg_type,  int prop_type,  int prop_price) {
         int i = -1;
-        String sql = "INSERT INTO u_propgroup_info values(null,'" + pk + "','" + pg_type + "','" + auctionVO.getGoodsId() + "','" + prop_type + "','" + auctionVO.getWBonding() + "','" + auctionVO.getWProtect() + "','" + auctionVO.getWIsReconfirm() + "','" + auctionVO.getPropUseControl() + "','" + auctionVO.getGoodsName() + "','" + prop_price + "','" + auctionVO.getGoodsNumber() + "',now())";
+        String sql = "INSERT INTO u_propgroup_info VALUES(null, '" + pk + "', '" + pg_type + "', '" + auctionVO.getGoodsId() + "', '" + prop_type + "', '" + auctionVO.getWBonding() + "', '" + auctionVO.getWProtect() + "', '" + auctionVO.getWIsReconfirm() + "', '" + auctionVO.getPropUseControl() + "', '" + auctionVO.getGoodsName() + "', '" + prop_price + "', '" + auctionVO.getGoodsNumber() + "', now())";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         logger.debug("auctionDAO中的 addToAuction的sql : " + sql);
         try {

@@ -2,7 +2,7 @@
 <%@ page pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
 <%
 String message = (String)request.getAttribute("message");
-String where = (String)request.getAttribute("where");
+String WHERE = (String)request.getAttribute("where");
 if(where!=null&&!"".equals(where.trim())){
 %>
 <%=message %><br/>

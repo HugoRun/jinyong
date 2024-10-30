@@ -75,6 +75,7 @@ public class BackFilter implements Filter {
 
             if (urlOfNoNeedFilter.contains(servletPath)) {
                 // 不需要过滤的url,直接请求，不经过之后的过滤器
+                System.out.println("servletPath: " + servletPath);
                 request.getRequestDispatcher(servletPath).forward(request, response);
             } else {
                 logger.info("preCheckStr = " + "; curCheckStr = " + curCheckStr + "; userCheckStr = " + userCheckStr);

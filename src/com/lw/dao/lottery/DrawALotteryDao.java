@@ -15,7 +15,7 @@ public class DrawALotteryDao extends DaoBase
 	public DrawALotteryVO getDrawALotteryInfo(int id)
 	{
 		DrawALotteryVO drawALotteryVO = null;
-		String sql = "SELECT * FROM lottery_draw where id = " + id;
+		String sql = "SELECT * FROM lottery_draw WHERE id = " + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -52,7 +52,7 @@ public class DrawALotteryDao extends DaoBase
 	{
 		List<DrawALotteryVO> list = new ArrayList<DrawALotteryVO>();
 		DrawALotteryVO drawALotteryVO = null;
-		String sql = "SELECT * FROM lottery_draw where is_run = 0 and time_type = "
+		String sql = "SELECT * FROM lottery_draw WHERE is_run = 0 AND time_type = "
 				+ timetype;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -94,8 +94,7 @@ public class DrawALotteryDao extends DaoBase
 	// 更细加载过程
 	public void updateIsRun(int timetype, int isrun)
 	{
-		String sql = "update lottery_draw set is_run = " + isrun
-				+ " where time_type = " + timetype;
+		String sql = "UPDATE lottery_draw SET `is_run` = " + isrun + " WHERE `time_type` = " + timetype;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -121,10 +120,10 @@ public class DrawALotteryDao extends DaoBase
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
-		String sql = "SELECT p_pk from u_part_info where create_time like '%"
-				+ date + "%' and  p_grade >= '" + level_min
-				+ "' and p_grade <= '" + level_max
-				+ "'  order by rand() limit " + num;
+		String sql = "SELECT p_pk FROM u_part_info WHERE create_time LIKE '%"
+				+ date + "%' AND  p_grade >= '" + level_min
+				+ "' AND p_grade <= '" + level_max
+				+ "'  ORDER BY rand() LIMIT " + num;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -156,13 +155,13 @@ public class DrawALotteryDao extends DaoBase
 			String level_max)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT a.p_pk from u_sky_pay_record as a ,u_part_info as b where a.respones_result = 0 and a.pay_time like '%"
+		String sql = "SELECT a.p_pk FROM u_sky_pay_record AS a ,u_part_info AS b WHERE a.respones_result = 0 AND a.pay_time LIKE '%"
 				+ date
-				+ "%' and a.p_pk = b.p_pk and  b.p_grade >= '"
+				+ "%' AND a.p_pk = b.p_pk AND  b.p_grade >= '"
 				+ level_min
-				+ "' and b.p_grade <= '"
+				+ "' AND b.p_grade <= '"
 				+ level_max
-				+ "' group by a.p_pk order by RAND() limit " + num;
+				+ "' GROUP BY a.p_pk ORDER BY RAND() LIMIT " + num;
 		int p_pk = 0;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -196,11 +195,11 @@ public class DrawALotteryDao extends DaoBase
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
-		String sql = "SELECT p_pk from u_part_info where login_state = 1 and  p_grade >= '"
+		String sql = "SELECT p_pk FROM u_part_info WHERE login_state = 1 AND  p_grade >= '"
 				+ level_min
-				+ "' and p_grade <= '"
+				+ "' AND p_grade <= '"
 				+ level_max
-				+ "' order by rand() limit " + num;
+				+ "' ORDER BY rand() LIMIT " + num;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -231,8 +230,8 @@ public class DrawALotteryDao extends DaoBase
 	public int getChongzhiYb(int p_pk, String date)
 	{
 		int yuanbao = 0;
-		String sql = "SELECT sum(kbamt) as yuanbao from u_sky_pay_record where pay_time like '%"
-				+ date + "%' and respones_result = '0' and p_pk = " + p_pk;
+		String sql = "SELECT SUM (kbamt) AS yuanbao FROM u_sky_pay_record WHERE pay_time LIKE '%"
+				+ date + "%' AND respones_result = '0' AND p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

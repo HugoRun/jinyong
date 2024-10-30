@@ -12,12 +12,12 @@
     RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="bill" title="充值">
 <p>
-    <s:message key = "gamename"/>充值通道
+    <bean:message key="gamename"/>充值通道
     <br/>
-    <%=roleInfo.getBasicInfo().getName()%>您好!欢迎您使用<s:message key = "gamename"/>【<%=GameConfig.getYuanbaoName() %>】充值服务,祝您游戏愉快!
+    <%=roleInfo.getBasicInfo().getName()%>您好!欢迎您使用<bean:message key="gamename"/>【<%=GameConfig.getYuanbaoName() %>】充值服务,祝您游戏愉快!
     <br/>
     <anchor>
     <go method="get" href="http://wap.tom.com/phone/nz_sub.jsp?cmd=n1&amp;c=327&amp;t=10601&amp;cons_amigo=<%=roleInfo.getBasicInfo().getPPk()%>">

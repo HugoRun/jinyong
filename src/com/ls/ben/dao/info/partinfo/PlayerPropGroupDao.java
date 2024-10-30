@@ -38,7 +38,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public void clear(int p_pk )
 	{
-		String update_sql = "delete from u_propgroup_info where p_pk = "+p_pk;
+		String update_sql = "DELETE FROM u_propgroup_info WHERE p_pk = "+p_pk;
 		super.executeUpdateSql(update_sql);
 	}
 
@@ -52,11 +52,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	{
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT * FROM u_propgroup_info where p_pk="
+		String sql = "SELECT * FROM u_propgroup_info WHERE p_pk="
 				+ p_pk
-				+ " and pg_type="
+				+ " AND pg_type="
 				+ pg_type
-				+ " and prop_use_control=0 and prop_type != 41 group by prop_id";
+				+ " AND prop_use_control=0 AND prop_type != 41 GROUP BY prop_id";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -97,7 +97,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getNumOnWrap(int pPk)
 	{
 		int num_on_wrap = 0;
-		String sql = "SELECT count(*) from u_propgroup_info where p_pk="+ pPk;
+		String sql = "SELECT COUNT(*) FROM u_propgroup_info WHERE p_pk="+ pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -132,11 +132,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	{
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT prop_id,sum(prop_num) from u_propgroup_info where p_pk="
+		String sql = "SELECT prop_id, SUM(prop_num) FROM u_propgroup_info WHERE p_pk="
 				+ p_pk
-				+ " and prop_type="
+				+ " AND prop_type="
 				+ prop_type
-				+ " group by prop_id";
+				+ " GROUP BY prop_id";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -177,7 +177,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 			return -1;
 		}
 		int result = -1;
-		String sql = "INSERT INTO u_propgroup_info (p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) values (?,?,?,?,?,?,?,?,?,now())";
+		String sql = "INSERT INTO u_propgroup_info (p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) VALUES (?,?,?,?,?,?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -235,9 +235,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int updateMiJingOwner(int last_owner, int new_owner)
 	{
-		String sql = "update u_propgroup_info u set u.p_pk = " + new_owner
-				+ " where u.p_pk = " + last_owner + " and u.prop_type = "
-				+ PropType.MIJING_MAP + " limit 1";
+		String sql = "UPDATE u_propgroup_info u SET u.p_pk = " + new_owner
+				+ " WHERE u.p_pk = " + last_owner + " AND u.prop_type = "
+				+ PropType.MIJING_MAP + " LIMIT 1";
 		return this.executeUpdateSql(sql);
 	}
 
@@ -246,8 +246,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int removeMiJing(int ppk)
 	{
-		String sql = "delete from u_propgroup_info where p_pk = " + ppk
-				+ " and prop_type = " + PropType.MIJING_MAP;
+		String sql = "DELETE FROM u_propgroup_info WHERE p_pk = " + ppk
+				+ " AND prop_type = " + PropType.MIJING_MAP;
 		return this.executeUpdateSql(sql);
 	}
 
@@ -256,11 +256,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public boolean haveMiJing(int ppk)
 	{
-		String sql = "SELECT count(*) nu from u_propgroup_info u where u.prop_type = "
+		String sql = "SELECT COUNT(*) nu FROM u_propgroup_info u WHERE u.prop_type = "
 				+ PropType.MIJING_MAP
-				+ " and u.p_pk = "
+				+ " AND u.p_pk = "
 				+ ppk
-				+ " and u.prop_num >0";
+				+ " AND u.prop_num >0";
 		int result = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -302,8 +302,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int updatePropGroupUpNum(int p_pk, int prop_id, int accumulate_num)
 	{
-		String sql = "update u_propgroup_info set prop_num=" + accumulate_num
-				+ " where p_pk=" + p_pk + " and prop_id=" + prop_id;
+		String sql = "UPDATE u_propgroup_info SET prop_num=" + accumulate_num
+				+ " WHERE p_pk=" + p_pk + " AND prop_id=" + prop_id;
 		return this.executeUpdateSql(sql);
 	}
 
@@ -318,9 +318,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int updateOneGroupPropNum(int p_pk, int prop_id, int prop_num)
 	{
-		String sql = "update u_propgroup_info set prop_num=" + prop_num
-				+ " where p_pk=" + p_pk + " and prop_id=" + prop_id
-				+ " limit 1";
+		String sql = "UPDATE u_propgroup_info SET prop_num=" + prop_num
+				+ " WHERE p_pk=" + p_pk + " AND prop_id=" + prop_id
+				+ " LIMIT 1";
 		return this.executeUpdateSql(sql);
 	}
 
@@ -334,8 +334,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int updatePropGroupNum(int pg_pk, int prop_num)
 	{
-		String sql = "update u_propgroup_info set prop_num=" + prop_num
-				+ " where pg_pk=" + pg_pk + " limit 1";
+		String sql = "UPDATE u_propgroup_info SET prop_num=" + prop_num
+				+ " WHERE pg_pk=" + pg_pk + " LIMIT 1";
 		return this.executeUpdateSql(sql);
 	}
 
@@ -349,9 +349,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int updatePropGroupNumByPropID(int p_pk, int prop_id, int prop_num)
 	{
-		String sql = "update u_propgroup_info set prop_num=" + prop_num
-				+ " where p_pk=" + p_pk + " and prop_id =" + prop_id
-				+ " limit 1";
+		String sql = "UPDATE u_propgroup_info SET prop_num=" + prop_num
+				+ " WHERE p_pk=" + p_pk + " AND prop_id =" + prop_id
+				+ " LIMIT 1";
 		return this.executeUpdateSql(sql);
 	}
 
@@ -360,7 +360,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int deletePropGroup(int pg_pk)
 	{
-		String sql = "delete from  u_propgroup_info where pg_pk=" + pg_pk;
+		String sql = "DELETE FROM  u_propgroup_info WHERE pg_pk=" + pg_pk;
 		logger.debug(sql);
 		return this.executeUpdateSql(sql);
 	}
@@ -370,8 +370,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public int deletePropGroup(int p_pk, int prop_id, int delete_group_num)
 	{
-		String sql = "delete from  u_propgroup_info where  p_pk=" + p_pk
-				+ " and prop_id=" + prop_id + " limit " + delete_group_num;
+		String sql = "DELETE FROM  u_propgroup_info WHERE p_pk=" + p_pk
+				+ " AND prop_id=" + prop_id + " LIMIT " + delete_group_num;
 		logger.debug(sql);
 		return this.executeUpdateSql(sql);
 	}
@@ -382,8 +382,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getPropNumByByPropID(int p_pk, int prop_id)
 	{
 		int prop_num = 0;
-		String sql = "SELECT sum(prop_num) as prop_sum from u_propgroup_info where p_pk="
-				+ p_pk + " and prop_id=" + prop_id + "";
+		String sql = "SELECT SUM (prop_num) AS prop_sum FROM u_propgroup_info WHERE p_pk="
+				+ p_pk + " AND prop_id=" + prop_id + "";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -438,7 +438,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 	public PlayerPropGroupVO findById(int id)
 	{
-		String sql = "SELECT * FROM u_propgroup_info u where u.pg_pk = " + id;
+		String sql = "SELECT * FROM u_propgroup_info u WHERE u.pg_pk = " + id;
 		List<PlayerPropGroupVO> list = new ArrayList<PlayerPropGroupVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -467,8 +467,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 	public void jieYiDelProp(String ids, String caozuo)
 	{
-		String sql = "update u_propgroup_info u set u.prop_num = u.prop_num "
-				+ caozuo + " where u.pg_pk in (" + ids + ")";
+		String sql = "UPDATE u_propgroup_info u SET u.prop_num = u.prop_num "
+				+ caozuo + " WHERE u.pg_pk IN (" + ids + ")";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -493,9 +493,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		if (null != ids && !"".equals(ids.trim()))
 		{
 			List<PlayerPropGroupVO> list = new ArrayList<PlayerPropGroupVO>();
-			String sql = "SELECT * FROM u_propgroup_info u where u.p_pk="
-					+ p_pk + " and u.prop_id in (" + ids
-					+ ") and u.prop_num > 0";
+			String sql = "SELECT * FROM u_propgroup_info u WHERE u.p_pk="
+					+ p_pk + " AND u.prop_id IN (" + ids
+					+ ") AND u.prop_num > 0";
 			log.info("查询结义所需物品sql ： " + sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
@@ -539,8 +539,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public PlayerPropGroupVO getPropGroupByPropID(int p_pk, int prop_id)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk
-				+ " and prop_id=" + prop_id + " order by prop_num limit 1";
+		String sql = "SELECT * FROM u_propgroup_info WHERE p_pk=" + p_pk
+				+ " AND prop_id=" + prop_id + " ORDER BY prop_num LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -574,8 +574,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public boolean getUserHasProp(int p_pk, int prop_id)
 	{
 		boolean flag = false;
-		String sql = "SELECT pg_pk from u_propgroup_info where p_pk=" + p_pk
-				+ " and prop_id=" + prop_id + " limit 1";
+		String sql = "SELECT pg_pk FROM u_propgroup_info WHERE p_pk=" + p_pk
+				+ " AND prop_id=" + prop_id + " LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -609,8 +609,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getPgpkByProp(int p_pk, int prop_id)
 	{
 		int pg_pk = -1;
-		String sql = "SELECT pg_pk from u_propgroup_info where p_pk=" + p_pk
-				+ " and prop_id=" + prop_id + " limit 1";
+		String sql = "SELECT pg_pk FROM u_propgroup_info WHERE p_pk=" + p_pk
+				+ " AND prop_id=" + prop_id + " LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -644,8 +644,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getPropGroupNumByPropID(int p_pk, int prop_id)
 	{
 		// PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT count(1) as prop_group from u_propgroup_info where p_pk="
-				+ p_pk + " and prop_id=" + prop_id + "";
+		String sql = "SELECT COUNT(1) AS prop_group FROM u_propgroup_info WHERE p_pk="
+				+ p_pk + " AND prop_id=" + prop_id + "";
 		logger.debug(sql);
 		int prop_group = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -680,9 +680,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public PlayerPropGroupVO getPropGroupByTime(int p_pk, int prop_id)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk
-				+ " and prop_id=" + prop_id
-				+ " order by create_time desc limit 1";
+		String sql = "SELECT * FROM u_propgroup_info WHERE p_pk=" + p_pk
+				+ " AND prop_id=" + prop_id
+				+ " ORDER BY create_time DESC LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -716,7 +716,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public PlayerPropGroupVO getByPgPk(int pg_pk)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT * FROM u_propgroup_info where pg_pk=" + pg_pk;
+		String sql = "SELECT * FROM u_propgroup_info WHERE pg_pk=" + pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -750,8 +750,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public PlayerPropGroupVO getByPgPk(int pg_pk, int p_pk)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT * FROM u_propgroup_info where pg_pk=" + pg_pk
-				+ " and p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_propgroup_info WHERE pg_pk=" + pg_pk
+				+ " AND p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -785,8 +785,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public void updatePropToBonding(int pg_pk)
 	{
-		String sql = "update u_propgroup_info set prop_bonding = "
-				+ BondingType.PICKBOUND + " where pg_pk=" + pg_pk;
+		String sql = "UPDATE u_propgroup_info SET prop_bonding = "
+				+ BondingType.PICKBOUND + " WHERE pg_pk=" + pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -820,7 +820,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	{
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
 		PlayerPropGroupVO propGroup = null;
-		String sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk+ " order by prop_id,prop_num";
+		String sql = "SELECT * FROM u_propgroup_info WHERE p_pk=" + p_pk+ " ORDER BY prop_id,prop_num";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -868,7 +868,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public QueryPage getPagePropsByPpk(int p_pk, int pg_type, int page_no)
 	{
-		String condition_sql = "where p_pk="+ p_pk + " and pg_type=" + pg_type;
+		String condition_sql = "where p_pk="+ p_pk + " AND pg_type=" + pg_type;
 		return super.loadPageList(condition_sql, page_no);
 	}
 
@@ -895,12 +895,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		try
 		{
 			stmt = conn.createStatement();
-			// count_sql = "SELECT count(*) from u_propgroup_info where p_pk=" +
-			// p_pk + " and pg_type=" + pg_type + " and (prop_type=20 or
+			// count_sql = "SELECT COUNT(*) FROM u_propgroup_info WHERE p_pk=" +
+			// p_pk + " AND pg_type=" + pg_type + " AND (prop_type=20 or
 			// prop_type=21)";
-			count_sql = "SELECT count(*) from u_propgroup_info where p_pk="
+			count_sql = "SELECT COUNT(*) FROM u_propgroup_info WHERE p_pk="
 					+ p_pk
-					+ " and (prop_type=20 or prop_type=21 or prop_type=48)";
+					+ " AND (prop_type=20 or prop_type=21 or prop_type=48)";
 			logger.debug("lllllllllll " + count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if (rs.next())
@@ -911,14 +911,14 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 			queryPage = new QueryPage(page_no, count);
 
-			// page_sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk +
-			// " and pg_type=" + pg_type + " and (prop_type=20 or prop_type=21)
-			// order by prop_id,prop_num " + "limit " +
+			// page_sql = "SELECT * FROM u_propgroup_info WHERE p_pk=" + p_pk +
+			// " AND pg_type=" + pg_type + " AND (prop_type=20 or prop_type=21)
+			// ORDER BY prop_id,prop_num " + "limit " +
 			// queryPage.getStartOfPage() + "," + queryPage.getPageSize();
 
-			page_sql = "SELECT * FROM u_propgroup_info where p_pk="
+			page_sql = "SELECT * FROM u_propgroup_info WHERE p_pk="
 					+ p_pk
-					+ " and (prop_type=20 or prop_type=21 or prop_type=48 ) order by prop_id,prop_num "
+					+ " AND (prop_type=20 or prop_type=21 or prop_type=48 ) ORDER BY prop_id,prop_num "
 					+ "limit " + queryPage.getStartOfPage() + ","
 					+ queryPage.getPageSize();
 
@@ -963,7 +963,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public GoodsControlVO getPropControl(int pg_pk)
 	{
 		GoodsControlVO goodsControl = null;
-		String sql = "SELECT prop_protect,prop_bonding,prop_isReconfirm from u_propgroup_info where pg_pk="
+		String sql = "SELECT prop_protect,prop_bonding,prop_isReconfirm FROM u_propgroup_info WHERE pg_pk="
 				+ pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1003,7 +1003,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public GoodsControlVO getPropControlgoods(int goods)
 	{
 		GoodsControlVO goodsControl = null;
-		String sql = "SELECT prop_bonding from prop where prop_ID=" + goods;
+		String sql = "SELECT prop_bonding FROM prop WHERE prop_ID=" + goods;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -1039,8 +1039,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public List<Integer> getNoProtectPropId(int pk)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT pg_pk from u_propgroup_info where p_pk=" + pk
-				+ " and prop_protect = 0 and pg_type !=6";
+		String sql = "SELECT pg_pk FROM u_propgroup_info WHERE p_pk=" + pk
+				+ " AND prop_protect = 0 AND pg_type !=6";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -1075,8 +1075,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public void reduceBoxCure(PlayerPropGroupVO propGroup, int add_mp,
 			int sp_type)
 	{
-		String sql = "update u_special_prop set prop_stock = prop_stock - "
-				+ add_mp + " where sp_type= " + sp_type + " and pg_pk = "
+		String sql = "UPDATE u_special_prop SET prop_stock = prop_stock - "
+				+ add_mp + " WHERE sp_type= " + sp_type + " AND pg_pk = "
 				+ propGroup.getPgPk();
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1107,7 +1107,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public void insertSpecial(int p_pk, int pg_pk, String propOperate2,
 			int sp_type)
 	{
-		String sql = "INSERT INTO u_special_prop values(null," + p_pk + ","
+		String sql = "INSERT INTO u_special_prop VALUES(null," + p_pk + ","
 				+ sp_type + "," + pg_pk + "," + propOperate2 + ",now())";
 		logger.debug("插入特殊道具表=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1137,8 +1137,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getSurplus(int pPk, int pgPk, int sp_type)
 	{
 		int surplus = 0;
-		String sql = "SELECT prop_stock from u_special_prop where pg_pk="
-				+ pgPk + " and sp_type = " + sp_type + " and p_pk=" + pPk;
+		String sql = "SELECT prop_stock FROM u_special_prop WHERE pg_pk="
+				+ pgPk + " AND sp_type = " + sp_type + " AND p_pk=" + pPk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -1172,9 +1172,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public void deletePropBoxCure(int pgPk, int pk)
 	{
-		String sql = "delete from u_special_prop where p_pk=" + pk
-				+ " and pg_pk=" + pgPk;
-		String sql2 = "delete from u_special_prop where prop_stock = 0";
+		String sql = "DELETE FROM u_special_prop WHERE p_pk=" + pk
+				+ " AND pg_pk=" + pgPk;
+		String sql2 = "DELETE FROM u_special_prop WHERE prop_stock = 0";
 		logger.debug("删除特殊道具中的记录=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -1205,8 +1205,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getSpecialId(int pPk, int pgPk, int sp_type)
 	{
 		int specialId = 0;
-		String sql = "SELECT id from u_special_prop where pg_pk=" + pgPk
-				+ " and p_pk=" + pPk + " and sp_type=" + sp_type;
+		String sql = "SELECT id FROM u_special_prop WHERE pg_pk=" + pgPk
+				+ " AND p_pk=" + pPk + " AND sp_type=" + sp_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -1241,7 +1241,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public QueryPage getPageListByPropType(int pPk, int prop_type,int page_no)
 	{
-		String condition_sql = "where p_pk=" + pPk+ " and prop_type = " + prop_type;
+		String condition_sql = "where p_pk=" + pPk+ " AND prop_type = " + prop_type;
 		return super.loadPageList(condition_sql, page_no);
 	}
 
@@ -1255,8 +1255,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getPropNumByPropType(int p_pk, int prop_type)
 	{
 		int prop_num = 0;
-		String sql = "SELECT sum(prop_num) as prop_num from u_propgroup_info where p_pk="
-				+ p_pk + " and prop_type=" + prop_type;
+		String sql = "SELECT SUM (prop_num) AS prop_num FROM u_propgroup_info WHERE p_pk="
+				+ p_pk + " AND prop_type=" + prop_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -1292,7 +1292,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public QueryPage getGoldBoxList(int pPk, String prop_id, int page_no)
 	{
-		return  super.loadPageList("where p_pk="+ pPk + " and prop_id = " + prop_id, page_no);
+		return  super.loadPageList("where p_pk="+ pPk + " AND prop_id = " + prop_id, page_no);
 	}
 
 	/** 发送黄金宝箱的信息 */
@@ -1300,7 +1300,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int sendGoldInfo(int prop_id)
 	{
 		int type = 0;
-		String sql = "SELECT pg_type from u_propgroup_info where prop_id="
+		String sql = "SELECT pg_type FROM u_propgroup_info WHERE prop_id="
 				+ prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1341,7 +1341,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public void sendGoldInfo(int pPk, int grade, int goodsId, String goodsName,
 			int goodsQuality)
 	{
-		String sql = "INSERT INTO u_box_info values (null," + pPk + "," + grade
+		String sql = "INSERT INTO u_box_info VALUES (null," + pPk + "," + grade
 				+ "," + goodsId + ",'" + goodsName + "'," + goodsQuality
 				+ ",now())";
 		logger.debug(sql);
@@ -1377,7 +1377,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public void sendRecordGoldInfo(int pPk, int info_type, String content)
 	{
-		String sql = "INSERT INTO u_box_record values (null," + pPk + ","
+		String sql = "INSERT INTO u_box_record VALUES (null," + pPk + ","
 				+ info_type + ",'" + content + "',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1411,8 +1411,8 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		{
 			if (propId != null && !"".equals(propId.trim()))
 			{
-				String sql = "delete from u_propgroup_info where p_pk = " + ppk
-						+ " and prop_id in (" + propId + ")";
+				String sql = "DELETE FROM u_propgroup_info WHERE p_pk = " + ppk
+						+ " AND prop_id IN (" + propId + ")";
 				logger.debug(sql);
 				DBConnection dbConn = new DBConnection(
 						DBConnection.GAME_USER_DB);
@@ -1453,7 +1453,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public QueryPage getPagePropByTypes(int p_pk, String prop_type_str, int page_no)
 	{
-		String condi_sql = " where p_pk="+ p_pk + " and prop_type in(" + prop_type_str + ") ";
+		String condi_sql = " WHERE p_pk="+ p_pk + " AND prop_type IN (" + prop_type_str + ") ";
 		return this.loadPageList(condi_sql, page_no);
 	}
 	

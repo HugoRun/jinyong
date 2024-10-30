@@ -6,10 +6,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%--    <%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>--%>
-<%--    <card id="timeout" title="<s:message key = "gamename"/>">--%>
-<%--    </card>--%>
-    <card id="timeout" title="金庸OL">
+    <%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+    <card id="timeout" title="<bean:message key="gamename"/>">
         <p>
             <%
                 String outtime_hint = GameConfig.getTimeoutHint();

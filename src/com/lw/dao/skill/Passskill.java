@@ -24,9 +24,9 @@ public class Passskill extends SkillDao
 		PassSkillVO passSkillVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT max(sk_bj_multiple) as sk_bj_multiple,max(sk_mp_multiple) as sk_mp_multiple,max(sk_hp_multiple) as sk_hp_multiple," +
-				"max(sk_gj_multiple) as sk_gj_multiple,max(sk_fy_multiple) as sk_fy_multiple,sum(sk_gj_add) as gjadd," +
-				"sum(sk_fy_add) as fyadd,sum(sk_hp_add) as hpadd,sum(sk_mp_add) as mpadd from u_skill_info where sk_type = 0 and p_pk = " + p_pk;
+		String sql = "SELECT MAX(sk_bj_multiple) AS sk_bj_multiple, MAX(sk_mp_multiple) AS sk_mp_multiple, MAX(sk_hp_multiple) AS sk_hp_multiple," +
+				"MAX(sk_gj_multiple) AS sk_gj_multiple, MAX(sk_fy_multiple) AS sk_fy_multiple, SUM(sk_gj_add) AS gjadd," +
+				"SUM (sk_fy_add) AS fyadd, SUM(sk_hp_add) AS hpadd, SUM(sk_mp_add) AS mpadd FROM u_skill_info WHERE sk_type = 0 AND p_pk = " + p_pk;
 		
 		logger.debug("得到玩家的被动技能属性="+sql);
 		try
@@ -74,8 +74,8 @@ public class Passskill extends SkillDao
 		PassSkillVO passSkillVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT max(sk_gj_multiple) as sk_gj_multiple,max(sk_bj_multiple) as sk_bj_multiple,max(sk_hp_multiple) as sk_hp_multiple" +
-				",max(sk_mp_multiple) as sk_mp_multiple,max(sk_fy_multiple) as sk_fy_multiple from u_skill_info where sk_type = 2 and p_pk = " + p_pk;
+		String sql = "SELECT MAX(sk_gj_multiple) AS sk_gj_multiple, MAX(sk_bj_multiple) AS sk_bj_multiple, MAX(sk_hp_multiple) AS sk_hp_multiple" +
+				", MAX(sk_mp_multiple) AS sk_mp_multiple, MAX(sk_fy_multiple) AS sk_fy_multiple FROM u_skill_info WHERE sk_type = 2 AND p_pk = " + p_pk;
 		
 		logger.debug("得到玩家的被动技能属性="+sql);
 		try

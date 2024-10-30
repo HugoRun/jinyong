@@ -77,7 +77,7 @@ public class SqlData extends Action {
     public ResultSet query(String sql) {
         rs = null;
         try {
-            logger.debug("查询:" + sql);
+            logger.debug("查询: " + sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);// 执行SQL语句
         } catch (SQLException ex)// 捕获异常
@@ -222,7 +222,7 @@ public class SqlData extends Action {
     public ResultSet query(String sql, Object[] args) throws SQLException {
         rs = null;
         try {
-            logger.debug("查询:" + sql);
+            logger.debug("查询: " + sql);
             stmt = conn.createStatement();
             PreparedStatement ps = conn.prepareStatement(sql);
             if (args != null) {

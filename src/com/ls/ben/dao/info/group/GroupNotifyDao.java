@@ -16,7 +16,7 @@ public class GroupNotifyDao extends DaoBase {
 	 * 清除所有组队通知信息
 	 */
 	public void clearAllNotify() {
-		String sql = "truncate u_groupnotify_info";
+		String sql = "TRUNCATE `u_groupnotify_info` ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -41,7 +41,7 @@ public class GroupNotifyDao extends DaoBase {
 			logger.debug("参数为空");
 			return;
 		}
-		String sql = "INSERT INTO u_groupnotify_info (notifyed_pk,create_notify_pk,notify_content,notify_type,create_time) values (?,?,?,?,now())";
+		String sql = "INSERT INTO u_groupnotify_info (notifyed_pk,create_notify_pk,notify_content,notify_type,create_time) VALUES (?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -67,7 +67,7 @@ public class GroupNotifyDao extends DaoBase {
 	 * @param n_pk
 	 */
 	public void delete(int n_pk) {
-		String sql = "delete from u_groupnotify_info where n_pk=" + n_pk;
+		String sql = "DELETE FROM u_groupnotify_info WHERE n_pk=" + n_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -88,7 +88,7 @@ public class GroupNotifyDao extends DaoBase {
 	 * @param p_pk
 	 */
 	public void clareNotify(int p_pk) {
-		String sql = "delete from u_groupnotify_info where notifyed_pk=" + p_pk + " or create_notify_pk=" + p_pk;
+		String sql = "DELETE FROM u_groupnotify_info WHERE notifyed_pk=" + p_pk + " or create_notify_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -113,8 +113,8 @@ public class GroupNotifyDao extends DaoBase {
 	 */
 	public GroupNotifyVO getNotifyInfo(int p_pk) {
 		GroupNotifyVO notifyInfo = null;
-		String sql = "SELECT *  from u_groupnotify_info where notifyed_pk="
-				+ p_pk + " order by n_pk limit 1";
+		String sql = "SELECT *  FROM u_groupnotify_info WHERE notifyed_pk="
+				+ p_pk + " ORDER BY n_pk LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -144,8 +144,8 @@ public class GroupNotifyDao extends DaoBase {
 	 */
 	public int isHaveNotify(int p_pk) {
 		int n_pk = -1;
-		String sql = "SELECT n_pk  from u_groupnotify_info where notifyed_pk="
-				+ p_pk + " and notify_flag =0 limit 1";
+		String sql = "SELECT n_pk  FROM u_groupnotify_info WHERE notifyed_pk="
+				+ p_pk + " AND notify_flag =0 LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -170,7 +170,7 @@ public class GroupNotifyDao extends DaoBase {
 	 * @param n_pk
 	 */
 	public void updateNotifyFlag(int n_pk) {
-		String sql = "update  u_groupnotify_info set notify_flag=1 where n_pk=" + n_pk;
+		String sql = "UPDATE  u_groupnotify_info SET notify_flag=1 WHERE n_pk=" + n_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -189,7 +189,7 @@ public class GroupNotifyDao extends DaoBase {
 	 * 清除玩家的所有组队通知
 	 */
 	public void clear(int p_pk) {
-		String sql = "delete from u_groupnotify_info where notifyed_pk=" + p_pk;
+		String sql = "DELETE FROM u_groupnotify_info WHERE notifyed_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -209,8 +209,8 @@ public class GroupNotifyDao extends DaoBase {
 	 */
 	public boolean isNotifyPlayerB(int a_pk, int b_pk) {
 		boolean result = false;
-		String sql = "SELECT count(*) as num from  u_groupnotify_info where notifyed_pk ="
-				+ b_pk + " and create_notify_pk=" + a_pk;
+		String sql = "SELECT COUNT(*) AS num FROM  u_groupnotify_info WHERE notifyed_pk ="
+				+ b_pk + " AND create_notify_pk=" + a_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

@@ -19,7 +19,7 @@ public class EquipMaterialDao extends DaoBase
 	public EquipMaterialVO getByQualityAndGrade(int quality,int grade)
 	{
 		EquipMaterialVO equip_material = null;
-		String sql = "SELECT * FROM equip_material where quality=" + quality+" and grade="+grade+" limit 1";
+		String sql = "SELECT * FROM equip_material WHERE quality=" + quality+" AND grade="+grade+" LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

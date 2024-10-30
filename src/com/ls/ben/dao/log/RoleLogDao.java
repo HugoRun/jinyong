@@ -21,7 +21,7 @@ public class RoleLogDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "INSERT INTO u_upgrade_log (p_pk,role_name,content,createtime) values ("
+			String sql = "INSERT INTO u_upgrade_log (p_pk,role_name,content,createtime) VALUES ("
 					+ p_pk + ",'" + role_name + "','" + content + "',now())";
 			logger.debug(sql);
 			stmt = conn.createStatement();
@@ -52,7 +52,7 @@ public class RoleLogDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "INSERT INTO u_log_money values (null,'" + p_pk
+			String sql = "INSERT INTO u_log_money VALUES (null,'" + p_pk
 					+ "','" + role_name + "','" + old_num + "','" + new_num
 					+ "','" + content + "',now())";
 			logger.debug(sql);
@@ -84,7 +84,7 @@ public class RoleLogDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "INSERT INTO u_log_exp values (null,'" + p_pk + "','"
+			String sql = "INSERT INTO u_log_exp VALUES (null,'" + p_pk + "','"
 					+ role_name + "','" + old_num + "','" + new_num + "','"
 					+ content + "',now())";
 			logger.debug(sql);
@@ -116,7 +116,7 @@ public class RoleLogDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "INSERT INTO u_log_yb values (null,'" + p_pk + "','"
+			String sql = "INSERT INTO u_log_yb VALUES (null,'" + p_pk + "','"
 					+ role_name + "','" + old_num + "','" + new_num + "','"
 					+ content + "',now())";
 			logger.debug(sql);
@@ -148,7 +148,7 @@ public class RoleLogDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "INSERT INTO u_log_player values (null,'" + p_pk
+			String sql = "INSERT INTO u_log_player VALUES (null,'" + p_pk
 					+ "','" + role_name + "','" + old_num + "','" + new_num
 					+ "','" + content + "',now())";
 			logger.debug(sql);

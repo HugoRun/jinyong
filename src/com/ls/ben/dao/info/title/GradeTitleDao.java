@@ -19,7 +19,7 @@ public class GradeTitleDao extends DaoBase
 	public GradeTitleVO getByTilteId(String title_id)
 	{
 		GradeTitleVO titleInfo = null;
-		String sql = "SELECT * FROM  grade_title_info where title_id='"
+		String sql = "SELECT * FROM  grade_title_info WHERE title_id='"
 			+ title_id + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -59,7 +59,7 @@ public class GradeTitleDao extends DaoBase
 	public String getTitleNamesByTitleIDs(String title_ids)
 	{
 		StringBuffer title_names = new StringBuffer();
-		String sql = "SELECT title_name from  grade_title_info where title_id in ("
+		String sql = "SELECT title_name FROM  grade_title_info WHERE title_id IN ("
 			+ title_ids + ")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

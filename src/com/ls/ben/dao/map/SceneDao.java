@@ -24,8 +24,8 @@ public class SceneDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		
 		conn = dbConn.getConn();
-		String sql1 = "select scene.scene_ID from scene,map,barea where barea.barea_ID = map.map_from " +
-				"and map.map_ID = scene.scene_mapqy and barea_ID = "+barea_point;
+		String sql1 = "SELECT scene.scene_ID FROM scene,map,barea WHERE barea.barea_ID = map.map_from " +
+				"AND map.map_ID = scene.scene_mapqy AND barea_ID = "+barea_point;
 		StringBuffer str = new StringBuffer("(");
 		try
 		{
@@ -61,9 +61,9 @@ public class SceneDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		
 		conn = dbConn.getConn();
-		String sql = "SELECT scene.scene_ID from scene,map where  map.map_ID = scene.scene_mapqy " +
-				"and map_ID = "+map_ID;
-		logger.debug("* 获得所有map_ID下的数据表示="+sql);
+		String sql = "SELECT scene.scene_ID FROM scene,map WHERE map.map_ID = scene.scene_mapqy " +
+				"AND map_ID = "+map_ID;
+		logger.debug("* 获得所有map_ID下的数据表示 = "+sql);
 		StringBuffer str = new StringBuffer("(");
 		try
 		{
@@ -100,8 +100,8 @@ public class SceneDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		
 		conn = dbConn.getConn();
-		String sql = "SELECT scene_ID from scene where  scene_mapqy = "+map_ID+" and scene_Name like '%"+sceneName+"%'";
-		logger.debug("* 获得所有map_ID下的数据表示="+sql);
+		String sql = "SELECT scene_ID FROM scene WHERE scene_mapqy = "+map_ID+" AND scene_Name LIKE '%"+sceneName+"%'";
+		logger.debug("* 获得所有map_ID下的数据表示 = "+sql);
 		StringBuffer str = new StringBuffer("(");
 		try
 		{
@@ -140,7 +140,7 @@ public class SceneDao extends DaoBase {
 		SceneVO scene = null;
 		MapVO map = null;
 		
-		String total_num_sql = "SELECT count(*) from `scene`";
+		String total_num_sql = "SELECT COUNT(*) FROM `scene`";
 		String sql = "SELECT * FROM `scene`";
 		
 		logger.debug("得到所有scene信息sql = "+sql);
@@ -185,7 +185,7 @@ public class SceneDao extends DaoBase {
 				
 				if( map==null )
 				{
-					String errer = "SceneDao.getAllScene:加载场景数据错误，无该场景所在的map_id，scene_id="+scene.getSceneID()+";map_id="+scene.getSceneMapqy();
+					String errer = "SceneDao.getAllScene:加载场景数据错误，无该场景所在的map_id，scene_id = "+scene.getSceneID()+";map_id = "+scene.getSceneMapqy();
 					throw new Exception(errer);
 				}
 				else
@@ -214,7 +214,7 @@ public class SceneDao extends DaoBase {
 	public SceneVO getByIdSceneView(String sceneID)
 	{ 
 		SceneVO scene = null; 
-		String sql = "SELECT * FROM scene where scene_ID = '"+sceneID+"'";
+		String sql = "SELECT * FROM scene WHERE scene_ID = '"+sceneID+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {

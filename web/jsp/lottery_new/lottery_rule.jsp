@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="map" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="map" title="<bean:message key="gamename"/>">
 <p>
 警告:5级以上玩家可参与竞猜,未满5级的玩家请在师父的陪同下观看!<br/>
 竞猜时间:全天.每隔60分钟开奖一次,开奖前1分钟下注截止,开奖后自动开始下一回合.<br/>

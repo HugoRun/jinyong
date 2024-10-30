@@ -26,7 +26,7 @@ public class GameSystemStatisticsDao extends DaoBase
 			String propApproachType, String propApproach, String date,
 			String time)
 	{
-		String sql = "INSERT INTO game_statistics values (null,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO game_statistics VALUES (null,?,?,?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -72,11 +72,11 @@ public class GameSystemStatisticsDao extends DaoBase
 			String time)
 	{
 		GameSystemStatisticsVO vo = null;
-		String sql = "SELECT * FROM game_statistics where prop_id = " + propID
-				+ " and prop_type = " + propType
-				+ " and prop_approach_type = '" + propApproachType
-				+ "' and prop_approach = '" + propApproach + "' and date = '"
-				+ date + "' and time = '" + time + "'";
+		String sql = "SELECT * FROM game_statistics WHERE prop_id = " + propID
+				+ " AND prop_type = " + propType
+				+ " AND prop_approach_type = '" + propApproachType
+				+ "' AND prop_approach = '" + propApproach + "' AND date = '"
+				+ date + "' AND time = '" + time + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -121,11 +121,11 @@ public class GameSystemStatisticsDao extends DaoBase
 			String propApproachType, String propApproach, String date,
 			String time)
 	{
-		String sql = "update game_statistics set prop_num = prop_num +'"
-				+ propNum + "' where prop_id = " + propID + " and prop_type = "
-				+ propType + " and prop_approach_type = '" + propApproachType
-				+ "' and prop_approach = '" + propApproach + "' and date = '"
-				+ date + "' and time = '" + time + "'";
+		String sql = "UPDATE game_statistics SET prop_num = prop_num +'"
+				+ propNum + "' WHERE prop_id = " + propID + " AND prop_type = "
+				+ propType + " AND prop_approach_type = '" + propApproachType
+				+ "' AND prop_approach = '" + propApproach + "' AND date = '"
+				+ date + "' AND time = '" + time + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -150,7 +150,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT sum(uw_money_number) from u_warehouse_info";
+		String sql = "SELECT SUM (uw_money_number) FROM u_warehouse_info";
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -180,7 +180,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = " select sum(p_copper) from u_part_info ";
+		String sql = " SELECT SUM(p_copper) FROM u_part_info ";
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -210,7 +210,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT sum(prop_num) from u_propgroup_info where prop_id = "
+		String sql = "SELECT SUM (prop_num) FROM u_propgroup_info WHERE prop_id = "
 				+ prop_id;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -242,8 +242,8 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT count(*) from u_part_equip where w_id = "
-				+ prop_id + " and table_type = " + prop_type;
+		String sql = "SELECT COUNT(*) FROM u_part_equip WHERE w_id = "
+				+ prop_id + " AND table_type = " + prop_type;
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -273,7 +273,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT sum(uw_number) from u_warehouse_info where uw_prop_id = "
+		String sql = "SELECT SUM (uw_number) FROM u_warehouse_info WHERE uw_prop_id = "
 				+ prop_id;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -305,8 +305,8 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT count(*) from u_warehouse_equip where w_id = "
-				+ prop_id + " and table_type = " + prop_type;
+		String sql = "SELECT COUNT(*) FROM u_warehouse_equip WHERE w_id = "
+				+ prop_id + " AND table_type = " + prop_type;
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -337,8 +337,8 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT count(*) from u_tong_resource_equip where w_id = "
-				+ prop_id + " and table_type = " + prop_type;
+		String sql = "SELECT COUNT(*) FROM u_tong_resource_equip WHERE w_id = "
+				+ prop_id + " AND table_type = " + prop_type;
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -368,7 +368,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT count(*) from u_tong_resource_prop where prop_id = "
+		String sql = "SELECT COUNT(*) FROM u_tong_resource_prop WHERE prop_id = "
 				+ prop_id;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -399,7 +399,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT sum(utm_money) from u_tong_money";
+		String sql = "SELECT SUM (utm_money) FROM u_tong_money";
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -428,7 +428,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	public int getPlayerYuanBao()
 	{
 		int num = 0;
-		String sql = "SELECT sum(yuanbao) from u_login_info";
+		String sql = "SELECT SUM (yuanbao) FROM u_login_info";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -458,7 +458,7 @@ public class GameSystemStatisticsDao extends DaoBase
 	public int getCommodityPrice(int prop_id)
 	{
 		int price = 0;
-		String sql = "SELECT original_price from commodity_info where prop_id = "
+		String sql = "SELECT original_price FROM commodity_info WHERE prop_id = "
 				+ prop_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		logger.debug(sql);

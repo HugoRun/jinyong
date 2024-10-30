@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>  
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="setting" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="setting" title="<bean:message key="gamename"/>">
 <p>
 <%
 	SettingInfo settingInfo = (SettingInfo)request.getAttribute("settingInfo");

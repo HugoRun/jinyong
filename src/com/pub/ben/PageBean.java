@@ -76,9 +76,9 @@ public class PageBean {
                 wheres = where;
             }
             if (database == 1) {//前台数据库
-                rs = con.query("select count(*) from " + tablesName + " " + wheres + " "); // 查询共有几行数据
+                rs = con.query("SELECT COUNT(*) FROM " + tablesName + " " + wheres + " "); // 查询共有几行数据
             } else if (database == 2) {//后台数据库
-                rs = conn.query("select count(*) from " + tablesName + wheres + " "); // 查询共有几行数据
+                rs = conn.query("SELECT COUNT(*) FROM " + tablesName + wheres + " "); // 查询共有几行数据
             }
             if (rs.next()) {
                 this.setMaxRowCount(rs.getInt(1));
@@ -103,7 +103,7 @@ public class PageBean {
      * @return
      */
     public String getLimitNumber() {
-        String limitNumber = " limit " + (this.getCurPage() * this.getPageNumber()) + "," + this.getPageNumber();
+        String limitNumber = " LIMIT " + (this.getCurPage() * this.getPageNumber()) + "," + this.getPageNumber();
         ////System.out.println(limitNumber);
         return limitNumber;
     }

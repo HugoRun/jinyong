@@ -27,7 +27,7 @@ public class GuajiDao extends DaoBase {
                 + " AND s.scene_id = m.scene_id "
                 + " AND m.npc_id = n.npc_ID "
                 + " AND n.npc_Level <= " + level
-                + " AND s.scene_limit not like '%" + RoomService.NOT_CARRY_IN + "%' AND s.scene_ID not in (" + GuaJiConstant.CAN_NOT_GUAJI + ") "
+                + " AND s.scene_limit not LIKE '%" + RoomService.NOT_CARRY_IN + "%' AND s.scene_ID not IN (" + GuaJiConstant.CAN_NOT_GUAJI + ") "
                 + " ORDER BY n.npc_Level DESC  "
                 + " LIMIT 0 , 1";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -163,7 +163,7 @@ public class GuajiDao extends DaoBase {
     public int GetNpcJilv(Object npc_id) throws SQLException {
         int count = 0;
         if (npc_id != null) {
-            String sql = "SELECT sum(n.npcdrop_probability) FROM `npcdrop` n WHERE n.npc_ID = " + npc_id;
+            String sql = "SELECT SUM (n.npcdrop_probability) FROM `npcdrop` n WHERE n.npc_ID = " + npc_id;
             DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
             conn = dbConn.getConn();
             try {
@@ -190,9 +190,9 @@ public class GuajiDao extends DaoBase {
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
         try {
-            String sql = "SELECT * FROM npcdrop n where n.npc_ID=" + npc_id
-                    + " and n.goods_id in (" + good_id
-                    + ") group by n.goods_id";
+            String sql = "SELECT * FROM npcdrop n WHERE n.npc_ID=" + npc_id
+                    + " AND n.goods_id IN (" + good_id
+                    + ") GROUP BY n.goods_id";
             logger.debug(sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -271,9 +271,9 @@ public class GuajiDao extends DaoBase {
     public int findIsGuaji(Object p_pk) throws SQLException {
         int count = 0;
         if (p_pk != null) {
-            String sql = "SELECT count(*) from auto a where a.p_pk = "
+            String sql = "SELECT COUNT(*) FROM auto a WHERE a.p_pk = "
                     + p_pk
-                    + " and (a.end_time = '' or a.end_time is null or a.end_time = null)";
+                    + " AND (a.end_time = '' or a.end_time is null or a.end_time = null)";
             DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
             conn = dbConn.getConn();
             try {
@@ -296,9 +296,9 @@ public class GuajiDao extends DaoBase {
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         List<GuajiVo> list = new ArrayList<GuajiVo>();
-        String sql = "SELECT * FROM auto a where a.p_pk = "
+        String sql = "SELECT * FROM auto a WHERE a.p_pk = "
                 + p_pk
-                + " and (a.end_time = '' or a.end_time is null or a.end_time = null)";
+                + " AND (a.end_time = '' or a.end_time is null or a.end_time = null)";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -352,7 +352,7 @@ public class GuajiDao extends DaoBase {
     }
 
     public void updateEndTime(long id) {
-        String sql = "update auto a set a.end_time = now() where a.id = " + id;
+        String sql = "UPDATE auto a SET a.end_time = now() WHERE a.id = " + id;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         try {
@@ -375,7 +375,7 @@ public class GuajiDao extends DaoBase {
 
     public int findTask(int id) throws SQLException {
         int i = 0;
-        String sql = "SELECT n.npcdrop_taskid from npcdrop n where n.npcdrop_ID = " + id;
+        String sql = "SELECT n.npcdrop_taskid FROM npcdrop n WHERE n.npcdrop_ID = " + id;
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
         try {

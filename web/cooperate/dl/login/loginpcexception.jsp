@@ -5,8 +5,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="fail" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="fail" title="<bean:message key="gamename"/>">
 <p>
 该帐号连接异常，10分钟后可重新登陆。<br/> 
 客服：021-28901353<br />

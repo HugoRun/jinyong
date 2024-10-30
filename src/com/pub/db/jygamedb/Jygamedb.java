@@ -44,7 +44,7 @@ public class JyGameDB {
     public ResultSet query(String sql) {
         rs = null;
         try {
-            logger.debug("查询:" + sql);
+            logger.debug("查询: " + sql);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);//执行SQL语句
         } catch (SQLException ex)//捕获异常

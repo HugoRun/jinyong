@@ -48,7 +48,7 @@ public class LaborageDao extends DaoBase
 	public LaborageVO getLaborageByTime(int min_time)
 	{
 		LaborageVO vo = null;
-		String sql = "SELECT * FROM laborage where min_time = " + min_time;
+		String sql = "SELECT * FROM laborage WHERE min_time = " + min_time;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -81,7 +81,7 @@ public class LaborageDao extends DaoBase
 	public List getMinTime()
 	{
 		List list = new ArrayList();
-		String sql = "SELECT min_time from laborage order by max_time desc";
+		String sql = "SELECT min_time FROM laborage ORDER BY max_time desc";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

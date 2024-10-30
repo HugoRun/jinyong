@@ -9,7 +9,7 @@
     int x = roleCache.getOnlineRoleNum();
 %>
 <wml>
-    <%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s" %>
+    <%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
     <card id="onlineplayer" title="在线人数">
         <p>
             当前在线角色人数:<%=x %>

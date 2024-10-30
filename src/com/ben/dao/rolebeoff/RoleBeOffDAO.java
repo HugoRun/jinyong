@@ -27,7 +27,7 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM role_be_off where p_pk='" + p_pk + "'";
+			String sql = "SELECT * FROM role_be_off WHERE p_pk='" + p_pk + "'";
 			ResultSet rs = con.query(sql);
 			RoleBeOffVO vo = null;
 			if (rs.next())
@@ -63,7 +63,7 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update role_be_off set be_off_time='" + be_off_time + "' where p_pk='" + p_pk + "'";
+			String sql = "UPDATE role_be_off SET be_off_time='" + be_off_time + "' WHERE p_pk='" + p_pk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -85,7 +85,7 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "INSERT INTO role_be_off(off_id,p_pk,be_off_time) values(null,'"+p_pk+"','"+be_off_time+"')";
+			String sql = "INSERT INTO role_be_off(off_id,p_pk,be_off_time) VALUES(null,'"+p_pk+"','"+be_off_time+"')";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -107,8 +107,8 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update role_be_off set already_time='" + already_time
-					+ "' where p_pk='" + p_pk + "'";
+			String sql = "UPDATE role_be_off SET already_time='" + already_time
+					+ "' WHERE p_pk='" + p_pk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -132,8 +132,8 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update role_be_off set prop_cumulate_time='"
-					+ cumulate_time + "' where p_pk='" + p_pk + "'";
+			String sql = "UPDATE role_be_off SET prop_cumulate_time='"
+					+ cumulate_time + "' WHERE p_pk='" + p_pk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)

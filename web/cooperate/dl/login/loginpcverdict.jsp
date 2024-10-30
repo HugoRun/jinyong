@@ -5,8 +5,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="fail" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="fail" title="<bean:message key="gamename"/>">
 <p>
 系统检测你的连接异常，导致此种情况的原因有：<br />
 1.如果你使用的PC登录游戏，请使用手机登录。<br />

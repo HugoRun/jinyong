@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %> 
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="map" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="map" title="<bean:message key="gamename"/>">
 <p>
 请选择该快捷键设置的种类:<br/>
 技能  /点击进入技能列表<br/>

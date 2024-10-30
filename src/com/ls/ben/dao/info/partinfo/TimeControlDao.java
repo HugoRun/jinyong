@@ -20,7 +20,7 @@ public class TimeControlDao extends DaoBase
 	 */
 	public void add( int p_pk,int object_id,int object_type )
 	{
-		String sql = "INSERT INTO u_time_control (p_pk,object_id,object_type,use_datetime,use_times) values (?,?,?,NOW(),1)";
+		String sql = "INSERT INTO u_time_control (p_pk,object_id,object_type,use_datetime,use_times) VALUES (?,?,?,NOW(),1)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -50,7 +50,7 @@ public class TimeControlDao extends DaoBase
 	 */
 	public void add( int p_pk,int object_id,int object_type,int minutes )
 	{
-		String sql = "INSERT INTO u_time_control (p_pk,object_id,object_type,use_datetime,use_times) values (?,?,?,NOW()+INTERVAL "+minutes+" minute,1)";
+		String sql = "INSERT INTO u_time_control (p_pk,object_id,object_type,use_datetime,use_times) VALUES (?,?,?,NOW()+INTERVAL "+minutes+" minute,1)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -81,7 +81,7 @@ public class TimeControlDao extends DaoBase
 	public boolean isHaveControlInfo(int p_pk,int object_id,int object_type)
 	{
 		boolean isHave = false;
-		String sql = "SELECT id from u_time_control where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + "  and object_type = " + object_type + " limit 1";
+		String sql = "SELECT id FROM u_time_control WHERE p_pk="+p_pk +" AND object_id="+object_id + " AND object_type = " + object_type + "  AND object_type = " + object_type + " LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -112,7 +112,7 @@ public class TimeControlDao extends DaoBase
 	public TimeControlVO getControlInfo( int p_pk,int object_id,int object_type )
 	{
 		TimeControlVO propUseLog = null;
-		String sql = "SELECT * FROM u_time_control where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + "  limit 1";
+		String sql = "SELECT * FROM u_time_control WHERE p_pk="+p_pk +" AND object_id="+object_id + " AND object_type = " + object_type + "  LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -150,7 +150,7 @@ public class TimeControlDao extends DaoBase
 	 */
 	public void updateFirstTimeState( int p_pk,int object_id,int object_type )
 	{
-		String sql = "update u_time_control set use_datetime=now(),use_times=1 where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + " ";
+		String sql = "UPDATE u_time_control SET use_datetime=now(),use_times=1 WHERE p_pk="+p_pk +" AND object_id="+object_id + " AND object_type = " + object_type + " ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -176,7 +176,7 @@ public class TimeControlDao extends DaoBase
 	 */
 	public void updateFirstTimeStateByTime( int p_pk,int object_id,int object_type,int minutes )
 	{
-		String sql = "update u_time_control set use_datetime=NOW()+INTERVAL "+minutes+" minute,use_times=1 where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + " ";
+		String sql = "UPDATE u_time_control SET use_datetime=NOW()+INTERVAL "+minutes+" minute,use_times=1 WHERE p_pk="+p_pk +" AND object_id="+object_id + " AND object_type = " + object_type + " ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -202,7 +202,7 @@ public class TimeControlDao extends DaoBase
 	 */
 	public void updateTimeStateByTime( int p_pk,int object_id,int object_type,int minutes )
 	{
-		String sql = "update u_time_control set use_datetime=use_datetime+INTERVAL "+minutes+" minute,use_times=1 where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + " ";
+		String sql = "UPDATE u_time_control SET use_datetime=use_datetime+INTERVAL "+minutes+" minute,use_times=1 WHERE p_pk="+p_pk +" AND object_id="+object_id + " AND object_type = " + object_type + " ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -229,7 +229,7 @@ public class TimeControlDao extends DaoBase
 	 */
 	public void updateUseState( int p_pk,int object_id,int object_type )
 	{
-		String sql = "update u_time_control set use_datetime=now(),use_times=use_times+1 where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + " ";
+		String sql = "UPDATE u_time_control SET use_datetime=now(),use_times=use_times+1 WHERE p_pk="+p_pk +" AND object_id="+object_id + " AND object_type = " + object_type + " ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

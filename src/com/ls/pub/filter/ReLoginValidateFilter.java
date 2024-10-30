@@ -13,7 +13,6 @@ public class ReLoginValidateFilter implements Filter {
 
     public ReLoginValidateFilter() {
         super();
-        // TODO 自动生成构造函数存根
     }
 
     public void init(FilterConfig arg0) throws ServletException {
@@ -40,7 +39,6 @@ public class ReLoginValidateFilter implements Filter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void destroy() {

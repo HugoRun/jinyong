@@ -23,7 +23,7 @@ public class RegisterDao extends DaoBase
 		try
 		{
 
-			String sql = "INSERT INTO u_login_info values(null,?,'',1,now(),?,now(),0,0)";
+			String sql = "INSERT INTO u_login_info VALUES(null,?,'',1,now(),?,now(),0,0)";
 			logger.debug(sql);
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user_name);
@@ -61,7 +61,7 @@ public class RegisterDao extends DaoBase
 		try
 		{
 
-			String sql = "INSERT INTO u_login_info(u_pk,u_name,u_paw,login_state,create_time,last_login_ip,last_login_time,yuanbao,jifen,super_qudao,qudao) values(null,'" + user_name+ "','"+pwass+"',1,now(),'" + ip + "',now(),0,0,'"+(super_qudao==null?"":super_qudao.trim())+"','"+(qudao==null?"":qudao.trim())+"')";
+			String sql = "INSERT INTO u_login_info(u_pk,u_name,u_paw,login_state,create_time,last_login_ip,last_login_time,yuanbao,jifen,super_qudao,qudao) VALUES(null,'" + user_name+ "','"+pwass+"',1,now(),'" + ip + "',now(),0,0,'"+(super_qudao==null?"":super_qudao.trim())+"','"+(qudao==null?"":qudao.trim())+"')";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -93,8 +93,8 @@ public class RegisterDao extends DaoBase
 		try
 		{
 
-			String sql = "update u_login_info set last_login_ip = '" + ip
-					+ "' where u_pk = " + u_pk;
+			String sql = "UPDATE u_login_info SET last_login_ip = '" + ip
+					+ "' WHERE u_pk = " + u_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -113,7 +113,7 @@ public class RegisterDao extends DaoBase
 	@SuppressWarnings("finally")
 	public LoginInfoVO findByUpk(int uPk){
 		LoginInfoVO li = null;
-		String sql = "SELECT * FROM u_login_info u where u.u_pk = "+uPk;
+		String sql = "SELECT * FROM u_login_info u WHERE u.u_pk = "+uPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -143,7 +143,7 @@ public class RegisterDao extends DaoBase
 	}
 	
     public void updateQudao(int uPk,String super_qudao,String qudao){
-		String sql = "update u_login_info u set u.super_qudao = '"+super_qudao.trim()+"' ,u.qudao = '"+qudao+"' where u.u_pk = "+uPk;
+		String sql = "UPDATE u_login_info u SET u.super_qudao = '"+super_qudao.trim()+"' ,u.qudao = '"+qudao+"' WHERE u.u_pk = "+uPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -165,7 +165,7 @@ public class RegisterDao extends DaoBase
 		try
 		{
 
-			String sql = "update u_passport_info as a, u_login_info as b set a.user_id = '"+sina_uid+"' ,a.user_name = '"+sina_uid+"',b.u_name = '"+sina_uid+"' where a.user_id = b.u_name and a.user_id = '"+passport_visitor+"'";
+			String sql = "UPDATE u_passport_info AS a, u_login_info AS b SET a.user_id = '"+sina_uid+"' ,a.user_name = '"+sina_uid+"',b.u_name = '"+sina_uid+"' WHERE a.user_id = b.u_name AND a.user_id = '"+passport_visitor+"'";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);

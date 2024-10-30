@@ -31,7 +31,7 @@ public class ForumClassDAOImpl extends DaoBase {
 	}
 	
 	public int addForumClass(ForumClassBean fcb) throws Exception {
-		String sql="INSERT INTO g_forum_class(fid,UserID,UserName,className,smallName,addTime) values(?,?,?,?,?,?)";			
+		String sql="INSERT INTO g_forum_class(fid,UserID,UserName,className,smallName,addTime) VALUES(?,?,?,?,?,?)";
 		PreparedStatement ps = connection.prepareStatement(sql);
 		int i=1;
 		ps.setInt(i++,fcb.getFid());
@@ -49,13 +49,13 @@ public class ForumClassDAOImpl extends DaoBase {
 	public void deleteForumClass(int id) throws Exception {
 		// TODO Auto-generated method stub
 		//删除分类子栏目
-		StringBuffer sql=new StringBuffer("delete from g_forum_class where fid=").append(id);
+		StringBuffer sql=new StringBuffer("DELETE FROM g_forum_class WHERE fid=").append(id);
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.executeUpdate();
 		
 		//删除分类
 		sql.delete(0,sql.length()-1); 
-		sql.append("delete from g_forum_class where classID=").append(id);
+		sql.append("DELETE FROM g_forum_class WHERE classID=").append(id);
 		logger.debug("删除分类: "+sql.toString());
 		ps = connection.prepareStatement(sql.toString());
 		ps.executeUpdate();
@@ -64,7 +64,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public List<ForumClassBean> getAllForumClass() throws Exception {
-		String sql="SELECT * FROM g_forum_class order by classID asc";
+		String sql="SELECT * FROM g_forum_class ORDER BY classID ASC";
 		logger.debug(sql.toString());
 		List<ForumClassBean> v = new ArrayList<ForumClassBean>();
 		Statement ps = connection.createStatement();		   
@@ -93,7 +93,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public ForumClassBean getByID(int id) throws Exception {
-		String sql="SELECT * FROM g_forum_class where classID="+id;
+		String sql="SELECT * FROM g_forum_class WHERE classID="+id;
 		logger.debug(sql.toString());
 		Statement ps = connection.createStatement();		   
 		   ResultSet rs = ps.executeQuery(sql);
@@ -121,7 +121,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public List<ForumClassBean> getForumClass(int fid) throws Exception {
-		String sql="SELECT * FROM g_forum_class where fid="+fid+" order by classID desc";
+		String sql="SELECT * FROM g_forum_class WHERE fid="+fid+" ORDER BY classID desc";
 		logger.debug(sql.toString());
 		List<ForumClassBean> v = new ArrayList<ForumClassBean>();
 		Statement ps = connection.createStatement();		   
@@ -147,7 +147,7 @@ public class ForumClassDAOImpl extends DaoBase {
 		   }
 	}
 	public List<ForumClassBean> getRowForumClass(int row,int fid)throws Exception {
-		String sql="select top "+row+" * from g_forum_class where fid="+fid+" order by classID desc";
+		String sql="SELECT top "+row+" * FROM g_forum_class WHERE fid="+fid+" ORDER BY classID desc";
 		logger.debug(sql.toString());
 		List<ForumClassBean> v = new ArrayList<ForumClassBean>();
 		Statement ps = connection.createStatement();		   
@@ -176,7 +176,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public void updateForumClass(ForumClassBean fcb) throws Exception {
-		String sql="update g_forum_class set fid=?,userID=?,userName=?,className=? where classID=?";			
+		String sql="UPDATE `g_forum_class` SET fid = ?, userID = ?, userName = ?, className = ? WHERE classID = ?";			
 		PreparedStatement ps = connection.prepareStatement(sql);
 		int i=1;
 		ps.setInt(i++,fcb.getFid());
@@ -196,7 +196,7 @@ public class ForumClassDAOImpl extends DaoBase {
 	public ForumForbidVO isForBidIng(String pPk)
 	{
 		ForumForbidVO forbidVO = null;
-		String sql="SELECT * FROM g_forum_forbid where p_pk="+pPk;			
+		String sql="SELECT * FROM g_forum_forbid WHERE p_pk="+pPk;			
 		logger.debug(sql.toString());
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			
@@ -232,7 +232,7 @@ public class ForumClassDAOImpl extends DaoBase {
 	 */
 	public void addForbidName(String pk, String name, int type,int forbid_time)
 	{
-		String sql = "INSERT INTO g_forum_forbid values (null,"+type+","+pk+",'"+name+"', "+forbid_time
+		String sql = "INSERT INTO g_forum_forbid VALUES (null,"+type+","+pk+",'"+name+"', "+forbid_time
 						+",now())";
         logger.debug("将玩家加到禁止玩家名单中="+sql.toString());
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -254,7 +254,7 @@ public class ForumClassDAOImpl extends DaoBase {
 	 */
 	public void deleteForumForbid(int pPk)
 	{
-		String sql = "delete from g_forum_forbid where p_pk = "+pPk;
+		String sql = "DELETE FROM g_forum_forbid WHERE p_pk = "+pPk;
 		logger.debug("将玩家加到禁止玩家名单中="+sql.toString());
 	    DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {

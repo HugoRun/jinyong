@@ -5,8 +5,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="fail" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %><%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="fail" title="<bean:message key="gamename"/>">
 <p>
 点数专区<br/>
 <anchor><go href="<%=response.encodeURL(GameConfig.getContextPath()+ "/sky/bill.do?cmd=n0")%>" method="get" ></go>账户充值</anchor><br/>

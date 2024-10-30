@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 <img src="<%=GameConfig.getGameUrl()%>/image/prelude/duanxugao/yisheng1.png" alt="" /><br/>
 我没有名字,没有父母,没有朋友,更没有家.只有一张刺着生辰的丝绢帕.我掏出手帕,思绪回到一年前……<br/>

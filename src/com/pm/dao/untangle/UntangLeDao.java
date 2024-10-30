@@ -20,20 +20,20 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int[] getGradePaiMimgQuan(String pPk)
 	{
-		String sql = "SELECT count(1) as num,(select glory_value+up.p_experience as fen from u_part_info up "
-				+ "join u_tong_glory ut on ut.p_pk = up.p_pk where up.p_pk = "
+		String sql = "SELECT COUNT(1) AS num,(SELECT glory_value+up.p_experience AS fen FROM u_part_info up "
+				+ "join u_tong_glory ut ON ut.p_pk = up.p_pk WHERE up.p_pk = "
 				+ pPk
-				+ " limit 1 ) as zijifen"
-				+ " from u_part_info up join u_tong_glory ut on ut.p_pk = up.p_pk where "
-				+ "(glory_value+up.p_experience) > (select glory_value+up.p_experience as fen from u_part_info up "
-				+ "join u_tong_glory ut on ut.p_pk = up.p_pk where up.p_pk = "
+				+ " LIMIT 1 ) AS zijifen"
+				+ " FROM u_part_info up join u_tong_glory ut ON ut.p_pk = up.p_pk WHERE "
+				+ "(glory_value+up.p_experience) > (SELECT glory_value+up.p_experience AS fen FROM u_part_info up "
+				+ "join u_tong_glory ut ON ut.p_pk = up.p_pk WHERE up.p_pk = "
 				+ pPk
-				+ " limit 1 ) or "
-				+ "( (glory_value+up.p_experience) = (select glory_value+up.p_experience as fen from u_part_info up "
-				+ "join u_tong_glory ut on ut.p_pk = up.p_pk where up.p_pk = "
+				+ " LIMIT 1 ) or "
+				+ "( (glory_value+up.p_experience) = (SELECT glory_value+up.p_experience AS fen FROM u_part_info up "
+				+ "join u_tong_glory ut ON ut.p_pk = up.p_pk WHERE up.p_pk = "
 				+ pPk
-				+ " limit 1 ) and "
-				+ "up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
+				+ " LIMIT 1 ) AND "
+				+ "up.create_time < (SELECT up.create_time FROM u_part_info up WHERE up.p_pk = "
 				+ pPk + "))";
 		logger.debug("获得有多少人比此人的江湖排名更高的sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -72,11 +72,11 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int getGradePaiMimg(String pPk)
 	{
-		String sql = "SELECT up.p_pk  from u_part_info up  join u_tong_glory ut "
-				+ "on ut.p_pk = up.p_pk where (glory_value+up.p_experience) > "
-				+ "(select glory_value+up.p_experience as fen from u_part_info up "
-				+ " join u_tong_glory ut on ut.p_pk = up.p_pk where up.p_pk = "
-				+ pPk + " limit 1 ) ";
+		String sql = "SELECT up.p_pk  FROM u_part_info up JOIN  u_tong_glory ut "
+				+ "on ut.p_pk = up.p_pk WHERE (glory_value+up.p_experience) > "
+				+ "(SELECT glory_value+up.p_experience AS fen FROM u_part_info up "
+				+ " join u_tong_glory ut ON ut.p_pk = up.p_pk WHERE up.p_pk = "
+				+ pPk + " LIMIT 1 ) ";
 		logger.debug("获得有多少人比此人的江湖排名更高的sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int paiming = 0;
@@ -114,10 +114,10 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int getSamePaiMing(String pPk, int fen)
 	{
-		String sql = "SELECT up.p_pk from u_part_info up  join u_tong_glory ut "
-				+ "on ut.p_pk = up.p_pk where (glory_value+up.p_experience) = "
+		String sql = "SELECT up.p_pk FROM u_part_info up JOIN  u_tong_glory ut "
+				+ "on ut.p_pk = up.p_pk WHERE (glory_value+up.p_experience) = "
 				+ fen
-				+ " and up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
+				+ " AND up.create_time < (SELECT up.create_time FROM u_part_info up WHERE up.p_pk = "
 				+ pPk + ")";
 		logger.debug("获得在等级排名相同时此人所排的名次sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -157,9 +157,9 @@ public class UntangLeDao extends DaoBase
 		{
 			paiming = 1;
 		}
-		String sql = "SELECT up.p_pk,glory_value+up.p_experience as fen "
-				+ "from u_part_info up  join u_tong_glory ut "
-				+ "on ut.p_pk = up.p_pk order by fen desc limit "
+		String sql = "SELECT up.p_pk,glory_value+up.p_experience AS fen "
+				+ "FROM u_part_info up JOIN  u_tong_glory ut "
+				+ "on ut.p_pk = up.p_pk ORDER BY fen DESC LIMIT "
 				+ (paiming - 1) + ",1";
 		int[] bigPerson = new int[2];
 		logger.debug("获得此江湖排名的玩家的p_pk和积分值的sql=" + sql);
@@ -202,9 +202,9 @@ public class UntangLeDao extends DaoBase
 		{
 			paiming = 1;
 		}
-		String sql = "SELECT glory_value+up.p_experience as fen "
-				+ "from u_part_info up  join u_tong_glory ut "
-				+ "on ut.p_pk = up.p_pk order by fen desc limit "
+		String sql = "SELECT glory_value+up.p_experience AS fen "
+				+ "FROM u_part_info up JOIN  u_tong_glory ut "
+				+ "on ut.p_pk = up.p_pk ORDER BY fen DESC LIMIT "
 				+ (paiming - 1) + ",1";
 		int bigPerson = 0;
 		logger.debug("获得此江湖排名的玩家的p_pk和积分值的sql=" + sql);
@@ -240,9 +240,9 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int getFenShuByPPk(String pPk)
 	{
-		String sql = "SELECT IFNULL(glory_value,0)+up.p_experience as fen "
-				+ "from u_part_info up  join u_tong_glory ut "
-				+ "on ut.p_pk = up.p_pk where up.p_pk = " + pPk;
+		String sql = "SELECT IFNULL(glory_value,0)+up.p_experience AS fen "
+				+ "FROM u_part_info up JOIN  u_tong_glory ut "
+				+ "on ut.p_pk = up.p_pk WHERE up.p_pk = " + pPk;
 		int fenshu = 0;
 		logger.debug("根据pPk来获得综合江湖分数的sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -280,20 +280,20 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int[] getMoneyPaiMimgQuan(String pPk)
 	{
-		String sql = "SELECT count(1) as num , (select uw_money_number+up.p_copper as fen from u_part_info up "
-				+ "join u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 where up.p_pk = "
+		String sql = "SELECT COUNT(1) AS num , (SELECT uw_money_number+up.p_copper AS fen FROM u_part_info up "
+				+ "join u_warehouse_info uw ON uw.p_pk = up.p_pk AND uw.uw_type=8 WHERE up.p_pk = "
 				+ pPk
-				+ ") as money from "
-				+ "u_part_info up join u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 "
-				+ "where (uw_money_number+up.p_copper) > (select uw_money_number+up.p_copper as fen from u_part_info up "
-				+ "join u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 where up.p_pk = "
+				+ ") AS money FROM "
+				+ "u_part_info up join u_warehouse_info uw ON uw.p_pk = up.p_pk AND uw.uw_type=8 "
+				+ "where (uw_money_number+up.p_copper) > (SELECT uw_money_number+up.p_copper AS fen FROM u_part_info up "
+				+ "join u_warehouse_info uw ON uw.p_pk = up.p_pk AND uw.uw_type=8 WHERE up.p_pk = "
 				+ pPk
 				+ ") or "
-				+ "((uw_money_number+up.p_copper) = (select uw_money_number+up.p_copper as fen from u_part_info up "
-				+ "join u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 where up.p_pk = "
+				+ "((uw_money_number+up.p_copper) = (SELECT uw_money_number+up.p_copper AS fen FROM u_part_info up "
+				+ "join u_warehouse_info uw ON uw.p_pk = up.p_pk AND uw.uw_type=8 WHERE up.p_pk = "
 				+ pPk
-				+ ") and "
-				+ "up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
+				+ ") AND "
+				+ "up.create_time < (SELECT up.create_time FROM u_part_info up WHERE up.p_pk = "
 				+ pPk + "))";
 		logger.debug("获得有多少人比此人的江湖排名更高的sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -328,10 +328,10 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int getMoneyPaiMing(String pPk)
 	{
-		String sql = "SELECT count(1) as num from u_part_info up  join u_warehouse_info uw "
-				+ "on uw.p_pk = up.p_pk and uw.uw_type=8 where (uw_money_number+up.p_copper) > "
-				+ "(select uw_money_number+up.p_copper as fen from u_part_info up  join "
-				+ "u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 where up.p_pk = "
+		String sql = "SELECT COUNT(1) AS num FROM u_part_info up JOIN  u_warehouse_info uw "
+				+ "on uw.p_pk = up.p_pk AND uw.uw_type=8 WHERE (uw_money_number+up.p_copper) > "
+				+ "(SELECT uw_money_number+up.p_copper AS fen FROM u_part_info up JOIN  "
+				+ "u_warehouse_info uw ON uw.p_pk = up.p_pk AND uw.uw_type=8 WHERE up.p_pk = "
 				+ pPk + ")";
 		logger.debug("获得此pPk的金钱排名sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -370,10 +370,10 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int getMoneySamePaiMing(String pPk, int fen)
 	{
-		String sql = "SELECT count(1) as num from u_part_info up  join u_warehouse_info uw "
-				+ "on uw.p_pk = up.p_pk and uw.uw_type=8 where (uw_money_number+up.p_copper) ="
+		String sql = "SELECT COUNT(1) AS num FROM u_part_info up JOIN  u_warehouse_info uw "
+				+ "on uw.p_pk = up.p_pk AND uw.uw_type=8 WHERE (uw_money_number+up.p_copper) ="
 				+ fen
-				+ " and up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
+				+ " AND up.create_time < (SELECT up.create_time FROM u_part_info up WHERE up.p_pk = "
 				+ pPk + ")";
 		logger.debug("获得在财富等级排名相同时此人所排的名次sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -413,9 +413,9 @@ public class UntangLeDao extends DaoBase
 		{
 			paiming = 1;
 		}
-		String sql = "SELECT up.p_pk,uw_money_number+p_copper as money"
-				+ " from u_warehouse_info uw  join u_part_info up  on uw.p_pk = up.p_pk "
-				+ "and uw_type = 8 order by money desc limit " + (paiming - 1)
+		String sql = "SELECT up.p_pk,uw_money_number+p_copper AS money"
+				+ " FROM u_warehouse_info uw JOIN  u_part_info up  ON uw.p_pk = up.p_pk "
+				+ "AND uw_type = 8 ORDER BY money DESC LIMIT " + (paiming - 1)
 				+ ",1";
 		int[] bigPerson = new int[2];
 		logger.debug(" 获得此财富排名的玩家的p_pk和积分值,=" + sql);
@@ -454,9 +454,9 @@ public class UntangLeDao extends DaoBase
 	 */
 	public int getMoneyByPPk(String pPk)
 	{
-		String sql = "SELECT IFNULL(uw_money_number,0)+p_copper as money"
-				+ " from u_warehouse_info uw  join u_part_info up "
-				+ " on uw.p_pk = up.p_pk and uw_type = 8 where up.p_pk = "
+		String sql = "SELECT IFNULL(uw_money_number,0)+p_copper AS money"
+				+ " FROM u_warehouse_info uw JOIN  u_part_info up "
+				+ " ON uw.p_pk = up.p_pk AND uw_type = 8 WHERE up.p_pk = "
 				+ pPk;
 		int money = 0;
 		logger.debug("根据pPk来获得综合金钱分数的sql=" + sql);
@@ -493,9 +493,9 @@ public class UntangLeDao extends DaoBase
 	public List<PartInfoVO> getPaiMingList()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "SELECT up.p_pk,up.p_name,up.p_camp,IFNULL(glory_value,0)+up.p_experience as fen "
-				+ "from u_part_info up join u_tong_glory ut "
-				+ "on ut.p_pk = up.p_pk order by fen desc,up.create_time limit 10";
+		String sql = "SELECT up.p_pk,up.p_name,up.p_camp,IFNULL(glory_value,0)+up.p_experience AS fen "
+				+ "FROM u_part_info up join u_tong_glory ut "
+				+ "on ut.p_pk = up.p_pk ORDER BY fen desc,up.create_time LIMIT 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("获得当前服务器的江湖排名前十名sql=" + sql);
 		try
@@ -531,10 +531,10 @@ public class UntangLeDao extends DaoBase
 	private List<PartInfoVO> getMoneyPaiMingList1()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "SELECT IFNULL(uw_money_number,0)+p_copper as money, up.p_pk,up.p_name,up.p_camp"
-				+ " from u_warehouse_info uw "
-				+ " join u_part_info up on uw.p_pk = up.p_pk and uw_type = 8 "
-				+ "order by money desc,up.create_time limit 10";
+		String sql = "SELECT IFNULL(uw_money_number,0)+p_copper AS money, up.p_pk,up.p_name,up.p_camp"
+				+ " FROM u_warehouse_info uw "
+				+ " join u_part_info up ON uw.p_pk = up.p_pk AND uw_type = 8 "
+				+ "ORDER BY money desc,up.create_time LIMIT 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -568,7 +568,7 @@ public class UntangLeDao extends DaoBase
 	public List<PartInfoVO> getMoneyPaiMingList()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "SELECT b.p_pk,b.p_name,b.p_tong_name,a.goldbox_num from u_goldbox_num_info as a ,u_part_info as b where a.p_pk = b.p_pk order by a.goldbox_num desc limit 10";
+		String sql = "SELECT b.p_pk,b.p_name,b.p_tong_name,a.goldbox_num FROM u_goldbox_num_info AS a ,u_part_info AS b WHERE a.p_pk = b.p_pk ORDER BY a.goldbox_num DESC LIMIT 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -601,8 +601,8 @@ public class UntangLeDao extends DaoBase
 	public int getPlayerGoldBoxRecord(int u_pk, int p_pk)
 	{
 		int num = -1;
-		String sql = "SELECT p_pk from u_goldbox_num_info where u_pk = " + u_pk
-				+ " and p_pk = " + p_pk;
+		String sql = "SELECT p_pk FROM u_goldbox_num_info WHERE u_pk = " + u_pk
+				+ " AND p_pk = " + p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -630,7 +630,7 @@ public class UntangLeDao extends DaoBase
 	/** 玩家添加黄金宝箱记录 */
 	public void insertPlayerGoldBoxRecord(int u_pk, int p_pk)
 	{
-		String sql = "INSERT INTO u_goldbox_num_info values (null," + u_pk
+		String sql = "INSERT INTO u_goldbox_num_info VALUES (null," + u_pk
 				+ "," + p_pk + ",0,now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -653,8 +653,8 @@ public class UntangLeDao extends DaoBase
 	/** 更新玩家黄金宝箱的记录 */
 	public void updatePlayerGoldBoxRecord(int u_pk, int p_pk)
 	{
-		String sql = "update u_goldbox_num_info set goldbox_num = goldbox_num + 1 where u_pk = "
-				+ u_pk + " and p_pk = " + p_pk;
+		String sql = "UPDATE u_goldbox_num_info SET goldbox_num = goldbox_num + 1 WHERE u_pk = "
+				+ u_pk + " AND p_pk = " + p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -677,7 +677,7 @@ public class UntangLeDao extends DaoBase
 	public List<PartInfoVO> getKillRank()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "SELECT p_pk,p_name,p_camp,u_kill_num from u_part_info where u_kill_num !=0 order by u_kill_num desc limit 10";
+		String sql = "SELECT p_pk,p_name,p_camp,u_kill_num FROM u_part_info WHERE u_kill_num !=0 ORDER BY u_kill_num DESC LIMIT 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -710,7 +710,7 @@ public class UntangLeDao extends DaoBase
 	
 	/**增加杀人数量**/
 	public void updatePlayerKillNum(int p_pk){
-		String sql = "update u_part_info set u_kill_num = u_kill_num + 1 where p_pk = "+p_pk;
+		String sql = "UPDATE u_part_info SET u_kill_num = u_kill_num + 1 WHERE p_pk = "+p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{

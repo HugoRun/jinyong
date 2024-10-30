@@ -48,7 +48,7 @@ public class MailBonusDao extends DaoBase {
      */
     public MailBonusVO getMailBonus(int p_pk, int mail_id) {
         MailBonusVO vo = null;
-        String sql = "SELECT * FROM u_mail_bonus where p_pk = " + p_pk + " and mail_id = " + mail_id;
+        String sql = "SELECT * FROM u_mail_bonus WHERE p_pk = " + p_pk + " AND mail_id = " + mail_id;
         logger.debug(sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();

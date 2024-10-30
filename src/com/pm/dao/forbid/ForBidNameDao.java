@@ -23,10 +23,10 @@ public class ForBidNameDao extends DaoBase
 		StringBuffer commBuffer = new StringBuffer();
 		sBuffer.append("运营");
 		commBuffer.append("妈的");
-		String sql = "SELECT onechar,str from jy_forbid_name";
+		String sql = "SELECT onechar, str FROM `jy_forbid_name`";
 		
         
-        logger.debug("执行数据库统计的="+sql);
+        logger.debug("执行数据库统计的 = "+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
         try

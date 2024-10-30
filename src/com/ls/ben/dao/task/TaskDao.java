@@ -119,7 +119,7 @@ public class TaskDao {
 	public TaskVO getTaskList(String rwpx,String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_zuxl='"+rwpx+"' and t_id='" + tId + "'";
+			String sql = "SELECT * FROM task WHERE t_zuxl='"+rwpx+"' AND t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = new TaskVO();
 			while (rs.next()) { 
@@ -177,7 +177,7 @@ public class TaskDao {
 	public TaskVO getTaskView(String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_id='" + tId + "'";
+			String sql = "SELECT * FROM task WHERE t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = null;
 			while (rs.next()) { 
@@ -236,7 +236,7 @@ public class TaskDao {
 	public String getTaskRwpx(String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_id='" + tId + "'";
+			String sql = "SELECT * FROM task WHERE t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = new TaskVO();
 			while (rs.next()) {  
@@ -257,7 +257,7 @@ public class TaskDao {
 		
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_id='" + tId + "'";
+			String sql = "SELECT * FROM task WHERE t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			String tZu = null;
 			while (rs.next()) {  
@@ -279,7 +279,7 @@ public class TaskDao {
 		
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_zu='" + tZu + "' and t_zuxl='"+tXuxl+"'";
+			String sql = "SELECT * FROM task WHERE t_zu='" + tZu + "' AND t_zuxl='"+tXuxl+"'";
 			ResultSet rs = con.query(sql);
 			int tId = 0;
 			while (rs.next()) {  
@@ -300,7 +300,7 @@ public class TaskDao {
 	public int getTaskNext(String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT t_id from task where t_next='" + tId + "'";
+			String sql = "SELECT t_id FROM task WHERE t_next='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			int Next=0;
 			while (rs.next()) {  

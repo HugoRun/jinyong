@@ -22,7 +22,7 @@ public class SuiBianDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		SuiBianChuanVO suiBianChuanVO = null;
-		String sql = "SELECT distinct(carry_type_id),carry_type_name from carry_table_info";
+		String sql = "SELECT distinct(carry_type_id),carry_type_name FROM carry_table_info";
 		try
 		{
     		stmt = conn.createStatement();
@@ -67,19 +67,19 @@ public class SuiBianDao extends DaoBase
 		{
 			if(carryType==1)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (1,3) and scene_id !=68";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (1,3) AND scene_id !=68";
 			}
 			else if(carryType==2)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (4,6)";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (4,6)";
 			}
 			else if(carryType==3)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (7,9)";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (7,9)";
 			}
 			else if(carryType==4)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (10)";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (10)";
 			}
 				
 		}
@@ -88,19 +88,19 @@ public class SuiBianDao extends DaoBase
 		{
 			if(carryType==1)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (2,3) and scene_id !=6";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (2,3) AND scene_id !=6";
 			}
 			else if(carryType==2)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (5,6)";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (5,6)";
 			}
 			else if(carryType==3)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (8,9)";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (8,9)";
 			}
 			else if(carryType==4)
 			{
-				sql="SELECT * FROM carry_table_info where carry_type_id in (10)";
+				sql="SELECT * FROM carry_table_info WHERE carry_type_id IN (10)";
 			}
 		}
 		try
@@ -140,7 +140,7 @@ public class SuiBianDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		SuiBianChuanVO suiBianChuanVO = null;
-		String sql = "SELECT * FROM carry_table_info where carry_id="+carryId;
+		String sql = "SELECT * FROM carry_table_info WHERE carry_id="+carryId;
 		try
 		{
     		stmt = conn.createStatement();

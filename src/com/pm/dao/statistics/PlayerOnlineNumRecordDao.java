@@ -15,7 +15,7 @@ public class PlayerOnlineNumRecordDao extends DaoBase
 	public int getPlayerOnlineNum()
 	{
 		int flag = 0;
-		String sql="SELECT * FROM t_online limit 1";
+		String sql="SELECT * FROM t_online LIMIT 1";
 		logger.debug("获得当前在线人数="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -45,7 +45,7 @@ public class PlayerOnlineNumRecordDao extends DaoBase
 	public void reduceOnlineNum()
 	{
 
-		String sql="update t_online set onlinecount = onlinecount - 1";
+		String sql="UPDATE t_online SET onlinecount = onlinecount - 1";
 		logger.debug("减少当前在线人数1="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -70,7 +70,7 @@ public class PlayerOnlineNumRecordDao extends DaoBase
 	public void addOnlineNumElse()
 	{
 
-		String sql="update t_online set onlinecount = onlinecount + 1";
+		String sql="UPDATE t_online SET onlinecount = onlinecount + 1";
 		logger.debug("增加在线人数数量="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{

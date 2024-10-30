@@ -5,7 +5,7 @@ public class PubPageVO
 {
 	private Integer spid=0;//商品ID
 	private Integer spcount=0;//商品数量
-	private String  spname="";//商品名称
+	private String  spname = "";//商品名称
 	private Integer sid=0;//商品的主键
 	private Integer page=1;//所有热销商品的当前页
 	private Integer pagesize=7;//所有热销商品的每页所显示的条数

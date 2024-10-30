@@ -33,7 +33,7 @@ public class PetSkillDao extends DaoBase
 	public PetSkillVO getById1(int pet_skill_id)
 	{
 		PetSkillVO petSkill = null;
-		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -90,7 +90,7 @@ public class PetSkillDao extends DaoBase
 	{
 		HashMap<Integer,PetSkillVO> map = null;
 		int total_num = 0;
-		String total_num_sql = "SELECT count(*) from pet_skill";
+		String total_num_sql = "SELECT COUNT(*) FROM pet_skill";
 		
 		PetSkillVO petSkill = null;
 		String sql = "SELECT * FROM pet_skill";
@@ -157,7 +157,7 @@ public class PetSkillDao extends DaoBase
 	public String getName1(int pet_skill_id)
 	{
 		String petSkillName = null;
-		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -195,7 +195,7 @@ public class PetSkillDao extends DaoBase
 	public double getInjureMultiple1(int pet_skill_id)
 	{
 		double petSkillInjureMultiple = 0;
-		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -229,7 +229,7 @@ public class PetSkillDao extends DaoBase
 	public int getSeveral(int pet_skill_id)
 	{
 		int petSkillSeveral = 0;
-		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -262,7 +262,7 @@ public class PetSkillDao extends DaoBase
 	public int getSeveral(String pet_skill_name)
 	{
 		int petSkillSeveral = 0;
-		String sql = "SELECT * FROM pet_skill where  pet_skill_name='"
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_name='"
 				+ StringUtil.gbToISO(pet_skill_name) + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -295,7 +295,7 @@ public class PetSkillDao extends DaoBase
 	public int getGroupID1(int pet_skill_id)
 	{
 		int pet_skill_group = 1;
-		String sql = "SELECT pet_skill_group from pet_skill where  pet_skill_id="
+		String sql = "SELECT pet_skill_group FROM pet_skill WHERE pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -328,7 +328,7 @@ public class PetSkillDao extends DaoBase
 	public int getType1(int pet_skill_id)
 	{
 		int petSkillType = -1;
-		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -361,9 +361,9 @@ public class PetSkillDao extends DaoBase
 	{
 		PetSkillVO vo = null;
 		List<PetSkillVO> list = new ArrayList<PetSkillVO>();
-		String sql = "SELECT * FROM pet_skill where pet_skill_id in ("
+		String sql = "SELECT * FROM pet_skill WHERE pet_skill_id IN ("
 				+ skill_one + "," + skill_two + "," + skill_three + ","
-				+ skill_four + "," + skill_five + ") and pet_skill_type = 0";
+				+ skill_four + "," + skill_five + ") AND pet_skill_type = 0";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try

@@ -57,7 +57,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 更新每日中奖号码 */
 	public void updateLotteryNumber(String sys_lottery_number)
 	{
-		String sql = "update lottery set sys_lottery_number = '"
+		String sql = "UPDATE lottery SET sys_lottery_number = '"
 				+ sys_lottery_number + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -81,7 +81,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 生成慈善中奖号码 */
 	public void updateLotteryCharityNumber(String lottery_number)
 	{
-		String sql = "update lottery set sys_charity_number = '"
+		String sql = "UPDATE lottery SET sys_charity_number = '"
 				+ lottery_number + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -106,7 +106,7 @@ public class LotteryInfoDao extends DaoBase
 	public String getLotteryNumberEveryday()
 	{
 		String sys_lottery_number = null;
-		String sql = "SELECT sys_lottery_number from lottery ";
+		String sql = "SELECT sys_lottery_number FROM lottery ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -136,7 +136,7 @@ public class LotteryInfoDao extends DaoBase
 	public String getLotteryCharityNumber()
 	{
 		String lottery_number = null;
-		String sql = "SELECT sys_charity_number from lottery ";
+		String sql = "SELECT sys_charity_number FROM lottery ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -165,7 +165,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 更新奖池金额 */
 	public void updateBotteryBonus(int lottery_bonus)
 	{
-		String sql = "update lottery set lottery_bonus = lottery_bonus + "
+		String sql = "UPDATE lottery SET lottery_bonus = lottery_bonus + "
 				+ lottery_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -189,7 +189,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 玩家得到奖金在支出表里 递加奖金金额 */
 	public void descLotteryBonus(int lottery_bonus)
 	{
-		String sql = "update lottery set lottery_bonus = lottery_all_bonus + "
+		String sql = "UPDATE lottery SET lottery_bonus = lottery_all_bonus + "
 				+ lottery_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -214,7 +214,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 奖池领奖后的奖金 */
 	public void delLotteryBonus(int lottery_bonus)
 	{
-		String sql = "update lottery set lottery_bonus = lottery_bonus - "
+		String sql = "UPDATE lottery SET lottery_bonus = lottery_bonus - "
 				+ lottery_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -238,7 +238,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 更新慈善金额 */
 	public void updateCharityBonus(int sys_charity_bonus)
 	{
-		String sql = "update lottery set sys_charity_bonus = sys_charity_bonus + "
+		String sql = "UPDATE lottery SET sys_charity_bonus = sys_charity_bonus + "
 				+ sys_charity_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -262,7 +262,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 慈善奖金递减 */
 	public void delCharityBonus(int sys_charity_bonus)
 	{
-		String sql = "update lottery set sys_charity_bonus = sys_charity_bonus - "
+		String sql = "UPDATE lottery SET sys_charity_bonus = sys_charity_bonus - "
 				+ sys_charity_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -286,7 +286,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 统计系统补贴奖金 */
 	public void updateLotterySunjoin(int sys_subjoin)
 	{
-		String sql = "update lottery set lottery_subjoin = sys_subjoin + "
+		String sql = "UPDATE lottery SET lottery_subjoin = sys_subjoin + "
 				+ sys_subjoin;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -310,7 +310,7 @@ public class LotteryInfoDao extends DaoBase
 	/** 更新前日中奖注数 */
 	public void updateLotteryWinNumber(int lottery_win_num)
 	{
-		String sql = "update lottery set lottery_win_num = " + lottery_win_num;
+		String sql = "UPDATE lottery SET lottery_win_num = " + lottery_win_num;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

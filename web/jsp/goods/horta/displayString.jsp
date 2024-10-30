@@ -11,7 +11,7 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 
 <%
 	String hor_id = (String)request.getAttribute("hor_id");
@@ -37,7 +37,7 @@
 	}
 %>
 
-<card id="login" title="<s:message key = "gamename"/>">
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 	<%	
 	if ( hortaVO != null ) {

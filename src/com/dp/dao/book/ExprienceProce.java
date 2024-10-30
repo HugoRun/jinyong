@@ -13,7 +13,7 @@ public class ExprienceProce
 	 * 退出书城计算经验值
 	 * */
 	public void addPlayerExprience(Integer ppk,Integer allex){
-		String sql="update u_part_info set p_benji_experience='"+allex.toString()+"' where p_pk="+ppk;
+		String sql = "UPDATE u_part_info SET p_benji_experience='"+allex.toString()+"' WHERE p_pk = "+ppk;
 		try{
 			dbconn=new DBConnection(DBConnection.GAME_USER_DB);
 			Connection conn=dbconn.getConn();
@@ -30,7 +30,7 @@ public class ExprienceProce
 	 * 根据角色ID获取该角色等级经验值
 	 * */
 	public Integer getPpkExprience(Integer ppk){
-		String sql="select p_benji_experience from u_part_info where p_pk="+ppk;
+		String sql = "SELECT p_benji_experience FROM u_part_info WHERE p_pk = "+ppk;
 		try{
 			dbconn=new DBConnection(DBConnection.GAME_USER_DB);
 			Connection conn=dbconn.getConn();
@@ -56,7 +56,7 @@ public class ExprienceProce
 	 * 获取玩家等级
 	 * */
 	public Integer getPpkDengJi(Integer ppk){
-		String sql="select p_grade from u_part_info where p_pk="+ppk;
+		String sql = "SELECT p_grade FROM u_part_info WHERE p_pk = "+ppk;
 		try{
 			dbconn=new DBConnection(DBConnection.GAME_USER_DB);
 			Connection conn=dbconn.getConn();

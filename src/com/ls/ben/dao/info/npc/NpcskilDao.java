@@ -34,8 +34,8 @@ public class NpcskilDao extends DaoBase
 		try
 		{
 
-			String sql = "SELECT npcski_wx from npcskill where npc_id="
-					+ npc.getNpcID() + " limit 1";
+			String sql = "SELECT npcski_wx FROM npcskill WHERE npc_id = "
+					+ npc.getNpcID() + " LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -66,7 +66,7 @@ public class NpcskilDao extends DaoBase
 		try
 		{
 
-			String sql = "SELECT * FROM npcskill where npc_id=" + npc_id;
+			String sql = "SELECT * FROM npcskill WHERE npc_id = " + npc_id;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -110,7 +110,7 @@ public class NpcskilDao extends DaoBase
 		try
 		{
 
-			String sql = "SELECT npcski_wx ,npcski_wx_injure from npcskill where npc_id="
+			String sql = "SELECT npcski_wx ,npcski_wx_injure FROM npcskill WHERE npc_id = "
 					+ npc_id;
 			logger.debug(sql);
 			stmt = conn.createStatement();

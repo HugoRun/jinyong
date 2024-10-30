@@ -28,7 +28,7 @@ public class UAccountRecordDao extends DaoBase
 			logger.debug("插入充值记录时错误，UAccountRecordVO为空");
 		}
 		int id = -1;
-		String sql = "INSERT INTO u_account_record  values (null,"
+		String sql = "INSERT INTO u_account_record  VALUES (null,"
 				+account_record.getUPk()+","
 				+account_record.getPPk()+",'"
 				+account_record.getCode()+"','"
@@ -69,7 +69,7 @@ public class UAccountRecordDao extends DaoBase
 	{
 		UAccountRecordVO account_record = null;
 		
-		String sql = "SELECT * FROM u_account_record where id="+id;
+		String sql = "SELECT * FROM u_account_record WHERE id="+id;
 		logger.info(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -110,7 +110,7 @@ public class UAccountRecordDao extends DaoBase
 	{
 		UAccountRecordVO account_record = null;
 		
-		String sql = "SELECT * FROM u_account_record where code='"+code+"' and channel="+channel+" limit 1";
+		String sql = "SELECT * FROM u_account_record WHERE code='"+code+"' AND channel="+channel+" LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -150,7 +150,7 @@ public class UAccountRecordDao extends DaoBase
 	 */
 	public void update( int id ,String account_state)
 	{
-		String sql = "update u_account_record  set account_state='"+account_state+ "',payment_time=now() where id ="+id;
+		String sql = "UPDATE u_account_record  SET account_state='"+account_state+ "',payment_time=now() WHERE id ="+id;
     	logger.debug(sql);
     	DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
     	conn = dbConn.getConn();

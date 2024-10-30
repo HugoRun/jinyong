@@ -17,7 +17,7 @@ public class WrapinfoDAO {
 	public PartInfoVO geTsilver(String pPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT * FROM u_part_info where p_pk='" + pPk + "'";
+			String sql = "SELECT * FROM u_part_info WHERE p_pk = '" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PartInfoVO vo = new PartInfoVO();
 			while (rs.next()) {

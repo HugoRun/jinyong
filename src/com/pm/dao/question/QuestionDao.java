@@ -17,7 +17,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public void updateIntegeral(int pk,String mouth)
 	{
-		String sql = "update u_quiz_info set integral = integral +1, conunite_win = conunite_win +1 where p_pk="+pk+" and mouth like '%"+mouth+"%'";
+		String sql = "UPDATE u_quiz_info SET integral = integral +1, conunite_win = conunite_win +1 WHERE p_pk="+pk+" AND mouth LIKE '%"+mouth+"%'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
 		
@@ -42,7 +42,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public int getConuniteWinNum(int pk, String nowMouth)
 	{
-		String sql = "SELECT * FROM u_quiz_info where p_pk="+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "SELECT * FROM u_quiz_info WHERE p_pk="+pk+" AND mouth = '"+nowMouth+"'";
 		int win_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
@@ -74,7 +74,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public int getIntegral(int pk, String nowMouth)
 	{
-		String sql = "SELECT * FROM u_quiz_info where p_pk="+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "SELECT * FROM u_quiz_info WHERE p_pk="+pk+" AND mouth = '"+nowMouth+"'";
 		int win_num = 0;
 		logger.debug("sql"+sql);
 		
@@ -106,14 +106,14 @@ public class QuestionDao extends DaoBase {
 	 */
 	public int getIntegralPaiMing(int pk, String nowMouth)
 	{
-		String sql = " select (select count(1) from u_quiz_info where integral >= (select integral from u_quiz_info where p_pk = "+pk
-						+" and mouth = '"+nowMouth+"') and mouth = '"+nowMouth +"' order by integral desc limit 1) as rank from u_quiz_info where p_pk = "
-						+pk+" and mouth = '"+nowMouth+"'";
-		String sql1 = "select (select count(1) from u_quiz_info "
-							+ "where integral >= (select integral from u_quiz_info "
-							+ "where p_pk = 9 and mouth = '2008-11' ) "
-							+ "and p_pk = 9 and mouth = '2008-11' order by integral desc limit 1) "
-							+ "as rank from u_quiz_info where p_pk = 9 and mouth = '2008-11' ";
+		String sql = " SELECT (SELECT COUNT(1) FROM u_quiz_info WHERE integral >= (SELECT integral FROM u_quiz_info WHERE p_pk = "+pk
+						+" AND mouth = '"+nowMouth+"') AND mouth = '"+nowMouth +"' ORDER BY integral DESC LIMIT 1) AS rank FROM u_quiz_info WHERE p_pk = "
+						+pk+" AND mouth = '"+nowMouth+"'";
+		String sql1 = "SELECT (SELECT COUNT(1) FROM u_quiz_info "
+							+ "where integral >= (SELECT integral FROM u_quiz_info "
+							+ "where p_pk = 9 AND mouth = '2008-11' ) "
+							+ "AND p_pk = 9 AND mouth = '2008-11' ORDER BY integral DESC LIMIT 1) "
+							+ "as rank FROM u_quiz_info WHERE p_pk = 9 AND mouth = '2008-11' ";
 		int win_num = 0;
 		logger.debug("sql"+sql);
 		
@@ -144,7 +144,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public void insertQiueInfo(int pk, String nowMouth)
 	{
-		String sql = "INSERT INTO u_quiz_info values( null,"+pk+",0,0,'"+nowMouth+"',0,now(),0)";
+		String sql = "INSERT INTO u_quiz_info VALUES( null,"+pk+",0,0,'"+nowMouth+"',0,now(),0)";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
 		
@@ -170,7 +170,7 @@ public class QuestionDao extends DaoBase {
 	public int getHasThisMouth(int pk, String nowMouth)
 	{
 		int flag = 0;
-		String sql = "SELECT count(1) as num from u_quiz_info where p_pk = "+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "SELECT COUNT(1) AS num FROM u_quiz_info WHERE p_pk = "+pk+" AND mouth = '"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -198,7 +198,7 @@ public class QuestionDao extends DaoBase {
 	{
 		List<QuestionVO> ranklist = new ArrayList<QuestionVO>();
 		QuestionVO questionvo = null;
-		String sql = "SELECT id,up.p_pk,integral,mouth,p_name from u_quiz_info uq,u_part_info up where mouth = '"+nowMouth+"' and uq.p_pk = up.p_pk order by integral desc,last_time asc limit 10";
+		String sql = "SELECT id,up.p_pk,integral,mouth,p_name FROM u_quiz_info uq,u_part_info up WHERE mouth = '"+nowMouth+"' AND uq.p_pk = up.p_pk ORDER BY integral desc,last_time ASC LIMIT 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -231,7 +231,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public void updateupdateConutiuteWinToZero(int pk, String nowMouth)
 	{
-		String sql = "update u_quiz_info set conunite_win = 0 where p_pk = "+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "UPDATE u_quiz_info SET conunite_win = 0 WHERE p_pk = "+pk+" AND mouth = '"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
 		
@@ -255,7 +255,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public void updateupdateTenAll(int pk, String nowMouth)
 	{
-		String sql = "update u_quiz_info set conunite_day = conunite_day + 1 where p_pk="+pk+" and mouth='"+nowMouth+"'";
+		String sql = "UPDATE u_quiz_info SET conunite_day = conunite_day + 1 WHERE p_pk="+pk+" AND mouth='"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
 		
@@ -280,7 +280,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public void updateQuestionTimeAndFlag(int pk, String nowMouth)
 	{
-		String sql = "update u_quiz_info set last_time = now(), answer_flag = 1 where p_pk="+pk+" and mouth='"+nowMouth+"'";
+		String sql = "UPDATE u_quiz_info SET last_time = now(), answer_flag = 1 WHERE p_pk="+pk+" AND mouth='"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("将当前时间存入数据库并将答题标志置为1="+sql);
 		
@@ -305,7 +305,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public void updateQuestionFlag(int pk, String nowMouth, int flag)
 	{
-		String sql = "update u_quiz_info set answer_flag = 0  where p_pk = "+pk+" and mouth='"+nowMouth+"'";
+		String sql = "UPDATE u_quiz_info SET answer_flag = 0  WHERE p_pk = "+pk+" AND mouth='"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("将当前玩家的答题标志置为flag.="+sql);
 		
@@ -330,7 +330,7 @@ public class QuestionDao extends DaoBase {
 	 */
 	public int getQuestionFlag(int pk, String nowMouth)
 	{
-		String sql = "SELECT answer_flag from u_quiz_info where p_pk="+pk+" and mouth='"
+		String sql = "SELECT answer_flag FROM u_quiz_info WHERE p_pk="+pk+" AND mouth='"
 						+nowMouth+"' ";
 		logger.debug("得到玩家的答题标志="+sql);
 		int flag = 0;

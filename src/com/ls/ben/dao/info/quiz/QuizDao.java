@@ -29,7 +29,7 @@ public class QuizDao extends DaoBase {
 		logger.debug("题库题目范围:" + confine);
 		List<Probability> quizs = new ArrayList<Probability>();
 		Probability quiz = null;
-		String sql = "SELECT quiz_id,quiz_probability from quiz_repository where quiz_id >= "+ condition[0]+" and quiz_id<="+ condition[1]+" order by quiz_id";
+		String sql = "SELECT quiz_id,quiz_probability FROM quiz_repository WHERE quiz_id >= "+ condition[0]+" AND quiz_id<="+ condition[1]+" ORDER BY quiz_id";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -64,7 +64,7 @@ public class QuizDao extends DaoBase {
 	{
 		logger.debug("题库题目id:" + quiz_id);
 		QuizVO quiz = null;
-		String sql = "SELECT * FROM quiz_repository where quiz_id="+quiz_id;
+		String sql = "SELECT * FROM quiz_repository WHERE quiz_id="+quiz_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -108,7 +108,7 @@ public class QuizDao extends DaoBase {
 			return;
 		}
 		logger.debug("题库题目id:" + quiz.getId());
-		String sql = "SELECT quiz_content,quiz_answers from quiz_repository where quiz_id="+quiz.getId();
+		String sql = "SELECT quiz_content,quiz_answers FROM quiz_repository WHERE quiz_id="+quiz.getId();
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -143,7 +143,7 @@ public class QuizDao extends DaoBase {
 		
 		logger.debug("题库题目id:" + quiz_id);
 		int  quiz_right_answer = -1;
-		String sql = "SELECT quiz_right_answer from quiz_repository where quiz_id="+quiz_id;
+		String sql = "SELECT quiz_right_answer FROM quiz_repository WHERE quiz_id="+quiz_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -174,7 +174,7 @@ public class QuizDao extends DaoBase {
 		
 		logger.debug("题库题目id:" + quiz_id);
 		QuizVO quiz = null;
-		String sql = "SELECT * FROM quiz_repository where quiz_id="+quiz_id;
+		String sql = "SELECT * FROM quiz_repository WHERE quiz_id="+quiz_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -213,7 +213,7 @@ public class QuizDao extends DaoBase {
 	public int getQuizAllNumber()
 	{
 		int  quiz_size = -1;
-		String sql = "SELECT count(1) as quiz_size from quiz_repository";
+		String sql = "SELECT COUNT(1) AS quiz_size FROM quiz_repository";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

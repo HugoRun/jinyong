@@ -22,7 +22,7 @@
 
   <tag>
     <description>
-        Catches any Throwable that occurs in its body and optionally
+        Catches any Throwable that occurs in its body AND optionally
         exposes it.
     </description>
     <name>catch</name>
@@ -31,7 +31,7 @@
     <attribute>
         <description>
 Name of the exported scoped variable for the
-exception thrown from a nested action. The type of the
+exception thrown FROM a nested action. The type of the
 scoped variable is the type of the exception thrown.
         </description>
         <name>var</name>
@@ -44,7 +44,7 @@ scoped variable is the type of the exception thrown.
     <description>
 	Simple conditional tag that establishes a context for
 	mutually exclusive conditional operations, marked by
-	&lt;when&gt; and &lt;otherwise&gt;
+	&lt;when&gt; AND &lt;otherwise&gt;
     </description>
     <name>choose</name>
     <tag-class>org.apache.taglibs.standard.tag.common.core.ChooseTag</tag-class>
@@ -54,7 +54,7 @@ scoped variable is the type of the exception thrown.
   <tag>
     <description>
 	Simple conditional tag, which evalutes its body if the
-	supplied condition is true and optionally exposes a Boolean
+	supplied condition is true AND optionally exposes a Boolean
 	scripting variable representing the evaluation of this condition
     </description>
     <name>if</name>
@@ -92,7 +92,7 @@ Scope for var.
 
   <tag>
     <description>
-        Retrieves an absolute or relative URL and exposes its contents
+        Retrieves an absolute or relative URL AND exposes its contents
         to either the page, a String in 'var', or a Reader in 'varReader'.
     </description>
     <name>import</name>
@@ -159,7 +159,7 @@ resource.
   <tag>
     <description>
 	The basic iteration tag, accepting many different
-        collection types and supporting subsetting and other
+        collection types AND supporting subsetting AND other
         functionality
     </description>
     <name>forEach</name>
@@ -182,7 +182,7 @@ Iteration begins at the item located at the
 specified index. First item of the collection has
 index 0.
 If items not specified:
-Iteration begins with index set at the value
+Iteration begins with index SET at the value
 specified.
         </description>
 	<name>begin</name>
@@ -256,7 +256,7 @@ String of tokens to iterate over.
     </attribute>
     <attribute>
         <description>
-The set of delimiters (the characters that
+The SET of delimiters (the characters that
 separate the tokens in the string).
         </description>
 	<name>delims</name>
@@ -359,7 +359,7 @@ true.
   <tag>
     <description>
         Subtag of &lt;choose&gt; that follows &lt;when&gt; tags
-        and runs only if all of the prior conditions evaluated to
+        AND runs only if all of the prior conditions evaluated to
         'false'
     </description>
     <name>otherwise</name>
@@ -480,7 +480,7 @@ java.util.Map object.
     </attribute>
     <attribute>
         <description>
-Name of the property to be set in the target object.
+Name of the property to be SET in the target object.
         </description>
         <name>property</name>
         <required>false</required>

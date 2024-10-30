@@ -70,7 +70,7 @@ public class ShutdownContextListener implements ServletContextListener {
                 sinaStartJob.runScheduler();
                 logger.info("新浪日志11111111111111111111111111111111111111111111111111111111111111111");
             }
-            //初始化NPC 列表
+            // 初始化NPC 列表
             Constant.MENPAINPC.put(1, 0);
             // 执行彩票信息
             //NewLotteryStartJob newLotteryStartJob = new NewLotteryStartJob();
@@ -108,10 +108,9 @@ public class ShutdownContextListener implements ServletContextListener {
             if (GameConfig.jmsIsOn()) {
                 init();
             }
-
-            logger.info("###############游戏启动完成###############");
+            logger.info("############### 游戏启动完成 ###############");
         } catch (Exception e) {
-            logger.debug("###############游戏启动失败###############");
+            logger.debug("############### 游戏启动失败 ###############");
             logger.debug("失败原因：" + e);
             e.getStackTrace();
         }
@@ -125,7 +124,7 @@ public class ShutdownContextListener implements ServletContextListener {
 
     public void init() {
         try {
-            Hashtable<String, String> properties = new Hashtable();
+            Hashtable<String, String> properties = new Hashtable<>();
             properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.exolab.jms.jndi.InitialContextFactory");
             properties.put(Context.PROVIDER_URL, "rmi://" + GameConfig.getJmsUrl() + ":1099/");
             Context context = new InitialContext(properties);

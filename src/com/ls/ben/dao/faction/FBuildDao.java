@@ -27,7 +27,7 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	public int getNumByFId( int fId )
 	{
 		int num = 0;
-		String sql = "SELECT count(*) from f_build where f_id="+fId;
+		String sql = "SELECT COUNT(*) FROM f_build WHERE f_id="+fId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -63,9 +63,9 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 		{
 			return;
 		}
-		String sql = "update f_build  set " +
+		String sql = "UPDATE f_build  SET " +
 		"b_id=?"+
-		" where f_id=? and b_id=?";
+		" WHERE f_id=? AND b_id=?";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -95,7 +95,7 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	{
 		int key = 0;
 		
-		String sql = "INSERT INTO f_build(f_id,b_id,b_1_grade_id) values (?,?,?)";
+		String sql = "INSERT INTO f_build(f_id,b_id,b_1_grade_id) VALUES (?,?,?)";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -129,7 +129,7 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	public String get1GradeBuildIdList( int fId )
 	{
 		StringBuffer sb = new StringBuffer();
-		String sql = "SELECT b_1_grade_id from f_build where f_id="+fId;
+		String sql = "SELECT b_1_grade_id FROM f_build WHERE f_id="+fId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -164,7 +164,7 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	 */
 	public FBuild getBuild(int fId,int bId)
 	{
-		return this.getOneBySql("where f_id="+fId+" and b_id="+bId);
+		return this.getOneBySql("where f_id="+fId+" AND b_id="+bId);
 	}
 	
 	/**

@@ -18,7 +18,7 @@ public class EquipAppendAttrDao extends DaoBase
 	public EquipAppendAttri getById( String id )
 	{
 		EquipAppendAttri appendAttribute = null;
-		String sql = "SELECT * FROM equip_append_attri where id="+id;
+		String sql = "SELECT * FROM equip_append_attri WHERE id="+id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

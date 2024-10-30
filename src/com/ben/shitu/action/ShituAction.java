@@ -40,7 +40,7 @@ public class ShituAction extends BaseAction {
                 shituService.removeFromStudent(bi.getPPk());
             }
         }
-        int count = shituService.findCount(ShituConstant.SHOUTUSQL + " and s.stu_id!=0", args);
+        int count = shituService.findCount(ShituConstant.SHOUTUSQL + " AND s.stu_id!=0", args);
         if (count >= ShituConstant.getCANRECCOUNT(bi.getTe_level())) {
             setMessage(request, "对不起，你收徒名额已满！");
             return mapping.findForward(ERROR);
@@ -50,7 +50,7 @@ public class ShituAction extends BaseAction {
             return mapping.findForward(ERROR);
         }
 
-        int count1 = shituService.findCount(ShituConstant.SHOUTUSQL + " and s.stu_id=0", args);
+        int count1 = shituService.findCount(ShituConstant.SHOUTUSQL + " AND s.stu_id=0", args);
         if (count1 <= 0) {
             Shitu shitu = new Shitu(0, bi.getPPk(), 0, bi.getName(), null, bi.getGrade(), 0, null, null);
             shituService.addShitu(shitu);

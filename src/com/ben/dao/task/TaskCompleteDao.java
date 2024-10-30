@@ -23,7 +23,7 @@ public class TaskCompleteDao extends DaoBase
 	public HashMap getPlayerTaskComplete(int p_pk)
 	{
 		HashMap askComplete = new HashMap();
-		String sql = "SELECT * FROM u_task_complete where p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_task_complete WHERE p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

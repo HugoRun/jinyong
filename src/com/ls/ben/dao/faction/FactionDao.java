@@ -31,9 +31,9 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		{
 			return ;
 		}
-		String sql = "update f_faction  set " +
+		String sql = "UPDATE f_faction  SET " +
 		"changeZZHTime=now()"+
-		" where id=?";
+		" WHERE id=?";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -59,9 +59,9 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		{
 			return ;
 		}
-		String sql = "update f_faction  set " +
+		String sql = "UPDATE f_faction  SET " +
 		"mGradeTotal=mGradeTotal+?"+
-		" where id=?";
+		" WHERE id=?";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -89,14 +89,14 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		{
 			return;
 		}
-		String sql = "update f_faction  set " +
+		String sql = "UPDATE f_faction  SET " +
 		"grade=?"+
 		",memberNum=?"+
 		",isDisband=?"+
 		",citangGrade=?"+
 		",prestige=?"+
 		",mGradeTotal=?"+
-		" where id=?";
+		" WHERE id=?";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -132,7 +132,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 			return key;
 		}
 		
-		String sql = "INSERT INTO f_faction(name,race,createTime,mGradeTotal) values (?,?,now(),?)";
+		String sql = "INSERT INTO f_faction(name,race,createTime,mGradeTotal) VALUES (?,?,now(),?)";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -173,7 +173,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	 */
 	public List<Faction> getPrestigeRank()
 	{
-		String condition_sql = "where prestige>0 order by prestige desc,id limit 10";
+		String condition_sql = "where prestige>0 ORDER BY prestige desc,id LIMIT 10";
 		return super.getListBySql(condition_sql);
 	}
 	
@@ -183,7 +183,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	 */
 	public List<Faction> getZhanliRank()
 	{
-		String condition_sql = " order by grade desc,mGradeTotal desc,id limit 10";
+		String condition_sql = " ORDER BY grade desc,mGradeTotal desc,id LIMIT 10";
 		return super.getListBySql(condition_sql);
 	}
 	/**
@@ -192,7 +192,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	 */
 	public List<Faction> getRichRank()
 	{
-		String condition_sql = "where materialNum>0 order by materialNum desc,id limit 10";
+		String condition_sql = "where materialNum>0 ORDER BY materialNum desc,id LIMIT 10";
 		return super.getListBySql(condition_sql);
 	}
 	
@@ -213,7 +213,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	public List<Integer> getDisbandList()
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "SELECT id from f_faction where isDisband=1";
+		String sql = "SELECT id FROM f_faction WHERE isDisband=1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -247,10 +247,10 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		{
 			return;
 		}
-		String sql = "update f_faction  set " +
+		String sql = "UPDATE f_faction  SET " +
 		"storageStr=?"+
 		",materialNum=?"+
-		" where id=?";
+		" WHERE id=?";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -275,7 +275,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	public String getStorageStr( int fId )
 	{
 		String result=null;
-		String sql = "SELECT storageStr from f_faction where id='"+fId+"'";
+		String sql = "SELECT storageStr FROM f_faction WHERE id='"+fId+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -306,7 +306,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	public boolean isHaveName( String f_name )
 	{
 		boolean result = false;
-		String sql = "SELECT id from f_faction where name='"+f_name+"' limit 1";
+		String sql = "SELECT id FROM f_faction WHERE name='"+f_name+"' LIMIT 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -346,7 +346,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	 */
 	public QueryPage getPageList(int page_no)
 	{
-		String order_sql = "order by grade desc,memberNum desc,id";
+		String order_sql = "ORDER BY grade desc,memberNum desc,id";
 		return super.loadPageList("",order_sql, page_no);
 	}
 	

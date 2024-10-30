@@ -20,7 +20,7 @@ public class FieldRecordDao extends DaoBase {
 	 */
 	public void addFieldGloryRecord(int pPk, String field_type,int sequence)
 	{
-		String sql = "INSERT INTO s_field_record values (null,"+pPk+","+sequence+","+field_type+",0,now())";
+		String sql = "INSERT INTO s_field_record VALUES (null,"+pPk+","+sequence+","+field_type+",0,now())";
 		logger.debug("添加战场荣誉的数据="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -51,8 +51,8 @@ public class FieldRecordDao extends DaoBase {
 	public void updateIntoFieldGloryRecord(int pk, String field_type,
 			int fh_sequence, int intraday_value)
 	{
-		String sql = "update s_field_record set sr_glory = sr_glory + "+intraday_value+" where p_pk = "+pk
-						+" and sr_type = "+field_type+" and sr_sequence = "+fh_sequence;
+		String sql = "UPDATE s_field_record SET sr_glory = sr_glory + "+intraday_value+" WHERE p_pk = "+pk
+						+" AND sr_type = "+field_type+" AND sr_sequence = "+fh_sequence;
 		logger.debug("更新本场荣誉="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

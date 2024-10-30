@@ -11,23 +11,22 @@ import java.io.IOException;
  * 3:19:41 PM
  */
 public class PCUserFilter implements Filter {
-    int control_switch = 0;//是否使用此过滤器的开关
+    // 是否使用此过滤器的开关
+    int control_switch = 0;
 
     public void destroy() {
 
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-
-        if (control_switch == 0) {// 不使用此过滤器
-
+        if (control_switch == 0) {
+            // 不使用此过滤器
             chain.doFilter(servletRequest, servletResponse);
             return;
         }
-
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String ua = request.getHeader("user-agent").toLowerCase();
-        if (ua.indexOf("nt") != -1) {
+        if (ua.contains("nt")) {
             // 如果ua里有nt则表示是电脑用户
             request.getRequestDispatcher("/comm/pc_user_hint.jsp").forward(request, servletResponse);
             return;

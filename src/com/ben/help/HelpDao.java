@@ -11,7 +11,7 @@ public class HelpDao extends DaoBase
 	public List<Help> findBySuperId(Object super_id,int begin,int limit)
 	{
 		List<Help> list = new ArrayList<Help>();
-		String sql = "SELECT * FROM help h WHERE h.super_id = " + super_id +" ORDER BY h.shunxu ASC limit "+begin+","+limit;
+		String sql = "SELECT * FROM help h WHERE h.super_id = " + super_id +" ORDER BY h.shunxu ASC LIMIT "+begin+","+limit;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -36,7 +36,7 @@ public class HelpDao extends DaoBase
 	
 	public int findBySuperId(Object super_id){
 		int i = 0;
-		String sql = "SELECT count(*) FROM help h WHERE h.super_id = " + super_id ;
+		String sql = "SELECT COUNT(*) FROM help h WHERE h.super_id = " + super_id ;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try

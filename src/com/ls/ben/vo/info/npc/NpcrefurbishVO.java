@@ -34,13 +34,13 @@ public class NpcrefurbishVO {
 	private int probability;
 	
 	/**刷新时间1	从某个时间到另一个时间之间出现  开始时间*/
-	private String timeKs="";
+	private String timeKs = "";
 	 /**刷新时间1	从某个时间到另一个时间之间出现  结束时间*/
-	private String timeJs="";
+	private String timeJs = "";
 	/**刷新时间2	每天的某个时间到另一个时间出现*/
-	private String dayTimeKs="";
+	private String dayTimeKs = "";
 	/**刷新时间2	每天的某个时间到另一个时间出现*/
-	private String dayTimeJs="";
+	private String dayTimeJs = "";
 	/**
 	 * 刷新时间(星期控制)
 	 */

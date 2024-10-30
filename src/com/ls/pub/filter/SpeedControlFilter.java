@@ -18,8 +18,8 @@ import java.util.List;
  * 3:19:41 PM
  */
 public class SpeedControlFilter implements Filter {
-
-    int time_distance = 1000;//两秒间隔点击时间
+    // 两秒间隔点击时间
+    int time_distance = 1000;
 
     public void destroy() {
 
@@ -37,7 +37,7 @@ public class SpeedControlFilter implements Filter {
             String uPk = (String) session.getAttribute("uPk");
             ClickSpeedMonitor clickSpeedMonitor = (ClickSpeedMonitor) session.getAttribute("ClickSpeedMonitor");
             String requirpath = request.getServletPath();
-            ///unfilter.do
+            // unfilter.do
             if (clickSpeedMonitor != null) {
                 if (uRlList.contains(requirpath)) {
                     // 不需要过滤的url,直接请求，不经过之后的过滤器
@@ -57,8 +57,8 @@ public class SpeedControlFilter implements Filter {
                 if (GameConfig.isDealExceptionUserSwitch()) {
                     // 判断系统是否监控玩家的点击速度
                     if (hint != null) {
-                        //重定向提示
-                        //如果该角色不是登录账号的角色，让用重新登陆，防止用户篡改p_pk
+                        // 重定向提示
+                        // 如果该角色不是登录账号的角色，让用重新登陆，防止用户篡改p_pk
                         request.getRequestDispatcher("/login.do?cmd=n9").forward(request, servletResponse);
                         return;
                     }

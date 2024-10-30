@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>"> 
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 	【任务栏】<img src="<%=response.encodeURL(GameConfig.getGameUrl() + "/image/task/1.png")%>"  alt="!"/><anchor>
 	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/taskinfoaction.do")%>">

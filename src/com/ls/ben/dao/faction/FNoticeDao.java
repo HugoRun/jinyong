@@ -33,7 +33,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 			return 0;
 		}
 		
-		String sql = "INSERT INTO f_notice(f_id,content,create_time) values (?,?,now())";
+		String sql = "INSERT INTO f_notice(f_id,content,create_time) VALUES (?,?,now())";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -79,7 +79,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 	 */
 	public FNotice getLastedNotice(int fId)
 	{
-		String condition_sql = "where f_id="+fId+" order by id desc limit 1";
+		String condition_sql = "where f_id="+fId+" ORDER BY id DESC LIMIT 1";
 		return super.getOneBySql(condition_sql);
 	}
 	
@@ -98,7 +98,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 	public QueryPage getPageList(int f_id,int page_no)
 	{
 		String condition_sql = "where f_id="+f_id;
-		String order_sql = "order by id desc";
+		String order_sql = "ORDER BY id desc";
 		return super.loadPageList(condition_sql,order_sql, page_no);
 	}
 

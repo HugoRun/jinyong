@@ -27,7 +27,7 @@ public class NpcDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "SELECT * FROM npc where npc_ID=" + id;
+			String sql = "SELECT * FROM npc WHERE npc_ID = " + id;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -56,7 +56,7 @@ public class NpcDao extends DaoBase
 		int total_num = 0;
 		NpcVO npc = null;
 		
-		String total_num_sql = "SELECT count(*) from npc";
+		String total_num_sql = "SELECT COUNT(*) FROM npc";
 		String sql = "SELECT * FROM npc";
 		logger.debug(sql);
 		

@@ -6,7 +6,7 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<card id="login" title="<s:message key = "gamename"/>"> 
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 	<%
 		RoleService roleService = new RoleService();

@@ -24,7 +24,7 @@ public class UMallStoreDao extends DaoBase
 	 */
 	public void delete(int u_pk,int prop_id )
 	{
-		String sql = "delete from u_mall_store where u_pk = "+u_pk+" and prop_id="+prop_id;
+		String sql = "DELETE FROM u_mall_store WHERE u_pk = "+u_pk+" AND prop_id="+prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -45,7 +45,7 @@ public class UMallStoreDao extends DaoBase
 	 */
 	public void insert(int u_pk,int prop_id,String prop_name,int prop_num )
 	{
-		String sql = "INSERT INTO u_mall_store values (null,"+u_pk+","+prop_id+",'"+prop_name+"',"+prop_num+",now())";
+		String sql = "INSERT INTO u_mall_store VALUES (null,"+u_pk+","+prop_id+",'"+prop_name+"',"+prop_num+",now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -67,7 +67,7 @@ public class UMallStoreDao extends DaoBase
 	 */
 	public void updatePropNum(int u_pk,int prop_id,int prop_num )
 	{
-		String sql = "update u_mall_store set last_buy_time = now(),commodity_num=commodity_num+"+prop_num + " where u_pk="+u_pk+" and prop_id="+prop_id+"";
+		String sql = "UPDATE u_mall_store SET last_buy_time = now(),commodity_num=commodity_num+"+prop_num + " WHERE u_pk = "+u_pk+" AND prop_id="+prop_id+"";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -90,7 +90,7 @@ public class UMallStoreDao extends DaoBase
 	public boolean isHave(int u_pk,int prop_id)
 	{
 		boolean result = false;
-		String sql = "SELECT id from u_mall_store where u_pk="+u_pk+" and prop_id="+prop_id;
+		String sql = "SELECT id FROM u_mall_store WHERE u_pk = "+u_pk+" AND prop_id="+prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -125,7 +125,7 @@ public class UMallStoreDao extends DaoBase
 		
 		int count=0;
 		
-		String count_sql = "SELECT count(*) from u_mall_store where u_pk="+u_pk;
+		String count_sql = "SELECT COUNT(*) FROM u_mall_store WHERE u_pk = "+u_pk;
 		String page_sql = null;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -141,7 +141,7 @@ public class UMallStoreDao extends DaoBase
 			
 			queryPage = new QueryPage(page_no, count);
 			
-			page_sql = "SELECT * FROM u_mall_store where u_pk="+u_pk+" order by last_buy_time desc limit "
+			page_sql = "SELECT * FROM u_mall_store WHERE u_pk = "+u_pk+" ORDER BY last_buy_time DESC LIMIT "
 			+ queryPage.getStartOfPage() + ","
 			+ queryPage.getPageSize();
 			
@@ -180,7 +180,7 @@ public class UMallStoreDao extends DaoBase
 	{
 		UMallStoreVO uMallStore = null;
 		
-		String sql = "SELECT commodity_num,prop_name from u_mall_store where u_pk="+u_pk+" and prop_id="+prop_id;
+		String sql = "SELECT commodity_num,prop_name FROM u_mall_store WHERE u_pk = "+u_pk+" AND prop_id="+prop_id;
 		logger.debug(sql);
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

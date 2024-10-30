@@ -57,7 +57,7 @@ public class MenpaiContestDAO extends DaoBase
 	{
 		List<MenpaiContestPlayerVO> list = new ArrayList<MenpaiContestPlayerVO>();
 		MenpaiContestPlayerVO vo = null;
-		String sql = "SELECT * FROM p_menpaicontest where into_state = 1 and p_type = "
+		String sql = "SELECT * FROM p_menpaicontest WHERE into_state = 1 AND p_type = "
 				+ p_type;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -113,9 +113,9 @@ public class MenpaiContestDAO extends DaoBase
 				pageNum = 0;
 			}
 
-			page_sql = "SELECT * FROM p_menpaicontest where win_num != 0 and p_type = "
+			page_sql = "SELECT * FROM p_menpaicontest WHERE win_num != 0 AND p_type = "
 					+ p_type
-					+ " order by win_num desc,win_num_time limit "
+					+ " ORDER BY win_num desc,win_num_time LIMIT "
 					+ pageNum + " , 10";
 
 			rs = stmt.executeQuery(page_sql);
@@ -146,7 +146,7 @@ public class MenpaiContestDAO extends DaoBase
 	public MenpaiContestPlayerVO selectPlayerData(int p_pk)
 	{
 		MenpaiContestPlayerVO vo = null;
-		String sql = "SELECT * FROM p_menpaicontest where p_pk = " + p_pk;
+		String sql = "SELECT * FROM p_menpaicontest WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -179,7 +179,7 @@ public class MenpaiContestDAO extends DaoBase
 	// 玩家插入数据
 	public void insertPlayerData(int p_pk, String p_name, int p_type)
 	{
-		String sql = "INSERT INTO p_menpaicontest (id,p_pk,p_name,p_type,into_state,into_time) values (null,"
+		String sql = "INSERT INTO p_menpaicontest (id,p_pk,p_name,p_type,into_state,into_time) VALUES (null,"
 				+ p_pk + ",'" + p_name + "'," + p_type + ",1,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -203,7 +203,7 @@ public class MenpaiContestDAO extends DaoBase
 	// 玩家更新进入时间
 	public void updatePlayerInData(int p_pk)
 	{
-		String sql = "update p_menpaicontest set into_state = 1,into_time = now(),kill_num = 0 where p_pk = "
+		String sql = "UPDATE p_menpaicontest SET into_state = 1,into_time = now(),kill_num = 0 WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -227,7 +227,7 @@ public class MenpaiContestDAO extends DaoBase
 	// 玩家更新出去时间
 	public void updatePlayerOutData(int p_pk)
 	{
-		String sql = "update p_menpaicontest set into_state = 0,out_time = now(),old_kill_num = kill_num where p_pk = "
+		String sql = "UPDATE p_menpaicontest SET into_state = 0,out_time = now(),old_kill_num = kill_num WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -251,7 +251,7 @@ public class MenpaiContestDAO extends DaoBase
 	// 玩家杀人数量的更新
 	public void updatePlayerKillData(int p_pk)
 	{
-		String sql = "update p_menpaicontest set kill_num = kill_num + 1,kill_time = now() where p_pk = "
+		String sql = "UPDATE p_menpaicontest SET kill_num = kill_num + 1,kill_time = now() WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -275,8 +275,8 @@ public class MenpaiContestDAO extends DaoBase
 	// 玩家杀人数量的更新
 	public void updatePlayerBeiKillData(int p_pk, int kill_p_pk)
 	{
-		String sql = "update p_menpaicontest set kill_p_pk = " + kill_p_pk
-				+ " , kill_p_pk_time = now() where p_pk = " + p_pk;
+		String sql = "UPDATE p_menpaicontest SET kill_p_pk = " + kill_p_pk
+				+ " , kill_p_pk_time = now() WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -299,7 +299,7 @@ public class MenpaiContestDAO extends DaoBase
 	// 更新玩家排名玩家排名
 	public void updatePlayerRankData(int p_pk)
 	{
-		String sql = "update p_menpaicontest set win_num = win_num + 1,win_num_time = now() where p_pk = "
+		String sql = "UPDATE p_menpaicontest SET win_num = win_num + 1,win_num_time = now() WHERE p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -323,8 +323,8 @@ public class MenpaiContestDAO extends DaoBase
 	// 更新玩家领取和胜利的状态
 	public void updatePlayerRankState(int p_pk, int win_state)
 	{
-		String sql = "update p_menpaicontest set win_state = " + win_state
-				+ " where p_pk = " + p_pk;
+		String sql = "UPDATE p_menpaicontest SET win_state = " + win_state
+				+ " WHERE p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -355,7 +355,7 @@ public class MenpaiContestDAO extends DaoBase
 		try
 		{
 			stmt = conn.createStatement();
-			page_sql = "SELECT count(*) as num from p_menpaicontest where win_num != 0 and p_type = "
+			page_sql = "SELECT COUNT(*) AS num FROM p_menpaicontest WHERE win_num != 0 AND p_type = "
 					+ p_type;
 
 			rs = stmt.executeQuery(page_sql);
@@ -382,7 +382,7 @@ public class MenpaiContestDAO extends DaoBase
 	{
 		List<MenpaiContestPlayerVO> list = new ArrayList<MenpaiContestPlayerVO>();
 		MenpaiContestPlayerVO vo = null;
-		String sql = "SELECT * FROM p_menpaicontest where into_state = 1 ";
+		String sql = "SELECT * FROM p_menpaicontest WHERE into_state = 1 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -415,8 +415,8 @@ public class MenpaiContestDAO extends DaoBase
 	public MenpaiNpcVO getPlayerMenpaiNpc(int p_type, int p_lv)
 	{
 		MenpaiNpcVO vo = null;
-		String sql = "SELECT * FROM menpainpc where p_type = " + p_type
-				+ " and npc_lv = " + p_lv;
+		String sql = "SELECT * FROM menpainpc WHERE p_type = " + p_type
+				+ " AND npc_lv = " + p_lv;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try

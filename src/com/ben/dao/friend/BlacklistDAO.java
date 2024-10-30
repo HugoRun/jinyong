@@ -22,7 +22,7 @@ public class BlacklistDAO {
     public void blacklistAdd(int pPk, String pByPk, String pByName, String time) {
         try {
             con = new SqlData();
-            String sql = "INSERT INTO `u_blacklist` VALUES(null,'" + pPk + "', '" + pByPk + "', '" + pByName + "', '" + time + "')";
+            String sql = "INSERT INTO `u_blacklist` VALUES(null, '" + pPk + "', '" + pByPk + "', '" + pByName + "', '" + time + "')";
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class BlacklistDAO {
     public boolean whetherblacklist(int pPk, String pByPk) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_blacklist where p_pk='" + pPk + "' and bl_pk='" + pByPk + "'";
+            String sql = "SELECT * FROM `u_blacklist` WHERE p_pk = '" + pPk + "' AND bl_pk = '" + pByPk + "'";
             ResultSet rs = con.query(sql);
             if (rs.next()) {
                 return true;
@@ -56,7 +56,7 @@ public class BlacklistDAO {
     public List<BlacklistVO> getBlacklistList(int pPk) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_blacklist where p_pk='" + pPk + "'";
+            String sql = "SELECT * FROM `u_blacklist` WHERE p_pk = '" + pPk + "'";
             ResultSet rs = con.query(sql);
             List<BlacklistVO> list = new ArrayList<BlacklistVO>();
             while (rs.next()) {
@@ -84,7 +84,7 @@ public class BlacklistDAO {
     public List<BlacklistVO> getBlacklistListPage(int pPk, int page, int perpagenum) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_blacklist where p_pk='" + pPk + "' limit " + page * perpagenum + "," + perpagenum;
+            String sql = "SELECT * FROM `u_blacklist` WHERE p_pk = '" + pPk + "' LIMIT " + page * perpagenum + "," + perpagenum;
             ResultSet rs = con.query(sql);
             List<BlacklistVO> list = new ArrayList<BlacklistVO>();
             while (rs.next()) {
@@ -112,7 +112,7 @@ public class BlacklistDAO {
     public void getDeleteBlacklist(int pPk, String pByPk) {
         try {
             con = new SqlData();
-            String sql = "delete from u_blacklist where p_pk='" + pPk + "' and bl_pk='" + pByPk + "'";
+            String sql = "DELETE FROM `u_blacklist` WHERE p_pk='" + pPk + "' AND bl_pk='" + pByPk + "'";
             con.update(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class BlacklistDAO {
     public boolean isBlacklist(int pPk, int blp_pk) {
         try {
             con = new SqlData();
-            String sql = "SELECT * FROM u_blacklist where p_pk='" + pPk + "' and bl_pk='" + blp_pk + "'";
+            String sql = "SELECT * FROM `u_blacklist` WHERE p_pk='" + pPk + "' AND bl_pk='" + blp_pk + "'";
             ResultSet rs = con.query(sql);
             if (rs.next()) {
                 return true;

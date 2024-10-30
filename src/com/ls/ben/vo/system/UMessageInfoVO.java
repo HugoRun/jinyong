@@ -12,8 +12,8 @@ public class UMessageInfoVO
 	private int id;/**主键*/
 	private int pPk; /**接受消息玩家的id*/
     private int msgType;/**消息类型*/
-    private String msgOperate1="";/**功能字节，存储该消息需要的参数信息*/
-    private String msgOperate2="";/**功能字节，存储该消息需要的参数信息*/
+    private String msgOperate1 = "";/**功能字节，存储该消息需要的参数信息*/
+    private String msgOperate2 = "";/**功能字节，存储该消息需要的参数信息*/
     private int msgPriority=1;/**消息的优先级*/
     private Date createTime;/**创建时间*/
     private String result;/**返回页面提示消息*/

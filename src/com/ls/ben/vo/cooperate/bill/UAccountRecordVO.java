@@ -16,7 +16,7 @@ public class UAccountRecordVO
 	private String pwd;/**密码*/
 	private int money; /**充值的钱数*/
 	private String channel; /**充值渠道*/
-	private String accountState=""; /**充值状态*/
+	private String accountState = ""; /**充值状态*/
 	private Date accountTime;/**充值时间*/
 	private Date paymentTime; /**到账时间,既用户元宝到账时间*/
 	public int getId()

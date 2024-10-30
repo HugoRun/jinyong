@@ -32,7 +32,7 @@ public class TimerEventFilter implements Filter {
             RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 
             if (roleInfo != null) {
-                //监听是否有非瞬时时间
+                // 监听是否有非瞬时时间
                 roleInfo.getEventManager().listener();
             }
 

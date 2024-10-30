@@ -21,8 +21,8 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_pk from p_pet_info where p_pk =" + p_pk
-				+ " and pet_isBring = 1 ";
+		String sql = "SELECT pet_pk FROM p_pet_info WHERE p_pk =" + p_pk
+				+ " AND pet_isBring = 1 ";
 		logger.debug(sql);
 		try
 		{
@@ -52,7 +52,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_grade = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_grade from p_pet_info where pet_pk =" + pet_pk;
+		String sql = "SELECT pet_grade FROM p_pet_info WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 		try
 		{
@@ -82,7 +82,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_Grade = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_Grade from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_Grade FROM pet_skill WHERE pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -114,7 +114,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_id = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_id from p_pet_info where pet_pk =" + pet_pk;
+		String sql = "SELECT pet_id FROM p_pet_info WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 		try
 		{
@@ -144,7 +144,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		String pet_skill_name = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_name from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_skill_name FROM pet_skill WHERE pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -175,8 +175,8 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_id = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_id from pet_skill where pet_skill_group ="
-				+ pet_skill_group + " and pet_skill_level =" + pet_skill_level;
+		String sql = "SELECT pet_skill_id FROM pet_skill WHERE pet_skill_group ="
+				+ pet_skill_group + " AND pet_skill_level =" + pet_skill_level;
 		logger.debug(sql);
 		try
 		{
@@ -206,8 +206,8 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_grade = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_grade from pet_skill where pet_skill_group ="
-				+ pet_skill_group + " and pet_skill_level =" + pet_skill_level;
+		String sql = "SELECT pet_grade FROM pet_skill WHERE pet_skill_group ="
+				+ pet_skill_group + " AND pet_skill_level =" + pet_skill_level;
 		logger.debug(sql);
 		try
 		{
@@ -237,7 +237,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_group = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_group from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_skill_group FROM pet_skill WHERE pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -269,7 +269,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_level = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_level from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_skill_level FROM pet_skill WHERE pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -298,7 +298,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	/** 根据宠物ID得到宠物技能组ID */
 	public List getPetControlGroup(int pet_id)
 	{
-		String sql = "SELECT pet_skill_group from pet_skill_control where pet_id ="
+		String sql = "SELECT pet_skill_group FROM pet_skill_control WHERE pet_id ="
 				+ pet_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -335,7 +335,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_id from pet_skill where pet_skill_level = 1 ";
+		String sql = "SELECT pet_skill_id FROM pet_skill WHERE pet_skill_level = 1 ";
 		logger.debug(sql);
 		try
 		{
@@ -370,7 +370,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_one = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_one from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_one FROM p_pet_info WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -402,7 +402,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_two = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_two from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_two FROM p_pet_info WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -434,7 +434,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_three = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_three from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_three FROM p_pet_info WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -466,7 +466,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_four = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_four from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_four FROM p_pet_info WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -498,7 +498,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		int pet_skill_five = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_five from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_five FROM p_pet_info WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -528,8 +528,8 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void updatePetSkOne(int pet_pk, int pet_skill_id)
 	{
 
-		String sql = "update p_pet_info set pet_skill_one = " + pet_skill_id
-				+ " where pet_pk =" + pet_pk;
+		String sql = "UPDATE p_pet_info SET pet_skill_one = " + pet_skill_id
+				+ " WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -554,8 +554,8 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void updatePetSkTwo(int pet_pk, int pet_skill_id)
 	{
 
-		String sql = "update p_pet_info set pet_skill_two = " + pet_skill_id
-				+ " where pet_pk =" + pet_pk;
+		String sql = "UPDATE p_pet_info SET pet_skill_two = " + pet_skill_id
+				+ " WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
@@ -579,8 +579,8 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void updatePetSkThree(int pet_pk, int pet_skill_id)
 	{
 
-		String sql = "update p_pet_info set pet_skill_three = " + pet_skill_id
-				+ " where pet_pk =" + pet_pk;
+		String sql = "UPDATE p_pet_info SET pet_skill_three = " + pet_skill_id
+				+ " WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
@@ -604,8 +604,8 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void updatePetSkFour(int pet_pk, int pet_skill_id)
 	{
 
-		String sql = "update p_pet_info set pet_skill_four = " + pet_skill_id
-				+ " where pet_pk =" + pet_pk;
+		String sql = "UPDATE p_pet_info SET pet_skill_four = " + pet_skill_id
+				+ " WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
@@ -629,8 +629,8 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void updatePetSkFive(int pet_pk, int pet_skill_id)
 	{
 
-		String sql = "update p_pet_info set pet_skill_five = " + pet_skill_id
-				+ " where pet_pk =" + pet_pk;
+		String sql = "UPDATE p_pet_info SET pet_skill_five = " + pet_skill_id
+				+ " WHERE pet_pk =" + pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
@@ -654,7 +654,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void deletePetSkOne(int pet_pk)
 	{
 
-		String sql = "update p_pet_info set pet_skill_one = 0 where pet_pk ="
+		String sql = "UPDATE p_pet_info SET pet_skill_one = 0 WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -679,7 +679,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void deletePetSkTwo(int pet_pk)
 	{
 
-		String sql = "update p_pet_info set pet_skill_two = 0 where pet_pk ="
+		String sql = "UPDATE p_pet_info SET pet_skill_two = 0 WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -704,7 +704,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void deletePetSkThree(int pet_pk)
 	{
 
-		String sql = "update p_pet_info set pet_skill_three = 0 where pet_pk ="
+		String sql = "UPDATE p_pet_info SET pet_skill_three = 0 WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -729,7 +729,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void deletePetSkFour(int pet_pk)
 	{
 
-		String sql = "update p_pet_info set pet_skill_four = 0 where pet_pk ="
+		String sql = "UPDATE p_pet_info SET pet_skill_four = 0 WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -754,7 +754,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	public void deletePetSkFive(int pet_pk)
 	{
 
-		String sql = "update p_pet_info set pet_skill_five = 0 where pet_pk ="
+		String sql = "UPDATE p_pet_info SET pet_skill_five = 0 WHERE pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -780,7 +780,7 @@ public class PetSkillLevelUpDao extends DaoBase
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int pet_skill_id = 0;
-		String sql = "SELECT pet_skill_id from pet_skill_control where pet_id = "
+		String sql = "SELECT pet_skill_id FROM pet_skill_control WHERE pet_id = "
 				+ pet_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

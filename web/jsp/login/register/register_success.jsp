@@ -11,10 +11,11 @@
 	String lid = (String)request.getAttribute("lid");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
-您已经成功注册了<s:message key = "gamename"/>的帐号!游戏帐号为:<%=user_name %>,登录密码为:<%=pwd%>请牢记您的游戏帐号和密码!<br/>
+您已经成功注册了<bean:message key="gamename"/>的帐号!
+<br />游戏帐号为:<%=user_name %>,登录密码为:<%=pwd%><br />请牢记您的游戏帐号和密码!<br/>
 <anchor>
 <go method="post" href="<%=response.encodeURL(GameConfig.getContextPath()+"/login.do")%>">
 <postfield name="cmd" value="n1" />

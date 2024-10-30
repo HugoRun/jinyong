@@ -38,7 +38,7 @@ public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 	{
 		int key = 0;
 		
-		String sql = "INSERT INTO f_apply_info(p_pk,f_id,create_time) values (?,?,now())";
+		String sql = "INSERT INTO f_apply_info(p_pk,f_id,create_time) VALUES (?,?,now())";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -70,7 +70,7 @@ public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 	 */
 	public boolean isHave( int p_pk ,int f_id )
 	{
-		String condition_sql = "where f_id="+f_id+" and p_pk="+p_pk;
+		String condition_sql = "where f_id="+f_id+" AND p_pk="+p_pk;
 		return this.isHaveBySql(condition_sql);
 	}
 	

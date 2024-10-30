@@ -27,7 +27,7 @@ public class RoleBeOffBuffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "SELECT * FROM role_be_off_buff where p_pk='" + p_pk
+			String sql = "SELECT * FROM role_be_off_buff WHERE p_pk='" + p_pk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			RoleBeOffBuffVO vo = null;
@@ -60,7 +60,7 @@ public class RoleBeOffBuffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "INSERT INTO role_be_off_buff(b_id,p_pk,be_off_time) values(null,'"
+			String sql = "INSERT INTO role_be_off_buff(b_id,p_pk,be_off_time) VALUES(null,'"
 					+ p_pk + "','" + be_off_time + "')";
 			con.update(sql);
 		}
@@ -85,8 +85,8 @@ public class RoleBeOffBuffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update role_be_off_buff set be_off_time='"
-					+ be_off_time + "' where  p_pk='" + p_pk + "'";
+			String sql = "UPDATE role_be_off_buff SET be_off_time='"
+					+ be_off_time + "' WHERE p_pk='" + p_pk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -109,8 +109,8 @@ public class RoleBeOffBuffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "update role_be_off_buff set be_off_exp='"
-					+ be_off_exp + "' where  p_pk='" + p_pk + "'";
+			String sql = "UPDATE role_be_off_buff SET be_off_exp='"
+					+ be_off_exp + "' WHERE p_pk='" + p_pk + "'";
 			con.update(sql);
 		}
 		catch (Exception e)

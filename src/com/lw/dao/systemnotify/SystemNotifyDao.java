@@ -14,8 +14,8 @@ public class SystemNotifyDao extends DaoBase
 	{
 		List<SystemNotifyVO> list = new ArrayList<SystemNotifyVO>();
 		SystemNotifyVO vo = null;
-		String sql = "SELECT * FROM game_notify where isonline = 1 and type = "
-				+ type + " order by ordernum  ";
+		String sql = "SELECT * FROM game_notify WHERE isonline = 1 AND type = "
+				+ type + " ORDER BY ordernum  ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -48,7 +48,7 @@ public class SystemNotifyDao extends DaoBase
 	public String getNotifyContent(int id)
 	{
 		String content = null;
-		String sql = "SELECT content from game_notify where id = " + id;
+		String sql = "SELECT content FROM game_notify WHERE id = " + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -82,7 +82,7 @@ public class SystemNotifyDao extends DaoBase
 	public SystemNotifyVO getFirstNotifyInfo()
 	{
 		SystemNotifyVO vo = null;
-		String sql = "SELECT * FROM game_notify where isonline = 1  order by ordernum  limit 1";
+		String sql = "SELECT * FROM game_notify WHERE isonline = 1  ORDER BY ordernum  LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

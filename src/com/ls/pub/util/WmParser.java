@@ -147,7 +147,7 @@ public class WmParser {
 	 }
 	 
 	 
-	 //shift table and hash table of initialize 
+	 //shift table AND hash table of initialize 
 	 private void init(){
 	  initFlag=true;
 	  for(int i=0;i<maxIndex;i++)hashTable[i]=new Vector<AtomicPattern>();
@@ -206,7 +206,7 @@ public class WmParser {
 			Date dt = new Date();
 		  	 Class.forName("com.mysql.jdbc.Driver"); 
 			 con= DriverManager.getConnection("jdbc:mysql://192.168.1.98/jygame?autoReconnect=true","jygame","jygame");
-			 String sql = "SELECT str from jy_forbid_name";
+			 String sql = "SELECT str FROM jy_forbid_name";
 			 System.out.println("连接成功");
 			 stmt = con.createStatement();
 			 rs = stmt.executeQuery(sql);

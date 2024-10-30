@@ -6,8 +6,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
     <%
         String uPk = null;
@@ -18,10 +18,10 @@
         }
     %>
     24日更新，
-    <s:message key="gamename" />
+    <bean:message key="gamename" />
     趣味博彩系统上线。20级以上玩家每天都在前往临安仙客来酒楼二楼的黑衣大汉出参与趣味博彩活动，近期中奖者可获得【五色神牛宠物蛋】×1！
     <br />
-    <s:message key="gamename" />
+    <bean:message key="gamename" />
     竞猜十分简单，只需要根据系统引导从以下四组麻将字牌每组选择一个即可:第一组，东风、南风、北风、西风；第二组，梅、兰、菊、竹；第三组，春、夏、秋、冬；第四组，红中、白板、发财。如果四个字与系统公布的字牌相同，即中奖！
     <br />
     竞猜时间安排:每天8:00～19:59为竞猜时间，玩家可进行竞猜；20:00开奖，21:00～24:00领取奖励，过期作废！

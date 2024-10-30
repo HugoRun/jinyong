@@ -15,8 +15,8 @@ public class SkillUpDao extends SkillDao
 		int sk_group = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT sk_group from u_skill_info where sk_id =" + sk_id
-				+ " and p_pk = " + p_pk;
+		String sql = "SELECT sk_group FROM u_skill_info WHERE sk_id =" + sk_id
+				+ " AND p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -47,8 +47,8 @@ public class SkillUpDao extends SkillDao
 		int sk_sleight = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT sk_sleight from u_skill_info where sk_id ="
-				+ sk_id + " and p_pk = " + p_pk;
+		String sql = "SELECT sk_sleight FROM u_skill_info WHERE sk_id ="
+				+ sk_id + " AND p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -78,7 +78,7 @@ public class SkillUpDao extends SkillDao
 		int sk_next_sleight = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT sk_next_sleight from skill where sk_id =" + sk_id;
+		String sql = "SELECT sk_next_sleight FROM skill WHERE sk_id =" + sk_id;
 		logger.debug(sql);
 		try
 		{
@@ -108,7 +108,7 @@ public class SkillUpDao extends SkillDao
 		int sk_next_id = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT sk_id from skill where sk_sleight <= "+sk_sleight+" and sk_group = "+sk_group+" order by sk_id desc limit 1";
+		String sql = "SELECT sk_id FROM skill WHERE sk_sleight <= "+sk_sleight+" AND sk_group = "+sk_group+" ORDER BY sk_id DESC LIMIT 1";
 		logger.debug(sql);
 		try
 		{
@@ -140,8 +140,8 @@ public class SkillUpDao extends SkillDao
 		SkillCache skillCaChe = new SkillCache();		
 		String sk_name = skillCaChe.getNameById(sk_next_id);
 		
-		String sql = "update u_skill_info set  sk_id = " + sk_next_id+" ,sk_name = '" + sk_name
-				+ "' where sk_group = " + sk_group + " and p_pk = " + p_pk;
+		String sql = "UPDATE u_skill_info SET  sk_id = " + sk_next_id+" ,sk_name = '" + sk_name
+				+ "' WHERE sk_group = " + sk_group + " AND p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -165,8 +165,8 @@ public class SkillUpDao extends SkillDao
 	public void updateSkillID1(int sk_next_id, int sk_group, int p_pk)
 	{
 
-		String sql = "update u_skill_info set sk_id = " + sk_next_id
-				+ " where sk_group = " + sk_group + " and p_pk = " + p_pk;
+		String sql = "UPDATE u_skill_info SET sk_id = " + sk_next_id
+				+ " WHERE sk_group = " + sk_group + " AND p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -193,8 +193,8 @@ public class SkillUpDao extends SkillDao
 		int s_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT s_pk from u_skill_info where p_pk  =" + p_pk
-				+ " and sk_id = " + sk_id;
+		String sql = "SELECT s_pk FROM u_skill_info WHERE p_pk  =" + p_pk
+				+ " AND sk_id = " + sk_id;
 		logger.debug(sql);
 		try
 		{
@@ -224,8 +224,8 @@ public class SkillUpDao extends SkillDao
 		SkillCache skillCaChe = new SkillCache();		
 		String sk_name = skillCaChe.getNameById(sk_next_id);
 		
-		String sql = "update u_shortcut_info set sc_display = '" + sk_name
-				+ "' where sc_type = 1 and  operate_id = " + s_pk;
+		String sql = "UPDATE u_shortcut_info SET sc_display = '" + sk_name
+				+ "' WHERE sc_type = 1 AND  operate_id = " + s_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

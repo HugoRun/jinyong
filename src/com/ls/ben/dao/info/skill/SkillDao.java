@@ -113,8 +113,8 @@ public class SkillDao extends DaoBase
 		int total_num = 0;
 		SkillVO skillvo = null;
 		
-		String total_num_sql = "SELECT count(*) from skill";
-		String sql = "SELECT * FROM skill";
+		String total_num_sql = "SELECT COUNT(*) FROM `skill`";
+		String sql = "SELECT * FROM `skill`";
 		logger.debug(sql);
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

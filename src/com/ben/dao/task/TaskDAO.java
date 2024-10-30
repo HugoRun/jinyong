@@ -27,7 +27,7 @@ public class TaskDAO {
 		String menu_tasks_id = "";
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT menu_tasks_id from  operate_menu_info where id=" + id + " ";
+			String sql = "SELECT menu_tasks_id FROM  operate_menu_info WHERE id=" + id + " ";
 			ResultSet rs = con.query(sql);
 			while (rs.next()) {
 				menu_tasks_id = rs.getString("menu_tasks_id");
@@ -52,7 +52,7 @@ public class TaskDAO {
 	public TaskVO getTaskByZuAndXulie(String t_zu,int t_zuxl) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_zu='"+t_zu+"' and t_zuxl='" + t_zuxl + "'";
+			String sql = "SELECT * FROM task WHERE t_zu='"+t_zu+"' AND t_zuxl='" + t_zuxl + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = null;
 			if(rs.next()) {
@@ -117,7 +117,7 @@ public class TaskDAO {
 	public List<TaskVO> getList(String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT t_id,t_name,t_level_xiao from task where t_id='" + tId + "'";
+			String sql = "SELECT t_id,t_name,t_level_xiao FROM task WHERE t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			List<TaskVO> list = new ArrayList<TaskVO>();
 			while (rs.next()) { 
@@ -141,7 +141,7 @@ public class TaskDAO {
 	public TaskVO getTaskView(String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_id='" + tId + "'";
+			String sql = "SELECT * FROM task WHERE t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = null;
 			while (rs.next()) {
@@ -202,7 +202,7 @@ public class TaskDAO {
 	public String t_zjms(String tId) {
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT t_zjms from task where t_id='" + tId + "'";
+			String sql = "SELECT t_zjms FROM task WHERE t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			String t_zjms = null;
 			if (rs.next()) {  
@@ -224,7 +224,7 @@ public class TaskDAO {
 		
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task where t_zu='" + tZu + "' and t_zuxl='"+tXuxl+"'";
+			String sql = "SELECT * FROM task WHERE t_zu='" + tZu + "' AND t_zuxl='"+tXuxl+"'";
 			ResultSet rs = con.query(sql);
 			int tId = 0;
 			while (rs.next()) {  
@@ -250,7 +250,7 @@ public class TaskDAO {
 	{
 		try {
 			con = new JyGameDB();
-			String sql = "SELECT * FROM task  where t_id >="+task_id_lower+" and t_id <= "+task_id_upper+" and t_zuxl=1 group by t_zu order by rand() limit 1";
+			String sql = "SELECT * FROM task  WHERE t_id >="+task_id_lower+" AND t_id <= "+task_id_upper+" AND t_zuxl=1 GROUP BY t_zu ORDER BY rand() LIMIT 1";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = new TaskVO();
 			while (rs.next()) { 
@@ -310,13 +310,13 @@ public class TaskDAO {
 		List<TaskVO> list = new ArrayList<TaskVO>();
 		try {
 			con = new JyGameDB();
-			//String sql = "SELECT distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school from task where t_level_xiao <= "+grade
-			//				+" and (t_sex = 0 or t_sex ="+sex+") "
-			//				+" and t_zu not like '%meirirenwu%' and t_zu not like '%yabiao%' and t_zu not like '%songwaimai%' and (t_school like '%0%' or t_school like '%"+pSchool
-			//				+"%') group by t_zu order by t_zuxl asc,t_level_xiao desc";
-			String sql = "SELECT distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school from task where t_level_xiao <= " +grade+
-					" and '"+grade+"' <= t_level_da " +
-					"and t_id in "+allTaskId+" group by t_zu order by t_zuxl asc,t_level_xiao desc ";
+			//String sql = "SELECT distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school FROM task WHERE t_level_xiao <= "+grade
+			//				+" AND (t_sex = 0 or t_sex ="+sex+") "
+			//				+" AND t_zu not LIKE '%meirirenwu%' AND t_zu not LIKE '%yabiao%' AND t_zu not LIKE '%songwaimai%' AND (t_school LIKE '%0%' or t_school LIKE '%"+pSchool
+			//				+"%') GROUP BY t_zu ORDER BY t_zuxl asc,t_level_xiao desc";
+			String sql = "SELECT distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school FROM task WHERE t_level_xiao <= " +grade+
+					" AND '"+grade+"' <= t_level_da " +
+					" AND t_id IN " + allTaskId + " GROUP BY t_zu ORDER BY t_zuxl ASC,t_level_xiao DESC ";
 			//System.out.println("寻找任务的sql="+sql);
 			ResultSet rs = con.query(sql); 
 			logger.info("寻找任务的sql="+sql);
@@ -343,7 +343,7 @@ public class TaskDAO {
 		List<String> list = null;
 		try {
 			conn = new SqlData();
-			String sql = "SELECT * FROM u_task where p_pk ="+p_pk+"";
+			String sql = "SELECT * FROM u_task WHERE p_pk ="+p_pk+"";
 			ResultSet rs = conn.query(sql);
 			list = new ArrayList<String>();
 			while (rs.next()) { 
@@ -365,7 +365,7 @@ public class TaskDAO {
 	public String getAllTaskId()
 	{
 		StringBuffer allTaskId = new StringBuffer("(");
-		String sql = "SELECT menu_tasks_id from operate_menu_info where menu_tasks_id != ''";
+		String sql = "SELECT menu_tasks_id FROM operate_menu_info WHERE menu_tasks_id != ''";
 		String taskId = "";
 		try {
 			con = new JyGameDB();

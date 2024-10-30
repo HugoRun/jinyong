@@ -45,7 +45,7 @@ public class EquipAppendAttributeVO
 			}
 		}catch(Exception e)
 		{
-			DataErrorLog.debugData("equip_append_attribute表,valueArea字段数据错误：id="+id+"valueArea="+valueArea);
+			DataErrorLog.debugData("equip_append_attribute表,valueArea字段数据错误：id = "+id+"valueArea = "+valueArea);
 		}
 		
 		return value;

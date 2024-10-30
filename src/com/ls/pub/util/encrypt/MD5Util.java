@@ -34,7 +34,7 @@ public class MD5Util {
     }
 
     /**
-     * Calculates the MD5 digest and returns the value as a 16 element
+     * Calculates the MD5 digest AND returns the value AS a 16 element
      * <code>byte[]</code>.
      * 
      * @param data
@@ -46,7 +46,7 @@ public class MD5Util {
     }
 
     /**
-     * Calculates the MD5 digest and returns the value as a 16 element
+     * Calculates the MD5 digest AND returns the value AS a 16 element
      * <code>byte[]</code>.
      * 
      * @param data
@@ -58,24 +58,24 @@ public class MD5Util {
     }
 
     /**
-     * Calculates the MD5 digest and returns the value as a 32 character hex
+     * Calculates the MD5 digest AND returns the value AS a 32 character hex
      * string.
      * 
      * @param data
      *            Data to digest
-     * @return MD5 digest as a hex string
+     * @return MD5 digest AS a hex string
      */
     public static String md5Hex(byte[] data) {
         return HexUtil.toHexString(md5(data));
     }
 
     /**
-     * Calculates the MD5 digest and returns the value as a 32 character hex
+     * Calculates the MD5 digest AND returns the value AS a 32 character hex
      * string.
      * 
      * @param data
      *            Data to digest
-     * @return MD5 digest as a hex string
+     * @return MD5 digest AS a hex string
      */
     public static String md5Hex(String data) {
         return HexUtil.toHexString(md5(data));

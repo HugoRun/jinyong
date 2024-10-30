@@ -26,7 +26,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public List<CommodityVO> getDiscountCommodityListOfMainPage()
 	{
-		return super.getListBySql("where buy_mode=1 and discount<>-1 and (commodity_total=-1 or commodity_total-sell_num>0) order by create_time desc limit 6");
+		return super.getListBySql("where buy_mode=1 AND discount<>-1 AND (commodity_total=-1 or commodity_total-sell_num>0) ORDER BY create_time DESC LIMIT 6");
 	}
 	
 	/**
@@ -35,8 +35,8 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public QueryPage getDiscountCommodityList(int page_no)
 	{
-		String condition_sql = "where buy_mode=1 and discount<>-1 and (commodity_total=-1 or commodity_total-sell_num>0)";
-		String order_sql = "order by create_time desc";
+		String condition_sql = "where buy_mode=1 AND discount<>-1 AND (commodity_total=-1 or commodity_total-sell_num>0)";
+		String order_sql = "ORDER BY create_time desc";
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	
@@ -46,7 +46,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public void addSellNum(int c_id,int sell_num )
 	{
-		String update_sql = "update commodity_info set sell_num = sell_num+"+sell_num+"  where id="+c_id+"";
+		String update_sql = "UPDATE commodity_info SET sell_num = sell_num+"+sell_num+"  WHERE id="+c_id+"";
 		super.executeUpdateSql(update_sql);
 	}
 	
@@ -56,7 +56,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public void addSellNumByHot(int c_id,int sell_num )
 	{
-		String sql = "update commodity_info set sell_num = sell_num+"+sell_num+" ,is_hotmall = is_hotmall + "+sell_num+" where id="+c_id+"";
+		String sql = "UPDATE commodity_info SET sell_num = sell_num+"+sell_num+" ,is_hotmall = is_hotmall + "+sell_num+" WHERE id="+c_id+"";
 		super.executeUpdateSql(sql);
 	}
 	
@@ -87,7 +87,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	{
 		PropVO prop = null;
 		
-		String sql = "SELECT b.* from commodity_info as a,prop as b  where a.prop_id=b.prop_id and a.id="+c_id+"";
+		String sql = "SELECT b.* FROM commodity_info AS a,prop AS b  WHERE a.prop_id=b.prop_id AND a.id="+c_id+"";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -124,7 +124,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public List<CommodityVO> getHotSellCommodityListOfMainPage()
 	{
-		String condition_sql = " where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1) and buy_mode = 1 and sell_num>0 order by sell_num desc  limit 5";
+		String condition_sql = " WHERE ((commodity_total<>-1 AND commodity_total-sell_num>0) or commodity_total=-1) AND buy_mode = 1 AND sell_num>0 ORDER BY sell_num DESC  LIMIT 5";
 		return super.getListBySql(condition_sql);
 	}
 	
@@ -134,7 +134,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public List<CommodityVO> getNewSellCommodityListOfMainPage()
 	{
-		String condition_sql = "where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1) and is_hot = 1 ";
+		String condition_sql = "where ((commodity_total<>-1 AND commodity_total-sell_num>0) or commodity_total=-1) AND is_hot = 1 ";
 		return super.getListBySql(condition_sql);
 	}
 	
@@ -144,8 +144,8 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public QueryPage getHotSellCommodityList( int page_no )
 	{
-		String condition_sql = "where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1) ";
-		String order_sql = "order by create_time desc";
+		String condition_sql = "where ((commodity_total<>-1 AND commodity_total-sell_num>0) or commodity_total=-1) ";
+		String order_sql = "ORDER BY create_time desc";
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	
@@ -156,8 +156,8 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public QueryPage getYuanBaoCommodityList( String type,int page_no )
 	{
-		String condition_sql = "SELECT count(*) from commodity_info where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1)  and discount=-1 and  buy_mode=1 and type="+type;
-		String order_sql = "order by create_time desc";
+		String condition_sql = "SELECT COUNT(*) FROM commodity_info WHERE ((commodity_total<>-1 AND commodity_total-sell_num>0) or commodity_total=-1)  AND discount=-1 AND  buy_mode=1 AND type="+type;
+		String order_sql = "ORDER BY create_time desc";
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	
@@ -167,8 +167,8 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public QueryPage getJiFenCommodityList(int buy_mode,String type, int page_no )
 	{
-		String condition_sql = "where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1) and  buy_mode="+buy_mode+" and type="+type;
-		String order_sql = "order by order_num asc";
+		String condition_sql = "where ((commodity_total<>-1 AND commodity_total-sell_num>0) or commodity_total=-1) AND  buy_mode="+buy_mode+" AND type="+type;
+		String order_sql = "ORDER BY order_num ASC";
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	
@@ -178,7 +178,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public List<CommodityVO> getJiFenCommodityListOfMainPage()
 	{
-		String condition_sql = "where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1) and  buy_mode=2 order by sell_num desc limit 5";
+		String condition_sql = "where ((commodity_total<>-1 AND commodity_total-sell_num>0) or commodity_total=-1) AND  buy_mode=2 ORDER BY sell_num DESC LIMIT 5";
 		return super.getListBySql(condition_sql);
 	}
 	
@@ -188,8 +188,8 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	 */
 	public QueryPage getVIPCommodityList(int page_no)
 	{
-		String condition_sql = "where is_vip=1 and (commodity_total=-1 or commodity_total-sell_num>0)";
-		String order_sql = "order by create_time desc";
+		String condition_sql = "where is_vip=1 AND (commodity_total=-1 or commodity_total-sell_num>0)";
+		String order_sql = "ORDER BY create_time desc";
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	/**

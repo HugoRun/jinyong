@@ -35,7 +35,7 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 	 */
 	public int getIdByName(String name ){
 		int id = -1;
-		String sql = "SELECT id from game_equip where name='"+name+"'";
+		String sql = "SELECT id FROM game_equip WHERE name='"+name+"'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -61,7 +61,7 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 	 */
 	public HashMap<Integer,GameEquip> findAll(){
 		HashMap<Integer,GameEquip> map = new HashMap<Integer,GameEquip>();
-		String sql = "SELECT * FROM game_equip";
+		String sql = "SELECT * FROM `game_equip`";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -125,7 +125,7 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 	public String getEquipName(String name)
 	{
 		String equipName="";
-		String sql = "SELECT name from game_equip where name like '%"+name+"%' limit 1";
+		String sql = "SELECT name FROM game_equip WHERE name LIKE '%"+name+"%' LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

@@ -22,7 +22,7 @@ public class PlayerTaskDao extends DaoBase {
 	public HashMap getPlayerAllTask (int p_pk)
 	{
 		HashMap tasks = new HashMap();
-		String sql = "SELECT * FROM u_task where p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_task WHERE p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

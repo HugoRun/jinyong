@@ -16,7 +16,7 @@
 <br />
 <%
     } else if (channel_id == Channel.JUU) {
-        String key = "3IOJ3934KJ3493KJ94K";
+        String key="3IOJ3934KJ3493KJ94K";
         String username = (String) request.getSession().getAttribute(
                 "ssid");
         String time = Long.toString(new Date().getTime() / 1000);

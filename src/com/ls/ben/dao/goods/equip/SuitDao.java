@@ -21,7 +21,7 @@ public class SuitDao extends DaoBase
 	public SuitVO getById(int suit_id)
 	{
 		SuitVO vo = null;
-		String sql = "SELECT * FROM suit_info where suit_id=" + suit_id;
+		String sql = "SELECT * FROM suit_info WHERE suit_id=" + suit_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

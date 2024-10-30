@@ -10,9 +10,9 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@taglib uri="/WEB-INF/tlds/c.tld"  prefix="c" %>
-<card id="wrap" title="<s:message key = "gamename"/>">
+<card id="wrap" title="<bean:message key="gamename"/>">
 <p>
 请选择您要传送的氏族成员所在地点：<br/>
 <c:forEach items="${item_page.result}" var="item">

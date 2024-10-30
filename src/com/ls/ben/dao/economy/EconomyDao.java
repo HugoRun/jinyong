@@ -11,7 +11,7 @@ public class EconomyDao extends DaoBase
 	public long getYuanbao(int u_pk)
 	{
 		long yuanbao = 0;
-		String sql = "SELECT yuanbao from u_login_info where u_pk=" + u_pk;
+		String sql = "SELECT yuanbao FROM u_login_info WHERE u_pk = " + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -46,7 +46,7 @@ public class EconomyDao extends DaoBase
 	 */
 	public void updateYuanbao(int u_pk, long updat_yuanbao_num)
 	{
-		String sql = "update u_login_info set  yuanbao = yuanbao+" + updat_yuanbao_num +" where u_pk=" + u_pk;
+		String sql = "UPDATE u_login_info SET  yuanbao = yuanbao+" + updat_yuanbao_num +" WHERE u_pk = " + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -71,7 +71,7 @@ public class EconomyDao extends DaoBase
 	public int getJifen(int u_pk)
 	{
 		int jifen = 0;
-		String sql = "SELECT jifen from u_login_info where u_pk=" + u_pk;
+		String sql = "SELECT jifen FROM u_login_info WHERE u_pk = " + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -106,7 +106,7 @@ public class EconomyDao extends DaoBase
 	 */
 	public void updateJifen(int u_pk, int updat_jifen_num)
 	{
-		String sql = "update u_login_info set  jifen = jifen+" + updat_jifen_num +" where u_pk=" + u_pk;
+		String sql = "UPDATE u_login_info SET  jifen = jifen+" + updat_jifen_num +" WHERE u_pk = " + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

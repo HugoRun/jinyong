@@ -25,7 +25,7 @@ public class UTaskDAO  extends DaoBase{
 			String tNext, String createTime, String tTime) {
 		try {
 			con = new SqlData();
-			String sql = "INSERT INTO u_task(t_pk,p_pk,p_name,t_zu,t_px,t_id,t_title,t_type,t_xrwnpc_id,t_next,create_time,t_time) values(null,'"
+			String sql = "INSERT INTO u_task(t_pk,p_pk,p_name,t_zu,t_px,t_id,t_title,t_type,t_xrwnpc_id,t_next,create_time,t_time) VALUES(null,'"
 					+ pPk
 					+ "','"
 					+ pName
@@ -58,11 +58,11 @@ public class UTaskDAO  extends DaoBase{
 			String tXrwnpcId, String tNext, String createTime, String tTime) {
 		try {
 			con = new SqlData();
-			String sql = "update u_task set t_px='" + tPx + "',t_id='" + tId
+			String sql = "UPDATE u_task SET t_px='" + tPx + "',t_id='" + tId
 					+ "',t_title='" + tTitle + "',t_type='" + tType
 					+ "',t_xrwnpc_id='" + tXrwnpcId + "',t_next='" + tNext
 					+ "',create_time='" + createTime + "',t_time='" + tTime
-					+ "' where p_pk='" + pPk + "' and t_zu='" + tZu + "'";
+					+ "' WHERE p_pk='" + pPk + "' AND t_zu='" + tZu + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class UTaskDAO  extends DaoBase{
 	public void getUTaskDelete(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "delete from u_task where t_pk='" + tPk + "'";
+			String sql = "DELETE FROM u_task WHERE t_pk='" + tPk + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class UTaskDAO  extends DaoBase{
 			String createTime, String tTime) {
 		try {
 			con = new SqlData();
-			String sql = "INSERT INTO u_task(t_pk,p_pk,p_name,t_zu,t_px,t_id,t_title,t_type,t_xrwnpc_id,t_next,t_killing,t_killing_no,create_time,t_time) values(null,'"
+			String sql = "INSERT INTO u_task(t_pk,p_pk,p_name,t_zu,t_px,t_id,t_title,t_type,t_xrwnpc_id,t_next,t_killing,t_killing_no,create_time,t_time) VALUES(null,'"
 					+ pPk
 					+ "','"
 					+ pName
@@ -135,13 +135,13 @@ public class UTaskDAO  extends DaoBase{
 			String tKillingOk, String createTime, String tTime) {
 		try {
 			con = new SqlData();
-			String sql = "update  u_task set t_px='" + tPx + "',t_id='" + tId
+			String sql = "UPDATE  u_task SET t_px='" + tPx + "',t_id='" + tId
 					+ "',t_title='" + tTitle + "',t_type='" + tType
 					+ "',t_xrwnpc_id='" + tXrwnpcId + "',t_next='" + tNext
 					+ "',t_killing='" + tKilling + "',t_killing_no='"
 					+ tKillingNo + "',t_killing_ok='" + tKillingOk
 					+ "',create_time='" + createTime + "',t_time='" + tTime
-					+ "' where p_pk='" + pPk + "' and t_zu='" + tZu + "'";
+					+ "' WHERE p_pk='" + pPk + "' AND t_zu='" + tZu + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,7 +156,7 @@ public class UTaskDAO  extends DaoBase{
 	public void getUTaskDeleteXG(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "delete from u_task where t_pk='" + tPk + "'";
+			String sql = "DELETE FROM u_task WHERE t_pk='" + tPk + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,7 +177,7 @@ public class UTaskDAO  extends DaoBase{
 			String sql = "INSERT INTO u_task"
 					+ "(t_pk,p_pk,p_name,t_zu,t_px,t_id,t_title,t_type,t_xrwnpc_id,t_next,"
 					+ "t_goods,t_goods_no,t_goodszb,t_goodszb_number,create_time,t_time) "
-					+ "values(null,'"
+					+ "VALUES(null,'"
 					+ pPk
 					+ "','"
 					+ pName
@@ -223,7 +223,7 @@ public class UTaskDAO  extends DaoBase{
 			String tGoodszbNumber, String createTime, String tTime) {
 		try {
 			con = new SqlData();
-			String sql = "update u_task set  t_px='"
+			String sql = "UPDATE u_task SET  t_px='"
 					+ tPx
 					+ "',t_id='"
 					+ tId
@@ -245,7 +245,7 @@ public class UTaskDAO  extends DaoBase{
 					+ tGoodszbNumber
 					+ "',create_time='"
 					+ createTime
-					+ "',t_time='" + tTime + "' where p_pk='" + pPk + "' and t_zu='" + tZu + "'";
+					+ "',t_time='" + tTime + "' WHERE p_pk='" + pPk + "' AND t_zu='" + tZu + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -259,7 +259,7 @@ public class UTaskDAO  extends DaoBase{
 	public void getUTaskDeleteXD(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "delete from u_task where t_pk='" + tPk + "'";
+			String sql = "DELETE FROM u_task WHERE t_pk='" + tPk + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -280,7 +280,7 @@ public class UTaskDAO  extends DaoBase{
 			String sql = "INSERT INTO u_task "
 				+ "(t_pk,p_pk,p_name,t_zu,t_px,t_id,t_title,t_type,t_xrwnpc_id,t_next,"
 				+ "t_point,t_zjdwp,t_zjdwp_number,t_zjdzb,t_zjdzb_number,t_djscwp,t_djsczb,create_time,t_time) "
-				+ "values(null,'"
+				+ "VALUES(null,'"
 				+ pPk + "','" + pName + "','" + tZu + "','" + tPx + "','" + tId
 				+ "','" + tTitle + "','" + tType + "','" + tXrwnpcId + "','" + tNext
 				+ "','" + tPoint + "','" + tZjdwp + "','"
@@ -302,11 +302,11 @@ public class UTaskDAO  extends DaoBase{
 			String tZjdwpNumber,String tZjdzb,String tZjdzbNumber,String tDjscwp,String tDjsczb,String createTime,String tTime) {
 		try {
 			con = new SqlData();
-			String sql = "update u_task set t_px='" + tPx + "',t_id='" + tId
+			String sql = "UPDATE u_task SET t_px='" + tPx + "',t_id='" + tId
 			+ "',t_title='" + tTitle + "',t_type='" + tType + "',t_xrwnpc_id='" + tXrwnpcId + "',t_next='" + tNext
 			+ "',t_point='" + tPoint + "',t_zjdwp='" + tZjdwp + "',t_zjdwp_number='"
 			+ tZjdwpNumber + "',t_zjdzb='"+tZjdzb+"',t_zjdzb_number='"+tZjdzbNumber+"',t_djscwp='"+tDjscwp+"',t_djsczb='"
-			+tDjsczb+"',create_time='" + createTime + "',t_time='" + tTime + "' where p_pk='" + pPk + "' and t_zu='" + tZu + "'";
+			+tDjsczb+"',create_time='" + createTime + "',t_time='" + tTime + "' WHERE p_pk='" + pPk + "' AND t_zu='" + tZu + "'";
 		con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -320,8 +320,8 @@ public class UTaskDAO  extends DaoBase{
 	public UTaskVO getUTaskPk(String pPk, String tId) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT * FROM u_task where p_pk='" + pPk
-					+ "' and t_id='" + tId + "'";
+			String sql = "SELECT * FROM u_task WHERE p_pk='" + pPk
+					+ "' AND t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
 			while (rs.next()) {
@@ -359,7 +359,7 @@ public class UTaskDAO  extends DaoBase{
 	public List<UTaskVO> getUTaskPk(String pPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT * FROM u_task where p_pk='" + pPk + "'";
+			String sql = "SELECT * FROM u_task WHERE p_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			List<UTaskVO> list = new ArrayList<UTaskVO>();
 			while (rs.next()) {
@@ -399,7 +399,7 @@ public class UTaskDAO  extends DaoBase{
 	public UTaskVO getUTaskTPkZu(String tPk,String pPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_pk,p_pk,t_zu,t_px,t_id,t_type,t_xrwnpc_id,t_next from u_task where p_pk='"+pPk+"' and  t_id='" + tPk + "'";
+			String sql = "SELECT t_pk,p_pk,t_zu,t_px,t_id,t_type,t_xrwnpc_id,t_next FROM u_task WHERE p_pk='"+pPk+"' AND  t_id='" + tPk + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = null;
 			if (rs.next()) { 
@@ -427,7 +427,7 @@ public class UTaskDAO  extends DaoBase{
 	public UTaskVO getUTaskTPkZuaa(String pPk,String tZu) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_pk,p_pk,t_zu,t_px,t_id,t_type,t_xrwnpc_id,t_next from u_task where p_pk='"+pPk+"' and t_zu='" + tZu + "'";
+			String sql = "SELECT t_pk,p_pk,t_zu,t_px,t_id,t_type,t_xrwnpc_id,t_next FROM u_task WHERE p_pk='"+pPk+"' AND t_zu='" + tZu + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = null;
 			if (rs.next()) { 
@@ -456,7 +456,7 @@ public class UTaskDAO  extends DaoBase{
 	public UTaskVO getUTaskTPk(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_pk,t_killing,t_killing_no,t_killing_ok from u_task where t_pk='"
+			String sql = "SELECT t_pk,t_killing,t_killing_no,t_killing_ok FROM u_task WHERE t_pk='"
 					+ tPk + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
@@ -481,7 +481,7 @@ public class UTaskDAO  extends DaoBase{
 	public UTaskVO getUTaskTPkGossds(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_pk,t_goods,t_goods_no,t_goods_ok,t_goodszb,t_goodszb_number,t_goodszb_ok from u_task where t_pk='"
+			String sql = "SELECT t_pk,t_goods,t_goods_no,t_goods_ok,t_goodszb,t_goodszb_number,t_goodszb_ok FROM u_task WHERE t_pk='"
 					+ tPk + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
@@ -510,7 +510,7 @@ public class UTaskDAO  extends DaoBase{
 		try {
 			con = new SqlData();
 			 
-			String sql = "SELECT t_pk,t_point,t_point_no,t_zjdwp,t_zjdwp_number,t_zjdwp_ok,t_zjdzb,t_zjdzb_number,t_zjdzb_ok,t_djscwp,t_djsczb  from u_task where t_pk='"
+			String sql = "SELECT t_pk,t_point,t_point_no,t_zjdwp,t_zjdwp_number,t_zjdwp_ok,t_zjdzb,t_zjdzb_number,t_zjdzb_ok,t_djscwp,t_djsczb  FROM u_task WHERE t_pk='"
 					+ tPk + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
@@ -543,8 +543,8 @@ public class UTaskDAO  extends DaoBase{
 	public UTaskVO getUTask(String pPk, String tId) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT * FROM u_task where p_pk='" + pPk
-					+ "' and t_next='" + tId + "'";
+			String sql = "SELECT * FROM u_task WHERE p_pk='" + pPk
+					+ "' AND t_next='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
 			while (rs.next()) {
@@ -582,8 +582,8 @@ public class UTaskDAO  extends DaoBase{
 	public List<UTaskVO> getUTaskNpcId(String pPk, String npcId, String tType) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT * FROM u_task where p_pk='" + pPk
-					+ "' and t_type='" + tType + "' and t_killing='" + npcId
+			String sql = "SELECT * FROM u_task WHERE p_pk='" + pPk
+					+ "' AND t_type='" + tType + "' AND t_killing='" + npcId
 					+ "'";
 			ResultSet rs = con.query(sql);
 			List<UTaskVO> list = new ArrayList<UTaskVO>();
@@ -625,7 +625,7 @@ public class UTaskDAO  extends DaoBase{
 	public int tKillingOk(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_killing_ok from u_task where t_pk='" + tPk
+			String sql = "SELECT t_killing_ok FROM u_task WHERE t_pk='" + tPk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
@@ -648,7 +648,7 @@ public class UTaskDAO  extends DaoBase{
 	public int tKilling(String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_killing_no from u_task where t_pk='" + tPk
+			String sql = "SELECT t_killing_no FROM u_task WHERE t_pk='" + tPk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
@@ -671,8 +671,8 @@ public class UTaskDAO  extends DaoBase{
 	public void tKillingOKUpdate(int t_killing_ok, String tPk) {
 		try {
 			con = new SqlData();
-			String sql = "update u_task set t_killing_ok='" + t_killing_ok
-					+ "' where t_pk='" + tPk + "'";
+			String sql = "UPDATE u_task SET t_killing_ok='" + t_killing_ok
+					+ "' WHERE t_pk='" + tPk + "'";
 			con.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -684,8 +684,8 @@ public class UTaskDAO  extends DaoBase{
 	public int getUTaskTPk(String pPk, String tId) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT t_pk from u_task where p_pk='" + pPk
-					+ "' and t_next='" + tId + "'";
+			String sql = "SELECT t_pk FROM u_task WHERE p_pk='" + pPk
+					+ "' AND t_next='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			int t_pk = 0;
 			while (rs.next()) {
@@ -706,7 +706,7 @@ public class UTaskDAO  extends DaoBase{
 	public int menuType(int menuID) {
 		try {
 			con = new SqlData();
-			String sql = "SELECT menu_type from operate_menu_info where id='" + menuID + "'";
+			String sql = "SELECT menu_type FROM operate_menu_info WHERE id='" + menuID + "'";
 			ResultSet rs = con.query(sql);
 			UTaskVO vo = new UTaskVO();
 			int menu_type = 0;
@@ -729,7 +729,7 @@ public class UTaskDAO  extends DaoBase{
 	{
 		boolean isCompleted = false;
 		
-		String sql = "SELECT t_pk from u_task where p_pk=" + p_pk + "  ";
+		String sql = "SELECT t_pk FROM u_task WHERE p_pk=" + p_pk + "  ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

@@ -18,7 +18,7 @@ public class AuctionPetDao extends DaoBase
 	 * 宠物详细信息查看,根据petpk
 	 */
 	public AuctionPetVO getPetInfoView(String petPk) {
-		String sql = "SELECT * FROM u_auction_pet where pet_pk='" + petPk+ "'";
+		String sql = "SELECT * FROM u_auction_pet WHERE pet_pk='" + petPk+ "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetVO vo = null;
 		try {
@@ -82,7 +82,7 @@ public class AuctionPetDao extends DaoBase
 	//插入拍卖表信息
 	public int insertAuctionPet(int input_money,PetInfoVO vo){
 		int i = -1;
-		String sql = "INSERT INTO u_auction_pet values (null,1,"+input_money+",now(),"+vo.getPetPk()+","+
+		String sql = "INSERT INTO u_auction_pet VALUES (null,1,"+input_money+",now(),"+vo.getPetPk()+","+
 						vo.getPPk()+","+vo.getPetId()+",'"+vo.getBasicPetName()+"','"+vo.getBasicPetName()+"',"+
 						vo.getPetGrade()+",'"+vo.getPetExp()+"','"+vo.getPetExp()+"','"+vo.getPetXiaExp()+"',"+vo.getPetGjXiao()+","+
 						vo.getPetGjDa()+","+vo.getPetSale()+",'',"+vo.getPetGrow()+","+vo.getPetWx()+","+
@@ -124,7 +124,7 @@ public class AuctionPetDao extends DaoBase
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "SELECT count(*) from u_auction_pet where auction_status = 1";
+			count_sql = "SELECT COUNT(*) FROM u_auction_pet WHERE auction_status = 1";
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -137,13 +137,13 @@ public class AuctionPetDao extends DaoBase
 			
 			if(searchType.equals("time")){
 			
-				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 order by pet_auction_time desc " +
+				page_sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 ORDER BY pet_auction_time DESC " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else if(searchType.equals("money")){
-				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 order by CAST(pet_price as UNSIGNED  INTEGER) asc " +
+				page_sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 ORDER BY CAST(pet_price AS UNSIGNED  INTEGER) ASC " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else {
-				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 order by pet_auction_time desc " + 
+				page_sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 ORDER BY pet_auction_time DESC " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}
 			logger.debug(page_sql);
@@ -181,7 +181,7 @@ public class AuctionPetDao extends DaoBase
 	//插入个人宠物表信息
 	public int insertPersonPet(int pPk, AuctionPetVO vo){
 		int i = -1;
-		String sql = "INSERT INTO p_pet_info values (null,"+Integer.valueOf(pPk)+","
+		String sql = "INSERT INTO p_pet_info VALUES (null,"+Integer.valueOf(pPk)+","
 					+vo.getPetId()+",'"+vo.getPetName()+"','"+vo.getPetNickname()+"',"
 					
 					+vo.getPetGrade()+",'"+vo.getPetExp()+"','"+vo.getPetBenExp()+"','"+vo.getPetXiaExp()+"','"
@@ -217,7 +217,7 @@ public class AuctionPetDao extends DaoBase
 	// 更新该拍卖宠物的状态
 	public void updateAuctionStatus(String petPk, int i)
 	{
-		String sql = "update u_auction_pet set auction_status = "+i+" where pet_pk="+petPk;
+		String sql = "UPDATE u_auction_pet SET auction_status = "+i+" WHERE pet_pk="+petPk;
 		logger.debug("更新该拍卖宠物的状态的sql"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
@@ -238,7 +238,7 @@ public class AuctionPetDao extends DaoBase
 	public List<AuctionPetInfoVO> getPetInfoList(int pPk, int i)
 	{
 		List<AuctionPetInfoVO> list = new ArrayList<AuctionPetInfoVO>();
-		String sql = "SELECT * FROM u_auctionpet_info where p_pk="+pPk+" limit "+i;
+		String sql = "SELECT * FROM u_auctionpet_info WHERE p_pk="+pPk+" LIMIT "+i;
 		logger.debug("获得指定数量的petInfo: "+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetInfoVO vo = null;
@@ -268,7 +268,7 @@ public class AuctionPetDao extends DaoBase
 	public List<AuctionPetVO> getPetMoneyList(int pPk)
 	{
 		List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
-		String sql = "SELECT * FROM u_auction_pet where auction_status = 4 and p_pk="+pPk;
+		String sql = "SELECT * FROM u_auction_pet WHERE auction_status = 4 AND p_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetVO vo = null;
 		try {
@@ -297,7 +297,7 @@ public class AuctionPetDao extends DaoBase
 	public List<AuctionPetVO> getPetGoodsList(int pPk)
 	{
 		List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
-		String sql = "SELECT * FROM u_auction_pet where auction_status = 2 and p_pk="+pPk;
+		String sql = "SELECT * FROM u_auction_pet WHERE auction_status = 2 AND p_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetVO vo = null;
 		try {
@@ -328,7 +328,7 @@ public class AuctionPetDao extends DaoBase
 	public int getPetInfoPrice(String petPk) {
 		
 		int petPrice = 0;
-		String sql = "SELECT pet_price from u_auction_pet where pet_pk='" + petPk+ "'";
+		String sql = "SELECT pet_price FROM u_auction_pet WHERE pet_pk='" + petPk+ "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try {
@@ -355,7 +355,7 @@ public class AuctionPetDao extends DaoBase
 	public int deleteAuctionPet(String petPk)
 	{
 		int result = -1;
-		String sql = "delete from u_auction_pet where pet_pk="+petPk;
+		String sql = "DELETE FROM u_auction_pet WHERE pet_pk="+petPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -379,7 +379,7 @@ public class AuctionPetDao extends DaoBase
 	public String getPetInfoName(String petPk) {
 		
 		String petName = "";
-		String sql = "SELECT pet_name from u_auction_pet where pet_pk='" + petPk+ "'";
+		String sql = "SELECT pet_name FROM u_auction_pet WHERE pet_pk='" + petPk+ "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try {
@@ -420,7 +420,7 @@ public class AuctionPetDao extends DaoBase
 		try
 		{
 			stmt = conn.createStatement();
-			 count_sql = "SELECT count(*) from u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%'";
+			 count_sql = "SELECT COUNT(*) FROM u_auction_pet WHERE auction_status = 1 AND pet_name LIKE '%" + StringUtil.gbToISO(pet_name) + "%'";
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -431,13 +431,13 @@ public class AuctionPetDao extends DaoBase
 
 			queryPage = new  QueryPage(page_no,count);
 			if(sortType.equals("time")){
-				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by pet_auction_time desc " +
+				page_sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 AND pet_name LIKE '%" + StringUtil.gbToISO(pet_name) + "%' ORDER BY pet_auction_time DESC " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else if(sortType.equals("money")){
-				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by CAST(pet_price as UNSIGNED  INTEGER) asc " +
+				page_sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 AND pet_name LIKE '%" + StringUtil.gbToISO(pet_name) + "%' ORDER BY CAST(pet_price AS UNSIGNED  INTEGER) ASC " +
 				"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else {
-				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by pet_auction_time desc " +
+				page_sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 AND pet_name LIKE '%" + StringUtil.gbToISO(pet_name) + "%' ORDER BY pet_auction_time DESC " +
 				"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}
 			logger.debug(page_sql);
@@ -472,7 +472,7 @@ public class AuctionPetDao extends DaoBase
 
 	public List<AuctionPetVO> getThanThreeDayList()
 	{
-		String sql = "SELECT * FROM u_auction_pet where auction_status = 1 and now() > (pet_auction_time + INTERVAL 3 DAY)";
+		String sql = "SELECT * FROM u_auction_pet WHERE auction_status = 1 AND now() > (pet_auction_time + INTERVAL 3 DAY)";
 		 logger.debug("获取超过一定天数的宠物拍卖信息的sql :"+sql);
 		 List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
 		 AuctionPetVO vo = null;
@@ -507,7 +507,7 @@ public class AuctionPetDao extends DaoBase
 	 */
 	public void updateThanThreeDay()
 	{
-		 String sql = "update u_auction_pet set auction_status = 2 where now() > (pet_auction_time + INTERVAL 3 DAY) and auction_status = 1";
+		 String sql = "UPDATE u_auction_pet SET auction_status = 2 WHERE now() > (pet_auction_time + INTERVAL 3 DAY) AND auction_status = 1";
 		 logger.debug("更新拍卖信息的sql :"+sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
@@ -530,7 +530,7 @@ public class AuctionPetDao extends DaoBase
 	//获得六天内未取回宠物的物品清单
 	public List<AuctionPetVO> getThanSixDayList()
 	{
-		String sql = "SELECT * FROM u_auction_pet where auction_status = 2 and now() > (pet_auction_time + INTERVAL 6 DAY)";
+		String sql = "SELECT * FROM u_auction_pet WHERE auction_status = 2 AND now() > (pet_auction_time + INTERVAL 6 DAY)";
 		 logger.debug("获取超过一定天数的宠物拍卖信息的sql :"+sql);
 		 List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
 		 AuctionPetVO vo = null;
@@ -565,7 +565,7 @@ public class AuctionPetDao extends DaoBase
 	 */
 	public void deleteThanSixDay()
 	{
-		 String sql = "delete from u_auction_pet where auction_status = 2 and now() > (pet_auction_time + INTERVAL 6 DAY)";
+		 String sql = "DELETE FROM u_auction_pet WHERE auction_status = 2 AND now() > (pet_auction_time + INTERVAL 6 DAY)";
 		 logger.debug("更新拍卖信息的sql :"+sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
@@ -588,7 +588,7 @@ public class AuctionPetDao extends DaoBase
 	//获得物品拍卖成功后七天内未取回银两的清单
 	public List<AuctionPetVO> getThanSevenDay()
 	{
-		String sql = "SELECT * FROM u_auction_pet where auction_status = 4 and now() > (pet_auction_time + INTERVAL 7 DAY)";
+		String sql = "SELECT * FROM u_auction_pet WHERE auction_status = 4 AND now() > (pet_auction_time + INTERVAL 7 DAY)";
 		 logger.debug("获取超过一定天数的拍卖信息的sql :"+sql);
 		 List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
 		 AuctionPetVO vo = null;
@@ -624,7 +624,7 @@ public class AuctionPetDao extends DaoBase
 	 */
 	public void updateMoneySevenDay()
 	{
-		String sql = "delete from u_auction_pet where auction_status = 4 and now() > (pet_auction_time + INTERVAL 7 DAY)";
+		String sql = "DELETE FROM u_auction_pet WHERE auction_status = 4 AND now() > (pet_auction_time + INTERVAL 7 DAY)";
 		 logger.debug("更新拍卖信息的sql :"+sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();

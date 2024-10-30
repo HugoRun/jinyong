@@ -19,8 +19,8 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public List<PlayerPropGroupVO> getEquipItem(int pPk)
 	{
-		String sql = "SELECT * FROM u_propgroup_info where p_pk = " + pPk
-				+ " and prop_type = 41";
+		String sql = "SELECT * FROM u_propgroup_info WHERE p_pk = " + pPk
+				+ " AND prop_type = 41";
 		logger.debug(sql);
 		PlayerPropGroupVO propGroup = null;
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
@@ -60,7 +60,7 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public SpecialPropVO getEquipProp(int pPk)
 	{
-		String sql = "SELECT * FROM u_special_item where p_pk = "+ pPk+" and prop_time = 1";
+		String sql = "SELECT * FROM u_special_item WHERE p_pk = "+ pPk+" AND prop_time = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		SpecialPropVO vo = null;
@@ -100,7 +100,7 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public void updateEquipItemOn(String pg_pk)
 	{
-		String sql = "update u_special_item set prop_time = 1 where prop_operate3 = "
+		String sql = "UPDATE u_special_item SET prop_time = 1 WHERE prop_operate3 = "
 				+ pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -126,7 +126,7 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public void updateEquipOff(int sp_pk)
 	{
-		String sql = "update u_special_item set prop_time = 0 where sp_pk =  "
+		String sql = "UPDATE u_special_item SET prop_time = 0 WHERE sp_pk =  "
 				+ sp_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -152,8 +152,8 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public void updateEquipItemNumHM(int p_pk, int prop_id, String prop_operate1)
 	{
-		String sql = "update u_special_item set prop_operate1 = '"
-				+ prop_operate1 + "' where p_pk = " + p_pk+" and prop_time = 1 and prop_id = "
+		String sql = "UPDATE u_special_item SET prop_operate1 = '"
+				+ prop_operate1 + "' WHERE p_pk = " + p_pk+" AND prop_time = 1 AND prop_id = "
 				+ prop_id;;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -180,8 +180,8 @@ public class SpecialPropDAO extends DaoBase
 	public void updateEquipItemNumHMByPgpk(int p_pk, String pg_pk1,
 			String prop_operate1)
 	{
-		String sql = "update u_special_item set prop_operate1 = '"
-				+ prop_operate1 + "' where prop_operate3 = '" + pg_pk1 + "'";
+		String sql = "UPDATE u_special_item SET prop_operate1 = '"
+				+ prop_operate1 + "' WHERE prop_operate3 = '" + pg_pk1 + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -204,9 +204,9 @@ public class SpecialPropDAO extends DaoBase
 	/** 使用时间到 删除玩家的物品 */
 	public int delEquipItem(int prop_id, int p_pk, int minute)
 	{
-		String sql = "delete from u_special_item where p_pk = " + p_pk
-				+ " and prop_id = " + prop_id
-				+ " and now() > ( prop_date + INTERVAL " + minute + " minute)";
+		String sql = "DELETE FROM u_special_item WHERE p_pk = " + p_pk
+				+ " AND prop_id = " + prop_id
+				+ " AND now() > ( prop_date + INTERVAL " + minute + " minute)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -231,7 +231,7 @@ public class SpecialPropDAO extends DaoBase
 	/** 特殊物品的表操作 */
 	public void insertSpecialProp(PropVO propVO, int p_pk, int pg_pk)
 	{
-		String sql = "insert u_special_item (sp_pk,p_pk,prop_id,prop_operate1,prop_operate2,prop_operate3,prop_time,prop_date,prop_sign) values (null,?,?,?,?,?,1,now(),0)";
+		String sql = "INSERT `u_special_item` (sp_pk, p_pk, prop_id, prop_operate1, prop_operate2, prop_operate3, prop_time, prop_date, prop_sign) VALUES (null, ?, ?, ?, ?, ?, 1, now(), 0)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -264,9 +264,9 @@ public class SpecialPropDAO extends DaoBase
 	{
 		List list = null;
 		int pg_pk = 0;
-		String sql = "SELECT pg_pk from u_propgroup_info where p_pk = "+p_pk+" and ( prop_type="
+		String sql = "SELECT pg_pk FROM u_propgroup_info WHERE p_pk = "+p_pk+" AND ( prop_type="
 				+ type1 + " or prop_type=" + type2 + " ) "
-				+ " limit " + perpagenum + " offset " + perpagenum
+				+ " LIMIT " + perpagenum + " offset " + perpagenum
 				* (thispage - 1);
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -298,8 +298,8 @@ public class SpecialPropDAO extends DaoBase
 	public List<PlayerPropGroupVO> getEquipItemList(int pPk, int thispage,
 			int perpagenum)
 	{
-		String sql = "SELECT * FROM u_propgroup_info where p_pk = " + pPk
-				+ " and prop_type in (41,67) limit " + perpagenum + " offset "
+		String sql = "SELECT * FROM u_propgroup_info WHERE p_pk = " + pPk
+				+ " AND prop_type IN (41,67) LIMIT " + perpagenum + " offset "
 				+ perpagenum * (thispage - 1);
 		logger.debug(sql);
 		PlayerPropGroupVO propGroup = null;
@@ -345,7 +345,7 @@ public class SpecialPropDAO extends DaoBase
 			return -1;
 		}
 		int result = -1;
-		String sql = "INSERT INTO u_propgroup_info (pg_pk,p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) values (?,?,?,?,?,?,?,?,?,?,now())";
+		String sql = "INSERT INTO u_propgroup_info (pg_pk,p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -388,7 +388,7 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public int getEquipItemHM(int pPk)
 	{
-		String sql = "SELECT prop_id from u_special_item where p_pk = "+ pPk +" and prop_time = 1";
+		String sql = "SELECT prop_id FROM u_special_item WHERE p_pk = "+ pPk +" AND prop_time = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -421,7 +421,7 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public SpecialPropVO getEquipPropByPgpk(String pg_pk)
 	{
-		String sql = "SELECT * FROM u_special_item where prop_operate3 = "
+		String sql = "SELECT * FROM u_special_item WHERE prop_operate3 = "
 				+ pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -460,8 +460,8 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public void updateEquipItemSign(int sign, int p_pk)
 	{
-		String sql = "update u_special_item set prop_sign = " + sign
-				+ " where p_pk =" + p_pk +" and prop_time = 1";
+		String sql = "UPDATE u_special_item SET prop_sign = " + sign
+				+ " WHERE p_pk =" + p_pk +" AND prop_time = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -487,8 +487,8 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public void updateEquipItemSign1(int sign, int p_pk,int prop_id)
 	{
-		String sql = "update u_special_item set prop_sign = " + sign
-				+ " where p_pk =" + p_pk +" and prop_id = "+prop_id;
+		String sql = "UPDATE u_special_item SET prop_sign = " + sign
+				+ " WHERE p_pk =" + p_pk +" AND prop_id = "+prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -510,7 +510,7 @@ public class SpecialPropDAO extends DaoBase
 	
 	public void updateall()
 	{
-		String sql = "update u_special_item set prop_sign = 0 where prop_sign = 4 ";
+		String sql = "UPDATE u_special_item SET prop_sign = 0 WHERE prop_sign = 4 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -534,7 +534,7 @@ public class SpecialPropDAO extends DaoBase
 	public int delEquipItem(String pg_pk)
 	{
 		int x = 0;
-		String sql = "delete from u_special_item where prop_operate3 = '"
+		String sql = "DELETE FROM u_special_item WHERE prop_operate3 = '"
 				+ pg_pk + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -562,7 +562,7 @@ public class SpecialPropDAO extends DaoBase
 	 */
 	public SpecialPropVO getSpecialProp(int pPk, String pg_pk)
 	{
-		String sql = "SELECT * FROM u_special_item where p_pk = " + pPk +" and prop_operate3 = '"+ pg_pk + "'";
+		String sql = "SELECT * FROM u_special_item WHERE p_pk = " + pPk +" AND prop_operate3 = '"+ pg_pk + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		SpecialPropVO vo = null;
@@ -601,7 +601,7 @@ public class SpecialPropDAO extends DaoBase
 	/** 使用时间到 删除玩家的物品 */
 	public int delItem(int p_pk, int prop_id)
 	{
-		String sql = "delete from u_special_item where p_pk = " + p_pk+" and prop_id = " + prop_id;
+		String sql = "DELETE FROM u_special_item WHERE p_pk = " + p_pk+" AND prop_id = " + prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

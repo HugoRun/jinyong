@@ -8,7 +8,7 @@
     String resultWml = (String)request.getAttribute("resultWml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="bill" title="充值完成">
 <p>
 <%= resultWml%>

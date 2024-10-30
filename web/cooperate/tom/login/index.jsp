@@ -5,8 +5,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="login" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="login" title="<bean:message key="gamename"/>">
 <p>
 <img src="<%=GameConfig.getGameUrl()%>/image/logo.png"  alt=""/><br/>
 <anchor>
@@ -17,9 +17,9 @@
 快速登陆
 </anchor><br/>
 2009年WAP网游真正巨作 <br/>
-《<s:message key = "gamename"/>》横空出世！ <br/>
+《<bean:message key="gamename"/>》横空出世！ <br/>
 永久免费，大送工资！<br/>
-全新浩大的<s:message key = "gamename"/>新世界！ <br/>
+全新浩大的<bean:message key="gamename"/>新世界！ <br/>
 多重出生，多重天赋！ <br/>
 能与小龙女结伴？能！ <br/>
 我的江湖，我做主！<br/>

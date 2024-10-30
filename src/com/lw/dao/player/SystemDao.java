@@ -16,7 +16,7 @@ public class SystemDao extends DaoBase
 		int online_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT s_player from system ";
+		String sql = "SELECT s_player FROM system ";
 		logger.debug(sql);
 		try
 		{
@@ -45,7 +45,7 @@ public class SystemDao extends DaoBase
 		String all_key = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT all_key from system ";
+		String sql = "SELECT all_key FROM system ";
 		logger.debug(sql);
 		try
 		{
@@ -79,7 +79,7 @@ public class SystemDao extends DaoBase
 		int pc_islogininfoname = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT pc_islogininfoname from system ";
+		String sql = "SELECT pc_islogininfoname FROM system ";
 		logger.debug(sql);
 		try
 		{
@@ -114,7 +114,7 @@ public class SystemDao extends DaoBase
 		int pc_black = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT pc_black from system ";
+		String sql = "SELECT pc_black FROM system ";
 		logger.debug(sql);
 		try
 		{
@@ -148,7 +148,7 @@ public class SystemDao extends DaoBase
 		int pc_ua = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT pc_ua from system ";
+		String sql = "SELECT pc_ua FROM system ";
 		logger.debug(sql);
 		try
 		{
@@ -182,7 +182,7 @@ public class SystemDao extends DaoBase
 		int pc_link_number = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT pc_link_number from system ";
+		String sql = "SELECT pc_link_number FROM system ";
 		logger.debug(sql);
 		try
 		{

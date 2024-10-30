@@ -66,7 +66,7 @@ public class BuffDao extends DaoBase {
 	private BuffVO getBuffByDB( int buff_id) 
 	{
 		BuffVO buff = null;
-		String sql = "SELECT * FROM buff where buff_id = "+buff_id;
+		String sql = "SELECT * FROM buff WHERE buff_id = "+buff_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

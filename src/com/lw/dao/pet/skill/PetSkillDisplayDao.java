@@ -16,7 +16,7 @@ public class PetSkillDisplayDao extends DaoBase
 		String display = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_bewrite from pet_skill where pet_skill_id = "
+		String sql = "SELECT pet_skill_bewrite FROM pet_skill WHERE pet_skill_id = "
 				+ skill_id;
 		logger.debug(sql);
 		try
@@ -47,7 +47,7 @@ public class PetSkillDisplayDao extends DaoBase
 		String display = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "SELECT pet_skill_name from pet_skill where pet_skill_id = "
+		String sql = "SELECT pet_skill_name FROM pet_skill WHERE pet_skill_id = "
 				+ skill_id;
 		logger.debug(sql);
 		try

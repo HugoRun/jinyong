@@ -23,7 +23,7 @@ public class CoordinateDao extends DaoBase
 		{
 			logger.debug("coordinate为空");
 		}
-		String sql = "INSERT INTO u_coordinate_info(p_pk,coordinate_prop_id,coordinate) values ("
+		String sql = "INSERT INTO u_coordinate_info(p_pk,coordinate_prop_id,coordinate) VALUES ("
 				+ coordinate.getPPk()
 				+ ","
 				+ coordinate.getCoordinatePropId()
@@ -58,8 +58,8 @@ public class CoordinateDao extends DaoBase
 	public int delete(int p_pk, int coordinate_prop_id)
 	{
 		int result = -1;
-		String sql = "delete from u_coordinate_info where p_pk=" + p_pk
-				+ " and coordinate_prop_id=" + coordinate_prop_id;
+		String sql = "DELETE FROM u_coordinate_info WHERE p_pk=" + p_pk
+				+ " AND coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -88,8 +88,8 @@ public class CoordinateDao extends DaoBase
 	public int getCoordinate(int p_pk, int coordinate_prop_id)
 	{
 		int coordinate = -1;
-		String sql = "SELECT coordinate from u_coordinate_info where p_pk="
-				+ p_pk + " and coordinate_prop_id=" + coordinate_prop_id;
+		String sql = "SELECT coordinate FROM u_coordinate_info WHERE p_pk="
+				+ p_pk + " AND coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -123,8 +123,8 @@ public class CoordinateDao extends DaoBase
 	public int updateCoordinate(int p_pk, int coordinate_prop_id, int coordinate)
 	{
 		int result = -1;
-		String sql = "update u_coordinate_info set coordinate = " + coordinate
-				+ " where p_pk=" + p_pk + " and coordinate_prop_id="
+		String sql = "UPDATE u_coordinate_info SET coordinate = " + coordinate
+				+ " WHERE p_pk=" + p_pk + " AND coordinate_prop_id="
 				+ coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -154,8 +154,8 @@ public class CoordinateDao extends DaoBase
 	public int isUse(int p_pk, int coordinate_prop_id)
 	{
 		int isUse = 0;
-		String sql = "SELECT prop_isUse from u_coordinate_info where p_pk="
-				+ p_pk + " and coordinate_prop_id=" + coordinate_prop_id;
+		String sql = "SELECT prop_isUse FROM u_coordinate_info WHERE p_pk="
+				+ p_pk + " AND coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -188,8 +188,8 @@ public class CoordinateDao extends DaoBase
 	public int useProp(int p_pk, int coordinate_prop_id)
 	{
 		int result = -1;
-		String sql = "update u_coordinate_info set prop_isUse = 1 where p_pk="
-				+ p_pk + " and coordinate_prop_id=" + coordinate_prop_id;
+		String sql = "UPDATE u_coordinate_info SET prop_isUse = 1 WHERE p_pk="
+				+ p_pk + " AND coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -218,8 +218,8 @@ public class CoordinateDao extends DaoBase
 	public int updateNoUsed(int p_pk, int coordinate_prop_id)
 	{
 		int result = -1;
-		String sql = "update u_coordinate_info set prop_isUse = 0 where p_pk="
-				+ p_pk + " and coordinate_prop_id=" + coordinate_prop_id;
+		String sql = "UPDATE u_coordinate_info SET prop_isUse = 0 WHERE p_pk="
+				+ p_pk + " AND coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

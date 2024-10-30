@@ -17,7 +17,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public void insertSecondPass(int u_pk, String pass_md5)
 	{
-		String sql = "update u_second_pass set second_pass = '"+pass_md5+"' where u_pk="+u_pk;
+		String sql = "UPDATE u_second_pass SET second_pass = '"+pass_md5+"' WHERE u_pk = "+u_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("插入到二级密码表中="+sql);
 		try{
@@ -39,7 +39,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public String getUserLoginPawByUPk(int u_pk)
 	{
-		String sql = "SELECT second_pass from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT second_pass FROM u_second_pass WHERE u_pk = "+u_pk;
 		String paw = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -62,7 +62,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public int hasAlreadySecondPass(int u_pk)
 	{
-		String sql = "SELECT pass_mail_send from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT pass_mail_send FROM u_second_pass WHERE u_pk = "+u_pk;
 		int paw = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{	
@@ -85,7 +85,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public boolean hasAlreadySecondPass(String u_pk)
 	{
-		String sql = "SELECT u_pk from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT u_pk FROM u_second_pass WHERE u_pk = "+u_pk;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{	
@@ -110,7 +110,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public void updateSendFlag(String u_pk,String pass_md5, int i)
 	{
-		String sql = "INSERT INTO u_second_pass values (null,"+u_pk+",'"+pass_md5+"',now(),now(),now(),0,1)";
+		String sql = "INSERT INTO u_second_pass VALUES (null,"+u_pk+",'"+pass_md5+"',now(),now(),now(),0,1)";
 		logger.debug("将玩家的是否发送过二级密码设置邮件标志置为i="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -132,7 +132,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public SecondPassVO getSecondPassTime(int u_pk)
 	{
-		String sql = "SELECT * FROM u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT * FROM u_second_pass WHERE u_pk = "+u_pk;
 		SecondPassVO secondPassVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -180,9 +180,9 @@ public class SecondPassDao extends DaoBase {
 			e1.printStackTrace();
 		}
 		
-		String sql = "update u_second_pass set pass_first_time='"+passSecondTime
+		String sql = "UPDATE u_second_pass SET pass_first_time='"+passSecondTime
 						+"',pass_second_time = '"+passThirdTime+"', pass_third_time = now(), pass_wrong_flag = pass_wrong_flag + 1 "
-						+" where u_pk = "+u_pk;
+						+" WHERE u_pk = "+u_pk;
 		logger.debug("当输入二级密码错误一次时="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -206,7 +206,7 @@ public class SecondPassDao extends DaoBase {
 	 */
 	public void updateSecondPass(int u_pk, int second_pass_flag)
 	{
-		String sql = "update u_second_pass set pass_wrong_flag="+second_pass_flag+" where u_pk="+u_pk;
+		String sql = "UPDATE u_second_pass SET pass_wrong_flag="+second_pass_flag+" WHERE u_pk = "+u_pk;
 		logger.debug("更新二次密码的输入次数="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{

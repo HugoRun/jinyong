@@ -19,7 +19,7 @@
     RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
  %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%
     List npcs = null;
     NpcFighter npc = null;
@@ -57,7 +57,7 @@
 <% 
   if(roleInfo.getSettingInfo().getAutoAttackSetting().getAttackType() != -1){ 
 %>
-<card id="act" title="<s:message key = "gamename"/>" ontimer="<%=response.encodeURL(GameConfig.getContextPath()+"/attackNPC.do?cmd=n13") %>"><timer value="17"/>  
+<card id="act" title="<bean:message key="gamename"/>" ontimer="<%=response.encodeURL(GameConfig.getContextPath()+"/attackNPC.do?cmd=n13") %>"><timer value="17"/>
 <p> 
 <anchor><go method="get" href="<%=response.encodeURL(GameConfig.getContextPath()+"/unfilter.do?cmd=n1") %>"></go>停止自动战斗</anchor>  
     <%
@@ -162,7 +162,7 @@
     <%
 }else{
  %>
-<card id="act" title="<s:message key = "gamename"/>">
+<card id="act" title="<bean:message key="gamename"/>">
 <p>
     
         <%

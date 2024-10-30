@@ -14,8 +14,8 @@
 	String page_no = (String)request.getAttribute("page_no");//返回地址
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="mall" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="mall" title="<bean:message key="gamename"/>">
 <p>
 <%@ include file="/init/system/error_hint.jsp"%>
 <anchor>

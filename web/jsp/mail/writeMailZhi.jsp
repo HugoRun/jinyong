@@ -6,8 +6,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
-<card id="map" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%>
+<card id="map" title="<bean:message key="gamename"/>">
 <p>
 	玩家:
 	<input name="receive_name" type="text" maxlength="18" />

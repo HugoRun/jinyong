@@ -29,7 +29,7 @@ public class WareHouseDao extends DaoBase {
 	public WareHouseVO getStorageByPPk(int p_pk){
 
 		WareHouseVO wareHouse = null;
-		String sql = "SELECT * FROM u_warehouse_info where  p_pk = " + p_pk + " and uw_type = "+Wrap.COPPER;
+		String sql = "SELECT * FROM u_warehouse_info WHERE p_pk = " + p_pk + " AND uw_type = "+Wrap.COPPER;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
 		try
@@ -75,7 +75,7 @@ public class WareHouseDao extends DaoBase {
 	public int getWareHouseIdBypPk(int uPk,int pPk,int type) {
 		int i = 0;
 		
-		String sql = "SELECT uw_id from u_warehouse_info where  p_pk = " + pPk + " and uw_type = " + type;
+		String sql = "SELECT uw_id FROM u_warehouse_info WHERE p_pk = " + pPk + " AND uw_type = " + type;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		logger.debug("wareHouseDao: " + sql);
@@ -104,7 +104,7 @@ public class WareHouseDao extends DaoBase {
 	/** 根据pPk，type查询WareHouse  */
 	public WareHouseVO getWareHouseIdBypPk(String pPk,int type) {
 		WareHouseVO wareHouse = null;
-		String sql = "SELECT * FROM u_warehouse_info where  p_pk = '" + pPk + "' and uw_type = '" + type +"'";
+		String sql = "SELECT * FROM u_warehouse_info WHERE p_pk = '" + pPk + "' AND uw_type = '" + type +"'";
 		logger.debug("wareHouseDao 里的getWareHouseIdBypPk里sql : " + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -156,7 +156,7 @@ public class WareHouseDao extends DaoBase {
 		int wareSpare = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
-		String sql = "SELECT uw_warehouse_spare from u_warehouse_info where p_pk = " + pPk + " and uw_type = " + Wrap.COPPER;
+		String sql = "SELECT uw_warehouse_spare FROM u_warehouse_info WHERE p_pk = " + pPk + " AND uw_type = " + Wrap.COPPER;
 		logger.debug("根据个人p_pk查询仓库空余格数的sql=" + sql);
 		try
 		{
@@ -187,7 +187,7 @@ public class WareHouseDao extends DaoBase {
 		int wareSpare = 80;
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dt = new Date();
-		String sql = "INSERT INTO u_warehouse_info(uw_id,u_pk,p_pk,uw_type,uw_number,uw_article,uw_money,uw_pet,uw_money_number,uw_pet_number,uw_warehouse_spare,create_time) values(null,'"+ uPk +"','" + pPk +"','" + uw_type +"',"+wareSpare+",'',10000000000,0,0,5,'"+ wareSpare+"','"+sf.format(dt)+"')";
+		String sql = "INSERT INTO u_warehouse_info(uw_id,u_pk,p_pk,uw_type,uw_number,uw_article,uw_money,uw_pet,uw_money_number,uw_pet_number,uw_warehouse_spare,create_time) VALUES(null,'"+ uPk +"','" + pPk +"','" + uw_type +"',"+wareSpare+",'',10000000000,0,0,5,'"+ wareSpare+"','"+sf.format(dt)+"')";
 				
 		logger.debug("warehouseDAO中的 插入空仓库数据表的sql "+ sql);
 		try
@@ -211,7 +211,7 @@ public class WareHouseDao extends DaoBase {
 	public int getWareSpareById(int pPk){
 		int uw_warehouse_spare = -1;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "SELECT * FROM u_warehouse_info where p_pk="+pPk+ " and uw_type="+Wrap.COPPER+" limit 1";
+		String sql = "SELECT * FROM u_warehouse_info WHERE p_pk="+pPk+ " AND uw_type="+Wrap.COPPER+" LIMIT 1";
 		logger.debug("warehouseDAO 中getWareSpareById 的sql : "+sql);
 		try
 		{
@@ -235,7 +235,7 @@ public class WareHouseDao extends DaoBase {
 	
 	/** 减少个人仓库的空余格数 */
 	public void reduceWareHouseSpare(int pPk,int remove_num){
-		String sql = "update u_warehouse_info set uw_warehouse_spare = uw_warehouse_spare"+" - "+remove_num +" where p_pk="+pPk;
+		String sql = "UPDATE u_warehouse_info SET uw_warehouse_spare = uw_warehouse_spare"+" - "+remove_num +" WHERE p_pk="+pPk;
 		logger.debug("pPk 的仓库减少了 "+ remove_num+"个仓位");
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -260,7 +260,7 @@ public class WareHouseDao extends DaoBase {
 	 * @return
 	 */
 	public QueryPage getPagePropsByPpk(int pPk,int type,int page_no){
-		String condition_sql = "where p_pk=" + pPk+ " and uw_type=" + type;
+		String condition_sql = "where p_pk=" + pPk+ " AND uw_type=" + type;
 		return this.loadPageList(condition_sql, page_no);
 	}
 	
@@ -268,7 +268,7 @@ public class WareHouseDao extends DaoBase {
 	/** 根据仓库id得出仓库信息 */
 	public WareHouseVO getWareHouseVOByWareHouseId(String warehouseID,int p_pk){
 		WareHouseVO wareHouse = null;
-		String sql = "SELECT * FROM u_warehouse_info where uw_id=" + warehouseID+" and p_pk="+p_pk;
+		String sql = "SELECT * FROM u_warehouse_info WHERE uw_id=" + warehouseID+" AND p_pk="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -315,7 +315,7 @@ public class WareHouseDao extends DaoBase {
 	public void reduceWareHouseProp(int pPk,int remove_num,WareHouseVO warehouseVO){
 		
 		int current_num = warehouseVO.getUwPropNumber() - remove_num;
-		String sql = "update u_warehouse_info set uw_prop_number ='"+current_num+"' where uw_id=" + warehouseVO.getUwId();
+		String sql = "UPDATE u_warehouse_info SET uw_prop_number ='"+current_num+"' WHERE uw_id=" + warehouseVO.getUwId();
 		
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -334,7 +334,7 @@ public class WareHouseDao extends DaoBase {
 	
 	/** 删除仓库里道具数量为零的情况 */
 	public void deleteStorageZero(int pPk){
-		String sql = "delete from u_warehouse_info where p_pk=" + pPk+" and uw_type != 8 and uw_prop_number = 0";
+		String sql = "DELETE FROM u_warehouse_info WHERE p_pk=" + pPk+" AND uw_type != 8 AND uw_prop_number = 0";
 
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -360,7 +360,7 @@ public class WareHouseDao extends DaoBase {
 	 */
 	public int addWareHouseMoney(int pPk,long input_num){
 		int i = 0;
-		String sql = "update u_warehouse_info set uw_money_number = uw_money_number + "+input_num +" where p_pk="+pPk;
+		String sql = "UPDATE u_warehouse_info SET uw_money_number = uw_money_number + "+input_num +" WHERE p_pk="+pPk;
 		
 		logger.debug("addWareHouseMoney : "+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -383,7 +383,7 @@ public class WareHouseDao extends DaoBase {
 	/** 从身上拿下宠物，就是将人物宠物表中此行的pPk设置为-pPk */
 	public String putPetFromPerson(int pPk,int petPk,String diffent){
 		String resultWml = "此宠物无法储存";
-		String sql = "update p_pet_info set p_pk = "+pPk+" where pet_pk="+petPk;
+		String sql = "UPDATE p_pet_info SET p_pk = "+pPk+" WHERE pet_pk="+petPk;
 		logger.debug("diffent"+diffent);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -413,7 +413,7 @@ public class WareHouseDao extends DaoBase {
 		String petArticle = getPetArticle(pPk);
 		
 		String newPetArticle = petArticle + "-"+petPk;
-		String sql = "update u_warehouse_info set uw_article ='"+newPetArticle +"' where uw_type ='7' and p_pk = "+pPk;
+		String sql = "UPDATE u_warehouse_info SET uw_article ='"+newPetArticle +"' WHERE uw_type ='7' AND p_pk = "+pPk;
 		logger.debug("储存宠物"+sql);
 		try
 		{
@@ -448,7 +448,7 @@ public class WareHouseDao extends DaoBase {
 		
 		newPetArticle = petArticles[0] + petArticles[1];
 		logger.debug("宠物的neAarticle"+newPetArticle);
-		String sql = "update u_warehouse_info set uw_article ='"+newPetArticle +"' where uw_type ='7' and p_pk = "+pPk;
+		String sql = "UPDATE u_warehouse_info SET uw_article ='"+newPetArticle +"' WHERE uw_type ='7' AND p_pk = "+pPk;
 		try
 		{
 			stmt = conn.createStatement();
@@ -467,7 +467,7 @@ public class WareHouseDao extends DaoBase {
 	/** 根据角色pk获得此角色的宠物字段 */
 	public String getPetArticle(int pPk){
 		String petArticle = "";
-		String sql = "SELECT uw_article from u_warehouse_info where p_pk = "+pPk+" and uw_type = 7";
+		String sql = "SELECT uw_article FROM u_warehouse_info WHERE p_pk = "+pPk+" AND uw_type = 7";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -492,7 +492,7 @@ public class WareHouseDao extends DaoBase {
 	public void updatePetNumber(int pPk,int number){
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "update u_warehouse_info set uw_pet = uw_pet +'"+ number+"' where p_pk="+pPk;
+		String sql = "UPDATE u_warehouse_info SET uw_pet = uw_pet +'"+ number+"' WHERE p_pk="+pPk;
 		logger.debug("warehouseDAO 中updatePetNumber : "+sql);
 		try
 		{
@@ -511,7 +511,7 @@ public class WareHouseDao extends DaoBase {
 	public int getPetNumber(int pPk){
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT count(*) from p_pet_info where p_pk="+pPk;
+		String sql = "SELECT COUNT(*) FROM p_pet_info WHERE p_pk="+pPk;
 		//logger.debug("warehouseDAO getPetNumber : "+sql);
 		int petNumber = 0;
 		try
@@ -538,8 +538,8 @@ public class WareHouseDao extends DaoBase {
 	public int getPropNumByByPropID(int p_pk, int prop_id)
 	{
 		int prop_num = 0;
-		String sql = "SELECT sum(uw_prop_number) as prop_sum from u_warehouse_info where p_pk="
-				+ p_pk + " and uw_prop_id=" + prop_id + "";
+		String sql = "SELECT SUM (uw_prop_number) AS prop_sum FROM u_warehouse_info WHERE p_pk="
+				+ p_pk + " AND uw_prop_id=" + prop_id + "";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -576,7 +576,7 @@ public class WareHouseDao extends DaoBase {
 			return -1;
 		}
 		int result = -1;
-		String sql = "INSERT INTO u_warehouse_info (u_pk,p_pk,uw_prop_id,uw_prop_number,uw_type,uw_prop_type,uw_article,create_time,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_operate1) values (?,?,?,?,?,?,?,now(),?,?,?,?,?)";
+		String sql = "INSERT INTO u_warehouse_info (u_pk,p_pk,uw_prop_id,uw_prop_number,uw_type,uw_prop_type,uw_article,create_time,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_operate1) VALUES (?,?,?,?,?,?,?,now(),?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -619,8 +619,8 @@ public class WareHouseDao extends DaoBase {
 	public WareHouseVO getWareHouseByPropID(int p_pk, int prop_id)
 	{
 		WareHouseVO wareHouse = null;
-		String sql = "SELECT * FROM u_warehouse_info where p_pk=" + p_pk
-				+ " and uw_prop_id=" + prop_id + " order by uw_prop_number limit 1";
+		String sql = "SELECT * FROM u_warehouse_info WHERE p_pk=" + p_pk
+				+ " AND uw_prop_id=" + prop_id + " ORDER BY uw_prop_number LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -678,8 +678,8 @@ public class WareHouseDao extends DaoBase {
 	public int updatePropGroupNum(int uwId, int prop_num)
 	{
 		int result = -1;
-		String sql = "update u_warehouse_info set uw_prop_number=" + prop_num
-				+ " where uw_id=" + uwId;
+		String sql = "UPDATE u_warehouse_info SET uw_prop_number=" + prop_num
+				+ " WHERE uw_id=" + uwId;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -707,7 +707,7 @@ public class WareHouseDao extends DaoBase {
 	public int putAccToWrap(int p_pk, WareHouseEquipVO vo)
 	{
 		int i = -1;
-		String sql = "INSERT INTO u_part_equip values (null,'"+vo.getPPk()+"','"+vo.getTableType()+"','"
+		String sql = "INSERT INTO u_part_equip VALUES (null,'"+vo.getPPk()+"','"+vo.getTableType()+"','"
 						+vo.getGoodsType()+"','"+vo.getWId()+"','"
 						+vo.getWName()+"','"+vo.getWDurability()+"','"+vo.getWDuraConsume()+"','"+vo.getWBonding()+"','"+vo.getWProtect()+"','"
 						+vo.getWIsreconfirm()+"','"+vo.getWPrice()+"','"+vo.getWFyXiaoYuan()+"','"+vo.getWFyDaYuan()+"','"+vo.getWGjXiaoYuan()+"','"
@@ -749,8 +749,8 @@ public class WareHouseDao extends DaoBase {
 	 */
 	public int getPropGroupNumByPropID(int p_pk, int prop_id)
 	{
-		String sql = "SELECT count(1) as ware_group from u_warehouse_info where p_pk=" + p_pk
-				+ " and uw_prop_id=" + prop_id + "";
+		String sql = "SELECT COUNT(1) AS ware_group FROM u_warehouse_info WHERE p_pk=" + p_pk
+				+ " AND uw_prop_id=" + prop_id + "";
 		logger.debug(sql);
 		int prop_group = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -781,7 +781,7 @@ public class WareHouseDao extends DaoBase {
 	/**得到玩家现在的包裹格子*/
 	public int getPlayerWarehouseNum(int p_pk){
 		int num = 0;
-		String sql = "SELECT uw_number from u_warehouse_info where uw_type = "+Wrap.COPPER+" and p_pk="+p_pk;
+		String sql = "SELECT uw_number FROM u_warehouse_info WHERE uw_type = "+Wrap.COPPER+" AND p_pk="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -807,7 +807,7 @@ public class WareHouseDao extends DaoBase {
 	}
 	/**更新玩家包裹格子*/
 	public void updatePlayerWarehouseMaxNum(int p_pk,int num){
-		String sql = "update u_warehouse_info set uw_number = uw_number + "+num+" where p_pk ="+p_pk;
+		String sql = "UPDATE u_warehouse_info SET uw_number = uw_number + "+num+" WHERE p_pk ="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -827,7 +827,7 @@ public class WareHouseDao extends DaoBase {
 	}
 	/**更新玩家剩余包裹格子*/
 	public void updatePlayerWarehouseNum(int p_pk,int num){
-		String sql = "update u_warehouse_info set uw_warehouse_spare = uw_warehouse_spare + "+num+" where p_pk ="+p_pk;
+		String sql = "UPDATE u_warehouse_info SET uw_warehouse_spare = uw_warehouse_spare + "+num+" WHERE p_pk ="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -855,7 +855,7 @@ public class WareHouseDao extends DaoBase {
 	 */
 	public void deleteStroagePropGroup(int pPk,int propId, int group_num)
 	{
-		String sql = "delete from u_warehouse_info where p_pk = "+pPk+" and uw_prop_id="+propId +" limit "+group_num;
+		String sql = "DELETE FROM u_warehouse_info WHERE p_pk = "+pPk+" AND uw_prop_id="+propId +" LIMIT "+group_num;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -883,7 +883,7 @@ public class WareHouseDao extends DaoBase {
 	 * @param propAccumulate
 	 */
 	public void updatePlayerWarehousePropNum(int p_pk,int propId,int propAccumulate){
-		String sql = "update u_warehouse_info set uw_prop_number =  "+propAccumulate+" where p_pk ="+p_pk+" and uw_prop_id="+propId;
+		String sql = "UPDATE u_warehouse_info SET uw_prop_number =  "+propAccumulate+" WHERE p_pk ="+p_pk+" AND uw_prop_id="+propId;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -918,7 +918,7 @@ public class WareHouseDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "SELECT count(*) from u_warehouse_info "+condition_sql ;
+			count_sql = "SELECT COUNT(*) FROM u_warehouse_info "+condition_sql ;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if (rs.next())
@@ -930,7 +930,7 @@ public class WareHouseDao extends DaoBase {
 			queryPage = new QueryPage(page_no, count);
 			
 			page_sql = "SELECT * FROM u_warehouse_info "+condition_sql
-			+ "  limit " + queryPage.getStartOfPage()
+			+ "  LIMIT " + queryPage.getStartOfPage()
 			+ "," + queryPage.getPageSize();
 			logger.debug(page_sql);
 			

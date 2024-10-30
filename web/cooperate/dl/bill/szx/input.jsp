@@ -5,7 +5,7 @@
     String money = (String)request.getParameter("money");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <card id="index" title="神州行通充值">
 <p>
 神州行移动充值卡充值【<%=GameConfig.getYuanbaoName() %>】快速通道<br/>

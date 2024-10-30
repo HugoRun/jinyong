@@ -26,7 +26,7 @@ public class AcceptTaskListDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT * FROM accept_task_list where touch_id='"+touch_id+"' and task_type="+task_type;
+			String sql = "SELECT * FROM accept_task_list WHERE touch_id='"+touch_id+"' AND task_type="+task_type;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);

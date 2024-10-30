@@ -17,7 +17,7 @@ public class LotteryDAO extends DaoBase
 	/** 插入彩票的内容* */
 	public void insertLotteryInfo(LotteryVO vo)
 	{
-		String sql = "INSERT INTO s_lottery_yuanbao values (null,'"
+		String sql = "INSERT INTO s_lottery_yuanbao VALUES (null,'"
 				+ vo.getLottery_date() + "','0','0','"
 				+ vo.getLottery_content() + "','0,0,0',now())";
 		logger.debug(sql);
@@ -43,11 +43,11 @@ public class LotteryDAO extends DaoBase
 	public void updateLotteryAllybAndPlayer(String lottery_date, long yb,
 			String catch_player)
 	{
-		String sql = "update s_lottery_yuanbao set lottery_all_yb = lottery_all_yb + "
+		String sql = "UPDATE s_lottery_yuanbao SET lottery_all_yb = lottery_all_yb + "
 				+ yb
 				+ " ,lottery_catch_player = '"
 				+ catch_player
-				+ "' where lottery_date = '" + lottery_date + "'";
+				+ "' WHERE lottery_date = '" + lottery_date + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -70,8 +70,8 @@ public class LotteryDAO extends DaoBase
 	/** 更新彩票的领取金额* */
 	public void updateLotteryCatchyb(String lottery_date, long yb)
 	{
-		String sql = "update s_lottery_yuanbao set lottery_catch_yb = lottery_all_yb + "
-				+ yb + " where lottery_date = '" + lottery_date + "'";
+		String sql = "UPDATE s_lottery_yuanbao SET lottery_catch_yb = lottery_all_yb + "
+				+ yb + " WHERE lottery_date = '" + lottery_date + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -95,7 +95,7 @@ public class LotteryDAO extends DaoBase
 	public LotteryVO selectLotteryInfoByDate(String lottery_date)
 	{
 		LotteryVO vo = new LotteryVO();
-		String sql = "SELECT * FROM s_lottery_yuanbao where lottery_date = '"
+		String sql = "SELECT * FROM s_lottery_yuanbao WHERE lottery_date = '"
 				+ lottery_date + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -161,7 +161,7 @@ public class LotteryDAO extends DaoBase
 	/** 更新奖池 */
 	public void updateLotteryBonus(long yb)
 	{
-		String sql = "update lottery_new set lottery_yb = " + yb;
+		String sql = "UPDATE lottery_new SET lottery_yb = " + yb;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -186,7 +186,7 @@ public class LotteryDAO extends DaoBase
 	{
 		List<LotteryVO> list = new ArrayList<LotteryVO>();
 		LotteryVO vo = null;
-		String sql = "SELECT * FROM s_lottery_yuanbao order by lottery_date desc limit "
+		String sql = "SELECT * FROM s_lottery_yuanbao ORDER BY lottery_date DESC LIMIT "
 				+ (page * perpage + 1) + "," + perpage;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -221,7 +221,7 @@ public class LotteryDAO extends DaoBase
 	public int getLotteryHistoryAllNum()
 	{
 		int num = 0;
-		String sql = "SELECT count(*) as num from s_lottery_yuanbao";
+		String sql = "SELECT COUNT(*) AS num FROM s_lottery_yuanbao";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

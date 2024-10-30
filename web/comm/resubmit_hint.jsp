@@ -5,8 +5,8 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="hint" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="hint" title="<bean:message key="gamename"/>">
 <p>
 重复提交!<br/>
 <anchor><go href="<%=response.encodeURL(GameConfig.getContextPath()+"/backActive.do") %>" method="get"></go>返回</anchor>

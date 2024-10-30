@@ -27,7 +27,7 @@ public class EquipRelelaDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "INSERT INTO zb_relela_info values (null,"+pwPk+",'"+displayString+"',now())";
+			String sql = "INSERT INTO zb_relela_info VALUES (null,"+pwPk+",'"+displayString+"',now())";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -53,7 +53,7 @@ public class EquipRelelaDao extends DaoBase
 		conn = dbConn.getConn();
 		String relelaInfo = "";
 		try {
-    		String sql = "SELECT relelavar from zb_relela_info where pwpk = "+pwpk;
+    		String sql = "SELECT relelavar FROM zb_relela_info WHERE pwpk = "+pwpk;
     		logger.debug(sql);
     		stmt = conn.createStatement();
     		rs = stmt.executeQuery(sql);

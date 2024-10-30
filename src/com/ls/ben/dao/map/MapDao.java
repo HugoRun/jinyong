@@ -24,7 +24,7 @@ public class MapDao extends DaoBase {
 		MapVO map_info = null;
 		BareaVO barea = null;
 		
-		String total_num_sql = "SELECT count(*) from map";
+		String total_num_sql = "SELECT COUNT(*) FROM map";
 		String sql = "SELECT * FROM map";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -54,7 +54,7 @@ public class MapDao extends DaoBase {
 				
 				if( barea==null )
 				{
-					String errer = "MapDao.getAllMap:加载区域数据错误，无该区域所在的barea_id，scene_id="+map_info.getMapID()+";barea_id="+map_info.getMapFrom();
+					String errer = "MapDao.getAllMap:加载区域数据错误，无该区域所在的barea_id，scene_id = " + map_info.getMapID() + "; barea_id = " + map_info.getMapFrom();
 					throw new Exception(errer);
 				}
 				else

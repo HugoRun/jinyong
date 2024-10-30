@@ -21,7 +21,7 @@ public class MonthlyJob implements Job
 		JobDetail jobDetail = arg0.getJobDetail();  
 		JobDataMap jobDataMap = jobDetail.getJobDataMap();
 		
-		//Set set = jobDataMap.entrySet();
+		//Set SET = jobDataMap.entrySet();
 		String path = (String) jobDataMap.get("path");
 		
 		String vlaue1 = (String) jobDataMap.get("key1");

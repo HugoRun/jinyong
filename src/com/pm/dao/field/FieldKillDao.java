@@ -19,8 +19,8 @@ public class FieldKillDao extends DaoBase {
 	 */
 	public int bykill_number( int pPk, int bPpk)
 	{
-		String sql = "SELECT count(1) as numb from s_field_kill where p_pk = "+pPk+" and bp_pk = "
-							+ bPpk + " and now() > (sf_create_time + INTERVAL 1 DAY)";
+		String sql = "SELECT COUNT(1) AS numb FROM s_field_kill WHERE p_pk = "+pPk+" AND bp_pk = "
+							+ bPpk + " AND now() > (sf_create_time + INTERVAL 1 DAY)";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("获得此pPk在24小时内杀bPpk的次数="+sql);
 		conn = dbConn.getConn();
@@ -55,7 +55,7 @@ public class FieldKillDao extends DaoBase {
 	 */
 	public void insertIntoFieldKill(int pPk, int bPpk, int fh_sequence,String field_type)
 	{
-		String sql = "INSERT INTO s_field_kill values (null,"+pPk+","+bPpk+","+fh_sequence+","+field_type+",now())";
+		String sql = "INSERT INTO s_field_kill VALUES (null,"+pPk+","+bPpk+","+fh_sequence+","+field_type+",now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("将杀人信息插入到战场杀人表中="+sql);
 		conn = dbConn.getConn();
@@ -96,7 +96,7 @@ public class FieldKillDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "SELECT count(*) as allnum from field_kill_num where field_type = "+field_type;
+			count_sql = "SELECT COUNT(*) AS allnum FROM field_kill_num WHERE field_type = "+field_type;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -107,10 +107,10 @@ public class FieldKillDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			page_sql = "SELECT sfk.p_pk,p_grade,p_camp,p_name,count(1) as kill_num1 " +
-					"from s_field_kill sfk,u_part_info upi " +
-					"where field_type = "+field_type+" and field_sequence = "+field_sequence+ 
-					"and sfk.p_pk = upi.p_pk group by p_pk order by kill_num1 desc,p_grade asc limit " + queryPage.getStartOfPage() 
+			page_sql = "SELECT sfk.p_pk,p_grade,p_camp,p_name,COUNT(1) AS kill_num1 " +
+					"FROM s_field_kill sfk,u_part_info upi " +
+					"WHERE field_type = "+field_type+" AND field_sequence = "+field_sequence+ 
+					"AND sfk.p_pk = upi.p_pk GROUP BY p_pk ORDER BY kill_num1 desc,p_grade ASC LIMIT " + queryPage.getStartOfPage() 
 							+ ","+queryPage.getPageSize();
 			
 			logger.debug("查看月份排名榜="+page_sql);

@@ -39,7 +39,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	 */
 	public int addForumRevert(ForumRevertBean frb) throws Exception {
 		
-		String sql="INSERT INTO g_forum_revert(fid,UserID,UserName,content,addTime) values(?,?,?,?,now())";			
+		String sql="INSERT INTO g_forum_revert(fid,UserID,UserName,content,addTime) VALUES(?,?,?,?,now())";
 		PreparedStatement ps = connection.prepareStatement(sql);
 		logger.debug(sql.toString());
 		int i=1;
@@ -55,7 +55,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	public void deleteForumRevert(int id) throws Exception {
 		// TODO Auto-generated method stub
 		//删除留言回复
-		StringBuffer sql=new StringBuffer("delete from g_forum_revert where id=").append(id);
+		StringBuffer sql=new StringBuffer("DELETE FROM g_forum_revert WHERE id=").append(id);
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		int m=ps.executeUpdate();
 		ps.close();	
@@ -73,7 +73,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 		 int count = 0;
 		 
 		 stmt = connection.createStatement();
-			String count_sql = "SELECT count(*) from g_forum_revert where fid=" + fid;
+			String count_sql = "SELECT COUNT(*) FROM g_forum_revert WHERE fid=" + fid;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -95,7 +95,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 		}
 		
 		
-		String sql="SELECT * FROM g_forum_revert where fid="+fid+" order by id desc limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
+		String sql="SELECT * FROM g_forum_revert WHERE fid="+fid+" ORDER BY id DESC LIMIT " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 		logger.debug(sql.toString());
 		Statement ps = connection.createStatement();		   
 		   ResultSet rs = ps.executeQuery(sql);
@@ -124,7 +124,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 
 	
 	public int getNum(int fid) throws Exception {
-		String sql="select count(*) from g_forum_revert where fid="+fid;
+		String sql="SELECT COUNT(*) FROM g_forum_revert WHERE fid="+fid;
 		logger.debug(sql.toString());
 		Statement ps = connection.createStatement();		   
 		   ResultSet rs = ps.executeQuery(sql);
@@ -149,7 +149,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	 * @return
 	 */
 	public List<ForumRevertBean> getRowForumRevert(int row, int fid) throws Exception {
-		String sql="SELECT * FROM g_forum_revert where fid="+fid+" order by id desc limit 0,"+row;
+		String sql="SELECT * FROM g_forum_revert WHERE fid="+fid+" ORDER BY id DESC LIMIT 0,"+row;
 		logger.debug(sql.toString());
 		List<ForumRevertBean> v = new ArrayList<ForumRevertBean>();
 		Statement ps = connection.createStatement();		   
@@ -179,7 +179,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	
 	public void updateForumRevert(ForumRevertBean frb) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="update g_forum_revert set content=? where id=?";			
+		String sql="UPDATE `g_forum_revert` SET content = ? WHERE id = ?";			
 		PreparedStatement ps = connection.prepareStatement(sql);
 		int i=1;
 		ps.setString(i++,frb.getContent());
@@ -196,7 +196,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	 */
 	public ForumRevertBean getForumRevertById(String revertId)
 	{
-		String sql="SELECT * FROM g_forum_revert where id="+ revertId;	
+		String sql="SELECT * FROM g_forum_revert WHERE id="+ revertId;	
 	   ForumRevertBean revertbean = null;
 	   try {
 		   Statement ps = connection.createStatement();		   
@@ -227,7 +227,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	 */
 	public boolean isInTwoMinute(int p_pk)
 	{
-		String sql = "SELECT * FROM g_forum_revert where UserID = "+p_pk+" and now() < (addTime + INTERVAL 1 minute)";
+		String sql = "SELECT * FROM g_forum_revert WHERE UserID = "+p_pk+" AND now() < (addTime + INTERVAL 1 minute)";
 		logger.debug("确定此人是否在十分钟之内发过帖的sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

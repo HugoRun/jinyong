@@ -14,8 +14,8 @@
 	SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
-<card id="ID" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%>
+<card id="ID" title="<bean:message key="gamename"/>">
 <p>
 	邮件列表|
 	<anchor>

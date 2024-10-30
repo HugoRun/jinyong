@@ -23,8 +23,8 @@ public class FieldKillNumDao extends DaoBase {
 	 */
 	public int insertIntoFieldMouthKill(int pPk,String todayStr,String field_type)
 	{
-		String sql = "update field_kill_num set kill_num = kill_num + 1 where p_pk = "
-						+pPk+" and field_type = "+field_type+" and create_time like '%"+todayStr+"%'";
+		String sql = "UPDATE field_kill_num SET kill_num = kill_num + 1 WHERE p_pk = "
+						+pPk+" AND field_type = "+field_type+" AND create_time LIKE '%"+todayStr+"%'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("将杀人信息插入到战场月排行表中="+sql);
 		int updateLine = 0;
@@ -84,7 +84,7 @@ public class FieldKillNumDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "SELECT count(*) as allnum from field_kill_num where field_type = "+field_type;
+			count_sql = "SELECT COUNT(*) AS allnum FROM field_kill_num WHERE field_type = "+field_type;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -95,9 +95,9 @@ public class FieldKillNumDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			page_sql = "SELECT fkn.p_pk,p_name,p_camp,p_grade,count(kill_num) as kill_num1 " +
-							"from field_kill_num fkn,u_part_info upi where field_type ="+ field_type
-							+" and fkn.p_pk = upi.p_pk group by fkn.p_pk order by kill_num1 desc,p_grade asc,create_time desc limit " + queryPage.getStartOfPage() 
+			page_sql = "SELECT fkn.p_pk,p_name,p_camp,p_grade,COUNT(kill_num) AS kill_num1 " +
+							"FROM field_kill_num fkn,u_part_info upi WHERE field_type ="+ field_type
+							+" AND fkn.p_pk = upi.p_pk GROUP BY fkn.p_pk ORDER BY kill_num1 desc,p_grade ASC,create_time DESC LIMIT " + queryPage.getStartOfPage()
 							+ ","+queryPage.getPageSize();
 			
 			logger.debug("查看月份排名榜="+page_sql);

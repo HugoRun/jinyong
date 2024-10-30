@@ -14,7 +14,7 @@ public class AuctionPetInfoDao extends DaoBase
 	//插入
 	public void insertPetInfo(int pPk, String str)
 	{
-		String sql = "INSERT INTO u_auctionpet_info values(null,"+pPk+",'"+StringUtil.gbToISO(str)+"',now())";
+		String sql = "INSERT INTO u_auctionpet_info VALUES(null,"+pPk+",'"+StringUtil.gbToISO(str)+"',now())";
 		logger.debug("插入宠物拍卖信息表的sql:"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
@@ -38,9 +38,9 @@ public class AuctionPetInfoDao extends DaoBase
 	public int deleteSuperfluousInfo(int pPk)
 	{
 		int result = -1;
-		String sql = "delete from u_auctionpet_info where auctionpet_info_id not in ( select auctionpet_info_id from " +
-				"( select auctionpet_info_id from u_auctionpet_info order by addInfoTime desc " +
-				"limit 8) b ) and p_pk ="+pPk;
+		String sql = "DELETE FROM u_auctionpet_info WHERE auctionpet_info_id not IN ( SELECT auctionpet_info_id FROM " +
+				"( SELECT auctionpet_info_id FROM u_auctionpet_info ORDER BY addInfoTime DESC " +
+				"limit 8) b ) AND p_pk ="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -70,7 +70,7 @@ public class AuctionPetInfoDao extends DaoBase
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dt = new Date();
 		
-		String sql = "INSERT INTO u_auctionpet_info values(null,"+pPk2+",'"+StringUtil.gbToISO(con)+"','"+sf.format(dt)+"')";
+		String sql = "INSERT INTO u_auctionpet_info VALUES(null,"+pPk2+",'"+StringUtil.gbToISO(con)+"','"+sf.format(dt)+"')";
 		logger.debug("向宠物拍卖信息表中插入信息 :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		

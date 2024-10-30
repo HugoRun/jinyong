@@ -18,16 +18,15 @@ public class BeOffPropDAO {
 
     /**
      * 查询所有离线道具
-     *
-     * @return
+     * @return List
      */
-    public List getBeOffPropList() {
+    public List<BeOffPropVO> getBeOffPropList() {
         try {
             conn = new JyGameDB();
             String sql = "SELECT * FROM `be_off_prop`";
             ResultSet rs = conn.query(sql);
             BeOffPropVO vo = null;
-            List list = new ArrayList();
+            List<BeOffPropVO> list = new ArrayList<>();
             while (rs.next()) {
                 vo = new BeOffPropVO();
                 vo.setBeId(rs.getInt("be_id"));
@@ -48,9 +47,8 @@ public class BeOffPropDAO {
 
     /**
      * 查看详细信息
-     *
-     * @param be_id
-     * @return
+     * @param be_id be_id
+     * @return BeOffPropVO
      */
     public BeOffPropVO getBeOffPropView(int be_id) {
         try {

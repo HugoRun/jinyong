@@ -36,7 +36,7 @@ public class FGameBuildDao extends BasicDaoSupport<FGameBuild>
 	 */
 	public QueryPage getUnBuildPageList(String excludeIdStr,int page_no)
 	{
-		String condition_sql = "where id not in("+excludeIdStr+")"+" and grade=1";
+		String condition_sql = "WHERE id NOT IN ("+excludeIdStr+") AND grade = 1";
 		return super.loadPageList(condition_sql,  page_no);
 	}
 	

@@ -5,7 +5,7 @@ public class Base64  {
     /**
      * Chunk size per RFC 2045 section 6.8.
      *
-     * <p>The {@value} character limit does not count the trailing CRLF, but counts
+     * <p>The {@value} character LIMIT does not count the trailing CRLF, but counts
      * all other characters, including any equal signs.</p>
      *
      * @see <a href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045 section 6.8</a>
@@ -59,12 +59,12 @@ public class Base64  {
      */
     static final byte PAD = (byte) '=';
 
-    // Create arrays to hold the base64 characters and a
+    // Create arrays to hold the base64 characters AND a
     // lookup for base64 chars
     private static byte[] base64Alphabet = new byte[BASELENGTH];
     private static byte[] lookUpBase64Alphabet = new byte[LOOKUPLENGTH];
 
-    // Populating the lookup and character arrays
+    // Populating the lookup AND character arrays
     static {
         for (int i = 0; i < BASELENGTH; i++) {
             base64Alphabet[i] = (byte) -1;
@@ -146,7 +146,7 @@ public class Base64  {
     }
 
     /**
-     * Encodes binary data using the base64 algorithm and chunks
+     * Encodes binary data using the base64 algorithm AND chunks
      * the encoded output into 76 character blocks
      *
      * @param binaryData binary data to encode
@@ -379,7 +379,7 @@ public class Base64  {
     }
 
     /**
-     * Discards any whitespace from a base-64 encoded block.
+     * Discards any whitespace FROM a base-64 encoded block.
      *
      * @param data The base-64 encoded data to discard the whitespace
      * from.

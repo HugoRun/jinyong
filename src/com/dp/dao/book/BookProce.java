@@ -80,7 +80,7 @@ public class BookProce {
      * 查询某小说的最近更新章节信息
      */
     public NewInfo getNewZjInfoByBookId(Integer bookid) {
-        String sql = "SELECT * FROM  (SELECT bi.book_id,nr.zj_count,nr.zj_name,nr.gx_date " + "FROM book_neirong nr,book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id ORDER BY nr.gx_date desc) tab " + "WHERE book_id=" + bookid + " GROUP BY book_id ";
+        String sql = "SELECT * FROM  (SELECT bi.book_id,nr.zj_count,nr.zj_name,nr.gx_date " + "FROM book_neirong nr,book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id ORDER BY nr.gx_date desc) tab " + "WHERE book_id = " + bookid + " GROUP BY book_id ";
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -139,7 +139,7 @@ public class BookProce {
     public List<NewInfo> getBookByType(Integer typeid, Integer typepage, Integer tpagesize) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT * FROM (SELECT bi.book_id,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " + "FROM book_neirong nr,book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id " + "ORDER BY nr.gx_date desc) tab WHERE tab.type_id=" + typeid + " GROUP BY book_id limit " + tpagesize + " offset " + (typepage - 1) * tpagesize;
+            String sql = "SELECT * FROM (SELECT bi.book_id,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " + "FROM book_neirong nr,book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id " + "ORDER BY nr.gx_date desc) tab WHERE tab.type_id = " + typeid + " GROUP BY book_id LIMIT " + tpagesize + " offset " + (typepage - 1) * tpagesize;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             List<NewInfo> infolist = new ArrayList<NewInfo>();
@@ -170,7 +170,7 @@ public class BookProce {
     public Integer getTypePageCount(Integer typeid, Integer tpsize) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT count(*) FROM (SELECT * FROM (SELECT bi.book_id,bi.book_name,nr.zj_count,nr.zj_name," + "nr.gx_date,bt.type_id FROM book_neirong nr,book_info bi,book_type bt WHERE bi.type_id=bt.type_id " + "and bi.book_id=nr.book_id ORDER BY nr.gx_date desc) tab WHERE tab.type_id=" + typeid + " GROUP BY book_id) tab1";
+            String sql = "SELECT COUNT(*) FROM (SELECT * FROM (SELECT bi.book_id,bi.book_name,nr.zj_count,nr.zj_name," + "nr.gx_date,bt.type_id FROM book_neirong nr,book_info bi,book_type bt WHERE bi.type_id=bt.type_id " + "AND bi.book_id=nr.book_id ORDER BY nr.gx_date desc) tab WHERE tab.type_id = " + typeid + " GROUP BY book_id) tab1";
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
@@ -194,7 +194,7 @@ public class BookProce {
     public String getTypeById(Integer typeid) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT type_name FROM book_type WHERE type_id=" + typeid;
+            String sql = "SELECT type_name FROM book_type WHERE type_id = " + typeid;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
@@ -217,7 +217,7 @@ public class BookProce {
     public List<PhVO> getNoveSqu(Integer typeid, Integer squpage, Integer squpagesize) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow FROM book_info bi,book_type bt " + "WHERE bi.type_id=" + typeid + " AND bt.type_id=bi.type_id " + "ORDER BY bi.book_stow DESC LIMIT " + squpagesize + " offset " + (squpage - 1) * squpagesize;
+            String sql = "SELECT bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow FROM book_info bi,book_type bt " + "WHERE bi.type_id = " + typeid + " AND bt.type_id=bi.type_id " + "ORDER BY bi.book_stow DESC LIMIT " + squpagesize + " offset " + (squpage - 1) * squpagesize;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             List<PhVO> phlist = new ArrayList<PhVO>();
@@ -247,7 +247,7 @@ public class BookProce {
     public Integer getNoveSquCount(Integer typeid, Integer squpagesize) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT count(*) FROM book_info bi WHERE bi.type_id=" + typeid;
+            String sql = "SELECT COUNT(*) FROM book_info bi WHERE bi.type_id = " + typeid;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
@@ -271,7 +271,7 @@ public class BookProce {
     public List<NewInfo> getBookByTypeAndName(Integer typeid, String name) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT bi.book_id,bi.author,bt.type_name,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " + "FROM book_neirong nr,book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id AND bi.book_name LIKE '%" + name.trim() + "%' " + "and bt.type_id=" + typeid + " ORDER BY bi.book_id DESC LIMIT 10";
+            String sql = "SELECT bi.book_id,bi.author,bt.type_name,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " + "FROM book_neirong nr,book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id AND bi.book_name LIKE '%" + name.trim() + "%' " + "AND bt.type_id = " + typeid + " ORDER BY bi.book_id DESC LIMIT 10";
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             List<NewInfo> phlist = new ArrayList<NewInfo>();
@@ -304,7 +304,7 @@ public class BookProce {
     public List<BookZJVO> getZJbyBookId(Integer bookid, Integer page, Integer pagesize) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT nr.nr_id,nr.zj_count,substring(nr.zj_neirong,1,8),zj_name FROM book_neirong nr WHERE nr.book_id=" + bookid + " limit " + pagesize + " offset " + (page - 1) * pagesize;
+            String sql = "SELECT nr.nr_id,nr.zj_count,substring(nr.zj_neirong,1,8),zj_name FROM book_neirong nr WHERE nr.book_id = " + bookid + " LIMIT " + pagesize + " offset " + (page - 1) * pagesize;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             List<BookZJVO> phlist = new ArrayList<BookZJVO>();
@@ -332,7 +332,7 @@ public class BookProce {
      **/
     public Integer getZjListPageCount(Integer bookid, Integer pagesize) {
         try {
-            String sql = "SELECT count(*) FROM book_neirong WHERE book_id=" + bookid;
+            String sql = "SELECT COUNT(*) FROM book_neirong WHERE book_id = " + bookid;
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -357,7 +357,7 @@ public class BookProce {
     public BookInfoVO getBookInfoById(Integer bookid) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT bi.book_id,bi.book_name,bi.type_id,bi.author,bi.book_line,bt.type_name FROM book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND book_id=" + bookid;
+            String sql = "SELECT bi.book_id,bi.book_name,bi.type_id,bi.author,bi.book_line,bt.type_name FROM book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND book_id = " + bookid;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
@@ -386,7 +386,7 @@ public class BookProce {
         try {
             this.addBookReadCount(bookid);
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT substr(zj_neirong,1," + pagesize + ") FROM book_neirong WHERE book_id=" + bookid + " AND zj_count=" + zjid;
+            String sql = "SELECT substr(zj_neirong,1," + pagesize + ") FROM book_neirong WHERE book_id = " + bookid + " AND zj_count = " + zjid;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
@@ -406,7 +406,7 @@ public class BookProce {
      * 加入我的收藏夹
      */
     public void addToMyBox(BookMeVO booktome) {
-        String sql = "INSERT INTO book_mine values(null," + booktome.getRoleid() + "," + booktome.getBookid() + "," + booktome.getTypeid() + ",'" + booktome.getBookmark() + "')";
+        String sql = "INSERT INTO book_mine VALUES(null," + booktome.getRoleid() + "," + booktome.getBookid() + "," + booktome.getTypeid() + ",'" + booktome.getBookmark() + "')";
         try {
             this.addBookStow(booktome.getBookid());
             dbcon = new DBConnection(DBConnection.GAME_DB);
@@ -424,7 +424,7 @@ public class BookProce {
      * 查看我的书架
      */
     public List<BookMeVO> findMyBookBox(Integer roleid) {
-        String sql = "SELECT * FROM (SELECT bm.my_id,bm.book_id,bt.type_name,bi.book_name,max(nr.zj_count) mcount,nr.zj_name,max(nr.gx_date),bm.book_mark,bm.role_id,bm.type_id " + "FROM book_info bi,book_type bt,book_neirong nr,book_mine bm " + "WHERE bi.type_id=bt.type_id AND bm.book_id=bi.book_id AND nr.book_id=bi.book_id AND bm.role_id=" + roleid + " GROUP BY bm.book_id,nr.zj_name  ORDER BY nr.gx_date desc) tab GROUP BY tab.book_id ORDER BY tab.mcount desc";
+        String sql = "SELECT * FROM (SELECT bm.my_id,bm.book_id,bt.type_name,bi.book_name, MAX(nr.zj_count) mcount,nr.zj_name, MAX(nr.gx_date),bm.book_mark,bm.role_id,bm.type_id " + "FROM book_info bi,book_type bt,book_neirong nr,book_mine bm " + "WHERE bi.type_id=bt.type_id AND bm.book_id=bi.book_id AND nr.book_id=bi.book_id AND bm.role_id = " + roleid + " GROUP BY bm.book_id,nr.zj_name  ORDER BY nr.gx_date desc) tab GROUP BY tab.book_id ORDER BY tab.mcount desc";
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -459,7 +459,7 @@ public class BookProce {
      * 获取当前我的此角色里共存了多少本书
      */
     public Integer getMyBookCount(Integer roleid) {
-        String sql = "SELECT count(*) FROM book_mine WHERE role_id=" + roleid;
+        String sql = "SELECT COUNT(*) FROM book_mine WHERE role_id = " + roleid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -481,7 +481,7 @@ public class BookProce {
      * 根据我的书架里的存储书籍的主键删除书籍
      */
     public void deleteMyBook(Integer myid) {
-        String sql = "delete FROM book_mine WHERE my_id=" + myid;
+        String sql = "DELETE FROM book_mine WHERE my_id = " + myid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -498,7 +498,7 @@ public class BookProce {
      * 判断我收藏的书籍是否有重复
      */
     public boolean checkReplace(Integer roleid, Integer bookid) {
-        String sql = "SELECT * FROM book_mine WHERE role_id=" + roleid + " AND book_id=" + bookid;
+        String sql = "SELECT * FROM book_mine WHERE role_id = " + roleid + " AND book_id = " + bookid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -521,7 +521,7 @@ public class BookProce {
     public List<NewInfo> getBookByRidAndName(Integer roleid, String name) {
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
-            String sql = "SELECT bi.author,bi.book_id,bt.type_name,bi.book_name,bt.type_id " + "FROM book_info bi,book_type bt,book_mine bm " + "WHERE bi.type_id=bt.type_id AND bm.book_id=bi.book_id AND bi.book_name LIKE '%" + name.trim() + "%' AND bm.role_id=" + roleid;
+            String sql = "SELECT bi.author,bi.book_id,bt.type_name,bi.book_name,bt.type_id " + "FROM book_info bi,book_type bt,book_mine bm " + "WHERE bi.type_id=bt.type_id AND bm.book_id=bi.book_id AND bi.book_name LIKE '%" + name.trim() + "%' AND bm.role_id = " + roleid;
             Statement stmt = dbcon.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             List<NewInfo> infolist = new ArrayList<NewInfo>();
@@ -579,7 +579,7 @@ public class BookProce {
      * 根据书籍主键获取书籍名称
      */
     public String getBookNameById(Integer bookid) {
-        String sql = "SELECT book_name FROM book_info WHERE book_id=" + bookid;
+        String sql = "SELECT book_name FROM book_info WHERE book_id = " + bookid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -601,7 +601,7 @@ public class BookProce {
      * 根据章节主键和书籍主键获取章节名称
      */
     public String getZjNameById(Integer zjcount, Integer bookid) {
-        String sql = "SELECT zj_name FROM book_neirong WHERE zj_count=" + zjcount + " AND book_id=" + bookid;
+        String sql = "SELECT zj_name FROM book_neirong WHERE zj_count = " + zjcount + " AND book_id = " + bookid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -623,7 +623,7 @@ public class BookProce {
      * 根据书籍的主键查询该书籍共有多少个章节
      */
     public Integer getZjCountByBookId(Integer bookid) {
-        String sql = "SELECT count(*) FROM book_neirong WHERE book_id=" + bookid;
+        String sql = "SELECT COUNT(*) FROM book_neirong WHERE book_id=" + bookid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -667,7 +667,7 @@ public class BookProce {
      * 查询前十本书籍的排行榜按收藏人次降序排列
      */
     public List<PhVO> getPhList(Integer phpage, Integer phpagesize) {
-        String sql = "SELECT bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow FROM book_info bi,book_type bt " + "WHERE bt.type_id=bi.type_id AND bi.book_stow!=0 ORDER BY bi.book_stow desc  limit " + phpagesize + " offset " + (phpage - 1) * phpagesize;
+        String sql = "SELECT bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow FROM book_info bi,book_type bt " + "WHERE bt.type_id=bi.type_id AND bi.book_stow!=0 ORDER BY bi.book_stow DESC  LIMIT " + phpagesize + " offset " + (phpage - 1) * phpagesize;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -697,7 +697,7 @@ public class BookProce {
      * 获取排行榜分页后的总页数
      */
     public Integer getPhPageCount(Integer phpagesize) {
-        String sql = "SELECT count(*) FROM book_info bi,book_type bt WHERE bt.type_id=bi.type_id";
+        String sql = "SELECT COUNT(*) FROM book_info bi,book_type bt WHERE bt.type_id=bi.type_id";
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -752,13 +752,13 @@ public class BookProce {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
             if (markid.equals(0) || markid == 0) {
-                String sql = "update book_info set book_stow=book_stow+1 WHERE book_id=" + bookid;
-                String sql1 = "INSERT INTO book_mine values(null," + roleid + "," + bookid + "," + typeid + ",'" + mark + "')";
+                String sql = "UPDATE book_info SET book_stow=book_stow+1 WHERE book_id=" + bookid;
+                String sql1 = "INSERT INTO book_mine VALUES(null," + roleid + "," + bookid + "," + typeid + ",'" + mark + "')";
                 stmt.executeUpdate(sql1);
                 stmt.executeUpdate(sql);
                 stmt.close();
             } else {
-                String sql2 = "update book_mine set book_mark='" + mark + "' WHERE my_id=" + markid;
+                String sql2 = "UPDATE book_mine SET book_mark='" + mark + "' WHERE my_id=" + markid;
                 stmt.executeUpdate(sql2);
                 stmt.close();
             }
@@ -843,7 +843,7 @@ public class BookProce {
      **/
     public void addBookStow(Integer bookid) {
         try {
-            String sql = "update book_info set book_stow=book_stow+1 WHERE book_id=" + bookid;
+            String sql = "UPDATE book_info SET book_stow=book_stow+1 WHERE book_id=" + bookid;
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
             stmt.executeUpdate(sql);
@@ -859,7 +859,7 @@ public class BookProce {
      * 添加小说的阅读次数
      **/
     public void addBookReadCount(Integer bookid) {
-        String sql = "update book_info set read_count=read_count+1 WHERE book_id=" + bookid;
+        String sql = "UPDATE book_info SET read_count=read_count+1 WHERE book_id=" + bookid;
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -876,7 +876,7 @@ public class BookProce {
      * 添加阅读记录
      **/
     public void addReadRecord(Integer ppk, Integer bookid, Integer zjcount) {
-        String sql = "INSERT INTO book_read_record values(null," + ppk + "," + bookid + "," + zjcount + ",sysdate())";
+        String sql = "INSERT INTO book_read_record VALUES(null," + ppk + "," + bookid + "," + zjcount + ",sysdate())";
         try {
             dbcon = new DBConnection(DBConnection.GAME_DB);
             Statement stmt = dbcon.getConn().createStatement();
@@ -923,7 +923,7 @@ public class BookProce {
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 Integer grade = rs.getInt(1);
-                String sql1 = "update u_part_info set p_copper=p_copper-" + grade * 2;
+                String sql1 = "UPDATE u_part_info SET p_copper=p_copper-" + grade * 2;
                 stmt.executeUpdate(sql1);
             }
             rs.close();

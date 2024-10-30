@@ -8,8 +8,8 @@ pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="map" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="map" title="<bean:message key="gamename"/>">
 <p>
 	<% 
 	int s_type = Integer.parseInt((String)request.getAttribute("s_type"));

@@ -18,7 +18,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "INSERT INTO instance_archive(p_pk,map_id,dead_boss_record,create_time) values ("+p_pk+","+map_id+",'',now())";
+			String sql = "INSERT INTO instance_archive(p_pk,map_id,dead_boss_record,create_time) VALUES ("+p_pk+","+map_id+",'',now())";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -45,7 +45,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT p_pk from instance_archive where p_pk="+p_pk+" and map_id=" + map_id+" limit 1";
+			String sql = "SELECT p_pk FROM instance_archive WHERE p_pk="+p_pk+" AND map_id=" + map_id+" LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -77,7 +77,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT * FROM instance_archive where p_pk="+p_pk+" and map_id=" + map_id+" limit 1";
+			String sql = "SELECT * FROM instance_archive WHERE p_pk="+p_pk+" AND map_id=" + map_id+" LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -112,7 +112,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "update instance_archive set dead_boss_record=CONCAT(dead_boss_record,',','"+sence_id+"') where p_pk="+p_pk+" and map_id=" + map_id+"";
+			String sql = "UPDATE instance_archive SET dead_boss_record=CONCAT(dead_boss_record,',','"+sence_id+"') WHERE p_pk="+p_pk+" AND map_id=" + map_id+"";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -135,7 +135,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "update instance_archive set dead_boss_record='',create_time=now() where p_pk="+p_pk+" and map_id=" + map_id+"";
+			String sql = "UPDATE instance_archive SET dead_boss_record='',create_time=now() WHERE p_pk="+p_pk+" AND map_id=" + map_id+"";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -158,7 +158,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "update instance_archive set dead_boss_record='',create_time=now() where map_id=" + map_id+"";
+			String sql = "UPDATE instance_archive SET dead_boss_record='',create_time=now() WHERE map_id=" + map_id+"";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);

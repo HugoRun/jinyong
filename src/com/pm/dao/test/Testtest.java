@@ -19,7 +19,7 @@ public class Testtest extends DaoBase
 	 */
 	public List getConuniteWinNum()
 	{
-		String sql = "SELECT p_pk from u_part_info";
+		String sql = "SELECT p_pk FROM u_part_info";
 		List list = new ArrayList();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);

@@ -25,7 +25,7 @@ public class MountsDao extends DaoBase
 	/** *******为角色增加坐骑********* */
 	public int addMounts(UserMountsVO uv)
 	{
-		String sql = "INSERT INTO u_mounts_temp (p_pk,mountID,mountState,mountLevel,getTime)values("
+		String sql = "INSERT INTO u_mounts_temp (p_pk,mountID,mountState,mountLevel,getTime)VALUES("
 				+ uv.getPpk()
 				+ ","
 				+ uv.getMountsID()
@@ -155,7 +155,7 @@ public class MountsDao extends DaoBase
 	/** *****************得到系统赠送坐骑****************** */
 	public MountsVO getMountsInfoBySystem(int mountsType)
 	{
-		String sql = "SELECT * FROM u_mounts_table WHERE level=1 and type="
+		String sql = "SELECT * FROM u_mounts_table WHERE level=1 AND type="
 				+ mountsType + "";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -203,8 +203,8 @@ public class MountsDao extends DaoBase
 	/** **********删除用户某个坐骑，坐骑升级的时候删除低等级坐骑************ */
 	public void deleteUserMounts(int ppk, int mountsID)
 	{
-		String sql = "delete from u_mounts_temp WHERE p_pk=" + ppk
-				+ " and mountID=" + mountsID + " limit 1";
+		String sql = "DELETE FROM u_mounts_temp WHERE p_pk=" + ppk
+				+ " AND mountID=" + mountsID + " LIMIT 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -228,7 +228,7 @@ public class MountsDao extends DaoBase
 	/** ***********用户点击取消骑乘或者是换乘的时候改变状态都为0***************** */
 	public void updateMountState1(int ppk)
 	{
-		String sql = "update u_mounts_temp set mountState=0 WHERE p_pk=" + ppk
+		String sql = "UPDATE u_mounts_temp SET mountState=0 WHERE p_pk=" + ppk
 				+ "";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -253,8 +253,8 @@ public class MountsDao extends DaoBase
 	/** ********用户点击换乘则改变乘骑状态************ */
 	public void updateMountState2(int ppk, int mountID)
 	{
-		String sql = "update u_mounts_temp set mountState=1 WHERE p_pk=" + ppk
-				+ " and mountID=" + mountID + " limit 1";
+		String sql = "UPDATE u_mounts_temp SET mountState=1 WHERE p_pk=" + ppk
+				+ " AND mountID=" + mountID + " LIMIT 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -364,7 +364,7 @@ public class MountsDao extends DaoBase
 	/** *****得到拥有该坐骑的玩家角色名称***** */
 	public String getPname(int p_pk)
 	{
-		String sql ="select p_name from u_part_info WHERE p_pk="+p_pk+"";
+		String sql ="SELECT p_name FROM u_part_info WHERE p_pk="+p_pk+"";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -394,7 +394,7 @@ public class MountsDao extends DaoBase
 	/************删除玩家所有的坐骑*******/
 	public void removeMountsInfo(int ppk)
 	{
-		String sql ="delete from u_mounts_temp WHERE p_pk="+ppk+"";
+		String sql ="DELETE FROM u_mounts_temp WHERE p_pk="+ppk+"";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try

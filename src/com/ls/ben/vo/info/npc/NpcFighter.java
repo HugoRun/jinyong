@@ -14,7 +14,7 @@ public class NpcFighter extends NpcAttackVO {
 	private int petInjure;
 	private boolean isDead;
 	private int expendMP;
-	private String skillName="普通";
+	private String skillName = "普通";
 	/**伤害显示描述*/
 	private String petInjureOut;
 	

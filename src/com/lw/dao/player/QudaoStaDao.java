@@ -19,8 +19,8 @@ public class QudaoStaDao extends DaoBase
 		QudaoVO vo = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT count(*) as num , a.channel_id from u_passport_info as a ,u_part_info as b where a.u_pk = b.u_pk and b.p_grade>2 and a.create_time like '%"
-				+ date + "%' group by a.channel_id ";
+		String sql = "SELECT COUNT(*) AS num , a.channel_id FROM u_passport_info AS a ,u_part_info AS b WHERE a.u_pk = b.u_pk AND b.p_grade>2 AND a.create_time LIKE '%"
+				+ date + "%' GROUP BY a.channel_id ";
 		logger.debug("sql:"+sql);
 		try
 		{
@@ -51,7 +51,7 @@ public class QudaoStaDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "INSERT INTO channel_id_num values (null,'" + channel
+		String sql = "INSERT INTO channel_id_num VALUES (null,'" + channel
 				+ "','" + num + "',now())";
 		logger.debug("sql:"+sql);
 		try

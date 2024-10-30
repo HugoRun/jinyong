@@ -23,7 +23,7 @@ public class InstanceInfoDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT * FROM instance_info where id=" + id+" limit 1";
+			String sql = "SELECT * FROM instance_info WHERE id=" + id+" LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -63,7 +63,7 @@ public class InstanceInfoDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "SELECT * FROM instance_info where map_id=" + map_id+" limit 1";
+			String sql = "SELECT * FROM instance_info WHERE map_id=" + map_id+" LIMIT 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -101,7 +101,7 @@ public class InstanceInfoDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "update instance_info set pre_reset_time=now() where map_id=" + map_id+"";
+			String sql = "UPDATE instance_info SET pre_reset_time=now() WHERE map_id=" + map_id+"";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.execute(sql);

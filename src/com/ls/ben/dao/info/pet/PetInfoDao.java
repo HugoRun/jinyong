@@ -27,7 +27,7 @@ public class PetInfoDao extends DaoBase
 	public PetInfoVO getBringPetByPpk(int p_pk)
 	{
 		PetInfoVO petInfo = null;
-		String sql = "SELECT * FROM  p_pet_info where p_pk=" + p_pk + " and pet_isBring=1 limit 1";
+		String sql = "SELECT * FROM  p_pet_info WHERE p_pk=" + p_pk + " AND pet_isBring=1 LIMIT 1";
 		logger.debug("得到p_pk的随身带的宠物="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -97,7 +97,7 @@ public class PetInfoDao extends DaoBase
 	public int getNumOfPet(int p_pk)
 	{
 		int pet_num = 0;
-		String sql = "SELECT count(*) as sum from  p_pet_info where  p_pk="
+		String sql = "SELECT COUNT(*) AS sum FROM  p_pet_info WHERE p_pk="
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -136,8 +136,8 @@ public class PetInfoDao extends DaoBase
 		PetInfoVO petInfo = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT pet_pk,pet_name,pet_nickname,pet_wx,pet_type from p_pet_info where  p_pk='"
-				+ p_pk + "' and pet_isBring<>1";
+		String sql = "SELECT pet_pk,pet_name,pet_nickname,pet_wx,pet_type FROM p_pet_info WHERE p_pk='"
+				+ p_pk + "' AND pet_isBring<>1";
 		logger.debug(sql);
 		try
 		{
@@ -183,8 +183,8 @@ public class PetInfoDao extends DaoBase
 		PetInfoVO petInfo = null;
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
-		String sql = "SELECT pet_pk,pet_name,pet_nickname,pet_wx,pet_type from p_pet_info where  p_pk='"
-				+ p_pk + "' and pet_isBring<>1";
+		String sql = "SELECT pet_pk,pet_name,pet_nickname,pet_wx,pet_type FROM p_pet_info WHERE p_pk='"
+				+ p_pk + "' AND pet_isBring<>1";
 		logger.debug(sql);
 		try
 		{
@@ -250,8 +250,8 @@ public class PetInfoDao extends DaoBase
 	 */
 	public void updateNickName(int pet_pk, String pet_nickname)
 	{
-		String sql = "update p_pet_info set pet_nickname='"
-				+ StringUtil.gbToISO(pet_nickname) + "'  where pet_pk="
+		String sql = "UPDATE p_pet_info SET pet_nickname='"
+				+ StringUtil.gbToISO(pet_nickname) + "'  WHERE pet_pk="
 				+ pet_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -281,7 +281,7 @@ public class PetInfoDao extends DaoBase
 	 */
 	public void updatePetName(String petpk)
 	{
-		String sql = "update p_pet_info set pet_name= concat(pet_name,'*') where pet_pk="+petpk;
+		String sql = "UPDATE p_pet_info SET pet_name= concat(pet_name,'*') WHERE pet_pk="+petpk;
 
     	logger.debug(sql);
     	DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -312,7 +312,7 @@ public class PetInfoDao extends DaoBase
 	public PetInfoVO getPet(int pet_pk)
 	{
 		PetInfoVO petInfo = null;
-		String sql = "SELECT * FROM  p_pet_info where pet_pk=" + pet_pk + "";
+		String sql = "SELECT * FROM  p_pet_info WHERE pet_pk=" + pet_pk + "";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -380,14 +380,14 @@ public class PetInfoDao extends DaoBase
 			int pet_skill_two, int pet_skill_three, int pet_skill_four,
 			int pet_skill_five,String xing)
 	{
-		String sql = "update p_pet_info set " + "pet_nickname=concat(pet_name,'"+xing+"'),pet_init_num=pet_init_num+1,"
+		String sql = "UPDATE p_pet_info SET " + "pet_nickname=concat(pet_name,'"+xing+"'),pet_init_num=pet_init_num+1,"
 				+ "pet_grade=1," + "pet_exp=0," + "pet_ben_exp=0,"
 				+ "pet_xia_exp=" + pet_xia_exp + ",pet_gj_xiao=" + gj_xiao
 				+ ",pet_gj_da=" + gj_da + ",pet_sale=" + pet_sale
 				+ ",pet_grow=" + pet_grow + ",pet_skill_one=" + pet_skill_one
 				+ ",pet_skill_two=" + pet_skill_two + ",pet_skill_three="
 				+ pet_skill_three + ",pet_skill_four=" + pet_skill_four
-				+ ",pet_skill_five=" + pet_skill_five + "  where pet_pk="
+				+ ",pet_skill_five=" + pet_skill_five + "  WHERE pet_pk="
 				+ pet_pk;
 
 		logger.debug(sql);
@@ -412,7 +412,7 @@ public class PetInfoDao extends DaoBase
 	//查看经验排名前十的宠物
 	public List<PetInfoVO> fintbyExp(){
 		List<PetInfoVO> list = new ArrayList<PetInfoVO>();
-		String sql = "SELECT * FROM  p_pet_info p order by p.pet_exp desc limit 10";
+		String sql = "SELECT * FROM  p_pet_info p ORDER BY p.pet_exp DESC LIMIT 10";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -474,7 +474,7 @@ public class PetInfoDao extends DaoBase
 	//查看攻击排名前十的宠物
 	public List<PetInfoVO> fintbyGONGji(){
 		List<PetInfoVO> list = new ArrayList<PetInfoVO>();
-		String sql = "SELECT * FROM  p_pet_info p order by p.pet_gj_da desc limit 10";
+		String sql = "SELECT * FROM  p_pet_info p ORDER BY p.pet_gj_da DESC LIMIT 10";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -538,7 +538,7 @@ public class PetInfoDao extends DaoBase
 		if(p_pk==null){
 			return paimin;
 		}
-		String sql = "SELECT count(*) from p_pet_info p where p.pet_exp >= (select max(pet_exp) from p_pet_info where p_pk = "+p_pk+")";
+		String sql = "SELECT COUNT(*) FROM p_pet_info p WHERE p.pet_exp >= (SELECT MAX(pet_exp) FROM p_pet_info WHERE p_pk = "+p_pk+")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -570,7 +570,7 @@ public class PetInfoDao extends DaoBase
 		if(p_pk==null){
 			return paimin;
 		}
-		String sql = "SELECT count(*) from p_pet_info p where p.pet_gj_da >= (select max(pet_gj_da) from p_pet_info where p_pk = "+p_pk+")";
+		String sql = "SELECT COUNT(*) FROM p_pet_info p WHERE p.pet_gj_da >= (SELECT MAX(pet_gj_da) FROM p_pet_info WHERE p_pk = "+p_pk+")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

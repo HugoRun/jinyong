@@ -31,7 +31,7 @@ public class TongSiegeInfoDao extends DaoBase
 	 */
 	public void updateDeadNumber(int pPk, int siegeId, int siegeNumber)
 	{
-		String sql = "update tong_siege_info set dead_num = dead_num + 1 where p_pk="+pPk+" and siege_id = "+siegeId+" and siege_number = "+siegeNumber;
+		String sql = "UPDATE tong_siege_info SET dead_num = dead_num + 1 WHERE p_pk="+pPk+" AND siege_id = "+siegeId+" AND siege_number = "+siegeNumber;
 		logger.debug("插入帮派战报名="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -57,7 +57,7 @@ public class TongSiegeInfoDao extends DaoBase
 	 */
 	public void addDeadLimitNumber(int pPk, int siegeId, int siegeNumber)
 	{
-		String sql = "update tong_siege_info set dead_limit = dead_limit + 1 where p_pk="+pPk+" and siege_id = "+siegeId+" and siege_number = "+siegeNumber;
+		String sql = "UPDATE tong_siege_info SET dead_limit = dead_limit + 1 WHERE p_pk = " + pPk + " AND siege_id = " + siegeId + " AND siege_number = "+siegeNumber;
 		logger.debug("插入帮派战报名="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -81,7 +81,7 @@ public class TongSiegeInfoDao extends DaoBase
 	 */
 	public void updateDeadNumber( int siegeId, int siegeNumber)
 	{
-		String sql = "update tong_siege_info set dead_num = 0 where siege_id = "+siegeId+" and siege_number = "+siegeNumber;
+		String sql = "UPDATE tong_siege_info SET dead_num = 0 WHERE siege_id = "+siegeId+" AND siege_number = "+siegeNumber;
 		logger.debug("插入帮派战报名="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -107,7 +107,7 @@ public class TongSiegeInfoDao extends DaoBase
 	 */
 	public List<Integer> getAllInTongSiegePPk(int siegeId, int siegeFightNumber)
 	{
-		String sql = "SELECT p_pk from tong_siege_info where siege_id = "+siegeId+" and siege_number = "+siegeFightNumber;
+		String sql = "SELECT p_pk FROM tong_siege_info WHERE siege_id = "+siegeId+" AND siege_number = "+siegeFightNumber;
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
 		logger.debug("获得在战场上所有人的p_pk="+sql);
@@ -140,8 +140,8 @@ public class TongSiegeInfoDao extends DaoBase
 	 */
 	public List<Integer> getTongInfoPPkByTongID(int siegeId, int siegeFightNumber,int tongId)
 	{
-		String sql = "SELECT p_pk from tong_siege_info where siege_id = "+siegeId
-				+" and siege_number = "+siegeFightNumber+" and tong_id="+tongId;
+		String sql = "SELECT p_pk FROM tong_siege_info WHERE siege_id = "+siegeId
+				+" AND siege_number = "+siegeFightNumber+" AND tong_id="+tongId;
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
 		logger.debug("选择确定一条系统消息的sql="+sql);

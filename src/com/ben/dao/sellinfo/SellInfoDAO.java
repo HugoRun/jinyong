@@ -240,7 +240,7 @@ public class SellInfoDAO {
         try {
 
             con = new SqlData();
-            String sql = "SELECT count(1) as exist1 FROM `u_sell_info` WHERE s_wuping = " + goodsId + " AND p_pk = " + pPk + " AND s_wp_type = " + s_wp_type;
+            String sql = "SELECT COUNT(1) AS exist1 FROM `u_sell_info` WHERE s_wuping = " + goodsId + " AND p_pk = " + pPk + " AND s_wp_type = " + s_wp_type;
             ResultSet rs = con.query(sql);
             if (rs.next()) {
                 exist = rs.getInt("exist1");

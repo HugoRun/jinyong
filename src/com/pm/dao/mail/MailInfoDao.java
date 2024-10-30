@@ -31,7 +31,7 @@ public class MailInfoDao extends DaoBase {
 		try{
 			conn = dbConn.getConn();
 			stmt = conn.createStatement();
-			count_sql = "SELECT count(1) as mail_count from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY)";
+			count_sql = "SELECT COUNT(1) AS mail_count FROM u_mail_info WHERE receive_pk="+pPk+" AND now() < (create_time + INTERVAL 7 DAY)";
 							
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
@@ -43,8 +43,8 @@ public class MailInfoDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			String sql = "SELECT * FROM u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY) order by unread asc, improtant desc, create_time desc"
-							+" limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
+			String sql = "SELECT * FROM u_mail_info WHERE receive_pk="+pPk+" AND now() < (create_time + INTERVAL 7 DAY) ORDER BY unread ASC, improtant desc, create_time desc"
+							+" LIMIT " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			logger.debug(sql);
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -82,7 +82,7 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public MailInfoVO getPersonMailView(String mailId){
 		
-		String sql = "SELECT * FROM u_mail_info where mail_id="+mailId;
+		String sql = "SELECT * FROM u_mail_info WHERE mail_id="+mailId;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		MailInfoVO mvo = null;
@@ -121,7 +121,7 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public int getMailTypeById(String mailId){
 		
-		String sql = "SELECT mail_type from u_mail_info where mail_id="+mailId;
+		String sql = "SELECT mail_type FROM u_mail_info WHERE mail_id="+mailId;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int mail_type = 2;
@@ -153,7 +153,7 @@ public class MailInfoDao extends DaoBase {
 	 
 	public int insertTongMail(int receive_pk,int send_pk,String title,String content,int improtant){
 		int result = -1;
-		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+" ,"+send_pk+" ,'"+title+"','"+content+"',1,"+improtant+" ,now())";
+		String sql = "INSERT INTO u_mail_info VALUES(null,"+receive_pk+" ,"+send_pk+" ,'"+title+"','"+content+"',1,"+improtant+" ,now())";
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -179,7 +179,7 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public int havingNewMail(String pPk){
 		int i = -1;
-		String sql = "SELECT count(*) from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY) and unread = 1 limit 1";
+		String sql = "SELECT COUNT(*) FROM u_mail_info WHERE receive_pk="+pPk+" AND now() < (create_time + INTERVAL 7 DAY) AND unread = 1 LIMIT 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try{
@@ -206,7 +206,7 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public int deleteMailByid(String mailId,int pPk){
 		int i = -1;
-		String sql = "delete from u_mail_info where mail_id="+mailId+" and receive_pk="+pPk;
+		String sql = "DELETE FROM u_mail_info WHERE mail_id="+mailId+" AND receive_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -232,7 +232,7 @@ public class MailInfoDao extends DaoBase {
 	 */ 
 	public int deletePersonMailBypPk(String pk){
 		int i = -1;
-		String sql = "delete from u_mail_info where receive_pk="+pk;
+		String sql = "DELETE FROM u_mail_info WHERE receive_pk="+pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -252,7 +252,7 @@ public class MailInfoDao extends DaoBase {
 	 * 根据mailId将邮件阅读状态置为已读
 	 */
 	public void updateMailRead(String mailId){
-		String sql = "update u_mail_info set unread = 2 where mail_id="+mailId;
+		String sql = "UPDATE u_mail_info SET unread = 2 WHERE mail_id="+mailId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -273,7 +273,7 @@ public class MailInfoDao extends DaoBase {
 	 * @return p_pk 个人角色id，如果没有此角色，则返回-1.
 	 */
 	public void deleteMailIfOutSeven(){
-		String sql = "delete from u_mail_info where now() > (create_time + INTERVAL 7 DAY)";
+		String sql = "DELETE FROM u_mail_info WHERE now() > (create_time + INTERVAL 7 DAY)";
 		logger.debug("删除所有超过七天的邮件的sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -296,9 +296,9 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public void deleteSecondPassMail(int u_pk)
 	{
-		String sql = "delete from u_mail_info where mail_type = 4 and receive_pk = " +
-						"(select p_pk from u_part_info where u_pk = "+u_pk+" group by create_time " +
-						"asc limit 1)";
+		String sql = "DELETE FROM u_mail_info WHERE mail_type = 4 AND receive_pk = " +
+						"(SELECT p_pk FROM u_part_info WHERE u_pk = "+u_pk+" GROUP BY create_time " +
+						"ASC LIMIT 1)";
 		logger.debug("删除二级密码设置邮件sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -323,7 +323,7 @@ public class MailInfoDao extends DaoBase {
 	public MailInfoVO getPersonMailTypeList(String pPk,int mail_type)
 	{
 		
-		String sql = "SELECT * FROM u_mail_info where receive_pk = "+pPk+" and mail_type="+mail_type;
+		String sql = "SELECT * FROM u_mail_info WHERE receive_pk = "+pPk+" AND mail_type="+mail_type;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		MailInfoVO mvo = null;
@@ -361,7 +361,7 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public void updateMail(int mailId, String content)
 	{
-		String sql = "update u_mail_info set content = '"+content+"' where mail_id = "+mailId+"";
+		String sql = "UPDATE u_mail_info SET content = '"+content+"' WHERE mail_id = "+mailId+"";
 		logger.debug("更新邮件的内容sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -379,7 +379,7 @@ public class MailInfoDao extends DaoBase {
 	
 	/*public int insertMailReturnId(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int result = -1;
-		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
+		String sql = "INSERT INTO u_mail_info VALUES(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
 		logger.debug("插入mail="+sql);
 		String sql1 = "SELECT LAST_INSERT_ID() ";
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
@@ -404,7 +404,7 @@ public class MailInfoDao extends DaoBase {
 	//返回邮件主键
 	public int insertBonusMail(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int mail_id = -1;
-		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
+		String sql = "INSERT INTO u_mail_info VALUES(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
 		logger.debug("插入mail="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
@@ -437,7 +437,7 @@ public class MailInfoDao extends DaoBase {
 	 *//*
 	public int insertMail(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int result = -1;
-		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
+		String sql = "INSERT INTO u_mail_info VALUES(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
 		logger.debug("插入mail="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
@@ -469,7 +469,7 @@ public class MailInfoDao extends DaoBase {
 	 */
 	public int addAndReturnKey(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int result = -1;
-		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now(),'')";
+		String sql = "INSERT INTO u_mail_info VALUES(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now(),'')";
 		logger.debug("插入mail="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -510,7 +510,7 @@ public class MailInfoDao extends DaoBase {
 		int result = -1;
 		StringBuffer sql = new StringBuffer();
 			
-		sql.append("INSERT INTO u_mail_info values(null");
+		sql.append("INSERT INTO u_mail_info VALUES(null");
 		sql.append(",").append(mail.getReceivePk());
 		sql.append(",").append(mail.getSendPk());
 		sql.append(",").append(mail.getMailType());

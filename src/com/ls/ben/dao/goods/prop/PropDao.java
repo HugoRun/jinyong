@@ -71,8 +71,8 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public int getPropIdByType(int prop_class)
 	{
 		int prop_id = 0;
-		String sql = "SELECT prop_ID from prop where prop_class=" + prop_class
-				+ " limit 1";
+		String sql = "SELECT prop_ID FROM prop WHERE prop_class=" + prop_class
+				+ " LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -106,7 +106,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public int getPropIdByName(String propName)
 	{
 		int prop_id = -1;
-		String sql = "SELECT prop_ID from prop where prop_name='" + propName+ "' limit 1";
+		String sql = "SELECT prop_ID FROM prop WHERE prop_name='" + propName+ "' LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -140,7 +140,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public String getPropNameByType(String prop_operate1)
 	{
 		String prop_Name = "";
-		String sql = "SELECT prop_Name from prop where prop_class=23 and prop_operate1 = '"
+		String sql = "SELECT prop_Name FROM prop WHERE prop_class=23 AND prop_operate1 = '"
 				+ prop_operate1 + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -176,8 +176,8 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public int getPropIDByPropLevel(String prop_level, int prop_type)
 	{
 		int prop_id = 0;
-		String sql = "SELECT prop_id from prop where prop_ReLevel = '"
-				+ prop_level + "' and prop_class = " + prop_type;
+		String sql = "SELECT prop_id FROM prop WHERE prop_ReLevel = '"
+				+ prop_level + "' AND prop_class = " + prop_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -211,7 +211,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public List<PropVO> getListByType(int prop_class )
 	{
 		List<PropVO> list = new ArrayList<PropVO>();
-		String sql = "SELECT prop_ID,prop_Name from prop where prop_class=" + prop_class+" and prop_ID != 373 and prop_ID != 374"; 
+		String sql = "SELECT prop_ID,prop_Name FROM prop WHERE prop_class=" + prop_class+" AND prop_ID != 373 AND prop_ID != 374";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try { 
 			conn = dbConn.getConn();
@@ -269,7 +269,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public String getPropName(String name)
 	{
 		String propName="";
-		String sql = "SELECT prop_name from prop where prop_name like '%"+name+"%' limit 1";
+		String sql = "SELECT prop_name FROM prop WHERE prop_name LIKE '%"+name+"%' LIMIT 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

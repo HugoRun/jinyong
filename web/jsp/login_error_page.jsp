@@ -5,8 +5,8 @@
 	response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
-<card id="timeout" title="<s:message key = "gamename"/>">
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<card id="timeout" title="<bean:message key="gamename"/>">
 <p>
 您点击过快,请返回专区重新登陆<br/>
 <%@ include file="/init/return_url/return_zhuanqu.jsp"%>

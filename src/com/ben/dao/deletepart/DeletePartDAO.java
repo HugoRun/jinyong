@@ -79,16 +79,16 @@ public class DeletePartDAO {
      * @param pk       pk
      * @param u_pk     u_pk
      * @param isRookie isRookie
-     *                 return 返回1表示删除成功，0表示失败
+     * @return 返回1表示删除成功，0表示失败
      */
     public int delete(String pk, String u_pk, boolean isRookie) {
         int result = 0;
         String dateStr = "|" + new Date().getSeconds();
         String sql = "";
         if (!isRookie) {
-            sql = "update u_part_info set delete_flag = 1 ,delete_time = now(),p_name=CONCAT(p_name,'" + dateStr + "') WHERE p_pk = " + pk + " and u_pk = " + u_pk;
+            sql = "UPDATE u_part_info SET delete_flag = 1 ,delete_time = now(),p_name=CONCAT(p_name,'" + dateStr + "') WHERE p_pk = " + pk + " AND u_pk = " + u_pk;
         } else {
-            sql = "delete from u_part_info WHERE p_pk = " + pk + " and u_pk = " + u_pk;
+            sql = "DELETE FROM u_part_info WHERE p_pk = " + pk + " AND u_pk = " + u_pk;
         }
         try {
             dbc = new SqlData();
@@ -110,7 +110,7 @@ public class DeletePartDAO {
      * @param u_pk u_pk
      */
     public void sureResumeTime(String pk, String u_pk) {
-        String sql = "UPDATE `u_part_info` SET `delete_flag` = 0 WHERE p_pk = " + pk + " and u_pk = " + u_pk;
+        String sql = "UPDATE `u_part_info` SET `delete_flag` = 0 WHERE p_pk = " + pk + " AND u_pk = " + u_pk;
         try {
             dbc = new SqlData();
             dbc.update(sql);
@@ -129,7 +129,7 @@ public class DeletePartDAO {
      */
     public void deleteByTime() {
         List<Integer> list = new ArrayList<Integer>();
-        String sql = "SELECT p_pk from u_part_info WHERE delete_flag = 1 and now() > (delete_time + INTERVAL 1 DAY)";
+        String sql = "SELECT p_pk FROM u_part_info WHERE delete_flag = 1 AND now() > (delete_time + INTERVAL 1 DAY)";
         try {
             dbc = new SqlData();
             ResultSet rs = dbc.query(sql);
@@ -144,9 +144,9 @@ public class DeletePartDAO {
             dbc.close();
         }
 
-        if (list.size() != 0) {
-            for (int i = 0; i < list.size(); i++) {
-                DeletePart(list.get(i));
+        if (!list.isEmpty()) {
+            for (Integer integer : list) {
+                DeletePart(integer);
             }
         }
     }

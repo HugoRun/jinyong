@@ -57,15 +57,11 @@ public class LoginService {
      */
     public boolean isFullOnlineRoleNum() {
         boolean result = false;
-
         int online_num = LoginService.online_role.size();// 在线人数
-
         int user_num_upper_limit = GameConfig.getUserNumUpperLimit();// 系统限制最大人数
-
         if (online_num >= user_num_upper_limit) {
             result = true;
         }
-
         return result;
     }
 
@@ -73,19 +69,15 @@ public class LoginService {
      * 注册登陆账号
      *
      * @param user_name user_name
-     * @param pwd password
-     * @param login_ip 登陆IP
+     * @param pwd       password
+     * @param login_ip  登陆IP
      * @return 返回值为uPk
      */
     public int register(String user_name, String pwd, String login_ip) {
         logger.info("用户成功注册，用户名：" + user_name + ";密码：" + pwd + ";登陆IP：" + login_ip);
-
         int uPk = -1;
-
         LoginDao loginDao = new LoginDao();
-
         uPk = loginDao.incert(user_name, pwd, login_ip);
-
         return uPk;
     }
 
@@ -97,18 +89,16 @@ public class LoginService {
      */
     public void login(String u_pk, String login_ip) {
         logger.info("用户成功登陆账号，用户名ID：" + u_pk + ";登陆IP：" + login_ip);
-
         LoginDao loginDao = new LoginDao();
-
         loginDao.updateState(u_pk, login_ip);
     }
 
     /**
      * 验证用户名密码是否正确
      *
-     * @param user_name
-     * @param pwd
-     * @return loginInfo 返回为空表示验证失败
+     * @param user_name user_name
+     * @param pwd       pwd
+     * @return LoginInfoVO 返回为空表示验证失败
      */
     public LoginInfoVO validateLogin(String user_name, String pwd) {
         LoginInfoVO loginInfo = null;
@@ -120,9 +110,9 @@ public class LoginService {
     /**
      * 正常角色登陆
      *
-     * @param new_login_pPk
-     * @param request
-     * @return
+     * @param new_login_pPk new_login_pPk
+     * @param request       request
+     * @return RoleEntity
      */
     public RoleEntity loginRole(String new_login_pPk, HttpServletRequest request) {
         return this.loginRole(new_login_pPk, request, 0);
@@ -131,53 +121,50 @@ public class LoginService {
     /**
      * 新手角色登陆
      *
-     * @param new_login_pPk
-     * @param request
-     * @return
+     * @param new_login_pPk new_login_pPk
+     * @param request       request
+     * @return RoleEntity
      */
     public RoleEntity loginRookieRole(String new_login_pPk, HttpServletRequest request) {
         RoleEntity role_info = this.loginRole(new_login_pPk, request, 1);
-
         if (role_info.getBasicInfo().getPlayer_state_by_new() == 1 && role_info.getGrade() == GameConfig.getGradeUpperHighLimit()) {
             RoleService roleService = new RoleService();
-            roleService.initRoleLogic(role_info);//新手登陆时的处理
+            // 新手登陆时的处理
+            roleService.initRoleLogic(role_info);
         }
-
         return role_info;
     }
 
     /**
      * 登陆角色
      *
-     * @param new_login_pPk
-     * @param request
+     * @param new_login_pPk new_login_pPk
+     * @param request       request
      * @param loginType     登陆类型：0，表示正常登陆，1表示新手登陆
-     * @return
+     * @return RoleEntity
      */
     private RoleEntity loginRole(String new_login_pPk, HttpServletRequest request, int loginType) {
         if (request == null) {
             return null;
         }
-
         RoleEntity roleInfo = RoleCache.getByPpk(new_login_pPk);
         if (roleInfo == null) {
-            //角色登陆失败
+            // 角色登陆失败
             DataErrorLog.debugData("LoginService.loginRole：角色登陆失败，无该角色，p_pk=" + new_login_pPk);
             return null;
         }
-
         int u_pk = roleInfo.getUPk();
         Integer old_ppk = LoginService.online_role.get(u_pk);
-        if (old_ppk != null)//该账号已经登陆了角色old_ppk
-        {
-            //old_ppk角色下线处理
+        // 该账号已经登陆了角色old_ppk
+        if (old_ppk != null) {
+            // old_ppk角色下线处理
             this.loginoutRole(old_ppk + "");
         }
         if (loginType == 1) {
-            //新手登陆
+            // 新手登陆
             roleInfo.rookieLogin(request);
         } else {
-            //正常登陆
+            // 正常登陆
             roleInfo.login(request);
         }
 
@@ -189,30 +176,26 @@ public class LoginService {
      * 角色退出处理, 判断session的值和roleEntity中的session是不是同一个, 如果是那么销毁
      * 如果不是,判断roleEntity中的session所对应的pPk是否还存在,如果不存在,那么销毁,否则不销毁.
      *//*
-	public void loginoutRole(String pPk, HttpSession session)
-	{
-		RoleEntity roleInfo = RoleCache.getByPpk(pPk);
+    public void loginoutRole(String pPk, HttpSession session){
+        RoleEntity roleInfo = RoleCache.getByPpk(pPk);
 
-		if (roleInfo != null)
-		{
-			HttpSession session2 = roleInfo.getStateInfo().getSession();
-			String sessionId2 = session2.getId();
-			String sessionId = session.getId();
+        if (roleInfo != null){
+            HttpSession session2 = roleInfo.getStateInfo().getSession();
+            String sessionId2 = session2.getId();
+            String sessionId = session.getId();
 
-			if (!sessionId.equals(sessionId2))
-			{
-				String pPk2 = (String) session2.getAttribute("pPk");
-				if (pPk2 == null || pPk2.equals("") || pPk2.equals("null"))
-				{
-					this.loginoutRole(pPk);
-				}
-			}
-			else
-			{
-				this.loginoutRole(pPk);
-			}
-		}
-	}*/
+            if (!sessionId.equals(sessionId2)){
+                String pPk2 = (String) session2.getAttribute("pPk");
+                if (pPk2 == null || pPk2.equals("") || pPk2.equals("null"))
+                {
+                    this.loginoutRole(pPk);
+                }
+            }
+            else{
+                this.loginoutRole(pPk);
+            }
+        }
+    }*/
 
     /**
      * 角色退出处理,直接退出
@@ -257,7 +240,6 @@ public class LoginService {
      */
     public LoginInfoVO getLoginInfo(String name) {
         LoginInfoDAO infodao = new LoginInfoDAO();
-        LoginInfoVO infovo = infodao.getUserInfoLoginName(name);
-        return infovo;
+        return infodao.getUserInfoLoginName(name);
     }
 }

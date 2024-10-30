@@ -44,7 +44,8 @@
 
     <!-- 项目根目录默认访问页面 -->
     <welcome-file-list>
-        <welcome-file>channel.jsp</welcome-file>
+        <!-- <welcome-file>channel.jsp</welcome-file> -->
+        <welcome-file>/login.do?cmd=n7</welcome-file>
     </welcome-file-list>
 
     <!-- 参数解析 -->

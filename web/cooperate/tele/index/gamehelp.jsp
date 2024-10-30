@@ -7,9 +7,9 @@
     response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
-<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%><%@taglib
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%><%@taglib
     uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
-<card id="aboute" title="<s:message key = "gamename"/>">
+<card id="aboute" title="<bean:message key="gamename"/>">
 <p>
     游戏详细帮助信息可以在游戏主页面下方的“助”来查看。
     <br />
