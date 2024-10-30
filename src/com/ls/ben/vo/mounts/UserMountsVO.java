@@ -7,7 +7,7 @@ import com.ls.web.service.mounts.MountsService;
 
 
 /**
- * ÓÃ»§×øÆï¶ÔÓ¦ÊµÌåÀà ¶ÔÓ¦±íu_mounts_temp
+ * ç”¨æˆ·åéª‘å¯¹åº”å®ä½“ç±» å¯¹åº”è¡¨u_mounts_temp
  * @author Thomas.lei
  *
  */

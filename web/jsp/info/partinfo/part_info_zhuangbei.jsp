@@ -8,7 +8,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="equip" title="<s:message key = "gamename"/>">
 <p>
 <%@ include file="part_info_menu_head.jsp"%>

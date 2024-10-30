@@ -1,8 +1,8 @@
 package com.ls.ben.vo.info.group;
 
 /**
- * 功能:u_group_info
- * @author 刘帅
+ * 鍔熻兘:u_group_info
+ * @author 鍒樺竻
  * 1:15:03 PM
  */
 public class GroupInfoVO {
@@ -11,22 +11,22 @@ public class GroupInfoVO {
 	
 	 /**id*/
 	 private int  gPk;
-	 /**角色id*/
+	 /**瑙掕壊id*/
 	 private int  pPk;
 	 /**
-	  * 成员名字
+	  * 鎴愬憳鍚嶅瓧
 	  */
 	 private String pName;
-	 /**是否是队长，1表示是，0表示不是*/
+	 /**鏄惁鏄槦闀匡紝1琛ㄧず鏄紝0琛ㄧず涓嶆槸*/
 	 
-	 /**玩家等级*/
+	 /**鐜╁绛夌骇*/
 	 private int pGrade;
 	 private int  gCaptainPk;
 	 
-	 /** 玩家所在地图id */
+	 /** 鐜╁鎵�鍦ㄥ湴鍥緄d */
 	 private int pMap;
 	 
-	 /** 玩家所在地图名 */
+	 /** 鐜╁鎵�鍦ㄥ湴鍥惧悕 */
 	 private String pMapName;
 	 
 	 

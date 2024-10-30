@@ -40,7 +40,7 @@ public class MarkupAction extends DispatchAction {
 	 * @param response
 	 * @return ActionForward
 	 */
-	//ÏÔÊ¾±ê¼ÇµÀ¾ß±ê¼ÇÇé¿ö
+	//æ˜¾ç¤ºæ ‡è®°é“å…·æ ‡è®°æƒ…å†µ
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -65,14 +65,14 @@ public class MarkupAction extends DispatchAction {
 		String scene_name = null;
 		if( scene_id==-1 )
 		{
-			resultWml.append("Äú»¹Ã»ÓĞ×ö±ê¼Ç");
+			resultWml.append("æ‚¨è¿˜æ²¡æœ‰åšæ ‡è®°");
 			request.setAttribute("isMarkup", "false");
 		}
 		else
 		{
 			RoomService roomService = new RoomService();
 			scene_name = roomService.getName(scene_id);
-			resultWml.append("ÄúÒÑÔÚ"+scene_name+"×öÁË±ê¼Ç");
+			resultWml.append("æ‚¨å·²åœ¨"+scene_name+"åšäº†æ ‡è®°");
 		}
 		
 		
@@ -83,7 +83,7 @@ public class MarkupAction extends DispatchAction {
 		return mapping.findForward("markup_display");
 	}
 	
-	//±ê¼Ç
+	//æ ‡è®°
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -110,7 +110,7 @@ public class MarkupAction extends DispatchAction {
 		return mapping.findForward("markup_display");
 	}
 	
-	//´«ËÍ 
+	//ä¼ é€ 
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -122,7 +122,7 @@ public class MarkupAction extends DispatchAction {
 		
 		
 		CoordinateDao coordinateDao = new CoordinateDao();
-		//±ê¼ÇÊ¹ÓÃ±ê¼ÇµÀ¾ß
+		//æ ‡è®°ä½¿ç”¨æ ‡è®°é“å…·
 		coordinateDao.useProp(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(prop_id));
 		PropUseService propUseService = new PropUseService();
 		propUseService.usePropByPropGroupID(roleInfo, Integer.parseInt(pg_pk), 1);

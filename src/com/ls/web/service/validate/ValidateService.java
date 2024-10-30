@@ -15,13 +15,13 @@ import com.ls.pub.config.GameConfig;
 import com.pub.ben.info.Expression;
 
 /**
- * @author ls ÑéÖ¤ÓÃ»§µÄÊäÈë£¬·µ»ØÑéÖ¤Ê§°ÜµÄ×Ö·û´®£¬·µ»ØÎª¿ÕÊ±±íÊ¾ÑéÖ¤³É¹¦
+ * @author ls éªŒè¯ç”¨æˆ·çš„è¾“å…¥ï¼Œè¿”å›éªŒè¯å¤±è´¥çš„å­—ç¬¦ä¸²ï¼Œè¿”å›ä¸ºç©ºæ—¶è¡¨ç¤ºéªŒè¯æˆåŠŸ
  */
 public class ValidateService
 {
 
 	/**
-	 * ÑéÖ¤½ÇÊÇ·ñ¿ÉÒÔ´´½¨½ÇÉ«Ê±
+	 * éªŒè¯è§’æ˜¯å¦å¯ä»¥åˆ›å»ºè§’è‰²æ—¶
 	 * @param 
 	 * @return
 	 */
@@ -29,47 +29,47 @@ public class ValidateService
 	{
 		String hint = null;
 
-		// ÓÃ»§ÃûÆ¥ÅäÎª×Ö·ûĞÍ
+		// ç”¨æˆ·ååŒ¹é…ä¸ºå­—ç¬¦å‹
 		Pattern p = Pattern.compile(Expression.chinese_regexp);
 		Matcher m = p.matcher(role_name);
 		boolean b = m.matches();
 		if (b == false)
 		{
-			return "Êı×Ö,Ó¢ÎÄ»òÖĞÎÄ×Ö·û×éºÏ";
+			return "æ•°å­—,è‹±æ–‡æˆ–ä¸­æ–‡å­—ç¬¦ç»„åˆ";
 		}
 
 		if (role_name.indexOf(" ") != -1)
 		{
-			return hint = "²»ÄÜÓĞ¿Õ¸ñ";
+			return hint = "ä¸èƒ½æœ‰ç©ºæ ¼";
 		}
 
 		if (role_name == null || role_name.equals(""))
 		{
-			return hint = "²»ÄÜÎª¿Õ";
+			return hint = "ä¸èƒ½ä¸ºç©º";
 		}
 
 		if (role_name.length() < 2)
 		{
-			return hint = "½ÇÉ«Ãû³¤¶È²»¹»";
+			return hint = "è§’è‰²åé•¿åº¦ä¸å¤Ÿ";
 		}
 		if (role_name.length() > 5)
 		{
-			return hint = "½ÇÉ«Ãû³¤¶È³¬¹ıÏŞÖÆ";
+			return hint = "è§’è‰²åé•¿åº¦è¶…è¿‡é™åˆ¶";
 		}
 		
 		if (Expression.hasWeiFaChar(role_name))
 		{
-			return "Ãû×ÖÖĞÇë²»ÒªÓĞgm¡¢¿Í·şµÈ×ÖÑù!";
+			return "åå­—ä¸­è¯·ä¸è¦æœ‰gmã€å®¢æœç­‰å­—æ ·!";
 		}
 		
 		if (Expression.hasForbidChar(role_name,ForBidCache.FORBIDNAME))
 		{
-			return "Ãû×ÖÖĞ°üº¬½ûÖ¹×Ö·û!";
+			return "åå­—ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 		}
 
 		if( StringUtils.isNumeric(sex)==false || Integer.parseInt(sex)>2 || Integer.parseInt(sex)<1 )
 		{
-			return "·Ç·¨ĞÔ±ğ";
+			return "éæ³•æ€§åˆ«";
 		}
 		
 		hint = validateRace(race);
@@ -79,32 +79,32 @@ public class ValidateService
 		}
 		
 		/**
-		 * ÅĞ¶Ï½ÇÉ«Ãû²»ÄÜÖØ¸´
+		 * åˆ¤æ–­è§’è‰²åä¸èƒ½é‡å¤
 		 */
 		PartInfoDAO dao = new PartInfoDAO();
 		if (dao.getPartTypeListName(role_name))
 		{
-			return hint = "ÄúÊäÈëµÄÃû×ÖÒÑ±»ÈËÕ¼ÓÃ£¬ÇëÖØĞÂÊäÈë";
+			return hint = "æ‚¨è¾“å…¥çš„åå­—å·²è¢«äººå ç”¨ï¼Œè¯·é‡æ–°è¾“å…¥";
 		}
 
-		// ·µ»ØÓÃ»§ÓµÓĞ¶àÉÙ¸ö½ÇÉ« ¶¨Òå×î¶à²»ÄÜ³¬¹ı5¸ö
+		// è¿”å›ç”¨æˆ·æ‹¥æœ‰å¤šå°‘ä¸ªè§’è‰² å®šä¹‰æœ€å¤šä¸èƒ½è¶…è¿‡5ä¸ª
 		int role_num = dao.getRoleNum(uPk);
 		if (role_num >= GameConfig.getPlayerNum())
 		{
-			return hint = "Äú²»ÄÜ´´½¨ÕâÃ´¶à½ÇÉ«¡£";
+			return hint = "æ‚¨ä¸èƒ½åˆ›å»ºè¿™ä¹ˆå¤šè§’è‰²ã€‚";
 		}
 
-		// ÅĞ¶Ï½ÇÉ«Ãû²»ÄÜ´øÓĞ±»½ûÖ¹µÄ¹Ø¼ü×Ö
+		// åˆ¤æ–­è§’è‰²åä¸èƒ½å¸¦æœ‰è¢«ç¦æ­¢çš„å…³é”®å­—
 		if (dao.getForbidName(role_name))
 		{
-			return hint = "ÄúÊäÈëµÄÃû×ÖÓĞ±»½ûÓÃ×Ö·û,ÇëÖØĞÂÊäÈë";
+			return hint = "æ‚¨è¾“å…¥çš„åå­—æœ‰è¢«ç¦ç”¨å­—ç¬¦,è¯·é‡æ–°è¾“å…¥";
 		}
 
 		return hint;
 	}
 
 	/**
-	 * ÑéÖ¤ÓÃ»§ÃûµÄºÏ·¨ĞÔ
+	 * éªŒè¯ç”¨æˆ·åçš„åˆæ³•æ€§
 	 * 
 	 * @param user_name
 	 * @return
@@ -113,43 +113,43 @@ public class ValidateService
 	{
 		String hint = null;
 
-		// ÓÃ»§ÃûÆ¥ÅäÎª×Ö·ûĞÍ
+		// ç”¨æˆ·ååŒ¹é…ä¸ºå­—ç¬¦å‹
 		Pattern p = Pattern.compile(Expression.letter_number_regexp);
 		Matcher m = p.matcher(user_name);
 		boolean b = m.matches();
 		if (b == false)
 		{
-			return "ÕËºÅÇëÊäÈë´óĞ¡Ğ´Ó¢ÎÄ×Ö·ûºÍÊı×Ö×Ö·û";
+			return "è´¦å·è¯·è¾“å…¥å¤§å°å†™è‹±æ–‡å­—ç¬¦å’Œæ•°å­—å­—ç¬¦";
 		}
 
 		if (user_name.indexOf(" ") != -1)
 		{
-			return "ÕËºÅ²»ÄÜÓĞ¿Õ¸ñ³öÏÖ";
+			return "è´¦å·ä¸èƒ½æœ‰ç©ºæ ¼å‡ºç°";
 		}
 		if (user_name == null || user_name.equals(""))
 		{
-			return "ÕËºÅ²»ÄÜÎª¿Õ";
+			return "è´¦å·ä¸èƒ½ä¸ºç©º";
 		}
 		if (user_name.length() < 5)
 		{
-			return "ÕËºÅÎ»Êı²»ÄÜĞ¡ÓÚ5Î»";
+			return "è´¦å·ä½æ•°ä¸èƒ½å°äº5ä½";
 		}
 		else
 			if (user_name.length() > 11)
 			{
-				return "ÕËºÅÎ»Êı²»ÄÜ´óÓÚ11Î»";
+				return "è´¦å·ä½æ•°ä¸èƒ½å¤§äº11ä½";
 			}
 
 		if (Expression.hasWeiFaChar(user_name))
 		{
-			return "Ãû×ÖÖĞÇë²»ÒªÓĞgm¡¢¿Í·şµÈ×ÖÑù!";
+			return "åå­—ä¸­è¯·ä¸è¦æœ‰gmã€å®¢æœç­‰å­—æ ·!";
 		}
 
 		return hint;
 	}
 
 	/**
-	 * ÑéÖ¤ÃÜÂëµÄºÏ·¨ĞÔ
+	 * éªŒè¯å¯†ç çš„åˆæ³•æ€§
 	 * 
 	 * @param user_name
 	 * @return
@@ -164,33 +164,33 @@ public class ValidateService
 
 		if (pp == false)
 		{
-			return "ÃÜÂëÇëÊäÈë´óĞ¡Ğ´Ó¢ÎÄ×Ö·ûºÍÊı×Ö×Ö·û";
+			return "å¯†ç è¯·è¾“å…¥å¤§å°å†™è‹±æ–‡å­—ç¬¦å’Œæ•°å­—å­—ç¬¦";
 		}
 
 		if (pwd.length() < 5)
 		{
-			return "ÃÜÂëÎ»Êı²»ÄÜĞ¡ÓÚ5Î»";
+			return "å¯†ç ä½æ•°ä¸èƒ½å°äº5ä½";
 		}
 		else
 			if (pwd.length() > 11)
 			{
-				return "ÃÜÂëÎ»Êı²»ÄÜ´óÓÚ11Î»";
+				return "å¯†ç ä½æ•°ä¸èƒ½å¤§äº11ä½";
 			}
 
 		if (pwd.indexOf(" ") != -1)
 		{
-			return "ÃÜÂë²»ÄÜÓĞ¿Õ¸ñ³öÏÖ";
+			return "å¯†ç ä¸èƒ½æœ‰ç©ºæ ¼å‡ºç°";
 		}
 		if (pwd == null || pwd.equals(""))
 		{
-			return "ÃÜÂë²»ÄÜÎª¿Õ";
+			return "å¯†ç ä¸èƒ½ä¸ºç©º";
 		}
 
 		return hint;
 	}
 
 	/**
-	 * ÑéÖ¤×¢²áÕËºÅµÄÓÃ»§ÃûºÍÃÜÂëµÄºÏ·¨ĞÔ
+	 * éªŒè¯æ³¨å†Œè´¦å·çš„ç”¨æˆ·åå’Œå¯†ç çš„åˆæ³•æ€§
 	 * 
 	 * @return
 	 */
@@ -198,46 +198,46 @@ public class ValidateService
 	{
 		String hint = null;
 		
-		// ÑéÖ¤ÓÃ»§Ãû¸ñÊ½µÄºÏ·¨ĞÔ
+		// éªŒè¯ç”¨æˆ·åæ ¼å¼çš„åˆæ³•æ€§
 		if( StringUtils.isEmpty(user_name))
 		{
-			return "ÇëÊäÈëÕıÈ·µÄÓÃ»§Ãû!";
+			return "è¯·è¾“å…¥æ­£ç¡®çš„ç”¨æˆ·å!";
 		}
 		
 		Pattern p = Pattern.compile(Expression.letter_number_regexp);
 		if (user_name.length() > 11)
 		{
-			return "¶Ô²»Æğ£¬ÓÎÏ·ÕÊºÅÎª6-11Î»Êı×ÖºÍ´óĞ¡Ğ´Ó¢ÎÄ×Ö·û×éºÏ£»ÃÜÂëÎª6Î»Êı×ÖºÍ´óĞ¡Ğ´Ó¢ÎÄ×Ö·û×éºÏ¡£ÖØĞÂ×¢²á£¡";
+			return "å¯¹ä¸èµ·ï¼Œæ¸¸æˆå¸å·ä¸º6-11ä½æ•°å­—å’Œå¤§å°å†™è‹±æ–‡å­—ç¬¦ç»„åˆï¼›å¯†ç ä¸º6ä½æ•°å­—å’Œå¤§å°å†™è‹±æ–‡å­—ç¬¦ç»„åˆã€‚é‡æ–°æ³¨å†Œï¼";
 		}
 
 		if (pwd.length() != 6)
 		{
-			return "¶Ô²»Æğ£¬ÓÎÏ·ÕÊºÅÎª6-11Î»Êı×ÖºÍ´óĞ¡Ğ´Ó¢ÎÄ×Ö·û×éºÏ£»ÃÜÂëÎª6Î»Êı×ÖºÍ´óĞ¡Ğ´Ó¢ÎÄ×Ö·û×éºÏ¡£ÖØĞÂ×¢²á£¡";
+			return "å¯¹ä¸èµ·ï¼Œæ¸¸æˆå¸å·ä¸º6-11ä½æ•°å­—å’Œå¤§å°å†™è‹±æ–‡å­—ç¬¦ç»„åˆï¼›å¯†ç ä¸º6ä½æ•°å­—å’Œå¤§å°å†™è‹±æ–‡å­—ç¬¦ç»„åˆã€‚é‡æ–°æ³¨å†Œï¼";
 		}
 
 		Matcher m1 = p.matcher(user_name);
 		boolean b1 = m1.matches();
 		if (b1 == false)
 		{
-			return "ÇëÊäÈëÕıÈ·µÄÓÃ»§Ãû!";
+			return "è¯·è¾“å…¥æ­£ç¡®çš„ç”¨æˆ·å!";
 		}
-		// ÑéÖ¤ÃÜÂë¸ñÊ½µÄºÏ·¨ĞÔ
+		// éªŒè¯å¯†ç æ ¼å¼çš„åˆæ³•æ€§
 		if (pwd == null || pwd.trim().equals(""))
 		{
-			return "ÇëÊäÈëÕıÈ·µÄÃÜÂë!";
+			return "è¯·è¾“å…¥æ­£ç¡®çš„å¯†ç !";
 		}
 
 		Matcher m2 = p.matcher(pwd);
 		boolean b2 = m2.matches();
 		if (b2 == false)
 		{
-			return "ÇëÊäÈëÕıÈ·µÄÃÜÂë!";
+			return "è¯·è¾“å…¥æ­£ç¡®çš„å¯†ç !";
 		}
-		// ÑéÖ¤ÓÃ»§ÃûµÄ´æÔÚ
+		// éªŒè¯ç”¨æˆ·åçš„å­˜åœ¨
 		LoginDao loginDao = new LoginDao();
 		if (loginDao.isHaveName(user_name))
 		{
-			hint = "ÓÃ»§ÃûÒÑ¾­´æÔÚ";
+			hint = "ç”¨æˆ·åå·²ç»å­˜åœ¨";
 			return hint;
 		}
 
@@ -245,14 +245,14 @@ public class ValidateService
 
 		if (hint != null)
 		{
-			return "¶Ô²»Æğ£¬´ËÕÊºÅÒÑ¾­×¢²á¡£ÖØĞÂ×¢²á£¡";
+			return "å¯¹ä¸èµ·ï¼Œæ­¤å¸å·å·²ç»æ³¨å†Œã€‚é‡æ–°æ³¨å†Œï¼";
 		}
 
 		return hint;
 	}
 	
 	/**
-	 * ÑéÖ¤ÊÇ·ñÊÇ·Ç0ÕıÕûÊı
+	 * éªŒè¯æ˜¯å¦æ˜¯é0æ­£æ•´æ•°
 	 */
 	public static String validateNonZeroNegativeIntegers(String num)
 	{
@@ -260,15 +260,15 @@ public class ValidateService
 		
 		if( num==null )
 		{
-			return hint = "·Ç·¨ÊäÈë";
+			return hint = "éæ³•è¾“å…¥";
 		}
 		
-		// ÓÃ»§ÃûÆ¥ÅäÎª×Ö·ûĞÍ
+		// ç”¨æˆ·ååŒ¹é…ä¸ºå­—ç¬¦å‹
 		Pattern p = Pattern.compile(Expression.non_zero_negative_integers_regexp);
 		Matcher m = p.matcher(num.trim());
 		if(!m.matches())
 		{
-			hint = "·Ç·¨ÊäÈë";
+			hint = "éæ³•è¾“å…¥";
 		}
 		
 		return hint;
@@ -276,7 +276,7 @@ public class ValidateService
 
 	
 	/**
-	 * ÑéÖ¤°ïÅÉÃû³ÆµÄºÏ·¨ĞÔ
+	 * éªŒè¯å¸®æ´¾åç§°çš„åˆæ³•æ€§
 	 * 
 	 * @param role_name
 	 * @return
@@ -285,85 +285,85 @@ public class ValidateService
 	{
 		String hint = null;
 
-		// ÓÃ»§ÃûÆ¥ÅäÎª×Ö·ûĞÍ
+		// ç”¨æˆ·ååŒ¹é…ä¸ºå­—ç¬¦å‹
 		Pattern p = Pattern.compile(Expression.chinese_regexp);
 		Matcher m = p.matcher(tong_name);
 		boolean b = m.matches();
 		if (b == false)
 		{
-			return "°ïÅÉÃû³ÆÎªÊı×Ö,Ó¢ÎÄ»òÖĞÎÄ×Ö·û×éºÏ";
+			return "å¸®æ´¾åç§°ä¸ºæ•°å­—,è‹±æ–‡æˆ–ä¸­æ–‡å­—ç¬¦ç»„åˆ";
 		}
 
 		if (tong_name.indexOf(" ") != -1)
 		{
-			return hint = "°ïÅÉÃû³Æ²»ÄÜÓĞ¿Õ¸ñ";
+			return hint = "å¸®æ´¾åç§°ä¸èƒ½æœ‰ç©ºæ ¼";
 		}
 
 		if (tong_name == null || tong_name.equals(""))
 		{
-			return hint = "°ïÅÉÃû³Æ²»ÄÜÎª¿Õ";
+			return hint = "å¸®æ´¾åç§°ä¸èƒ½ä¸ºç©º";
 		}
 
 		if (Expression.hasWeiFaChar(tong_name))
 		{
-			return "°ïÅÉÃû³ÆÖĞÇë²»ÒªÓĞgm¡¢¿Í·şµÈ×ÖÑù!";
+			return "å¸®æ´¾åç§°ä¸­è¯·ä¸è¦æœ‰gmã€å®¢æœç­‰å­—æ ·!";
 		}
 		
 		if (Expression.hasForbidChar(tong_name,ForBidCache.FORBIDNAME))
 		{
-			return "°ïÅÉÃû³ÆÖĞ°üº¬½ûÖ¹×Ö·û!";
+			return "å¸®æ´¾åç§°ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 		}
 		
 		if (tong_name.length() > 5)
 		{
-			return "°ïÅÉÃû³Æ²»ÄÜ³¤ÓÚ5Î»";
+			return "å¸®æ´¾åç§°ä¸èƒ½é•¿äº5ä½";
 		}
 
 		PartInfoDAO dao = new PartInfoDAO();
 
-		// ÅĞ¶Ï½ÇÉ«Ãû²»ÄÜ´øÓĞ±»½ûÖ¹µÄ¹Ø¼ü×Ö
+		// åˆ¤æ–­è§’è‰²åä¸èƒ½å¸¦æœ‰è¢«ç¦æ­¢çš„å…³é”®å­—
 		if (dao.getForbidName(tong_name))
 		{
-			return hint = "°ïÅÉÃû³ÆÓĞ±»½ûÓÃ×Ö·û,ÇëÖØĞÂÊäÈë";
+			return hint = "å¸®æ´¾åç§°æœ‰è¢«ç¦ç”¨å­—ç¬¦,è¯·é‡æ–°è¾“å…¥";
 		}
 
 		return hint;
 	}
 	
 	/**
-	 * »ù±¾ÊäÈëÑéÖ¤
+	 * åŸºæœ¬è¾“å…¥éªŒè¯
 	 */
 	public static String validateBasicInput(String input_content,int limit_length )
 	{
 		if( StringUtils.isEmpty(input_content) )
 		{
-			return "ÊäÈë²»ÄÜÎª¿Õ";
+			return "è¾“å…¥ä¸èƒ½ä¸ºç©º";
 		}
 		
 		if (Expression.hasWeiFaChar(input_content))
 		{
-			return "°üº¬gm¡¢¿Í·şµÈ×ÖÑùµÄ·Ç·¨×Ö·û";
+			return "åŒ…å«gmã€å®¢æœç­‰å­—æ ·çš„éæ³•å­—ç¬¦";
 		}
 		
 		if( Expression.hasPublish(input_content)==-1 )
 		{
-			return "°üº¬ÓĞ·Ç·¨×Ö·û";
+			return "åŒ…å«æœ‰éæ³•å­—ç¬¦";
 		}
 		
 		if( input_content.length() > limit_length)
 		{
-			return "²»ÄÜ³¤ÓÚ"+limit_length+"Î»";
+			return "ä¸èƒ½é•¿äº"+limit_length+"ä½";
 		}
 		
 		if (Expression.hasForbidChar(input_content,ForBidCache.FORBIDNAME))
 		{
-			return "°üº¬½ûÖ¹×Ö·û!";
+			return "åŒ…å«ç¦æ­¢å­—ç¬¦!";
 		}
 		
 /*		PartInfoDAO dao = new PartInfoDAO();
 		if (dao.getForbidName(input_content))
 		{
-			return "ÓĞ±»½ûÓÃ×Ö·û";
+			return "æœ‰è¢«ç¦ç”¨å­—ç¬¦";
 		}
 */		
 		return null;
@@ -371,7 +371,7 @@ public class ValidateService
 	
 	
 	/**
-	 * ÑéÖ¤ÖÖ×åÊÇ·ñºÏ·¨
+	 * éªŒè¯ç§æ—æ˜¯å¦åˆæ³•
 	 * @param race
 	 * @return
 	 */
@@ -379,7 +379,7 @@ public class ValidateService
 	{
 		if( StringUtils.isNumeric(race)==false || Integer.parseInt(race)>2 || Integer.parseInt(race)<1 )
 		{
-			return "·Ç·¨ÖÖ×å";
+			return "éæ³•ç§æ—";
 		}
 		return null;
 	}

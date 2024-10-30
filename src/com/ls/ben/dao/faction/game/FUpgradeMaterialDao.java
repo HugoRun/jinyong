@@ -9,7 +9,7 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * £¨°ïÅÉ£¬ìôÌÃ£©°ïÅÉÓÃ²ÄÁÏ
+ * ï¼ˆå¸®æ´¾ï¼Œç¥ å ‚ï¼‰å¸®æ´¾ç”¨ææ–™
  */
 public class FUpgradeMaterialDao extends BasicDaoSupport<FUpgradeMaterial>
 {
@@ -20,8 +20,8 @@ public class FUpgradeMaterialDao extends BasicDaoSupport<FUpgradeMaterial>
 	}
 
 	/**
-	 * µÃµ½°ïÅÉÓÃ²ÄÁÏ£¨°ïÅÉ=1£¬ìôÌÃ=2£©
-	 *  type;//²ÄÁÏÀàĞÍ£º1±íÊ¾°ïÅÉÉı¼¶²ÄÁÏ£¬2±íÊ¾ìôÌÃÉı¼¶²ÄÁÏ
+	 * å¾—åˆ°å¸®æ´¾ç”¨ææ–™ï¼ˆå¸®æ´¾=1ï¼Œç¥ å ‚=2ï¼‰
+	 *  type;//ææ–™ç±»å‹ï¼š1è¡¨ç¤ºå¸®æ´¾å‡çº§ææ–™ï¼Œ2è¡¨ç¤ºç¥ å ‚å‡çº§ææ–™
 	 * @return
 	 */
 	public FUpgradeMaterial getOneByType(int type,int grade)

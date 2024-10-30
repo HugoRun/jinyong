@@ -9,7 +9,8 @@
 	String type = (String)request.getAttribute("type");
 	String page_no = (String)request.getAttribute("page_no");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="mall" title="<s:message key = "gamename"/>">
 <p>
 <%@ include file="/init/system/error_hint.jsp"%>

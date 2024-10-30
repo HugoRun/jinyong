@@ -6,12 +6,12 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * 装备升级材料
+ * 瑁呭鍗囩骇鏉愭枡
  */
 public class EquipMaterialDao extends DaoBase
 {
 	/**
-	 * 根据品质和等级得到升级需要的信息
+	 * 鏍规嵁鍝佽川鍜岀瓑绾у緱鍒板崌绾ч渶瑕佺殑淇℃伅
 	 * @param quality
 	 * @param grade
 	 * @return
@@ -19,7 +19,7 @@ public class EquipMaterialDao extends DaoBase
 	public EquipMaterialVO getByQualityAndGrade(int quality,int grade)
 	{
 		EquipMaterialVO equip_material = null;
-		String sql = "select * from equip_material where quality=" + quality+" and grade="+grade+" limit 1";
+		String sql = "SELECT * FROM equip_material where quality=" + quality+" and grade="+grade+" limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

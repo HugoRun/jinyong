@@ -8,45 +8,45 @@ import com.ls.pub.util.MathUtil;
 
 /**
  * @author ls
- * ÓÎÏ·×°±¸Êı¾İ
+ * æ¸¸æˆè£…å¤‡æ•°æ®
  */
 public class GameEquip
 {
-	//»ù´¡ÊôĞÔ
+	//åŸºç¡€å±æ€§
 	private int id;
 	private String name;
 	private String des;
 	private String pic;
-	private int type;//×°±¸ÀàĞÍ:1ÎäÆ÷£¬2Í·¿ø£¬3ÒÂ·ş£¬4Òª´ø£¬5Ğ¬×Ó£¬6ÊÎÆ·
-	private int price;//Âô³ö¼ÛÇ®
-	private int endure;//×î´óÄÍ¾Ã¶È
+	private int type;//è£…å¤‡ç±»å‹:1æ­¦å™¨ï¼Œ2å¤´ç›”ï¼Œ3è¡£æœï¼Œ4è¦å¸¦ï¼Œ5é‹å­ï¼Œ6é¥°å“
+	private int price;//å–å‡ºä»·é’±
+	private int endure;//æœ€å¤§è€ä¹…åº¦
 	
-	//Ê¹ÓÃÏŞÖÆÊôĞÔ
-	private int grade;//×°±¸µÈ¼¶£¬¼´Ê¹ÓÃµÈ¼¶
+	//ä½¿ç”¨é™åˆ¶å±æ€§
+	private int grade;//è£…å¤‡ç­‰çº§ï¼Œå³ä½¿ç”¨ç­‰çº§
 	private int sex;
-	private int job;//ÖÖ×å
+	private int job;//ç§æ—
 	private int isMarried;
-	private int isBind;//ÊÇ·ñ°ó¶¨
-	private int isProtected;//ÊÇ·ñÊÇÊÜ±£»¤µÄ
-	private int isReconfirm;//ÊÇ·ñĞèÒª¶ş´ÎÈ·ÈÏ
+	private int isBind;//æ˜¯å¦ç»‘å®š
+	private int isProtected;//æ˜¯å¦æ˜¯å—ä¿æŠ¤çš„
+	private int isReconfirm;//æ˜¯å¦éœ€è¦äºŒæ¬¡ç¡®è®¤
 
-	//Õ½¶·ÊôĞÔ
+	//æˆ˜æ–—å±æ€§
 	private int minAtt;
 	private int maxAtt;
 	private int minDef;
 	private int maxDef;
 	
-	private String otherAttriStr="";//×î¸ßÆ·ÖÊµÄ×°±¸µÄ¹Ì¶¨£¬ÊôĞÔ×Ö·û´®,Èç£ºjinAtt,2-maxHp,100
+	private String otherAttriStr="";//æœ€é«˜å“è´¨çš„è£…å¤‡çš„å›ºå®šï¼Œå±æ€§å­—ç¬¦ä¸²,å¦‚ï¼šjinAtt,2-maxHp,100
 	
-	private String appendAttriStr="";//µÈ¼¶Éıµ½×î¸ß¼¶Ê±£¬¸½¼ÓÊôĞÔ×Ö·û´®,Èç£ºjinAtt,2-maxHp,100
+	private String appendAttriStr="";//ç­‰çº§å‡åˆ°æœ€é«˜çº§æ—¶ï¼Œé™„åŠ å±æ€§å­—ç¬¦ä¸²,å¦‚ï¼šjinAtt,2-maxHp,100
 	
-	//ÆäËûÊôĞÔ
-	private int suitId;//Ì××°id
-	private int qualityRate=1;//Æ·ÖÊµôÂäÏµÊı
-	private int dropNum=0;//¸Ã×°±¸£¬µôÂäÊıÁ¿(¸Ã×Ö¶Î²»±£´æÊı¾İ¿â)
+	//å…¶ä»–å±æ€§
+	private int suitId;//å¥—è£…id
+	private int qualityRate=1;//å“è´¨æ‰è½ç³»æ•°
+	private int dropNum=0;//è¯¥è£…å¤‡ï¼Œæ‰è½æ•°é‡(è¯¥å­—æ®µä¸ä¿å­˜æ•°æ®åº“)
 	
 	/**
-	 * µ±×°±¸Éıµ½×î¸ßµÈ¼¶Ê±Ëæ»úµÃµ½Ò»¸ö×°±¸ÊôĞÔ
+	 * å½“è£…å¤‡å‡åˆ°æœ€é«˜ç­‰çº§æ—¶éšæœºå¾—åˆ°ä¸€ä¸ªè£…å¤‡å±æ€§
 	 */
 	public EquipAppendAttri getAppendAttri()
 	{
@@ -65,13 +65,13 @@ public class GameEquip
 	}
 	
 	/**
-	 * µÃµ½´ò¿×Êı
+	 * å¾—åˆ°æ‰“å­”æ•°
 	 * @return   
 	 */
 	public int getHoleNum( int quality )
 	{
-		int min_hole_num = 0;//×îĞ¡¿×Êı
-		int max_hole_num = 0;//×î´ó¿×Êı
+		int min_hole_num = 0;//æœ€å°å­”æ•°
+		int max_hole_num = 0;//æœ€å¤§å­”æ•°
 		switch(quality)
 		{
 			case 1:
@@ -97,7 +97,7 @@ public class GameEquip
 	}
 	
 	/**
-	 * ¼ÛÇ®ÃèÊö
+	 * ä»·é’±æè¿°
 	 */
 	public String getPriceDes()
 	{
@@ -105,7 +105,7 @@ public class GameEquip
 	}
 	
 	/**
-	 * µÃµ½Í¼Æ¬ÏÔÊ¾ÍêÕûÂ·¾¶
+	 * å¾—åˆ°å›¾ç‰‡æ˜¾ç¤ºå®Œæ•´è·¯å¾„
 	 * @return
 	 */
 	public String getPicDisplay()
@@ -118,12 +118,12 @@ public class GameEquip
 	}
 	
 	/**
-	 * µÃµ½µôÂäÆ·ÖÊ
-	 * µôÂä×°±¸Æ·ÖÊ×°±¸¹«Ê½µ÷ÕûÎª°´ÕÕµôÂäÊıÁ¿½øĞĞ¼ÆËã£¬¼´ÉèÒ»ÏµÊı£¬
-	 * ±¦Æ÷£¨ÓÅĞã£©µôÂÊÎª1¡ÁÏµÊı£»
-	 * ºóÌìÁéÆ÷£¨¾«Á¼£©µôÂÊÎª10¡ÁÏµÊı£»
-	 * ÏÈÌìÁé±¦£¨¼«Æ·£©µôÂÊÎª100¡ÁÏµÊı¡£
-	 * Õâ¾ÍÒªÇó½«µôÂä±íÖĞ¿ØÖÆÊôĞÔµôÂä¼¸ÂÊµÄ×Ö¶Î¸ÄÎªÏµÊı¿ØÖÆ×Ö¶Î
+	 * å¾—åˆ°æ‰è½å“è´¨
+	 * æ‰è½è£…å¤‡å“è´¨è£…å¤‡å…¬å¼è°ƒæ•´ä¸ºæŒ‰ç…§æ‰è½æ•°é‡è¿›è¡Œè®¡ç®—ï¼Œå³è®¾ä¸€ç³»æ•°ï¼Œ
+	 * å®å™¨ï¼ˆä¼˜ç§€ï¼‰æ‰ç‡ä¸º1Ã—ç³»æ•°ï¼›
+	 * åå¤©çµå™¨ï¼ˆç²¾è‰¯ï¼‰æ‰ç‡ä¸º10Ã—ç³»æ•°ï¼›
+	 * å…ˆå¤©çµå®ï¼ˆæå“ï¼‰æ‰ç‡ä¸º100Ã—ç³»æ•°ã€‚
+	 * è¿™å°±è¦æ±‚å°†æ‰è½è¡¨ä¸­æ§åˆ¶å±æ€§æ‰è½å‡ ç‡çš„å­—æ®µæ”¹ä¸ºç³»æ•°æ§åˆ¶å­—æ®µ
 	 */
 	public int getDropQuality()
 	{

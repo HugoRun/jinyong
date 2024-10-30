@@ -8,6 +8,6 @@ public class EndLostTimer extends TimerTask
 {
 	public void run()
 	{
-		new SystemInfoService().insertSystemInfoBySystem("神秘迷宫的大门已经关闭，没有找到宝藏的大侠们下周四再努力吧！");
+		new SystemInfoService().insertSystemInfoBySystem("绁炵杩峰鐨勫ぇ闂ㄥ凡缁忓叧闂紝娌℃湁鎵惧埌瀹濊棌鐨勫ぇ渚犱滑涓嬪懆鍥涘啀鍔姏鍚э紒");
 	}
 }

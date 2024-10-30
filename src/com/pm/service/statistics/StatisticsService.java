@@ -26,7 +26,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * °ÑµÇÂ½ÏûÏ¢¼ÇÂ¼ÏÂÀ´
+	 * æŠŠç™»é™†æ¶ˆæ¯è®°å½•ä¸‹æ¥
 	 * 
 	 * @param uPk
 	 */
@@ -44,7 +44,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * ¼ÇÂ¼Íæ¼Ò½ÇÉ«µÇÂ½ĞÅÏ¢
+	 * è®°å½•ç©å®¶è§’è‰²ç™»é™†ä¿¡æ¯
 	 * 
 	 * @param pk
 	 */
@@ -61,7 +61,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * ¼ÆËãÍæ¼ÒµÄÔÚÏßÊ±³¤,½«Æä´æÈëÊı¾İ¿âÖĞ.
+	 * è®¡ç®—ç©å®¶çš„åœ¨çº¿æ—¶é•¿,å°†å…¶å­˜å…¥æ•°æ®åº“ä¸­.
 	 * 
 	 * @param creationTime
 	 * @param lastAccessedTime
@@ -69,9 +69,9 @@ public class StatisticsService
 	public void recordOnLineTime(long creationTime, long lastAccessedTime,
 			String uPk, String pPk)
 	{
-		// onlineTimeÎªÃëÊı
+		// onlineTimeä¸ºç§’æ•°
 		long onlineTime = (lastAccessedTime - creationTime) / (1000);
-		// Èç¹ûpPkÎªÁã,¾Í²»¼ÆËãÁË.
+		// å¦‚æœpPkä¸ºé›¶,å°±ä¸è®¡ç®—äº†.
 		if (pPk == null || pPk.equals(""))
 		{
 
@@ -90,7 +90,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * Æô¶¯jygameÍ³¼ÆÊı¾İ³ÌĞò£¬ÒªÇóÃ¿24Ğ¡Ê±ÔËĞĞÒ»´Î.
+	 * å¯åŠ¨jygameç»Ÿè®¡æ•°æ®ç¨‹åºï¼Œè¦æ±‚æ¯24å°æ—¶è¿è¡Œä¸€æ¬¡.
 	 */
 	public void startJYGameRecord()
 	{
@@ -102,7 +102,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * Æô¶¯jygameÔÚÏßÈËÊıÍ³¼ÆÊı¾İ³ÌĞò£¬ÒªÇóÃ¿Ê®·ÖÖÓÔËĞĞÒ»´Î.
+	 * å¯åŠ¨jygameåœ¨çº¿äººæ•°ç»Ÿè®¡æ•°æ®ç¨‹åºï¼Œè¦æ±‚æ¯ååˆ†é’Ÿè¿è¡Œä¸€æ¬¡.
 	 */
 	public void startJYGameOnlineNumRecord()
 	{
@@ -114,7 +114,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * Æô¶¯Õ½³¡µÄÍ³¼Æ¹¤×÷,ÔÚÃ¿ÌìµÄ13:00ºÍ21:30·Ö¿ªÊ¼Õ½³¡ÄÚµÄ¸÷ÕóÓªÈËÊı, ÄÄ·½ÈËÊı½Ï¶à,¾ÍÈÃÄÄ·½Ê¤Àû
+	 * å¯åŠ¨æˆ˜åœºçš„ç»Ÿè®¡å·¥ä½œ,åœ¨æ¯å¤©çš„13:00å’Œ21:30åˆ†å¼€å§‹æˆ˜åœºå†…çš„å„é˜µè¥äººæ•°, å“ªæ–¹äººæ•°è¾ƒå¤š,å°±è®©å“ªæ–¹èƒœåˆ©
 	 */
 	public void accoutFieldResult()
 	{
@@ -128,7 +128,7 @@ public class StatisticsService
 	}
 
 
-	/** ²ÊÆ±ĞÅÏ¢ */
+	/** å½©ç¥¨ä¿¡æ¯ */
 	public void sysLotteryAndLaborage()
 	{
 		try
@@ -138,12 +138,12 @@ public class StatisticsService
 					.getInstance();
 			// Date dt = getOnlineNumRecordStartTime();
 			SimpleDateFormat formatter = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
+					"yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
 			DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-			String Time = df1.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+			String Time = df1.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 			String times = Time + " 03:00:00";
 			SimpleDateFormat formatterss = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
+					"yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
 			Date time = formatterss.parse(times);
 			Date nowtime = new Date();
 			if (nowtime.getHours() > 3)
@@ -164,7 +164,7 @@ public class StatisticsService
 		}
 	}
 
-	/** ²ÊÆ±Éú³É */
+	/** å½©ç¥¨ç”Ÿæˆ */
 	public void sysLotteryNum()
 	{
 		try
@@ -173,12 +173,12 @@ public class StatisticsService
 			TimerTask onlineNumData = GameLotteryNumService.getInstance();
 			// Date dt = getOnlineNumRecordStartTime();
 			SimpleDateFormat formatter = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
+					"yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
 			DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-			String Time = df1.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+			String Time = df1.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 			String times = Time + " 20:00:00";
 			SimpleDateFormat formatterss = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
+					"yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
 			Date time = formatterss.parse(times);
 			Date nowtime = new Date();
 			logger.info(nowtime.getHours());
@@ -201,7 +201,7 @@ public class StatisticsService
 		}
 	}
 
-	/** Í³¼Æ¿â´æ */
+	/** ç»Ÿè®¡åº“å­˜ */
 	public void sysStatisticsKucun()
 	{
 		try
@@ -209,12 +209,12 @@ public class StatisticsService
 			Timer timer = new Timer();
 			TimerTask onlineNumData = GameStatisticsKucun.getInstance();
 			// Date dt = getOnlineNumRecordStartTime();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
 			DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-			String Time = df1.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+			String Time = df1.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 			String times = Time + " 01:00:00";
 			SimpleDateFormat formatterss = new SimpleDateFormat(
-					"yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
+					"yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
 			Date time = formatterss.parse(times);
 			Date nowtime = new Date();
 			logger.info(nowtime.getHours());
@@ -234,7 +234,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * ¼ÆËã³öÕ½³¡¼ÆËãºóÌ¨µÄÔËĞĞÊ±¼ä, ÕâÊÇÆäÖĞÒ»¸ö, ÔÚ12:30 Ö®Ç°Æô¶¯µÄ»°¾Í¿ªÊ¼ÔÚ½ñÌìµÄ13:00¿ªÊ¼¼ÆËã,·ñÔò¾ÍÔÚµÚ¶şÌìµÄ13:00¿ªÊ¼¼ÆËã¡£
+	 * è®¡ç®—å‡ºæˆ˜åœºè®¡ç®—åå°çš„è¿è¡Œæ—¶é—´, è¿™æ˜¯å…¶ä¸­ä¸€ä¸ª, åœ¨12:30 ä¹‹å‰å¯åŠ¨çš„è¯å°±å¼€å§‹åœ¨ä»Šå¤©çš„13:00å¼€å§‹è®¡ç®—,å¦åˆ™å°±åœ¨ç¬¬äºŒå¤©çš„13:00å¼€å§‹è®¡ç®—ã€‚
 	 * 
 	 * @return
 	 */
@@ -246,7 +246,7 @@ public class StatisticsService
 		DateFormat df = new SimpleDateFormat("HH");
 		DateFormat dfmintes = new SimpleDateFormat("mm");
 		DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-		// ¿ªÊ¼Ê±¼ä
+		// å¼€å§‹æ—¶é—´
 		String startTime = null;
 		String dd = df.format(dt);
 		String mm = dfmintes.format(dt);
@@ -273,13 +273,13 @@ public class StatisticsService
 		{
 			e.printStackTrace();
 		}
-		logger.info("Õ½³¡Í³¼Æ¼ÆËãºóÌ¨1µÄÆô¶¯Ê±¼äÎª=" + start_time + " ,¸ñÊ½="
+		logger.info("æˆ˜åœºç»Ÿè®¡è®¡ç®—åå°1çš„å¯åŠ¨æ—¶é—´ä¸º=" + start_time + " ,æ ¼å¼="
 				+ df2.format(start_time));
 		return start_time;
 	}
 
 	/**
-	 * ¼ÆËã³öÕ½³¡¼ÆËãºóÌ¨µÄÔËĞĞÊ±¼ä, ÕâÊÇÁíÍâÒ»¸ö ÔÚ21 Ö®Ç°Æô¶¯µÄ»°¾Í¿ªÊ¼ÔÚ½ñÌìµÄ21:00¿ªÊ¼¼ÆËã,·ñÔò¾ÍÔÚµÚ¶şÌìµÄ21:30¿ªÊ¼¼ÆËã¡£
+	 * è®¡ç®—å‡ºæˆ˜åœºè®¡ç®—åå°çš„è¿è¡Œæ—¶é—´, è¿™æ˜¯å¦å¤–ä¸€ä¸ª åœ¨21 ä¹‹å‰å¯åŠ¨çš„è¯å°±å¼€å§‹åœ¨ä»Šå¤©çš„21:00å¼€å§‹è®¡ç®—,å¦åˆ™å°±åœ¨ç¬¬äºŒå¤©çš„21:30å¼€å§‹è®¡ç®—ã€‚
 	 * 
 	 * @return
 	 */
@@ -290,7 +290,7 @@ public class StatisticsService
 		DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		DateFormat df = new SimpleDateFormat("HH");
 		DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-		// ¿ªÊ¼Ê±¼ä
+		// å¼€å§‹æ—¶é—´
 		String startTime = null;
 		String dd = df.format(dt);
 		if (Integer.valueOf(dd) < 21)
@@ -308,19 +308,19 @@ public class StatisticsService
 		try
 		{
 			start_time = df2.parse(startTime);
-			logger.info("startTime=" + startTime + " ,¸ñÊ½="
+			logger.info("startTime=" + startTime + " ,æ ¼å¼="
 					+ df2.format(start_time));
 		}
 		catch (ParseException e)
 		{
 			e.printStackTrace();
 		}
-		logger.info("Õ½³¡Í³¼Æ¼ÆËãºóÌ¨2µÄÆô¶¯Ê±¼äÎª=" + start_time);
+		logger.info("æˆ˜åœºç»Ÿè®¡è®¡ç®—åå°2çš„å¯åŠ¨æ—¶é—´ä¸º=" + start_time);
 		return start_time;
 	}
 
 	/**
-	 * »ñµÃÍ³¼Æ³ÌĞòµÄ³õ´ÎÔËĞĞÊ±¼ä.
+	 * è·å¾—ç»Ÿè®¡ç¨‹åºçš„åˆæ¬¡è¿è¡Œæ—¶é—´.
 	 * 
 	 * @return
 	 */
@@ -331,7 +331,7 @@ public class StatisticsService
 		DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		DateFormat df = new SimpleDateFormat("HH");
 		DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-		// ¿ªÊ¼Ê±¼ä
+		// å¼€å§‹æ—¶é—´
 		String startTime = null;
 		String dd = df.format(dt);
 		if (Integer.valueOf(dd) < 4)
@@ -355,13 +355,13 @@ public class StatisticsService
 		{
 			e.printStackTrace();
 		}
-		logger.info("Í³¼ÆºóÌ¨µÄÆô¶¯Ê±¼äÎª=" + start_time + " ,¸ñÊ½="
+		logger.info("ç»Ÿè®¡åå°çš„å¯åŠ¨æ—¶é—´ä¸º=" + start_time + " ,æ ¼å¼="
 				+ df2.format(start_time));
 		return start_time;
 	}
 
 	/**
-	 * »ñµÃjygameÔÚÏßÈËÊıÍ³¼ÆÊı¾İ³ÌĞòµÄ³õ´ÎÔËĞĞÊ±¼ä.
+	 * è·å¾—jygameåœ¨çº¿äººæ•°ç»Ÿè®¡æ•°æ®ç¨‹åºçš„åˆæ¬¡è¿è¡Œæ—¶é—´.
 	 * 
 	 * @return
 	 */
@@ -373,7 +373,7 @@ public class StatisticsService
 	}
 
 	/**
-	 * »ñµÃÃ¿ÌìÊ±¼äµÄ¸ñÊ½»¯±íÊ¾
+	 * è·å¾—æ¯å¤©æ—¶é—´çš„æ ¼å¼åŒ–è¡¨ç¤º
 	 * 
 	 * @return
 	 */

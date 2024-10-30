@@ -32,7 +32,7 @@ import com.web.service.TaskService;
 
 public class LostAction extends BaseAction
 {
-	// ÃØ¾³µØÍ¼¶ÓÓÑ±»´«ËÍ
+	// ç§˜å¢ƒåœ°å›¾é˜Ÿå‹è¢«ä¼ é€
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -41,7 +41,7 @@ public class LostAction extends BaseAction
 			String where = request.getParameter("where");
 			if (where == null || "".equals(where.trim()))
 			{
-				setMessage(request, "³ö´íÁË");
+				setMessage(request, "å‡ºé”™äº†");
 				return mapping.findForward("mess");
 			}
 			BasicInfo bi = getBasicInfo(request);
@@ -52,12 +52,12 @@ public class LostAction extends BaseAction
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
 
-	// Õ¼²·ÀÏÈË»Ø´ğÎÊÌâ
+	// å åœè€äººå›ç­”é—®é¢˜
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -66,18 +66,18 @@ public class LostAction extends BaseAction
 		MenuService menuService = new MenuService();
 		OperateMenuVO menuvo = menuService.getMenuById(Integer.parseInt(menu_id.trim()));
 		if(menuvo==null||null==menuvo.getMenuOperate1()||"".equals(menuvo.getMenuOperate1().trim())){
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 		QuizService quizService = new QuizService();
 		QuizVO quiz = quizService.getRandomQuizByConfine(menuvo
-				.getMenuOperate1());// Ëæ»úµÃµ½Ò»¸öÌâÄ¿
+				.getMenuOperate1());// éšæœºå¾—åˆ°ä¸€ä¸ªé¢˜ç›®
 		request.setAttribute("quiz", quiz);
 		request.setAttribute("question_time", (new Date()).getTime());
 		return mapping.findForward("questionPagea");
 	}
 
-	// »Ø´ğÎÊÌâ´¦Àí
+	// å›ç­”é—®é¢˜å¤„ç†
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -92,7 +92,7 @@ public class LostAction extends BaseAction
 		if (quiz_id == null || player_answer == null
 				|| "".equals(quiz_id.trim()) || "".equals(player_answer.trim()))
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 
@@ -104,7 +104,7 @@ public class LostAction extends BaseAction
 				|| "".equals(menuvo.getMenuOperate2().trim())
 				|| "".equals(menuvo.getMenuOperate3().trim()))
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 
@@ -114,7 +114,7 @@ public class LostAction extends BaseAction
 				|| Long.valueOf(answer_time.trim()) < dt.getTime() - 1000 * 20)
 		{
 			setMessage(request,
-					"¶Ô²»Æğ£¬»Ø´ğ³¬Ê±£¡Ó¦ÔÚ20ÃëÄÚÑ¡ÔñÕıÈ·´ğ°¸£¡Õ¼²·ÀÏÈËË«ÊÖÒ»»Ó£¬Ò»¹ÉºÚÑÌ½«Äã´«ËÍµ½ÁËÃÔ¹¬µÄÈë¿Ú¡£");
+					"å¯¹ä¸èµ·ï¼Œå›ç­”è¶…æ—¶ï¼åº”åœ¨20ç§’å†…é€‰æ‹©æ­£ç¡®ç­”æ¡ˆï¼å åœè€äººåŒæ‰‹ä¸€æŒ¥ï¼Œä¸€è‚¡é»‘çƒŸå°†ä½ ä¼ é€åˆ°äº†è¿·å®«çš„å…¥å£ã€‚");
 			new PlayerService().updateSceneAndView(bi.getPPk(), Integer
 					.parseInt(menuvo.getMenuOperate3().trim()));
 		}
@@ -125,15 +125,15 @@ public class LostAction extends BaseAction
 			QuizVO quiz = quizService.getAwardById(Integer.parseInt(quiz_id));
 			if (Integer.parseInt(player_answer) == quiz.getQuziRightAnswer())
 			{
-				// »Ø´ğÕıÈ·
-				setMessage(request, "¹§Ï²Äú´ğ¶ÔÁËÎÊÌâ£¬Õ¼²·ÀÏÈËË«ÊÖÒ»»Ó£¬Ò»µÀ°×¹â½«Äã´«ËÍµ½ÁËÃÔ¹¬µÄ³ö¿Ú¡£");
+				// å›ç­”æ­£ç¡®
+				setMessage(request, "æ­å–œæ‚¨ç­”å¯¹äº†é—®é¢˜ï¼Œå åœè€äººåŒæ‰‹ä¸€æŒ¥ï¼Œä¸€é“ç™½å…‰å°†ä½ ä¼ é€åˆ°äº†è¿·å®«çš„å‡ºå£ã€‚");
 				new PlayerService().updateSceneAndView(bi.getPPk(), Integer
 						.parseInt(menuvo.getMenuOperate2().trim()));
 			}
 			else
 			{
-				// »Ø´ğ´íÎó
-				setMessage(request, "ºÜÒÅº¶Äú´ğ´íÁËÎÊÌâ£¬Õ¼²·ÀÏÈËË«ÊÖÒ»»Ó£¬Ò»¹ÉºÚÑÌ½«Äã´«ËÍµ½ÁËÃÔ¹¬µÄÈë¿Ú¡£");
+				// å›ç­”é”™è¯¯
+				setMessage(request, "å¾ˆé—æ†¾æ‚¨ç­”é”™äº†é—®é¢˜ï¼Œå åœè€äººåŒæ‰‹ä¸€æŒ¥ï¼Œä¸€è‚¡é»‘çƒŸå°†ä½ ä¼ é€åˆ°äº†è¿·å®«çš„å…¥å£ã€‚");
 				new PlayerService().updateSceneAndView(bi.getPPk(), Integer
 						.parseInt(menuvo.getMenuOperate3().trim()));
 			}

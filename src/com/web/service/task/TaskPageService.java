@@ -30,19 +30,19 @@ import com.web.service.TaskService;
 import com.web.service.TaskXunWuService;
 
 /**
- * ¹¦ÄÜ:ÈÎÎñÌáÊ¾½ø¶È
+ * åŠŸèƒ½:ä»»åŠ¡æç¤ºè¿›åº¦
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class TaskPageService
 {
 
 	/**
-	 * É±ËÀ¹ÖºóÈÎÎñÌáÊ¾
+	 * æ€æ­»æ€ªåä»»åŠ¡æç¤º
 	 */
 	public String getGeiDJService(int npcID, String npcName, int pPk)
 	{
-		// »ñÈ¡NPCID
+		// è·å–NPCID
 		String hint = null;
 		int npcid = npcID;
 		String tType = "2";
@@ -56,9 +56,9 @@ public class TaskPageService
 				UTaskVO vo = list.get(i);
 				if ((vo.getTKillingOk() + 1) <= vo.getTKillingNo())
 				{
-				hint = "ÈÎÎñ:" +  vo.getTaskInfo().getTName() + "£¨"+ npcName + "£©" + (vo.getTKillingOk() + 1)+ "/" + vo.getTKillingNo() + "";
+				hint = "ä»»åŠ¡:" +  vo.getTaskInfo().getTName() + "ï¼ˆ"+ npcName + "ï¼‰" + (vo.getTKillingOk() + 1)+ "/" + vo.getTKillingNo() + "";
 				if((vo.getTKillingOk() + 1) ==  vo.getTKillingNo()){
-					TaskVO task = TaskCache.getById(vo.getTId()+"");//»ñÈ¡ÈÎÎñµÄÏà¹ØÄÚÈİ
+					TaskVO task = TaskCache.getById(vo.getTId()+"");//è·å–ä»»åŠ¡çš„ç›¸å…³å†…å®¹
 					String[] taskKeyValue = this.regroupTaskId(task.getTKeyValue()).split(",");
 					tasShaGuaiXiaYiBu = this.tasShaGuaiXiaYiBu(taskKeyValue[(taskKeyValue.length - 1)], vo.getTId() + "");
 				}
@@ -70,12 +70,12 @@ public class TaskPageService
 	}
 
 	/**
-	 * Ñ°ÎïÀàÈÎÎñÌáÊ¾
+	 * å¯»ç‰©ç±»ä»»åŠ¡æç¤º
 	 */
 
 	public String Find(int pPk, int goodid, int goodtype,RoleEntity roleInfo)
 	{
-		// »ñÈ¡NPCID
+		// è·å–NPCID
 		String hint = null;
 		String tType = "4";
 		UTaskDAO dao = new UTaskDAO();
@@ -89,18 +89,18 @@ public class TaskPageService
 			{
 				UTaskVO vo = list.get(i);
 				if (vo.getTGoods() != null && !vo.getTGoods().equals(""))
-				{// È¡³öÈÎÎñÖĞµÄÎïÆ·
+				{// å–å‡ºä»»åŠ¡ä¸­çš„ç‰©å“
 					String[] goods = vo.getTGoods().split(",");
 					String[] goodsnumber = vo.getTGoodsNo().split(",");
 					for (int gd = 0; gd < goods.length; gd++)
 					{
 						if (goodid == Integer.parseInt(goods[gd]))
 						{
-						int dd = goodsService.getPropNum(pPk, Integer.parseInt(goods[gd]));// È¡³ö°ü¹üÀïµÄÎïÆ·ÊıÁ¿
+						int dd = goodsService.getPropNum(pPk, Integer.parseInt(goods[gd]));// å–å‡ºåŒ…è£¹é‡Œçš„ç‰©å“æ•°é‡
 						if (dd <= Integer.parseInt(goodsnumber[gd])){
-						hint = "ÈÎÎñ:"+ vo.getTaskInfo().getTName()+ "£¨"+ goodsService.getGoodsName(Integer.parseInt(goods[gd]), 4)+ "£©" + dd + "/" + goodsnumber[gd]+ "";
+						hint = "ä»»åŠ¡:"+ vo.getTaskInfo().getTName()+ "ï¼ˆ"+ goodsService.getGoodsName(Integer.parseInt(goods[gd]), 4)+ "ï¼‰" + dd + "/" + goodsnumber[gd]+ "";
 						if(taskXunWuService.getXunWuDiscernService(vo.getTId() + "", roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getUPk())){
-							TaskVO task = TaskCache.getById(vo.getTId()+"");//»ñÈ¡ÈÎÎñµÄÏà¹ØÄÚÈİ
+							TaskVO task = TaskCache.getById(vo.getTId()+"");//è·å–ä»»åŠ¡çš„ç›¸å…³å†…å®¹
 							String[] taskKeyValue = this.regroupTaskId(task.getTKeyValue()).split(",");
 							tasShaGuaiXiaYiBu = this.tasShaGuaiXiaYiBu(taskKeyValue[(taskKeyValue.length - 1)], vo.getTId() + "");
 						}
@@ -115,12 +115,12 @@ public class TaskPageService
 	}
 
 	/**
-	 * Ñ°ÎïÀàÈÎÎñÌáÊ¾
+	 * å¯»ç‰©ç±»ä»»åŠ¡æç¤º
 	 */
 
 	public String Complex(int pPk, int goodid, int tPk)
 	{
-		// »ñÈ¡NPCID
+		// è·å–NPCID
 		String hint = null;
 		if(goodid == 0){
 			return hint;
@@ -128,15 +128,15 @@ public class TaskPageService
 		UTaskDAO dao = new UTaskDAO();
 		UTaskVO vo = dao.getPoint(pPk + "", tPk);
 		GoodsService goodsService = new GoodsService();
-		int dd = goodsService.getPropNum(pPk, goodid);// È¡³ö°ü¹üÀïµÄÎïÆ·ÊıÁ¿
+		int dd = goodsService.getPropNum(pPk, goodid);// å–å‡ºåŒ…è£¹é‡Œçš„ç‰©å“æ•°é‡
 		if (vo.getTGoodsNo() != null && !vo.getTGoodsNo().equals("") && !vo.getTGoodsNo().equals("0")){
-				hint = "ÈÎÎñ:" + vo.getTaskInfo().getTName() + "£¨" + goodsService.getGoodsName(goodid, 4) + "£©" + (dd + 1) + "/" + vo.getTGoodsNo() + "";
+				hint = "ä»»åŠ¡:" + vo.getTaskInfo().getTName() + "ï¼ˆ" + goodsService.getGoodsName(goodid, 4) + "ï¼‰" + (dd + 1) + "/" + vo.getTGoodsNo() + "";
 		}
 		return hint;
 	}
 
 	/**
-	 * ·µ»ØÖĞ¼òµãÈÎÎñÏÂÒ»²½
+	 * è¿”å›ä¸­ç®€ç‚¹ä»»åŠ¡ä¸‹ä¸€æ­¥
 	 * @param task_id
 	 * @param menu_id
 	 * @return
@@ -145,8 +145,8 @@ public class TaskPageService
 		StringBuffer hint = new StringBuffer();
 		MenuService menuService = new MenuService();
 		
-		CurTaskInfo curTaskInfo = (CurTaskInfo)roleInfo.getTaskInfo().getCurTaskList().getById(tPk);//»ñÈ¡Íæ¼ÒÉíÉÏÈÎÎñÄÚÈİ
-		TaskVO taskVOCache = TaskCache.getById(curTaskInfo.getTId()+"");//»ñÈ¡ÈÎÎñµÄÏà¹ØÄÚÈİ
+		CurTaskInfo curTaskInfo = (CurTaskInfo)roleInfo.getTaskInfo().getCurTaskList().getById(tPk);//è·å–ç©å®¶èº«ä¸Šä»»åŠ¡å†…å®¹
+		TaskVO taskVOCache = TaskCache.getById(curTaskInfo.getTId()+"");//è·å–ä»»åŠ¡çš„ç›¸å…³å†…å®¹
 		if(curTaskInfo.getTPoint() != null && !curTaskInfo.getTPoint().equals("0") && !curTaskInfo.getTPoint().equals("") && !curTaskInfo.getTPoint().equals("null")){
 			String getTPoint[] = this.regroupTaskId(curTaskInfo.getTPoint()).split(","); 
 			String ddc11 = "";
@@ -158,7 +158,7 @@ public class TaskPageService
 			}
 			String s[] = this.regroupTaskId(ddc11).split(",");
 			if(s[0] != null && !s[0].equals("") && !s[0].equals("null") && !s[0].equals("0")){
-				OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(s[0]));//»ñÈ¡²Ëµ¥µÄÏà¹ØÄÚÈİ
+				OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(s[0]));//è·å–èœå•çš„ç›¸å…³å†…å®¹
 				hint.append("<anchor> "); 
 				hint.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/taskinfoaction.do?cmd=n10")+"\">");
 				hint.append("<postfield name=\"taskKeyValue\" value=\"" + menu.getMenuMap()+"" + "\" /> ");
@@ -166,7 +166,7 @@ public class TaskPageService
 				hint.append("</go>");
 				if(!taskVOCache.getTKey().equals(""))
 				{
-					hint.append("Ç°Íù");
+					hint.append("å‰å¾€");
 					hint.append(taskVOCache.getTKey().split("-").length!=2?taskVOCache.getTKey():taskVOCache.getTKey().split("-")[1]);
 				}
 				hint.append("</anchor>");
@@ -180,7 +180,7 @@ public class TaskPageService
 				hint.append("</go>");
 				if(!taskVOCache.getTKey().equals(""))
 				{
-					hint.append("Ç°Íù");
+					hint.append("å‰å¾€");
 					hint.append(taskVOCache.getTKey().split("-").length!=2?taskVOCache.getTKey():taskVOCache.getTKey().split("-")[1]);
 				}
 				hint.append("</anchor>");
@@ -195,7 +195,7 @@ public class TaskPageService
 			hint.append("</go>");
 			if(!taskVOCache.getTKey().equals(""))
 			{
-				hint.append("Ç°Íù");
+				hint.append("å‰å¾€");
 				hint.append(taskVOCache.getTKey().split("-").length!=2?taskVOCache.getTKey():taskVOCache.getTKey().split("-")[1]);
 			}
 			hint.append("</anchor>");
@@ -204,7 +204,7 @@ public class TaskPageService
 	}
 	
 	/**
-	 * ·µ»ØÖĞ¼òµãÈÎÎñÏÂÒ»²½
+	 * è¿”å›ä¸­ç®€ç‚¹ä»»åŠ¡ä¸‹ä¸€æ­¥
 	 * @param task_id
 	 * @param menu_id
 	 * @return
@@ -219,7 +219,7 @@ public class TaskPageService
 			TaskVO taskVOCache = TaskCache.getById(tId);
 			if(!taskVOCache.getTKey().equals(""))
 			{
-				hint.append("Ç°Íù");
+				hint.append("å‰å¾€");
 				hint.append(taskVOCache.getTKey().split("-").length!=2?taskVOCache.getTKey():taskVOCache.getTKey().split("-")[1]);
 			}
 			hint.append("</anchor>");
@@ -227,7 +227,7 @@ public class TaskPageService
 	}
 	
 	/**
-	 * ·µ»ØÖĞ¼òµãÈÎÎñÏÂÒ»²½
+	 * è¿”å›ä¸­ç®€ç‚¹ä»»åŠ¡ä¸‹ä¸€æ­¥
 	 * @param task_id
 	 * @param menu_id
 	 * @return
@@ -235,7 +235,7 @@ public class TaskPageService
 	public String tasShaGuaiXiaYiBuShaGuai(String taskKeyValue,String tId,String player_point_legth,String point_legth){
 		    StringBuffer hint = new StringBuffer();
 		    if(!player_point_legth.equals("0")){
-		    	hint.append("Íê³É:"+player_point_legth+"/"+point_legth+"<br/>");
+		    	hint.append("å®Œæˆ:"+player_point_legth+"/"+point_legth+"<br/>");
 		    }
 			hint.append("<anchor> "); 
 			hint.append("<go method=\"post\" href=\""+GameConfig.getContextPath()+"/taskinfoaction.do?cmd=n10\">");
@@ -245,14 +245,14 @@ public class TaskPageService
 			TaskVO taskVOCache = TaskCache.getById(tId);
 			if(!taskVOCache.getTKey().equals(""))
 			{
-				hint.append("Ç°Íù");
+				hint.append("å‰å¾€");
 				hint.append(taskVOCache.getTKey().split("-").length!=2?taskVOCache.getTKey():taskVOCache.getTKey().split("-")[1]);
 			}
 			hint.append("</anchor>");
 			return hint.toString();
 	}
 	
-	// ÈÎÎñÌø×ª
+	// ä»»åŠ¡è·³è½¬
 	public String key(String key, String keyvalue, String tishi,HttpServletRequest request,
 			HttpServletResponse response)
 	{
@@ -284,16 +284,16 @@ public class TaskPageService
 	}
 
 	/*
-	 * Ö´ĞĞÉ±¹ÖÈÎÎñ
+	 * æ‰§è¡Œæ€æ€ªä»»åŠ¡
 	 */
 	public String deleteTeskPorint(RoleEntity roleEntity)
 	{
 		String deadnpcxiayibu = null;
 		if (roleEntity.getTaskInfo().getTaskId() != -1 && roleEntity.getTaskInfo().getTaskPoint() != null && !roleEntity.getTaskInfo().getTaskPoint().equals("") && roleEntity.getTaskInfo().getTaskMenu() != -1)
 		{
-			int tPk = roleEntity.getTaskInfo().getTaskId();// ÈÎÎñID
-			String taskPorint = roleEntity.getTaskInfo().getTaskPoint();// ÈÎÎñÖĞ¼äµãDI
-			String menuID = roleEntity.getTaskInfo().getTaskMenu() + "";// ²Ëµ¥ID
+			int tPk = roleEntity.getTaskInfo().getTaskId();// ä»»åŠ¡ID
+			String taskPorint = roleEntity.getTaskInfo().getTaskPoint();// ä»»åŠ¡ä¸­é—´ç‚¹DI
+			String menuID = roleEntity.getTaskInfo().getTaskMenu() + "";// èœå•ID
 			MenuService ms = new MenuService();
 			OperateMenuVO mvo = ms.getMenuById(Integer.parseInt(menuID));
 			String[] npc = mvo.getMenuOperate1().split(",");
@@ -314,18 +314,18 @@ public class TaskPageService
 				roleEntity.getTaskInfo().setTaskPoint(ddc11);
 				CurTaskInfo curTaskInfo = (CurTaskInfo) roleEntity.getTaskInfo().getCurTaskList().getById(tPk + "");
 				curTaskInfo.updatePoint(ddc11); 
-				//ÔÚÕâÀïÅĞ¶ÏÒ»ÏÂÏÂÒ»²½ÈÎÎñ
+				//åœ¨è¿™é‡Œåˆ¤æ–­ä¸€ä¸‹ä¸‹ä¸€æ­¥ä»»åŠ¡
 				String s[] = ddc11.split(",");
 				MenuService menuService = new MenuService();
 				
-				TaskVO taskVOCache = TaskCache.getById(curTaskInfo.getTId()+"");//»ñÈ¡ÈÎÎñµÄÏà¹ØÄÚÈİ
+				TaskVO taskVOCache = TaskCache.getById(curTaskInfo.getTId()+"");//è·å–ä»»åŠ¡çš„ç›¸å…³å†…å®¹
 				
 				int point_num = getPointNum(taskVOCache.getTPoint()); 
 				int player_point_num = 0; 
 				
 				if(s[0] != null && !s[0].equals("") && !s[0].equals("null") && !s[0].equals("0")){
 					player_point_num = point_num - getPointNum(ddc11);
-					OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(s[0]));//»ñÈ¡²Ëµ¥µÄÏà¹ØÄÚÈİ
+					OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(s[0]));//è·å–èœå•çš„ç›¸å…³å†…å®¹
 					deadnpcxiayibu = this.tasShaGuaiXiaYiBuShaGuai(menu.getMenuMap()+"", curTaskInfo.getTId()+"",player_point_num+"",point_num+"");
 				}else{
 					if(taskVOCache.getTKeyValue() != null && !taskVOCache.getTKeyValue().equals("") && !taskVOCache.getTKeyValue().equals("null")){
@@ -355,9 +355,9 @@ public class TaskPageService
 	}
 
 	/**
-	 * ÈÎÎñ´«ËÍ
-	 * @param carrySceneId    Òª´«ËÍµ½µÄ³¡¾°id
-	 * @param taskid		  ÈÎÎñid
+	 * ä»»åŠ¡ä¼ é€
+	 * @param carrySceneId    è¦ä¼ é€åˆ°çš„åœºæ™¯id
+	 * @param taskid		  ä»»åŠ¡id
 	 * @return
 	 */
 	public String taskRemit(RoleEntity roleInfo,String carrySceneId,String taskid)
@@ -365,7 +365,7 @@ public class TaskPageService
 		String old_scene_id = roleInfo.getBasicInfo().getSceneId();
 		if( old_scene_id.equals(carrySceneId))
 		{
-			//Èç¹ûÈÎÎñ´«ËÍµÄÊÇ±¾µØÔò²»×ö´¦Àí
+			//å¦‚æœä»»åŠ¡ä¼ é€çš„æ˜¯æœ¬åœ°åˆ™ä¸åšå¤„ç†
 			return null;
 		}
 		
@@ -374,29 +374,29 @@ public class TaskPageService
 		RoomService roomService = new RoomService();
 		int map_type = roomService.getMapType(Integer.valueOf(old_scene_id));
 		
-		//Èç¹ûÈÎÎñÔÚ¼àÓü, 
+		//å¦‚æœä»»åŠ¡åœ¨ç›‘ç‹±, 
 		if(map_type == MapType.PRISON) {
-			hint = "¶Ô²»Æğ,ÈËÔÚ¼àÓü,ºÃºÃ¸ÄÔì!"; 
+			hint = "å¯¹ä¸èµ·,äººåœ¨ç›‘ç‹±,å¥½å¥½æ”¹é€ !"; 
 			return hint;
 		}
-		//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ´«³ö
+		//åˆ¤æ–­æ˜¯å¦å¯ä»¥ä¼ å‡º
 		hint  = roomService.isCarryedOut(Integer.parseInt(old_scene_id));
 		if(hint != null){
 			return hint;
 		}
-		//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ´«Èë
+		//åˆ¤æ–­æ˜¯å¦å¯ä»¥ä¼ å…¥
 		hint  = roomService.isCarryedIn(Integer.parseInt(carrySceneId));
 		if(hint != null){
 			return hint;
 		}
-		/*****µ±Ç°³ËÆï×øÆï****/
+		/*****å½“å‰ä¹˜éª‘åéª‘****/
 		MountsService ms=new MountsService();
 		hint=ms.useMountsByTask(roleInfo, carrySceneId);
 		return hint;
 		
 	}
 	/**
-	 * ÖØ×éÈÎÎñIDÁĞ±í
+	 * é‡ç»„ä»»åŠ¡IDåˆ—è¡¨
 	 * @param task_id
 	 * @return
 	 */
@@ -432,17 +432,17 @@ public class TaskPageService
 		String ddc11 = curTaskInfo.getTPoint();
 		String s[] = ddc11.split(",");
 		
-		TaskVO taskVOCache = TaskCache.getById(curTaskInfo.getTId()+"");//»ñÈ¡ÈÎÎñµÄÏà¹ØÄÚÈİ
+		TaskVO taskVOCache = TaskCache.getById(curTaskInfo.getTId()+"");//è·å–ä»»åŠ¡çš„ç›¸å…³å†…å®¹
 		
 		int point_num = getPointNum(taskVOCache.getTPoint()); 
 		int player_point_num = 0; 
 		
 		if(s[0] != null && !s[0].equals("") && !s[0].equals("null") && !s[0].equals("0")){
 			player_point_num = point_num - getPointNum(ddc11);
-			return "Íê³É:"+player_point_num+"/"+point_num+"<br/>";
+			return "å®Œæˆ:"+player_point_num+"/"+point_num+"<br/>";
 		}else{
 			player_point_num = point_num;
-			return "Íê³É:"+player_point_num+"/"+point_num+"<br/>";
+			return "å®Œæˆ:"+player_point_num+"/"+point_num+"<br/>";
 		}
 	}
 }

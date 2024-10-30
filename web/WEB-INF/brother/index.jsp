@@ -25,17 +25,17 @@ if(message!=null&&!"".equals(message.trim())){
 for(FriendVO fv : list){
 %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/brother.do") %>"> 
-	<postfield name="fid" value="<%=fv.getFPk() %>" />
-	<postfield name="fdName" value="<%=fv.getFdName() %>" />
-	<postfield name="fdE" value="<%=fv.getExpShare() %>" />
-	<postfield name="cmd" value="n2" />
-	<postfield name="w_type" value="<%=w_type %>" />
-	    <postfield name="pg_pk" value="<%=pg_pk %>" />
-	    <postfield name="goods_id" value="<%=goods_id %>" />
-	    <postfield name="goods_type" value="<%=goods_type %>" />
-	    <postfield name="page_no" value="<%=page_no %>" />
-	</go>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/brother.do") %>">
+    <postfield name="fid" value="<%=fv.getFPk() %>" />
+    <postfield name="fdName" value="<%=fv.getFdName() %>" />
+    <postfield name="fdE" value="<%=fv.getExpShare() %>" />
+    <postfield name="cmd" value="n2" />
+    <postfield name="w_type" value="<%=w_type %>" />
+        <postfield name="pg_pk" value="<%=pg_pk %>" />
+        <postfield name="goods_id" value="<%=goods_id %>" />
+        <postfield name="goods_type" value="<%=goods_type %>" />
+        <postfield name="page_no" value="<%=page_no %>" />
+    </go>
 	<%=fv.getFdName()%>(可领取经验:<%=fv.getExpShare() %>)
 	</anchor> 
 	<br/>

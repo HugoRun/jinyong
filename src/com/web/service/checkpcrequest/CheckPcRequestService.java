@@ -14,7 +14,7 @@ import com.ls.ben.dao.system.ExceptionUserLogDao;
 import com.ls.pub.config.GameConfig;
 
 /**
- * @author ºîºÆ¾ü ÆÁ±ÎPCµçÄÔÓÃ»§·ÃÎÊ
+ * @author ä¾¯æµ©å†› å±è”½PCç”µè„‘ç”¨æˆ·è®¿é—®
  */
 public class CheckPcRequestService
 {
@@ -23,36 +23,36 @@ public class CheckPcRequestService
 	public String isLoginException(String name, String u_pk, String ip, String userAgent)
 	{
 		String hint = null;
-		// Ê×ÏÈÅĞ¶¨ID°×Ãûµ¥·ÀÖ¹¿ª¹ØÓĞÃ»ÓĞ¹Ø±Õ
-		if (GameConfig.isForbidPcWhiteListSwitch())// Ã»ÓĞ¹Ø±Õ
+		// é¦–å…ˆåˆ¤å®šIDç™½åå•é˜²æ­¢å¼€å…³æœ‰æ²¡æœ‰å…³é—­
+		if (GameConfig.isForbidPcWhiteListSwitch())// æ²¡æœ‰å…³é—­
 		{
-			if (!isLoginInfoName(name))// Ê×ÏÈÅĞ¶ÏÍæ¼ÒIDÊÇ·ñÔÚ°×Ãûµ¥ÖĞ ·µ»ØTURE±íÊ¾ÔÚID°×Ãûµ¥ÖĞ
+			if (!isLoginInfoName(name))// é¦–å…ˆåˆ¤æ–­ç©å®¶IDæ˜¯å¦åœ¨ç™½åå•ä¸­ è¿”å›TUREè¡¨ç¤ºåœ¨IDç™½åå•ä¸­
 			{
-				return "Äú²»ÊÇ°×Ãûµ¥Íæ¼ÒÇë´ÓÕıÈ·ÇşµÀµÇÂ½!";
+				return "æ‚¨ä¸æ˜¯ç™½åå•ç©å®¶è¯·ä»æ­£ç¡®æ¸ é“ç™»é™†!";
 			}
 		}
-		// Á¬½ÓÒì³£ Á¬Ğøµã»÷3´ÎµÄ
+		// è¿æ¥å¼‚å¸¸ è¿ç»­ç‚¹å‡»3æ¬¡çš„
 		if (GameConfig.isDealExceptionUserSwitch())
 		{
 			ExceptionUserLogDao exceptionUserLogDao = new ExceptionUserLogDao();
 			if (exceptionUserLogDao.isHave(u_pk + ""))
-			{// ÓĞ¼ÇÂ¼²¢ÇÒ²»ÔÙ°×Ãûµ¥IDµÄ
-				hint = "¸ÃÕÊºÅÁ¬½ÓÒì³££¬1·ÖÖÓºó¿ÉÖØĞÂµÇÂ½¡£";
+			{// æœ‰è®°å½•å¹¶ä¸”ä¸å†ç™½åå•IDçš„
+				hint = "è¯¥å¸å·è¿æ¥å¼‚å¸¸ï¼Œ1åˆ†é’Ÿåå¯é‡æ–°ç™»é™†ã€‚";
 				return hint;
 			}
 		}
-		// ½ÓÏÂÀ´ÅĞ¶¨IPÊÇ·ñÔÚIPºÚÃûµ¥ÖĞ Ê×ÏÈÅĞ¶Ï¿ª¹ØÊÇ·ñ´ò¿ª
-		if (GameConfig.isForbidPcBlackListSwitch()){// Ã»ÓĞ¹Ø±Õ
+		// æ¥ä¸‹æ¥åˆ¤å®šIPæ˜¯å¦åœ¨IPé»‘åå•ä¸­ é¦–å…ˆåˆ¤æ–­å¼€å…³æ˜¯å¦æ‰“å¼€
+		if (GameConfig.isForbidPcBlackListSwitch()){// æ²¡æœ‰å…³é—­
 			CheckPcRequestDAO checkPcRequestDAO = new CheckPcRequestDAO();
-			if (checkPcRequestDAO.isCheckPcBlackList(ip)){// IP ºÚÃûµ¥ ·µ»ØTRUEÔÚºÚÃûµ¥ÖĞ
-				hint = "¶Ô²»Æğ£¬ÄúµÄIPµØÖ·²¢·ÇÒÆ¶¯ÊÖ»úIP(" + ip + ")¶ø±»¾Ü¾ø·ÃÎÊ£¬ÇëÊ¹ÓÃÊÖ»úÍæÓÎÏ·£¡";
+			if (checkPcRequestDAO.isCheckPcBlackList(ip)){// IP é»‘åå• è¿”å›TRUEåœ¨é»‘åå•ä¸­
+				hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„IPåœ°å€å¹¶éç§»åŠ¨æ‰‹æœºIP(" + ip + ")è€Œè¢«æ‹’ç»è®¿é—®ï¼Œè¯·ä½¿ç”¨æ‰‹æœºç©æ¸¸æˆï¼";
 				return hint;
 			}
 		}
-		// ÅĞ¶ÏUAÊÇ·ñÕı³£
+		// åˆ¤æ–­UAæ˜¯å¦æ­£å¸¸
 		if (GameConfig.isForbidPcUASwitch()){
 			if(CheckPcRequest(userAgent) ==  false){
-				hint = "¶Ô²»Æğ£¬Äú·ÃÎÊµÄä¯ÀÀÆ÷·ÇÕı³£ÊÖ»úä¯ÀÀÆ÷¶ø±»¾Ü¾ø·ÃÎÊ£¬ÇëÊ¹ÓÃÊÖ»úÍæÓÎÏ·£¡";
+				hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è®¿é—®çš„æµè§ˆå™¨éæ­£å¸¸æ‰‹æœºæµè§ˆå™¨è€Œè¢«æ‹’ç»è®¿é—®ï¼Œè¯·ä½¿ç”¨æ‰‹æœºç©æ¸¸æˆï¼";
 				return hint;
 			}	
 		}
@@ -60,7 +60,7 @@ public class CheckPcRequestService
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÊÇÊÖ»úÓÃ»§µÇÂ½»¹ÊÇµçÄÔÓÃ»§µÇÂ½
+	 * åˆ¤æ–­æ˜¯å¦æ˜¯æ‰‹æœºç”¨æˆ·ç™»é™†è¿˜æ˜¯ç”µè„‘ç”¨æˆ·ç™»é™†
 	 * 
 	 * @return
 	 */
@@ -72,59 +72,59 @@ public class CheckPcRequestService
 		}
 		String info = userAgent.toUpperCase();
 		
-		if( info.indexOf("NT") > -1)//ÊÇwindowsÓÃ»§
+		if( info.indexOf("NT") > -1)//æ˜¯windowsç”¨æˆ·
 		{
-			if (info.indexOf("MSIE") > -1)// ÆÁ±ÎIE
+			if (info.indexOf("MSIE") > -1)// å±è”½IE
 			{
-				logger.info("ÆÁ±ÎIE");
+				logger.info("å±è”½IE");
 				return false;
 			}
 			else
-			if (info.indexOf("FIREFOX") > -1)// ÆÁ±ÎFirefox
+			if (info.indexOf("FIREFOX") > -1)// å±è”½Firefox
 			{
-				logger.info("ÆÁ±ÎFirefox ");
+				logger.info("å±è”½Firefox ");
 				return false;
 			}
 			else
-			if (info.indexOf("OPERA") > -1 && info.indexOf("NT") > -1)// ÆÁ±ÎOpera
+			if (info.indexOf("OPERA") > -1 && info.indexOf("NT") > -1)// å±è”½Opera
 			{
-				logger.info("ÆÁ±ÎOpera");
+				logger.info("å±è”½Opera");
 				return false;
 			}
 			else
-			if (info.indexOf("SAFARI") > -1)// ÆÁ±ÎSafari
+			if (info.indexOf("SAFARI") > -1)// å±è”½Safari
 			{
-				logger.info("ÆÁ±ÎSafari");
+				logger.info("å±è”½Safari");
 				return false;
 			}
 			else
-			if (info.indexOf("CHROME") > -1)// ÆÁ±ÎChrome
+			if (info.indexOf("CHROME") > -1)// å±è”½Chrome
 			{
-				logger.info("ÆÁ±ÎChrome");
+				logger.info("å±è”½Chrome");
 				return false;
 			}
 			else
-			if (info.indexOf("NAVIGATOR") > -1)// ÆÁ±ÎNavigator
+			if (info.indexOf("NAVIGATOR") > -1)// å±è”½Navigator
 			{
-				logger.info("ÆÁ±ÎNavigator");
+				logger.info("å±è”½Navigator");
 				return false;
 			}
 			else
-			if (info.indexOf("GOOGLEBOT") > -1)// ÆÁ±ÎGooglebot
+			if (info.indexOf("GOOGLEBOT") > -1)// å±è”½Googlebot
 			{
-				logger.info("ÆÁ±ÎGooglebot");
+				logger.info("å±è”½Googlebot");
 				return false;
 			}
 			else
-			if (info.indexOf("MSNBOT") > -1)// ÆÁ±ÎMSNBOT
+			if (info.indexOf("MSNBOT") > -1)// å±è”½MSNBOT
 			{
-				logger.info("ÆÁ±ÎMSNBOT");
+				logger.info("å±è”½MSNBOT");
 				return false;
 		    }
 			else
-			if (info.indexOf("YAHOO") > -1)// ÆÁ±ÎYAHOO
+			if (info.indexOf("YAHOO") > -1)// å±è”½YAHOO
 			{
-				logger.info("ÆÁ±ÎYAHOO");
+				logger.info("å±è”½YAHOO");
 				return false;
 			}
 		}
@@ -132,7 +132,7 @@ public class CheckPcRequestService
 	}
 
 	/**
-	 * ²éÑ¯¿àÀï±ßÊ±ºòÓĞÏà¹ØºÚÃûµ¥IP
+	 * æŸ¥è¯¢è‹¦é‡Œè¾¹æ—¶å€™æœ‰ç›¸å…³é»‘åå•IP
 	 * 
 	 * @param ip
 	 * @return
@@ -141,31 +141,31 @@ public class CheckPcRequestService
 	{
 		CheckPcRequestDAO checkPcRequestDAO = new CheckPcRequestDAO();
 
-		boolean blackList = checkPcRequestDAO.isCheckPcBlackList(ip);// ºÚÃûµ¥
-		boolean whiteList = isCheckPcWhiteList(ip);// °×Ãûµ¥
-		// ÔÚºÚÃûµ¥
+		boolean blackList = checkPcRequestDAO.isCheckPcBlackList(ip);// é»‘åå•
+		boolean whiteList = isCheckPcWhiteList(ip);// ç™½åå•
+		// åœ¨é»‘åå•
 		if (blackList)
 		{
-			logger.info("ÔÚºÚÃûµ¥");
+			logger.info("åœ¨é»‘åå•");
 			return false;
 		}
-		// Ã»ÓĞÔÚºÚÃûµ¥Ò²Ã»ÔÚ°×Ãûµ¥
+		// æ²¡æœ‰åœ¨é»‘åå•ä¹Ÿæ²¡åœ¨ç™½åå•
 		if (blackList == false && whiteList == false)
 		{
-			logger.info("Ã»ÓĞÔÚºÚÃûµ¥Ò²Ã»ÔÚ°×Ãûµ¥");
+			logger.info("æ²¡æœ‰åœ¨é»‘åå•ä¹Ÿæ²¡åœ¨ç™½åå•");
 			return true;
 		}
-		// Ã»ÓĞÔÚºÚÃûµ¥È´ÔÚ°×Ãûµ¥
+		// æ²¡æœ‰åœ¨é»‘åå•å´åœ¨ç™½åå•
 		if (blackList == false && whiteList == true)
 		{
-			logger.info("Ã»ÓĞÔÚºÚÃûµ¥È´ÔÚ°×Ãûµ¥");
+			logger.info("æ²¡æœ‰åœ¨é»‘åå•å´åœ¨ç™½åå•");
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * ÊÇ·ñÔÚ°×Ãûµ¥·µ»Ø FALSE ËµÃ÷Ã»ÓĞÔÚ°×Ãûµ¥
+	 * æ˜¯å¦åœ¨ç™½åå•è¿”å› FALSE è¯´æ˜æ²¡æœ‰åœ¨ç™½åå•
 	 * 
 	 * @param ip
 	 * @return
@@ -173,7 +173,7 @@ public class CheckPcRequestService
 	public boolean isCheckPcWhiteList(String ip)
 	{
 		CheckPcRequestDAO checkPcRequestDAO = new CheckPcRequestDAO();
-		List list = checkPcRequestDAO.isCheckPcWhiteList();// ²éÑ¯°×Ãûµ¥
+		List list = checkPcRequestDAO.isCheckPcWhiteList();// æŸ¥è¯¢ç™½åå•
 		if (list != null && list.size() != 0)
 		{
 			for (int i = 0; i < list.size(); i++)
@@ -189,7 +189,7 @@ public class CheckPcRequestService
 	}
 
 	/**
-	 * ÅĞ¶¨ÊÇ·ñÔÚ°×Ãûµ¥
+	 * åˆ¤å®šæ˜¯å¦åœ¨ç™½åå•
 	 * 
 	 * @param name
 	 * @return
@@ -201,7 +201,7 @@ public class CheckPcRequestService
 	}
 
 	/**
-	 * ÅĞ¶ÏIp¶Î
+	 * åˆ¤æ–­Ipæ®µ
 	 * 
 	 * @param start
 	 * @param end

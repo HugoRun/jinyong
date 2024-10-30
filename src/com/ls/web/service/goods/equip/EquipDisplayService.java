@@ -12,7 +12,7 @@ import com.ls.pub.util.MoneyUtil;
 
 /**
  * @author ls
- * ×°±¸ÏÔÊ¾Âß¼­
+ * è£…å¤‡æ˜¾ç¤ºé€»è¾‘
  */
 public class EquipDisplayService
 {
@@ -20,10 +20,10 @@ public class EquipDisplayService
 	public static final int NOTDISPLAY = 0;
 
 	/**
-	 * »ñµÃÂò×°±¸µÄÏÔÊ¾
+	 * è·å¾—ä¹°è£…å¤‡çš„æ˜¾ç¤º
 	 * @param roleInfo
 	 * @param equipId
-	 * @param originalityPrice     Ô­Ê¼¼ÛÇ®
+	 * @param originalityPrice     åŸå§‹ä»·é’±
 	 * @return
 	 */
 	public String getBuyEquipDisplay(RoleEntity roleInfo,NpcShopVO npcShop)
@@ -34,15 +34,15 @@ public class EquipDisplayService
 		int total_price = npcShop.getPrice(roleInfo);
 		sb.append(this.getEquipDisplay(roleInfo, gameEquip, false));
 		sb.append("------------------------").append("<br/>");
-		sb.append("ÂòÈë¼Û¸ñ:").append(MoneyUtil.changeCopperToStr(total_price)).append("<br/>");			
+		sb.append("ä¹°å…¥ä»·æ ¼:").append(MoneyUtil.changeCopperToStr(total_price)).append("<br/>");			
 		return sb.toString();
 	}
 	
 	/**
-	 * »ñµÃÏµÍ³×°±¸µÄÏÔÊ¾£¬ÓĞ¶Ô±È¹¦ÄÜ£¨ÊÎÆ·²»×ö¶Ô±È£©
+	 * è·å¾—ç³»ç»Ÿè£…å¤‡çš„æ˜¾ç¤ºï¼Œæœ‰å¯¹æ¯”åŠŸèƒ½ï¼ˆé¥°å“ä¸åšå¯¹æ¯”ï¼‰
 	 * @param roleInfo
 	 * @param equipId
-	 * @param isCompare     true±íÊ¾×°±¸¸úÍæ¼ÒÉíÉÏµÄÍ¬Ò»Î»ÖÃµÄ×°±¸¶Ô±È£¬false²»¶Ô±È
+	 * @param isCompare     trueè¡¨ç¤ºè£…å¤‡è·Ÿç©å®¶èº«ä¸Šçš„åŒä¸€ä½ç½®çš„è£…å¤‡å¯¹æ¯”ï¼Œfalseä¸å¯¹æ¯”
 	 * @return
 	 */
 	public String getEquipDisplay(RoleEntity roleInfo,int equipId, boolean isCompare)
@@ -52,17 +52,17 @@ public class EquipDisplayService
 	}
 	
 	/**
-	 * »ñµÃÏµÍ³×°±¸µÄÏÔÊ¾£¬ÓĞ¶Ô±È¹¦ÄÜ£¨ÊÎÆ·²»×ö¶Ô±È£©
+	 * è·å¾—ç³»ç»Ÿè£…å¤‡çš„æ˜¾ç¤ºï¼Œæœ‰å¯¹æ¯”åŠŸèƒ½ï¼ˆé¥°å“ä¸åšå¯¹æ¯”ï¼‰
 	 * @param roleInfo
 	 * @param gameEquip
-	 * @param isCompare     true±íÊ¾×°±¸¸úÍæ¼ÒÉíÉÏµÄÍ¬Ò»Î»ÖÃµÄ×°±¸¶Ô±È£¬false²»¶Ô±È
+	 * @param isCompare     trueè¡¨ç¤ºè£…å¤‡è·Ÿç©å®¶èº«ä¸Šçš„åŒä¸€ä½ç½®çš„è£…å¤‡å¯¹æ¯”ï¼Œfalseä¸å¯¹æ¯”
 	 * @return
 	 */
 	public String getEquipDisplay(RoleEntity roleInfo,GameEquip gameEquip, boolean isCompare)
 	{
 		StringBuffer des = new StringBuffer();
 		
-		PlayerEquipVO compareEquip = null;//Òª¶Ô±ÈµÄ×°±¸
+		PlayerEquipVO compareEquip = null;//è¦å¯¹æ¯”çš„è£…å¤‡
 		
 		if( isCompare==true && gameEquip.getType()!=Equip.JEWELRY )
 		{
@@ -73,52 +73,52 @@ public class EquipDisplayService
 			des.append(gameEquip.getPicDisplay());
 			des.append(gameEquip.getDes()).append("<br/>");
 			
-			des.append("ÄÍ¾Ã:").append(gameEquip.getEndure()).append("<br/>");
+			des.append("è€ä¹…:").append(gameEquip.getEndure()).append("<br/>");
 			
-			if( gameEquip.getMaxAtt()>0)//ÊÇ·ñÓĞ¹¥»÷ÊôĞÔ
+			if( gameEquip.getMaxAtt()>0)//æ˜¯å¦æœ‰æ”»å‡»å±æ€§
 			{
-				des.append("¹¥»÷:").append(gameEquip.getMinAtt()*SystemConfig.attackParameter).append("-").append(gameEquip.getMaxAtt()*SystemConfig.attackParameter);
+				des.append("æ”»å‡»:").append(gameEquip.getMinAtt()*SystemConfig.attackParameter).append("-").append(gameEquip.getMaxAtt()*SystemConfig.attackParameter);
 				if(compareEquip!=null)
 					des.append("(").append(compareEquip.getWGjXiao()*SystemConfig.attackParameter).append("-").append(compareEquip.getWGjDa()*SystemConfig.attackParameter).append(")");
 				des.append("<br/>");
 			}
 			
-			if( gameEquip.getMaxDef()>0 )//ÊÇ·ñÓĞ·ÀÓùÊôĞÔ
+			if( gameEquip.getMaxDef()>0 )//æ˜¯å¦æœ‰é˜²å¾¡å±æ€§
 			{
-				des.append("·ÀÓù:").append(gameEquip.getMinDef()*SystemConfig.attackParameter).append("-").append(gameEquip.getMaxDef()*SystemConfig.attackParameter);
+				des.append("é˜²å¾¡:").append(gameEquip.getMinDef()*SystemConfig.attackParameter).append("-").append(gameEquip.getMaxDef()*SystemConfig.attackParameter);
 				if(compareEquip!=null)
 					des.append("(").append(compareEquip.getWFyXiao()*SystemConfig.attackParameter).append("-").append(compareEquip.getWFyDa()*SystemConfig.attackParameter).append(")");
 				des.append("<br/>");
 			}
 			
-			des.append("Âô³ö¼Û¸ñ:").append(gameEquip.getPriceDes()).append("<br/>");			
-			des.append("Ê¹ÓÃµÈ¼¶:").append(gameEquip.getGrade()).append("¼¶").append("<br/>");
-			des.append("ĞÔ±ğÒªÇó:").append(ExchangeUtil.exchangeToSex(gameEquip.getSex())).append("<br/>");
-			des.append("ÖÖ×åÒªÇó:").append(ExchangeUtil.getRaceName(gameEquip.getJob())).append("<br/>");
-			des.append("×°±¸×´Ì¬:");
+			des.append("å–å‡ºä»·æ ¼:").append(gameEquip.getPriceDes()).append("<br/>");			
+			des.append("ä½¿ç”¨ç­‰çº§:").append(gameEquip.getGrade()).append("çº§").append("<br/>");
+			des.append("æ€§åˆ«è¦æ±‚:").append(ExchangeUtil.exchangeToSex(gameEquip.getSex())).append("<br/>");
+			des.append("ç§æ—è¦æ±‚:").append(ExchangeUtil.getRaceName(gameEquip.getJob())).append("<br/>");
+			des.append("è£…å¤‡çŠ¶æ€:");
 			if( gameEquip.getIsProtected() == 1) {
-				des.append("²»¿É½»Ò×£¬²»¿ÉÂô³ö£¬²»¿É¶ªÆú£¬²»¿ÉÅÄÂô£¬¿ÉÊ¹ÓÃ!"); 
+				des.append("ä¸å¯äº¤æ˜“ï¼Œä¸å¯å–å‡ºï¼Œä¸å¯ä¸¢å¼ƒï¼Œä¸å¯æ‹å–ï¼Œå¯ä½¿ç”¨!"); 
 			} else {
-				des.append("¿É½»Ò×,¿ÉÅÄÂô£¬¿ÉÂô³ö£¬¿É¶ªÆú£¬¿ÉÊ¹ÓÃ!");
+				des.append("å¯äº¤æ˜“,å¯æ‹å–ï¼Œå¯å–å‡ºï¼Œå¯ä¸¢å¼ƒï¼Œå¯ä½¿ç”¨!");
 			}
 			des.append("<br/>");
 		} else {
-			des.append("ÎŞ¸Ã×°±¸").append("<br/>");
+			des.append("æ— è¯¥è£…å¤‡").append("<br/>");
 		}
 		return des.toString();
 	}
 	/**
-	 * »ñµÃÍæ¼Ò×°±¸µÄÏÔÊ¾£¬ÓĞ¶Ô±È¹¦ÄÜ£¨ÊÎÆ·²»×ö¶Ô±È£©
+	 * è·å¾—ç©å®¶è£…å¤‡çš„æ˜¾ç¤ºï¼Œæœ‰å¯¹æ¯”åŠŸèƒ½ï¼ˆé¥°å“ä¸åšå¯¹æ¯”ï¼‰
 	 * @param roleInfo
 	 * @param equip
-	 * @param isCompare     true±íÊ¾×°±¸¸úÍæ¼ÒÉíÉÏµÄÍ¬Ò»Î»ÖÃµÄ×°±¸¶Ô±È£¬false²»¶Ô±È
+	 * @param isCompare     trueè¡¨ç¤ºè£…å¤‡è·Ÿç©å®¶èº«ä¸Šçš„åŒä¸€ä½ç½®çš„è£…å¤‡å¯¹æ¯”ï¼Œfalseä¸å¯¹æ¯”
 	 * @return
 	 */
 	public String getEquipDisplay(RoleEntity roleInfo,PlayerEquipVO equip, boolean isCompare)
 	{
 		StringBuffer des = new StringBuffer();
 		
-		PlayerEquipVO compareEquip = null;//Òª¶Ô±ÈµÄ×°±¸
+		PlayerEquipVO compareEquip = null;//è¦å¯¹æ¯”çš„è£…å¤‡
 		
 		if( isCompare==true && equip.getEquipType()!=Equip.JEWELRY )
 		{
@@ -136,18 +136,18 @@ public class EquipDisplayService
 			}
 			des.append(gameEquip.getDes()).append("<br/>");
 			des.append(equip.getHoleDes());
-			des.append("ÄÍ¾Ã:").append(equip.getCurEndure()/10).append("/").append(equip.getMaxEndure()/10).append("<br/>");
+			des.append("è€ä¹…:").append(equip.getCurEndure()/10).append("/").append(equip.getMaxEndure()/10).append("<br/>");
 			
-			if( equip.getMinAtt()>0)//ÊÇ·ñÓĞ¹¥»÷ÊôĞÔ
+			if( equip.getMinAtt()>0)//æ˜¯å¦æœ‰æ”»å‡»å±æ€§
 			{
-				des.append("¹¥»÷:").append(equip.getMinAtt()*SystemConfig.attackParameter).append("-").append(equip.getMaxAtt()*SystemConfig.attackParameter);
+				des.append("æ”»å‡»:").append(equip.getMinAtt()*SystemConfig.attackParameter).append("-").append(equip.getMaxAtt()*SystemConfig.attackParameter);
 				if(compareEquip!=null)
 				des.append("(").append(compareEquip.getMinAtt()*SystemConfig.attackParameter).append("-").append(compareEquip.getMaxAtt()*SystemConfig.attackParameter).append(")");
 				des.append("<br/>");
 			}
-			if( equip.getMinDef()>0 )//ÊÇ·ñÓĞ·ÀÓùÊôĞÔ
+			if( equip.getMinDef()>0 )//æ˜¯å¦æœ‰é˜²å¾¡å±æ€§
 			{
-				des.append("·ÀÓù:").append(equip.getMinDef()*SystemConfig.attackParameter).append("-").append(equip.getMaxDef()*SystemConfig.attackParameter);
+				des.append("é˜²å¾¡:").append(equip.getMinDef()*SystemConfig.attackParameter).append("-").append(equip.getMaxDef()*SystemConfig.attackParameter);
 				if(compareEquip!=null)
 					des.append("(").append(compareEquip.getMinDef()*SystemConfig.attackParameter).append("-").append(compareEquip.getMaxDef()*SystemConfig.attackParameter).append(")");
 				des.append("<br/>");
@@ -156,7 +156,7 @@ public class EquipDisplayService
 			
 			if ( equip.getWHp() > 0 ) 
 			{
-				des.append("ÆøÑª:").append(equip.getWHp()).append("-").append(equip.getWHp());
+				des.append("æ°”è¡€:").append(equip.getWHp()).append("-").append(equip.getWHp());
 				if(compareEquip!=null)
 				des.append("(").append(compareEquip.getWHp()).append("-").append(compareEquip.getWHp()).append(")");
 				des.append("<br/>");
@@ -165,46 +165,46 @@ public class EquipDisplayService
 			
 			if ( equip.getWMp() >  0 ) 
 			{
-				des.append("ÄÚÁ¦:").append(equip.getWMp()).append("-").append(equip.getWMp());
+				des.append("å†…åŠ›:").append(equip.getWMp()).append("-").append(equip.getWMp());
 				if(compareEquip!=null)
 				des.append("(").append(compareEquip.getWMp()).append("-").append(compareEquip.getWMp()).append(")");
 				des.append("<br/>");
 			}
 			
-			des.append("Âô³ö¼Û¸ñ:").append(gameEquip.getPriceDes()).append("<br/>");			
-			des.append("Ê¹ÓÃµÈ¼¶:").append(gameEquip.getGrade()).append("¼¶").append("<br/>");
-			des.append("ĞÔ±ğÒªÇó:").append(ExchangeUtil.exchangeToSex(gameEquip.getSex())).append("<br/>");
-			des.append("ÖÖ×åÒªÇó:").append(ExchangeUtil.getRaceName(gameEquip.getJob())).append("<br/>");
+			des.append("å–å‡ºä»·æ ¼:").append(gameEquip.getPriceDes()).append("<br/>");			
+			des.append("ä½¿ç”¨ç­‰çº§:").append(gameEquip.getGrade()).append("çº§").append("<br/>");
+			des.append("æ€§åˆ«è¦æ±‚:").append(ExchangeUtil.exchangeToSex(gameEquip.getSex())).append("<br/>");
+			des.append("ç§æ—è¦æ±‚:").append(ExchangeUtil.getRaceName(gameEquip.getJob())).append("<br/>");
 			des.append(equip.getWuxing().getDes());
 			des.append(equip.getInlayDes());
 			
 			
 			if(equip.getAppendAttriDes()!=null && !equip.getAppendAttriDes().equals(""))
 			{
-				des.append("¿ª¹âÊôĞÔ:").append(equip.getAppendAttriDes()).append("<br/>");
+				des.append("å¼€å…‰å±æ€§:").append(equip.getAppendAttriDes()).append("<br/>");
 			}
 			 
-			des.append("×°±¸×´Ì¬:");
+			des.append("è£…å¤‡çŠ¶æ€:");
 			if( equip.getWProtect() == 1 || equip.getWBonding()==1) 
 			{
-				if( equip.getWProtect() == 1 )//±£»¤×´Ì¬
+				if( equip.getWProtect() == 1 )//ä¿æŠ¤çŠ¶æ€
 				{
-					des.append("²»¿É½»Ò×,²»¿ÉÂô³ö,²»¿ÉÅÄÂô,¿ÉÊ¹ÓÃ,²»¿É¶ªÆú"); 
+					des.append("ä¸å¯äº¤æ˜“,ä¸å¯å–å‡º,ä¸å¯æ‹å–,å¯ä½¿ç”¨,ä¸å¯ä¸¢å¼ƒ"); 
 				}
-				else//°ó¶¨×´Ì¬
+				else//ç»‘å®šçŠ¶æ€
 				{
-					des.append("²»¿É½»Ò×,²»¿ÉÂô³ö,²»¿ÉÅÄÂô,¿ÉÊ¹ÓÃ,¿É¶ªÆú,"); 
+					des.append("ä¸å¯äº¤æ˜“,ä¸å¯å–å‡º,ä¸å¯æ‹å–,å¯ä½¿ç”¨,å¯ä¸¢å¼ƒ,"); 
 				}
 			} 
 			else 
 			{
-				des.append("¿É½»Ò×,¿ÉÅÄÂô,¿ÉÂô³ö,¿É¶ªÆú,¿ÉÊ¹ÓÃ");
+				des.append("å¯äº¤æ˜“,å¯æ‹å–,å¯å–å‡º,å¯ä¸¢å¼ƒ,å¯ä½¿ç”¨");
 			}
 			des.append(equip.getProtectDes());
 			des.append("<br/>");
 			 
 		} else {
-			des.append("ÎŞ¸Ã×°±¸").append("<br/>");
+			des.append("æ— è¯¥è£…å¤‡").append("<br/>");
 		}
 		 return des.toString();
 		}

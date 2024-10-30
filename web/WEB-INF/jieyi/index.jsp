@@ -1,26 +1,26 @@
 <%@ include file="/WEB-INF/inc/header.jsp"%>
 <%@page import="com.ls.ben.vo.info.partinfo.PlayerPropGroupVO"%>
 <%@ page pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 <%
-	String hint = (String) request.getAttribute("message");
-	if (hint != null && !"".equals(hint.trim())) {
+    String hint = (String) request.getAttribute("message");
+    if (hint != null && !"".equals(hint.trim())) {
 %>
 <%=hint%><br />
 <%
-	}
+    }
 %>
 请将结义所需物品放在下面正确的位置上：
 <br />
 <%
-	PlayerPropGroupVO ppv = (PlayerPropGroupVO) request
-			.getAttribute("good1");
-	if (ppv != null) {
+    PlayerPropGroupVO ppv = (PlayerPropGroupVO) request
+            .getAttribute("good1");
+    if (ppv != null) {
 %>
 <anchor>
 <go method="post"
-	href="<%=response.encodeURL(GameConfig.getContextPath()
-								+ "/jieyi.do")%>">
+    href="<%=response.encodeURL(GameConfig.getContextPath()
+                                + "/jieyi.do")%>">
 <postfield name="cmd" value="n3" />
 <postfield name="option" value="1" />
 <postfield name="propgroup" value="<%=ppv.getPgPk()%>" />

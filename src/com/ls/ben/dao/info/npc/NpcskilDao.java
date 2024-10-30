@@ -13,16 +13,16 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:
+ * åŠŸèƒ½:
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 7:23:19 PM
  */
 public class NpcskilDao extends DaoBase
 {
 	/**
-	 * npcµÃµ½×Ô¼ºµÄÎåÐÐÊôÐÔ
+	 * npcå¾—åˆ°è‡ªå·±çš„äº”è¡Œå±žæ€§
 	 * 
 	 * @param npc_id
 	 * @return
@@ -34,7 +34,7 @@ public class NpcskilDao extends DaoBase
 		try
 		{
 
-			String sql = "select npcski_wx from npcskill where npc_id="
+			String sql = "SELECT npcski_wx from npcskill where npc_id="
 					+ npc.getNpcID() + " limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
@@ -66,7 +66,7 @@ public class NpcskilDao extends DaoBase
 		try
 		{
 
-			String sql = "select * from npcskill where npc_id=" + npc_id;
+			String sql = "SELECT * FROM npcskill where npc_id=" + npc_id;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -100,7 +100,7 @@ public class NpcskilDao extends DaoBase
 		return result;
 	}
 
-	/** µÃµ½NPCµÄÊôÐÔÊýÖµ */
+	/** å¾—åˆ°NPCçš„å±žæ€§æ•°å€¼ */
 	public List<NpcskillVO> getWxNum(int npc_id)
 	{
 		List<NpcskillVO> list = new ArrayList<NpcskillVO>();
@@ -110,7 +110,7 @@ public class NpcskilDao extends DaoBase
 		try
 		{
 
-			String sql = "select npcski_wx ,npcski_wx_injure from npcskill where npc_id="
+			String sql = "SELECT npcski_wx ,npcski_wx_injure from npcskill where npc_id="
 					+ npc_id;
 			logger.debug(sql);
 			stmt = conn.createStatement();

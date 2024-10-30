@@ -12,7 +12,7 @@ import com.lw.dao.skill.SkillUpDao;
 public class SkillUpService
 {
 
-	/** ******ÅĞ¶Ï¼¼ÄÜÊÇ·ñÉı¼¶*********** */
+	/** ******åˆ¤æ–­æŠ€èƒ½æ˜¯å¦å‡çº§*********** */
 	public boolean ifAddSkill(PlayerSkillVO skill, int p_pk)
 	{
 		SkillService ss = new SkillService();
@@ -31,7 +31,7 @@ public class SkillUpService
 		}
 	}
 	
-	/** ******ÅĞ¶Ï¼¼ÄÜÊÇ·ñÉı¼¶*********** */
+	/** ******åˆ¤æ–­æŠ€èƒ½æ˜¯å¦å‡çº§*********** */
 	public boolean ifAddSkill(int skId, int p_pk)
 	{
 		SkillUpDao dao = new SkillUpDao();
@@ -49,14 +49,14 @@ public class SkillUpService
 		}
 	}
 
-	/** ¼¼ÄÜÉı¼¶¹ı³Ì */
+	/** æŠ€èƒ½å‡çº§è¿‡ç¨‹ */
 	public void addSkillLevelUp(int p_pk, PlayerSkillVO skill)
 	{
 		RoleEntity role_info = RoleService.getRoleInfoById(p_pk+"");
 		
 		if( role_info==null || role_info.isOnline()==false )
 		{
-			return;//Èç¹ûÍæ¼Ò²»ÔÚÏßÔò¼¼ÄÜ²»Éı¼¶
+			return;//å¦‚æœç©å®¶ä¸åœ¨çº¿åˆ™æŠ€èƒ½ä¸å‡çº§
 		}
 		
 		SkillUpDao dao = new SkillUpDao();
@@ -71,7 +71,7 @@ public class SkillUpService
 			//dao.updateSkillID(sk_next_id, sk_group, p_pk);
 			dao.changeName(s_pk, sk_next_id);
 			
-			// ´ÓÄÚ´æÖĞÒÆ³ıÔ­À´µÄ¼¼ÄÜ,×ª¶øÔö¼ÓÉı¼¶ºóµÄ¼¼ÄÜ
+			// ä»å†…å­˜ä¸­ç§»é™¤åŸæ¥çš„æŠ€èƒ½,è½¬è€Œå¢åŠ å‡çº§åçš„æŠ€èƒ½
 			PlayerSkillDao playerSkillDao = new PlayerSkillDao();
 			PlayerSkillVO playerSkillVO = null;
 			playerSkillVO = playerSkillDao.getById(skill.getSPk());
@@ -85,7 +85,7 @@ public class SkillUpService
 		}
 	}
 
-	/** Ñ§Ï°Éú»î¼¼ÄÜÁ÷³Ì */
+	/** å­¦ä¹ ç”Ÿæ´»æŠ€èƒ½æµç¨‹ */
 	public void studyLiveSkill(int p_pk, int sk_id, int sk_next_id)
 	{
 		SkillUpDao dao = new SkillUpDao();
@@ -94,7 +94,7 @@ public class SkillUpService
 		//dao.updateSkillID(sk_next_id, sk_group, p_pk);
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñ¿ÉÒÔÊ¹ÓÃ¸Ã¼¼ÄÜÊé */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦å¯ä»¥ä½¿ç”¨è¯¥æŠ€èƒ½ä¹¦ */
 	public boolean isPlayerHaverThisSkill(int p_pk, int sk_id)
 	{
 		SkillUpDao dao = new SkillUpDao();

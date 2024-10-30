@@ -47,22 +47,22 @@ public class HelpAction extends BaseAction
 		String id = request.getParameter("id");
 		if (id == null || "".equals(id.trim()))
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		Help help = helpService.findById(id);
 		if (help == null)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		switch (help.getType())
 		{
-			// µôÂä²éÑ¯
+			// æ‰è½æŸ¥è¯¢
 			case HelpConstant.DIAOLUO:
 				setAttribute(request, "help", help);
 				return mapping.findForward("diaoluo");
-				// Ñ°ÕÒGM
+				// å¯»æ‰¾GM
 			case HelpConstant.GM:
 				return mapping.findForward("gm");
 			default:
@@ -86,13 +86,13 @@ public class HelpAction extends BaseAction
 		String id = request.getParameter("id");
 		if (id == null || "".equals(id.trim()))
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		Help help = helpService.findById(id);
 		if (help == null)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		setAttribute(request, "help", help);
@@ -108,7 +108,7 @@ public class HelpAction extends BaseAction
                  "<postfield name=\"cmd\" value=\"n2\" />"+
                  "<postfield name=\"id\" value=\""+id+"\" />"+
              "<postfield name=\"nowPage\" value=\""+nowPage+"\" />"+
-            "</go>·µ»Ø</anchor>";
+            "</go>è¿”å›</anchor>";
 		return back;
 	}
 
@@ -118,24 +118,24 @@ public class HelpAction extends BaseAction
 		String id = request.getParameter("id");
 		if (id == null || "".equals(id.trim()))
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		Help help = helpService.findById(id);
 
 		if (help == null)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		BasicInfo bi = getBasicInfo(request);
 		int maptype = bi.getSceneInfo().getMap().getMapType();
 		if(maptype==MapType.COMPASS){
-			setMessage(request, "ÃÔ¹¬ÖĞÎŞ·¨Ê¹ÓÃ¸Ã¹¦ÄÜ");
+			setMessage(request, "è¿·å®«ä¸­æ— æ³•ä½¿ç”¨è¯¥åŠŸèƒ½");
 			return mapping.findForward(ERROR);
 		}
 		if(maptype==MapType.LEITAI_CHALLENGE||maptype==MapType.LEITAI_ACTIVE){
-			setMessage(request, "ÀŞÌ¨ÖĞÎŞ·¨Ê¹ÓÃ¸Ã¹¦ÄÜ");
+			setMessage(request, "æ“‚å°ä¸­æ— æ³•ä½¿ç”¨è¯¥åŠŸèƒ½");
 			return mapping.findForward(ERROR);
 		}
 		SceneVO curScene = roomService.getById(bi.getSceneId());
@@ -144,7 +144,7 @@ public class HelpAction extends BaseAction
 				&& curScene.getSceneLimit().indexOf(
 						roomService.NOT_CARRY_OUT) != -1)
 		{
-			setMessage(request, "¶Ô²»Æğ£¬Ä¿Ç°¸ÃµØµã²»ÔÊĞí´«³ö£¡");
+			setMessage(request, "å¯¹ä¸èµ·ï¼Œç›®å‰è¯¥åœ°ç‚¹ä¸å…è®¸ä¼ å‡ºï¼");
 			return mapping.findForward(ERROR);
 		}
 		String id1 = request.getParameter("id1");
@@ -183,7 +183,7 @@ public class HelpAction extends BaseAction
 		}
 		if (help.getScene_id() == 0)
 		{
-			setMessage(request, "³ö´íÁË,ÇëÁªÏµGM±¨¸æ´íÎó");
+			setMessage(request, "å‡ºé”™äº†,è¯·è”ç³»GMæŠ¥å‘Šé”™è¯¯");
 			return mapping.findForward(ERROR);
 		}
 		roleEntity.getBasicInfo().updateSceneId(help.getScene_id() + "");
@@ -197,13 +197,13 @@ public class HelpAction extends BaseAction
 		String id1 = request.getParameter("id1");
 		if (id == null || "".equals(id.trim())||id1 == null || "".equals(id1.trim()))
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		Help help = helpService.findById(id);
 		if (help == null)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 		int nowPage = Integer
@@ -247,12 +247,12 @@ public class HelpAction extends BaseAction
 		String name = request.getParameter("name");
 		if (name == null || "".equals(name.trim()))
 		{
-			setMessage(request, "ÇëÊäÈëÎïÆ·Ãû³Æ");
+			setMessage(request, "è¯·è¾“å…¥ç‰©å“åç§°");
 			return mapping.findForward("diaoluosercher");
 		}
-		if (name.trim().equals("ÊéĞÅ"))
+		if (name.trim().equals("ä¹¦ä¿¡"))
 		{
-			setMessage(request, "Äú²éÑ¯µÄÎïÆ·ÔÚ¸ÃÀàĞÍÖĞÔİÎŞÏà¹ØµôÂäĞÅÏ¢¡£");
+			setMessage(request, "æ‚¨æŸ¥è¯¢çš„ç‰©å“åœ¨è¯¥ç±»å‹ä¸­æš‚æ— ç›¸å…³æ‰è½ä¿¡æ¯ã€‚");
 			return mapping.findForward("jieguo");
 		}
 		Object obj = null;
@@ -260,7 +260,7 @@ public class HelpAction extends BaseAction
 		switch (Integer.parseInt(type.trim()))
 		{
 			case GoodsType.EQUIP:
-				// ×°±¸
+				// è£…å¤‡
 				String allName= ged.getEquipName(name.trim());
 				EquipCache equipCache = new EquipCache();
 				GameEquip equip = equipCache.getByName(allName);
@@ -268,7 +268,7 @@ public class HelpAction extends BaseAction
 				obj = equip;
 				break;
 			case GoodsType.PROP:
-				// µÀ¾ß
+				// é“å…·
 				String allPropName=pd.getPropName(name.trim());
 				PropVO propVo = GuaJiConstant.PROP_NAME.get(allPropName);
 				id = (propVo == null ? 0 : propVo.getPropID());
@@ -277,7 +277,7 @@ public class HelpAction extends BaseAction
 		}
 		if (obj == null)
 		{
-			setMessage(request, "Äú²éÑ¯µÄÎïÆ·ÔÚ¸ÃÀàĞÍÖĞÔİÎŞÏà¹ØĞÅÏ¢¡£");
+			setMessage(request, "æ‚¨æŸ¥è¯¢çš„ç‰©å“åœ¨è¯¥ç±»å‹ä¸­æš‚æ— ç›¸å…³ä¿¡æ¯ã€‚");
 			return mapping.findForward("jieguo");
 		}
 		StringBuffer sb = new StringBuffer();
@@ -287,10 +287,10 @@ public class HelpAction extends BaseAction
 			sb.append(av.getName()).append("<br/>");
 			sb.append(av.getDes()).append("<br/>");
 			sb.append("----------------------<br/>");
-			sb.append("ÄÍ¾Ã:" ).append( av.getEndure()).append("<br/>");
-			sb.append("¹¥»÷:" ).append( av.getMinAtt() ).append( "-" ).append( av.getMaxAtt()).append( "<br/>");
-			sb.append("Âô³ö¼Û¸ñ:").append( av.getPrice() ).append("<br/>");
-			sb.append("Ê¹ÓÃµÈ¼¶:" ).append( av.getGrade() ).append( "<br/>");
+			sb.append("è€ä¹…:" ).append( av.getEndure()).append("<br/>");
+			sb.append("æ”»å‡»:" ).append( av.getMinAtt() ).append( "-" ).append( av.getMaxAtt()).append( "<br/>");
+			sb.append("å–å‡ºä»·æ ¼:").append( av.getPrice() ).append("<br/>");
+			sb.append("ä½¿ç”¨ç­‰çº§:" ).append( av.getGrade() ).append( "<br/>");
 		}
 		else if (obj instanceof PropVO)
 		{
@@ -298,8 +298,8 @@ public class HelpAction extends BaseAction
 			sb.append(av.getPropName() ).append( "<br/>");
 			sb.append(av.getPropDisplay() ).append( "<br/>");
 //			sb.append("----------------------<br/>");
-//			sb.append("Âô³ö¼Û¸ñ:" + av.getPropSell() + "<br/>");
-//			sb.append("Ê¹ÓÃµÈ¼¶:" + av.getPropReLevel() + "<br/>");
+//			sb.append("å–å‡ºä»·æ ¼:" + av.getPropSell() + "<br/>");
+//			sb.append("ä½¿ç”¨ç­‰çº§:" + av.getPropReLevel() + "<br/>");
 //			sb.append("----------------------<br/>");
 			setAttribute(request, "prop_class", av.getPropClass());
 			setAttribute(request, "prop_id", av.getPropID());

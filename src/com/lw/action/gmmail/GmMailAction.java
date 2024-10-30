@@ -15,14 +15,14 @@ import com.lw.service.gmmail.GmMailService;
 public class GmMailAction extends DispatchAction
 {
 
-	// Ò³ÃæÌø×ª
+	// é¡µé¢è·³è½¬
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		return mapping.findForward("GMmail_menu");
 	}
 
-	// ·¢ËÍ·µ»Ø
+	// å‘é€è¿”å›
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -35,7 +35,7 @@ public class GmMailAction extends DispatchAction
 				roleInfo.getBasicInfo().getName(), content);
 		if (hint == null)
 		{
-			request.setAttribute("hint", "·¢ËÍÊ§°Ü!");
+			request.setAttribute("hint", "å‘é€å¤±è´¥!");
 			return mapping.findForward("hint");
 		}
 		else
@@ -44,7 +44,7 @@ public class GmMailAction extends DispatchAction
 			return mapping.findForward("hint");
 		}
 	}
-	//¸øGM·¢ËÍBUGÌá½»µÄmail
+	//ç»™GMå‘é€BUGæäº¤çš„mail
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -55,7 +55,7 @@ public class GmMailAction extends DispatchAction
 		String hint = gs.sendMailToGM(roleInfo.getBasicInfo().getPPk(),roleInfo.getBasicInfo().getName(), content);
 		if (hint == null)
 		{
-			request.setAttribute("hint", "·¢ËÍÊ§°ÜÇëÖØĞÂ³¢ÊÔ!");
+			request.setAttribute("hint", "å‘é€å¤±è´¥è¯·é‡æ–°å°è¯•!");
 			return mapping.findForward("reporthint");
 		}
 		else

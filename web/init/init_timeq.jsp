@@ -4,7 +4,7 @@
 <%@page import="com.ls.pub.constant.Channel"%>
 ----------------------<br/>
 <%
-	if(GameConfig.getChannelId()==Channel.JUU)
+    if(GameConfig.getChannelId()==Channel.JUU)
 	{
 		%>
 		聚游报时:<%=DateUtil.getMainPageCurTimeStr()%>

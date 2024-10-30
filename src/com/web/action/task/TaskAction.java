@@ -1,5 +1,5 @@
 /**
- * ½ÓÊÜÈÎÎñ
+ * æ¥å—ä»»åŠ¡
  */
 package com.web.action.task;
 
@@ -24,7 +24,7 @@ import com.web.service.TaskXunWuService;
 import com.web.service.task.TaskPageService;
 
 /**
- * ½ÓÊÜÈÎÎñ
+ * æ¥å—ä»»åŠ¡
  */
 public class TaskAction extends ActionBase
 {
@@ -32,7 +32,7 @@ public class TaskAction extends ActionBase
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 		 	HttpServletRequest request, HttpServletResponse response) {
 	    RoleEntity roleInfo = this.getRoleEntity(request);
-		/** ÈÎÎñµÄID */
+		/** ä»»åŠ¡çš„ID */
 		String tId = request.getParameter("tId");
 		String noCarry=request.getParameter("nocarry");
 		if(tId == null ){
@@ -54,19 +54,19 @@ public class TaskAction extends ActionBase
 		TaskPageService taskPageService = new TaskPageService();
 		TaskVO taskVO = TaskCache.getById(tId);
 		String[] taskKeyValue = taskVO.getTKeyValue().split(",");
-		// 1´ú±í¶Ô»°ÈÎÎñ
+		// 1ä»£è¡¨å¯¹è¯ä»»åŠ¡
 		TaskService taskService = new TaskService();
 		TaskShaGuaiService taskShaGuaiService = new TaskShaGuaiService();
 		TaskXieDaiService taskXieDaiService = new TaskXieDaiService();
 		TaskXunWuService taskXunWuService = new TaskXunWuService();
 		TaskFuHeService taskFuHeService = new TaskFuHeService();
 		String hint = null;
-		// ÔÙ´ÎÅĞ¶ÏÊÇ·ñ¿ÉÁìÈ¡ÈÎÎñ
+		// å†æ¬¡åˆ¤æ–­æ˜¯å¦å¯é¢†å–ä»»åŠ¡
 		if ((taskVO.getTLevelXiao() > roleInfo.getBasicInfo().getGrade())
 				|| roleInfo.getBasicInfo().getGrade() > taskVO.getTLevelDa() 
 				|| (roleInfo.getTitleSet().isHaveByTitleStr(taskVO.getTSchool())==false))
 		{
-			hint = "ÁìÈ¡Ìõ¼ş²»Âú×ã";
+			hint = "é¢†å–æ¡ä»¶ä¸æ»¡è¶³";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("taskhint");
 		} 
@@ -76,7 +76,7 @@ public class TaskAction extends ActionBase
     	{
     		if(taskVO.getTCycle() == 0  && !tId.equals(curTaskInfo.getTNext()+""))
     		{
-    			hint = "Çë²»Òª·Ç·¨Ë¢È¡ÈÎÎñ½±Àø!";
+    			hint = "è¯·ä¸è¦éæ³•åˆ·å–ä»»åŠ¡å¥–åŠ±!";
     			request.setAttribute("hint", hint);
     			return mapping.findForward("taskhint");		
     		}
@@ -85,7 +85,7 @@ public class TaskAction extends ActionBase
     	{
     		if(taskVO.getTCycle() == 0)
     		{
-    			hint = "Çë²»Òª·Ç·¨Ë¢È¡ÈÎÎñ½±Àø!";
+    			hint = "è¯·ä¸è¦éæ³•åˆ·å–ä»»åŠ¡å¥–åŠ±!";
     			request.setAttribute("hint", hint);
     			return mapping.findForward("taskhint");	
     		}
@@ -97,44 +97,44 @@ public class TaskAction extends ActionBase
     	
     	switch(taskVO.getTType())
     	{
-    		case 1://¶Ô»°Àà
+    		case 1://å¯¹è¯ç±»
     			hint = taskService.getDuiHuaService(roleInfo,taskVO);
     			if(hint!=null && hint.equals("-1"))
     			{
     				return this.dispath(request, response, "/visitleadaction.do?cmd=n1");
     			}
     			break;
-    		case 2:// 2´ú±íÉ±¹ÖÈÎÎñ
+    		case 2:// 2ä»£è¡¨æ€æ€ªä»»åŠ¡
     			hint = taskShaGuaiService.getShaGuaiService(roleInfo,taskVO);
     			break;
-    		case 3:// 3´ú±íĞ¯´øÀàÈÎÎñ
+    		case 3:// 3ä»£è¡¨æºå¸¦ç±»ä»»åŠ¡
     			hint = taskXieDaiService.getXieDaiService(roleInfo,taskVO);
     			break;
-    		case 4:// Ñ°ÎïÀà
+    		case 4:// å¯»ç‰©ç±»
     			hint = taskXunWuService.getXunWuService(roleInfo,taskVO);
     			break;
-    		case 5:// ¸´ºÏÀà
+    		case 5:// å¤åˆç±»
     			hint = taskFuHeService.getFuHeService(roleInfo,taskVO);
     			break;
     	}
     	
     	if( hint != null)
     	{
-    		//ÈÎÎñ²»ÄÜÌá½»µÄÌáÊ¾
+    		//ä»»åŠ¡ä¸èƒ½æäº¤çš„æç¤º
 			request.setAttribute("hint", hint);
 			return mapping.findForward("taskhint");
 		}
     	
     	if( taskVO.isLast()==true && taskVO.getTZu().indexOf("ty_juezhanbuzhoushan")!=-1 )
     	{
-    		//Èç¹ûÍê³É×îºóÒ»ÌõĞÂÊÖÈÎÎñ
+    		//å¦‚æœå®Œæˆæœ€åä¸€æ¡æ–°æ‰‹ä»»åŠ¡
     		return super.dispath(request, response, "/guide.do?step=end_cartoon1");
     	}
     	if("yes".equals(noCarry))
     	{
     		return mapping.findForward("successpub");
     	}
-    	//ÈÎÎñ´«ËÍ
+    	//ä»»åŠ¡ä¼ é€
 		if(taskKeyValue[0] != null && !taskKeyValue[0].equals("") && !taskKeyValue[0].equals("null"))
 		{
 			hint = taskPageService.taskRemit(roleInfo, taskKeyValue[0], tId);

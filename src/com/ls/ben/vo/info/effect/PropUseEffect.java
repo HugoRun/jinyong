@@ -4,36 +4,36 @@ import com.ls.ben.dao.info.buff.BuffDao;
 import com.ls.ben.vo.goods.prop.PropVO;
 
 /**
- * ¹¦ÄÜ:¼ÇÂ¼µÀ¾ßÊ¹ÓÃĞ§¹û
- * @author ÁõË§
+ * åŠŸèƒ½:è®°å½•é“å…·ä½¿ç”¨æ•ˆæœ
+ * @author åˆ˜å¸…
  * 2:57:26 PM
  */
 public class PropUseEffect
 {
-	/**µÀ¾ßÖÖÀà*/
+	/**é“å…·ç§ç±»*/
 	private int propType;
 	
-	/**Ê¹ÓÃĞ§¹ûÃèÊö*/
+	/**ä½¿ç”¨æ•ˆæœæè¿°*/
 	private String effectDisplay;
 	
-	/**Ê¹ÓÃĞ§¹û±ä»¯ÊıÖµ*/
+	/**ä½¿ç”¨æ•ˆæœå˜åŒ–æ•°å€¼*/
 	private String effectValue;
 	
-	/**Ê¹ÓÃĞ§¹û±ä»¯ÊıÖµ1*/
+	/**ä½¿ç”¨æ•ˆæœå˜åŒ–æ•°å€¼1*/
 	private String effectValue1;
 	
-	/**±êÊ¾µÀ¾ßÊÇ·ñ³É¹¦Ê¹ÓÃ*/
+	/**æ ‡ç¤ºé“å…·æ˜¯å¦æˆåŠŸä½¿ç”¨*/
 	private boolean isEffected;
 	
-	/**²»ÄÜÊ¹ÓÃÃèÊö*/
+	/**ä¸èƒ½ä½¿ç”¨æè¿°*/
 	private String noUseDisplay;
-	//×¨Ö°µÄ³ÆºÅ
+	//ä¸“èŒçš„ç§°å·
 	private String title;
-	//¼¼ÄÜÑ§Ï°µÀ¾ßµÄ¼¼ÄÜid
+	//æŠ€èƒ½å­¦ä¹ é“å…·çš„æŠ€èƒ½id
 	private String skillId;
-	//ÅĞ¶ÏÊÇ·ñ¼ÓÂıÌåÁ¦
+	//åˆ¤æ–­æ˜¯å¦åŠ æ…¢ä½“åŠ›
 	private int isPetFatigue = 0;
-	/** Õë¶ÔbuffµÄ²»Í¬Çé¿ö£¬ÓĞ²»Í¬µÄÃèÊö */
+	/** é’ˆå¯¹buffçš„ä¸åŒæƒ…å†µï¼Œæœ‰ä¸åŒçš„æè¿° */
 	private String buffDisplay;
 	/** buffType */
 	private String[] buffType;
@@ -69,7 +69,7 @@ public class PropUseEffect
 	{
 		BuffDao buffDao = new BuffDao();
 		StringBuffer sb = new StringBuffer();
-		sb.append("ÄúÊ¹ÓÃÁË").append(prop.getPropName()).append(",");
+		sb.append("æ‚¨ä½¿ç”¨äº†").append(prop.getPropName()).append(",");
 		for (int i = 0; i < buffType.length; i++)
 		{
 			sb.append(buffDao.getBuffDisplay(Integer.parseInt(buffType[i])));

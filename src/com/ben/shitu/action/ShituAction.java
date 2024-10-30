@@ -1,14 +1,5 @@
 package com.ben.shitu.action;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.shitu.model.DateUtil;
 import com.ben.shitu.model.Shitu;
 import com.ben.shitu.model.ShituConstant;
@@ -20,578 +11,422 @@ import com.ls.model.user.BasicInfo;
 import com.ls.model.user.RoleEntity;
 import com.ls.pub.config.GameConfig;
 import com.ls.web.action.menu.BaseAction;
+import com.ls.web.service.player.RoleService;
 import com.ls.web.service.rank.RankService;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
-public class ShituAction extends BaseAction
-{
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		BasicInfo bi = getBasicInfo(request);
-		if (bi.getGrade() < ShituConstant.ZHAOTU_LEVEL_LIMIT)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬Ö»ÓĞ" + ShituConstant.ZHAOTU_LEVEL_LIMIT
-					+ "¼¶ÒÔÉÏµÄÍæ¼Ò²Å¿ÉÕĞÊÕÍ½µÜ£¡");
-			return mapping.findForward(ERROR);
-		}
-		Object[] args = new Object[] { bi.getPPk() };
-		Shitu shitu1 = shituService.findOne(ShituConstant.SHOUTUSQL1, args);
-		if (shitu1 != null)
-		{
-			if (shitu1.getTe_id() != 0)
-			{
-				setMessage(request, "¶Ô²»Æğ£¬ÄúÊÇ±ğÈËµÄÍ½µÜ£¡");
-				return mapping.findForward(ERROR);
-			}
-			else
-			{
-				shituService.doit(ShituConstant.SHOUTUSQL2, args);
-				shituService.removeFromStudent(bi.getPPk());
-			}
-		}
-		int count = shituService.findCount(ShituConstant.SHOUTUSQL
-				+ " and s.stu_id!=0", args);
-		if (count >= ShituConstant.getCANRECCOUNT(bi.getTe_level()))
-		{
-			setMessage(request, "¶Ô²»Æğ£¬ÄãÊÕÍ½Ãû¶îÒÑÂú£¡");
-			return mapping.findForward(ERROR);
-		}
-		if(!DateUtil.check(bi.getLast_shoutu_time())){
-			setMessage(request, "Íæ¼ÒÃ¿ÆßÌìÖĞ×î¶àÖ»ÄÜÊÕÒ»´ÎÍ½µÜ£¡");
-			return mapping.findForward(ERROR);
-		}
-		
-		int count1 = shituService.findCount(ShituConstant.SHOUTUSQL
-				+ " and s.stu_id=0", args);
-		if (count1 <= 0)
-		{
-			Shitu shitu = new Shitu(0, bi.getPPk(), 0, bi.getName(), null, bi
-					.getGrade(), 0, null, null);
-			shituService.addShitu(shitu);
-		}
-		return n2(mapping, form, request, response);
-	}
+public class ShituAction extends BaseAction {
 
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		int nowPage = Integer
-				.parseInt(request.getParameter("nowPage") == null ? "1"
-						: request.getParameter("nowPage").trim());
-		List<Shitu> list = shituService.findStudent(nowPage);
-		int stuCount = shituService.studentCount();
-		departList(request, list, stuCount, nowPage);
-		return mapping.findForward(INDEX);
-	}
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        BasicInfo bi = getBasicInfo(request);
+        if (bi.getGrade() < ShituConstant.ZHAOTU_LEVEL_LIMIT) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œåªæœ‰" + ShituConstant.ZHAOTU_LEVEL_LIMIT + "çº§ä»¥ä¸Šçš„ç©å®¶æ‰å¯æ‹›æ”¶å¾’å¼Ÿï¼");
+            return mapping.findForward(ERROR);
+        }
+        Object[] args = new Object[]{bi.getPPk()};
+        Shitu shitu1 = shituService.findOne(ShituConstant.SHOUTUSQL1, args);
+        if (shitu1 != null) {
+            if (shitu1.getTe_id() != 0) {
+                setMessage(request, "å¯¹ä¸èµ·ï¼Œæ‚¨æ˜¯åˆ«äººçš„å¾’å¼Ÿï¼");
+                return mapping.findForward(ERROR);
+            } else {
+                shituService.doit(ShituConstant.SHOUTUSQL2, args);
+                shituService.removeFromStudent(bi.getPPk());
+            }
+        }
+        int count = shituService.findCount(ShituConstant.SHOUTUSQL + " and s.stu_id!=0", args);
+        if (count >= ShituConstant.getCANRECCOUNT(bi.getTe_level())) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œä½ æ”¶å¾’åé¢å·²æ»¡ï¼");
+            return mapping.findForward(ERROR);
+        }
+        if (!DateUtil.check(bi.getLast_shoutu_time())) {
+            setMessage(request, "ç©å®¶æ¯ä¸ƒå¤©ä¸­æœ€å¤šåªèƒ½æ”¶ä¸€æ¬¡å¾’å¼Ÿï¼");
+            return mapping.findForward(ERROR);
+        }
 
-	public ActionForward n3(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String id = (String) request.getParameter("id");
-		if (stu_id == null || "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
+        int count1 = shituService.findCount(ShituConstant.SHOUTUSQL + " and s.stu_id=0", args);
+        if (count1 <= 0) {
+            Shitu shitu = new Shitu(0, bi.getPPk(), 0, bi.getName(), null, bi.getGrade(), 0, null, null);
+            shituService.addShitu(shitu);
+        }
+        return n2(mapping, form, request, response);
+    }
 
-		RoleEntity roleInfo = roleService.getRoleInfoById(stu_id.trim());
-		PartInfoVO vo = (PartInfoVO) partInfoDAO.getPartView(stu_id.trim());
-		String playerPic = picService.getPlayerPicStr(roleInfo, stu_id.trim());
-		setAttribute(request, "roleInfo", roleInfo);
-		setAttribute(request, "vo", vo);
-		setAttribute(request, "playerPic", playerPic);
-		setAttribute(request, "id", id);
-		setAttribute(request, "stu_id", stu_id);
-		return mapping.findForward("studetail");
-	}
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        int nowPage = Integer.parseInt(request.getParameter("nowPage") == null ? "1" : request.getParameter("nowPage").trim());
+        List<Shitu> list = shituService.findStudent(nowPage);
+        int stuCount = shituService.studentCount();
+        departList(request, list, stuCount, nowPage);
+        return mapping.findForward(INDEX);
+    }
 
-	// ÕĞÍ½²Ù×÷
-	public ActionForward n4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String id = (String) request.getParameter("id");
-		if (stu_id == null || "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		BasicInfo bi = getBasicInfo(request);
-		PartInfoVO vo = (PartInfoVO) partInfoDAO.getPartView(stu_id.trim());
-		if(vo!=null&&vo.getPGrade()>=ShituConstant.BAISHI_LEVEL_LIMIT){
-			setMessage(request, "¶Ô²»Æğ£¬¶Ô·½ÒÑ³¬¹ı°İÊ¦µÈ¼¶£¡");
-			// ´Ó°İÊ¦ÁĞ±íÖĞÉ¾³ı×Ô¼º
-			new ShituService().delShitu(vo.getPPk());
-			return mapping.findForward(ERROR);
-		}
-		List<Shitu> list = shituService.findByTeacher(bi.getPPk());
-		if (list != null)
-		{
-			if (list.size() >= ShituConstant.getCANRECCOUNT(bi.getTe_level()))
-			{
-				setMessage(request, "¶Ô²»Æğ£¬ÄúÕĞÊÕµÄÍ½µÜÃû¶îÒÑÂú£¡");
-				return mapping.findForward(ERROR);
-			}
-		}
-		if (bi.getGrade() < ShituConstant.ZHAOTU_LEVEL_LIMIT)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬Ö»ÓĞ" + ShituConstant.ZHAOTU_LEVEL_LIMIT
-					+ "¼¶ÒÔÉÏµÄÍæ¼Ò²Å¿ÉÕĞÍ½£¡");
-			return mapping.findForward(ERROR);
-		}
-		if(!DateUtil.check(bi.getLast_shoutu_time())){
-			setMessage(request, "Íæ¼ÒÃ¿ÆßÌìÖĞ×î¶àÖ»ÄÜÊÕÒ»´ÎÍ½µÜ£¡");
-			return mapping.findForward(ERROR);
-		}
-		if(!DateUtil.check(vo.getLast_shoutu_time())){
-			setMessage(request, "¶Ô·½Ä¿Ç°²»ÄÜ°İÊ¦");
-			return mapping.findForward(ERROR);
-		}
-		
-		List<Shitu> shitu = shituService.findByStudent(stu_id.trim());
-		if (shitu != null && shitu.size() > 0)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬¶Ô·½ÒÑ¾­°İÊ¦£¬ÇëÄãÁíÑ¡ÏÍÍ½°É£¡");
-			return n2(mapping, form, request, response);
-		}
-		FriendVO fv = friendService.viewfriend(bi.getPPk(), vo.getPPk() + "");
-		if (fv != null && fv.getRelation() != 0)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬ÄúºÍ¶Ô·½ÊÇ"
-					+ (fv.getRelation() == 1 ? "½áÒå" : "½á»é") + "¹ØÏµ£¬²»ÄÜÊÕÍ½");
-			return n2(mapping, form, request, response);
-		}
-		String message = bi.getName() + "ÏëÕĞÄãÎªÍ½.<br/>"
-				+ "<anchor><go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/shitu.do")+"\">"
-				+ "<postfield name=\"cmd\" value=\"nn4\" />"
-				+ "<postfield name=\"id\" value=\"" + id + "\" />"
-				+ " <postfield name=\"te_id\" value=\"" + bi.getPPk() + "\" />"
-				+ "<postfield name=\"caozuo\" value=\"0\" />" + " </go>"
-				+ "Í¬Òâ</anchor><br/>"
-				+ "<anchor><go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/shitu.do")+"\">"
-				+ "<postfield name=\"cmd\" value=\"nn4\" />"
-				+ "<postfield name=\"id\" value=\"" + id + "\" />"
-				+ "<postfield name=\"te_id\" value=\"" + bi.getPPk() + "\" />"
-				+ "<postfield name=\"caozuo\" value=\"1\" />" + " </go>"
-				+ "¾Ü¾ø</anchor><br/>";
-		mailInfoService.sendMailBySystem(vo.getPPk(), bi.getName() + "ÏëÕĞÄãÎªÍ½",
-				message);
-		setMessage(request, "ÄúÒÑÉêÇëÕĞ" + vo.getPName() + "ÎªÍ½");
-		return mapping.findForward(ERROR);
-	}
+    public ActionForward n3(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String id = request.getParameter("id");
+        if (stu_id == null || stu_id.trim().isEmpty() || id == null || id.trim().isEmpty()) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        }
 
-	public ActionForward nn4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
+        RoleEntity roleInfo = RoleService.getRoleInfoById(stu_id.trim());
+        PartInfoVO vo = partInfoDAO.getPartView(stu_id.trim());
+        String playerPic = picService.getPlayerPicStr(roleInfo, stu_id.trim());
+        setAttribute(request, "roleInfo", roleInfo);
+        setAttribute(request, "vo", vo);
+        setAttribute(request, "playerPic", playerPic);
+        setAttribute(request, "id", id);
+        setAttribute(request, "stu_id", stu_id);
+        return mapping.findForward("studetail");
+    }
 
-		String te_id = (String) request.getParameter("te_id");
-		String id = (String) request.getParameter("id");
-		String caozuo = (String) request.getParameter("caozuo");
-		if (te_id == null || "".equals(te_id.trim()) || id == null
-				|| "".equals(id.trim()) || caozuo == null
-				|| "".equals(caozuo.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		BasicInfo bi = getBasicInfo(request);
-		PartInfoVO vo = (PartInfoVO) partInfoDAO.getPartView(te_id.trim());
-		if (vo == null)
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		if(!DateUtil.check(bi.getLast_shoutu_time())){
-			setMessage(request, "Íæ¼ÒÃ¿ÆßÌìÖĞ×î¶àÖ»ÄÜ°İÒ»´ÎÊ¦¸µ£¡");
-			return mapping.findForward(ERROR);
-		}
-		if(!DateUtil.check(vo.getLast_shoutu_time())){
-			setMessage(request, "¶Ô·½Ä¿Ç°²»ÄÜÊÕÍ½");
-			return mapping.findForward(ERROR);
-		}
-		if(Integer.parseInt(caozuo.trim())==1){
-			String message1 = "Äú¾Ü¾ø°İ"+vo.getPName()+"ÎªÊ¦£¡";
-			setMessage(request, message1);
-			mailInfoService.sendMailBySystem(vo.getPPk(), bi.getName() + "¾Ü¾ø°İÄúÎªÊ¦",
-					 bi.getName() + "¾Ü¾ø°İÄúÎªÊ¦");
-			return mapping.findForward(ERROR);
-		}
-		List<Shitu> list = shituService.findByTeacher(vo.getPPk());
-		if (list != null)
-		{
-			if (list.size() >= ShituConstant.getCANRECCOUNT(vo.getTe_level()))
-			{
-				setMessage(request, "¶Ô²»Æğ£¬¶Ô·½ÕĞÊÕµÄÍ½µÜÃû¶îÒÑÂú£¬ÇëÄãÁíÍ¶ÃûÊ¦°É£¡");
-				return mapping.findForward(ERROR);
-			}
-		}
-		if (vo.getPGrade() < ShituConstant.ZHAOTU_LEVEL_LIMIT)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬¶Ô·½µÈ¼¶Î´Âú" + ShituConstant.ZHAOTU_LEVEL_LIMIT
-					+ "£¡");
-			return mapping.findForward(ERROR);
-		}
-		List<Shitu> shitu = shituService.findByStudent(bi.getPPk() + "");
-		if (shitu != null && shitu.size() > 0)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬ÄúÒÑ¾­ÓĞÊ¦¸µÁË£¡");
-			return mapping.findForward(ERROR);
-		}
-		FriendVO fv = friendService.viewfriend(bi.getPPk(), vo.getPPk() + "");
-		if (fv != null && fv.getRelation() != 0)
-		{
-			setMessage(request, "¶Ô²»Æğ£¬ÄúºÍ¶Ô·½ÊÇ"
-					+ (fv.getRelation() == 1 ? "½áÒå" : "½á»é") + "¹ØÏµ£¬²»ÄÜ°İÊ¦");
-			return mapping.findForward(ERROR);
-		}
-		Object[] args = new Object[] { vo.getPPk(), vo.getPName(),
-				vo.getPGrade(), id };
-		shituService.doit(ShituConstant.SHOUTUSQL3, args);
-		PartInfoDao pid = new PartInfoDao();
-		bi.setLast_shoutu_time();
-		pid.updateLastTime(vo.getPPk());
-		pid.updateLastTime(bi.getPPk());
-		RoleEntity re = roleService.getRoleInfoById(vo.getPPk()+"");
-		if(re!=null){
-			re.getBasicInfo().setLast_shoutu_time();
-		}
-		if (fv == null)
-		{
-			friendService.addfriend(bi.getPPk(), vo.getPPk() + "", vo
-					.getPName(), getTime());
-		}
-		FriendVO fv1 = friendService.viewfriend(vo.getPPk(), bi.getPPk() + "");
-		if (fv1 == null)
-		{
-			friendService.addfriend(vo.getPPk(), bi.getPPk() + "",
-					bi.getName(), getTime());
-		}
+    // æ‹›å¾’æ“ä½œ
+    public ActionForward n4(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String id = request.getParameter("id");
+        if (stu_id == null || "".equals(stu_id.trim()) || id == null || "".equals(id.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        }
+        BasicInfo bi = getBasicInfo(request);
+        PartInfoVO vo = partInfoDAO.getPartView(stu_id.trim());
+        if (vo != null && vo.getPGrade() >= ShituConstant.BAISHI_LEVEL_LIMIT) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œå¯¹æ–¹å·²è¶…è¿‡æ‹œå¸ˆç­‰çº§ï¼");
+            // ä»æ‹œå¸ˆåˆ—è¡¨ä¸­åˆ é™¤è‡ªå·±
+            new ShituService().delShitu(vo.getPPk());
+            return mapping.findForward(ERROR);
+        }
+        List<Shitu> list = shituService.findByTeacher(bi.getPPk());
+        if (list != null) {
+            if (list.size() >= ShituConstant.getCANRECCOUNT(bi.getTe_level())) {
+                setMessage(request, "å¯¹ä¸èµ·ï¼Œæ‚¨æ‹›æ”¶çš„å¾’å¼Ÿåé¢å·²æ»¡ï¼");
+                return mapping.findForward(ERROR);
+            }
+        }
+        if (bi.getGrade() < ShituConstant.ZHAOTU_LEVEL_LIMIT) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œåªæœ‰" + ShituConstant.ZHAOTU_LEVEL_LIMIT + "çº§ä»¥ä¸Šçš„ç©å®¶æ‰å¯æ‹›å¾’ï¼");
+            return mapping.findForward(ERROR);
+        }
+        if (!DateUtil.check(bi.getLast_shoutu_time())) {
+            setMessage(request, "ç©å®¶æ¯ä¸ƒå¤©ä¸­æœ€å¤šåªèƒ½æ”¶ä¸€æ¬¡å¾’å¼Ÿï¼");
+            return mapping.findForward(ERROR);
+        }
+        if (!DateUtil.check(vo.getLast_shoutu_time())) {
+            setMessage(request, "å¯¹æ–¹ç›®å‰ä¸èƒ½æ‹œå¸ˆ");
+            return mapping.findForward(ERROR);
+        }
 
-		String message = vo.getPName() + "ÊÕÄãÎªÍ½£¬ÄãÒªÒ»ĞÄÒ»ÒâÊÌ·îËû¡£";
-		String message1 = "¹§Ï²Äã£¬ÄãÕıÊ½ÊÕ" + bi.getName() + "ÎªÍ½£¡Äã¿ÉÒÔ»ñµÃÒÔÏÂºÃ´¦£º<br/>" +
+        List<Shitu> shitu = shituService.findByStudent(stu_id.trim());
+        if (shitu != null && shitu.size() > 0) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œå¯¹æ–¹å·²ç»æ‹œå¸ˆï¼Œè¯·ä½ å¦é€‰è´¤å¾’å§ï¼");
+            return n2(mapping, form, request, response);
+        }
+        FriendVO fv = friendService.viewfriend(bi.getPPk(), vo.getPPk() + "");
+        if (fv != null && fv.getRelation() != 0) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œæ‚¨å’Œå¯¹æ–¹æ˜¯" + (fv.getRelation() == 1 ? "ç»“ä¹‰" : "ç»“å©š") + "å…³ç³»ï¼Œä¸èƒ½æ”¶å¾’");
+            return n2(mapping, form, request, response);
+        }
+        String message = bi.getName() + "æƒ³æ‹›ä½ ä¸ºå¾’.<br/>" + "<anchor><go method=\"post\" href=\"" + response.encodeURL(GameConfig.getContextPath() + "/shitu.do") + "\">" + "<postfield name=\"cmd\" value=\"nn4\" />" + "<postfield name=\"id\" value=\"" + id + "\" />" + " <postfield name=\"te_id\" value=\"" + bi.getPPk() + "\" />" + "<postfield name=\"caozuo\" value=\"0\" />" + " </go>" + "åŒæ„</anchor><br/>" + "<anchor><go method=\"post\" href=\"" + response.encodeURL(GameConfig.getContextPath() + "/shitu.do") + "\">" + "<postfield name=\"cmd\" value=\"nn4\" />" + "<postfield name=\"id\" value=\"" + id + "\" />" + "<postfield name=\"te_id\" value=\"" + bi.getPPk() + "\" />" + "<postfield name=\"caozuo\" value=\"1\" />" + " </go>" + "æ‹’ç»</anchor><br/>";
+        mailInfoService.sendMailBySystem(vo.getPPk(), bi.getName() + "æƒ³æ‹›ä½ ä¸ºå¾’", message);
+        setMessage(request, "æ‚¨å·²ç”³è¯·æ‹›" + vo.getPName() + "ä¸ºå¾’");
+        return mapping.findForward(ERROR);
+    }
 
-		"1.         Ê¦¸µ¿ÉÃ¿Ìì¿ÉÖ±½Ó¸øÍ½µÜ´«¹¦Ò»´Î<br/>" +
+    public ActionForward nn4(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
-		"2.         Í½µÜÃ¿Éı5¼¶£¬Ê¦¸µ¿É»ñµÃÒøÁ½ºÍ¾­ÑéµÈ½±Àø<br/>" +
+        String te_id = request.getParameter("te_id");
+        String id = request.getParameter("id");
+        String caozuo = request.getParameter("caozuo");
+        if (te_id == null || "".equals(te_id.trim()) || id == null || "".equals(id.trim()) || caozuo == null || "".equals(caozuo.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        }
+        BasicInfo bi = getBasicInfo(request);
+        PartInfoVO vo = partInfoDAO.getPartView(te_id.trim());
+        if (vo == null) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        }
+        if (!DateUtil.check(bi.getLast_shoutu_time())) {
+            setMessage(request, "ç©å®¶æ¯ä¸ƒå¤©ä¸­æœ€å¤šåªèƒ½æ‹œä¸€æ¬¡å¸ˆå‚…ï¼");
+            return mapping.findForward(ERROR);
+        }
+        if (!DateUtil.check(vo.getLast_shoutu_time())) {
+            setMessage(request, "å¯¹æ–¹ç›®å‰ä¸èƒ½æ”¶å¾’");
+            return mapping.findForward(ERROR);
+        }
+        if (Integer.parseInt(caozuo.trim()) == 1) {
+            String message1 = "æ‚¨æ‹’ç»æ‹œ" + vo.getPName() + "ä¸ºå¸ˆï¼";
+            setMessage(request, message1);
+            mailInfoService.sendMailBySystem(vo.getPPk(), bi.getName() + "æ‹’ç»æ‹œæ‚¨ä¸ºå¸ˆ", bi.getName() + "æ‹’ç»æ‹œæ‚¨ä¸ºå¸ˆ");
+            return mapping.findForward(ERROR);
+        }
+        List<Shitu> list = shituService.findByTeacher(vo.getPPk());
+        if (list != null) {
+            if (list.size() >= ShituConstant.getCANRECCOUNT(vo.getTe_level())) {
+                setMessage(request, "å¯¹ä¸èµ·ï¼Œå¯¹æ–¹æ‹›æ”¶çš„å¾’å¼Ÿåé¢å·²æ»¡ï¼Œè¯·ä½ å¦æŠ•åå¸ˆå§ï¼");
+                return mapping.findForward(ERROR);
+            }
+        }
+        if (vo.getPGrade() < ShituConstant.ZHAOTU_LEVEL_LIMIT) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œå¯¹æ–¹ç­‰çº§æœªæ»¡" + ShituConstant.ZHAOTU_LEVEL_LIMIT + "ï¼");
+            return mapping.findForward(ERROR);
+        }
+        List<Shitu> shitu = shituService.findByStudent(bi.getPPk() + "");
+        if (shitu != null && shitu.size() > 0) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œæ‚¨å·²ç»æœ‰å¸ˆå‚…äº†ï¼");
+            return mapping.findForward(ERROR);
+        }
+        FriendVO fv = friendService.viewfriend(bi.getPPk(), vo.getPPk() + "");
+        if (fv != null && fv.getRelation() != 0) {
+            setMessage(request, "å¯¹ä¸èµ·ï¼Œæ‚¨å’Œå¯¹æ–¹æ˜¯" + (fv.getRelation() == 1 ? "ç»“ä¹‰" : "ç»“å©š") + "å…³ç³»ï¼Œä¸èƒ½æ‹œå¸ˆ");
+            return mapping.findForward(ERROR);
+        }
+        Object[] args = new Object[]{vo.getPPk(), vo.getPName(), vo.getPGrade(), id};
+        shituService.doit(ShituConstant.SHOUTUSQL3, args);
+        PartInfoDao pid = new PartInfoDao();
+        bi.setLast_shoutu_time();
+        pid.updateLastTime(vo.getPPk());
+        pid.updateLastTime(bi.getPPk());
+        RoleEntity re = RoleService.getRoleInfoById(vo.getPPk() + "");
+        if (re != null) {
+            re.getBasicInfo().setLast_shoutu_time();
+        }
+        if (fv == null) {
+            friendService.addfriend(bi.getPPk(), vo.getPPk() + "", vo.getPName(), getTime());
+        }
+        FriendVO fv1 = friendService.viewfriend(vo.getPPk(), bi.getPPk() + "");
+        if (fv1 == null) {
+            friendService.addfriend(vo.getPPk(), bi.getPPk() + "", bi.getName(), getTime());
+        }
 
-		"3.         Í½µÜ³öÊ¦ºó£¬Ê¦¸µ¿É»ñµÃÆäËû½±Àø<br/>" +
+        String message = vo.getPName() + "æ”¶ä½ ä¸ºå¾’ï¼Œä½ è¦ä¸€å¿ƒä¸€æ„ä¾å¥‰ä»–ã€‚";
+        String message1 = "æ­å–œä½ ï¼Œä½ æ­£å¼æ”¶" + bi.getName() + "ä¸ºå¾’ï¼ä½ å¯ä»¥è·å¾—ä»¥ä¸‹å¥½å¤„ï¼š<br/>" +
 
-		"4.         Í½µÜµÚÒ»´Î¼ÓÈëÃÅÅÉºÍ°ï»á£¬Ê¦¸µ¿É»ñµÃ¡¾"+GameConfig.getYuanbaoQuanName()+"¡¿¡Á500<br/>" +
+                "1.         å¸ˆå‚…å¯æ¯å¤©å¯ç›´æ¥ç»™å¾’å¼Ÿä¼ åŠŸä¸€æ¬¡<br/>" +
 
-		"5.         ¿ÉÔÚÏµÍ³À¸µÄ¡°Ê¦Í½¹ÜÀí¡±ÄÚ²é¿´Ê¦Í½¸÷Ïî¹ØÏµ<br/>";
-		setMessage(request, message);
-		mailInfoService.sendMailBySystem(vo.getPPk(), bi.getName() + "°İÄúÎªÊ¦",
-				message1);
-		// ´Ó°İÊ¦ÁĞ±íÖĞÉ¾³ı×Ô¼º
-		shituService.doit(ShituConstant.SHOUTUSQL4,
-				new Object[] { vo.getPPk() });
-		shituService.remove(bi.getName(), vo.getPName());
-		return mapping.findForward(ERROR);
-	}
+                "2.         å¾’å¼Ÿæ¯å‡5çº§ï¼Œå¸ˆå‚…å¯è·å¾—é“¶ä¸¤å’Œç»éªŒç­‰å¥–åŠ±<br/>" +
 
-	// Ê¦Í½¹ØÏµ
-	public ActionForward n5(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		BasicInfo bi = getBasicInfo(request);
-		if (bi == null)
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		List<Shitu> teacher = shituService.findByStudent(bi.getPPk());
-		List<Shitu> student = shituService.findByTeacher(bi.getPPk());
-		// ×Ô¼ºÊÇÊ¦¸¸£¬ÓĞ¶à¸öÍ½µÜ
-		if (student != null && student.size() > 0)
-		{
-			if (teacher != null && teacher.size() > 0)
-			{
-				shituService.delAsStudent(bi.getPPk());
-			}
-			setAttribute(request, "list", student);
-			return mapping.findForward("asteacher");
-		}
+                "3.         å¾’å¼Ÿå‡ºå¸ˆåï¼Œå¸ˆå‚…å¯è·å¾—å…¶ä»–å¥–åŠ±<br/>" +
 
-		// ×Ô¼ºÊÇÍ½µÜ£¬Ö»ÓĞÒ»¸öÊ¦¸¸
-		if (teacher != null && teacher.size() > 0)
-		{
-			if (teacher.size() > 1)
-			{
-				shituService.delAsStudent(bi.getPPk());
-				setMessage(
-						request,
-						"ÄãµÄÊ¦Í½¹ØÏµ³ö´í£¬ÇëÖØĞÂ²Ù×÷£¡<br/>"
-								+ "<anchor><go href=\""+GameConfig.getContextPath()+"/jsp/function/function.jsp\" method=\"get\"></go>·µ»Ø</anchor>");
-				return mapping.findForward(ERROR);
-			}
-			else
-			{
-				Shitu shitu = teacher.get(0);
-				if (shitu == null)
-				{
-					setMessage(
-							request,
-							"¶Ô²»Æğ£¬Äã²»´æÔÚÊ¦Í½¹ØÏµ£¬²»¿É²Ù×÷´ËÏîÄÚÈİ£¡<br/>"
-									+ "<anchor><go href=\""+GameConfig.getContextPath()+"/jsp/function/function.jsp\" method=\"get\"/>·µ»Ø</anchor>");
-					return mapping.findForward(ERROR);
-				}
-				RoleEntity roleInfo = roleService.getRoleInfoById(shitu
-						.getTe_id()
-						+ "");
-				PartInfoVO vo = (PartInfoVO) partInfoDAO.getPartView(shitu
-						.getTe_id()
-						+ "");
-				String playerPic = picService.getPlayerPicStr(roleInfo, shitu
-						.getTe_id()
-						+ "");
-				setAttribute(request, "roleInfo", roleInfo);
-				setAttribute(request, "vo", vo);
-				setAttribute(request, "playerPic", playerPic);
-				setAttribute(request, "id", shitu.getId());
-				setAttribute(request, "te_id", shitu.getTe_id());
-				return mapping.findForward("asstudent");
-			}
-		}
-		setMessage(
-				request,
-				"¶Ô²»Æğ£¬Äã²»´æÔÚÊ¦Í½¹ØÏµ£¬²»¿É²Ù×÷´ËÏîÄÚÈİ£¡<br/>"
-						+ "<anchor><go href=\""+GameConfig.getContextPath()+"/jsp/function/function.jsp\" method=\"get\"/>·µ»Ø</anchor>");
-		return mapping.findForward(ERROR);
-	}
+                "4.         å¾’å¼Ÿç¬¬ä¸€æ¬¡åŠ å…¥é—¨æ´¾å’Œå¸®ä¼šï¼Œå¸ˆå‚…å¯è·å¾—ã€" + GameConfig.getYuanbaoQuanName() + "ã€‘Ã—500<br/>" +
 
-	public ActionForward n6(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String id = (String) request.getParameter("id");
-		if (stu_id == null || "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
+                "5.         å¯åœ¨ç³»ç»Ÿæ çš„â€œå¸ˆå¾’ç®¡ç†â€å†…æŸ¥çœ‹å¸ˆå¾’å„é¡¹å…³ç³»<br/>";
+        setMessage(request, message);
+        mailInfoService.sendMailBySystem(vo.getPPk(), bi.getName() + "æ‹œæ‚¨ä¸ºå¸ˆ", message1);
+        // ä»æ‹œå¸ˆåˆ—è¡¨ä¸­åˆ é™¤è‡ªå·±
+        shituService.doit(ShituConstant.SHOUTUSQL4, new Object[]{vo.getPPk()});
+        shituService.remove(bi.getName(), vo.getPName());
+        return mapping.findForward(ERROR);
+    }
 
-		RoleEntity roleInfo = roleService.getRoleInfoById(stu_id.trim());
-		PartInfoVO vo = (PartInfoVO) partInfoDAO.getPartView(stu_id.trim());
-		String playerPic = picService.getPlayerPicStr(roleInfo, stu_id.trim());
-		setAttribute(request, "roleInfo", roleInfo);
-		setAttribute(request, "vo", vo);
-		setAttribute(request, "playerPic", playerPic);
-		setAttribute(request, "id", id);
-		setAttribute(request, "stu_id", stu_id);
-		return mapping.findForward("studetaill");
-	}
+    // å¸ˆå¾’å…³ç³»
+    public ActionForward n5(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        BasicInfo bi = getBasicInfo(request);
+        if (bi == null) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        }
+        List<Shitu> teacher = shituService.findByStudent(bi.getPPk());
+        List<Shitu> student = shituService.findByTeacher(bi.getPPk());
+        // è‡ªå·±æ˜¯å¸ˆçˆ¶ï¼Œæœ‰å¤šä¸ªå¾’å¼Ÿ
+        if (student != null && student.size() > 0) {
+            if (teacher != null && teacher.size() > 0) {
+                shituService.delAsStudent(bi.getPPk());
+            }
+            setAttribute(request, "list", student);
+            return mapping.findForward("asteacher");
+        }
 
-	// ½â³ıÊ¦Í½¹ØÏµÌø×ª
-	public ActionForward n7(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String stu_name = (String) request.getParameter("stu_name");
-		String id = (String) request.getParameter("id");
-		if (stu_name == null || "".equals(stu_name.trim()) || stu_id == null
-				|| "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			setAttribute(request, "stu_name", stu_name);
-			setAttribute(request, "stu_id", stu_id);
-			setAttribute(request, "id", id);
-			return mapping.findForward("jiechu");
-		}
-	}
+        // è‡ªå·±æ˜¯å¾’å¼Ÿï¼Œåªæœ‰ä¸€ä¸ªå¸ˆçˆ¶
+        if (teacher != null && teacher.size() > 0) {
+            if (teacher.size() > 1) {
+                shituService.delAsStudent(bi.getPPk());
+                setMessage(request, "ä½ çš„å¸ˆå¾’å…³ç³»å‡ºé”™ï¼Œè¯·é‡æ–°æ“ä½œï¼<br/>" + "<anchor><go href=\"" + GameConfig.getContextPath() + "/jsp/function/function.jsp\" method=\"get\"></go>è¿”å›</anchor>");
+                return mapping.findForward(ERROR);
+            } else {
+                Shitu shitu = teacher.get(0);
+                if (shitu == null) {
+                    setMessage(request, "å¯¹ä¸èµ·ï¼Œä½ ä¸å­˜åœ¨å¸ˆå¾’å…³ç³»ï¼Œä¸å¯æ“ä½œæ­¤é¡¹å†…å®¹ï¼<br/>" + "<anchor><go href=\"" + GameConfig.getContextPath() + "/jsp/function/function.jsp\" method=\"get\"/>è¿”å›</anchor>");
+                    return mapping.findForward(ERROR);
+                }
+                RoleEntity roleInfo = RoleService.getRoleInfoById(shitu.getTe_id() + "");
+                PartInfoVO vo = partInfoDAO.getPartView(shitu.getTe_id() + "");
+                String playerPic = picService.getPlayerPicStr(roleInfo, shitu.getTe_id() + "");
+                setAttribute(request, "roleInfo", roleInfo);
+                setAttribute(request, "vo", vo);
+                setAttribute(request, "playerPic", playerPic);
+                setAttribute(request, "id", shitu.getId());
+                setAttribute(request, "te_id", shitu.getTe_id());
+                return mapping.findForward("asstudent");
+            }
+        }
+        setMessage(request, "å¯¹ä¸èµ·ï¼Œä½ ä¸å­˜åœ¨å¸ˆå¾’å…³ç³»ï¼Œä¸å¯æ“ä½œæ­¤é¡¹å†…å®¹ï¼<br/>" + "<anchor><go href=\"" + GameConfig.getContextPath() + "/jsp/function/function.jsp\" method=\"get\"/>è¿”å›</anchor>");
+        return mapping.findForward(ERROR);
+    }
 
-	// ½â³ıÊ¦Í½¹ØÏµ²Ù×÷
-	public ActionForward n8(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String id = (String) request.getParameter("id");
-		if (stu_id == null || "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			Shitu shitu = shituService.findById(id);
-			if (shitu != null)
-			{
-				BasicInfo bi = getBasicInfo(request);
-				bi.addEvilValue(ShituConstant.TEA_ZUIE);
-				shituService.delbyId(id);
-				String message = "Íæ¼Ò" + bi.getName() + "ÓëÄã½â³ıÁËÊ¦Í½¹ØÏµ£¡";
-				request.setAttribute("message1", "½â³ıÊ¦Í½¹ØÏµ³É¹¦");
-				mailInfoService.sendMailBySystem(Integer
-						.parseInt(stu_id.trim()), message, message);
-			}
-			return n5(mapping, form, request, response);
-		}
-	}
+    public ActionForward n6(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String id = request.getParameter("id");
+        if (stu_id == null || "".equals(stu_id.trim()) || id == null || "".equals(id.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        }
 
-	public ActionForward n9(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String te_id = (String) request.getParameter("te_id");
-		String te_name = (String) request.getParameter("te_name");
-		String id = (String) request.getParameter("id");
-		if (te_name == null || "".equals(te_name.trim()) || te_id == null
-				|| "".equals(te_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			setAttribute(request, "te_name", te_name);
-			setAttribute(request, "te_id", te_id);
-			setAttribute(request, "id", id);
-			return mapping.findForward("stujiechu");
-		}
-	}
+        RoleEntity roleInfo = RoleService.getRoleInfoById(stu_id.trim());
+        PartInfoVO vo = partInfoDAO.getPartView(stu_id.trim());
+        String playerPic = picService.getPlayerPicStr(roleInfo, stu_id.trim());
+        setAttribute(request, "roleInfo", roleInfo);
+        setAttribute(request, "vo", vo);
+        setAttribute(request, "playerPic", playerPic);
+        setAttribute(request, "id", id);
+        setAttribute(request, "stu_id", stu_id);
+        return mapping.findForward("studetaill");
+    }
 
-	public ActionForward n10(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String te_id = (String) request.getParameter("te_id");
-		String id = (String) request.getParameter("id");
-		if (te_id == null || "".equals(te_id.trim()) || id == null
-				|| "".equals(id.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			Shitu shitu = shituService.findById(id);
-			if (shitu != null)
-			{
-				BasicInfo bi = getBasicInfo(request);
-				bi.addEvilValue(ShituConstant.STU_ZUIE);
-				shituService.delbyId(id);
-				String message = "Íæ¼Ò" + bi.getName() + "ÓëÄã½â³ıÁËÊ¦Í½¹ØÏµ£¡";
-				request.setAttribute("message1", "½â³ıÊ¦Í½¹ØÏµ³É¹¦");
-				mailInfoService.sendMailBySystem(
-						Integer.parseInt(te_id.trim()), message, message);
-			}
-			return n5(mapping, form, request, response);
-		}
-	}
+    // è§£é™¤å¸ˆå¾’å…³ç³»è·³è½¬
+    public ActionForward n7(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String stu_name = request.getParameter("stu_name");
+        String id = request.getParameter("id");
+        if (stu_name == null || "".equals(stu_name.trim()) || stu_id == null || "".equals(stu_id.trim()) || id == null || "".equals(id.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        } else {
+            setAttribute(request, "stu_name", stu_name);
+            setAttribute(request, "stu_id", stu_id);
+            setAttribute(request, "id", id);
+            return mapping.findForward("jiechu");
+        }
+    }
 
-	// ´«¹¦Ìø×ª
-	public ActionForward n11(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String stu_name = (String) request.getParameter("stu_name");
-		String id = (String) request.getParameter("id");
-		String stu_level = (String) request.getParameter("stu_level");
-		if (stu_name == null || "".equals(stu_name.trim()) || stu_id == null
-				|| "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()) || stu_level == null
-				|| "".equals(stu_level.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			BasicInfo bi = getBasicInfo(request);
-			int teaEXP = ShituConstant.getTeaEXP(bi, Integer.parseInt(stu_level
-					.trim()));
-			setAttribute(request, "teaEXP", teaEXP);
-			setAttribute(request, "stu_id", stu_id);
-			setAttribute(request, "stu_name", stu_name);
-			setAttribute(request, "id", id);
-			return mapping.findForward("chuangong");
-		}
-	}
+    // è§£é™¤å¸ˆå¾’å…³ç³»æ“ä½œ
+    public ActionForward n8(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String id = request.getParameter("id");
+        if (stu_id == null || "".equals(stu_id.trim()) || id == null || "".equals(id.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        } else {
+            Shitu shitu = shituService.findById(id);
+            if (shitu != null) {
+                BasicInfo bi = getBasicInfo(request);
+                bi.addEvilValue(ShituConstant.TEA_ZUIE);
+                shituService.delbyId(id);
+                String message = "ç©å®¶" + bi.getName() + "ä¸ä½ è§£é™¤äº†å¸ˆå¾’å…³ç³»ï¼";
+                request.setAttribute("message1", "è§£é™¤å¸ˆå¾’å…³ç³»æˆåŠŸ");
+                mailInfoService.sendMailBySystem(Integer.parseInt(stu_id.trim()), message, message);
+            }
+            return n5(mapping, form, request, response);
+        }
+    }
 
-	// ´«¹¦²Ù×÷
-	public ActionForward n12(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String stu_id = (String) request.getParameter("stu_id");
-		String id = (String) request.getParameter("id");
-		String stu_name = (String) request.getParameter("stu_name");
-		if (stu_id == null || "".equals(stu_id.trim()) || id == null
-				|| "".equals(id.trim()) || stu_name == null
-				|| "".equals(stu_name.trim()))
-		{
-			setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			Shitu shitu = shituService.findById(id);
-			if (shitu == null)
-			{
-				setMessage(request, "³ö´íÁË£¬ÇëÖØĞÂ²Ù×÷");
-				return mapping.findForward(ERROR);
-			}
-			BasicInfo bi = getBasicInfo(request);
-			if (!DateUtil.checkTime(bi.getChuangong()))
-			{
-				// Ò»ÌìÖ»ÄÜ´«¹¦Ò»´Î
-				setMessage(request, "¶Ô²»Æğ£¬ÄãÃ¿ÌìÖ»ÄÜ¸øÒ»¸öÍ½µÜ´«¹¦Ò»´Î£¡");
-			}
-			else
-			{
-				PartInfoVO vo = (PartInfoVO) partInfoDAO.getPartView(stu_id
-						.trim());
-				if (vo.getPGrade() == 19 || vo.getPGrade() == 39)
-				{
-					setMessage(request, "¶Ô²»Æğ£¬ÄãµÄÍ½µÜ" + vo.getPName()
-							+ "´¦ÓÚ×ªÖ°×´Ì¬£¬²»ÄÜ´«¹¦£¡");
-				}
-				else
-				{
-					int teaEXP = (bi.getGrade()==ShituConstant.MAX_LEVEL?ShituConstant.getTeaExpMax(vo.getPGrade()):ShituConstant.getTeaEXP(bi, vo.getPGrade()));
-					int curExp = ((bi.getCurExp() == null || "".equals(bi
-							.getCurExp())) ? 0 : Integer.parseInt(bi
-							.getCurExp().trim()));
-					if (curExp < teaEXP)
-					{
-						setMessage(request, "Äã±¾¼¶¾­Ñé²»×ãÒÔ´«¹¦¸øÄãµÄÍ½µÜ" + stu_name + "£¡");
-					}
-					else
-					{
-						bi.updateChuangong();
-						bi.updateAddCurExp(-teaEXP);
-						long stuExp = ShituConstant.getStuExp(teaEXP);
-						if((vo.getPGrade()==19||vo.getPGrade()==39)&&((stuExp+Long.parseLong(vo.getPExperience().trim()))>Long.parseLong(vo.getPXiaExperience().trim()))){
-							stuExp = Long.parseLong(vo.getPXiaExperience().trim())-Long.parseLong(vo.getPExperience().trim());
-						}
-						propertyService.updateAddExpProperty(vo.getPPk(),
-								stuExp);
-						creditProce.addPlayerCredit(bi.getPPk(),
-								ShituConstant.CREDIT_ID,
-								ShituConstant.CREDIT_COUNT);
-						//Í³¼ÆĞèÒª
-						new RankService().updateAdd(bi.getPPk(), "credit", ShituConstant.CREDIT_COUNT);
-						
-						String message = "ÄãµÄÀÏÊ¦" + bi.getName() + "¸øÄã´«¹¦£¬Äã»ñµÃ¾­Ñé"
-								+ stuExp + "£¡";
-						mailInfoService.sendMailBySystem(vo.getPPk(), "ÄãµÄÀÏÊ¦"
-								+ bi.getName() + "¸øÄã´«¹¦", message);
-						setMessage(request, "Äã½«±¾¼¶" + teaEXP + "¾­Ñé´«¹¦¸øÍ½µÜ"
-								+ vo.getPName() + "¡£Í½µÜ" + vo.getPName()
-								+ "»ñµÃ¾­Ñé" + stuExp + "£¡<br/>Äã»ñµÃ½±Àø£º½­ºşÉùÍû¡Á"
-								+ ShituConstant.CREDIT_COUNT);
-					}
-				}
-			}
-			return mapping.findForward("chuangongok");
-		}
-	}
+    public ActionForward n9(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String te_id = request.getParameter("te_id");
+        String te_name = request.getParameter("te_name");
+        String id = request.getParameter("id");
+        if (te_name == null || "".equals(te_name.trim()) || te_id == null || "".equals(te_id.trim()) || id == null || "".equals(id.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        } else {
+            setAttribute(request, "te_name", te_name);
+            setAttribute(request, "te_id", te_id);
+            setAttribute(request, "id", id);
+            return mapping.findForward("stujiechu");
+        }
+    }
+
+    public ActionForward n10(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String te_id = request.getParameter("te_id");
+        String id = request.getParameter("id");
+        if (te_id == null || "".equals(te_id.trim()) || id == null || "".equals(id.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        } else {
+            Shitu shitu = shituService.findById(id);
+            if (shitu != null) {
+                BasicInfo bi = getBasicInfo(request);
+                bi.addEvilValue(ShituConstant.STU_ZUIE);
+                shituService.delbyId(id);
+                String message = "ç©å®¶" + bi.getName() + "ä¸ä½ è§£é™¤äº†å¸ˆå¾’å…³ç³»ï¼";
+                request.setAttribute("message1", "è§£é™¤å¸ˆå¾’å…³ç³»æˆåŠŸ");
+                mailInfoService.sendMailBySystem(Integer.parseInt(te_id.trim()), message, message);
+            }
+            return n5(mapping, form, request, response);
+        }
+    }
+
+    // ä¼ åŠŸè·³è½¬
+    public ActionForward n11(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String stu_name = request.getParameter("stu_name");
+        String id = request.getParameter("id");
+        String stu_level = request.getParameter("stu_level");
+        if (stu_name == null || "".equals(stu_name.trim()) || stu_id == null || "".equals(stu_id.trim()) || id == null || "".equals(id.trim()) || stu_level == null || "".equals(stu_level.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        } else {
+            BasicInfo bi = getBasicInfo(request);
+            int teaEXP = ShituConstant.getTeaEXP(bi, Integer.parseInt(stu_level.trim()));
+            setAttribute(request, "teaEXP", teaEXP);
+            setAttribute(request, "stu_id", stu_id);
+            setAttribute(request, "stu_name", stu_name);
+            setAttribute(request, "id", id);
+            return mapping.findForward("chuangong");
+        }
+    }
+
+    // ä¼ åŠŸæ“ä½œ
+    public ActionForward n12(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String stu_id = request.getParameter("stu_id");
+        String id = request.getParameter("id");
+        String stu_name = request.getParameter("stu_name");
+        if (stu_id == null || "".equals(stu_id.trim()) || id == null || "".equals(id.trim()) || stu_name == null || "".equals(stu_name.trim())) {
+            setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+            return mapping.findForward(ERROR);
+        } else {
+            Shitu shitu = shituService.findById(id);
+            if (shitu == null) {
+                setMessage(request, "å‡ºé”™äº†ï¼Œè¯·é‡æ–°æ“ä½œ");
+                return mapping.findForward(ERROR);
+            }
+            BasicInfo bi = getBasicInfo(request);
+            if (!DateUtil.checkTime(bi.getChuangong())) {
+                // ä¸€å¤©åªèƒ½ä¼ åŠŸä¸€æ¬¡
+                setMessage(request, "å¯¹ä¸èµ·ï¼Œä½ æ¯å¤©åªèƒ½ç»™ä¸€ä¸ªå¾’å¼Ÿä¼ åŠŸä¸€æ¬¡ï¼");
+            } else {
+                PartInfoVO vo = partInfoDAO.getPartView(stu_id.trim());
+                if (vo.getPGrade() == 19 || vo.getPGrade() == 39) {
+                    setMessage(request, "å¯¹ä¸èµ·ï¼Œä½ çš„å¾’å¼Ÿ" + vo.getPName() + "å¤„äºè½¬èŒçŠ¶æ€ï¼Œä¸èƒ½ä¼ åŠŸï¼");
+                } else {
+                    int teaEXP = (bi.getGrade() == ShituConstant.MAX_LEVEL ? ShituConstant.getTeaExpMax(vo.getPGrade()) : ShituConstant.getTeaEXP(bi, vo.getPGrade()));
+                    int curExp = ((bi.getCurExp() == null || "".equals(bi.getCurExp())) ? 0 : Integer.parseInt(bi.getCurExp().trim()));
+                    if (curExp < teaEXP) {
+                        setMessage(request, "ä½ æœ¬çº§ç»éªŒä¸è¶³ä»¥ä¼ åŠŸç»™ä½ çš„å¾’å¼Ÿ" + stu_name + "ï¼");
+                    } else {
+                        bi.updateChuangong();
+                        bi.updateAddCurExp(-teaEXP);
+                        long stuExp = ShituConstant.getStuExp(teaEXP);
+                        if ((vo.getPGrade() == 19 || vo.getPGrade() == 39) && ((stuExp + Long.parseLong(vo.getPExperience().trim())) > Long.parseLong(vo.getPXiaExperience().trim()))) {
+                            stuExp = Long.parseLong(vo.getPXiaExperience().trim()) - Long.parseLong(vo.getPExperience().trim());
+                        }
+                        propertyService.updateAddExpProperty(vo.getPPk(), stuExp);
+                        creditProce.addPlayerCredit(bi.getPPk(), ShituConstant.CREDIT_ID, ShituConstant.CREDIT_COUNT);
+                        //ç»Ÿè®¡éœ€è¦
+                        new RankService().updateAdd(bi.getPPk(), "credit", ShituConstant.CREDIT_COUNT);
+
+                        String message = "ä½ çš„è€å¸ˆ" + bi.getName() + "ç»™ä½ ä¼ åŠŸï¼Œä½ è·å¾—ç»éªŒ" + stuExp + "ï¼";
+                        mailInfoService.sendMailBySystem(vo.getPPk(), "ä½ çš„è€å¸ˆ" + bi.getName() + "ç»™ä½ ä¼ åŠŸ", message);
+                        setMessage(request, "ä½ å°†æœ¬çº§" + teaEXP + "ç»éªŒä¼ åŠŸç»™å¾’å¼Ÿ" + vo.getPName() + "ã€‚å¾’å¼Ÿ" + vo.getPName() + "è·å¾—ç»éªŒ" + stuExp + "ï¼<br/>ä½ è·å¾—å¥–åŠ±ï¼šæ±Ÿæ¹–å£°æœ›Ã—" + ShituConstant.CREDIT_COUNT);
+                    }
+                }
+            }
+            return mapping.findForward("chuangongok");
+        }
+    }
 }

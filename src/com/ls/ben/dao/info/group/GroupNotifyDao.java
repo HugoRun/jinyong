@@ -6,14 +6,14 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:u_groupnotify_info
+ * åŠŸèƒ½:u_groupnotify_info
  * 
- * @author ÁõË§ 3:56:48 PM
+ * @author åˆ˜å¸… 3:56:48 PM
  */
 public class GroupNotifyDao extends DaoBase {
 	
 	/**
-	 * Çå³ıËùÓĞ×é¶ÓÍ¨ÖªĞÅÏ¢
+	 * æ¸…é™¤æ‰€æœ‰ç»„é˜Ÿé€šçŸ¥ä¿¡æ¯
 	 */
 	public void clearAllNotify() {
 		String sql = "truncate u_groupnotify_info";
@@ -32,16 +32,16 @@ public class GroupNotifyDao extends DaoBase {
 	}
 	
 	/**
-	 * Ìí¼ÓÍ¨Öª
+	 * æ·»åŠ é€šçŸ¥
 	 * 
 	 * @param groupNotify
 	 */
 	public void add(GroupNotifyVO groupNotify) {
 		if (groupNotify == null) {
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 			return;
 		}
-		String sql = "insert into u_groupnotify_info (notifyed_pk,create_notify_pk,notify_content,notify_type,create_time) values (?,?,?,?,now())";
+		String sql = "INSERT INTO u_groupnotify_info (notifyed_pk,create_notify_pk,notify_content,notify_type,create_time) values (?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -62,7 +62,7 @@ public class GroupNotifyDao extends DaoBase {
 	}
 
 	/**
-	 * É¾³ıÖ¸¶¨Í¨Öª
+	 * åˆ é™¤æŒ‡å®šé€šçŸ¥
 	 * 
 	 * @param n_pk
 	 */
@@ -83,7 +83,7 @@ public class GroupNotifyDao extends DaoBase {
 	}
 	
 	/**
-	 * É¾³ıÖ¸¶¨Ä³ÈËÍ¨Öª
+	 * åˆ é™¤æŒ‡å®šæŸäººé€šçŸ¥
 	 * 
 	 * @param p_pk
 	 */
@@ -106,14 +106,14 @@ public class GroupNotifyDao extends DaoBase {
 	
 
 	/**
-	 * µÃµ½Íæ¼ÒµÄ×îÔçÒ»ÌõµÄ×é¶ÓÍ¨Öª
+	 * å¾—åˆ°ç©å®¶çš„æœ€æ—©ä¸€æ¡çš„ç»„é˜Ÿé€šçŸ¥
 	 * 
 	 * @param p_pk
 	 * @return
 	 */
 	public GroupNotifyVO getNotifyInfo(int p_pk) {
 		GroupNotifyVO notifyInfo = null;
-		String sql = "select *  from u_groupnotify_info where notifyed_pk="
+		String sql = "SELECT *  from u_groupnotify_info where notifyed_pk="
 				+ p_pk + " order by n_pk limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -140,11 +140,11 @@ public class GroupNotifyDao extends DaoBase {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ×é¶ÓÏûÏ¢
+	 * åˆ¤æ–­æ˜¯å¦æœ‰ç»„é˜Ÿæ¶ˆæ¯
 	 */
 	public int isHaveNotify(int p_pk) {
 		int n_pk = -1;
-		String sql = "select n_pk  from u_groupnotify_info where notifyed_pk="
+		String sql = "SELECT n_pk  from u_groupnotify_info where notifyed_pk="
 				+ p_pk + " and notify_flag =0 limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -166,7 +166,7 @@ public class GroupNotifyDao extends DaoBase {
 	}
 
 	/**
-	 *  ¸üĞÂÍ¨Öª×´Ì¬
+	 *  æ›´æ–°é€šçŸ¥çŠ¶æ€
 	 * @param n_pk
 	 */
 	public void updateNotifyFlag(int n_pk) {
@@ -186,7 +186,7 @@ public class GroupNotifyDao extends DaoBase {
 	}
 	
 	/**
-	 * Çå³ıÍæ¼ÒµÄËùÓĞ×é¶ÓÍ¨Öª
+	 * æ¸…é™¤ç©å®¶çš„æ‰€æœ‰ç»„é˜Ÿé€šçŸ¥
 	 */
 	public void clear(int p_pk) {
 		String sql = "delete from u_groupnotify_info where notifyed_pk=" + p_pk;
@@ -205,11 +205,11 @@ public class GroupNotifyDao extends DaoBase {
 	}
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒaÊÇ·ñÏòÍæ¼ÒbÌá½»¹ı×é¶ÓÍ¨Öª
+	 * åˆ¤æ–­ç©å®¶aæ˜¯å¦å‘ç©å®¶bæäº¤è¿‡ç»„é˜Ÿé€šçŸ¥
 	 */
 	public boolean isNotifyPlayerB(int a_pk, int b_pk) {
 		boolean result = false;
-		String sql = "select count(*) as num from  u_groupnotify_info where notifyed_pk ="
+		String sql = "SELECT count(*) as num from  u_groupnotify_info where notifyed_pk ="
 				+ b_pk + " and create_notify_pk=" + a_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

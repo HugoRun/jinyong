@@ -25,7 +25,7 @@ import com.lw.vo.lottery.PlayerLotteryInfoVO;
 
 public class LotteryAction extends DispatchAction
 {
-	/** ½øÈë²ÊÆ±¾º²Â½çÃæ */
+	/** è¿›å…¥å½©ç¥¨ç«çŒœç•Œé¢ */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -51,7 +51,7 @@ public class LotteryAction extends DispatchAction
 		String prop = se.sysOutLotteryBonus();
 		if (roleInfo.getBasicInfo().getGrade() < 20)
 		{
-			request.setAttribute("lotterydisplay", "¶Ô²»Æğ,ÇëÄúµ½20¼¶Ö®ºóÔÙÀ´¾º²Â");
+			request.setAttribute("lotterydisplay", "å¯¹ä¸èµ·,è¯·æ‚¨åˆ°20çº§ä¹‹åå†æ¥ç«çŒœ");
 			return mapping.findForward("lottery_display");
 		}
 		if (se.sysTimeAtTwenty() == true)
@@ -91,7 +91,7 @@ public class LotteryAction extends DispatchAction
 
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞÍ¶×¢×Ê¸ñ */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰æŠ•æ³¨èµ„æ ¼ */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -105,7 +105,7 @@ public class LotteryAction extends DispatchAction
 		if (se.sysTimeAtEight() == false)
 		{
 			request.setAttribute("lotterydisplay",
-					"Í¶×¢Ê±¼äÎªÃ¿ÌìµÄ8:00¡«20:00£¬Äú²»Ç°²»ÄÜÍ¶×¢!");
+					"æŠ•æ³¨æ—¶é—´ä¸ºæ¯å¤©çš„8:00ï½20:00ï¼Œæ‚¨ä¸å‰ä¸èƒ½æŠ•æ³¨!");
 			return mapping.findForward("lottery_display");
 		}
 		else
@@ -115,7 +115,7 @@ public class LotteryAction extends DispatchAction
 				if (se.playerGuessLottery(roleInfo.getBasicInfo().getPPk(), lotterytype) == true)
 				{
 					request.setAttribute("lotterydisplay",
-							"¶Ô²»Æğ,ÄúÒÑ¾­²Î¼Ó¹ı±¾ÆÚ²ÊÆ±¾º²Â,Ã¿ÈËÃ¿ÌìÖ»ÄÜ¾º²ÂÒ»´Î,ÇëÄÍĞÄµÈ´ı¿ª½±½á¹û!");
+							"å¯¹ä¸èµ·,æ‚¨å·²ç»å‚åŠ è¿‡æœ¬æœŸå½©ç¥¨ç«çŒœ,æ¯äººæ¯å¤©åªèƒ½ç«çŒœä¸€æ¬¡,è¯·è€å¿ƒç­‰å¾…å¼€å¥–ç»“æœ!");
 					return mapping.findForward("lottery_display");
 				}
 				else
@@ -129,7 +129,7 @@ public class LotteryAction extends DispatchAction
 				if (se.playerGuessLottery(roleInfo.getBasicInfo().getPPk(), lotterytype) == true)
 				{
 					request.setAttribute("lotterydisplay",
-							"¶Ô²»Æğ,ÄúÒÑ¾­²Î¼Ó¹ı±¾ÆÚ²ÊÆ±¾º²Â,Ã¿ÈËÃ¿ÌìÖ»ÄÜ¾º²ÂÒ»´Î,ÇëÄÍĞÄµÈ´ı¿ª½±½á¹û!");
+							"å¯¹ä¸èµ·,æ‚¨å·²ç»å‚åŠ è¿‡æœ¬æœŸå½©ç¥¨ç«çŒœ,æ¯äººæ¯å¤©åªèƒ½ç«çŒœä¸€æ¬¡,è¯·è€å¿ƒç­‰å¾…å¼€å¥–ç»“æœ!");
 					return mapping.findForward("lottery_display");
 				}
 				else
@@ -138,7 +138,7 @@ public class LotteryAction extends DispatchAction
 					{
 						request
 								.setAttribute("lotterydisplay",
-										"¶Ô²»Æğ,ÄúÃ»ÓĞ×Ê¸ñ²Î¼Ó´ÈÉÆ¾º²Â!<br/>Ã¿ÔÂÍ¶×¢×ÜÊı³¬¹ı15´Î,ÖĞ½±0´Î²ÅÓĞ×Ê¸ñ²Î¼Ó´ÈÉÆ¾º²Â!");
+										"å¯¹ä¸èµ·,æ‚¨æ²¡æœ‰èµ„æ ¼å‚åŠ æ…ˆå–„ç«çŒœ!<br/>æ¯æœˆæŠ•æ³¨æ€»æ•°è¶…è¿‡15æ¬¡,ä¸­å¥–0æ¬¡æ‰æœ‰èµ„æ ¼å‚åŠ æ…ˆå–„ç«çŒœ!");
 						return mapping.findForward("lottery_display");
 					}
 					return mapping.findForward("lottery_number_one");
@@ -147,7 +147,7 @@ public class LotteryAction extends DispatchAction
 		}
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ×ã¹»µÄÒøÁ½Âò²ÊÆ± */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰è¶³å¤Ÿçš„é“¶ä¸¤ä¹°å½©ç¥¨ */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -165,7 +165,7 @@ public class LotteryAction extends DispatchAction
 			M = 100;
 			if (cur_copper < M)
 			{
-				request.setAttribute("lotterydisplay", "¶Ô²»Æğ,ÄúÇ®²»¹»!");
+				request.setAttribute("lotterydisplay", "å¯¹ä¸èµ·,æ‚¨é’±ä¸å¤Ÿ!");
 				return mapping.findForward("lottery_display");
 			}
 			else
@@ -180,7 +180,7 @@ public class LotteryAction extends DispatchAction
 				M = 500;
 				if (cur_copper < M)
 				{
-					request.setAttribute("lotterydisplay", "¶Ô²»Æğ,ÄúÇ®²»¹»!");
+					request.setAttribute("lotterydisplay", "å¯¹ä¸èµ·,æ‚¨é’±ä¸å¤Ÿ!");
 					return mapping.findForward("lottery_display");
 				}
 				else
@@ -195,7 +195,7 @@ public class LotteryAction extends DispatchAction
 					M = 1000;
 					if (cur_copper < M)
 					{
-						request.setAttribute("lotterydisplay", "¶Ô²»Æğ,ÄúÇ®²»¹»!");
+						request.setAttribute("lotterydisplay", "å¯¹ä¸èµ·,æ‚¨é’±ä¸å¤Ÿ!");
 						return mapping.findForward("lottery_display");
 					}
 					else
@@ -210,7 +210,7 @@ public class LotteryAction extends DispatchAction
 						M = 2000;
 						if (cur_copper < M)
 						{
-							request.setAttribute("lotterydisplay", "¶Ô²»Æğ,ÄúÇ®²»¹»!");
+							request.setAttribute("lotterydisplay", "å¯¹ä¸èµ·,æ‚¨é’±ä¸å¤Ÿ!");
 							return mapping.findForward("lottery_display");
 						}
 						else
@@ -226,7 +226,7 @@ public class LotteryAction extends DispatchAction
 							if (cur_copper < M)
 							{
 								request.setAttribute("lotterydisplay",
-										"¶Ô²»Æğ,ÄúÇ®²»¹»!");
+										"å¯¹ä¸èµ·,æ‚¨é’±ä¸å¤Ÿ!");
 								return mapping.findForward("lottery_display");
 							}
 							else
@@ -243,7 +243,7 @@ public class LotteryAction extends DispatchAction
 								if (cur_copper < M)
 								{
 									request.setAttribute("lotterydisplay",
-											"¶Ô²»Æğ,ÄúÇ®²»¹»!");
+											"å¯¹ä¸èµ·,æ‚¨é’±ä¸å¤Ÿ!");
 									return mapping
 											.findForward("lottery_display");
 								}
@@ -258,19 +258,19 @@ public class LotteryAction extends DispatchAction
 							{
 								request
 										.setAttribute("lotterydisplay",
-												"ÇëÕıÈ·Í¶×¢!");
+												"è¯·æ­£ç¡®æŠ•æ³¨!");
 								return mapping.findForward("lottery_display");
 							}
 	}
 
-	/** Íæ¼ÒÍ¶×¢²ÊÆ± */
+	/** ç©å®¶æŠ•æ³¨å½©ç¥¨ */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		Date now = new Date();
 		if (now.getHours() == 20)
 		{
-			request.setAttribute("lotterydisplay", "Í¶×¢Ê±¼äÒÑµ½,ÇëÃ÷ÌìÔÙÀ´!");
+			request.setAttribute("lotterydisplay", "æŠ•æ³¨æ—¶é—´å·²åˆ°,è¯·æ˜å¤©å†æ¥!");
 			return mapping.findForward("lottery_display");
 		}
 		else
@@ -325,7 +325,7 @@ public class LotteryAction extends DispatchAction
 									else
 									{
 										request.setAttribute("lotterydisplay",
-												"ÇëÕıÈ·Í¶×¢!");
+												"è¯·æ­£ç¡®æŠ•æ³¨!");
 										return mapping
 												.findForward("lottery_display");
 									}
@@ -335,7 +335,7 @@ public class LotteryAction extends DispatchAction
 				request
 						.setAttribute(
 								"lotterydisplay",
-								"Äú±¾ÆÚÍ¶×¢:"
+								"æ‚¨æœ¬æœŸæŠ•æ³¨:"
 										+ number1
 										+ ","
 										+ number2
@@ -344,10 +344,10 @@ public class LotteryAction extends DispatchAction
 										+ ","
 										+ number4
 										+ ","
-										+ "¼ÛÖµ"
+										+ "ä»·å€¼"
 										+ M
 										/ 100
-										+ "Á½!<br/>±¾ÆÚ¾º²Â20:00¿ª½±,21:00¡«24:00ÁìÈ¡½±Àø,¹ıÆÚºóÄúµÄ½±Àø½«×Ô¶¯½øÈëÏÂÆÚ½±Àø!");
+										+ "ä¸¤!<br/>æœ¬æœŸç«çŒœ20:00å¼€å¥–,21:00ï½24:00é¢†å–å¥–åŠ±,è¿‡æœŸåæ‚¨çš„å¥–åŠ±å°†è‡ªåŠ¨è¿›å…¥ä¸‹æœŸå¥–åŠ±!");
 				dao.updateBotteryBonus(M);
 				return mapping.findForward("lottery_display");
 			}
@@ -359,7 +359,7 @@ public class LotteryAction extends DispatchAction
 				request
 						.setAttribute(
 								"lotterydisplay",
-								"Äú±¾ÆÚ´ÈÉÆÍ¶×¢:"
+								"æ‚¨æœ¬æœŸæ…ˆå–„æŠ•æ³¨:"
 										+ number1
 										+ ","
 										+ number2
@@ -367,13 +367,13 @@ public class LotteryAction extends DispatchAction
 										+ number3
 										+ ","
 										+ number4
-										+ "!<br/>±¾ÆÚ¾º²Â20:00¿ª½±,21:00¡«24:00ÁìÈ¡½±Àø,¹ıÆÚºóÄúµÄ½±Àø½«×Ô¶¯½øÈëÏÂÆÚ½±Àø!");
+										+ "!<br/>æœ¬æœŸç«çŒœ20:00å¼€å¥–,21:00ï½24:00é¢†å–å¥–åŠ±,è¿‡æœŸåæ‚¨çš„å¥–åŠ±å°†è‡ªåŠ¨è¿›å…¥ä¸‹æœŸå¥–åŠ±!");
 				return mapping.findForward("lottery_display");
 			}
 		}
 	}
 
-	/** ½øÈëÁì½±½çÃæ(ÆÕÍ¨) */
+	/** è¿›å…¥é¢†å¥–ç•Œé¢(æ™®é€š) */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -387,21 +387,21 @@ public class LotteryAction extends DispatchAction
 		PlayerLotteryInfoVO vo = playerdao.getLotteryInfoByPpk(pPk);
 		if (se.sysTimeAtTwenty() == false)
 		{	
-			request.setAttribute("lotterydisplay", "¿ª½±Ê±¼äÃ»ÓĞµ½,ÇëÄúÔÚ21µãÒÔºóÔÙÁì½±!");
+			request.setAttribute("lotterydisplay", "å¼€å¥–æ—¶é—´æ²¡æœ‰åˆ°,è¯·æ‚¨åœ¨21ç‚¹ä»¥åå†é¢†å¥–!");
 			return mapping.findForward("lottery_display");
 		}
 		else
 		{
 			if (se.ifPlayerCatch(pPk) == 3)
 			{
-				request.setAttribute("lotterydisplay", "±§Ç¸ÄúÃ»ÓĞÍ¶×¢!");
+				request.setAttribute("lotterydisplay", "æŠ±æ­‰æ‚¨æ²¡æœ‰æŠ•æ³¨!");
 				return mapping.findForward("lottery_display");
 			}
 			else
 			{
 				if (se.ifPlayerCatch(pPk) == 2)
 				{
-					request.setAttribute("lotterydisplay", "±§Ç¸ÄúÃ»ÓĞÖĞ½±,ÇëÏÂ´ÎÅ¬Á¦!");
+					request.setAttribute("lotterydisplay", "æŠ±æ­‰æ‚¨æ²¡æœ‰ä¸­å¥–,è¯·ä¸‹æ¬¡åŠªåŠ›!");
 					playerdao.delPlayerLotteryMultiple(pPk);
 					return mapping.findForward("lottery_display");
 				}
@@ -409,7 +409,7 @@ public class LotteryAction extends DispatchAction
 				{
 					if (vo.getLotteryCatchMoney() == 1)
 					{
-						request.setAttribute("lotterydisplay", "ÄúÒÑ¾­Áì¹ı½±½ğ!");
+						request.setAttribute("lotterydisplay", "æ‚¨å·²ç»é¢†è¿‡å¥–é‡‘!");
 						return mapping.findForward("lottery_display");
 					}
 					else
@@ -417,12 +417,12 @@ public class LotteryAction extends DispatchAction
 						if (se.getPlayerWrapSpare(pPk) == -1)
 						{
 							request.setAttribute("lotterydisplay",
-									"ÄúµÄ°ü¹üÒÑÂúÇëÇåÀí°ü¹üºóÔÙÀ´!");
+									"æ‚¨çš„åŒ…è£¹å·²æ»¡è¯·æ¸…ç†åŒ…è£¹åå†æ¥!");
 							return mapping.findForward("lottery_display");
 						}
 						else
 						{
-							request.setAttribute("lotterydisplay", "Äú»ñµÃ"
+							request.setAttribute("lotterydisplay", "æ‚¨è·å¾—"
 									+ moneyUtil.changeCopperToStr(se
 											.playerHaveMoney(pPk)) + "!");
 							se.playerCatchMoney(pPk);
@@ -436,7 +436,7 @@ public class LotteryAction extends DispatchAction
 		}
 	}
 
-	/** ½øÈë²ÊÆ±ÅÅÃû½çÃæ */
+	/** è¿›å…¥å½©ç¥¨æ’åç•Œé¢ */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -456,7 +456,7 @@ public class LotteryAction extends DispatchAction
 		return mapping.findForward("lottery_rank");
 	}
 
-	/** ½øÈëÁì½±½çÃæ(´ÈÉÆ) */
+	/** è¿›å…¥é¢†å¥–ç•Œé¢(æ…ˆå–„) */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -470,27 +470,27 @@ public class LotteryAction extends DispatchAction
 		LotteryNumberDao dao = new LotteryNumberDao();
 		if (se.sysTimeAtTwenty() == false)
 		{
-			request.setAttribute("lotterydisplay", "¿ª½±Ê±¼äÃ»ÓĞµ½,ÇëÄúÔÚ21µãÒÔºóÔÙÁì½±!");
+			request.setAttribute("lotterydisplay", "å¼€å¥–æ—¶é—´æ²¡æœ‰åˆ°,è¯·æ‚¨åœ¨21ç‚¹ä»¥åå†é¢†å¥–!");
 			return mapping.findForward("lottery_display");
 		}
 		else
 		{
 			if (se.ifPlayerCatchCharity(pPk) == 3)
 			{
-				request.setAttribute("lotterydisplay", "±§Ç¸ÄúÃ»ÓĞÍ¶×¢»òÒÑ¾­Áì¹ı½±½ğ!");
+				request.setAttribute("lotterydisplay", "æŠ±æ­‰æ‚¨æ²¡æœ‰æŠ•æ³¨æˆ–å·²ç»é¢†è¿‡å¥–é‡‘!");
 				return mapping.findForward("lottery_display");
 			}
 			else
 			{
 				if (se.ifPlayerCatchCharity(pPk) == 2)
 				{
-					request.setAttribute("lotterydisplay", "±§Ç¸ÄúÃ»ÓĞÖĞ½±,ÇëÏÂ´ÎÅ¬Á¦!");
+					request.setAttribute("lotterydisplay", "æŠ±æ­‰æ‚¨æ²¡æœ‰ä¸­å¥–,è¯·ä¸‹æ¬¡åŠªåŠ›!");
 					playerdao.delPlayerLotteryMultiple(pPk);
 					return mapping.findForward("lottery_display");
 				}
 				else
 				{
-					request.setAttribute("lotterydisplay", "Äú»ñµÃ"
+					request.setAttribute("lotterydisplay", "æ‚¨è·å¾—"
 							+ moneyUtil.changeCopperToStr(se
 									.playerHaveCharityMoney(pPk)) + "!");
 					se.playerCatchCharityMoney(pPk);

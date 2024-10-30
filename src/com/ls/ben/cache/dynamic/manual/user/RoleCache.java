@@ -1,62 +1,50 @@
 package com.ls.ben.cache.dynamic.manual.user;
 
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.Element;
-
 import com.ls.ben.cache.CacheBase;
 import com.ls.model.user.RoleEntity;
 import com.ls.pub.util.StringUtil;
 import com.ls.web.service.log.DataErrorLog;
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.Element;
 
 /**
  * @author Administrator
- * ¹¦ÄÜ£º½ÇÉ«ĞÅÏ¢»º´æ
+ * åŠŸèƒ½ï¼šè§’è‰²ä¿¡æ¯ç¼“å­˜
  */
-public class RoleCache extends CacheBase
-{
-	public static RoleEntity getByPpk( String p_pk )
-	{
-		if( StringUtil.isNumber(p_pk)==false )
-		{
-			try
-			{
-				throw new Exception("ÎŞĞ§½ÇÉ«id:p_pk="+p_pk);
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-			return null;
-		}
-		return getByPpk( Integer.parseInt(p_pk.trim()));
-	}
-	
-	/**
-	 * ´Ó¶ÁÈ¡»º´æ½ÇÉ«ĞÅÏ¢
-	 * @param p_pk
-	 * @return
-	 */
-	public static RoleEntity getByPpk( int p_pk )
-	{
-		Cache cache =manager.getCache("roleCache");
-		
-		Element element  = cache.get(p_pk);
-		if( element==null )
-		{
-			RoleEntity roleEntity;
-			try
-			{
-				roleEntity = new RoleEntity(p_pk);
-			}
-			catch (Exception e)
-			{
-				DataErrorLog.debugData("RoleCache.getByPpk²ÎÊı´íÎó£ºÎŞ¸Ã½ÇÉ«,p_pk="+p_pk);
-				return null;
-			}
-			element = new Element(roleEntity.getPPk(), roleEntity);
-			cache.put(element);
-		}
-		return (RoleEntity) element.getValue();
-	}
-	
+public class RoleCache extends CacheBase {
+    public static RoleEntity getByPpk(String p_pk) {
+        if (!StringUtil.isNumber(p_pk)) {
+            try {
+                throw new Exception("æ— æ•ˆè§’è‰²id:p_pk=" + p_pk);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        return getByPpk(Integer.parseInt(p_pk.trim()));
+    }
+
+    /**
+     * ä»è¯»å–ç¼“å­˜è§’è‰²ä¿¡æ¯
+     * @param p_pk p_pk
+     * @return RoleEntity
+     */
+    public static RoleEntity getByPpk(int p_pk) {
+        Cache cache = manager.getCache("roleCache");
+
+        Element element = cache.get(p_pk);
+        if (element == null) {
+            RoleEntity roleEntity;
+            try {
+                roleEntity = new RoleEntity(p_pk);
+            } catch (Exception e) {
+                DataErrorLog.debugData("RoleCache.getByPpkå‚æ•°é”™è¯¯ï¼šæ— è¯¥è§’è‰²,p_pk=" + p_pk);
+                return null;
+            }
+            element = new Element(roleEntity.getPPk(), roleEntity);
+            cache.put(element);
+        }
+        return (RoleEntity) element.getValue();
+    }
+
 }

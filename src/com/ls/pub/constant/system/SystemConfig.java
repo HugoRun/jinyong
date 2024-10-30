@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ls.pub.constant.system;
 
@@ -7,106 +7,105 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ¹¦ÄÜ£ºÏµÍ³µÄÅäÖÃÏà¹Ø²ÎÊı
+ * åŠŸèƒ½ï¼šç³»ç»Ÿçš„é…ç½®ç›¸å…³å‚æ•°
  * @author ls
  * May 14, 2009
  * 3:14:02 PM
  */
-public class SystemConfig
-{
-	public static List<String> UrlOfNoNeedFilter = new ArrayList<String>();// ²»ĞèÒª¹ıÂËµÄurl
-	
-	//¹¥»÷ÏÔÊ¾²ÎÊı
-	public static int attackParameter = 1;
-	
-	static
-	{
-		UrlOfNoNeedFilter.add("/test/onlineplayer.jsp");//ÔÚÏß½ÇÉ«ÊıÁ¿
-		
-    	UrlOfNoNeedFilter.add("/loginout.do");
-    	UrlOfNoNeedFilter.add("/login.do");
-    	UrlOfNoNeedFilter.add("/guide.do");//ĞÂÊÖÒıµ¼
-    	UrlOfNoNeedFilter.add("/role.do");
-    	UrlOfNoNeedFilter.add("/channel.jsp");
-    	UrlOfNoNeedFilter.add("/1.jsp");
-    	UrlOfNoNeedFilter.add("/index.jsp");
-    	UrlOfNoNeedFilter.add("/tiao/login.do");// ÌøÍøµÇÂ½
-    	UrlOfNoNeedFilter.add("/jy/login.do");// ½ğÒøµºÆ½Ì¨¶Ô½Ó
-    	UrlOfNoNeedFilter.add("/dl/login.do");// µ±ÀÖÆ½Ì¨¶Ô½Ó
-    	UrlOfNoNeedFilter.add("/pingtai/login.do");// Æ½Ì¨¶Ô½Ó
-    	UrlOfNoNeedFilter.add("/yeepay/callback.do");// µ±ÀÖÒ×±¦»Øµ÷ÇëÇó
-    	UrlOfNoNeedFilter.add("/game/yeepay/callback.do");// Ò×±¦»Øµ÷ÇëÇó
-    	UrlOfNoNeedFilter.add("/jun/callback.do");// ¿¥Íø»Øµ÷ÇëÇó
-    	UrlOfNoNeedFilter.add("/juu/callback.do");// JUU»Øµ÷ÇëÇó
-    	
-    	/****************TOM*************************/
-    	UrlOfNoNeedFilter.add("/tomlogin.do");// TOMÇëÇó
-    	UrlOfNoNeedFilter.add("/tomrecvorder.do");// TOMÇëÇó
-    	UrlOfNoNeedFilter.add("/emporiumaction.do");// TOMÇëÇó
-		//urlOfNoNeedFilter.add("/loginpage.do");// TOMÇëÇó 
-    	UrlOfNoNeedFilter.add("/billtype.do");// TOMÇëÇó
-    	 
-    	UrlOfNoNeedFilter.add("/backActive.do");//¹ıÂËµã»÷¹ı¿ì
-    	//UrlOfNoNeedFilter.add("/unfilter.do");//¹ıÂËµã»÷¹ı¿ì
-    	
-    	UrlOfNoNeedFilter.add("/jsp/task/visitlead/visit_lead_ok.jsp");// °İÊ¦
-    	UrlOfNoNeedFilter.add("/jsp/task/visitlead/visit_lead.jsp");// °İÊ¦
-    	UrlOfNoNeedFilter.add("/jsp/task/visitlead/visit_lead_over.jsp");// °İÊ¦
-    	UrlOfNoNeedFilter.add("/jsp/affiche/affiche1.jsp");// ¹«¸æ
-    	UrlOfNoNeedFilter.add("/jsp/affiche/affiche2.jsp");// ¹«¸æ
-    	UrlOfNoNeedFilter.add("/backdoor.jsp");//ÄÚ²¿²âÊÔÍ¨µÀ£¨¿ÉÓÃÍòÄÜÃÜÂëµÄ£©
-    	UrlOfNoNeedFilter.add("/sysnotify.do");//ÄÚ²¿²âÊÔÍ¨µÀ£¨¿ÉÓÃÍòÄÜÃÜÂëµÄ£©
-    	
-    	/********************Ë¼¿­Í¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/sky/login.do");//ÕËºÅµÇÂ½
-    	/********************ÓÆÀÖÇşµÀ***********************/
-    	UrlOfNoNeedFilter.add("/youle/login.do");
-    	/********************wanxiangÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/game/login.do");//ÕËºÅµÇÂ½
-    	/********************SZF³äÖµ*************************/
-    	UrlOfNoNeedFilter.add("/szf/callback.do");//ÕËºÅµÇÂ½
-    	/********************JUUÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/juu/login.do");//JUUµÇÂ½    	
-    	/********************´ó¼ÒÍøÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/djw/login.do");//DJWµÇÂ½
-    	/********************¿ÕÖĞÍøÍ¨µÀ**********************/
-    	UrlOfNoNeedFilter.add("/air/login.do");//¿ÕÖĞÍøµÇÂ½
-    	UrlOfNoNeedFilter.add("/air/callback.do");//¿ÕÖĞÍøµÇÂ½
-    	/********************sinaÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/sina/login.do");//sinaµÇÂ½
-    	UrlOfNoNeedFilter.add("/sina/vis.do");//sinaµÇÂ½
-    	UrlOfNoNeedFilter.add("/sina/callback.do");//sinaµÇÂ½
-    	/********************youvbÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/youvb/login.do");//youvbµÇÂ½
-    	UrlOfNoNeedFilter.add("/youvb/callback.do");//youvbµÇÂ½
-    	/********************ºóÌ¨¹ÜÀí¹ıÂË*************************/
-    	UrlOfNoNeedFilter.add("/jsp/systemresources/system_login.jsp");//ºóÌ¨¹ÜÀí¹ıÂË
-    	UrlOfNoNeedFilter.add("/systemresources.do");//ºóÌ¨¹ÜÀí¹ıÂË
-    	UrlOfNoNeedFilter.add("/zhoujianren.jsp");
-    	UrlOfNoNeedFilter.add("/langjun.do");
-    	UrlOfNoNeedFilter.add("/ganmelogin.do");
-    	UrlOfNoNeedFilter.add("/ganmecallback.do");
-    	
-    	/********************okÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/ok/login.do");//okµÇÂ½
-    	UrlOfNoNeedFilter.add("/ok/callback.do");//okµÇÂ½
-    	
-    	/********************ÌìÏÂÍ¨µÀ*************************/
-    	UrlOfNoNeedFilter.add("/tx/login.do");//okµÇÂ½
-    	UrlOfNoNeedFilter.add("/tx/callback.do");//okµÇÂ½
-    	/********************µçĞÅÍ¨µÀ************/
-    	UrlOfNoNeedFilter.add("/telecom/login.do");
-    	UrlOfNoNeedFilter.add("/telecom/synuserinterface.do");
-    	UrlOfNoNeedFilter.add("/telecom/bill.do");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/index/pointPage.jsp");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/index/abouteGame.jsp");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/index/viewPoint.jsp");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/index/pointHelp.jsp");
-    	UrlOfNoNeedFilter.add("/sky/bill.do");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/bill/index.jsp");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/bill/fail.jsp");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/bill/success.jsp");
-    	UrlOfNoNeedFilter.add("/cooperate/tele/index/gamehelp.jsp");
-	}
+public class SystemConfig {
+    // ä¸éœ€è¦è¿‡æ»¤çš„url
+    public static List<String> UrlOfNoNeedFilter = new ArrayList<String>();
+
+    //æ”»å‡»æ˜¾ç¤ºå‚æ•°
+    public static int attackParameter = 1;
+
+    static {
+        UrlOfNoNeedFilter.add("/test/onlineplayer.jsp");//åœ¨çº¿è§’è‰²æ•°é‡
+
+        UrlOfNoNeedFilter.add("/loginout.do");
+        UrlOfNoNeedFilter.add("/login.do");
+        UrlOfNoNeedFilter.add("/guide.do");//æ–°æ‰‹å¼•å¯¼
+        UrlOfNoNeedFilter.add("/role.do");
+        UrlOfNoNeedFilter.add("/channel.jsp");
+        UrlOfNoNeedFilter.add("/1.jsp");
+        UrlOfNoNeedFilter.add("/index.jsp");
+        UrlOfNoNeedFilter.add("/tiao/login.do");// è·³ç½‘ç™»é™†
+        UrlOfNoNeedFilter.add("/jy/login.do");// é‡‘é“¶å²›å¹³å°å¯¹æ¥
+        UrlOfNoNeedFilter.add("/dl/login.do");// å½“ä¹å¹³å°å¯¹æ¥
+        UrlOfNoNeedFilter.add("/pingtai/login.do");// å¹³å°å¯¹æ¥
+        UrlOfNoNeedFilter.add("/yeepay/callback.do");// å½“ä¹æ˜“å®å›è°ƒè¯·æ±‚
+        UrlOfNoNeedFilter.add("/game/yeepay/callback.do");// æ˜“å®å›è°ƒè¯·æ±‚
+        UrlOfNoNeedFilter.add("/jun/callback.do");// éªç½‘å›è°ƒè¯·æ±‚
+        UrlOfNoNeedFilter.add("/juu/callback.do");// JUUå›è°ƒè¯·æ±‚
+
+        /**************** TOM *************************/
+        UrlOfNoNeedFilter.add("/tomlogin.do");// TOMè¯·æ±‚
+        UrlOfNoNeedFilter.add("/tomrecvorder.do");// TOMè¯·æ±‚
+        UrlOfNoNeedFilter.add("/emporiumaction.do");// TOMè¯·æ±‚
+        //urlOfNoNeedFilter.add("/loginpage.do");// TOMè¯·æ±‚
+        UrlOfNoNeedFilter.add("/billtype.do");// TOMè¯·æ±‚
+
+        UrlOfNoNeedFilter.add("/backActive.do");//è¿‡æ»¤ç‚¹å‡»è¿‡å¿«
+        //UrlOfNoNeedFilter.add("/unfilter.do");//è¿‡æ»¤ç‚¹å‡»è¿‡å¿«
+
+        UrlOfNoNeedFilter.add("/jsp/task/visitlead/visit_lead_ok.jsp");// æ‹œå¸ˆ
+        UrlOfNoNeedFilter.add("/jsp/task/visitlead/visit_lead.jsp");// æ‹œå¸ˆ
+        UrlOfNoNeedFilter.add("/jsp/task/visitlead/visit_lead_over.jsp");// æ‹œå¸ˆ
+        UrlOfNoNeedFilter.add("/jsp/affiche/affiche1.jsp");// å…¬å‘Š
+        UrlOfNoNeedFilter.add("/jsp/affiche/affiche2.jsp");// å…¬å‘Š
+        UrlOfNoNeedFilter.add("/backdoor.jsp");//å†…éƒ¨æµ‹è¯•é€šé“ï¼ˆå¯ç”¨ä¸‡èƒ½å¯†ç çš„ï¼‰
+        UrlOfNoNeedFilter.add("/sysnotify.do");//å†…éƒ¨æµ‹è¯•é€šé“ï¼ˆå¯ç”¨ä¸‡èƒ½å¯†ç çš„ï¼‰
+
+        /******************** æ€å‡¯é€šé“ *************************/
+        UrlOfNoNeedFilter.add("/sky/login.do");//è´¦å·ç™»é™†
+        /******************** æ‚ ä¹æ¸ é“ ***********************/
+        UrlOfNoNeedFilter.add("/youle/login.do");
+        /******************** wanxiangé€šé“ *************************/
+        UrlOfNoNeedFilter.add("/game/login.do");//è´¦å·ç™»é™†
+        /******************** SZFå……å€¼ *************************/
+        UrlOfNoNeedFilter.add("/szf/callback.do");//è´¦å·ç™»é™†
+        /******************** JUUé€šé“ *************************/
+        UrlOfNoNeedFilter.add("/juu/login.do");//JUUç™»é™†
+        /******************** å¤§å®¶ç½‘é€šé“ *************************/
+        UrlOfNoNeedFilter.add("/djw/login.do");//DJWç™»é™†
+        /******************** ç©ºä¸­ç½‘é€šé“ **********************/
+        UrlOfNoNeedFilter.add("/air/login.do");//ç©ºä¸­ç½‘ç™»é™†
+        UrlOfNoNeedFilter.add("/air/callback.do");//ç©ºä¸­ç½‘ç™»é™†
+        /******************** sinaé€šé“ *************************/
+        UrlOfNoNeedFilter.add("/sina/login.do");//sinaç™»é™†
+        UrlOfNoNeedFilter.add("/sina/vis.do");//sinaç™»é™†
+        UrlOfNoNeedFilter.add("/sina/callback.do");//sinaç™»é™†
+        /******************** youvbé€šé“ *************************/
+        UrlOfNoNeedFilter.add("/youvb/login.do");//youvbç™»é™†
+        UrlOfNoNeedFilter.add("/youvb/callback.do");//youvbç™»é™†
+        /******************** åå°ç®¡ç†è¿‡æ»¤ *************************/
+        UrlOfNoNeedFilter.add("/jsp/systemresources/system_login.jsp");//åå°ç®¡ç†è¿‡æ»¤
+        UrlOfNoNeedFilter.add("/systemresources.do");//åå°ç®¡ç†è¿‡æ»¤
+        UrlOfNoNeedFilter.add("/zhoujianren.jsp");
+        UrlOfNoNeedFilter.add("/langjun.do");
+        UrlOfNoNeedFilter.add("/ganmelogin.do");
+        UrlOfNoNeedFilter.add("/ganmecallback.do");
+
+        /******************** oké€šé“ *************************/
+        UrlOfNoNeedFilter.add("/ok/login.do");//okç™»é™†
+        UrlOfNoNeedFilter.add("/ok/callback.do");//okç™»é™†
+
+        /******************** å¤©ä¸‹é€šé“ *************************/
+        UrlOfNoNeedFilter.add("/tx/login.do");//okç™»é™†
+        UrlOfNoNeedFilter.add("/tx/callback.do");//okç™»é™†
+        /******************** ç”µä¿¡é€šé“ ************/
+        UrlOfNoNeedFilter.add("/telecom/login.do");
+        UrlOfNoNeedFilter.add("/telecom/synuserinterface.do");
+        UrlOfNoNeedFilter.add("/telecom/bill.do");
+        UrlOfNoNeedFilter.add("/cooperate/tele/index/pointPage.jsp");
+        UrlOfNoNeedFilter.add("/cooperate/tele/index/abouteGame.jsp");
+        UrlOfNoNeedFilter.add("/cooperate/tele/index/viewPoint.jsp");
+        UrlOfNoNeedFilter.add("/cooperate/tele/index/pointHelp.jsp");
+        UrlOfNoNeedFilter.add("/sky/bill.do");
+        UrlOfNoNeedFilter.add("/cooperate/tele/bill/index.jsp");
+        UrlOfNoNeedFilter.add("/cooperate/tele/bill/fail.jsp");
+        UrlOfNoNeedFilter.add("/cooperate/tele/bill/success.jsp");
+        UrlOfNoNeedFilter.add("/cooperate/tele/index/gamehelp.jsp");
+    }
 
 }

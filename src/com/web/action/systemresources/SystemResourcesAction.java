@@ -17,13 +17,13 @@ import com.ls.ben.vo.menu.OperateMenuVO;
 import com.web.service.systemresources.SystemResourcesService;
 
 /**
- * @author ºîºÆ¾ü ¹ÜÀíÔ¶µÇÂ½
+ * @author ä¾¯æµ©å†› ç®¡ç†è¿œç™»é™†
  */
 public class SystemResourcesAction extends DispatchAction
 { 
 
 	/**
-	 * ½øÈëµÇÂ½Ò³Ãæ
+	 * è¿›å…¥ç™»é™†é¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -45,7 +45,7 @@ public class SystemResourcesAction extends DispatchAction
 	} 
 	
 	/**
-	 * Ê×Ò³Ãæ
+	 * é¦–é¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -78,7 +78,7 @@ public class SystemResourcesAction extends DispatchAction
 	} 
 	
 	/**
-	 * Í¨¹ıÈÎÎñID²éÕÒ
+	 * é€šè¿‡ä»»åŠ¡IDæŸ¥æ‰¾
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -95,7 +95,7 @@ public class SystemResourcesAction extends DispatchAction
 		return mapping.findForward("syspage");
 	}
 	/**
-	 * È«²¿ÖØÔØÈÎÎñ
+	 * å…¨éƒ¨é‡è½½ä»»åŠ¡
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -105,12 +105,12 @@ public class SystemResourcesAction extends DispatchAction
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{ 
-		SystemResourcesService.initTaskCache();//ÖØĞÂ¼ÓÔØ
+		SystemResourcesService.initTaskCache();//é‡æ–°åŠ è½½
 		request.setAttribute("type", "1");
 		return n1(mapping, form, request, response);
 	} 
 	/**
-	 * µ¥ÌõÈÎÎñ¸ü¸Ä²¢¼ÓÔØ
+	 * å•æ¡ä»»åŠ¡æ›´æ”¹å¹¶åŠ è½½
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -131,7 +131,7 @@ public class SystemResourcesAction extends DispatchAction
 	}
 	
 	/**
-	 * Í¨¹ı²Ëµ¥ID²éÕÒ
+	 * é€šè¿‡èœå•IDæŸ¥æ‰¾
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -149,7 +149,7 @@ public class SystemResourcesAction extends DispatchAction
 	}
 	
 	/**
-	 * È«²¿ÖØÔØ²Ëµ¥
+	 * å…¨éƒ¨é‡è½½èœå•
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -160,12 +160,12 @@ public class SystemResourcesAction extends DispatchAction
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception
 	{ 
-		SystemResourcesService.initMenuCache();//ÖØĞÂ¼ÓÔØ
+		SystemResourcesService.initMenuCache();//é‡æ–°åŠ è½½
 		request.setAttribute("type", "2");
 		return n1(mapping, form, request, response);
 	} 
 	/**
-	 * µ¥Ìõ²Ëµ¥¸ü¸Ä²¢¼ÓÔØ
+	 * å•æ¡èœå•æ›´æ”¹å¹¶åŠ è½½
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -186,7 +186,7 @@ public class SystemResourcesAction extends DispatchAction
 	}
 	
 	/**
-	 * Í¨scene¹ıµØÍ¼ID²éÕÒ
+	 * é€šsceneè¿‡åœ°å›¾IDæŸ¥æ‰¾
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -203,7 +203,7 @@ public class SystemResourcesAction extends DispatchAction
 		return mapping.findForward("syspage");
 	}
 	/**
-	 * µ¥Ìõscene¸ü¸Ä²¢¼ÓÔØ
+	 * å•æ¡sceneæ›´æ”¹å¹¶åŠ è½½
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -223,7 +223,7 @@ public class SystemResourcesAction extends DispatchAction
 		return mapping.findForward("syspage");
 	} 
 	/**
-	 * Í¨µÀ¾ßID²éÕÒ
+	 * é€šé“å…·IDæŸ¥æ‰¾
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -240,7 +240,7 @@ public class SystemResourcesAction extends DispatchAction
 		return mapping.findForward("syspage");
 	}
 	/**
-	 * È«²¿ÖØÔØµÀ¾ß
+	 * å…¨éƒ¨é‡è½½é“å…·
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -250,12 +250,12 @@ public class SystemResourcesAction extends DispatchAction
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{ 
-		SystemResourcesService.initPropCache();//ÖØĞÂ¼ÓÔØ
+		SystemResourcesService.initPropCache();//é‡æ–°åŠ è½½
 		request.setAttribute("type", "4");
 		return n1(mapping, form, request, response);
 	}  
 	/**
-	 * µ¥ÌõµÀ¾ßÊı¾İ¼ÓÔØ
+	 * å•æ¡é“å…·æ•°æ®åŠ è½½
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -275,7 +275,7 @@ public class SystemResourcesAction extends DispatchAction
 		return mapping.findForward("syspage");
 	} 
 	/**
-	 * Í¨NPCID²éÕÒ
+	 * é€šNPCIDæŸ¥æ‰¾
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -292,7 +292,7 @@ public class SystemResourcesAction extends DispatchAction
 		return mapping.findForward("syspage");
 	}
 	/**
-	 * È«²¿ÖØÔØNPC
+	 * å…¨éƒ¨é‡è½½NPC
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -302,12 +302,12 @@ public class SystemResourcesAction extends DispatchAction
 	public ActionForward n14(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{ 
-		SystemResourcesService.initNPCCache();//ÖØĞÂ¼ÓÔØ
+		SystemResourcesService.initNPCCache();//é‡æ–°åŠ è½½
 		request.setAttribute("type", "5");
 		return n1(mapping, form, request, response);
 	} 
 	/**
-	 * µ¥ÌõµÀ¾ßÊı¾İ¼ÓÔØ
+	 * å•æ¡é“å…·æ•°æ®åŠ è½½
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -328,7 +328,7 @@ public class SystemResourcesAction extends DispatchAction
 	} 
 	
 	/**
-	 * Í¨NPCID²éÕÒ
+	 * é€šNPCIDæŸ¥æ‰¾
 	 * @param mapping
 	 * @param form
 	 * @param request

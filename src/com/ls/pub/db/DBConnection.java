@@ -1,207 +1,159 @@
 package com.ls.pub.db;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import org.apache.log4j.Logger;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import org.apache.log4j.Logger;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
- * ¹¦ÄÜ:Êı¾İ¿âÁ´½Ó¹ÜÀí
- * @author ÁõË§
+ * åŠŸèƒ½:æ•°æ®åº“é“¾æ¥ç®¡ç†
+ *
+ * @author åˆ˜å¸…
  * 9:42:40 PM
  */
-public class DBConnection
-{
-	Logger logger = Logger.getLogger(DBConnection.class);
-	public static final int GAME_DB = 1;//ÓÎÏ·Êı¾İ¿â
-	public static final int GAME_USER_DB = 2;//Íæ¼ÒÊı¾İ¿â
-	public static final int GAME_LOG_DB = 3;//ÈÕÖ¾Êı¾İ¿â
-	private Connection conn = null;
+public class DBConnection {
+    // æ—¥å¿—å¥æŸ„
+    Logger logger = Logger.getLogger(DBConnection.class);
+    // æ•°æ®åº“ç±»å‹
+    public static final int GAME_DB         = 1; // æ¸¸æˆæ•°æ®åº“
+    public static final int GAME_USER_DB    = 2; // ç©å®¶æ•°æ®åº“
+    public static final int GAME_LOG_DB     = 3; // æ—¥å¿—æ•°æ®åº“
+    private Connection conn = null;
 
-	public DBConnection(int db_type)
-	{
-		switch (db_type)
-		{
-			case GAME_DB:
-			{
-				conn = createJygameConn();
-				break;
-			}
-			case GAME_USER_DB:
-			{
-				conn = createJygameUserConn();
-				break;
-			}
-			case GAME_LOG_DB:
-			{
-				conn = createJygameLogConn();
-				break;
-			}
-		}
-	}
-	
-	/**
-	 * »ñµÃÊı¾İ¿âÁ´½Ó
-	 * @return
-	 */
-	public Connection getConn()
-	{
-		return conn;
-	}
+    public DBConnection(int db_type) {
+        switch (db_type) {
+            case GAME_DB: {
+                conn = createJyGameConn();
+                break;
+            }
+            case GAME_USER_DB: {
+                conn = createJyGameUserConn();
+                break;
+            }
+            case GAME_LOG_DB: {
+                conn = createJyGameLogConn();
+                break;
+            }
+        }
+    }
 
-	/**
-	 * »ñµÃjygameÊı¾İ¿âµÄÁ´½Ó
-	 * @return
-	 */
-	private Connection createJygameConn()
-	{
-		Connection jygameConn = null;
-		try
-		{
-			DataSource ds = null;
-			InitialContext ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jygame");
-			jygameConn = ds.getConnection();
-			return jygameConn;
-		} catch (Exception e)
-		{
-			logger.info(e.getMessage());
-		}
-		return jygameConn;
-	}
+    /**
+     * è·å¾—æ•°æ®åº“é“¾æ¥
+     * @return Connection
+     */
+    public Connection getConn() {
+        return conn;
+    }
 
-	/**
-	 * »ñµÃjygame_userÊı¾İ¿âµÄÁ´½Ó
-	 * @return
-	 */
-	private Connection createJygameUserConn()
-	{
-		Connection jygameUserConn = null;
-		try
-		{
-			DataSource ds = null;
-			InitialContext ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jygame_user");
-			jygameUserConn = ds.getConnection();
-			return jygameUserConn;
-		} catch (Exception e)
-		{
-			logger.info(e.getMessage());
-		}
-		return jygameUserConn;
-	}
-	/**
-	 * »ñµÃjygame_logÊı¾İ¿âµÄÁ´½Ó
-	 * @return
-	 */
-	private Connection createJygameLogConn()
-	{
-		Connection jygameUserConn = null;
-		try
-		{
-			DataSource ds = null;
-			InitialContext ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jygame_log");
-			jygameUserConn = ds.getConnection();
-			return jygameUserConn;
-		} catch (Exception e)
-		{
-			logger.info(e.getMessage());
-		}
-		return jygameUserConn;
-	}
+    /**
+     * è·å¾—jygameæ•°æ®åº“çš„é“¾æ¥
+     * @return Connection
+     */
+    private Connection createJyGameConn() {
+        try {
+            return DBUtils.getConnByUrl(DBConf.gameDBUrl);
+            // return DBUtils.getConnByJDBC(DBConf.gameJDBCUrl);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+        return null;
+    }
 
-	/**
-	 * ¹Ø±ÕÁ´½Ó
-	 */
-	public void closeConn()
-	{
-		if (conn != null)
-		{
-			try
-			{
-				conn.close();
-			} catch (Exception e)
-			{
-				logger.info(e.getMessage());
-			}
-		}
-	}
+    /**
+     * è·å¾—jygame_useræ•°æ®åº“çš„é“¾æ¥
+     * @return Connection
+     */
+    private Connection createJyGameUserConn() {
+        try {
+            return DBUtils.getConnByUrl(DBConf.gameUserDBUrl);
+            // return DBUtils.getConnByJDBC(DBConf.gameUserJDBCUrl);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+        return null;
+    }
 
-	/**
-	 * ÊÂÎñÌá½»¿ªÊ¼
-	 */
-	public void begin()
-	{
-		if (conn != null)
-		{
-			try
-			{
-				conn.setAutoCommit(false);
-			} catch (SQLException e)
-			{
-				//logger.info(e.getMessage());
-			}
-		} else
-		{
-			logger.info("ÊÂÎñ¿ªÊ¼Ê±:Êı¾İ¿âÁ´½ÓÃ»ÓĞ´ò¿ª");
-		}
-	}
+    /**
+     * è·å¾—jygame_logæ•°æ®åº“çš„é“¾æ¥
+     * @return Connection
+     */
+    private Connection createJyGameLogConn() {
+        try {
+            return DBUtils.getConnByUrl(DBConf.gameLogDBUrl);
+            // return DBUtils.getConnByJDBC(DBConf.gameLogJDBCUrl);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+        return null;
+    }
 
-	/**
-	 *  ÊÂÎñÌá½»
-	 */
-	public void commit()
-	{
-		try
-		{
-			if (conn != null && !conn.getAutoCommit())
-			{
-				conn.commit();
-				conn.setAutoCommit(true);
-			} else
-			{
-				if (conn == null)
-				{
-					//logger.info("ÊÂÎñÌá½»Ê±:Êı¾İ¿âÁ´½ÓÃ»ÓĞ´ò¿ª");
-				} else
-				{
-					//logger.info("ÊÂÎñÌá½»Ê±:ÊÂÎï»¹Ã»¿ªÊ¼£¬²»ÄÜÌá½»");
-				}
-			}
-		} catch (SQLException e)
-		{
-			//logger.info(e.getMessage());
-		}
-	}
+    /**
+     * å…³é—­é“¾æ¥
+     */
+    public void closeConn() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                logger.info(e.getMessage());
+            }
+        }
+    }
 
-	/**
-	 * ÊÂÎñ»Ø¹ö
-	 */
-	public void rollback()
-	{
-		try
-		{
-			if (conn != null && !conn.getAutoCommit())
-			{
-				conn.rollback();
-				conn.setAutoCommit(true);
-			} else
-			{
-				if (conn == null)
-				{
-					//logger.info("ÊÂÎñ»Ø¹öÊ±:Êı¾İ¿âÁ´½ÓÃ»ÓĞ´ò¿ª");
-				} else
-				{
-					//logger.info("ÊÂÎñ»Ø¹öÊ±:ÊÂÎï»¹Ã»ÓĞ¿ªÊ¼£¬²»ÄÜ»Ø¹ö");
-				}
-			}
-		} catch (SQLException e)
-		{
-			//logger.info(e.getMessage());
-		}
-	}
+    /**
+     * äº‹åŠ¡æäº¤å¼€å§‹
+     */
+    public void begin() {
+        if (conn != null) {
+            try {
+                conn.setAutoCommit(false);
+            } catch (SQLException e) {
+                //logger.info(e.getMessage());
+            }
+        } else {
+            logger.info("äº‹åŠ¡å¼€å§‹æ—¶:æ•°æ®åº“é“¾æ¥æ²¡æœ‰æ‰“å¼€");
+        }
+    }
+
+    /**
+     * äº‹åŠ¡æäº¤
+     */
+    public void commit() {
+        try {
+            if (conn != null && !conn.getAutoCommit()) {
+                conn.commit();
+                conn.setAutoCommit(true);
+            } else {
+                if (conn == null) {
+                    logger.info("äº‹åŠ¡æäº¤æ—¶:æ•°æ®åº“é“¾æ¥æ²¡æœ‰æ‰“å¼€");
+                } else {
+                    logger.info("äº‹åŠ¡æäº¤æ—¶:äº‹ç‰©è¿˜æ²¡å¼€å§‹ï¼Œä¸èƒ½æäº¤");
+                }
+            }
+        } catch (SQLException e) {
+            //logger.info(e.getMessage());
+        }
+    }
+
+    /**
+     * äº‹åŠ¡å›æ»š
+     */
+    public void rollback() {
+        try {
+            if (conn != null && !conn.getAutoCommit()) {
+                conn.rollback();
+                conn.setAutoCommit(true);
+            } else {
+                if (conn == null) {
+                    logger.info("äº‹åŠ¡å›æ»šæ—¶:æ•°æ®åº“é“¾æ¥æ²¡æœ‰æ‰“å¼€");
+                } else {
+                    logger.info("äº‹åŠ¡å›æ»šæ—¶:äº‹ç‰©è¿˜æ²¡æœ‰å¼€å§‹ï¼Œä¸èƒ½å›æ»š");
+                }
+            }
+        } catch (SQLException e) {
+            //logger.info(e.getMessage());
+        }
+    }
 }

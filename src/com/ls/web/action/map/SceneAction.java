@@ -1,16 +1,5 @@
 package com.ls.web.action.map;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.guaji.service.GuajiService;
 import com.ls.ben.vo.menu.OperateMenuVO;
 import com.ls.model.organize.faction.FactionRecruit;
@@ -22,115 +11,116 @@ import com.ls.web.service.menu.MenuService;
 import com.ls.web.service.npc.NpcService;
 import com.ls.web.service.npc.RefurbishService;
 import com.ls.web.service.player.PlayerService;
-import com.ls.web.service.player.RoleService;
 import com.ls.web.service.room.RoomService;
 import com.ls.web.service.wml.main.MainPageWmlService;
 import com.pm.service.horta.HortaService;
 import com.pm.service.systemInfo.SystemInfoService;
 import com.pm.vo.horta.HortaVO;
 import com.pm.vo.sysInfo.SystemInfoVO;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
- * ¹¦ÄÜ£º³¡¾°action
- * 
+ * åŠŸèƒ½ï¼šåœºæ™¯action
+ *
  * @author ls Apr 19, 2009 1:27:01 PM
  */
-public class SceneAction extends ActionBase
-{
-	Logger logger = Logger.getLogger("log.action");
+public class SceneAction extends ActionBase {
+    Logger logger = Logger.getLogger("log.action");
 
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleEntity roleInfo = this.getRoleEntity(request);
-		int p_pk = roleInfo.getPPk();
-		GuajiService gs = new GuajiService();
-		try
-		{
-			if (gs.findByPpk(p_pk) != null)
-			{
-				return mapping.findForward("auto");
-			}
-		}
-		catch (SQLException e)
-		{
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        RoleEntity roleInfo = this.getRoleEntity(request);
+        int p_pk = roleInfo.getPPk();
+        GuajiService gs = new GuajiService();
+        try {
+            if (gs.findByPpk(p_pk) != null) {
+                return mapping.findForward("auto");
+            }
+        } catch (SQLException e) {
 
-			logger.error(e.getMessage());
-		}
-		String hint = (String) request.getAttribute("hint");
-		String mountsHint = (String) request.getAttribute("mountsHint");
-		String isRefurbish = request.getParameter("isRefurbish");// ÊÇ·ñË¢ĞÂ£¬·Ç¿Õ±íÊ¾Ë¢ĞÂ
-		String way = request.getParameter("way");// ĞĞ×ß·½Ïò
-		RoomService roomService = new RoomService();
-		PlayerService playerServie = new PlayerService();
+            logger.error(e.getMessage());
+        }
+        String hint = (String) request.getAttribute("hint");
+        String mountsHint = (String) request.getAttribute("mountsHint");
+        String isRefurbish = request.getParameter("isRefurbish");// æ˜¯å¦åˆ·æ–°ï¼Œéç©ºè¡¨ç¤ºåˆ·æ–°
+        String way = request.getParameter("way");// è¡Œèµ°æ–¹å‘
+        RoomService roomService = new RoomService();
+        PlayerService playerServie = new PlayerService();
 
-		int old_scene_id = Integer.parseInt(roleInfo.getBasicInfo().getSceneId());
-		int new_scene_id = roomService.getSceneByWay(old_scene_id, way);
+        int old_scene_id = Integer.parseInt(roleInfo.getBasicInfo().getSceneId());
+        int new_scene_id = roomService.getSceneByWay(old_scene_id, way);
 
-		playerServie.updateSceneAndView(p_pk, new_scene_id);// ¸üĞÂÊÓÒ°ºÍscene_id
+        playerServie.updateSceneAndView(p_pk, new_scene_id);// æ›´æ–°è§†é‡å’Œscene_id
 
-		NpcService npcService = new NpcService();
-		RefurbishService refurbishService = new RefurbishService();
+        NpcService npcService = new NpcService();
+        RefurbishService refurbishService = new RefurbishService();
 
-		if (isRefurbish != null)// Ë¢ĞÂnpc
-		{
-			refurbishService.refurbishNPC(p_pk, new_scene_id);
-		}
+        if (isRefurbish != null)// åˆ·æ–°npc
+        {
+            refurbishService.refurbishNPC(p_pk, new_scene_id);
+        }
 
-		if (npcService.isHaveAttackNPC(roleInfo))// ÅĞ¶ÏÊÇ·ñÓĞÖ÷¶¯¹¥»÷µÄnpc
-		{
-			return mapping.findForward("fight_scene");// Ìø×ªµ½Õ½¶·Ò³Ãæ
-		}
+        if (npcService.isHaveAttackNPC(roleInfo))// åˆ¤æ–­æ˜¯å¦æœ‰ä¸»åŠ¨æ”»å‡»çš„npc
+        {
+            return mapping.findForward("fight_scene");// è·³è½¬åˆ°æˆ˜æ–—é¡µé¢
+        }
 
-		roleInfo.getStateInfo().setCurState(PlayerState.GENERAL);// ¸´Î»Íæ¼Ò×´Ì¬
+        roleInfo.getStateInfo().setCurState(PlayerState.GENERAL);// å¤ä½ç©å®¶çŠ¶æ€
 
-		SystemInfoService systemInfo = new SystemInfoService();
-		MenuService menuService = new MenuService();
-		MainPageWmlService mainPageWmlService = new MainPageWmlService();
+        SystemInfoService systemInfo = new SystemInfoService();
+        MenuService menuService = new MenuService();
+        MainPageWmlService mainPageWmlService = new MainPageWmlService();
 
-		String intimateHint = mainPageWmlService.getIntimateHintWml(roleInfo);// ÎäÁÖĞ¡ÌùÊ¿
-		String scene_walk_info = mainPageWmlService.getWalkWml(roleInfo,request, response);// ×ßµØÍ¼µÄ½Å±¾
-		String mail_hint = mainPageWmlService.getMailHint(roleInfo);// ĞÂÓÊ¼şÌáÊ¾
-		/*********ÓĞĞÂµÄ½±ÀøÌáĞÑ********/
-		HortaService hortaService = new HortaService();
-		List<HortaVO> horList = hortaService.getMainList();
-		String hortHint=hortaService.checkHasNew(horList,roleInfo);
-		/*******************************/
-		List npcs = npcService.getCurrentNPCs(p_pk, new_scene_id);// µÃµ½Ë¢ĞÂ³öµÄ·ÇÖ÷¶¯¹¥»÷npcÁĞ±í
+        String intimateHint = mainPageWmlService.getIntimateHintWml(roleInfo);// æ­¦æ—å°è´´å£«
+        String scene_walk_info = mainPageWmlService.getWalkWml(roleInfo, request, response);// èµ°åœ°å›¾çš„è„šæœ¬
+        String mail_hint = mainPageWmlService.getMailHint(roleInfo);// æ–°é‚®ä»¶æç¤º
+        /*********æœ‰æ–°çš„å¥–åŠ±æé†’********/
+        HortaService hortaService = new HortaService();
+        List<HortaVO> horList = hortaService.getMainList();
+        String hortHint = hortaService.checkHasNew(horList, roleInfo);
+        /*******************************/
+        List npcs = npcService.getCurrentNPCs(p_pk, new_scene_id);// å¾—åˆ°åˆ·æ–°å‡ºçš„éä¸»åŠ¨æ”»å‡»npcåˆ—è¡¨
 
-		List<SystemInfoVO> sysInfolist = systemInfo.getSystemInfoByPPk(roleInfo);// ÏµÍ³ÏûÏ¢
+        List<SystemInfoVO> sysInfolist = systemInfo.getSystemInfoByPPk(roleInfo);// ç³»ç»Ÿæ¶ˆæ¯
 
-		String player_list_str = playerServie.getPlayerListStrByScene(roleInfo);// ÊÓÒ°ÄÚµÄÍæ¼ÒÁĞ±í
+        String player_list_str = playerServie.getPlayerListStrByScene(roleInfo);// è§†é‡å†…çš„ç©å®¶åˆ—è¡¨
 
-		/** *******Ë¢ĞÂ²Ëµ¥******** */
-		List<OperateMenuVO> menus = menuService.menuRefurbish(roleInfo);
+        /** *******åˆ·æ–°èœå•******** */
+        List<OperateMenuVO> menus = menuService.menuRefurbish(roleInfo);
 
-		InstanceService is = new InstanceService();
-		// ¸±±¾ĞÅÏ¢ÏÔÊ¾
-		String tianguanhint = is.getTianGuanDisplay(roleInfo);
+        InstanceService is = new InstanceService();
+        // å‰¯æœ¬ä¿¡æ¯æ˜¾ç¤º
+        String tianguanhint = is.getTianGuanDisplay(roleInfo);
 
-		request.setAttribute("hint", hint);
-		request.setAttribute("mountsHint", mountsHint);
-		request.setAttribute("tianguanhint", tianguanhint);// ¸±±¾ÌáÊ¾ĞÅÏ¢
-		request.setAttribute("intimateHint", intimateHint);// Ğ¡ÌùÊ¿
-		request.setAttribute("fRecruit", FactionRecruit.getInstance());// °ïÅÉÕĞÄ¼ĞÅÏ¢
-		request.setAttribute("mail_hint", mail_hint);
-		request.setAttribute("hortHint",hortHint);
-		request.setAttribute("chatHint", request.getParameter("chatHint"));
-		request.setAttribute("chatChannel", request.getParameter("chatChannel"));
+        request.setAttribute("hint", hint);
+        request.setAttribute("mountsHint", mountsHint);
+        request.setAttribute("tianguanhint", tianguanhint);// å‰¯æœ¬æç¤ºä¿¡æ¯
+        request.setAttribute("intimateHint", intimateHint);// å°è´´å£«
+        request.setAttribute("fRecruit", FactionRecruit.getInstance());// å¸®æ´¾æ‹›å‹Ÿä¿¡æ¯
+        request.setAttribute("mail_hint", mail_hint);
+        request.setAttribute("hortHint", hortHint);
+        request.setAttribute("chatHint", request.getParameter("chatHint"));
+        request.setAttribute("chatChannel", request.getParameter("chatChannel"));
 
-		request.setAttribute("sysInfo", sysInfolist);// ÏµÍ³ÏûÏ¢
-		request.setAttribute("player_list_str", player_list_str);// Íæ¼ÒÁĞ±í
-		request.setAttribute("menus", menus);// ²Ëµ¥ÁĞ±í
-		request.setAttribute("npcs", npcs);// ¹ÖÎïÁĞ±í
+        request.setAttribute("sysInfo", sysInfolist);// ç³»ç»Ÿæ¶ˆæ¯
+        request.setAttribute("player_list_str", player_list_str);// ç©å®¶åˆ—è¡¨
+        request.setAttribute("menus", menus);// èœå•åˆ—è¡¨
+        request.setAttribute("npcs", npcs);// æ€ªç‰©åˆ—è¡¨
 
-		request.setAttribute("roleInfo", roleInfo);
-		request.setAttribute("settingInfo", roleInfo.getSettingInfo());// ½ÇÉ«ÉèÖÃ
-		request.setAttribute("scene", roleInfo.getBasicInfo().getSceneInfo());
-		request.setAttribute("scene_walk_info", scene_walk_info);
-		request.setAttribute("new_scene_id", new_scene_id);
-		return mapping.findForward("success");
-	}
+        request.setAttribute("roleInfo", roleInfo);
+        request.setAttribute("settingInfo", roleInfo.getSettingInfo());// è§’è‰²è®¾ç½®
+        request.setAttribute("scene", roleInfo.getBasicInfo().getSceneInfo());
+        request.setAttribute("scene_walk_info", scene_walk_info);
+        request.setAttribute("new_scene_id", new_scene_id);
+        return mapping.findForward("success");
+    }
 
 }

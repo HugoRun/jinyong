@@ -18,7 +18,7 @@ import com.pm.service.mail.MailInfoService;
 
 /**
  * @author ls
- * ¹¦ÄÜ:ÓÃ»§³äÖµ¹ÜÀí
+ * åŠŸèƒ½:ç”¨æˆ·å……å€¼ç®¡ç†
  * Jan 10, 2009
  */
 public class BillService
@@ -27,7 +27,7 @@ public class BillService
 	
 	
 	/**
-	 * µÃµ½³äÖµ¼ÇÂ¼
+	 * å¾—åˆ°å……å€¼è®°å½•
 	 */
 	public UAccountRecordVO getAccountRecord( int record_id)
 	{
@@ -36,112 +36,112 @@ public class BillService
 	}
 	
 	/**
-	 * ÓÃ»§·¢³ö³äÖµÇëÇó
-	 * @param code            ¿¨ºÅ
-	 * @param channel         ³äÖµÇşµÀ
+	 * ç”¨æˆ·å‘å‡ºå……å€¼è¯·æ±‚
+	 * @param code            å¡å·
+	 * @param channel         å……å€¼æ¸ é“
 	 */
 	public int account( UAccountRecordVO account_record )
 	{
 		if( account_record==null )
 		{
-			logger.info("ÓÃ»§³äÖµÊ±£º²ÎÊı´íÎó£¡account_recordÎª¿Õ");
+			logger.info("ç”¨æˆ·å……å€¼æ—¶ï¼šå‚æ•°é”™è¯¯ï¼account_recordä¸ºç©º");
 		}
 		
-		logger.info("Íæ¼Ò³É¹¦Ìá½»³äÖµÇëÇó£¡³äÖµÍ¨µÀ£º"+account_record.getChannel()+";u_pk:"+account_record.getUPk()+";p_pk:"+account_record.getPPk()+";³äÖµ½ğ¶îÎª:"+account_record.getMoney()+";¿¨ºÅ£º"+account_record.getCode());
+		logger.info("ç©å®¶æˆåŠŸæäº¤å……å€¼è¯·æ±‚ï¼å……å€¼é€šé“ï¼š"+account_record.getChannel()+";u_pk:"+account_record.getUPk()+";p_pk:"+account_record.getPPk()+";å……å€¼é‡‘é¢ä¸º:"+account_record.getMoney()+";å¡å·ï¼š"+account_record.getCode());
 		
 		UAccountRecordDao accRecordDao = new UAccountRecordDao();
 		
-		//Ôö¼Ó³äÖµÈÕÖ¾
+		//å¢åŠ å……å€¼æ—¥å¿—
 		return accRecordDao.insert(account_record);
 	}
 	/**
-	 * ÓÃ»§³äÖµ³É¹¦Í¨Öª
-	 * @param code            ¿¨ºÅ
-	 * @param channel         ³äÖµÇşµÀ
-	 * @return                Í¨Öª³É¹¦·µ»Øtrue
+	 * ç”¨æˆ·å……å€¼æˆåŠŸé€šçŸ¥
+	 * @param code            å¡å·
+	 * @param channel         å……å€¼æ¸ é“
+	 * @return                é€šçŸ¥æˆåŠŸè¿”å›true
 	 */
 	public boolean  accountSuccessNotify( UAccountRecordVO accountRecord )
 	{
 		if( accountRecord==null )
 		{
-			logger.info("Íæ¼Ò³äÖµ¼ÇÂ¼Îª¿Õ");
+			logger.info("ç©å®¶å……å€¼è®°å½•ä¸ºç©º");
 			return false;
 		}
 		if( accountRecord.getAccountState().indexOf("callback result") !=-1 )
 		{
-			logger.info("Íæ¼ÒÒÑ¾­µÃµ½callback,²»ÔÙ´¦Àí¡£¡£¡£(u_pk£º"+accountRecord.getUPk()+";p_pk:"+accountRecord.getPPk()+"),ÒÑ³äÖµ³É¹¦,³äÖµ½ğ¶îÎª£º"+accountRecord.getMoney());
+			logger.info("ç©å®¶å·²ç»å¾—åˆ°callback,ä¸å†å¤„ç†ã€‚ã€‚ã€‚(u_pkï¼š"+accountRecord.getUPk()+";p_pk:"+accountRecord.getPPk()+"),å·²å……å€¼æˆåŠŸ,å……å€¼é‡‘é¢ä¸ºï¼š"+accountRecord.getMoney());
 			return false;
 		}
 		int money = accountRecord.getMoney();
 		
-		logger.info("Íæ¼Ò³äÖµ³É¹¦£ºu_pk:"+accountRecord.getUPk()+";³äÖµ½ğ¶îÎª:"+money);
+		logger.info("ç©å®¶å……å€¼æˆåŠŸï¼šu_pk:"+accountRecord.getUPk()+";å……å€¼é‡‘é¢ä¸º:"+money);
 		
 		MailInfoService mailInfoService = new MailInfoService();
 		EconomyService economyService = new EconomyService();
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		
-		//¸üĞÂ³äÖµ¼ÇÂ¼×´Ì¬
+		//æ›´æ–°å……å€¼è®°å½•çŠ¶æ€
 		updateState(accountRecord.getId(), "callback result:pay_success");
-		//¸øÍæ¼ÒÔö¼ÓÔª±¦
-		int yb_num = accountRecord.getMoney()*100;//1Ôª»ñµÃ10¸öÔª±¦
-		int jf_num = yb_num*GameConfig.getJifenNum();//1Ôª»ñµÃ1¸ö»ı·Ö
+		//ç»™ç©å®¶å¢åŠ å…ƒå®
+		int yb_num = accountRecord.getMoney()*100;//1å…ƒè·å¾—10ä¸ªå…ƒå®
+		int jf_num = yb_num*GameConfig.getJifenNum();//1å…ƒè·å¾—1ä¸ªç§¯åˆ†
 		economyService.addYuanbao(accountRecord.getPPk(),accountRecord.getUPk(), yb_num,"chongzhi");
-		economyService.addJifen(accountRecord.getUPk(),jf_num);//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦³äÖµ1ÈËÃñ±Ò=1»ı·Ö
-		/**³äÖµ½ğ¶îÍ³¼Æ**/
+		economyService.addJifen(accountRecord.getUPk(),jf_num);//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå……å€¼1äººæ°‘å¸=1ç§¯åˆ†
+		/**å……å€¼é‡‘é¢ç»Ÿè®¡**/
 		gsss.addPropNum(0, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, "chongzhi", accountRecord.getPPk());
-		/**³äÖµÈËÊıÍ³¼Æ**/
-		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",accountRecord.getPPk());//Í³¼Æ³äÖµÈË´Î
-		//·¢ÓÊ¼ş
-		String title = "³äÖµ³É¹¦";
+		/**å……å€¼äººæ•°ç»Ÿè®¡**/
+		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",accountRecord.getPPk());//ç»Ÿè®¡å……å€¼äººæ¬¡
+		//å‘é‚®ä»¶
+		String title = "å……å€¼æˆåŠŸ";
 		String content = "";
 		String channel_display = getChannelDisplay(accountRecord.getChannel());
 		String time_str = DateUtil.getCurrentTimeStr();
-		content = "ÄúÓÚ"+time_str+"³äÖµ"+money+"Ôª"+channel_display+"³äÖµ¿¨³äÖµ³É¹¦£¬»ñµÃ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+yb_num+"£¡";
-		logger.info("ÓÊ¼ş±êÌâ£º"+title);
-		logger.info("ÓÊ¼şÄÚÈİ£º"+content);
+		content = "æ‚¨äº"+time_str+"å……å€¼"+money+"å…ƒ"+channel_display+"å……å€¼å¡å……å€¼æˆåŠŸï¼Œè·å¾—ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+yb_num+"ï¼";
+		logger.info("é‚®ä»¶æ ‡é¢˜ï¼š"+title);
+		logger.info("é‚®ä»¶å†…å®¹ï¼š"+content);
 		mailInfoService.sendMailBySystem(accountRecord.getPPk(), title, content);
 		JmsUtil.chongzhi(accountRecord.getPPk(),accountRecord.getMoney(),accountRecord.getChannel());
 		return true;
 	}
 	/**
-     * ÓÃ»§³äÖµÊ§°ÜÍ¨Öª
-     * @param accountRecord            ¿¨ºÅ
-     * @param error_code               ´íÎó´úÂë
+     * ç”¨æˆ·å……å€¼å¤±è´¥é€šçŸ¥
+     * @param accountRecord            å¡å·
+     * @param error_code               é”™è¯¯ä»£ç 
      */
 	public void accountFailNotify( UAccountRecordVO accountRecord,String error_code )
 	{
 		if( accountRecord==null )
 		{
-			logger.info("Íæ¼Ò³äÖµ¼ÇÂ¼Îª¿Õ");
+			logger.info("ç©å®¶å……å€¼è®°å½•ä¸ºç©º");
 			return;
 		}
 		
 		if( accountRecord.getAccountState().indexOf("callback result") !=-1 )
 		{
-			logger.info("³äÖµÊ§°Ü£¬Ô­Òò£º"+error_code);
-			logger.info("Íæ¼ÒÒÑ¾­µÃµ½callback,²»ÔÙ´¦Àí¡£¡£¡£(u_pk£º"+accountRecord.getUPk()+";p_pk:"+accountRecord.getPPk()+"),ÒÑ³äÖµ³É¹¦,³äÖµ½ğ¶îÎª£º"+accountRecord.getMoney());
+			logger.info("å……å€¼å¤±è´¥ï¼ŒåŸå› ï¼š"+error_code);
+			logger.info("ç©å®¶å·²ç»å¾—åˆ°callback,ä¸å†å¤„ç†ã€‚ã€‚ã€‚(u_pkï¼š"+accountRecord.getUPk()+";p_pk:"+accountRecord.getPPk()+"),å·²å……å€¼æˆåŠŸ,å……å€¼é‡‘é¢ä¸ºï¼š"+accountRecord.getMoney());
 			return;
 		}
-		logger.info("Íæ¼Ò³äÖµÊ§°Ü£ºu_pk:"+accountRecord.getUPk());
+		logger.info("ç©å®¶å……å€¼å¤±è´¥ï¼šu_pk:"+accountRecord.getUPk());
 		
 		MailInfoService mailInfoService = new MailInfoService();
-		//¸üĞÂ³äÖµ¼ÇÂ¼×´Ì¬
-		updateState(accountRecord.getId(), "callback result:´íÎó´úÂë-"+error_code);
+		//æ›´æ–°å……å€¼è®°å½•çŠ¶æ€
+		updateState(accountRecord.getId(), "callback result:é”™è¯¯ä»£ç -"+error_code);
 		
-		//·¢ÓÊ¼ş
-		String title = "³äÖµÊ§°Ü";
+		//å‘é‚®ä»¶
+		String title = "å……å€¼å¤±è´¥";
 		String content = "";
 		String channel_display = getChannelDisplay(accountRecord.getChannel());
 		int money = accountRecord.getMoney();
 		String time_str = DateUtil.getCurrentTimeStr();
-		content = "ÄúÓÚ"+time_str+"³äÖµ"+money+"Ôª"+channel_display+"³äÖµ¿¨³äÖµÊ§°Ü";
-		logger.info("ÓÊ¼ş±êÌâ£º"+title);
-		logger.info("ÓÊ¼şÄÚÈİ£º"+content);
+		content = "æ‚¨äº"+time_str+"å……å€¼"+money+"å…ƒ"+channel_display+"å……å€¼å¡å……å€¼å¤±è´¥";
+		logger.info("é‚®ä»¶æ ‡é¢˜ï¼š"+title);
+		logger.info("é‚®ä»¶å†…å®¹ï¼š"+content);
 		mailInfoService.sendMailBySystem(accountRecord.getPPk(), title, content);
 	}
 	
 	/**
-	 * µÃµ½³äÖµÍ¨µÀÃèÊö
+	 * å¾—åˆ°å……å€¼é€šé“æè¿°
 	 */
 	private String getChannelDisplay(String channel)
 	{
@@ -151,27 +151,27 @@ public class BillService
 		}
 		if(channel.equals("SZX"))
 		{
-			return "ÒÆ¶¯ÉñÖİĞĞ";
+			return "ç§»åŠ¨ç¥å·è¡Œ";
 		}
 		else if(channel.equals("SNDACARD"))
 		{
-			return "Ê¢´ó";
+			return "ç››å¤§";
 		}
 		else if(channel.equals("jun"))
 		{
-			return "¿¥Íø";
+			return "éªç½‘";
 		}
 		else if(channel.equals("SZF_DIANXIN"))
 		{
-			return "µçĞÅ";
+			return "ç”µä¿¡";
 		}
 		else if(channel.equals("SZF_LIANTONG"))
 		{
-			return "ÁªÍ¨";
+			return "è”é€š";
 		}
 		else if(channel.equals("SZF_SZX"))
 		{
-			return "ÉñÖİĞĞ";
+			return "ç¥å·è¡Œ";
 		}
 		else
 		{
@@ -181,7 +181,7 @@ public class BillService
 	}
 	
 	/**
-	 * ¸üĞÂÓÃ»§³äÖµ×´Ì¬
+	 * æ›´æ–°ç”¨æˆ·å……å€¼çŠ¶æ€
 	 */
 	public void updateState( int id,String state )
 	{
@@ -191,53 +191,53 @@ public class BillService
 	
 	
 	/**
-	 * µÃµ½³äÖµ³É¹¦µÄ½Å±¾
+	 * å¾—åˆ°å……å€¼æˆåŠŸçš„è„šæœ¬
 	 * @return
 	 */
 	public String getSuccessHint()
 	{
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("ÄúÒÑ¾­Íê³ÉÁËÎªÓÎÏ·³äÖµµÄÏà¹Ø²Ù×÷£¬³äÖµÍê³ÉºóĞèÒªµÈ´ı¼¸·ÖÖÓ²ÅÄÜÈ·ÈÏÊÇ·ñ³äÖµ³É¹¦£¬ÇëÄúÏÖÔÚ¼ÌĞøÓÎÏ·£¬ÎÒÃÇ½«ÔÚ¼¸·ÖÖÓºó·¢ËÍÈ·ÈÏÓÊ¼şµ½¸Ã½ÇÉ«µÄÓÊÏäÖĞ£¡<br/>");
+		resultWml.append("æ‚¨å·²ç»å®Œæˆäº†ä¸ºæ¸¸æˆå……å€¼çš„ç›¸å…³æ“ä½œï¼Œå……å€¼å®Œæˆåéœ€è¦ç­‰å¾…å‡ åˆ†é’Ÿæ‰èƒ½ç¡®è®¤æ˜¯å¦å……å€¼æˆåŠŸï¼Œè¯·æ‚¨ç°åœ¨ç»§ç»­æ¸¸æˆï¼Œæˆ‘ä»¬å°†åœ¨å‡ åˆ†é’Ÿåå‘é€ç¡®è®¤é‚®ä»¶åˆ°è¯¥è§’è‰²çš„é‚®ç®±ä¸­ï¼<br/>");
 		return resultWml.toString();
 	}
 	/**
-	 * µÃµ½Tom³äÖµ³É¹¦µÄ½Å±¾
+	 * å¾—åˆ°Tomå……å€¼æˆåŠŸçš„è„šæœ¬
 	 * @return
 	 */
 	public String getTomSuccessHint()
 	{
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("³äÖµ³É¹¦!<br/>¿Í·şÈÈÏß021-28901353<br/>");
+		resultWml.append("å……å€¼æˆåŠŸ!<br/>å®¢æœçƒ­çº¿021-28901353<br/>");
 		return resultWml.toString();
 	}
 	/**
-	 * µÃµ½³äÖµÊ§°ÜµÄ½Å±¾
+	 * å¾—åˆ°å……å€¼å¤±è´¥çš„è„šæœ¬
 	 * @return
 	 */
 	public String getFailHint(String errerCode)
 	{
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("¶Ô²»Æğ£¬ÄúÊäÈëÁË´íÎóµÄ¿¨ºÅ»òÕßÃÜÂë£¡<br/>");  
-		resultWml.append("´íÎó²úÉúµÄÔ­Òò¿ÉÄÜÊÇ£º<br/>");  
-		resultWml.append("1.Ñ¡ÔñÁË´íÎóµÄ³äÖµÇşµÀ£¬Çë¼ì²é³äÖµ¿¨ÀàĞÍÓë³äÖµÇşµÀÊÇÆ¥ÅäµÄ<br/>");  
-		resultWml.append("2.²»Ğ¡ĞÄÊä´íÁËÕÊºÅ»òÃÜÂë£¬ÇëÖØĞÂÊäÈëÒ»´Î<br/>");  
-		resultWml.append("3.Ñ¡ÔñÁËÓë³äÖµ¿¨Ãæ¶î²»Æ¥ÅäµÄ³äÖµÇşµÀ£¬ÇëÑ¡ÔñÏàÓ¦Ãæ¶îµÄ³äÖµÇşµÀ<br/>");  
+		resultWml.append("å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥äº†é”™è¯¯çš„å¡å·æˆ–è€…å¯†ç ï¼<br/>");  
+		resultWml.append("é”™è¯¯äº§ç”Ÿçš„åŸå› å¯èƒ½æ˜¯ï¼š<br/>");  
+		resultWml.append("1.é€‰æ‹©äº†é”™è¯¯çš„å……å€¼æ¸ é“ï¼Œè¯·æ£€æŸ¥å……å€¼å¡ç±»å‹ä¸å……å€¼æ¸ é“æ˜¯åŒ¹é…çš„<br/>");  
+		resultWml.append("2.ä¸å°å¿ƒè¾“é”™äº†å¸å·æˆ–å¯†ç ï¼Œè¯·é‡æ–°è¾“å…¥ä¸€æ¬¡<br/>");  
+		resultWml.append("3.é€‰æ‹©äº†ä¸å……å€¼å¡é¢é¢ä¸åŒ¹é…çš„å……å€¼æ¸ é“ï¼Œè¯·é€‰æ‹©ç›¸åº”é¢é¢çš„å……å€¼æ¸ é“<br/>");  
 		return resultWml.toString();
 	}
 	/**
-	 * µÃµ½³äÖµÊ§°ÜµÄ½Å±¾
+	 * å¾—åˆ°å……å€¼å¤±è´¥çš„è„šæœ¬
 	 * @return
 	 */
 	public String getTomFailHint(String errerCode)
 	{
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("¶Ô²»Æğ£¬³äÖµÊ§°Ü£¡<br/>");  
-		resultWml.append("´íÎó²úÉúµÄÔ­Òò¿ÉÄÜÊÇ£º<br/>");  
-		resultWml.append("1.ÄúµÄÊÖ»ú»°·Ñ²»×ãÕâ´Î³äÖµËùĞèµÄ·ÑÓÃ<br/>¿Í·şÈÈÏß021-28901353<br/>");
+		resultWml.append("å¯¹ä¸èµ·ï¼Œå……å€¼å¤±è´¥ï¼<br/>");  
+		resultWml.append("é”™è¯¯äº§ç”Ÿçš„åŸå› å¯èƒ½æ˜¯ï¼š<br/>");  
+		resultWml.append("1.æ‚¨çš„æ‰‹æœºè¯è´¹ä¸è¶³è¿™æ¬¡å……å€¼æ‰€éœ€çš„è´¹ç”¨<br/>å®¢æœçƒ­çº¿021-28901353<br/>");
 		return resultWml.toString();
 	}
 	
-	//³äÖµÍ¨ÓÃ½Ó¿Ú
+	//å……å€¼é€šç”¨æ¥å£
 	public boolean chongzhibynormal(String account,String pay_money,String timestamp,String gameid,String MD5string,String gamepoint,String orderid){
 		String key = "";
 		key = getMD5str(account, timestamp, gameid, pay_money, gamepoint);
@@ -274,7 +274,7 @@ public class BillService
 		EconomyService economyService = new EconomyService();
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		MailInfoService mailInfoService = new MailInfoService();
-		// ³äÖµ³É¹¦ ¼ÇÂ¼
+		// å……å€¼æˆåŠŸ è®°å½•
 		int money = getYuanbaoNum(gameid, pay_money);
 		accountRecord.setMoney(money);
 		accountRecord.setUPk(passport.getUPk());
@@ -282,30 +282,30 @@ public class BillService
 		accountRecord.setAccountState("success");
 		accountRecord.setCode(orderid);
 		accRecordDao.insert(accountRecord);
-		// ¸øÍæ¼ÒÔö¼ÓÔª±¦
-		int yb_num = money;// 1Ôª»ñµÃ100¸öÔª±¦
-		int jf_num = yb_num * GameConfig.getJifenNum();// 1Ôª»ñµÃ1¸ö»ı·Ö
+		// ç»™ç©å®¶å¢åŠ å…ƒå®
+		int yb_num = money;// 1å…ƒè·å¾—100ä¸ªå…ƒå®
+		int jf_num = yb_num * GameConfig.getJifenNum();// 1å…ƒè·å¾—1ä¸ªç§¯åˆ†
 
 		economyService.addYuanbao(accountRecord.getPPk(), accountRecord
 				.getUPk(), yb_num, "chongzhi");
-		economyService.addJifen(accountRecord.getUPk(), jf_num);// Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦³äÖµ1ÈËÃñ±Ò=1»ı·Ö
+		economyService.addJifen(accountRecord.getUPk(), jf_num);// å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå……å€¼1äººæ°‘å¸=1ç§¯åˆ†
 
 		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",
-				accountRecord.getPPk());// Í³¼Æ³äÖµÈË´Î
-		// ·¢ÓÊ¼ş
-		String title = "³äÖµ³É¹¦";
+				accountRecord.getPPk());// ç»Ÿè®¡å……å€¼äººæ¬¡
+		// å‘é‚®ä»¶
+		String title = "å……å€¼æˆåŠŸ";
 		String content = "";
 		String time_str = DateUtil.getCurrentTimeStr();
-		content = "ÄúÓÚ" + time_str + "³äÖµ" + accountRecord.getMoney()
-				+ "Ôª³äÖµ³É¹¦£¬»ñµÃ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á" + yb_num + "£¡";
-		logger.info("ÓÊ¼ş±êÌâ£º" + title);
-		logger.info("ÓÊ¼şÄÚÈİ£º" + content);
+		content = "æ‚¨äº" + time_str + "å……å€¼" + accountRecord.getMoney()
+				+ "å…ƒå……å€¼æˆåŠŸï¼Œè·å¾—ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—" + yb_num + "ï¼";
+		logger.info("é‚®ä»¶æ ‡é¢˜ï¼š" + title);
+		logger.info("é‚®ä»¶å†…å®¹ï¼š" + content);
 		mailInfoService.sendMailBySystem(accountRecord.getPPk(), title,
 				content);
 
 		gsss.addPropNum(0, StatisticsType.RMB, accountRecord.getMoney(),
 				StatisticsType.DEDAO, Channel.JUU + "", accountRecord
-						.getPPk());// Í³¼ÆRMB
+						.getPPk());// ç»Ÿè®¡RMB
 	}
 	private int getYuanbaoNum(String gameid,String pay_money){
 		int money = 0;

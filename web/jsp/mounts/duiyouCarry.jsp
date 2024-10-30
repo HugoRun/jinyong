@@ -7,7 +7,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="wrap" title="<s:message key = "gamename"/>">
 <p>
 请选择您要传送的队友所在地点：<br/>

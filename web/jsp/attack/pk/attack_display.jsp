@@ -31,7 +31,7 @@ ${propUseEffect.noUseDisplay }
 </c:choose>
 <br/>
 </c:if>
-	 
+
 <c:if test="${!empty playerB.contentdisplay}">
 ${playerB.contentdisplay}<br/>
 </c:if>

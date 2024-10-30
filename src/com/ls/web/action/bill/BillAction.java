@@ -28,7 +28,7 @@ import com.ls.web.service.player.RoleService;
 public class BillAction extends DispatchAction {
 	 
 	/**
-	 * ³äÖµÇşµÀÅĞ¶¨²¢×ª·¢²»Í¬µÄ³äÖµÒ³Ãæ
+	 * å……å€¼æ¸ é“åˆ¤å®šå¹¶è½¬å‘ä¸åŒçš„å……å€¼é¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -44,7 +44,7 @@ public class BillAction extends DispatchAction {
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(new_session);
 		String lid = (String)request.getSession().getAttribute("lid");
 		if(lid != null){
-			if(Channel.TOM == Integer.parseInt(lid)){//ÊÇTOMµÄ³äÖµÍ¨µÀ
+			if(Channel.TOM == Integer.parseInt(lid)){//æ˜¯TOMçš„å……å€¼é€šé“
 				return mapping.findForward("tompage");
 			}else{
 				return mapping.findForward("nottompage");

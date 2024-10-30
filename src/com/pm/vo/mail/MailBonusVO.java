@@ -4,13 +4,13 @@ public class MailBonusVO
 {
 	// id
 	private int id;
-	// 玩家PPK
+	// 鐜╁PPK
 	private int p_pk;
-	// 邮件ID
+	// 閭欢ID
 	private int mail_id;
-	// 奖励内容
+	// 濂栧姳鍐呭
 	private String bonus;
-	// 是否领取
+	// 鏄惁棰嗗彇
 	private int is_have;
 
 	public int getId()

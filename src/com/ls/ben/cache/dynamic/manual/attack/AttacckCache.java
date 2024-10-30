@@ -1,222 +1,204 @@
 package com.ls.ben.cache.dynamic.manual.attack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 import com.ls.ben.cache.CacheBase;
 import com.ls.ben.vo.info.npc.NpcFighter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 /**
- * 
- * ´¦ÀíË¢ĞÂ´¦ÀíµÄnpc, ÒÔ¼°Ïà¹ØÊÂÎñ
- * @author ÕÅ¿¡¿¡
+ * å¤„ç†åˆ·æ–°å¤„ç†çš„npc, ä»¥åŠç›¸å…³äº‹åŠ¡
  *
+ * @author å¼ ä¿Šä¿Š
  */
-public class AttacckCache extends CacheBase
-{
-	public static String ATTACKING_BY_PPK = "attacking_by_pPk";
-	
-	// °´sceneÀ´·Ö,ÕâÖÖÀàĞÍµÄnpcÃ¿¸ösceneÖ»ÄÜÓĞÒ»¸ö,³õÊ¼»¯ÄÜ±»´ó¼Ò¶¼´òµÄnpc²Ëµ¥
-	public static String ATTACKING_BY_SCENE   = "attacking_by_scene";
-	
-	
-	public static int ZDATTACKNPC = 0;
-	public static int BDATTACKNPC = 1;
-	
-	public static int ALL = 2;
-	
-	/**
-	 * Í¨¹ıpPkµÃµ½attack_infoĞÅÏ¢
-	 * @param npc_id
-	 * @return
-	 */
-	public Object[] getByPPkd( int pPk )
-	{
-		logger.debug("Í¨¹ıidµÃµ½NpcAttackVOĞÅÏ¢:pPk="+pPk);
-		Object[] npc_info = null;
-		HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
-		npc_info = result.get(pPk+"");
-		
-		logger.debug("NpcAttackVO:"+npc_info);
-		return npc_info;
-	}
-	
-	/**
-	 * Í¨¹ı µÃµ½ÄÜ±»´ó¼Ò´òµÄnpc_attack_infoĞÅÏ¢
-	 * @param npc_id
-	 * @return
-	 */
-	public HashMap<String, Object> getNpcWithSceneByPPkd()
-	{
-		//logger.debug("Í¨¹ısceneIdµÃµ½NpcAttackVOĞÅÏ¢:pPk="+sceneId);
-		Object[] npc_info = null;
-		HashMap<String, Object> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_SCENE);
-			
-		Set<String> set = result.keySet();
-		Iterator<String> iterator = set.iterator();
-		while(iterator.hasNext()) {
-			String sceneId = iterator.next();
-			NpcFighter npcAttackVO = (NpcFighter) result.get(sceneId);
-			if ( npcAttackVO.isDead()) {
-				result.remove(sceneId);
-			}
-		}
-		logger.debug("HashMap<String, Object[]>:"+npc_info);
-		return result;
-	}
-	
-	/**
-	 * Í¨¹ısceneIdµÃµ½attack_infoĞÅÏ¢
-	 * @param npc_id
-	 * @return
-	 */
-	public Object getNpcWithSceneByPPkd( String sceneId )
-	{
-		logger.debug("Í¨¹ısceneIdµÃµ½NpcAttackVOĞÅÏ¢:pPk="+sceneId);
-		Object npc_info = null;
-		HashMap<String, Object> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_SCENE);
-		npc_info =	result.get(sceneId);
-		
-		logger.debug("NpcAttackVO:"+npc_info);
-		return npc_info;
-	}
-	
-	/**
-	 * Í¨¹ıpPk´æ´¢attack_infoĞÅÏ¢
-	 * @param npc_id
-	 * @return
-	 */
-	public void setByPPkd( int pPk,Object[] attack )
-	{
-		logger.debug("Í¨¹ıidµÃµ½NpcAttackVOĞÅÏ¢:pPk="+pPk);
-		Object[] npc_info = null;
-		HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
-		npc_info = result.get(pPk+"");
-		
-		logger.debug("attack="+attack);
-		
-		if(npc_info == null ) {
-			logger.debug("npc_info2="+(npc_info == null));
-			result.put(pPk+"",attack);
-			
-		} else {
-			result.remove(pPk+"");
-			result.put(pPk+"",attack);
-			
-		}		
-	}
-	
-	/**
-	 * µÃµ½µ±Ç°µÄ Ö÷¶¯¹¥»÷ npcµÄĞÅÏ¢
-	 * @param npc_type 0ÎªÖ÷¶¯¹¥»÷ĞÍ¹Ö£¬1Îª±»¶¯¹¥»÷ĞÍ¹Ö
-	 */
-	public  List<NpcFighter> getZDAttackNpc( int pPk, int npc_type) {
-		logger.debug("Í¨¹ıidµÃµ½NpcAttackVOĞÅÏ¢:pPk="+pPk);
-		Object[] npc_info = null;
-		HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
-		npc_info = result.get(pPk+"");
-		logger.debug("NpcAttackVO:"+npc_info);
+public class AttacckCache extends CacheBase {
+    public static String ATTACKING_BY_PPK = "attacking_by_pPk";
 
-		if(npc_info == null ) {
-			return null;				
-		} else {
-//			list = (List<NpcFighter>) npc_info[npc_type];
-			return (List<NpcFighter>) npc_info[npc_type];					
-		}
-	}
-	
-	
-	
-	/**
-	 * sessionÏú»ÙµÄÊ±ºò ´ÓÄÚ´æÖĞÈ¥³ı pPkËù¶ÔÓ¦µÄnpcÕ½¶·ĞÅÏ¢
-	 * @param pPk 
-	 */
-	public void clearNpcTempData(String pPk) {	
-		
-		HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
-		result.remove(pPk);
-		
-	}	
-	
-	/**
-	 * Ë¢ĞÂµØÍ¼Ê±£¬ 
-	 * @param pPk 
-	 */
-	public void clearNpcByRefurish(int pPk) {
-		
-		HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
-		Object[] npc_info = result.get(pPk+"");
-		
-		if (npc_info != null) {
-			if (npc_info[0] != null) {
-				((List<NpcFighter>)npc_info[0]).clear();	
-				npc_info[0] = null;
-			}	
-		}
-	}
-	
-	/**
-	 * Çå³şµ±Ç°µØµãµÄ¿É±»ËùÓĞÈË´òµÄnpc
-	 * @param sceneId
-	 */
-	public void clearNpcBySceneId(String sceneId)
-	{
-		logger.debug("Çå³şµ±Ç°µØµãµÄ¿É±»ËùÓĞÈË´òµÄnpc:sceneId="+sceneId);
-		HashMap<String, Object> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_SCENE);
-		result.remove(sceneId);
-				
-	}
-	
-	
-	/**
-	 * Ïú»Ù Ö÷¶¯¹¥»÷npc¹Ö
-	 */
-	public void destoryZDNpc(int pPk) {
-		 List<NpcFighter> list = this.getZDAttackNpc(pPk, this.ZDATTACKNPC);
-		 if (list != null && list.size() != 0 ) {
-			 list.clear();
-			 list = null;
-		 }
-	}
-	
-	
-	/**
-	 * Ïú»Ù ±»¶¯¹¥»÷npc¹Ö
-	 */
-	public void destoryBDNpc(int pPk) {
-		 List<NpcFighter> list = this.getZDAttackNpc(pPk, this.BDATTACKNPC);
-		 if (list != null && list.size() != 0 ) {
-			 list.clear();
-			 list = null;
-		 }
-	}
-	
-	/**
-	 * Ïú»Ù ½ÇÉ«Ë¢³öµÄËùÓĞµÄ npc
-	 */
-	public void destoryAllNpc(int pPk) {
-		destoryZDNpc(pPk);
-		destoryBDNpc(pPk);
-	}
+    // æŒ‰sceneæ¥åˆ†,è¿™ç§ç±»å‹çš„npcæ¯ä¸ªsceneåªèƒ½æœ‰ä¸€ä¸ª,åˆå§‹åŒ–èƒ½è¢«å¤§å®¶éƒ½æ‰“çš„npcèœå•
+    public static String ATTACKING_BY_SCENE = "attacking_by_scene";
 
-	/**
-	 * ³õÊ¼»¯npc
-	 * @param parseInt
-	 */
-	public void initNpc(int pPk)
-	{
-		List<NpcFighter> zdNpcs = new ArrayList<NpcFighter>();
-		List<NpcFighter> bdNpcs = new ArrayList<NpcFighter>();
-		Object[] attack = new Object[2];
-		attack[0] = zdNpcs;
-		attack[1] = bdNpcs;
-		this.setByPPkd(pPk, attack);
-		
-	}
 
-	
-	
+    public static int ZDATTACKNPC = 0;
+    public static int BDATTACKNPC = 1;
+
+    public static int ALL = 2;
+
+    /**
+     * é€šè¿‡pPkå¾—åˆ°attack_infoä¿¡æ¯
+     *
+     * @param pPk pPk
+     * @return Object[]
+     */
+    public Object[] getByPPkd(int pPk) {
+        logger.debug("é€šè¿‡idå¾—åˆ°NpcAttackVOä¿¡æ¯:pPk=" + pPk);
+        Object[] npc_info = null;
+        HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
+        npc_info = result.get(pPk + "");
+
+        logger.debug("NpcAttackVO:" + npc_info);
+        return npc_info;
+    }
+
+    /**
+     * é€šè¿‡ å¾—åˆ°èƒ½è¢«å¤§å®¶æ‰“çš„npc_attack_infoä¿¡æ¯
+     *
+     * @return HashMap<String, Object>
+     */
+    public HashMap<String, Object> getNpcWithSceneByPPkd() {
+        //logger.debug("é€šè¿‡sceneIdå¾—åˆ°NpcAttackVOä¿¡æ¯:pPk="+sceneId);
+        Object[] npc_info = null;
+        HashMap<String, Object> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_SCENE);
+
+        Set<String> set = result.keySet();
+        for (String sceneId : set) {
+            NpcFighter npcAttackVO = (NpcFighter) result.get(sceneId);
+            if (npcAttackVO.isDead()) {
+                result.remove(sceneId);
+            }
+        }
+        logger.debug("HashMap<String, Object[]>:" + npc_info);
+        return result;
+    }
+
+    /**
+     * é€šè¿‡sceneIdå¾—åˆ°attack_infoä¿¡æ¯
+     *
+     * @param sceneId sceneId
+     * @return Object
+     */
+    public Object getNpcWithSceneByPPkd(String sceneId) {
+        logger.debug("é€šè¿‡sceneIdå¾—åˆ°NpcAttackVOä¿¡æ¯:pPk=" + sceneId);
+        Object npc_info = null;
+        HashMap<String, Object> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_SCENE);
+        npc_info = result.get(sceneId);
+
+        logger.debug("NpcAttackVO:" + npc_info);
+        return npc_info;
+    }
+
+    /**
+     * é€šè¿‡pPkå­˜å‚¨attack_infoä¿¡æ¯
+     *
+     * @param pPk    pPk
+     * @param attack attack
+     */
+    public void setByPPkd(int pPk, Object[] attack) {
+        logger.debug("é€šè¿‡idå¾—åˆ°NpcAttackVOä¿¡æ¯:pPk=" + pPk);
+        Object[] npc_info = null;
+        HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
+        npc_info = result.get(pPk + "");
+
+        logger.debug("attack=" + attack);
+
+        if (npc_info == null) {
+            logger.debug("npc_info2=" + (npc_info == null));
+            result.put(pPk + "", attack);
+
+        } else {
+            result.remove(pPk + "");
+            result.put(pPk + "", attack);
+
+        }
+    }
+
+    /**
+     * å¾—åˆ°å½“å‰çš„ ä¸»åŠ¨æ”»å‡» npcçš„ä¿¡æ¯
+     * @param npc_type 0ä¸ºä¸»åŠ¨æ”»å‡»å‹æ€ªï¼Œ1ä¸ºè¢«åŠ¨æ”»å‡»å‹æ€ª
+     */
+    public List<NpcFighter> getZDAttackNpc(int pPk, int npc_type) {
+        logger.debug("é€šè¿‡idå¾—åˆ°NpcAttackVOä¿¡æ¯:pPk=" + pPk);
+        Object[] npc_info = null;
+        HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
+        npc_info = result.get(pPk + "");
+        logger.debug("NpcAttackVO:" + npc_info);
+
+        if (npc_info == null) {
+            return null;
+        } else {
+            // list = (List<NpcFighter>) npc_info[npc_type];
+            return (List<NpcFighter>) npc_info[npc_type];
+        }
+    }
+
+    /**
+     * sessioné”€æ¯çš„æ—¶å€™ ä»å†…å­˜ä¸­å»é™¤ pPkæ‰€å¯¹åº”çš„npcæˆ˜æ–—ä¿¡æ¯
+     * @param pPk pPk
+     */
+    public void clearNpcTempData(String pPk) {
+        HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
+        result.remove(pPk);
+    }
+
+    /**
+     * åˆ·æ–°åœ°å›¾æ—¶ï¼Œ
+     * @param pPk pPk
+     */
+    public void clearNpcByRefurish(int pPk) {
+        HashMap<String, Object[]> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_PPK);
+        Object[] npc_info = result.get(pPk + "");
+        if (npc_info != null) {
+            if (npc_info[0] != null) {
+                ((List<NpcFighter>) npc_info[0]).clear();
+                npc_info[0] = null;
+            }
+        }
+    }
+
+    /**
+     * æ¸…æ¥šå½“å‰åœ°ç‚¹çš„å¯è¢«æ‰€æœ‰äººæ‰“çš„npc
+     * @param sceneId sceneId
+     */
+    public void clearNpcBySceneId(String sceneId) {
+        logger.debug("æ¸…æ¥šå½“å‰åœ°ç‚¹çš„å¯è¢«æ‰€æœ‰äººæ‰“çš„npc:sceneId=" + sceneId);
+        HashMap<String, Object> result = getElementValue(DYNAMIC_MANUAL_CACHE, ATTACKING_BY_SCENE);
+        result.remove(sceneId);
+
+    }
+
+    /**
+     * é”€æ¯ ä¸»åŠ¨æ”»å‡»npcæ€ª
+     */
+    public void destoryZDNpc(int pPk) {
+        List<NpcFighter> list = this.getZDAttackNpc(pPk, ZDATTACKNPC);
+        if (list != null && !list.isEmpty()) {
+            list.clear();
+            list = null;
+        }
+    }
+
+    /***
+     * é”€æ¯ è¢«åŠ¨æ”»å‡»npcæ€ª
+     * @param pPk pPk
+     */
+    public void destoryBDNpc(int pPk) {
+        List<NpcFighter> list = this.getZDAttackNpc(pPk, BDATTACKNPC);
+        if (list != null && !list.isEmpty()) {
+            list.clear();
+            list = null;
+        }
+    }
+
+    /**
+     * é”€æ¯ è§’è‰²åˆ·å‡ºçš„æ‰€æœ‰çš„ npc
+     */
+    public void destoryAllNpc(int pPk) {
+        destoryZDNpc(pPk);
+        destoryBDNpc(pPk);
+    }
+
+    /**
+     * åˆå§‹åŒ–npc
+     * @param pPk pPk
+     */
+    public void initNpc(int pPk) {
+        List<NpcFighter> zdNpcs = new ArrayList<NpcFighter>();
+        List<NpcFighter> bdNpcs = new ArrayList<NpcFighter>();
+        Object[] attack = new Object[2];
+        attack[0] = zdNpcs;
+        attack[1] = bdNpcs;
+        this.setByPPkd(pPk, attack);
+    }
+
 }

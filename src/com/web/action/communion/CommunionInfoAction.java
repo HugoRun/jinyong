@@ -23,13 +23,13 @@ import com.web.service.communion.CommunionIndexService;
 import com.web.service.communion.CommunionService;
 
 /**
- * @author ºîºÆ¾ü ÁÄÌì
+ * @author ä¾¯æµ©å†› èŠå¤©
  */
 public class CommunionInfoAction extends ActionBase
 {
 	Logger logger =  Logger.getLogger("log.action");
 	/**
-	 * ¹«
+	 * å…¬
 	 * */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class CommunionInfoAction extends ActionBase
 	}
 	
 	/**
-	 * Õó
+	 * é˜µ
 	 * */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -56,7 +56,7 @@ public class CommunionInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ¶Ó
+	 * é˜Ÿ
 	 * */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +69,7 @@ public class CommunionInfoAction extends ActionBase
 	}
 	
 	/**
-	 * °ï
+	 * å¸®
 	 * */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -82,7 +82,7 @@ public class CommunionInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ÃÜ
+	 * å¯†
 	 * */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -105,7 +105,7 @@ public class CommunionInfoAction extends ActionBase
 	
 	
 	/**
-	 * ²éÑ¯ÏÔÊ¾×î½üÃÜÓï¹ıµÄ7¸öÍæ¼Ò
+	 * æŸ¥è¯¢æ˜¾ç¤ºæœ€è¿‘å¯†è¯­è¿‡çš„7ä¸ªç©å®¶
 	 */
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -118,7 +118,7 @@ public class CommunionInfoAction extends ActionBase
 		return mapping.findForward("otherwhisper");
 	}
 	/**
-	 * Ê×Ò³ÁÄÌì·¢ÑÔ
+	 * é¦–é¡µèŠå¤©å‘è¨€
 	 */
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -130,7 +130,7 @@ public class CommunionInfoAction extends ActionBase
 		{ 
 			String chat_content = request.getParameter("chatContent");
 			CommunionIndexService communionIndexService = new CommunionIndexService();
-			//¹«ÁÄµÄµÈ¼¶ÏŞÖÆ
+			//å…¬èŠçš„ç­‰çº§é™åˆ¶
 			int public_chat_grade_limit = GameConfig.getPublicChatGradeLimit();
 			String chatHint = communionIndexService.Communion(roleInfo, Integer.parseInt(chat_channel),chat_content, public_chat_grade_limit+"");
 			if( chatHint==null )

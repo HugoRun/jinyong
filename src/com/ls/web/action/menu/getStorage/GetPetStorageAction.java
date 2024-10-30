@@ -25,7 +25,7 @@ public class GetPetStorageAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 
-	// ²Ö¿âÎïÆ·ÁĞ±í
+	// ä»“åº“ç‰©å“åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -43,23 +43,23 @@ public class GetPetStorageAction extends DispatchAction
 		request.setAttribute("id", uPk + "");
 
 
-		/** ²éÑ¯Êı¾İ¿âÖĞ¸Ã½ÇÉ«ÓĞÃ»ÓĞ½ğÇ®²Ö¿â */
+		/** æŸ¥è¯¢æ•°æ®åº“ä¸­è¯¥è§’è‰²æœ‰æ²¡æœ‰é‡‘é’±ä»“åº“ */
 		int warehouseID = wareHouse.getWareHouseIdBypPk(uPk, pPk, Wrap.COPPER);
 
-		// Èç¹û²Ö¿â±íÀïÃ»ÓĞ¸ÃtypeµÄ¼ÇÂ¼¾Í²åÈë¸Ãtype¼ÇÂ¼
+		// å¦‚æœä»“åº“è¡¨é‡Œæ²¡æœ‰è¯¥typeçš„è®°å½•å°±æ’å…¥è¯¥typeè®°å½•
 		if (warehouseID == 0)
 		{
 			warehouseID = wareHouse.insertWareHouse(uPk, pPk, 7);
 		}
 
-		// ´Ó²Ö¿âÈ¡µÃ³èÎïÁĞ±í
+		// ä»ä»“åº“å–å¾—å® ç‰©åˆ—è¡¨
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> pet_list = petInfoDAO.getPetInfoList(-pPk + "");
 		request.setAttribute("pet_list", pet_list);
 		return mapping.findForward("pet_list");
 	}
 
-	// È¡³ö³èÎï
+	// å–å‡ºå® ç‰©
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -71,9 +71,9 @@ public class GetPetStorageAction extends DispatchAction
 			return mapping.findForward("findnot");
 		}
 		int p_pk = Integer.valueOf(pPk);
-		// ½«³èÎï·Åµ½ÈË°ü¹üÖĞ
+		// å°†å® ç‰©æ”¾åˆ°äººåŒ…è£¹ä¸­
 		String putSussend = storageService.putPetFromWare(p_pk, Integer.valueOf(petPk));
-		// ½«³èÎï´Ó²Ö¿âÉ¾³ı
+		// å°†å® ç‰©ä»ä»“åº“åˆ é™¤
 		if (!putSussend.equals("1"))
 		{
 			request.setAttribute("resultWml", putSussend);
@@ -83,7 +83,7 @@ public class GetPetStorageAction extends DispatchAction
 		return mapping.findForward("sussend");
 	}
 
-	/** ²é¿´³èÎïĞÅÏ¢ */
+	/** æŸ¥çœ‹å® ç‰©ä¿¡æ¯ */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

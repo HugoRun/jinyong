@@ -14,7 +14,7 @@ public class PTCallBackAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * Ó¦´ğ´¦Àí
+	 * åº”ç­”å¤„ç†
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -22,13 +22,13 @@ public class PTCallBackAction extends DispatchAction
 	{
 		String resultWml = "";
 
-		// ÏûÏ¢Àà±ğ
+		// æ¶ˆæ¯ç±»åˆ«
 		String message_type = formatString(request.getParameter("message_type"));
-		// ±êÖ¾Âë
+		// æ ‡å¿—ç 
 		String msgid = formatString(request.getParameter("msgid"));
-		// ÊÇ·ñ¿Û·Ñ:feecode feecode=0 ±íÊ¾Ãâ·ÑÏÂ·¢ feecode=100 µ¥Î»Îª·Ö.±íÊ¾¿Û·ÑÒ»Ôª
+		// æ˜¯å¦æ‰£è´¹:feecode feecode=0 è¡¨ç¤ºå…è´¹ä¸‹å‘ feecode=100 å•ä½ä¸ºåˆ†.è¡¨ç¤ºæ‰£è´¹ä¸€å…ƒ
 		String feecode = formatString(request.getParameter("feecode"));
-		// ·¢ËÍ×´Ì¬±¨¸æ: reportstat DELIVRD,±íÊ¾³É¹¦,ÆäËû±íÊ¾Ê§°Ü,´íÎó×´Ì¬±¨¸æÏêÏ¸¼û
+		// å‘é€çŠ¶æ€æŠ¥å‘Š: reportstat DELIVRD,è¡¨ç¤ºæˆåŠŸ,å…¶ä»–è¡¨ç¤ºå¤±è´¥,é”™è¯¯çŠ¶æ€æŠ¥å‘Šè¯¦ç»†è§
 		String reportstat = formatString(request.getParameter("reportstat"));
 
 		if (message_type != null && msgid != null && feecode != null
@@ -36,14 +36,14 @@ public class PTCallBackAction extends DispatchAction
 		{
 			if (message_type.equals("SMS_PT") && reportstat.equals("DELIVRD"))
 			{
-				// ³É¹¦¿Û·Ñ
+				// æˆåŠŸæ‰£è´¹
 				resultWml = "0";
 				request.setAttribute("resultWml", resultWml);
 				return mapping.findForward("success");
 			}
 			else
 			{
-				// ¿Û·ÑÊ§°Ü
+				// æ‰£è´¹å¤±è´¥
 				resultWml = "1003";
 				request.setAttribute("resultWml", resultWml);
 				return mapping.findForward("success");

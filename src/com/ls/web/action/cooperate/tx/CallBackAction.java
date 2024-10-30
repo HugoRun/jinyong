@@ -30,20 +30,20 @@ public class CallBackAction extends DispatchAction
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		// ´ËÏî½»Ò×µÄÎ¨Ò»¶©µ¥ºÅ£¬³¤¶È²»³¬¹ı25£¬ÄÚÈİÈ«Êı×Ö
+		// æ­¤é¡¹äº¤æ˜“çš„å”¯ä¸€è®¢å•å·ï¼Œé•¿åº¦ä¸è¶…è¿‡25ï¼Œå†…å®¹å…¨æ•°å­—
 		String id = formatString(request.getParameter("id"));
-		// ¼Æ·Ñ½ğ¶î£¬ÒÔ0.01ÍÜÔªÎªµ¥Î»
+		// è®¡è´¹é‡‘é¢ï¼Œä»¥0.01è›™å…ƒä¸ºå•ä½
 		String value = formatString(request.getParameter("value"));
-		// Ö§¸¶ÓÃ»§uid
+		// æ”¯ä»˜ç”¨æˆ·uid
 		String uid = formatString(request.getParameter("uid"));
-		// MD5(id_appkey_uid)key¾ÙÀı£º¶©µ¥id 201001211310461011513 uid666666 appkey
-		// NOHQL08K0IL3QJIB5KPBSQYE8XY1XWUR Ôò: key =
+		// MD5(id_appkey_uid)keyä¸¾ä¾‹ï¼šè®¢å•id 201001211310461011513 uid666666 appkey
+		// NOHQL08K0IL3QJIB5KPBSQYE8XY1XWUR åˆ™: key =
 		// MD5(201001211310461011513_NOHQL08K0IL3QJIB5KPBSQYE8XY1XWUR_666666) =
 		// A587A3BD1147F3DB61BFB32982326B84
 		String key = formatString(request.getParameter("key"));
-		// deal±êÇ©ÖĞĞ¯´øµÄ²ÎÊı£¬Æ½Ì¨½ö½øĞĞÍ¸´«£¬²»×öĞ£ÑéºÍ½âÎö
+		// dealæ ‡ç­¾ä¸­æºå¸¦çš„å‚æ•°ï¼Œå¹³å°ä»…è¿›è¡Œé€ä¼ ï¼Œä¸åšæ ¡éªŒå’Œè§£æ
 		String pid = formatString(request.getParameter("pid"));
-		// deal±êÇ©ÖĞĞ¯´øµÄ²ÎÊı£¬Æ½Ì¨½ö½øĞĞÍ¸´«£¬²»×öĞ£ÑéºÍ½âÎö
+		// dealæ ‡ç­¾ä¸­æºå¸¦çš„å‚æ•°ï¼Œå¹³å°ä»…è¿›è¡Œé€ä¼ ï¼Œä¸åšæ ¡éªŒå’Œè§£æ
 		String pnum = formatString(request.getParameter("pnum"));
 		String appkey = "IRBM7IJR5R2WM7U0TMEMQKJI8BY1KCUP";
 		String md5_str = MD5Util.md5Hex(id + "_" + appkey + "_" + uid);
@@ -52,7 +52,7 @@ public class CallBackAction extends DispatchAction
 		MailInfoService mailInfoService = new MailInfoService();
 		PassportVO passport = passportService.getPassportInfoByUPk(pid);
 		UAccountRecordVO accountRecord = new UAccountRecordVO();
-		// ³äÖµ³É¹¦ ¼ÇÂ¼
+		// å……å€¼æˆåŠŸ è®°å½•
 		accountRecord.setMoney(Integer.parseInt(pnum));
 		accountRecord.setUPk(passport.getUPk());
 		accountRecord.setPPk(0);
@@ -67,46 +67,46 @@ public class CallBackAction extends DispatchAction
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 
 			accRecordDao.insert(accountRecord);
-			// ¸øÍæ¼ÒÔö¼ÓÔª±¦
-			int yb_num = accountRecord.getMoney();// 1Ôª»ñµÃ10¸öÔª±¦
-			int jf_num = yb_num * GameConfig.getJifenNum();// 1Ôª»ñµÃ1¸ö»ı·Ö
+			// ç»™ç©å®¶å¢åŠ å…ƒå®
+			int yb_num = accountRecord.getMoney();// 1å…ƒè·å¾—10ä¸ªå…ƒå®
+			int jf_num = yb_num * GameConfig.getJifenNum();// 1å…ƒè·å¾—1ä¸ªç§¯åˆ†
 
 			economyService.addYuanbao(accountRecord.getPPk(), accountRecord
 					.getUPk(), yb_num, "chongzhi");
-			economyService.addJifen(accountRecord.getUPk(), jf_num);// Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦³äÖµ1ÈËÃñ±Ò=1»ı·Ö
+			economyService.addJifen(accountRecord.getUPk(), jf_num);// å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå……å€¼1äººæ°‘å¸=1ç§¯åˆ†
 
 			gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",
-					accountRecord.getPPk());// Í³¼Æ³äÖµÈË´Î
-			// ·¢ÓÊ¼ş
-			String title = "³äÖµ³É¹¦";
+					accountRecord.getPPk());// ç»Ÿè®¡å……å€¼äººæ¬¡
+			// å‘é‚®ä»¶
+			String title = "å……å€¼æˆåŠŸ";
 			String content = "";
 			String time_str = DateUtil.getCurrentTimeStr();
-			content = "ÄúÓÚ" + time_str + "³äÖµ" + accountRecord.getMoney()
-					+ "Ôª³äÖµ³É¹¦£¬»ñµÃ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á" + yb_num + "£¡";
-			logger.info("ÓÊ¼ş±êÌâ£º" + title);
-			logger.info("ÓÊ¼şÄÚÈİ£º" + content);
+			content = "æ‚¨äº" + time_str + "å……å€¼" + accountRecord.getMoney()
+					+ "å…ƒå……å€¼æˆåŠŸï¼Œè·å¾—ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—" + yb_num + "ï¼";
+			logger.info("é‚®ä»¶æ ‡é¢˜ï¼š" + title);
+			logger.info("é‚®ä»¶å†…å®¹ï¼š" + content);
 			mailInfoService.sendMailBySystem(accountRecord.getPPk(), title,
 					content);
 
 			gsss.addPropNum(0, StatisticsType.RMB, accountRecord.getMoney(),
 					StatisticsType.DEDAO, Channel.JUU + "", accountRecord
-							.getPPk());// Í³¼ÆRMB
+							.getPPk());// ç»Ÿè®¡RMB
 			JmsUtil.chongzhi(accountRecord.getPPk(), accountRecord.getMoney(),
 					accountRecord.getChannel());
-			// Ó¦´ğ»úÖÆÊÕµ½Ö§¸¶½á¹ûÍ¨ÖªÊ±±ØĞë»ØĞ´ÒÔ"success"¿ªÍ·µÄ×Ö·û´®
+			// åº”ç­”æœºåˆ¶æ”¶åˆ°æ”¯ä»˜ç»“æœé€šçŸ¥æ—¶å¿…é¡»å›å†™ä»¥"success"å¼€å¤´çš„å­—ç¬¦ä¸²
 			resultWml = "0/mall.do?cmd=n0";
 			request.setAttribute("resultWml", resultWml);
 			return mapping.findForward("success");
 		}
 		else
 		{
-			String title = "³äÖµÊ§°Ü";
+			String title = "å……å€¼å¤±è´¥";
 			String content = "";
 			String time_str = DateUtil.getCurrentTimeStr();
-			content = "ÄúÓÚ" + time_str + "³äÖµ" + accountRecord.getMoney()
-					+ "Ôª³äÖµÊ§°Ü£¡";
-			logger.info("ÓÊ¼ş±êÌâ£º" + title);
-			logger.info("ÓÊ¼şÄÚÈİ£º" + content);
+			content = "æ‚¨äº" + time_str + "å……å€¼" + accountRecord.getMoney()
+					+ "å…ƒå……å€¼å¤±è´¥ï¼";
+			logger.info("é‚®ä»¶æ ‡é¢˜ï¼š" + title);
+			logger.info("é‚®ä»¶å†…å®¹ï¼š" + content);
 			mailInfoService.sendMailBySystem(accountRecord.getPPk(), title,
 					content);
 			resultWml = "1/mall.do?cmd=n0";

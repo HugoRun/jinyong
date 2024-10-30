@@ -1,70 +1,49 @@
 package com.ls.pub.filter;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.ls.model.user.RoleEntity;
 import com.ls.web.service.player.RoleService;
 
-public class ReLoginValidateFilter implements Filter
-{
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-	private FilterConfig filterCfg;
+public class ReLoginValidateFilter implements Filter {
 
-	public ReLoginValidateFilter()
-	{
-		super();
-		// TODO ×Ô¶¯Éú³É¹¹Ôìº¯Êı´æ¸ù
-	}
+    private FilterConfig filterCfg;
 
-	public void init(FilterConfig arg0) throws ServletException
-	{
-		this.filterCfg = arg0;
-	}
+    public ReLoginValidateFilter() {
+        super();
+        // TODO è‡ªåŠ¨ç”Ÿæˆæ„é€ å‡½æ•°å­˜æ ¹
+    }
 
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain filterChain)
-	{
-		try
-		{
-			HttpServletRequest request = (HttpServletRequest) servletRequest;
+    public void init(FilterConfig arg0) throws ServletException {
+        this.filterCfg = arg0;
+    }
 
-			HttpSession session = request.getSession();
-			
-			String cur_session_id = session.getId();
-			
-			RoleService roleService = new RoleService();
-			
-			RoleEntity role_info = roleService.getRoleInfoBySession(session);
-			
-			if ( role_info != null )
-			{
-				HttpSession old_session = role_info.getStateInfo().getSession();
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
+        try {
+            HttpServletRequest request = (HttpServletRequest) servletRequest;
+            HttpSession session = request.getSession();
+            String cur_session_id = session.getId();
+            RoleService roleService = new RoleService();
+            RoleEntity role_info = roleService.getRoleInfoBySession(session);
+            if (role_info != null) {
+                HttpSession old_session = role_info.getStateInfo().getSession();
+                // éªŒè¯æ—§çš„session idå’Œå½“å‰çš„session idæ˜¯å¦ä¸€æ ·ï¼Œä¸èƒ½åœ¨ä¸åŒçš„åœ°æ–¹ç™»é™†åŒä¸€è´¦å·
+                if (old_session != null && !cur_session_id.equals(old_session.getId())) {
+                    // å¦‚æœä¸ä¸€æ ·ï¼Œè·³åˆ°ç™»é™†é¡µé¢ï¼Œæç¤ºä½ è¢«è¸¢æ‰çº¿äº†
+                    request.getRequestDispatcher("/comm/kick_outline_hint.jsp").forward(servletRequest, servletResponse);
+                    return;
+                }
+            }
+            filterChain.doFilter(servletRequest, servletResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-				// ÑéÖ¤¾ÉµÄsessionidºÍµ±Ç°µÄsessionidÊÇ·ñÒ»Ñù£¬²»ÄÜÔÚ²»Í¬µÄµØ·½µÇÂ½Í¬Ò»ÕËºÅ
-				if ( old_session!=null && !cur_session_id.equals(old_session.getId()))
-				{
-					// Èç¹û²»Ò»Ñù£¬Ìøµ½µÇÂ½Ò³Ãæ£¬ÌáÊ¾Äã±»ÌßµôÏßÁË
-					request.getRequestDispatcher("/comm/kick_outline_hint.jsp").forward(servletRequest, servletResponse);
-					return;
-				}
-			}
-			filterChain.doFilter(servletRequest, servletResponse);
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+    }
 
-	}
-
-	public void destroy()
-	{
-	}
+    public void destroy() {
+    }
 
 }

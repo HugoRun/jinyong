@@ -11,30 +11,30 @@ import com.ls.web.service.player.RoleService;
 import com.ls.web.service.room.RoomService;
 
 /**
- * ¹¦ÄÜ:×é¶ÓÍ¨Öª¹ÜÀí
+ * åŠŸèƒ½:ç»„é˜Ÿé€šçŸ¥ç®¡ç†
  * 
- * @author ÁõË§ 3:11:25 PM
+ * @author åˆ˜å¸… 3:11:25 PM
  */
 public class GroupNotifyService
 {
 
-	// Í¨ÖªÀàĞÍ
-	public static final int CREATE = 1;// ×é¶Ó,´´½¨ĞÂµÄ¶ÓÎé
-	public static final int DISBAND = 2;// ½âÉ¢
-	public static final int JOIN = 3;// ÉêÇë¼ÓÈë
-	public static final int KICKED = 4;// ±»¶Ó³¤Ìß³ö¶ÓÎé
-	public static final int LEAVE = 5;// Àë¿ª¶ÓÎé
-	public static final int INVITE = 6;// ¶Ó³¤ÑûÇëÍæ¼Ò¼ÓÈë¶ÓÎé
-	public static final int GROUPHINT = 7;// ×é¶ÓÌáĞÑ
+	// é€šçŸ¥ç±»å‹
+	public static final int CREATE = 1;// ç»„é˜Ÿ,åˆ›å»ºæ–°çš„é˜Ÿä¼
+	public static final int DISBAND = 2;// è§£æ•£
+	public static final int JOIN = 3;// ç”³è¯·åŠ å…¥
+	public static final int KICKED = 4;// è¢«é˜Ÿé•¿è¸¢å‡ºé˜Ÿä¼
+	public static final int LEAVE = 5;// ç¦»å¼€é˜Ÿä¼
+	public static final int INVITE = 6;// é˜Ÿé•¿é‚€è¯·ç©å®¶åŠ å…¥é˜Ÿä¼
+	public static final int GROUPHINT = 7;// ç»„é˜Ÿæé†’
 
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Íæ¼ÒaÏòÍæ¼ÒbÉêÇë×é¶Ó
+	 * ç©å®¶aå‘ç©å®¶bç”³è¯·ç»„é˜Ÿ
 	 * 
 	 * @param a_pk
 	 * @param b_pk
-	 * @return ·µ»Ønull±íÊ¾Ìá½»×é¶ÓÉêÇë³É¹¦
+	 * @return è¿”å›nullè¡¨ç¤ºæäº¤ç»„é˜Ÿç”³è¯·æˆåŠŸ
 	 */
 	public String applyGroup(int a_pk, int b_pk)
 	{
@@ -45,42 +45,42 @@ public class GroupNotifyService
 		
 		if (a_pk == b_pk)
 		{
-			return "¶Ô²»Æğ,Äú²»ÄÜºÍ×Ô¼º×é¶Ó!";
+			return "å¯¹ä¸èµ·,æ‚¨ä¸èƒ½å’Œè‡ªå·±ç»„é˜Ÿ!";
 		}
 
 		RoleEntity b_role_info = roleService.getRoleInfoById(b_pk + "");
 
 		if (b_role_info == null)
 		{
-			return "¸ÃÓÃ»§ÒÑÀëÏß";
+			return "è¯¥ç”¨æˆ·å·²ç¦»çº¿";
 		}
 
 		if (isNotifyPlayerB(a_pk, b_pk))
 		{
-			return "ÄúÒÑÌá½»ÁË×é¶ÓÉêÇë";
+			return "æ‚¨å·²æäº¤äº†ç»„é˜Ÿç”³è¯·";
 		}
 		else
 		{
 			int a_captain_pk = groupService.getCaptionPk(a_pk);
 			int b_captain_pk = groupService.getCaptionPk(b_pk);
 
-			if (a_captain_pk == -1 && b_captain_pk == -1)// Íæ¼ÒaÍæ¼Òb¶¼²»ÔÚ×é¶Ó×´Ì¬ÖĞ
+			if (a_captain_pk == -1 && b_captain_pk == -1)// ç©å®¶aç©å®¶béƒ½ä¸åœ¨ç»„é˜ŸçŠ¶æ€ä¸­
 			{
 				return createNewGroup(a_pk, b_pk);
 			}
 			else
 				if (a_captain_pk != -1 && a_captain_pk == b_captain_pk)
 				{
-					return group_hint = "ÄúÒÑºÍ¶Ô·½ÔÚÍ¬Ò»¶ÓÎé";
+					return group_hint = "æ‚¨å·²å’Œå¯¹æ–¹åœ¨åŒä¸€é˜Ÿä¼";
 				}
 				else
-					if (a_captain_pk != -1) // Íæ¼ÒaÔÚ×é¶Ó×´Ì¬
+					if (a_captain_pk != -1) // ç©å®¶aåœ¨ç»„é˜ŸçŠ¶æ€
 					{
-						if (a_captain_pk == a_pk)// Íæ¼ÒaÊÇ¶Ó³¤
+						if (a_captain_pk == a_pk)// ç©å®¶aæ˜¯é˜Ÿé•¿
 						{
 							if (b_captain_pk != -1)
 							{
-								return group_hint = "¶Ô·½ÒÑ¾­ÔÚ¶ÓÎéÖĞ";
+								return group_hint = "å¯¹æ–¹å·²ç»åœ¨é˜Ÿä¼ä¸­";
 							}
 							else
 							{
@@ -89,12 +89,12 @@ public class GroupNotifyService
 						}
 						else
 						{
-							group_hint = "Äú²»ÊÇ¶Ó³¤Ã»ÓĞÈ¨ÏŞÑûÇë±ğµÄÍæ¼Ò¼ÓÈë¶ÓÎé";
+							group_hint = "æ‚¨ä¸æ˜¯é˜Ÿé•¿æ²¡æœ‰æƒé™é‚€è¯·åˆ«çš„ç©å®¶åŠ å…¥é˜Ÿä¼";
 						}
 						return group_hint;
 					}
 					else
-						if (b_captain_pk != -1) // Íæ¼ÒbÔÚ×é¶Ó×´Ì¬
+						if (b_captain_pk != -1) // ç©å®¶båœ¨ç»„é˜ŸçŠ¶æ€
 						{
 							return joinGroup(a_pk, b_captain_pk);
 						}
@@ -106,7 +106,7 @@ public class GroupNotifyService
 
 
 	/**
-	 * ¶Ó³¤ÑûÇëÍæ¼Ò¼ÓÈë¶ÓÎé
+	 * é˜Ÿé•¿é‚€è¯·ç©å®¶åŠ å…¥é˜Ÿä¼
 	 */
 	private String inviteMember(int captain_pk, int member_pk)
 	{
@@ -115,17 +115,17 @@ public class GroupNotifyService
 		int group_num = groupService.getGroupNumByCaptain(captain_pk);
 		if (group_num >= GroupModel.MEMBER_MAX_NUM)
 		{
-			group_hint = "±¾¶ÓÈËÊıÒÑÂú";
+			group_hint = "æœ¬é˜Ÿäººæ•°å·²æ»¡";
 		}
 		else
 		{
-			if (isNotifyPlayerB(captain_pk, member_pk))// ÒÔ·¢¹ı×é¶ÓÍ¨Öª
+			if (isNotifyPlayerB(captain_pk, member_pk))// ä»¥å‘è¿‡ç»„é˜Ÿé€šçŸ¥
 			{
-				group_hint = "ÄúÒÑÌá³öÁË×é¶ÓÉêÇë";
+				group_hint = "æ‚¨å·²æå‡ºäº†ç»„é˜Ÿç”³è¯·";
 			}
 			else
 			{
-				// group_hint = "ÄúÏò¶Ô·½Ìá³öÁË×é¶ÓÉêÇë";
+				// group_hint = "æ‚¨å‘å¯¹æ–¹æå‡ºäº†ç»„é˜Ÿç”³è¯·";
 				addNotify(captain_pk, member_pk, INVITE);
 			}
 
@@ -135,7 +135,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * ÉêÇë¼ÓÈë¶ÓÎé
+	 * ç”³è¯·åŠ å…¥é˜Ÿä¼
 	 */
 	private String joinGroup(int member_pk, int captain_pk)
 	{
@@ -145,17 +145,17 @@ public class GroupNotifyService
 		int group_num = groupService.getGroupNumByCaptain(captain_pk);
 		if (group_num >= GroupModel.MEMBER_MAX_NUM)
 		{
-			group_hint = "¶Ô·½¶ÓÎéÈËÊıÒÑÂú";
+			group_hint = "å¯¹æ–¹é˜Ÿä¼äººæ•°å·²æ»¡";
 		}
 		else
 		{
-			if (isNotifyPlayerB(member_pk, captain_pk))// ÒÔ·¢¹ı×é¶ÓÍ¨Öª
+			if (isNotifyPlayerB(member_pk, captain_pk))// ä»¥å‘è¿‡ç»„é˜Ÿé€šçŸ¥
 			{
-				group_hint = "ÄúÏò¶Ô·½Ìá³öÁË×é¶ÓÉêÇë";
+				group_hint = "æ‚¨å‘å¯¹æ–¹æå‡ºäº†ç»„é˜Ÿç”³è¯·";
 			}
 			else
 			{
-				// group_hint = "ÄúÏò¶Ô·½Ìá³öÁË×é¶ÓÉêÇë";
+				// group_hint = "æ‚¨å‘å¯¹æ–¹æå‡ºäº†ç»„é˜Ÿç”³è¯·";
 				addNotify(member_pk, captain_pk, JOIN);
 			}
 
@@ -164,7 +164,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * ×é½¨ĞÂµÄ¶ÓÎé
+	 * ç»„å»ºæ–°çš„é˜Ÿä¼
 	 */
 	private String createNewGroup(int a_pk, int b_pk)
 	{
@@ -174,23 +174,23 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * Ìí¼Ó×é¶ÓÍ¨Öª
+	 * æ·»åŠ ç»„é˜Ÿé€šçŸ¥
 	 * 
 	 * @param a_pk
-	 *            ´´ÔìÍ¨ÖªµÄÍæ¼Ò
+	 *            åˆ›é€ é€šçŸ¥çš„ç©å®¶
 	 * @param b_pk
-	 *            ±»Í¨ÖªµÄÍæ¼Ò
+	 *            è¢«é€šçŸ¥çš„ç©å®¶
 	 * @param notify_type
-	 *            Í¨ÖªÀàĞÍ
+	 *            é€šçŸ¥ç±»å‹
 	 */
 	public void addNotify(int create_notfiy_pk, int notified_pk, int notify_type)
 	{
 
 		GroupNotifyDao groupNotifyDao = new GroupNotifyDao();
-		// ÅĞ¶Ïcreate_notfiy_pkÊÇ·ñÏònotified_pk·¢³ö×é¶ÓÇëÇó
+		// åˆ¤æ–­create_notfiy_pkæ˜¯å¦å‘notified_pkå‘å‡ºç»„é˜Ÿè¯·æ±‚
 		if (isNotifyPlayerB(create_notfiy_pk, notified_pk))
 		{
-			logger.info("ÒÑÏò¶Ô·½·¢ËÍ×é¶ÓÇëÇó");
+			logger.info("å·²å‘å¯¹æ–¹å‘é€ç»„é˜Ÿè¯·æ±‚");
 		}
 		else
 		{
@@ -203,7 +203,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * µÃµ½×é¶ÓÏûÏ¢
+	 * å¾—åˆ°ç»„é˜Ÿæ¶ˆæ¯
 	 * 
 	 * @param p_pk
 	 * @return
@@ -215,7 +215,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ×é¶ÓÏûÏ¢
+	 * åˆ¤æ–­æ˜¯å¦æœ‰ç»„é˜Ÿæ¶ˆæ¯
 	 */
 	public int isHaveNotify(int p_pk)
 	{
@@ -224,7 +224,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * ¸üĞÂÍ¨Öª×´Ì¬
+	 * æ›´æ–°é€šçŸ¥çŠ¶æ€
 	 */
 	public void updateNotifyFlay(int n_pk)
 	{
@@ -233,7 +233,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * É¾³ıÖ¸¶¨Í¨Öª
+	 * åˆ é™¤æŒ‡å®šé€šçŸ¥
 	 * 
 	 * @param n_pk
 	 */
@@ -244,7 +244,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * É¾³ıÖ¸¶¨ÈËµÄÍ¨Öª
+	 * åˆ é™¤æŒ‡å®šäººçš„é€šçŸ¥
 	 * 
 	 * @param n_pk
 	 */
@@ -255,7 +255,7 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒaÊÇ·ñÏòÍæ¼ÒbÌá½»¹ı×é¶ÓÍ¨Öª
+	 * åˆ¤æ–­ç©å®¶aæ˜¯å¦å‘ç©å®¶bæäº¤è¿‡ç»„é˜Ÿé€šçŸ¥
 	 */
 	public boolean isNotifyPlayerB(int a_pk, int b_pk)
 	{
@@ -264,11 +264,11 @@ public class GroupNotifyService
 	}
 
 	/**
-	 * Íæ¼ÒaÏòÍæ¼ÒbÉêÇë×é¶Ó
+	 * ç©å®¶aå‘ç©å®¶bç”³è¯·ç»„é˜Ÿ
 	 * 
 	 * @param a_pk
 	 * @param b_pk
-	 * @return ·µ»Ønull±íÊ¾Ìá½»×é¶ÓÉêÇë³É¹¦
+	 * @return è¿”å›nullè¡¨ç¤ºæäº¤ç»„é˜Ÿç”³è¯·æˆåŠŸ
 	 */
 	public String applyGroupBySearch(int a_pk, int b_pk)
 	{
@@ -276,37 +276,37 @@ public class GroupNotifyService
 		GroupService groupService = new GroupService();
 		// int flag = isAreaAllowGroup(a_pk,b_pk);
 		// if(flag == 1){
-		// return group_hint = "ÄúËùÔÚµØÍ¼²»ÔÊĞí×é¶Ó£¡";
+		// return group_hint = "æ‚¨æ‰€åœ¨åœ°å›¾ä¸å…è®¸ç»„é˜Ÿï¼";
 		// }else if(flag == 2){
-		// return group_hint = "¶Ô·½ËùÔÚµØÍ¼²»ÔÊĞí×é¶Ó£¡";
+		// return group_hint = "å¯¹æ–¹æ‰€åœ¨åœ°å›¾ä¸å…è®¸ç»„é˜Ÿï¼";
 		// }else {
 
 		if (isNotifyPlayerB(a_pk, b_pk))
 		{
-			return "ÄúÒÑÌá½»ÁË×é¶ÓÉêÇë";
+			return "æ‚¨å·²æäº¤äº†ç»„é˜Ÿç”³è¯·";
 		}
 		else
 		{
 			int a_captain_pk = groupService.getCaptionPk(a_pk);
 			int b_captain_pk = groupService.getCaptionPk(b_pk);
 
-			if (a_captain_pk == -1 && b_captain_pk == -1)// Íæ¼ÒaÍæ¼Òb¶¼²»ÔÚ×é¶Ó×´Ì¬ÖĞ
+			if (a_captain_pk == -1 && b_captain_pk == -1)// ç©å®¶aç©å®¶béƒ½ä¸åœ¨ç»„é˜ŸçŠ¶æ€ä¸­
 			{
 				return createNewGroup(a_pk, b_pk);
 			}
 			else
 				if (a_captain_pk != -1 && a_captain_pk == b_captain_pk)
 				{
-					return group_hint = "ÄúÒÑºÍ¶Ô·½ÔÚÍ¬Ò»¶ÓÎé";
+					return group_hint = "æ‚¨å·²å’Œå¯¹æ–¹åœ¨åŒä¸€é˜Ÿä¼";
 				}
 				else
-					if (a_captain_pk != -1) // Íæ¼ÒaÔÚ×é¶Ó×´Ì¬
+					if (a_captain_pk != -1) // ç©å®¶aåœ¨ç»„é˜ŸçŠ¶æ€
 					{
-						group_hint = "ÄãÒÑ¾­ÔÚ¶ÓÎéÖĞ";
+						group_hint = "ä½ å·²ç»åœ¨é˜Ÿä¼ä¸­";
 						return group_hint;
 					}
 					else
-						if (b_captain_pk != -1) // Íæ¼ÒbÔÚ×é¶Ó×´Ì¬
+						if (b_captain_pk != -1) // ç©å®¶båœ¨ç»„é˜ŸçŠ¶æ€
 						{
 							return joinGroup(a_pk, b_captain_pk);
 						}

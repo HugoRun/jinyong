@@ -5,7 +5,7 @@ import com.ls.ben.cache.CacheBase;
 import com.ls.ben.vo.info.pet.PetSkillVO;
 
 /**
- * ±£´æ³èÎï¼¼ÄÜ ÔÚÄÚ´æÖĞ,ÒÔ±ãËæÊ±È¡ÓÃ
+ * ä¿å­˜å® ç‰©æŠ€èƒ½ åœ¨å†…å­˜ä¸­,ä»¥ä¾¿éšæ—¶å–ç”¨
  * @author Administrator	
  *
  */
@@ -15,13 +15,13 @@ public class PetSkillCache  extends CacheBase
 	
 	
 	/**
-	 * Í¨¹ıidµÃµ½ ³èÎï¼¼ÄÜĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ° å® ç‰©æŠ€èƒ½ä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
 	public PetSkillVO getPetSkillById(int pet_skill_id)
 	{
-		logger.debug("µÃµ½Ò»¸ö³èÎï¼¼ÄÜĞÅÏ¢");
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©æŠ€èƒ½ä¿¡æ¯");
 		PetSkillVO petskill = null;
 		HashMap<Integer,PetSkillVO> pet_skill = (HashMap<Integer,PetSkillVO>)getElementValue(STATIC_CACHE_NAME, PETSKILL);
 		
@@ -31,12 +31,12 @@ public class PetSkillCache  extends CacheBase
 	}
 	
 	/**
-	 * µÃµ½³èÎï¼¼ÄÜµÄÀàĞÍ
+	 * å¾—åˆ°å® ç‰©æŠ€èƒ½çš„ç±»å‹
 	 * @param pet_skill_id
 	 */
 	public int getPetSkillType(int pet_skill_id) {
 		
-		logger.debug("µÃµ½Ò»¸ö³èÎï¼¼ÄÜµÄÀàĞÍ="+pet_skill_id);
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©æŠ€èƒ½çš„ç±»å‹="+pet_skill_id);
 		
 		if (pet_skill_id == 0) {
 			return 0;
@@ -51,13 +51,13 @@ public class PetSkillCache  extends CacheBase
 	}
 		
 	/**
-	 * »ñµÃ³èÎï¼¼ÄÜ×éid
+	 * è·å¾—å® ç‰©æŠ€èƒ½ç»„id
 	 * @param pet_skill_id
 	 * @return
 	 */
 	public int getGroupID(int pet_skill_id)
 	{
-		logger.debug("µÃµ½Ò»¸ö³èÎï¼¼ÄÜ×éid="+pet_skill_id);
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©æŠ€èƒ½ç»„id="+pet_skill_id);
 		
 		if (pet_skill_id == 0) {
 			return 0;
@@ -72,13 +72,13 @@ public class PetSkillCache  extends CacheBase
 	}
 
 	/**
-	 * »ñµÃ³èÎï¼¼ÄÜÃû×Ö
+	 * è·å¾—å® ç‰©æŠ€èƒ½åå­—
 	 * @param pet_skill_id
 	 * @return
 	 */
 	public String getName(int pet_skill_id)
 	{
-		logger.debug("µÃµ½Ò»¸ö³èÎï¼¼ÄÜÃû×Ö="+pet_skill_id);
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©æŠ€èƒ½åå­—="+pet_skill_id);
 		
 		if (pet_skill_id == 0) {
 			return "";
@@ -94,12 +94,12 @@ public class PetSkillCache  extends CacheBase
 	}	
 	
 	/**
-	 * »ñµÃ³èÎï¼¼ÄÜµÈ¼¶
+	 * è·å¾—å® ç‰©æŠ€èƒ½ç­‰çº§
 	 * @param pet_skill_id
 	 * @return
 	 */
 	public int getPetSkLevel(int pet_skill_id) {
-		logger.debug("µÃµ½Ò»¸ö³èÎï¼¼ÄÜµÈ¼¶="+pet_skill_id);
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©æŠ€èƒ½ç­‰çº§="+pet_skill_id);
 		
 		if (pet_skill_id == 0) {
 			return 0;
@@ -115,12 +115,12 @@ public class PetSkillCache  extends CacheBase
 	
 	
 	/**
-	 * µÃµ½³èÎï¹¥»÷¼Ó³Ë
+	 * å¾—åˆ°å® ç‰©æ”»å‡»åŠ ä¹˜
 	 * @param pet_skill_id
 	 * @return
 	 */
 	public double getInjureMultiple(int pet_skill_id) {
-		logger.debug("µÃµ½³èÎï¹¥»÷¼Ó³Ë="+pet_skill_id);
+		logger.debug("å¾—åˆ°å® ç‰©æ”»å‡»åŠ ä¹˜="+pet_skill_id);
 		
 		if (pet_skill_id == 0) {
 			return 0;
@@ -136,19 +136,19 @@ public class PetSkillCache  extends CacheBase
 	
 	
 	/**
-	 * µÃµ½³èÎï¹¥»÷´ÎÊı
+	 * å¾—åˆ°å® ç‰©æ”»å‡»æ¬¡æ•°
 	 * @param pet_skill_id
 	 * @return
 	 */
 	public int getSeveral(String pet_skill_name) {
-		logger.debug("µÃµ½³èÎï¹¥»÷¼Ó³Ë="+pet_skill_name);
+		logger.debug("å¾—åˆ°å® ç‰©æ”»å‡»åŠ ä¹˜="+pet_skill_name);
 		
 		int pet_skill_several = 0;
 		if (pet_skill_name == null || pet_skill_name.equals("")) {
 			return 0;
 		}
 		
-		if (pet_skill_name.equals("ÆÕÍ¨¹¥»÷")) {
+		if (pet_skill_name.equals("æ™®é€šæ”»å‡»")) {
 			return 1;
 		}
 		PetSkillVO petskill = null;

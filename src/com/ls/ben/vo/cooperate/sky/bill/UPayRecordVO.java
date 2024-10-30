@@ -3,15 +3,15 @@ package com.ls.ben.vo.cooperate.sky.bill;
 public class UPayRecordVO
 {
 	/*
-	 * Ìí¼ÓÏû·Ñ¼ÇÂ¼
+	 * æ·»åŠ æ¶ˆè´¹è®°å½•
 	 * @param skyid
 	 * @param billd
 	 * @param kbamt
 	 * @result:0
-	 * @Skybillid1 ºÍ skybillid2£º ÊÇ³¬¼¶´óÍæ¼ÒµÄ¶ÔÕËÁ÷Ë®ºÅ¡£ Çë±£´æµ½Ïû·Ñ¼ÇÂ¼ÖĞÒÔ±ãÓÚ¶ÔÕË
-	 * @balance:0     ÓÃ»§µ±Ç°ÕË»§ÖĞµÄÓà¶î
+	 * @Skybillid1 å’Œ skybillid2ï¼š æ˜¯è¶…çº§å¤§ç©å®¶çš„å¯¹è´¦æµæ°´å·ã€‚ è¯·ä¿å­˜åˆ°æ¶ˆè´¹è®°å½•ä¸­ä»¥ä¾¿äºå¯¹è´¦
+	 * @balance:0     ç”¨æˆ·å½“å‰è´¦æˆ·ä¸­çš„ä½™é¢
 	 */
-	private int billd;//¼ÇÂ¼Ö÷¼ü
+	private int billd;//è®°å½•ä¸»é”®
 	private String skyid;
 	private int kbamt;
 	private String result;

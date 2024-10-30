@@ -9,10 +9,10 @@ import com.lw.vo.information.InformationVO;
 public class InformationDAO extends DaoBase
 {
 
-	/** ¸øÍæ¼Ò²åÈë´óÀñ°üµÄĞÅÏ¢ */
+	/** ç»™ç©å®¶æ’å…¥å¤§ç¤¼åŒ…çš„ä¿¡æ¯ */
 	public void setId(int u_pk, String id, String type)
 	{
-		String sql = "insert into u_information values  (?,?,?)";
+		String sql = "INSERT INTO u_information values  (?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -37,11 +37,11 @@ public class InformationDAO extends DaoBase
 		}
 	}
 
-	/** »ñµÃÍæ¼Ò´óÀñ°üµÄĞÅÏ¢ */
+	/** è·å¾—ç©å®¶å¤§ç¤¼åŒ…çš„ä¿¡æ¯ */
 	public InformationVO getInfotmationByUpk(int u_pk, String type)
 	{
 		InformationVO vo = null;
-		String sql = "select * from u_information where u_pk = " + u_pk
+		String sql = "SELECT * FROM u_information where u_pk = " + u_pk
 				+ " and type = '" + type + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -69,11 +69,11 @@ public class InformationDAO extends DaoBase
 		return vo;
 	}
 
-	/** µÃµ½Íæ¼Ò°ï»áµÄĞÅÏ¢ */
+	/** å¾—åˆ°ç©å®¶å¸®ä¼šçš„ä¿¡æ¯ */
 	public int getInfotmationByTong(int p_pk)
 	{
 		int t_id = 0;
-		String sql = "select t_pk from u_tong_member where tm_rights = 1 and p_pk = "
+		String sql = "SELECT t_pk from u_tong_member where tm_rights = 1 and p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

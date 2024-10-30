@@ -13,8 +13,8 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:u_skill_info
- * @author ÁõË§ 4:44:01 PM
+ * åŠŸèƒ½:u_skill_info
+ * @author åˆ˜å¸… 4:44:01 PM
  */
 public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 {
@@ -25,7 +25,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 
 	
 	/**
-	 * Çå¿ÕÍæ¼ÒµÄ¼¼ÄÜ
+	 * æ¸…ç©ºç©å®¶çš„æŠ€èƒ½
 	 */
 	public void clear(int p_pk)
 	{
@@ -34,14 +34,14 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 	
 	/**
-	 * ¸ù¾İ½ÇÉ«p_pk·µ»Ø½ÇÉ«ËùÓµÓĞµÄËùÓĞ¹¥»÷¼¼ÄÜ
+	 * æ ¹æ®è§’è‰²p_pkè¿”å›è§’è‰²æ‰€æ‹¥æœ‰çš„æ‰€æœ‰æ”»å‡»æŠ€èƒ½
 	 * @param p_pk
 	 * @return List
 	 */
 	public List<PlayerSkillVO> getAttackSkills(int p_pk)
 	{
 		List<PlayerSkillVO> skills = new ArrayList<PlayerSkillVO>();
-		String sql = "select * from u_skill_info where p_pk=" + p_pk+" and sk_id<>1 and sk_type=1";
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk+" and sk_id<>1 and sk_type=1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -89,14 +89,14 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 	
 	/**
-	 * ¸ù¾İ½ÇÉ«p_pk·µ»Ø½ÇÉ«ËùÓµÓĞµÄËùÓĞ¼¼ÄÜ
+	 * æ ¹æ®è§’è‰²p_pkè¿”å›è§’è‰²æ‰€æ‹¥æœ‰çš„æ‰€æœ‰æŠ€èƒ½
 	 * @param p_pk
 	 * @return List
 	 */
 	public List<PlayerSkillVO> getPlayerSkills(int p_pk)
 	{
 		List<PlayerSkillVO> skills = new ArrayList<PlayerSkillVO>();
-		String sql = "select * from u_skill_info where p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -144,7 +144,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«p_pk·µ»Ø½ÇÉ«ËùÓµÓĞµÄËùÓĞ¼¼ÄÜ
+	 * æ ¹æ®è§’è‰²p_pkè¿”å›è§’è‰²æ‰€æ‹¥æœ‰çš„æ‰€æœ‰æŠ€èƒ½
 	 * 
 	 * @param p_pk
 	 * @return List
@@ -152,7 +152,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public HashMap<Integer, PlayerSkillVO> getPlayerAllSkill(int p_pk)
 	{
 		HashMap<Integer, PlayerSkillVO> skills = new HashMap<Integer, PlayerSkillVO>();
-		String sql = "select * from u_skill_info where p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -200,7 +200,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«p_pk·µ»Ø½ÇÉ«ËùÓµÓĞµÄËùÓĞ¼¼ÄÜ,³ıÁË³èÎï²¶×½¼¼ÄÜºÍÉú»î¼¼ÄÜ
+	 * æ ¹æ®è§’è‰²p_pkè¿”å›è§’è‰²æ‰€æ‹¥æœ‰çš„æ‰€æœ‰æŠ€èƒ½,é™¤äº†å® ç‰©æ•æ‰æŠ€èƒ½å’Œç”Ÿæ´»æŠ€èƒ½
 	 * 
 	 * @param p_pk
 	 * @return List
@@ -208,7 +208,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public List<PlayerSkillVO> getSkillsWithoutCatchPet(int p_pk)
 	{
 		List<PlayerSkillVO> skills = new ArrayList<PlayerSkillVO>();
-		String sql = "select * from u_skill_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk
 				+ " and sk_type in (1,4)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -246,7 +246,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ¸üĞÂ¼¼ÄÜÊ¹ÓÃÊ±¼äºÍÊìÁ·¶È
+	 * æ›´æ–°æŠ€èƒ½ä½¿ç”¨æ—¶é—´å’Œç†Ÿç»ƒåº¦
 	 * 
 	 * @param p_pk
 	 * @param sk_id
@@ -257,7 +257,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 		int result = -1;
 		String sql = "update u_skill_info set sk_sleight = sk_sleight+1 ,sk_usetime=now() where p_pk="
 				+ p_pk + " and sk_id=" + sk_id;
-		logger.debug("¸üĞÂ¼¼ÄÜÊ¹ÓÃÊ±¼äºÍÊìÁ·¶È=" + sql);
+		logger.debug("æ›´æ–°æŠ€èƒ½ä½¿ç”¨æ—¶é—´å’Œç†Ÿç»ƒåº¦=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -285,7 +285,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public PlayerSkillVO getById(int s_pk)
 	{
 		PlayerSkillVO vo = null;
-		String sql = "select * from u_skill_info where s_pk=" + s_pk;
+		String sql = "SELECT * FROM u_skill_info where s_pk=" + s_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -337,7 +337,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public PlayerSkillVO getPlayerSkillInfo(int p_pk, int sk_id)
 	{
 		PlayerSkillVO vo = null;
-		String sql = "select * from u_skill_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk
 				+ " and sk_id=" + sk_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -383,7 +383,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * µÃµ½¼¼ÄÜÃû×Ö
+	 * å¾—åˆ°æŠ€èƒ½åå­—
 	 * 
 	 * @param s_pk
 	 * @return
@@ -391,7 +391,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public String getNameById(int s_pk)
 	{
 		String name = "";
-		String sql = "select sk_name from u_skill_info where s_pk=" + s_pk;
+		String sql = "SELECT sk_name from u_skill_info where s_pk=" + s_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -419,16 +419,16 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * Ñ§Ï°¼¼ÄÜ
+	 * å­¦ä¹ æŠ€èƒ½
 	 */
 	public void add(PlayerSkillVO playerSkill)
 	{
 		if (playerSkill == null)
 		{
-			logger.debug("playerSkill¿Õ");
+			logger.debug("playerSkillç©º");
 			return;
 		}
-		String sql = "insert into u_skill_info values (null,?,?,?,0,now(),now(),?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO u_skill_info values (null,?,?,?,0,now(),now(),?,?,?,?,?,?,?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -472,7 +472,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò¼¼ÄÜidÎªsk_idµÄ¼¼ÄÜ
+	 * å¾—åˆ°ç©å®¶æŠ€èƒ½idä¸ºsk_idçš„æŠ€èƒ½
 	 * 
 	 * @param s_pk
 	 * @return
@@ -480,7 +480,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public PlayerSkillVO getBySkId(int p_pk, int sk_id)
 	{
 		PlayerSkillVO vo = null;
-		String sql = "select * from u_skill_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk
 				+ " and sk_id=" + sk_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -517,7 +517,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ²¶×½³èÎïµÄ¼¼ÄÜ,¼¼ÄÜµÄidÎª1
+	 * åˆ¤æ–­æ˜¯å¦æœ‰æ•æ‰å® ç‰©çš„æŠ€èƒ½,æŠ€èƒ½çš„idä¸º1
 	 * 
 	 * @param p_pk
 	 * @return
@@ -525,7 +525,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public boolean isHaveCatchPetSkill(int p_pk)
 	{
 		boolean result = false;
-		String sql = "select sk_id from u_skill_info where p_pk=" + p_pk
+		String sql = "SELECT sk_id from u_skill_info where p_pk=" + p_pk
 				+ " and sk_id=1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -553,7 +553,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ¸ù¾İppkºÍ¼¼ÄÜid»ñµÃsk_id
+	 * æ ¹æ®ppkå’ŒæŠ€èƒ½idè·å¾—sk_id
 	 * 
 	 * @param skill_id
 	 * @param p_pk
@@ -561,7 +561,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	 */
 	public int getIdByName(String skill_id, String p_pk)
 	{
-		String sql = "select s_pk from u_skill_info where p_pk=" + p_pk
+		String sql = "SELECT s_pk from u_skill_info where p_pk=" + p_pk
 				+ " and sk_id='" + skill_id + "'";
 		int sk_id = 0;
 		logger.debug(sql);
@@ -590,7 +590,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ¸ù¾İ¼¼ÄÜ×éµÃµ½¼¼ÄÜĞÅÏ¢
+	 * æ ¹æ®æŠ€èƒ½ç»„å¾—åˆ°æŠ€èƒ½ä¿¡æ¯
 	 * 
 	 * @param p_pk
 	 * @param sk_group
@@ -599,7 +599,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	public PlayerSkillVO getSkillInfoByGroup(int p_pk, int sk_group)
 	{
 		PlayerSkillVO vo = null;
-		String sql = "select * from u_skill_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_skill_info where p_pk=" + p_pk
 				+ " and sk_group=" + sk_group;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -634,7 +634,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 	}
 
 	/**
-	 * ¸üĞÂÉú»î¼¼ÄÜÊ¹ÓÃÊ±¼äºÍÊìÁ·¶È
+	 * æ›´æ–°ç”Ÿæ´»æŠ€èƒ½ä½¿ç”¨æ—¶é—´å’Œç†Ÿç»ƒåº¦
 	 * 
 	 * @param p_pk
 	 * @param sk_Group
@@ -647,7 +647,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 		String sql = "update u_skill_info set sk_sleight = " + sleight
 				+ " ,sk_usetime=now() where p_pk=" + p_pk + " and sk_group="
 				+ sk_group;
-		logger.debug("¸üĞÂ¼¼ÄÜÊ¹ÓÃÊ±¼äºÍÊìÁ·¶È=" + sql);
+		logger.debug("æ›´æ–°æŠ€èƒ½ä½¿ç”¨æ—¶é—´å’Œç†Ÿç»ƒåº¦=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -667,7 +667,7 @@ public class PlayerSkillDao extends BasicDaoSupport<PlayerSkillVO>
 		return result;
 	}
 
-	// ¸üĞÂ±»¶¯¼¼ÄÜ
+	// æ›´æ–°è¢«åŠ¨æŠ€èƒ½
 	public void updatePassSkill(int p_pk, SkillVO vo,int sk_id_old)
 	{
 		String sql = "update u_skill_info set sk_id = '" + vo.getSkId()

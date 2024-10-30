@@ -1,10 +1,5 @@
 package com.ben.lost;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-
 import com.ben.shitu.model.DateUtil;
 import com.ls.ben.dao.menu.OperateMenuDao;
 import com.ls.ben.vo.map.SceneVO;
@@ -22,236 +17,177 @@ import com.ls.web.service.rank.RankService;
 import com.ls.web.service.system.UMsgService;
 import com.pm.service.systemInfo.SystemInfoService;
 
-public class CompassService
-{
-	private CompassDao compassDao = new CompassDao();
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Timer;
 
-	public List<Compass> findAll()
-	{
-		return this.compassDao.findAll();
-	}
+public class CompassService {
+    private final CompassDao compassDao = new CompassDao();
 
-	public Compass findById(int scene_id)
-	{
-		Compass c = LostConstant.COMPASS_MAP.get(scene_id);
-		if (c != null)
-		{
-			return c;
-		}
-		return this.compassDao.findById(scene_id);
-	}
-	//¥´»ÎΩ· ¯ ±º‰
-	public void startLost(Date date,Date date1){
-		LostConstant.LOST_END_TIME = date;
-		new SystemInfoService().insertSystemInfoBySystem("…Ò√ÿ√‘π¨µƒ¥Û√≈“—æ≠¥Úø™£°¥Ûº“ø…“‘Ω¯»Î√‘π¨ÃΩœ’¿≤£°");
-		if(LostConstant.END_LOST_TIMER!=null){
-			LostConstant.END_LOST_TIMER.cancel();
-			LostConstant.END_LOST_TIMER = null;
-		}
-		if(LostConstant.LAST_FIVE_TIMER!=null){
-			LostConstant.LAST_FIVE_TIMER.cancel();
-			LostConstant.LAST_FIVE_TIMER = null;
-		}
-		LostConstant.END_LOST_TIMER = new Timer();
-		LostConstant.END_LOST_TIMER.schedule(new EndLostTimer(),LostConstant.LOST_END_TIME);
-		LostConstant.LAST_FIVE_TIMER = new Timer();
-		System.out.println(DateUtil.getDate(LostConstant.LOST_END_TIME));
-		date1.setMinutes(date1.getMinutes()-LostConstant.LAST_MIN);
-		System.out.println(DateUtil.getDate(date1));
-		System.out.println(DateUtil.getDate(LostConstant.LOST_END_TIME));
-		LostConstant.LAST_FIVE_TIMER.schedule(new LastFiveTimer(),date1);
-	}
+    public static OperateMenuVO getCurrentMenu(OperateMenuVO omv, int ppk) {
+        if (LostConstant.USE_SHEARE.contains(ppk)) {
+            return null;
+        } else {
+            if (LostConstant.currentMenuId == 0) {
+                return omv;
+            } else {
+                OperateMenuVO currM = LostConstant.SHEARE_MENU.get(LostConstant.currentMenuId);
+                if (currM != null && currM.getMenuOperate4() != 0) {
+                    return LostConstant.SHEARE_MENU.get(currM.getMenuOperate4());
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
 
-	public void loadToMemory()
-	{
-		List<Compass> list = findAll();
-		if (list != null)
-		{
-			for (Compass c : list)
-			{
-				LostConstant.COMPASS_MAP.put(c.getScene_id(), c);
-			}
-		}
-		List<OperateMenuVO> menu_list = new OperateMenuDao().findAll_Sheare_menu();
-		if (menu_list != null)
-		{
-			for (OperateMenuVO om : menu_list)
-			{
-				LostConstant.SHEARE_MENU.put(om.getId(), om);
-			}
-		}
-	}
+    // ËØ•ËèúÂçïÊòØÂê¶ÂèØ‰ª•‰ΩøÁî®
+    public static boolean useSheareMenu(int menu_id, int ppk) {
+        if (menu_id <= LostConstant.currentMenuId) {
+            return false;
+        }
+        LostConstant.currentMenuId = menu_id;
+        LostConstant.USE_SHEARE.add(ppk);
+        return true;
+    }
 
-	public static OperateMenuVO getCurrentMenu(OperateMenuVO omv, int ppk)
-	{
-		if (LostConstant.USE_SHEARE.contains(ppk))
-		{
-			return null;
-		}
-		else
-		{
-			if (LostConstant.currentMenuId == 0)
-			{
-				return omv;
-			}
-			else
-			{
-				OperateMenuVO currM = LostConstant.SHEARE_MENU
-						.get(LostConstant.currentMenuId);
-				if (currM != null && currM.getMenuOperate4() != 0)
-				{
-					return LostConstant.SHEARE_MENU
-							.get(currM.getMenuOperate4());
-				}
-				else
-				{
-					return null;
-				}
-			}
-		}
-	}
+    // ÊòØÂê¶Âú®Êú¨Ëø∑ÂÆ´È¢ÜÂèñËøáÂ•ñÂä±
+    private static boolean isHuodeJiangli(int scene_id, int ppk) {
+        if (!LostConstant.JIANGLI.containsKey(scene_id)) {
+            List<Integer> lis = new ArrayList<Integer>();
+            lis.add(ppk);
+            LostConstant.JIANGLI.put(scene_id, lis);
+            return false;
+        } else {
+            List<Integer> list = LostConstant.JIANGLI.get(scene_id);
+            if (!list.contains(ppk)) {
+                list.add(ppk);
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
 
-	// ∏√≤Àµ• «∑Òø…“‘ π”√
-	public static boolean useSheareMenu(int menu_id, int ppk)
-	{
-		if (menu_id <= LostConstant.currentMenuId)
-		{
-			return false;
-		}
-		LostConstant.currentMenuId = menu_id;
-		LostConstant.USE_SHEARE.add(ppk);
-		return true;
-	}
+    // ÈÄöËøáËø∑ÂÆ´Ëé∑ÂæóÂ•ñÂä±
+    public static void pass(BasicInfo bi) {
+        if (bi != null) {
+            SceneVO scene_info = bi.getSceneInfo();
+            if (scene_info.getMap().getMapType() == MapType.COMPASS && scene_info.getSceneSkill() != 0 && !isHuodeJiangli(scene_info.getSceneID(), bi.getPPk())) {
+                // Âà∞ËææËø∑ÂÆ´ÁöÑÂá∫Âè£
+                // ÁªèÈ™åÂÖ¨Âºè:Áé©ÂÆ∂Á≠âÁ∫ß*50*(1-(30-Áé©ÂÆ∂Á≠âÁ∫ß)/30)*Â±ÇÊï∞+(u_grow_infoË°®ÁöÑÂΩìÂâçg_grade‰∏≠ÁöÑg_next_exp - g_exp)/200
 
-	//  «∑Ò‘⁄±æ√‘π¨¡Ï»°π˝Ω±¿¯
-	private static boolean isHuodeJiangli(int scene_id, int ppk)
-	{
-		if (!LostConstant.JIANGLI.containsKey(scene_id))
-		{
-			List<Integer> lis = new ArrayList<Integer>();
-			lis.add(ppk);
-			LostConstant.JIANGLI.put(scene_id, lis);
-			return false;
-		}
-		else
-		{
-			List<Integer> list = LostConstant.JIANGLI.get(scene_id);
-			if (!list.contains(ppk))
-			{
-				list.add(ppk);
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
+//				Èì∂‰∏§ÂÖ¨Âºè:Áé©ÂÆ∂Á≠âÁ∫ß*5Êñá*(1-(30-Áé©ÂÆ∂Á≠âÁ∫ß)/30)* Â±ÇÊï∞
+                int grade = bi.getGrade();
+                double addExp = grade * 50 * (1 - (30 - grade) / (double) 30) * scene_info.getSceneSkill() + (Integer.valueOf(bi.getNextGradeExp().trim()) - Integer.valueOf(bi.getCurExp().trim())) / 200;
+                double addmoney = grade * 5 * (1 - (30 - grade) / (double) 30) * scene_info.getSceneSkill();
 
-	// Õ®π˝√‘π¨ªÒµ√Ω±¿¯
-	public static void pass(BasicInfo bi)
-	{
-		if (bi != null)
-		{
-			SceneVO scene_info = bi.getSceneInfo();
-			if (scene_info.getMap().getMapType() == MapType.COMPASS
-					&& scene_info.getSceneSkill() != 0
-					&& !isHuodeJiangli(scene_info.getSceneID(), bi.getPPk()))
-			{
-				// µΩ¥Ô√‘π¨µƒ≥ˆø⁄
-				// æ≠—Èπ´ Ω:ÕÊº“µ»º∂*50*(1-(30-ÕÊº“µ»º∂)/30)*≤„ ˝+(u_grow_info±Ìµƒµ±«∞g_grade÷–µƒg_next_exp - g_exp)/200
+                bi.addCopper((int) addmoney);
+                String message = "ÊÅ≠ÂñúÊÇ®ÈÄöËøá‰∫ÜËøôÂ±ÇËø∑ÂÆ´ÔºåÊÇ®Ëé∑Âæó‰∫ÜÈì∂‰∏§" + MoneyUtil.changeCopperToStr((int) addmoney);
+                if (bi.getCurExp() == bi.getNextGradeExp()) {
+                    bi.updateAddCurExp((int) addExp);
+                    message += "," + (int) addExp + "ÁªèÈ™å.";
+                }
+                UMessageInfoVO uif = new UMessageInfoVO();
+                uif.setCreateTime(new Date());
+                uif.setMsgPriority(PopUpMsgType.COMMON_FIRST);
+                uif.setMsgType(PopUpMsgType.COMMON);
+                uif.setPPk(bi.getPPk());
+                uif.setResult(message);
+                new UMsgService().sendPopUpMsg(uif);
+                new RankService().updatea(bi.getPPk(), "lost", scene_info.getSceneSkill());
+            }
+        }
+    }
 
-//				“¯¡Ωπ´ Ω:ÕÊº“µ»º∂*5Œƒ*(1-(30-ÕÊº“µ»º∂)/30)* ≤„ ˝
-				int grade = bi.getGrade();
-				double addExp = grade
-						* 50
-						* (1 - (30 - grade)
-								/ (double) 30) * scene_info.getSceneSkill()+(Integer.valueOf(bi.getNextGradeExp().trim())-Integer.valueOf(bi.getCurExp().trim()))/200;
-				double addmoney = grade
-						* 5
-						* (1 - (30 - grade)
-								/ (double) 30) * scene_info.getSceneSkill();
-				
-				bi.addCopper((int) addmoney);
-				String message = "πßœ≤ƒ˙Õ®π˝¡À’‚≤„√‘π¨£¨ƒ˙ªÒµ√¡À“¯¡Ω"
-						+ MoneyUtil.changeCopperToStr((int) addmoney);
-				if(bi.getCurExp()==bi.getNextGradeExp()){
-					bi.updateAddCurExp((int) addExp);
-					message += "," + (int) addExp + "æ≠—È.";
-					}
-				UMessageInfoVO uif = new UMessageInfoVO();
-				uif.setCreateTime(new Date());
-				uif.setMsgPriority(PopUpMsgType.COMMON_FIRST);
-				uif.setMsgType(PopUpMsgType.COMMON);
-				uif.setPPk(bi.getPPk());
-				uif.setResult(message);
-				new UMsgService().sendPopUpMsg(uif);
-				new RankService().updatea(bi.getPPk(), "lost", scene_info
-						.getSceneSkill());
-			}
-		}
-	}
+    // ÊòØÂê¶ÂèØ‰ª•‰ΩøÁî®Á†¥ÊóßÁÆ±Â≠ê
+    public static boolean useOld_Xiang(OperateMenuVO omv, int ppk) {
+        synchronized (LostConstant.USE_OLD_XIANG) {
 
-	//  «∑Òø…“‘ π”√∆∆æ…œ‰◊”
-	public static boolean useOld_Xiang(OperateMenuVO omv, int ppk)
-	{
-		synchronized (LostConstant.USE_OLD_XIANG)
-		{
+            if (omv.getMenuOperate4() <= 0) {
+                return false;
+            }
+            if (LostConstant.USE_OLD_XIANG.containsKey(omv.getId())) {
+                List<Integer> list = LostConstant.USE_OLD_XIANG.get(omv.getId());
+                if (list.contains(ppk)) {
+                    return false;
+                } else {
+                    if (list.size() >= omv.getMenuOperate4()) {
+                        return false;
+                    } else {
+                        list.add(ppk);
+                        return true;
+                    }
+                }
+            } else {
+                List<Integer> list = new ArrayList<Integer>();
+                list.add(ppk);
+                LostConstant.USE_OLD_XIANG.put(omv.getId(), list);
+                return true;
+            }
+        }
+    }
 
-			if (omv.getMenuOperate4() <= 0)
-			{
-				return false;
-			}
-			if (LostConstant.USE_OLD_XIANG.containsKey(omv.getId()))
-			{
-				List<Integer> list = LostConstant.USE_OLD_XIANG
-						.get(omv.getId());
-				if (list.contains(ppk))
-				{
-					return false;
-				}
-				else
-				{
-					if (list.size() >= omv.getMenuOperate4())
-					{
-						return false;
-					}
-					else
-					{
-						list.add(ppk);
-						return true;
-					}
-				}
-			}
-			else
-			{
-				List<Integer> list = new ArrayList<Integer>();
-				list.add(ppk);
-				LostConstant.USE_OLD_XIANG.put(omv.getId(), list);
-				return true;
-			}
-		}
-	}
+    // Âà†Èô§ÁßòÂ¢ÉÂú∞Âõæ
+    public static void removeMiJing(int ppk, int goodsType) {
+        RoleEntity re = RoleService.getRoleInfoById(ppk + "");
+        if (re != null && re.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.COMPASS) {
+            // Âú®Ëø∑ÂÆ´‰∏≠
+            if (goodsType == PropType.GOBACKCITY || goodsType == PropType.MARKUP || goodsType == PropType.SUIBIANCHUAN || goodsType == PropType.GROUPCHUAN || goodsType == PropType.FRIENDCHUAN || goodsType == PropType.XINYINDU) {
+                new GoodsService().removeMiJing(ppk);
+            }
 
-	// …æ≥˝√ÿæ≥µÿÕº
-	public static void removeMiJing(int ppk, int goodsType)
-	{
-		RoleEntity re = new RoleService().getRoleInfoById(ppk + "");
-		if (re != null
-				&& re.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.COMPASS)
-		{
-			// ‘⁄√‘π¨÷–
-			if (goodsType == PropType.GOBACKCITY
-					|| goodsType == PropType.MARKUP
-					|| goodsType == PropType.SUIBIANCHUAN
-					|| goodsType == PropType.GROUPCHUAN
-					|| goodsType == PropType.FRIENDCHUAN
-					|| goodsType == PropType.XINYINDU)
-			{
-				new GoodsService().removeMiJing(ppk);
-			}
+        }
+    }
 
-		}
-	}
+    public List<Compass> findAll() {
+        return this.compassDao.findAll();
+    }
+
+    public Compass findById(int scene_id) {
+        Compass c = LostConstant.COMPASS_MAP.get(scene_id);
+        if (c != null) {
+            return c;
+        }
+        return this.compassDao.findById(scene_id);
+    }
+
+    //‰º†ÂÖ•ÁªìÊùüÊó∂Èó¥
+    public void startLost(Date date, Date date1) {
+        LostConstant.LOST_END_TIME = date;
+        new SystemInfoService().insertSystemInfoBySystem("Á•ûÁßòËø∑ÂÆ´ÁöÑÂ§ßÈó®Â∑≤ÁªèÊâìÂºÄÔºÅÂ§ßÂÆ∂ÂèØ‰ª•ËøõÂÖ•Ëø∑ÂÆ´Êé¢Èô©Âï¶ÔºÅ");
+        if (LostConstant.END_LOST_TIMER != null) {
+            LostConstant.END_LOST_TIMER.cancel();
+            LostConstant.END_LOST_TIMER = null;
+        }
+        if (LostConstant.LAST_FIVE_TIMER != null) {
+            LostConstant.LAST_FIVE_TIMER.cancel();
+            LostConstant.LAST_FIVE_TIMER = null;
+        }
+        LostConstant.END_LOST_TIMER = new Timer();
+        LostConstant.END_LOST_TIMER.schedule(new EndLostTimer(), LostConstant.LOST_END_TIME);
+        LostConstant.LAST_FIVE_TIMER = new Timer();
+        System.out.println(DateUtil.getDate(LostConstant.LOST_END_TIME));
+        date1.setMinutes(date1.getMinutes() - LostConstant.LAST_MIN);
+        System.out.println(DateUtil.getDate(date1));
+        System.out.println(DateUtil.getDate(LostConstant.LOST_END_TIME));
+        LostConstant.LAST_FIVE_TIMER.schedule(new LastFiveTimer(), date1);
+    }
+
+    public void loadToMemory() {
+        List<Compass> list = findAll();
+        if (list != null) {
+            for (Compass compass : list) {
+                LostConstant.COMPASS_MAP.put(compass.getScene_id(), compass);
+            }
+        }
+        List<OperateMenuVO> menu_list = new OperateMenuDao().findAll_Sheare_menu();
+        if (menu_list != null) {
+            for (OperateMenuVO om : menu_list) {
+                LostConstant.SHEARE_MENU.put(om.getId(), om);
+            }
+        }
+    }
 
 }

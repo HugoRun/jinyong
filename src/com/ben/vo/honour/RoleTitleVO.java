@@ -7,20 +7,20 @@ import com.ls.model.event.TitleEvent;
 import com.ls.pub.util.DateUtil;
 
 /**
- * Íæ¼Ò³ÆºÅĞÅÏ¢
+ * ç©å®¶ç§°å·ä¿¡æ¯
  */
 public class RoleTitleVO
 {
-	/** Ö÷¼üid */
+	/** ä¸»é”®id */
 	private int id;
-	/** ½ÇÉ«Ö÷¼ü */
+	/** è§’è‰²ä¸»é”® */
 	private int pPk;
-	/** ³ÆºÅÖ÷¼ü */
+	/** ç§°å·ä¸»é”® */
 	private int tId;
-	/** ÊÇ·ñÏÔÊ¾:-1±íÊ¾²»ÏÔÊ¾£¬1±íÊ¾ÏÔÊ¾ */
+	/** æ˜¯å¦æ˜¾ç¤º:-1è¡¨ç¤ºä¸æ˜¾ç¤ºï¼Œ1è¡¨ç¤ºæ˜¾ç¤º */
 	private int isShow=-1;
 	/**
-	 * ½áÊøÊ±¼ä£¬0±íÊ¾ÎŞÊ±¼äÏŞÖÆ
+	 * ç»“æŸæ—¶é—´ï¼Œ0è¡¨ç¤ºæ— æ—¶é—´é™åˆ¶
 	 */
 	private long endTime;
 	
@@ -31,10 +31,10 @@ public class RoleTitleVO
 	
 	
 	/**
-	 * ĞÂÔö¼ÓÒ»¸ö³ÆºÅ
+	 * æ–°å¢åŠ ä¸€ä¸ªç§°å·
 	 * @param pPk
-	 * @param tId			³ÆºÅid
-	 * @param useTime		Ê¹ÓÃÊ±¼ä£¨µ¥Î»Ğ¡Ê±£©
+	 * @param tId			ç§°å·id
+	 * @param useTime		ä½¿ç”¨æ—¶é—´ï¼ˆå•ä½å°æ—¶ï¼‰
 	 */
 	public RoleTitleVO(int pPk,TitleVO newTitle )
 	{
@@ -47,11 +47,11 @@ public class RoleTitleVO
 	}
 
 	/**
-	 * Éú³ÉÒ»¸ö¶¨Ê±ÊÂ¼ş
+	 * ç”Ÿæˆä¸€ä¸ªå®šæ—¶äº‹ä»¶
 	 */
 	public void createTimerEvent(EventManager eventManager)
 	{
-		//´øÓĞĞ§ÆÚµÄ³ÆºÅÉú³ÉÒ»¸ö¶¨Ê±ÊÂ¼ş
+		//å¸¦æœ‰æ•ˆæœŸçš„ç§°å·ç”Ÿæˆä¸€ä¸ªå®šæ—¶äº‹ä»¶
 		if( eventManager!=null && this.endTime>0)
 		{
 			eventManager.add(new TitleEvent(this));
@@ -59,11 +59,11 @@ public class RoleTitleVO
 	}
 	
 	/**
-	 * ÒÆ³ı¸Ã¶¨Ê±ÊÂ¼ş
+	 * ç§»é™¤è¯¥å®šæ—¶äº‹ä»¶
 	 */
 	public void removeTimerEvent(EventManager eventManager)
 	{
-		//´øÓĞĞ§ÆÚµÄ³ÆºÅÉú³ÉÒ»¸ö¶¨Ê±ÊÂ¼ş
+		//å¸¦æœ‰æ•ˆæœŸçš„ç§°å·ç”Ÿæˆä¸€ä¸ªå®šæ—¶äº‹ä»¶
 		if( eventManager!=null && this.endTime>0)
 		{
 			eventManager.remove(new TitleEvent(this));
@@ -71,7 +71,7 @@ public class RoleTitleVO
 	}
 	
 	/**
-	 * ¸ü¸Ä¸Ã³ÆºÅÊÇ·ñÏÔÊ¾
+	 * æ›´æ”¹è¯¥ç§°å·æ˜¯å¦æ˜¾ç¤º
 	 */
 	public void updateIsShow()
 	{
@@ -81,7 +81,7 @@ public class RoleTitleVO
 	}
 	
 	/**
-	 * µÃµ½¸½¼ÓµÄÊôĞÔ×Ö·û´®
+	 * å¾—åˆ°é™„åŠ çš„å±æ€§å­—ç¬¦ä¸²
 	 * @return
 	 */
 	public String getAttriStr()
@@ -89,7 +89,7 @@ public class RoleTitleVO
 		return this.getTitleInfo().getAttriStr();
 	}
 	/**
-	 * µÃµ½³ÆºÅÃèÊö
+	 * å¾—åˆ°ç§°å·æè¿°
 	 * @return
 	 */
 	public String getDes()
@@ -97,7 +97,7 @@ public class RoleTitleVO
 		return this.getTitleInfo().getDes();
 	}
 	/**
-	 * µÃµ½³ÆºÅÃû³Æ
+	 * å¾—åˆ°ç§°å·åç§°
 	 * @return
 	 */
 	public String getName()
@@ -105,7 +105,7 @@ public class RoleTitleVO
 		return this.getTitleInfo().getName();
 	}
 	/**
-	 * µÃµ½³ÆºÅÀàĞÍÃû³Æ
+	 * å¾—åˆ°ç§°å·ç±»å‹åç§°
 	 * @return
 	 */
 	public String getTypeName()
@@ -113,7 +113,7 @@ public class RoleTitleVO
 		return this.getTitleInfo().getTypeName();
 	}
 	/**
-	 * µÃµ½³ÆºÅÀàĞÍ
+	 * å¾—åˆ°ç§°å·ç±»å‹
 	 * @return
 	 */
 	public int getType()
@@ -135,7 +135,7 @@ public class RoleTitleVO
 		
 		long left_time = this.getEndTime()-System.currentTimeMillis();
 		
-		int left_time_for_min = (int) (left_time/(DateUtil.MINUTE*1000));//Ê£ÓàµÄ·ÖÖÓ
+		int left_time_for_min = (int) (left_time/(DateUtil.MINUTE*1000));//å‰©ä½™çš„åˆ†é’Ÿ
 		
 		String des_str = DateUtil.returnTimeStr(left_time_for_min);
 		
@@ -152,11 +152,11 @@ public class RoleTitleVO
 		
 		long left_time = this.getEndTime()-System.currentTimeMillis();
 		
-		int left_time_for_min = (int) (left_time/(DateUtil.MINUTE*1000));//Ê£ÓàµÄ·ÖÖÓ
+		int left_time_for_min = (int) (left_time/(DateUtil.MINUTE*1000));//å‰©ä½™çš„åˆ†é’Ÿ
 		
 		String des_str = DateUtil.returnTimeStr(left_time_for_min);
 		
-		return "(Ê£ÓàÊ±¼ä:" + des_str + ")";
+		return "(å‰©ä½™æ—¶é—´:" + des_str + ")";
 		
 	}
 	

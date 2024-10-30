@@ -20,7 +20,7 @@ import com.lw.vo.player.PlayerGetGamePrizeVO;
 
 public class PlayerGetGamePrizeAction extends ActionBase
 {
-	/** Ò³ÃæÌø×ªMENU */
+	/** é¡µé¢è·³è½¬MENU */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -41,7 +41,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 
 		if (list.size() == 0)
 		{
-			request.setAttribute("display", "ÄúÃ»ÓĞ½±Àø¿ÉÒÔÁìÈ¡!");
+			request.setAttribute("display", "æ‚¨æ²¡æœ‰å¥–åŠ±å¯ä»¥é¢†å–!");
 			return mapping.findForward("display");
 		}
 
@@ -52,7 +52,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒÁìÈ¡½±ÀøµÄÏêÇé */
+	/** å¾—åˆ°ç©å®¶é¢†å–å¥–åŠ±çš„è¯¦æƒ… */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -67,7 +67,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 			String id_str = request.getParameter("id");
 			if (id_str == null)
 			{
-				request.setAttribute("display", "ÄúÃ»ÓĞ½±Àø¿ÉÒÔÁìÈ¡!");
+				request.setAttribute("display", "æ‚¨æ²¡æœ‰å¥–åŠ±å¯ä»¥é¢†å–!");
 				return mapping.findForward("display");
 			}
 			else
@@ -102,7 +102,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 			String id_str = request.getParameter("id");
 			if (id_str == null)
 			{
-				request.setAttribute("display", "ÄúÃ»ÓĞ½±Àø¿ÉÒÔÁìÈ¡!");
+				request.setAttribute("display", "æ‚¨æ²¡æœ‰å¥–åŠ±å¯ä»¥é¢†å–!");
 				return mapping.findForward("display");
 			}
 			else
@@ -120,7 +120,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 
 	}
 
-	/** ÁìÈ¡½±Æ·µÄ¹ı³ÌºÍ½á¹û */
+	/** é¢†å–å¥–å“çš„è¿‡ç¨‹å’Œç»“æœ */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -134,7 +134,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 
 			if (id_str == null)
 			{
-				request.setAttribute("display", "ÄúÃ»ÓĞ½±Àø¿ÉÒÔÁìÈ¡!");
+				request.setAttribute("display", "æ‚¨æ²¡æœ‰å¥–åŠ±å¯ä»¥é¢†å–!");
 				return mapping.findForward("display");
 			}
 			else
@@ -162,7 +162,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 
 			if (id_str == null)
 			{
-				request.setAttribute("display", "ÄúÃ»ÓĞ½±Àø¿ÉÒÔÁìÈ¡!");
+				request.setAttribute("display", "æ‚¨æ²¡æœ‰å¥–åŠ±å¯ä»¥é¢†å–!");
 				return mapping.findForward("display");
 			}
 			else
@@ -177,7 +177,7 @@ public class PlayerGetGamePrizeAction extends ActionBase
 		}
 	}
 
-	/** ²é¿´Íæ¼ÒµÀ¾ßÏêÇé */
+	/** æŸ¥çœ‹ç©å®¶é“å…·è¯¦æƒ… */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

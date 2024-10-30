@@ -9,16 +9,16 @@ import com.ben.vo.friend.BlacklistVO;
 import com.ls.web.service.npc.NpcService;
 
 /**
- * ºÃÓÑ
+ * å¥½å‹
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class BlacklistService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Ôö¼ÓºÚÃûµ¥
+	 * å¢åŠ é»‘åå•
 	 */
 	public String addblacklist(int pPk, String pByPk, String pByName,
 			String time)
@@ -27,7 +27,7 @@ public class BlacklistService
 		{
 			BlacklistDAO blacklistDAO = new BlacklistDAO();
 			blacklistDAO.blacklistAdd(pPk, pByPk, pByName, time);
-			logger.info("½« " + pByName + "¼ÓÎªºÚÃûµ¥ÁË");
+			logger.info("å°† " + pByName + "åŠ ä¸ºé»‘åå•äº†");
 		}
 		catch (Exception e)
 		{
@@ -37,7 +37,7 @@ public class BlacklistService
 	}
 
 	/**
-	 * ÅĞ¶Ï¸ÃÍæ¼ÒÊÇ·ñÒÑ¾­ÊÇ×Ô¼ºµÄºÚÃûµ¥
+	 * åˆ¤æ–­è¯¥ç©å®¶æ˜¯å¦å·²ç»æ˜¯è‡ªå·±çš„é»‘åå•
 	 */
 	public boolean whetherblacklist(int pPk, String pByPk)
 	{
@@ -57,7 +57,7 @@ public class BlacklistService
 	}
 
 	/**
-	 * ÅĞ¶Ï¸ÃÍæ¼ÒÊÇ·ñÒÑ¾­ÊÇ´ïµ½50¸öºÚÃûµ¥ÁË
+	 * åˆ¤æ–­è¯¥ç©å®¶æ˜¯å¦å·²ç»æ˜¯è¾¾åˆ°50ä¸ªé»‘åå•äº†
 	 */
 	public boolean blacklistupperlimit(int pPk)
 	{
@@ -81,7 +81,7 @@ public class BlacklistService
 	}
 
 	/**
-	 * É¾³ıºÚÃûµ¥
+	 * åˆ é™¤é»‘åå•
 	 */
 	public String deleteblacklist(int pPk, String pByPk)
 	{
@@ -98,7 +98,7 @@ public class BlacklistService
 	}
 
 	/**
-	 * ºÃÓÑList
+	 * å¥½å‹List
 	 */
 	public List<BlacklistVO> listblacklist(int pPk)
 	{
@@ -119,12 +119,12 @@ public class BlacklistService
 	}
 	
 	/**
-	 * ·µ»ØÊÇ·ñÔÚ×Ô¼ºµÄºÚÃûµ¥ÖĞ
+	 * è¿”å›æ˜¯å¦åœ¨è‡ªå·±çš„é»‘åå•ä¸­
 	 * 
 	 * @param pPk
-	 *            Íæ¼ÒPK 
+	 *            ç©å®¶PK 
 	 * @param blp_pk
-	 *            ºÚÃûµ¥Íæ¼ÒPK
+	 *            é»‘åå•ç©å®¶PK
 	 * @return
 	 */
 	public int isBlacklist(int pPk, int blp_pk)
@@ -138,7 +138,7 @@ public class BlacklistService
 		return 0;
 	} 
 	
-	/**ºÃÓÑ·ÖÒ³*/
+	/**å¥½å‹åˆ†é¡µ*/
 	public List<BlacklistVO> listpage(int pPk,int page,int perpagenum){
 		BlacklistDAO blacklistDAO = new BlacklistDAO();
 		List<BlacklistVO> list = blacklistDAO.getBlacklistListPage(pPk, page, perpagenum);

@@ -14,7 +14,7 @@ public class GameStatisticsKucunJob implements Job
 	{
 		GameStatisticsKucun gameStatisticsKucun = new GameStatisticsKucun();
 		gameStatisticsKucun.kucun();
-		// 系统消息
+		// 绯荤粺娑堟伅
 		ExpnpcdropService expnpcdropService = new ExpnpcdropService();
 		expnpcdropService.sendSystemMessageByExp();
 	}

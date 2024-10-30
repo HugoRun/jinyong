@@ -2,7 +2,7 @@
 <%@ page pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
 <%@page import="com.ben.rank.model.RankConstants"%>
 <%
-	String type = (String) request.getAttribute("type");
+    String type = (String) request.getAttribute("type");
 	int t = 0;
 	if (type != null && !"".equals(type.trim())) {
 		t = Integer.parseInt(type.trim());

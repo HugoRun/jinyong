@@ -1,45 +1,41 @@
 package com.pub;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.ben.dao.TimeShow;
 import com.ls.model.user.RoleEntity;
 import com.ls.web.service.player.RoleService;
 import com.web.service.petservice.HhjPetService;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class SessionFilter implements Filter {
 
-	public void destroy() { 
-	}
+    public void destroy() {
+    }
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain)  { 
-		HttpServletRequest req = (HttpServletRequest) request;
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+        HttpServletRequest req = (HttpServletRequest) request;
 
-		HttpSession session = req.getSession(); 
-		try {
-			request.setCharacterEncoding("UTF-8");		   
-		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øÐÐ¸ñÊ½»¯
-		    String pettimeaa = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿ 
-		    
-			SimpleDateFormat petformatter = new SimpleDateFormat("yyyyMMddHHmmss");// ¶ÔÊ±¼ä½øÐÐ¸ñÊ½»¯
-			String pettime = petformatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿ 
-						
-			RoleService roleService = new RoleService();
-			RoleEntity roleEntity = roleService.getRoleInfoBySession(session);
-						
-		    if (session.getAttribute("uPk")!=null && roleEntity!=null) { // ÔÝÊ±Ö»¹ýÂËµÇÂ½Ãû 
-		    	//Çå³ý½»Ò×À¬»ø
+        HttpSession session = req.getSession();
+        try {
+            request.setCharacterEncoding("UTF-8");
+            // å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            // ä»Žé¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
+            String pettimeaa = formatter.format(new Date());
+            // å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+            SimpleDateFormat petformatter = new SimpleDateFormat("yyyyMMddHHmmss");
+            // ä»Žé¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
+            String pettime = petformatter.format(new Date());
+
+            RoleService roleService = new RoleService();
+            RoleEntity roleEntity = roleService.getRoleInfoBySession(session);
+
+            if (session.getAttribute("uPk") != null && roleEntity != null) { // æš‚æ—¶åªè¿‡æ»¤ç™»é™†å
+                //æ¸…é™¤äº¤æ˜“åžƒåœ¾
 		    	/*SellInfoDAO dao = new SellInfoDAO();
 		    	SellInfoDAO sellInfoDAO = new SellInfoDAO();
 		    	SellInfoVO sellMode = (SellInfoVO) dao.getSellMode(roleEntity.getBasicInfo().getPPk());
@@ -50,37 +46,38 @@ public class SessionFilter implements Filter {
 		    			dao.getSelleInfoDeMon(vo.getSPk()+"");
 		    		}
 		    	}*/
-				//³èÎïÐ¯´øºó µ±Ç°Ê±¼ä¸úÐ¯´øºóµÄÊ±¼äÏàÍ¬ÄÇÃ´¾ÍÖ´ÐÐµÝ¼õ³èÎïÌåÁ¦
-				HhjPetService petService = new HhjPetService();
-				TimeShow timeShow = new TimeShow();
-				int pet = petService.pet(roleEntity.getBasicInfo().getPPk());
-				
-				if(roleEntity.getRolePetInfo().getPetNextTime()!=null){  
-					if(Long.parseLong(pettime) > Long.parseLong(roleEntity.getRolePetInfo().getPetNextTime())) {
-    					
-    					int times = 5;// 5·ÖÖÓ 
-    					petService.petFatigue(roleEntity);
-    					String ss = timeShow.time(times);
-    					String dd = ss.replaceAll("-", "");
-    					String ff = dd.replaceAll(" ", "");
-    					String qq = ff.replaceAll(":", "");
-    					roleEntity.getRolePetInfo().setPetNextTime(qq);
-    				}
-				} else if(pet > 0){
-					int times = 5;// 5·ÖÖÓ
-					String ss = timeShow.time(times);
-					String dd = ss.replaceAll("-", "");
-					String ff = dd.replaceAll(" ", "");
-					String qq = ff.replaceAll(":", "");
-					roleEntity.getRolePetInfo().setPetNextTime(qq); 					
-				}
-				chain.doFilter(request, response);
-			} 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	} 
-	public void init(FilterConfig config) throws ServletException { 
-	}
+                //å® ç‰©æºå¸¦åŽ å½“å‰æ—¶é—´è·Ÿæºå¸¦åŽçš„æ—¶é—´ç›¸åŒé‚£ä¹ˆå°±æ‰§è¡Œé€’å‡å® ç‰©ä½“åŠ›
+                HhjPetService petService = new HhjPetService();
+                TimeShow timeShow = new TimeShow();
+                int pet = petService.pet(roleEntity.getBasicInfo().getPPk());
+
+                if (roleEntity.getRolePetInfo().getPetNextTime() != null) {
+                    if (Long.parseLong(pettime) > Long.parseLong(roleEntity.getRolePetInfo().getPetNextTime())) {
+
+                        int times = 5;// 5åˆ†é’Ÿ
+                        petService.petFatigue(roleEntity);
+                        String ss = timeShow.time(times);
+                        String dd = ss.replaceAll("-", "");
+                        String ff = dd.replaceAll(" ", "");
+                        String qq = ff.replaceAll(":", "");
+                        roleEntity.getRolePetInfo().setPetNextTime(qq);
+                    }
+                } else if (pet > 0) {
+                    int times = 5;// 5åˆ†é’Ÿ
+                    String ss = timeShow.time(times);
+                    String dd = ss.replaceAll("-", "");
+                    String ff = dd.replaceAll(" ", "");
+                    String qq = ff.replaceAll(":", "");
+                    roleEntity.getRolePetInfo().setPetNextTime(qq);
+                }
+                chain.doFilter(request, response);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void init(FilterConfig config) throws ServletException {
+    }
 
 }

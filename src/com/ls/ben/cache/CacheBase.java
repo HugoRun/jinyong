@@ -1,47 +1,46 @@
 /**
- * 
+ *
  */
 package com.ls.ben.cache;
-
-import java.util.HashMap;
-import java.util.List;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-
 import org.apache.log4j.Logger;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Administrator
- * cache²ãµÄ»ùÀà
+ * cacheå±‚çš„åŸºç±»
  */
-public class CacheBase	
-{
-	public static String STATIC_CACHE_NAME = "static_table_cache";//¾²Ì¬²»±äµÄĞÅÏ¢»º´æ
-	public static String DYNAMIC_MANUAL_CACHE = "dynamic_manual_cache";//ÊÖ¶¯¸Ä±äµÄĞÅÏ¢»º´æ
-	
-	protected static Logger logger = Logger.getLogger("log.cache");
-	protected static CacheManager manager = CacheManager.create();	
-	
-	protected static HashMap getElementValue(String cache_name,String cache_key)
-	{
-		logger.debug("»ñÈ¡elementÖµ£ºcache_name="+cache_name+";cache_key="+cache_key);
-		HashMap result = null;
-		Cache cache = manager.getCache(cache_name);
-		Element element = cache.get(cache_key);
-		result = (HashMap)element.getValue();
-		return result;
-	}
-	
-	
-	protected static List getElementValueUseList(String cache_name,String cache_key)
-	{
-		logger.debug("»ñÈ¡elementÖµ£ºcache_name="+cache_name+";cache_key="+cache_key);
-		List result = null;
-		Cache cache = manager.getCache(cache_name);
-		Element element = cache.get(cache_key);
-		result = (List)element.getValue();
-		return result;
-	}
+public class CacheBase {
+    // æ—¥å¿—å¥æŸ„
+    protected static Logger logger = Logger.getLogger("log.cache");
+
+    // é™æ€ä¸å˜çš„ä¿¡æ¯ç¼“å­˜
+    public static String STATIC_CACHE_NAME = "static_table_cache";
+    // æ‰‹åŠ¨æ”¹å˜çš„ä¿¡æ¯ç¼“å­˜
+    public static String DYNAMIC_MANUAL_CACHE = "dynamic_manual_cache";
+
+    protected static CacheManager manager = CacheManager.create();
+
+    protected static HashMap getElementValue(String cache_name, String cache_key) {
+        logger.debug("è·å–elementå€¼ï¼šcache_name = " + cache_name + "; cache_key = " + cache_key);
+        HashMap result;
+        Cache cache = manager.getCache(cache_name);
+        Element element = cache.get(cache_key);
+        result = (HashMap) element.getValue();
+        return result;
+    }
+
+    protected static List getElementValueUseList(String cache_name, String cache_key) {
+        logger.debug("è·å–elementå€¼ï¼šcache_name = " + cache_name + ";cache_key = " + cache_key);
+        List result;
+        Cache cache = manager.getCache(cache_name);
+        Element element = cache.get(cache_key);
+        result = (List) element.getValue();
+        return result;
+    }
 }

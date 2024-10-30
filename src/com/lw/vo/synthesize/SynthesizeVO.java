@@ -2,23 +2,23 @@ package com.lw.vo.synthesize;
 
 public class SynthesizeVO
 {
-	// Åä·½ID
+	// é…æ–¹ID
 	private int synthesizeID;
-	// Åä·½ÀàĞÍ
+	// é…æ–¹ç±»å‹
 	private int synthesizeTye;
-	// Åä·½µÈ¼¶
+	// é…æ–¹ç­‰çº§
 	private int synthesizeLv;
-	// ºÏ³ÉĞèÒªµÄÎïÆ·
+	// åˆæˆéœ€è¦çš„ç‰©å“
 	private String prop;
-	// Éú³ÉÎïÆ·
+	// ç”Ÿæˆç‰©å“
 	private String synthesizeProp;
-	// ºÏ³É³É¹¦µÃµ½µÄÊìÁ·¶È
+	// åˆæˆæˆåŠŸå¾—åˆ°çš„ç†Ÿç»ƒåº¦
 	private int synthesizeSleight;
-	// ºÏ³É¼¼ÄÜÊìÁ·¶ÈµÄÏÂÏŞ
+	// åˆæˆæŠ€èƒ½ç†Ÿç»ƒåº¦çš„ä¸‹é™
 	private int synthesizeMinSleight;
-	// ¸ÃÅä·½ÄÜ»ñµÃµÄÊìÁ·¶ÈÉÏÏŞ
+	// è¯¥é…æ–¹èƒ½è·å¾—çš„ç†Ÿç»ƒåº¦ä¸Šé™
 	private int synthesizeMaxSleight;
-	// ÊÇ·ñĞèÒª¼¼ÄÜÊé
+	// æ˜¯å¦éœ€è¦æŠ€èƒ½ä¹¦
 	private int synthesizeBook;
 
 	public int getSynthesizeBook()

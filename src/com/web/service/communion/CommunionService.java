@@ -17,9 +17,9 @@ import com.ls.pub.util.DateUtil;
 import com.ls.pub.util.StringUtil;
 
 /**
- * Ê×Ò³ÁÄÌì
+ * é¦–é¡µèŠå¤©
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class CommunionService
 {
@@ -27,16 +27,16 @@ public class CommunionService
  
 	
 	/**
-	 * Íæ¼ÒÀëÏßÊ±£¬Çå³ıÁÄÌìÏûÏ¢
+	 * ç©å®¶ç¦»çº¿æ—¶ï¼Œæ¸…é™¤èŠå¤©æ¶ˆæ¯
 	 * @param p_pk
 	 */
 	public void clearChatInfos( int p_pk )
 	{
-		String publicChat = "1";//¹«¹²
-		String campChat = "2";//ÕóÓª
-		String groupChat = "3";//×é¶Ó
-		String tongChat = "4";//°ïÅÉ
-		String privatelyType = "5";//Ë½µ×ÏÂ 
+		String publicChat = "1";//å…¬å…±
+		String campChat = "2";//é˜µè¥
+		String groupChat = "3";//ç»„é˜Ÿ
+		String tongChat = "4";//å¸®æ´¾
+		String privatelyType = "5";//ç§åº•ä¸‹ 
 		removeChat(p_pk, publicChat);
 		removeChat(p_pk, campChat);
 		removeChat(p_pk, groupChat);
@@ -45,25 +45,25 @@ public class CommunionService
 	}
 	
 	/**
-	 * Ê×Ò³ÁÄÌì
+	 * é¦–é¡µèŠå¤©
 	 */
 	public List<CommunionVOPage> CommunionList(RoleEntity roleInfo)
 	{ 
 		String pPk = roleInfo.getBasicInfo().getPPk() + "";
-		int zheng = roleInfo.getBasicInfo().getPRace();// µÃµ½ÕóÓª
-		int dui = roleInfo.getStateInfo().getGroup_id();// µÃµ½¶ÓÎé
-		int bang = roleInfo.getBasicInfo().getFId();// µÃµ½°ïÅÉ
+		int zheng = roleInfo.getBasicInfo().getPRace();// å¾—åˆ°é˜µè¥
+		int dui = roleInfo.getStateInfo().getGroup_id();// å¾—åˆ°é˜Ÿä¼
+		int bang = roleInfo.getBasicInfo().getFId();// å¾—åˆ°å¸®æ´¾
 		
-		String publicChat = "1";//¹«¹²
-		String campChat = "2";//ÕóÓª
-		String groupChat = "3";//×é¶Ó
-		String tongChat = "4";//°ïÅÉ
-		String privatelyType = "5";//Ë½µ×ÏÂ 
+		String publicChat = "1";//å…¬å…±
+		String campChat = "2";//é˜µè¥
+		String groupChat = "3";//ç»„é˜Ÿ
+		String tongChat = "4";//å¸®æ´¾
+		String privatelyType = "5";//ç§åº•ä¸‹ 
 		
 		TimeShow timeShow = new TimeShow();
-		int times = 2;// 2·ÖÖÓ
-		String t_begin_time = timeShow.Minutes(times);//2·ÖÖÓÖ®Ç°
-		String t_end_time = timeShow.time(times);// 2·ÖÖÓÖ®ºó 
+		int times = 2;// 2åˆ†é’Ÿ
+		String t_begin_time = timeShow.Minutes(times);//2åˆ†é’Ÿä¹‹å‰
+		String t_end_time = timeShow.time(times);// 2åˆ†é’Ÿä¹‹å 
 		
 		List gongongList = this.getPublicChatInfoList(publicChat); 
 		List zhengList = this.getCampChatInfoList(zheng, campChat);
@@ -80,7 +80,7 @@ public class CommunionService
 		long ends = end.getTime(); 
 		
 		CommunionVOPage communionVOPage = null; 
-		// Í¨¹ıÊ±¼ä°ÉËùÓĞÆµµÀµÄÁÄÌì¼ÇÂ¼È«²¿²é³öÀ´
+		// é€šè¿‡æ—¶é—´å§æ‰€æœ‰é¢‘é“çš„èŠå¤©è®°å½•å…¨éƒ¨æŸ¥å‡ºæ¥
 		if (siList != null && siList.size() != 0)
 		{
 			for (int si = 0; si < siList.size(); si++)
@@ -89,7 +89,7 @@ public class CommunionService
 				communionVOPage = new CommunionVOPage();
 				Date time = DateUtil.strToDate(communionVO.getCreateTime()); 
 				long timesd = time.getTime();
-				// [Ë½]
+				// [ç§]
 				if(roleInfo.getSettingInfo().getSecretChat() == 1){
 				if (begins < timesd && timesd < ends)
 				{  
@@ -99,9 +99,9 @@ public class CommunionService
 					if (communionVO.getPName() != null)
 					{ 
 						if(communionVO.getPName().equals(roleInfo.getBasicInfo().getName())){
-							communionVOPage.setPName("¡ï¡ïÄã¶Ô" + StringUtil.isoToGBK(communionVO.getPNameBy()) + "Ëµ:");
+							communionVOPage.setPName("â˜…â˜…ä½ å¯¹" + StringUtil.isoToGBK(communionVO.getPNameBy()) + "è¯´:");
 						}else{
-							communionVOPage.setPName("¡ï¡ï" + StringUtil.isoToGBK(communionVO.getPName()) + "¶ÔÄãËµ:");
+							communionVOPage.setPName("â˜…â˜…" + StringUtil.isoToGBK(communionVO.getPName()) + "å¯¹ä½ è¯´:");
 						}
 						
 					}
@@ -118,7 +118,7 @@ public class CommunionService
 			}
 			
 		}
-		//¹«¹²
+		//å…¬å…±
 		if(gongongList != null && gongongList.size() != 0){
 			for (int gong = 0; gong < gongongList.size(); gong++)
 			{
@@ -135,7 +135,7 @@ public class CommunionService
 						communionVOPage.setPPk(communionVO.getPPk());
 					}
 					if(communionVO.getPName()!=null){
-						communionVOPage.setPName("[¹«]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
+						communionVOPage.setPName("[å…¬]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
 					}
 					if(communionVO.getCTitle()!=null){
 						communionVOPage.setCTitle(StringUtil.isoToGBK(communionVO.getCTitle()));
@@ -146,7 +146,7 @@ public class CommunionService
 			} 
 		}
 		
-		//Õó
+		//é˜µ
 		if(zhengList != null && zhengList.size() != 0){
 			for (int zheny = 0; zheny < zhengList.size(); zheny++)
 			{
@@ -162,7 +162,7 @@ public class CommunionService
 						communionVOPage.setPPk(communionVO.getPPk());
 					}
 					if(communionVO.getPName()!=null){
-						communionVOPage.setPName("[ÖÖ]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
+						communionVOPage.setPName("[ç§]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
 					}
 					if(communionVO.getCTitle()!=null){
 						communionVOPage.setCTitle(StringUtil.isoToGBK(communionVO.getCTitle()));
@@ -173,7 +173,7 @@ public class CommunionService
 			}
 		}
 		
-		//¶Ó
+		//é˜Ÿ
 		if(duiList != null && duiList.size() != 0){
 			for (int diuw = 0; diuw < duiList.size(); diuw++)
 			{
@@ -188,7 +188,7 @@ public class CommunionService
 						communionVOPage.setPPk(communionVO.getPPk());
 					}
 					if(communionVO.getPName()!=null){
-						communionVOPage.setPName("[¶Ó]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
+						communionVOPage.setPName("[é˜Ÿ]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
 					}
 					if(communionVO.getCTitle()!=null){
 						communionVOPage.setCTitle(StringUtil.isoToGBK(communionVO.getCTitle()));
@@ -199,7 +199,7 @@ public class CommunionService
 			}
 		}
 		
-		//°ï
+		//å¸®
 		if(bangList != null && bangList.size() != 0){
 			for (int bangp = 0; bangp < bangList.size(); bangp++)
 			{
@@ -214,7 +214,7 @@ public class CommunionService
 						communionVOPage.setPPk(communionVO.getPPk());
 					}
 					if(communionVO.getPName()!=null){
-						communionVOPage.setPName("[ÊÏ]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
+						communionVOPage.setPName("[æ°]"+ StringUtil.isoToGBK(communionVO.getPName())+":");
 					}
 					if(communionVO.getCTitle()!=null){
 						communionVOPage.setCTitle(StringUtil.isoToGBK(communionVO.getCTitle()));
@@ -244,7 +244,7 @@ public class CommunionService
 	}
 	
 	/**
-	 * ²éÑ¯ÏÔÊ¾×î½üÃÜÓï¹ıµÄ7¸öÍæ¼Ò
+	 * æŸ¥è¯¢æ˜¾ç¤ºæœ€è¿‘å¯†è¯­è¿‡çš„7ä¸ªç©å®¶
 	 * 
 	 * @param pPk
 	 * @param type
@@ -272,7 +272,7 @@ public class CommunionService
 	}
 
 	/**
-	 * µÃµ½¹«¹²ÁÄÌì¼ÇÂ¼
+	 * å¾—åˆ°å…¬å…±èŠå¤©è®°å½•
 	 * 
 	 * @param p_pk
 	 * @param map_id
@@ -299,7 +299,7 @@ public class CommunionService
 	}
 	
 	/**
-	 * Çå³ı»º´æÀ¬»ø
+	 * æ¸…é™¤ç¼“å­˜åƒåœ¾
 	 * @param p_pk
 	 * @param chatType
 	 */
@@ -310,7 +310,7 @@ public class CommunionService
 	}
 
 	/**
-	 * µÃµ½ÕóÓªÁÄÌì¼ÇÂ¼
+	 * å¾—åˆ°é˜µè¥èŠå¤©è®°å½•
 	 * 
 	 * @param p_pk
 	 * @param map_id
@@ -345,7 +345,7 @@ public class CommunionService
 	}
 	
 	/**
-	 * µÃµ½×é¶ÓÁÄÌì¼ÇÂ¼
+	 * å¾—åˆ°ç»„é˜ŸèŠå¤©è®°å½•
 	 * 
 	 * @param p_pk
 	 * @param map_id
@@ -379,7 +379,7 @@ public class CommunionService
 	}
 	 
 	/**
-	 * µÃµ½°ï»áÁÄÌì¼ÇÂ¼ 
+	 * å¾—åˆ°å¸®ä¼šèŠå¤©è®°å½• 
 	 * @param p_pk
 	 * @param map_id
 	 * @return
@@ -412,7 +412,7 @@ public class CommunionService
 	}
 	
 	/**
-	 * µÃµ½Ë½µ×ÏÂÁÄÌì¼ÇÂ¼ 
+	 * å¾—åˆ°ç§åº•ä¸‹èŠå¤©è®°å½• 
 	 * @param p_pk
 	 * @param map_id
 	 * @return

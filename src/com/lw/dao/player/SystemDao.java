@@ -7,7 +7,7 @@ public class SystemDao extends DaoBase
 {
 
 	/**
-	 * »ñµÃÏµÍ³ÏŞÖÆÈËÊı
+	 * è·å¾—ç³»ç»Ÿé™åˆ¶äººæ•°
 	 * 
 	 * @return
 	 */
@@ -16,7 +16,7 @@ public class SystemDao extends DaoBase
 		int online_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select s_player from system ";
+		String sql = "SELECT s_player from system ";
 		logger.debug(sql);
 		try
 		{
@@ -40,12 +40,12 @@ public class SystemDao extends DaoBase
 		return online_num;
 	}
 	
-	/**»ñµÃÍòÄÜÃÜÂë*/
+	/**è·å¾—ä¸‡èƒ½å¯†ç */
 	public String getAllKey(){
 		String all_key = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select all_key from system ";
+		String sql = "SELECT all_key from system ";
 		logger.debug(sql);
 		try
 		{
@@ -70,7 +70,7 @@ public class SystemDao extends DaoBase
 	}
 	
 	/**
-	 * pc_islogininfoname ·ÀPCµÇÂ½°×Ãûµ¥ID 0 ¿ª 1¹Ø 
+	 * pc_islogininfoname é˜²PCç™»é™†ç™½åå•ID 0 å¼€ 1å…³ 
 	 * 
 	 * @return
 	 */
@@ -79,7 +79,7 @@ public class SystemDao extends DaoBase
 		int pc_islogininfoname = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select pc_islogininfoname from system ";
+		String sql = "SELECT pc_islogininfoname from system ";
 		logger.debug(sql);
 		try
 		{
@@ -105,7 +105,7 @@ public class SystemDao extends DaoBase
 	
 	
 	/**
-	 * pc_black  ·ÀPCµÇÂ½ºÚÃûµ¥IP 0 ¿ª 1¹Ø 
+	 * pc_black  é˜²PCç™»é™†é»‘åå•IP 0 å¼€ 1å…³ 
 	 * 
 	 * @return
 	 */
@@ -114,7 +114,7 @@ public class SystemDao extends DaoBase
 		int pc_black = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select pc_black from system ";
+		String sql = "SELECT pc_black from system ";
 		logger.debug(sql);
 		try
 		{
@@ -139,7 +139,7 @@ public class SystemDao extends DaoBase
 	}
 	
 	/**
-	 * pc_ua ·ÀPCµÇÂ½UA 0 ¿ª 1¹Ø
+	 * pc_ua é˜²PCç™»é™†UA 0 å¼€ 1å…³
 	 * 
 	 * @return
 	 */
@@ -148,7 +148,7 @@ public class SystemDao extends DaoBase
 		int pc_ua = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select pc_ua from system ";
+		String sql = "SELECT pc_ua from system ";
 		logger.debug(sql);
 		try
 		{
@@ -173,7 +173,7 @@ public class SystemDao extends DaoBase
 	}
 	
 	/**
-	 * pc_link_number ·ÀPCµÇÂ½µã»÷´ÎÊı3´Î 0 ¿ª 1¹Ø 
+	 * pc_link_number é˜²PCç™»é™†ç‚¹å‡»æ¬¡æ•°3æ¬¡ 0 å¼€ 1å…³ 
 	 * 
 	 * @return
 	 */
@@ -182,7 +182,7 @@ public class SystemDao extends DaoBase
 		int pc_link_number = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select pc_link_number from system ";
+		String sql = "SELECT pc_link_number from system ";
 		logger.debug(sql);
 		try
 		{

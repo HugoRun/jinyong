@@ -31,7 +31,7 @@ public class ForumClassDAOImpl extends DaoBase {
 	}
 	
 	public int addForumClass(ForumClassBean fcb) throws Exception {
-		String sql="insert into g_forum_class(fid,UserID,UserName,className,smallName,addTime) values(?,?,?,?,?,?)";			
+		String sql="INSERT INTO g_forum_class(fid,UserID,UserName,className,smallName,addTime) values(?,?,?,?,?,?)";			
 		PreparedStatement ps = connection.prepareStatement(sql);
 		int i=1;
 		ps.setInt(i++,fcb.getFid());
@@ -48,15 +48,15 @@ public class ForumClassDAOImpl extends DaoBase {
 	
 	public void deleteForumClass(int id) throws Exception {
 		// TODO Auto-generated method stub
-		//É¾³ı·ÖÀà×ÓÀ¸Ä¿
+		//åˆ é™¤åˆ†ç±»å­æ ç›®
 		StringBuffer sql=new StringBuffer("delete from g_forum_class where fid=").append(id);
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.executeUpdate();
 		
-		//É¾³ı·ÖÀà
+		//åˆ é™¤åˆ†ç±»
 		sql.delete(0,sql.length()-1); 
 		sql.append("delete from g_forum_class where classID=").append(id);
-		logger.debug("É¾³ı·ÖÀà: "+sql.toString());
+		logger.debug("åˆ é™¤åˆ†ç±»: "+sql.toString());
 		ps = connection.prepareStatement(sql.toString());
 		ps.executeUpdate();
 		ps.close();	
@@ -64,7 +64,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public List<ForumClassBean> getAllForumClass() throws Exception {
-		String sql="select * from g_forum_class order by classID asc";
+		String sql="SELECT * FROM g_forum_class order by classID asc";
 		logger.debug(sql.toString());
 		List<ForumClassBean> v = new ArrayList<ForumClassBean>();
 		Statement ps = connection.createStatement();		   
@@ -93,7 +93,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public ForumClassBean getByID(int id) throws Exception {
-		String sql="select * from g_forum_class where classID="+id;
+		String sql="SELECT * FROM g_forum_class where classID="+id;
 		logger.debug(sql.toString());
 		Statement ps = connection.createStatement();		   
 		   ResultSet rs = ps.executeQuery(sql);
@@ -121,7 +121,7 @@ public class ForumClassDAOImpl extends DaoBase {
 
 	
 	public List<ForumClassBean> getForumClass(int fid) throws Exception {
-		String sql="select * from g_forum_class where fid="+fid+" order by classID desc";
+		String sql="SELECT * FROM g_forum_class where fid="+fid+" order by classID desc";
 		logger.debug(sql.toString());
 		List<ForumClassBean> v = new ArrayList<ForumClassBean>();
 		Statement ps = connection.createStatement();		   
@@ -189,14 +189,14 @@ public class ForumClassDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * ²é¿´ÆäpPkÊÇ·ñÔÚ½ûÖ¹·¢ÌûÃûµ¥ÖĞ
+	 * æŸ¥çœ‹å…¶pPkæ˜¯å¦åœ¨ç¦æ­¢å‘å¸–åå•ä¸­
 	 * @param pk
 	 * @return
 	 */
 	public ForumForbidVO isForBidIng(String pPk)
 	{
 		ForumForbidVO forbidVO = null;
-		String sql="select * from g_forum_forbid where p_pk="+pPk;			
+		String sql="SELECT * FROM g_forum_forbid where p_pk="+pPk;			
 		logger.debug(sql.toString());
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			
@@ -225,16 +225,16 @@ public class ForumClassDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * ½ûÖ¹·¢Ìû,½«Íæ¼Ò¼Óµ½½ûÖ¹Íæ¼ÒÃûµ¥ÖĞ
+	 * ç¦æ­¢å‘å¸–,å°†ç©å®¶åŠ åˆ°ç¦æ­¢ç©å®¶åå•ä¸­
 	 * @param pk
 	 * @param name
 	 * @param type
 	 */
 	public void addForbidName(String pk, String name, int type,int forbid_time)
 	{
-		String sql = "insert into g_forum_forbid values (null,"+type+","+pk+",'"+name+"', "+forbid_time
+		String sql = "INSERT INTO g_forum_forbid values (null,"+type+","+pk+",'"+name+"', "+forbid_time
 						+",now())";
-        logger.debug("½«Íæ¼Ò¼Óµ½½ûÖ¹Íæ¼ÒÃûµ¥ÖĞ="+sql.toString());
+        logger.debug("å°†ç©å®¶åŠ åˆ°ç¦æ­¢ç©å®¶åå•ä¸­="+sql.toString());
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -249,13 +249,13 @@ public class ForumClassDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * É¾³ıÌû×Ó
+	 * åˆ é™¤å¸–å­
 	 * @param pk
 	 */
 	public void deleteForumForbid(int pPk)
 	{
 		String sql = "delete from g_forum_forbid where p_pk = "+pPk;
-		logger.debug("½«Íæ¼Ò¼Óµ½½ûÖ¹Íæ¼ÒÃûµ¥ÖĞ="+sql.toString());
+		logger.debug("å°†ç©å®¶åŠ åˆ°ç¦æ­¢ç©å®¶åå•ä¸­="+sql.toString());
 	    DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();

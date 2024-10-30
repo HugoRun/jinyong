@@ -1,155 +1,147 @@
 package com.pub.ben;
 
-import java.sql.ResultSet;
-
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 import com.pub.db.mysql.SqlData;
 
+import java.sql.ResultSet;
 
-public class PageBean
-{
-	SqlData con;// Ç°Ì¨ 1±íÊ¾
-	Jygamedb conn;// ºóÌ¨ 2±íÊ¾
 
-	private int curPage;// µ±Ç°Ò³ÃæÊı
-	private int maxPage;// Ò»¹²ÓĞ¶àÉÙÒ³
-	private int maxRowCount;// Ò»¹²ÓĞ¶àÉÙĞĞ
-	private int pageNumber = 7;// Ã¿Ò»Ò³¶àÉÙĞĞ 
-	private String url;
-	
-	public String getUrl() {
-		return url;
-	}
+public class PageBean {
+    // å‰å° 1è¡¨ç¤º
+    SqlData con;
+    // åå° 2è¡¨ç¤º
+    JyGameDB conn;
+    // å½“å‰é¡µé¢æ•°
+    private int curPage;
+    // ä¸€å…±æœ‰å¤šå°‘é¡µ
+    private int maxPage;
+    // ä¸€å…±æœ‰å¤šå°‘è¡Œ
+    private int maxRowCount;
+    // æ¯ä¸€é¡µå¤šå°‘è¡Œ
+    private int pageNumber = 7;
+    //
+    private String url;
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public int getCurPage()
-	{
-		return curPage;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setCurPage(int curPage)
-	{
-		this.curPage = curPage;
-	}
+    public int getCurPage() {
+        return curPage;
+    }
 
-	public int getMaxPage()
-	{
-		return maxPage;
-	}
+    public void setCurPage(int curPage) {
+        this.curPage = curPage;
+    }
 
-	public void setMaxPage(int maxPage)
-	{
-		this.maxPage = maxPage;
-	}
+    public int getMaxPage() {
+        return maxPage;
+    }
 
-	public int getMaxRowCount()
-	{
-		return maxRowCount;
-	}
+    public void setMaxPage(int maxPage) {
+        this.maxPage = maxPage;
+    }
 
-	public void setMaxRowCount(int maxRowCount)
-	{
-		this.maxRowCount = maxRowCount;
-	}
+    public int getMaxRowCount() {
+        return maxRowCount;
+    }
 
-	public int getPageNumber()
-	{
-		return pageNumber;
-	}
+    public void setMaxRowCount(int maxRowCount) {
+        this.maxRowCount = maxRowCount;
+    }
 
-	public void setPageNumber(int pageNumber)
-	{
-		this.pageNumber = pageNumber;
-	} 
-	
-	
-	/*
-	 * ·ÖÒ³ÏÔÊ¾µÄ¹«¹²Àà£¬²é¿´±íÀïÒ»¹²ÓĞ¶àÉÙĞĞ
-	 */
-	public void tableCount(String tablesName, int database,String where) {
-		try {
-			con = new SqlData();
-			conn = new Jygamedb();
-			ResultSet rs = null;
-			String wheres = null;
-			if(where != null ){
-				wheres = where;
-			}
-			if (database == 1) {//Ç°Ì¨Êı¾İ¿â
-				rs = con.query("select count(*) from " + tablesName +" "+ wheres +" "); // ²éÑ¯¹²ÓĞ¼¸ĞĞÊı¾İ
-			} else if (database == 2) {//ºóÌ¨Êı¾İ¿â
-				rs = conn.query("select count(*) from " + tablesName + wheres +" "); // ²éÑ¯¹²ÓĞ¼¸ĞĞÊı¾İ
-			}
-			if (rs.next()) {
-				this.setMaxRowCount(rs.getInt(1));
-			}
-			////System.out.println("maxRowCount is:" + this.getMaxRowCount());
-			if (this.getMaxRowCount() % this.getPageNumber() == 0) {
-				this.setMaxPage((this.getMaxRowCount() / this.getPageNumber()));
-			} else {
-				this.setMaxPage((this.getMaxRowCount() / this.getPageNumber() + 1));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			con.close();
-		}
-	}
-	
-	/**
-	 * ·µ»Ø mysql limit
-	 * @param pageBean
-	 * @return
-	 */
-	public String getLimitNumber() {
-		String limitNumber = " limit "+ (this.getCurPage() * this.getPageNumber()) +","+ this.getPageNumber()+"";
-		////System.out.println(limitNumber);
-		return limitNumber;
-	}
+    public int getPageNumber() {
+        return pageNumber;
+    }
 
-	/**
-	 * ´òÓ¡³ö·­Ò³Á¬½Ó
-	 * 
-	 * @return
-	 */
-	public String getFooter(String url) {
-        if (this.getMaxPage()<= 1) {
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+
+    /*
+     * åˆ†é¡µæ˜¾ç¤ºçš„å…¬å…±ç±»ï¼ŒæŸ¥çœ‹è¡¨é‡Œä¸€å…±æœ‰å¤šå°‘è¡Œ
+     */
+    public void tableCount(String tablesName, int database, String where) {
+        try {
+            con = new SqlData();
+            conn = new JyGameDB();
+            ResultSet rs = null;
+            String wheres = null;
+            if (where != null) {
+                wheres = where;
+            }
+            if (database == 1) {//å‰å°æ•°æ®åº“
+                rs = con.query("select count(*) from " + tablesName + " " + wheres + " "); // æŸ¥è¯¢å…±æœ‰å‡ è¡Œæ•°æ®
+            } else if (database == 2) {//åå°æ•°æ®åº“
+                rs = conn.query("select count(*) from " + tablesName + wheres + " "); // æŸ¥è¯¢å…±æœ‰å‡ è¡Œæ•°æ®
+            }
+            if (rs.next()) {
+                this.setMaxRowCount(rs.getInt(1));
+            }
+            ////System.out.println("maxRowCount is:" + this.getMaxRowCount());
+            if (this.getMaxRowCount() % this.getPageNumber() == 0) {
+                this.setMaxPage((this.getMaxRowCount() / this.getPageNumber()));
+            } else {
+                this.setMaxPage((this.getMaxRowCount() / this.getPageNumber() + 1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+    }
+
+    /**
+     * è¿”å› mysql limit
+     *
+     * @param pageBean
+     * @return
+     */
+    public String getLimitNumber() {
+        String limitNumber = " limit " + (this.getCurPage() * this.getPageNumber()) + "," + this.getPageNumber();
+        ////System.out.println(limitNumber);
+        return limitNumber;
+    }
+
+    /**
+     * æ‰“å°å‡ºç¿»é¡µè¿æ¥
+     *
+     * @return
+     */
+    public String getFooter(String url) {
+        if (this.getMaxPage() <= 1) {
             return "";
+        } else {
+            StringBuffer str = new StringBuffer();
+            if (this.getCurPage() == 0) {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(this.getCurPage() + 1);
+                str.append("'>ä¸‹ä¸€é¡µ</a><br/>");
+            } else if (this.getCurPage() == 1) {//if (pageBean.getCurPage() < pageBean.getMaxPage()) {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(this.getCurPage() + 1);
+                str.append("'>ä¸‹ä¸€é¡µ</a> ");
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(this.getCurPage() - 1);
+                str.append("'>ä¸Šä¸€é¡µ</a><br/>");
+            } else if ((this.getCurPage() + 1) < this.getMaxPage()) {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(this.getCurPage() + 1);
+                str.append("'>ä¸‹ä¸€é¡µ</a> ");
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(this.getCurPage() - 1);
+                str.append("'>ä¸Šä¸€é¡µ</a><br/>");
+            } else {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(this.getCurPage() - 1);
+                str.append("'>ä¸Šä¸€é¡µ</a><br/>");
+            }
+            return str.toString();
         }
-        else
-        {
-        	StringBuffer str = new StringBuffer();
-            if(this.getCurPage()==0)
-            {
-            	str.append("<a href='").append(url).append("&amp;pageNo=");
-            	str.append(this.getCurPage()+1);
-            	str.append("'>ÏÂÒ»Ò³</a><br/>");
-            }
-            else if(this.getCurPage()==1){//if (pageBean.getCurPage() < pageBean.getMaxPage()) {
-            	str.append("<a href='").append(url).append("&amp;pageNo=");
-            	str.append(this.getCurPage()+1);
-            	str.append("'>ÏÂÒ»Ò³</a> ");
-            	str.append("<a href='").append(url).append("&amp;pageNo=");
-            	str.append(this.getCurPage()-1);
-            	str.append("'>ÉÏÒ»Ò³</a><br/>");
-            }
-            else if ((this.getCurPage() + 1 ) < this.getMaxPage()) {
-            	str.append("<a href='").append(url).append("&amp;pageNo=");
-            	str.append(this.getCurPage()+1);
-            	str.append("'>ÏÂÒ»Ò³</a> ");
-            	str.append("<a href='").append(url).append("&amp;pageNo=");
-            	str.append(this.getCurPage()-1);
-            	str.append("'>ÉÏÒ»Ò³</a><br/>");
-            }
-            else {
-            	str.append("<a href='").append(url).append("&amp;pageNo=");
-            	str.append(this.getCurPage()-1);
-            	str.append("'>ÉÏÒ»Ò³</a><br/>");
-                 }
-          return str.toString();
-        }
-    } 
+    }
 }

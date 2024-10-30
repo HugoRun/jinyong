@@ -37,7 +37,7 @@ public class RankAction extends BaseAction
 {
 	private RankService rankService = new RankService();
 
-	// ¾ßÌåÅÅÃû
+	// å…·ä½“æ’å
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -46,7 +46,7 @@ public class RankAction extends BaseAction
 			String field = request.getParameter("field");
 			if (field == null || "".equals(field.trim()))
 			{
-				setMessage(request, "³ö´íÁË");
+				setMessage(request, "å‡ºé”™äº†");
 				return mapping.findForward(ERROR);
 			}
 			field = field.trim();
@@ -72,13 +72,13 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 	
 	/**
-	 * ½ÇÉ«ÅÅĞĞ°ñ
+	 * è§’è‰²æ’è¡Œæ¦œ
 	 */
 	private ActionForward role(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -89,7 +89,7 @@ public class RankAction extends BaseAction
 			String field = request.getParameter("field");
 			int type = RankConstants.FILED_TYPE.get(field);
 			
-			// ²éÑ¯VIPÌØÊâ´¦Àí
+			// æŸ¥è¯¢VIPç‰¹æ®Šå¤„ç†
 			if ( field.equals(RankConstants.VIP))
 			{
 				List<RankVo> list = rankService.findVip();
@@ -97,11 +97,11 @@ public class RankAction extends BaseAction
 				int paimin = rankService.findOwnVIP(p_pk);
 				setAttribute(request, "paimin", paimin + "");
 			}
-			// ÍşÍûÔİÊ±²»×ö
+			// å¨æœ›æš‚æ—¶ä¸åš
 			else if (field.equals(RankConstants.WEI_TASK))
 			{
 			}
-			// ÌğÃÛ
+			// ç”œèœœ
 			else if ( field.equals(RankConstants.DEAR) )
 			{
 				List<RankVo> list = rankService.findDear();
@@ -133,7 +133,7 @@ public class RankAction extends BaseAction
 					setAttribute(request, "paimin",paimin == 1 ? (paimin + "") : (paimin / 2+ paimin % 2 + ""));
 				}
 			}
-			// ÒåÆø
+			// ä¹‰æ°”
 			else if (field.equals(RankConstants.YI))
 			{
 				List<FriendVO> list = rankService.paiFriend(1);
@@ -177,7 +177,7 @@ public class RankAction extends BaseAction
 					setAttribute(request, "paimin",paimin == 1 ? (paimin + "") : (paimin/ 2 + paimin % 2 + ""));
 				}
 			}
-			// ½­ºşÊ¥°ñ
+			// æ±Ÿæ¹–åœ£æ¦œ
 			else if (field.equals(RankConstants.SHENG))
 			{
 				List<RankVo> list = rankService.findSheng();
@@ -211,13 +211,13 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 	
 	/**
-	 * ×°±¸ÅÅĞĞ°ñ
+	 * è£…å¤‡æ’è¡Œæ¦œ
 	 */
 	private ActionForward equip(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -241,7 +241,7 @@ public class RankAction extends BaseAction
 			{
 				equip_list =playerEquipDao.getRankList(Equip.JEWELRY);
 			}
-			//×øÆï°ñ
+			//åéª‘æ¦œ
 			else if( field.equals(RankConstants.ZUOQI)  )
 			{	
 				equip_list=md.getMountsRank();
@@ -251,13 +251,13 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 	
 	/**
-	 * °ïÅÉÉùÍû°ñ
+	 * å¸®æ´¾å£°æœ›æ¦œ
 	 * @param list
 	 * @return
 	 */
@@ -270,17 +270,17 @@ public class RankAction extends BaseAction
 		
 		FactionDao factionDao = new FactionDao();
 		
-		//°ïÅÉÉùÍû°ñ
+		//å¸®æ´¾å£°æœ›æ¦œ
 		if ( field.equals(RankConstants.F_PRESTIGE) )
 		{
 			faction_list = factionDao.getPrestigeRank();
 		}
-		//°ïÅÉÕ½Á¦°ñ
+		//å¸®æ´¾æˆ˜åŠ›æ¦œ
 		else if ( field.equals(RankConstants.F_ZHANLI) )
 		{
 			faction_list = factionDao.getZhanliRank();
 		}
-		//°ïÅÉ²Æ¸»°ñ
+		//å¸®æ´¾è´¢å¯Œæ¦œ
 		else if ( field.equals(RankConstants.F_RICH) )
 		{
 			faction_list = factionDao.getRichRank();
@@ -291,7 +291,7 @@ public class RankAction extends BaseAction
 	}
 
 
-	// ²é¿´¸öÈËĞÅÏ¢
+	// æŸ¥çœ‹ä¸ªäººä¿¡æ¯
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -302,7 +302,7 @@ public class RankAction extends BaseAction
 			if (field != null)
 			{
 				int filed_type = RankConstants.FILED_TYPE.get(field.trim());
-				// ¸öÈË
+				// ä¸ªäºº
 				if (filed_type == 22 || filed_type == 1 || filed_type == 6
 						|| filed_type == 7 || filed_type == 2
 						|| filed_type == 9 || filed_type == 10
@@ -333,14 +333,14 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
 	
 
-	// ²é¿´¸öÈËĞÅÏ¢
+	// æŸ¥çœ‹ä¸ªäººä¿¡æ¯
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -349,7 +349,7 @@ public class RankAction extends BaseAction
 			String fd_pk = request.getParameter("fd_pk");
 			if (fd_pk == null || "".equals(fd_pk.trim()))
 			{
-				setMessage(request, "³ö´íÁË");
+				setMessage(request, "å‡ºé”™äº†");
 				return mapping.findForward(ERROR);
 			}
 			RoleEntity roleInfo = RoleService.getRoleInfoById(fd_pk);
@@ -359,12 +359,12 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ²é¿´×°±¸ÊôĞÔ
+	// æŸ¥çœ‹è£…å¤‡å±æ€§
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -395,13 +395,13 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
 	/**
-	 * ²é¿´°ïÅÉĞÅÏ¢
+	 * æŸ¥çœ‹å¸®æ´¾ä¿¡æ¯
 	 */
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -418,13 +418,13 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
 	/**
-	 * ÉêÇë¼ÓÈë°ïÅÉ
+	 * ç”³è¯·åŠ å…¥å¸®æ´¾
 	 */
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -444,12 +444,12 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ³èÎïÏêÏ¸
+	// å® ç‰©è¯¦ç»†
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -464,7 +464,7 @@ public class RankAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}

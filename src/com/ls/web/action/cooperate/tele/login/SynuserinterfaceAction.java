@@ -15,7 +15,7 @@ public class SynuserinterfaceAction extends Action
 {
 	Logger logger = Logger.getLogger("log.service");
 	/**
-	 * µçĞÅÇşµÀµÇÂ½Í¬²½½Ó¿Ú 
+	 * ç”µä¿¡æ¸ é“ç™»é™†åŒæ­¥æ¥å£ 
 	 */
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -23,21 +23,21 @@ public class SynuserinterfaceAction extends Action
 		String custId=request.getParameter("custId");
 		String md5code=request.getParameter("md5code");
 		String zeroNo=request.getParameter("zeroNo");
-		/**·µ»Ø0±íÊ¾Ê§°Ü1±íÊ¾³É¹¦**/
-		logger.debug("Í¬²½·½·¨md5code********************************"+md5code);
-		System.out.println("Í¬²½ÁË*******************************************");
+		/**è¿”å›0è¡¨ç¤ºå¤±è´¥1è¡¨ç¤ºæˆåŠŸ**/
+		logger.debug("åŒæ­¥æ–¹æ³•md5code********************************"+md5code);
+		System.out.println("åŒæ­¥äº†*******************************************");
 		try
 		{
 			if(custId==null ||md5code==null)
 			{
 				response.getWriter().print(1);
-				logger.debug("Í¬²½Ê§°Ü");
+				logger.debug("åŒæ­¥å¤±è´¥");
 			}
 			else
 			{
 				request.getSession().setAttribute("md5code", md5code);
 				response.getWriter().print(0);
-				logger.debug("Í¬²½³É¹¦");
+				logger.debug("åŒæ­¥æˆåŠŸ");
 			}
 		}
 		catch (Exception e)

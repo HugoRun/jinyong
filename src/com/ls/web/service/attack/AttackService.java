@@ -42,8 +42,8 @@ public class AttackService {
 	NpcService npcService = null;
 
 	/**
-	 * playerA¹¥»÷playerB
-	 * @param tong 0 ÊÇÆÕÍ¨PK 1ÊÇ°ïÕ½ 2ÊÇÕóÓª 5ÊÇ¹¥³ÇÕ½
+	 * playerAæ”»å‡»playerB
+	 * @param tong 0 æ˜¯æ™®é€šPK 1æ˜¯å¸®æˆ˜ 2æ˜¯é˜µè¥ 5æ˜¯æ”»åŸæˆ˜
 	 * 
 	 */
 	public void attackPlayer (Fighter playerA,Fighter playerB,String unAttack)
@@ -55,31 +55,31 @@ public class AttackService {
 		FightService fightService = new FightService();
 		playerService = new PlayerService();
 		
-		/**********************³õÊ¼»¯Íæ¼ÒÕ½¶·ÊôĞÔ***************/
+		/**********************åˆå§‹åŒ–ç©å®¶æˆ˜æ–—å±æ€§***************/
 		
 		
-		/*****************************»ØºÏ¿ªÊ¼*********************************/
+		/*****************************å›åˆå¼€å§‹*********************************/
 		if( unAttack==null )
 		{
 			fightService.attackPlayer(playerA, playerB);
 		}
 		
-		//playerB×Ô¶¯·´»÷playerA£¨ÎïÀí¹¥»÷£©
+		//playerBè‡ªåŠ¨åå‡»playerAï¼ˆç‰©ç†æ”»å‡»ï¼‰
 		if( !playerB.isDead() )
 		{
 			fightService.autoCounterattack( playerB,playerA);
 		} 
-		/*****************************»ØºÏ½áÊø*********************************/
+		/*****************************å›åˆç»“æŸ*********************************/
 		
 	}
 	
 	
 	/**
-	 * Ò»¸ö»ØºÏµÄ¹¥»÷
+	 * ä¸€ä¸ªå›åˆçš„æ”»å‡»
 	 */
 	public void attackNPC(Fighter player,List npcs)
 	{
-		//ÅĞ¶ÏÁ½¸övoÊÇ·ñÓĞĞ§
+		//åˆ¤æ–­ä¸¤ä¸ªvoæ˜¯å¦æœ‰æ•ˆ
 		if( player==null || player.getPPk()==0 )
 		{
 			return ;
@@ -90,25 +90,25 @@ public class AttackService {
 		petService = new PetService();
 		
 		
-		/*****************************»ØºÏ¿ªÊ¼*********************************/
+		/*****************************å›åˆå¼€å§‹*********************************/
 		
-		//¹¥»÷npc
+		//æ”»å‡»npc
 		fightService.attackNPC(player, npcs);
-		//³èÎï¹¥»÷
+		//å® ç‰©æ”»å‡»
 		petService.petAttackNpcs(player, npcs);
-		//npc¹¥»÷½ÇÉ«
+		//npcæ”»å‡»è§’è‰²
 		npcService.attackPlayer(npcs, player);
 		
-		/*****************************»ØºÏ½áÊø*********************************/
+		/*****************************å›åˆç»“æŸ*********************************/
 
 	}
 	
 	/**
-	 * Í¨¹ıÍæ¼ÒÖ®¼äµÄÃÅÅÉ¹ØÏµ£¬ÔöÇ¿Íæ¼ÒµÄ¹¥»÷Á¦,Íæ¼ÒA¹¥»÷Íæ¼ÒB
-	 * ÔÚ²»Í¬ÃÅÅÉpkÊ±£¬¼ÓÈëÏà¿ËÔªËØ
-	 * Ã÷½Ì¿ËÉÙÁÖ£ºÃ÷½ÌÓëÉÙÁÖpkÊ±£¬Ã÷½ÌµÄ¹¥»÷Á¦Ìá¸ß10%
-	 * ÉÙÁÖ¿ËØ¤°ï£ºÉÙÁÖÓëØ¤°ïpkÊ±£¬ÉÙÁÖµÄ¹¥»÷Á¦Ìá¸ß10%
-	 * Ø¤°ï¿ËÃ÷½Ì£ºØ¤°ïÓëÃ÷½ÌpkÊ±£¬Ø¤°ïµÄ¹¥»÷Á¦Ìá¸ß10%
+	 * é€šè¿‡ç©å®¶ä¹‹é—´çš„é—¨æ´¾å…³ç³»ï¼Œå¢å¼ºç©å®¶çš„æ”»å‡»åŠ›,ç©å®¶Aæ”»å‡»ç©å®¶B
+	 * åœ¨ä¸åŒé—¨æ´¾pkæ—¶ï¼ŒåŠ å…¥ç›¸å…‹å…ƒç´ 
+	 * æ˜æ•™å…‹å°‘æ—ï¼šæ˜æ•™ä¸å°‘æ—pkæ—¶ï¼Œæ˜æ•™çš„æ”»å‡»åŠ›æé«˜10%
+	 * å°‘æ—å…‹ä¸å¸®ï¼šå°‘æ—ä¸ä¸å¸®pkæ—¶ï¼Œå°‘æ—çš„æ”»å‡»åŠ›æé«˜10%
+	 * ä¸å¸®å…‹æ˜æ•™ï¼šä¸å¸®ä¸æ˜æ•™pkæ—¶ï¼Œä¸å¸®çš„æ”»å‡»åŠ›æé«˜10%
 	 */
 	private void enhanceGJByCampRelation(Fighter playerA,Fighter playerB)
 	{
@@ -142,7 +142,7 @@ public class AttackService {
 */	}
 
 	/**
-	 * ÎïÀí¹¥»÷ÉËº¦
+	 * ç‰©ç†æ”»å‡»ä¼¤å®³
 	 * @param player
 	 * @param npc
 	 * @return
@@ -151,10 +151,10 @@ public class AttackService {
 	{
 		int injure = 0;
 		int character_gi = player.getGj();
-		logger.info("************ÎïÀí¹¥»÷Á¦:"+character_gi);
+		logger.info("************ç‰©ç†æ”»å‡»åŠ›:"+character_gi);
 		int npc_defence = npc.getNpcDefance();
 		injure = AttackService.normalInjureExpressions(character_gi,npc_defence,player.getPGrade(),npc.getLevel() );
-		//logger.info("NPCÊÜµ½Íæ¼Ò¹¥»÷µÄÎïÀí¹¥»÷ÉËº¦:"+injure);
+		//logger.info("NPCå—åˆ°ç©å®¶æ”»å‡»çš„ç‰©ç†æ”»å‡»ä¼¤å®³:"+injure);
 		if( injure<=0 )
 			injure = 0;
 		return injure;
@@ -162,7 +162,7 @@ public class AttackService {
 	
 	/*
 	/**
-	 * ×°±¸¹¥»÷ÉËº¦
+	 * è£…å¤‡æ”»å‡»ä¼¤å®³
 	 * @param player
 	 * @param npc
 	 * @return
@@ -173,27 +173,27 @@ public class AttackService {
 		int character_gi = player.getZbGj();
 		int npc_defence = npc.getNpcDefance();
 		injure = AttackService.normalInjureExpressions(character_gi,npc_defence,player.getPGrade(),npc.getLevel() );
-		logger.info("NPCÊÜµ½Íæ¼Ò¹¥»÷µÄÎïÀí¹¥»÷ÉËº¦:"+injure);
+		logger.info("NPCå—åˆ°ç©å®¶æ”»å‡»çš„ç‰©ç†æ”»å‡»ä¼¤å®³:"+injure);
 		if( injure<=0 )
 			injure = 0;
 		return injure;
 	}
 	*/
 	/**
-	 * µ¥ÎåĞĞ¹¥»÷ÉËº¦
+	 * å•äº”è¡Œæ”»å‡»ä¼¤å®³
 	 * @param singleWXAttack
 	 * @param wxDefence
 	 * @param attack_level
 	 * @param defence_level
-	 * @return	Íæ¼ÒÃ¿100µãÎïÀí·ÀÓùÁ¦ËãÒ»µãÎåĞĞ·ÀÓùÁ¦
+	 * @return	ç©å®¶æ¯100ç‚¹ç‰©ç†é˜²å¾¡åŠ›ç®—ä¸€ç‚¹äº”è¡Œé˜²å¾¡åŠ›
 	 */
 	public static  int getWxInjureValue(NpcskillVO npcSkill,WXDefence wxDefence,int attack_level,int defence_level,int wx_fy_join)
 	{
 		int wxInjureValue = 0;
-		//Èç¹ûnpcÎŞÎåĞĞÉËº¦·µ»Ø0
+		//å¦‚æœnpcæ— äº”è¡Œä¼¤å®³è¿”å›0
 		if ((npcSkill == null) || (wxDefence == null))
 	    {
-			logger.debug("²ÎÊı´íÎó");
+			logger.debug("å‚æ•°é”™è¯¯");
 			return wxInjureValue;
 		}
 		
@@ -228,21 +228,21 @@ public class AttackService {
 		return wxInjureValue;
 	}
 	/**
-	 * ³èÎïµ¥ÎåĞĞ¹¥»÷ÉËº¦
+	 * å® ç‰©å•äº”è¡Œæ”»å‡»ä¼¤å®³
 	 * @param singleWXAttack
 	 * @param wxDefence
 	 * @param attack_level
 	 * @param defence_level
-	 * @param pet_npc_id Õâ¸ö³èÎïµÄnpcid
+	 * @param pet_npc_id è¿™ä¸ªå® ç‰©çš„npcid
 	 * @return
 	 */
 	public static  int getPetWxInjureValue(SingleWXAttack singleWXAttack,WXDefence wxDefence,int attack_level,int defence_level,int pet_npc_Id)
 	{
 		int wxInjureValue = 0;
-		//Èç¹ûnpcÎŞÎåĞĞÉËº¦·µ»Ø0
+		//å¦‚æœnpcæ— äº”è¡Œä¼¤å®³è¿”å›0
 		if( singleWXAttack==null || wxDefence==null )
 		{
-			logger.debug("²ÎÊı´íÎó");
+			logger.debug("å‚æ•°é”™è¯¯");
 			return wxInjureValue;
 		}
 		
@@ -283,7 +283,7 @@ public class AttackService {
 	}
 	
 	/**
-	 * wxAttack¹¥»÷wxDefenceµÄÎåĞĞÉËº¦
+	 * wxAttackæ”»å‡»wxDefenceçš„äº”è¡Œä¼¤å®³
 	 * @param playerA
 	 * @param npc
 	 * @return
@@ -297,12 +297,12 @@ public class AttackService {
 		int shuiInjureValue = 0;
 		int huoInjureValue = 0;
 		int tuInjureValue = 0;
-		//ÎåĞĞÊôĞÔ¼¼ÄÜµÄ¼ÓÔØ
+		//äº”è¡Œå±æ€§æŠ€èƒ½çš„åŠ è½½
 		SkillService skillService = new SkillService();
 		PassSkillInterface passSkillInterface = skillService.getPassSkillPropertyInfo(p_pk);
 		if( wxAttack==null || wxDefence==null || attack_level<0 || defence_level<0 )
 		{
-			logger.info("getWxInjureValue:´«Èë²ÎÊıÎª¿Õ£¡");
+			logger.info("getWxInjureValue:ä¼ å…¥å‚æ•°ä¸ºç©ºï¼");
 			return wxInjureValue;
 		}
 		
@@ -318,8 +318,8 @@ public class AttackService {
 		int huo_fy = wxDefence.getHuoFy();
 		int tu_fy = wxDefence.getTuFy();
 		
-		//ÎåĞĞÏàÉúµÄÔ­Àí£¬½ğÉúË®£¬Ë®ÉúÄ¾£¬Ä¾Éú»ğ£¬»ğÉúÍÁ£¬ÍÁÉú½ğ
-		//°´ÕÕÎåĞĞÏà¿ËµÄÔ­Àí£¬½ğ¿ËÄ¾£¬Ä¾¿ËÍÁ£¬ÍÁ¿ËË®£¬Ë®¿Ë»ğ£¬»ğ¿Ë½ğ
+		//äº”è¡Œç›¸ç”Ÿçš„åŸç†ï¼Œé‡‘ç”Ÿæ°´ï¼Œæ°´ç”Ÿæœ¨ï¼Œæœ¨ç”Ÿç«ï¼Œç«ç”ŸåœŸï¼ŒåœŸç”Ÿé‡‘
+		//æŒ‰ç…§äº”è¡Œç›¸å…‹çš„åŸç†ï¼Œé‡‘å…‹æœ¨ï¼Œæœ¨å…‹åœŸï¼ŒåœŸå…‹æ°´ï¼Œæ°´å…‹ç«ï¼Œç«å…‹é‡‘
 		if( jin_gj>jin_fy )
 			jinInjureValue = wxInjureExpressions(jin_gj,shui_fy,jin_fy,mu_fy);
 			jinInjureValue = jinInjureValue + (int)(jinInjureValue*passSkillInterface.getSkJMultiple());
@@ -339,7 +339,7 @@ public class AttackService {
 		
 		
 		wxInjureValue = jinInjureValue + muInjureValue + shuiInjureValue + huoInjureValue + tuInjureValue;
-		logger.debug("ÎåĞĞ¹¥»÷ÉËº¦:"+wxInjureValue);
+		logger.debug("äº”è¡Œæ”»å‡»ä¼¤å®³:"+wxInjureValue);
 		
 		return wxInjureValue;
 	}
@@ -348,14 +348,14 @@ public class AttackService {
 
 	
 	/**
-	 * ÎåĞĞÉËº¦¼ÆËã
-	 * ÈôÎåĞĞ¹¥»÷£¾ÏàÓ¦µÄÎåĞĞ·ÀÓù£¬ÎåĞĞ¹¥»÷£¾Ïà¿ËµÄÎåĞĞ·ÀÓù£¬ÇÒÏàÉúµÄÎåĞĞ¹¥»÷£¾Ïà¿ËµÄÎåĞĞ·ÀÓù£¬
-	 * ¾ßÌå±íÏÖ¹«Ê½Îª£º	(ÎåĞĞ¹¥»÷£­ÏàÓ¦µÄÎåĞĞ·ÀÓù)¡Á10¡Á{1+(ÎåĞĞ¹¥»÷£­Ïà¿ËµÄÎåĞĞ·ÀÓù)%+[(ÏàÉúÎåĞĞ¹¥»÷£­Ïà¿ËÎåĞĞ·ÀÓù)¡Â2]%}=ÊôĞÔÉËº¦Öµ
-	 * ÒÔ½ğ¹¥»÷ÎªÀı£º(½ğ¹¥£­½ğ·À)¡Á10¡Á{1+(½ğ¹¥£­Ä¾·À)%+[(ÍÁ¹¥£­Ä¾·À)¡Â2]%}=ÊôĞÔÉËº¦Öµ
-	 * @param wx_att			ÎåĞĞ¹¥»÷
-	 * @param xiangsheng_att	ÏàÉúÎåĞĞ
-	 * @param wx_def			ÎåĞĞ·ÀÓù
-	 * @param xiangke_def		Ïà¿ËÎåĞĞ
+	 * äº”è¡Œä¼¤å®³è®¡ç®—
+	 * è‹¥äº”è¡Œæ”»å‡»ï¼ç›¸åº”çš„äº”è¡Œé˜²å¾¡ï¼Œäº”è¡Œæ”»å‡»ï¼ç›¸å…‹çš„äº”è¡Œé˜²å¾¡ï¼Œä¸”ç›¸ç”Ÿçš„äº”è¡Œæ”»å‡»ï¼ç›¸å…‹çš„äº”è¡Œé˜²å¾¡ï¼Œ
+	 * å…·ä½“è¡¨ç°å…¬å¼ä¸ºï¼š	(äº”è¡Œæ”»å‡»ï¼ç›¸åº”çš„äº”è¡Œé˜²å¾¡)Ã—10Ã—{1+(äº”è¡Œæ”»å‡»ï¼ç›¸å…‹çš„äº”è¡Œé˜²å¾¡)%+[(ç›¸ç”Ÿäº”è¡Œæ”»å‡»ï¼ç›¸å…‹äº”è¡Œé˜²å¾¡)Ã·2]%}=å±æ€§ä¼¤å®³å€¼
+	 * ä»¥é‡‘æ”»å‡»ä¸ºä¾‹ï¼š(é‡‘æ”»ï¼é‡‘é˜²)Ã—10Ã—{1+(é‡‘æ”»ï¼æœ¨é˜²)%+[(åœŸæ”»ï¼æœ¨é˜²)Ã·2]%}=å±æ€§ä¼¤å®³å€¼
+	 * @param wx_att			äº”è¡Œæ”»å‡»
+	 * @param xiangsheng_att	ç›¸ç”Ÿäº”è¡Œ
+	 * @param wx_def			äº”è¡Œé˜²å¾¡
+	 * @param xiangke_def		ç›¸å…‹äº”è¡Œ
 	 * @return
 	 */
 	public static int wxInjureExpressions(int wx_att,int xiangsheng_att,int wx_def,int xiangke_def)
@@ -365,8 +365,8 @@ public class AttackService {
 			return 0;
 		}
 		
-		int xiangke_rate = 0;//Ïà¿Ë±ÈÂÊ
-		int xiangsheng_rate = 0;//ÏàÉú±ÈÂÊ
+		int xiangke_rate = 0;//ç›¸å…‹æ¯”ç‡
+		int xiangsheng_rate = 0;//ç›¸ç”Ÿæ¯”ç‡
 		if( wx_att>xiangke_def)
 		{
 			xiangke_rate = wx_att - xiangke_def;
@@ -380,7 +380,7 @@ public class AttackService {
 		return Math.round((float)wx_injure_total);
 	}
 	/**
-	 * ĞÂÎåĞĞÉËº¦¼ÆËã
+	 * æ–°äº”è¡Œä¼¤å®³è®¡ç®—
 	 */
 	public static int wxInjureExpressions(int gj,int fy,int kfy)
 	{
@@ -398,7 +398,7 @@ public class AttackService {
 		return injureValue;
 	}
 	/**
-	 * ĞÂÎåĞĞÉËº¦¼ÆËã
+	 * æ–°äº”è¡Œä¼¤å®³è®¡ç®—
 	 */
 	public static int wxInjureExpression(int gj,int kefy,int shenggj)
 	{
@@ -416,13 +416,13 @@ public class AttackService {
 		return injureValue;
 	}
 	/**
-	 * NPCÎåĞĞÉËº¦¼ÆËã
-	 * (11.26ĞŞ¸Ä ¹«Ê½¸ÄÎªÖ»¼ÆËã¹¥»÷ºÍ·ÀÓù²î)
-	 * £¨12.02ĞŞ¸Ä,¹«Ê½¸ÄÎªÃ¿µã²îÖµ»áµô30µãÑª.£©
+	 * NPCäº”è¡Œä¼¤å®³è®¡ç®—
+	 * (11.26ä¿®æ”¹ å…¬å¼æ”¹ä¸ºåªè®¡ç®—æ”»å‡»å’Œé˜²å¾¡å·®)
+	 * ï¼ˆ12.02ä¿®æ”¹,å…¬å¼æ”¹ä¸ºæ¯ç‚¹å·®å€¼ä¼šæ‰30ç‚¹è¡€.ï¼‰
 	 * @param gj
 	 * @param fy
-	 * @param a_level   ¹¥»÷·½µÄµÈ¼¶
-	 * @param b_level	±»¹¥»÷·½µÄµÈ¼¶
+	 * @param a_level   æ”»å‡»æ–¹çš„ç­‰çº§
+	 * @param b_level	è¢«æ”»å‡»æ–¹çš„ç­‰çº§
 	 * @return
 	 */
 	public static int wxInjureExpressionsNPC(int gj,int fy,int a_level,int b_level)
@@ -441,13 +441,13 @@ public class AttackService {
 	
 	
 	/**
-	 * NPCÎåĞĞÉËº¦¼ÆËã
-	 * (11.26ĞŞ¸Ä ¹«Ê½¸ÄÎªÖ»¼ÆËã¹¥»÷ºÍ·ÀÓù²î)
-	 * £¨12.02ĞŞ¸Ä,¹«Ê½¸ÄÎªÃ¿µã²îÖµ»áµô30µãÑª.£©
+	 * NPCäº”è¡Œä¼¤å®³è®¡ç®—
+	 * (11.26ä¿®æ”¹ å…¬å¼æ”¹ä¸ºåªè®¡ç®—æ”»å‡»å’Œé˜²å¾¡å·®)
+	 * ï¼ˆ12.02ä¿®æ”¹,å…¬å¼æ”¹ä¸ºæ¯ç‚¹å·®å€¼ä¼šæ‰30ç‚¹è¡€.ï¼‰
 	 * @param gj
 	 * @param fy
-	 * @param a_level   ¹¥»÷·½µÄµÈ¼¶
-	 * @param b_level	±»¹¥»÷·½µÄµÈ¼¶
+	 * @param a_level   æ”»å‡»æ–¹çš„ç­‰çº§
+	 * @param b_level	è¢«æ”»å‡»æ–¹çš„ç­‰çº§
 	 * @return
 	 */
 	public static int wxInjureExpressionsNPC(int gj,int fy,int a_level,int b_level,int join_fy)
@@ -465,20 +465,20 @@ public class AttackService {
 	}
 	
 	/**
-	 * ÎåĞĞÉËº¦¼ÆËã
-	 * (11.26ĞŞ¸Ä ¹«Ê½¸ÄÎªÖ»¼ÆËã¹¥»÷ºÍ·ÀÓù²î)
-	 * £¨12.02ĞŞ¸Ä,¹«Ê½¸ÄÎªÃ¿µã²îÖµ»áµô50µãÑª.£©
-	 * £¨12.04ĞŞ¸Ä
-	 	ÎåĞĞÉËº¦ =  (³èÎïÎåĞĞ¹¥»÷-¶Ô·½ÎåĞĞ·ÀÓù£©*µÈ¼¶ÏµÊı-£¨¶Ô·½µÈ¼¶-³èÎïµÈ¼¶£©*³èÎïµÈ¼¶£»
-		×¢:µÈ¼¶ÏµÊı = ³èÎïµÈ¼¶/³èÎï²¶×½µÈ¼¶£¨Êı¾İ¿âÈ¡³öµÄµÈ¼¶£©£¬µÈ¼¶ÏµÊı¡¶=1£©
-		(12.09ĞŞ¸Ä È¥µô *³èÎïµÈ¼¶ ÕâÒ»ÒòËØ.£©
-		£¨12.13 ĞŞ¸Ä
-		³èÎïÔªËØÉËº¦£¨´óÓÚµÈÓÚ0£©:((³èÎïÔªËØÏµÊı-npc¶ÔÓ¦ÔªËØ·ÀÓù)*³èÎïµÈ¼¶/3+(³èÎïµÈ¼¶-npcµÈ¼¶)*³èÎïµÈ¼¶/15)
+	 * äº”è¡Œä¼¤å®³è®¡ç®—
+	 * (11.26ä¿®æ”¹ å…¬å¼æ”¹ä¸ºåªè®¡ç®—æ”»å‡»å’Œé˜²å¾¡å·®)
+	 * ï¼ˆ12.02ä¿®æ”¹,å…¬å¼æ”¹ä¸ºæ¯ç‚¹å·®å€¼ä¼šæ‰50ç‚¹è¡€.ï¼‰
+	 * ï¼ˆ12.04ä¿®æ”¹
+	 	äº”è¡Œä¼¤å®³ =  (å® ç‰©äº”è¡Œæ”»å‡»-å¯¹æ–¹äº”è¡Œé˜²å¾¡ï¼‰*ç­‰çº§ç³»æ•°-ï¼ˆå¯¹æ–¹ç­‰çº§-å® ç‰©ç­‰çº§ï¼‰*å® ç‰©ç­‰çº§ï¼›
+		æ³¨:ç­‰çº§ç³»æ•° = å® ç‰©ç­‰çº§/å® ç‰©æ•æ‰ç­‰çº§ï¼ˆæ•°æ®åº“å–å‡ºçš„ç­‰çº§ï¼‰ï¼Œç­‰çº§ç³»æ•°ã€Š=1ï¼‰
+		(12.09ä¿®æ”¹ å»æ‰ *å® ç‰©ç­‰çº§ è¿™ä¸€å› ç´ .ï¼‰
+		ï¼ˆ12.13 ä¿®æ”¹
+		å® ç‰©å…ƒç´ ä¼¤å®³ï¼ˆå¤§äºç­‰äº0ï¼‰:((å® ç‰©å…ƒç´ ç³»æ•°-npcå¯¹åº”å…ƒç´ é˜²å¾¡)*å® ç‰©ç­‰çº§/3+(å® ç‰©ç­‰çº§-npcç­‰çº§)*å® ç‰©ç­‰çº§/15)
 	 * @param gj
 	 * @param fy
-	 * @param a_level   ¹¥»÷·½µÄµÈ¼¶
-	 * @param b_level	±»¹¥»÷·½µÄµÈ¼¶
-	 * @param pet_npc_level ´Ë³èÎï±»²¶×½Ö®Ç°µÄµÈ¼¶
+	 * @param a_level   æ”»å‡»æ–¹çš„ç­‰çº§
+	 * @param b_level	è¢«æ”»å‡»æ–¹çš„ç­‰çº§
+	 * @param pet_npc_level æ­¤å® ç‰©è¢«æ•æ‰ä¹‹å‰çš„ç­‰çº§
 	 * @return
 	 */
 	public static int wxPetInjureExpressions(int gj,int fy,int pet_level,int b_level, int pet_npc_level)
@@ -487,13 +487,13 @@ public class AttackService {
 			fy = 0;
 		float injureValue = 0f;
 		injureValue = (gj - fy)*pet_level/3 + (pet_level- b_level)*pet_level/15;
-		logger.info("³èÎïµÄÎåĞĞÉËº¦Îª="+injureValue);
+		logger.info("å® ç‰©çš„äº”è¡Œä¼¤å®³ä¸º="+injureValue);
 		
 		
 		return (int)injureValue;
 		/*//injureValue = (int)(( gj-fy ) - ( b_level-a_level )*a_level );
 		//injureValue = (int)( gj-fy )*50;
-		//µÈ¼¶ÏµÊı
+		//ç­‰çº§ç³»æ•°
 		float gradeFinal = pet_level/pet_npc_level;
 		if(gradeFinal > 1){
 			gradeFinal = 1;
@@ -505,13 +505,13 @@ public class AttackService {
 		if(injureValue < 0) 
 			injureValue = 0;
 		
-		logger.info("µÈ¼¶ÏµÊı="+gradeFinal+" ,³èÎïÎåĞĞÉËº¦ÖµÎª="+injureValue);*/
+		logger.info("ç­‰çº§ç³»æ•°="+gradeFinal+" ,å® ç‰©äº”è¡Œä¼¤å®³å€¼ä¸º="+injureValue);*/
 	}
 	
 	
 	/**
-	 * ³èÎï¼¼ÄÜÉËº¦¼ÆËã¹«Ê½
-	 * ¼¼ÄÜÉËº¦ = £¨(£¨¼¼ÄÜÊıÖµ*³èÎïµÈ¼¶£©/8+¼¼ÄÜÊıÖµ+³É³¤ÂÊ*³èÎïµÈ¼¶)-¶Ô·½·ÀÓùÁ¦£©-£¨¶Ô·½µÈ¼¶-³èÎïµÈ¼¶£©*³èÎïµÈ¼¶£»
+	 * å® ç‰©æŠ€èƒ½ä¼¤å®³è®¡ç®—å…¬å¼
+	 * æŠ€èƒ½ä¼¤å®³ = ï¼ˆ(ï¼ˆæŠ€èƒ½æ•°å€¼*å® ç‰©ç­‰çº§ï¼‰/8+æŠ€èƒ½æ•°å€¼+æˆé•¿ç‡*å® ç‰©ç­‰çº§)-å¯¹æ–¹é˜²å¾¡åŠ›ï¼‰-ï¼ˆå¯¹æ–¹ç­‰çº§-å® ç‰©ç­‰çº§ï¼‰*å® ç‰©ç­‰çº§ï¼›
 	 */
 	/*public static int petSkillInjureExpressions(double pet_skill_gj,int pet_level,double pet_grow,int npc_defence,int npc_level)
 	{
@@ -519,17 +519,17 @@ public class AttackService {
 		//skillGj, pet.getPetGrade(), pet.getPetGrow(), npc.getNpcDefance(), npc.getLevel()
 		injureValue = (int)(( ((pet_skill_gj*pet_level)/8 + pet_skill_gj+  pet_grow*pet_level) - npc_defence) - (npc_level-pet_level)*pet_level);
 		
-		logger.info("³èÎï¼¼ÄÜ¹¥»÷ÉËº¦:"+injureValue);
+		logger.info("å® ç‰©æŠ€èƒ½æ”»å‡»ä¼¤å®³:"+injureValue);
 		if( injureValue<=0 )
 			injureValue=0;
 		return injureValue;
 	}
 */
 	/**
-	 * ³èÎï¼¼ÄÜÉËº¦¼ÆËã¹«Ê½
-	 * ¼¼ÄÜÉËº¦ = £¨(£¨¼¼ÄÜÊıÖµ*³èÎïµÈ¼¶£©/8+¼¼ÄÜÊıÖµ+³É³¤ÂÊ*³èÎïµÈ¼¶)-¶Ô·½·ÀÓùÁ¦£©-£¨¶Ô·½µÈ¼¶-³èÎïµÈ¼¶£©*³èÎïµÈ¼¶£»
-	 * 4ÔÂ8ÈÕ ĞŞ¸Ä ¼¼ÄÜÉËº¦ = £¨(£¨¼¼ÄÜÊıÖµ*³èÎïµÈ¼¶£©/8+¼¼ÄÜÊıÖµ+³É³¤ÂÊ*³èÎïµÈ¼¶)-¶Ô·½·ÀÓùÁ¦£©
-	 * ĞŞ¸Ä ¼¼ÄÜÉËº¦ = £¨³èÎï¼¼ÄÜ¹¥»÷Á¦ + ³èÎïÆÕÍ¨¹¥»÷Á¦ £© - ¶Ô·½·ÀÓù 
+	 * å® ç‰©æŠ€èƒ½ä¼¤å®³è®¡ç®—å…¬å¼
+	 * æŠ€èƒ½ä¼¤å®³ = ï¼ˆ(ï¼ˆæŠ€èƒ½æ•°å€¼*å® ç‰©ç­‰çº§ï¼‰/8+æŠ€èƒ½æ•°å€¼+æˆé•¿ç‡*å® ç‰©ç­‰çº§)-å¯¹æ–¹é˜²å¾¡åŠ›ï¼‰-ï¼ˆå¯¹æ–¹ç­‰çº§-å® ç‰©ç­‰çº§ï¼‰*å® ç‰©ç­‰çº§ï¼›
+	 * 4æœˆ8æ—¥ ä¿®æ”¹ æŠ€èƒ½ä¼¤å®³ = ï¼ˆ(ï¼ˆæŠ€èƒ½æ•°å€¼*å® ç‰©ç­‰çº§ï¼‰/8+æŠ€èƒ½æ•°å€¼+æˆé•¿ç‡*å® ç‰©ç­‰çº§)-å¯¹æ–¹é˜²å¾¡åŠ›ï¼‰
+	 * ä¿®æ”¹ æŠ€èƒ½ä¼¤å®³ = ï¼ˆå® ç‰©æŠ€èƒ½æ”»å‡»åŠ› + å® ç‰©æ™®é€šæ”»å‡»åŠ› ï¼‰ - å¯¹æ–¹é˜²å¾¡ 
 	 */
 	public static int petSkillInjureExpressions(double pet_skill_gj,int pet_level,double pet_grow,int npc_defence,int npc_level,int pet_physics_gj)
 	{
@@ -538,7 +538,7 @@ public class AttackService {
 		//injureValue = (int)(( ((pet_skill_gj*pet_level)/8 + pet_skill_gj+  pet_grow*pet_level) - npc_defence) - (npc_level-pet_level)*pet_level);
 		//injureValue = (int)(( ((pet_skill_gj*pet_level)/8 + pet_skill_gj+  pet_grow*pet_level) - npc_defence));
 		injureValue = (int)(pet_skill_gj+pet_physics_gj-npc_defence);
-		logger.info("³èÎï¼¼ÄÜ¹¥»÷ÉËº¦:"+injureValue);
+		logger.info("å® ç‰©æŠ€èƒ½æ”»å‡»ä¼¤å®³:"+injureValue);
 		if( injureValue<=0 )
 			injureValue=0;
 		return injureValue;
@@ -546,13 +546,13 @@ public class AttackService {
 	
 	
 	/**
-	 * Íæ¼Ò¹¥»÷npcµÄÎïÀíÉËº¦
-	 * ÆÕÍ¨µÄÉËº¦Öµ¼ÆËã¹«Ê½
+	 * ç©å®¶æ”»å‡»npcçš„ç‰©ç†ä¼¤å®³
+	 * æ™®é€šçš„ä¼¤å®³å€¼è®¡ç®—å…¬å¼
 	 * @param user_attack
 	 * @param npc_defence
 	 * @param user_level
 	 * @param npc_level
-	 * @return £¨¹¥»÷-·ÀÓù£©-£¨NPCµÈ¼¶-³èÎïµÈ¼¶£©*³èÎïµÈ¼¶*0.5
+	 * @return ï¼ˆæ”»å‡»-é˜²å¾¡ï¼‰-ï¼ˆNPCç­‰çº§-å® ç‰©ç­‰çº§ï¼‰*å® ç‰©ç­‰çº§*0.5
 	 */
 	public  static int normalInjureExpressions(int user_attack,int npc_defence,int user_level,int npc_level)
 	{
@@ -562,7 +562,7 @@ public class AttackService {
 			npc_defence = 0;
 		
 		int injureValue = 0;
-		//3ÔÂ27ÈÕĞŞ¸Ä È¥µôµÈ¼¶ÏŞÖÆ
+		//3æœˆ27æ—¥ä¿®æ”¹ å»æ‰ç­‰çº§é™åˆ¶
 		injureValue = (int)(( user_attack-npc_defence )*(1-(npc_level-user_level)/10));
 		if(injureValue<=0)
 		{
@@ -573,9 +573,9 @@ public class AttackService {
 	
 	
 	/**
-	 * npc¹¥»÷Íæ¼ÒµÄÉËº¦
-	 * npc¼¼ÄÜÉËº¦Öµ¼ÆËã¹«Ê½
-	 * NPC¹¥»÷-£¨Íæ¼Ò·ÀÓù*0.6+×°±¸·ÀÓù*0.4£©-£¨Íæ¼ÒµÈ¼¶-NPCµÈ¼¶£©*NPCµÈ¼¶*0.5£»
+	 * npcæ”»å‡»ç©å®¶çš„ä¼¤å®³
+	 * npcæŠ€èƒ½ä¼¤å®³å€¼è®¡ç®—å…¬å¼
+	 * NPCæ”»å‡»-ï¼ˆç©å®¶é˜²å¾¡*0.6+è£…å¤‡é˜²å¾¡*0.4ï¼‰-ï¼ˆç©å®¶ç­‰çº§-NPCç­‰çº§ï¼‰*NPCç­‰çº§*0.5ï¼›
 	 */
 	public static int npcSkillInjureExpressions(int npc_gj,int user_fy,int user_zbfy,int user_level,int npc_level)
 	{
@@ -587,23 +587,23 @@ public class AttackService {
 	}
 	
 	/**
-	 * ´¦ÀíPKËÀÍöºóµÄ½á¹û
+	 * å¤„ç†PKæ­»äº¡åçš„ç»“æœ
 	 * @author Thomas.lei
-	 * @param PlayerA Ö÷¶¯¹¥»÷Íæ¼Ò
-	 * @param PlayerB ±»¶¯¹¥»÷Íæ¼Ò
+	 * @param PlayerA ä¸»åŠ¨æ”»å‡»ç©å®¶
+	 * @param PlayerB è¢«åŠ¨æ”»å‡»ç©å®¶
 	 */
 	public static void processPKOver(Fighter playerA,Fighter playerB,HttpServletRequest request)
 	{
 		if(playerA.isDead())
 		{
-			playerA.appendKillDisplay("Äú±»"+playerB.getPName()+ "É±ËÀÁË!");
+			playerA.appendKillDisplay("æ‚¨è¢«"+playerB.getPName()+ "æ€æ­»äº†!");
 			
 			request.setAttribute("player", playerA);
 			request.setAttribute("dropExp", "" + playerA.getDropExp());
 		}
 		else
 		{
-			//µÃµ½ËÀÍöÍæ¼ÒµôÂäµÄ¾­ÑéÖµ
+			//å¾—åˆ°æ­»äº¡ç©å®¶æ‰è½çš„ç»éªŒå€¼
 			long dropExp = 0;
 			if (playerB.isNotDropExp())
 			{
@@ -615,17 +615,17 @@ public class AttackService {
 				dropExp = playerB.getDropExp();
 			}
 			
-			//·â×°request
+			//å°è£…request
 			request.setAttribute("dropExp", "" + dropExp);
 			request.setAttribute("playerA", playerA);
 			request.setAttribute("playerB", playerB);
 		}
 	}
 	/**
-	 * ´¦Àí¹¥»÷NPCµÄ½á¹û
+	 * å¤„ç†æ”»å‡»NPCçš„ç»“æœ
 	 * @author Thomas.lei
-	 * @param Player Íæ¼Ò
-	 * @param npcs NPCÁĞ±í
+	 * @param Player ç©å®¶
+	 * @param npcs NPCåˆ—è¡¨
 	 * @param roleEntity
 	 * @param request
 	 */
@@ -640,9 +640,9 @@ public class AttackService {
 				roleEntity.getTaskInfo().setTaskMenu(-1);
 				roleEntity.getTaskInfo().setTaskPoint(""); 
 			}
-			//Çå³ıÍæ¼ÒÉèÖÃ×Ô¶¯´ò¹ÖµÄ
+			//æ¸…é™¤ç©å®¶è®¾ç½®è‡ªåŠ¨æ‰“æ€ªçš„
 			roleEntity.getSettingInfo().getAutoAttackSetting().init();
-			//Í³¼ÆĞèÒª
+			//ç»Ÿè®¡éœ€è¦
 			new RankService().updateAdd(roleEntity.getBasicInfo().getPPk(), "dead", 1);
 			request.setAttribute("player", player);	
 		}
@@ -650,7 +650,7 @@ public class AttackService {
 		{
 			FightList fightList = new FightList();
 			fightService.playerWIN(player, fightList); 
-			//Çå³ıÈÎÎñÖĞ¼äµã
+			//æ¸…é™¤ä»»åŠ¡ä¸­é—´ç‚¹
 			TaskPageService taskPageService = new TaskPageService();
 			String deadnpcxiayibu = taskPageService.deleteTeskPorint(roleEntity); 
 			String displiey = (String)request.getSession().getAttribute("getKillDisplay");
@@ -662,50 +662,50 @@ public class AttackService {
 		}
 	}
 	/**
-	 * µÃµ½´Ë´ÎPKµÄÀàĞÍ 0ÎªÆÕÍ¨PK 1ÎªÇ¿ÖÆPK 3+Îª»î¶¯PKÈç°ïÕ½ ÀŞÌ¨µÈ
+	 * å¾—åˆ°æ­¤æ¬¡PKçš„ç±»å‹ 0ä¸ºæ™®é€šPK 1ä¸ºå¼ºåˆ¶PK 3+ä¸ºæ´»åŠ¨PKå¦‚å¸®æˆ˜ æ“‚å°ç­‰
 	 * @author Thomas.lei
 	 * @param RoleEntityA
 	 * @param RoleEntityB
-	 * @return String ´Ë´ÎµÄpKÀàĞÍ
+	 * @return String æ­¤æ¬¡çš„pKç±»å‹
 	 */
 	public static String getPKType(RoleEntity roleA,RoleEntity roleB)
 	{
-		//µÃµ½Á½¸öÍæ¼ÒµÄÖÖ×åĞÅÏ¢
+		//å¾—åˆ°ä¸¤ä¸ªç©å®¶çš„ç§æ—ä¿¡æ¯
 		int a_race=roleA.getBasicInfo().getPRace();
 		int b_race=roleB.getBasicInfo().getPRace();
-		//µÃµ½Á½¸öÍæ¼ÒµÄPK¿ª¹ØĞÅÏ¢
+		//å¾—åˆ°ä¸¤ä¸ªç©å®¶çš„PKå¼€å…³ä¿¡æ¯
 		int pkSwichA=roleA.getBasicInfo().getPkSwitch();
 		int pkSwichB=roleB.getBasicInfo().getPkSwitch();
-		//ĞèÒª·µ»ØµÄ£Ğ£ËÀàĞÍ
-		String pkType=GameArgs.PK_TYPE_PUTONG;//Ä¬ÈÏÎªÆÕÍ¨PK
-		//²»Í¬ÖÖ×å¶øÇÒPK¿ª¹Ø¶¼Îª¿ªÔòÎªÆÕÍ¨PK
+		//éœ€è¦è¿”å›çš„ï¼°ï¼«ç±»å‹
+		String pkType=GameArgs.PK_TYPE_PUTONG;//é»˜è®¤ä¸ºæ™®é€šPK
+		//ä¸åŒç§æ—è€Œä¸”PKå¼€å…³éƒ½ä¸ºå¼€åˆ™ä¸ºæ™®é€šPK
 		if(a_race!=b_race&&pkSwichA==Integer.parseInt(GameArgs.PK_SWICH_OPEN)&&pkSwichB==Integer.parseInt(GameArgs.PK_SWICH_OPEN))
 		{
 			pkType=GameArgs.PK_TYPE_PUTONG;
 		}
-		//Í¬ÖÖ×åPKÎªÇ¿ÖÆPK  ²»Í¬ÖÖ×åpk¿ª¹ØÓĞÒ»¸öÊÇ¹ØµÄ¾ÍÎªÇ¿ÖÆPK
+		//åŒç§æ—PKä¸ºå¼ºåˆ¶PK  ä¸åŒç§æ—pkå¼€å…³æœ‰ä¸€ä¸ªæ˜¯å…³çš„å°±ä¸ºå¼ºåˆ¶PK
 		if((a_race!=b_race&&pkSwichA==Integer.parseInt(GameArgs.PK_SWICH_OPEN)&&pkSwichB==Integer.parseInt(GameArgs.PK_SWICH_OPEN))||(a_race!=b_race&&(pkSwichA==Integer.parseInt(GameArgs.PK_SWICH_CLOSE)||pkSwichB==Integer.parseInt(GameArgs.PK_SWICH_CLOSE))))
 		{
 			pkType=GameArgs.PK_TYPE_QIANGZHI;
 		}
-		//»î¶¯PK
+		//æ´»åŠ¨PK
 		if(false)
 		{
-			/***ÓĞ»î¶¯µÄÊ±ºòÌí¼ÓÅĞ¶ÏÌõ¼ş²¢·µ»ØpkÀàĞÍ**/
+			/***æœ‰æ´»åŠ¨çš„æ—¶å€™æ·»åŠ åˆ¤æ–­æ¡ä»¶å¹¶è¿”å›pkç±»å‹**/
 		}
 		return pkType;
 	}
 	/**
-	 * pk½áÊøºóÔö¼ÓÍæ¼ÒµÄ³ğºŞĞÅÏ¢
-	 * playerA Ê§°ÜÕß
-	 * playerB Ê¤ÀûÕß
+	 * pkç»“æŸåå¢åŠ ç©å®¶çš„ä»‡æ¨ä¿¡æ¯
+	 * playerA å¤±è´¥è€…
+	 * playerB èƒœåˆ©è€…
 	 */
 	public static void processPkHite(Fighter loser,Fighter winner)
 	{
 		PKHiteService pkhiteservice=new PKHiteService();
 		RoleEntity winner_info=RoleService.getRoleInfoById(winner.getPPk());
 		RoleEntity die_info=RoleService.getRoleInfoById(loser.getPPk());
-		/*****ĞÂÊÖÒıµ¼½×¶Îpk²»¼Æ³ğºŞ¶È****/
+		/*****æ–°æ‰‹å¼•å¯¼é˜¶æ®µpkä¸è®¡ä»‡æ¨åº¦****/
 		if(winner_info.getIsRookie()==true||die_info.getIsRookie()==true)
 		{
 			return;
@@ -715,7 +715,7 @@ public class AttackService {
 		int generalPkCount=0;
 		int activePkCount=0;
 		
-		String tong = GameArgs.PK_TYPE_PUTONG;//ÔİÊ±Ê¹ÓÃ
+		String tong = GameArgs.PK_TYPE_PUTONG;//æš‚æ—¶ä½¿ç”¨
 		
 		if(tong.equals(GameArgs.PK_TYPE_ACTIVE))
 		{
@@ -727,7 +727,7 @@ public class AttackService {
 			hitePoint=10;
 			generalPkCount=1;
 		}
-		if(pv!=null)//ÓĞ¼ÇÂ¼Ôò¸üĞÂ³ğºŞµã
+		if(pv!=null)//æœ‰è®°å½•åˆ™æ›´æ–°ä»‡æ¨ç‚¹
 		{
 			pv.setEnemyGrade(winner_info.getBasicInfo().getGrade());
 			pv.setHitePoint(pv.getHitePoint()+hitePoint);
@@ -735,7 +735,7 @@ public class AttackService {
 			pv.setActivePkCount(pv.getActivePkCount()+activePkCount);
 			pkhiteservice.updateHitePoint(pv);
 		}
-		else//Ã»ÓĞ¼ÇÂ¼ÔòÔö¼ÓĞÂµÄ³ğºŞ¶ÔÏó
+		else//æ²¡æœ‰è®°å½•åˆ™å¢åŠ æ–°çš„ä»‡æ¨å¯¹è±¡
 		{
 			pv=new PKHiteVO();
 			pv.setP_pk(loser.getPPk());

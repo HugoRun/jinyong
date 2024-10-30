@@ -10,7 +10,8 @@
 	String pwd = (String)request.getAttribute("pwd");
 	String lid = (String)request.getAttribute("lid");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p>
 您已经成功注册了<s:message key = "gamename"/>的帐号!游戏帐号为:<%=user_name %>,登录密码为:<%=pwd%>请牢记您的游戏帐号和密码!<br/>

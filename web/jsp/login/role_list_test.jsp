@@ -6,7 +6,8 @@ com.lw.vo.systemnotify.SystemNotifyVO" pageEncoding="UTF-8"%><%@page import="com
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p>
 <%

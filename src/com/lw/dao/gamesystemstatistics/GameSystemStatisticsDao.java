@@ -9,24 +9,24 @@ import com.lw.vo.gamesystemstatistics.GameSystemStatisticsVO;
 public class GameSystemStatisticsDao extends DaoBase
 {
 	/**
-	 * ²åÈëÎïÆ·µÄĞÅÏ¢
+	 * æ’å…¥ç‰©å“çš„ä¿¡æ¯
 	 * 
 	 * @param propID
-	 *            ÎïÆ·ID
+	 *            ç‰©å“ID
 	 * @param propType
-	 *            ÎïÆ·ÀàĞÍ
+	 *            ç‰©å“ç±»å‹
 	 * @param propNum
-	 *            ÎïÆ·ÊıÁ¿
+	 *            ç‰©å“æ•°é‡
 	 * @param propApproachType
-	 *            ¸ÃÍ¾¾¶µÄÀàĞÍ
+	 *            è¯¥é€”å¾„çš„ç±»å‹
 	 * @param propApproach
-	 *            Í¾¾¶ÀàĞÍ
+	 *            é€”å¾„ç±»å‹
 	 */
 	public void insertPropMessage(int propID, int propType, String propNum,
 			String propApproachType, String propApproach, String date,
 			String time)
 	{
-		String sql = "insert into game_statistics values (null,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO game_statistics values (null,?,?,?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -56,23 +56,23 @@ public class GameSystemStatisticsDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½ÎïÆ·¶öĞÅÏ¢
+	 * å¾—åˆ°ç‰©å“é¥¿ä¿¡æ¯
 	 * 
 	 * @param propID
-	 *            ÎïÆ·ID
+	 *            ç‰©å“ID
 	 * @param propType
-	 *            ÎïÆ·ÀàĞÍ
+	 *            ç‰©å“ç±»å‹
 	 * @param propApproachType
-	 *            ¸ÃÍ¾¾¶µÄÀàĞÍ
+	 *            è¯¥é€”å¾„çš„ç±»å‹
 	 * @param propApproach
-	 *            Í¾¾¶ÀàĞÍ
+	 *            é€”å¾„ç±»å‹
 	 */
 	public GameSystemStatisticsVO selectPropMessage(int propID, int propType,
 			String propApproachType, String propApproach, String date,
 			String time)
 	{
 		GameSystemStatisticsVO vo = null;
-		String sql = "select * from game_statistics where prop_id = " + propID
+		String sql = "SELECT * FROM game_statistics where prop_id = " + propID
 				+ " and prop_type = " + propType
 				+ " and prop_approach_type = '" + propApproachType
 				+ "' and prop_approach = '" + propApproach + "' and date = '"
@@ -104,18 +104,18 @@ public class GameSystemStatisticsDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂÎïÆ·µÄĞÅÏ¢
+	 * æ›´æ–°ç‰©å“çš„ä¿¡æ¯
 	 * 
 	 * @param propID
-	 *            ÎïÆ·ID
+	 *            ç‰©å“ID
 	 * @param propType
-	 *            ÎïÆ·ÀàĞÍ
+	 *            ç‰©å“ç±»å‹
 	 * @param propNum
-	 *            ÎïÆ·ÊıÁ¿
+	 *            ç‰©å“æ•°é‡
 	 * @param propApproachType
-	 *            ¸ÃÍ¾¾¶µÄÀàĞÍ
+	 *            è¯¥é€”å¾„çš„ç±»å‹
 	 * @param propApproach
-	 *            Í¾¾¶ÀàĞÍ
+	 *            é€”å¾„ç±»å‹
 	 */
 	public void updatePropMessage(int propID, int propType, String propNum,
 			String propApproachType, String propApproach, String date,
@@ -145,12 +145,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		}
 	}
 
-	/** Í³¼Æ¿â´æ(Íæ¼Ò²Ö¿â½ğÇ®) */
+	/** ç»Ÿè®¡åº“å­˜(ç©å®¶ä»“åº“é‡‘é’±) */
 	public int getPlayerCangkuMoney()
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select sum(uw_money_number) from u_warehouse_info";
+		String sql = "SELECT sum(uw_money_number) from u_warehouse_info";
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -175,7 +175,7 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(Íæ¼Ò½ğÇ®) */
+	/** ç»Ÿè®¡åº“å­˜(ç©å®¶é‡‘é’±) */
 	public int getPlayerGroupMoney()
 	{
 		int num = 0;
@@ -205,12 +205,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(Íæ¼Ò°ü¹üµÀ¾ß) */
+	/** ç»Ÿè®¡åº“å­˜(ç©å®¶åŒ…è£¹é“å…·) */
 	public int getPlayerGroupProp(int prop_id)
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select sum(prop_num) from u_propgroup_info where prop_id = "
+		String sql = "SELECT sum(prop_num) from u_propgroup_info where prop_id = "
 				+ prop_id;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -237,12 +237,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(Íæ¼Ò°ü¹ü×°±¸) */
+	/** ç»Ÿè®¡åº“å­˜(ç©å®¶åŒ…è£¹è£…å¤‡) */
 	public int getPlayerGroupZhuangbei(int prop_id, int prop_type)
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select count(*) from u_part_equip where w_id = "
+		String sql = "SELECT count(*) from u_part_equip where w_id = "
 				+ prop_id + " and table_type = " + prop_type;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -268,12 +268,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(²Ö¿âµÀ¾ß) */
+	/** ç»Ÿè®¡åº“å­˜(ä»“åº“é“å…·) */
 	public int getPlayerCangku(int prop_id, int prop_type)
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select sum(uw_number) from u_warehouse_info where uw_prop_id = "
+		String sql = "SELECT sum(uw_number) from u_warehouse_info where uw_prop_id = "
 				+ prop_id;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -300,12 +300,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(²Ö¿â×°±¸) */
+	/** ç»Ÿè®¡åº“å­˜(ä»“åº“è£…å¤‡) */
 	public int getPlayerCangkuEquip(int prop_id, int prop_type)
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select count(*) from u_warehouse_equip where w_id = "
+		String sql = "SELECT count(*) from u_warehouse_equip where w_id = "
 				+ prop_id + " and table_type = " + prop_type;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -332,12 +332,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(°ïÅÉ²Ö¿â×°±¸) */
+	/** ç»Ÿè®¡åº“å­˜(å¸®æ´¾ä»“åº“è£…å¤‡) */
 	public int getPlayerTongZhuangbei(int prop_id, int prop_type)
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select count(*) from u_tong_resource_equip where w_id = "
+		String sql = "SELECT count(*) from u_tong_resource_equip where w_id = "
 				+ prop_id + " and table_type = " + prop_type;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -363,12 +363,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(°ïÅÉ²Ö¿âµÀ¾ß) */
+	/** ç»Ÿè®¡åº“å­˜(å¸®æ´¾ä»“åº“é“å…·) */
 	public int getPlayerTongProp(int prop_id)
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select count(*) from u_tong_resource_prop where prop_id = "
+		String sql = "SELECT count(*) from u_tong_resource_prop where prop_id = "
 				+ prop_id;
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -394,12 +394,12 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼Æ¿â´æ(°ïÅÉ²Ö¿âÒøÁ½) */
+	/** ç»Ÿè®¡åº“å­˜(å¸®æ´¾ä»“åº“é“¶ä¸¤) */
 	public int getPlayerTongMoney()
 	{
 		int num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select sum(utm_money) from u_tong_money";
+		String sql = "SELECT sum(utm_money) from u_tong_money";
 		logger.debug(sql);
 		conn = dbConn.getConn();
 		try
@@ -424,11 +424,11 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼ÆÍæ¼ÒÔª±¦¿â´æ */
+	/** ç»Ÿè®¡ç©å®¶å…ƒå®åº“å­˜ */
 	public int getPlayerYuanBao()
 	{
 		int num = 0;
-		String sql = "select sum(yuanbao) from u_login_info";
+		String sql = "SELECT sum(yuanbao) from u_login_info";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
 		conn = dbConn.getConn();
@@ -454,11 +454,11 @@ public class GameSystemStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** µÃµ½ÉÌ³ÇµÄµÀ¾ß¼Û¸ñ */
+	/** å¾—åˆ°å•†åŸçš„é“å…·ä»·æ ¼ */
 	public int getCommodityPrice(int prop_id)
 	{
 		int price = 0;
-		String sql = "select original_price from commodity_info where prop_id = "
+		String sql = "SELECT original_price from commodity_info where prop_id = "
 				+ prop_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		logger.debug(sql);

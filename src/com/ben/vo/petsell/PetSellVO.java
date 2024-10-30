@@ -4,22 +4,22 @@
 package com.ben.vo.petsell;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 2:09:29 PM
  */
 public class PetSellVO {
 	/** ID */
 	private int psPk;
-	/** ÇëÇó½ÇÉ«id */
+	/** è¯·æ±‚è§’è‰²id */
 	private int pPk;
-	/** ±»ÇëÇó½ÇÉ«id */
+	/** è¢«è¯·æ±‚è§’è‰²id */
 	private int pByPk;
-	/** ¶ÔÓ¦pet±íÀïµÄid */
+	/** å¯¹åº”petè¡¨é‡Œçš„id */
 	private int petId;
-	/** ·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÒø×Ó */
+	/** å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“¶å­ */
 	private int psSilverMoney;
-	/** ·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÍ­Ç® */
+	/** å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“œé’± */
 	private int psCopperMoney;
 
 	public int getPsPk() {

@@ -9,19 +9,19 @@ import com.ls.pub.util.MoneyUtil;
 
 public class BonusService
 {
-	// ÊÇ·ñ¿ÉÒÔÁìÈ¡¸Ã½±Àø
+	// æ˜¯å¦å¯ä»¥é¢†å–è¯¥å¥–åŠ±
 	public boolean ifPlayerGetThisBonus(RoleEntity roleInfo, String bonus)
 	{
 		return true;
 	}
 
-	// Íæ¼ÒÁìÈ¡½±Àø
+	// ç©å®¶é¢†å–å¥–åŠ±
 	public void getThisBonus(RoleEntity roleInfo, String bonus)
 	{
 
 	}
 
-	// ½±ÀøÏÔÊ¾
+	// å¥–åŠ±æ˜¾ç¤º
 	public String getBonusPrint(String bonus)
 	{
 		StringBuffer sb = new StringBuffer();
@@ -33,21 +33,21 @@ public class BonusService
 			{
 				int equip_id = Integer.parseInt(prop[1]);
 				GameEquip equip = EquipCache.getById(equip_id);
-				sb.append(equip.getName() + "¡Á" + prop[2]);
+				sb.append(equip.getName() + "Ã—" + prop[2]);
 			}
 			else if (prop[0].equals("4"))
 			{
 				int prop_id = Integer.parseInt(prop[1]);
 				PropVO pvo =  PropCache.getPropById(prop_id);
-				sb.append(pvo.getPropName() + "¡Á" + prop[2]);
+				sb.append(pvo.getPropName() + "Ã—" + prop[2]);
 			}
 			else if (prop[0].equals("5"))
 			{
-				sb.append("¾­Ñé  " + prop[2]);
+				sb.append("ç»éªŒ  " + prop[2]);
 			}
 			else
 			{
-				sb.append("ÒøÁ½"+ MoneyUtil.changeCopperToStr(prop[2]));
+				sb.append("é“¶ä¸¤"+ MoneyUtil.changeCopperToStr(prop[2]));
 			}
 			if (i != bonusprop.length - 1)
 			{

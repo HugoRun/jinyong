@@ -10,14 +10,14 @@ import com.ls.ben.cache.CacheBase;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- *	³ÆºÅ»º´æ
+ *	ç§°å·ç¼“å­˜
  */
 public class TitleCache extends CacheBase
 {
 	public static String HONOUR_BY_ID = "honour_by_id";
 	
 	/**
-	 * Í¨¹ıidµÃµ½³ÆĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°ç§°ä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
@@ -38,7 +38,7 @@ public class TitleCache extends CacheBase
 			}
 			else
 			{
-				DataErrorLog.debugData("TitleCache.getById:ÎŞ¸Ã³ÆºÅ£¬id="+id);
+				DataErrorLog.debugData("TitleCache.getById:æ— è¯¥ç§°å·ï¼Œid="+id);
 			}
 		}
 		return title;

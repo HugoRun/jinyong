@@ -1,11 +1,5 @@
 package com.pm.dao.auction;
 
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.ls.ben.dao.DaoBase;
 import com.ls.ben.vo.info.partinfo.PlayerEquipVO;
 import com.ls.ben.vo.info.partinfo.PlayerPropGroupVO;
@@ -14,1331 +8,990 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 import com.pm.vo.auction.AuctionVO;
 
-public class AuctionDAO extends DaoBase
-{
-
-	/**
-	 * ½«×°±¸´ÓÍæ¼Ò¸öÈË°ü¹ü×ªµ½ÅÄÂô³¡
-	 * 
-	 * @param uPk
-	 * @param pPk
-	 * @param accouter_id
-	 *            ×°±¸id
-	 * @param accouter_type
-	 *            ·ÅÈëÅÄÂô³¡ÀàĞÍ
-	 * @param propPrice
-	 *            Âô¼Ò³öµÄ¼Û¸ñ
-	 * @param remove_num
-	 *            ÎïÆ·µÄÊıÁ¿
-	 */
-	public void addPropToAuction(int uPk, int pPk, int accouter_id,
-			int accouter_type, int propPrice, String goodsName, int remove_num,
-			PlayerPropGroupVO propGroup, int payType, int auctionPrice)
-	{
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date dt = new Date();
-
-		String sql = "insert into u_auction(u_pk,p_pk,auction_type,pay_type,goods_id,goods_name,goods_number,auction_price,auction_price_auction,buy_price,auction_time,auction_failed,auction_sell,prop_use_control,w_Bonding,w_protect,w_isReconfirm) values('"
-				+ uPk
-				+ "','"
-				+ pPk
-				+ "','"
-				+ accouter_type
-				+ "',"
-				+ payType
-				+ ",'"
-				+ accouter_id
-				+ "','"
-				+ StringUtil.gbToISO(goodsName)
-				+ "','"
-				+ remove_num
-				+ "','"
-				+ propPrice
-				+ "',"
-				+ auctionPrice
-				+ ",0,'"
-				+ sf.format(dt)
-				+ "',1,1,'"
-				+ propGroup.getPropUseControl()
-				+ "','"
-				+ propGroup.getPropBonding()
-				+ "','"
-				+ propGroup.getPropProtect()
-				+ "','"
-				+ propGroup.getPropIsReconfirm() + "')";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("auctionDAOÖĞµÄ addToAuctionµÄsql : " + sql);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * µÃµ½ÅÄÂô³¡ÀïµÄpw_typeÀàĞÍµÄËùÓĞµÄµÀ¾ß
-	 * 
-	 * @param p_pk
-	 * @param auctionType
-	 *            ÅÄÂô³¡µÀ¾ß·ÖÀà
-	 * @return
-	 */
-	public QueryPage getPagePropsByPpk(int p_pk, int auctionType, int page_no,
-			String sortType, int payType)
-	{
-		QueryPage queryPage = null;
-
-		List<AuctionVO> props = new ArrayList<AuctionVO>();
-		AuctionVO vo = new AuctionVO();
-
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		String count_sql, page_sql;
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			count_sql = "select count(*) from u_auction where auction_type="
-					+ auctionType
-					+ " and auction_failed = 1 and auction_sell != 2 and pay_type="
-					+ payType + "";
-			logger.debug(count_sql);
-			rs = stmt.executeQuery(count_sql);
-			if (rs.next())
-			{
-				count = rs.getInt(1);
-			}
-			rs.close();
-
-			queryPage = new QueryPage(page_no, count);
-
-			if (sortType.equals("time"))
-			{
-
-				page_sql = "select * from u_auction where auction_failed = 1 and auction_sell != 2 and auction_type="
-						+ auctionType
-						+ " and pay_type="
-						+ payType
-						+ " order by auction_time desc "
-						+ "limit "
-						+ queryPage.getStartOfPage()
-						+ ","
-						+ queryPage.getPageSize();
-			}
-			else
-				if (sortType.equals("value"))
-				{
-					page_sql = "select * from u_auction where auction_failed = 1 and auction_sell != 2 and auction_type="
-							+ auctionType
-							+ " and pay_type="
-							+ payType
-							+ " order by CAST(auction_price as UNSIGNED  INTEGER) asc "
-							+ "limit "
-							+ queryPage.getStartOfPage()
-							+ ","
-							+ queryPage.getPageSize();
-				}
-				else
-				{
-					page_sql = "select * from u_auction where  auction_failed = 1 and auction_sell != 2 and auction_type="
-							+ auctionType
-							+ "and pay_type="
-							+ payType
-							+ " limit "
-							+ queryPage.getStartOfPage()
-							+ ","
-							+ queryPage.getPageSize();
-				}
-			logger.debug(page_sql);
-
-			rs = stmt.executeQuery(page_sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(p_pk);
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				vo.setWZbGrade(rs.getInt("w_zb_grade"));
-				vo.setSpecialcontent(rs.getInt("specialcontent"));
-				if (vo.getWZbGrade() != 0)
-				{
-					vo.setGoodsName("+" + vo.getWZbGrade()
-							+ rs.getString("goods_name"));
-				}
-
-				props.add(vo);
-			}
-			logger.debug("ÅÄÂô³¡µÄËÑË÷½á¹ûÎª : " + props.size());
-			rs.close();
-			stmt.close();
-
-			queryPage.setResult(props);
-
-		}
-		catch (SQLException e)
-		{
-			logger.debug(e.toString());
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-		return queryPage;
-	}
-
-	/**
-	 * µÃµ½ÅÄÂô³¡ÀïµÄÌØ¶¨Ãû×ÖµÄlist
-	 * 
-	 * @param p_pk
-	 * @param
-	 * @param auctionType
-	 *            ÅÄÂô³¡µÀ¾ß·ÖÀà
-	 * @return
-	 */
-	public QueryPage getPagePropByName(int p_pk, String propName, int page_no,
-			String sortType, int payType, int auctionType)
-	{
-		QueryPage queryPage = null;
-
-		List<AuctionVO> props = new ArrayList<AuctionVO>();
-		AuctionVO vo = new AuctionVO();
-
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		String count_sql, page_sql;
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			count_sql = "select count(*) from u_auction where auction_failed = 1 and auction_sell = 1 and pay_type="
-					+ payType
-					+ " and auction_type="
-					+ auctionType
-					+ " and goods_name like '%"
-					+ StringUtil.gbToISO(propName)
-					+ "%'";
-			logger.debug(count_sql);
-			rs = stmt.executeQuery(count_sql);
-			if (rs.next())
-			{
-				count = rs.getInt(1);
-			}
-			rs.close();
-
-			queryPage = new QueryPage(page_no, count);
-			if (sortType.equals("time"))
-			{
-				page_sql = "select * from u_auction where auction_failed = 1 and auction_sell = 1 and pay_type="
-						+ payType
-						+ " and auction_type="
-						+ auctionType
-						+ " and goods_name like '%"
-						+ StringUtil.gbToISO(propName)
-						+ "%' order by auction_time desc "
-						+ "limit "
-						+ queryPage.getStartOfPage()
-						+ ","
-						+ queryPage.getPageSize();
-			}
-			else
-				if (sortType.equals("value"))
-				{
-					page_sql = "select * from u_auction where auction_failed = 1 and auction_sell = 1 and pay_type="
-							+ payType
-							+ " and auction_type="
-							+ auctionType
-							+ " and goods_name like '%"
-							+ StringUtil.gbToISO(propName)
-							+ "%' order by CAST(auction_price as UNSIGNED  INTEGER) asc "
-							+ "limit "
-							+ queryPage.getStartOfPage()
-							+ ","
-							+ queryPage.getPageSize();
-				}
-				else
-				{
-					page_sql = "select * from u_auction where auction_failed = 1 and auction_sell = 1 and pay_type="
-							+ payType
-							+ " and auction_type="
-							+ auctionType
-							+ " and goods_name like '%"
-							+ StringUtil.gbToISO(propName)
-							+ "%' order by auction_time desc "
-							+ "limit "
-							+ queryPage.getStartOfPage()
-							+ ","
-							+ queryPage.getPageSize();
-				}
-			logger.debug(page_sql);
-
-			rs = stmt.executeQuery(page_sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(p_pk);
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-
-				props.add(vo);
-			}
-			logger.debug("ÅÄÂô³¡µÄËÑË÷½á¹ûÎª : " + props.size());
-			rs.close();
-			stmt.close();
-
-			queryPage.setResult(props);
-
-		}
-		catch (SQLException e)
-		{
-			logger.debug(e.toString());
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return queryPage;
-	}
-
-	/**
-	 * ¸ù¾İauction_id ²éÑ¯ÅÄÂôĞÅÏ¢
-	 * 
-	 * @param auction_id
-	 *            ÅÄÂô±íid
-	 */
-	public AuctionVO getAuctionVOById(String auction_id)
-	{
-		AuctionVO vo = new AuctionVO();
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		String sql = "select * from u_auction where auction_id = " + auction_id;
-
-		try
-		{
-			stmt = conn.createStatement();
-
-			rs = stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				System.out.println(vo.getPPk());
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				vo.setPay_type(rs.getInt("pay_type"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				vo.setAuction_upk(rs.getInt("auction_upk"));
-				vo.setAuction_ppk(rs.getInt("auction_ppk"));
-				vo.setAuction_start_time(rs.getDate("auction_start_time"));
-				vo.setPropUseControl(rs.getInt("prop_use_control"));
-				vo.setTableType(rs.getInt("table_type"));
-				vo.setGoodsType(rs.getInt("goods_type"));
-				vo.setWDurability(rs.getInt("w_durability"));
-				vo.setWDuraConsume(rs.getInt("w_dura_consume"));
-				vo.setWBonding(rs.getInt("w_Bonding"));
-				vo.setWProtect(rs.getInt("w_protect"));
-				vo.setWIsReconfirm(rs.getInt("w_isReconfirm"));
-				vo.setWPrice(rs.getInt("w_price"));
-
-				vo.setWFyDa(rs.getInt("w_fy_da"));
-				vo.setWFyXiao(rs.getInt("w_fy_xiao"));
-				vo.setWGjXiao(rs.getInt("w_gj_xiao"));
-				vo.setWGjDa(rs.getInt("w_gj_da"));
-				vo.setWHp(rs.getInt("w_hp"));
-				vo.setWMp(rs.getInt("w_mp"));
-				vo.setWJinFy(rs.getInt("w_jin_fy"));
-
-				vo.setWMuFy(rs.getInt("w_mu_fy"));
-				vo.setWShuiFy(rs.getInt("w_shui_fy"));
-				vo.setWHuoFy(rs.getInt("w_huo_fy"));
-				vo.setWTuFy(rs.getInt("w_tu_fy"));
-
-				vo.setWJinGj(rs.getInt("w_jin_gj"));
-				vo.setWMuGj(rs.getInt("w_mu_gj"));
-				vo.setWShuiGj(rs.getInt("w_shui_gj"));
-				vo.setWHuoGj(rs.getInt("w_huo_gj"));
-				vo.setWTuGj(rs.getInt("w_tu_gj"));
-
-				vo.setWQuality(rs.getInt("w_quality"));
-				vo.setWWxType(rs.getInt("w_wx_type"));
-				vo.setSuitId(rs.getInt("suit_id"));
-				vo.setWBuffIsEffected(rs.getInt("w_buff_isEffected"));
-				vo.setEnchantType(rs.getString("enchant_type"));
-				vo.setEnchantValue(rs.getInt("enchant_value"));
-
-				vo.setWZjHp(rs.getInt("w_zj_hp"));
-				vo.setWZjMp(rs.getInt("w_zj_mp"));
-				vo.setWZjWxGj(rs.getInt("w_zj_wxgj"));
-				vo.setWZjWxFy(rs.getInt("w_zj_wxfy"));
-				vo.setWZbGrade(rs.getInt("w_zb_grade"));
-				vo.setWBondingNum(rs.getInt("w_Bonding_Num"));
-				vo.setSpecialcontent(rs.getInt("specialcontent"));
-			}
-
-			logger.debug("ÅÄÂô³¡Àï´ËÎïÆ·µÄÃû³Æ : "
-					+ StringUtil.isoToGBK(vo.getGoodsName()));
-			rs.close();
-			stmt.close();
-
-		}
-		catch (SQLException e)
-		{
-			logger.debug(e.toString());
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-		return vo;
-	}
-
-	/**
-	 * ÅÄÂô³É¹¦ºó£¬¸ù¾İÅÄÂôid¸üĞÂÅÄÂôĞÅÏ¢,·µ»Ø1´ú±í³É¹¦£¬·µ»Ø-1´ú±íÊ§°Ü
-	 * 
-	 */
-	public void updateFromAuction(int auction_id, int auction_ppk)
-	{
-		String sql1 = "update u_auction set auction_sell = 2,auction_ppk="
-				+ auction_ppk + " where auction_id=" + auction_id;
-		String sql2 = "update u_auction set auction_time = now() where auction_id="
-				+ auction_id;
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢×´Ì¬µÄsql :" + sql1 + "sql2 : " + sql2);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql1);
-			ps.executeUpdate();
-			ps.close();
-			ps = conn.prepareStatement(sql2);
-			ps.executeUpdate();
-			ps.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * Íæ¼Ò¾ºÅÄºó¸üĞÂÅÄÂô³¡ÎïÆ·µÄ¾ºÅÄĞÅÏ¢
-	 * 
-	 */
-	public void updateFromAuctionByAuction(int auction_id, int upk, int ppk,
-			int auctionPrice, String buyName)
-	{
-		String sql = "update u_auction set auction_upk=" + upk
-				+ ",auction_ppk=" + ppk
-				+ ",auction_start_time=now(),buy_price=" + auctionPrice
-				+ ",auction_sell=3 ,buy_name='" + buyName
-				+ "' where auction_id=" + auction_id + "";
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢×´Ì¬µÄsql :" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/***************************************************************************
-	 * ÍË»¹¸ø¾ºÅÄÊ§°Ü×ÅÁéÊ¯
-	 */
-	public void addCoopperForFalseAuction(int p_pk, int cooper)
-	{
-		String sql = "update u_part_info set p_copper=p_copper+" + cooper
-				+ " where p_pk=" + p_pk + "";
-		logger.debug("¸üĞÂÍæ¼ÒÁéÊ¯sql :" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ¾ºÅÄÎïÆ·µÄ´¦ÀíÊ®·ÖÖÓÄÚÃ»ÓĞÆäËûÈË²ÎÓë¾ºÅÄÔò¾ºÅÄ³É¹¦
-	 * 
-	 * ²éÑ¯³ö·ûºÏ¾ºÅÄ³É¹¦Ìõ¼şµÄ¾ºÅÄĞÅÏ¢
-	 */
-	public List getAuctionSuccess()
-	{
-		String sql = "select*from u_auction where auction_failed=1 and auction_sell=3 and (now()-auction_start_time)>60*10";
-		logger.debug("µÃµ½¾ºÅÄ³É¹¦µÄsql :" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		List list = new ArrayList();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while (rs.next())
-			{
-				AuctionVO vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				vo.setPay_type(rs.getInt("pay_type"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				vo.setAuction_upk(rs.getInt("auction_upk"));
-				vo.setAuction_ppk(rs.getInt("auction_ppk"));
-				vo.setAuction_start_time(rs.getDate("auction_start_time"));
-				vo.setPropUseControl(rs.getInt("prop_use_control"));
-				vo.setTableType(rs.getInt("table_type"));
-				vo.setGoodsType(rs.getInt("goods_type"));
-				vo.setWDurability(rs.getInt("w_durability"));
-				vo.setWDuraConsume(rs.getInt("w_dura_consume"));
-				vo.setWBonding(rs.getInt("w_Bonding"));
-				vo.setWProtect(rs.getInt("w_protect"));
-				vo.setWIsReconfirm(rs.getInt("w_isReconfirm"));
-				vo.setWPrice(rs.getInt("w_price"));
-
-				vo.setWFyDa(rs.getInt("w_fy_da"));
-				vo.setWFyXiao(rs.getInt("w_fy_xiao"));
-				vo.setWGjXiao(rs.getInt("w_gj_xiao"));
-				vo.setWGjDa(rs.getInt("w_gj_da"));
-				vo.setWHp(rs.getInt("w_hp"));
-				vo.setWMp(rs.getInt("w_mp"));
-				vo.setWJinFy(rs.getInt("w_jin_fy"));
-
-				vo.setWMuFy(rs.getInt("w_mu_fy"));
-				vo.setWShuiFy(rs.getInt("w_shui_fy"));
-				vo.setWHuoFy(rs.getInt("w_huo_fy"));
-				vo.setWTuFy(rs.getInt("w_tu_fy"));
-
-				vo.setWJinGj(rs.getInt("w_jin_gj"));
-				vo.setWMuGj(rs.getInt("w_mu_gj"));
-				vo.setWShuiGj(rs.getInt("w_shui_gj"));
-				vo.setWHuoGj(rs.getInt("w_huo_gj"));
-				vo.setWTuGj(rs.getInt("w_tu_gj"));
-
-				vo.setWQuality(rs.getInt("w_quality"));
-				vo.setWWxType(rs.getInt("w_wx_type"));
-				vo.setSuitId(rs.getInt("suit_id"));
-				vo.setWBuffIsEffected(rs.getInt("w_buff_isEffected"));
-				vo.setEnchantType(rs.getString("enchant_type"));
-				vo.setEnchantValue(rs.getInt("enchant_value"));
-
-				vo.setWZjHp(rs.getInt("w_zj_hp"));
-				vo.setWZjMp(rs.getInt("w_zj_mp"));
-				vo.setWZjWxGj(rs.getInt("w_zj_wxgj"));
-				vo.setWZjWxFy(rs.getInt("w_zj_wxfy"));
-				vo.setWZbGrade(rs.getInt("w_zb_grade"));
-				vo.setWBondingNum(rs.getInt("w_Bonding_Num"));
-				vo.setSpecialcontent(rs.getInt("specialcontent"));
-				list.add(vo);
-			}
-			ps.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-		return list;
-	}
-
-	/**
-	 * ÅÄÂôÊ±¼ä³¬¹ıÈıÌìµÄ½«ÏÂ¼Ü
-	 */
-	public void updateThanThreeDay()
-	{
-
-		String sql = "update u_auction set auction_failed = 2 where auction_sell = 1 and now() > (auction_time + INTERVAL 2 DAY)";
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢µÄsql :" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ÅÄÂôÊ±¼ä³¬¹ıÁùÌìµÄ½«±»Ã»ÊÕ
-	 */
-	public void deleteThanSixDay()
-	{
-		String sql = "delete from u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 5 DAY)";
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢µÄsql :" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ÅÄÂô³É¹¦µÄ½ğÇ®ÆßÌìÄÚ»¹Ã»ÓĞÈ¡»ØµÄ½«±»Ã»ÊÕ
-	 */
-	public void updateMoneySevenDay()
-	{
-		String sql = "delete from u_auction where auction_sell = 2 and now() > (auction_time + INTERVAL 5 DAY)";
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢µÄsql :" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎïÆ·Çé¿ö
-	 * 
-	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
-	 * @return list
-	 */
-	public List<AuctionVO> getGoodsList(String pPk, int auctionType)
-	{
-		List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
-
-		String sql = "select * from u_auction where p_pk="
-				+ pPk
-				+ " and auction_failed = 2 and auction_sell = 1 and auction_type="
-				+ auctionType + "";
-		String sql1 = "select * from u_auction where auction_ppk="
-				+ pPk
-				+ " and auction_failed =1 and auction_sell =2 and auction_type="
-				+ auctionType + "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug("ÅÄÂô³¡²Ö¿âÀïµÄÎïÆ·µÄsql :" + sql);
-		AuctionVO vo = new AuctionVO();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				goodsList.add(vo);
-			}
-			rs = stmt.executeQuery(sql1);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				goodsList.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return goodsList;
-	}
-
-	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎïÆ·Âô³öºóµÄ½ğÇ®Çé¿ö
-	 * 
-	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
-	 * @return list
-	 */
-	public List<AuctionVO> getMoneyList(String pPk)
-	{
-		List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
-
-		String sql = "select * from u_auction where p_pk=" + pPk
-				+ " and auction_failed = 1 and auction_sell = 2 and u_pk!=-1";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug("ÅÄÂô³¡²Ö¿âÀïµÄ½ğÇ®sql :" + sql);
-		AuctionVO vo = new AuctionVO();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-				vo.setPay_type(rs.getInt("pay_type"));
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				goodsList.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return goodsList;
-	}
-
-	/**
-	 * É¾³ıid¸üĞÂÅÄÂôĞÅÏ¢,·µ»Ø1´ú±í³É¹¦£¬·µ»Ø-1´ú±íÊ§°Ü
-	 * 
-	 */
-	public int deleteFromAuction(int auction_id)
-	{
-		int i = -1;
-		String sql1 = "delete from u_auction where auction_id=" + auction_id;
-
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢×´Ì¬µÄsql :" + sql1);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql1);
-			ps.executeUpdate();
-			ps.close();
-			i = 1;
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return i;
-
-	}
-
-	/**
-	 * É¾³ıid¸üĞÂÅÄÂôĞÅÏ¢,·µ»Ø1´ú±í³É¹¦£¬·µ»Ø-1´ú±íÊ§°Ü
-	 * 
-	 */
-	public int updateFromAuction(String fieldName,int auction_id)
-	{
-		int i = -1;
-		String sql1 = "update u_auction set "+fieldName+"=-1 where auction_id="
-				+ auction_id;
-
-		logger.debug("¸üĞÂÅÄÂôĞÅÏ¢×´Ì¬µÄsql :" + sql1);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.info(sql1);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql1);
-			ps.executeUpdate();
-			ps.close();
-			i = 1;
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return i;
-
-	}
-
-	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎ´Âô³öµÄÎïÆ·Çé¿ö
-	 * 
-	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
-	 * @return list
-	 */
-	public List<AuctionVO> getNotSellList(int pPk)
-	{
-		List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
-
-		String sql = "select * from u_auction where p_pk=" + pPk
-				+ " and auction_failed = 2 and auction_sell = 1";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug("ÅÄÂô³¡²Ö¿âÀïµÄÎ´Âô³ösql :" + sql);
-		AuctionVO vo = new AuctionVO();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				goodsList.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return goodsList;
-	}
-
-	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎ´Âô³öµÄÎïÆ·Çé¿ö
-	 * 
-	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
-	 * @return list
-	 */
-	public List<AuctionVO> getNotSellGoodsList(int pPk)
-	{
-		List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
-
-		String sql = "select * from u_auction where p_pk="
-				+ pPk
-				+ " and auction_failed = 2 and auction_sell = 1 order by auction_time desc";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug("ÅÄÂô³¡²Ö¿âÀïµÄÎ´Âô³ösql :" + sql);
-		AuctionVO vo = new AuctionVO();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				goodsList.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return goodsList;
-	}
-
-	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄ±»Ã»ÊÕµÄÇé¿ö
-	 * 
-	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
-	 * @return list
-	 */
-	public List<AuctionVO> getLostGoodsLists(int pPk)
-	{
-		List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
-
-		String sql = "select * from u_auction where p_pk=" + pPk
-				+ " and auction_failed = 3 order by auction_time desc";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		// logger.debug("ÅÄÂô³¡²Ö¿âÀïµÄ±»Ã»ÊÕsql :"+sql);
-		AuctionVO vo = new AuctionVO();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setUPk(rs.getInt("u_pk"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				vo.setAuctionSell(rs.getInt("auction_sell"));
-
-				vo.setAuctionTime(rs.getString("auction_time"));
-				vo.setAuctionType(rs.getInt("auction_type"));
-				vo.setBuyName(rs.getString("buy_name"));
-				vo.setBuyPrice(rs.getInt("buy_price"));
-				vo.setGoodsId(rs.getInt("goods_id"));
-
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				vo.setGoodsPrice(rs.getInt("auction_price"));
-				vo.setAuction_price(rs.getInt("auction_price_auction"));
-				goodsList.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return goodsList;
-	}
-
-	// »ñÈ¡ÅÄÂôÊ±¼ä³¬¹ıÈıÌìµÄÁĞ±í
-	public List<AuctionVO> getThanThreeDayList()
-	{
-		String sql = "select * from u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 2 DAY)";
-		logger.debug("»ñÈ¡³¬¹ıÒ»¶¨ÌìÊıµÄÅÄÂôĞÅÏ¢µÄsql :" + sql);
-		List<AuctionVO> list = new ArrayList<AuctionVO>();
-		AuctionVO vo = null;
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setAuctionFailed(rs.getInt("auction_failed"));
-				list.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-
-	// »ñµÃÎïÆ·ÁùÌìºóÎ´È¡»ØµÄÎïÆ·Çåµ¥
-	public List<AuctionVO> getThanSixDayList()
-	{
-		String sql = "select * from u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 5 DAY)";
-		logger.debug("»ñÈ¡³¬¹ıÒ»¶¨ÌìÊıµÄÅÄÂôĞÅÏ¢µÄsql :" + sql);
-		List<AuctionVO> list = new ArrayList<AuctionVO>();
-		AuctionVO vo = null;
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setGoodsName(rs.getString("goods_name"));
-				list.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-
-	// »ñµÃÎïÆ·ÅÄÂô³É¹¦ºóÆßÌìÄÚÎ´È¡»ØÒøÁ½µÄÇåµ¥
-	public List<AuctionVO> getThanSevenDay()
-	{
-		String sql = "select * from u_auction where auction_sell = 2 and now() > (auction_time + INTERVAL 5 DAY)";
-		logger.debug("»ñÈ¡³¬¹ıÒ»¶¨ÌìÊıµÄÅÄÂôĞÅÏ¢µÄsql :" + sql);
-		List<AuctionVO> list = new ArrayList<AuctionVO>();
-		AuctionVO vo = null;
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				vo = new AuctionVO();
-				vo.setUAuctionId(rs.getInt("auction_id"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setGoodsName(rs.getString("goods_name"));
-				vo.setGoodsNumber(rs.getInt("goods_number"));
-				// vo.setGoodsPrice(rs.getInt("auction_price"));
-				list.add(vo);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-
-	// ½«×°±¸¼ÓÈëÔö¼ÓÅÄÂô±í
-	public void addToAuction(int u_pk, int p_pk, PlayerEquipVO vo,
-			int auctionType, int propPrice, int payType, int auctionPrice)
-	{
-		String sql = "insert into u_auction values (null,"
-				+ u_pk
-				+ ","
-				+ p_pk
-				+ ","
-				+ auctionType
-				+ ","
-				+ payType
-				+ ","
-				+ vo.getPwPk()
-				+ ",'"
-				+ vo.getFullName()
-				+ "',1,"
-				+ propPrice
-				+ ","
-				+ auctionPrice
-				+ ",0,now(),0,0,now(),1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'',0,'','','','',0,0,0)";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("auctionDAOÖĞµÄ addToAuctionµÄsql : " + sql);
-		logger.info(sql);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ½«×°±¸´ÓÅÄÂô³¡×ªµ½¸öÈË°ü¹ü
-	 * 
-	 * @param pk
-	 * @param auctionVO
-	 * @return
-	 */
-	public int putGoodsToWrap(int pk, AuctionVO vo)
-	{
-		int i = 0;
-		String sql = "insert into u_part_equip values(null,'" + pk + "','"
-				+ vo.getTableType() + "','" + vo.getGoodsType() + "','"
-				+ vo.getGoodsId() + "','" + vo.getGoodsName() + "','"
-				+ vo.getWDurability() + "','" + vo.getWDuraConsume() + "','"
-				+ vo.getWBonding() + "','" + vo.getWProtect() + "','"
-				+ vo.getWIsReconfirm() + "','" + vo.getWPrice() + "','"
-				+ vo.getWFyXiaoYuan() + "','" + vo.getWFyDaYuan() + "','"
-				+ vo.getWGjXiaoYuan() + "','" + vo.getWGjDaYuan() + "','"
-				+ vo.getWHp() + "','" + vo.getWMp() + "','" + vo.getWJinFy()
-				+ "','" + vo.getWMuFy() + "','" + vo.getWShuiFy() + "','"
-				+ vo.getWHuoFy() + "','" + vo.getWTuFy() + "','"
-				+ vo.getWJinGj() + "','" + vo.getWMuGj() + "','"
-				+ vo.getWShuiGj() + "','" + vo.getWHuoGj() + "','"
-				+ vo.getWTuGj() + "','0','" + vo.getWQuality() + "','"
-				+ vo.getSuitId() + "','" + vo.getWWxType() + "','"
-				+ vo.getWBuffIsEffected() + "','" + vo.getEnchantType() + "',"
-				+ vo.getEnchantValue() + "," + vo.getWZjHp() + ","
-				+ vo.getWZjMp() + "," + vo.getWZjWxGj() + "," + vo.getWZjWxFy()
-				+ "," + vo.getWZbGrade() + ",now(),0," + vo.getWBondingNum()
-				+ "," + vo.getSpecialcontent() + ")";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("auctionDAOÖĞµÄ addToAuctionµÄsql : " + sql);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			i = ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-
-			dbConn.closeConn();
-		}
-		return i;
-	}
-
-	/**
-	 * Íù°ü¹üÀïÌí¼ÓµÀ¾ß
-	 * 
-	 * @param pk
-	 * @param auctionVO
-	 */
-	public int insertPropGroupInfo(int pk, AuctionVO auctionVO, int pg_type,
-			int prop_type, int prop_price)
-	{
-		int i = -1;
-		String sql = "insert into u_propgroup_info values(null,'" + pk + "','"
-				+ pg_type + "','" + auctionVO.getGoodsId() + "','" + prop_type
-				+ "','" + auctionVO.getWBonding() + "','"
-				+ auctionVO.getWProtect() + "','" + auctionVO.getWIsReconfirm()
-				+ "','" + auctionVO.getPropUseControl() + "','"
-				+ auctionVO.getGoodsName() + "','" + prop_price + "','"
-				+ auctionVO.getGoodsNumber() + "',now())";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("auctionDAOÖĞµÄ addToAuctionµÄsql : " + sql);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			i = ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return i;
-	}
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class AuctionDAO extends DaoBase {
+
+    /**
+     * å°†è£…å¤‡ä»ç©å®¶ä¸ªäººåŒ…è£¹è½¬åˆ°æ‹å–åœº
+     *
+     * @param uPk
+     * @param pPk
+     * @param accouter_id   è£…å¤‡id
+     * @param accouter_type æ”¾å…¥æ‹å–åœºç±»å‹
+     * @param propPrice     å–å®¶å‡ºçš„ä»·æ ¼
+     * @param remove_num    ç‰©å“çš„æ•°é‡
+     */
+    public void addPropToAuction(int uPk, int pPk, int accouter_id, int accouter_type, int propPrice, String goodsName, int remove_num, PlayerPropGroupVO propGroup, int payType, int auctionPrice) {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date dt = new Date();
+
+        String sql = "INSERT INTO u_auction(u_pk,p_pk,auction_type,pay_type,goods_id,goods_name,goods_number,auction_price,auction_price_auction,buy_price,auction_time,auction_failed,auction_sell,prop_use_control,w_Bonding,w_protect,w_isReconfirm) values('" + uPk + "','" + pPk + "','" + accouter_type + "'," + payType + ",'" + accouter_id + "','" + StringUtil.gbToISO(goodsName) + "','" + remove_num + "','" + propPrice + "'," + auctionPrice + ",0,'" + sf.format(dt) + "',1,1,'" + propGroup.getPropUseControl() + "','" + propGroup.getPropBonding() + "','" + propGroup.getPropProtect() + "','" + propGroup.getPropIsReconfirm() + "')";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug("auctionDAOä¸­çš„ addToAuctionçš„sql : " + sql);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * å¾—åˆ°æ‹å–åœºé‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰çš„é“å…·
+     *
+     * @param p_pk
+     * @param auctionType æ‹å–åœºé“å…·åˆ†ç±»
+     * @return
+     */
+    public QueryPage getPagePropsByPpk(int p_pk, int auctionType, int page_no, String sortType, int payType) {
+        QueryPage queryPage = null;
+
+        List<AuctionVO> props = new ArrayList<AuctionVO>();
+        AuctionVO vo = new AuctionVO();
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        String count_sql, page_sql;
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count_sql = "SELECT count(*) from u_auction where auction_type=" + auctionType + " and auction_failed = 1 and auction_sell != 2 and pay_type=" + payType;
+            logger.debug(count_sql);
+            rs = stmt.executeQuery(count_sql);
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+
+            queryPage = new QueryPage(page_no, count);
+
+            if (sortType.equals("time")) {
+
+                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell != 2 and auction_type=" + auctionType + " and pay_type=" + payType + " order by auction_time desc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+            } else if (sortType.equals("value")) {
+                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell != 2 and auction_type=" + auctionType + " and pay_type=" + payType + " order by CAST(auction_price as UNSIGNED  INTEGER) asc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+            } else {
+                page_sql = "SELECT * FROM u_auction where  auction_failed = 1 and auction_sell != 2 and auction_type=" + auctionType + "and pay_type=" + payType + " limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+            }
+            logger.debug(page_sql);
+
+            rs = stmt.executeQuery(page_sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(p_pk);
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                vo.setWZbGrade(rs.getInt("w_zb_grade"));
+                vo.setSpecialcontent(rs.getInt("specialcontent"));
+                if (vo.getWZbGrade() != 0) {
+                    vo.setGoodsName("+" + vo.getWZbGrade() + rs.getString("goods_name"));
+                }
+
+                props.add(vo);
+            }
+            logger.debug("æ‹å–åœºçš„æœç´¢ç»“æœä¸º : " + props.size());
+            rs.close();
+            stmt.close();
+
+            queryPage.setResult(props);
+
+        } catch (SQLException e) {
+            logger.debug(e.toString());
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return queryPage;
+    }
+
+    /**
+     * å¾—åˆ°æ‹å–åœºé‡Œçš„ç‰¹å®šåå­—çš„list
+     *
+     * @param p_pk
+     * @param
+     * @param auctionType æ‹å–åœºé“å…·åˆ†ç±»
+     * @return
+     */
+    public QueryPage getPagePropByName(int p_pk, String propName, int page_no, String sortType, int payType, int auctionType) {
+        QueryPage queryPage = null;
+
+        List<AuctionVO> props = new ArrayList<AuctionVO>();
+        AuctionVO vo = new AuctionVO();
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        String count_sql, page_sql;
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count_sql = "SELECT count(*) from u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%'";
+            logger.debug(count_sql);
+            rs = stmt.executeQuery(count_sql);
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+
+            queryPage = new QueryPage(page_no, count);
+            if (sortType.equals("time")) {
+                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%' order by auction_time desc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+            } else if (sortType.equals("value")) {
+                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%' order by CAST(auction_price as UNSIGNED  INTEGER) asc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+            } else {
+                page_sql = "SELECT * FROM u_auction where auction_failed = 1 and auction_sell = 1 and pay_type=" + payType + " and auction_type=" + auctionType + " and goods_name like '%" + StringUtil.gbToISO(propName) + "%' order by auction_time desc " + "limit " + queryPage.getStartOfPage() + "," + queryPage.getPageSize();
+            }
+            logger.debug(page_sql);
+
+            rs = stmt.executeQuery(page_sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(p_pk);
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+
+                props.add(vo);
+            }
+            logger.debug("æ‹å–åœºçš„æœç´¢ç»“æœä¸º : " + props.size());
+            rs.close();
+            stmt.close();
+
+            queryPage.setResult(props);
+
+        } catch (SQLException e) {
+            logger.debug(e.toString());
+        } finally {
+            dbConn.closeConn();
+        }
+        return queryPage;
+    }
+
+    /**
+     * æ ¹æ®auction_id æŸ¥è¯¢æ‹å–ä¿¡æ¯
+     *
+     * @param auction_id æ‹å–è¡¨id
+     */
+    public AuctionVO getAuctionVOById(String auction_id) {
+        AuctionVO vo = new AuctionVO();
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        String sql = "SELECT * FROM u_auction where auction_id = " + auction_id;
+
+        try {
+            stmt = conn.createStatement();
+
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                System.out.println(vo.getPPk());
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                vo.setPay_type(rs.getInt("pay_type"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                vo.setAuction_upk(rs.getInt("auction_upk"));
+                vo.setAuction_ppk(rs.getInt("auction_ppk"));
+                vo.setAuction_start_time(rs.getDate("auction_start_time"));
+                vo.setPropUseControl(rs.getInt("prop_use_control"));
+                vo.setTableType(rs.getInt("table_type"));
+                vo.setGoodsType(rs.getInt("goods_type"));
+                vo.setWDurability(rs.getInt("w_durability"));
+                vo.setWDuraConsume(rs.getInt("w_dura_consume"));
+                vo.setWBonding(rs.getInt("w_Bonding"));
+                vo.setWProtect(rs.getInt("w_protect"));
+                vo.setWIsReconfirm(rs.getInt("w_isReconfirm"));
+                vo.setWPrice(rs.getInt("w_price"));
+
+                vo.setWFyDa(rs.getInt("w_fy_da"));
+                vo.setWFyXiao(rs.getInt("w_fy_xiao"));
+                vo.setWGjXiao(rs.getInt("w_gj_xiao"));
+                vo.setWGjDa(rs.getInt("w_gj_da"));
+                vo.setWHp(rs.getInt("w_hp"));
+                vo.setWMp(rs.getInt("w_mp"));
+                vo.setWJinFy(rs.getInt("w_jin_fy"));
+
+                vo.setWMuFy(rs.getInt("w_mu_fy"));
+                vo.setWShuiFy(rs.getInt("w_shui_fy"));
+                vo.setWHuoFy(rs.getInt("w_huo_fy"));
+                vo.setWTuFy(rs.getInt("w_tu_fy"));
+
+                vo.setWJinGj(rs.getInt("w_jin_gj"));
+                vo.setWMuGj(rs.getInt("w_mu_gj"));
+                vo.setWShuiGj(rs.getInt("w_shui_gj"));
+                vo.setWHuoGj(rs.getInt("w_huo_gj"));
+                vo.setWTuGj(rs.getInt("w_tu_gj"));
+
+                vo.setWQuality(rs.getInt("w_quality"));
+                vo.setWWxType(rs.getInt("w_wx_type"));
+                vo.setSuitId(rs.getInt("suit_id"));
+                vo.setWBuffIsEffected(rs.getInt("w_buff_isEffected"));
+                vo.setEnchantType(rs.getString("enchant_type"));
+                vo.setEnchantValue(rs.getInt("enchant_value"));
+
+                vo.setWZjHp(rs.getInt("w_zj_hp"));
+                vo.setWZjMp(rs.getInt("w_zj_mp"));
+                vo.setWZjWxGj(rs.getInt("w_zj_wxgj"));
+                vo.setWZjWxFy(rs.getInt("w_zj_wxfy"));
+                vo.setWZbGrade(rs.getInt("w_zb_grade"));
+                vo.setWBondingNum(rs.getInt("w_Bonding_Num"));
+                vo.setSpecialcontent(rs.getInt("specialcontent"));
+            }
+
+            logger.debug("æ‹å–åœºé‡Œæ­¤ç‰©å“çš„åç§° : " + StringUtil.isoToGBK(vo.getGoodsName()));
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException e) {
+            logger.debug(e.toString());
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return vo;
+    }
+
+    /**
+     * æ‹å–æˆåŠŸåï¼Œæ ¹æ®æ‹å–idæ›´æ–°æ‹å–ä¿¡æ¯,è¿”å›1ä»£è¡¨æˆåŠŸï¼Œè¿”å›-1ä»£è¡¨å¤±è´¥
+     */
+    public void updateFromAuction(int auction_id, int auction_ppk) {
+        String sql1 = "update u_auction set auction_sell = 2,auction_ppk=" + auction_ppk + " where auction_id=" + auction_id;
+        String sql2 = "update u_auction set auction_time = now() where auction_id=" + auction_id;
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çŠ¶æ€çš„sql :" + sql1 + "sql2 : " + sql2);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql1);
+            ps.executeUpdate();
+            ps.close();
+            ps = conn.prepareStatement(sql2);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * ç©å®¶ç«æ‹åæ›´æ–°æ‹å–åœºç‰©å“çš„ç«æ‹ä¿¡æ¯
+     */
+    public void updateFromAuctionByAuction(int auction_id, int upk, int ppk, int auctionPrice, String buyName) {
+        String sql = "update u_auction set auction_upk=" + upk + ",auction_ppk=" + ppk + ",auction_start_time=now(),buy_price=" + auctionPrice + ",auction_sell=3 ,buy_name='" + buyName + "' where auction_id=" + auction_id;
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çŠ¶æ€çš„sql :" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /***************************************************************************
+     * é€€è¿˜ç»™ç«æ‹å¤±è´¥ç€çµçŸ³
+     */
+    public void addCoopperForFalseAuction(int p_pk, int cooper) {
+        String sql = "update u_part_info set p_copper=p_copper+" + cooper + " where p_pk=" + p_pk;
+        logger.debug("æ›´æ–°ç©å®¶çµçŸ³sql :" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * ç«æ‹ç‰©å“çš„å¤„ç†ååˆ†é’Ÿå†…æ²¡æœ‰å…¶ä»–äººå‚ä¸ç«æ‹åˆ™ç«æ‹æˆåŠŸ
+     * <p>
+     * æŸ¥è¯¢å‡ºç¬¦åˆç«æ‹æˆåŠŸæ¡ä»¶çš„ç«æ‹ä¿¡æ¯
+     */
+    public List getAuctionSuccess() {
+        String sql = "SELECT * FROM `u_auction` WHERE `auction_failed` = 1 AND auction_sell = 3 AND (now() - auction_start_time) > 60 * 10";
+        logger.debug("å¾—åˆ°ç«æ‹æˆåŠŸçš„sql :" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        List list = new ArrayList();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                AuctionVO vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                vo.setPay_type(rs.getInt("pay_type"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                vo.setAuction_upk(rs.getInt("auction_upk"));
+                vo.setAuction_ppk(rs.getInt("auction_ppk"));
+                vo.setAuction_start_time(rs.getDate("auction_start_time"));
+                vo.setPropUseControl(rs.getInt("prop_use_control"));
+                vo.setTableType(rs.getInt("table_type"));
+                vo.setGoodsType(rs.getInt("goods_type"));
+                vo.setWDurability(rs.getInt("w_durability"));
+                vo.setWDuraConsume(rs.getInt("w_dura_consume"));
+                vo.setWBonding(rs.getInt("w_Bonding"));
+                vo.setWProtect(rs.getInt("w_protect"));
+                vo.setWIsReconfirm(rs.getInt("w_isReconfirm"));
+                vo.setWPrice(rs.getInt("w_price"));
+
+                vo.setWFyDa(rs.getInt("w_fy_da"));
+                vo.setWFyXiao(rs.getInt("w_fy_xiao"));
+                vo.setWGjXiao(rs.getInt("w_gj_xiao"));
+                vo.setWGjDa(rs.getInt("w_gj_da"));
+                vo.setWHp(rs.getInt("w_hp"));
+                vo.setWMp(rs.getInt("w_mp"));
+                vo.setWJinFy(rs.getInt("w_jin_fy"));
+
+                vo.setWMuFy(rs.getInt("w_mu_fy"));
+                vo.setWShuiFy(rs.getInt("w_shui_fy"));
+                vo.setWHuoFy(rs.getInt("w_huo_fy"));
+                vo.setWTuFy(rs.getInt("w_tu_fy"));
+
+                vo.setWJinGj(rs.getInt("w_jin_gj"));
+                vo.setWMuGj(rs.getInt("w_mu_gj"));
+                vo.setWShuiGj(rs.getInt("w_shui_gj"));
+                vo.setWHuoGj(rs.getInt("w_huo_gj"));
+                vo.setWTuGj(rs.getInt("w_tu_gj"));
+
+                vo.setWQuality(rs.getInt("w_quality"));
+                vo.setWWxType(rs.getInt("w_wx_type"));
+                vo.setSuitId(rs.getInt("suit_id"));
+                vo.setWBuffIsEffected(rs.getInt("w_buff_isEffected"));
+                vo.setEnchantType(rs.getString("enchant_type"));
+                vo.setEnchantValue(rs.getInt("enchant_value"));
+
+                vo.setWZjHp(rs.getInt("w_zj_hp"));
+                vo.setWZjMp(rs.getInt("w_zj_mp"));
+                vo.setWZjWxGj(rs.getInt("w_zj_wxgj"));
+                vo.setWZjWxFy(rs.getInt("w_zj_wxfy"));
+                vo.setWZbGrade(rs.getInt("w_zb_grade"));
+                vo.setWBondingNum(rs.getInt("w_Bonding_Num"));
+                vo.setSpecialcontent(rs.getInt("specialcontent"));
+                list.add(vo);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return list;
+    }
+
+    /**
+     * æ‹å–æ—¶é—´è¶…è¿‡ä¸‰å¤©çš„å°†ä¸‹æ¶
+     */
+    public void updateThanThreeDay() {
+
+        String sql = "update u_auction set auction_failed = 2 where auction_sell = 1 and now() > (auction_time + INTERVAL 2 DAY)";
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çš„sql :" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ‹å–æ—¶é—´è¶…è¿‡å…­å¤©çš„å°†è¢«æ²¡æ”¶
+     */
+    public void deleteThanSixDay() {
+        String sql = "delete from u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 5 DAY)";
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çš„sql :" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ‹å–æˆåŠŸçš„é‡‘é’±ä¸ƒå¤©å†…è¿˜æ²¡æœ‰å–å›çš„å°†è¢«æ²¡æ”¶
+     */
+    public void updateMoneySevenDay() {
+        String sql = "delete from u_auction where auction_sell = 2 and now() > (auction_time + INTERVAL 5 DAY)";
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çš„sql :" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„ç‰©å“æƒ…å†µ
+     *
+     * @param pPk ä¸ªäººè§’è‰²id
+     * @return list
+     */
+    public List<AuctionVO> getGoodsList(String pPk, int auctionType) {
+        List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
+
+        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 2 and auction_sell = 1 and auction_type=" + auctionType;
+        String sql1 = "SELECT * FROM u_auction where auction_ppk=" + pPk + " and auction_failed =1 and auction_sell =2 and auction_type=" + auctionType;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug("æ‹å–åœºä»“åº“é‡Œçš„ç‰©å“çš„sql :" + sql);
+        AuctionVO vo = new AuctionVO();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                goodsList.add(vo);
+            }
+            rs = stmt.executeQuery(sql1);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                goodsList.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return goodsList;
+    }
+
+    /**
+     * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„ç‰©å“å–å‡ºåçš„é‡‘é’±æƒ…å†µ
+     *
+     * @param pPk ä¸ªäººè§’è‰²id
+     * @return list
+     */
+    public List<AuctionVO> getMoneyList(String pPk) {
+        List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
+
+        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 1 and auction_sell = 2 and u_pk!=-1";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug("æ‹å–åœºä»“åº“é‡Œçš„é‡‘é’±sql :" + sql);
+        AuctionVO vo = new AuctionVO();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+                vo.setPay_type(rs.getInt("pay_type"));
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                goodsList.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return goodsList;
+    }
+
+    /**
+     * åˆ é™¤idæ›´æ–°æ‹å–ä¿¡æ¯,è¿”å›1ä»£è¡¨æˆåŠŸï¼Œè¿”å›-1ä»£è¡¨å¤±è´¥
+     */
+    public int deleteFromAuction(int auction_id) {
+        int i = -1;
+        String sql1 = "delete from u_auction where auction_id=" + auction_id;
+
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çŠ¶æ€çš„sql :" + sql1);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql1);
+            ps.executeUpdate();
+            ps.close();
+            i = 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return i;
+
+    }
+
+    /**
+     * åˆ é™¤idæ›´æ–°æ‹å–ä¿¡æ¯,è¿”å›1ä»£è¡¨æˆåŠŸï¼Œè¿”å›-1ä»£è¡¨å¤±è´¥
+     */
+    public int updateFromAuction(String fieldName, int auction_id) {
+        int i = -1;
+        String sql1 = "update u_auction set " + fieldName + "=-1 where auction_id=" + auction_id;
+
+        logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çŠ¶æ€çš„sql :" + sql1);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.info(sql1);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql1);
+            ps.executeUpdate();
+            ps.close();
+            i = 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return i;
+
+    }
+
+    /**
+     * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„æœªå–å‡ºçš„ç‰©å“æƒ…å†µ
+     *
+     * @param pPk ä¸ªäººè§’è‰²id
+     * @return list
+     */
+    public List<AuctionVO> getNotSellList(int pPk) {
+        List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
+
+        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 2 and auction_sell = 1";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug("æ‹å–åœºä»“åº“é‡Œçš„æœªå–å‡ºsql :" + sql);
+        AuctionVO vo = new AuctionVO();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                goodsList.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return goodsList;
+    }
+
+    /**
+     * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„æœªå–å‡ºçš„ç‰©å“æƒ…å†µ
+     *
+     * @param pPk ä¸ªäººè§’è‰²id
+     * @return list
+     */
+    public List<AuctionVO> getNotSellGoodsList(int pPk) {
+        List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
+
+        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 2 and auction_sell = 1 order by auction_time desc";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug("æ‹å–åœºä»“åº“é‡Œçš„æœªå–å‡ºsql :" + sql);
+        AuctionVO vo = new AuctionVO();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                goodsList.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return goodsList;
+    }
+
+    /**
+     * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„è¢«æ²¡æ”¶çš„æƒ…å†µ
+     *
+     * @param pPk ä¸ªäººè§’è‰²id
+     * @return list
+     */
+    public List<AuctionVO> getLostGoodsLists(int pPk) {
+        List<AuctionVO> goodsList = new ArrayList<AuctionVO>();
+
+        String sql = "SELECT * FROM u_auction where p_pk=" + pPk + " and auction_failed = 3 order by auction_time desc";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        // logger.debug("æ‹å–åœºä»“åº“é‡Œçš„è¢«æ²¡æ”¶sql :"+sql);
+        AuctionVO vo = new AuctionVO();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setUPk(rs.getInt("u_pk"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                vo.setAuctionSell(rs.getInt("auction_sell"));
+
+                vo.setAuctionTime(rs.getString("auction_time"));
+                vo.setAuctionType(rs.getInt("auction_type"));
+                vo.setBuyName(rs.getString("buy_name"));
+                vo.setBuyPrice(rs.getInt("buy_price"));
+                vo.setGoodsId(rs.getInt("goods_id"));
+
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                vo.setGoodsPrice(rs.getInt("auction_price"));
+                vo.setAuction_price(rs.getInt("auction_price_auction"));
+                goodsList.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return goodsList;
+    }
+
+    // è·å–æ‹å–æ—¶é—´è¶…è¿‡ä¸‰å¤©çš„åˆ—è¡¨
+    public List<AuctionVO> getThanThreeDayList() {
+        String sql = "SELECT * FROM u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 2 DAY)";
+        logger.debug("è·å–è¶…è¿‡ä¸€å®šå¤©æ•°çš„æ‹å–ä¿¡æ¯çš„sql :" + sql);
+        List<AuctionVO> list = new ArrayList<AuctionVO>();
+        AuctionVO vo = null;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setAuctionFailed(rs.getInt("auction_failed"));
+                list.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    // è·å¾—ç‰©å“å…­å¤©åæœªå–å›çš„ç‰©å“æ¸…å•
+    public List<AuctionVO> getThanSixDayList() {
+        String sql = "SELECT * FROM u_auction where auction_sell = 1 and now() > (auction_time + INTERVAL 5 DAY)";
+        logger.debug("è·å–è¶…è¿‡ä¸€å®šå¤©æ•°çš„æ‹å–ä¿¡æ¯çš„sql :" + sql);
+        List<AuctionVO> list = new ArrayList<AuctionVO>();
+        AuctionVO vo = null;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setGoodsName(rs.getString("goods_name"));
+                list.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    // è·å¾—ç‰©å“æ‹å–æˆåŠŸåä¸ƒå¤©å†…æœªå–å›é“¶ä¸¤çš„æ¸…å•
+    public List<AuctionVO> getThanSevenDay() {
+        String sql = "SELECT * FROM u_auction where auction_sell = 2 and now() > (auction_time + INTERVAL 5 DAY)";
+        logger.debug("è·å–è¶…è¿‡ä¸€å®šå¤©æ•°çš„æ‹å–ä¿¡æ¯çš„sql :" + sql);
+        List<AuctionVO> list = new ArrayList<AuctionVO>();
+        AuctionVO vo = null;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                vo = new AuctionVO();
+                vo.setUAuctionId(rs.getInt("auction_id"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setGoodsName(rs.getString("goods_name"));
+                vo.setGoodsNumber(rs.getInt("goods_number"));
+                // vo.setGoodsPrice(rs.getInt("auction_price"));
+                list.add(vo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    // å°†è£…å¤‡åŠ å…¥å¢åŠ æ‹å–è¡¨
+    public void addToAuction(int u_pk, int p_pk, PlayerEquipVO vo, int auctionType, int propPrice, int payType, int auctionPrice) {
+        String sql = "INSERT INTO u_auction values (null," + u_pk + "," + p_pk + "," + auctionType + "," + payType + "," + vo.getPwPk() + ",'" + vo.getFullName() + "',1," + propPrice + "," + auctionPrice + ",0,now(),0,0,now(),1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'',0,'','','','',0,0,0)";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug("auctionDAOä¸­çš„ addToAuctionçš„sql : " + sql);
+        logger.info(sql);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * å°†è£…å¤‡ä»æ‹å–åœºè½¬åˆ°ä¸ªäººåŒ…è£¹
+     *
+     * @param pk
+     * @param auctionVO
+     * @return
+     */
+    public int putGoodsToWrap(int pk, AuctionVO vo) {
+        int i = 0;
+        String sql = "INSERT INTO u_part_equip values(null,'" + pk + "','" + vo.getTableType() + "','" + vo.getGoodsType() + "','" + vo.getGoodsId() + "','" + vo.getGoodsName() + "','" + vo.getWDurability() + "','" + vo.getWDuraConsume() + "','" + vo.getWBonding() + "','" + vo.getWProtect() + "','" + vo.getWIsReconfirm() + "','" + vo.getWPrice() + "','" + vo.getWFyXiaoYuan() + "','" + vo.getWFyDaYuan() + "','" + vo.getWGjXiaoYuan() + "','" + vo.getWGjDaYuan() + "','" + vo.getWHp() + "','" + vo.getWMp() + "','" + vo.getWJinFy() + "','" + vo.getWMuFy() + "','" + vo.getWShuiFy() + "','" + vo.getWHuoFy() + "','" + vo.getWTuFy() + "','" + vo.getWJinGj() + "','" + vo.getWMuGj() + "','" + vo.getWShuiGj() + "','" + vo.getWHuoGj() + "','" + vo.getWTuGj() + "','0','" + vo.getWQuality() + "','" + vo.getSuitId() + "','" + vo.getWWxType() + "','" + vo.getWBuffIsEffected() + "','" + vo.getEnchantType() + "'," + vo.getEnchantValue() + "," + vo.getWZjHp() + "," + vo.getWZjMp() + "," + vo.getWZjWxGj() + "," + vo.getWZjWxFy() + "," + vo.getWZbGrade() + ",now(),0," + vo.getWBondingNum() + "," + vo.getSpecialcontent() + ")";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug("auctionDAOä¸­çš„ addToAuctionçš„sql : " + sql);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            i = ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            dbConn.closeConn();
+        }
+        return i;
+    }
+
+    /**
+     * å¾€åŒ…è£¹é‡Œæ·»åŠ é“å…·
+     *
+     * @param pk
+     * @param auctionVO
+     */
+    public int insertPropGroupInfo(int pk, AuctionVO auctionVO, int pg_type, int prop_type, int prop_price) {
+        int i = -1;
+        String sql = "INSERT INTO u_propgroup_info values(null,'" + pk + "','" + pg_type + "','" + auctionVO.getGoodsId() + "','" + prop_type + "','" + auctionVO.getWBonding() + "','" + auctionVO.getWProtect() + "','" + auctionVO.getWIsReconfirm() + "','" + auctionVO.getPropUseControl() + "','" + auctionVO.getGoodsName() + "','" + prop_price + "','" + auctionVO.getGoodsNumber() + "',now())";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug("auctionDAOä¸­çš„ addToAuctionçš„sql : " + sql);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            i = ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return i;
+    }
 }

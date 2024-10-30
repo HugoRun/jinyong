@@ -3,8 +3,8 @@ package com.ls.ben.vo.info.login;
 import com.ls.pub.constant.player.PlayerState;
 
 /**
- * ¹¦ÄÜ:¼ÇÂ¼»î¶¯ÓÃ»§ĞÅÏ¢
- * @author ÁõË§
+ * åŠŸèƒ½:è®°å½•æ´»åŠ¨ç”¨æˆ·ä¿¡æ¯
+ * @author åˆ˜å¸…
  * 1:40:16 PM
  */
 public class UserInfoVO
@@ -12,19 +12,19 @@ public class UserInfoVO
 	/**sessionId*/
 	String sessionId;
 	
-	/**½ÇÉ«id*/
+	/**è§’è‰²id*/
 	String pPk;
 	
-	/** ÊÇ·ñÖØ¸´  */
+	/** æ˜¯å¦é‡å¤  */
 	boolean iskicked = false;
 
 	/**
-	 * Íæ¼Ò×´Ì¬
+	 * ç©å®¶çŠ¶æ€
 	 */
 	int stat = PlayerState.GENERAL;
 	
 	/**
-	 * Í¨ÖªÊÇ·ñÊÜµ½ÆäËûÍæ¼Ò¹¥»÷
+	 * é€šçŸ¥æ˜¯å¦å—åˆ°å…¶ä»–ç©å®¶æ”»å‡»
 	 */
 	boolean isAttacked = false;
 	

@@ -15,7 +15,7 @@ import com.pm.vo.auction.AuctionYBVO;
 public class AuctionYbDao extends DaoBase {
 
 	/**
-	 * »ñÈ¡ÅÄÂôµÄÔª±¦ÁĞ±íÖĞµÄÖ¸¶¨µÄÔª±¦ĞÅÏ¢
+	 * è·å–æ‹å–çš„å…ƒå®åˆ—è¡¨ä¸­çš„æŒ‡å®šçš„å…ƒå®ä¿¡æ¯
 	 * @param roleInfo
 	 * @param page_no
 	 * @return
@@ -35,7 +35,7 @@ public class AuctionYbDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "select count(*) from u_auction_yb where uyb_state=" + AuctionNumber.YUANSELLING + "";
+			count_sql = "SELECT count(*) from u_auction_yb where uyb_state=" + AuctionNumber.YUANSELLING + "";
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -46,7 +46,7 @@ public class AuctionYbDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			String page_sql = "select * from u_auction_yb where  uyb_state = " + AuctionNumber.YUANSELLING + 
+			String page_sql = "SELECT * FROM u_auction_yb where  uyb_state = " + AuctionNumber.YUANSELLING + 
 					" limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			
 			logger.debug(page_sql);
@@ -63,7 +63,7 @@ public class AuctionYbDao extends DaoBase {
 				vo.setAuctionTime(rs.getString("auction_time"));
 				ybList.add(vo);
 			}
-			logger.debug("ÅÄÂô³¡µÄËÑË÷½á¹ûÎª : "+ybList.size());
+			logger.debug("æ‹å–åœºçš„æœç´¢ç»“æœä¸º : "+ybList.size());
 			rs.close();
 			stmt.close();
 			
@@ -82,16 +82,16 @@ public class AuctionYbDao extends DaoBase {
 	}
 
 	/**
-	 * ¸ù¾İ ÅÄÂôÔª±¦±íid »ñµÃ Ôª±¦ÅÄÂôĞÅÏ¢
+	 * æ ¹æ® æ‹å–å…ƒå®è¡¨id è·å¾— å…ƒå®æ‹å–ä¿¡æ¯
 	 * @param uyb_id
 	 * @return
 	 */
 	public AuctionYBVO getAuctionYbByUybId(String uyb_id,int uyb_state)
 	{
-		String sql = "select * from u_auction_yb where uyb_id = "+uyb_id+" and uyb_state = "+uyb_state;
+		String sql = "SELECT * FROM u_auction_yb where uyb_id = "+uyb_id+" and uyb_state = "+uyb_state;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionYBVO vo = null;
-		logger.debug("¸ù¾İ ÅÄÂô"+GameConfig.getYuanbaoName()+"±íid »ñµÃ "+GameConfig.getYuanbaoName()+"ÅÄÂôĞÅÏ¢="+sql);
+		logger.debug("æ ¹æ® æ‹å–"+GameConfig.getYuanbaoName()+"è¡¨id è·å¾— "+GameConfig.getYuanbaoName()+"æ‹å–ä¿¡æ¯="+sql);
 		
 		conn = dbConn.getConn();
 		try
@@ -120,16 +120,16 @@ public class AuctionYbDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İ ÅÄÂôÔª±¦±íid »ñµÃ Ôª±¦ÅÄÂôĞÅÏ¢
+	 * æ ¹æ® æ‹å–å…ƒå®è¡¨id è·å¾— å…ƒå®æ‹å–ä¿¡æ¯
 	 * @param uyb_id
 	 * @return
 	 */
 	public AuctionYBVO getAuctionYbByUybId(String uyb_id,int uyb_state,int pPk)
 	{
-		String sql = "select * from u_auction_yb where uyb_id = "+uyb_id+" and uyb_state = "+uyb_state + " and p_pk="+pPk;
+		String sql = "SELECT * FROM u_auction_yb where uyb_id = "+uyb_id+" and uyb_state = "+uyb_state + " and p_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionYBVO vo = null;
-		logger.debug("¸ù¾İ ÅÄÂô"+GameConfig.getYuanbaoName()+"±íid »ñµÃ"+GameConfig.getYuanbaoName()+"ÅÄÂôĞÅÏ¢="+sql);
+		logger.debug("æ ¹æ® æ‹å–"+GameConfig.getYuanbaoName()+"è¡¨id è·å¾—"+GameConfig.getYuanbaoName()+"æ‹å–ä¿¡æ¯="+sql);
 		
 		conn = dbConn.getConn();
 		try
@@ -158,16 +158,16 @@ public class AuctionYbDao extends DaoBase {
 	}
 
 	/**
-	 * »ñµÃËùÓĞ³¬¹ıÈıÌìµÄÕıÔÚÂô³öµÄÔª±¦ ĞÅÏ¢
+	 * è·å¾—æ‰€æœ‰è¶…è¿‡ä¸‰å¤©çš„æ­£åœ¨å–å‡ºçš„å…ƒå® ä¿¡æ¯
 	 * @return
 	 */
 	public List<AuctionYBVO> getAllAuctionYbList()
 	{
 		List<AuctionYBVO> list = new ArrayList<AuctionYBVO>();
-		String sql = "select * from u_auction_yb where now() > (auction_time + INTERVAL 3 DAY) and uyb_state="+AuctionNumber.YUANSELLING;
+		String sql = "SELECT * FROM u_auction_yb where now() > (auction_time + INTERVAL 3 DAY) and uyb_state="+AuctionNumber.YUANSELLING;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionYBVO vo = null;
-		logger.debug("»ñµÃËùÓĞ³¬¹ıÈıÌìµÄÕıÔÚÂô³öµÄ"+GameConfig.getYuanbaoName()+" ĞÅÏ¢="+sql);
+		logger.debug("è·å¾—æ‰€æœ‰è¶…è¿‡ä¸‰å¤©çš„æ­£åœ¨å–å‡ºçš„"+GameConfig.getYuanbaoName()+" ä¿¡æ¯="+sql);
 		conn = dbConn.getConn();
 		try
 		{
@@ -196,14 +196,14 @@ public class AuctionYbDao extends DaoBase {
 	}
 
 	/**
-	 * ½«³¬¹ıÈıÌìÅÄÂôÊ§°ÜµÄÔª±¦ÖÃÓÚÏÂ¼Ü×´Ì¬
+	 * å°†è¶…è¿‡ä¸‰å¤©æ‹å–å¤±è´¥çš„å…ƒå®ç½®äºä¸‹æ¶çŠ¶æ€
 	 * @param yuannotsell
 	 */
 	public void updateAllSailedYuanbaoToUnSaleEd()
 	{
 		String sql = "update u_auction_yb set uyb_state = "+AuctionNumber.YUANNOTSELL+" where now() > (auction_time + INTERVAL 3 DAY) and uyb_state="+AuctionNumber.YUANSELLING;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("½«³¬¹ıÈıÌìÅÄÂôÊ§°ÜµÄ"+GameConfig.getYuanbaoName()+"ÖÃÓÚÏÂ¼Ü×´Ì¬="+sql);
+		logger.debug("å°†è¶…è¿‡ä¸‰å¤©æ‹å–å¤±è´¥çš„"+GameConfig.getYuanbaoName()+"ç½®äºä¸‹æ¶çŠ¶æ€="+sql);
 		conn = dbConn.getConn();
 		try
 		{
@@ -220,7 +220,7 @@ public class AuctionYbDao extends DaoBase {
 	}
 
 	/**
-	 * ½«´ËÌõÔª±¦ÅÄÂôĞÅÏ¢µÄ×´Ì¬ÖÃÎªsellState
+	 * å°†æ­¤æ¡å…ƒå®æ‹å–ä¿¡æ¯çš„çŠ¶æ€ç½®ä¸ºsellState
 	 * @param uybId
 	 * @param sellState
 	 */
@@ -230,7 +230,7 @@ public class AuctionYbDao extends DaoBase {
 		String sql = "update u_auction_yb set uyb_state = "+sellState+" where uyb_id="+uybId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		logger.debug("½«´ËÌõ"+GameConfig.getYuanbaoName()+"ÅÄÂôĞÅÏ¢µÄ×´Ì¬ÖÃÎªsellState="+sql);
+		logger.debug("å°†æ­¤æ¡"+GameConfig.getYuanbaoName()+"æ‹å–ä¿¡æ¯çš„çŠ¶æ€ç½®ä¸ºsellState="+sql);
 		try
 		{
     		stmt = conn.createStatement();
@@ -246,17 +246,17 @@ public class AuctionYbDao extends DaoBase {
 	}
 
 	/**
-	 * ½«ÅÄÂôĞÅÏ¢²åÈëµ½Ôª±¦ÅÄÂô³¡ÖĞ
+	 * å°†æ‹å–ä¿¡æ¯æ’å…¥åˆ°å…ƒå®æ‹å–åœºä¸­
 	 * @param pPk
 	 * @param paimaiYuanBao
 	 * @param money
 	 */
 	public void insertYuanbao(int pPk, int paimaiYuanBao, long money)
 	{
-		String sql = "insert into u_auction_yb values (null,"+pPk+",1,"+paimaiYuanBao+","+money+",now())";
+		String sql = "INSERT INTO u_auction_yb values (null,"+pPk+",1,"+paimaiYuanBao+","+money+",now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		logger.debug("½«ÅÄÂôĞÅÏ¢²åÈëµ½"+GameConfig.getYuanbaoName()+"ÅÄÂô³¡ÖĞ="+sql);
+		logger.debug("å°†æ‹å–ä¿¡æ¯æ’å…¥åˆ°"+GameConfig.getYuanbaoName()+"æ‹å–åœºä¸­="+sql);
 		try
 		{
     		stmt = conn.createStatement();
@@ -272,19 +272,19 @@ public class AuctionYbDao extends DaoBase {
 	}
 
 	/**
-	 * ¼ÇÂ¼Ôª±¦ÅÄÂô
-	 * @param pPk Ö÷¶¯²Ù×÷ÕßµÄpPk
+	 * è®°å½•å…ƒå®æ‹å–
+	 * @param pPk ä¸»åŠ¨æ“ä½œè€…çš„pPk
 	 * @param auctionYBVO	
-	 * @param jiluString	Òª¼ÇÂ¼µÄstring
+	 * @param jiluString	è¦è®°å½•çš„string
 	 */
 	public void insertYuanbaoInfo(int pPk, AuctionYBVO auctionYBVO,
 			String jiluString)
 	{
-		String sql = "insert into u_auctionyb_auctioninfo values (null,"+pPk+
+		String sql = "INSERT INTO u_auctionyb_auctioninfo values (null,"+pPk+
 					","+auctionYBVO.getPPk()+",'"+jiluString+"',now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		logger.debug("¼ÇÂ¼"+GameConfig.getYuanbaoName()+"ÅÄÂô="+sql);
+		logger.debug("è®°å½•"+GameConfig.getYuanbaoName()+"æ‹å–="+sql);
 		try
 		{
     		stmt = conn.createStatement();

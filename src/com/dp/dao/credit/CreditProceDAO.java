@@ -1,438 +1,327 @@
 /**
- * 
+ *
  */
 package com.dp.dao.credit;
+
+import com.ben.shitu.model.ShituConstant;
+import com.dp.vo.credit.PlayerCreditVO;
+import com.ls.web.service.rank.RankService;
+import com.pub.db.jygamedb.JyGameDB;
+import com.pub.db.mysql.SqlData;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ben.shitu.model.ShituConstant;
-import com.dp.vo.credit.PlayerCreditVO;
-import com.ls.web.service.rank.RankService;
-import com.pub.db.jygamedb.Jygamedb;
-import com.pub.db.mysql.SqlData;
-
 /**
  * @author HHJ
- * 
+ *
  */
-public class CreditProceDAO
-{
-	Jygamedb db;
-	// JygameUserdb udb;
-	SqlData udb;
+public class CreditProceDAO {
+    JyGameDB db;
+    // JygameUserdb udb;
+    SqlData udb;
 
-	
-	/**
-	 * ²éÑ¯Íæ¼Ò½ÇÉ«ËùÓµÓÐµÄÉùÍû
-	 */
-	public List<PlayerCreditVO> getPlayerCredit(Integer ppk)
-	{
-		try
-		{
-			String sql = "select * from p_credit_relation where ppk=" + ppk;
-			udb = new SqlData();
-			ResultSet rs = udb.query(sql);
-			List<PlayerCreditVO> pcvlist = new ArrayList<PlayerCreditVO>();
-			PlayerCreditVO vo = null;
-			while (rs.next())
-			{
-				vo = new PlayerCreditVO();
-				vo.setPcid(rs.getInt("pcid"));
-				vo.setPpk(rs.getInt("ppk"));
-				vo.setPcid(rs.getInt("cid"));
-				vo.setPcount(rs.getInt("pcount"));
-				pcvlist.add(vo);
-			}
-			return pcvlist;
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
 
-	/***************************************************************************
-	 * ¸ù¾ÝÉùÍûID²éÑ¯ÉùÍû
-	 **************************************************************************/
-	public PlayerCreditVO getPcvDisplay(Integer pcid)
-	{
-		try
-		{
-			db = new Jygamedb();
-			String sql = "select * from p_credit pc where pc.cid=" + pcid;
-			ResultSet rs = db.query(sql);
-			if (rs.next())
-			{
-				PlayerCreditVO pcv = new PlayerCreditVO();
-				pcv.setPcid(rs.getInt(1));
-				pcv.setCreditname(rs.getString(2));
-				pcv.setCreditdisplay(rs.getString(3));
-				return pcv;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			db.close();
-		}
-		return null;
-	}
+    /**
+     * æŸ¥è¯¢çŽ©å®¶è§’è‰²æ‰€æ‹¥æœ‰çš„å£°æœ›
+     */
+    public List<PlayerCreditVO> getPlayerCredit(Integer ppk) {
+        try {
+            String sql = "SELECT * FROM p_credit_relation where ppk=" + ppk;
+            udb = new SqlData();
+            ResultSet rs = udb.query(sql);
+            List<PlayerCreditVO> pcvlist = new ArrayList<PlayerCreditVO>();
+            PlayerCreditVO vo = null;
+            while (rs.next()) {
+                vo = new PlayerCreditVO();
+                vo.setPcid(rs.getInt("pcid"));
+                vo.setPpk(rs.getInt("ppk"));
+                vo.setPcid(rs.getInt("cid"));
+                vo.setPcount(rs.getInt("pcount"));
+                pcvlist.add(vo);
+            }
+            return pcvlist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
 
-	/***************************************************************************
-	 * ÅÐ¶ÏÍæ¼ÒÊÇ·ñÓÐÌõ¼þ¶Ò»»ÎïÆ·
-	 **************************************************************************/
-	public Integer checkHaveCondition(Integer ppk, Integer cid, Integer ncount)
-	{
-		try
-		{
-			udb = new SqlData();
-			String sql = "select pcount from p_credit_relation where ppk="
-					+ ppk + " and cid=" + cid;
-			ResultSet rs = udb.query(sql);
-			if (rs.next())
-			{
-				Integer pcount = rs.getInt(1);
-				if (pcount < ncount)
-				{
-					return 0;
-				}
-				else
-				{
-					return 1;
-				}
-			}
-			else
-			{
-				return -1;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
+    /***************************************************************************
+     * æ ¹æ®å£°æœ›IDæŸ¥è¯¢å£°æœ›
+     **************************************************************************/
+    public PlayerCreditVO getPcvDisplay(Integer pcid) {
+        try {
+            db = new JyGameDB();
+            String sql = "SELECT * FROM p_credit pc where pc.cid=" + pcid;
+            ResultSet rs = db.query(sql);
+            if (rs.next()) {
+                PlayerCreditVO pcv = new PlayerCreditVO();
+                pcv.setPcid(rs.getInt(1));
+                pcv.setCreditname(rs.getString(2));
+                pcv.setCreditdisplay(rs.getString(3));
+                return pcv;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return null;
+    }
 
-	/***************************************************************************
-	 * ¶Ò»»³É¹¦ºó¼õµôÍæ¼ÒµÄÉùÍû
-	 **************************************************************************/
-	public void subtractCredit(Integer ppk, Integer cid, Integer ncount)
-	{
-		String sql = "update p_credit_relation set pcount=pcount-" + ncount
-				+ " where ppk=" + ppk + " and cid=" + cid;
-		try
-		{
-			udb = new SqlData();
-			udb.update(sql);
-			if(cid == ShituConstant.CHUSHI_CREDIT_ID){
-				//Í³¼ÆÐèÒª
-				new RankService().updateAdd(ppk, "credit", -ncount);
-			}
-			
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-	}
+    /***************************************************************************
+     * åˆ¤æ–­çŽ©å®¶æ˜¯å¦æœ‰æ¡ä»¶å…‘æ¢ç‰©å“
+     **************************************************************************/
+    public Integer checkHaveCondition(Integer ppk, Integer cid, Integer ncount) {
+        try {
+            udb = new SqlData();
+            String sql = "SELECT pcount from p_credit_relation where ppk="
+                    + ppk + " and cid=" + cid;
+            ResultSet rs = udb.query(sql);
+            if (rs.next()) {
+                Integer pcount = rs.getInt(1);
+                if (pcount < ncount) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            } else {
+                return -1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
 
-	/**
-	 * Ìí¼ÓÍæ¼Ò½ÇÉ«ÉùÍû
-	 */
-	public void addPlayerCredit(Integer ppk, Integer cid, Integer ncount)
-	{
-		String sql1 = "insert into p_credit_relation values(null," + ppk + ","
-				+ cid + "," + ncount + ")";
-		String sql2 = "update p_credit_relation set pcount=pcount+" + ncount
-				+ " where ppk=" + ppk + " and cid=" + cid;
-		try
-		{
-			Integer i = this.checkPlayerHasTheCredit(ppk, cid);
-			udb = new SqlData();
-			if (i == 1 || i.equals(1))
-			{
-				udb.update(sql2);
+    /***************************************************************************
+     * å…‘æ¢æˆåŠŸåŽå‡æŽ‰çŽ©å®¶çš„å£°æœ›
+     **************************************************************************/
+    public void subtractCredit(Integer ppk, Integer cid, Integer ncount) {
+        String sql = "update p_credit_relation set pcount=pcount-" + ncount
+                + " where ppk=" + ppk + " and cid=" + cid;
+        try {
+            udb = new SqlData();
+            udb.update(sql);
+            if (cid == ShituConstant.CHUSHI_CREDIT_ID) {
+                //ç»Ÿè®¡éœ€è¦
+                new RankService().updateAdd(ppk, "credit", -ncount);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+    }
+
+    /**
+     * æ·»åŠ çŽ©å®¶è§’è‰²å£°æœ›
+     */
+    public void addPlayerCredit(Integer ppk, Integer cid, Integer ncount) {
+        String sql1 = "INSERT INTO p_credit_relation values(null," + ppk + ","
+                + cid + "," + ncount + ")";
+        String sql2 = "update p_credit_relation set pcount=pcount+" + ncount
+                + " where ppk=" + ppk + " and cid=" + cid;
+        try {
+            Integer i = this.checkPlayerHasTheCredit(ppk, cid);
+            udb = new SqlData();
+            if (i == 1 || i.equals(1)) {
+                udb.update(sql2);
 //				if(cid == ShituConstant.CHUSHI_CREDIT_ID){
-//					//Í³¼ÆÐèÒª
+//					//ç»Ÿè®¡éœ€è¦
 //					new RankService().updateAdd(ppk, "credit", -ncount);
 //				}
-			}
-			else
-			{
-				udb.update(sql1);
+            } else {
+                udb.update(sql1);
 //				if(cid == ShituConstant.CHUSHI_CREDIT_ID){
-//					//Í³¼ÆÐèÒª
+//					//ç»Ÿè®¡éœ€è¦
 //					new RankService().updateAdd(ppk, "credit", ncount);
 //				}
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-	}
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+    }
 
-	/**
-	 * É¾³ýÍæ¼ÒÉùÍû
-	 */
-	public void deletePlayerCredit(int ppk, int cid)
-	{
-		try
-		{ 
-	    udb = new SqlData();
-		String sql1 = "delete from p_credit_relation where ppk = " + ppk + " and cid="+ cid + "";
-		udb.update(sql1); 
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-	}
-	
-	/***************************************************************************
-	 * ÅÐ¶ÏÍæ¼ÒÊÇ·ñÓÐ¸ÃÉùÍû
-	 **************************************************************************/
-	public Integer checkPlayerHasTheCredit(Integer ppk, Integer cid)
-	{
-		String sql = "select pcount from p_credit_relation where ppk=" + ppk
-				+ " and cid=" + cid;
-		try
-		{
-			udb = new SqlData();
-			ResultSet rs = udb.query(sql);
-			if (rs.next())
-			{
-				return 1;
-			}
-			else
-			{
-				return -1;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
+    /**
+     * åˆ é™¤çŽ©å®¶å£°æœ›
+     */
+    public void deletePlayerCredit(int ppk, int cid) {
+        try {
+            udb = new SqlData();
+            String sql1 = "delete from p_credit_relation where ppk = " + ppk + " and cid=" + cid;
+            udb.update(sql1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+    }
 
-	/***************************************************************************
-	 * ÅÐ¶ÏÈÙÓþÌõ¼þÊÇ·ñÂú×ã
-	 **************************************************************************/
-	public Integer checkHonorCondition(Integer ppk, Integer excount)
-	{
-		String sql = "select glory_value from u_tong_glory where p_pk=" + ppk;
-		try
-		{
-			udb = new SqlData();
-			ResultSet rs = udb.query(sql);
-			if (rs.next())
-			{
-				Integer gvalue = rs.getInt(1);
-				if (gvalue == null)
-				{
-					return -1;// Ã»ÓÐÈÙÓþÖµ
-				}
-				else
-				{
-					if (gvalue < excount)
-					{
-						return 0;// ÈÙÓþÖµ²»×ã
-					}
-					else
-					{
-						return 1;// ÈÙÓþÖµÂú×ãÒªÇó
-					}
-				}
-			}
-			else
-			{
-				return -1;// Ã»ÓÐÈÙÓþÖµ
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
+    /***************************************************************************
+     * åˆ¤æ–­çŽ©å®¶æ˜¯å¦æœ‰è¯¥å£°æœ›
+     **************************************************************************/
+    public Integer checkPlayerHasTheCredit(Integer ppk, Integer cid) {
+        String sql = "SELECT pcount from p_credit_relation where ppk=" + ppk
+                + " and cid=" + cid;
+        try {
+            udb = new SqlData();
+            ResultSet rs = udb.query(sql);
+            if (rs.next()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
 
-	/**
-	 * Ìí¼ÓÍæ¼ÒµÄÈÙÓþÖµ
-	 */
-	public void addPlayerHonor(Integer ppk, Integer excount)
-	{
-		Integer tpk = this.getRoleTpk(ppk);
-		String pname = this.getTheRoleName(ppk);
-		String sql1 = "insert into u_tong_glory values(null," + tpk + "," + ppk
-				+ "," + pname + ",0," + excount + "," + excount + ")";
-		String sql2 = "update u_tong_glory set intraday_value=intraday+"
-				+ excount + ",glory_value = glory_value" + excount
-				+ " where p_pk=" + ppk;
-		try
-		{
-			udb = new SqlData();
-			Integer i = this.checkRoleHaveTheHoner(ppk);
-			if (i == 0 || i.equals(0))
-			{
-				udb.update(sql1);
-				//Í³¼ÆÐèÒª
-				new RankService().updateAdd(ppk, "glory", excount);
-			}
-			else
-			{
-				udb.update(sql2);
-				//Í³¼ÆÐèÒª
-				new RankService().updateAdd(ppk, "glory", excount);
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-	}
+    /***************************************************************************
+     * åˆ¤æ–­è£èª‰æ¡ä»¶æ˜¯å¦æ»¡è¶³
+     **************************************************************************/
+    public Integer checkHonorCondition(Integer ppk, Integer excount) {
+        String sql = "SELECT glory_value from u_tong_glory where p_pk=" + ppk;
+        try {
+            udb = new SqlData();
+            ResultSet rs = udb.query(sql);
+            if (rs.next()) {
+                Integer gvalue = rs.getInt(1);
+                if (gvalue == null) {
+                    return -1;// æ²¡æœ‰è£èª‰å€¼
+                } else {
+                    if (gvalue < excount) {
+                        return 0;// è£èª‰å€¼ä¸è¶³
+                    } else {
+                        return 1;// è£èª‰å€¼æ»¡è¶³è¦æ±‚
+                    }
+                }
+            } else {
+                return -1;// æ²¡æœ‰è£èª‰å€¼
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
 
-	/**
-	 * ¼õµôÍæ¼ÒµÄÈÙÓþÖµ
-	 */
-	public void subtractHonor(Integer ppk, Integer excount)
-	{
-		String sql = "update u_tong_glory set glory_value = glory_value - "
-				+ excount + " where p_pk=" + ppk;
-		try
-		{
-			udb = new SqlData();
-			udb.update(sql);
-			//Í³¼ÆÐèÒª
-			new RankService().updateAdd(ppk, "glory", -excount);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-	}
+    /**
+     * æ·»åŠ çŽ©å®¶çš„è£èª‰å€¼
+     */
+    public void addPlayerHonor(Integer ppk, Integer excount) {
+        Integer tpk = this.getRoleTpk(ppk);
+        String pname = this.getTheRoleName(ppk);
+        String sql1 = "INSERT INTO u_tong_glory values(null," + tpk + "," + ppk
+                + "," + pname + ",0," + excount + "," + excount + ")";
+        String sql2 = "update u_tong_glory set intraday_value=intraday+"
+                + excount + ",glory_value = glory_value" + excount
+                + " where p_pk=" + ppk;
+        try {
+            udb = new SqlData();
+            Integer i = this.checkRoleHaveTheHoner(ppk);
+            if (i == 0 || i.equals(0)) {
+                udb.update(sql1);
+                //ç»Ÿè®¡éœ€è¦
+                new RankService().updateAdd(ppk, "glory", excount);
+            } else {
+                udb.update(sql2);
+                //ç»Ÿè®¡éœ€è¦
+                new RankService().updateAdd(ppk, "glory", excount);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+    }
 
-	/***************************************************************************
-	 * »ñÈ¡½ÇÉ«µÄ°ï»áID
-	 **************************************************************************/
-	public Integer getRoleTpk(Integer ppk)
-	{
-		String sql = "select p_tong from u_part_info where p_pk=" + ppk;
-		try
-		{
-			udb = new SqlData();
-			ResultSet rs = udb.query(sql);
-			if (rs.next())
-			{
-				return rs.getInt(1);
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
+    /**
+     * å‡æŽ‰çŽ©å®¶çš„è£èª‰å€¼
+     */
+    public void subtractHonor(Integer ppk, Integer excount) {
+        String sql = "UPDATE `u_tong_glory` SET glory_value = glory_value - " + excount + " WHERE p_pk=" + ppk;
+        try {
+            udb = new SqlData();
+            udb.update(sql);
+            //ç»Ÿè®¡éœ€è¦
+            new RankService().updateAdd(ppk, "glory", -excount);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+    }
 
-	/***************************************************************************
-	 * ÅÐ¶Ï¸Ã½ÇÉ«ÊÇ·ñÓÐÈÙÓþ
-	 **************************************************************************/
-	public Integer checkRoleHaveTheHoner(Integer ppk)
-	{
-		String sql = "select * from u_tong_glory where p_pk=" + ppk;
-		try
-		{
-			udb = new SqlData();
-			ResultSet rs = udb.query(sql);
-			if (rs.next())
-			{
-				return 1;
-			}
-			else
-			{
-				return 0;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
+    /***************************************************************************
+     * èŽ·å–è§’è‰²çš„å¸®ä¼šID
+     **************************************************************************/
+    public Integer getRoleTpk(Integer ppk) {
+        String sql = "SELECT p_tong from u_part_info where p_pk=" + ppk;
+        try {
+            udb = new SqlData();
+            ResultSet rs = udb.query(sql);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
 
-	/***************************************************************************
-	 * ²éÑ¯¸Ã½ÇÉ«µÄ½ÇÉ«Ãû
-	 **************************************************************************/
-	public String getTheRoleName(Integer ppk)
-	{
-		String sql = "select p_name from u_part_info where p_pk=" + ppk;
-		try
-		{
-			udb = new SqlData();
-			ResultSet rs = udb.query(sql);
-			if (rs.next())
-			{
-				return rs.getString(1);
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			udb.close();
-		}
-		return null;
-	}
+    /***************************************************************************
+     * åˆ¤æ–­è¯¥è§’è‰²æ˜¯å¦æœ‰è£èª‰
+     **************************************************************************/
+    public Integer checkRoleHaveTheHoner(Integer ppk) {
+        String sql = "SELECT * FROM u_tong_glory where p_pk=" + ppk;
+        try {
+            udb = new SqlData();
+            ResultSet rs = udb.query(sql);
+            if (rs.next()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
+
+    /***************************************************************************
+     * æŸ¥è¯¢è¯¥è§’è‰²çš„è§’è‰²å
+     **************************************************************************/
+    public String getTheRoleName(Integer ppk) {
+        String sql = "SELECT p_name from u_part_info where p_pk=" + ppk;
+        try {
+            udb = new SqlData();
+            ResultSet rs = udb.query(sql);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            udb.close();
+        }
+        return null;
+    }
 }

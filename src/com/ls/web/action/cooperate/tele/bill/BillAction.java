@@ -55,10 +55,10 @@ public class BillAction extends DispatchAction
 		String uPk = (String)request.getSession().getAttribute("uPk");
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		/***********ÑéÖ¤sessionµÄÓĞĞ§ĞÔ************/
+		/***********éªŒè¯sessionçš„æœ‰æ•ˆæ€§************/
 		if(uPk==null)
 		{
-			logger.info("session¼àÌıÆ÷ÖĞµÄÌø×ªµ½µÇÂ½½çÃæÊ±µÄuPk="+uPk+",roleInfo="+roleInfo);
+			logger.info("sessionç›‘å¬å™¨ä¸­çš„è·³è½¬åˆ°ç™»é™†ç•Œé¢æ—¶çš„uPk="+uPk+", roleInfo="+roleInfo);
 			try
 			{
 				request.getRequestDispatcher("/jsp/out_page.jsp").forward(request, response);
@@ -66,11 +66,11 @@ public class BillAction extends DispatchAction
 			}
 			catch (Exception e)
 			{
-				logger.debug("uPkÎªnull......");
+				logger.debug("uPkä¸ºnull......");
 			}
 			
 		}
-		/**ÅĞ¶Ï½ğ¶îÊäÈëÊÇ·ñÓĞÎó**/
+		/**åˆ¤æ–­é‡‘é¢è¾“å…¥æ˜¯å¦æœ‰è¯¯**/
 		ValidateService validateService = new ValidateService();
 		String hint = validateService.validateNonZeroNegativeIntegers(money);
 		if(hint!=null)
@@ -92,13 +92,13 @@ public class BillAction extends DispatchAction
 		params.put("versionId", versionId);
 		params.put("money", money);
 		HttpRespons responses = null;
-		logger.info("*******³äÖµ½ğ¶î******"+money);
-		logger.info("*******ÓÃ»§±àºÅ******"+custLabel);
+		logger.info("*******å……å€¼é‡‘é¢******"+money);
+		logger.info("*******ç”¨æˆ·ç¼–å·******"+custLabel);
 		try
 		{
-			logger.info("¿ªÊ¼·¢ËÍÇëÇó...");
+			logger.info("å¼€å§‹å‘é€è¯·æ±‚...");
 			responses=requester.sendPostTele("http://202.102.39.11:9088/gameinterface/ChargeAddDirect",params);
-			logger.info("½áÊø·¢ËÍÇëÇó..."+response);
+			logger.info("ç»“æŸå‘é€è¯·æ±‚..."+response);
 			String respones_result = null;
 			String status=null;
 			String accountBalance=null;
@@ -121,36 +121,36 @@ public class BillAction extends DispatchAction
 			}
 			catch (DocumentException e)
 			{
-				logger.debug("ÎÄµµ½âÎö´íÎó....");
+				logger.debug("æ–‡æ¡£è§£æé”™è¯¯....");
 			}
-			/***0±íÊ¾¿Û·Ñ³É¹¦1±íÊ¾¿Û·ÑÊ§°Ü***/
+			/***0è¡¨ç¤ºæ‰£è´¹æˆåŠŸ1è¡¨ç¤ºæ‰£è´¹å¤±è´¥***/
 			if(respones_result==null)
 			{
-				request.setAttribute("hint", "Æ½Ì¨·µ»ØÎªnull");
+				request.setAttribute("hint", "å¹³å°è¿”å›ä¸ºnull");
 				return mapping.findForward("index");
 			}
 			else if(respones_result.equals("0"))
 			{
-				logger.info("**********¿Û·Ñ³É¹¦********");
-				bs.updatePayRecord( pay_record_id,transID, "","","","0");//¸üĞÂÏû·Ñ¼ÇÂ¼
-				//¸øÍæ¼ÒÔö¼Ó»ı·Ö
+				logger.info("**********æ‰£è´¹æˆåŠŸ********");
+				bs.updatePayRecord( pay_record_id,transID, "","","","0");//æ›´æ–°æ¶ˆè´¹è®°å½•
+				//ç»™ç©å®¶å¢åŠ ç§¯åˆ†
 				EconomyService economyService = new EconomyService();
 				int u_pk = Integer.parseInt(uPk);
-				//¸øÍæ¼ÒÔö¼Ó»ı·Ö
+				//ç»™ç©å®¶å¢åŠ ç§¯åˆ†
 				int yb_num = Integer.parseInt(money);
-				int jf_num = yb_num*GameConfig.getJifenNum();//1KB»ñµÃ1¸ö»ı·Ö
-				economyService.addJifen(u_pk,jf_num);//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+				int jf_num = yb_num*GameConfig.getJifenNum();//1KBè·å¾—1ä¸ªç§¯åˆ†
+				economyService.addJifen(u_pk,jf_num);//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-				gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//Í³¼Æ³äÖµÈË´Î
-				hint = "¶Ò»»³É¹¦,Äú»ñµÃÁË"+Integer.parseInt(money)*100+"¸ö¡¾»ı·Ö¡¿!";
+				gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//ç»Ÿè®¡å……å€¼äººæ¬¡
+				hint = "å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†"+Integer.parseInt(money)*100+"ä¸ªã€ç§¯åˆ†ã€‘!";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("success");
 			}
 			else if(respones_result.equals("1"))
 			{
-				System.out.println("********¿Û·ÑÊ§°Ü***********");
+				System.out.println("********æ‰£è´¹å¤±è´¥***********");
 				bs.updatePayRecord( pay_record_id,transID, "","","","1");
-				hint = "³äÖµÊ§°ÜÇëÖØĞÂ²Ù×÷";
+				hint = "å……å€¼å¤±è´¥è¯·é‡æ–°æ“ä½œ";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("index");
 			}
@@ -161,7 +161,7 @@ public class BillAction extends DispatchAction
 		}
 		return null;
 	}
-	/****µÃµ½Ê±¼äµÄÁ÷Ë®×Ö·û´®***/
+	/****å¾—åˆ°æ—¶é—´çš„æµæ°´å­—ç¬¦ä¸²***/
 	private String getDateStr()
 	{
 		String todayStr = null;

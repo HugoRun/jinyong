@@ -15,7 +15,7 @@ import org.apache.struts.action.ActionMapping;
 
 
 /**
- * ¹¦ÄÜ£º
+ * åŠŸèƒ½ï¼š
  * @author ls
  * Apr 19, 2009
  * 1:27:01 PM

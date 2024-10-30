@@ -29,14 +29,14 @@ import com.pm.service.systemInfo.SystemInfoService;
 import com.pm.vo.sysInfo.SystemControlInfoVO;
 
 /**
- * ¹¦ÄÜ:buffĞ§¹û¹ÜÀí
- * @author ÁõË§ 3:11:25 PM
+ * åŠŸèƒ½:buffæ•ˆæœç®¡ç†
+ * @author åˆ˜å¸… 3:11:25 PM
  */
 public class BuffEffectService
 {
 
 	/**
-	 * ¸øÍæ¼ÒÌí¼ÓÒ»¸öbuff Ğ§¹û
+	 * ç»™ç©å®¶æ·»åŠ ä¸€ä¸ªbuff æ•ˆæœ
 	 * @param object_id
 	 * @param buff_id
 	 */
@@ -46,9 +46,9 @@ public class BuffEffectService
 	}
 	
 	/**
-	 * ´´½¨Ò»¸öbuffĞ§¹û
-	 * @param object_id   ×÷ÓÃ¶ÔÏóid
-	 * @param object_type ×÷ÓÃ¶ÔÏóÀàĞÍ
+	 * åˆ›å»ºä¸€ä¸ªbuffæ•ˆæœ
+	 * @param object_id   ä½œç”¨å¯¹è±¡id
+	 * @param object_type ä½œç”¨å¯¹è±¡ç±»å‹
 	 * @param buff_id
 	 */
 	public void createBuffEffect(int object_id,int object_type, int buff_id)
@@ -58,28 +58,28 @@ public class BuffEffectService
 		BuffVO buff = buffDao.getBuff(buff_id);
 		if (buff == null)
 		{
-			DataErrorLog.debugData("BuffEffectService.createBuffEffect:ÎŞĞ§buffId="+buff_id);
+			DataErrorLog.debugData("BuffEffectService.createBuffEffect:æ— æ•ˆbuffId="+buff_id);
 		}
 		
 		BuffEffectVO buffEffect = (BuffEffectVO) buff;
 		buffEffect.setBuffUseMode(buff.getBuffUseMode());
-		buffEffect.setEffectObject(object_id);// ×÷ÓÃ¶ÔÏó
-		buffEffect.setEffectObjectType(object_type);// ×÷ÓÃ¶ÔÏóÀàĞÍ
+		buffEffect.setEffectObject(object_id);// ä½œç”¨å¯¹è±¡
+		buffEffect.setEffectObjectType(object_type);// ä½œç”¨å¯¹è±¡ç±»å‹
 
 		buffEffect.setBuffTime(buff.getBuffTime());
 		buffEffect.setSpareBout(buff.getBuffBout());
 		
 		dealWithBuffEffect (buffEffect);
 
-		buffEffectDao.add(buffEffect);// Ìí¼ÓbuffĞ§¹û
+		buffEffectDao.add(buffEffect);// æ·»åŠ buffæ•ˆæœ
 	}
 	
 	/**
-	 * ´´½¨Ò»¸öbuffĞ§¹û
-	 * @param object_id   ×÷ÓÃ¶ÔÏóid
-	 * @param object_type ×÷ÓÃ¶ÔÏóÀàĞÍ
+	 * åˆ›å»ºä¸€ä¸ªbuffæ•ˆæœ
+	 * @param object_id   ä½œç”¨å¯¹è±¡id
+	 * @param object_type ä½œç”¨å¯¹è±¡ç±»å‹
 	 * @param buff_id
-	 * @param time Ê±¼ä,ÒÔ·ÖÖÓÎªµ¥Î»
+	 * @param time æ—¶é—´,ä»¥åˆ†é’Ÿä¸ºå•ä½
 	 */
 	public void createBuffEffect(int object_id,int object_type, int buff_id,int time)
 	{
@@ -88,24 +88,24 @@ public class BuffEffectService
 		BuffVO buff = buffDao.getBuff(buff_id);
 		if (buff == null)
 		{
-			DataErrorLog.debugData("BuffEffectService.createBuffEffect:ÎŞĞ§buffId="+buff_id);
+			DataErrorLog.debugData("BuffEffectService.createBuffEffect:æ— æ•ˆbuffId="+buff_id);
 		}
 		
 		BuffEffectVO buffEffect = (BuffEffectVO) buff;
 		buffEffect.setBuffUseMode(buff.getBuffUseMode());
-		buffEffect.setEffectObject(object_id);// ×÷ÓÃ¶ÔÏó
-		buffEffect.setEffectObjectType(object_type);// ×÷ÓÃ¶ÔÏóÀàĞÍ
+		buffEffect.setEffectObject(object_id);// ä½œç”¨å¯¹è±¡
+		buffEffect.setEffectObjectType(object_type);// ä½œç”¨å¯¹è±¡ç±»å‹
 
 		buffEffect.setBuffTime(time);
 		buffEffect.setSpareBout(buff.getBuffBout());
 		
 		dealWithBuffEffect (buffEffect);
 
-		buffEffectDao.add(buffEffect);// Ìí¼ÓbuffĞ§¹û
+		buffEffectDao.add(buffEffect);// æ·»åŠ buffæ•ˆæœ
 	}
 
 	/**
-	 * ÔÚ´´½¨Ê±Õë¶ÔbuffµÄÇé¿öÓĞ¿ÉÄÜÒª×÷²»Í¬µÄ´¦Àí
+	 * åœ¨åˆ›å»ºæ—¶é’ˆå¯¹buffçš„æƒ…å†µæœ‰å¯èƒ½è¦ä½œä¸åŒçš„å¤„ç†
 	 * @param buffEffect
 	 */
 	private void dealWithBuffEffect(BuffEffectVO buffEffect)
@@ -130,7 +130,7 @@ public class BuffEffectService
 	}
 
 	/**
-	 * ÔÚ´´½¨Ê±´¦Àí¼õÉÙpkÖµµÄbuff
+	 * åœ¨åˆ›å»ºæ—¶å¤„ç†å‡å°‘pkå€¼çš„buff
 	 * @param buffEffect
 	 */
 	private void dealWithReducePkValue(BuffEffectVO buffEffect)
@@ -139,14 +139,14 @@ public class BuffEffectService
 		String propName = propdao.getPropNameByType(buffEffect.getBuffId()+"");
 		
 		int buffTime = buffEffect.getBuffTime();
-		String info = "Äú"+propName+"µÄĞ§¹ûÒÑ¾­½áÊøÁË!";
+		String info = "æ‚¨"+propName+"çš„æ•ˆæœå·²ç»ç»“æŸäº†!";
 		SystemInfoService sysInfoSerice = new SystemInfoService();
 		sysInfoSerice.insertSystemInfoBySystem(buffEffect.getEffectObject(),info, buffTime*60);
 	}
 
 	/**
-	 * ·¢HPµÄBUFFĞÅÏ¢¸øÍæ¼Ò,ÔÚÍæ¼ÒĞ§¹û½áÊøÊ±ÒÔ¼°½áÊøÇ°Á½·ÖÖÓ·¢,
-	 * ²¢É¾³ıÖ®Ç°µÄÏà¹ØĞÅÏ¢
+	 * å‘HPçš„BUFFä¿¡æ¯ç»™ç©å®¶,åœ¨ç©å®¶æ•ˆæœç»“æŸæ—¶ä»¥åŠç»“æŸå‰ä¸¤åˆ†é’Ÿå‘,
+	 * å¹¶åˆ é™¤ä¹‹å‰çš„ç›¸å…³ä¿¡æ¯
 	 * @param buffEffect
 	 */
 	private void dealWithHPBuff(BuffEffectVO buffEffect)
@@ -155,8 +155,8 @@ public class BuffEffectService
 	}	
 	
 	/**
-	 * ·¢HPµÄBUFFĞÅÏ¢¸øÍæ¼Ò,ÔÚÍæ¼ÒĞ§¹û½áÊøÊ±ÒÔ¼°½áÊøÇ°Á½·ÖÖÓ·¢,
-	 * ²¢É¾³ıÖ®Ç°µÄÏà¹ØĞÅÏ¢
+	 * å‘HPçš„BUFFä¿¡æ¯ç»™ç©å®¶,åœ¨ç©å®¶æ•ˆæœç»“æŸæ—¶ä»¥åŠç»“æŸå‰ä¸¤åˆ†é’Ÿå‘,
+	 * å¹¶åˆ é™¤ä¹‹å‰çš„ç›¸å…³ä¿¡æ¯
 	 * @param buffEffect
 	 */
 	public void dealWithHPBuff (int object_id,int object_type, int buff_id)
@@ -165,13 +165,13 @@ public class BuffEffectService
 		BuffVO buff = buffDao.getBuff(buff_id);
 		if (buff == null)
 		{
-			DataErrorLog.debugData("BuffEffectService.dealWithHPBuff:ÎŞĞ§buffId="+buff_id);
+			DataErrorLog.debugData("BuffEffectService.dealWithHPBuff:æ— æ•ˆbuffId="+buff_id);
 		}
 		
 		BuffEffectVO buffEffect = (BuffEffectVO) buff;
 		buffEffect.setBuffUseMode(buff.getBuffUseMode());
-		buffEffect.setEffectObject(object_id);// ×÷ÓÃ¶ÔÏó
-		buffEffect.setEffectObjectType(object_type);// ×÷ÓÃ¶ÔÏóÀàĞÍ
+		buffEffect.setEffectObject(object_id);// ä½œç”¨å¯¹è±¡
+		buffEffect.setEffectObjectType(object_type);// ä½œç”¨å¯¹è±¡ç±»å‹
 
 		buffEffect.setBuffTime(buff.getBuffTime());
 		buffEffect.setSpareBout(buff.getBuffBout());
@@ -179,8 +179,8 @@ public class BuffEffectService
 		
 		PropDao propdao = new PropDao();
 		String propName = propdao.getPropNameByType(buffEffect.getBuffId()+"");
-		String info1 = "ÄúµÄ"+propName+"Ğ§¹û»¹ÓĞ¶ş·ÖÖÓ¾Í½áÊøÁË!";
-		String info2 = "ÄúµÄ"+propName+"Ğ§¹û½áÊøÁË!";
+		String info1 = "æ‚¨çš„"+propName+"æ•ˆæœè¿˜æœ‰äºŒåˆ†é’Ÿå°±ç»“æŸäº†!";
+		String info2 = "æ‚¨çš„"+propName+"æ•ˆæœç»“æŸäº†!";
 		 
 		int buffTime = buffEffect.getBuffTime();
 		
@@ -197,7 +197,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 * Çå³şÄ³Ò»ÊµÌåµÄËùÓĞbuff
+	 * æ¸…æ¥šæŸä¸€å®ä½“çš„æ‰€æœ‰buff
 	 */
 	public void clearBuffEffect( int object_id,int object_type )
 	{
@@ -208,7 +208,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 * ¼àÌıbuff×´Ì¬£¬È¥µôÎŞĞ§µÄbuff
+	 * ç›‘å¬buffçŠ¶æ€ï¼Œå»æ‰æ— æ•ˆçš„buff
 	 */
 	public void listenBuffEffectStat( List<BuffEffectVO> buffEffects)
 	{
@@ -226,7 +226,7 @@ public class BuffEffectService
 		}
 	}
 	/**
-	 * buffÊÇ·ñÓĞĞ§
+	 * buffæ˜¯å¦æœ‰æ•ˆ
 	 * @param buffEffects
 	 * @return
 	 */
@@ -236,33 +236,33 @@ public class BuffEffectService
 		{
 			return false;
 		}
-		if( buffEffect.getBuffBout()!=0 )//»ØºÏ¿ØÖÆbuff
+		if( buffEffect.getBuffBout()!=0 )//å›åˆæ§åˆ¶buff
 		{
 			return validateBoutBuff(buffEffect);
 		}
-		else if( buffEffect.getBuffTime()!=0 )//Ê±¼ä¿ØÖÆbuff
+		else if( buffEffect.getBuffTime()!=0 )//æ—¶é—´æ§åˆ¶buff
 		{
 			return validateTimeBuff(buffEffect);
 		}
 		return true;
 	}
 	
-	/**BUFFÏûÊ§·¢ËÍÓÊ¼ş¸øÍæ¼Ò*/
+	/**BUFFæ¶ˆå¤±å‘é€é‚®ä»¶ç»™ç©å®¶*/
 	
 	/*private void sendBuffMail(BuffEffectVO buffEffect){
 		if(buffEffect.getEffectObjectType()==11){
 			MailInfoService mailInfoService = new MailInfoService();
-			String content = buffEffect.getBuffName()+"Ğ§¹ûÏûÊ§ÁË!";
-			String title = buffEffect.getBuffName()+"Ğ§¹û";
+			String content = buffEffect.getBuffName()+"æ•ˆæœæ¶ˆå¤±äº†!";
+			String title = buffEffect.getBuffName()+"æ•ˆæœ";
 			mailInfoService.sendMailBySystem(buffEffect.getEffectObject(), title, content); 
 		}
 	}*/
 	
 	
 	/**
-	 * ÑéÖ¤Ê±¼äÖÆµÄbuff ÊÇ·ñÊ§Ğ§
+	 * éªŒè¯æ—¶é—´åˆ¶çš„buff æ˜¯å¦å¤±æ•ˆ
 	 * @param buffEffect
-	 * @return true±íÊ¾ÓĞĞ§
+	 * @return trueè¡¨ç¤ºæœ‰æ•ˆ
 	 */
 	private boolean validateTimeBuff(BuffEffectVO buffEffect)
 	{
@@ -273,7 +273,7 @@ public class BuffEffectService
 		}
 		if( DateUtil.isOverdue(buffEffect.getUseTime(), buffEffect.getBuffTime()*60) ) 
 		{
-			// buffĞ§¹û¹ıÆÚ
+			// buffæ•ˆæœè¿‡æœŸ
 			invalidateForPlayer(buffEffect);
 			result = false;
 		}
@@ -285,9 +285,9 @@ public class BuffEffectService
 	}
 
 	/**
-	 * ÑéÖ¤»ØºÏÖÆµÄbuff ÊÇ·ñÊ§Ğ§
+	 * éªŒè¯å›åˆåˆ¶çš„buff æ˜¯å¦å¤±æ•ˆ
 	 * @param buffEffect
-	 * @return true±íÊ¾ÓĞĞ§
+	 * @return trueè¡¨ç¤ºæœ‰æ•ˆ
 	 */
 	private boolean validateBoutBuff(BuffEffectVO buffEffect)
 	{
@@ -309,7 +309,7 @@ public class BuffEffectService
 	}
 	
 	/**
-	 * buffĞ§¹ûÊ§Ğ§
+	 * buffæ•ˆæœå¤±æ•ˆ
 	 */
 	public void invalidateForPlayer(BuffEffectVO buffEffect)
 	{
@@ -320,7 +320,7 @@ public class BuffEffectService
 		BuffEffectDao buffEffectDao = new BuffEffectDao();
 		buffEffectDao.deleteByID(buffEffect.getBfPk());
 		
-		//ÅĞ¶ÏÊÇ·ñ³öÏÖµ¯³öÊÇÏûÏ¢
+		//åˆ¤æ–­æ˜¯å¦å‡ºç°å¼¹å‡ºæ˜¯æ¶ˆæ¯
 		boolean pop_msg = getIsUsedByTime(buffEffect.getEffectObject(), buffEffect.getBuffId());
 		if(pop_msg == false){
 			SysInfoDao dao = new SysInfoDao();
@@ -328,11 +328,11 @@ public class BuffEffectService
 			SystemControlInfoVO vo = dao.getSystemInfoByTypeAndID("9", buffEffect.getBuffId()+"");
 			systemInfoService.insertPopMsggse(buffEffect.getEffectObject(), vo.getSendContent());
 		}
-		//ÔÚbuffÏú»ÙÊ±£¬¿ÉÄÜÒª×öµÄÒ»Ğ©´¦Àí
+		//åœ¨buffé”€æ¯æ—¶ï¼Œå¯èƒ½è¦åšçš„ä¸€äº›å¤„ç†
 		switch (buffEffect.getBuffType()) {
 			case BuffType.HP_UP :
 				return;
-			/*case BuffType.VIPBUFF ://Èç¹ûÊÇVIPµÄBUFF ÄÇÃ´Ö´ĞĞÒÔÏÂ·½·¨
+			/*case BuffType.VIPBUFF ://å¦‚æœæ˜¯VIPçš„BUFF é‚£ä¹ˆæ‰§è¡Œä»¥ä¸‹æ–¹æ³•
 				VipService vipService = new VipService();
 				vipService.deleteRoleVip(buffEffect.getEffectObject());
 				return;*/
@@ -341,7 +341,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 *  ¸üĞÂÊ£ÓàµÄ»ØºÏÊı
+	 *  æ›´æ–°å‰©ä½™çš„å›åˆæ•°
 	 */
 	public void updateSpareBout(int p_pk)
 	{
@@ -351,7 +351,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØÖ¸¶¨ÀàĞÍµÄbuffĞ§¹û
+	 * ç»™ç©å®¶åŠ è½½æŒ‡å®šç±»å‹çš„buffæ•ˆæœ
 	 */
 	public void loadBuffEffectOfPlayer( PartInfoVO player ,int buff_type)
 	{
@@ -366,7 +366,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØËùÓĞbuffĞ§¹û
+	 * ç»™ç©å®¶åŠ è½½æ‰€æœ‰buffæ•ˆæœ
 	 */
 	public String  loadBuffEffectOfPlayer( PartInfoVO player)
 	{
@@ -390,7 +390,7 @@ public class BuffEffectService
 	}
 	
 	/**
-	 * ¸ønpc¼ÓÔØËùÓĞbuffĞ§¹û
+	 * ç»™npcåŠ è½½æ‰€æœ‰buffæ•ˆæœ
 	 */
 	public void loadBuffEffectOfNPC( NpcAttackVO npc)
 	{
@@ -412,10 +412,10 @@ public class BuffEffectService
 	
 	
 	/**
-	 * ¸ù¾İbuffĞ§¹û¸üĞÂÍæ¼Ò¶ÔÓ¦µÄÊôĞÔÖµ
+	 * æ ¹æ®buffæ•ˆæœæ›´æ–°ç©å®¶å¯¹åº”çš„å±æ€§å€¼
 	 * @param player
 	 * @param buffEffect          
-	 * @return              ·µ»Ø
+	 * @return              è¿”å›
 	 */
 	public String updatePropertyOfPlayer( PartInfoVO player,BuffEffectVO buffEffect)
 	{
@@ -439,7 +439,7 @@ public class BuffEffectService
 				player.setPHp(player.getPHp()+change_value);
 				if( buffEffect.getBuffUseMode()==BuffSystem.DEBUFF )
 				{
-					effect_describe = "ÖĞ¶¾ÉËº¦"+change_value+"µã";
+					effect_describe = "ä¸­æ¯’ä¼¤å®³"+change_value+"ç‚¹";
 				}
 				break;
 			}
@@ -473,7 +473,7 @@ public class BuffEffectService
     			player.setPUpMp(player.getPUpMp()+change_value);
     			break;
     		}
-    		//*********************ÎåĞĞ¹¥»÷µÄbuff
+    		//*********************äº”è¡Œæ”»å‡»çš„buff
     		case BuffType.JIN_ATTACK:
     		{
     			int change_value = buffEffect.getBuffEffectValue();
@@ -504,7 +504,7 @@ public class BuffEffectService
     			player.getWx().setTuGj(player.getWx().getTuGj()+change_value);
     			break;
     		}
-    		//************************************ÎåĞĞ·ÀÓùµÄbuff
+    		//************************************äº”è¡Œé˜²å¾¡çš„buff
     		case BuffType.JIN_DEFENCE:
     		{
     			int change_value = buffEffect.getBuffEffectValue();
@@ -536,32 +536,32 @@ public class BuffEffectService
     			break;
     		}
     		
-    		case BuffType.ADD_CATCH_PROBABILITY://Ôö¼Ó²¶»ñ¸ÅÂÊ
+    		case BuffType.ADD_CATCH_PROBABILITY://å¢åŠ æ•è·æ¦‚ç‡
     		{
     			int change_value = (buffEffect.getBuffEffectValue());
     			player.setAppendCatchProbability(player.getAppendCatchProbability()+change_value);
     			break;
     		}
-    		case BuffType.ADD_DROP_PROBABILITY://Ôö¼ÓµôÂä¸ÅÂÊ
+    		case BuffType.ADD_DROP_PROBABILITY://å¢åŠ æ‰è½æ¦‚ç‡
     		{
     			int change_value = (buffEffect.getBuffEffectValue());
     			player.setAppendDropProbability(player.getAppendDropProbability()+change_value);
     			break;
     		}
-    		case BuffType.ADD_EXP://¾­Ñé¼Ó³É
+    		case BuffType.ADD_EXP://ç»éªŒåŠ æˆ
     		{
     			int change_value = (buffEffect.getBuffEffectValue());
     			player.setAppendExp(player.getAppendExp()+change_value);
     			break;
     		}
-    		case BuffType.ADD_NONSUCH_PROBABILITY://Ôö¼Ó¼«Æ·×°±¸µôÂä¸ÅÂÊ
+    		case BuffType.ADD_NONSUCH_PROBABILITY://å¢åŠ æå“è£…å¤‡æ‰è½æ¦‚ç‡
     		{
     			int change_value = (buffEffect.getBuffEffectValue());
     			player.setAppendNonsuchProbability(player.getAppendNonsuchProbability()+change_value);
     			break;
     		}
     		
-    		case BuffType.IMMUNITY_POISON://**ÊÇ·ñÃâÒßÖĞ¶¾
+    		case BuffType.IMMUNITY_POISON://**æ˜¯å¦å…ç–«ä¸­æ¯’
     		{
     			if( buffEffect.getBuffEffectValue()==1 )
     			{
@@ -569,7 +569,7 @@ public class BuffEffectService
     			}
     			break;
     		}
-    		case BuffType.IMMUNITY__DIZZY://**ÊÇ·ñÃâÒß»÷ÔÎ
+    		case BuffType.IMMUNITY__DIZZY://**æ˜¯å¦å…ç–«å‡»æ™•
     		{
     			if( buffEffect.getBuffEffectValue()==1 )
     			{
@@ -577,13 +577,13 @@ public class BuffEffectService
     			}
     			break;
     		}
-    		case BuffType.PET_EXP://**Ôö¼Ó³èÎïµÃµ½µÄ¾­Ñé
+    		case BuffType.PET_EXP://**å¢åŠ å® ç‰©å¾—åˆ°çš„ç»éªŒ
     		{
     			int change_value = (buffEffect.getBuffEffectValue());
     			player.setAppendPetExp(player.getAppendPetExp()+change_value);
     			break;
     		}
-    		case BuffType.CHANGER_BJ://±©»÷ÂÊ
+    		case BuffType.CHANGER_BJ://æš´å‡»ç‡
     		{
     			int change_value = (buffEffect.getBuffEffectValue());
     			player.setDropMultiple(player.getDropMultiple()*change_value/100);
@@ -598,7 +598,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 * ¸ù¾İbuffĞ§¹û¸üĞÂNPC¶ÔÓ¦µÄÊôĞÔÖµ
+	 * æ ¹æ®buffæ•ˆæœæ›´æ–°NPCå¯¹åº”çš„å±æ€§å€¼
 	 * @param buffEffect
 	 */
 	public void updatePropertyOfNPC( NpcAttackVO npc,BuffEffectVO buffEffect)
@@ -635,7 +635,7 @@ public class BuffEffectService
 				break;
 			}
 			
-			//*********************ÎåĞĞ¹¥»÷µÄbuff
+			//*********************äº”è¡Œæ”»å‡»çš„buff
 			case BuffType.JIN_ATTACK:
 			{
 				/*int change_value = buffEffect.getBuffEffectValue();
@@ -666,7 +666,7 @@ public class BuffEffectService
 				npc.getWx().setTuGj(npc.getWx().getTuGj()+change_value);
 				break;*/
 			}
-			//************************************Ôö¼ÓÎåĞĞ·ÀÓùµÄbuff
+			//************************************å¢åŠ äº”è¡Œé˜²å¾¡çš„buff
 			case BuffType.JIN_DEFENCE:
 			{
 				int change_value = buffEffect.getBuffEffectValue();
@@ -701,7 +701,7 @@ public class BuffEffectService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒbuffÁĞ±í
+	 * å¾—åˆ°ç©å®¶buffåˆ—è¡¨
 	 * @param p_pk
 	 * @return
 	 */
@@ -713,7 +713,7 @@ public class BuffEffectService
 	
 	
 	/**
-	 * µÃµ½Íæ¼ÒbuffÁĞ±íÃèÊö
+	 * å¾—åˆ°ç©å®¶buffåˆ—è¡¨æè¿°
 	 * @param p_pk
 	 * @return
 	 */
@@ -724,7 +724,7 @@ public class BuffEffectService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒbuffÁĞ±íÃèÊö
+	 * å¾—åˆ°ç©å®¶buffåˆ—è¡¨æè¿°
 	 * @param p_pk
 	 * @return
 	 */
@@ -743,13 +743,13 @@ public class BuffEffectService
 		wml = result.toString();
 		if( wml.equals(""))
 		{
-			wml = StringUtil.gbToISO("ÎŞ");
+			wml = StringUtil.gbToISO("æ— ");
 		}
 		return wml;
 	}
 
 	/**
-	 * »ñÈ¡»¹Ê£Óà¶àÉÙÊ±¼äµÄ×Ö·û´®
+	 * è·å–è¿˜å‰©ä½™å¤šå°‘æ—¶é—´çš„å­—ç¬¦ä¸²
 	 * @param buffTime
 	 * @param useTime
 	 * @return
@@ -765,17 +765,17 @@ public class BuffEffectService
 		long useTimes = useTime.getTime();
 		long nowTimes = (new Date()).getTime();
 		if(nowTimes > useTimes + (buffTime * 60 * 1000)) {
-			result = "Ê±¼äÒÑµ½";
+			result = "æ—¶é—´å·²åˆ°";
 		}else {
 			long nohave = (nowTimes - useTimes)/(1000*60);
 			int has = (int)(buffTime - nohave);
-			result = "»¹ÓĞ"+DateUtil.returnTimeStr(has)+"";
+			result = "è¿˜æœ‰"+DateUtil.returnTimeStr(has)+"";
 		}
 		return StringUtil.gbToISO(result);
 	}
 
 	/**
-	 * ·µ»ØÉíÉÏÊÇ·ñÓĞµÀ¾ßÉÏËù´øµÄÍ¬Ñùbuff
+	 * è¿”å›èº«ä¸Šæ˜¯å¦æœ‰é“å…·ä¸Šæ‰€å¸¦çš„åŒæ ·buff
 	 * @param pk
 	 * @param parseInt
 	 * @return
@@ -790,11 +790,11 @@ public class BuffEffectService
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 		
 		propGroup = propGroupDao.getByPgPk(pg_pk);
-		prop = PropCache.getPropById(propGroup.getPropId());// µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
+		prop = PropCache.getPropById(propGroup.getPropId());// å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
 		
 		PropUseEffect propUseEffect = new PropUseEffect();
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		PropUseService propUseService = new PropUseService();
 		String resutl = propUseService.isPropUseByBasicCondition(role_info, prop, 1);
 		if (resutl != null)
@@ -803,9 +803,9 @@ public class BuffEffectService
 			propUseEffect.setNoUseDisplay(resutl);
 			return null;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String buff_id_ss = prop.getPropOperate1();
 		
 		String[] buff_id = buff_id_ss.split(",");
@@ -814,7 +814,7 @@ public class BuffEffectService
 		for (int i = 0; i < buff_id.length; i++) {
     		BuffDao buffDao = new BuffDao();
     		int buffType = buffDao.getBuffType(buff_id[i]);
-    		// Èç¹û·µ»ØÖµ´óÓÚ-1,´ú±íÒÑ¾­ÓĞÕâÖÖbuff,·µ»ØÕâÖÖbuffµÄID
+    		// å¦‚æœè¿”å›å€¼å¤§äº-1,ä»£è¡¨å·²ç»æœ‰è¿™ç§buff,è¿”å›è¿™ç§buffçš„ID
     		///int result = buffEffectDao.hasAlreadyBuff(role_info.getBasicInfo().getPPk(),BuffSystem.PLAYER, buffType);
     		BuffEffectVO buffEffectVO = buffEffectDao.getBuffEffectByBuffType(role_info.getBasicInfo().getPPk(),BuffSystem.PLAYER, buffType);
     		if( buffEffectVO != null && buffEffectVO.getBuffId() != Integer.parseInt(buff_id[i])) {
@@ -825,7 +825,7 @@ public class BuffEffectService
 	}
 	
 	/**
-	 * Èç¹ûÉíÉÏÒÑ¾­ÓĞÏà¹ØµÄbuff×´Ì¬¾Í¸ø·µ»Ø-1.
+	 * å¦‚æœèº«ä¸Šå·²ç»æœ‰ç›¸å…³çš„buffçŠ¶æ€å°±ç»™è¿”å›-1.
 	 * @param pk
 	 * @param parseInt
 	 * @return
@@ -844,11 +844,11 @@ public class BuffEffectService
 		logger.info("pg_pk="+pg_pk);
 		propGroup = propGroupDao.getByPgPk(pg_pk);
 		logger.info("propId="+propGroup.getPropId());
-		prop = propDao.getById(propGroup.getPropId());// µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
+		prop = propDao.getById(propGroup.getPropId());// å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
 		
 		PropUseEffect propUseEffect = new PropUseEffect();
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		PropUseService propUseService = new PropUseService();
 		String resutl = propUseService.isPropUseByBasicCondition(role_info, prop, 1);
 		if (resutl != null)
@@ -857,9 +857,9 @@ public class BuffEffectService
 			propUseEffect.setNoUseDisplay(resutl);
 			return 0;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String buff_id_ss = prop.getPropOperate1();
 		
 		String[] buff_id = buff_id_ss.split(",");
@@ -878,16 +878,16 @@ public class BuffEffectService
 	}*/
 
 	/**
-	 * É¾³ıÍ¬ÀàĞÍµÄbuff
+	 * åˆ é™¤åŒç±»å‹çš„buff
 	 * @param pk
 	 * @param player
 	 * @param parseInt
 	 */
 	public void deleteSameBuff(PartInfoVO player, PlayerPropGroupVO propGroup)
 	{
-		PropVO prop = PropCache.getPropById(propGroup.getPropId());// µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
+		PropVO prop = PropCache.getPropById(propGroup.getPropId());// å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
 		
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String buff_id_s = prop.getPropOperate1();
 		String[] buff_id = null;
 		if(buff_id_s != null && !buff_id_s.equals("")) {
@@ -903,7 +903,7 @@ public class BuffEffectService
 	}
 
 	/**
-	 * È·¶¨ÄÜ·ñ½øĞĞ´«ËÍ,·µ»Øtrue±íÊ¾²»ÄÜ´«ËÍ,false±íÊ¾¿ÉÒÔ´«ËÍ
+	 * ç¡®å®šèƒ½å¦è¿›è¡Œä¼ é€,è¿”å›trueè¡¨ç¤ºä¸èƒ½ä¼ é€,falseè¡¨ç¤ºå¯ä»¥ä¼ é€
 	 * @param roleEntity
 	 * @return
 	 */
@@ -925,7 +925,7 @@ public class BuffEffectService
 		return false;
 	}
 	
-	//ÅĞ¶Ï¸ÃBUFFÍæ¼Ò°®ÊÇ·ñÊ¹ÓÃ¹ı
+	//åˆ¤æ–­è¯¥BUFFç©å®¶çˆ±æ˜¯å¦ä½¿ç”¨è¿‡
 	private boolean getIsUsedByTime(int p_pk, int buff_id)
 	{
 		TimeControlService timeControlService = new TimeControlService();

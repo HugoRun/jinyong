@@ -5,18 +5,18 @@
 <%@page import="com.ls.pub.constant.MenuType"%>
 <%@page import="com.ben.lost.CompassService"%>
 <%
-	List menus = (List) request.getAttribute("menus");
-	OperateMenuVO menu = null;
-	if (menus != null && menus.size() != 0) {
+    List menus = (List) request.getAttribute("menus");
+    OperateMenuVO menu = null;
+    if (menus != null && menus.size() != 0) {
 %>
 <%
-	for (int i = 0; i < menus.size(); i++) {
-			String im = "";
-			menu = (OperateMenuVO) menus.get(i);
-			if (menu.getMenuType() == MenuType.SHEARE) {
-				String pPk = (String) session.getAttribute("pPk");
-				//共享菜单
-				menu = CompassService.getCurrentMenu(menu, Integer.parseInt(pPk.trim()));
+    for (int i = 0; i < menus.size(); i++) {
+            String im = "";
+            menu = (OperateMenuVO) menus.get(i);
+            if (menu.getMenuType() == MenuType.SHEARE) {
+                String pPk = (String) session.getAttribute("pPk");
+                //共享菜单
+                menu = CompassService.getCurrentMenu(menu, Integer.parseInt(pPk.trim()));
 			}
 			if (menu != null) {
 

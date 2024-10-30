@@ -7,7 +7,7 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 public class ConfigOfTele
 {
 	/**
-	 * µçĞÅµÄÏû·Ñ´úÂëÅäÖÃ
+	 * ç”µä¿¡çš„æ¶ˆè´¹ä»£ç é…ç½®
 	 */
 	private static PropertiesConfiguration  config = null;
 	static
@@ -23,7 +23,7 @@ public class ConfigOfTele
 		} 
 	}
 	/**
-	 * »ñÈ¡µÀ¾ßÏû·Ñ´úÂë  µçĞÅ×¨ÓÃ
+	 * è·å–é“å…·æ¶ˆè´¹ä»£ç   ç”µä¿¡ä¸“ç”¨
 	 */
 	public static String getPropCode(String propId)
 	{

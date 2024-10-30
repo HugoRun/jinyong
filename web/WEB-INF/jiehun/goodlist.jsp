@@ -9,7 +9,7 @@ String option = (String)request.getAttribute("option");
 <%for(PlayerPropGroupVO ppv : list){ %>
 <anchor><go method="post" href="<%=response.encodeURL(GameConfig.getContextPath()+"/jiehun.do")%>">
 <postfield name="cmd" value="n3" />
-	 <postfield name="option" value="<%=option %>" />
+     <postfield name="option" value="<%=option %>" />
 	 <postfield name="propgroup" value="<%=ppv.getPgPk() %>" />
 	 <postfield name="good_id" value="<%=ppv.getPropId() %>" />
 	 <postfield name="caozuo" value="1" />

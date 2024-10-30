@@ -31,25 +31,25 @@ import com.pm.vo.mail.MailInfoVO;
 
 /**
  * @author ls
- * °ïÅÉÏà¹ØÂß¼­
+ * å¸®æ´¾ç›¸å…³é€»è¾‘
  */
 public class FactionService
 {
-	//°ïÅÉĞÅÏ¢»º´æ
+	//å¸®æ´¾ä¿¡æ¯ç¼“å­˜
 	private static Map<Integer,Faction> faction_cache = new HashMap<Integer,Faction>(50);
 	
-	public static int MAX_GRADE = 2;//°ïÅÉµÄ×î´óµÈ¼¶
-	public static int MAX_CITANG_GRADE = 5;//°ïÅÉìôÌÃ×î´óµÈ¼¶
+	public static int MAX_GRADE = 2;//å¸®æ´¾çš„æœ€å¤§ç­‰çº§
+	public static int MAX_CITANG_GRADE = 5;//å¸®æ´¾ç¥ å ‚æœ€å¤§ç­‰çº§
 	
-	private static int CREATE_NEED_MONEY = 1000;//½¨°ïĞèÒªµÄÇ®
-	private static int CREATE_NEED_GRADE = 30;//ĞèÒªµÄµÈ¼¶
-	private static int CREATE_NEED_PROP = 233;//½¨°ïÁîid
+	private static int CREATE_NEED_MONEY = 1000;//å»ºå¸®éœ€è¦çš„é’±
+	private static int CREATE_NEED_GRADE = 30;//éœ€è¦çš„ç­‰çº§
+	private static int CREATE_NEED_PROP = 233;//å»ºå¸®ä»¤id
 	
-	private static int RECRUIT_NEED_PROP = 379;//ÕĞÄ¼Áîid
-	private static int RECRUIT_NEED_MONEY = 100;//ÕĞÄ¼ĞèÒªµÄÇ®
+	private static int RECRUIT_NEED_PROP = 379;//æ‹›å‹Ÿä»¤id
+	private static int RECRUIT_NEED_MONEY = 100;//æ‹›å‹Ÿéœ€è¦çš„é’±
 
 	/**
-	 * Éı¼¶ÊÏ×åìôÌÃ
+	 * å‡çº§æ°æ—ç¥ å ‚
 	 */
 	public String upgradeCitang( RoleEntity operater )
 	{
@@ -57,26 +57,26 @@ public class FactionService
 		
 		if( faction.getGrade()<2 )
 		{
-			return "ÊÏ×åµÈ¼¶Îª1¼¶,²»ÄÜÉı¼¶ìôÌÃ,ÇëÏÈÉı¼¶ÊÏ×å";
+			return "æ°æ—ç­‰çº§ä¸º1çº§,ä¸èƒ½å‡çº§ç¥ å ‚,è¯·å…ˆå‡çº§æ°æ—";
 		}
 		
 		if( faction.getCitangGrade()>=FactionService.MAX_CITANG_GRADE)
 		{
-			return "ìôÌÃÒÑ´ï×î¸ßµÈ¼¶,²»ÄÜÉı¼¶";
+			return "ç¥ å ‚å·²è¾¾æœ€é«˜ç­‰çº§,ä¸èƒ½å‡çº§";
 		}
 		
 		String hint = this.upgrade(operater, FUpgradeMaterial.C_UPGRADE);
 		if( hint==null )
 		{
-			//°ïÅÉìôÌÃÉı¼¶
+			//å¸®æ´¾ç¥ å ‚å‡çº§
 			faction.upgradeCitang();
-			hint = "¹§Ï²Äú,ÄúµÄìôÌÃÒÑÉıÖÁ"+faction.getCitangGrade()+"¼¶,"+faction.getCitangInfo().getEffectDes()+"!";
+			hint = "æ­å–œæ‚¨,æ‚¨çš„ç¥ å ‚å·²å‡è‡³"+faction.getCitangGrade()+"çº§,"+faction.getCitangInfo().getEffectDes()+"!";
 		}
 		
 		return hint;
 	}
 	/**
-	 * Éı¼¶ÊÏ×å
+	 * å‡çº§æ°æ—
 	 */
 	public String upgradeFaction( RoleEntity operater )
 	{
@@ -84,22 +84,22 @@ public class FactionService
 		
 		if( faction.getGrade()>=MAX_GRADE)
 		{
-			return "ÄãµÄÊÏ×åÒÑ´ï×î¸ßµÈ¼¶";
+			return "ä½ çš„æ°æ—å·²è¾¾æœ€é«˜ç­‰çº§";
 		}
 		
 		String hint = this.upgrade(operater, FUpgradeMaterial.F_UPGRADE);
 		if( hint==null )
 		{
-			//°ïÅÉÉı¼¶
+			//å¸®æ´¾å‡çº§
 			faction.upgrade();
-			hint = "¹§Ï²Äú,ÄúµÄÊÏ×åÒÑ¾­½úÉıÎª"+faction.getGrade()+"¼¶ÊÏ×å!";
+			hint = "æ­å–œæ‚¨,æ‚¨çš„æ°æ—å·²ç»æ™‹å‡ä¸º"+faction.getGrade()+"çº§æ°æ—!";
 		}
 		
 		return hint;
 	}
 	
 	/**
-	 * Éı¼¶
+	 * å‡çº§
 	 */
 	private String upgrade(RoleEntity operater,int upgradeType)
 	{
@@ -111,41 +111,41 @@ public class FactionService
 		
 		Faction faction = operater.getBasicInfo().getFaction();
 		
-		FUpgradeMaterial fMaterial = faction.getUpgradeMaterial(upgradeType);//Éı¼¶ĞèÒªµÄ²ÄÁÏ
+		FUpgradeMaterial fMaterial = faction.getUpgradeMaterial(upgradeType);//å‡çº§éœ€è¦çš„ææ–™
 		if( fMaterial==null )
 		{
-			DataErrorLog.debugData("ÎŞ°ïÅÉÉı¼¶²ÄÁÏÊı¾İ,°ïÅÉµÈ¼¶="+faction.getGrade());
-			return "ÎŞÉı¼¶²ÄÁÏÊı¾İ";
+			DataErrorLog.debugData("æ— å¸®æ´¾å‡çº§ææ–™æ•°æ®,å¸®æ´¾ç­‰çº§="+faction.getGrade());
+			return "æ— å‡çº§ææ–™æ•°æ®";
 		}
 		
-		//ÅĞ¶Ï°ïÅÉÉùÍûÊÇ·ñ×ã¹»
+		//åˆ¤æ–­å¸®æ´¾å£°æœ›æ˜¯å¦è¶³å¤Ÿ
 		if( faction.getPrestige()<fMaterial.getPrestige() )
 		{
-			return "ÊÏ×åÉùÍû²»×ã";
+			return "æ°æ—å£°æœ›ä¸è¶³";
 		}
 		
-		//ÅĞ¶Ï°ïÅÉ²ÄÁÏÊÇ·ñ×ã¹»
+		//åˆ¤æ–­å¸®æ´¾ææ–™æ˜¯å¦è¶³å¤Ÿ
 		hint = faction.getFStorage().isEnoughMaterial(fMaterial.getFMStr());
 		if( hint!=null )
 		{
 			return hint;
 		}
 		
-		//ÅĞ¶Ï¸öÈË²ÄÁÏÊÇ·ñ×ã¹»
+		//åˆ¤æ–­ä¸ªäººææ–™æ˜¯å¦è¶³å¤Ÿ
 		if( operater.getBasicInfo().isEnoughMoney(fMaterial.getMoney())==false )
 		{
-			return "ÄãµÄ½ğÇ®²»×ã";
+			return "ä½ çš„é‡‘é’±ä¸è¶³";
 		}
 		
 		GoodsService goodsService = new GoodsService();
-		int cur_m_num = goodsService.getPropNum(operater.getPPk(), fMaterial.getMId());//µÃµ½µ±Ç°²ÄÁÏÊıÁ¿
+		int cur_m_num = goodsService.getPropNum(operater.getPPk(), fMaterial.getMId());//å¾—åˆ°å½“å‰ææ–™æ•°é‡
 		if( cur_m_num<fMaterial.getMNum() )
 		{
-			return "²ÄÁÏ²»×ã";
+			return "ææ–™ä¸è¶³";
 		}
 		
 		
-		//ÏûºÄ¸öÈË²ÄÁÏºÍ°ïÅÉ²ÄÁÏ
+		//æ¶ˆè€—ä¸ªäººææ–™å’Œå¸®æ´¾ææ–™
 		operater.getBasicInfo().addCopper(-fMaterial.getMoney());
 		faction.updatePrestige(-fMaterial.getPrestige());
 		goodsService.removeProps(operater.getPPk(), fMaterial.getMId(), fMaterial.getMNum(),GameLogManager.R_MATERIAL_CONSUME);
@@ -155,36 +155,36 @@ public class FactionService
 	}
 	
 	/**
-	 * ½Ó¹Ü°ïÅÉ
+	 * æ¥ç®¡å¸®æ´¾
 	 */
 	public String assume(RoleEntity operater)
 	{
 		if( operater==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		Faction faction = operater.getBasicInfo().getFaction();
 		if( faction==null )
 		{
-			return "ÄãµÄÊÏ×åÒÑ½âÉ¢";
+			return "ä½ çš„æ°æ—å·²è§£æ•£";
 		}
 		
 		if( operater.getBasicInfo().isOperateByFJob(Faction.ZHANGLAO)==false )
 		{
-			return "ÄãµÄÈ¨ÏŞ²»¹»";
+			return "ä½ çš„æƒé™ä¸å¤Ÿ";
 		}
 		
 		if( faction.getIsDisband()==false )
 		{
-			return "ÊÏ×åÒÑ±»±ğÈË½Ó¹Ü";
+			return "æ°æ—å·²è¢«åˆ«äººæ¥ç®¡";
 		}
 		
 		faction.assume(operater);
-		return "¹§Ï²Äú£¬ÄúÒÑ³É¹¦½Ó¹ÜÁËÊÏ×å£¬Íì»ØÁËÊÏ×å£¡";
+		return "æ­å–œæ‚¨ï¼Œæ‚¨å·²æˆåŠŸæ¥ç®¡äº†æ°æ—ï¼ŒæŒ½å›äº†æ°æ—ï¼";
 	}
 	
 	/**
-	 * ½âÉ¢°ïÅÉ
+	 * è§£æ•£å¸®æ´¾
 	 * @param operater
 	 * @return
 	 */
@@ -205,11 +205,11 @@ public class FactionService
 		MailInfoVO mail = new MailInfoVO();
 		mail.setMailType(MailInfoService.F_DISBAND_MAIL);
 		mail.setSendPk(faction.getId());
-		mail.setTitle(faction.getName()+"¼´½«½âÉ¢!");
-		mail.setContent("ÄúµÄÊÏ×åÕı´¦Àí½âÉ¢¹ı³Ì,Èô24Ğ¡Ê±ÄÚ,ÄúÈÔÎª¸Ä±äĞÄÒâ,ÔòÄúµÄÊÏ×å½«³¹µ×½âÉ¢!");
+		mail.setTitle(faction.getName()+"å³å°†è§£æ•£!");
+		mail.setContent("æ‚¨çš„æ°æ—æ­£å¤„ç†è§£æ•£è¿‡ç¨‹,è‹¥24å°æ—¶å†…,æ‚¨ä»ä¸ºæ”¹å˜å¿ƒæ„,åˆ™æ‚¨çš„æ°æ—å°†å½»åº•è§£æ•£!");
 		for(Integer p_pk:list )
 		{
-			/**¸øÍæ¼Ò·¢ËÍÒ»¸ö¼ÓÈë°ïÅÉµÄÓÊ¼ş  */
+			/**ç»™ç©å®¶å‘é€ä¸€ä¸ªåŠ å…¥å¸®æ´¾çš„é‚®ä»¶  */
 			mail.setReceivePk(p_pk);
 			mailInfoService.sendMail(mail);
 		}
@@ -217,7 +217,7 @@ public class FactionService
 	}
 	
 	/**
-	 * ×ªÈÃ×å³¤
+	 * è½¬è®©æ—é•¿
 	 */
 	public String changeZuzhang(RoleEntity operater,RoleEntity new_zuzhang)
 	{
@@ -228,7 +228,7 @@ public class FactionService
 		}
 		if( new_zuzhang.getBasicInfo().getFJob()!=Faction.ZHANGLAO)
 		{
-			return new_zuzhang.getName()+"µÄÖ°Î»²»ÊÇ×å³¤£¬²»ÄÜ×ªÈÃ×å³¤Ö°Î»";
+			return new_zuzhang.getName()+"çš„èŒä½ä¸æ˜¯æ—é•¿ï¼Œä¸èƒ½è½¬è®©æ—é•¿èŒä½";
 		}
 		
 		Faction faction = new_zuzhang.getBasicInfo().getFaction();
@@ -239,11 +239,11 @@ public class FactionService
 			return hint;
 		}
 		
-		return "ÄúÒÑ¾­³É¹¦½«×å³¤Ò»Ö°×ªÈÃ¸øÀ´"+new_zuzhang.getName()+"£¬ÄúÏÖÔÚµÄÖ°Î»Îª×åÖÚ£¡";
+		return "æ‚¨å·²ç»æˆåŠŸå°†æ—é•¿ä¸€èŒè½¬è®©ç»™æ¥"+new_zuzhang.getName()+"ï¼Œæ‚¨ç°åœ¨çš„èŒä½ä¸ºæ—ä¼—ï¼";
 	}
 	
 	/**
-	 * ·¢²¼ÕĞÄ¼ĞÅÏ¢
+	 * å‘å¸ƒæ‹›å‹Ÿä¿¡æ¯
 	 */
 	public String recruit(RoleEntity operater,String rInfo)
 	{
@@ -258,29 +258,29 @@ public class FactionService
 		{
 			return hint;
 		}
-		//ÅĞ¶Ï½ğÇ®ÊÇ·ñ×ã¹»
+		//åˆ¤æ–­é‡‘é’±æ˜¯å¦è¶³å¤Ÿ
 		if( operater.getBasicInfo().isEnoughMoney(RECRUIT_NEED_MONEY)==false)
 		{
-			return "½ğÇ®²»×ã";
+			return "é‡‘é’±ä¸è¶³";
 		}
-		//ÅĞ¶ÏÊÇ·ñÓĞÕĞÄ¼Áî
+		//åˆ¤æ–­æ˜¯å¦æœ‰æ‹›å‹Ÿä»¤
 		PropService propService = new PropService();
 		if( propService.isEnoughProp(operater, RECRUIT_NEED_PROP, 1)==false )
 		{
-			return "Ã»ÓĞ"+PropCache.getPropNameById(RECRUIT_NEED_PROP);
+			return "æ²¡æœ‰"+PropCache.getPropNameById(RECRUIT_NEED_PROP);
 		}
 		
-		//¿Û³ıÕĞÄ¼ĞèÒªµÄ²ÄÁÏ
+		//æ‰£é™¤æ‹›å‹Ÿéœ€è¦çš„ææ–™
 		GoodsService goodsService = new GoodsService();
 		operater.getBasicInfo().addCopper(-RECRUIT_NEED_MONEY);
 		goodsService.removeProps(operater.getPPk(), CREATE_NEED_PROP, 1,GameLogManager.R_USE);
-		//todo:·¢²¼ÕĞÄ¼ÏµÍ³ÏûÏ¢
+		//todo:å‘å¸ƒæ‹›å‹Ÿç³»ç»Ÿæ¶ˆæ¯
 		FactionRecruit.getInstance().recruit(operater.getBasicInfo().getFaction().getId(), rInfo);
 		
 		return null;
 	}
 	/**
-	 * ¸ü¸Ä³ÉÔ±µÄÖ°Î»
+	 * æ›´æ”¹æˆå‘˜çš„èŒä½
 	 */
 	public String changeJob(RoleEntity operater,RoleEntity member,int new_job)
 	{
@@ -292,18 +292,18 @@ public class FactionService
 		
 		if( new_job<Faction.ZUZHONG || new_job>=Faction.ZUZHANG)
 		{
-			return "·Ç·¨Ö°Î»";
+			return "éæ³•èŒä½";
 		}
 		
-		//Èç¹ûÊÇ³¤ÀÏ¸ü¸ÄÆäËû³ÉÔ±Ö°Î»£¬Ôò²»ÄÜ¸ü¸Ä¸Ã°ïÖ÷ºÍÆäËû³¤ÀÏµÄÖ°Î»
+		//å¦‚æœæ˜¯é•¿è€æ›´æ”¹å…¶ä»–æˆå‘˜èŒä½ï¼Œåˆ™ä¸èƒ½æ›´æ”¹è¯¥å¸®ä¸»å’Œå…¶ä»–é•¿è€çš„èŒä½
 		if( operater.getBasicInfo().getFJob()==Faction.ZHANGLAO && member.getBasicInfo().getFJob()>=Faction.ZHANGLAO )
 		{
-			return "ÄãµÄÈ¨ÏŞ²»¹»";
+			return "ä½ çš„æƒé™ä¸å¤Ÿ";
 		}
 		
 		if( member.getBasicInfo().getFJob()==new_job)
 		{
-			return member.getName()+"µÄÖ°Î»ÒÑÊÇ"+ExchangeUtil.getFJobName(new_job)+",ÎŞĞè±ä¸ü!";
+			return member.getName()+"çš„èŒä½å·²æ˜¯"+ExchangeUtil.getFJobName(new_job)+",æ— éœ€å˜æ›´!";
 		}
 		
 		hint = operater.getBasicInfo().getFaction().isChangeJob(new_job);
@@ -314,13 +314,13 @@ public class FactionService
 		
 		member.getBasicInfo().changeFJob(new_job);
 		
-		return "¹§Ï²Äú£¬"+member.getName()+"µÄÖ°Î»ÒÑ±ä¸ü"+ExchangeUtil.getFJobName(new_job)+"£¡";
+		return "æ­å–œæ‚¨ï¼Œ"+member.getName()+"çš„èŒä½å·²å˜æ›´"+ExchangeUtil.getFJobName(new_job)+"ï¼";
 	}
 	
 	/**
-	 * ÑûÇë
+	 * é‚€è¯·
 	 * @param roleEntity
-	 * @param invited_role_name    ±»ÑûÇëÕßµÄÃû×Ö
+	 * @param invited_role_name    è¢«é‚€è¯·è€…çš„åå­—
 	 * @return
 	 */
 	public String invite( RoleEntity roleEntity,String invited_role_name,HttpServletResponse response )
@@ -340,17 +340,17 @@ public class FactionService
 		Faction faction = roleEntity.getBasicInfo().getFaction();
 		
 		RoleService roleService = new RoleService();
-		RoleEntity inviteder = roleService.getRoleInfoByName(invited_role_name);//µÃµ½±»ÑûÇëÕßµÄĞÅÏ¢
+		RoleEntity inviteder = roleService.getRoleInfoByName(invited_role_name);//å¾—åˆ°è¢«é‚€è¯·è€…çš„ä¿¡æ¯
 		hint = faction.isAddMember( inviteder);
 		if( hint!=null )
 		{
 			return hint;
 		}
 		
-		//¸ø±»ÑûÇëÕß·¢ËÍÓÊ¼ş
+		//ç»™è¢«é‚€è¯·è€…å‘é€é‚®ä»¶
 		MailInfoService mailInfoService = new MailInfoService();
-		/**¸øÍæ¼Ò·¢ËÍÒ»¸ö¼ÓÈë°ïÅÉµÄÓÊ¼ş  */
-		String mailTitle = faction.getName()+"°ïÅÉÑûÇëÄúµÄ¼ÓÈë!";
+		/**ç»™ç©å®¶å‘é€ä¸€ä¸ªåŠ å…¥å¸®æ´¾çš„é‚®ä»¶  */
+		String mailTitle = faction.getName()+"å¸®æ´¾é‚€è¯·æ‚¨çš„åŠ å…¥!";
 		MailInfoVO mail = new MailInfoVO();
 		mail.setSendPk(faction.getId());
 		mail.setReceivePk(inviteder.getPPk());
@@ -359,11 +359,11 @@ public class FactionService
 		mail.setContent(mailTitle);
 		mailInfoService.sendMail(mail);
 		
-		return "ÄúµÄÑûÇëÒÑ¾­·¢³ö£¬ÇëÄú¾´ºò¼ÑÒô£¡";
+		return "æ‚¨çš„é‚€è¯·å·²ç»å‘å‡ºï¼Œè¯·æ‚¨æ•¬å€™ä½³éŸ³ï¼";
 	}
 	
 	/**
-	 * Í¨¹ıidÉ¾³ıÉêÇëĞÅÏ¢
+	 * é€šè¿‡idåˆ é™¤ç”³è¯·ä¿¡æ¯
 	 */
 	public String delApply( RoleEntity roleEntity,int aId )
 	{
@@ -377,14 +377,14 @@ public class FactionService
 		
 		if( roleEntity.getBasicInfo().getFaction().getId()!=fApplyInfo.getFId() )
 		{
-			return "·Ç·¨²Ù×÷";
+			return "éæ³•æ“ä½œ";
 		}
 		fApplyInfoDao.delById(aId);
 		return null;
 	}
 	
 	/**
-	 *Í¨¹ıidµÃµ½ÉêÇëĞÅÏ¢
+	 *é€šè¿‡idå¾—åˆ°ç”³è¯·ä¿¡æ¯
 	 */
 	public String agreeApply( RoleEntity roleEntity,int aId )
 	{
@@ -401,18 +401,18 @@ public class FactionService
 		
 		if( fApplyInfo==null )
 		{
-			return "¶Ô·½ÒÑÈ¡ÏûÉêÇë";
+			return "å¯¹æ–¹å·²å–æ¶ˆç”³è¯·";
 		}
 		
 		if( faction.getId()!=fApplyInfo.getFId() )
 		{
-			return "·Ç·¨²Ù×÷";
+			return "éæ³•æ“ä½œ";
 		}
-		RoleEntity applyer = fApplyInfo.getRoleEntity();//ÉêÇëÕß
+		RoleEntity applyer = fApplyInfo.getRoleEntity();//ç”³è¯·è€…
 		
 		if( applyer.getBasicInfo().getFaction()!=null )
 		{
-			return applyer.getName()+"ÒÑ¼ÓÈëÆäËûÊÏ×å";
+			return applyer.getName()+"å·²åŠ å…¥å…¶ä»–æ°æ—";
 		}
 		
 		hint = faction.addMember(applyer);
@@ -424,12 +424,12 @@ public class FactionService
 		fApplyInfoDao.delByPPk(fApplyInfo.getPPk());
 		
 		MailInfoService mailInfoService = new MailInfoService();
-		mailInfoService.sendMailAndSystemInfo(fApplyInfo.getPPk(), "ÊÏ×åÓÊ¼ş", "ÄãÒÑ³É¹¦¼ÓÈëÊÏ×å"+faction.getName());
-		return "¹§Ï²£¬"+applyer.getName()+"ÒÑ¾­¼ÓÈëµ½À´ÄúµÄÊÏ×åÖ®ÖĞ£¡";
+		mailInfoService.sendMailAndSystemInfo(fApplyInfo.getPPk(), "æ°æ—é‚®ä»¶", "ä½ å·²æˆåŠŸåŠ å…¥æ°æ—"+faction.getName());
+		return "æ­å–œï¼Œ"+applyer.getName()+"å·²ç»åŠ å…¥åˆ°æ¥æ‚¨çš„æ°æ—ä¹‹ä¸­ï¼";
 	}
 	
 	/**
-	 * É¾³ı³ÉÔ±
+	 * åˆ é™¤æˆå‘˜
 	 */
 	public String delMember(RoleEntity operater,RoleEntity member )
 	{
@@ -444,28 +444,28 @@ public class FactionService
 		
 		if( member_faction==null )
 		{
-			return member_faction.getName()+"ÒÑÀë¿ªÊÏ×å";
+			return member_faction.getName()+"å·²ç¦»å¼€æ°æ—";
 		}
 		
-		//Èç¹û²Ù×÷ÕßÊÇ³¤ÀÏ£¬Ôò²»ÄÜÇıÖğ×å³¤ºÍÆäËû³¤ÀÏ
+		//å¦‚æœæ“ä½œè€…æ˜¯é•¿è€ï¼Œåˆ™ä¸èƒ½é©±é€æ—é•¿å’Œå…¶ä»–é•¿è€
 		if( operater.getBasicInfo().getFJob()==Faction.ZHANGLAO &&  member.getBasicInfo().getFJob()>=Faction.ZHANGLAO)
 		{
-			return "ÄãµÄÈ¨ÏŞ²»¹»";
+			return "ä½ çš„æƒé™ä¸å¤Ÿ";
 		}
 		
 		
 		if( member_faction.getId()!=operater_faction.getId() )
 		{
-			return "·¨·Ç²Ù×÷";
+			return "æ³•éæ“ä½œ";
 		}
 		
 		operater_faction.delMember(member);
 		
-		return "ÄúÒÑ³É¹¦½«"+member.getName()+"Öğ³öÊÏ×å!";
+		return "æ‚¨å·²æˆåŠŸå°†"+member.getName()+"é€å‡ºæ°æ—!";
 	}
 	
 	/**
-	 * ÉêÇëÁĞ±í
+	 * ç”³è¯·åˆ—è¡¨
 	 */
 	public QueryPage getApplyListPageList( int f_id,int page_no )
 	{
@@ -474,7 +474,7 @@ public class FactionService
 	}
 	
 	/**
-	 * °ïÅÉ³ÉÔ±ÁĞ±í
+	 * å¸®æ´¾æˆå‘˜åˆ—è¡¨
 	 */
 	public QueryPage getMemListPageList( int f_id,int page_no )
 	{
@@ -482,7 +482,7 @@ public class FactionService
 		return partInfoDao.getPageListByFId(f_id, page_no);
 	}
 	/**
-	 * °ïÅÉ³¤ÀÏÁĞ±í
+	 * å¸®æ´¾é•¿è€åˆ—è¡¨
 	 */
 	public QueryPage getZhanglaoListPageList( int f_id,int page_no )
 	{
@@ -492,43 +492,43 @@ public class FactionService
 	
 	
 	/**
-	 * ÉêÇë¼ÓÈë°ïÅÉ
+	 * ç”³è¯·åŠ å…¥å¸®æ´¾
 	 */
 	public String apply( RoleEntity roleEntity,Faction faction )
 	{
 		if( roleEntity==null )
 		{
-			return "ÎŞ¸Ã½ÇÉ«";
+			return "æ— è¯¥è§’è‰²";
 		}
 		
 		if(  roleEntity.getBasicInfo().getFaction()!=null )
 		{
-			return "²»ÄÜÉêÇë,ÄãÒÑ¼ÓÈëÆäËûÊÏ×å";
+			return "ä¸èƒ½ç”³è¯·,ä½ å·²åŠ å…¥å…¶ä»–æ°æ—";
 		}
 		
 		if( faction==null )
 		{
-			return "¸Ã°ïÅÉÒÑ½âÉ¢";	
+			return "è¯¥å¸®æ´¾å·²è§£æ•£";	
 		}
 		
 		if( roleEntity.getBasicInfo().getPRace()!=faction.getRace())
 		{
-			return "ÖÖ×å²»·û";
+			return "ç§æ—ä¸ç¬¦";
 		}
 		
 		FApplyInfoDao fApplyInfoDao = new FApplyInfoDao();
 		
 		if( fApplyInfoDao.isHave(roleEntity.getPPk(), faction.getId())==true )
 		{
-			return "ÄãÒÑÌá½»¹ıÉêÇë";
+			return "ä½ å·²æäº¤è¿‡ç”³è¯·";
 		}
 		
 		fApplyInfoDao.add(roleEntity.getPPk(), faction.getId());
-		return "ÄúµÄÉêÇëÒÑÌá½»£¬´ı¸ÃÊÏ×å×ö³ö¾ö¶¨ºó£¬ÎÒÃÇ»áÒÔÏµÍ³ÓÊ¼şµÄ·½Ê½Í¨ÖªÄú£¡";
+		return "æ‚¨çš„ç”³è¯·å·²æäº¤ï¼Œå¾…è¯¥æ°æ—åšå‡ºå†³å®šåï¼Œæˆ‘ä»¬ä¼šä»¥ç³»ç»Ÿé‚®ä»¶çš„æ–¹å¼é€šçŸ¥æ‚¨ï¼";
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉÁĞ±í
+	 * å¾—åˆ°å¸®æ´¾åˆ—è¡¨
 	 */
 	public QueryPage getPageList( int page_no )
 	{
@@ -537,7 +537,7 @@ public class FactionService
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÂú×ã´´½¨°ïÅÉµÄÌõ¼ş
+	 * åˆ¤æ–­æ˜¯å¦æ»¡è¶³åˆ›å»ºå¸®æ´¾çš„æ¡ä»¶
 	 * @param roleEntity
 	 * @return
 	 */
@@ -547,41 +547,41 @@ public class FactionService
 		
 		if( roleEntity==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		
 		if( roleEntity.getBasicInfo().getGrade()<CREATE_NEED_GRADE )
 		{
-			return "µÈ¼¶²»·ûºÏ";
+			return "ç­‰çº§ä¸ç¬¦åˆ";
 		}
 		
 		if( roleEntity.getBasicInfo().isEnoughMoney(CREATE_NEED_MONEY)==false )
 		{
-			return "½ğÇ®²»×ã";
+			return "é‡‘é’±ä¸è¶³";
 		}
 		
 		PropService propService = new PropService();
 		if( propService.isEnoughProp(roleEntity, CREATE_NEED_PROP, 1)==false )
 		{
-			return "Ã»ÓĞ"+PropCache.getPropNameById(CREATE_NEED_PROP);
+			return "æ²¡æœ‰"+PropCache.getPropNameById(CREATE_NEED_PROP);
 		}
 		
 		return hint;
 	}
 	
 	/**
-	 * ´´½¨°ïÅÉ
+	 * åˆ›å»ºå¸®æ´¾
 	 */
 	public String create( RoleEntity roleEntity,String faction_name )
 	{
 		if( roleEntity==null )
 		{
-			return "Êı¾İ´íÎó";
+			return "æ•°æ®é”™è¯¯";
 		}
 		
 		if( this.isCreated(roleEntity)!=null )
 		{
-			return "¶Ô²»Æğ£¬ÄúµÄµÈ¼¶²»¹º£¬»òÁéÊ¯²»×ã£¬»òÃ»ÓĞÊÏ×åÁî£¬²»¿É´´½¨ÊÏ×å£¡";
+			return "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç­‰çº§ä¸è´­ï¼Œæˆ–çµçŸ³ä¸è¶³ï¼Œæˆ–æ²¡æœ‰æ°æ—ä»¤ï¼Œä¸å¯åˆ›å»ºæ°æ—ï¼";
 		}
 		
 		String hint = this.validateFName(faction_name);
@@ -591,7 +591,7 @@ public class FactionService
 		}
 		
 		Faction faction = new Faction();
-		hint = faction.create(roleEntity,faction_name);//´´½¨°ïÅÉ
+		hint = faction.create(roleEntity,faction_name);//åˆ›å»ºå¸®æ´¾
 		if( hint!=null )
 		{
 			return hint;
@@ -604,7 +604,7 @@ public class FactionService
 	}
 	
 	/**
-	 * ÑéÖ¤°ïÅÉµÄÃû×ÖÊÇ·ñºÏ·¨
+	 * éªŒè¯å¸®æ´¾çš„åå­—æ˜¯å¦åˆæ³•
 	 */
 	private String validateFName(String faction_name )
 	{
@@ -617,14 +617,14 @@ public class FactionService
 		FactionDao factionDao = new FactionDao();
 		if( factionDao.isHaveName(faction_name))
 		{
-			return "¸ÃÃûÒÑ±»Õ¼ÓÃ";
+			return "è¯¥åå·²è¢«å ç”¨";
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * ·¢²¼ÕĞÄ¼ĞÅÏ¢
+	 * å‘å¸ƒæ‹›å‹Ÿä¿¡æ¯
 	 */
 	public String publishRecruitInfo()
 	{
@@ -632,18 +632,18 @@ public class FactionService
 	}
 	
 	/**
-	 * ·¢²¼¹«¸æ
+	 * å‘å¸ƒå…¬å‘Š
 	 */
 	public String publishNotice( RoleEntity roleEntity,String content )
 	{
 		if( roleEntity==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		
 		if( roleEntity.getBasicInfo().getIsPublishNotice()==false )
 		{
-			return "¶Ô²»Æğ£¬Ö»ÓĞ×å³¤¡¢³¤ÀÏºÍ»¤·¨²Å¾ßÓĞ·¢²¼¹«¸æµÄÈ¨Á¦£¬ÄãÎŞÓĞ´ËÏîÈ¨Á¦£¡";
+			return "å¯¹ä¸èµ·ï¼Œåªæœ‰æ—é•¿ã€é•¿è€å’ŒæŠ¤æ³•æ‰å…·æœ‰å‘å¸ƒå…¬å‘Šçš„æƒåŠ›ï¼Œä½ æ— æœ‰æ­¤é¡¹æƒåŠ›ï¼";
 		}
 		
 		String hint = ValidateService.validateBasicInput(content, 30);
@@ -659,21 +659,21 @@ public class FactionService
 		return null;
 	}
 	/**
-	 * É¾³ı¹«¸æ
+	 * åˆ é™¤å…¬å‘Š
 	 * @param roleEntity
-	 * @param id		¹«¸æid
+	 * @param id		å…¬å‘Šid
 	 * @return
 	 */
 	public String delNotice(RoleEntity roleEntity,int id)
 	{
 		if( roleEntity==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		
 		if( roleEntity.getBasicInfo().getIsDelNotice()==false )
 		{
-			return "¶Ô²»Æğ£¬Ö»ÓĞ×å³¤»ò³¤ÀÏ²ÅÓĞÈ¨Á¦É¾³ı¹«¸æ£¬ÄúÎŞÓĞ´ËÏîÈ¨Á¦£¡";
+			return "å¯¹ä¸èµ·ï¼Œåªæœ‰æ—é•¿æˆ–é•¿è€æ‰æœ‰æƒåŠ›åˆ é™¤å…¬å‘Šï¼Œæ‚¨æ— æœ‰æ­¤é¡¹æƒåŠ›ï¼";
 		}
 		
 		Faction faction = roleEntity.getBasicInfo().getFaction();
@@ -683,7 +683,7 @@ public class FactionService
 		
 		if( faction.getId()!=notice.getFId())
 		{
-			return "·Ç·¨²Ù×÷";
+			return "éæ³•æ“ä½œ";
 		}
 		
 		faction.delNotice(id);
@@ -692,7 +692,7 @@ public class FactionService
 	}
 	
 	/**
-	 * µÃµ½¹«¸æµÄ·ÖÒ³ÁĞ±í
+	 * å¾—åˆ°å…¬å‘Šçš„åˆ†é¡µåˆ—è¡¨
 	 * @return
 	 */
 	public QueryPage getNoticePageList(int f_id,int page_no)
@@ -702,7 +702,7 @@ public class FactionService
 	}
 	
 	/**
-	 * Í¨¹ıidµÃµ½°ïÅÉĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°å¸®æ´¾ä¿¡æ¯
 	 */
 	public static Faction getById( int fId )
 	{
@@ -720,7 +720,7 @@ public class FactionService
 	}
 	
 	/**
-	 * É¾³ı°ïÅÉ
+	 * åˆ é™¤å¸®æ´¾
 	 * @param faction
 	 */
 	public static void del( int id )
@@ -734,9 +734,9 @@ public class FactionService
 	}
 
 	/**
-	 * Íæ¼Ò¶Ô°ïÅÉÊÂÎñ(Õë¶ÔÆäËû³ÉÔ±µÄ²Ù×÷)µÄ²Ù×÷»ù±¾Ìõ¼şÅĞ¶Ï
-	 * @param operater				Ö´ĞĞ²Ù×÷µÄÍæ¼Ò
-	 * @param job 					Ö´ĞĞ²Ù×÷µÄ×îµÍÖ°Îñ
+	 * ç©å®¶å¯¹å¸®æ´¾äº‹åŠ¡(é’ˆå¯¹å…¶ä»–æˆå‘˜çš„æ“ä½œ)çš„æ“ä½œåŸºæœ¬æ¡ä»¶åˆ¤æ–­
+	 * @param operater				æ‰§è¡Œæ“ä½œçš„ç©å®¶
+	 * @param job 					æ‰§è¡Œæ“ä½œçš„æœ€ä½èŒåŠ¡
 	 * @return
 	 */
 	private String isOperate(RoleEntity operater,RoleEntity member,int job)
@@ -748,56 +748,56 @@ public class FactionService
 		}
 		if( member==null )
 		{
-			return "¸Ã³ÉÔ±ÒÑ²»´æÔÚ";
+			return "è¯¥æˆå‘˜å·²ä¸å­˜åœ¨";
 		}
 		
 		if( operater.getPPk()==member.getPPk() )
 		{
-			return "·Ç·¨²Ù×÷";
+			return "éæ³•æ“ä½œ";
 		}
 		
-		//ÅĞ¶ÏÊÇ·ñÊÇÍ¬Ò»°ïÅÉ
+		//åˆ¤æ–­æ˜¯å¦æ˜¯åŒä¸€å¸®æ´¾
 		if( operater.getBasicInfo().getFaction().getId()!=member.getBasicInfo().getFaction().getId())
 		{
-			return "·Ç·¨²Ù×÷";
+			return "éæ³•æ“ä½œ";
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * Íæ¼Ò¶Ô°ïÅÉÊÂÎñµÄ²Ù×÷»ù±¾Ìõ¼şÅĞ¶Ï
-	 * @param operater				Ö´ĞĞ²Ù×÷µÄÍæ¼Ò
-	 * @param job 					Ö´ĞĞ²Ù×÷µÄ×îµÍÖ°Îñ
+	 * ç©å®¶å¯¹å¸®æ´¾äº‹åŠ¡çš„æ“ä½œåŸºæœ¬æ¡ä»¶åˆ¤æ–­
+	 * @param operater				æ‰§è¡Œæ“ä½œçš„ç©å®¶
+	 * @param job 					æ‰§è¡Œæ“ä½œçš„æœ€ä½èŒåŠ¡
 	 * @return
 	 */
 	String isOperate(RoleEntity operater,int job)
 	{
 		if( operater==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		Faction faction = operater.getBasicInfo().getFaction();
 		if( faction==null )
 		{
-			return "ÄãµÄÊÏ×åÒÑ½âÉ¢";
+			return "ä½ çš„æ°æ—å·²è§£æ•£";
 		}
 		
 		if( faction.getIsDisband()==true )
 		{
-			return "ÊÏ×å±»½âÉ¢ÖĞ...";
+			return "æ°æ—è¢«è§£æ•£ä¸­...";
 		}
 		
 		if( operater.getBasicInfo().isOperateByFJob(job)==false )
 		{
-			return "ÄãµÄÈ¨ÏŞ²»¹»";
+			return "ä½ çš„æƒé™ä¸å¤Ÿ";
 		}
 		
 		return null;
 	}
 	
 	/**
-	 * ¶¨Ê±Æ÷¼ì²é°ïÅÉ½âÉ¢
+	 * å®šæ—¶å™¨æ£€æŸ¥å¸®æ´¾è§£æ•£
 	 */
 	public static void checkDisband()
 	{
@@ -812,12 +812,12 @@ public class FactionService
 		}
 		catch(Exception e)
 		{
-			DataErrorLog.debugData("¶¨Ê±Æ÷¼ì²é°ïÅÉ½âÉ¢,³ö´í£º"+e.getMessage());
+			DataErrorLog.debugData("å®šæ—¶å™¨æ£€æŸ¥å¸®æ´¾è§£æ•£,å‡ºé”™ï¼š"+e.getMessage());
 		}
 	}
 	
 	/**
-	 * ¶¨Ê±Æ÷¼ì²éÊÇ·ñÊÇ»îÔ¾°ïÅÉ£¨ÊÇ·ñÔÚ10ÕĞÂúÈË£©
+	 * å®šæ—¶å™¨æ£€æŸ¥æ˜¯å¦æ˜¯æ´»è·ƒå¸®æ´¾ï¼ˆæ˜¯å¦åœ¨10æ‹›æ»¡äººï¼‰
 	 */
 	public static void checkIsActived()
 	{
@@ -842,7 +842,7 @@ public class FactionService
 		}
 		catch(Exception e)
 		{
-			DataErrorLog.debugData("¶¨Ê±Æ÷¼ì²éÊÇ·ñÊÇ»îÔ¾°ïÅÉ,³ö´í£º"+e.getMessage());
+			DataErrorLog.debugData("å®šæ—¶å™¨æ£€æŸ¥æ˜¯å¦æ˜¯æ´»è·ƒå¸®æ´¾,å‡ºé”™ï¼š"+e.getMessage());
 		}
 	}
 }

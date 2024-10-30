@@ -5,9 +5,10 @@
 <%@page import="com.ls.model.user.*,com.ls.web.service.player.*"%>
 <%@page import="com.ls.pub.config.sky.ConfigOfSky,com.ls.pub.config.GameConfig"%>
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="bill" title="充值">
 <p>
 <%@ include file="/init/system/error_hint.jsp"%>

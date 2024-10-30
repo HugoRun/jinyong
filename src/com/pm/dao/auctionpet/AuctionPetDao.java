@@ -15,10 +15,10 @@ import com.pm.vo.auctionpet.AuctionPetVO;
 public class AuctionPetDao extends DaoBase 
 {
 	/**
-	 * ³èÎïÏêÏ¸ĞÅÏ¢²é¿´,¸ù¾İpetpk
+	 * å® ç‰©è¯¦ç»†ä¿¡æ¯æŸ¥çœ‹,æ ¹æ®petpk
 	 */
 	public AuctionPetVO getPetInfoView(String petPk) {
-		String sql = "select * from u_auction_pet where pet_pk='" + petPk+ "'";
+		String sql = "SELECT * FROM u_auction_pet where pet_pk='" + petPk+ "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetVO vo = null;
 		try {
@@ -79,17 +79,17 @@ public class AuctionPetDao extends DaoBase
 		return vo;
 	}
 	
-	//²åÈëÅÄÂô±íĞÅÏ¢
+	//æ’å…¥æ‹å–è¡¨ä¿¡æ¯
 	public int insertAuctionPet(int input_money,PetInfoVO vo){
 		int i = -1;
-		String sql = "insert into u_auction_pet values (null,1,"+input_money+",now(),"+vo.getPetPk()+","+
+		String sql = "INSERT INTO u_auction_pet values (null,1,"+input_money+",now(),"+vo.getPetPk()+","+
 						vo.getPPk()+","+vo.getPetId()+",'"+vo.getBasicPetName()+"','"+vo.getBasicPetName()+"',"+
 						vo.getPetGrade()+",'"+vo.getPetExp()+"','"+vo.getPetExp()+"','"+vo.getPetXiaExp()+"',"+vo.getPetGjXiao()+","+
 						vo.getPetGjDa()+","+vo.getPetSale()+",'',"+vo.getPetGrow()+","+vo.getPetWx()+","+
 						vo.getPetWxValue()+","+vo.getPetSkillOne()+","+vo.getPetSkillTwo()+","+vo.getPetSkillThree()+","+vo.getPetSkillFour()+","+
 						vo.getPetSkillFive()+","+vo.getPetLife()+","+vo.getPetIsAutoGrow()+","+vo.getPetType()+","+vo.getPetIsBring()+","+vo.getPetFatigue()+","+
 						vo.getPetLonge()+","+vo.getLongeNumber()+","+vo.getLongeNumberOk()+","+vo.getSkillControl()+","+vo.getPetInitNum()+","+vo.getPetViolenceDrop()+")";
-		logger.debug("²åÈë³èÎïÅÄÂô³¡µÄsql"+sql);
+		logger.debug("æ’å…¥å® ç‰©æ‹å–åœºçš„sql"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -108,7 +108,7 @@ public class AuctionPetDao extends DaoBase
 		return i;
 	}
 
-	/** »ñµÃÖ¸¶¨µÄpet_list */
+	/** è·å¾—æŒ‡å®šçš„pet_list */
 	public QueryPage getPetList(int page_no,String searchType)
 	{
 		logger.debug("page_no="+page_no+" ,searchType="+searchType);
@@ -124,7 +124,7 @@ public class AuctionPetDao extends DaoBase
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "select count(*) from u_auction_pet where auction_status = 1";
+			count_sql = "SELECT count(*) from u_auction_pet where auction_status = 1";
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -137,13 +137,13 @@ public class AuctionPetDao extends DaoBase
 			
 			if(searchType.equals("time")){
 			
-				page_sql = "select * from u_auction_pet where auction_status = 1 order by pet_auction_time desc " +
+				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 order by pet_auction_time desc " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else if(searchType.equals("money")){
-				page_sql = "select * from u_auction_pet where auction_status = 1 order by CAST(pet_price as UNSIGNED  INTEGER) asc " +
+				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 order by CAST(pet_price as UNSIGNED  INTEGER) asc " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else {
-				page_sql = "select * from u_auction_pet where auction_status = 1 order by pet_auction_time desc " + 
+				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 order by pet_auction_time desc " + 
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}
 			logger.debug(page_sql);
@@ -165,7 +165,7 @@ public class AuctionPetDao extends DaoBase
 				
 				list.add(vo);
 			}
-			logger.debug("ÅÄÂô³¡µÄËÑË÷½á¹ûÎª : "+list.size());
+			logger.debug("æ‹å–åœºçš„æœç´¢ç»“æœä¸º : "+list.size());
 			rs.close();
 			stmt.close();
 			queryPage.setResult(list);
@@ -178,10 +178,10 @@ public class AuctionPetDao extends DaoBase
 		return queryPage;
 	}
 	
-	//²åÈë¸öÈË³èÎï±íĞÅÏ¢
+	//æ’å…¥ä¸ªäººå® ç‰©è¡¨ä¿¡æ¯
 	public int insertPersonPet(int pPk, AuctionPetVO vo){
 		int i = -1;
-		String sql = "insert into p_pet_info values (null,"+Integer.valueOf(pPk)+","
+		String sql = "INSERT INTO p_pet_info values (null,"+Integer.valueOf(pPk)+","
 					+vo.getPetId()+",'"+vo.getPetName()+"','"+vo.getPetNickname()+"',"
 					
 					+vo.getPetGrade()+",'"+vo.getPetExp()+"','"+vo.getPetBenExp()+"','"+vo.getPetXiaExp()+"','"
@@ -196,7 +196,7 @@ public class AuctionPetDao extends DaoBase
 					
 					+vo.getLongeNumber()+","+vo.getLongeNumberOk()+",'"+vo.getSkillControl()+"','"+vo.getPetType()+"','"+vo.getPetInitNum()+"','"
 					+vo.getPetViolenceDrop()+"')";
-		logger.debug("²åÈë¸öÈË³èÎï±íµÄsql"+sql);
+		logger.debug("æ’å…¥ä¸ªäººå® ç‰©è¡¨çš„sql"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -214,11 +214,11 @@ public class AuctionPetDao extends DaoBase
 		return i;
 	}
 
-	// ¸üĞÂ¸ÃÅÄÂô³èÎïµÄ×´Ì¬
+	// æ›´æ–°è¯¥æ‹å–å® ç‰©çš„çŠ¶æ€
 	public void updateAuctionStatus(String petPk, int i)
 	{
 		String sql = "update u_auction_pet set auction_status = "+i+" where pet_pk="+petPk;
-		logger.debug("¸üĞÂ¸ÃÅÄÂô³èÎïµÄ×´Ì¬µÄsql"+sql);
+		logger.debug("æ›´æ–°è¯¥æ‹å–å® ç‰©çš„çŠ¶æ€çš„sql"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -234,12 +234,12 @@ public class AuctionPetDao extends DaoBase
 		}
 	}
 
-	//»ñµÃÖ¸¶¨ÊıÁ¿µÄpetInfoList
+	//è·å¾—æŒ‡å®šæ•°é‡çš„petInfoList
 	public List<AuctionPetInfoVO> getPetInfoList(int pPk, int i)
 	{
 		List<AuctionPetInfoVO> list = new ArrayList<AuctionPetInfoVO>();
-		String sql = "select * from u_auctionpet_info where p_pk="+pPk+" limit "+i;
-		logger.debug("»ñµÃÖ¸¶¨ÊıÁ¿µÄpetInfo: "+sql);
+		String sql = "SELECT * FROM u_auctionpet_info where p_pk="+pPk+" limit "+i;
+		logger.debug("è·å¾—æŒ‡å®šæ•°é‡çš„petInfo: "+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetInfoVO vo = null;
 		try {
@@ -264,11 +264,11 @@ public class AuctionPetDao extends DaoBase
 		return list;
 	}
 
-	//µÃµ½ÅÄÂô³èÎïºóµÄ½ğÇ®ÁĞ±í
+	//å¾—åˆ°æ‹å–å® ç‰©åçš„é‡‘é’±åˆ—è¡¨
 	public List<AuctionPetVO> getPetMoneyList(int pPk)
 	{
 		List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
-		String sql = "select * from u_auction_pet where auction_status = 4 and p_pk="+pPk;
+		String sql = "SELECT * FROM u_auction_pet where auction_status = 4 and p_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetVO vo = null;
 		try {
@@ -293,11 +293,11 @@ public class AuctionPetDao extends DaoBase
 		return list;
 	}
 
-	//µÃµ½Î´ÅÄÂô³öµÄ³èÎïÁĞ±í
+	//å¾—åˆ°æœªæ‹å–å‡ºçš„å® ç‰©åˆ—è¡¨
 	public List<AuctionPetVO> getPetGoodsList(int pPk)
 	{
 		List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
-		String sql = "select * from u_auction_pet where auction_status = 2 and p_pk="+pPk;
+		String sql = "SELECT * FROM u_auction_pet where auction_status = 2 and p_pk="+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		AuctionPetVO vo = null;
 		try {
@@ -323,12 +323,12 @@ public class AuctionPetDao extends DaoBase
 	}
 	
 	/**
-	 * ¸ù¾İpetpk²éÑ¯¸Ã³èÎïµÄÅÄÂô¼Û¸ñ
+	 * æ ¹æ®petpkæŸ¥è¯¢è¯¥å® ç‰©çš„æ‹å–ä»·æ ¼
 	 */
 	public int getPetInfoPrice(String petPk) {
 		
 		int petPrice = 0;
-		String sql = "select pet_price from u_auction_pet where pet_pk='" + petPk+ "'";
+		String sql = "SELECT pet_price from u_auction_pet where pet_pk='" + petPk+ "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try {
@@ -348,7 +348,7 @@ public class AuctionPetDao extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İpepPkÉ¾³ıÖ¸¶¨µÄÅÄÂô³èÎï¼ÇÂ¼
+	 * æ ¹æ®pepPkåˆ é™¤æŒ‡å®šçš„æ‹å–å® ç‰©è®°å½•
 	 * @param petPk
 	 * @return
 	 */
@@ -374,12 +374,12 @@ public class AuctionPetDao extends DaoBase
 	}
 	
 	/**
-	 * ¸ù¾İpetpk²éÑ¯¸Ã³èÎïµÄÃû³Æ
+	 * æ ¹æ®petpkæŸ¥è¯¢è¯¥å® ç‰©çš„åç§°
 	 */
 	public String getPetInfoName(String petPk) {
 		
 		String petName = "";
-		String sql = "select pet_name from u_auction_pet where pet_pk='" + petPk+ "'";
+		String sql = "SELECT pet_name from u_auction_pet where pet_pk='" + petPk+ "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try {
@@ -399,11 +399,11 @@ public class AuctionPetDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½ÅÄÂô³¡ÀïµÄÌØ¶¨Ãû×ÖµÄ³èÎïµÄlist
+	 * å¾—åˆ°æ‹å–åœºé‡Œçš„ç‰¹å®šåå­—çš„å® ç‰©çš„list
 	 * 
 	 * @param 
 	 * @param auctionType
-	 *            ÅÄÂô³¡µÀ¾ß·ÖÀà
+	 *            æ‹å–åœºé“å…·åˆ†ç±»
 	 * @return
 	 */
 	public QueryPage getPagePetByName(String pet_name, int page_no,String sortType)
@@ -420,7 +420,7 @@ public class AuctionPetDao extends DaoBase
 		try
 		{
 			stmt = conn.createStatement();
-			 count_sql = "select count(*) from u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%'";
+			 count_sql = "SELECT count(*) from u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%'";
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -431,13 +431,13 @@ public class AuctionPetDao extends DaoBase
 
 			queryPage = new  QueryPage(page_no,count);
 			if(sortType.equals("time")){
-				page_sql = "select * from u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by pet_auction_time desc " +
+				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by pet_auction_time desc " +
 						"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else if(sortType.equals("money")){
-				page_sql = "select * from u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by CAST(pet_price as UNSIGNED  INTEGER) asc " +
+				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by CAST(pet_price as UNSIGNED  INTEGER) asc " +
 				"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}else {
-				page_sql = "select * from u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by pet_auction_time desc " +
+				page_sql = "SELECT * FROM u_auction_pet where auction_status = 1 and pet_name like '%" + StringUtil.gbToISO(pet_name) + "%' order by pet_auction_time desc " +
 				"limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			}
 			logger.debug(page_sql);
@@ -454,7 +454,7 @@ public class AuctionPetDao extends DaoBase
 				
 				pets.add(vo);
 			}
-			logger.debug("ÅÄÂô³¡µÄËÑË÷½á¹ûÎª : "+pets.size());
+			logger.debug("æ‹å–åœºçš„æœç´¢ç»“æœä¸º : "+pets.size());
 			rs.close();
 			stmt.close();
 			
@@ -472,8 +472,8 @@ public class AuctionPetDao extends DaoBase
 
 	public List<AuctionPetVO> getThanThreeDayList()
 	{
-		String sql = "select * from u_auction_pet where auction_status = 1 and now() > (pet_auction_time + INTERVAL 3 DAY)";
-		 logger.debug("»ñÈ¡³¬¹ıÒ»¶¨ÌìÊıµÄ³èÎïÅÄÂôĞÅÏ¢µÄsql :"+sql);
+		String sql = "SELECT * FROM u_auction_pet where auction_status = 1 and now() > (pet_auction_time + INTERVAL 3 DAY)";
+		 logger.debug("è·å–è¶…è¿‡ä¸€å®šå¤©æ•°çš„å® ç‰©æ‹å–ä¿¡æ¯çš„sql :"+sql);
 		 List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
 		 AuctionPetVO vo = null;
 		 DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -503,12 +503,12 @@ public class AuctionPetDao extends DaoBase
 	}
 
 	/**
-	 * ÅÄÂôÊ±¼ä³¬¹ıÈıÌìµÄ½«ÏÂ¼Ü
+	 * æ‹å–æ—¶é—´è¶…è¿‡ä¸‰å¤©çš„å°†ä¸‹æ¶
 	 */
 	public void updateThanThreeDay()
 	{
 		 String sql = "update u_auction_pet set auction_status = 2 where now() > (pet_auction_time + INTERVAL 3 DAY) and auction_status = 1";
-		 logger.debug("¸üĞÂÅÄÂôĞÅÏ¢µÄsql :"+sql);
+		 logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çš„sql :"+sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
 			try{
@@ -527,11 +527,11 @@ public class AuctionPetDao extends DaoBase
 		
 	}
 
-	//»ñµÃÁùÌìÄÚÎ´È¡»Ø³èÎïµÄÎïÆ·Çåµ¥
+	//è·å¾—å…­å¤©å†…æœªå–å›å® ç‰©çš„ç‰©å“æ¸…å•
 	public List<AuctionPetVO> getThanSixDayList()
 	{
-		String sql = "select * from u_auction_pet where auction_status = 2 and now() > (pet_auction_time + INTERVAL 6 DAY)";
-		 logger.debug("»ñÈ¡³¬¹ıÒ»¶¨ÌìÊıµÄ³èÎïÅÄÂôĞÅÏ¢µÄsql :"+sql);
+		String sql = "SELECT * FROM u_auction_pet where auction_status = 2 and now() > (pet_auction_time + INTERVAL 6 DAY)";
+		 logger.debug("è·å–è¶…è¿‡ä¸€å®šå¤©æ•°çš„å® ç‰©æ‹å–ä¿¡æ¯çš„sql :"+sql);
 		 List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
 		 AuctionPetVO vo = null;
 		 DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -561,12 +561,12 @@ public class AuctionPetDao extends DaoBase
 	}
 
 	/**
-	 * ÅÄÂôÊ±¼ä³¬¹ıÁùÌìµÄ½«±»Ã»ÊÕ
+	 * æ‹å–æ—¶é—´è¶…è¿‡å…­å¤©çš„å°†è¢«æ²¡æ”¶
 	 */
 	public void deleteThanSixDay()
 	{
 		 String sql = "delete from u_auction_pet where auction_status = 2 and now() > (pet_auction_time + INTERVAL 6 DAY)";
-		 logger.debug("¸üĞÂÅÄÂôĞÅÏ¢µÄsql :"+sql);
+		 logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çš„sql :"+sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
 			try{
@@ -585,11 +585,11 @@ public class AuctionPetDao extends DaoBase
 		
 	}
 
-	//»ñµÃÎïÆ·ÅÄÂô³É¹¦ºóÆßÌìÄÚÎ´È¡»ØÒøÁ½µÄÇåµ¥
+	//è·å¾—ç‰©å“æ‹å–æˆåŠŸåä¸ƒå¤©å†…æœªå–å›é“¶ä¸¤çš„æ¸…å•
 	public List<AuctionPetVO> getThanSevenDay()
 	{
-		String sql = "select * from u_auction_pet where auction_status = 4 and now() > (pet_auction_time + INTERVAL 7 DAY)";
-		 logger.debug("»ñÈ¡³¬¹ıÒ»¶¨ÌìÊıµÄÅÄÂôĞÅÏ¢µÄsql :"+sql);
+		String sql = "SELECT * FROM u_auction_pet where auction_status = 4 and now() > (pet_auction_time + INTERVAL 7 DAY)";
+		 logger.debug("è·å–è¶…è¿‡ä¸€å®šå¤©æ•°çš„æ‹å–ä¿¡æ¯çš„sql :"+sql);
 		 List<AuctionPetVO> list = new ArrayList<AuctionPetVO>();
 		 AuctionPetVO vo = null;
 		 DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -620,12 +620,12 @@ public class AuctionPetDao extends DaoBase
 	}
 
 	/**
-	 * ÅÄÂô³É¹¦µÄ½ğÇ®ÆßÌìÄÚ»¹Ã»ÓĞÈ¡»ØµÄ½«±»Ã»ÊÕ
+	 * æ‹å–æˆåŠŸçš„é‡‘é’±ä¸ƒå¤©å†…è¿˜æ²¡æœ‰å–å›çš„å°†è¢«æ²¡æ”¶
 	 */
 	public void updateMoneySevenDay()
 	{
 		String sql = "delete from u_auction_pet where auction_status = 4 and now() > (pet_auction_time + INTERVAL 7 DAY)";
-		 logger.debug("¸üĞÂÅÄÂôĞÅÏ¢µÄsql :"+sql);
+		 logger.debug("æ›´æ–°æ‹å–ä¿¡æ¯çš„sql :"+sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
 			try{

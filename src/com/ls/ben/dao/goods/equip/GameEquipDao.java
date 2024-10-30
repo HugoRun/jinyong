@@ -11,7 +11,7 @@ import com.ls.pub.util.StringUtil;
 
 /**
  * @author ls
- * ÓÎÏ·×°±¸
+ * æ¸¸æˆè£…å¤‡
  */
 public class GameEquipDao extends BasicDaoSupport<GameEquip>
 {
@@ -22,7 +22,7 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 	}
 
 	/**
-	 * Í¨¹ıidµÃµ½×°±¸ĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°è£…å¤‡ä¿¡æ¯
 	 */
 	public GameEquip getById(int equipId)
 	{
@@ -30,12 +30,12 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 	}
 	
 	/**
-	 * ¼ÓÔØ×°±¸Ãû×ÖµÃµ½×°±¸id
+	 * åŠ è½½è£…å¤‡åå­—å¾—åˆ°è£…å¤‡id
 	 * @return
 	 */
 	public int getIdByName(String name ){
 		int id = -1;
-		String sql = "select id from game_equip where name='"+name+"'";
+		String sql = "SELECT id from game_equip where name='"+name+"'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -56,12 +56,12 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 	}
 	
 	/**
-	 * ¼ÓÔØ×°±¸»º´æ
+	 * åŠ è½½è£…å¤‡ç¼“å­˜
 	 * @return
 	 */
 	public HashMap<Integer,GameEquip> findAll(){
 		HashMap<Integer,GameEquip> map = new HashMap<Integer,GameEquip>();
-		String sql = "select * from game_equip";
+		String sql = "SELECT * FROM game_equip";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -120,12 +120,12 @@ public class GameEquipDao extends BasicDaoSupport<GameEquip>
 		return null;
 	}
 	/**
-	 * ¸ù¾İÍæ¼ÒÊäÈëµÄÃû³ÆÄ£ºı²éÑ¯³ö×¼È·µÄÃû³Æ
+	 * æ ¹æ®ç©å®¶è¾“å…¥çš„åç§°æ¨¡ç³ŠæŸ¥è¯¢å‡ºå‡†ç¡®çš„åç§°
 	 */
 	public String getEquipName(String name)
 	{
 		String equipName="";
-		String sql = "select name from game_equip where name like '%"+name+"%' limit 1";
+		String sql = "SELECT name from game_equip where name like '%"+name+"%' limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

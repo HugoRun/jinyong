@@ -107,8 +107,7 @@ public class HttpUtils
 		con.setAllowUserInteraction(false);
 		con.setUseCaches(false);
 		con.setRequestMethod("POST");
-		con.setRequestProperty("Content-Type",
-				"application/x-www-form-urlencoded;charset=GBK");
+		con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=GBK");
 		BufferedWriter bout = new BufferedWriter(new OutputStreamWriter(con
 				.getOutputStream()));
 		bout.write(content);
@@ -133,7 +132,7 @@ public class HttpUtils
 	}
 
 	/**
-	 * ���URL
+	 * 锟斤拷锟経RL
 	 * @param map Map
 	 * @return String
 	 */

@@ -1,284 +1,231 @@
 package com.ben.pk.active;
 
+import com.ls.ben.cache.dynamic.manual.user.RoleCache;
+import com.ls.model.user.RoleEntity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ls.ben.cache.dynamic.manual.user.RoleCache;
-import com.ls.model.user.RoleEntity;
-
 /**
- * ¹¦ÄÜ£ºPK»î¶¯Service
- * 
+ * åŠŸèƒ½ï¼šPKæ´»åŠ¨Service
+ *
  * @author thomas.lei 27/04/10 PM
  */
-public class PKActiveService
-{
-	PKActiveDao pd = new PKActiveDao();
+public class PKActiveService {
+    PKActiveDao pd = new PKActiveDao();
 
-	// PKÍæ¼Ò±¨Ãû
-	public int pkActiveRegist(PKActiveRegist role)
-	{
-		int count = pd.pkActiveRegist(role);
-		return count;
-	}
+    // PKç©å®¶æŠ¥å
+    public int pkActiveRegist(PKActiveRegist role) {
+        return pd.pkActiveRegist(role);
+    }
 
-	// ²éÑ¯Íæ¼ÒÊÇ·ñÓĞÀúÊ·±¨Ãû¼ÇÂ¼
-	public PKActiveRegist checkRoleRegist(int roleID)
-	{
-		PKActiveRegist pr = pd.checkRoleRegist(roleID);
-		return pr;
-	}
+    // æŸ¥è¯¢ç©å®¶æ˜¯å¦æœ‰å†å²æŠ¥åè®°å½•
+    public PKActiveRegist checkRoleRegist(int roleID) {
+        return pd.checkRoleRegist(roleID);
+    }
 
-	// Èç¹ûÍæ¼ÒÒÑ¾­ÓĞÀúÊ·±¨Ãû¼ÇÂ¼Ôò¸üĞÂ±¨Ãû¼ÇÂ¼
-	public int refreshRegist(PKActiveRegist role)
-	{
-		int count = pd.refreshRegist(role);
-		return count;
-	}
+    // å¦‚æœç©å®¶å·²ç»æœ‰å†å²æŠ¥åè®°å½•åˆ™æ›´æ–°æŠ¥åè®°å½•
+    public int refreshRegist(PKActiveRegist role) {
+        return pd.refreshRegist(role);
+    }
 
-	//´´½¨¶ÔÕóĞÅÏ¢  Ã¿ÔÂ1£¬2£¬3ºÅ²»´´½¨  ÆäÓàÃ¿Ìì12:00ÓÉ¶¨Ê±Æ÷×Ô¶¯´´½¨-------------------------------------------------
-	public void createVSInfo()
-	{
-		pd.deleteVsInfo();// É¾³ıÔ­À´µÄ¶ÔÕóĞÅÏ¢
-		Map vsInfo = pd.getRoleInfo();
-		Map map = getVSList(pd.getRoleIDs());
-		for (Object id : map.keySet())
-		{
-			PKVs vs = new PKVs();
-			Integer roleAId = (Integer) id;
-			Integer roleBId = (Integer) map.get(id);
-			String roleAName = (String) vsInfo.get(roleAId);
-			String roleBName = (String) vsInfo.get(roleBId);
-			if (roleBId == -1)// Èç¹ûÂÖ¿ÕÖ±½Ó½øÈëÏÂÒ»ÂÖ
-			{
-				pd.updateIsWin(roleAId, 0);
-				continue;
-			}
-			vs.setRoleAID(roleAId);
-			vs.setRoleBID(roleBId);
-			vs.setRoleAName(roleAName);
-			vs.setRoleBName(roleBName);
-			vs.setWinRoleID(0);
-			pd.addVsInfo(vs);
-		}
-		pd.updateEnterState();
-	}
+    //åˆ›å»ºå¯¹é˜µä¿¡æ¯  æ¯æœˆ1ï¼Œ2ï¼Œ3å·ä¸åˆ›å»º  å…¶ä½™æ¯å¤©12:00ç”±å®šæ—¶å™¨è‡ªåŠ¨åˆ›å»º-------------------------------------------------
+    public void createVSInfo() {
+        pd.deleteVsInfo();// åˆ é™¤åŸæ¥çš„å¯¹é˜µä¿¡æ¯
+        Map vsInfo = pd.getRoleInfo();
+        Map map = getVSList(pd.getRoleIDs());
+        for (Object id : map.keySet()) {
+            PKVs vs = new PKVs();
+            Integer roleAId = (Integer) id;
+            Integer roleBId = (Integer) map.get(id);
+            String roleAName = (String) vsInfo.get(roleAId);
+            String roleBName = (String) vsInfo.get(roleBId);
+            if (roleBId == -1)// å¦‚æœè½®ç©ºç›´æ¥è¿›å…¥ä¸‹ä¸€è½®
+            {
+                pd.updateIsWin(roleAId, 0);
+                continue;
+            }
+            vs.setRoleAID(roleAId);
+            vs.setRoleBID(roleBId);
+            vs.setRoleAName(roleAName);
+            vs.setRoleBName(roleBName);
+            vs.setWinRoleID(0);
+            pd.addVsInfo(vs);
+        }
+        pd.updateEnterState();
+    }
 
-	// ²éÑ¯¶ÔÕóĞÅÏ¢ ²éÑ¯±ÈÈü½á¹û
-	public List<PKVs> getVsInfo(int index, int limit)
-	{
-		List<PKVs> list = pd.getVsInfo(index, limit);
-		return list;
-	}
+    // æŸ¥è¯¢å¯¹é˜µä¿¡æ¯ æŸ¥è¯¢æ¯”èµ›ç»“æœ
+    public List<PKVs> getVsInfo(int index, int limit) {
+        return pd.getVsInfo(index, limit);
+    }
 
-	// PK¿ªÊ¼ºó¸üĞÂPK½á¹û Ê¤Àû»òÕßÊ§°Ü
-	public void updatePkInfo(int roleId, int isWin)
-	{
-		pd.updateIsWin(roleId, isWin);
-	}
-	//¸üĞÂ¶ÔÕó±í»ñÊ¤ID
-	public void updateWinID(int winRoleId)
-	{
-		pd.updateWinRoleID(winRoleId);
-	}
-	// µÃµ½¶ÔÕóĞÅÏ¢µÄ×ÜÌõÊı
-	public int getTotalNum()
-	{
-		return pd.getTotalNum();
-	}
+    // PKå¼€å§‹åæ›´æ–°PKç»“æœ èƒœåˆ©æˆ–è€…å¤±è´¥
+    public void updatePkInfo(int roleId, int isWin) {
+        pd.updateIsWin(roleId, isWin);
+    }
 
-	// µÃµ½¶ÔÊÖµÄppk
-	public int getPpk(int ppk)
-	{
-		int p = pd.getAppk(ppk);
-		if (p == 0)
-		{
-			p = pd.getBppk(ppk);
-		}
-		return p;
-	}
+    //æ›´æ–°å¯¹é˜µè¡¨è·èƒœID
+    public void updateWinID(int winRoleId) {
+        pd.updateWinRoleID(winRoleId);
+    }
 
-	// ±¾ÂÖÖĞÒÑ¾­Ê§°ÜÍæ¼Ò²»¿ÉÒÔ½øÈë±ÈÈü
-	public boolean checkIsFail(int roleId)
-	{
-		return pd.checkIsFail(roleId);
-	}
+    // å¾—åˆ°å¯¹é˜µä¿¡æ¯çš„æ€»æ¡æ•°
+    public int getTotalNum() {
+        return pd.getTotalNum();
+    }
 
-	
-	// ¸üĞÂÍæ¼Ò½øÈë³¡¾°µÄ×´Ì¬
-	public int updateEnterState(int roleId,int state)
-	{
-		return pd.updateEnterState(roleId,state);
-	}
+    // å¾—åˆ°å¯¹æ‰‹çš„ppk
+    public int getPpk(int ppk) {
+        int p = pd.getAppk(ppk);
+        if (p == 0) {
+            p = pd.getBppk(ppk);
+        }
+        return p;
+    }
 
-	// µ½Ê±¼äÃ»ÓĞ½øÈë±ÈÈü³¡µØµÄÍæ¼ÒµÄ¸üĞÂ ¸üĞÂÆäÎª°Ü ±ÈÈü¿ªÊ¼5·ÖÖÓÒÔºó²»½øÈëÈü³¡µÄÍæ¼ÒÅĞ¸º Ã¿ÔÂ123ºÅ²»Ö´ĞĞ  ÆäÓà13:05Ö´ĞĞÒ»´Î
-	public int updateOutofTime()
-	{
-		List ids=pd.getOutofEnterIDs();
-		if(ids!=null&&ids.size()!=0)
-		{
-			for (int i = 0; i <ids.size(); i++)
-			{
-				int aid=Integer.parseInt(ids.get(i).toString());
-				int bid=this.getPpk(aid);
-				if(bid==0||ids.contains(bid))
-				{
-					continue;
-				}
-				else
-				{
-					this.updatePriceState(bid, 1);
-					this.updateWinID(bid);
-				}
-			}
-		}
-		int count= pd.updateOutofTime();
-		return count;
-	}
-	// µÃµ½Ã»ÓĞ½á¹ûµÄ¶ÔÕóĞÅÏ¢
-	public Map<Integer, Integer> getOutOfVs()
-	{
-		return pd.getNoresultVs();
+    // æœ¬è½®ä¸­å·²ç»å¤±è´¥ç©å®¶ä¸å¯ä»¥è¿›å…¥æ¯”èµ›
+    public boolean checkIsFail(int roleId) {
+        return pd.checkIsFail(roleId);
+    }
 
-	}
 
-	// ´¦ÀíPK³¬¹ı30·ÖÖÓµÄ¶ÔÕóĞÅÏ¢  Ã¿ÔÂ123²»Ö´ĞĞ ÆäÓàÃ¿Ìì5:30Ö´ĞĞÒ»´Î
-	public void outOfTime()
-	{
-		RoleCache roleCache = new RoleCache();
-		Map<Integer, Integer> map = this.getOutOfVs();
-		// È¥³ıË«·Å¶¼Ã»ÓĞ²Î¼Ó±ÈÈüµÄ Ê£ÏÂµÄ¾ÍÊÇÕıÔÚPK³¬Ê±µÄÍæ¼Ò
-		List temp = new ArrayList();
-		for (Integer id : map.keySet())
-		{
-			RoleEntity roleEntity = roleCache.getByPpk(id);
-			if ((roleEntity == null)
-					|| (roleEntity.getBasicInfo().getSceneId() != PKActiveContent.SCENEID_PK))
-			{
-				temp.add(id);
-			}
-		}
-		for (int i = 0; i < temp.size(); i++)
-		{
-			map.remove(temp.get(i));
-		}
-		// ±È½ÏÍæ¼ÒµÄµÈ¼¶ºÍÆøÑªÀ´ÅĞ¶ÏË­Ê¤Àû
-		for (Integer id : map.keySet())
-		{
-			RoleEntity roleAEntity = roleCache.getByPpk(id);// Íæ¼ÒA
-			RoleEntity roleBEntity = roleCache.getByPpk(map.get(id));// Íæ¼ÒB
-			if (roleAEntity.getBasicInfo().getGrade() < roleBEntity
-					.getBasicInfo().getGrade())// µÈ¼¶Ğ¡µÄÈ¡Ê¤
-			{
-				this.updatePkInfo(map.get(id),1);
-				this.updatePriceState(id, 1);
-				this.updateWinID(id);
-			}
-			else if (roleAEntity.getBasicInfo().getGrade() == roleBEntity
-						.getBasicInfo().getGrade())
-				{
-					if (roleAEntity.getBasicInfo().getHp() > roleBEntity
-							.getBasicInfo().getHp())
-					{
-						this.updatePkInfo(map.get(id),1);
-						this.updatePriceState(id, 1);
-						this.updateWinID(id);
-					}
-					else
-					{
-						this.updatePkInfo(id, 1);
-						this.updatePriceState(map.get(id), 1);
-						this.updateWinID(map.get(id));
-					}
-				}
-				else
-				{
-					this.updatePkInfo(id,1);
-					this.updatePriceState(map.get(id), 1);
-					this.updateWinID(map.get(id));
-				}
-			roleAEntity.getBasicInfo().updateSceneId(PKActiveContent.NPCSCENEID);// /////////////////////////////////////////////senceID
-			roleBEntity.getBasicInfo().updateSceneId(PKActiveContent.NPCSCENEID);// /////////////////////////////////////////////senceID
-		}
-	}
+    // æ›´æ–°ç©å®¶è¿›å…¥åœºæ™¯çš„çŠ¶æ€
+    public int updateEnterState(int roleId, int state) {
+        return pd.updateEnterState(roleId, state);
+    }
 
-	// ²éÑ¯¶Ô·½µÄÃû³Æ
-	public String getOherName(int roleId)
-	{
-		int ppk = this.getPpk(roleId);
-		return pd.getOherName(ppk);
-	}
-	//Íæ¼ÒÊÇ·ñ¿ÉÒÔÁìÈ¡½±Æ·
-	public boolean isGetPrice(int roleID)
-	{
-		return pd.isGetPrice(roleID);
-	}
-	//ĞŞ¸ÄÁìÈ¡½±Æ·µÄ×´Ì¬
-	public void updatePriceState(int roleID,int isPrice)
-	{
-		pd.updatePriceState(roleID, isPrice);
-	}
-	//ÅĞ¶Ï²ÎÈüÈËÊıÊÇ·ñ½øÁË°ËÇ¿ ËÄÇ¿ »òÕß°ë¾öÈü 
-	public int getPlayerNum()
-	{
-		int num= pd.getPlayerNum();
-		if(num>PKActiveContent.BAQIANG)
-		{
-			return PKActiveContent.PPRICEID;
-		}
-		if(num==PKActiveContent.BAQIANG)
-		{
-			return PKActiveContent.BPRICEID;
-		}
-		if(num==PKActiveContent.SIQIANG)
-		{
-			return PKActiveContent.SPRICEID;
-		}
-		if(num==PKActiveContent.BANJUESAI)
-		{
-			return PKActiveContent.BJPRICEID;
-		}
-		if(num==PKActiveContent.GUANJUN)
-		{
-			return PKActiveContent.GPRICEID;
-		}
-		else
-		{
-			return PKActiveContent.PPRICEID;
-		}
-	}
-	//²éÑ¯ËùÓĞµÄ±¨ÃûÍæ¼ÒĞÅÏ¢
-	public List getAllRole()
-	{
-		return pd.getAllRole();
-	}
+    // åˆ°æ—¶é—´æ²¡æœ‰è¿›å…¥æ¯”èµ›åœºåœ°çš„ç©å®¶çš„æ›´æ–° æ›´æ–°å…¶ä¸ºè´¥ æ¯”èµ›å¼€å§‹5åˆ†é’Ÿä»¥åä¸è¿›å…¥èµ›åœºçš„ç©å®¶åˆ¤è´Ÿ æ¯æœˆ123å·ä¸æ‰§è¡Œ  å…¶ä½™13:05æ‰§è¡Œä¸€æ¬¡
+    public int updateOutofTime() {
+        List<Integer> ids = pd.getOutofEnterIDs();
+        if (ids != null && !ids.isEmpty()) {
+            for (int i = 0; i < ids.size(); i++) {
+                int aid = Integer.parseInt(ids.get(i).toString());
+                int bid = this.getPpk(aid);
+                if (bid == 0 || ids.contains(bid)) {
+                    continue;
+                } else {
+                    this.updatePriceState(bid, 1);
+                    this.updateWinID(bid);
+                }
+            }
+        }
+        return pd.updateOutofTime();
+    }
 
-	/**
-	 * ¸ù¾İÍæ¼ÒµÄµÈ¼¶×Ô¶¯²úÉúÅä¶ÔÓ³ÉäĞÅÏ¢
-	 * 
-	 * @param rolesID
-	 * @return map ²ÎÈüÍæ¼ÒIDÅä¶ÔÓ³ÉäĞÅÏ¢
-	 */
-	public Map<Integer, Integer> getVSList(int[] IDs)
-	{
-		Map map = new HashMap<Integer, Integer>();
-		for (int i = 0; i < IDs.length; i++)
-		{
-			if (i % 2 == 0)
-			{
-				if (i != IDs.length - 1)
-				{
-					map.put(IDs[i], IDs[i + 1]);
-				}
-				else
-				{
-					map.put(IDs[i], -1);
-				}
-			}
-		}
-		return map;
-	}
+    // å¾—åˆ°æ²¡æœ‰ç»“æœçš„å¯¹é˜µä¿¡æ¯
+    public Map<Integer, Integer> getOutOfVs() {
+        return pd.getNoresultVs();
+
+    }
+
+    // å¤„ç†PKè¶…è¿‡30åˆ†é’Ÿçš„å¯¹é˜µä¿¡æ¯  æ¯æœˆ123ä¸æ‰§è¡Œ å…¶ä½™æ¯å¤©5:30æ‰§è¡Œä¸€æ¬¡
+    public void outOfTime() {
+        RoleCache roleCache = new RoleCache();
+        Map<Integer, Integer> map = this.getOutOfVs();
+        // å»é™¤åŒæ”¾éƒ½æ²¡æœ‰å‚åŠ æ¯”èµ›çš„ å‰©ä¸‹çš„å°±æ˜¯æ­£åœ¨PKè¶…æ—¶çš„ç©å®¶
+        List temp = new ArrayList();
+        for (Integer id : map.keySet()) {
+            RoleEntity roleEntity = RoleCache.getByPpk(id);
+            if ((roleEntity == null) || (roleEntity.getBasicInfo().getSceneId() != PKActiveContent.SCENEID_PK)) {
+                temp.add(id);
+            }
+        }
+        for (int i = 0; i < temp.size(); i++) {
+            map.remove(temp.get(i));
+        }
+        // æ¯”è¾ƒç©å®¶çš„ç­‰çº§å’Œæ°”è¡€æ¥åˆ¤æ–­è°èƒœåˆ©
+        for (Integer id : map.keySet()) {
+            RoleEntity roleAEntity = RoleCache.getByPpk(id);// ç©å®¶A
+            RoleEntity roleBEntity = RoleCache.getByPpk(map.get(id));// ç©å®¶B
+            if (roleAEntity.getBasicInfo().getGrade() < roleBEntity.getBasicInfo().getGrade())// ç­‰çº§å°çš„å–èƒœ
+            {
+                this.updatePkInfo(map.get(id), 1);
+                this.updatePriceState(id, 1);
+                this.updateWinID(id);
+            } else if (roleAEntity.getBasicInfo().getGrade() == roleBEntity.getBasicInfo().getGrade()) {
+                if (roleAEntity.getBasicInfo().getHp() > roleBEntity.getBasicInfo().getHp()) {
+                    this.updatePkInfo(map.get(id), 1);
+                    this.updatePriceState(id, 1);
+                    this.updateWinID(id);
+                } else {
+                    this.updatePkInfo(id, 1);
+                    this.updatePriceState(map.get(id), 1);
+                    this.updateWinID(map.get(id));
+                }
+            } else {
+                this.updatePkInfo(id, 1);
+                this.updatePriceState(map.get(id), 1);
+                this.updateWinID(map.get(id));
+            }
+            roleAEntity.getBasicInfo().updateSceneId(PKActiveContent.NPCSCENEID);// /////////////////////////////////////////////senceID
+            roleBEntity.getBasicInfo().updateSceneId(PKActiveContent.NPCSCENEID);// /////////////////////////////////////////////senceID
+        }
+    }
+
+    // æŸ¥è¯¢å¯¹æ–¹çš„åç§°
+    public String getOherName(int roleId) {
+        int ppk = this.getPpk(roleId);
+        return pd.getOherName(ppk);
+    }
+
+    //ç©å®¶æ˜¯å¦å¯ä»¥é¢†å–å¥–å“
+    public boolean isGetPrice(int roleID) {
+        return pd.isGetPrice(roleID);
+    }
+
+    //ä¿®æ”¹é¢†å–å¥–å“çš„çŠ¶æ€
+    public void updatePriceState(int roleID, int isPrice) {
+        pd.updatePriceState(roleID, isPrice);
+    }
+
+    //åˆ¤æ–­å‚èµ›äººæ•°æ˜¯å¦è¿›äº†å…«å¼º å››å¼º æˆ–è€…åŠå†³èµ›
+    public int getPlayerNum() {
+        int num = pd.getPlayerNum();
+        if (num > PKActiveContent.BAQIANG) {
+            return PKActiveContent.PPRICEID;
+        }
+        if (num == PKActiveContent.BAQIANG) {
+            return PKActiveContent.BPRICEID;
+        }
+        if (num == PKActiveContent.SIQIANG) {
+            return PKActiveContent.SPRICEID;
+        }
+        if (num == PKActiveContent.BANJUESAI) {
+            return PKActiveContent.BJPRICEID;
+        }
+        if (num == PKActiveContent.GUANJUN) {
+            return PKActiveContent.GPRICEID;
+        } else {
+            return PKActiveContent.PPRICEID;
+        }
+    }
+
+    //æŸ¥è¯¢æ‰€æœ‰çš„æŠ¥åç©å®¶ä¿¡æ¯
+    public List getAllRole() {
+        return pd.getAllRole();
+    }
+
+    /**
+     * æ ¹æ®ç©å®¶çš„ç­‰çº§è‡ªåŠ¨äº§ç”Ÿé…å¯¹æ˜ å°„ä¿¡æ¯
+     *
+     * @param rolesID
+     * @return map å‚èµ›ç©å®¶IDé…å¯¹æ˜ å°„ä¿¡æ¯
+     */
+    public Map<Integer, Integer> getVSList(int[] IDs) {
+        Map map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < IDs.length; i++) {
+            if (i % 2 == 0) {
+                if (i != IDs.length - 1) {
+                    map.put(IDs[i], IDs[i + 1]);
+                } else {
+                    map.put(IDs[i], -1);
+                }
+            }
+        }
+        return map;
+    }
 
 }

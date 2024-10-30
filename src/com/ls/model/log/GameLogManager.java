@@ -14,39 +14,39 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * ÓÎÏ·ÈÕÖ¾¹¤¹ÜÀí
+ * æ¸¸æˆæ—¥å¿—å·¥ç®¡ç†
  */
 public class GameLogManager
 {
-	public static int NO_LOG = 0;//²»ĞèÒª¼ÇÂ¼
+	public static int NO_LOG = 0;//ä¸éœ€è¦è®°å½•
 	
-	//************»ñµÃÎïÆ·Í¾¾¶(G_±íÊ¾µÃµ½gain)
-	public static int G_NPD_DROP = 1;//npcµôÂä
-	public static int G_SHOP = 2;//ÉÌµê¹ºÂò
-	public static int G_AUCTION = 3;//ÅÄÂô³¡¹ºÂò
-	public static int G_TRADE = 4;//´Ó½»Ò×ÖĞµÃµ½
-	public static int G_EMAIL = 5;//´ÓÓÊ¼şÖĞµÃµ½
-	public static int G_SYSTEM = 6;//ÏµÍ³·¢·Å
-	public static int G_STORAGE = 7;//´Ó²Ö¿âÈ¡³ö
-	public static int G_EXCHANGE = 8;//¶Ò»»µÃµ½
-	public static int G_UPGRADE = 9;//Éı¼¶µÃµ½
-	public static int G_TASK = 10;//ÈÎÎñÖĞµÃµ½
-	public static int G_BOX_DROP = 11;//±¦ÏäµôÂä
-	public static int G_MALL = 12;//ÉÌ³ÇÖĞ»ñµÃ
+	//************è·å¾—ç‰©å“é€”å¾„(G_è¡¨ç¤ºå¾—åˆ°gain)
+	public static int G_NPD_DROP = 1;//npcæ‰è½
+	public static int G_SHOP = 2;//å•†åº—è´­ä¹°
+	public static int G_AUCTION = 3;//æ‹å–åœºè´­ä¹°
+	public static int G_TRADE = 4;//ä»äº¤æ˜“ä¸­å¾—åˆ°
+	public static int G_EMAIL = 5;//ä»é‚®ä»¶ä¸­å¾—åˆ°
+	public static int G_SYSTEM = 6;//ç³»ç»Ÿå‘æ”¾
+	public static int G_STORAGE = 7;//ä»ä»“åº“å–å‡º
+	public static int G_EXCHANGE = 8;//å…‘æ¢å¾—åˆ°
+	public static int G_UPGRADE = 9;//å‡çº§å¾—åˆ°
+	public static int G_TASK = 10;//ä»»åŠ¡ä¸­å¾—åˆ°
+	public static int G_BOX_DROP = 11;//å®ç®±æ‰è½
+	public static int G_MALL = 12;//å•†åŸä¸­è·å¾—
 	
-	//************ÒÆ³ıÎïÆ·Í¾¾¶(R_±íÊ¾remove)
-	public static int R_STORAGE = 101;//·ÅÈë²Ö¿â
-	public static int R_USE = 102;//Ê¹ÓÃ
-	public static int R_DROP = 103;//¶ªÆú
-	public static int R_DEAD = 104;//ËÀÍöµôÂä
-	public static int R_AUCTION = 105;//´ÓÅÄÂô³¡Âô³ö
-	public static int R_SHOP = 106;//Âô¸øÉÌµê
-	public static int R_TRADE = 107;//´Ó½»Ò×ÖĞÒÆ³ı
-	public static int R_EXCHANGE = 108;//¶Ò»»ÏûºÄ
-	public static int R_MATERIAL_CONSUME = 109;//²ÄÁÏÏûºÄ
-	public static int R_TASK = 110;//ÈÎÎñÖĞÏûºÄ
+	//************ç§»é™¤ç‰©å“é€”å¾„(R_è¡¨ç¤ºremove)
+	public static int R_STORAGE = 101;//æ”¾å…¥ä»“åº“
+	public static int R_USE = 102;//ä½¿ç”¨
+	public static int R_DROP = 103;//ä¸¢å¼ƒ
+	public static int R_DEAD = 104;//æ­»äº¡æ‰è½
+	public static int R_AUCTION = 105;//ä»æ‹å–åœºå–å‡º
+	public static int R_SHOP = 106;//å–ç»™å•†åº—
+	public static int R_TRADE = 107;//ä»äº¤æ˜“ä¸­ç§»é™¤
+	public static int R_EXCHANGE = 108;//å…‘æ¢æ¶ˆè€—
+	public static int R_MATERIAL_CONSUME = 109;//ææ–™æ¶ˆè€—
+	public static int R_TASK = 110;//ä»»åŠ¡ä¸­æ¶ˆè€—
 	
-	public static String PROP_TYPE = null;//ĞèÒª¼à¿ØµÄµÀ¾ßÀàĞÍ
+	public static String PROP_TYPE = null;//éœ€è¦ç›‘æ§çš„é“å…·ç±»å‹
 	static
 	{
 		StringBuffer sb = new StringBuffer();
@@ -64,21 +64,21 @@ public class GameLogManager
 	}
 	
 
-	//*******************sql³£Á¿
-	private static String EQUIP_SQL = "insert into equip_log values ";
-	private static String PROP_SQL = "insert into prop_log values ";
+	//*******************sqlå¸¸é‡
+	private static String EQUIP_SQL = "INSERT INTO `equip_log` VALUES ";
+	private static String PROP_SQL = "INSERT INTO `prop_log` VALUES ";
 	
-	//*******************ÈÕÖ¾ÎÄ¼ş
-	private static String LOG_FILE_NAME="game.log";//ÈÕÖ¾ÎÄ¼şÃû
-	public static long SLEEP_TIME = 1000;//Ö´ĞĞÈÕÖ¾ÎÄ¼şµÄÊ±¼ä¼ä¸ô,1Ãë
-	private static int BUFF_SIZE = 2;//»º´æÇø´óĞ¡£¨±íÊ¾Ã¿500Ìõ²åÈëÊı¾İ£©
+	//*******************æ—¥å¿—æ–‡ä»¶
+	private static String LOG_FILE_NAME="game.log";//æ—¥å¿—æ–‡ä»¶å
+	public static long SLEEP_TIME = 1000;//æ‰§è¡Œæ—¥å¿—æ–‡ä»¶çš„æ—¶é—´é—´éš”,1ç§’
+	private static int BUFF_SIZE = 2;//ç¼“å­˜åŒºå¤§å°ï¼ˆè¡¨ç¤ºæ¯500æ¡æ’å…¥æ•°æ®ï¼‰
 	
 	//*************************
 	private static GameLogManager gameLogManager = new GameLogManager();
 	
-	private BufferedWriter writer = null;//ÎÄ¼şÊä³ö
-	private int fileIndex = 0;//µ±Ç°ÎÄ¼şË÷Òı
-	private int cur_buff_size = 0;//µ±Ç°»º´æÊıÁ¿
+	private BufferedWriter writer = null;//æ–‡ä»¶è¾“å‡º
+	private int fileIndex = 0;//å½“å‰æ–‡ä»¶ç´¢å¼•
+	private int cur_buff_size = 0;//å½“å‰ç¼“å­˜æ•°é‡
 	
 	private GameLogManager(){};
 	
@@ -105,7 +105,7 @@ public class GameLogManager
 	}
 	
 	/**
-	 * µÀ¾ß²Ù×÷ÈÕÖ¾
+	 * é“å…·æ“ä½œæ—¥å¿—
 	 */
 	public void propLog(int p_pk,PropVO prop,int prop_num,int operate_type)
 	{
@@ -144,7 +144,7 @@ public class GameLogManager
 	}
 	
 	/**
-	 * ×°±¸²Ù×÷ÈÕÖ¾
+	 * è£…å¤‡æ“ä½œæ—¥å¿—
 	 */
 	public void equipLog(int p_pk,PlayerEquipVO equip,int operate_type)
 	{
@@ -153,15 +153,15 @@ public class GameLogManager
 			return;
 		}
 		
-		//ÌåÑé×°±¸²»¼à¿Ø
+		//ä½“éªŒè£…å¤‡ä¸ç›‘æ§
 		if( equip.getGameEquip().getEndure()==9999 )
 		{
 			return;
 		}
 		
 		/**
-		 * 30¼¶ÒÔÉÏµÄÂÌ×°
-			°ó¶¨×°±¸£¨ÏµÍ³ÉèÖÃµÄ°ó¶¨ÊôĞÔ£©
+		 * 30çº§ä»¥ä¸Šçš„ç»¿è£…
+			ç»‘å®šè£…å¤‡ï¼ˆç³»ç»Ÿè®¾ç½®çš„ç»‘å®šå±æ€§ï¼‰
 		 */
 		//if( equip.getGameEquip().getIsBind()==1 || (equip.getWLevel()>=30 && equip.getWQuality()>=Equip.Q_LIANGHAO ) )
 		{
@@ -179,7 +179,7 @@ public class GameLogManager
 	}
 	
 	/**
-	 * ±£´æÈÕÖ¾sql
+	 * ä¿å­˜æ—¥å¿—sql
 	 * @param sql
 	 */
 	private void saveLog(String sql )
@@ -192,15 +192,15 @@ public class GameLogManager
 			}
 			catch (IOException e)
 			{
-				DataErrorLog.debugLogic("GameLogManager.equipLogÈÕÖ¾ÎÄ¼ş±£´æ´íÎó");
-				//Èç¹û±£´æÎÄ¼ş³ö´í£¬ÔòÖ±½Ó¼ÇÂ¼ÈÕÖ¾
+				DataErrorLog.debugLogic("GameLogManager.equipLogæ—¥å¿—æ–‡ä»¶ä¿å­˜é”™è¯¯");
+				//å¦‚æœä¿å­˜æ–‡ä»¶å‡ºé”™ï¼Œåˆ™ç›´æ¥è®°å½•æ—¥å¿—
 				GameLogDao.getInstance().incertBySql(sql.toString());
 			}
 		}
 	}
 	
 	/**
-	 * ¸üĞÂ»º´æÇø´óĞ¡
+	 * æ›´æ–°ç¼“å­˜åŒºå¤§å°
 	 */
 	private void addCurBuffSize()
 	{
@@ -217,21 +217,21 @@ public class GameLogManager
 				writer.close();
 				writer = new_writer;
 				
-				//Òì²½´¦ÀíÖ®Ç°µÄÎÄ¼ş
-				String old_file_name = LOG_FILE_NAME+(fileIndex-1);//ÀÏµÄÎÄ¼şÃû
+				//å¼‚æ­¥å¤„ç†ä¹‹å‰çš„æ–‡ä»¶
+				String old_file_name = LOG_FILE_NAME+(fileIndex-1);//è€çš„æ–‡ä»¶å
 				GameLogThread game_log_thread = new GameLogThread(old_file_name);
 				game_log_thread.start();
 			}
 			catch (IOException e)
 			{
 				e.printStackTrace();
-				DataErrorLog.debugLogic("´´½¨ÎÄ¼ş´íÎó,ÎÄ¼şÃû£º"+file_name);
+				DataErrorLog.debugLogic("åˆ›å»ºæ–‡ä»¶é”™è¯¯,æ–‡ä»¶åï¼š"+file_name);
 			}
 		}
 	}
 	
 	/**
-	 * ±£´æµ½ÈÕÖ¾ÎÄ¼ş
+	 * ä¿å­˜åˆ°æ—¥å¿—æ–‡ä»¶
 	 * @throws IOException 
 	 */
 	public synchronized void saveLogFile(String sql) throws IOException
@@ -240,6 +240,6 @@ public class GameLogManager
 		writer.write(sql);
 		writer.newLine();
 		writer.flush();
-		addCurBuffSize();//Ôö¼Óµ±Ç°»º³åÇøÊıÁ¿
+		addCurBuffSize();//å¢åŠ å½“å‰ç¼“å†²åŒºæ•°é‡
 	}
 }

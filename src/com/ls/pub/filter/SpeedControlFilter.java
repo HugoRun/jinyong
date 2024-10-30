@@ -1,94 +1,78 @@
 package com.ls.pub.filter;
 
+import com.ls.model.monitor.ClickSpeedMonitor;
+import com.ls.pub.config.GameConfig;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import com.ls.model.monitor.ClickSpeedMonitor;
-import com.ls.pub.config.GameConfig;
-import com.lw.dao.player.SystemDao;
-
 /**
- * ¹¦ÄÜ:¿ØÖÆÍæ¼Òµã»÷ËÙ¶È
- * @author ÁõË§
+ * åŠŸèƒ½:æ§åˆ¶ç©å®¶ç‚¹å‡»é€Ÿåº¦
+ *
+ * @author åˆ˜å¸…
  * 3:19:41 PM
  */
-public class SpeedControlFilter implements Filter
-{
+public class SpeedControlFilter implements Filter {
 
-	int time_distance = 1000;//Á½Ãë¼ä¸ôµã»÷Ê±¼ä
-	
-	public void destroy()
-	{
+    int time_distance = 1000;//ä¸¤ç§’é—´éš”ç‚¹å‡»æ—¶é—´
 
-	}
+    public void destroy() {
 
-	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-			FilterChain chain) throws IOException, ServletException
-	{
-		HttpServletRequest request = (HttpServletRequest)servletRequest;
-		HttpSession session = request.getSession();
-		List<String> uRlList = new ArrayList<String>();
-		uRlList.add("/unfilter.do");
-		uRlList.add("/logintransmit.do");
-		uRlList.add("/channel.jsp");
-		if( session!=null )
-		{
-			String pPk = (String)session.getAttribute("pPk");
-			String uPk = (String)session.getAttribute("uPk");
-			ClickSpeedMonitor clickSpeedMonitor = (ClickSpeedMonitor)session.getAttribute("ClickSpeedMonitor");
-			String requirpath = request.getServletPath();
-			///unfilter.do
-			if( clickSpeedMonitor!=null )
-			{
-				if ( uRlList.contains(requirpath))
-				{
-					//²»ĞèÒª¹ıÂËµÄurl,Ö±½ÓÇëÇó£¬²»¾­¹ıÖ®ºóµÄ¹ıÂËÆ÷
-					chain.doFilter(request, servletResponse);
-					return;
-				}
-				long cur_time = Calendar.getInstance().getTimeInMillis();
-				
-				if( clickSpeedMonitor.isQuickClickSpeed(cur_time))//ÅĞ¶ÏÍæ¼ÒÊÇ·ñµã»÷ËÙ¶È¹ı¿ì
-				{
-					//ÖØ¶¨ÏòÌáÊ¾
-					request.getRequestDispatcher("/jsp/time_confine.jsp").forward(request, servletResponse); 
-					return;
-				} 
-				String hint = clickSpeedMonitor.monitor(uPk,pPk,request.getRemoteAddr(),cur_time);//¼à¿ØÍæ¼Òµã»÷ËÙ¶È
-				if( GameConfig.isDealExceptionUserSwitch() )//ÅĞ¶ÏÏµÍ³ÊÇ·ñ¼à¿ØÍæ¼ÒµÄµã»÷ËÙ¶È
-				{
-					if(hint != null)
-					{
-						//ÖØ¶¨ÏòÌáÊ¾
-						//Èç¹û¸Ã½ÇÉ«²»ÊÇµÇÂ¼ÕËºÅµÄ½ÇÉ«£¬ÈÃÓÃÖØĞÂµÇÂ½£¬·ÀÖ¹ÓÃ»§´Û¸Äp_pk
-						request.getRequestDispatcher("/login.do?cmd=n9").forward(request, servletResponse);
-						return;
-					}
-				}
-			}
-			else
-			{
-				clickSpeedMonitor = new ClickSpeedMonitor(time_distance);
-				session.setAttribute("ClickSpeedMonitor",clickSpeedMonitor);
-			} 
-		}
-		chain.doFilter(request, servletResponse);
-	}
+    }
 
-	public void init(FilterConfig filterConfig) throws ServletException
-	{
-		time_distance = Integer.parseInt(filterConfig.getInitParameter("time_distance"));
-	}
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpSession session = request.getSession();
+        List<String> uRlList = new ArrayList<String>();
+        uRlList.add("/unfilter.do");
+        uRlList.add("/logintransmit.do");
+        uRlList.add("/channel.jsp");
+        if (session != null) {
+            String pPk = (String) session.getAttribute("pPk");
+            String uPk = (String) session.getAttribute("uPk");
+            ClickSpeedMonitor clickSpeedMonitor = (ClickSpeedMonitor) session.getAttribute("ClickSpeedMonitor");
+            String requirpath = request.getServletPath();
+            ///unfilter.do
+            if (clickSpeedMonitor != null) {
+                if (uRlList.contains(requirpath)) {
+                    // ä¸éœ€è¦è¿‡æ»¤çš„url,ç›´æ¥è¯·æ±‚ï¼Œä¸ç»è¿‡ä¹‹åçš„è¿‡æ»¤å™¨
+                    chain.doFilter(request, servletResponse);
+                    return;
+                }
+                long cur_time = Calendar.getInstance().getTimeInMillis();
+
+                if (clickSpeedMonitor.isQuickClickSpeed(cur_time)) {
+                    // åˆ¤æ–­ç©å®¶æ˜¯å¦ç‚¹å‡»é€Ÿåº¦è¿‡å¿«
+                    // é‡å®šå‘æç¤º
+                    request.getRequestDispatcher("/jsp/time_confine.jsp").forward(request, servletResponse);
+                    return;
+                }
+                // ç›‘æ§ç©å®¶ç‚¹å‡»é€Ÿåº¦
+                String hint = clickSpeedMonitor.monitor(uPk, pPk, request.getRemoteAddr(), cur_time);
+                if (GameConfig.isDealExceptionUserSwitch()) {
+                    // åˆ¤æ–­ç³»ç»Ÿæ˜¯å¦ç›‘æ§ç©å®¶çš„ç‚¹å‡»é€Ÿåº¦
+                    if (hint != null) {
+                        //é‡å®šå‘æç¤º
+                        //å¦‚æœè¯¥è§’è‰²ä¸æ˜¯ç™»å½•è´¦å·çš„è§’è‰²ï¼Œè®©ç”¨é‡æ–°ç™»é™†ï¼Œé˜²æ­¢ç”¨æˆ·ç¯¡æ”¹p_pk
+                        request.getRequestDispatcher("/login.do?cmd=n9").forward(request, servletResponse);
+                        return;
+                    }
+                }
+            } else {
+                clickSpeedMonitor = new ClickSpeedMonitor(time_distance);
+                session.setAttribute("ClickSpeedMonitor", clickSpeedMonitor);
+            }
+        }
+        chain.doFilter(request, servletResponse);
+    }
+
+    public void init(FilterConfig filterConfig) throws ServletException {
+        time_distance = Integer.parseInt(filterConfig.getInitParameter("time_distance"));
+    }
 
 }

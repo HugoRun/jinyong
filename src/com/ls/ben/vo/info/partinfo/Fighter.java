@@ -4,8 +4,8 @@ import com.ls.ben.vo.info.pet.PetInfoVO;
 import com.ls.ben.vo.info.skill.PlayerSkillVO;
 
 /**
- * ¹¦ÄÜ:Õ½¶·ÊµÌå
- * @author ÁõË§
+ * åŠŸèƒ½:æˆ˜æ–—å®ä½“
+ * @author åˆ˜å¸…
  * 1:18:55 AM
  */
 public class Fighter extends PartInfoVO {
@@ -15,11 +15,11 @@ public class Fighter extends PartInfoVO {
 	private String injureDisplay;
 	private boolean isDead;
 	private int expendMP;
-	/** ÎïÆ·µôÂäËµÃ÷ */
+	/** ç‰©å“æ‰è½è¯´æ˜ */
 	private String dropDisplay;
 	
 	/**
-	 * ¼¼ÄÜÃèÊö:µ±¼¼ÄÜ·¢¶¯Ê±£¬Îª¼¼ÄÜÃû×Ö£¬²»ÄÜÓÃÊ±Îª¼¼ÄÜ²»ÄÜÊ¹ÓÃµÄÌáÊ¾
+	 * æŠ€èƒ½æè¿°:å½“æŠ€èƒ½å‘åŠ¨æ—¶ï¼Œä¸ºæŠ€èƒ½åå­—ï¼Œä¸èƒ½ç”¨æ—¶ä¸ºæŠ€èƒ½ä¸èƒ½ä½¿ç”¨çš„æç¤º
 	 */
 	private String skillDisplay="";
 	
@@ -27,37 +27,37 @@ public class Fighter extends PartInfoVO {
 	
 	private long dropExp;
 	
-	/** ÊÇ·ñÓĞÃâËÀµÀ¾ß  */
+	/** æ˜¯å¦æœ‰å…æ­»é“å…·  */
 	private int deadProp;
 	
-	/** ÊÇ·ñÔÚ²»µô¾­ÑéÓĞĞ§Ê±¼äÄÚ  */
+	/** æ˜¯å¦åœ¨ä¸æ‰ç»éªŒæœ‰æ•ˆæ—¶é—´å†…  */
 	private boolean notDropExp;
 
 	
-	/**³èÎï¼¼ÄÜÃèÊö*/
+	/**å® ç‰©æŠ€èƒ½æè¿°*/
 	private String petSkillDisplay;
 	
 	/**
-	 * ËÀÍöÃèÊö
+	 * æ­»äº¡æè¿°
 	 */
 	private StringBuffer killDisplay=new StringBuffer();
 
-	private String task_display = null;//ÈÎÎñÌáÊ¾
+	private String task_display = null;//ä»»åŠ¡æç¤º
 	
-	/**Íæ¼Òµ±Ç°Ê¹ÓÃµÄ¼¼ÄÜ*/
+	/**ç©å®¶å½“å‰ä½¿ç”¨çš„æŠ€èƒ½*/
 	private PlayerSkillVO skill = null;
 	
-	/**Õ½¶·³èÎï*/
+	/**æˆ˜æ–—å® ç‰©*/
 	private PetInfoVO pet = null;
 	
-	/**¸½¼ÓÊôĞÔÃèÊö*/
+	/**é™„åŠ å±æ€§æè¿°*/
 	private String appendAttributeDescribe = null; 
 	
-	/**³èÎï¼¼ÄÜÉËº¦ÏÔÊ¾ÃèÊö*/
+	/**å® ç‰©æŠ€èƒ½ä¼¤å®³æ˜¾ç¤ºæè¿°*/
 	private String petInjureOut;
-	/**¾øÑ§ÅĞ¶Ï*/
+	/**ç»å­¦åˆ¤æ–­*/
 	private String juexuedisplay;
-	/**¾øÑ§ÉËº¦*/
+	/**ç»å­¦ä¼¤å®³*/
 	private String juexueInjure;
 	
 	public String getPetInjureOut()
@@ -180,7 +180,7 @@ public class Fighter extends PartInfoVO {
 		return killDisplay.toString();
 	}
 	/**
-	 * Ìí¼ÓËÀÍöÃèÊö
+	 * æ·»åŠ æ­»äº¡æè¿°
 	 * @param killDisplay
 	 */
 	public StringBuffer appendKillDisplay(String killDisplay) {

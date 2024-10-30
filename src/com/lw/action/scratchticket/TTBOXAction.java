@@ -31,10 +31,10 @@ public class TTBOXAction extends DispatchAction
 				.getSession());
 		if (roleInfo.getBasicInfo().getWrapSpare() < 2)
 		{
-			request.setAttribute("display", "Äú°ü¹ü²»×ãÒÔ·ÅÏÂ¹Î³öµÄÎïÆ·,ÇëÕûÀí°ü¹ü,Ô¤Áô2¸öÒÔÉÏ¸ñ×Ó!");
+			request.setAttribute("display", "æ‚¨åŒ…è£¹ä¸è¶³ä»¥æ”¾ä¸‹åˆ®å‡ºçš„ç‰©å“,è¯·æ•´ç†åŒ…è£¹,é¢„ç•™2ä¸ªä»¥ä¸Šæ ¼å­!");
 			return display(mapping, form, request, response);
 		}
-		roleInfo.getStateInfo().setCurState(PlayerState.BOX);//Íæ¼ÒÔÚÉÌ³ÇÊ±×´Ì¬ÊÜ±£»¤
+		roleInfo.getStateInfo().setCurState(PlayerState.BOX);//ç©å®¶åœ¨å•†åŸæ—¶çŠ¶æ€å—ä¿æŠ¤
 		HashMap<Integer, TTBOXVO> map = (HashMap<Integer, TTBOXVO>) Constant.TTBOXMAP
 				.get(roleInfo.getBasicInfo().getPPk());
 		String prop_id = (String) request.getAttribute("prop_id");
@@ -76,7 +76,7 @@ public class TTBOXAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (map == null)
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM²¹·¢µÀ¾ß!");
+			request.setAttribute("display", "è¯·è”ç³»GMè¡¥å‘é“å…·!");
 		}
 		else
 		{
@@ -98,7 +98,7 @@ public class TTBOXAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (map == null)
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM²¹·¢µÀ¾ß!");
+			request.setAttribute("display", "è¯·è”ç³»GMè¡¥å‘é“å…·!");
 		}
 		else
 		{
@@ -120,7 +120,7 @@ public class TTBOXAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (map == null)
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM²¹·¢µÀ¾ß!");
+			request.setAttribute("display", "è¯·è”ç³»GMè¡¥å‘é“å…·!");
 		}
 		else
 		{
@@ -132,7 +132,7 @@ public class TTBOXAction extends DispatchAction
 		return display(mapping, form, request, response);
 	}
 
-	// ¾Û±¦ÅèµÄÔö¼ÓÊ¹ÓÃ´ÎÊıµÀ¾ß IDÎª4152
+	// èšå®ç›†çš„å¢åŠ ä½¿ç”¨æ¬¡æ•°é“å…· IDä¸º4152
 	public ActionForward addnum(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -144,7 +144,7 @@ public class TTBOXAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (roleInfo.getBasicInfo().getAddscratchticketnum() < 1)
 		{
-			display = "Äú¡¾½ğÊÖÖ¸¡¿µÄÊ¹ÓÃ´ÎÊıÒÑ´ïµ½ÏŞÖÆ!";
+			display = "æ‚¨ã€é‡‘æ‰‹æŒ‡ã€‘çš„ä½¿ç”¨æ¬¡æ•°å·²è¾¾åˆ°é™åˆ¶!";
 			request.setAttribute("display", display);
 			request.setAttribute("outmap", map);
 			request.setAttribute("num", roleInfo.getBasicInfo()
@@ -155,13 +155,13 @@ public class TTBOXAction extends DispatchAction
 		}
 		else
 		{
-			// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
+			// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 			int tatol_prop_num = propGroupDao.getPropNumByByPropID(roleInfo
 					.getBasicInfo().getPPk(), 4152);
 			if (tatol_prop_num == 0)
 			{
-				display = "ÄúµÄ°ü¹üÀïÃ»ÓĞ¡¾½ğÊÖÖ¸¡¿!<br/>";
+				display = "æ‚¨çš„åŒ…è£¹é‡Œæ²¡æœ‰ã€é‡‘æ‰‹æŒ‡ã€‘!<br/>";
 				request.setAttribute("display", display);
 				request.setAttribute("outmap", map);
 				request.setAttribute("num", roleInfo.getBasicInfo()
@@ -194,7 +194,7 @@ public class TTBOXAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (roleInfo.getBasicInfo().getScratchticketnum() < 1)
 		{
-			display = "Äú²»ÄÜÔÙÂÖ×ª¡¾¾Û±¦Åè¡¿!";
+			display = "æ‚¨ä¸èƒ½å†è½®è½¬ã€èšå®ç›†ã€‘!";
 			request.setAttribute("outmap", map);
 		}
 		else

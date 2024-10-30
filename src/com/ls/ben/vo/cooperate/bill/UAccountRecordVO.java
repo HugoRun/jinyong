@@ -4,21 +4,21 @@ import java.util.Date;
 
 /**
  * @author ls
- * ¹¦ÄÜ:u_account_record
+ * åŠŸèƒ½:u_account_record
  * Mar 13, 2009
  */
 public class UAccountRecordVO
 {
 	private int id; /**ID*/ 
-	private int uPk;/**ÓÃ»§ÕËºÅ*/
-	private int pPk; /**³äÖµÊ±µÇÂ½µÄ½ÇÉ«*/
-	private String code;/**¿¨ºÅ*/
-	private String pwd;/**ÃÜÂë*/
-	private int money; /**³äÖµµÄÇ®Êı*/
-	private String channel; /**³äÖµÇşµÀ*/
-	private String accountState=""; /**³äÖµ×´Ì¬*/
-	private Date accountTime;/**³äÖµÊ±¼ä*/
-	private Date paymentTime; /**µ½ÕËÊ±¼ä,¼ÈÓÃ»§Ôª±¦µ½ÕËÊ±¼ä*/
+	private int uPk;/**ç”¨æˆ·è´¦å·*/
+	private int pPk; /**å……å€¼æ—¶ç™»é™†çš„è§’è‰²*/
+	private String code;/**å¡å·*/
+	private String pwd;/**å¯†ç */
+	private int money; /**å……å€¼çš„é’±æ•°*/
+	private String channel; /**å……å€¼æ¸ é“*/
+	private String accountState=""; /**å……å€¼çŠ¶æ€*/
+	private Date accountTime;/**å……å€¼æ—¶é—´*/
+	private Date paymentTime; /**åˆ°è´¦æ—¶é—´,æ—¢ç”¨æˆ·å…ƒå®åˆ°è´¦æ—¶é—´*/
 	public int getId()
 	{
 		return id;

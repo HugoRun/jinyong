@@ -27,7 +27,7 @@ public class LoginAction extends Action
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * 跳网登陆
+	 * 璺崇綉鐧婚檰
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -37,11 +37,11 @@ public class LoginAction extends Action
 		String login_params = request.getQueryString(); 
 		String ip=request.getRemoteAddr();
 		
-		logger.info("############跳网用户登陆##############");
+		logger.info("############璺崇綉鐢ㄦ埛鐧婚檰##############");
 		String user_name = request.getParameter("user_name");
 		String verify_string = request.getParameter("verify_string");
 		
-		logger.info("跳网登陆接口传过来的参数:"+login_params);
+		logger.info("璺崇綉鐧婚檰鎺ュ彛浼犺繃鏉ョ殑鍙傛暟:"+login_params);
 		
 		logger.info("IP:"+ip);
 		
@@ -49,9 +49,9 @@ public class LoginAction extends Action
 		
 		PassportVO passport_info = passportService.loginFromTiao( user_name, verify_string, ip);
 		
-		if( passport_info == null )//登陆验证失败
+		if( passport_info == null )//鐧婚檰楠岃瘉澶辫触
 		{
-			logger.info("用户验证失败");
+			logger.info("鐢ㄦ埛楠岃瘉澶辫触");
 			return mapping.findForward("fail");
 		} 
 		
@@ -62,7 +62,7 @@ public class LoginAction extends Action
 		session.setAttribute("uPk", passport_info.getUPk()+"");
 		session.setAttribute("user_name", user_name);
 		session.setAttribute("channel_id", Channel.TIAO+"");
-		session.setAttribute("login_params", login_params);//登陆参数
+		session.setAttribute("login_params", login_params);//鐧婚檰鍙傛暟
 		return mapping.findForward("success");
 	}
 }

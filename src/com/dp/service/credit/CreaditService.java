@@ -6,13 +6,13 @@ import com.dp.vo.credit.PlayerCreditVO;
 
 public interface CreaditService
 {
-	public List<PlayerCreditVO> getPlayerCredit(Integer ppk);//²éÑ¯Íæ¼Ò½ÇÉ«µÄÉùÍû
-	public PlayerCreditVO getPcvDisplay(Integer pcid);	//¸ù¾İÉùÍûID²éÑ¯ÉùÍûÃèÊö
-	public Integer checkHaveCondition(Integer ppk,Integer cid,Integer ncount);//ÉùÍûÊÇ·ñ¾ß±¸¶Ò»»Ìõ¼ş
-	public void  subtractCredit(Integer ppk,Integer cid,Integer ncount);//¼õµôÏûºÄµÄÉùÍû
-	public void  addPlayerCredit(Integer ppk,Integer cid,Integer ncount);//Ìí¼ÓÍæ¼ÒÉùÍû
-	public Integer checkHonorCondition(Integer ppk,Integer excount);//ÅĞ¶ÏÈÙÓşÌõ¼şÊÇ·ñÂú×ã
-	public void  subtractHonor(Integer ppk,Integer excount);//¼õµôÏûºÄµÄÈÙÓşÖµ
-	public void  addPlayerHonor(Integer ppk,Integer excount);//Ìí¼ÓÍæ¼ÒÈÙÓşÖµ
-	public Integer getRoleTpk(Integer ppk);//»ñÈ¡½ÇÉ«µÄ°ï»áID
+	public List<PlayerCreditVO> getPlayerCredit(Integer ppk);//æŸ¥è¯¢ç©å®¶è§’è‰²çš„å£°æœ›
+	public PlayerCreditVO getPcvDisplay(Integer pcid);	//æ ¹æ®å£°æœ›IDæŸ¥è¯¢å£°æœ›æè¿°
+	public Integer checkHaveCondition(Integer ppk,Integer cid,Integer ncount);//å£°æœ›æ˜¯å¦å…·å¤‡å…‘æ¢æ¡ä»¶
+	public void  subtractCredit(Integer ppk,Integer cid,Integer ncount);//å‡æ‰æ¶ˆè€—çš„å£°æœ›
+	public void  addPlayerCredit(Integer ppk,Integer cid,Integer ncount);//æ·»åŠ ç©å®¶å£°æœ›
+	public Integer checkHonorCondition(Integer ppk,Integer excount);//åˆ¤æ–­è£èª‰æ¡ä»¶æ˜¯å¦æ»¡è¶³
+	public void  subtractHonor(Integer ppk,Integer excount);//å‡æ‰æ¶ˆè€—çš„è£èª‰å€¼
+	public void  addPlayerHonor(Integer ppk,Integer excount);//æ·»åŠ ç©å®¶è£èª‰å€¼
+	public Integer getRoleTpk(Integer ppk);//è·å–è§’è‰²çš„å¸®ä¼šID
 }

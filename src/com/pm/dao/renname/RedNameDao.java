@@ -12,15 +12,15 @@ import com.pm.vo.pkelimi.PKValueElimiVO;
 
 public class RedNameDao extends DaoBase {
 	/**
-	 * Ëæ¼´»ñÈ¡Ò»¸ö¼àÓüµÄid
+	 * éšå³è·å–ä¸€ä¸ªç›‘ç‹±çš„id
 	 * @return
 	 */
 	
 	public int getPerionRandomMapid(int map_type)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select scene_id from scene where scene_mapqy = (select map_id from map where map_type = "+map_type+")";
-		logger.debug("Ëæ¼´Ñ¡ÔñÒ»¸ö¼àÓüid="+sql);
+		String sql = "SELECT scene_id from scene where scene_mapqy = (select map_id from map where map_type = "+map_type+")";
+		logger.debug("éšå³é€‰æ‹©ä¸€ä¸ªç›‘ç‹±id="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -50,19 +50,19 @@ public class RedNameDao extends DaoBase {
 		
 			return list.get(i);
 		}else {
-			logger.debug("ÕÒ²»µ½¼àÓü£¡");
+			logger.debug("æ‰¾ä¸åˆ°ç›‘ç‹±ï¼");
 			return 1;
 		}
 	}
 
 	/**
-	 * »ñµÃ¼àÓüsceneµÄlist
+	 * è·å¾—ç›‘ç‹±sceneçš„list
 	 * @return
 	 */
 	public List<Integer> getRedNameMapidList()
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select scene_id from scene where scene_mapqy = (select map_id from map where map_type = 5)";
+		String sql = "SELECT scene_id from scene where scene_mapqy = (select map_id from map where map_type = 5)";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -70,7 +70,7 @@ public class RedNameDao extends DaoBase {
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			logger.debug(" »ñµÃ¼àÓüsceneµÄlist="+sql);
+			logger.debug(" è·å¾—ç›‘ç‹±sceneçš„list="+sql);
 			while (rs.next())
 			{
 				list.add(rs.getInt("scene_id"));
@@ -89,13 +89,13 @@ public class RedNameDao extends DaoBase {
 	}
 	
 	/**
-	 * »ñµÃmap_IdÏÂµÄscene_IdµÄlist
+	 * è·å¾—map_Idä¸‹çš„scene_Idçš„list
 	 * @return
 	 */
 	public List<Integer> getRedNameMapidList(int map_Id)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select scene_id from scene where scene_mapqy = "+map_Id+"";
+		String sql = "SELECT scene_id from scene where scene_mapqy = "+map_Id+"";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -103,7 +103,7 @@ public class RedNameDao extends DaoBase {
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			logger.debug(" »ñµÃ¼àÓüsceneµÄlist="+sql);
+			logger.debug(" è·å¾—ç›‘ç‹±sceneçš„list="+sql);
 			while (rs.next())
 			{
 				list.add(rs.getInt("scene_id"));
@@ -122,15 +122,15 @@ public class RedNameDao extends DaoBase {
 	}
 
 	/**
-	 * »ñÈ¡Ïû³ıpkÖµ±íµÄid
+	 * è·å–æ¶ˆé™¤pkå€¼è¡¨çš„id
 	 * @param pk
 	 * @return
 	 */
 	public int getUserElimiId(String pk)
 	{
 		int elimi_id = -1;
-		String sql = "select elimi_id from u_pkvalue_elimi where p_pk="+pk;
-		logger.debug("»ñµÃÏû³ıpkÖµ±íidµÄsql="+sql);
+		String sql = "SELECT elimi_id from u_pkvalue_elimi where p_pk="+pk;
+		logger.debug("è·å¾—æ¶ˆé™¤pkå€¼è¡¨idçš„sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -157,14 +157,14 @@ public class RedNameDao extends DaoBase {
 	}
 
 	/**
-	 * ²åÈëÏû³ıpk×ï¶ñÖµ±í
+	 * æ’å…¥æ¶ˆé™¤pkç½ªæ¶å€¼è¡¨
 	 * @param pk
 	 * @param pk_value
 	 * @param oldMapid
 	 */
 	public void insertIntoElimi(String pk, int pk_value, String mapid)
 	{
-		String sql = "insert into u_pkvalue_elimination values(null,'"+pk+"','"+pk_value+"','"+mapid+"',now())";
+		String sql = "INSERT INTO u_pkvalue_elimination values(null,'"+pk+"','"+pk_value+"','"+mapid+"',now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -180,15 +180,15 @@ public class RedNameDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İp_pk»ñÈ¡Ïû³ıpkÖµ±íµÄÏûÏ¢
+	 * æ ¹æ®p_pkè·å–æ¶ˆé™¤pkå€¼è¡¨çš„æ¶ˆæ¯
 	 * @param pk
 	 * @return
 	 */
 	public PKValueElimiVO getUserPkvalueElimi(String pk)
 	{ 
 		PKValueElimiVO	vo = null;
-		String sql = "select * from u_pkvalue_elimi where p_pk="+pk;
-		logger.debug("»ñµÃÏû³ıpkÖµ±íidµÄsql="+sql);
+		String sql = "SELECT * FROM u_pkvalue_elimi where p_pk="+pk;
+		logger.debug("è·å¾—æ¶ˆé™¤pkå€¼è¡¨idçš„sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -218,7 +218,7 @@ public class RedNameDao extends DaoBase {
 	}
 
 	/**
-	 * ¸üĞÂÏû³ıpkÖµ±í
+	 * æ›´æ–°æ¶ˆé™¤pkå€¼è¡¨
 	 * @param pk
 	 * @param reduce_pk_value
 	 * @param dt3
@@ -226,7 +226,7 @@ public class RedNameDao extends DaoBase {
 	public void updatePkVlueElimi(String pk, int reduce_pk_value, Date dt3)
 	{
 		String sql = "update u_pkvlaue_elimination set pk_value= pkvalue - "+reduce_pk_value+" and last_time = "+dt3+" where p_pk = "+pk;
-		logger.debug("¸üĞÂÏû³ıpkÖµ±í="+sql);
+		logger.debug("æ›´æ–°æ¶ˆé™¤pkå€¼è¡¨="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -242,13 +242,13 @@ public class RedNameDao extends DaoBase {
 	}
 
 	/**
-	 * ¸ù¾İpPkÉ¾³ıÏû³ıºìÃû±í
+	 * æ ¹æ®pPkåˆ é™¤æ¶ˆé™¤çº¢åè¡¨
 	 * @param pk
 	 */
 	public void deleteRedNameByPPk(String pk)
 	{
 		String sql = "delete from u_pkvlaue_elimination where p_pk = "+pk;
-		logger.debug("É¾³ıºìÃû¼ÇÂ¼±í="+sql);
+		logger.debug("åˆ é™¤çº¢åè®°å½•è¡¨="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();

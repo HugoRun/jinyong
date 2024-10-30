@@ -10,21 +10,21 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:skill±íµÄdao
- * @author ÁõË§
+ * åŠŸèƒ½:skillè¡¨çš„dao
+ * @author åˆ˜å¸…
  * 3:50:09 PM
  */
 public class SkillDao extends DaoBase
 {
 	/**
-	 * ¼ÓÔØÍæ¼Ò¼¼ÄÜµÄÏêÏ¸ĞÅÏ¢
-	 * @param playerSkill  		Íæ¼Ò¼¼ÄÜ
+	 * åŠ è½½ç©å®¶æŠ€èƒ½çš„è¯¦ç»†ä¿¡æ¯
+	 * @param playerSkill  		ç©å®¶æŠ€èƒ½
 	 */
 	public void loadPlayerSkillDetail(PlayerSkillVO playerSkill)
 	{
 		if (playerSkill == null)
 		{
-			logger.debug("²ÎÊı´íÎó:ÓÃ»§¼¼ÄÜÎª¿Õ");
+			logger.debug("å‚æ•°é”™è¯¯:ç”¨æˆ·æŠ€èƒ½ä¸ºç©º");
 			return ;
 		}
 		SkillVO skillvo = SkillCache.getById(playerSkill.getSkId());
@@ -62,7 +62,7 @@ public class SkillDao extends DaoBase
 	
 	
 	/**
-	 * ¼ÓÔØÍæ¼Ò¼¼ÄÜµÄÏêÏ¸ĞÅÏ¢,ÀûÓÃÄÚ´æÖĞ´æ´¢µÄskillĞÅÏ¢,¶ø²»ÊÇÊı¾İ¿â
+	 * åŠ è½½ç©å®¶æŠ€èƒ½çš„è¯¦ç»†ä¿¡æ¯,åˆ©ç”¨å†…å­˜ä¸­å­˜å‚¨çš„skillä¿¡æ¯,è€Œä¸æ˜¯æ•°æ®åº“
 	 * 
 	 * @param sk_id
 	 * @return SkillVO
@@ -71,7 +71,7 @@ public class SkillDao extends DaoBase
 	{
 		if (playerSkill == null)
 		{
-			logger.debug("²ÎÊı´íÎó:ÓÃ»§¼¼ÄÜÎª¿Õ");
+			logger.debug("å‚æ•°é”™è¯¯:ç”¨æˆ·æŠ€èƒ½ä¸ºç©º");
 			return ;
 		}
 			SkillVO skillvo = SkillCache.getById(playerSkill.getSkId());
@@ -104,7 +104,7 @@ public class SkillDao extends DaoBase
 	
 
 	/**
-	 * ³õÊ¼»¯skill±í£¬½« skill±íÀïµÄÄÚÈİ¶¼·ÅÈëµ½ÄÚ´æ±íÀïÈ¥
+	 * åˆå§‹åŒ–skillè¡¨ï¼Œå°† skillè¡¨é‡Œçš„å†…å®¹éƒ½æ”¾å…¥åˆ°å†…å­˜è¡¨é‡Œå»
 	 * @return
 	 */
 	public HashMap<String, SkillVO> getAllSkill()
@@ -113,8 +113,8 @@ public class SkillDao extends DaoBase
 		int total_num = 0;
 		SkillVO skillvo = null;
 		
-		String total_num_sql = "select count(*) from skill";
-		String sql = "select * from skill";
+		String total_num_sql = "SELECT count(*) from skill";
+		String sql = "SELECT * FROM skill";
 		logger.debug(sql);
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

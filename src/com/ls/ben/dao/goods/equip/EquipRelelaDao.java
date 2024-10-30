@@ -6,8 +6,8 @@ import com.ls.ben.dao.DaoBase;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ×°±¸Õ¹Ê¾dao
- * @author ÕÅ¿¡¿¡ 
+ * è£…å¤‡å±•ç¤ºdao
+ * @author å¼ ä¿Šä¿Š 
  * @version 1.0 
  *	2009.08.07 10:58
  *	
@@ -18,7 +18,7 @@ public class EquipRelelaDao extends DaoBase
 	Logger logger = Logger.getLogger("log.dao");
 	
 	/**
-	 * ²åÈë×°±¸ÏÔÊ¾ĞÅÏ¢
+	 * æ’å…¥è£…å¤‡æ˜¾ç¤ºä¿¡æ¯
 	 * @param pwPk
 	 * @param displayString
 	 */
@@ -27,7 +27,7 @@ public class EquipRelelaDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "insert into zb_relela_info values (null,"+pwPk+",'"+displayString+"',now())";
+			String sql = "INSERT INTO zb_relela_info values (null,"+pwPk+",'"+displayString+"',now())";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -43,7 +43,7 @@ public class EquipRelelaDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃ×°±¸Õ¹Ê¾ĞÅÏ¢
+	 * è·å¾—è£…å¤‡å±•ç¤ºä¿¡æ¯
 	 * @param pwpk
 	 * @return
 	 */
@@ -53,7 +53,7 @@ public class EquipRelelaDao extends DaoBase
 		conn = dbConn.getConn();
 		String relelaInfo = "";
 		try {
-    		String sql = "select relelavar from zb_relela_info where pwpk = "+pwpk;
+    		String sql = "SELECT relelavar from zb_relela_info where pwpk = "+pwpk;
     		logger.debug(sql);
     		stmt = conn.createStatement();
     		rs = stmt.executeQuery(sql);

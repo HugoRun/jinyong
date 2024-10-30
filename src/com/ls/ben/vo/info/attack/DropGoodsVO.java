@@ -4,8 +4,8 @@
 package com.ls.ben.vo.info.attack;
 
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  *
  * 9:23:53 AM
  */
@@ -13,21 +13,21 @@ public class DropGoodsVO {
 	
 	/**ID */
 	private int dPk;
-	/**½ÇÉ«id*/
+	/**è§’è‰²id*/
 	private int pPk;
-	/**µôÂäÊıÁ¿*/
+	/**æ‰è½æ•°é‡*/
 	private int dropNum;
-	/**ÎïÆ·id*/
+	/**ç‰©å“id*/
 	private int goodsId;
-	/**ÎïÆ·Ãû×Ö*/
+	/**ç‰©å“åå­—*/
 	private String goodsName;
-	/**ÎïÆ·ÀàĞÍ*/
+	/**ç‰©å“ç±»å‹*/
 	private int goodsType;
-	/**µôÂäÎïÆ·µÄÆ·ÖÊ 0±íÊ¾ÆÕÍ¨£¬1±íÊ¾ÓÅĞã£¬2±íÊ¾Á¼£¬3±íÊ¾¼«Æ·*/
+	/**æ‰è½ç‰©å“çš„å“è´¨ 0è¡¨ç¤ºæ™®é€šï¼Œ1è¡¨ç¤ºä¼˜ç§€ï¼Œ2è¡¨ç¤ºè‰¯ï¼Œ3è¡¨ç¤ºæå“*/
 	private int goodsQuality;
-	/** µôÂäµÄÊÇ·ñÎª·Ç³£ÖØÒªµÄÎïÆ· */
+	/** æ‰è½çš„æ˜¯å¦ä¸ºéå¸¸é‡è¦çš„ç‰©å“ */
 	private int goodsImportance;
-	/** µôÂäĞÅÏ¢ */
+	/** æ‰è½ä¿¡æ¯ */
 	private String dropGoodsInfo;
 	
 	public String getDropGoodsInfo()

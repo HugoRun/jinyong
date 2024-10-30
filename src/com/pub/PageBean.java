@@ -1,260 +1,253 @@
 package com.pub;
 
 public class PageBean {
-		 /**
-	     * Ò»ĞĞÏÔÊ¾µÄ×î´ó¼ÇÂ¼Êı
-	     */
-	    public int MAX_ROW = 15;
-	    /**
-	     * µ±Ç°¿ªÊ¼Î»ÖÃ
-	     */
-	    private int index;
-	    /**
-	     * ×ÜÒ³Êı
-	     */
-	    private int page_num;
-	    /**
-	     * ²éÑ¯µÄ½á¹û¼¯´óĞ¡
-	     */
-	    private int total;
-	    /**
-	     * ·µ»ØÁ´½Ó
-	     */
-	    private String url;
+    /**
+     * ä¸€è¡Œæ˜¾ç¤ºçš„æœ€å¤§è®°å½•æ•°
+     */
+    public int MAX_ROW = 15;
+    /**
+     * å½“å‰å¼€å§‹ä½ç½®
+     */
+    private int index;
+    /**
+     * æ€»é¡µæ•°
+     */
+    private int page_num;
+    /**
+     * æŸ¥è¯¢çš„ç»“æœé›†å¤§å°
+     */
+    private int total;
+    /**
+     * è¿”å›é“¾æ¥
+     */
+    private String url;
 
-	    public PageBean() {
-	        index = 0;
-	        page_num = 1;
-	        total = 0;
-	    }
-	    
-	    public int getTotal() {
-	        return total;
-	    }
-	    public int getIndex() {
-	        return index;
-	    }
-	    public int getPageNum() {
-	        return page_num;
-	    }
-	    public String getUrl() {
-	        return url;
-	    }
-	    public void setUrl(String url) {
-	        this.url = url;
-	    }
+    public PageBean() {
+        index = 0;
+        page_num = 1;
+        total = 0;
+    }
 
-		public int getMAX_ROW(){
-			return MAX_ROW;
-		}
-		public void setMAX_ROW(int max_row) {
-			MAX_ROW = max_row;
-		}
-	    public void setIndex(int index) {
-	        this.index = index;
-	    }
-	    public void setIndex(String index) {
-	    	int no=1;
-	    	if(index!=null&&!index.trim().equals(""))
-	    	{
-	    		if(isNumber(index))
-	    		{
-	    			no=Integer.parseInt(index);
-	    			if(no<1)
-	    			{
-	    				no=1;
-	    			}
-	    		}
-	    	}
-	        this.index =no;
-	    }
-	    /**
-	     * ³õÊ¼»¯
-	     * @param index
-	     * @param max_row
-	     * @param num
-	     * @param url
-	     */
-	    public void init(String index,int max_row,int num,String url)
-	    {
-	    	if(max_row<1)
-	    	{
-	    		this.MAX_ROW=1;
-	    	}
-	    	else
-	    	{
-	    		this.MAX_ROW=max_row;
-	    	}
-	    	if(url==null||url.trim().equals(""))
-	    	{
-	    		this.url="index.jsp";
-	    	}
-	    	else
-	    	{
-	    		this.url=url;
-	    	}
-	    	setTotal(num);
-	    	int no=1;
-	    	if(index!=null&&!index.trim().equals("") &&!index.trim().equals("null"))
-	    	{
-	    		if(isNumber(index))
-	    		{
-	    			no=Integer.parseInt(index);
-	    			if(no>page_num)
-	    			{
-	    				no=page_num;
-	    			}
-	    			if(no<1)
-	    			{
-	    				no=1;
-	    			}
-	    		}
-	    	}
-	        this.index =no;
-	    }
-	    /**
-	     * ÉèÖÃ×ÜÒ³Êı
-	     * @param num
-	     */
-	    public void setTotal(int num) {
-	       if(num>0)
-	       {
-	    	   total = num;
-	           if (total % MAX_ROW == 0) {
-	               page_num = total / MAX_ROW;
-	           }
-	           else {
-	               page_num = total / MAX_ROW + 1;
-	           } 
-	       }else
-	       {
-	    	   total=0 ;
-	    	   page_num=1;
-	       }
-	    	
-	    }
-	    
-	    /**
-	     * ÔÚÎÄ±¾ÖĞ²åÈëÒ³Ãæ±êºÅÎªnumµÄ±ê¼Ç
-	     * @param text
-	     * @param num ÆğÊ¼Î»ÖÃ
-	     */
-	    private void insertTag(StringBuffer text, int num) {
-	        int temp = index / MAX_ROW;
-	        if (num == temp) {
-	            text.append(num + 1).append("  ");
-	        }
-	        else {
-	            text.append("<a href=" + url + "&start_index=");
-	            text.append(num * MAX_ROW).append(">").append(num + 1).append("</a>  ");
-	        }
-	    }
+    public int getTotal() {
+        return total;
+    }
 
-	    /**
-	     * ÔÚÎÄ±¾ÖĞ²åÈëÎ»ÖÃÎªÆğÊ¼Î»ÖÃÎªnum,Ò³Ãæ±êºÅÎªstrµÄ±ê¼Ç
-	     * @param text
-	     * @param num ÆğÊ¼Î»ÖÃ
-	     * @param str Ò³Ãæ±àºÅ
-	     */
-	    private void insertTag(StringBuffer text, int num, String str) {
-	        text.append("<a href=" + url + "&start_index=");
-	        text.append(num).append(">").append(str).append("</a>  ");
-	    }
-	    /**
-	     * ÔÚwapÎÄ±¾ÖĞ²åÈëÌø×ª±à¼­¿ğ
-	     */
-	    public String insertTag() {
-	    	StringBuffer text=new StringBuffer("¹²");
-	        text.append(total);
-	        text.append("¸ö ");
-	        text.append(index).append("/").append(page_num);
-	        text.append(" <input name='pageNo'  format='*N' type='text' maxlength='4' size='2' />Ò³<anchor><go href='");
-	        text.append(this.url);
-	        text.append("' method='post'><postfield name='pageNo' value='$pageNo'/></go>GO</anchor>");
-	       	return text.toString();
-	    }
-	    /**
-	     *ÎÄWEB±¾ÖĞ²åÈëÌø×ª±à¼­¿ğ
-	     */
-	    public String insertWEBTag() {
-	    	StringBuffer text=new StringBuffer("¹²");
-	        text.append(total);
-	        text.append("¸ö ");
-	        text.append(index).append("/").append(page_num);
-	        text.append(" <form action='");
-	        text.append(this.url);
-	        text.append("'><input name='pageNo'  format='*N' type='text' maxlength='4' size='2' />Ò³");
-	        
-	        text.append("<input value='Ìøµ½' type='submit'></form>");
-	       	return text.toString();
-	    } 
-	   /**
-	    * ´òÓ¡³ö·­Ò³Á¬½Ó
-	    * @return
-	    */
-	    public String getFooter() {
-	        if (page_num<= 1) {
-	            return "";
-	        }
-	        else
-	        {
-	        	StringBuffer str = new StringBuffer();
-	            if(index==1)
-	            {
-	            	str.append("<a href='").append(url).append("&amp;pageNo=");
-	            	str.append(index+1);
-	            	str.append("'>ÏÂÒ»Ò³</a>");
-	            	 if ( page_num > 2) {
-	     	            str.append("<a href='").append(url).append("&amp;pageNo=");
-	                 	str.append(page_num);
-	                 	str.append("'>µ½Î²Ò³</a>");	
-	 	            }
-	            }
-	            else if (index < page_num) {
-	            	str.append("<a href='").append(url).append("&amp;pageNo=");
-	            	str.append(index+1);
-	            	str.append("'>ÏÂÒ»Ò³</a> ");
-	            	str.append("<a href='").append(url).append("&amp;pageNo=");
-	            	str.append(index-1);
-	            	str.append("'>ÉÏÒ»Ò³</a>");
-	            }
-	            else {
-	            	str.append("<a href='").append(url).append("&amp;pageNo=");
-	            	str.append(index-1);
-	            	str.append("'>ÉÏÒ»Ò³</a>");
-	                 }
-	            
-	            
-	           if ( index == page_num && page_num > 2) {
-	        	   str.append("<a href='").append(url).append("&amp;pageNo=");
-	            	str.append(1);
-	            	str.append("'>µ½Ê×Ò³</a>");
-	            }
-	          return str.toString();
-	        }
-	    }
-	    /**
-	     * ÊÇ·ñÎªÊı×Ö
-	     * @param str String
-	     * @return boolean
-	     */
-	   private boolean isNumber(String str) {
-	  	  
-	  	 if(str==null||str.equals(""))
-	  	 {
-	  		 return false;
-	  	 }
-	      String num = "0123456789";
-	      boolean Flag = true;
-	      char c[] = str.toCharArray();
+    /**
+     * è®¾ç½®æ€»é¡µæ•°
+     *
+     * @param num
+     */
+    public void setTotal(int num) {
+        if (num > 0) {
+            total = num;
+            if (total % MAX_ROW == 0) {
+                page_num = total / MAX_ROW;
+            } else {
+                page_num = total / MAX_ROW + 1;
+            }
+        } else {
+            total = 0;
+            page_num = 1;
+        }
 
-	      for (int i = 0; i <c.length; i++) {
-	        if (str.indexOf(c[i]) < 0) {
-	          Flag = false;
-	          break;
-	        }
-	      }
-	      return Flag;
-	    }
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setIndex(String index) {
+        int no = 1;
+        if (index != null && !index.trim().equals("")) {
+            if (isNumber(index)) {
+                no = Integer.parseInt(index);
+                if (no < 1) {
+                    no = 1;
+                }
+            }
+        }
+        this.index = no;
+    }
+
+    public int getPageNum() {
+        return page_num;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getMAX_ROW() {
+        return MAX_ROW;
+    }
+
+    public void setMAX_ROW(int max_row) {
+        MAX_ROW = max_row;
+    }
+
+    /**
+     * åˆå§‹åŒ–
+     *
+     * @param index
+     * @param max_row
+     * @param num
+     * @param url
+     */
+    public void init(String index, int max_row, int num, String url) {
+        if (max_row < 1) {
+            this.MAX_ROW = 1;
+        } else {
+            this.MAX_ROW = max_row;
+        }
+        if (url == null || url.trim().equals("")) {
+            this.url = "index.jsp";
+        } else {
+            this.url = url;
+        }
+        setTotal(num);
+        int no = 1;
+        if (index != null && !index.trim().equals("") && !index.trim().equals("null")) {
+            if (isNumber(index)) {
+                no = Integer.parseInt(index);
+                if (no > page_num) {
+                    no = page_num;
+                }
+                if (no < 1) {
+                    no = 1;
+                }
+            }
+        }
+        this.index = no;
+    }
+
+    /**
+     * åœ¨æ–‡æœ¬ä¸­æ’å…¥é¡µé¢æ ‡å·ä¸ºnumçš„æ ‡è®°
+     *
+     * @param text
+     * @param num  èµ·å§‹ä½ç½®
+     */
+    private void insertTag(StringBuffer text, int num) {
+        int temp = index / MAX_ROW;
+        if (num == temp) {
+            text.append(num + 1).append("  ");
+        } else {
+            text.append("<a href=" + url + "&start_index=");
+            text.append(num * MAX_ROW).append(">").append(num + 1).append("</a>  ");
+        }
+    }
+
+    /**
+     * åœ¨æ–‡æœ¬ä¸­æ’å…¥ä½ç½®ä¸ºèµ·å§‹ä½ç½®ä¸ºnum,é¡µé¢æ ‡å·ä¸ºstrçš„æ ‡è®°
+     *
+     * @param text
+     * @param num  èµ·å§‹ä½ç½®
+     * @param str  é¡µé¢ç¼–å·
+     */
+    private void insertTag(StringBuffer text, int num, String str) {
+        text.append("<a href=" + url + "&start_index=");
+        text.append(num).append(">").append(str).append("</a>  ");
+    }
+
+    /**
+     * åœ¨wapæ–‡æœ¬ä¸­æ’å…¥è·³è½¬ç¼–è¾‘ç­
+     */
+    public String insertTag() {
+        String text = "å…±" + total +
+                "ä¸ª " +
+                index + "/" + page_num +
+                " <input name='pageNo'  format='*N' type='text' maxlength='4' size='2' />é¡µ<anchor><go href='" +
+                this.url +
+                "' method='post'><postfield name='pageNo' value='$pageNo'/></go>GO</anchor>";
+        return text;
+    }
+
+    /**
+     * æ–‡WEBæœ¬ä¸­æ’å…¥è·³è½¬ç¼–è¾‘ç­
+     */
+    public String insertWEBTag() {
+
+        String text = "å…±" + total +
+                "ä¸ª " +
+                index + "/" + page_num +
+                " <form action='" +
+                this.url +
+                "'><input name='pageNo'  format='*N' type='text' maxlength='4' size='2' />é¡µ" +
+                "<input value='è·³åˆ°' type='submit'></form>";
+        return text;
+    }
+
+    /**
+     * æ‰“å°å‡ºç¿»é¡µè¿æ¥
+     *
+     * @return
+     */
+    public String getFooter() {
+        if (page_num <= 1) {
+            return "";
+        } else {
+            StringBuffer str = new StringBuffer();
+            if (index == 1) {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(index + 1);
+                str.append("'>ä¸‹ä¸€é¡µ</a>");
+                if (page_num > 2) {
+                    str.append("<a href='").append(url).append("&amp;pageNo=");
+                    str.append(page_num);
+                    str.append("'>åˆ°å°¾é¡µ</a>");
+                }
+            } else if (index < page_num) {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(index + 1);
+                str.append("'>ä¸‹ä¸€é¡µ</a> ");
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(index - 1);
+                str.append("'>ä¸Šä¸€é¡µ</a>");
+            } else {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(index - 1);
+                str.append("'>ä¸Šä¸€é¡µ</a>");
+            }
+
+
+            if (index == page_num && page_num > 2) {
+                str.append("<a href='").append(url).append("&amp;pageNo=");
+                str.append(1);
+                str.append("'>åˆ°é¦–é¡µ</a>");
+            }
+            return str.toString();
+        }
+    }
+
+    /**
+     * æ˜¯å¦ä¸ºæ•°å­—
+     *
+     * @param str String
+     * @return boolean
+     */
+    private boolean isNumber(String str) {
+
+        if (str == null || str.equals("")) {
+            return false;
+        }
+        String num = "0123456789";
+        boolean Flag = true;
+        char[] c = str.toCharArray();
+
+        for (int i = 0; i < c.length; i++) {
+            if (str.indexOf(c[i]) < 0) {
+                Flag = false;
+                break;
+            }
+        }
+        return Flag;
+    }
 
 }

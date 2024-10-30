@@ -1,5 +1,5 @@
 <%@page contentType="text/vnd.wap.wml"
-	import="java.util.*,com.dp.vo.store.newgood.*,com.dp.vo.store.player.*,com.ls.pub.util.*"
+    import="java.util.*,com.dp.vo.store.newgood.*,com.dp.vo.store.player.*,com.ls.pub.util.*"
 	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
 <%List<NewGoodVO> nglist1=(List<NewGoodVO>)request.getAttribute("teseg");
    			if(nglist1!=null&&nglist1.size()!=0){

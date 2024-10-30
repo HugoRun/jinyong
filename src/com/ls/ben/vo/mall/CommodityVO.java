@@ -6,7 +6,7 @@ import com.ls.ben.cache.staticcache.prop.PropCache;
 import com.ls.ben.vo.goods.prop.PropVO;
 
 /**
- * ¹¦ÄÜ£ºÉÌÆ·
+ * åŠŸèƒ½ï¼šå•†å“
  * @author ls
  * May 12, 2009
  * 3:53:09 PM
@@ -14,18 +14,18 @@ import com.ls.ben.vo.goods.prop.PropVO;
 
 public class CommodityVO
 {
-	/*1£©	ÉÌÆ·id(¶ÔÓ¦ÎïÆ·µÄid)
-	 * µÀ¾ßid
-	2£©	ÉÌÆ··ÖÀà
-	3£©	½»Ò×·½Ê½£¨1Îª»ı·Ö£¬2ÎªÔª±¦£©
-	4£©	ÉÌÆ·¼ÛÇ®£¨±íÊ¾¹ºÂòÉÌÆ·ËùĞèÒªµÄÔª±¦»ò»ı·ÖµÄÊıÁ¿£©
-	5£©	Âô³öÊıÁ¿
-	6£©	ÊÇ·ñÊÇÍÆ¼öÉÌÆ·£¨0£¨Ä¬ÈÏÖµ£©ÎªÍÆ¼öÉÌÆ·£¬1ÎªÍÆ¼öÉÌÆ·£©
-	7£©	ÉÌÆ·×´Ì¬£¨1£¨Ä¬ÈÏÖµ£©ÎªÉÏÏß£¬0ÎªÏÂÏß£©
-	8£©	ÉÏÊĞÊ±¼ä
-	discount  ,/**ÉÌÆ·µ±Ç°µÄÕÛ¿Û£¬±íÏÖĞÎÊ½ÎªÀıÈç£º80´ú±í8ÕÛ£¬Ä¬ÈÏÎª100±íÊ¾²»´òÕÛ
-    isUsedAfterBuy    int      default 1        ,/**¹ºÂòºóÊÇ·ñ¿ÉÖ±½ÓÊ¹ÓÃ
- 	commodity_total   int      default -1       ,/**ÉÌÆ·×ÜÊı-1±íÊ¾²»ÏŞÁ¿*/
+	/*1ï¼‰	å•†å“id(å¯¹åº”ç‰©å“çš„id)
+	 * é“å…·id
+	2ï¼‰	å•†å“åˆ†ç±»
+	3ï¼‰	äº¤æ˜“æ–¹å¼ï¼ˆ1ä¸ºç§¯åˆ†ï¼Œ2ä¸ºå…ƒå®ï¼‰
+	4ï¼‰	å•†å“ä»·é’±ï¼ˆè¡¨ç¤ºè´­ä¹°å•†å“æ‰€éœ€è¦çš„å…ƒå®æˆ–ç§¯åˆ†çš„æ•°é‡ï¼‰
+	5ï¼‰	å–å‡ºæ•°é‡
+	6ï¼‰	æ˜¯å¦æ˜¯æ¨èå•†å“ï¼ˆ0ï¼ˆé»˜è®¤å€¼ï¼‰ä¸ºæ¨èå•†å“ï¼Œ1ä¸ºæ¨èå•†å“ï¼‰
+	7ï¼‰	å•†å“çŠ¶æ€ï¼ˆ1ï¼ˆé»˜è®¤å€¼ï¼‰ä¸ºä¸Šçº¿ï¼Œ0ä¸ºä¸‹çº¿ï¼‰
+	8ï¼‰	ä¸Šå¸‚æ—¶é—´
+	discount  ,/**å•†å“å½“å‰çš„æŠ˜æ‰£ï¼Œè¡¨ç°å½¢å¼ä¸ºä¾‹å¦‚ï¼š80ä»£è¡¨8æŠ˜ï¼Œé»˜è®¤ä¸º100è¡¨ç¤ºä¸æ‰“æŠ˜
+    isUsedAfterBuy    int      default 1        ,/**è´­ä¹°åæ˜¯å¦å¯ç›´æ¥ä½¿ç”¨
+ 	commodity_total   int      default -1       ,/**å•†å“æ€»æ•°-1è¡¨ç¤ºä¸é™é‡*/
 
 	private PropVO prop;
 	private int id;
@@ -41,7 +41,7 @@ public class CommodityVO
 	private int discount;
 	private int isUsedAfterBuy;
 	private int commodityTotal;
-	private int isVip=0;//ÊÇ·ñÊÇ»áÔ±ÉÌÆ·£¬1ÊÇ0·ñ
+	private int isVip=0;//æ˜¯å¦æ˜¯ä¼šå‘˜å•†å“ï¼Œ1æ˜¯0å¦
 	
 	public String getDisplay()
 	{
@@ -49,12 +49,12 @@ public class CommodityVO
 	}
 	
 	/**
-	 * ¸ù¾İ¹ºÂòÊıÁ¿ÅĞ¶ÏÊÇ·ñ¿â´æ³ä×ã
+	 * æ ¹æ®è´­ä¹°æ•°é‡åˆ¤æ–­æ˜¯å¦åº“å­˜å……è¶³
 	 */
 	public boolean isEnough(int sell_num)
 	{
-		int store_num = getStoreNum();//¿â´æ
-		if(  commodityTotal!=-1 && store_num-sell_num<0 )//ÏŞÁ¿ÇÒ¿â´æ²»×ã
+		int store_num = getStoreNum();//åº“å­˜
+		if(  commodityTotal!=-1 && store_num-sell_num<0 )//é™é‡ä¸”åº“å­˜ä¸è¶³
 		{
 			return false;
 		}
@@ -65,7 +65,7 @@ public class CommodityVO
 	}
 	
 	/**
-	 * µÃµ½¿â´æ
+	 * å¾—åˆ°åº“å­˜
 	 * @return
 	 */
 	public int getStoreNum()
@@ -78,7 +78,7 @@ public class CommodityVO
 		return discount;
 	}
 	/**
-	 * ÕÛ¿ÛĞÅÏ¢ÏÔÊ¾´¦Àí
+	 * æŠ˜æ‰£ä¿¡æ¯æ˜¾ç¤ºå¤„ç†
 	 * @return
 	 */
 	public String getDiscountDisplay()
@@ -140,14 +140,14 @@ public class CommodityVO
 	}
 	
 	/**
-	 * Íæ¼Ò×ÔÉíÕÛ¿ÛµÄµ±Ç°¼Û¸ñ
+	 * ç©å®¶è‡ªèº«æŠ˜æ‰£çš„å½“å‰ä»·æ ¼
 	 * @return
 	 */
 	public int getCurPrice( int user_discount )
 	{
 		double cur_price = originalPrice;
 		
-		if( discount==-1 )//²»ÊÇ´òÕÛÉÌÆ·
+		if( discount==-1 )//ä¸æ˜¯æ‰“æŠ˜å•†å“
 		{
 			cur_price = originalPrice;
 		}

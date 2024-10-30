@@ -11,8 +11,8 @@ import com.ls.web.service.log.DataErrorLog;
 
 public class NpcdropDao extends DaoBase {
 	/**
-	 * ’“µΩNPCµƒµÙ¬‰ŒÔ
-	 * npcµÙ¬‰≤È—Ø£¨œﬁ÷∆◊Ó∂‡µÙ7∏ˆ£¨∞¥∏≈¬ Ωµ√›∫ÕÀÊª˙≈≈–Ú
+	 * ÊâæÂà∞NPCÁöÑÊéâËêΩÁâ©
+	 * npcÊéâËêΩÊü•ËØ¢ÔºåÈôêÂà∂ÊúÄÂ§öÊéâ7‰∏™ÔºåÊåâÊ¶ÇÁéáÈôçÂπÇÂíåÈöèÊú∫ÊéíÂ∫è
 	 * @param npc_ID
 	 * @return
 	 */
@@ -22,10 +22,10 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "select * from npcdrop where npc_ID=" + npc_ID + " and npcdrop_taskid in ("+task_condition+") " +
-					" and ( (begin_time='' and begin_day='') " +//ŒﬁÀ¢–¬ ±º‰œﬁ÷∆
-					"or (curtime()>TIME(begin_time) and curtime()<TIME(end_time)) " +//≈–∂œœ‡∂‘ ±º‰œﬁ÷∆
-					"or (now()>TIMESTAMP(begin_day) and now()<TIMESTAMP(end_day)) )"+//≈–∂œæ¯∂‘ ±º‰œﬁ÷∆
+			String sql = "SELECT * FROM npcdrop where npc_ID=" + npc_ID + " and npcdrop_taskid in ("+task_condition+") " +
+					" and ( (begin_time='' and begin_day='') " +//Êó†Âà∑Êñ∞Êó∂Èó¥ÈôêÂà∂
+					"or (curtime()>TIME(begin_time) and curtime()<TIME(end_time)) " +//Âà§Êñ≠Áõ∏ÂØπÊó∂Èó¥ÈôêÂà∂
+					"or (now()>TIMESTAMP(begin_day) and now()<TIMESTAMP(end_day)) )"+//Âà§Êñ≠ÁªùÂØπÊó∂Èó¥ÈôêÂà∂
 					" order by rand()";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
@@ -49,7 +49,7 @@ public class NpcdropDao extends DaoBase {
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			DataErrorLog.debugData("NpcdropDao.getNpcdropsByNpcID:µÙ¬‰ ˝æ›¥ÌŒÛ£¨Ãıº˛npc_ID="+npc_ID+";task_condition="+task_condition);
+			DataErrorLog.debugData("NpcdropDao.getNpcdropsByNpcID:ÊéâËêΩÊï∞ÊçÆÈîôËØØÔºåÊù°‰ª∂npc_ID="+npc_ID+";task_condition="+task_condition);
 		} finally {
 			dbConn.closeConn();
 		}
@@ -57,7 +57,7 @@ public class NpcdropDao extends DaoBase {
 	}
 	
 	public NpcdropVO getNpcdropsById(String npc_drop_id) {
-		String sql = "select * from npcdrop where npcdrop_ID='"+npc_drop_id+"'";
+		String sql = "SELECT * FROM npcdrop where npcdrop_ID='"+npc_drop_id+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		NpcdropVO vo = null;
@@ -96,7 +96,7 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "insert into npcdrop values(null,'" + npcID + "','"
+			String sql = "INSERT INTO npcdrop values(null,'" + npcID + "','"
 					+ goodsType + "','" + goodsId + "','" + npcdropProbability
 					+ "','" + npcdropLuck + "')";
 			logger.debug(sql);
@@ -132,14 +132,14 @@ public class NpcdropDao extends DaoBase {
 		}
 	}
 
-	//πŒπŒ¡À◊®”√∑Ω∑®
+	//ÂàÆÂàÆ‰∫Ü‰∏ìÁî®ÊñπÊ≥ï
 	public List<NpcdropVO> getNpcdropsByScratchTicket( String npc_ID,String task_condition ) {
 		ArrayList<NpcdropVO> list = new ArrayList<NpcdropVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "select * from npcdrop where npc_ID in (" + npc_ID + ") and npcdrop_taskid in ("+task_condition+
+			String sql = "SELECT * FROM npcdrop where npc_ID in (" + npc_ID + ") and npcdrop_taskid in ("+task_condition+
 					") order by rand() limit 11";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
@@ -169,14 +169,14 @@ public class NpcdropDao extends DaoBase {
 		return list;
 	}
 
-	//¿≠∞‘(ª¢‘À)◊®”√∑Ω∑®
+	//ÊãâÈú∏(ËôéËøê)‰∏ìÁî®ÊñπÊ≥ï
 	public List<NpcdropVO> getNpcdropsForLaBa( String npc_ID) {
 		ArrayList<NpcdropVO> list = new ArrayList<NpcdropVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "select * from npcdrop where npc_ID in (" + npc_ID + ") order by rand() limit 11";
+			String sql = "SELECT * FROM npcdrop where npc_ID in (" + npc_ID + ") order by rand() limit 11";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -211,7 +211,7 @@ public class NpcdropDao extends DaoBase {
 		conn = dbConn.getConn();
 		try {
 
-			String sql = "select*From npcdrop where npc_ID="+npcId+" and npcdrop_taskid=0";
+			String sql = "SELECT * FROM npcdrop where npc_ID="+npcId+" and npcdrop_taskid=0";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 

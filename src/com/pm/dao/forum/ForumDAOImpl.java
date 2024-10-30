@@ -31,8 +31,8 @@ public class ForumDAOImpl extends DaoBase {
 	}
 	
 	public int addForum(ForumBean fb) throws Exception {
-		String sql="insert into g_forum(classID,UserID,UserName,title,content,add_time,readNum,revertNum,vouch,taxis,revert_time) values(?,?,?,?,?,now(),?,?,?,?,now())";			
-		logger.debug("²åÈë»°ÌâµÄsql="+sql);
+		String sql="INSERT INTO g_forum(classID,UserID,UserName,title,content,add_time,readNum,revertNum,vouch,taxis,revert_time) values(?,?,?,?,?,now(),?,?,?,?,now())";			
+		logger.debug("æ’å…¥è¯é¢˜çš„sql="+sql);
 		PreparedStatement ps = connection.prepareStatement(sql);
 		int i=1;
 		ps.setInt(i++,fb.getClassID());
@@ -52,13 +52,13 @@ public class ForumDAOImpl extends DaoBase {
 
 	
 	public void deleteForum(int id) throws Exception {
-		//É¾³ı¸ÃÌùµÄËùÓĞ»Ø¸´
+		//åˆ é™¤è¯¥è´´çš„æ‰€æœ‰å›å¤
 		StringBuffer sql1 = new StringBuffer("delete from g_forum_revert where fid=").append(id);
-		// É¾³ı¸ÃÌù
+		// åˆ é™¤è¯¥è´´
 		StringBuffer sql2 = new StringBuffer("delete from g_forum where id=").append(id);
 		
-		logger.debug("É¾³ı¸ÃÌùµÄËùÓĞ»Ø¸´sql :"+sql1);
-		logger.debug("É¾³ı¸ÃÌùsql :"+sql1);
+		logger.debug("åˆ é™¤è¯¥è´´çš„æ‰€æœ‰å›å¤sql :"+sql1);
+		logger.debug("åˆ é™¤è¯¥è´´sql :"+sql1);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try{
@@ -77,9 +77,9 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	public List<ForumBean> getForum(int classID)throws Exception {
-		//Ä¬ÈÏÊÇ×îĞÂµÄÌû×Ó
+		//é»˜è®¤æ˜¯æœ€æ–°çš„å¸–å­
 		String sql="select g_forum.*,g_forum_class.className from g_forum join g_forum_class on g_forum_class.classID=g_forum.classID order by id desc";
-		if(classID!=0)//ÈÈÌû
+		if(classID!=0)//çƒ­å¸–
 		{
 			sql="select g_forum.*,g_forum_class.className from g_forum join g_forum_class on g_forum_class.classID=g_forum.classID where classID="+classID+" order by id desc";
 		}
@@ -106,19 +106,19 @@ public class ForumDAOImpl extends DaoBase {
 	
 	
 	public List<ForumBean> getAllForum(int typeid) throws Exception {
-		//Ä¬ÈÏÊÇ×îĞÂµÄÌû×Ó
+		//é»˜è®¤æ˜¯æœ€æ–°çš„å¸–å­
 		String sql="select g_forum.*,g_forum_class.className from g_forum join g_forum_class on g_forum_class.classID=g_forum.classID order by id desc";
-		if(typeid==2)//ÈÈÌû
+		if(typeid==2)//çƒ­å¸–
 		{
-			sql="select * from g_forum order by revertNum desc,id desc";
+			sql="SELECT * FROM g_forum order by revertNum desc,id desc";
 		}
-		if(typeid==3)//¾«Ìû
+		if(typeid==3)//ç²¾å¸–
 		{
-			sql="select * from g_forum order by taxis desc,id desc";
+			sql="SELECT * FROM g_forum order by taxis desc,id desc";
 		}
-		if(typeid==4)//Ç¿ÌùÍÆ¼ö
+		if(typeid==4)//å¼ºè´´æ¨è
 		{
-			sql="select * from g_forum  where vouch=1 order by id desc";
+			sql="SELECT * FROM g_forum  where vouch=1 order by id desc";
 		}
 		logger.debug(sql.toString());
 		List<ForumBean> v = new ArrayList<ForumBean>();
@@ -149,7 +149,7 @@ public class ForumDAOImpl extends DaoBase {
 
 	
 	/**
-	 * ¸ù¾İ°å¿éµÄ²»Í¬»ñÈ¡²»Í¬µÄÌû×ÓÁĞ±í
+	 * æ ¹æ®æ¿å—çš„ä¸åŒè·å–ä¸åŒçš„å¸–å­åˆ—è¡¨
 	 * @param typeid
 	 * @return
 	 */
@@ -157,7 +157,7 @@ public class ForumDAOImpl extends DaoBase {
 		QueryPage queryPage = null;
 		int count = 0;
 		stmt = connection.createStatement();
-		String count_sql = "select count(*) from g_forum where taxis = 0 and classID=" + classId;
+		String count_sql = "SELECT count(*) from g_forum where taxis = 0 and classID=" + classId;
 		logger.debug(count_sql);
 		rs = stmt.executeQuery(count_sql);
 		if( rs.next() )
@@ -178,7 +178,7 @@ public class ForumDAOImpl extends DaoBase {
 			return queryPage;
 		}
 		
-		//Ìû×ÓµÄÅÅÁĞË³Ğò, ÏÈ°´ÊÇ·ñÖÃ¶¥ÅÅÁĞ,È»ºó°´×î½ü»Ø¸´Ê±¼äÅÅÁĞ,×îºó°´·¢ÌûÊ±¼äÅÅÁĞ
+		//å¸–å­çš„æ’åˆ—é¡ºåº, å…ˆæŒ‰æ˜¯å¦ç½®é¡¶æ’åˆ—,ç„¶åæŒ‰æœ€è¿‘å›å¤æ—¶é—´æ’åˆ—,æœ€åæŒ‰å‘å¸–æ—¶é—´æ’åˆ—
 		String sql="select g_forum.id,g_forum.classID,g_forum.UserID,g_forum.UserName,g_forum.title,g_forum.content,g_forum.readNum,g_forum.revertNum" +
 								",g_forum.vouch,g_forum.taxis,g_forum.add_time from g_forum  where taxis = 0 and g_forum.classId = "
 						+classId+" order by revert_time desc,id desc limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
@@ -248,14 +248,14 @@ public class ForumDAOImpl extends DaoBase {
 
 	
 	/*public List<ForumBean> getForumByClassID(int classid, int typeid) throws Exception {
-		String sql="select * from g_forum where classID="+classid+" order by id desc";
+		String sql="SELECT * FROM g_forum where classID="+classid+" order by id desc";
 		if(typeid==2)
 		{
-			sql="select * from g_forum  where classID="+classid+" order by revertNum desc,id desc";
+			sql="SELECT * FROM g_forum  where classID="+classid+" order by revertNum desc,id desc";
 		}
 		if(typeid==4)
 		{
-			sql="select * from g_forum  where vouch=1 order by id desc";
+			sql="SELECT * FROM g_forum  where vouch=1 order by id desc";
 		}
 		logger.debug(sql.toString());
 		List<ForumBean> v = new ArrayList<ForumBean>();
@@ -289,7 +289,7 @@ public class ForumDAOImpl extends DaoBase {
 	public List<ForumBean> getRowForum(int row, int typeid) throws Exception {
 		
 		String sql="select top "+row+" * from g_forum  order by id desc";
-		if(typeid==4)//´Ë´¦ÉèÖÃvouch=2ÊÇ»ñµÃÂÛÌ³Ê×Ò³ÒªÏÔÊ¾µÄÌû×Ó
+		if(typeid==4)//æ­¤å¤„è®¾ç½®vouch=2æ˜¯è·å¾—è®ºå›é¦–é¡µè¦æ˜¾ç¤ºçš„å¸–å­
 		{
 			sql="select top "+row+" * from g_forum  where vouch=2 order by id desc";
 		}
@@ -336,7 +336,7 @@ public class ForumDAOImpl extends DaoBase {
 	
 	
 	/**
-	 * ¸üĞÂÌû×ÓµÄÏà¹ØÊôĞÔ
+	 * æ›´æ–°å¸–å­çš„ç›¸å…³å±æ€§
 	 * @param id
 	 * @param name
 	 * @return
@@ -353,7 +353,7 @@ public class ForumDAOImpl extends DaoBase {
 	}
 	
 	/**
-	 * ¸üĞÂÌû×ÓµÄ»Ø¸´ÊıºÍ»ØÌûÊ±¼ä
+	 * æ›´æ–°å¸–å­çš„å›å¤æ•°å’Œå›å¸–æ—¶é—´
 	 * @param id
 	 * @param name
 	 * @return
@@ -362,7 +362,7 @@ public class ForumDAOImpl extends DaoBase {
 	public void updateRevertTime(int id)throws Exception{
 		
 		String sql = "update g_forum set revertNum = revertNum + 1 ,revert_time = now() where id="+id;
-		logger.debug("¸üĞÂÌû×ÓµÄ»Ø¸´ÊıºÍ»ØÌûÊ±¼äµÄsql :"+sql);
+		logger.debug("æ›´æ–°å¸–å­çš„å›å¤æ•°å’Œå›å¸–æ—¶é—´çš„sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try{
@@ -380,15 +380,15 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * ¸ù¾İid»ñÈ¡ÂÛÌ³µÄÂÛÌ³Ãû
+	 * æ ¹æ®idè·å–è®ºå›çš„è®ºå›å
 	 * @param id
 	 * @return
 	 */
 	public String getForumNameById(String classID)
 	{
-		String sql = "select className from g_forum_class where classID="+classID;
+		String sql = "SELECT className from g_forum_class where classID="+classID;
 		String className = "";
-		logger.debug("¸ù¾İid»ñÈ¡ÂÛÌ³µÄÂÛÌ³ÃûµÄsql :"+sql);
+		logger.debug("æ ¹æ®idè·å–è®ºå›çš„è®ºå›åçš„sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try{
@@ -413,13 +413,13 @@ public class ForumDAOImpl extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½ËùÓĞÖÃ¶¥µÄÌû×Ó
+	 * å¾—åˆ°æ‰€æœ‰ç½®é¡¶çš„å¸–å­
 	 * @return
 	 */
 	public List<ForumBean> getAllTaxis( int classId) {
 		List<ForumBean> list = new ArrayList<ForumBean>();
-		String sql = "select * from g_forum where classID = "+classId+" and taxis > 0";
-		logger.debug("µÃµ½ËùÓĞÖÃ¶¥µÄÌû×ÓµÄsql :"+sql);
+		String sql = "SELECT * FROM g_forum where classID = "+classId+" and taxis > 0";
+		logger.debug("å¾—åˆ°æ‰€æœ‰ç½®é¡¶çš„å¸–å­çš„sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try{
@@ -451,15 +451,15 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * È·¶¨´ËÈËÊÇ·ñÔÚÊ®·ÖÖÓÖ®ÄÚ·¢¹ıÌû, Èç¹û·¢¹ı·µ»Øtrue,
-	 * Èç¹ûÃ»·¢·µ»Øfalse.
+	 * ç¡®å®šæ­¤äººæ˜¯å¦åœ¨ååˆ†é’Ÿä¹‹å†…å‘è¿‡å¸–, å¦‚æœå‘è¿‡è¿”å›true,
+	 * å¦‚æœæ²¡å‘è¿”å›false.
 	 * @param pk
 	 * @return
 	 */
 	public boolean isInTemMinute(int p_pk)
 	{
-		String sql = "select * from g_forum where UserID = "+p_pk+" and now() < (add_time + INTERVAL 10 minute)";
-		logger.debug("È·¶¨´ËÈËÊÇ·ñÔÚÊ®·ÖÖÓÖ®ÄÚ·¢¹ıÌûµÄsql :"+sql);
+		String sql = "SELECT * FROM g_forum where UserID = "+p_pk+" and now() < (add_time + INTERVAL 10 minute)";
+		logger.debug("ç¡®å®šæ­¤äººæ˜¯å¦åœ¨ååˆ†é’Ÿä¹‹å†…å‘è¿‡å¸–çš„sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		boolean flag = false;
@@ -479,15 +479,15 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * È·¶¨´ËÄÚÈİÊÇ·ñÔÚÊ®·ÖÖÓÄÚÓĞ¹ıÏàÍ¬ÄÚÈİµÄÌû×Ó
+	 * ç¡®å®šæ­¤å†…å®¹æ˜¯å¦åœ¨ååˆ†é’Ÿå†…æœ‰è¿‡ç›¸åŒå†…å®¹çš„å¸–å­
 	 * @param content
 	 * @return
 	 */
 	public boolean haveSameContent(String content)
 	{
-		String sql = "select id from g_forum where now() < (add_time + INTERVAL 100000 minute) and content = '"
+		String sql = "SELECT id from g_forum where now() < (add_time + INTERVAL 100000 minute) and content = '"
 					+StringUtil.gbToISO(content)+"'";
-		logger.debug("È·¶¨´ËÈËÊÇ·ñÔÚÊ®·ÖÖÓÖ®ÄÚ·¢¹ıÌûµÄsql :"+sql);
+		logger.debug("ç¡®å®šæ­¤äººæ˜¯å¦åœ¨ååˆ†é’Ÿä¹‹å†…å‘è¿‡å¸–çš„sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		boolean flag = false;
@@ -508,16 +508,16 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * µÃµ½¹ÜÀíÔ±ÁĞ±í
+	 * å¾—åˆ°ç®¡ç†å‘˜åˆ—è¡¨
 	 * @param classId
 	 * @return
 	 */
 	public List<String> getManagerList(String classId)
 	{
 		List<String> managerList = new ArrayList<String>();
-		//String sql = "select UserName from g_forum_manager where classID ='"+classId+"'";
-		String sql = "select UserName from g_forum_manager";
-        logger.debug("µÃµ½¹ÜÀíÔ±ÁĞ±í="+sql);
+		//String sql = "SELECT UserName from g_forum_manager where classID ='"+classId+"'";
+		String sql = "SELECT UserName from g_forum_manager";
+        logger.debug("å¾—åˆ°ç®¡ç†å‘˜åˆ—è¡¨="+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         try{
@@ -536,14 +536,14 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * ÊÇ·ñÊÇ¹ÜÀíÔ±
+	 * æ˜¯å¦æ˜¯ç®¡ç†å‘˜
 	 * @param pk
 	 * @return
 	 */
 	public boolean isManager(int pPk)
 	{
-		String sql = "select UserName from g_forum_manager where UserID ='"+pPk+"'";
-        logger.debug("µÃµ½¹ÜÀíÔ±ÁĞ±í="+sql);
+		String sql = "SELECT UserName from g_forum_manager where UserID ='"+pPk+"'";
+        logger.debug("å¾—åˆ°ç®¡ç†å‘˜åˆ—è¡¨="+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         try{
@@ -561,14 +561,14 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * ´¦ÀíÖÃ¶¥ÊÂÒË
+	 * å¤„ç†ç½®é¡¶äº‹å®œ
 	 * @param parseInt
 	 * @param state
 	 */
 	public void zhiDing(int page_id, int state)
 	{
 		String sql = "update g_forum set taxis = "+state + " where id = "+page_id;
-        logger.debug("´¦ÀíÖÃ¶¥ÊÂÒË="+sql);
+        logger.debug("å¤„ç†ç½®é¡¶äº‹å®œ="+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         try{
@@ -584,14 +584,14 @@ public class ForumDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * ´¦ÀíËøÌûÊÂÒË
+	 * å¤„ç†é”å¸–äº‹å®œ
 	 * @param page_id
 	 * @param state
 	 */
 	public void lockForum(int page_id, int state)
 	{
 		String sql = "update g_forum set vouch = "+state + " where id = "+page_id;
-        logger.debug("´¦ÀíËøÌûÊÂÒË="+sql);
+        logger.debug("å¤„ç†é”å¸–äº‹å®œ="+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
         try{

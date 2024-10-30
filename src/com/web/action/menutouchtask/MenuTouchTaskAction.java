@@ -17,12 +17,12 @@ import com.ls.web.service.menu.MenuService;
 import com.ls.web.service.task.TaskSubService;
 
 /**
- * @author ºîºÆ¾ü  ²Ëµ¥´¥·¢ÈÎÎñ
+ * @author ä¾¯æµ©å†›  èœå•è§¦å‘ä»»åŠ¡
  */
 public class MenuTouchTaskAction extends DispatchAction
 {
 	/**
-	 * ²Ëµ¥´¥·¢ÈÎÎñ
+	 * èœå•è§¦å‘ä»»åŠ¡
 	 * */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -37,44 +37,44 @@ public class MenuTouchTaskAction extends DispatchAction
 		String hint = null;
 		OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(menu_id));
 		if(menu != null && menu.getMenuOperate1()!=null && !menu.getMenuOperate1().equals("")){
-			String rating = menu.getMenuOperate1();//µÈ¼¶ÏŞÖÆÌõ¼ş
-			String title = menu.getMenuOperate3();//µÈ¼¶ÏŞÖÆÌõ¼ş
+			String rating = menu.getMenuOperate1();//ç­‰çº§é™åˆ¶æ¡ä»¶
+			String title = menu.getMenuOperate3();//ç­‰çº§é™åˆ¶æ¡ä»¶
 			String grade[] = rating.split(",");
 				if(roleEntity.getBasicInfo().getGrade() < Integer.parseInt(grade[0])){
-					hint = "ÄúµÄµÈ¼¶»¹Ã»ÓĞ´ïµ½";
+					hint = "æ‚¨çš„ç­‰çº§è¿˜æ²¡æœ‰è¾¾åˆ°";
 					request.setAttribute("propUseEffect", propUseEffect);
 					request.setAttribute("hint", hint);
 					return mapping.findForward("menutouchtaskpage");
 				} 
 				if(roleEntity.getBasicInfo().getGrade() > Integer.parseInt(grade[1])){
-					hint = "ÄúµÄµÈ¼¶ÒÑ¾­³¬¹ıÏŞÖÆ";
+					hint = "æ‚¨çš„ç­‰çº§å·²ç»è¶…è¿‡é™åˆ¶";
 					request.setAttribute("propUseEffect", propUseEffect);
 					request.setAttribute("hint", hint);
 					return mapping.findForward("menutouchtaskpage");
 				}
 				
 				if(roleEntity.getTitleSet().isHaveByTitleStr(title)==false){
-					hint = "ÄúµÄÌõ¼ş²»Âú×ã£¬²»ÄÜ½Ó¸ÃÈÎÎñ¡£";
+					hint = "æ‚¨çš„æ¡ä»¶ä¸æ»¡è¶³ï¼Œä¸èƒ½æ¥è¯¥ä»»åŠ¡ã€‚";
 					request.setAttribute("propUseEffect", propUseEffect);
 					request.setAttribute("hint", hint);
 					return mapping.findForward("menutouchtaskpage");
 				}
 				if(roleEntity.getBasicInfo().getWrapSpare() == 0){
-					hint = "ÄúµÄ°ü¹ü²»×ã,²»ÄÜ½Ó¸ÃÈÎÎñ";
+					hint = "æ‚¨çš„åŒ…è£¹ä¸è¶³,ä¸èƒ½æ¥è¯¥ä»»åŠ¡";
 					request.setAttribute("propUseEffect", propUseEffect);
 					request.setAttribute("hint", hint);
 					return mapping.findForward("menutouchtaskpage");
 				}
 		}else{
-			hint = "Êı¾İ´íÎó";
+			hint = "æ•°æ®é”™è¯¯";
 			request.setAttribute("propUseEffect", propUseEffect);
 			request.setAttribute("hint", hint);
 			return mapping.findForward("menutouchtaskpage");
 		}
 		
 		
-		int task_type = 2;//´¥·¢ÀàĞÍ 1 µÀ¾ß´¥·¢ÈÎÎñ 2 ²Ëµ¥´¥·¢ÈÎÎñ 
-		// ½ÓÊÜÈÎÎñ
+		int task_type = 2;//è§¦å‘ç±»å‹ 1 é“å…·è§¦å‘ä»»åŠ¡ 2 èœå•è§¦å‘ä»»åŠ¡ 
+		// æ¥å—ä»»åŠ¡
 		hint = taskService.accectTaskFromList(menu,roleEntity,Integer.parseInt(menu_id), propUseEffect,task_type);
 
 		 

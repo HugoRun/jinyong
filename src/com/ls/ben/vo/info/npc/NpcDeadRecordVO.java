@@ -4,17 +4,17 @@ import java.util.Date;
 
 /**
  * @author ls
- * 功能:npc_deadtime_record
+ * 鍔熻兘:npc_deadtime_record
  * Mar 5, 2009
  */
 public class NpcDeadRecordVO
 {
-	private int  id;         /**主键*/
-	private int  pPk;        /**玩家id*/
-	private int  npcId;      /**NPC的ID*/
-	private int  sceneId;    /** 场景ID */
-	private int  mapId;      /**map的ID*/
-	private Date npcDeadTime;/** 上一次NPC死亡时间 */
+	private int  id;         /**涓婚敭*/
+	private int  pPk;        /**鐜╁id*/
+	private int  npcId;      /**NPC鐨処D*/
+	private int  sceneId;    /** 鍦烘櫙ID */
+	private int  mapId;      /**map鐨処D*/
+	private Date npcDeadTime;/** 涓婁竴娆PC姝讳骸鏃堕棿 */
 	public int getId()
 	{
 		return id;

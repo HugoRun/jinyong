@@ -2,7 +2,7 @@ package com.ls.model.organize.faction;
 
 /**
  * @author ls
- * °ïÅÉ³ÉÔ±µÄ°ïÅÉÏà¹ØĞÅÏ¢
+ * å¸®æ´¾æˆå‘˜çš„å¸®æ´¾ç›¸å…³ä¿¡æ¯
  */
 public class FMember
 {
@@ -10,8 +10,8 @@ public class FMember
 	private int fId;
 	private String name;
 	private String nickname;
-	private int contribute;//°ïÅÉ¹±Ï×
-	private int job;//Ö°Îñ
+	private int contribute;//å¸®æ´¾è´¡çŒ®
+	private int job;//èŒåŠ¡
 	
 	public int getPPk()
 	{

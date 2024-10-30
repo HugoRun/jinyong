@@ -6,22 +6,22 @@ import com.ls.ben.cache.staticcache.prop.PropCache;
 import com.ls.ben.vo.goods.prop.PropVO;
 
 /**
- * ¹¦ÄÜ:±íu_wrapprop_info
+ * åŠŸèƒ½:è¡¨u_wrapprop_info
  * 
- * @author ÁõË§ 1:45:03 PM
+ * @author åˆ˜å¸… 1:45:03 PM
  */
 public class PlayerPropGroupVO
 {
 
 	/** id */
 	private int pgPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** µÀ¾ßÔÚ°ü¸¤ÀïµÄ·ÖÀà */
+	/** é“å…·åœ¨åŒ…è¢±é‡Œçš„åˆ†ç±» */
 	private int pgType;
-	/** µÀ¾ßid */
+	/** é“å…·id */
 	private int propId;
-	/** µÀ¾ßÀàĞÍ */
+	/** é“å…·ç±»å‹ */
 	private int propType;
 
 	private int propBonding;
@@ -29,16 +29,16 @@ public class PlayerPropGroupVO
 	private int propIsReconfirm;
 	private int propUseControl;
 
-	/** µÀ¾ßÊıÁ¿ */
+	/** é“å…·æ•°é‡ */
 	private int propNum;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private Date createTime;
 
-	/** µÀ¾ßÌØÊâ×Ö¶Î1 */
+	/** é“å…·ç‰¹æ®Šå­—æ®µ1 */
 	private String propOperate1;
 
 	/**
-	 * ÊÇ·ñ¿É¶ªÆú
+	 * æ˜¯å¦å¯ä¸¢å¼ƒ
 	 * @return
 	 */
 	public boolean isThrowed()
@@ -54,7 +54,7 @@ public class PlayerPropGroupVO
 	}
 	
 	/**
-	 * µÃµ½µÀ¾ßµÄĞÅÏ¢
+	 * å¾—åˆ°é“å…·çš„ä¿¡æ¯
 	 * @return
 	 */
 	public PropVO getPropInfo()

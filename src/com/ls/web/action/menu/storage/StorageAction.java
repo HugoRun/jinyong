@@ -29,12 +29,12 @@ import com.ls.web.service.player.RoleService;
 import com.ls.web.service.storage.StorageService;
 
 /**
- * ÎïÆ·²Ö¿â²Ù×÷
+ * ç‰©å“ä»“åº“æ“ä½œ
  * @author ls
  */
 public class StorageAction extends ActionBase{
 
-	// °ü¹üÎïÆ·ÁĞ±í
+	// åŒ…è£¹ç‰©å“åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -61,7 +61,7 @@ public class StorageAction extends ActionBase{
 		
 		int p_pk = roleInfo.getBasicInfo().getPPk();
 
-		/* ²éÑ¯Êı¾İ¿âÖĞ¸Ã½ÇÉ«ÓĞÃ»ÓĞ¸ÃÀàĞÍ²Ö¿â */
+		/* æŸ¥è¯¢æ•°æ®åº“ä¸­è¯¥è§’è‰²æœ‰æ²¡æœ‰è¯¥ç±»å‹ä»“åº“ */
 		WareHouseVO warevo = storageService.getWareHouseByPPk(p_pk);; 
 		
 		QueryPage item_page = null;
@@ -83,17 +83,17 @@ public class StorageAction extends ActionBase{
 		return mapping.findForward("storage_list");
 	}	
 	
-	// ´¢´æ²Ù×÷
+	// å‚¨å­˜æ“ä½œ
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{	
 		RoleEntity  roleInfo = this.getRoleEntity(request);
 		
-		//×°±¸ÀàĞÍ£¬1ÊÇÒ©Æ·£¬2ÊÇÊé£¬3ÊÇ×°±¸£¬4ÊÇÈÎÎñ£¬5ÊÇÆäËû
+		//è£…å¤‡ç±»å‹ï¼Œ1æ˜¯è¯å“ï¼Œ2æ˜¯ä¹¦ï¼Œ3æ˜¯è£…å¤‡ï¼Œ4æ˜¯ä»»åŠ¡ï¼Œ5æ˜¯å…¶ä»–
 		String w_type = request.getParameter("w_type");
 		request.setAttribute("w_type",w_type);
 
-		//´æ´¢Ò³Êı
+		//å­˜å‚¨é¡µæ•°
 		request.setAttribute("page_no", request.getParameter("pageNo")+"");
 		
 		String resultWml = null;
@@ -103,19 +103,19 @@ public class StorageAction extends ActionBase{
 		
 		int warespare = storageSerivce.getWareSpareById( roleInfo.getBasicInfo().getPPk());
 		
-		// ´¢´æ×°±¸
+		// å‚¨å­˜è£…å¤‡
 		if (Integer.parseInt(w_type) == Wrap.EQUIP)
 		{
 			String equip_id = request.getParameter("equip_id");
 			if(warespare >=1 ){
 				resultWml = storageSerivce.storeEquip( roleInfo.getBasicInfo().getPPk(),Integer.parseInt(equip_id));
 			}else {
-				resultWml = "¶Ô²»Æğ£¬²Ö¿âÒÑÂú£¡";
+				resultWml = "å¯¹ä¸èµ·ï¼Œä»“åº“å·²æ»¡ï¼";
 			}
 			
 		} else	
 		{	
-			/* ²éÑ¯¸Ã½ÇÉ«µÄ²Ö¿âÓĞ¶àÉÙ¿ÕÓà */
+			/* æŸ¥è¯¢è¯¥è§’è‰²çš„ä»“åº“æœ‰å¤šå°‘ç©ºä½™ */
 			String pg_pk = request.getParameter("pg_pk");
 			PlayerPropGroupVO goodsGroup = goodsSerivce.getGoodsGroupByPgPk(Integer.parseInt(pg_pk));
 			String prop_num_str = request.getParameter("prop_num");
@@ -123,19 +123,19 @@ public class StorageAction extends ActionBase{
 			if (prop_num_str == null)	
 			{
 				
-				// µÀ¾ß
-				if (goodsGroup.getPropNum() == 1)// Ö»ÓĞÒ»¸ö
+				// é“å…·
+				if (goodsGroup.getPropNum() == 1)// åªæœ‰ä¸€ä¸ª
 				{
 						
 					if(warespare >=1 ){
 						
 						resultWml = storageSerivce.storeProps(Integer.parseInt(pg_pk),1,roleInfo);
 					}else {	
-						resultWml = "¶Ô²»Æğ£¬²Ö¿âÒÑÂú£¡";
+						resultWml = "å¯¹ä¸èµ·ï¼Œä»“åº“å·²æ»¡ï¼";
 					}
 					
 				} else
-				// ÓĞ¶à¸ö£¬ÈÃÓÃ»§Ìí¼ÓÊıÁ¿
+				// æœ‰å¤šä¸ªï¼Œè®©ç”¨æˆ·æ·»åŠ æ•°é‡
 				{	
 					request.setAttribute("w_type", w_type);
 					request.setAttribute("pg_pk", pg_pk);
@@ -150,14 +150,14 @@ public class StorageAction extends ActionBase{
 				{
 					prop_num = Integer.parseInt(prop_num_str);
 					if(prop_num < 0){
-						resultWml = "ĞÂ½ğ¾¯¸æÄú, Ë¢×°±¸ÊÇÒ»¼şÎ¥·¨ĞĞÎª!";
+						resultWml = "æ–°é‡‘è­¦å‘Šæ‚¨, åˆ·è£…å¤‡æ˜¯ä¸€ä»¶è¿æ³•è¡Œä¸º!";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("pg_pk", pg_pk);
 						request.setAttribute("resultWml", resultWml);
 						return mapping.findForward("input_num");
 					}	
 					if(prop_num == 0){
-						resultWml = "²»ÄÜ´æ´¢Áã¸öÎïÆ·!";
+						resultWml = "ä¸èƒ½å­˜å‚¨é›¶ä¸ªç‰©å“!";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("pg_pk", pg_pk);
 						request.setAttribute("resultWml", resultWml);
@@ -169,13 +169,13 @@ public class StorageAction extends ActionBase{
 						if(warespare >= need_space ){
 							resultWml = storageSerivce.storeProps(Integer.parseInt(pg_pk),prop_num,roleInfo);
 						}else{	
-							resultWml = "¶Ô²»Æğ£¬²Ö¿âÒÑÂú£¡";
+							resultWml = "å¯¹ä¸èµ·ï¼Œä»“åº“å·²æ»¡ï¼";
 						}
 						
 					} else
 					{
-						// ÊıÁ¿²»¹»
-						resultWml = "¶Ô²»Æğ£¬¸ÃÎïÆ·ÊıÁ¿²»¹»£¡";
+						// æ•°é‡ä¸å¤Ÿ
+						resultWml = "å¯¹ä¸èµ·ï¼Œè¯¥ç‰©å“æ•°é‡ä¸å¤Ÿï¼";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("pg_pk", pg_pk);
 						request.setAttribute("resultWml", resultWml);
@@ -183,8 +183,8 @@ public class StorageAction extends ActionBase{
 					}
 				} catch (NumberFormatException e)
 				{
-					// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-					resultWml = "ÕıÈ·ÊäÈëÎïÆ·ÊıÁ¿";
+					// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+					resultWml = "æ­£ç¡®è¾“å…¥ç‰©å“æ•°é‡";
 					request.setAttribute("w_type", w_type);
 					request.setAttribute("pg_pk", pg_pk);
 					request.setAttribute("resultWml", resultWml);
@@ -200,14 +200,14 @@ public class StorageAction extends ActionBase{
 		}
 		catch (Exception e)
 		{
-			System.out.println("Ìø×ª´íÎó.....");
+			System.out.println("è·³è½¬é”™è¯¯.....");
 		}
 		return null;
 	}
 	
 	
 	/**
-	 * ½ÇÉ«°ü¹ü×°±¸²é¿´ÏêÏ¸ĞÅÏ¢
+	 * è§’è‰²åŒ…è£¹è£…å¤‡æŸ¥çœ‹è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -230,7 +230,7 @@ public class StorageAction extends ActionBase{
 		return mapping.findForward("equip_view");
 	}
 	
-	// ½ÇÉ«°ü¹üµÀ¾ß²é¿´ÏêÏ¸ĞÅÏ¢
+	// è§’è‰²åŒ…è£¹é“å…·æŸ¥çœ‹è¯¦ç»†ä¿¡æ¯
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -249,7 +249,7 @@ public class StorageAction extends ActionBase{
 		return mapping.findForward("goods_view");
 	}
 	
-	/**Ôö¼Ó²Ö¿â°ü¹üµÄ¶ş´ÎÈ·ÈÏÒ³Ãæ*/
+	/**å¢åŠ ä»“åº“åŒ…è£¹çš„äºŒæ¬¡ç¡®è®¤é¡µé¢*/
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		RoleEntity  roleInfo = super.getRoleEntity(request);
@@ -258,35 +258,35 @@ public class StorageAction extends ActionBase{
 		int num = dao.getPlayerWarehouseNum(roleInfo.getBasicInfo().getPPk());
 		if(num == 80){
 			request.setAttribute("num", ""+1);
-			request.setAttribute("display", "µÚÒ»´Î¹ºÂòÔö¼Ó20¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á200!");
+			request.setAttribute("display", "ç¬¬ä¸€æ¬¡è´­ä¹°å¢åŠ 20ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—200!");
 			return mapping.findForward("submit");
 		}else if(num == 100){
 			request.setAttribute("num", ""+2);
-			request.setAttribute("display", "µÚ¶ş´Î¹ºÂòÔö¼Ó20¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á500!");
+			request.setAttribute("display", "ç¬¬äºŒæ¬¡è´­ä¹°å¢åŠ 20ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—500!");
 			return mapping.findForward("submit");
 		}else if(num == 120){
 			request.setAttribute("num", ""+3);
-			request.setAttribute("display", "µÚÈı´Î¹ºÂòÔö¼Ó20¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á1000!");
+			request.setAttribute("display", "ç¬¬ä¸‰æ¬¡è´­ä¹°å¢åŠ 20ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—1000!");
 			return mapping.findForward("submit");
 		}if(num == 140){
 			request.setAttribute("num", ""+4);
-			request.setAttribute("display", "µÚËÄ´Î¹ºÂòÔö¼Ó20¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á1500!");
+			request.setAttribute("display", "ç¬¬å››æ¬¡è´­ä¹°å¢åŠ 20ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—1500!");
 			return mapping.findForward("submit");
 		}else if(num == 160){
 			request.setAttribute("num", ""+5);
-			request.setAttribute("display", "µÚÎå´Î¹ºÂòÔö¼Ó20¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á2000!");
+			request.setAttribute("display", "ç¬¬äº”æ¬¡è´­ä¹°å¢åŠ 20ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—2000!");
 			return mapping.findForward("submit");
 		}else{
-			request.setAttribute("display", "ÄúµÄ²Ö¿âÀ¸Î»ÒÑ¾­Îª×î´óÁË!");
+			request.setAttribute("display", "æ‚¨çš„ä»“åº“æ ä½å·²ç»ä¸ºæœ€å¤§äº†!");
 			return mapping.findForward("display");
 		}
 		
 	}
 	
-	/**Ôö¼Ó°ü¹ü²¢¼õÈ¥Íæ¼ÒµÄÔª±¦ÊıÁ¿*/
+	/**å¢åŠ åŒ…è£¹å¹¶å‡å»ç©å®¶çš„å…ƒå®æ•°é‡*/
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		/**Èç¹ûÊÇµçĞÅÆ½Ì¨×ß×¨ÓÃÇşµÀ**/
+		/**å¦‚æœæ˜¯ç”µä¿¡å¹³å°èµ°ä¸“ç”¨æ¸ é“**/
 		if(GameConfig.getChannelId()==Channel.TELE)
 		{
 			return n8(mapping,form,request,response);
@@ -327,13 +327,13 @@ public class StorageAction extends ActionBase{
 
 		if (useyuanbao == -1)
 		{
-			request.setAttribute("display", "ÊıÁ¿´íÎóÇëÖØĞÂ¹ºÂò<br/>");
+			request.setAttribute("display", "æ•°é‡é”™è¯¯è¯·é‡æ–°è´­ä¹°<br/>");
 			return mapping.findForward("display");
 		}
 		else
 		
 		if(useyuanbao > yuanbao){
-			request.setAttribute("display", "ÄúµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»¹»!");
+			request.setAttribute("display", "æ‚¨çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸å¤Ÿ!");
 			return mapping.findForward("display");
 		}else{
 		WareHouseDao dao = new WareHouseDao();
@@ -342,14 +342,14 @@ public class StorageAction extends ActionBase{
 		economyService.spendYuanbao(roleInfo.getBasicInfo().getUPk(), useyuanbao);
 		
 		LogService logService = new LogService();
-		logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), useyuanbao+"", useyuanbao+"", "¹ºÂò²Ö¿â");
+		logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), useyuanbao+"", useyuanbao+"", "è´­ä¹°ä»“åº“");
 		
-		request.setAttribute("display", "¹ºÂò³É¹¦,ÄúµÄ²Ö¿â¸ñÊıÔö¼ÓÁË20¸ö¸ñ×Ó!");
+		request.setAttribute("display", "è´­ä¹°æˆåŠŸ,æ‚¨çš„ä»“åº“æ ¼æ•°å¢åŠ äº†20ä¸ªæ ¼å­!");
 		return mapping.findForward("display");
 		}
 	} 
 	/**
-	 * µçĞÅ×¨ÓÃ
+	 * ç”µä¿¡ä¸“ç”¨
 	 */
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -387,7 +387,7 @@ public class StorageAction extends ActionBase{
 		}
 		else
 		{
-			display="¹ºÂò³É¹¦£¡ÄúµÄ²Ö¿âÔö¼ÓÁË10¸ö¸ñ×Ó£¡";
+			display="è´­ä¹°æˆåŠŸï¼æ‚¨çš„ä»“åº“å¢åŠ äº†10ä¸ªæ ¼å­ï¼";
 		}
 		return mapping.findForward("display");
 	}

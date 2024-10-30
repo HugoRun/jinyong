@@ -1,371 +1,323 @@
 package com.ben.pk.active;
 
-import java.util.Calendar;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 import com.ls.ben.cache.dynamic.manual.user.RoleCache;
 import com.ls.ben.dao.info.partinfo.PlayerPropGroupDao;
-import com.ls.ben.vo.info.partinfo.PlayerPropGroupVO;
 import com.ls.model.user.RoleEntity;
 import com.ls.pub.bean.QueryPage;
 import com.ls.pub.constant.GoodsType;
 import com.ls.pub.util.DateUtil;
 import com.ls.web.service.goods.GoodsService;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.DispatchAction;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
+import java.util.List;
 
 /**
- * ¹¦ÄÜ£º´¦ÀíPK»î¶¯µÄaction
- * @author thomas.lei 
+ * åŠŸèƒ½ï¼šå¤„ç†PKæ´»åŠ¨çš„action
+ *
+ * @author thomas.lei
  * 27/04/10 PM
  */
-public class PkActiveAction extends DispatchAction
-{
-	Logger logger = Logger.getLogger("log.action");
+public class PkActiveAction extends DispatchAction {
+    Logger logger = Logger.getLogger("log.action");
 
-	// ´¦ÀíÍæ¼Ò±¨ÃûÇëÇó
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		
-		String message = "";
-		Calendar cal = Calendar.getInstance();
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int month=cal.get(Calendar.MONTH)+1;
-		// Ã¿ÔÂ1-3Îª±¨ÃûÊ±¼äÆäËûÊ±¼ä²»¿ÉÒÔ±¨Ãû
-		if(month!=5)
-		{
-			if(day>3)
-			{
-				message = "±¨ÃûÈÕÆÚÒÑ¹ı²»¿ÉÔÙ±¨Ãû";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		else
-		{
-			if(day<12||day>14)
-			{
-				message = "±¨ÃûÈÕÆÚÒÑ¹ı²»¿ÉÔÙ±¨Ãû";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		
-		String pPk = (String) request.getSession().getAttribute("pPk");
-		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-		int num = propGroupDao.getPropNumByByPropID(Integer.parseInt(pPk),Integer.parseInt(PKActiveContent.PROPID));// µÃµ½µÀ¾ß100ÎªµÀ¾ßID
-		RoleCache roleCache = new RoleCache();
-		RoleEntity roleEntity = roleCache.getByPpk(pPk);
-		// ÅĞ¶Ï±¨ÃûËùĞèµÀ¾ßºÍµÈ¼¶ÊÇ·ñ·ûºÏÒªÇó
-		if (num < 1 || roleEntity.getBasicInfo().getGrade() < 60)
-		{
-			message = "ÄúÃ»ÓĞ±¨ÃûµÀ¾ß»òÕßµÈ¼¶²»¹»²»¿ÉÒÔ±¨Ãû";
-			request.setAttribute("message", message);
-			logger.info(message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		int roleId = roleEntity.getBasicInfo().getPPk();
-		int roleLevel = roleEntity.getBasicInfo().getGrade();
-		String roleName = roleEntity.getBasicInfo().getName();
-		PKActiveService pkService = new PKActiveService();
-		PKActiveRegist roleBody = new PKActiveRegist();
-		roleBody.setRoleID(roleId);
-		roleBody.setRoleLevel(roleLevel);
-		roleBody.setRoleName(roleName);
-		roleBody.setIsWin(0);
-		int count = 0;
-		PKActiveRegist role = pkService.checkRoleRegist(roleId);
-		// Èç¹ûÓĞÀúÊ·±¨Ãû¼ÇÂ¼
-		if (role != null)
-		{
-			if (DateUtil.getDifferDaysToToday(role.getRegistTime()) < 3)
-			{
-				message = "ÄúÒÑ¾­±¨Ãû£¬Çë²»ÒªÖØ¸´±¨Ãû";
-				request.setAttribute("message", message);
-				logger.info(message);
-			}
-			else
-			{
-				count = pkService.refreshRegist(roleBody);
-				if (count > 0)
-				{
-					message = "ÄúÒÑ±¨Ãû³É¹¦£¬×£Äã¶áµÃµÚÒ»Ãû";
-					request.setAttribute("message", message);
-					propGroupDao.removeByProp(Integer.parseInt(pPk),
-							new String(PKActiveContent.PROPID));// µÀ¾ßID100µÄµÀ¾ß ÍêÁË¸ù¾İ²ß»®ĞŞ¸Ä
-				}
-				else
-				{
-					message = "±¨ÃûÊ§°Ü£¬ÇëÖØĞÂ²Ù×÷";
-					request.setAttribute("message", message);
-					logger.info(message);
-				}
-			}
-		}
-		// Ã»ÓĞÀúÊ·¼ÇÂ¼´¦Àí
-		else
-		{
-			roleBody.setRoleID(roleId);
-			roleBody.setRoleLevel(roleLevel);
-			roleBody.setRoleName(roleName);
-			roleBody.setIsWin(0);
-			count = pkService.pkActiveRegist(roleBody);
-			if (count > 0)
-			{
-				message = "ÄúÒÑ±¨Ãû³É¹¦£¬×£Äã¶áµÃµÚÒ»Ãû";
-				request.setAttribute("message", message);
-				propGroupDao.removeByProp(Integer.parseInt(pPk), new String(
-						PKActiveContent.PROPID));// µÀ¾ßID100µÄµÀ¾ß ÍêÁË¸ù¾İ²ß»®ĞŞ¸Ä
-				logger.info(message);
-			}
-			else
-			{
-				message = "±¨ÃûÊ§°Ü£¬ÇëÖØĞÂ²Ù×÷";
-				request.setAttribute("message", message);
-				logger.info(message);
-			}
+    // å¤„ç†ç©å®¶æŠ¥åè¯·æ±‚
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
-		}
-		return mapping.findForward("pkactivedisplay");
-	}
-	//´¦ÀíÏÔÊ¾¶ÔÕó±íºÍ²é¿´¶ÔÕó±íĞÅÏ¢
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String message="";
-		String index=request.getParameter("index");
-		String view=request.getParameter("view");
-		if(view==null)
-		{
-			logger.info("²ÎÊıÎªnull");
-			message = "²ÎÊı´íÎó£¬ÇëÖØĞÂ²Ù×÷";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		Calendar cal = Calendar.getInstance();
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int hour=cal.get(Calendar.HOUR_OF_DAY);
-		if(view.equals("vs"))//±¨ÃûÆÚ¼ä²»¿É²é¿´¶ÔÕóĞÅÏ¢
-		{
-			if (day<=3)
-			{
-				message = "±¨ÃûÆÚ¼ä²»¿ÉÒÔ²é¿´¶ÔÕóĞÅÏ¢";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-			
-		}
-		if(view.equals("rs"))//±¨ÃûÆÚ¼äºÍµ±ÈÕ±ÈÈü½áÊøÇ°²»¿É²é¿´±ÈÈü½á¹û
-		{
-			
-			if (day<=3||hour<14)//2µãÇ°²»¿É²é¿´±ÈÈü½á¹û
-			{
-				message = "ÏÖÔÚ²»¿ÉÒÔ²é¿´±ÈÈü½á¹û ±ÈÈüÊ±¼äÃ¿ÈÕ2µã¹«²¼±ÈÈü½á¹û";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		PKActiveService ps=new PKActiveService();
-		List list=ps.getAllRole();
-		if(list.size()==1)
-		{
-			PKActiveRegist pr=(PKActiveRegist)list.get(0);
-			message="±¾ÔÂ±ÈÈüÒÑ¾­½áÊø,¹Ú¾üÊÇ£º"+pr.getRoleName();
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		if(index==null)
-		{
-			index="0";
-		}
-		else
-		{
-			int temp=Integer.parseInt(index)-1;
-			index=temp+"";
-		}
-		List<PKVs> data=ps.getVsInfo(Integer.parseInt(index),5);
-		if(data==null||data.size()==0)
-		{
-			message = "ÏÖÔÚÃ»ÓĞ½á¹û...";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		QueryPage qp=new QueryPage(5*Integer.parseInt(index),ps.getTotalNum(),5,data);
-		request.setAttribute("queryPage",qp);
-		if(view.equals("vs"))
-		{
-			return mapping.findForward("vs_result");//ÏÔÊ¾¶ÔÕóĞÅÏ¢
-		}
-		else
-		{
-			return mapping.findForward("rs_result");//ÏÔÊ¾±ÈÈü½á¹ûĞÅÏ¢
-		}
-	}
+        String message = "";
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+        // æ¯æœˆ1-3ä¸ºæŠ¥åæ—¶é—´å…¶ä»–æ—¶é—´ä¸å¯ä»¥æŠ¥å
+        if (month != 5) {
+            if (day > 3) {
+                message = "æŠ¥åæ—¥æœŸå·²è¿‡ä¸å¯å†æŠ¥å";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        } else {
+            if (day < 12 || day > 14) {
+                message = "æŠ¥åæ—¥æœŸå·²è¿‡ä¸å¯å†æŠ¥å";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        }
 
-	//´¦Àí½øÈë±ÈÈü³¡µØµÄÇëÇó
-	
-	public ActionForward n3(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		//ÏŞÖÆ·Ç±ÈÈüÊ±¼äµÄ½øÈë
-		String message="";
-		Calendar cal = Calendar.getInstance();
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int hour=cal.get(Calendar.HOUR_OF_DAY);
-		int min=cal.get(Calendar.MINUTE);
-		int month=cal.get(Calendar.MONTH)+1;
-		if(month!=5)
-		{
-			if(day== 1 || day == 2 || day == 3||hour!=13||min>5)
-			{
-				message = "±ÈÈüÊ±¼äÒÑ¹ı£¬²»¿É½øÈë±ÈÈü";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		else
-		{
-			if(day==12 || day ==13 || day ==14||hour!=13||min>5)
-			{
-				message = "±ÈÈüÊ±¼äÒÑ¹ı£¬²»¿É½øÈë±ÈÈü";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		//ÅĞ¶ÏÊÇ·ñÊÇ²ÎÈüÍæ¼Ò
-		PKActiveService ps=new PKActiveService();
-		String appk=(String) request.getSession().getAttribute("pPk");
-		int isPk=ps.getPpk(Integer.parseInt(appk));
-		if(isPk==0)
-		{
-			PKActiveRegist pr=ps.checkRoleRegist(Integer.parseInt(appk));
-			if(pr==null)
-			{
-				message = "Äú²»ÊÇ²ÎÈüÍæ¼Ò£¬²»ÄÜ½øÈë±ÈÈü";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		//ÒÑ¾­Ê§°ÜµÄÍæ¼Ò²»¿ÉÒÔ²Î¼Ó±ÈÈü
-		if(!ps.checkIsFail(Integer.parseInt(appk)))
-		{
-			message = "ÄúÒÑ¾­Ê§°Ü£¬±¾ÂÖÖĞ²»ÄÜÔÙ²Î¼Ó±ÈÈü";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		//¸üĞÂÍæ¼Ò½øÈë³¡¾°µÄ×´Ì¬ĞÅÏ¢
-		ps.updateEnterState(Integer.parseInt(appk),1);
-		//½øÈë±ÈÈü³¡µØ
-		String pPk = (String) request.getSession().getAttribute("pPk");
-		RoleCache roleCache = new RoleCache();
-		RoleEntity roleEntity = roleCache.getByPpk(pPk);
-		roleEntity.getBasicInfo().updateSceneId(PKActiveContent.SCENEID_PK);///////////////////±ÈÈü³¡¾°ID
-		try { 
-			request.getRequestDispatcher("/scene.do?isRefurbish=1").forward(request,response);
-		} catch (Exception e) {
-			message="½øÈë³¡µØÊ§°Ü£¬ÇëÖØĞÂ²Ù×÷";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		return null;
-	}
-	
-	//½øÈë±ÈÈü
-	public ActionForward n4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		//ÅĞ¶Ï¶ÔÊÖÊÇ·ñÔÚ³¡
-		String message="";
-		PKActiveService ps=new PKActiveService();
-		String appk=(String) request.getSession().getAttribute("pPk");
-		int bppk=ps.getPpk(Integer.parseInt(appk));
-		RoleCache roleCache = new RoleCache();
-		RoleEntity roleBEntity = roleCache.getByPpk(bppk);
-		if(roleBEntity!=null)
-		{
-			String sceneId= roleBEntity.getBasicInfo().getSceneId();
-			String x = PKActiveContent.SCENEID_PK;
-			if(!sceneId.equals(x))//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@µ±Ç°³¡¾°ID
-			{
-				message = "ÄúµÄ¶ÔÊÖÃ»ÓĞ½øÈë±ÈÈü³¡µØ£¬²»¿ÉÒÔ±ÈÈü";
-				request.setAttribute("message", message);
-				return mapping.findForward("pkactivedisplay");
-			}
-		}
-		else
-		{
-			message = "¶ÔÊÖÃ»ÓĞÉÏÏß...²»¿É±ÈÈü";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		//½øÈë¹¥»÷³¡¾°
-		try { 
-			request.getRequestDispatcher("/pk.do?cmd=n3&aPpk="+appk+"&bPpk="+bppk+"&tong=0").forward(request,response);
-		} catch (Exception e) {
-			message="¹¥»÷Ê§°ÜÇëÄúÖØĞÂ³¢ÊÔ";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		return null;
-	}
-	//·µ»ØµÄÊ±ºò¸üĞÂ³¡¾°
-	public ActionForward n5(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String message="";
-		String pPk = (String) request.getSession().getAttribute("pPk");
-		RoleCache roleCache = new RoleCache();
-		RoleEntity roleEntity = roleCache.getByPpk(pPk);
-		roleEntity.getBasicInfo().updateSceneId(PKActiveContent.NPCSCENEID);//·µ»Ø±¨Ãû´¦
-		PKActiveService ps=new PKActiveService();
-		//ps.updateEnterState(Integer.parseInt(pPk),0);
-		try { 
-			request.getRequestDispatcher("/menu.do?cmd=n1&menu_id="+PKActiveContent.REGISTMENUID+"").forward(request,response);///////////////////////////////////menuID
-		} catch (Exception e) {
-			message="·µ»ØÊ§°Ü£¬ÇëÖØĞÂ²Ù×÷";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		return null;
-	}
-	//´¦ÀíÁìÈ¡½±Æ·
-	public ActionForward n6(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String message="";
-		String pPk = (String) request.getSession().getAttribute("pPk");
-		PKActiveService ps=new PKActiveService();
-		if(!ps.isGetPrice(Integer.parseInt(pPk)))
-		{
-			message="ÄúÃ»ÓĞ×Ê¸ñ»òÕßÒÑ¾­ÁìÈ¡¹ı½±Æ·";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		//µÃµ½Ëù»ñµÀ¾ßµÄId
-		int priceId=ps.getPlayerNum();
-		RoleCache roleCache = new RoleCache();
-		RoleEntity roleEntity = roleCache.getByPpk(pPk);
-		if(roleEntity.getBasicInfo().getWrapSpare()<1)
-		{
-			message="ÄúµÄ°ü¹üÒÑÂú£¬ÇëÇåÀíºóÔÙÀ´ÁìÈ¡";
-			request.setAttribute("message", message);
-			return mapping.findForward("pkactivedisplay");
-		}
-		int goodID=ps.getPlayerNum();
-		GoodsService gs=new GoodsService();
-		gs.putGoodsToWrap(Integer.parseInt(pPk), goodID,GoodsType.PROP,1);
-		ps.updatePriceState(Integer.parseInt(pPk), 0);//ÁìÈ¡Íê½±Æ·¸Ä±ä×´Ì¬
-		String goodsName= gs.getGoodsName(goodID,GoodsType.PROP);
-		message="¹§Ï²ÄúÁìÈ¡½±Æ·³É¹¦,ÄúÁìÈ¡µ½µÄÊÇ:"+goodsName;
-		request.setAttribute("message", message);
-		return mapping.findForward("pkactivedisplay");
-	}
-	
+        String pPk = (String) request.getSession().getAttribute("pPk");
+        PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
+        // å¾—åˆ°é“å…·100ä¸ºé“å…·ID
+        int num = propGroupDao.getPropNumByByPropID(Integer.parseInt(pPk), Integer.parseInt(PKActiveContent.PROPID));
+        RoleCache roleCache = new RoleCache();
+        RoleEntity roleEntity = RoleCache.getByPpk(pPk);
+        // åˆ¤æ–­æŠ¥åæ‰€éœ€é“å…·å’Œç­‰çº§æ˜¯å¦ç¬¦åˆè¦æ±‚
+        if (num < 1 || roleEntity.getBasicInfo().getGrade() < 60) {
+            message = "æ‚¨æ²¡æœ‰æŠ¥åé“å…·æˆ–è€…ç­‰çº§ä¸å¤Ÿä¸å¯ä»¥æŠ¥å";
+            request.setAttribute("message", message);
+            logger.info(message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        int roleId = roleEntity.getBasicInfo().getPPk();
+        int roleLevel = roleEntity.getBasicInfo().getGrade();
+        String roleName = roleEntity.getBasicInfo().getName();
+        PKActiveService pkService = new PKActiveService();
+        PKActiveRegist roleBody = new PKActiveRegist();
+        roleBody.setRoleID(roleId);
+        roleBody.setRoleLevel(roleLevel);
+        roleBody.setRoleName(roleName);
+        roleBody.setIsWin(0);
+        int count = 0;
+        PKActiveRegist role = pkService.checkRoleRegist(roleId);
+        // å¦‚æœæœ‰å†å²æŠ¥åè®°å½•
+        if (role != null) {
+            if (DateUtil.getDifferDaysToToday(role.getRegistTime()) < 3) {
+                message = "æ‚¨å·²ç»æŠ¥åï¼Œè¯·ä¸è¦é‡å¤æŠ¥å";
+                request.setAttribute("message", message);
+                logger.info(message);
+            } else {
+                count = pkService.refreshRegist(roleBody);
+                if (count > 0) {
+                    message = "æ‚¨å·²æŠ¥åæˆåŠŸï¼Œç¥ä½ å¤ºå¾—ç¬¬ä¸€å";
+                    request.setAttribute("message", message);
+                    // é“å…·ID100çš„é“å…· å®Œäº†æ ¹æ®ç­–åˆ’ä¿®æ”¹
+                    propGroupDao.removeByProp(Integer.parseInt(pPk), PKActiveContent.PROPID);
+                } else {
+                    message = "æŠ¥åå¤±è´¥ï¼Œè¯·é‡æ–°æ“ä½œ";
+                    request.setAttribute("message", message);
+                    logger.info(message);
+                }
+            }
+        }
+        // æ²¡æœ‰å†å²è®°å½•å¤„ç†
+        else {
+            roleBody.setRoleID(roleId);
+            roleBody.setRoleLevel(roleLevel);
+            roleBody.setRoleName(roleName);
+            roleBody.setIsWin(0);
+            count = pkService.pkActiveRegist(roleBody);
+            if (count > 0) {
+                message = "æ‚¨å·²æŠ¥åæˆåŠŸï¼Œç¥ä½ å¤ºå¾—ç¬¬ä¸€å";
+                request.setAttribute("message", message);
+                // é“å…·ID100çš„é“å…· å®Œäº†æ ¹æ®ç­–åˆ’ä¿®æ”¹
+                propGroupDao.removeByProp(Integer.parseInt(pPk), PKActiveContent.PROPID);
+                logger.info(message);
+            } else {
+                message = "æŠ¥åå¤±è´¥ï¼Œè¯·é‡æ–°æ“ä½œ";
+                request.setAttribute("message", message);
+                logger.info(message);
+            }
+
+        }
+        return mapping.findForward("pkactivedisplay");
+    }
+
+    //å¤„ç†æ˜¾ç¤ºå¯¹é˜µè¡¨å’ŒæŸ¥çœ‹å¯¹é˜µè¡¨ä¿¡æ¯
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String message = "";
+        String index = request.getParameter("index");
+        String view = request.getParameter("view");
+        if (view == null) {
+            logger.info("å‚æ•°ä¸ºnull");
+            message = "å‚æ•°é”™è¯¯ï¼Œè¯·é‡æ–°æ“ä½œ";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        if (view.equals("vs"))//æŠ¥åæœŸé—´ä¸å¯æŸ¥çœ‹å¯¹é˜µä¿¡æ¯
+        {
+            if (day <= 3) {
+                message = "æŠ¥åæœŸé—´ä¸å¯ä»¥æŸ¥çœ‹å¯¹é˜µä¿¡æ¯";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+
+        }
+        if (view.equals("rs"))//æŠ¥åæœŸé—´å’Œå½“æ—¥æ¯”èµ›ç»“æŸå‰ä¸å¯æŸ¥çœ‹æ¯”èµ›ç»“æœ
+        {
+
+            if (day <= 3 || hour < 14)//2ç‚¹å‰ä¸å¯æŸ¥çœ‹æ¯”èµ›ç»“æœ
+            {
+                message = "ç°åœ¨ä¸å¯ä»¥æŸ¥çœ‹æ¯”èµ›ç»“æœ æ¯”èµ›æ—¶é—´æ¯æ—¥2ç‚¹å…¬å¸ƒæ¯”èµ›ç»“æœ";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        }
+        PKActiveService ps = new PKActiveService();
+        List<PKActiveRegist> list = ps.getAllRole();
+        if (list.size() == 1) {
+            PKActiveRegist pr = (PKActiveRegist) list.get(0);
+            message = "æœ¬æœˆæ¯”èµ›å·²ç»ç»“æŸ,å† å†›æ˜¯ï¼š" + pr.getRoleName();
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        if (index == null) {
+            index = "0";
+        } else {
+            int temp = Integer.parseInt(index) - 1;
+            index = temp + "";
+        }
+        List<PKVs> data = ps.getVsInfo(Integer.parseInt(index), 5);
+        if (data == null || data.isEmpty()) {
+            message = "ç°åœ¨æ²¡æœ‰ç»“æœ...";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        QueryPage qp = new QueryPage(5L * Integer.parseInt(index), ps.getTotalNum(), 5, data);
+        request.setAttribute("queryPage", qp);
+        if (view.equals("vs")) {
+            // æ˜¾ç¤ºå¯¹é˜µä¿¡æ¯
+            return mapping.findForward("vs_result");
+        } else {
+            // æ˜¾ç¤ºæ¯”èµ›ç»“æœä¿¡æ¯
+            return mapping.findForward("rs_result");
+        }
+    }
+
+    //å¤„ç†è¿›å…¥æ¯”èµ›åœºåœ°çš„è¯·æ±‚
+
+    public ActionForward n3(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        //é™åˆ¶éæ¯”èµ›æ—¶é—´çš„è¿›å…¥
+        String message = "";
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int min = cal.get(Calendar.MINUTE);
+        int month = cal.get(Calendar.MONTH) + 1;
+        if (month != 5) {
+            if (day == 1 || day == 2 || day == 3 || hour != 13 || min > 5) {
+                message = "æ¯”èµ›æ—¶é—´å·²è¿‡ï¼Œä¸å¯è¿›å…¥æ¯”èµ›";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        } else {
+            if (day == 12 || day == 13 || day == 14 || hour != 13 || min > 5) {
+                message = "æ¯”èµ›æ—¶é—´å·²è¿‡ï¼Œä¸å¯è¿›å…¥æ¯”èµ›";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        }
+        //åˆ¤æ–­æ˜¯å¦æ˜¯å‚èµ›ç©å®¶
+        PKActiveService ps = new PKActiveService();
+        String appk = (String) request.getSession().getAttribute("pPk");
+        int isPk = ps.getPpk(Integer.parseInt(appk));
+        if (isPk == 0) {
+            PKActiveRegist pr = ps.checkRoleRegist(Integer.parseInt(appk));
+            if (pr == null) {
+                message = "æ‚¨ä¸æ˜¯å‚èµ›ç©å®¶ï¼Œä¸èƒ½è¿›å…¥æ¯”èµ›";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        }
+        //å·²ç»å¤±è´¥çš„ç©å®¶ä¸å¯ä»¥å‚åŠ æ¯”èµ›
+        if (!ps.checkIsFail(Integer.parseInt(appk))) {
+            message = "æ‚¨å·²ç»å¤±è´¥ï¼Œæœ¬è½®ä¸­ä¸èƒ½å†å‚åŠ æ¯”èµ›";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        //æ›´æ–°ç©å®¶è¿›å…¥åœºæ™¯çš„çŠ¶æ€ä¿¡æ¯
+        ps.updateEnterState(Integer.parseInt(appk), 1);
+        //è¿›å…¥æ¯”èµ›åœºåœ°
+        String pPk = (String) request.getSession().getAttribute("pPk");
+        RoleCache roleCache = new RoleCache();
+        RoleEntity roleEntity = RoleCache.getByPpk(pPk);
+        roleEntity.getBasicInfo().updateSceneId(PKActiveContent.SCENEID_PK);///////////////////æ¯”èµ›åœºæ™¯ID
+        try {
+            request.getRequestDispatcher("/scene.do?isRefurbish=1").forward(request, response);
+        } catch (Exception e) {
+            message = "è¿›å…¥åœºåœ°å¤±è´¥ï¼Œè¯·é‡æ–°æ“ä½œ";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        return null;
+    }
+
+    //è¿›å…¥æ¯”èµ›
+    public ActionForward n4(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        //åˆ¤æ–­å¯¹æ‰‹æ˜¯å¦åœ¨åœº
+        String message = "";
+        PKActiveService ps = new PKActiveService();
+        String appk = (String) request.getSession().getAttribute("pPk");
+        int bppk = ps.getPpk(Integer.parseInt(appk));
+        RoleCache roleCache = new RoleCache();
+        RoleEntity roleBEntity = RoleCache.getByPpk(bppk);
+        if (roleBEntity != null) {
+            String sceneId = roleBEntity.getBasicInfo().getSceneId();
+            String x = PKActiveContent.SCENEID_PK;
+            if (!sceneId.equals(x))//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@å½“å‰åœºæ™¯ID
+            {
+                message = "æ‚¨çš„å¯¹æ‰‹æ²¡æœ‰è¿›å…¥æ¯”èµ›åœºåœ°ï¼Œä¸å¯ä»¥æ¯”èµ›";
+                request.setAttribute("message", message);
+                return mapping.findForward("pkactivedisplay");
+            }
+        } else {
+            message = "å¯¹æ‰‹æ²¡æœ‰ä¸Šçº¿...ä¸å¯æ¯”èµ›";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        //è¿›å…¥æ”»å‡»åœºæ™¯
+        try {
+            request.getRequestDispatcher("/pk.do?cmd=n3&aPpk=" + appk + "&bPpk=" + bppk + "&tong=0").forward(request, response);
+        } catch (Exception e) {
+            message = "æ”»å‡»å¤±è´¥è¯·æ‚¨é‡æ–°å°è¯•";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        return null;
+    }
+
+    //è¿”å›çš„æ—¶å€™æ›´æ–°åœºæ™¯
+    public ActionForward n5(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String message = "";
+        String pPk = (String) request.getSession().getAttribute("pPk");
+        RoleCache roleCache = new RoleCache();
+        RoleEntity roleEntity = RoleCache.getByPpk(pPk);
+        roleEntity.getBasicInfo().updateSceneId(PKActiveContent.NPCSCENEID);//è¿”å›æŠ¥åå¤„
+        PKActiveService ps = new PKActiveService();
+        //ps.updateEnterState(Integer.parseInt(pPk),0);
+        try {
+            request.getRequestDispatcher("/menu.do?cmd=n1&menu_id=" + PKActiveContent.REGISTMENUID).forward(request, response);///////////////////////////////////menuID
+        } catch (Exception e) {
+            message = "è¿”å›å¤±è´¥ï¼Œè¯·é‡æ–°æ“ä½œ";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        return null;
+    }
+
+    //å¤„ç†é¢†å–å¥–å“
+    public ActionForward n6(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String message = "";
+        String pPk = (String) request.getSession().getAttribute("pPk");
+        PKActiveService ps = new PKActiveService();
+        if (!ps.isGetPrice(Integer.parseInt(pPk))) {
+            message = "æ‚¨æ²¡æœ‰èµ„æ ¼æˆ–è€…å·²ç»é¢†å–è¿‡å¥–å“";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        //å¾—åˆ°æ‰€è·é“å…·çš„Id
+        int priceId = ps.getPlayerNum();
+        RoleCache roleCache = new RoleCache();
+        RoleEntity roleEntity = RoleCache.getByPpk(pPk);
+        if (roleEntity.getBasicInfo().getWrapSpare() < 1) {
+            message = "æ‚¨çš„åŒ…è£¹å·²æ»¡ï¼Œè¯·æ¸…ç†åå†æ¥é¢†å–";
+            request.setAttribute("message", message);
+            return mapping.findForward("pkactivedisplay");
+        }
+        int goodID = ps.getPlayerNum();
+        GoodsService gs = new GoodsService();
+        gs.putGoodsToWrap(Integer.parseInt(pPk), goodID, GoodsType.PROP, 1);
+        ps.updatePriceState(Integer.parseInt(pPk), 0);//é¢†å–å®Œå¥–å“æ”¹å˜çŠ¶æ€
+        String goodsName = gs.getGoodsName(goodID, GoodsType.PROP);
+        message = "æ­å–œæ‚¨é¢†å–å¥–å“æˆåŠŸ,æ‚¨é¢†å–åˆ°çš„æ˜¯:" + goodsName;
+        request.setAttribute("message", message);
+        return mapping.findForward("pkactivedisplay");
+    }
+
 }

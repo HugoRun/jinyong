@@ -8,7 +8,7 @@ import com.ls.ben.dao.DaoBase;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¼ÇÂ¼Íæ¼ÒµÄ¶ÔnpcµÄÉËº¦
+ * è®°å½•ç©å®¶çš„å¯¹npcçš„ä¼¤å®³
  * @author zhangjj
  *
  */
@@ -16,7 +16,7 @@ public class RecordDao extends DaoBase
 {
 
 	/**
-	 * ¸üĞÂ¼ÇÂ¼Íæ¼Ò¶ÔnpcÉËº¦
+	 * æ›´æ–°è®°å½•ç©å®¶å¯¹npcä¼¤å®³
 	 * @param tongId
 	 * @param recordValue
 	 * @param id
@@ -39,11 +39,11 @@ public class RecordDao extends DaoBase
 			dbConn2.closeConn();
 		}
 		
-		// Èç¹ûÎªÁã,ÒâÎ¶×Å´Ë°ïÅÉ»¹Ã»ÓĞÊı¾İ
+		// å¦‚æœä¸ºé›¶,æ„å‘³ç€æ­¤å¸®æ´¾è¿˜æ²¡æœ‰æ•°æ®
 		if ( result == 0) {
-    		String sql = "insert into injure_recond_info values (null,"+tongId+","+recordValue+","+npcId+","+npcType+")";
+    		String sql = "INSERT INTO injure_recond_info values (null,"+tongId+","+recordValue+","+npcId+","+npcType+")";
     		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-    		logger.debug(" ¸üĞÂ¼ÇÂ¼Íæ¼Ò¶ÔnpcÉËº¦sql="+sql);		
+    		logger.debug(" æ›´æ–°è®°å½•ç©å®¶å¯¹npcä¼¤å®³sql="+sql);		
     		try{
     			conn = dbConn.getConn();
     			stmt = conn.createStatement();
@@ -58,9 +58,9 @@ public class RecordDao extends DaoBase
 	}
 
 	/**
-	 * Ñ¡È¡ÉËº¦¹ÖÎïÑª×î¶àµÄÎå¸ö°ïÅÉ,
+	 * é€‰å–ä¼¤å®³æ€ªç‰©è¡€æœ€å¤šçš„äº”ä¸ªå¸®æ´¾,
 	 * 
-	 *ĞèÒª×öÁªºÏ²éÑ¯ .
+	 *éœ€è¦åšè”åˆæŸ¥è¯¢ .
 	* @param npc_type
 	 * @return
 	 */
@@ -68,7 +68,7 @@ public class RecordDao extends DaoBase
 	public List<Integer> getKillNumMaxFiveTongId(int npc_type)
 	{
 		List<Integer> ranklist = new ArrayList<Integer>();
-		String sql = "select tong_id from injure_recond_info where npc_Type = "+npc_type+" and tong_id != 0 order by injure_number desc limit 5 ";
+		String sql = "SELECT tong_id from injure_recond_info where npc_Type = "+npc_type+" and tong_id != 0 order by injure_number desc limit 5 ";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();

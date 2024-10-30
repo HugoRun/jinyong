@@ -27,12 +27,12 @@ public class BillService
 	
 	Logger logger = Logger.getLogger("log.pay");
 	/**
-	 * 	ĞèPostÌá½»ÒÔÏÂ²ÎÊı:
-		Name=ÓÃ»§Ãû(not null)
-		Amount=Ïû·ÑÓÎÏ·±Ò(not null)(Ğè>0)
-		GameID=ÓÎÏ·±êÖ¾´®(not null)
-		Key="ÓÎÏ·ÃÜ³×"+"-"+"ÓÃ»§Ãû"+¡±-¡°+ÓÎÏ·±ÒÊı¶î(md5¼ÓÃÜ´«µİ)
-		Comment=¹ºÂò±¸×¢(null)
+	 * 	éœ€Postæäº¤ä»¥ä¸‹å‚æ•°:
+		Name=ç”¨æˆ·å(not null)
+		Amount=æ¶ˆè´¹æ¸¸æˆå¸(not null)(éœ€>0)
+		GameID=æ¸¸æˆæ ‡å¿—ä¸²(not null)
+		Key="æ¸¸æˆå¯†åŒ™"+"-"+"ç”¨æˆ·å"+â€-â€œ+æ¸¸æˆå¸æ•°é¢(md5åŠ å¯†ä¼ é€’)
+		Comment=è´­ä¹°å¤‡æ³¨(null)
 	 * @return
 	 */
 	public String pay(RoleEntity role_info ,String user_name,String amount)
@@ -51,7 +51,7 @@ public class BillService
 			return null;
 		}
 
-		String result = "¶Ò»»Ê§°ÜÇëÖØÊÔ";
+		String result = "å…‘æ¢å¤±è´¥è¯·é‡è¯•";
 		
 		String game_id = "0DA03D28D25F4E278D3DEEC5CFDF3E32";
 		
@@ -59,7 +59,7 @@ public class BillService
 		
 		String url = "http://wap.wanba.cn/Interface/UserConsume.aspx";
 		
-		logger.debug("url£º"+url+";user_name="+user_name+";Amount="+amount);
+		logger.debug("urlï¼š"+url+";user_name="+user_name+";Amount="+amount);
 		
 		UPayRecordDao uPayRecordDao = new UPayRecordDao();
 		int pay_record_id = uPayRecordDao.insert(user_name, amount,role_info.getBasicInfo().getPPk());
@@ -77,7 +77,7 @@ public class BillService
          
          HttpRespons response = null;
          try {
-			response = request.sendPost(url,params);//Ìá½»ÑéÖ¤ÇëÇó
+			response = request.sendPost(url,params);//æäº¤éªŒè¯è¯·æ±‚
 		} catch (IOException e) {
 			e.printStackTrace();
 			return result;
@@ -85,7 +85,7 @@ public class BillService
 		
 		if( response.getCode()!=200 )
 		{
-			logger.debug("ÇëÇóÊ§°Ü£¬ÏìÓ¦´úÂëÎª£º"+response.getCode());
+			logger.debug("è¯·æ±‚å¤±è´¥ï¼Œå“åº”ä»£ç ä¸ºï¼š"+response.getCode());
 			return result;
 		}
 		
@@ -117,32 +117,32 @@ public class BillService
 	}
 	
 	/**
-	 * ³äÖµÔª±¦
+	 * å……å€¼å…ƒå®
 	 * @param u_pk
 	 * @param p_pk
 	 * @param amount
-	 * @return                ·µ»Ø³äÖµÌáÊ¾
+	 * @return                è¿”å›å……å€¼æç¤º
 	 */
 	private String chongzhiYuanbao(int u_pk,int p_pk ,int amount)
 	{
 		String hint = null;
 		
-		//¸øÍæ¼Ò³äÔª±¦
+		//ç»™ç©å®¶å……å…ƒå®
 		EconomyService economyService = new EconomyService();
 		
-		//¸øÍæ¼ÒÔö¼ÓÔª±¦
-		int yb_num = amount;//1KB»ñµÃ1¸öÔª±¦
-		int jf_num = yb_num*GameConfig.getJifenNum();//1KB»ñµÃ1¸ö»ı·Ö
+		//ç»™ç©å®¶å¢åŠ å…ƒå®
+		int yb_num = amount;//1KBè·å¾—1ä¸ªå…ƒå®
+		int jf_num = yb_num*GameConfig.getJifenNum();//1KBè·å¾—1ä¸ªç§¯åˆ†
 
 		economyService.addYuanbao(p_pk,u_pk, yb_num,"chongzhi");
-		economyService.addJifen(u_pk,jf_num);//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+		economyService.addJifen(u_pk,jf_num);//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 		
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//Í³¼Æ³äÖµÈË´Î
+		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//ç»Ÿè®¡å……å€¼äººæ¬¡
 		
 		long yuanbao_total = economyService.getYuanbao(u_pk);
 		
-		return hint = "¶Ò»»³É¹¦,Äú»ñµÃÁË"+amount+"¸ö¡¾"+GameConfig.getYuanbaoName()+"¡¿,Ä¿Ç°Äú¹²ÓĞ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+yuanbao_total+"!";
+		return hint = "å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†"+amount+"ä¸ªã€"+GameConfig.getYuanbaoName()+"ã€‘,ç›®å‰æ‚¨å…±æœ‰ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+yuanbao_total+"!";
 	}
 	
 	
@@ -150,6 +150,6 @@ public class BillService
 	{ 
 		BillService tTiaoLoginService = new BillService();
 		
-//		System.out.print("Ïû·Ñ½á¹û="+tTiaoLoginService.pay("devil","1"));
+//		System.out.print("æ¶ˆè´¹ç»“æœ="+tTiaoLoginService.pay("devil","1"));
 	}
 }

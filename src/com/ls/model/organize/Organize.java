@@ -8,33 +8,33 @@ import com.ls.model.user.RoleEntity;
 
 /**
  * @author ls
- * ÓÎÏ·ÀïµÄ×éÖ¯
+ * æ¸¸æˆé‡Œçš„ç»„ç»‡
  */
 public abstract class Organize
 {
 	protected Map<Integer,RoleEntity> member_list = new LinkedHashMap<Integer,RoleEntity>();
 	protected int leaderId = -1;
 	
-	/** ´´½¨ */
+	/** åˆ›å»º */
 	public abstract String create(RoleEntity leader,String name);
-	/** ½âÉ¢ */
+	/** è§£æ•£ */
 	public abstract void disband();
-	/** Ôö¼Ó³ÉÔ± */
+	/** å¢åŠ æˆå‘˜ */
 	public abstract String addMember( RoleEntity member);
-	/** É¾³ı³ÉÔ± */
+	/** åˆ é™¤æˆå‘˜ */
 	public abstract String delMember(RoleEntity member);
-	/** ³ÉÔ±ÁĞ±í*/
+	/** æˆå‘˜åˆ—è¡¨*/
 	public abstract List<RoleEntity> getMemberList();
-	/** µÃµ½³ÉÔ±ÊıÁ¿ */
+	/** å¾—åˆ°æˆå‘˜æ•°é‡ */
 	public abstract int getMemberNum();
-	/** ³ÉÔ±ÊÇ·ñÒÑÂú */
+	/** æˆå‘˜æ˜¯å¦å·²æ»¡ */
 	public abstract boolean isFull();
-	/** µÃµ½×éÖ¯Õß */
+	/** å¾—åˆ°ç»„ç»‡è€… */
 	public abstract RoleEntity getLeader();
-	/** ¸Ä±ä×éÖ¯Õß */
+	/** æ”¹å˜ç»„ç»‡è€… */
 	public abstract String changeLeader(RoleEntity newLeader);
 	/**
-	 * ÊÇ·ñÔÚ×éÖ¯ÖĞ
+	 * æ˜¯å¦åœ¨ç»„ç»‡ä¸­
 	 */
 	public abstract boolean isJoin(RoleEntity member);
 	

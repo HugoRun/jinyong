@@ -8,14 +8,14 @@ import com.ls.ben.vo.goods.equip.EquipAppendAttributeVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:equip_append_attribute±í
- * @author ÁõË§
+ * åŠŸèƒ½:equip_append_attributeè¡¨
+ * @author åˆ˜å¸…
  * Oct 13, 2008  3:26:30 PM
  */
 public class EquipAppendAttributeDao extends DaoBase
 {
 	/**
-	 * µÃµ½×°±¸¸½¼ÓÊôÐÔ,³ýhpºÍmpÍâ
+	 * å¾—åˆ°è£…å¤‡é™„åŠ å±žæ€§,é™¤hpå’Œmpå¤–
 	 * @param equip_type
 	 * @param equip_class
 	 * @param player_level
@@ -25,7 +25,7 @@ public class EquipAppendAttributeDao extends DaoBase
 	{
 		List<EquipAppendAttributeVO> appendAttributes = new ArrayList<EquipAppendAttributeVO>();
 		EquipAppendAttributeVO appendAttribute = null;
-		String sql = "select * from equip_append_attribute where attribute_type not in (1,2) and equip_type=" + equip_type + " and quality="+quality+" and level_lower <=" + equip_level + " and "+ equip_level+"<=level_upper order by rand() limit " + attribute_num;
+		String sql = "SELECT * FROM equip_append_attribute where attribute_type not in (1,2) and equip_type=" + equip_type + " and quality="+quality+" and level_lower <=" + equip_level + " and "+ equip_level+"<=level_upper order by rand() limit " + attribute_num;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -53,7 +53,7 @@ public class EquipAppendAttributeDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½×°±¸¸½¼ÓÊôÐÔ£¬½öhpºÍmp
+	 * å¾—åˆ°è£…å¤‡é™„åŠ å±žæ€§ï¼Œä»…hpå’Œmp
 	 * @param equip_type
 	 * @param equip_class
 	 * @param player_level
@@ -63,7 +63,7 @@ public class EquipAppendAttributeDao extends DaoBase
 	{
 		List<EquipAppendAttributeVO> appendAttributes = new ArrayList<EquipAppendAttributeVO>();
 		EquipAppendAttributeVO appendAttribute = null;
-		String sql = "select * from equip_append_attribute where attribute_type in (1,2) and equip_type=" + equip_type + " and quality="+quality+" and level_lower <=" + equip_level + " and "+ equip_level+"<=level_upper order by rand() ";
+		String sql = "SELECT * FROM equip_append_attribute where attribute_type in (1,2) and equip_type=" + equip_type + " and quality="+quality+" and level_lower <=" + equip_level + " and "+ equip_level+"<=level_upper order by rand() ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

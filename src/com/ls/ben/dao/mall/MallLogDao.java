@@ -12,7 +12,7 @@ import com.ls.pub.bean.QueryPage;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ£ºÉÌ³ÇÈÕÖ¾
+ * åŠŸèƒ½ï¼šå•†åŸæ—¥å¿—
  * @author ls
  * May 12, 2009
  * 4:29:36 PM
@@ -20,16 +20,16 @@ import com.ls.pub.db.DBConnection;
 public class MallLogDao extends DaoBase
 {
 	/**
-	 * ²åÈëÉÌ³ÇÈÕÖ¾
+	 * æ’å…¥å•†åŸæ—¥å¿—
 	 */
 	public void insert(int u_pk,String role_name,String mall_log ,String propName,int propNum,int propPrice,int buyType)
 	{
 		if( mall_log==null )
 		{
-			logger.info("²åÈëÉÌ³ÇÈÕÖ¾´íÎó¡£¡£¡£¡£");
+			logger.info("æ’å…¥å•†åŸæ—¥å¿—é”™è¯¯ã€‚ã€‚ã€‚ã€‚");
 		}
 		
-		String sql = "insert into u_mall_log values (null,"+u_pk+",'"+role_name+"','"+propName+"',"+propNum+","+propPrice+","+buyType+",'"+mall_log+"',now())";
+		String sql = "INSERT INTO u_mall_log values (null,"+u_pk+",'"+role_name+"','"+propName+"',"+propNum+","+propPrice+","+buyType+",'"+mall_log+"',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -47,7 +47,7 @@ public class MallLogDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½ÉÌ³ÇÈÕÖ¾ÁĞ±í,×î½üÆßÌìµÄ¼ÇÂ¼
+	 * å¾—åˆ°å•†åŸæ—¥å¿—åˆ—è¡¨,æœ€è¿‘ä¸ƒå¤©çš„è®°å½•
 	 */
 	public QueryPage getLogList( int u_pk ,int page_no )
 	{
@@ -58,7 +58,7 @@ public class MallLogDao extends DaoBase
 		
 		int count=0;
 		
-		String count_sql = "select count(*) from u_mall_log where now() < (create_time + INTERVAL 7 DAY) and u_pk="+u_pk;
+		String count_sql = "SELECT count(*) from u_mall_log where now() < (create_time + INTERVAL 7 DAY) and u_pk="+u_pk;
 		String page_sql = null;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -74,7 +74,7 @@ public class MallLogDao extends DaoBase
 			
 			queryPage = new QueryPage(page_no, count);
 			
-			page_sql = "select mall_log from u_mall_log where now() < (create_time + INTERVAL 7 DAY) and u_pk="+u_pk+"  order by create_time desc limit "
+			page_sql = "SELECT mall_log from u_mall_log where now() < (create_time + INTERVAL 7 DAY) and u_pk="+u_pk+"  order by create_time desc limit "
 			+ queryPage.getStartOfPage() + ","
 			+ queryPage.getPageSize();
 			

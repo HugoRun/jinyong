@@ -29,27 +29,27 @@ public class GameDataRecordService extends TimerTask
 	// private static String today = getToday();
 
 	/**
-	 * ÔÚÕâ¶ù»áÃ¿ÌìÔËĞĞÒ»´Î, ¶¨Ê±Ò»ÌìÔËĞĞÒ»´Î.
+	 * åœ¨è¿™å„¿ä¼šæ¯å¤©è¿è¡Œä¸€æ¬¡, å®šæ—¶ä¸€å¤©è¿è¡Œä¸€æ¬¡.
 	 */
 	@Override
 	public void run()
 	{
-		// ÔËĞĞÊÕ¼¯Ã¿ÈÕÍæ¼ÒµÈ¼¶
+		// è¿è¡Œæ”¶é›†æ¯æ—¥ç©å®¶ç­‰çº§
 		// recordEveryDayPlayerGrade();
-		// ÔËĞĞÊÕ¼¯ÉÏÏßÍæ¼ÒµÈ¼¶
+		// è¿è¡Œæ”¶é›†ä¸Šçº¿ç©å®¶ç­‰çº§
 		// recordOnlinePlayerGrade();
-		// ÔËĞĞÊÕ¼¯³ÁÄ¬Íæ¼ÒµÈ¼¶
+		// è¿è¡Œæ”¶é›†æ²‰é»˜ç©å®¶ç­‰çº§
 		// recordSilverPlayerGrade();
-		// ÔËĞĞÊÕ¼¯Íæ¼ÒÉÏÏßÊ±¼ä.
+		// è¿è¡Œæ”¶é›†ç©å®¶ä¸Šçº¿æ—¶é—´.
 		// recordPlayerOnlineTime();
-		// ÔËĞĞÊÕ¼¯Íæ¼Ò×ÜÀÀĞÅÏ¢
+		// è¿è¡Œæ”¶é›†ç©å®¶æ€»è§ˆä¿¡æ¯
 		// recordPlayerInfoOverview();
-		// Æô¶¯ÏµÍ³ÏûÏ¢Ã¿ÈÕ¶¨Ê±·¢ËÍ¹¦ÄÜ
+		// å¯åŠ¨ç³»ç»Ÿæ¶ˆæ¯æ¯æ—¥å®šæ—¶å‘é€åŠŸèƒ½
 		// sendSystemInfoByTime();
 	}
 
 	/**
-	 * ¶¨Ê±·¢ËÍÏµÍ³ÏûÏ¢
+	 * å®šæ—¶å‘é€ç³»ç»Ÿæ¶ˆæ¯
 	 */
 	public void sendSystemInfoByTime()
 	{
@@ -59,21 +59,21 @@ public class GameDataRecordService extends TimerTask
 	}
 
 	/**
-	 * ÔËĞĞÊÕ¼¯Íæ¼Ò×ÜÀÀĞÅÏ¢£¬ ËùÊÕ¼¯ĞÅÏ¢Îª×ÔÔËĞĞÊ±Ç°24Ğ¡Ê±ÖÁÔËĞĞÊ±µÄÓÎÏ·Êı¾İ
+	 * è¿è¡Œæ”¶é›†ç©å®¶æ€»è§ˆä¿¡æ¯ï¼Œ æ‰€æ”¶é›†ä¿¡æ¯ä¸ºè‡ªè¿è¡Œæ—¶å‰24å°æ—¶è‡³è¿è¡Œæ—¶çš„æ¸¸æˆæ•°æ®
 	 */
 	public void recordPlayerInfoOverview()
 	{
-		// ×Ü×¢²áÈËÊı
+		// æ€»æ³¨å†Œäººæ•°
 		int allRegeistNum = statDao.getAllRegistNum();
-		// ×Ü½ÇÉ«Êı
+		// æ€»è§’è‰²æ•°
 		int allUserNum = statDao.getAllUserNum();
-		// ½ñÈÕ×¢²áÍæ¼Ò
+		// ä»Šæ—¥æ³¨å†Œç©å®¶
 		int todayRegistNum = statDao.getTodayRegistNum(getToday());
-		// ½ñÈÕÉÏÏßÍæ¼Ò
+		// ä»Šæ—¥ä¸Šçº¿ç©å®¶
 		int todayOnlineNum = pss.getOnlinePassport(getToday());
-		// ½ñÈÕ»îÔ¾ÓÃ»§
+		// ä»Šæ—¥æ´»è·ƒç”¨æˆ·
 		int todayActiveNum = pss.getPlayerOnlineActivity();
-		// Æ½¾ùÔÚÏßÊ±¼ä,µ¥Î»£¨Ãë£©
+		// å¹³å‡åœ¨çº¿æ—¶é—´,å•ä½ï¼ˆç§’ï¼‰
 		long AllPlayerOnlineTime = pss.getOnlineTime(getToday());
 		;
 		int avgPlaerOnlineTime = 0;
@@ -81,24 +81,24 @@ public class GameDataRecordService extends TimerTask
 		{
 			avgPlaerOnlineTime = (int) (AllPlayerOnlineTime / todayOnlineNum);
 		}
-		// Æ½¾ùÔÚÏßµÈ¼¶
+		// å¹³å‡åœ¨çº¿ç­‰çº§
 		double avgPlayerOnlineGrade = pss.getOnlineAvgGrade(getToday());
-		// Æ½¾ùÔÚÏßÈËÊı
+		// å¹³å‡åœ¨çº¿äººæ•°
 		double avgPlayerOnlineNum = pss.getOnlinePlayerAvg(getToday());
 
-		// µ±Ìì×¢²áÍæ¼Ò³¬¹ı9¼¶µÄÊıÁ¿
+		// å½“å¤©æ³¨å†Œç©å®¶è¶…è¿‡9çº§çš„æ•°é‡
 		int grade9today = statDao.getGrade9today(9, getToday());
 
 		statDao.insertPlayerInfoOverview(allRegeistNum, allUserNum,
 				todayRegistNum, todayOnlineNum, todayActiveNum,
 				avgPlaerOnlineTime, avgPlayerOnlineGrade, avgPlayerOnlineNum,
 				grade9today, getToday());
-		// Çå³ı²»ĞèÒªµÄÊı¾İ
+		// æ¸…é™¤ä¸éœ€è¦çš„æ•°æ®
 		deleteUnneed();
 	}
 
 	/**
-	 * Çå³ı²»ĞèÒªµÄÊı¾İ
+	 * æ¸…é™¤ä¸éœ€è¦çš„æ•°æ®
 	 */
 	public void deleteUnneed()
 	{
@@ -107,7 +107,7 @@ public class GameDataRecordService extends TimerTask
 	}
 
 	/**
-	 * ÔËĞĞÊÕ¼¯Íæ¼ÒÉÏÏßÊ±¼ä
+	 * è¿è¡Œæ”¶é›†ç©å®¶ä¸Šçº¿æ—¶é—´
 	 */
 	public void recordPlayerOnlineTime()
 	{
@@ -122,7 +122,7 @@ public class GameDataRecordService extends TimerTask
 	}
 
 	/**
-	 * ÔËĞĞÊÕ¼¯³ÁÄ¬Íæ¼ÒµÈ¼¶
+	 * è¿è¡Œæ”¶é›†æ²‰é»˜ç©å®¶ç­‰çº§
 	 */
 	public void recordSilverPlayerGrade()
 	{
@@ -140,7 +140,7 @@ public class GameDataRecordService extends TimerTask
 	}
 
 	/**
-	 * ÔËĞĞÊÕ¼¯ÉÏÏßÍæ¼ÒµÈ¼¶
+	 * è¿è¡Œæ”¶é›†ä¸Šçº¿ç©å®¶ç­‰çº§
 	 */
 	public void recordOnlinePlayerGrade()
 	{
@@ -158,7 +158,7 @@ public class GameDataRecordService extends TimerTask
 	}
 
 	/**
-	 * »ñµÃÃ¿ÌìÊ±¼äµÄ¸ñÊ½»¯±íÊ¾
+	 * è·å¾—æ¯å¤©æ—¶é—´çš„æ ¼å¼åŒ–è¡¨ç¤º
 	 * 
 	 * @return
 	 */
@@ -174,7 +174,7 @@ public class GameDataRecordService extends TimerTask
 	}
 
 	/**
-	 * »ñµÃµ±Ç°Ê±¼äµÄĞ¡Ê±¸ñÊ½»¯±íÊ¾
+	 * è·å¾—å½“å‰æ—¶é—´çš„å°æ—¶æ ¼å¼åŒ–è¡¨ç¤º
 	 * 
 	 * @return
 	 */
@@ -187,7 +187,7 @@ public class GameDataRecordService extends TimerTask
 		return dtstr;
 	}
 
-	// ÔËĞĞÊÕ¼¯Ã¿ÈÕÍæ¼ÒµÈ¼¶,²¢½«Æä·ÅÈëÊı¾İ¿âÖĞÒÔ±¸½«À´²éÑ¯
+	// è¿è¡Œæ”¶é›†æ¯æ—¥ç©å®¶ç­‰çº§,å¹¶å°†å…¶æ”¾å…¥æ•°æ®åº“ä¸­ä»¥å¤‡å°†æ¥æŸ¥è¯¢
 	public void recordEveryDayPlayerGrade()
 	{
 		int grade1 = statDao.getAllUserGradeInfo(0, 2);

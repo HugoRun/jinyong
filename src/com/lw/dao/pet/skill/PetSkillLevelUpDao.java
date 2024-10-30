@@ -15,13 +15,13 @@ import com.ls.pub.db.DBConnection;
 public class PetSkillLevelUpDao extends DaoBase
 {
 
-	/** ¸ù¾İPPKºÍ³öÕ½³èÎïĞÅÏ¢µÃµ½³èÎïpet_pk */
+	/** æ ¹æ®PPKå’Œå‡ºæˆ˜å® ç‰©ä¿¡æ¯å¾—åˆ°å® ç‰©pet_pk */
 	public int getPetPetpk(int p_pk)
 	{
 		int pet_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_pk from p_pet_info where p_pk =" + p_pk
+		String sql = "SELECT pet_pk from p_pet_info where p_pk =" + p_pk
 				+ " and pet_isBring = 1 ";
 		logger.debug(sql);
 		try
@@ -46,13 +46,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return pet_pk;
 	}
 
-	/** ¸ù¾İPET PK µÃµ½³èÎïµÄµÈ¼¶ */
+	/** æ ¹æ®PET PK å¾—åˆ°å® ç‰©çš„ç­‰çº§ */
 	public int getPetGradeByPetpk(int pet_pk)
 	{
 		int pet_grade = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_grade from p_pet_info where pet_pk =" + pet_pk;
+		String sql = "SELECT pet_grade from p_pet_info where pet_pk =" + pet_pk;
 		logger.debug(sql);
 		try
 		{
@@ -76,13 +76,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return pet_grade;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜIDµÃµ½³èÎïµÈ¼¶ */
+	/** æ ¹æ®æŠ€èƒ½IDå¾—åˆ°å® ç‰©ç­‰çº§ */
 	public int getPetGrade(int pet_skill_id)
 	{
 		int pet_Grade = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_Grade from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_Grade from pet_skill where pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -108,13 +108,13 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½pet_id */
+	/** æ ¹æ®pet_pkå¾—åˆ°pet_id */
 	public int getPetPetidByPetpk(int pet_pk)
 	{
 		int pet_id = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_id from p_pet_info where pet_pk =" + pet_pk;
+		String sql = "SELECT pet_id from p_pet_info where pet_pk =" + pet_pk;
 		logger.debug(sql);
 		try
 		{
@@ -138,13 +138,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return pet_id;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜIDµÃµ½¼¼ÄÜÃû³Æ */
+	/** æ ¹æ®æŠ€èƒ½IDå¾—åˆ°æŠ€èƒ½åç§° */
 	public String getPetSkillName(int pet_skill_id)
 	{
 		String pet_skill_name = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_name from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_skill_name from pet_skill where pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -169,13 +169,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return pet_skill_name;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜ×éIDºÍ¼¼ÄÜµÈ¼¶IDÈ¡³ö¼¼ÄÜID */
+	/** æ ¹æ®æŠ€èƒ½ç»„IDå’ŒæŠ€èƒ½ç­‰çº§IDå–å‡ºæŠ€èƒ½ID */
 	public int getSkillIDByLevel(int pet_skill_group, int pet_skill_level)
 	{
 		int pet_skill_id = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_id from pet_skill where pet_skill_group ="
+		String sql = "SELECT pet_skill_id from pet_skill where pet_skill_group ="
 				+ pet_skill_group + " and pet_skill_level =" + pet_skill_level;
 		logger.debug(sql);
 		try
@@ -200,13 +200,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return pet_skill_id;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜ×éIDºÍ¼¼ÄÜµÈ¼¶IDÈ¡³ö¼¼ÄÜÑ§Ï°ËùĞèÒªµÄµÈ¼¶ */
+	/** æ ¹æ®æŠ€èƒ½ç»„IDå’ŒæŠ€èƒ½ç­‰çº§IDå–å‡ºæŠ€èƒ½å­¦ä¹ æ‰€éœ€è¦çš„ç­‰çº§ */
 	public int getSkillGradeByLevel(int pet_skill_group, int pet_skill_level)
 	{
 		int pet_grade = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_grade from pet_skill where pet_skill_group ="
+		String sql = "SELECT pet_grade from pet_skill where pet_skill_group ="
 				+ pet_skill_group + " and pet_skill_level =" + pet_skill_level;
 		logger.debug(sql);
 		try
@@ -231,13 +231,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return pet_grade;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜIDµ½µ½¼¼ÄÜ×éID */
+	/** æ ¹æ®æŠ€èƒ½IDåˆ°åˆ°æŠ€èƒ½ç»„ID */
 	public int getPetSkGroup1(int pet_skill_id)
 	{
 		int pet_skill_group = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_group from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_skill_group from pet_skill where pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -263,13 +263,13 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İ¼¼ÄÜIDµÃµ½¼¼ÄÜµÈ¼¶ */
+	/** æ ¹æ®æŠ€èƒ½IDå¾—åˆ°æŠ€èƒ½ç­‰çº§ */
 	public int getPetSkLevel1(int pet_skill_id)
 	{
 		int pet_skill_level = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_level from pet_skill where pet_skill_id ="
+		String sql = "SELECT pet_skill_level from pet_skill where pet_skill_id ="
 				+ pet_skill_id;
 		logger.debug(sql);
 		try
@@ -295,10 +295,10 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İ³èÎïIDµÃµ½³èÎï¼¼ÄÜ×éID */
+	/** æ ¹æ®å® ç‰©IDå¾—åˆ°å® ç‰©æŠ€èƒ½ç»„ID */
 	public List getPetControlGroup(int pet_id)
 	{
-		String sql = "select pet_skill_group from pet_skill_control where pet_id ="
+		String sql = "SELECT pet_skill_group from pet_skill_control where pet_id ="
 				+ pet_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -330,12 +330,12 @@ public class PetSkillLevelUpDao extends DaoBase
 		return null;
 	}
 
-	/** µÃµ½³èÎïËùÓĞ1¼¶µÄ¼¼ÄÜ */
+	/** å¾—åˆ°å® ç‰©æ‰€æœ‰1çº§çš„æŠ€èƒ½ */
 	public List getPetSkLvOne()
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_id from pet_skill where pet_skill_level = 1 ";
+		String sql = "SELECT pet_skill_id from pet_skill where pet_skill_level = 1 ";
 		logger.debug(sql);
 		try
 		{
@@ -364,13 +364,13 @@ public class PetSkillLevelUpDao extends DaoBase
 		return null;
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎï¼¼ÄÜÀ¸Ò»ºÅµÄ¼¼ÄÜ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©æŠ€èƒ½æ ä¸€å·çš„æŠ€èƒ½ */
 	public int getPetSkOne(int pet_pk)
 	{
 		int pet_skill_one = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_one from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_one from p_pet_info where pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -396,13 +396,13 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎï¼¼ÄÜÀ¸¶şºÅµÄ¼¼ÄÜ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©æŠ€èƒ½æ äºŒå·çš„æŠ€èƒ½ */
 	public int getPetSkTwo(int pet_pk)
 	{
 		int pet_skill_two = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_two from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_two from p_pet_info where pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -428,13 +428,13 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎï¼¼ÄÜÀ¸ÈıºÅµÄ¼¼ÄÜ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©æŠ€èƒ½æ ä¸‰å·çš„æŠ€èƒ½ */
 	public int getPetSkThree(int pet_pk)
 	{
 		int pet_skill_three = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_three from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_three from p_pet_info where pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -460,13 +460,13 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎï¼¼ÄÜÀ¸ËÄºÅµÄ¼¼ÄÜ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©æŠ€èƒ½æ å››å·çš„æŠ€èƒ½ */
 	public int getPetSkFour(int pet_pk)
 	{
 		int pet_skill_four = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_four from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_four from p_pet_info where pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -492,13 +492,13 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎï¼¼ÄÜÀ¸ÎåºÅµÄ¼¼ÄÜ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©æŠ€èƒ½æ äº”å·çš„æŠ€èƒ½ */
 	public int getPetSkFive(int pet_pk)
 	{
 		int pet_skill_five = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_five from p_pet_info where pet_pk ="
+		String sql = "SELECT pet_skill_five from p_pet_info where pet_pk ="
 				+ pet_pk;
 		logger.debug(sql);
 		try
@@ -524,7 +524,7 @@ public class PetSkillLevelUpDao extends DaoBase
 
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚÒ»ºÅ¼¼ÄÜÀ¸¼¼ÄÜÉı¼¶ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨ä¸€å·æŠ€èƒ½æ æŠ€èƒ½å‡çº§ */
 	public void updatePetSkOne(int pet_pk, int pet_skill_id)
 	{
 
@@ -550,7 +550,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚ¶şºÅ¼¼ÄÜÀ¸¼¼ÄÜÉı¼¶ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨äºŒå·æŠ€èƒ½æ æŠ€èƒ½å‡çº§ */
 	public void updatePetSkTwo(int pet_pk, int pet_skill_id)
 	{
 
@@ -575,7 +575,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚÈıºÅ¼¼ÄÜÀ¸¼¼ÄÜÉı¼¶ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨ä¸‰å·æŠ€èƒ½æ æŠ€èƒ½å‡çº§ */
 	public void updatePetSkThree(int pet_pk, int pet_skill_id)
 	{
 
@@ -600,7 +600,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚËÄºÅ¼¼ÄÜÀ¸¼¼ÄÜÉı¼¶ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨å››å·æŠ€èƒ½æ æŠ€èƒ½å‡çº§ */
 	public void updatePetSkFour(int pet_pk, int pet_skill_id)
 	{
 
@@ -625,7 +625,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚÎåºÅ¼¼ÄÜÀ¸¼¼ÄÜÉı¼¶ */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨äº”å·æŠ€èƒ½æ æŠ€èƒ½å‡çº§ */
 	public void updatePetSkFive(int pet_pk, int pet_skill_id)
 	{
 
@@ -650,7 +650,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚÒ»ºÅ¼¼ÄÜÀ¸µÄ¼¼ÄÜÍü¼Ç */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨ä¸€å·æŠ€èƒ½æ çš„æŠ€èƒ½å¿˜è®° */
 	public void deletePetSkOne(int pet_pk)
 	{
 
@@ -675,7 +675,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚ¶şºÅ¼¼ÄÜÀ¸µÄ¼¼ÄÜÍü¼Ç */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨äºŒå·æŠ€èƒ½æ çš„æŠ€èƒ½å¿˜è®° */
 	public void deletePetSkTwo(int pet_pk)
 	{
 
@@ -700,7 +700,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚÈıºÅ¼¼ÄÜÀ¸µÄ¼¼ÄÜÍü¼Ç */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨ä¸‰å·æŠ€èƒ½æ çš„æŠ€èƒ½å¿˜è®° */
 	public void deletePetSkThree(int pet_pk)
 	{
 
@@ -725,7 +725,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İ³èÎï¼¼ÄÜIDµÃµ½³èÎïÔÚËÄºÅ¼¼ÄÜÀ¸µÄ¼¼ÄÜÍü¼Ç */
+	/** æ ¹æ®å® ç‰©æŠ€èƒ½IDå¾—åˆ°å® ç‰©åœ¨å››å·æŠ€èƒ½æ çš„æŠ€èƒ½å¿˜è®° */
 	public void deletePetSkFour(int pet_pk)
 	{
 
@@ -750,7 +750,7 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İpet_pkµÃµ½³èÎïÔÚÎåºÅ¼¼ÄÜÀ¸µÄ¼¼ÄÜÍü¼Ç */
+	/** æ ¹æ®pet_pkå¾—åˆ°å® ç‰©åœ¨äº”å·æŠ€èƒ½æ çš„æŠ€èƒ½å¿˜è®° */
 	public void deletePetSkFive(int pet_pk)
 	{
 
@@ -775,12 +775,12 @@ public class PetSkillLevelUpDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İ³èÎï¼¼ÄÜ¿ØÖÆ±íÖĞµÄ¼¼ÄÜ µÃµ½³èÎï¼¼ÄÜµÄÏÔÊ¾* */
+	/** æ ¹æ®å® ç‰©æŠ€èƒ½æ§åˆ¶è¡¨ä¸­çš„æŠ€èƒ½ å¾—åˆ°å® ç‰©æŠ€èƒ½çš„æ˜¾ç¤º* */
 	public List<Integer> getPetSkillControl(int pet_id)
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int pet_skill_id = 0;
-		String sql = "select pet_skill_id from pet_skill_control where pet_id = "
+		String sql = "SELECT pet_skill_id from pet_skill_control where pet_id = "
 				+ pet_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

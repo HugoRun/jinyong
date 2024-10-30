@@ -10,40 +10,40 @@ import com.ls.model.user.RoleEntity;
 import com.ls.pub.constant.MapType;
 
 /**
- * ¹¦ÄÜ:ÇøÓò¹ÜÀí£¨·¿¼äµÄ¸ÅÄî£©
- * @author ÁõË§
+ * åŠŸèƒ½:åŒºåŸŸç®¡ç†ï¼ˆæˆ¿é—´çš„æ¦‚å¿µï¼‰
+ * @author åˆ˜å¸…
  * Sep 17, 2008 5:09:13 PM
  */
 public class RoomService
 {
 	Logger logger = Logger.getLogger("log.service");
-    //**********************´«Èë´«³öÏŞÖÆ³£Á¿****************************
-	/**¿ÉÒÔ´«Èë*/
+    //**********************ä¼ å…¥ä¼ å‡ºé™åˆ¶å¸¸é‡****************************
+	/**å¯ä»¥ä¼ å…¥*/
 	public static final String CARRY_IN="1";     
-	/**²»¿ÉÒÔ´«Èë*/
+	/**ä¸å¯ä»¥ä¼ å…¥*/
 	public static final String NOT_CARRY_IN="2";  
-	/**¿ÉÒÔ´«³ö*/
+	/**å¯ä»¥ä¼ å‡º*/
 	public static final String CARRY_OUT="3";       
-	/**²»¿ÉÒÔ´«³ö*/
+	/**ä¸å¯ä»¥ä¼ å‡º*/
 	public static final String NOT_CARRY_OUT="4";   
 	
-	//************************ÇøÓòÊôĞÔÀàĞÍ****************************0±íÊ¾·ñ£¬1±íÊ¾¿ÉÒÔ
-	/**ËÀÍöÊÇ·ñµôÂäÎïÆ·*/
+	//************************åŒºåŸŸå±æ€§ç±»å‹****************************0è¡¨ç¤ºå¦ï¼Œ1è¡¨ç¤ºå¯ä»¥
+	/**æ­»äº¡æ˜¯å¦æ‰è½ç‰©å“*/
 	public static final int DROP_GOODS = 0;         
-	/**ºìÃûÊÇ·ñ±»×¥*/
+	/**çº¢åæ˜¯å¦è¢«æŠ“*/
 	public static final int REDNAME_SEIZURED = 1;           
-	/**ÍöÊÇ·ñµôÂä¾­Ñé*/
+	/**äº¡æ˜¯å¦æ‰è½ç»éªŒ*/
 	public static final int DROP_EXP = 2;           
-	/**×é¶ÓÊÇ·ñÓĞĞ§*/
+	/**ç»„é˜Ÿæ˜¯å¦æœ‰æ•ˆ*/
 	public static final int GROUP_EFFECT = 3;       
-	/**ÊÇ·ñÓĞPKµÈ¼¶±£»¤*/
+	/**æ˜¯å¦æœ‰PKç­‰çº§ä¿æŠ¤*/
 	public static final int PK_GRADE_PROTECT = 4;  
-	/**ÊÇ·ñÔö¼Ó×ï¶ñÖµ*/
+	/**æ˜¯å¦å¢åŠ ç½ªæ¶å€¼*/
 	public static final int PK_PUNISH = 5;          
 	
 	
 	/**
-	 * Í¨¹ıscene_idµÃµ½³¡¾°ĞÅÏ¢
+	 * é€šè¿‡scene_idå¾—åˆ°åœºæ™¯ä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
@@ -53,7 +53,7 @@ public class RoomService
 	}
 	
 	/**
-	 * µÃµ½sceneËùÔÚmapµÄĞÅÏ¢
+	 * å¾—åˆ°sceneæ‰€åœ¨mapçš„ä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
@@ -64,10 +64,10 @@ public class RoomService
 	}
 	
 	/**
-	 * ÇøÓòÊôĞÔ¿ØÖÆ
+	 * åŒºåŸŸå±æ€§æ§åˆ¶
 	 * @param scene_id     
-	 * @param attribute_type        ÇøÓòÊôĞÔÀàĞÍ   
-	 * @return                  true±íÊ¾ÓĞÏŞÖÆ£¬false±íÊ¾Ã»ÓĞÏŞÖÆ
+	 * @param attribute_type        åŒºåŸŸå±æ€§ç±»å‹   
+	 * @return                  trueè¡¨ç¤ºæœ‰é™åˆ¶ï¼Œfalseè¡¨ç¤ºæ²¡æœ‰é™åˆ¶
 	 */
 	public boolean isLimitedByAttribute( int scene_id,int attribute_type )
 	{
@@ -80,7 +80,7 @@ public class RoomService
 		{
 			return false;
 		}
-		//ÅĞ¶ÏÊôĞÔ×Ö·û´®¸ñÊ½ÊÇ·ñÕıÈ·
+		//åˆ¤æ–­å±æ€§å­—ç¬¦ä¸²æ ¼å¼æ˜¯å¦æ­£ç¡®
 		if( attributes.equals("") || attributes.length() != 11 )
 		{
 			return false;
@@ -95,9 +95,9 @@ public class RoomService
 	}
 	
 	/**
-	 * ÅĞ¶Ï´Ë·¿¼äÊÇ·ñ¿ÉÒÔÈÃÍæ¼Ò´«³öÈ¥
+	 * åˆ¤æ–­æ­¤æˆ¿é—´æ˜¯å¦å¯ä»¥è®©ç©å®¶ä¼ å‡ºå»
 	 * @param scene_id
-	 * @return  ·µ»Ø¿Õ±íÊ¾¿ÉÕı³£³öÈ¥
+	 * @return  è¿”å›ç©ºè¡¨ç¤ºå¯æ­£å¸¸å‡ºå»
 	 */
 	public String isCarryedOut(int scene_id)
 	{
@@ -109,16 +109,16 @@ public class RoomService
 		String carryLimit[] = carryLimits.split(",");
 		if( carryLimit[1].equals(NOT_CARRY_OUT) )
 		{
-			//hint =  getName(scene_id)+ "²»¿É´«³ö";
-			hint =  getName(scene_id)+ "µØµã²»¿ÉÊ¹ÓÃ´ËµÀ¾ß";
+			//hint =  getName(scene_id)+ "ä¸å¯ä¼ å‡º";
+			hint =  getName(scene_id)+ "åœ°ç‚¹ä¸å¯ä½¿ç”¨æ­¤é“å…·";
 		}
 		return hint;
 	}
 	
 	/**
-	 * ÅĞ¶Ï´Ë·¿¼äÊÇ·ñ¿ÉÒÔÈÃÍæ¼Ò´«ËÍÈë
+	 * åˆ¤æ–­æ­¤æˆ¿é—´æ˜¯å¦å¯ä»¥è®©ç©å®¶ä¼ é€å…¥
 	 * @param scene_id
-	 * @return  ·µ»Ø¿Õ±íÊ¾¿ÉÕı³£´«Èë
+	 * @return  è¿”å›ç©ºè¡¨ç¤ºå¯æ­£å¸¸ä¼ å…¥
 	 */
 	public String isCarryedIn(int scene_id)
 	{
@@ -129,16 +129,16 @@ public class RoomService
 		String carryLimit[] = carryLimits.split(",");
 		if( carryLimit[0].equals(NOT_CARRY_IN) )
 		{
-			hint = getName(scene_id)+ "µØµã²»¿ÉÊ¹ÓÃ´ËµÀ¾ß";
+			hint = getName(scene_id)+ "åœ°ç‚¹ä¸å¯ä½¿ç”¨æ­¤é“å…·";
 		}
 		return hint;
 	}
 	
 	/**
-	 * ÅĞ¶Ï´ÓAµãÊÇ·ñ¿ÉÒÔ´«ËÍµ½Bµã
-	 * @param sceneA_id    ³ö·¢µã
-	 * @param sceneB_id    Ä¿µÄµã
-	 * @return ·µ»Ø¿Õ±íÊ¾¿ÉÕı³£´«ËÍ
+	 * åˆ¤æ–­ä»Aç‚¹æ˜¯å¦å¯ä»¥ä¼ é€åˆ°Bç‚¹
+	 * @param sceneA_id    å‡ºå‘ç‚¹
+	 * @param sceneB_id    ç›®çš„ç‚¹
+	 * @return è¿”å›ç©ºè¡¨ç¤ºå¯æ­£å¸¸ä¼ é€
 	 */
 	public String isCarryFromSceneAToSceneB( int sceneA_id,int sceneB_id)
 	{
@@ -149,17 +149,17 @@ public class RoomService
 		{
 			return null;
 		}
-		//²»¿É´«³ö¿É´«Èë
+		//ä¸å¯ä¼ å‡ºå¯ä¼ å…¥
 		else if( carryout_hint!=null && carryin_hint==null )
 		{
 			hint = carryout_hint;
 		}
-		//¿É´«³ö²»¿É´«Èë
+		//å¯ä¼ å‡ºä¸å¯ä¼ å…¥
 		else if( carryin_hint!=null && carryout_hint==null )
 		{
 			hint = carryin_hint;
 		}
-		//¼È²»¿É´«³öÒ²²»¿É´«Èë
+		//æ—¢ä¸å¯ä¼ å‡ºä¹Ÿä¸å¯ä¼ å…¥
 		else
 		{
 			hint = carryout_hint + "," + carryin_hint;
@@ -167,7 +167,7 @@ public class RoomService
 		return hint;
 	}
 	/**
-	 * µÃµ½sceneÃû×Ö
+	 * å¾—åˆ°sceneåå­—
 	 */
 	public String getName( int scene_id )
 	{
@@ -175,7 +175,7 @@ public class RoomService
 		return scene.getSceneName();
 	}
 	/**
-	 * µÃµ½ËùÔÚmap_id
+	 * å¾—åˆ°æ‰€åœ¨map_id
 	 */
 	public int getMapId( int scene_id )
 	{
@@ -184,7 +184,7 @@ public class RoomService
 	}
 	
 	/**
-	 * µÃµ½ËùÔÚmap_idµÄÀàĞÍ
+	 * å¾—åˆ°æ‰€åœ¨map_idçš„ç±»å‹
 	 */
 	public int getMapType( int scene_id )
 	{
@@ -193,8 +193,8 @@ public class RoomService
 	}
 	
 	/**
-	 * ÅĞ¶Ïscene_idËùÔÚµÄ³¡¾°ÊÇ·ñÔÚÖ¸¶¨µÄmapÀàĞÍ
-	 * µÃµ½ËùÔÚmap_idµÄÀàĞÍ
+	 * åˆ¤æ–­scene_idæ‰€åœ¨çš„åœºæ™¯æ˜¯å¦åœ¨æŒ‡å®šçš„mapç±»å‹
+	 * å¾—åˆ°æ‰€åœ¨map_idçš„ç±»å‹
 	 */
 	public boolean isSpecifyMapType( int scene_id,int specify_map_type )
 	{
@@ -211,7 +211,7 @@ public class RoomService
 	}
 	
 	/**
-	 * µÃµ½ËùÔÚscene_idµÄbarea_type
+	 * å¾—åˆ°æ‰€åœ¨scene_idçš„barea_type
 	 */
 	public int getBareaType( int scene_id )
 	{
@@ -219,7 +219,7 @@ public class RoomService
 		return scene.getMap().getBarea().getBareaType();
 	}
 	/**
-	 * µÃµ½scene_idËùÔÚÇøÓòµÄ¸´»îµã
+	 * å¾—åˆ°scene_idæ‰€åœ¨åŒºåŸŸçš„å¤æ´»ç‚¹
 	 * @param scene_id
 	 * @return
 	 */
@@ -234,13 +234,13 @@ public class RoomService
 		map_type =scene.getMap().getMapType();
 		
 		
-		if( map_type==MapType.FIELD )//¹¥³ÇÕ½
+		if( map_type==MapType.FIELD )//æ”»åŸæˆ˜
 		{
 			
-		} else if ( map_type == MapType.TONGBATTLE)//°ïÅÉ¹¥³ÇÕ½³¡
+		} else if ( map_type == MapType.TONGBATTLE)//å¸®æ´¾æ”»åŸæˆ˜åœº
 		{
 		}
-		else//³ÇÊĞÖĞĞÄµã
+		else//åŸå¸‚ä¸­å¿ƒç‚¹
 		{
 			resurrection_point = scene.getMap().getBarea().getBareaPoint();
 		}
@@ -249,7 +249,7 @@ public class RoomService
 	}
 	
 	/**
-	 * ÅĞ¶Ï¸ÃµØµãÊÇ·ñÓĞboss
+	 * åˆ¤æ–­è¯¥åœ°ç‚¹æ˜¯å¦æœ‰boss
 	 */
 	public boolean isHaveBoss( int scene_id )
 	{
@@ -259,7 +259,7 @@ public class RoomService
 	
 	
 	/**
-	 * µÃµ½scene_idµÄÖ¸¶¨·½ÏòµÄsceneid
+	 * å¾—åˆ°scene_idçš„æŒ‡å®šæ–¹å‘çš„sceneid
 	 * @return
 	 */
 	public int getSceneByWay( int scene_id,String way)

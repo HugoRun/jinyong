@@ -5,52 +5,52 @@ import com.ls.pub.util.MathUtil;
 public class NpcVO {
 	/**npcID*/
 	private int npcID;
-	/**Ãû³Æ	npcÃû³Æ*/
+	/**åç§°	npcåç§°*/
 	private String npcName;
-	/**Í¼Æ¬*/
+	/**å›¾ç‰‡*/
 	private String pic;
-	/**ÆøÑª	npcÆøÑªÖµ*/
+	/**æ°”è¡€	npcæ°”è¡€å€¼*/
 	private int npcHP;
 	
-	/**×î´ó·ÀÓù	npc·ÀÓù*/
+	/**æœ€å¤§é˜²å¾¡	npcé˜²å¾¡*/
 	private int defenceDa;
-	/**×îĞ¡·ÀÓù	npc·ÀÓù*/
+	/**æœ€å°é˜²å¾¡	npcé˜²å¾¡*/
 	private int defenceXiao;
 
-	 /**½ğ·ÀÓùÖµ*/
+	 /**é‡‘é˜²å¾¡å€¼*/
 	private int jinFy;
-	/**Ä¾·ÀÓù*/
+	/**æœ¨é˜²å¾¡*/
 	private int muFy;
-	/**Ë®·ÀÓù*/
+	/**æ°´é˜²å¾¡*/
 	private int shuiFy;
-	/**»ğ·ÀÓù*/
+	/**ç«é˜²å¾¡*/
 	private int huoFy;
-	/**ÍÁ·ÀÓù*/
+	/**åœŸé˜²å¾¡*/
 	private int tuFy;
 	
 	
 	
-	/**±©»÷ÂÊ	±íÊ¾ÎªÕıÕûÊı£¬Èç20±íÊ¾20%µÄ±©»÷ÂÊ*/
+	/**æš´å‡»ç‡	è¡¨ç¤ºä¸ºæ­£æ•´æ•°ï¼Œå¦‚20è¡¨ç¤º20%çš„æš´å‡»ç‡*/
 	private int drop;
-	/**µÈ¼¶	npcµÈ¼¶*/
+	/**ç­‰çº§	npcç­‰çº§*/
 	private int level;
-	/**¾­Ñé	É±ËÀnpc»ñµÃ¾­Ñé*/
+	/**ç»éªŒ	æ€æ­»npcè·å¾—ç»éªŒ*/
 	private int exp;
-	/**ÎïÆ·µôÂäÇ®Êı*/
+	/**ç‰©å“æ‰è½é’±æ•°*/
 	private String money;
-	/**¿É·ñ²¶×½	0±íÊ¾²»¿É²¶×½£¬1±íÊ¾¿ÉÒÔ²¶×½*/
+	/**å¯å¦æ•æ‰	0è¡¨ç¤ºä¸å¯æ•æ‰ï¼Œ1è¡¨ç¤ºå¯ä»¥æ•æ‰*/
 	private int take;
-	 /**Î¨Ò»¹Ø¼ü×Ö£¬Ä¿µÄÎªÁË¸ù¾İ¹Ø¼ü×ÖÈ¡µ½idÖµ*/
+	 /**å”¯ä¸€å…³é”®å­—ï¼Œç›®çš„ä¸ºäº†æ ¹æ®å…³é”®å­—å–åˆ°idå€¼*/
 	private String npcKey;
 	
-	/**NPCµôÂäµÄÇ®ÊıËæ»úÉú³É*/
+	/**NPCæ‰è½çš„é’±æ•°éšæœºç”Ÿæˆ*/
 	private int dropMoney;
 	
-	/**Ë¢ĞÂÊ±¼ä¼ä¸ô	·ÖÖÓÎªµ¥Î»*/
+	/**åˆ·æ–°æ—¶é—´é—´éš”	åˆ†é’Ÿä¸ºå•ä½*/
 	private int npcRefurbishTime;
 	
 	/**
-	 * npcÀàĞÍ£¬¿ÉÒÔ±»´ò°ÜµÄnpcÎª2£»ºÍ¿ÉÒÔ±»´òËÀµÄnpcÎª1
+	 * npcç±»å‹ï¼Œå¯ä»¥è¢«æ‰“è´¥çš„npcä¸º2ï¼›å’Œå¯ä»¥è¢«æ‰“æ­»çš„npcä¸º1
 	 */
 	private int npcType;
 	

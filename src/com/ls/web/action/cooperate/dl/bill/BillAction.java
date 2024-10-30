@@ -16,7 +16,7 @@ public class BillAction extends DispatchAction {
 	Logger logger = Logger.getLogger(BillAction.class);
 
 	/**
-	 * ¸÷¸ö³äÖµÍ¨µÀµÄÌø×ª
+	 * å„ä¸ªå……å€¼é€šé“çš„è·³è½¬
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,

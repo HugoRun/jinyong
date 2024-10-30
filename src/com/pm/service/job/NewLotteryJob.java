@@ -41,19 +41,19 @@ public class NewLotteryJob implements Job
 			JobDetail jobDetail = new JobDetail("NewLotteryJob" + date_str,
 					Scheduler.DEFAULT_GROUP, NewLotteryJob.class);
 
-			// ´´½¨Ã¿¸öJOBÒªÖ´ĞĞµÄÊ±¼ä
+			// åˆ›å»ºæ¯ä¸ªJOBè¦æ‰§è¡Œçš„æ—¶é—´
 			try
 			{
 				LotteryService ls = new LotteryService();
 				String time = ls.getQuartzTime();
-				// ×Ô¶¨ÒåÊ±¼ä
+				// è‡ªå®šä¹‰æ—¶é—´
 				CronTrigger trigger = new CronTrigger("NewLotteryTrigger"
 						+ date_str, null, time);
 				Date date = new Date();
 				trigger.setStartTime(date);
 				scheduler.scheduleJob(jobDetail, trigger);
 				logger
-						.info("²ÊÆ±¶¨Ê±"
+						.info("å½©ç¥¨å®šæ—¶"
 								+ time
 								+ "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 			}

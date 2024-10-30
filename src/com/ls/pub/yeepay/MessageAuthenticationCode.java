@@ -18,14 +18,14 @@ import java.security.spec.InvalidKeySpecException;
 import javax.crypto.NoSuchPaddingException;
 
 /**
- * ANSI X9.9 MACĞ£ÑéËã·¨
+ * ANSI X9.9 MACæ ¡éªŒç®—æ³•
  *
- * DES¼ÓÃÜ½á¹û:
+ * DESåŠ å¯†ç»“æœ:
  *   des key    = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
  *   des data   = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37};
  *   des result = 1b 18 b9 7a 85 f9 67 e9
  *
- * MAC¼ÓÃÜ½á¹û:
+ * MACåŠ å¯†ç»“æœ:
  *   mac key    = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
  *   mac data   = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37};
  *   mac result = a1 e8 02 aa 02 74 74 bb
@@ -38,12 +38,12 @@ import javax.crypto.NoSuchPaddingException;
  * @version 1.0
  */
 public class MessageAuthenticationCode {
-//  private static final String Algorithm = "DES"; //¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
+//  private static final String Algorithm = "DES"; //å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
 
   /**
-   * ±¨ÎÄMAC´¦Àí£¬²ÎÕÕANSI X9.9±ê×¼
-   * @param key  --  ÃÜÔ¿£¨³¤¶È8×Ö½Ú£©
-   * @param data -- ĞèÒª×öMACµÄÊı¾İ
+   * æŠ¥æ–‡MACå¤„ç†ï¼Œå‚ç…§ANSI X9.9æ ‡å‡†
+   * @param key  --  å¯†é’¥ï¼ˆé•¿åº¦8å­—èŠ‚ï¼‰
+   * @param data -- éœ€è¦åšMACçš„æ•°æ®
    * @return
    */
   public static byte[] mac(byte[] key, byte[] data) throws
@@ -55,23 +55,23 @@ public class MessageAuthenticationCode {
   }
 
   /**
-   * ±¨ÎÄMAC´¦Àí£¬²ÎÕÕANSI X9.9±ê×¼
-   * @param key  --  ÃÜÔ¿£¨³¤¶È8×Ö½Ú£©
-   * @param data -- ĞèÒª×öMACµÄÊı¾İ
-   * @param offset -- dataµÄÆğÊ¼Î»ÖÃ
-   * @param len -- ĞèÒªMACµÄÊı¾İ³¤¶È
+   * æŠ¥æ–‡MACå¤„ç†ï¼Œå‚ç…§ANSI X9.9æ ‡å‡†
+   * @param key  --  å¯†é’¥ï¼ˆé•¿åº¦8å­—èŠ‚ï¼‰
+   * @param data -- éœ€è¦åšMACçš„æ•°æ®
+   * @param offset -- dataçš„èµ·å§‹ä½ç½®
+   * @param len -- éœ€è¦MACçš„æ•°æ®é•¿åº¦
    * @return
    */
   public static byte[] mac(byte[] key, byte[] data, int offset, int len) throws
       NoSuchAlgorithmException, NoSuchPaddingException,
       NoSuchAlgorithmException, InvalidKeyException, BadPaddingException,
       IllegalBlockSizeException, IllegalStateException {
-    final String Algorithm = "DES"; //¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
+    final String Algorithm = "DES"; //å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
 
-    //Éú³ÉÃÜÔ¿
+    //ç”Ÿæˆå¯†é’¥
     SecretKey deskey = new SecretKeySpec(key, Algorithm);
 
-    // ¼ÓÃÜ
+    // åŠ å¯†
     Cipher c1 = Cipher.getInstance(Algorithm);
     c1.init(Cipher.ENCRYPT_MODE, deskey);
 
@@ -88,8 +88,8 @@ public class MessageAuthenticationCode {
   }
 
   /**
-   * DES¼ÓÃÜ´¦Àí
-   * ×¢Òâ:Ëã·¨±ØĞëÊ¹ÓÃ"DES/ECB/NoPadding"²ÅÄÜ²úÉú8bytesµÄ¼ÓÃÜ½á¹û
+   * DESåŠ å¯†å¤„ç†
+   * æ³¨æ„:ç®—æ³•å¿…é¡»ä½¿ç”¨"DES/ECB/NoPadding"æ‰èƒ½äº§ç”Ÿ8bytesçš„åŠ å¯†ç»“æœ
    * @param key
    * @param data
    * @return
@@ -98,25 +98,25 @@ public class MessageAuthenticationCode {
    */
   public static byte[] desEncryption(byte[] key, byte[] data) throws
       NoSuchAlgorithmException, Exception {
-    final String Algorithm = "DES/ECB/NoPadding"; //¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
+    final String Algorithm = "DES/ECB/NoPadding"; //å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
 
     if (key.length != DESKeySpec.DES_KEY_LEN || data.length != 8)
       throw new IllegalArgumentException("key or data's length != 8");
 
-    //Éú³ÉÃÜÔ¿
+    //ç”Ÿæˆå¯†é’¥
     DESKeySpec desKS = new DESKeySpec(key);
     SecretKeyFactory  skf = SecretKeyFactory.getInstance("DES");
     SecretKey deskey = skf.generateSecret(desKS);
 
-    // ¼ÓÃÜ
+    // åŠ å¯†
     Cipher c1 = Cipher.getInstance(Algorithm);
     c1.init(Cipher.ENCRYPT_MODE, deskey);
 
     byte buf[];
-    // Èç¹ûÖ±½ÓÊ¹ÓÃdoFinal()£¬½«·µ»Ø16×Ö½ÚµÄ½á¹û£¬Í·8¸ö×Ö½ÚÓëupdateÏàÍ¬
+    // å¦‚æœç›´æ¥ä½¿ç”¨doFinal()ï¼Œå°†è¿”å›16å­—èŠ‚çš„ç»“æœï¼Œå¤´8ä¸ªå­—èŠ‚ä¸updateç›¸åŒ
     buf = c1.doFinal(data);
 
-    // ½ö½ö·µ»Ø8×Ö½ÚµÄdesÊı¾İ
+    // ä»…ä»…è¿”å›8å­—èŠ‚çš„desæ•°æ®
     byte[] enc_data = new byte[8];
     System.arraycopy(buf, 0, enc_data, 0, 8);
     return enc_data;
@@ -124,8 +124,8 @@ public class MessageAuthenticationCode {
 
 
   /**
-   * DES½âÃÜ´¦Àí
-   * ×¢Òâ:Ëã·¨±ØĞëÊ¹ÓÃ"DES/ECB/NoPadding"²ÅÄÜ²úÉú8bytesµÄ¼ÓÃÜ½á¹û
+   * DESè§£å¯†å¤„ç†
+   * æ³¨æ„:ç®—æ³•å¿…é¡»ä½¿ç”¨"DES/ECB/NoPadding"æ‰èƒ½äº§ç”Ÿ8bytesçš„åŠ å¯†ç»“æœ
    * @param key
    * @param data
    * @return
@@ -134,21 +134,21 @@ public class MessageAuthenticationCode {
    */
   public static byte[] desDecryption(byte[] key, byte[] data) throws
       NoSuchAlgorithmException, Exception {
-    final String Algorithm = "DES/ECB/NoPadding"; //¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
+    final String Algorithm = "DES/ECB/NoPadding"; //å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
 
     if (key.length != DESKeySpec.DES_KEY_LEN || data.length != 8)
       throw new IllegalArgumentException("key's len != 8 or data's length != 8");
 
-    //Éú³ÉÃÜÔ¿
+    //ç”Ÿæˆå¯†é’¥
     SecretKey deskey = new SecretKeySpec(key, "DES");
 
-    // ¼ÓÃÜ
+    // åŠ å¯†
     Cipher c1 = Cipher.getInstance(Algorithm);
     c1.init(Cipher.DECRYPT_MODE, deskey);
 
     byte decrypted [];
 
-    // Èç¹ûÖ±½ÓÊ¹ÓÃdoFinal()£¬½«·µ»Ø16×Ö½ÚµÄ½á¹û£¬Í·8¸ö×Ö½ÚÓëupdateÏàÍ¬
+    // å¦‚æœç›´æ¥ä½¿ç”¨doFinal()ï¼Œå°†è¿”å›16å­—èŠ‚çš„ç»“æœï¼Œå¤´8ä¸ªå­—èŠ‚ä¸updateç›¸åŒ
     decrypted = c1.doFinal(data);
 //    //System.out.println("decrypted = " + StringArrayUtil.byte2hex(decrypted));
 
@@ -156,8 +156,8 @@ public class MessageAuthenticationCode {
   }
 
   /**
-   ÓÃDES·½·¨¼ÓÃÜÊäÈëµÄ×Ö½Ú
-   bytKeyĞèÎª8×Ö½Ú³¤£¬ÊÇ¼ÓÃÜµÄÃÜÂë
+   ç”¨DESæ–¹æ³•åŠ å¯†è¾“å…¥çš„å­—èŠ‚
+   bytKeyéœ€ä¸º8å­—èŠ‚é•¿ï¼Œæ˜¯åŠ å¯†çš„å¯†ç 
    */
   protected byte[] encryptByDES(byte[] bytP, byte[] bytKey) throws Exception {
     DESKeySpec desKS = new DESKeySpec(bytKey);
@@ -169,8 +169,8 @@ public class MessageAuthenticationCode {
   }
 
   /**
-   ÓÃDES·½·¨½âÃÜÊäÈëµÄ×Ö½Ú
-   bytKeyĞèÎª8×Ö½Ú³¤£¬ÊÇ½âÃÜµÄÃÜÂë
+   ç”¨DESæ–¹æ³•è§£å¯†è¾“å…¥çš„å­—èŠ‚
+   bytKeyéœ€ä¸º8å­—èŠ‚é•¿ï¼Œæ˜¯è§£å¯†çš„å¯†ç 
    */
   protected byte[] decryptByDES(byte[] bytE, byte[] bytKey) throws Exception {
     DESKeySpec desKS = new DESKeySpec(bytKey);
@@ -182,20 +182,20 @@ public class MessageAuthenticationCode {
   }
 
   /**
-   * ×Ö·û´® DESede(3DES) ¼ÓÃÜ
-   * @param key - Îª24×Ö½ÚµÄÃÜÔ¿£¨3×éx8×Ö½Ú£©
-   * @param data - ĞèÒª½øĞĞ¼ÓÃÜµÄÊı¾İ£¨8×Ö½Ú£©
+   * å­—ç¬¦ä¸² DESede(3DES) åŠ å¯†
+   * @param key - ä¸º24å­—èŠ‚çš„å¯†é’¥ï¼ˆ3ç»„x8å­—èŠ‚ï¼‰
+   * @param data - éœ€è¦è¿›è¡ŒåŠ å¯†çš„æ•°æ®ï¼ˆ8å­—èŠ‚ï¼‰
    * @return
    */
   public static byte[] des3Encryption(byte[] key, byte[] data) throws
       NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException,
       BadPaddingException, IllegalBlockSizeException, IllegalStateException {
-    final String Algorithm = "DESede"; // ¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
+    final String Algorithm = "DESede"; // å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
 
-    //Éú³ÉÃÜÔ¿
+    //ç”Ÿæˆå¯†é’¥
     SecretKey deskey = new SecretKeySpec(key, Algorithm);
 
-    //¼ÓÃÜ
+    //åŠ å¯†
     Cipher c1 = Cipher.getInstance(Algorithm);
     c1.init(Cipher.ENCRYPT_MODE, deskey);
     return c1.doFinal(data);
@@ -203,31 +203,31 @@ public class MessageAuthenticationCode {
 
 
   /**
-   * ×Ö·û´® DESede(3DES) ½âÃÜ
-   * @param key - Îª24×Ö½ÚµÄÃÜÔ¿£¨3×éx8×Ö½Ú£©
-   * @param data - ĞèÒª½øĞĞ½âÃÜµÄÊı¾İ£¨8×Ö½Ú£©
+   * å­—ç¬¦ä¸² DESede(3DES) è§£å¯†
+   * @param key - ä¸º24å­—èŠ‚çš„å¯†é’¥ï¼ˆ3ç»„x8å­—èŠ‚ï¼‰
+   * @param data - éœ€è¦è¿›è¡Œè§£å¯†çš„æ•°æ®ï¼ˆ8å­—èŠ‚ï¼‰
    * @return
    */
   public static byte[] des3Decryption(byte[] key, byte[] data) throws
       NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException,
       BadPaddingException, IllegalBlockSizeException, IllegalStateException {
-    final String Algorithm = "DESede"; // ¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
+    final String Algorithm = "DESede"; // å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
 
-    //Éú³ÉÃÜÔ¿
+    //ç”Ÿæˆå¯†é’¥
     SecretKey deskey = new SecretKeySpec(key, Algorithm);
 
-    //¼ÓÃÜ
+    //åŠ å¯†
     Cipher c1 = Cipher.getInstance(Algorithm);
     c1.init(Cipher.DECRYPT_MODE, deskey);
     return c1.doFinal(data);
   }
   
   /**
-   * ¶ÔÊı¾İ½øĞĞ3DES¼ÓÃÜ
-   * @param key - 24 bytesµÄÃÜÔ¿£¨Èı×é£©
-   * @param iv - ¼ÓÃÜÊı¾İÊ¹ÓÃµÄrandomÏòÁ¿(8 bytes)
-   * @param data - ´ı¼ÓÃÜµÄÊı¾İ
-   * @return ¼ÓÃÜºóµÄÊı¾İ
+   * å¯¹æ•°æ®è¿›è¡Œ3DESåŠ å¯†
+   * @param key - 24 bytesçš„å¯†é’¥ï¼ˆä¸‰ç»„ï¼‰
+   * @param iv - åŠ å¯†æ•°æ®ä½¿ç”¨çš„randomå‘é‡(8 bytes)
+   * @param data - å¾…åŠ å¯†çš„æ•°æ®
+   * @return åŠ å¯†åçš„æ•°æ®
    * @throws NoSuchPaddingException
    * @throws NoSuchAlgorithmException
    * @throws InvalidKeyException
@@ -240,8 +240,8 @@ public class MessageAuthenticationCode {
   public static byte[] des3Encryption(byte[] key, byte[]iv, byte[] data) throws
   	NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException,
   	BadPaddingException, IllegalBlockSizeException, IllegalStateException, InvalidAlgorithmParameterException, InvalidKeySpecException {
-	  final String Algorithm = "DESede/CBC/PKCS5Padding"; // ¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
-	  //Éú³ÉÃÜÔ¿
+	  final String Algorithm = "DESede/CBC/PKCS5Padding"; // å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
+	  //ç”Ÿæˆå¯†é’¥
 	  SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(
       "DESede");
 	  DESedeKeySpec spec = new DESedeKeySpec(key);
@@ -249,7 +249,7 @@ public class MessageAuthenticationCode {
 	  //SecretKey deskey = new SecretKeySpec(key, Algorithm);
 	  // iv
 	  IvParameterSpec tempIv = new IvParameterSpec(iv);
-	  //¼ÓÃÜ
+	  //åŠ å¯†
 	  Cipher c1 = Cipher.getInstance(Algorithm);
 	  c1.init(Cipher.ENCRYPT_MODE, deskey, tempIv);
 	  return c1.doFinal(data);
@@ -257,11 +257,11 @@ public class MessageAuthenticationCode {
   }
   
   /**
-   * ¶ÔÊı¾İ½øĞĞ3DES½âÃÜ
-   * @param key - 24 bytesµÄÃÜÔ¿£¨Èı×é£©
-   * @param iv - ¼ÓÃÜÊı¾İÊ¹ÓÃµÄrandomÏòÁ¿(8 bytes)
-   * @param data - ´ı½âÃÜµÄÊı¾İ£¨8µÄ±¶Êı£©
-   * @return - ½âÃÜºóµÄÊı¾İ
+   * å¯¹æ•°æ®è¿›è¡Œ3DESè§£å¯†
+   * @param key - 24 bytesçš„å¯†é’¥ï¼ˆä¸‰ç»„ï¼‰
+   * @param iv - åŠ å¯†æ•°æ®ä½¿ç”¨çš„randomå‘é‡(8 bytes)
+   * @param data - å¾…è§£å¯†çš„æ•°æ®ï¼ˆ8çš„å€æ•°ï¼‰
+   * @return - è§£å¯†åçš„æ•°æ®
    * @throws NoSuchPaddingException
    * @throws NoSuchAlgorithmException
    * @throws InvalidKeyException
@@ -274,15 +274,15 @@ public class MessageAuthenticationCode {
   public static byte[] des3Decryption(byte[] key, byte[]iv, byte[] data) throws
 	NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException,
 	BadPaddingException, IllegalBlockSizeException, IllegalStateException, InvalidAlgorithmParameterException, InvalidKeySpecException {
-	  final String Algorithm = "DESede/CBC/PKCS5Padding"; // ¶¨Òå ¼ÓÃÜËã·¨,¿ÉÓÃ DES,DESede,Blowfish
-	  //Éú³ÉÃÜÔ¿
+	  final String Algorithm = "DESede/CBC/PKCS5Padding"; // å®šä¹‰ åŠ å¯†ç®—æ³•,å¯ç”¨ DES,DESede,Blowfish
+	  //ç”Ÿæˆå¯†é’¥
 	  SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DESede");
 	  DESedeKeySpec spec = new DESedeKeySpec(key);
 	  SecretKey deskey = keyFactory.generateSecret(spec);
 	  //SecretKey deskey = new SecretKeySpec(key, Algorithm);
 	  // iv
 	  IvParameterSpec tempIv = new IvParameterSpec(iv);
-	  //¼ÓÃÜ
+	  //åŠ å¯†
 	  Cipher c1 = Cipher.getInstance(Algorithm);
 	  c1.init(Cipher.DECRYPT_MODE, deskey, tempIv);
 	  return c1.doFinal(data);

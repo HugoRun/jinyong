@@ -19,15 +19,15 @@ import com.ls.web.service.player.EconomyService;
 import com.ls.web.service.player.RoleService;
 
 /**
- * Õ¹Ê¾×°±¸
- * @author ÕÅ¿¡¿¡
+ * å±•ç¤ºè£…å¤‡
+ * @author å¼ ä¿Šä¿Š
  */
 public class EquipRelelationAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
 
 	/**
-	 * Õ¹Ê¾×°±¸
+	 * å±•ç¤ºè£…å¤‡
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,7 @@ public class EquipRelelationAction extends ActionBase
 		
 		String hint = null;
 		if ( yuanbao < 50) {
-			hint =  "¶Ô²»Æð£¬Ã¿Õ¹Ê¾Ò»´Î×°±¸ÐèÏûºÄ"+GameConfig.getYuanbaoName()+"¡Á50!";
+			hint =  "å¯¹ä¸èµ·ï¼Œæ¯å±•ç¤ºä¸€æ¬¡è£…å¤‡éœ€æ¶ˆè€—"+GameConfig.getYuanbaoName()+"Ã—50!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("displayfalse");
 		}
@@ -58,7 +58,7 @@ public class EquipRelelationAction extends ActionBase
 	
 	
 	/**
-	 * »ñµÃ×°±¸Õ¹Ê¾ÐÅÏ¢
+	 * èŽ·å¾—è£…å¤‡å±•ç¤ºä¿¡æ¯
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

@@ -11,12 +11,12 @@ import com.ls.pub.db.DBConnection;
 import com.web.jieyi.util.Constant;
 
 /**
- * @author ls ¹¦ÄÜ:ĞèÒªµ¯³öÒ³ÃæµÄÏµÍ³ÏûÏ¢±í(u_popup_msg) Mar 6, 2009
+ * @author ls åŠŸèƒ½:éœ€è¦å¼¹å‡ºé¡µé¢çš„ç³»ç»Ÿæ¶ˆæ¯è¡¨(u_popup_msg) Mar 6, 2009
  */
 public class UMessageInfoDao extends DaoBase
 {
 	/**
-	 * Çå³şÖ¸¶¨ÏûÏ¢
+	 * æ¸…æ¥šæŒ‡å®šæ¶ˆæ¯
 	 */
 	public void deleteById(int p_pk, int id)
 	{
@@ -42,7 +42,7 @@ public class UMessageInfoDao extends DaoBase
 	}
 
 	/**
-	 * Çå³şÍæ¼ÒÏûÏ¢
+	 * æ¸…æ¥šç©å®¶æ¶ˆæ¯
 	 */
 	public void clear(int p_pk)
 	{
@@ -68,7 +68,7 @@ public class UMessageInfoDao extends DaoBase
 	}
 	
 	/**
-	 * Çå³şÍæ¼ÒÏûÏ¢
+	 * æ¸…æ¥šç©å®¶æ¶ˆæ¯
 	 */
 	public void clear(int p_pk, int msg_type)
 	{
@@ -94,12 +94,12 @@ public class UMessageInfoDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½Ò»ÌõÏûÏ¢
+	 * å¾—åˆ°ä¸€æ¡æ¶ˆæ¯
 	 */
 	public UMessageInfoVO get(int p_pk)
 	{
 		// UMessageInfoVO msg = null;
-		// String sql = "select * from u_popup_msg where p_pk="+p_pk +" order by
+		// String sql = "SELECT * FROM u_popup_msg where p_pk="+p_pk +" order by
 		// msg_priority,id limit 1";
 		// logger.debug(sql);
 		// DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
@@ -133,16 +133,16 @@ public class UMessageInfoDao extends DaoBase
 	}
 
 	/**
-	 * ²åÈëÒ»ÌõÏûÏ¢
+	 * æ’å…¥ä¸€æ¡æ¶ˆæ¯
 	 */
 	public void insert(UMessageInfoVO msg)
 	{
 		if (msg == null)
 		{
 			logger
-					.debug("######################msgÎª¿Õ#########################");
+					.debug("######################msgä¸ºç©º#########################");
 		}
-		String sql = "insert into u_popup_msg values (null,'" + msg.getPPk()
+		String sql = "INSERT INTO u_popup_msg values (null,'" + msg.getPPk()
 				+ "','" + msg.getMsgType() + "','" + msg.getMsgOperate1()
 				+ "','" + msg.getMsgOperate2() + "','" + msg.getMsgPriority()
 				+ "',now())";
@@ -173,7 +173,7 @@ public class UMessageInfoDao extends DaoBase
 		}
 	}
 
-	// ²åÈëµ½ÄÚ´æ
+	// æ’å…¥åˆ°å†…å­˜
 	private void setTOMemory(UMessageInfoVO msg)
 	{
 		if (msg != null)
@@ -187,7 +187,7 @@ public class UMessageInfoDao extends DaoBase
 		}
 	}
 
-	// ´ÓÄÚ´æ²éÕÒ(·µ»ØÒ»Ìõ)
+	// ä»å†…å­˜æŸ¥æ‰¾(è¿”å›ä¸€æ¡)
 	private UMessageInfoVO getFromMemory(int p_pk)
 	{
 		UMessageInfoVO ui = null;
@@ -210,7 +210,7 @@ public class UMessageInfoDao extends DaoBase
 		return ui;
 	}
 
-//	// ´ÓÄÚ´æ²éÕÒ(·µ»ØËùÓĞ)
+//	// ä»å†…å­˜æŸ¥æ‰¾(è¿”å›æ‰€æœ‰)
 //	private List<UMessageInfoVO> getFromMemoryAll(int p_pk)
 //	{
 //		List<UMessageInfoVO> list = new ArrayList<UMessageInfoVO>();
@@ -222,14 +222,14 @@ public class UMessageInfoDao extends DaoBase
 //		return list;
 //	}
 
-	// Çå³ıÍæ¼ÒµÄµ¯³öÏûÏ¢
+	// æ¸…é™¤ç©å®¶çš„å¼¹å‡ºæ¶ˆæ¯
 	public void clearByPlayer(int p_pk)
 	{
 			Constant.UMESSAGE.remove(p_pk);
 	}
 	
 	
-	// Çå³ıÍæ¼ÒµÄµ¯³öÏûÏ¢
+	// æ¸…é™¤ç©å®¶çš„å¼¹å‡ºæ¶ˆæ¯
 	private void clearByPlayer(int p_pk, int msg_type)
 	{
 		List<UMessageInfoVO> list = Constant.UMESSAGE.get(p_pk);
@@ -246,7 +246,7 @@ public class UMessageInfoDao extends DaoBase
 		}
 	}
 
-	// ¸ù¾İidÇå³ıµ¯³öÏûÏ¢
+	// æ ¹æ®idæ¸…é™¤å¼¹å‡ºæ¶ˆæ¯
 	private void delById(int p_pk, int id)
 	{
 			if (Constant.UMESSAGE.containsKey(p_pk))
@@ -272,10 +272,10 @@ public class UMessageInfoDao extends DaoBase
 		return new ArrayList<UMessageInfoVO>(list);
 	}
 
-//	// ²éÕÒ³öËùÓĞµÄµ¯³öÊ½ÏûÏ¢£¬·ÅÈëÄÚ´æ
+//	// æŸ¥æ‰¾å‡ºæ‰€æœ‰çš„å¼¹å‡ºå¼æ¶ˆæ¯ï¼Œæ”¾å…¥å†…å­˜
 //	public List<UMessageInfoVO> selectAll()
 //	{
-//		String sql = "select * from u_popup_msg  order by msg_priority,id ";
+//		String sql = "SELECT * FROM u_popup_msg  order by msg_priority,id ";
 //		List<UMessageInfoVO> list = new ArrayList<UMessageInfoVO>();
 //		logger.debug(sql);
 //		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
@@ -311,14 +311,14 @@ public class UMessageInfoDao extends DaoBase
 //		}
 //	}
 	
-	// ²éÕÒ³öËùÓĞµÄµ¯³öÊ½ÏûÏ¢£¬·ÅÈëÄÚ´æ
+	// æŸ¥æ‰¾å‡ºæ‰€æœ‰çš„å¼¹å‡ºå¼æ¶ˆæ¯ï¼Œæ”¾å…¥å†…å­˜
 	private List<UMessageInfoVO> selectAllOne(Object p_pk)
 	{
 		List<UMessageInfoVO> list = new ArrayList<UMessageInfoVO>();
 		if(p_pk==null){
 			return list;
 		}
-		String sql = "select * from u_popup_msg where p_pk = "+p_pk+" order by msg_priority,id ";
+		String sql = "SELECT * FROM u_popup_msg where p_pk = "+p_pk+" order by msg_priority,id ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -354,7 +354,7 @@ public class UMessageInfoDao extends DaoBase
 	}
 	
 	/**
-	 * ³õÊ¼»¯µ¯³öÊ½ÏûÏ¢
+	 * åˆå§‹åŒ–å¼¹å‡ºå¼æ¶ˆæ¯
 	 * @param p_pk
 	 */
 	public void initPopMsg(int p_pk){

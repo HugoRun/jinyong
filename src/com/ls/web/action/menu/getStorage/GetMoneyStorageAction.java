@@ -21,7 +21,7 @@ public class GetMoneyStorageAction extends DispatchAction{
 
 
 	Logger logger =  Logger.getLogger("log.action");
-		// ²Ö¿âÎïÆ·ÁĞ±í
+		// ä»“åº“ç‰©å“åˆ—è¡¨
 		public ActionForward n1(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{
@@ -32,15 +32,15 @@ public class GetMoneyStorageAction extends DispatchAction{
 			
 			WareHouseDao wareHouse = new WareHouseDao();
 	
-			/** ²éÑ¯Êı¾İ¿âÖĞ¸Ã½ÇÉ«ÓĞÃ»ÓĞ½ğÇ®²Ö¿â */
+			/** æŸ¥è¯¢æ•°æ®åº“ä¸­è¯¥è§’è‰²æœ‰æ²¡æœ‰é‡‘é’±ä»“åº“ */
 			int warehouseID = wareHouse.getWareHouseIdBypPk(uPk,pPk,Wrap.COPPER);
-			logger.info("storageAction ÖĞÍæ¼ÒµÄ¸ÃÀàĞÍ ²Ö¿â :"+warehouseID);
+			logger.info("storageAction ä¸­ç©å®¶çš„è¯¥ç±»å‹ ä»“åº“ :"+warehouseID);
 			
 			request.setAttribute("warehouseID", warehouseID);
 			return mapping.findForward("money_list");
 		}
 		
-		//È¡³ö½ğÇ®
+		//å–å‡ºé‡‘é’±
 		public ActionForward n2(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 					{
@@ -52,85 +52,85 @@ public class GetMoneyStorageAction extends DispatchAction{
 				
 				request.setAttribute("id", uPk + "");
 				
-				//°ü¹üÀïÓĞµÄÇ®	
+				//åŒ…è£¹é‡Œæœ‰çš„é’±	
 				long partCopper = roleInfo.getBasicInfo().getCopper();
 				
 				
-				//²Ö¿âÀïµÄÇ®
+				//ä»“åº“é‡Œçš„é’±
 				 WareHouseDao storageDao = new WareHouseDao();
 				 WareHouseVO wareHouseVO = storageDao.getWareHouseIdBypPk(pPk+"",Wrap.COPPER);
 				 long warehouseMoney = Long.valueOf(wareHouseVO.getUwMoneyNumber());
 				
-				 //ÓÃ»§ÊäÈëµÄÇ®
-				 String silver_num = request.getParameter("silver_num");		//Òø
-				 String copper_num = request.getParameter("copper_num");		//Í­
+				 //ç”¨æˆ·è¾“å…¥çš„é’±
+				 String silver_num = request.getParameter("silver_num");		//é“¶
+				 String copper_num = request.getParameter("copper_num");		//é“œ
 				 int silever_numbers = 0;
 				 int copper_numbers = 0;
-				 logger.info("Îª¸ñÊ½»¯Ç°ÓÃ»§ÊäÈëµÄÇ®Îªsilver_num:"+silver_num+",copper_num="+copper_num);
+				 logger.info("ä¸ºæ ¼å¼åŒ–å‰ç”¨æˆ·è¾“å…¥çš„é’±ä¸ºsilver_num:"+silver_num+",copper_num="+copper_num);
 				 
-				 logger.info("°ü¹üÀïÓĞµÄÇ®"+partCopper);
-				 logger.info("²Ö¿âÀïµÄÇ®"+warehouseMoney);
+				 logger.info("åŒ…è£¹é‡Œæœ‰çš„é’±"+partCopper);
+				 logger.info("ä»“åº“é‡Œçš„é’±"+warehouseMoney);
 				
 				 // int input_money = (int)MoneyUtil.changeSilverAndCopperToCopper(Integer.valueOf(silver_num),Integer.valueOf(copper_num));
 				
-				 //°ü¹ü½ğÇ®´æÈëÉÏÏŞ,ÎªÒ»°ÙÍòÒø£¬¼´Ò»ÒÚÎÄ
+				 //åŒ…è£¹é‡‘é’±å­˜å…¥ä¸Šé™,ä¸ºä¸€ç™¾ä¸‡é“¶ï¼Œå³ä¸€äº¿æ–‡
 				 int wrapMoneyLimit = 100000000;
 				 StringBuffer resultWml = new StringBuffer("");
 				
 				 try{
 					 if(silver_num == null || silver_num == "" || silver_num.equals("") || silver_num.equals(" ")){
 						 silever_numbers = 0;
-						 logger.info("ÊäÈëÒø×ÓÎª¿Õ");
+						 logger.info("è¾“å…¥é“¶å­ä¸ºç©º");
 					 }else {
-						 logger.info("ÊäÈëÒø×Ó²»Îª¿Õ");
+						 logger.info("è¾“å…¥é“¶å­ä¸ä¸ºç©º");
 						 silever_numbers = Integer.valueOf(silver_num);
 					 }
 
 					 if(copper_num == null || copper_num == "" || copper_num.equals("") || copper_num.equals(" ")){
 						 copper_numbers = 0;
-						 logger.info("ÊäÈëÎÄÎª¿Õ");
+						 logger.info("è¾“å…¥æ–‡ä¸ºç©º");
 					 }else {
-						 logger.info("ÊäÈëÎÄ²»Îª¿Õ");
+						 logger.info("è¾“å…¥æ–‡ä¸ä¸ºç©º");
 						 copper_numbers = Integer.valueOf(copper_num);
 					 }
-					 logger.info("ÓÃ»§ÊäÈëµÄÇ®Îªsilver_num:"+silever_numbers+",copper_num="+copper_numbers);
+					 logger.info("ç”¨æˆ·è¾“å…¥çš„é’±ä¸ºsilver_num:"+silever_numbers+",copper_num="+copper_numbers);
 					 long input_money = MoneyUtil.changeSilverAndCopperToCopper(silever_numbers,copper_numbers);
-					 logger.info("ÓÃ»§ÊäÈëµÄÇ®"+input_money);
+					 logger.info("ç”¨æˆ·è¾“å…¥çš„é’±"+input_money);
 					if(input_money < 0){
-						resultWml.append("ĞÂ½ğ¾¯¸æÄú,Ë¢Ç®ÊÇÒ»¼şÎ¥·¨ĞĞÎª!");
+						resultWml.append("æ–°é‡‘è­¦å‘Šæ‚¨,åˆ·é’±æ˜¯ä¸€ä»¶è¿æ³•è¡Œä¸º!");
 						request.setAttribute("resultWml", resultWml.toString());
-						logger.info("ĞÂ½ğ¾¯¸æÄú,Ë¢Ç®ÊÇÒ»¼şÎ¥·¨ĞĞÎª!");
+						logger.info("æ–°é‡‘è­¦å‘Šæ‚¨,åˆ·é’±æ˜¯ä¸€ä»¶è¿æ³•è¡Œä¸º!");
 						return mapping.findForward("input_num");
 					}
 					 
 					if((input_money + partCopper)  > wrapMoneyLimit){
-						resultWml.append("¶Ô²»Æğ£¬Äú×î¶àÖ»¿ÉĞ¯´øÒø1°ÙÍòÒø£¡");
+						resultWml.append("å¯¹ä¸èµ·ï¼Œæ‚¨æœ€å¤šåªå¯æºå¸¦é“¶1ç™¾ä¸‡é“¶ï¼");
 						request.setAttribute("resultWml", resultWml.toString());
-						logger.info("¶Ô²»Æğ£¬Äú×î¶àÖ»¿ÉĞ¯´øÒø1°ÙÍòÒø£¡input_money  > warehouseMoneyLimit");
+						logger.info("å¯¹ä¸èµ·ï¼Œæ‚¨æœ€å¤šåªå¯æºå¸¦é“¶1ç™¾ä¸‡é“¶ï¼input_money  > warehouseMoneyLimit");
 						return mapping.findForward("input_num");
 					}else if(input_money > warehouseMoney){
-						resultWml.append("¶Ô²»Æğ£¬Äú´æ·ÅµÄÒø²»¹»£¡");
+						resultWml.append("å¯¹ä¸èµ·ï¼Œæ‚¨å­˜æ”¾çš„é“¶ä¸å¤Ÿï¼");
 						request.setAttribute("resultWml", resultWml.toString());
-						logger.info("¶Ô²»Æğ£¬Äú´æ·ÅµÄÒø²»¹»£¡input_money > Long.valueOf(partCopper)");
+						logger.info("å¯¹ä¸èµ·ï¼Œæ‚¨å­˜æ”¾çš„é“¶ä¸å¤Ÿï¼input_money > Long.valueOf(partCopper)");
 						
 						return mapping.findForward("input_num");
 					}else {
 						StorageService storageService = new StorageService(); 
 						resultWml.append(storageService.removeMoneyToWrap(pPk,input_money));
-						resultWml.append("<br/>ÄúÇ®×¯ÖĞ¹²´æ·ÅÒø:"+MoneyUtil.changeCopperToStr((warehouseMoney-input_money)));
-						resultWml.append("<br/>Äú°ü¹ü»¹Ğ¯´øÒø:"+MoneyUtil.changeCopperToStr((partCopper + input_money)));
+						resultWml.append("<br/>æ‚¨é’±åº„ä¸­å…±å­˜æ”¾é“¶:"+MoneyUtil.changeCopperToStr((warehouseMoney-input_money)));
+						resultWml.append("<br/>æ‚¨åŒ…è£¹è¿˜æºå¸¦é“¶:"+MoneyUtil.changeCopperToStr((partCopper + input_money)));
 						
-						logger.info(("Äú°ü¹ü»¹Ğ¯´øÒøÁ½:resultWml"));
+						logger.info(("æ‚¨åŒ…è£¹è¿˜æºå¸¦é“¶ä¸¤:resultWml"));
 						request.setAttribute("resultWml", resultWml.toString());
 						return mapping.findForward("sussend");
 					}
 					
 				}catch (NumberFormatException e)
 				{
-					// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-					resultWml.append("ÕıÈ·ÊäÈëÎïÆ·ÊıÁ¿");
+					// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+					resultWml.append("æ­£ç¡®è¾“å…¥ç‰©å“æ•°é‡");
 					request.setAttribute("resultWml", resultWml.toString());
-					logger.info("ÕıÈ·ÊäÈëÎïÆ·ÊıÁ¿");
+					logger.info("æ­£ç¡®è¾“å…¥ç‰©å“æ•°é‡");
 					return mapping.findForward("input_num");
 				}
 				

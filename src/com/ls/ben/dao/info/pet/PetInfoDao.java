@@ -10,16 +10,16 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:p_pet_info
+ * åŠŸèƒ½:p_pet_info
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 9:18:15 AM
  */
 public class PetInfoDao extends DaoBase
 {
 	/**
-	 * µÃµ½p_pkµÄËæÉí´øµÄ³èÎï£¬·µ»ØnullÔò´ú±íÃ»ÓĞ³èÎïÔÚÉíÉÏ
+	 * å¾—åˆ°p_pkçš„éšèº«å¸¦çš„å® ç‰©ï¼Œè¿”å›nullåˆ™ä»£è¡¨æ²¡æœ‰å® ç‰©åœ¨èº«ä¸Š
 	 * 
 	 * @param p_pk
 	 * @return
@@ -27,8 +27,8 @@ public class PetInfoDao extends DaoBase
 	public PetInfoVO getBringPetByPpk(int p_pk)
 	{
 		PetInfoVO petInfo = null;
-		String sql = "select * from  p_pet_info where p_pk=" + p_pk + " and pet_isBring=1 limit 1";
-		logger.debug("µÃµ½p_pkµÄËæÉí´øµÄ³èÎï="+sql);
+		String sql = "SELECT * FROM  p_pet_info where p_pk=" + p_pk + " and pet_isBring=1 limit 1";
+		logger.debug("å¾—åˆ°p_pkçš„éšèº«å¸¦çš„å® ç‰©="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -89,7 +89,7 @@ public class PetInfoDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½p_pkµÄËæÉí´øµÄ³èÎï£¬·µ»ØnullÔò´ú±íÃ»ÓĞ³èÎïÔÚÉíÉÏ
+	 * å¾—åˆ°p_pkçš„éšèº«å¸¦çš„å® ç‰©ï¼Œè¿”å›nullåˆ™ä»£è¡¨æ²¡æœ‰å® ç‰©åœ¨èº«ä¸Š
 	 * 
 	 * @param p_pk
 	 * @return
@@ -97,7 +97,7 @@ public class PetInfoDao extends DaoBase
 	public int getNumOfPet(int p_pk)
 	{
 		int pet_num = 0;
-		String sql = "select count(*) as sum from  p_pet_info where  p_pk="
+		String sql = "SELECT count(*) as sum from  p_pet_info where  p_pk="
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -125,7 +125,7 @@ public class PetInfoDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½¿ÉÒÔ±»Ï´µÄ³èÎï£¬Ã»ÓĞÔÚÉíÉÏµÄÇÒÊ®¼¶Ò»ÉÏµÄ°üÀ¨Ê®¼¶
+	 * å¾—åˆ°å¯ä»¥è¢«æ´—çš„å® ç‰©ï¼Œæ²¡æœ‰åœ¨èº«ä¸Šçš„ä¸”åçº§ä¸€ä¸Šçš„åŒ…æ‹¬åçº§
 	 * 
 	 * @param p_pk
 	 * @return
@@ -136,7 +136,7 @@ public class PetInfoDao extends DaoBase
 		PetInfoVO petInfo = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select pet_pk,pet_name,pet_nickname,pet_wx,pet_type from p_pet_info where  p_pk='"
+		String sql = "SELECT pet_pk,pet_name,pet_nickname,pet_wx,pet_type from p_pet_info where  p_pk='"
 				+ p_pk + "' and pet_isBring<>1";
 		logger.debug(sql);
 		try
@@ -172,7 +172,7 @@ public class PetInfoDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½¿ÉÒÔ±»Ï´µÄ³èÎï£¬Ã»ÓĞÔÚÉíÉÏµÄÇÒÊ®¼¶Ò»ÉÏµÄ°üÀ¨Ê®¼¶
+	 * å¾—åˆ°å¯ä»¥è¢«æ´—çš„å® ç‰©ï¼Œæ²¡æœ‰åœ¨èº«ä¸Šçš„ä¸”åçº§ä¸€ä¸Šçš„åŒ…æ‹¬åçº§
 	 * 
 	 * @param p_pk
 	 * @return
@@ -183,7 +183,7 @@ public class PetInfoDao extends DaoBase
 		PetInfoVO petInfo = null;
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
-		String sql = "select pet_pk,pet_name,pet_nickname,pet_wx,pet_type from p_pet_info where  p_pk='"
+		String sql = "SELECT pet_pk,pet_name,pet_nickname,pet_wx,pet_type from p_pet_info where  p_pk='"
 				+ p_pk + "' and pet_isBring<>1";
 		logger.debug(sql);
 		try
@@ -243,7 +243,7 @@ public class PetInfoDao extends DaoBase
 	}*/
 
 	/**
-	 * ¸ü¸Ä³èÎïêÇ³Æ
+	 * æ›´æ”¹å® ç‰©æ˜µç§°
 	 * 
 	 * @param pet_pk
 	 * @param pet_nickname
@@ -274,7 +274,7 @@ public class PetInfoDao extends DaoBase
 	
 
 	/**
-	 * ¸ø³èÎïÃû×ÖÉÏ¼ÓÉÏ*ºÅ
+	 * ç»™å® ç‰©åå­—ä¸ŠåŠ ä¸Š*å·
 	 * 
 	 * @param pet_pk
 	 * @param pet_nickname
@@ -304,7 +304,7 @@ public class PetInfoDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½³èÎï
+	 * å¾—åˆ°å® ç‰©
 	 * 
 	 * @param pet_pk
 	 * @return
@@ -312,7 +312,7 @@ public class PetInfoDao extends DaoBase
 	public PetInfoVO getPet(int pet_pk)
 	{
 		PetInfoVO petInfo = null;
-		String sql = "select * from  p_pet_info where pet_pk=" + pet_pk + "";
+		String sql = "SELECT * FROM  p_pet_info where pet_pk=" + pet_pk + "";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -371,7 +371,7 @@ public class PetInfoDao extends DaoBase
 	}
 
 	/**
-	 * Ï´³èÎï
+	 * æ´—å® ç‰©
 	 * 
 	 * @param pet
 	 */
@@ -409,10 +409,10 @@ public class PetInfoDao extends DaoBase
 		}
 	}
 	
-	//²é¿´¾­ÑéÅÅÃûÇ°Ê®µÄ³èÎï
+	//æŸ¥çœ‹ç»éªŒæ’åå‰åçš„å® ç‰©
 	public List<PetInfoVO> fintbyExp(){
 		List<PetInfoVO> list = new ArrayList<PetInfoVO>();
-		String sql = "select * from  p_pet_info p order by p.pet_exp desc limit 10";
+		String sql = "SELECT * FROM  p_pet_info p order by p.pet_exp desc limit 10";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -471,10 +471,10 @@ public class PetInfoDao extends DaoBase
 		return list;
 	}
 	
-	//²é¿´¹¥»÷ÅÅÃûÇ°Ê®µÄ³èÎï
+	//æŸ¥çœ‹æ”»å‡»æ’åå‰åçš„å® ç‰©
 	public List<PetInfoVO> fintbyGONGji(){
 		List<PetInfoVO> list = new ArrayList<PetInfoVO>();
-		String sql = "select * from  p_pet_info p order by p.pet_gj_da desc limit 10";
+		String sql = "SELECT * FROM  p_pet_info p order by p.pet_gj_da desc limit 10";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -532,13 +532,13 @@ public class PetInfoDao extends DaoBase
 		}
 		return list;
 	}
-	//²é¿´×Ô¼ºµÄ³èÎï¾­ÑéÅÅÃû
+	//æŸ¥çœ‹è‡ªå·±çš„å® ç‰©ç»éªŒæ’å
 	public int findOwnExp(Object p_pk){
 		int paimin = 0;
 		if(p_pk==null){
 			return paimin;
 		}
-		String sql = "select count(*) from p_pet_info p where p.pet_exp >= (select max(pet_exp) from p_pet_info where p_pk = "+p_pk+")";
+		String sql = "SELECT count(*) from p_pet_info p where p.pet_exp >= (select max(pet_exp) from p_pet_info where p_pk = "+p_pk+")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -564,13 +564,13 @@ public class PetInfoDao extends DaoBase
 		}
 	}
 	
-	//²é¿´×Ô¼ºµÄ³èÎï¹¥»÷ÅÅÃû
+	//æŸ¥çœ‹è‡ªå·±çš„å® ç‰©æ”»å‡»æ’å
 	public int findGjExp(Object p_pk){
 		int paimin = 0;
 		if(p_pk==null){
 			return paimin;
 		}
-		String sql = "select count(*) from p_pet_info p where p.pet_gj_da >= (select max(pet_gj_da) from p_pet_info where p_pk = "+p_pk+")";
+		String sql = "SELECT count(*) from p_pet_info p where p.pet_gj_da >= (select max(pet_gj_da) from p_pet_info where p_pk = "+p_pk+")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

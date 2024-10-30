@@ -29,16 +29,16 @@ Object id = request.getAttribute("id");
  <%} %>
 
  <%}if(allPage>1){
-	if(allPage >nowPage){
-	%>
-	<anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do") %>"> 
-	<postfield name="nowPage" value="<%=nowPage+1%>" />
-	<postfield name="cmd" value="n2" />
-	<postfield name="id" value="<%=id %>" />
-	</go>
-	下一页
-	</anchor> 
+    if(allPage >nowPage){
+    %>
+    <anchor>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do") %>">
+    <postfield name="nowPage" value="<%=nowPage+1%>" />
+    <postfield name="cmd" value="n2" />
+    <postfield name="id" value="<%=id %>" />
+    </go>
+    下一页
+    </anchor>
 	<%
 	}
 	if(nowPage > 1){

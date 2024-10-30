@@ -29,14 +29,14 @@ public class PlayerLotteryService
 {
 	Logger logger = Logger.getLogger(PlayerLotteryService.class);
 
-	/** Íæ¼Ò¹ºÂò²ÊÆ±* */
+	/** ç©å®¶è´­ä¹°å½©ç¥¨* */
 	private void playerBuyLottery(PlayerLotteryVO vo)
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
 		dao.insertPlayerLotteryInfo(vo);
 	}
 
-	/** *µÃµ½Íæ¼ÒµÄÖĞ½±µÈ¼¶ */
+	/** *å¾—åˆ°ç©å®¶çš„ä¸­å¥–ç­‰çº§ */
 	public int playerCatchLotteyLevel(String lottery_num, String sys_lottery)
 	{
 		int x = 0;
@@ -65,7 +65,7 @@ public class PlayerLotteryService
 		return x;
 	}
 
-	// ÊÇ·ñ¿ÉÒÔ²Î¼ÓÍ¶×¢
+	// æ˜¯å¦å¯ä»¥å‚åŠ æŠ•æ³¨
 	public boolean playerCanGetLottery(int p_pk)
 	{
 		LotteryService ls = new LotteryService();
@@ -82,7 +82,7 @@ public class PlayerLotteryService
 		}
 	}
 
-	/** ¹ºÂò²ÊÆ±Á÷³Ì */
+	/** è´­ä¹°å½©ç¥¨æµç¨‹ */
 	public String buyLottery(RoleEntity role_info, String lottery_num,
 			int lottery_zhu)
 	{
@@ -103,13 +103,13 @@ public class PlayerLotteryService
 		int yb = 50 * lottery_zhu;
 		if (yb > user_yb)
 		{
-			return "ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã!";
+			return "æ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³!";
 		}
 		else
 		{
 			LotteryDAO lotteryDAO = new LotteryDAO();
 			LotteryVO lotteryVO = ls.selectLotteryInfoByDate(lottery_date);
-			// µÃµ½ÖĞ½±µÈ¼¶
+			// å¾—åˆ°ä¸­å¥–ç­‰çº§
 			int lv = playerCatchLotteyLevel(lottery_num, lotteryVO
 					.getLottery_content());
 			vo.setP_pk(role_info.getBasicInfo().getPPk());
@@ -130,17 +130,17 @@ public class PlayerLotteryService
 				{
 					vo.setLottery_bonus(0);
 				}
-			// Éú³É²ÊÆ±
+			// ç”Ÿæˆå½©ç¥¨
 			playerBuyLottery(vo);
-			// ¿Û³ıÔª±¦
+			// æ‰£é™¤å…ƒå®
 			economyService.spendYuanbao(role_info.getBasicInfo().getUPk(), yb);
-			// ¸üĞÂÍæ¼ÒÖĞ½±µÄÄÚÈİ
+			// æ›´æ–°ç©å®¶ä¸­å¥–çš„å†…å®¹
 			String catch_player = ls.changePlayer(lv, lotteryVO
 					.getLottery_catch_player(), lottery_zhu);
 			lotteryDAO.updateLotteryAllybAndPlayer(lottery_date, yb,
 					catch_player);
 
-			// µÃµ½¿ª½«Ê±¼ä
+			// å¾—åˆ°å¼€å°†æ—¶é—´
 			Date date = new Date();
 			int hour_temp = date.getHours();
 			int hour = 0;
@@ -149,12 +149,12 @@ public class PlayerLotteryService
 				hour = hour_temp + 1;
 			}
 			String lottery_num_out = ls.getLotteryPerInfo(lottery_num);
-			return "Äú±¾ÆÚÍ¶×¢:" + lottery_num_out + ",¼ÛÖµ" + yb + ""+GameConfig.getYuanbaoName()+"!±¾ÆÚ¾º²Â" + hour
-					+ "µã¿ª½±£¬ÇëÔÚ¿ª½±ºóµÄ24Ğ¡Ê±ÄÚÁìÈ¡½±Àø!";
+			return "æ‚¨æœ¬æœŸæŠ•æ³¨:" + lottery_num_out + ",ä»·å€¼" + yb + ""+GameConfig.getYuanbaoName()+"!æœ¬æœŸç«çŒœ" + hour
+					+ "ç‚¹å¼€å¥–ï¼Œè¯·åœ¨å¼€å¥–åçš„24å°æ—¶å†…é¢†å–å¥–åŠ±!";
 		}
 	}
 
-	/** Íæ¼ÒÁìÈ¡½±Àø* */
+	/** ç©å®¶é¢†å–å¥–åŠ±* */
 	public String playerCatchLotteryBonus(RoleEntity role_info,
 			String lottery_date)
 	{
@@ -168,7 +168,7 @@ public class PlayerLotteryService
 
 		if (vo == null)
 		{
-			return "ÄúÃ»ÓĞ¹ºÂò" + lottery_date + "ÆÚ²ÊÆ±!";
+			return "æ‚¨æ²¡æœ‰è´­ä¹°" + lottery_date + "æœŸå½©ç¥¨!";
 		}
 		else
 		{
@@ -180,7 +180,7 @@ public class PlayerLotteryService
 				String bonus_sys = "";
 				if (vo.getLottery_bonus_lv() == 4)
 				{
-					// ´¦ÀíÍ·½±µÄ½±Àø
+					// å¤„ç†å¤´å¥–çš„å¥–åŠ±
 					if (sys_vo.getSys_lottery_bonus() != null)
 					{
 						int bonusNum = getLaborageBonusNum(sys_vo
@@ -190,7 +190,7 @@ public class PlayerLotteryService
 						if (wrapSpare == 0 || wrapSpare < 0
 								|| wrapSpare < bonusNum)
 						{
-							return "Äú°ü¹ü²»×ã,ÇëÇåÀí°ü¹ü!";
+							return "æ‚¨åŒ…è£¹ä¸è¶³,è¯·æ¸…ç†åŒ…è£¹!";
 						}
 						else
 						{
@@ -204,7 +204,7 @@ public class PlayerLotteryService
 									int laboragemoney = Integer
 											.parseInt(prop[2]);
 
-									// ¼à¿Ø
+									// ç›‘æ§
 									LogService logService = new LogService();
 									logService.recordMoneyLog(role_info
 											.getBasicInfo().getPPk(), role_info
@@ -212,11 +212,11 @@ public class PlayerLotteryService
 											role_info.getBasicInfo()
 													.getCopper()
 													+ "", laboragemoney + "",
-											"²ÊÆ±µÃµ½");
+											"å½©ç¥¨å¾—åˆ°");
 
 									role_info.getBasicInfo().addCopper(
-											laboragemoney);// Íæ¼ÒÁìÈ¡½±½ğ
-									// Ö´ĞĞÍ³¼Æ
+											laboragemoney);// ç©å®¶é¢†å–å¥–é‡‘
+									// æ‰§è¡Œç»Ÿè®¡
 									GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 									gsss.addPropNum(6, StatisticsType.MONEY,
 											laboragemoney,
@@ -230,7 +230,7 @@ public class PlayerLotteryService
 										int experience = Integer
 												.parseInt(prop[2]);
 
-										// ¼à¿Ø
+										// ç›‘æ§
 										LogService logService = new LogService();
 										logService.recordExpLog(role_info
 												.getBasicInfo().getPPk(),
@@ -238,7 +238,7 @@ public class PlayerLotteryService
 														.getName(), role_info
 														.getBasicInfo()
 														.getCurExp(),
-												experience + "", "²ÊÆ±µÃµ½");
+												experience + "", "å½©ç¥¨å¾—åˆ°");
 
 										role_info.getBasicInfo()
 												.updateAddCurExp(experience);
@@ -250,8 +250,8 @@ public class PlayerLotteryService
 												.getBasicInfo().getPPk(),
 												Integer.parseInt(prop[1]),
 												Integer.parseInt(prop[0]), 0,
-												Integer.parseInt(prop[2]),GameLogManager.G_SYSTEM);// Íæ¼Ò»ñµÃÏµÍ³·¢¸øµÄµÀ¾ß
-										// Ö´ĞĞÍ³¼Æ
+												Integer.parseInt(prop[2]),GameLogManager.G_SYSTEM);// ç©å®¶è·å¾—ç³»ç»Ÿå‘ç»™çš„é“å…·
+										// æ‰§è¡Œç»Ÿè®¡
 										GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 										gsss.addPropNum(Integer
 												.parseInt(prop[1]), Integer
@@ -275,17 +275,17 @@ public class PlayerLotteryService
 					lotteryDAO.updateLotteryCatchyb(lottery_date, vo
 							.getLottery_bonus()
 							* vo.getLottery_zhu());
-					// ¼ÇÂ¼Íæ¼ÒÁìÈ¡½±ÀøµÄÅÅĞĞ
+					// è®°å½•ç©å®¶é¢†å–å¥–åŠ±çš„æ’è¡Œ
 					RankService rankService = new RankService();
 					rankService.updateAdd(role_info.getBasicInfo().getPPk(),
 							"boyi", get_yb);
-					return "ÄãÁìÈ¡ÁËµÚ" + lottery_date + "ÆÚÖĞ½±½±Àø:"+GameConfig.getYuanbaoName()+"" + get_yb + " "
+					return "ä½ é¢†å–äº†ç¬¬" + lottery_date + "æœŸä¸­å¥–å¥–åŠ±:"+GameConfig.getYuanbaoName()+"" + get_yb + " "
 							+ bonus_sys;
 				}
 				else
 					if (vo.getLottery_bonus_lv() < 2)
 					{
-						return "ÄúËù¹ºÂòµÄ" + lottery_date + "ÆÚ²ÊÆ±Ã»ÓĞÖĞ½±,ÇëÏÂ´Î¼ÌĞøÅ¬Á¦!";
+						return "æ‚¨æ‰€è´­ä¹°çš„" + lottery_date + "æœŸå½©ç¥¨æ²¡æœ‰ä¸­å¥–,è¯·ä¸‹æ¬¡ç»§ç»­åŠªåŠ›!";
 					}
 					else
 					{
@@ -296,36 +296,36 @@ public class PlayerLotteryService
 						lotteryDAO.updateLotteryCatchyb(lottery_date, vo
 								.getLottery_bonus()
 								* vo.getLottery_zhu());
-						// ¼ÇÂ¼Íæ¼ÒÁìÈ¡½±ÀøµÄÅÅĞĞ
+						// è®°å½•ç©å®¶é¢†å–å¥–åŠ±çš„æ’è¡Œ
 						RankService rankService = new RankService();
 						rankService.updateAdd(
 								role_info.getBasicInfo().getPPk(), "boyi",
 								get_yb);
-						return "ÄãÁìÈ¡ÁËµÚ" + lottery_date + "ÆÚÖĞ½±½±Àø:"+GameConfig.getYuanbaoName()+"" + get_yb;
+						return "ä½ é¢†å–äº†ç¬¬" + lottery_date + "æœŸä¸­å¥–å¥–åŠ±:"+GameConfig.getYuanbaoName()+"" + get_yb;
 					}
 			}
 			else
 			{
-				return "ÄúÒÑÁìÈ¡¹ı½±Àø";
+				return "æ‚¨å·²é¢†å–è¿‡å¥–åŠ±";
 			}
 		}
 	}
 
-	// µÃµ½Í·½±½±½ğ
+	// å¾—åˆ°å¤´å¥–å¥–é‡‘
 	public long getLotteryFristBonus(String lottery_date)
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
 		return dao.getLotteryFristBonus(lottery_date);
 	}
 
-	// µÃµ½×ÜÍ¶×¢ÊıÁ¿
+	// å¾—åˆ°æ€»æŠ•æ³¨æ•°é‡
 	public long getLotteryAllZhu(String lottery_date)
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
 		return dao.getLotteryAllZhu(lottery_date);
 	}
 
-	// µÃµ½Íæ¼Ò²ÊÆ±ÀúÊ·¼ÇÂ¼
+	// å¾—åˆ°ç©å®¶å½©ç¥¨å†å²è®°å½•
 	public List<LotteryOutPrintVO> getPlayerLotteryHistory(int p_pk, int page,
 			int perpage)
 	{
@@ -335,14 +335,14 @@ public class PlayerLotteryService
 		return list;
 	}
 
-	// µÃµ½Íæ¼Ò²ÊÆ±×ÜÍ¶×¢ÊıÁ¿
+	// å¾—åˆ°ç©å®¶å½©ç¥¨æ€»æŠ•æ³¨æ•°é‡
 	public int getPlayerLotteryAllNum(int p_pk)
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
 		return dao.getPlayerLotteryAllNum(p_pk);
 	}
 
-	/** Ëã³ö½±ÀøÓĞ¶àÉÙÎïÆ· */
+	/** ç®—å‡ºå¥–åŠ±æœ‰å¤šå°‘ç‰©å“ */
 	public int getLaborageBonusNum(String bonus)
 	{
 		int num = 0;
@@ -383,12 +383,12 @@ public class PlayerLotteryService
 		return num;
 	}
 
-	// µÃµ½½±ÀøÎïÆ·µÄÏÔÊ¾
+	// å¾—åˆ°å¥–åŠ±ç‰©å“çš„æ˜¾ç¤º
 	public String getLaborageView(String bonus)
 	{
 		if (bonus == null)
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 		StringBuffer sb = new StringBuffer();
 		String[] bonusprop = bonus.split(",");
@@ -399,21 +399,21 @@ public class PlayerLotteryService
 			{
 				int equip_id = Integer.parseInt(prop[1]);
 				GameEquip equip = EquipCache.getById(equip_id);
-				sb.append(equip.getName() + "¡Á" + prop[2]);
+				sb.append(equip.getName() + "Ã—" + prop[2]);
 			}
 			else if (prop[0].equals("4"))
 			{
 				int prop_id = Integer.parseInt(prop[1]);
 				PropVO pvo =  PropCache.getPropById(prop_id);
-				sb.append(pvo.getPropName() + "¡Á" + prop[2]);
+				sb.append(pvo.getPropName() + "Ã—" + prop[2]);
 			}
 			else if (prop[0].equals("5"))
 			{
-				sb.append("¾­Ñé  " + prop[2]);
+				sb.append("ç»éªŒ  " + prop[2]);
 			}
 			else
 			{
-				sb.append("ÒøÁ½"+ MoneyUtil.changeCopperToStr(prop[2]));
+				sb.append("é“¶ä¸¤"+ MoneyUtil.changeCopperToStr(prop[2]));
 			}
 			if (i != bonusprop.length - 1)
 			{
@@ -423,14 +423,14 @@ public class PlayerLotteryService
 		return sb.toString();
 	}
 
-	// Í¶×¢´ÎÊı
+	// æŠ•æ³¨æ¬¡æ•°
 	public int getLotteryTimeToday(int p_pk, String lottery_date)
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
 		return dao.getPlayerLotteryNumToday(p_pk, lottery_date, 0);
 	}
 
-	// ÖĞ½±´ÎÊı
+	// ä¸­å¥–æ¬¡æ•°
 	public int getLotteryBonusTimeToday(int p_pk, String lottery_date)
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();

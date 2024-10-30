@@ -16,7 +16,7 @@ public class RoleJms implements Serializable
 	private int level;
 	private String reg_time;
 	private String last_login_time;
-	private int caozuo = 0;//0ÎªÌí¼Ó£¬1ÎªĞŞ¸ÄµÈ¼¶,2ĞŞ¸Ä×îºóµÇÂ¼Ê±¼ä
+	private int caozuo = 0;//0ä¸ºæ·»åŠ ï¼Œ1ä¸ºä¿®æ”¹ç­‰çº§,2ä¿®æ”¹æœ€åç™»å½•æ—¶é—´
 	public int getCaozuo()
 	{
 		return caozuo;

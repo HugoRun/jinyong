@@ -1,28 +1,28 @@
 package com.ls.ben.vo.goods.equip;
 
 /**
- * 功能:套装
- * @author 刘帅 10:32:21 PM
+ * 鍔熻兘:濂楄
+ * @author 鍒樺竻 10:32:21 PM
  */
 public class SuitVO
 {
 	/** id */
 	private int suitId;
-	/** 套装名称 */
+	/** 濂楄鍚嶇О */
 	private String suitName;
-	/** 组成的套装装备的数量 */
+	/** 缁勬垚鐨勫瑁呰澶囩殑鏁伴噺 */
 	private int suitPartsNum;
-	/** 两件效果 */
+	/** 涓や欢鏁堟灉 */
 	private String twoEffects;
-	/** 两件效果描述 */
+	/** 涓や欢鏁堟灉鎻忚堪 */
 	private String twoEffectsDescribe;
-	/** 三件效果 */
+	/** 涓変欢鏁堟灉 */
 	private String threeEffects;
-	/** 三件效果描述 */
+	/** 涓変欢鏁堟灉鎻忚堪 */
 	private String threeEffectsDescribe;
-	/** 四件效果 */
+	/** 鍥涗欢鏁堟灉 */
 	private String fourEffects;
-	/** 四件效果描述 */
+	/** 鍥涗欢鏁堟灉鎻忚堪 */
 	private String fourEffectsDescribe;
 	public int getSuitId()
 	{

@@ -23,7 +23,7 @@ public class CallBackAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * Ó¦´ğ´¦Àí
+	 * åº”ç­”å¤„ç†
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -31,24 +31,24 @@ public class CallBackAction extends DispatchAction {
 		
 		String resultWml = "";
 		
-		// ÒµÎñÀàĞÍ
+		// ä¸šåŠ¡ç±»å‹
 		String r0_Cmd = formatString(request.getParameter("r0_Cmd"));
-		// Ö§¸¶½á¹û
+		// æ”¯ä»˜ç»“æœ
 		String r1_Code = formatString(request.getParameter("r1_Code"));
-		// ÉÌ»§±àºÅ
+		// å•†æˆ·ç¼–å·
 		String p1_MerId = formatString(request.getParameter("p1_MerId"));
-		// ÉÌ»§¶©µ¥ºÅ
+		// å•†æˆ·è®¢å•å·
 		String rb_Order = formatString(request.getParameter("rb_Order"));
-		// Ò×±¦Ö§¸¶½»Ò×Á÷Ë®ºÅ
+		// æ˜“å®æ”¯ä»˜äº¤æ˜“æµæ°´å·
 		String r2_TrxId = formatString(request.getParameter("r2_TrxId"));
-		// ÉÌ»§À©Õ¹ĞÅÏ¢
+		// å•†æˆ·æ‰©å±•ä¿¡æ¯
 		String pa_MP = formatString(request.getParameter("pa_MP"));
-		// Ö§¸¶½ğ¶î
+		// æ”¯ä»˜é‡‘é¢
 		String rc_Amt = formatString(request.getParameter("rc_Amt"));
-		// Ç©ÃûÊı¾İ
+		// ç­¾åæ•°æ®
 		String hmac	= formatString(request.getParameter("hmac"));
 		
-		logger.info("##########Ò×±¦»Øµ÷############");
+		logger.info("##########æ˜“å®å›è°ƒ############");
 		logger.info("r0_Cmd:"+r0_Cmd);
 		logger.info("r1_Code:"+r1_Code);
 		logger.info("p1_MerId:"+p1_MerId);
@@ -77,7 +77,7 @@ public class CallBackAction extends DispatchAction {
 		}
 		catch(Exception e)
 		{
-			logger.info("PM½âÎö´íÎó");
+			logger.info("PMè§£æé”™è¯¯");
 		}
 		BillService billService = new BillService();
 		PassportService passportService = new PassportService();
@@ -85,16 +85,16 @@ public class CallBackAction extends DispatchAction {
 
 		if( account_record==null )
 		{
-			logger.info("#####ÎŞ³äIDÎª£º"+pa_MP+"µÄÖµ¼ÇÂ¼#####");
+			logger.info("#####æ— å……IDä¸ºï¼š"+pa_MP+"çš„å€¼è®°å½•#####");
 		}
 		PassportVO passport = passportService.getPassportInfoByUPk(account_record.getUPk());
-		//ÓÃ»§ÔÚµ±ÀÖ×¢²áµÄÓÃ»§Ãû
+		//ç”¨æˆ·åœ¨å½“ä¹æ³¨å†Œçš„ç”¨æˆ·å
 		String userName = "devil1";
-		//ÓÃ»§Ö§¸¶µÄÊµ¼Ê½ğ¶î£¬µ¥Î»ÎªÔª
+		//ç”¨æˆ·æ”¯ä»˜çš„å®é™…é‡‘é¢ï¼Œå•ä½ä¸ºå…ƒ
 		String amount = rc_Amt;
-		//ÓÃ»§Ö§¸¶Ê¹ÓÃµÄÍ¨µÀID£¬Ö§¸¶Í¨µÀ¶ÔÕÕ±íÓÉµ±ÀÖÌá¹©¸øÉÌ»§,Ïê¼û:±í¸ñ 3 pc-id£¨¸¶¿îÇşµÀ£©¶ÔÕÕ±í
+		//ç”¨æˆ·æ”¯ä»˜ä½¿ç”¨çš„é€šé“IDï¼Œæ”¯ä»˜é€šé“å¯¹ç…§è¡¨ç”±å½“ä¹æä¾›ç»™å•†æˆ·,è¯¦è§:è¡¨æ ¼ 3 pc-idï¼ˆä»˜æ¬¾æ¸ é“ï¼‰å¯¹ç…§è¡¨
 		String pc_id = "6";
-		//Î¨Ò»±àºÅ,¶©µ¥ºÅ»òÏµÍ³Éú³ÉµÄÎ¨Ò»ĞòÁĞºÅ£¬ÓÉÓÎÏ·³§ÉÌÉú³É(·ÀÖ¹ÖØ¸´Ìá½»)ÏµÍ³ÖĞ»á¸ù¾İmerchant-idgame-idserver-idseq-strÎ¨Ò»Æ¥ÅäÊı¾İ
+		//å”¯ä¸€ç¼–å·,è®¢å•å·æˆ–ç³»ç»Ÿç”Ÿæˆçš„å”¯ä¸€åºåˆ—å·ï¼Œç”±æ¸¸æˆå‚å•†ç”Ÿæˆ(é˜²æ­¢é‡å¤æäº¤)ç³»ç»Ÿä¸­ä¼šæ ¹æ®merchant-idgame-idserver-idseq-strå”¯ä¸€åŒ¹é…æ•°æ®
 		String unique_str = rb_Order;
 		if( passport!=null )
 		{
@@ -107,21 +107,21 @@ public class CallBackAction extends DispatchAction {
 		
 		if(r1_Code.equals("1"))
 		{
-			account_record.setMoney((int)Double.parseDouble(rc_Amt));//³äÖµ½ğ¶îÒÔ»Øµ÷½ğ¶îÎªÖ÷
+			account_record.setMoney((int)Double.parseDouble(rc_Amt));//å……å€¼é‡‘é¢ä»¥å›è°ƒé‡‘é¢ä¸ºä¸»
 			logger.info(userName);
 			if( billService.accountSuccessNotify(account_record)==true )
 			{
-				logger.info("Ò×±¦»Øµ÷,³äÖµ³É¹¦;¶©µ¥ºÅ£º"+rb_Order);
+				logger.info("æ˜“å®å›è°ƒ,å……å€¼æˆåŠŸ;è®¢å•å·ï¼š"+rb_Order);
 	    		String plant_notify = SendPostXml.sendPostToDangle(userName, amount, pc_id, unique_str);
-	    		logger.info("Æ½Ì¨Í¨Öª·µ»ØÖµ£º"+plant_notify);
+	    		logger.info("å¹³å°é€šçŸ¥è¿”å›å€¼ï¼š"+plant_notify);
 			}
 		}
 		else
 		{
-		    logger.info("Ò×±¦»Øµ÷,³äÖµÊ§°Ü,´íÎóĞÅÏ¢£º"+r1_Code+"£»¶©µ¥ºÅ£º"+rb_Order);
+		    logger.info("æ˜“å®å›è°ƒ,å……å€¼å¤±è´¥,é”™è¯¯ä¿¡æ¯ï¼š"+r1_Code+"ï¼›è®¢å•å·ï¼š"+rb_Order);
 		    billService.accountFailNotify(account_record, r1_Code);
 		}
-		// Ó¦´ğ»úÖÆÊÕµ½Ö§¸¶½á¹ûÍ¨ÖªÊ±±ØĞë»ØĞ´ÒÔ"success"¿ªÍ·µÄ×Ö·û´®
+		// åº”ç­”æœºåˆ¶æ”¶åˆ°æ”¯ä»˜ç»“æœé€šçŸ¥æ—¶å¿…é¡»å›å†™ä»¥"success"å¼€å¤´çš„å­—ç¬¦ä¸²
 		resultWml = "success";
 		request.setAttribute("resultWml", resultWml);
 		return mapping.findForward("success");

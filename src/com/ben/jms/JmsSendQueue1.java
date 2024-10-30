@@ -9,7 +9,7 @@ import javax.jms.TextMessage;
 
 public class JmsSendQueue1
 {
-	// ½ÇÉ«×¨ÓÃQUEUE1
+	// è§’è‰²ä¸“ç”¨QUEUE1
 	private static QueueSender queueSender;
 	static
 	{
@@ -31,7 +31,7 @@ public class JmsSendQueue1
 	{
 		try
 		{
-            System.out.println("ÖØĞÂ¼ÓÔØJSM·şÎñ");
+            System.out.println("é‡æ–°åŠ è½½JSMæœåŠ¡");
 			Queue queue = (Queue) JmsConstant.reload().context
 					.lookup("queue1");
 			queueSender = JmsConstant.getInstance().queueSession
@@ -77,7 +77,7 @@ public class JmsSendQueue1
 					.createObjectMessage();
 			message.setObject((Serializable) clazz);
 			queueSender.send(message);
-			System.out.println("·¢ËÍ³É¹¦");
+			System.out.println("å‘é€æˆåŠŸ");
 		}
 		catch (JMSException e)
 		{
@@ -88,7 +88,7 @@ public class JmsSendQueue1
 				.createObjectMessage();
 				 message.setObject((Serializable) clazz);
 			        queueSender.send(message);
-			        System.out.println("·¢ËÍ³É¹¦");
+			        System.out.println("å‘é€æˆåŠŸ");
 			}
 			catch (JMSException e1)
 			{
@@ -121,7 +121,7 @@ public class JmsSendQueue1
 			rj.setQudao("2");
 			rj.setFenqu("1");
 			rj.setLevel(10);
-			rj.setUserid("º«");
+			rj.setUserid("éŸ©");
 			rj.setCaozuo(1);
 			log(rj);
 		}

@@ -14,7 +14,7 @@ import com.lw.vo.instance.InstanceOutVO;
 
 public class InstanceOutService
 {
-	/** ¼ÆËã¸±±¾µÄÊ±¼ä */
+	/** è®¡ç®—å‰¯æœ¬çš„æ—¶é—´ */
 	private String instanceReTime(int day, Date datetime, int map_id)
 	{
 		String time = null;
@@ -26,9 +26,9 @@ public class InstanceOutService
 			InstanceArchiveDao instanceArchiveDao = new InstanceArchiveDao();
 			InstanceInfoDao instanceInfoDao = new InstanceInfoDao();
 
-			instanceInfoDao.updateResetTime(map_id);// ¸üĞÂÖØÖÃÊ±¼ä
-			instanceArchiveDao.clearAllArchive(map_id);// ³õÊ¼»¯ËùÓĞÍæ¼Ò¸Ã¸±±¾½ø¶È
-			return "¸±±¾ÖØÖÃÖĞ";
+			instanceInfoDao.updateResetTime(map_id);// æ›´æ–°é‡ç½®æ—¶é—´
+			instanceArchiveDao.clearAllArchive(map_id);// åˆå§‹åŒ–æ‰€æœ‰ç©å®¶è¯¥å‰¯æœ¬è¿›åº¦
+			return "å‰¯æœ¬é‡ç½®ä¸­";
 		}
 		else
 		{
@@ -38,12 +38,12 @@ public class InstanceOutService
 				int hours = totime / 60;
 				if (hours == 0)
 				{
-					time = "¾àÖØÖÃÊ±¼ä:" + totime + "·ÖÖÓ";
+					time = "è·é‡ç½®æ—¶é—´:" + totime + "åˆ†é’Ÿ";
 				}
 				else
 				{
 					totime = totime - 60 * hours;
-					time = "¾àÖØÖÃÊ±¼ä:" + hours + "Ğ¡Ê±" + totime + "·ÖÖÓ";
+					time = "è·é‡ç½®æ—¶é—´:" + hours + "å°æ—¶" + totime + "åˆ†é’Ÿ";
 				}
 				return time;
 			}
@@ -53,19 +53,19 @@ public class InstanceOutService
 				int hours = timenum / 60;
 				if (hours == 0)
 				{
-					time = "¾àÖØÖÃÊ±¼ä:" + x + "Ìì" + timenum + "·ÖÖÓ";
+					time = "è·é‡ç½®æ—¶é—´:" + x + "å¤©" + timenum + "åˆ†é’Ÿ";
 				}
 				else
 				{
 					timenum = timenum - 60 * hours;;
-					time = "¾àÖØÖÃÊ±¼ä:" + x + "Ìì" + hours + "Ğ¡Ê±" + timenum + "·ÖÖÓ";
+					time = "è·é‡ç½®æ—¶é—´:" + x + "å¤©" + hours + "å°æ—¶" + timenum + "åˆ†é’Ÿ";
 				}
 				return time;
 			}
 		}
 	}
 
-	/** µÃµ½¸±±¾µÄÏÔÊ¾ */
+	/** å¾—åˆ°å‰¯æœ¬çš„æ˜¾ç¤º */
 	public List<InstanceOutVO> getInstanceOut()
 	{
 		MapCache mapCache = new MapCache();
@@ -87,7 +87,7 @@ public class InstanceOutService
 		return outlist;
 	}
 
-	/** µÃµ½¸±±¾µÄÊ±¼ä */
+	/** å¾—åˆ°å‰¯æœ¬çš„æ—¶é—´ */
 	public String getInstanceTime(InstanceInfoVO instanceInfoVO)
 	{
 		String time = null;
@@ -98,7 +98,7 @@ public class InstanceOutService
 		}
 		else
 		{
-			time = "¸±±¾ÖØÖÃÖĞ";
+			time = "å‰¯æœ¬é‡ç½®ä¸­";
 		}
 		return time;
 	}

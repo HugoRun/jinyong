@@ -38,7 +38,7 @@ public class DrawALotteryStartJob implements Job
 			scheduler.start();
 			logger.info("Scheduler was started at " + new Date());
 			DrawALotteryDao dao = new DrawALotteryDao();
-			// √øÃÏ
+			// ÊØèÂ§©
 			List<DrawALotteryVO> list = dao.getDrawALotteryInfoByTimeType(1);
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -48,18 +48,18 @@ public class DrawALotteryStartJob implements Job
 						+ vo.getId(), Scheduler.DEFAULT_GROUP,
 						DrawALotteryJob.class);
 
-				// ¥¥Ω®√ø∏ˆJOB“™÷¥––µƒ ±º‰
+				// ÂàõÂª∫ÊØè‰∏™JOBË¶ÅÊâßË°åÁöÑÊó∂Èó¥
 				try
 				{
 					String time = "0 " + vo.getTimeminute() + " "
 							+ vo.getTimeHour() + " ? * *";
-					// ◊‘∂®“Â ±º‰
+					// Ëá™ÂÆö‰πâÊó∂Èó¥
 					CronTrigger trigger = new CronTrigger("MyTrigger_"
 							+ vo.getId(), null, time);
 					Date date = new Date();
 					trigger.setStartTime(date);
 					scheduler.scheduleJob(jobDetail, trigger);
-					logger.info("≥ÈΩ±∂® ±≥…π¶");
+					logger.info("ÊäΩÂ•ñÂÆöÊó∂ÊàêÂäü");
 				}
 				catch (ParseException ex)
 				{
@@ -68,7 +68,7 @@ public class DrawALotteryStartJob implements Job
 			}
 			dao.updateIsRun(1, 1);
 
-			// ∞¥ ±º‰¿‡–Õ √ø÷‹
+			// ÊåâÊó∂Èó¥Á±ªÂûã ÊØèÂë®
 			List<DrawALotteryVO> list_time = dao
 					.getDrawALotteryInfoByTimeType(2);
 			for (int i = 0; i < list_time.size(); i++)
@@ -79,19 +79,19 @@ public class DrawALotteryStartJob implements Job
 						+ vo.getId(), Scheduler.DEFAULT_GROUP,
 						DrawALotteryJob.class);
 
-				// ¥¥Ω®√ø∏ˆJOB“™÷¥––µƒ ±º‰
+				// ÂàõÂª∫ÊØè‰∏™JOBË¶ÅÊâßË°åÁöÑÊó∂Èó¥
 				try
 				{
 					String time = "0 " + vo.getTimeminute() + " "
 							+ vo.getTimeHour() + " ? * "
 							+ vo.getTimeweek().trim();
-					// ◊‘∂®“Â ±º‰
+					// Ëá™ÂÆö‰πâÊó∂Èó¥
 					CronTrigger trigger = new CronTrigger("MyTrigger_"
 							+ vo.getId(), null, time);
 					Date date = new Date();
 					trigger.setStartTime(date);
 					scheduler.scheduleJob(jobDetail, trigger);
-					logger.info("≥ÈΩ±∂® ±≥…π¶");
+					logger.info("ÊäΩÂ•ñÂÆöÊó∂ÊàêÂäü");
 				}
 				catch (ParseException ex)
 				{

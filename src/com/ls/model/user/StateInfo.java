@@ -11,42 +11,42 @@ import com.ls.model.group.GroupModel;
 import com.ls.pub.constant.player.PlayerState;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«ÔÚÏßĞÅÏ¢
+ * åŠŸèƒ½ï¼šè§’è‰²åœ¨çº¿ä¿¡æ¯
  * 
  * @author ls Apr 2, 2009 4:09:39 PM
  */
 public class StateInfo extends UserBase
 {
 	private HttpSession session = null;
-	/** µ±Ç°Íæ¼Ò¶ÔÓ¦µÄsession_id */
+	/** å½“å‰ç©å®¶å¯¹åº”çš„session_id */
 
-	/** Íæ¼ÒµÇÂ½½ÇÉ«µÄÊ±¼ä */
+	/** ç©å®¶ç™»é™†è§’è‰²çš„æ—¶é—´ */
 	private long loginTime = 0;
 	
-	/** Íæ¼ÒµÄµ±Ç°×´Ì¬ */
+	/** ç©å®¶çš„å½“å‰çŠ¶æ€ */
 	private int curState = PlayerState.OUTLINE;
-	/** Íæ¼Òµ±Ç°ÊÓÒ° */
+	/** ç©å®¶å½“å‰è§†é‡ */
 	private String view = "";
-	/** ÉÏ´Î×ï¶ñÖµÏû³ı¸üĞÂÊ±¼ä */
+	/** ä¸Šæ¬¡ç½ªæ¶å€¼æ¶ˆé™¤æ›´æ–°æ—¶é—´ */
 	private long evilValueConsumeTime;
-	/**ÉÏ´Î¹«ÁÄµÄÊ±¼ä*/
+	/**ä¸Šæ¬¡å…¬èŠçš„æ—¶é—´*/
 	private long pre_public_chat_time;
 	
-	/** ¶ÓÎé¶ÔÏó */
+	/** é˜Ÿä¼å¯¹è±¡ */
 	private GroupModel groupInfo = null;
 	
-	// ËÀÍöµôÂä¾­Ñé£¬Ä¿Ç°×¨ÓÃÓÚ¾Å×ª
+	// æ­»äº¡æ‰è½ç»éªŒï¼Œç›®å‰ä¸“ç”¨äºä¹è½¬
 	private long deadDropExp = 0;
 
-	// Ê¹ÓÃÁËÃâËÀ·ûºó,´ËÍæ¼ÒÓ¦¸ÃµôÂäµ«Î´µôÂäµÄ¾­Ñé,ÊÇ¸øÉ±ËÀËûµÄÍæ¼Ò¿´µÄ
+	// ä½¿ç”¨äº†å…æ­»ç¬¦å,æ­¤ç©å®¶åº”è¯¥æ‰è½ä½†æœªæ‰è½çš„ç»éªŒ,æ˜¯ç»™æ€æ­»ä»–çš„ç©å®¶çœ‹çš„
 	private long shouldDropExperience;
 
-	private int prize_consume_time = 0;// Áì½±ËùÏûºÄµÄÊ±¼ä£¨µ¥Î»Ãë£©
+	private int prize_consume_time = 0;// é¢†å¥–æ‰€æ¶ˆè€—çš„æ—¶é—´ï¼ˆå•ä½ç§’ï¼‰
 
-	/** ÇşµÀ */
+	/** æ¸ é“ */
 	private String qudao;
 
-	/** ¸¸ÇşµÀ */
+	/** çˆ¶æ¸ é“ */
 	private String super_qudao;
 
 	/** userid */
@@ -58,7 +58,7 @@ public class StateInfo extends UserBase
 	}
 	
 	/**
-	 * ½ÇÉ«µÇÂ½
+	 * è§’è‰²ç™»é™†
 	 */
 	public void login(HttpSession session)
 	{
@@ -76,7 +76,7 @@ public class StateInfo extends UserBase
 	}
 	
 	/**
-	 * ¸ù¾İÁÄÌìÊ±¼ä¼ä¸ôÅĞ¶ÏÊÇ·ñ¿ÉÒÔÁÄÌì
+	 * æ ¹æ®èŠå¤©æ—¶é—´é—´éš”åˆ¤æ–­æ˜¯å¦å¯ä»¥èŠå¤©
 	 * @return
 	 */
 	public String isPublicChat()
@@ -84,7 +84,7 @@ public class StateInfo extends UserBase
 		long diff_value = System.currentTimeMillis()-this.pre_public_chat_time;
 		if( diff_value < 15 * 1000 )
 		{
-			return "¶Ô²»Æğ£¬ÄúÁ½´Î·¢ÑÔÊ±¼ä¼ä¸ôÌ«¶Ì,ÇëÉÔºóÔÙ·¢£¡";
+			return "å¯¹ä¸èµ·ï¼Œæ‚¨ä¸¤æ¬¡å‘è¨€æ—¶é—´é—´éš”å¤ªçŸ­,è¯·ç¨åå†å‘ï¼";
 		}
 		this.pre_public_chat_time = System.currentTimeMillis();
 		return null;
@@ -112,9 +112,9 @@ public class StateInfo extends UserBase
 	}
 
 	/**
-	 * ½ÇÉ«Áì½±Ê±£¬¿ÉÓÃ×öÁì½±µÄÔÚÏßÊ±¼ä£¨Ãë£©
+	 * è§’è‰²é¢†å¥–æ—¶ï¼Œå¯ç”¨åšé¢†å¥–çš„åœ¨çº¿æ—¶é—´ï¼ˆç§’ï¼‰
 	 * 
-	 * @return ·µ»ØÔÚÏßÊ±¼äÃë
+	 * @return è¿”å›åœ¨çº¿æ—¶é—´ç§’
 	 */
 	public int getPrizeOnlineTime()
 	{
@@ -125,7 +125,7 @@ public class StateInfo extends UserBase
 	}
 
 	/**
-	 * Áì½±ÏûºÄµÄÔÚÏßÊ±¼ä£¨µ¥Î»Ãë£©
+	 * é¢†å¥–æ¶ˆè€—çš„åœ¨çº¿æ—¶é—´ï¼ˆå•ä½ç§’ï¼‰
 	 * 
 	 * @param consume_time
 	 */
@@ -139,7 +139,7 @@ public class StateInfo extends UserBase
 	}
 
 	/**
-	 * ¼æÈİÇ°Ò»¸ö×é¶Ó°æ±¾
+	 * å…¼å®¹å‰ä¸€ä¸ªç»„é˜Ÿç‰ˆæœ¬
 	 * 
 	 * @return
 	 */

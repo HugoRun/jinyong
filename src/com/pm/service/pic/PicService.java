@@ -20,7 +20,7 @@ public class PicService
 	
 	
 	/**
-	 * »ñÈ¡µÀ¾ßµÄÍ¼Æ¬Êı¾İ
+	 * è·å–é“å…·çš„å›¾ç‰‡æ•°æ®
 	 * @param pPk
 	 * @param menu_id
 	 * @return
@@ -39,7 +39,7 @@ public class PicService
 	
 	
 	/**
-	 * »ñµÃµÀ¾ßÍ¼Æ¬
+	 * è·å¾—é“å…·å›¾ç‰‡
 	 * @param prop_id
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class PicService
 		PropVO propVO = PropCache.getPropById(prop_id);
 		
 		if (propVO == null) {
-			logger.info("»ñµÃµÀ¾ßÍ¼Æ¬Ê±³ö´í=");
+			logger.info("è·å¾—é“å…·å›¾ç‰‡æ—¶å‡ºé”™=");
 			return "";
 		}
 			
@@ -56,7 +56,7 @@ public class PicService
 	}
 
 	/**
-	 * »ñÈ¡²Ëµ¥(¼´npcÈËÎï)µÄÍ¼Æ¬Êı¾İ
+	 * è·å–èœå•(å³npcäººç‰©)çš„å›¾ç‰‡æ•°æ®
 	 * @param pPk
 	 * @param menu_id
 	 * @return
@@ -76,7 +76,7 @@ public class PicService
 	}
 
 	/**
-	 * »ñÈ¡npc¹ÖÎïÍ¼Æ¬Êı¾İ
+	 * è·å–npcæ€ªç‰©å›¾ç‰‡æ•°æ®
 	 * @param pk
 	 * @param npcID
 	 * @return
@@ -97,7 +97,7 @@ public class PicService
 	
 	
 	/**
-	 * »ñÈ¡PetÍ¼Æ¬Êı¾İ
+	 * è·å–Petå›¾ç‰‡æ•°æ®
 	 * @param pk
 	 * @param npcID
 	 * @return
@@ -118,21 +118,21 @@ public class PicService
 	}
 	
 	/**
-	 * Ôö¼ÓÅĞ¶ÏÓï¾ä,´ø¿Õ¸ñ
+	 * å¢åŠ åˆ¤æ–­è¯­å¥,å¸¦ç©ºæ ¼
 	 */
 	public String addJudgeStatement(String str){
 		StringBuffer returnstr = new StringBuffer();;
 		if(!str.equals("")){
 			returnstr.append("<img alt='sss' src='").append(GameConfig.getGameUrl()).append("/image/npc/").append(str).append(".png").append("' /> ");
-			//¼Ó¿Õ¸ñ
+			//åŠ ç©ºæ ¼
 			//returnstr.append("<br/>");
 		}
-		logger.info("Êä³öimg="+returnstr.toString());
+		logger.info("è¾“å‡ºimg="+returnstr.toString());
 		return returnstr.toString();
 	}
 
 	/**
-	 * Ôö¼ÓÅĞ¶ÏÓï¾ä£¬²»´ø¿Õ¸ñ
+	 * å¢åŠ åˆ¤æ–­è¯­å¥ï¼Œä¸å¸¦ç©ºæ ¼
 	 */
 	public String addJudgeStatementWithoutBr(String str){
 		StringBuffer returnstr = new StringBuffer();;
@@ -140,18 +140,18 @@ public class PicService
 			returnstr.append("<img alt='sss' src='").append(GameConfig.getGameUrl()).append(str).append("' /> ");
 			
 		}
-		logger.info("Â·¾¶Îª="+str+"Êä³öimg="+returnstr.toString());
+		logger.info("è·¯å¾„ä¸º="+str+"è¾“å‡ºimg="+returnstr.toString());
 		return returnstr.toString();
 	}
 	/**
-	 * »ñÈ¡Íæ¼ÒĞÎÏóÍ¼Æ¬
+	 * è·å–ç©å®¶å½¢è±¡å›¾ç‰‡
 	 * @param pk
 	 * @return
 	 */
 	public String getPlayerPicStr(RoleEntity roleInfo,int p_pk)
 	{
 		if(roleInfo == null){
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 			return "";
 		}
 		String playerPic = "";
@@ -182,20 +182,20 @@ public class PicService
 				}
 			}
 			}
-		logger.debug("ĞÎÏóÍ¼Æ¬ÉèÖÃ="+settingInfo.getPersonPic()+"Í¼Æ¬Â·¾¶="+playerPic);
+		logger.debug("å½¢è±¡å›¾ç‰‡è®¾ç½®="+settingInfo.getPersonPic()+"å›¾ç‰‡è·¯å¾„="+playerPic);
 		return addJudgeStatement(playerPic);
 	}
 	
 	/**
-	 * »ñÈ¡ÆäËûÍæ¼ÒĞÎÏóÍ¼Æ¬
-	 * @param roleInfo      ×Ô¼ºµÄ½ÇÉ«ĞÅÏ¢
-	 * @param bPpk			bPpkÒª²é¿´µÄ½ÇÉ«id
+	 * è·å–å…¶ä»–ç©å®¶å½¢è±¡å›¾ç‰‡
+	 * @param roleInfo      è‡ªå·±çš„è§’è‰²ä¿¡æ¯
+	 * @param bPpk			bPpkè¦æŸ¥çœ‹çš„è§’è‰²id
 	 * @return
 	 */
 	public String getPlayerPicStr(RoleEntity roleInfo,String bPpk)
 	{
 		if(roleInfo == null || bPpk == null || bPpk.equals("")){
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 			return "";
 		}
 		String playerPic = "";

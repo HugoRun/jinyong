@@ -19,8 +19,8 @@ import com.web.service.petservice.PetService;
 
 /**
  *
- *¹¦ÄÜ:ÒÅÆú³èÎï
- * @author ºîºÆ¾ü
+ *åŠŸèƒ½:é—å¼ƒå® ç‰©
+ * @author ä¾¯æµ©å†›
  * 
  */
 public class PetChuckAction extends Action{

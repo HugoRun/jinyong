@@ -12,7 +12,7 @@ public class PlayerLaborageDao extends DaoBase
 	public PlayerLaborageVO getPlayerLaborage()
 	{
 		PlayerLaborageVO vo = null;
-		String sql = "select * from u_laborage ";
+		String sql = "SELECT * FROM u_laborage ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -44,10 +44,10 @@ public class PlayerLaborageDao extends DaoBase
 		return vo;
 	}
 
-	/** ´´½¨Íæ¼ÒÔÚÏßÊ±¼ä±í */
+	/** åˆ›å»ºç©å®¶åœ¨çº¿æ—¶é—´è¡¨ */
 	public void buildPlayerLaborage(int p_pk)
 	{
-		String sql = "insert into u_laborage values  (null,?,0,0,0)";
+		String sql = "INSERT INTO u_laborage values  (null,?,0,0,0)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -70,11 +70,11 @@ public class PlayerLaborageDao extends DaoBase
 		}
 	}
 
-	/** ¸ù¾İÍæ¼ÒPPK»ñµÃÍæ¼ÒÔÚÏßÊ±¼ä */
+	/** æ ¹æ®ç©å®¶PPKè·å¾—ç©å®¶åœ¨çº¿æ—¶é—´ */
 	public int getPlayerOnlineTime(int p_pk)
 	{
 		int time = 0;
-		String sql = "select laborage_old_time from u_laborage where p_pk = "
+		String sql = "SELECT laborage_old_time from u_laborage where p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -101,11 +101,11 @@ public class PlayerLaborageDao extends DaoBase
 		return time;
 	}
 	
-	/** ¸ù¾İÍæ¼ÒPPK»ñµÃÍæ¼ÒÔÚÏßÊ±¼ä */
+	/** æ ¹æ®ç©å®¶PPKè·å¾—ç©å®¶åœ¨çº¿æ—¶é—´ */
 	public int getPlayerOnlineTimeNOW(int p_pk)
 	{
 		int time = 0;
-		String sql = "select laborage_this_time from u_laborage where p_pk = "
+		String sql = "SELECT laborage_this_time from u_laborage where p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -132,11 +132,11 @@ public class PlayerLaborageDao extends DaoBase
 		return time;
 	}
 
-	/** ¸ù¾İÍæ¼ÒPPK»ñµÃÍæ¼ÒÁìÈ¡×Ê¸ñ */
+	/** æ ¹æ®ç©å®¶PPKè·å¾—ç©å®¶é¢†å–èµ„æ ¼ */
 	public int getPlayerCatch(int p_pk)
 	{
 		int i = 0;
-		String sql = "select laborage_catch from u_laborage where p_pk = "
+		String sql = "SELECT laborage_catch from u_laborage where p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -163,7 +163,7 @@ public class PlayerLaborageDao extends DaoBase
 		return i;
 	}
 
-	/** ¸üĞÂÍæ¼Ò±¾ÖÜÔÚÏßÊ±¼ä */
+	/** æ›´æ–°ç©å®¶æœ¬å‘¨åœ¨çº¿æ—¶é—´ */
 	public void updatePlayerOnlineTime(int p_pk, int laborage_this_time)
 	{
 		String sql = "update u_laborage set laborage_this_time = laborage_this_time + "
@@ -187,7 +187,7 @@ public class PlayerLaborageDao extends DaoBase
 		}
 	}
 
-	/** Íæ¼ÒÁìÈ¡½±Àøºó¸øÍæ¼Ò±ê¼ÇÁìÈ¡¹ı */
+	/** ç©å®¶é¢†å–å¥–åŠ±åç»™ç©å®¶æ ‡è®°é¢†å–è¿‡ */
 	public void updatePlayerCatchMoney(int p_pk)
 	{
 		String sql = "update u_laborage set laborage_catch = 1 where p_pk = "
@@ -211,7 +211,7 @@ public class PlayerLaborageDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂÍæ¼ÒÁìÈ¡±ê¼Ç */
+	/** æ›´æ–°ç©å®¶é¢†å–æ ‡è®° */
 	public void updatePlayerCatch()
 	{
 		String sql = "update u_laborage set laborage_catch = 0 ";
@@ -234,7 +234,7 @@ public class PlayerLaborageDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂÍ³¼Æµ½µÄÉÏÒ»ÖÜµÄÊ±¼ä */
+	/** æ›´æ–°ç»Ÿè®¡åˆ°çš„ä¸Šä¸€å‘¨çš„æ—¶é—´ */
 	public void updatePlayerTime()
 	{
 		String sql = "update u_laborage set laborage_old_time = laborage_this_time";
@@ -257,7 +257,7 @@ public class PlayerLaborageDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂÍ³¼Æµ½µÄÉÏÒ»ÖÜµÄÊ±¼ä */
+	/** æ›´æ–°ç»Ÿè®¡åˆ°çš„ä¸Šä¸€å‘¨çš„æ—¶é—´ */
 	public void updatePlayerTimeZreo()
 	{
 		String sql = "update u_laborage set laborage_this_time = 0";

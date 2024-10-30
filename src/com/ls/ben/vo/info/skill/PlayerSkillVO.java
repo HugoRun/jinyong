@@ -3,9 +3,9 @@ package com.ls.ben.vo.info.skill;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ:±íu_skill_infoµÄ
+ * åŠŸèƒ½:è¡¨u_skill_infoçš„
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 4:39:55 PM
  */
@@ -15,49 +15,49 @@ public class PlayerSkillVO extends SkillVO
 	/** id */
 	private int sPk;
 
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
 
-	/** ¼¼ÄÜid */
+	/** æŠ€èƒ½id */
 	private int skId;
 
-	/** ¼¼ÄÜÊ¹ÓÃÊìÁ·¶È */
+	/** æŠ€èƒ½ä½¿ç”¨ç†Ÿç»ƒåº¦ */
 	private int skSleight;
 
-	/** ±¾¼¼ÄÜÉÏÒ»´ÎµÄÊ¹ÓÃµÄÊ±¼ä */
+	/** æœ¬æŠ€èƒ½ä¸Šä¸€æ¬¡çš„ä½¿ç”¨çš„æ—¶é—´ */
 	private Date skUsetime;
 
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private Date createTime;
 
-	/** ****¹¥»÷Á¦¼Ó³ÉÏµÊı****** */
+	/** ****æ”»å‡»åŠ›åŠ æˆç³»æ•°****** */
 
 	private double skGjMultiple;
-	/** ****·ÀÓùÁ¦¼Ó³ÉÏµÊı****** */
+	/** ****é˜²å¾¡åŠ›åŠ æˆç³»æ•°****** */
 
 	private double skFyMultiple;
-	/** ****HP¼Ó³ÉÏµÊı****** */
+	/** ****HPåŠ æˆç³»æ•°****** */
 
 	private double skHpMultiple;
-	/** ****MP¼Ó³ÉÏµÊı****** */
+	/** ****MPåŠ æˆç³»æ•°****** */
 
 	private double skMpMultiple;
-	/** ****±©»÷ÂÊ¼Ó³ÉÏµÊı****** */
+	/** ****æš´å‡»ç‡åŠ æˆç³»æ•°****** */
 
 	private double skBjMultiple;
-	/** ****¹¥»÷Á¦¸½¼ÓÊıÖµ****** */
+	/** ****æ”»å‡»åŠ›é™„åŠ æ•°å€¼****** */
 
 	private int skGjAdd;
-	/** ****·ÀÓùÁ¦¸½¼ÓÊıÖµ****** */
+	/** ****é˜²å¾¡åŠ›é™„åŠ æ•°å€¼****** */
 
 	private int skFyAdd;
-	/** ****HP¼Ó³É¸½¼ÓÊıÖµ****** */
+	/** ****HPåŠ æˆé™„åŠ æ•°å€¼****** */
 
 	private int skHpAdd;
-	/** ****MP¼Ó³É¸½¼ÓÊıÖµ****** */
+	/** ****MPåŠ æˆé™„åŠ æ•°å€¼****** */
 
 	private int skMpAdd;
-	/** *****¼¼ÄÜ×é******* */
+	/** *****æŠ€èƒ½ç»„******* */
 	private int skGroup;
 	
 	public int getSkGroup()

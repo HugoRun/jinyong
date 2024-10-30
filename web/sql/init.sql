@@ -1,20 +1,20 @@
 
-/*************************************Ç°Ì¨±í******************************************************/
-  insert into u_tong_rights values (null,1,'Ôö¼Ó³ÉÔ±','1,2,3,4','n1');
-  insert into u_tong_rights values (null,1,'Ìß³ö³ÉÔ±','1,2,3','n2');
-  insert into u_tong_rights values (null,1,'µ÷ÕûÖ°Î»','1,2','n3');
-  insert into u_tong_rights values (null,1,'ĞŞ¸Ä³ÆºÅ','1,2,3','n4');
-  insert into u_tong_rights values (null,null,'·¢²¼ÕĞÄ¼ĞÅÏ¢','1,2','n5');
-  insert into u_tong_rights values (null,2,'·¢²¼¹«¸æ','1,2','n6');
-  insert into u_tong_rights values (null,3,'×ªÈÃ°ïÖ÷','1','n7');
-  insert into u_tong_rights values (null,3,'½âÉ¢°ï»á','1','n8');
-  insert into u_tong_rights values (null,null,'¼ÓÈëÕóÓª','1','n9');
-  insert into u_tong_rights values (null,null,'Ê¹ÓÃ°ï»á»ù½ğ','1,2','n10');
-  insert into u_tong_rights values (null,null,'·Ö·¢°ïÅÉÎïÖÊ','1,2','n11');
-  insert into u_tong_rights values (null,null,'ÑĞ¾¿°ï»á¼¼ÄÜ','1,2','n12');
-  insert into u_tong_rights values (null,null,'¹¥³Ç','1,2','n13');
-  insert into u_tong_rights values (null,null,'ÉèÖÃµĞ¶Ô°ïÅÉ','1,2','n14');
-  insert into u_tong_rights values (null,null,'ÉèÖÃÍ¬ÃË°ïÅÉ','1,2','n15');
+/*************************************å‰å°è¡¨******************************************************/
+  INSERT INTO u_tong_rights values (null,1,'å¢åŠ æˆå‘˜','1,2,3,4','n1');
+  INSERT INTO u_tong_rights values (null,1,'è¸¢å‡ºæˆå‘˜','1,2,3','n2');
+  INSERT INTO u_tong_rights values (null,1,'è°ƒæ•´èŒä½','1,2','n3');
+  INSERT INTO u_tong_rights values (null,1,'ä¿®æ”¹ç§°å·','1,2,3','n4');
+  INSERT INTO u_tong_rights values (null,null,'å‘å¸ƒæ‹›å‹Ÿä¿¡æ¯','1,2','n5');
+  INSERT INTO u_tong_rights values (null,2,'å‘å¸ƒå…¬å‘Š','1,2','n6');
+  INSERT INTO u_tong_rights values (null,3,'è½¬è®©å¸®ä¸»','1','n7');
+  INSERT INTO u_tong_rights values (null,3,'è§£æ•£å¸®ä¼š','1','n8');
+  INSERT INTO u_tong_rights values (null,null,'åŠ å…¥é˜µè¥','1','n9');
+  INSERT INTO u_tong_rights values (null,null,'ä½¿ç”¨å¸®ä¼šåŸºé‡‘','1,2','n10');
+  INSERT INTO u_tong_rights values (null,null,'åˆ†å‘å¸®æ´¾ç‰©è´¨','1,2','n11');
+  INSERT INTO u_tong_rights values (null,null,'ç ”ç©¶å¸®ä¼šæŠ€èƒ½','1,2','n12');
+  INSERT INTO u_tong_rights values (null,null,'æ”»åŸ','1,2','n13');
+  INSERT INTO u_tong_rights values (null,null,'è®¾ç½®æ•Œå¯¹å¸®æ´¾','1,2','n14');
+  INSERT INTO u_tong_rights values (null,null,'è®¾ç½®åŒç›Ÿå¸®æ´¾','1,2','n15');
 
 
 

@@ -4,51 +4,51 @@ import java.util.List;
 
 
 
-//¼ÇÂ¼¹¥»÷µÄÃ¿»ØºÏµÄÏà¹Ø²ÎÊı
+//è®°å½•æ”»å‡»çš„æ¯å›åˆçš„ç›¸å…³å‚æ•°
 public class NPCBout {
-	/**½ÇÉ«id*/
+	/**è§’è‰²id*/
 	int pPk;
 	
-	/**ÓÃ»§µ±Ç°µÄÑªÁ¿*/
+	/**ç”¨æˆ·å½“å‰çš„è¡€é‡*/
 	int pCurrentHP;
 	
-	/** ÓÃ»§µÄ¼õÑªÁ¿   */
+	/** ç”¨æˆ·çš„å‡è¡€é‡   */
 	int pInjureValue;
-	/**ÉËº¦ÃèÊö*/
+	/**ä¼¤å®³æè¿°*/
 	String pInjureDisplay;
 	
-	/** ÓÃ»§µ±Ç°·¨Á¦Öµ */
+	/** ç”¨æˆ·å½“å‰æ³•åŠ›å€¼ */
 	int pCurrentMP;
 	
-	/**ÓÃ»§ÏûºÄ·¨Á¦µÄÁ¿*/
+	/**ç”¨æˆ·æ¶ˆè€—æ³•åŠ›çš„é‡*/
 	int pMPExpendValue;
 	
-	/** ÓÃ»§ËÀÍö±êÖ¾ */
+	/** ç”¨æˆ·æ­»äº¡æ ‡å¿— */
 	boolean pIsDead = false;
 	
-	/** ÓÃ»§ËÀÍöÃèÊö */
-	String pDeadDisplay = "Äú±»´òËÀÁË£¡<br/>";
+	/** ç”¨æˆ·æ­»äº¡æè¿° */
+	String pDeadDisplay = "æ‚¨è¢«æ‰“æ­»äº†ï¼<br/>";
 	
-	/** ÓÃ»§ÕĞÊ½ÃèÊö */
+	/** ç”¨æˆ·æ‹›å¼æè¿° */
 	String pSkillDisplay = "";
 	
-	/**½ÇÉ«Ê¤Àû,npcËùÓĞµôÂäÎïÆ·*/
+	/**è§’è‰²èƒœåˆ©,npcæ‰€æœ‰æ‰è½ç‰©å“*/
 	List pDropGoods = null;
 	
-	/**½ÇÉ«Ê§È¥ÎïÆ·ÃèÊö*/
+	/**è§’è‰²å¤±å»ç‰©å“æè¿°*/
 	String pDropDisplay = "";
 	
-	/**½ÇÉ«Ê¤ÀûµÃµ½¾­Ñé*/
+	/**è§’è‰²èƒœåˆ©å¾—åˆ°ç»éªŒ*/
 	private int pGetExp;
-	/**½ÇÉ«Ê¤ÀûµÃµ½Ç®Êı*/
+	/**è§’è‰²èƒœåˆ©å¾—åˆ°é’±æ•°*/
 	private int pGetMoney;
-	/**½ÇÉ«ÊÇ·ñÊ¤Àû*/
+	/**è§’è‰²æ˜¯å¦èƒœåˆ©*/
 	private boolean pIsWin=false;
-	/**½ÇÉ«ÊÇ·ñ´ø³èÎï²Î¼ÓÕ½¶·*/
+	/**è§’è‰²æ˜¯å¦å¸¦å® ç‰©å‚åŠ æˆ˜æ–—*/
 	private boolean pIsBringPet;
-	/**¼¼ÄÜ²»ÄÜÊ¹ÓÃµÄÃèÊö*/
+	/**æŠ€èƒ½ä¸èƒ½ä½¿ç”¨çš„æè¿°*/
 	private String pSkillNoUseDisplay;
-	/**Èç¹û½ÇÉ«Éı¼¶»á±»¸³Öµ£¬µ±Ç°¼¶Êı*/
+	/**å¦‚æœè§’è‰²å‡çº§ä¼šè¢«èµ‹å€¼ï¼Œå½“å‰çº§æ•°*/
 	private String pCurrentLevel = "";
 	
 
@@ -57,19 +57,19 @@ public class NPCBout {
 	/**NPCid*/
 	int nPk;
 	
-	/**ËùÓĞnpc×´Ì¬*/
+	/**æ‰€æœ‰npcçŠ¶æ€*/
 	List npcs = null;
 	
-	/** ¹ÖÎïËÀÍö±êÖ¾ */
+	/** æ€ªç‰©æ­»äº¡æ ‡å¿— */
 	boolean nIsDead = false;
 	
-	/** NPCËÀÍöÃèÊö */
+	/** NPCæ­»äº¡æè¿° */
 	String nDeadDisplay = "";
 	
-	/** NPCÕĞÊ½ÃèÊö */
+	/** NPCæ‹›å¼æè¿° */
 	String nSkillDisplay = "";
 	
-	/**ÊÇ·ñ»¹ÓĞÆäËûnpc*/
+	/**æ˜¯å¦è¿˜æœ‰å…¶ä»–npc*/
 	boolean nIsHave = true;
 	
 	

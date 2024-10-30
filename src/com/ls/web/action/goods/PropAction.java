@@ -17,12 +17,12 @@ import com.ls.web.service.validate.ValidateService;
 
 /**
  * @author ls
- * µÀ¾ßµÄ»ù±¾²Ù×÷(Éı¼¶±¦Ê¯)
+ * é“å…·çš„åŸºæœ¬æ“ä½œ(å‡çº§å®çŸ³)
  */
 public class PropAction extends DispatchAction
 {
 	/**
-	 * Éı¼¶±¦Ê¯Ê×Ò³
+	 * å‡çº§å®çŸ³é¦–é¡µ
 	 */
 	public ActionForward upgradeIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +35,7 @@ public class PropAction extends DispatchAction
 	}
 	
 	/**
-	 * ±¦Ê¯ÁĞ±í
+	 * å®çŸ³åˆ—è¡¨
 	 */
 	public ActionForward stoneList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -56,7 +56,7 @@ public class PropAction extends DispatchAction
 		return mapping.findForward("stone_list");
 	}
 	/**
-	 * ÊäÈë³É¹¦ÂÊ±¦Ê¯ÊıÁ¿
+	 * è¾“å…¥æˆåŠŸç‡å®çŸ³æ•°é‡
 	 */
 	public ActionForward inputStoneNum(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -67,7 +67,7 @@ public class PropAction extends DispatchAction
 		return mapping.findForward("input_stone_num");
 	}
 	/**
-	 * È·¶¨Ê¹ÓÃ±¦Ê¯
+	 * ç¡®å®šä½¿ç”¨å®çŸ³
 	 */
 	public ActionForward useStone(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -102,7 +102,7 @@ public class PropAction extends DispatchAction
 	}
 	
 	/**
-	 * Éı¼¶
+	 * å‡çº§
 	 */
 	public ActionForward upgrade(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -117,7 +117,7 @@ public class PropAction extends DispatchAction
 	}
 	
 	/**
-	 * µÀ¾ßÏêÇé
+	 * é“å…·è¯¦æƒ…
 	 */
 	public ActionForward des(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

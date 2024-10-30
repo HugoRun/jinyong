@@ -29,7 +29,7 @@ import com.ls.web.service.room.RoomService;
 public class SystemResourcesService
 {
 	/**
-	 * ÓÃ»§µÇÂ¼ ÅĞ¶ÏÓÃ»§µÇÂ¼
+	 * ç”¨æˆ·ç™»å½• åˆ¤æ–­ç”¨æˆ·ç™»å½•
 	 * 
 	 * @param name
 	 * @param paw
@@ -41,13 +41,13 @@ public class SystemResourcesService
 		SysResourcesDAO sysResourcesDAO = new SysResourcesDAO();
 		if (sysResourcesDAO.isLogin(name, paw) == false)
 		{
-			hint = "ÓÃ»§Ãû»òÕßÃÜÂë²»¶Ô";
+			hint = "ç”¨æˆ·åæˆ–è€…å¯†ç ä¸å¯¹";
 		}
 		return hint;
 	}
 
 	/**
-	 * ²éÑ¯ÈÎÎñĞÅÏ¢
+	 * æŸ¥è¯¢ä»»åŠ¡ä¿¡æ¯
 	 * 
 	 * @param task_id
 	 * @return
@@ -60,7 +60,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ²éÑ¯²Ëµ¥ĞÅÏ¢
+	 * æŸ¥è¯¢èœå•ä¿¡æ¯
 	 * 
 	 * @param task_id
 	 * @return
@@ -73,7 +73,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ²éÑ¯sceneµØÍ¼ĞÅÏ¢
+	 * æŸ¥è¯¢sceneåœ°å›¾ä¿¡æ¯
 	 * 
 	 * @param task_id
 	 * @return
@@ -86,7 +86,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ²éÑ¯µÀ¾ßĞÅÏ¢
+	 * æŸ¥è¯¢é“å…·ä¿¡æ¯
 	 * 
 	 * @param task_id
 	 * @return
@@ -98,7 +98,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ²éÑ¯NPCĞÅÏ¢
+	 * æŸ¥è¯¢NPCä¿¡æ¯
 	 * 
 	 * @param task_id
 	 * @return
@@ -111,7 +111,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ²éÑ¯NPCµôÂäĞÅÏ¢
+	 * æŸ¥è¯¢NPCæ‰è½ä¿¡æ¯
 	 * 
 	 * @param task_id
 	 * @return
@@ -124,7 +124,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * È«²¿ÖØĞÂ¼ÓÔØÈÎÎñ
+	 * å…¨éƒ¨é‡æ–°åŠ è½½ä»»åŠ¡
 	 */
 	public static void initTaskCache()
 	{
@@ -134,7 +134,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * È«²¿ÖØĞÂ¼ÓÔØ²Ëµ¥
+	 * å…¨éƒ¨é‡æ–°åŠ è½½èœå•
 	 * @throws Exception 
 	 */
 	public static void initMenuCache() throws Exception
@@ -145,7 +145,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * È«²¿ÖØĞÂ¼ÓÔØµÀ¾ß
+	 * å…¨éƒ¨é‡æ–°åŠ è½½é“å…·
 	 */
 	public static void initPropCache()
 	{
@@ -155,7 +155,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * È«²¿ÖØĞÂ¼ÓÔØNPC
+	 * å…¨éƒ¨é‡æ–°åŠ è½½NPC
 	 */
 	public static void initNPCCache()
 	{
@@ -165,7 +165,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ÖØĞÂ¼ÓÔØÒ»ÌõÈÎÎñ
+	 * é‡æ–°åŠ è½½ä¸€æ¡ä»»åŠ¡
 	 */
 	public static void reloadOneTask(TaskVO taskVO)
 	{
@@ -210,7 +210,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ÖØĞÂ¼ÓÔØÒ»Ìõ²Ëµ¥
+	 * é‡æ–°åŠ è½½ä¸€æ¡èœå•
 	 */
 	public static void reloadOneMenu(OperateMenuVO operateMenuVO)
 	{
@@ -258,7 +258,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ÖØĞÂ¼ÓÔØÒ»Ìõscene
+	 * é‡æ–°åŠ è½½ä¸€æ¡scene
 	 */
 	public static void reloadOneScene(SceneVO sceneVO)
 	{
@@ -290,7 +290,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ÖØĞÂ¼ÓÔØÒ»ÌõPROP
+	 * é‡æ–°åŠ è½½ä¸€æ¡PROP
 	 */
 	public static void reloadOneProp(PropVO propVO)
 	{
@@ -320,7 +320,7 @@ public class SystemResourcesService
 	}
 
 	/**
-	 * ÖØĞÂ¼ÓÔØÒ»ÌõNPC
+	 * é‡æ–°åŠ è½½ä¸€æ¡NPC
 	 */
 	public static void reloadOneNPC(NpcVO npcVO)
 	{

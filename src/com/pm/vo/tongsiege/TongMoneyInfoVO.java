@@ -4,23 +4,23 @@
 package com.pm.vo.tongsiege;
 
 /**
- * ½±½ğ·¢·Å¼ÇÂ¼
+ * å¥–é‡‘å‘æ”¾è®°å½•
  * @author zhangjj
  *
  */
 public class TongMoneyInfoVO
 {
-	/** ¹¥³ÇÕ½¸öÈËĞÅÏ¢¼ÇÂ¼ID  */
+	/** æ”»åŸæˆ˜ä¸ªäººä¿¡æ¯è®°å½•ID  */
 	public int infoId;
-	/***  ¸öÈËpPk   ****/		
+	/***  ä¸ªäººpPk   ****/		
 	public int pPk;
-	/***  °ïÅÉID **/		
+	/***  å¸®æ´¾ID **/		
 	public int 	tongId;
-		/**     ÊÇ·ñÄÇ»á±êÖ¾,1ÎªÎ´ÄÃ,2ÎªÒÑ¾­ÄÃ»Ø    **/	
+		/**     æ˜¯å¦é‚£ä¼šæ ‡å¿—,1ä¸ºæœªæ‹¿,2ä¸ºå·²ç»æ‹¿å›    **/	
 	public int 	backType;
-		/***   ½ğÇ®Êı¶î  ****/	
+		/***   é‡‘é’±æ•°é¢  ****/	
 	public int 	moneyNum;
-		/**    ½±½ğ·¢·ÅÊ±¼ä   ****/	
+		/**    å¥–é‡‘å‘æ”¾æ—¶é—´   ****/	
 	public String 	sendtime;
 		public int getInfoId()
 		{

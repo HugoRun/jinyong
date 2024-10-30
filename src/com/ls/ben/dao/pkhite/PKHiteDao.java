@@ -1,224 +1,173 @@
 package com.ls.ben.dao.pkhite;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.ls.ben.dao.DaoBase;
 import com.ls.ben.vo.pkhite.PKHiteVO;
 import com.ls.pub.db.DBConnection;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * ´¦Àípk³ğºŞÏµÍ³µÄdao
- * 
+ * å¤„ç†pkä»‡æ¨ç³»ç»Ÿçš„dao
+ *
  * @author Thomas.lei
  */
-public class PKHiteDao extends DaoBase
-{
-	/** *****²é¿´ÊÇ·ñ´ËÍæ¼ÒÒÑ¾­ÓĞ³ğºŞ¼ÇÂ¼,Èç¹ûÓĞÔò·µ»Ø¼ÇÂ¼******* */
-	public PKHiteVO checkIsHaveHiteRecord(int p_pk, int enemyPpk)
-	{
-		String sql = "select *from u_pk_hite where p_pk=" + p_pk
-				+ " and enemyPpk=" + enemyPpk + "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		PKHiteVO pv = null;
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				pv = new PKHiteVO();
-				pv.setId(rs.getInt("id"));
-				pv.setP_pk(rs.getInt("p_pk"));
-				pv.setEnemyPpk(rs.getInt("enemyPpk"));
-				pv.setEnemyName(rs.getString("enemyName"));
-				pv.setEnemyGrade(rs.getInt("enemyGrade"));
-				pv.setHitePoint(rs.getInt("hitePoint"));
-				pv.setGeneralPkCount(rs.getInt("generalPKcount"));
-				pv.setActivePkCount(rs.getInt("activePKcount"));
-				pv.setUpdateTime(rs.getDate("updateTime"));
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
+public class PKHiteDao extends DaoBase {
+    /**
+     * ****æŸ¥çœ‹æ˜¯å¦æ­¤ç©å®¶å·²ç»æœ‰ä»‡æ¨è®°å½•,å¦‚æœæœ‰åˆ™è¿”å›è®°å½•*******
+     */
+    public PKHiteVO checkIsHaveHiteRecord(int p_pk, int enemyPpk) {
+        String sql = "SELECT *from u_pk_hite where p_pk=" + p_pk + " and enemyPpk=" + enemyPpk;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        PKHiteVO pv = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                pv = new PKHiteVO();
+                pv.setId(rs.getInt("id"));
+                pv.setP_pk(rs.getInt("p_pk"));
+                pv.setEnemyPpk(rs.getInt("enemyPpk"));
+                pv.setEnemyName(rs.getString("enemyName"));
+                pv.setEnemyGrade(rs.getInt("enemyGrade"));
+                pv.setHitePoint(rs.getInt("hitePoint"));
+                pv.setGeneralPkCount(rs.getInt("generalPKcount"));
+                pv.setActivePkCount(rs.getInt("activePKcount"));
+                pv.setUpdateTime(rs.getDate("updateTime"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
 
-		}
-		return pv;
-	}
+        }
+        return pv;
+    }
 
-	/** ******¸øÍæ¼ÒÌí¼ÓÒ»¸öĞÂµÄ³ğºŞ¶ÔÏó********** */
-	public void addEnemy(PKHiteVO pv)
-	{
-		String sql = "insert into u_pk_hite (p_pk,enemyUpk,enemyPpk,enemyName,enemyGrade,hitePoint,generalPKcount,activePkcount,updateTime) values ("
-				+ pv.getP_pk()
-				+ ","
-				+ pv.getEnemyUpk()
-				+ ","
-				+ pv.getEnemyPpk()
-				+ ",'"
-				+ pv.getEnemyName()
-				+ "',"
-				+ pv.getEnemyGrade()
-				+ ","
-				+ pv.getHitePoint()
-				+ ","
-				+ pv.getGeneralPkCount()
-				+ ","
-				+ pv.getActivePkCount()
-				+ ",now())";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
+    /**
+     * *****ç»™ç©å®¶æ·»åŠ ä¸€ä¸ªæ–°çš„ä»‡æ¨å¯¹è±¡**********
+     */
+    public void addEnemy(PKHiteVO pv) {
+        String sql = "INSERT INTO u_pk_hite (p_pk,enemyUpk,enemyPpk,enemyName,enemyGrade,hitePoint,generalPKcount,activePkcount,updateTime) values (" + pv.getP_pk() + "," + pv.getEnemyUpk() + "," + pv.getEnemyPpk() + ",'" + pv.getEnemyName() + "'," + pv.getEnemyGrade() + "," + pv.getHitePoint() + "," + pv.getGeneralPkCount() + "," + pv.getActivePkCount() + ",now())";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
 
-		}
-	}
+        }
+    }
 
-	/** ******Íæ¼ÒÒÑ¾­ÓĞ³ğºŞ¶ÔÏóÔò¸üĞÂ³ğºŞµã******** */
-	public void updateHitePoint(PKHiteVO pv)
-	{
-		String sql = "update u_pk_hite set enemyGrade=" + pv.getEnemyGrade()
-				+ ",hitePoint=" + pv.getHitePoint() + ",generalPKcount="
-				+ pv.getGeneralPkCount() + ",activePkcount="
-				+ pv.getActivePkCount() + ",updateTime=now() where id="
-				+ pv.getId() + "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
+    /**
+     * *****ç©å®¶å·²ç»æœ‰ä»‡æ¨å¯¹è±¡åˆ™æ›´æ–°ä»‡æ¨ç‚¹********
+     */
+    public void updateHitePoint(PKHiteVO pv) {
+        String sql = "update u_pk_hite set enemyGrade=" + pv.getEnemyGrade() + ",hitePoint=" + pv.getHitePoint() + ",generalPKcount=" + pv.getGeneralPkCount() + ",activePkcount=" + pv.getActivePkCount() + ",updateTime=now() where id=" + pv.getId();
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
 
-		}
-	}
+        }
+    }
 
-	/** ********·ÖÒ³²éÑ¯Íæ¼ÒµÄ³ğºŞ±í*********** */
-	public List<PKHiteVO> getEnemys(int ppk, int index, int limit)
-	{
-		String sql = "select*from u_pk_hite where p_pk=" + ppk
-				+ " order by hitePoint desc limit " + index*limit + "," + limit + "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		List<PKHiteVO> list = new ArrayList<PKHiteVO>();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				PKHiteVO pv = new PKHiteVO();
-				pv.setId(rs.getInt("id"));
-				pv.setP_pk(rs.getInt("p_pk"));
-				pv.setEnemyUpk(rs.getInt("enemyUpk"));
-				pv.setEnemyPpk(rs.getInt("enemyPpk"));
-				pv.setEnemyName(rs.getString("enemyName"));
-				pv.setEnemyGrade(rs.getInt("enemyGrade"));
-				pv.setHitePoint(rs.getInt("hitePoint"));
-				pv.setGeneralPkCount(rs.getInt("generalPKcount"));
-				pv.setActivePkCount(rs.getInt("activePKcount"));
-				pv.setUpdateTime(rs.getDate("updateTime"));
-				list.add(pv);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
+    /**
+     * *******åˆ†é¡µæŸ¥è¯¢ç©å®¶çš„ä»‡æ¨è¡¨***********
+     */
+    public List<PKHiteVO> getEnemys(int ppk, int index, int limit) {
+        String sql = "SELECT * FROM `u_pk_hite` WHERE p_pk = " + ppk + " ORDER BY `hitePoint` DESC LIMIT " + index * limit + "," + limit;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        List<PKHiteVO> list = new ArrayList<PKHiteVO>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                PKHiteVO pv = new PKHiteVO();
+                pv.setId(rs.getInt("id"));
+                pv.setP_pk(rs.getInt("p_pk"));
+                pv.setEnemyUpk(rs.getInt("enemyUpk"));
+                pv.setEnemyPpk(rs.getInt("enemyPpk"));
+                pv.setEnemyName(rs.getString("enemyName"));
+                pv.setEnemyGrade(rs.getInt("enemyGrade"));
+                pv.setHitePoint(rs.getInt("hitePoint"));
+                pv.setGeneralPkCount(rs.getInt("generalPKcount"));
+                pv.setActivePkCount(rs.getInt("activePKcount"));
+                pv.setUpdateTime(rs.getDate("updateTime"));
+                list.add(pv);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
 
-		}
-		return list;
-	}
+        }
+        return list;
+    }
 
-	/** ***********µÃµ½¼ÇÂ¼×ÜÌõÊı************* */
-	public int getRecordNum(int ppk)
-	{
-		String sql = "select count(*) as total from u_pk_hite where p_pk="
-				+ ppk + "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				count = rs.getInt("total");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return count;
-	}
-	
-	/** ***********Íæ¼ÒÉ¾³ı½ÇÉ«µÄÊ±ºòÉ¾³ıËùÓĞºÍÍæ¼ÒÓĞ¹ØµÄ³ğºŞĞÅÏ¢************* */
-	public void removeHiteInfo(int ppk)
-	{
-		String sql = "delete from u_pk_hite where p_pk="+ppk+" or enemyPpk="+ppk+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
+    /**
+     * **********å¾—åˆ°è®°å½•æ€»æ¡æ•°*************
+     */
+    public int getRecordNum(int ppk) {
+        String sql = "SELECT count(*) as total from u_pk_hite where p_pk=" + ppk;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return count;
+    }
+
+    /**
+     * **********ç©å®¶åˆ é™¤è§’è‰²çš„æ—¶å€™åˆ é™¤æ‰€æœ‰å’Œç©å®¶æœ‰å…³çš„ä»‡æ¨ä¿¡æ¯*************
+     */
+    public void removeHiteInfo(int ppk) {
+        String sql = "delete from u_pk_hite where p_pk=" + ppk + " or enemyPpk=" + ppk;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
 }

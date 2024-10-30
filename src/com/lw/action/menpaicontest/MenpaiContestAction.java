@@ -30,7 +30,7 @@ public class MenpaiContestAction extends DispatchAction
 		String menpai = "";
 		if (menu_id == null || menu_id.equals("") || menu_id.equals("null"))
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM!");
+			request.setAttribute("display", "è¯·è”ç³»GM!");
 			return mapping.findForward("display");
 		}
 		else
@@ -47,15 +47,15 @@ public class MenpaiContestAction extends DispatchAction
 		String p_type = vo.getMenuOperate1();
 		if (p_type.equals("1"))
 		{
-			menpai = "Ã÷½Ì";
+			menpai = "æ˜æ•™";
 		}
 		if (p_type.equals("2"))
 		{
-			menpai = "Ø¤°ï";
+			menpai = "ä¸å¸®";
 		}
 		if (p_type.equals("3"))
 		{
-			menpai = "ÉÙÁÖ";
+			menpai = "å°‘æ—";
 		}
 		MenpaiContestService menpaiContestService = new MenpaiContestService();
 		int num = menpaiContestService.selectPlayerRankDataNum(p_type);
@@ -79,7 +79,7 @@ public class MenpaiContestAction extends DispatchAction
 		String display = "";
 		if (menu_id == null || menu_id.equals("") || menu_id.equals("null"))
 		{
-			display = "Êı¾İ´íÎóÇëÁªÏµGM!";
+			display = "æ•°æ®é”™è¯¯è¯·è”ç³»GM!";
 		}
 		else
 		{
@@ -104,27 +104,27 @@ public class MenpaiContestAction extends DispatchAction
 						{
 							dao.updatePlayerRankState(role_info.getBasicInfo()
 									.getPPk(), 5);
-							display = "¹§Ï²Äú»ñµÃ´óµÜ×Ó½±Àø!";
+							display = "æ­å–œæ‚¨è·å¾—å¤§å¼Ÿå­å¥–åŠ±!";
 						}
 						else
 						{
-							display = "ÇëÄúÕûÀí°ü¹üºóÔÙÀ´ÁìÈ¡!";
+							display = "è¯·æ‚¨æ•´ç†åŒ…è£¹åå†æ¥é¢†å–!";
 						}
 					}
 					else
 					{
-						display = "ÄúÃ»ÓĞÁìÈ¡½±ÀøµÄ×Ê¸ñ,»òÕßÄúÒÑ¾­ÁìÈ¡¹ı½±Àø!";
+						display = "æ‚¨æ²¡æœ‰é¢†å–å¥–åŠ±çš„èµ„æ ¼,æˆ–è€…æ‚¨å·²ç»é¢†å–è¿‡å¥–åŠ±!";
 					}
 
 				}
 				else
 				{
-					display = "ÃÅÅÉ²»·û!";
+					display = "é—¨æ´¾ä¸ç¬¦!";
 				}
 			}
 			else
 			{
-				display = "Êı¾İ´íÎóÇëÁªÏµGM!";
+				display = "æ•°æ®é”™è¯¯è¯·è”ç³»GM!";
 			}
 		}
 		request.setAttribute("display", display);

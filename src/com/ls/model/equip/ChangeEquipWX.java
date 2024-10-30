@@ -5,17 +5,17 @@ import com.ls.pub.constant.Equip;
 
 /**
  * @author ls
- * ×ª»»×°±¸ÎåĞĞÀàĞÍ
+ * è½¬æ¢è£…å¤‡äº”è¡Œç±»å‹
  */
 public class ChangeEquipWX extends EquipProduct
 {
-	private static int material1_id = 106;//ÎåĞĞ×ª»»ĞèÒªµÄ²ÄÁÏ
-	//Éı¼¶±ØĞë²ÄÁÏidÁĞ±í
+	private static int material1_id = 106;//äº”è¡Œè½¬æ¢éœ€è¦çš„ææ–™
+	//å‡çº§å¿…é¡»ææ–™idåˆ—è¡¨
 	private static int[] upgrade_material_id_list = {material1_id};
 	
 	public ChangeEquipWX(int pPk )
 	{
-		super(pPk,"ÎåĞĞ×ª»»", false);
+		super(pPk,"äº”è¡Œè½¬æ¢", false);
 	}
 
 	@Override
@@ -48,18 +48,18 @@ public class ChangeEquipWX extends EquipProduct
 	{
 		if( select_equip.getWLevel()>0 )
 		{
-			return "×°±¸ÒÑÉı¼¶,²»ÄÜ×ª»»ÊôĞÔ";
+			return "è£…å¤‡å·²å‡çº§,ä¸èƒ½è½¬æ¢å±æ€§";
 		}
 		if( select_equip.getEffectHoleNum()>0 )
 		{
-			return "×°±¸ÒÑ´ò¿×,²»ÄÜ×°»»ÊôĞÔ";
+			return "è£…å¤‡å·²æ‰“å­”,ä¸èƒ½è£…æ¢å±æ€§";
 		}
 		
 		this.equip = select_equip;
 		
 		int[] need_material_num = {1};
 		
-		this.setNeedMaterials(upgrade_material_id_list, need_material_num);//ÉèÖÃĞèÒªµÄ²ÄÁÏ
+		this.setNeedMaterials(upgrade_material_id_list, need_material_num);//è®¾ç½®éœ€è¦çš„ææ–™
 		
 		return null;
 	}
@@ -69,11 +69,11 @@ public class ChangeEquipWX extends EquipProduct
 	{
 		if( this.equip.getWZbGrade()>0 )
 		{
-			return "×°±¸ÒÑÉı¼¶,²»ÄÜ×ª»»ÊôĞÔ";
+			return "è£…å¤‡å·²å‡çº§,ä¸èƒ½è½¬æ¢å±æ€§";
 		}
 		if( this.equip.getEffectHoleNum()>0 )
 		{
-			return "×°±¸ÒÑ´ò¿×,²»ÄÜ×°»»ÊôĞÔ";
+			return "è£…å¤‡å·²æ‰“å­”,ä¸èƒ½è£…æ¢å±æ€§";
 		}
 		return null;
 	}
@@ -81,7 +81,7 @@ public class ChangeEquipWX extends EquipProduct
 	@Override
 	protected String processFail()
 	{
-		return "Ì«²»ĞÒÁË£¬Äú×ª»»Ê§°Ü£¬Çë¼ÌĞøÅ¬Á¦£¡";
+		return "å¤ªä¸å¹¸äº†ï¼Œæ‚¨è½¬æ¢å¤±è´¥ï¼Œè¯·ç»§ç»­åŠªåŠ›ï¼";
 	}
 
 	@Override

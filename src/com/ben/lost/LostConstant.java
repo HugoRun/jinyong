@@ -25,12 +25,12 @@ public class LostConstant
 
 	public static int currentMenuId = 0;
 	
-	public static Map<Integer,List<Integer>> USE_OLD_XIANG = new HashMap<Integer, List<Integer>>();//ÆÆ¾ÉÏä×ÓÊ¹ÓÃ
+	public static Map<Integer,List<Integer>> USE_OLD_XIANG = new HashMap<Integer, List<Integer>>();//ç ´æ—§ç®±å­ä½¿ç”¨
 	
-	public static Timer END_LOST_TIMER ;//ÃÔ¹¬½áÊø¶¨Ê±Æ÷
+	public static Timer END_LOST_TIMER ;//è¿·å®«ç»“æŸå®šæ—¶å™¨
 	
-	public static Timer LAST_FIVE_TIMER;//ÃÔ¹¬½áÊø5·ÖÖÓ¶¨Ê±Æ÷
+	public static Timer LAST_FIVE_TIMER;//è¿·å®«ç»“æŸ5åˆ†é’Ÿå®šæ—¶å™¨
 	
-	public static int LAST_MIN = 5;//Ê£Óà¼¸·ÖÖÓÊ±Æô¶¯¶¨Ê±Æ÷
+	public static int LAST_MIN = 5;//å‰©ä½™å‡ åˆ†é’Ÿæ—¶å¯åŠ¨å®šæ—¶å™¨
 
 }

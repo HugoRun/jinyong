@@ -33,28 +33,28 @@ import com.lw.service.player.PlayerPropGroupService;
 
 /**
  * @author ls
- * ÉÌ³Ç
+ * å•†åŸ
  */
 public class MallAction extends ActionBase {
 	Logger logger = Logger.getLogger("log.consume");
 	/** 
-	 * ÉÌ³ÇÊ×Ò³Ãæ
+	 * å•†åŸé¦–é¡µé¢
 	 */
 	public ActionForward n0(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		RoleEntity roleInfo = this.getRoleEntity(request);
 		
-		//Èç¹ûÊÇĞÂÊÖ
+		//å¦‚æœæ˜¯æ–°æ‰‹
 		if( roleInfo.getBasicInfo().getPlayer_state_by_new()==1)
 		{
-			this.setHint(request, "ÄãÏÖÔÚ´¦ÔÚĞÂÊÖÒıµ¼×´Ì¬,ÎŞÈ¨·ÃÎÊÉÌ³Ç");
+			this.setHint(request, "ä½ ç°åœ¨å¤„åœ¨æ–°æ‰‹å¼•å¯¼çŠ¶æ€,æ— æƒè®¿é—®å•†åŸ");
 			return mapping.findForward("return_hint");
 		}
 		
 		int u_pk = roleInfo.getBasicInfo().getUPk();
 		
-		roleInfo.getStateInfo().setCurState(PlayerState.MALL);//Íæ¼ÒÔÚÉÌ³ÇÊ±×´Ì¬ÊÜ±£»¤
+		roleInfo.getStateInfo().setCurState(PlayerState.MALL);//ç©å®¶åœ¨å•†åŸæ—¶çŠ¶æ€å—ä¿æŠ¤
 		
 		MallService mallService = new MallService();
 		EconomyService economyService = new EconomyService();
@@ -77,7 +77,7 @@ public class MallAction extends ActionBase {
 	}
 	
 	/** 
-	 * VIPÊ×Ò³Ãæ
+	 * VIPé¦–é¡µé¢
 	 */
 	public ActionForward vip(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -90,7 +90,7 @@ public class MallAction extends ActionBase {
 		EconomyService economyService = new EconomyService();
 		MallService mallService = new MallService();
 		
-		//ÅĞ¶ÏÊÇ·ñÒÑÊÇ»áÔ±
+		//åˆ¤æ–­æ˜¯å¦å·²æ˜¯ä¼šå‘˜
 		Vip vip = roleInfo.getTitleSet().getVIP();
 		if( vip!=null )
 		{
@@ -98,8 +98,8 @@ public class MallAction extends ActionBase {
 		}
 		int jifen = economyService.getJifen(u_pk);
 		
-		String vip_name = "ÆÕÍ¨Íæ¼Ò";//»áÔ±Ãû³Æ
-		String role_title = "Ç×°®µÄÍæ¼Ò";//»áÔ±ÉÌ³ÇµÄÍæ¼ÒµÄ³Æºô
+		String vip_name = "æ™®é€šç©å®¶";//ä¼šå‘˜åç§°
+		String role_title = "äº²çˆ±çš„ç©å®¶";//ä¼šå‘˜å•†åŸçš„ç©å®¶çš„ç§°å‘¼
 		
 		
 		Vip role_vip = roleInfo.getTitleSet().getVIP();
@@ -117,7 +117,7 @@ public class MallAction extends ActionBase {
 	}
 	
 	/** 
-	 * VIP½éÉÜÒ³Ãæ
+	 * VIPä»‹ç»é¡µé¢
 	 */
 	public ActionForward vipIntro(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -133,7 +133,7 @@ public class MallAction extends ActionBase {
 	
 	
 	/** 
-	 * »ı·ÖÉÌ³ÇÊ×Ò³Ãæ
+	 * ç§¯åˆ†å•†åŸé¦–é¡µé¢
 	 */
 	public ActionForward jifen(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -146,7 +146,7 @@ public class MallAction extends ActionBase {
 		EconomyService economyService = new EconomyService();
 		MallService mallService = new MallService();
 		
-		String role_title = "";//»áÔ±ÉÌ³ÇµÄÍæ¼ÒµÄ³Æºô
+		String role_title = "";//ä¼šå‘˜å•†åŸçš„ç©å®¶çš„ç§°å‘¼
 		int jifen = economyService.getJifen(u_pk);
 		
 		request.setAttribute("jifen",jifen+"");
@@ -164,7 +164,7 @@ public class MallAction extends ActionBase {
 	}
 	
 	/** 
-	 * »ı·ÖÉÌ³Ç½éÉÜÒ³Ãæ
+	 * ç§¯åˆ†å•†åŸä»‹ç»é¡µé¢
 	 */
 	public ActionForward jifenIntro(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -173,7 +173,7 @@ public class MallAction extends ActionBase {
 	}
 	
 	/** 
-	 * »ı·ÖÉÌÆ·Õ¹Ê¾
+	 * ç§¯åˆ†å•†å“å±•ç¤º
 	 */
 	public ActionForward show(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -204,7 +204,7 @@ public class MallAction extends ActionBase {
 	
 	
 	/**
-	 * ÉÌÆ·ÁĞ±í
+	 * å•†å“åˆ—è¡¨
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -221,7 +221,7 @@ public class MallAction extends ActionBase {
 		long yuanbao = economyService.getYuanbao(u_pk);
 		int jifen = economyService.getJifen(u_pk);
 		
-		String type = request.getParameter("type");//²é¿´ÎïÆ·ÏêÇéºó£¬Òª·µ»ØµÄÒ³ÃæµÄÀàĞÍ£¬¶ÔÓ¦ÉÌÆ·µÄ·ÖÀà
+		String type = request.getParameter("type");//æŸ¥çœ‹ç‰©å“è¯¦æƒ…åï¼Œè¦è¿”å›çš„é¡µé¢çš„ç±»å‹ï¼Œå¯¹åº”å•†å“çš„åˆ†ç±»
 		String page_no_str = request.getParameter("page_no");
 		int page_no = 1;
 		
@@ -230,8 +230,8 @@ public class MallAction extends ActionBase {
 			page_no = Integer.parseInt(page_no_str);
 		}
 		
-		String shop_title = "";//ÉÌ³Ç±êÌâ
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String shop_title = "";//å•†åŸæ ‡é¢˜
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		QueryPage queryPage = null;
 		
 		shop_title = mallService.getShopTitleByType(type);
@@ -250,7 +250,7 @@ public class MallAction extends ActionBase {
 	
 	
 	/**
-	 * ¹ºÂòÉÌÆ·ÌáÊ¾
+	 * è´­ä¹°å•†å“æç¤º
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -259,8 +259,8 @@ public class MallAction extends ActionBase {
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		String c_id = request.getParameter("c_id");//ÉÌÆ·id
-		String type = request.getParameter("type");//²é¿´ÎïÆ·ÏêÇéºó£¬Òª·µ»ØµÄÒ³ÃæµÄÀàĞÍ
+		String c_id = request.getParameter("c_id");//å•†å“id
+		String type = request.getParameter("type");//æŸ¥çœ‹ç‰©å“è¯¦æƒ…åï¼Œè¦è¿”å›çš„é¡µé¢çš„ç±»å‹
 		String page_no = request.getParameter("page_no");
 		
 		RoleService roleService = new RoleService();
@@ -284,11 +284,11 @@ public class MallAction extends ActionBase {
 			page_no = "";
 		}
 		
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		
-		if( commodity.getBuyMode() == 2 )//»ı·ÖÉÌÆ·
+		if( commodity.getBuyMode() == 2 )//ç§¯åˆ†å•†å“
 		{
-			sell_type = "»ı·Ö";
+			sell_type = "ç§¯åˆ†";
 		}
 		
 		int user_discount = 100;
@@ -311,13 +311,13 @@ public class MallAction extends ActionBase {
 		return mapping.findForward("buy_hint");
 	}
 	/**
-	 * ²éÑ¯Ê£ÓàµãÊıaction  µçĞÅ
+	 * æŸ¥è¯¢å‰©ä½™ç‚¹æ•°action  ç”µä¿¡
 	 */
 	
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		String hint="Äú²»¿ÉÒÔÊ¹ÓÃ´Ë¹¦ÄÜ";
+		String hint="æ‚¨ä¸å¯ä»¥ä½¿ç”¨æ­¤åŠŸèƒ½";
 		if(GameConfig.getChannelId()!=Channel.TELE)
 		{
 			request.setAttribute("hint",hint);
@@ -343,18 +343,18 @@ public class MallAction extends ActionBase {
 		String str= ms.serchPoint(url, params);
 		if("1".equals(str))
 		{
-			hint="²éÑ¯Ê£ÓàµãÊıÊ§°Ü£¬ÇëÖØĞÂ²Ù×÷";
+			hint="æŸ¥è¯¢å‰©ä½™ç‚¹æ•°å¤±è´¥ï¼Œè¯·é‡æ–°æ“ä½œ";
 			request.setAttribute("hint",hint);
 		}
 		else
 		{
-			hint="Ç×°®µÄ"+custLabel+",ÄúµÄÊ£ÓàµãÊıÎª£º"+str;
+			hint="äº²çˆ±çš„"+custLabel+",æ‚¨çš„å‰©ä½™ç‚¹æ•°ä¸ºï¼š"+str;
 			request.setAttribute("hint",str);
 		}
 		return mapping.findForward("serchpoint");
 	}
 	/**
-	 * ¹ºÂòÉÌÆ·
+	 * è´­ä¹°å•†å“
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -364,10 +364,10 @@ public class MallAction extends ActionBase {
 		
 		int p_pk = role_info.getBasicInfo().getPPk();
 		
-		String c_id = request.getParameter("c_id");//ÉÌÆ·id
-		String type = request.getParameter("type");//²é¿´ÎïÆ·ÏêÇéºó£¬Òª·µ»ØµÄÒ³ÃæµÄÀàĞÍ
+		String c_id = request.getParameter("c_id");//å•†å“id
+		String type = request.getParameter("type");//æŸ¥çœ‹ç‰©å“è¯¦æƒ…åï¼Œè¦è¿”å›çš„é¡µé¢çš„ç±»å‹
 		String page_no = request.getParameter("page_no");
-		String sell_num = request.getParameter("sell_num");//¹ºÂòµÄÊıÁ¿
+		String sell_num = request.getParameter("sell_num");//è´­ä¹°çš„æ•°é‡
 		
 		MallService mallService = new MallService();
 		
@@ -380,21 +380,21 @@ public class MallAction extends ActionBase {
 		{
 			page_no = "";
 		}
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		if(Integer.parseInt(type)==5)
 		{
-			sell_type="»ı·Ö";
+			sell_type="ç§¯åˆ†";
 		}
 		GoodsService goodsService = new GoodsService();
 		if(sell_num==null||"".equals(sell_num.trim())){
 			sell_num = "1";
 		}
 		if(Integer.parseInt(type)== 6){
-			//ÅĞ¶ÏÊÇ·ñÒÑÊÇ»áÔ±
+			//åˆ¤æ–­æ˜¯å¦å·²æ˜¯ä¼šå‘˜
 			Vip vip = role_info.getTitleSet().getVIP();
 			if(vip == null){
 				String prop_wml = goodsService.getPropInfoWml(p_pk, commodity.getPropId());
-				request.setAttribute("hint", "Äú»¹²»ÊÇ»áÔ±,Çë³ÉÎª»áÔ±ºóÔÙ¹»Âò´ËÎïÆ·");
+				request.setAttribute("hint", "æ‚¨è¿˜ä¸æ˜¯ä¼šå‘˜,è¯·æˆä¸ºä¼šå‘˜åå†å¤Ÿä¹°æ­¤ç‰©å“");
 				request.setAttribute("c_id", c_id);
 				request.setAttribute("type", type);
 				request.setAttribute("sell_type", sell_type);
@@ -412,7 +412,7 @@ public class MallAction extends ActionBase {
 			
 			int store_num = commodity.getStoreNum();
 			
-			request.setAttribute("hint", "¿â´æ²»×ã,Ê£ÓàÊıÁ¿Îª"+store_num);
+			request.setAttribute("hint", "åº“å­˜ä¸è¶³,å‰©ä½™æ•°é‡ä¸º"+store_num);
 			request.setAttribute("c_id", c_id);
 			request.setAttribute("type", type);
 			request.setAttribute("sell_type", sell_type);
@@ -423,12 +423,12 @@ public class MallAction extends ActionBase {
 		}
 		
 		String hint=null;
-		/*****µçĞÅ¹ºÂòµÀ¾ß*******/
+		/*****ç”µä¿¡è´­ä¹°é“å…·*******/
 		if(Channel.TELE==GameConfig.getChannelId())
 		{
 			hint=mallService.buyForTelecom(request,role_info, commodity, sell_num.trim(), 1,c_id);
 		}
-		/*****ÆäËûÇşµÀ¹ºÂòµÀ¾ß*****/
+		/*****å…¶ä»–æ¸ é“è´­ä¹°é“å…·*****/
 		else
 		{
 			hint = mallService.buy(role_info, commodity, sell_num.trim(),1);
@@ -449,7 +449,7 @@ public class MallAction extends ActionBase {
 			request.setAttribute("type", type);
 			request.setAttribute("sell_type", sell_type);
 			request.setAttribute("page_no", page_no);
-			if( hint.equals("°ü¹ü¿Õ¼ä²»×ã") && role_info.getBasicInfo().getWrapContent()<100 )
+			if( hint.equals("åŒ…è£¹ç©ºé—´ä¸è¶³") && role_info.getBasicInfo().getWrapContent()<100 )
 			{
 				return mapping.findForward("buy_wrap_space");
 			}
@@ -467,7 +467,7 @@ public class MallAction extends ActionBase {
 		
 		int need_num = Integer.parseInt(sell_num.trim())*commodity.getCurPrice(user_discount);
 		
-		hint = "ÌáÊ¾:Äú¹ºÂòÁË"+commodity.getPropName()+"¡Á"+sell_num.trim()+",Ïû·Ñ¡¾"+sell_type+"¡¿¡Á"+need_num+"!";
+		hint = "æç¤º:æ‚¨è´­ä¹°äº†"+commodity.getPropName()+"Ã—"+sell_num.trim()+",æ¶ˆè´¹ã€"+sell_type+"ã€‘Ã—"+need_num+"!";
 		
 		String wm = (String) session.getAttribute("wm");
 		if(wm == null || wm.equals("null")){
@@ -483,7 +483,7 @@ public class MallAction extends ActionBase {
 		}
 		float money = (float)need_num / (float)100;
 		logger.info(todayStr+"|"+p_pk+"|"+role_info.getBasicInfo().getName()+"|"+wm+"|"+commodity.getPropId()+"|"+commodity.getPropName()+"|"+money);
-		/*******ÓÆÀÖÇşµÀĞèÒªÍ¬²½Íæ¼ÒÏû·ÑĞÅÏ¢******/
+		/*******æ‚ ä¹æ¸ é“éœ€è¦åŒæ­¥ç©å®¶æ¶ˆè´¹ä¿¡æ¯******/
 		if(GameConfig.getChannelId()==Channel.WANXIANG)
 		{
 			LoginService ls=new LoginService();
@@ -500,7 +500,7 @@ public class MallAction extends ActionBase {
 	
 	
 	/**
-	 * ¹ºÂò°ü¹ü¸ñÊı
+	 * è´­ä¹°åŒ…è£¹æ ¼æ•°
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -513,17 +513,17 @@ public class MallAction extends ActionBase {
 		RoleService roleService = new RoleService();
 		RoleEntity role_info = roleService.getRoleInfoBySession(request.getSession());
 		
-		String c_id = request.getParameter("c_id");//ÉÌÆ·id
-		String type = request.getParameter("type");//²é¿´ÎïÆ·ÏêÇéºó£¬Òª·µ»ØµÄÒ³ÃæµÄÀàĞÍ
+		String c_id = request.getParameter("c_id");//å•†å“id
+		String type = request.getParameter("type");//æŸ¥çœ‹ç‰©å“è¯¦æƒ…åï¼Œè¦è¿”å›çš„é¡µé¢çš„ç±»å‹
 		String page_no = request.getParameter("page_no");
-		String sell_num = request.getParameter("sell_num");//¹ºÂòµÄÊıÁ¿
+		String sell_num = request.getParameter("sell_num");//è´­ä¹°çš„æ•°é‡
 		
 		MallService mallService = new MallService();
 		CommodityVO commodity = mallService.getCommodityInfo(c_id);
 		
 		PlayerPropGroupService playerPropGroupService = new PlayerPropGroupService();
 		
-		//¹ºÂò°ü¹ü¸ñ×Ó
+		//è´­ä¹°åŒ…è£¹æ ¼å­
 		String buy_wrap_content_hint = null;
 		if(GameConfig.getChannelId()==Channel.TELE)
 		{
@@ -540,13 +540,13 @@ public class MallAction extends ActionBase {
 		
 		if(buy_wrap_content_hint == null)
 		{
-			request.setAttribute("hint", "ÄúµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»¹»!");
+			request.setAttribute("hint", "æ‚¨çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸å¤Ÿ!");
 			return mapping.findForward("buy");
 		}
 		
-		String buy_commodity_hint = mallService.buy(role_info, commodity, sell_num.trim(),1);//¹ºÂò
+		String buy_commodity_hint = mallService.buy(role_info, commodity, sell_num.trim(),1);//è´­ä¹°
 		
-		if( buy_commodity_hint!=null )//¹ºÂòÊ§°Ü
+		if( buy_commodity_hint!=null )//è´­ä¹°å¤±è´¥
 		{
 			request.setAttribute("hint", buy_wrap_content_hint+buy_commodity_hint);
 			return mapping.findForward("buy");
@@ -562,14 +562,14 @@ public class MallAction extends ActionBase {
 		
 		int need_num = Integer.parseInt(sell_num.trim())*commodity.getCurPrice(user_discount);
 		
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		
-		if( commodity.getBuyMode() == 2 )//»ı·ÖÉÌÆ·
+		if( commodity.getBuyMode() == 2 )//ç§¯åˆ†å•†å“
 		{
-			sell_type = "»ı·Ö";
+			sell_type = "ç§¯åˆ†";
 		}
 		
-		buy_commodity_hint = "ÌáÊ¾:Äú¹ºÂòÁË"+commodity.getPropName()+"¡Á"+sell_num.trim()+",Ïû·Ñ¡¾"+sell_type+"¡¿¡Á"+need_num+"!";
+		buy_commodity_hint = "æç¤º:æ‚¨è´­ä¹°äº†"+commodity.getPropName()+"Ã—"+sell_num.trim()+",æ¶ˆè´¹ã€"+sell_type+"ã€‘Ã—"+need_num+"!";
 		
 	
 		request.setAttribute("commodity", commodity);
@@ -582,7 +582,7 @@ public class MallAction extends ActionBase {
 	
 	
 	/**
-	 * ²é¿´ÏêÇéÉÌÆ·
+	 * æŸ¥çœ‹è¯¦æƒ…å•†å“
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -597,8 +597,8 @@ public class MallAction extends ActionBase {
 		
 		int p_pk = role_info.getBasicInfo().getPPk();
 		
-		String c_id = request.getParameter("c_id");//ÉÌÆ·id
-		String type = request.getParameter("type");//²é¿´ÎïÆ·ÏêÇéºó£¬Òª·µ»ØµÄÒ³ÃæµÄÀàĞÍ
+		String c_id = request.getParameter("c_id");//å•†å“id
+		String type = request.getParameter("type");//æŸ¥çœ‹ç‰©å“è¯¦æƒ…åï¼Œè¦è¿”å›çš„é¡µé¢çš„ç±»å‹
 		String page_no = request.getParameter("page_no");
 		
 		MallService mallService = new MallService();
@@ -625,7 +625,7 @@ public class MallAction extends ActionBase {
 	}
 	
 	/**
-	 * ·µ»ØÁ¬½Ó´¦Àí
+	 * è¿”å›è¿æ¥å¤„ç†
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -635,28 +635,28 @@ public class MallAction extends ActionBase {
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		/**
-		 * back_type²ÎÊıËµÃ÷£¬1-6±íÊ¾Ôª±¦ÉÌÆ·µÄ·ÖÀàµÄÁĞ±í£¬7±íÊ¾»ı·ÖÉÌÆ·µÄÁĞ±í
+		 * back_typeå‚æ•°è¯´æ˜ï¼Œ1-6è¡¨ç¤ºå…ƒå®å•†å“çš„åˆ†ç±»çš„åˆ—è¡¨ï¼Œ7è¡¨ç¤ºç§¯åˆ†å•†å“çš„åˆ—è¡¨
 		 */
 		String type = request.getParameter("type");
 		
 		if( type==null || type.equals(""))
 		{
-			//·µ»ØÉÌ³ÇÊ×Ò³
+			//è¿”å›å•†åŸé¦–é¡µ
 			return n0(mapping, form, request, response);
 		}
 		else if(type.equals("8"))
 		{
-			//·µ»Ø»áÔ±Ö÷Ò³
+			//è¿”å›ä¼šå‘˜ä¸»é¡µ
 			return vip(mapping, form, request, response);
 		}
 		else if(type.equals("7"))
 		{
-			//·µ»Ø»ı·ÖÉÌ³Ç
+			//è¿”å›ç§¯åˆ†å•†åŸ
 			return jifen(mapping, form, request, response);
 		}
 		else
 		{
-			//Ôª±¦ÉÌÆ··ÖÀàÁĞ±í
+			//å…ƒå®å•†å“åˆ†ç±»åˆ—è¡¨
 			return n1(mapping, form, request, response);
 		}
 	}
@@ -668,7 +668,7 @@ public class MallAction extends ActionBase {
 		
 		int u_pk = roleInfo.getBasicInfo().getUPk();
 		
-		roleInfo.getStateInfo().setCurState(PlayerState.MALL);//Íæ¼ÒÔÚÉÌ³ÇÊ±×´Ì¬ÊÜ±£»¤
+		roleInfo.getStateInfo().setCurState(PlayerState.MALL);//ç©å®¶åœ¨å•†åŸæ—¶çŠ¶æ€å—ä¿æŠ¤
 		
 		List<CommodityVO> hotsell_commoditys = null;
 		List<CommodityVO> discount_commoditys = null;
@@ -709,8 +709,8 @@ public class MallAction extends ActionBase {
 		{
 			page_no = Integer.parseInt(page_no_str);
 		}
-		String shop_title = "";//ÉÌ³Ç±êÌâ
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String shop_title = "";//å•†åŸæ ‡é¢˜
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		QueryPage queryPage = mallService.getJifenCommodityList(1,type, page_no);
 		request.setAttribute("roleInfo",roleInfo);
 		request.setAttribute("yuanbao",yuanbao+"");
@@ -738,8 +738,8 @@ public class MallAction extends ActionBase {
 		{
 			page_no = Integer.parseInt(page_no_str);
 		}
-		String shop_title = "";//ÉÌ³Ç±êÌâ
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String shop_title = "";//å•†åŸæ ‡é¢˜
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		QueryPage queryPage = mallService.getHotSellCommodityList(page_no);
 		request.setAttribute("roleInfo",roleInfo);
 		request.setAttribute("yuanbao",yuanbao+"");
@@ -774,8 +774,8 @@ public class MallAction extends ActionBase {
 		{
 			page_no = Integer.parseInt(page_no_str);
 		}
-		String shop_title = "";//ÉÌ³Ç±êÌâ
-		String sell_type = "»ı·Ö";//Ïû·ÑÀàĞÍ
+		String shop_title = "";//å•†åŸæ ‡é¢˜
+		String sell_type = "ç§¯åˆ†";//æ¶ˆè´¹ç±»å‹
 		QueryPage queryPage = mallService.getJifenCommodityList(2,type, page_no);
 		request.setAttribute("roleInfo",roleInfo);
 		request.setAttribute("yuanbao",yuanbao+"");
@@ -802,8 +802,8 @@ public class MallAction extends ActionBase {
 		{
 			page_no = Integer.parseInt(page_no_str);
 		}
-		String shop_title = "";//ÉÌ³Ç±êÌâ
-		String sell_type = GameConfig.getYuanbaoName();//Ïû·ÑÀàĞÍ
+		String shop_title = "";//å•†åŸæ ‡é¢˜
+		String sell_type = GameConfig.getYuanbaoName();//æ¶ˆè´¹ç±»å‹
 		QueryPage queryPage = mallService.getVIPCommodityList(page_no);
 		request.setAttribute("roleInfo",roleInfo);
 		request.setAttribute("yuanbao",yuanbao+"");

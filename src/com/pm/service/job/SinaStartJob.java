@@ -29,7 +29,7 @@ public class SinaStartJob implements Job
 
 		try
 		{
-			// ĞÂÀËÈÕÖ¾ Create a default instance of the Scheduler
+			// æ–°æµªæ—¥å¿— Create a default instance of the Scheduler
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 			scheduler.start();
 			logger.info("Scheduler was started at " + new Date());
@@ -37,17 +37,17 @@ public class SinaStartJob implements Job
 			JobDetail jobDetail = new JobDetail("SinaJob",
 					Scheduler.DEFAULT_GROUP, SinaJob.class);
 
-			// ´´½¨Ã¿¸öJOBÒªÖ´ĞĞµÄÊ±¼ä
+			// åˆ›å»ºæ¯ä¸ªJOBè¦æ‰§è¡Œçš„æ—¶é—´
 			try
 			{
 				String time = "0 59 23 ? * *";
-				// ×Ô¶¨ÒåÊ±¼ä
+				// è‡ªå®šä¹‰æ—¶é—´
 				CronTrigger trigger = new CronTrigger("MyTrigger_sina", null,
 						time);
 				Date date = new Date();
 				trigger.setStartTime(date);
 				scheduler.scheduleJob(jobDetail, trigger);
-				logger.info("ĞÂÀË¶¨Ê±ÈÕÖ¾");
+				logger.info("æ–°æµªå®šæ—¶æ—¥å¿—");
 			}
 			catch (ParseException ex)
 			{

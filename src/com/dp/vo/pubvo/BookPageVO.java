@@ -3,27 +3,27 @@ package com.dp.vo.pubvo;
 
 public class BookPageVO
 {
-	private Integer hour=0;//µ±Ç°Ğ¡Ê±
-	private Integer minutes=0;//µ±Ç°·ÖÖÓ
-    private Integer page=1;//µ±Ç°Ò³
-    private Integer pagesize=250;//Ã¿Ò³ÏÔÊ¾µÄ×ÖÊı
-    private Integer bookid;//Ğ¡ËµÖ÷¼üID
-    private Integer zjlistpage=1;//ÕÂ½ÚÁĞ±íµÄµ±Ç°ÁĞ
-    private Integer zjpagesize=5;//ÕÂ½ÚÁĞ±íÃ¿Ò³ÏÔÊ¾µÄÌõÊı
+	private Integer hour=0;//å½“å‰å°æ—¶
+	private Integer minutes=0;//å½“å‰åˆ†é’Ÿ
+    private Integer page=1;//å½“å‰é¡µ
+    private Integer pagesize=250;//æ¯é¡µæ˜¾ç¤ºçš„å­—æ•°
+    private Integer bookid;//å°è¯´ä¸»é”®ID
+    private Integer zjlistpage=1;//ç« èŠ‚åˆ—è¡¨çš„å½“å‰åˆ—
+    private Integer zjpagesize=5;//ç« èŠ‚åˆ—è¡¨æ¯é¡µæ˜¾ç¤ºçš„æ¡æ•°
     private Integer exists=0;
-    private Integer phpage=1;//ÅÅĞĞ°ñµÄµ±Ç°Ò³
-    private Integer phpagesize=10;//ÅÅĞĞ°ñÃ¿Ò³ÏÔÊ¾ÅÅĞĞĞ¡ËµµÄÌõÊı
-    private Integer squpage=1;//·ÖÀàÅÅĞĞ°ñµÄµ±Ç°Ò³
-    private Integer squpagesize=10;//·ÖÀàÅÅĞĞ°ñÃ¿Ò»Ò³ÏÔÊ¾µÄÌõÊı
-    private Integer n7bookid;//ÔÄ¶Á»»ÕÂÊ±µÄĞ¡ËµID
-    private Integer n7zjid;//ÔÄ¶Á»¹ÕÂÊ±µÄÕÂ½ÚºÅ
-    private Integer tipsign=0;//·µ»Ø±ê¼Ç
+    private Integer phpage=1;//æ’è¡Œæ¦œçš„å½“å‰é¡µ
+    private Integer phpagesize=10;//æ’è¡Œæ¦œæ¯é¡µæ˜¾ç¤ºæ’è¡Œå°è¯´çš„æ¡æ•°
+    private Integer squpage=1;//åˆ†ç±»æ’è¡Œæ¦œçš„å½“å‰é¡µ
+    private Integer squpagesize=10;//åˆ†ç±»æ’è¡Œæ¦œæ¯ä¸€é¡µæ˜¾ç¤ºçš„æ¡æ•°
+    private Integer n7bookid;//é˜…è¯»æ¢ç« æ—¶çš„å°è¯´ID
+    private Integer n7zjid;//é˜…è¯»è¿˜ç« æ—¶çš„ç« èŠ‚å·
+    private Integer tipsign=0;//è¿”å›æ ‡è®°
     private Integer typeid;
-    private Integer zjid;//Ğ¡ËµÕÂ½ÚID
-    private String  novename;//Ğ¡ËµËÑË÷¹Ø¼ü×Ö
-    private Integer resultsign=0;//·µ»ØĞ¡ËµËÑË÷½á¹ûµÄ±ê¼Ç1.n2,2.n8,3.n12,4.n13
-    private Integer typepage=1;//·ÖÀà²éÑ¯Ğ¡ËµÁĞ±íµÄµ±Ç°Ò³
-    private Integer typepagesize=10;//·ÖÀà²éÑ¯Ğ¡ËµÁĞ±íµÄ×ÜÒ³Êı
+    private Integer zjid;//å°è¯´ç« èŠ‚ID
+    private String  novename;//å°è¯´æœç´¢å…³é”®å­—
+    private Integer resultsign=0;//è¿”å›å°è¯´æœç´¢ç»“æœçš„æ ‡è®°1.n2,2.n8,3.n12,4.n13
+    private Integer typepage=1;//åˆ†ç±»æŸ¥è¯¢å°è¯´åˆ—è¡¨çš„å½“å‰é¡µ
+    private Integer typepagesize=10;//åˆ†ç±»æŸ¥è¯¢å°è¯´åˆ—è¡¨çš„æ€»é¡µæ•°
 	public Integer getHour()
 	{
 		return hour;

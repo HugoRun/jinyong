@@ -25,7 +25,7 @@ public class AuctionPetService
 
 	Logger logger = Logger.getLogger("log.service");
 	
-	/** ÅÄÂô³èÎï */
+	/** æ‹å–å® ç‰© */
 	public String auctionPet(int pPk ,String petPk,int input_money){
 		StringBuffer sb = new StringBuffer();
 		
@@ -35,70 +35,70 @@ public class AuctionPetService
 		PetInfoDAO petInfoDao = new PetInfoDAO();
 		PetInfoVO petinfovo = petInfoDao.getPetInfoView(petPk,pPk);
 		if(petinfovo == null) {
-			sb.append("´Ë³èÎï¿ÉÄÜ²»¹éÄúËùÓĞ!");
+			sb.append("æ­¤å® ç‰©å¯èƒ½ä¸å½’æ‚¨æ‰€æœ‰!");
 			return sb.toString();
 		}
 		
 		if (petinfovo.getPetLonge() == 0) {
-			sb.append("´Ë³èÎïµÄÊÙÃüÎªÁã!");
+			sb.append("æ­¤å® ç‰©çš„å¯¿å‘½ä¸ºé›¶!");
 			return sb.toString();
 		}
 		
 		if(petinfovo.getPetIsBring() == 1){
-			sb.append("³öÕ½µÄ³èÎï²»ÄÜÅÄÂô£¡");
+			sb.append("å‡ºæˆ˜çš„å® ç‰©ä¸èƒ½æ‹å–ï¼");
 		}else {
 			AuctionPetDao auctionPetDao = new AuctionPetDao();
 			int status = auctionPetDao.insertAuctionPet(input_money, petinfovo);
-			logger.info("²åÈë³É¹¦×´Ì¬:"+status);
+			logger.info("æ’å…¥æˆåŠŸçŠ¶æ€:"+status);
 			petInfoDao.getPetInfoDelte(petPk);
 			if(status == -1){
-				sb.append("¶Ô²»Æğ£¬ÏµÍ³´íÎó£¬ÇëÉÔºóÔÙÊÔ£¡~");
+				sb.append("å¯¹ä¸èµ·ï¼Œç³»ç»Ÿé”™è¯¯ï¼Œè¯·ç¨åå†è¯•ï¼~");
 			}else if(status == 1){
 				
-				//¼à¿Ø
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -(int)(input_money*(1 - AuctionNumber.AUCTIONNUMBER))+"", "ÅÄÂô³èÎï ½ÉË°");
+				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -(int)(input_money*(1 - AuctionNumber.AUCTIONNUMBER))+"", "æ‹å–å® ç‰© ç¼´ç¨");
 				
-				//´Ó¸öÈËÉíÉÏ³ıÈ¥Ó¦½ÉË°
+				//ä»ä¸ªäººèº«ä¸Šé™¤å»åº”ç¼´ç¨
 				roleInfo.getBasicInfo().addCopper(-(int)(input_money*(1 - AuctionNumber.AUCTIONNUMBER)));
 				
-				sb.append("ÄúÒÔ").append(MoneyUtil.changeCopperToStr(input_money)).append("µÄ¼Û¸ñÅÄÂôÁË³èÎï: ").append(StringUtil.isoToGBK(petinfovo.getPetName()))
-				.append(",ÊÕÈ¡ÊÖĞø·Ñ").append(MoneyUtil.changeCopperToStr((int)(input_money*(1 - AuctionNumber.AUCTIONNUMBER)))).append(",ÈçÒªÅÄÂôÇë¼ÌĞø!");
+				sb.append("æ‚¨ä»¥").append(MoneyUtil.changeCopperToStr(input_money)).append("çš„ä»·æ ¼æ‹å–äº†å® ç‰©: ").append(StringUtil.isoToGBK(petinfovo.getPetName()))
+				.append(",æ”¶å–æ‰‹ç»­è´¹").append(MoneyUtil.changeCopperToStr((int)(input_money*(1 - AuctionNumber.AUCTIONNUMBER)))).append(",å¦‚è¦æ‹å–è¯·ç»§ç»­!");
 			}
 		} 
 		return sb.toString();
 	}
 
 
-	//Íæ¼ÒÊÇ·ñÓĞ×ã¹»½ğÇ®È¥Âò
+	//ç©å®¶æ˜¯å¦æœ‰è¶³å¤Ÿé‡‘é’±å»ä¹°
 	public String auctionHasMoney(PartInfoVO partInfoVO, AuctionPetVO auctionPetVO)
 	{
 		String str = "1";
 		
-		long body_money = Long.valueOf(partInfoVO.getPCopper());			//ÉíÉÏµÄÇ®
+		long body_money = Long.valueOf(partInfoVO.getPCopper());			//èº«ä¸Šçš„é’±
 		
-		int pet_auction_price = auctionPetVO.getPetPrice();					//¸Ã³èÎïµÄÅÄÂô¼Û¸ñ
+		int pet_auction_price = auctionPetVO.getPetPrice();					//è¯¥å® ç‰©çš„æ‹å–ä»·æ ¼
 		
 		if(body_money < pet_auction_price){
-			str = "ÄúµÄ½ğÇ®²»×ã£¡";
+			str = "æ‚¨çš„é‡‘é’±ä¸è¶³ï¼";
 		}
 		return str;
 	}
 	
-	//Íæ¼ÒÊÇ·ñÓĞ×ã¹»¿Õ¸ñÈ¥Âò
+	//ç©å®¶æ˜¯å¦æœ‰è¶³å¤Ÿç©ºæ ¼å»ä¹°
 	public String auctionhasEnoughSpace(String pPk)
 	{
 		String str = "1";
 		WareHouseDao wareDao = new WareHouseDao();
 		int petNumber = wareDao.getPetNumber(Integer.valueOf(pPk));
 		 if(petNumber >= 6){
-			 str = "ÄúÃ»ÓĞ×ã¹»µÄ³èÎï¿Õ¼ä£¡";
+			 str = "æ‚¨æ²¡æœ‰è¶³å¤Ÿçš„å® ç‰©ç©ºé—´ï¼";
 		 }
 		return str;
 	}
 
 	/**
-	 * ÅÄÂò³èÎï
+	 * æ‹ä¹°å® ç‰©
 	 * @param pPk
 	 * @param petPk
 	 * @param auctionPetVO
@@ -113,52 +113,52 @@ public class AuctionPetService
 		
 		AuctionPetVO vo = auctionPetDao.getPetInfoView(auctionPetVO.getPetPk()+"");
 		if(vo.getPPk() == pPk){
-			return "²»ÄÜ¹ºÂò×Ô¼ºÅÄÂôµÄ³èÎï!";
+			return "ä¸èƒ½è´­ä¹°è‡ªå·±æ‹å–çš„å® ç‰©!";
 		}
 		if(vo.getAuctionStatus() != 1){
-			return "¸Ã³èÎïÒÑ¾­Âô³ö!";
+			return "è¯¥å® ç‰©å·²ç»å–å‡º!";
 		}
 		
-		// ÅÄÂôÊ±Ïà¹Ø±í²Ù×÷
+		// æ‹å–æ—¶ç›¸å…³è¡¨æ“ä½œ
 		petAuctionInfoAndMail(pPk,petPk,auctionPetVO);
 		
-		int pet_auction_price = auctionPetVO.getPetPrice();					//¸Ã³èÎïµÄÅÄÂô¼Û¸ñ
-		//¼à¿Ø
+		int pet_auction_price = auctionPetVO.getPetPrice();					//è¯¥å® ç‰©çš„æ‹å–ä»·æ ¼
+		//ç›‘æ§
 		LogService logService = new LogService();
-		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -pet_auction_price+"", "ÅÄÂôÂòµ½³èÎï");
-		//´Ó°ü¹üÖĞÒÆ³ıinput_num¸öÍ­°å
+		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -pet_auction_price+"", "æ‹å–ä¹°åˆ°å® ç‰©");
+		//ä»åŒ…è£¹ä¸­ç§»é™¤input_numä¸ªé“œæ¿
 		roleInfo.getBasicInfo().addCopper(-pet_auction_price);
-		//²åÈë¸öÈË³èÎï±í
+		//æ’å…¥ä¸ªäººå® ç‰©è¡¨
 		auctionPetDao.insertPersonPet(pPk,auctionPetVO);
-		return "ÄúÒÔ"+MoneyUtil.changeCopperToStr(auctionPetVO.getPetPrice())+"¼Û¸ñÅÄÂòÁË"+StringUtil.isoToGBK(auctionPetVO.getPetName());
+		return "æ‚¨ä»¥"+MoneyUtil.changeCopperToStr(auctionPetVO.getPetPrice())+"ä»·æ ¼æ‹ä¹°äº†"+StringUtil.isoToGBK(auctionPetVO.getPetName());
 	}
 
-	//¶ÔÅÄÂôÕß·¢ÓÊ¼şÍ¨Öª£¬²¢·¢ÅÄÂôĞÅÏ¢µ½³èÎïÅÄÂôĞÅÏ¢±í,½«´Ë³èÎïµÄÅÄÂô×´Ì¬ÖÃÎª2.
+	//å¯¹æ‹å–è€…å‘é‚®ä»¶é€šçŸ¥ï¼Œå¹¶å‘æ‹å–ä¿¡æ¯åˆ°å® ç‰©æ‹å–ä¿¡æ¯è¡¨,å°†æ­¤å® ç‰©çš„æ‹å–çŠ¶æ€ç½®ä¸º2.
 	private static void petAuctionInfoAndMail(int pPk, String petPk,AuctionPetVO auctionPetVO)
 	{
 		RoleService roleService = new RoleService();
 		RoleEntity  roleInfo = roleService.getRoleInfoById(pPk+"");
 		
-		//½«³èÎïµÄÅÄÂô×´Ì¬ÖÃÎª4,¼´Âô³ö×´Ì¬
+		//å°†å® ç‰©çš„æ‹å–çŠ¶æ€ç½®ä¸º4,å³å–å‡ºçŠ¶æ€
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
 		auctionPetDao.updateAuctionStatus(petPk,4);
 		
-		//¶ÔÅÄÂôÕß·¢ËÍÓÊ¼şÍ¨Öª
+		//å¯¹æ‹å–è€…å‘é€é‚®ä»¶é€šçŸ¥
 		StringBuffer info = new StringBuffer();
-		info.append("ÄúµÄ").append(StringUtil.isoToGBK(auctionPetVO.getPetName())).append("±»").append(
-							StringUtil.isoToGBK(roleInfo.getBasicInfo().getName())).append("Âò×ßÁË! ");
-		String title = "³èÎïÅÄÂô³¡ÓÊ¼şÍ¨Öª";
+		info.append("æ‚¨çš„").append(StringUtil.isoToGBK(auctionPetVO.getPetName())).append("è¢«").append(
+							StringUtil.isoToGBK(roleInfo.getBasicInfo().getName())).append("ä¹°èµ°äº†! ");
+		String title = "å® ç‰©æ‹å–åœºé‚®ä»¶é€šçŸ¥";
 		
-		//Ïò³èÎïÅÄÂôĞÅÏ¢±í·¢ËÍĞÅÏ¢
+		//å‘å® ç‰©æ‹å–ä¿¡æ¯è¡¨å‘é€ä¿¡æ¯
 		AuctionPetInfoDao petInfoDao = new AuctionPetInfoDao();
-		petInfoDao.insertPetInfo(auctionPetVO.getPPk(),info.append("ÇëÄúÓÚÁùÌìÄÚÈ¡»ØËùÂôÒøÁ½£¡").toString());
+		petInfoDao.insertPetInfo(auctionPetVO.getPPk(),info.append("è¯·æ‚¨äºå…­å¤©å†…å–å›æ‰€å–é“¶ä¸¤ï¼").toString());
 		
 		MailInfoService mailInfoService = new MailInfoService();
-		mailInfoService.sendMailBySystem(auctionPetVO.getPPk(),title,info.append("(ÏµÍ³ÓÊ¼şÇëÎğ»Ø¸´!)").toString());
+		mailInfoService.sendMailBySystem(auctionPetVO.getPPk(),title,info.append("(ç³»ç»Ÿé‚®ä»¶è¯·å‹¿å›å¤!)").toString());
 		
 	}
 
-	//»ñµÃÖ¸¶¨ÊıÁ¿µÄlist£¬ÆäÖĞÈç¹ûmoresÊÇnot¾ÍÊÇÈıÌõ£¬¶øÎªmore¾ÍÊÇ10Ìõ
+	//è·å¾—æŒ‡å®šæ•°é‡çš„listï¼Œå…¶ä¸­å¦‚æœmoresæ˜¯notå°±æ˜¯ä¸‰æ¡ï¼Œè€Œä¸ºmoreå°±æ˜¯10æ¡
 	public List<AuctionPetInfoVO> getPetInfoList(int pPk, String mores)
 	{
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
@@ -170,13 +170,13 @@ public class AuctionPetService
 		}else {
 			petinfolist = auctionPetDao.getPetInfoList(pPk,3);
 		}
-		//É¾³ıµô°´Ê±¼äË³Ğò¶àÓà10ÌõµÄÊı¾İ¼ÇÂ¼
+		//åˆ é™¤æ‰æŒ‰æ—¶é—´é¡ºåºå¤šä½™10æ¡çš„æ•°æ®è®°å½•
 		AuctionPetInfoDao auctionPetInfoDao = new AuctionPetInfoDao();
 		auctionPetInfoDao.deleteSuperfluousInfo(pPk);
 		return petinfolist;
 	}
 
-	//µÃµ½ÅÄÂô³èÎïºóµÄ½ğÇ®ÁĞ±í
+	//å¾—åˆ°æ‹å–å® ç‰©åçš„é‡‘é’±åˆ—è¡¨
 	public List<AuctionPetVO> getAuctionPetMoneyList(int pPk)
 	{
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
@@ -184,7 +184,7 @@ public class AuctionPetService
 		return list;
 	}
 
-	/** µÃµ½Î´ÅÄÂô³öµÄ³èÎïÁĞ±í */
+	/** å¾—åˆ°æœªæ‹å–å‡ºçš„å® ç‰©åˆ—è¡¨ */
 	public List<AuctionPetVO> getAuctionPetGoodsList(int pPk)
 	{
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
@@ -192,7 +192,7 @@ public class AuctionPetService
 		return list;
 	}
 	
-	/** ¸ù¾İpetPk²é¿´¸Ã³èÎïµÄÓĞ¹ØĞÅÏ¢ */
+	/** æ ¹æ®petPkæŸ¥çœ‹è¯¥å® ç‰©çš„æœ‰å…³ä¿¡æ¯ */
 	public AuctionPetVO getAuctionPetView(String petPk)
 	{
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
@@ -200,7 +200,7 @@ public class AuctionPetService
 		return vo;
 	}
 	
-	/** ¸ù¾İpetPk²é¿´¸Ã³èÎïµÄÅÄÂô¼Û¸ñ */
+	/** æ ¹æ®petPkæŸ¥çœ‹è¯¥å® ç‰©çš„æ‹å–ä»·æ ¼ */
 	public int getPetInfoPrice(String petPk)
 	{
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
@@ -209,8 +209,8 @@ public class AuctionPetService
 	}
 
 	/**
-	 * È¡»ØÅÄÂô³èÎïËùµÃµÄÒø,É¾³ı³èÎïÅÄÂô³¡´ËÌõ¼ÇÂ¼£¬²¢·¢ĞÅÏ¢µ½
-	 * ³èÎïÅÄÂôĞÅÏ¢±íºÍ¸öÈËÓÊ¼şÖĞ.
+	 * å–å›æ‹å–å® ç‰©æ‰€å¾—çš„é“¶,åˆ é™¤å® ç‰©æ‹å–åœºæ­¤æ¡è®°å½•ï¼Œå¹¶å‘ä¿¡æ¯åˆ°
+	 * å® ç‰©æ‹å–ä¿¡æ¯è¡¨å’Œä¸ªäººé‚®ä»¶ä¸­.
 	 * @param pk
 	 * @param petPk
 	 * @param petPrice
@@ -227,44 +227,44 @@ public class AuctionPetService
 		AuctionPetDao petDao = new AuctionPetDao();
 		String petName = petDao.getPetInfoName(petPk);
 		
-		//È¡»ØÅÄÂô³èÎïËùµÃµÄÒø×Ó
+		//å–å›æ‹å–å® ç‰©æ‰€å¾—çš„é“¶å­
 		//int backPrice = (int)(petPrice * AuctionNumber.AUCTIONNUMBER);
 		int backPrice = (petPrice);
 		
-		//¼à¿Ø
+		//ç›‘æ§
 		LogService logService = new LogService();
-		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", backPrice+"", "È¡»ØÅÄÂô³èÎïµÄÒøÁ½");
+		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", backPrice+"", "å–å›æ‹å–å® ç‰©çš„é“¶ä¸¤");
 		
 		roleInfo.getBasicInfo().addCopper(backPrice);
 		
-		//É¾³ı´ËÌõ¼ÇÂ¼
+		//åˆ é™¤æ­¤æ¡è®°å½•
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
 		int delete = auctionPetDao.deleteAuctionPet(petPk);
 		
-		//·¢ĞÅÏ¢µ½³èÎïÅÄÂôĞÅÏ¢±í
+		//å‘ä¿¡æ¯åˆ°å® ç‰©æ‹å–ä¿¡æ¯è¡¨
 		AuctionPetInfoDao petInfoDao = new AuctionPetInfoDao();
-		sb.append("ÄúÈ¡»ØÁËÅÄÂô").append(StringUtil.isoToGBK(petName)).append("ËùµÃµÄ"+MoneyUtil.changeCopperToStr(backPrice)).append("!");
-		String title = "³èÎïÅÄÂô³¡ÓÊ¼şÍ¨Öª";
+		sb.append("æ‚¨å–å›äº†æ‹å–").append(StringUtil.isoToGBK(petName)).append("æ‰€å¾—çš„"+MoneyUtil.changeCopperToStr(backPrice)).append("!");
+		String title = "å® ç‰©æ‹å–åœºé‚®ä»¶é€šçŸ¥";
 		petInfoDao.insertPetInfo(pPk,sb.toString());
 		
-		//ÓÊ¼şÍ¨Öª
+		//é‚®ä»¶é€šçŸ¥
 		MailInfoService mailInfoService = new MailInfoService();
-		int mail = mailInfoService.sendMailBySystem(pPk,title,sb.append("(ÏµÍ³ÓÊ¼şÇëÎğ»Ø¸´!)").toString());
+		int mail = mailInfoService.sendMailBySystem(pPk,title,sb.append("(ç³»ç»Ÿé‚®ä»¶è¯·å‹¿å›å¤!)").toString());
 		
 		if( delete != -1 && mail != -1){
 			StringBuffer sbu = new StringBuffer();
-			sbu.append("ÄúÈ¡»ØÁËÅÄÂô").append(StringUtil.isoToGBK(petName)).append("ËùµÃµÄ"+MoneyUtil.changeCopperToStr(backPrice));
+			sbu.append("æ‚¨å–å›äº†æ‹å–").append(StringUtil.isoToGBK(petName)).append("æ‰€å¾—çš„"+MoneyUtil.changeCopperToStr(backPrice));
 			return sbu.toString();
 		}else {
 			StringBuffer sbu = new StringBuffer();
-			sbu.append("ÄúÈ¡»ØÁË½ğÇ®Ê±·¢Éú´íÎó£¬ÇëÉÔºóÔÙÊÔ£¡");
+			sbu.append("æ‚¨å–å›äº†é‡‘é’±æ—¶å‘ç”Ÿé”™è¯¯ï¼Œè¯·ç¨åå†è¯•ï¼");
 			return sbu.toString();
 		}
 	}
 
 	/**
-	 * È¡»ØÎ´ÅÄÂô³öÈ¥µÄ³èÎï£¬É¾³ı³èÎïÅÄÂô³¡´ËÌõ¼ÇÂ¼£¬²¢·¢ĞÅÏ¢µ½
-	 * ³èÎïÅÄÂôĞÅÏ¢±íºÍ¸öÈËÓÊ¼şÖĞ.
+	 * å–å›æœªæ‹å–å‡ºå»çš„å® ç‰©ï¼Œåˆ é™¤å® ç‰©æ‹å–åœºæ­¤æ¡è®°å½•ï¼Œå¹¶å‘ä¿¡æ¯åˆ°
+	 * å® ç‰©æ‹å–ä¿¡æ¯è¡¨å’Œä¸ªäººé‚®ä»¶ä¸­.
 	 * @param pPk
 	 * @param petPk
 	 * @return
@@ -273,38 +273,38 @@ public class AuctionPetService
 	{
 		StringBuffer sb = new StringBuffer();
 		
-		//È¡»ØÎ´ÅÄÂô³öÈ¥µÄ³èÎï
+		//å–å›æœªæ‹å–å‡ºå»çš„å® ç‰©
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
 		AuctionPetVO vo = auctionPetDao.getPetInfoView(petPk);
 		int flag = auctionPetDao.insertPersonPet(pPk,vo);
 		
-		//É¾³ı´ËÌõ¼ÇÂ¼
+		//åˆ é™¤æ­¤æ¡è®°å½•
 		int delete = auctionPetDao.deleteAuctionPet(petPk);
 		
-		//·¢ĞÅÏ¢µ½³èÎïÅÄÂôĞÅÏ¢±í
+		//å‘ä¿¡æ¯åˆ°å® ç‰©æ‹å–ä¿¡æ¯è¡¨
 		AuctionPetInfoDao petInfoDao = new AuctionPetInfoDao();
 		String petName = vo.getPetName();
-		sb.append("ÄúÈ¡»ØÁËÅÄÂô").append(StringUtil.isoToGBK(petName));
-		String title = "³èÎïÅÄÂô³¡ÓÊ¼şÍ¨Öª";
+		sb.append("æ‚¨å–å›äº†æ‹å–").append(StringUtil.isoToGBK(petName));
+		String title = "å® ç‰©æ‹å–åœºé‚®ä»¶é€šçŸ¥";
 		petInfoDao.insertPetInfo(pPk,sb.toString());
 		
-		//ÓÊ¼şÍ¨Öª
+		//é‚®ä»¶é€šçŸ¥
 		MailInfoService mailInfoService = new MailInfoService();
-		int mail = mailInfoService.sendMailBySystem(pPk,title,sb.append("(ÏµÍ³ÓÊ¼şÇëÎğ»Ø¸´!)").toString());
+		int mail = mailInfoService.sendMailBySystem(pPk,title,sb.append("(ç³»ç»Ÿé‚®ä»¶è¯·å‹¿å›å¤!)").toString());
 		
 		if(flag != -1 && delete != -1 && mail != -1){
 			StringBuffer sbu = new StringBuffer();
-			sbu.append("ÄúÈ¡»ØÁËÅÄÂô").append(StringUtil.isoToGBK(petName));
+			sbu.append("æ‚¨å–å›äº†æ‹å–").append(StringUtil.isoToGBK(petName));
 			return sbu.toString();
 		}else {
 			StringBuffer sbu = new StringBuffer();
-			sbu.append("ÄúÈ¡»ØÁË³èÎïÊ±·¢Éú´íÎó£¬ÇëÉÔºóÔÙÊÔ£¡");
+			sbu.append("æ‚¨å–å›äº†å® ç‰©æ—¶å‘ç”Ÿé”™è¯¯ï¼Œè¯·ç¨åå†è¯•ï¼");
 			return sbu.toString();
 		}
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½ÅÄÂô³¡ÀïµÄÌØ¶¨ÀàĞÍµÄÎïÆ·Ãû
+	 * åˆ†é¡µ:å¾—åˆ°æ‹å–åœºé‡Œçš„ç‰¹å®šç±»å‹çš„ç‰©å“å
 	 * @param p_pk
 	 * @return
 	 */
@@ -315,7 +315,7 @@ public class AuctionPetService
 	}
 
 	/**
-	 * ·ÖÒ³:µÃµ½ÅÄÂô³¡ÀïµÄÌØ¶¨ÀàĞÍµÄÎïÆ·Ãû
+	 * åˆ†é¡µ:å¾—åˆ°æ‹å–åœºé‡Œçš„ç‰¹å®šç±»å‹çš„ç‰©å“å
 	 * @param page_no
 	 * @param searchType
 	 * @return
@@ -330,42 +330,42 @@ public class AuctionPetService
 		return queryPage;
 	}
 	
-	//´¦ÀíÓĞ¹Ø³èÎïÅÄÂô±íµÄ²Ù×÷
+	//å¤„ç†æœ‰å…³å® ç‰©æ‹å–è¡¨çš„æ“ä½œ
 	private void dealwith()
 	{
-		//³¬¹ıÈıÌì»¹Î´±»ÂòµÄÏÂ¼Ü
+		//è¶…è¿‡ä¸‰å¤©è¿˜æœªè¢«ä¹°çš„ä¸‹æ¶
 		updateThanThreeDay();
 		
-		//×Ô¿ªÊ¼ÅÄÂôÁùÈÕÄÚÎ´È¡»ØµÄÁ÷ÅÄÎïÆ·£¬½«±»ÏµÍ³Ã»ÊÕ
+		//è‡ªå¼€å§‹æ‹å–å…­æ—¥å†…æœªå–å›çš„æµæ‹ç‰©å“ï¼Œå°†è¢«ç³»ç»Ÿæ²¡æ”¶
 		updateThanSixDay();
 		
-		//×ÔÅÄÂô³É¹¦ÆßÈÕÄÚ£¬Î´È¡»ØµÄÅÄÂô½ğÇ®±»ÏµÍ³Ã»ÊÕ
+		//è‡ªæ‹å–æˆåŠŸä¸ƒæ—¥å†…ï¼Œæœªå–å›çš„æ‹å–é‡‘é’±è¢«ç³»ç»Ÿæ²¡æ”¶
 		updateMoneySevenDay();
 		
 	}
 
 
-	//×ÔÅÄÂô³É¹¦ÆßÈÕÄÚ£¬Î´È¡»ØµÄÅÄÂô½ğÇ®±»ÏµÍ³Ã»ÊÕ
+	//è‡ªæ‹å–æˆåŠŸä¸ƒæ—¥å†…ï¼Œæœªå–å›çš„æ‹å–é‡‘é’±è¢«ç³»ç»Ÿæ²¡æ”¶
 	private void updateMoneySevenDay()
 	{
 		AuctionPetInfoDao auctionPetInfoDAO = new AuctionPetInfoDao();
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
 		
-		//»ñµÃÅÄÂô³É¹¦ÆßÈÕÄÚÎ´È¡»ØÅÄÂô½ğÇ®µÄÁĞ±í
+		//è·å¾—æ‹å–æˆåŠŸä¸ƒæ—¥å†…æœªå–å›æ‹å–é‡‘é’±çš„åˆ—è¡¨
 		List<AuctionPetVO> list = auctionPetDao.getThanSevenDay();
 		MailInfoService mailInfo = new MailInfoService();
 		
 		if(list == null || list.size() == 0){
-			//¸øÅÄÂô³É¹¦ÆßÈÕÄÚÎ´È¡»ØÅÄÂô½ğÇ®µÄÅÄÂôÕß·¢ÅÄÂôÌáÊ¾µ½ÅÄÂôĞÅÏ¢Àï.
-			String info1 = "ÄúÅÄÂô";
-			String info2 = "³É¹¦ÒÑ¾­³¬¹ıÆßÌì£¬ÓÉÓÚÄúÃ»ÓĞ¼°Ê±µÄÈ¡»ØÒøÁ½£¬ÕâĞ©ÒøÁ½ÒÑ¾­±»ÏµÍ³ÊÕ»Ø£¡";
-			String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
-			String info3 = "ÏµÍ³ÏûÏ¢ÇëÎğ»Ø¸´£¡";
+			//ç»™æ‹å–æˆåŠŸä¸ƒæ—¥å†…æœªå–å›æ‹å–é‡‘é’±çš„æ‹å–è€…å‘æ‹å–æç¤ºåˆ°æ‹å–ä¿¡æ¯é‡Œ.
+			String info1 = "æ‚¨æ‹å–";
+			String info2 = "æˆåŠŸå·²ç»è¶…è¿‡ä¸ƒå¤©ï¼Œç”±äºæ‚¨æ²¡æœ‰åŠæ—¶çš„å–å›é“¶ä¸¤ï¼Œè¿™äº›é“¶ä¸¤å·²ç»è¢«ç³»ç»Ÿæ”¶å›ï¼";
+			String title = "æ‹å–åœºä¿¡æ¯æç¤º";
+			String info3 = "ç³»ç»Ÿæ¶ˆæ¯è¯·å‹¿å›å¤ï¼";
 			AuctionPetVO vo = null;
 			for(int i=0;i<list.size();i++){
 					vo = list.get(i);
 					auctionPetInfoDAO.insertAuctionInfo(vo,info1+StringUtil.isoToGBK(vo.getPetName())+info2);
-					//¸øÅÄÂô³É¹¦ÆßÈÕµÄÅÄÂôÕß·¢ÓÊ¼ş
+					//ç»™æ‹å–æˆåŠŸä¸ƒæ—¥çš„æ‹å–è€…å‘é‚®ä»¶
 					mailInfo.sendMailBySystem(vo.getPPk(),title,info1+StringUtil.isoToGBK(vo.getPetName())+info2+info3);
 			}
 		}
@@ -375,28 +375,28 @@ public class AuctionPetService
 	}
 
 
-	//×Ô¿ªÊ¼ÅÄÂôÁùÈÕÄÚÎ´È¡»ØµÄÁ÷ÅÄ³èÎï£¬½«±»ÏµÍ³Ã»ÊÕ
+	//è‡ªå¼€å§‹æ‹å–å…­æ—¥å†…æœªå–å›çš„æµæ‹å® ç‰©ï¼Œå°†è¢«ç³»ç»Ÿæ²¡æ”¶
 	private void updateThanSixDay()
 	{
 		AuctionPetInfoDao auctionPetInfoDAO = new AuctionPetInfoDao();
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
 		
-		//»ñµÃÅÄÂôÁùÈÕÄÚÎ´È¡»ØµÄÅÄÂô³èÎïÁĞ±í
+		//è·å¾—æ‹å–å…­æ—¥å†…æœªå–å›çš„æ‹å–å® ç‰©åˆ—è¡¨
 		List<AuctionPetVO> list = auctionPetDao.getThanSixDayList();
 		MailInfoService mailInfo = new MailInfoService();
 		
 		if(list == null || list.size() == 0){
-			//¸øÅÄÂôÁùÈÕÄÚÎ´È¡»Ø³èÎïµÄÅÄÂôÕß·¢ÅÄÂôÌáÊ¾µ½ÅÄÂôĞÅÏ¢Àï.
-			String info1 = "ÄúËùÅÄÂôµÄ";
-			String info2 = "ÍË³öÅÄÂôÒÑ¾­³¬¹ıÈıÌì£¬ÓÉÓÚÄúÃ»ÓĞ¼°Ê±µÄÈ¡»Ø³èÎï£¬¸Ã³èÎïÒÑ¾­»á±»ÏµÍ³ÊÕ»Ø£¡";
-			String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
-			String star = "¡Á";
-			String info3 = "ÏµÍ³ÏûÏ¢ÇëÎğ»Ø¸´£¡";
+			//ç»™æ‹å–å…­æ—¥å†…æœªå–å›å® ç‰©çš„æ‹å–è€…å‘æ‹å–æç¤ºåˆ°æ‹å–ä¿¡æ¯é‡Œ.
+			String info1 = "æ‚¨æ‰€æ‹å–çš„";
+			String info2 = "é€€å‡ºæ‹å–å·²ç»è¶…è¿‡ä¸‰å¤©ï¼Œç”±äºæ‚¨æ²¡æœ‰åŠæ—¶çš„å–å›å® ç‰©ï¼Œè¯¥å® ç‰©å·²ç»ä¼šè¢«ç³»ç»Ÿæ”¶å›ï¼";
+			String title = "æ‹å–åœºä¿¡æ¯æç¤º";
+			String star = "Ã—";
+			String info3 = "ç³»ç»Ÿæ¶ˆæ¯è¯·å‹¿å›å¤ï¼";
 			AuctionPetVO vo = null;
 			for(int i=0;i<list.size();i++){
 					vo = list.get(i);
 					auctionPetInfoDAO.insertAuctionInfo(vo,info1+StringUtil.isoToGBK(vo.getPetName())+info2);
-					//¸ø³¬¹ıÁùÈÕµÄÅÄÂôÕß·¢ÓÊ¼ş
+					//ç»™è¶…è¿‡å…­æ—¥çš„æ‹å–è€…å‘é‚®ä»¶
 					mailInfo.sendMailBySystem(vo.getPPk(),title,info1+StringUtil.isoToGBK(vo.getPetName())+info2+info3);
 			}
 		}
@@ -406,27 +406,27 @@ public class AuctionPetService
 	}
 
 
-	//³¬¹ıÈıÌì»¹Î´±»ÂòµÄÏÂ¼Ü
+	//è¶…è¿‡ä¸‰å¤©è¿˜æœªè¢«ä¹°çš„ä¸‹æ¶
 	private void updateThanThreeDay()
 	{
 		AuctionPetInfoDao auctionPetInfodao = new AuctionPetInfoDao();
 		AuctionPetDao auctionPetDao = new AuctionPetDao();
-		//»ñµÃÈıÌìÎ´±»ÂòµÄÅÄÂô³èÎïÁĞ±í
+		//è·å¾—ä¸‰å¤©æœªè¢«ä¹°çš„æ‹å–å® ç‰©åˆ—è¡¨
 		List<AuctionPetVO> list = auctionPetDao.getThanThreeDayList();
 		MailInfoService mailInfo = new MailInfoService();
 		
 		if(list == null || list.size() == 0){
-			//¸ø³¬¹ıÈıÌìµÄ³èÎïµÄÅÄÂôÕß·¢ÅÄÂôÌáÊ¾µ½ÅÄÂôĞÅÏ¢Àï.
-			String info1 = "ÄúËùÅÄÂôµÄ";
-			String info2 = "ÅÄÂôÊ±¼äÒÑ¾­³¬¹ıÈıÌì£¬ÏÖÒÑÍË³öÅÄÂô£¬ÇëÄúÓÚÈıÈÕÄÚµ½ÅÄÂô³¡²Ö¿âÈ¡»Ø³èÎï£¡";
-			String title = "³èÎïÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
-			String star = "¡Á";
-			String info3 = "ÏµÍ³ÏûÏ¢ÇëÎğ»Ø¸´£¡";
+			//ç»™è¶…è¿‡ä¸‰å¤©çš„å® ç‰©çš„æ‹å–è€…å‘æ‹å–æç¤ºåˆ°æ‹å–ä¿¡æ¯é‡Œ.
+			String info1 = "æ‚¨æ‰€æ‹å–çš„";
+			String info2 = "æ‹å–æ—¶é—´å·²ç»è¶…è¿‡ä¸‰å¤©ï¼Œç°å·²é€€å‡ºæ‹å–ï¼Œè¯·æ‚¨äºä¸‰æ—¥å†…åˆ°æ‹å–åœºä»“åº“å–å›å® ç‰©ï¼";
+			String title = "å® ç‰©æ‹å–åœºä¿¡æ¯æç¤º";
+			String star = "Ã—";
+			String info3 = "ç³»ç»Ÿæ¶ˆæ¯è¯·å‹¿å›å¤ï¼";
 			AuctionPetVO vo = null;
 			for(int i=0;i<list.size();i++){
 					vo = list.get(i);
 					auctionPetInfodao.insertAuctionInfo(vo,info1+StringUtil.isoToGBK(vo.getPetName())+info2);
-					//¸ø³¬¹ıÈıÌìµÄÅÄÂôÕß·¢ÓÊ¼ş 
+					//ç»™è¶…è¿‡ä¸‰å¤©çš„æ‹å–è€…å‘é‚®ä»¶ 
 					mailInfo.sendMailBySystem(vo.getPPk(),title,info1+StringUtil.isoToGBK(vo.getPetName())+info2+info3);
 			}
 		}

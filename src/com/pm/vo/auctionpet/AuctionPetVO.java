@@ -14,78 +14,78 @@ import java.util.Date;
 public class AuctionPetVO
 {
 
-	/** ÅÄÂô³èÎïid */
+	/** æ‹å–å® ç‰©id */
 	private int auctionId;
-	/** ÅÄÂô³èÎï×´Ì¬ */
+	/** æ‹å–å® ç‰©çŠ¶æ€ */
 	private int auctionStatus;
-	/** ³èÎïÅÄÂô½ğÇ® */
+	/** å® ç‰©æ‹å–é‡‘é’± */
 	private int petPrice;
-	/** ³èÎïÅÄÂôÊ±¼ä */
+	/** å® ç‰©æ‹å–æ—¶é—´ */
 	private String petAuctionTime;
-	/** ½ÇÉ«³èÎïID */
+	/** è§’è‰²å® ç‰©ID */
 	private int petPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ¶ÔÓ¦pet±íÀïµÄid */
+	/** å¯¹åº”petè¡¨é‡Œçš„id */
 	private int petId;
-	/** ³èÎïÃû³Æ */
+	/** å® ç‰©åç§° */
 	private String petName;
-	/** ³èÎïêÇ³Æ */
+	/** å® ç‰©æ˜µç§° */
 	private String petNickname;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int petGrade;
-	/** ¾­Ñé */
+	/** ç»éªŒ */
 	private String petExp;
-	/**µ±Ç°¾­Ñé¾­Ñé*/
+	/**å½“å‰ç»éªŒç»éªŒ*/
 	private String petBenExp;
-	/** ÏÂ¼¶¾­Ñé´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé */
+	/** ä¸‹çº§ç»éªŒè¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ */
 	private String petXiaExp;
-	/** ×îĞ¡¹¥»÷ */
+	/** æœ€å°æ”»å‡» */
 	private int petGjXiao;
-	/** ×î´ó¹¥»÷ */
+	/** æœ€å¤§æ”»å‡» */
 	private int petGjDa;
-	/** Âô³ö¼Û¸ñ */
+	/** å–å‡ºä»·æ ¼ */
 	private int petSale;
-	/** ³èÎïÍ¼Æ¬ */
+	/** å® ç‰©å›¾ç‰‡ */
 	private String petImg;
-	/** ³èÎï³É³¤ÂÊ¡± */
+	/** å® ç‰©æˆé•¿ç‡â€ */
 	private double petGrow;
-	/** ÎåĞĞÊôĞÔ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
+	/** äº”è¡Œå±æ€§é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
 	private int petWx;
-	/** ÎåĞĞÊôĞÔÖµ */
+	/** äº”è¡Œå±æ€§å€¼ */
 	private int petWxValue;
-	/** ¼¼ÄÜ1 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½1 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillOne;
-	/** ¼¼ÄÜ2 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½2 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillTwo;
-	/** ¼¼ÄÜ3 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½3 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillThree;
-	/** ¼¼ÄÜ4 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½4 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillFour;
-	/** ¼¼ÄÜ5 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½5 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillFive;
-	/** ÊÙÃü* */
+	/** å¯¿å‘½* */
 	private int petLife;
-	/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ */
+	/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ */
 	private int petIsAutoGrow;
 
-	/** ÊÇ·ñÔÚÉíÉÏ:1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ */
+	/** æ˜¯å¦åœ¨èº«ä¸Š:1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦ */
 	private int petIsBring;
-	/** Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã */
+	/** ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹ */
 	private int petFatigue;
-	/** ³èÎïÊÙÃü */
+	/** å® ç‰©å¯¿å‘½ */
 	private int petLonge;
-	/** Ôö¼ÓÊÙÃüµÀ¾ßÊ¹ÓÃ´ÎÊı */
+	/** å¢åŠ å¯¿å‘½é“å…·ä½¿ç”¨æ¬¡æ•° */
 	private int longeNumber;
-	/** ÊÙÃüµÀ¾ßÒÑ¾­Ê¹ÓÃ´ÎÊı */
+	/** å¯¿å‘½é“å…·å·²ç»ä½¿ç”¨æ¬¡æ•° */
 	private int longeNumberOk;
-	/**Õâ¸ö³èÎï×î¶à¿ÉÒÔÑ§Ï°¶àÉÙ¸ö¼¼ÄÜ*/
+	/**è¿™ä¸ªå® ç‰©æœ€å¤šå¯ä»¥å­¦ä¹ å¤šå°‘ä¸ªæŠ€èƒ½*/
 	private int skillControl;
-	/** ³èÎïÀàĞÍ */
+	/** å® ç‰©ç±»å‹ */
 	private int petType;
-	/** ³èÎïÒÑ¾­±»³õÊ¼»¯¶àÉÙ´Î */
+	/** å® ç‰©å·²ç»è¢«åˆå§‹åŒ–å¤šå°‘æ¬¡ */
 	private int petInitNum;
-	/** ³èÎï±©»÷ÂÊ */
+	/** å® ç‰©æš´å‡»ç‡ */
 	private double petViolenceDrop;
 	
 	
@@ -266,22 +266,22 @@ public class AuctionPetVO
 		int petWx = getPetWx();
 		switch(petWx){
 			case 1:
-				str = "½ğ";
+				str = "é‡‘";
 				break;
 			case 2:
-				str = "Ä¾";
+				str = "æœ¨";
 				break;
 			case 3:
-				str = "Ë®";
+				str = "æ°´";
 				break;
 			case 4:
-				str = "»ğ";
+				str = "ç«";
 				break;
 			case 5:
-				str = "ÍÁ";
+				str = "åœŸ";
 				break;
 			case 0:
-				str = "ÔİÎŞÎåĞĞ";
+				str = "æš‚æ— äº”è¡Œ";
 				break;
 		}
 		return str;

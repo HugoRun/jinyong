@@ -1,19 +1,19 @@
 <%@page contentType="text/vnd.wap.wml"
-	import="com.ls.pub.constant.Channel,com.ls.pub.config.GameConfig"
-	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.constant.Channel,com.ls.pub.config.GameConfig"
+    pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
 <%
-	int channel_id = GameConfig.getChannelId();
-	String exchange_hint = "";
-	if (channel_id == Channel.DANGLE)//思凯的充值通道
-	{
-		exchange_hint = "每成功充值1元可兑换【"+GameConfig.getYuanbaoName()+"】×100!";
-	} else if (channel_id == Channel.SKY) {
-		exchange_hint = "每成功兑换1K币可获得【"+GameConfig.getYuanbaoName()+"】×1,并可获得商城积分×1!";
-	} else if (channel_id == Channel.WANXIANG) {
-		exchange_hint = "每成功充值1元可兑换【"+GameConfig.getYuanbaoName()+"】×100!";
-	} else if (channel_id == Channel.TIAO) {
-		exchange_hint = "每成功兑换1金豆可兑换【"+GameConfig.getYuanbaoName()+"】×100,并可获得商城积分×100!";
-	} else if (channel_id == Channel.JUU) {
+    int channel_id = GameConfig.getChannelId();
+    String exchange_hint = "";
+    if (channel_id == Channel.DANGLE)//思凯的充值通道
+    {
+        exchange_hint = "每成功充值1元可兑换【"+GameConfig.getYuanbaoName()+"】×100!";
+    } else if (channel_id == Channel.SKY) {
+        exchange_hint = "每成功兑换1K币可获得【"+GameConfig.getYuanbaoName()+"】×1,并可获得商城积分×1!";
+    } else if (channel_id == Channel.WANXIANG) {
+        exchange_hint = "每成功充值1元可兑换【"+GameConfig.getYuanbaoName()+"】×100!";
+    } else if (channel_id == Channel.TIAO) {
+        exchange_hint = "每成功兑换1金豆可兑换【"+GameConfig.getYuanbaoName()+"】×100,并可获得商城积分×100!";
+    } else if (channel_id == Channel.JUU) {
 		exchange_hint = "每成功充值1元可获得【"+GameConfig.getYuanbaoName()+"】×100,并可获得商城积分×100!";
 	} else if (channel_id == Channel.SINA) {
 		exchange_hint = "每成功兑换1U币可获得【"+GameConfig.getYuanbaoName()+"】×100,并可获得商城积分×100!";

@@ -32,7 +32,7 @@ public class LoginAction extends Action
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * JUUÇşµÀµÇÂ¼
+	 * JUUæ¸ é“ç™»å½•
 	 * 
 	 * @param mapping
 	 * @param form
@@ -43,16 +43,16 @@ public class LoginAction extends Action
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		String user_id = request.getParameter("user-id");// ´ó¼ÒÍøÕÊºÅ
-		String timestamp = request.getParameter("timestamp");// UNIXÊ±¼ä´Á
-		String verify_string = request.getParameter("verify-string");// MD5¼ÓÃÜ
+		String user_id = request.getParameter("user-id");// å¤§å®¶ç½‘å¸å·
+		String timestamp = request.getParameter("timestamp");// UNIXæ—¶é—´æˆ³
+		String verify_string = request.getParameter("verify-string");// MD5åŠ å¯†
 		String key = "eielwek9nea2oll1";
 		String merchant_id = "oneshow";
 		String game_id = "1";
-		if (GameConfig.getGameState() == 2)// ÅĞ¶ÏÓÎÏ·µÄ×´Ì¬
+		if (GameConfig.getGameState() == 2)// åˆ¤æ–­æ¸¸æˆçš„çŠ¶æ€
 		{
-			// ÓÎÏ·×´Ì¬ÎªÉÏÏßÄÚ²¿²âÊÔ×´Ì¬
-			// ¶¯Ì¬¹«¸æ
+			// æ¸¸æˆçŠ¶æ€ä¸ºä¸Šçº¿å†…éƒ¨æµ‹è¯•çŠ¶æ€
+			// åŠ¨æ€å…¬å‘Š
 			SystemNotifyService systemNotifyService = new SystemNotifyService();
 			SystemNotifyVO first_notify_info = systemNotifyService
 					.getFirstNotifyInfo();
@@ -65,23 +65,23 @@ public class LoginAction extends Action
 
 		LoginService loginService = new LoginService();
 
-		// ÅĞ¶ÏÔÚÏßÈËÊıÊÇ·ñ´ïµ½ÉÏÏß
+		// åˆ¤æ–­åœ¨çº¿äººæ•°æ˜¯å¦è¾¾åˆ°ä¸Šçº¿
 		if (loginService.isFullOnlineRoleNum())
 		{
-			// ÔÚÏßÈËÊıÒÑ´ïÏµÍ³ÉèÖÃÉÏÏß
+			// åœ¨çº¿äººæ•°å·²è¾¾ç³»ç»Ÿè®¾ç½®ä¸Šçº¿
 			return mapping.findForward("user_num_limit_hint");
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("ssid", user_id);
 
-		logger.info("DJWÓÃ»§µÇÂ½:ssid=" + user_id);
+		logger.info("DJWç”¨æˆ·ç™»é™†:ssid=" + user_id);
 		PassportService passportService = new PassportService();
 		PassportVO passport = passportService.loginFromDjw(user_id, timestamp, verify_string,
 				login_ip);
 
-		if (passport == null || passport.getUPk() == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
+		if (passport == null || passport.getUPk() == -1)// ç™»é™†éªŒè¯å¤±è´¥
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		}
 
@@ -93,7 +93,7 @@ public class LoginAction extends Action
 		session.setAttribute("ssid", account_passport);
 		session.setAttribute("user_name", passport.getUserName());
 		session.setAttribute("channel_id", 99 + "");
-		session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
+		session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
 
 		return mapping.findForward("success");
 	}

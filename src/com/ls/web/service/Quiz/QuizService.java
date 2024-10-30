@@ -8,8 +8,8 @@ import com.ls.pub.util.MathUtil;
 
 
 /**
- * ¹¦ÄÜ: Ìâ¿â²Ù×÷
- * @author ÁõË§
+ * åŠŸèƒ½: é¢˜åº“æ“ä½œ
+ * @author åˆ˜å¸…
  * 6:20:59 PM
  */
 public class QuizService {
@@ -19,7 +19,7 @@ public class QuizService {
 	
 	
 	/**
-	 * ¸ù¾İ·¶Î§µÃµ½Ëæ»úÌâÄ¿µÄ
+	 * æ ¹æ®èŒƒå›´å¾—åˆ°éšæœºé¢˜ç›®çš„
 	 * @param confine
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class QuizService {
 	{
 		if( confine==null )
 		{
-			logger.info("ÌâÄ¿·¶Î§Îª¿Õ");
+			logger.info("é¢˜ç›®èŒƒå›´ä¸ºç©º");
 			return null;
 		}
 		QuizVO quiz = null;
@@ -44,7 +44,7 @@ public class QuizService {
 	}
 	
 	/**
-	 * ´ÓËùÓĞÌâÄ¿ÖĞÈÎÒâ³é³öÒ»¸ö
+	 * ä»æ‰€æœ‰é¢˜ç›®ä¸­ä»»æ„æŠ½å‡ºä¸€ä¸ª
 	 
 	public QuizVO getRandomQuiz()
 	{
@@ -57,7 +57,7 @@ public class QuizService {
 	}*/
 	
 	/**
-	 * ÅĞ¶ÁÊÇ·ñ´ğ¶Ô
+	 * åˆ¤è¯»æ˜¯å¦ç­”å¯¹
 	 */
 	public boolean isRight( int quiz_id,int answer )
 	{
@@ -73,7 +73,7 @@ public class QuizService {
 	}
 	
 	/**
-	 * µÃµ½´ğÌâ½±ÀøĞÅÏ¢
+	 * å¾—åˆ°ç­”é¢˜å¥–åŠ±ä¿¡æ¯
 	 * @param quiz_id
 	 * @return
 	 */

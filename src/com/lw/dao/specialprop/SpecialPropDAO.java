@@ -14,12 +14,12 @@ public class SpecialPropDAO extends DaoBase
 {
 
 	/**
-	 * µ÷ÓÃÍæ¼Ò×°±¸ÀàµÀ¾ßÊÇ·ñ´æÔÚ(41Îª²¹Ñª²¹ÄÚÁ¦ĞÍ)
+	 * è°ƒç”¨ç©å®¶è£…å¤‡ç±»é“å…·æ˜¯å¦å­˜åœ¨(41ä¸ºè¡¥è¡€è¡¥å†…åŠ›å‹)
 	 * 
 	 */
 	public List<PlayerPropGroupVO> getEquipItem(int pPk)
 	{
-		String sql = "select * from u_propgroup_info where p_pk = " + pPk
+		String sql = "SELECT * FROM u_propgroup_info where p_pk = " + pPk
 				+ " and prop_type = 41";
 		logger.debug(sql);
 		PlayerPropGroupVO propGroup = null;
@@ -55,12 +55,12 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * µ÷ÓÃÍæ¼Ò×°±¸ÀàµÀ¾ß×°±¸Óë·ñ
+	 * è°ƒç”¨ç©å®¶è£…å¤‡ç±»é“å…·è£…å¤‡ä¸å¦
 	 * 
 	 */
 	public SpecialPropVO getEquipProp(int pPk)
 	{
-		String sql = "select * from u_special_item where p_pk = "+ pPk+" and prop_time = 1";
+		String sql = "SELECT * FROM u_special_item where p_pk = "+ pPk+" and prop_time = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		SpecialPropVO vo = null;
@@ -96,7 +96,7 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * ×°±¸
+	 * è£…å¤‡
 	 */
 	public void updateEquipItemOn(String pg_pk)
 	{
@@ -122,7 +122,7 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * Ğ¶ÏÂ
+	 * å¸ä¸‹
 	 */
 	public void updateEquipOff(int sp_pk)
 	{
@@ -148,7 +148,7 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂ×°±¸ÀàµÀ¾ßµÄÊôĞÔ
+	 * æ›´æ–°è£…å¤‡ç±»é“å…·çš„å±æ€§
 	 */
 	public void updateEquipItemNumHM(int p_pk, int prop_id, String prop_operate1)
 	{
@@ -175,7 +175,7 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * ²¹³äµÄSQLÓï¾ä
+	 * è¡¥å……çš„SQLè¯­å¥
 	 */
 	public void updateEquipItemNumHMByPgpk(int p_pk, String pg_pk1,
 			String prop_operate1)
@@ -201,7 +201,7 @@ public class SpecialPropDAO extends DaoBase
 		}
 	}
 
-	/** Ê¹ÓÃÊ±¼äµ½ É¾³ıÍæ¼ÒµÄÎïÆ· */
+	/** ä½¿ç”¨æ—¶é—´åˆ° åˆ é™¤ç©å®¶çš„ç‰©å“ */
 	public int delEquipItem(int prop_id, int p_pk, int minute)
 	{
 		String sql = "delete from u_special_item where p_pk = " + p_pk
@@ -228,7 +228,7 @@ public class SpecialPropDAO extends DaoBase
 		return 0;
 	}
 
-	/** ÌØÊâÎïÆ·µÄ±í²Ù×÷ */
+	/** ç‰¹æ®Šç‰©å“çš„è¡¨æ“ä½œ */
 	public void insertSpecialProp(PropVO propVO, int p_pk, int pg_pk)
 	{
 		String sql = "insert u_special_item (sp_pk,p_pk,prop_id,prop_operate1,prop_operate2,prop_operate3,prop_time,prop_date,prop_sign) values (null,?,?,?,?,?,1,now(),0)";
@@ -258,13 +258,13 @@ public class SpecialPropDAO extends DaoBase
 		}
 	}
 
-	/** Ò©Æ··ÖÒ³´¦Àí */
+	/** è¯å“åˆ†é¡µå¤„ç† */
 	public List getID(int thispage, int perpagenum, int type1, int type2,
 			int p_pk)
 	{
 		List list = null;
 		int pg_pk = 0;
-		String sql = "select pg_pk from u_propgroup_info where p_pk = "+p_pk+" and ( prop_type="
+		String sql = "SELECT pg_pk from u_propgroup_info where p_pk = "+p_pk+" and ( prop_type="
 				+ type1 + " or prop_type=" + type2 + " ) "
 				+ " limit " + perpagenum + " offset " + perpagenum
 				* (thispage - 1);
@@ -298,7 +298,7 @@ public class SpecialPropDAO extends DaoBase
 	public List<PlayerPropGroupVO> getEquipItemList(int pPk, int thispage,
 			int perpagenum)
 	{
-		String sql = "select * from u_propgroup_info where p_pk = " + pPk
+		String sql = "SELECT * FROM u_propgroup_info where p_pk = " + pPk
 				+ " and prop_type in (41,67) limit " + perpagenum + " offset "
 				+ perpagenum * (thispage - 1);
 		logger.debug(sql);
@@ -335,17 +335,17 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * Íù°ü¹üÀïÔö¼ÓµÀ¾ß
+	 * å¾€åŒ…è£¹é‡Œå¢åŠ é“å…·
 	 */
 	public int addPropGroupEquipItem(PlayerPropGroupVO propGroup, int pg_pk)
 	{
 		if (propGroup == null)
 		{
-			logger.debug("propGroup¿Õ");
+			logger.debug("propGroupç©º");
 			return -1;
 		}
 		int result = -1;
-		String sql = "insert into u_propgroup_info (pg_pk,p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) values (?,?,?,?,?,?,?,?,?,?,now())";
+		String sql = "INSERT INTO u_propgroup_info (pg_pk,p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) values (?,?,?,?,?,?,?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -383,12 +383,12 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * µ÷ÓÃÍæ¼Ò×°±¸ÀàµÀ¾ß×°±¸Óë·ñ
+	 * è°ƒç”¨ç©å®¶è£…å¤‡ç±»é“å…·è£…å¤‡ä¸å¦
 	 * 
 	 */
 	public int getEquipItemHM(int pPk)
 	{
-		String sql = "select prop_id from u_special_item where p_pk = "+ pPk +" and prop_time = 1";
+		String sql = "SELECT prop_id from u_special_item where p_pk = "+ pPk +" and prop_time = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -416,12 +416,12 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İPG_PKµÃµ½µÀ¾ßĞÅÏ¢
+	 * æ ¹æ®PG_PKå¾—åˆ°é“å…·ä¿¡æ¯
 	 * 
 	 */
 	public SpecialPropVO getEquipPropByPgpk(String pg_pk)
 	{
-		String sql = "select * from u_special_item where prop_operate3 = "
+		String sql = "SELECT * FROM u_special_item where prop_operate3 = "
 				+ pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -456,7 +456,7 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * ±ê¼Ç 1ÎªÊ¹ÓÃÁ¿ÓÃÍê 3Îª²»ÄÜÊ¹ÓÃ
+	 * æ ‡è®° 1ä¸ºä½¿ç”¨é‡ç”¨å®Œ 3ä¸ºä¸èƒ½ä½¿ç”¨
 	 */
 	public void updateEquipItemSign(int sign, int p_pk)
 	{
@@ -483,7 +483,7 @@ public class SpecialPropDAO extends DaoBase
 	
 	
 	/**
-	 * ±ê¼Ç 1ÎªÊ¹ÓÃÁ¿ÓÃÍê 3Îª²»ÄÜÊ¹ÓÃ
+	 * æ ‡è®° 1ä¸ºä½¿ç”¨é‡ç”¨å®Œ 3ä¸ºä¸èƒ½ä½¿ç”¨
 	 */
 	public void updateEquipItemSign1(int sign, int p_pk,int prop_id)
 	{
@@ -530,7 +530,7 @@ public class SpecialPropDAO extends DaoBase
 		}
 	}
 
-	/** Ê¹ÓÃÊ±¼äµ½ É¾³ıÍæ¼ÒµÄÎïÆ· */
+	/** ä½¿ç”¨æ—¶é—´åˆ° åˆ é™¤ç©å®¶çš„ç‰©å“ */
 	public int delEquipItem(String pg_pk)
 	{
 		int x = 0;
@@ -557,12 +557,12 @@ public class SpecialPropDAO extends DaoBase
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò¸üĞÂÊıÖµµÄµÀ¾ß
+	 * å¾—åˆ°ç©å®¶æ›´æ–°æ•°å€¼çš„é“å…·
 	 * 
 	 */
 	public SpecialPropVO getSpecialProp(int pPk, String pg_pk)
 	{
-		String sql = "select * from u_special_item where p_pk = " + pPk +" and prop_operate3 = '"+ pg_pk + "'";
+		String sql = "SELECT * FROM u_special_item where p_pk = " + pPk +" and prop_operate3 = '"+ pg_pk + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		SpecialPropVO vo = null;
@@ -598,7 +598,7 @@ public class SpecialPropDAO extends DaoBase
 		return vo;
 	}
 	
-	/** Ê¹ÓÃÊ±¼äµ½ É¾³ıÍæ¼ÒµÄÎïÆ· */
+	/** ä½¿ç”¨æ—¶é—´åˆ° åˆ é™¤ç©å®¶çš„ç‰©å“ */
 	public int delItem(int p_pk, int prop_id)
 	{
 		String sql = "delete from u_special_item where p_pk = " + p_pk+" and prop_id = " + prop_id;

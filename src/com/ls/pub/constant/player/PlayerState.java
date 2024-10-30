@@ -1,117 +1,117 @@
 package com.ls.pub.constant.player;
 
 /**
- * Íæ¼Ò×´Ì¬³£Á¿£¬
- * @author ÁõË§
+ * ç©å®¶çŠ¶æ€å¸¸é‡ï¼Œ
+ * @author åˆ˜å¸…
  * 1:58:44 PM
  */
 public class PlayerState {
 
 	/**
-	 * Æ½³£×´Ì¬
+	 * å¹³å¸¸çŠ¶æ€
 	 */
 	public static final int GENERAL = 1;
 	/**
-	 * npcÕ½¶·×´Ì¬
+	 * npcæˆ˜æ–—çŠ¶æ€
 	 */
 	public static final int NPCFIGHT = 2;
 	/**
-	 * ½»Ò××´Ì¬
+	 * äº¤æ˜“çŠ¶æ€
 	 */
 	public static final int TRADE = 3;
 	/**
-	 * ×é¶Ó×´Ì¬
+	 * ç»„é˜ŸçŠ¶æ€
 	 */
 	public static final int GROUP = 4;
 	/**
-	 * ÀëÏß×´Ì¬
+	 * ç¦»çº¿çŠ¶æ€
 	 */
 	public static final int OUTLINE = 5;
 	/**
-	 * pkÕ½¶·×´Ì¬
+	 * pkæˆ˜æ–—çŠ¶æ€
 	 */
 	public static final int PKFIGHT = 6;
 	/**
-	 * Õ½¶·×´Ì¬
+	 * æˆ˜æ–—çŠ¶æ€
 	 */
 	public static final int FIGHT = 7;
 	/**
-	 * Ë½ÁÄ
+	 * ç§èŠ
 	 */
 	public static final int TALK = 8;
 	
 	/**
-	 * ÔÚÉÌ³ÇÊ±ÊÜ±£»¤
+	 * åœ¨å•†åŸæ—¶å—ä¿æŠ¤
 	 */
 	public static final int MALL = 9;
 	/**
-	 * ÂÛÌ³Ê±ÊÜ±£»¤
+	 * è®ºå›æ—¶å—ä¿æŠ¤
 	 */
 	public static final int FORUM = 10;
 	/**
-	 * ÌØÊâ×´Ì¬,Ä¿Ç°ÓÃÓÚpkºó¼ñÈ¡ÎïÆ·Ê±±£»¤Æä²»±»´òÈÅ,
-	 * µ«ÊÇÒ²²»Ó°ÏìÆä½ÓÊÜpkÊ¤ÀûºÍÊ§°ÜĞÅÏ¢
+	 * ç‰¹æ®ŠçŠ¶æ€,ç›®å‰ç”¨äºpkåæ¡å–ç‰©å“æ—¶ä¿æŠ¤å…¶ä¸è¢«æ‰“æ‰°,
+	 * ä½†æ˜¯ä¹Ÿä¸å½±å“å…¶æ¥å—pkèƒœåˆ©å’Œå¤±è´¥ä¿¡æ¯
 	 */
 	public static final int EXTRA = 11;
 	/**
-	 * ÏµÍ³ÌØÊâÀàĞÍµ¯³öÊ½ÏûÏ¢
+	 * ç³»ç»Ÿç‰¹æ®Šç±»å‹å¼¹å‡ºå¼æ¶ˆæ¯
 	 */
 	public static final int SYSMSG = 12;
 	/**
-	 * ÔÚ°ü¹üÀ¸ÖĞ
+	 * åœ¨åŒ…è£¹æ ä¸­
 	 */
 	public static final int VIEWWRAP = 13;
-	/*******±¦Ïä×´Ì¬*********/
+	/*******å®ç®±çŠ¶æ€*********/
 	public static final int BOX = 13;
 	
 	/**
-	 * ·µ»Ø×´Ì¬Ëù¶ÔÓ¦µÄÃû³Æ
+	 * è¿”å›çŠ¶æ€æ‰€å¯¹åº”çš„åç§°
 	 * @param state
 	 * @return
 	 */
 	public String returnStateName(int state){
-		String hint = "Õ½¶·";
+		String hint = "æˆ˜æ–—";
 		if(state == PlayerState.GENERAL){
-			return hint = "Æ½³£×´Ì¬";
+			return hint = "å¹³å¸¸çŠ¶æ€";
 		}
 		if(state == PlayerState.NPCFIGHT){
-			return hint = "Õ½¶·";
+			return hint = "æˆ˜æ–—";
 		}
 		if(state == PlayerState.TRADE){
-			return hint = "½»Ò×";
+			return hint = "äº¤æ˜“";
 		}
 		if(state == PlayerState.GROUP){
-			return hint = "×é¶Ó";
+			return hint = "ç»„é˜Ÿ";
 		}
 		if(state == PlayerState.OUTLINE){
-			return hint = "ÀëÏß";
+			return hint = "ç¦»çº¿";
 		}
 		if(state == PlayerState.PKFIGHT){
-			return hint = "Õ½¶·";
+			return hint = "æˆ˜æ–—";
 		}
 		if(state == PlayerState.FIGHT){
-			return hint = "Õ½¶·";
+			return hint = "æˆ˜æ–—";
 		}
 		if(state == PlayerState.TALK){
-			return hint = "Ë½ÁÄ";
+			return hint = "ç§èŠ";
 		}
 		if ( state == PlayerState.FORUM) {
-			return hint = "ÂÛÌ³";
+			return hint = "è®ºå›";
 		}
 		if ( state == PlayerState.EXTRA) {
-			return hint = "¼ñÈ¡ÎïÆ·";
+			return hint = "æ¡å–ç‰©å“";
 		}
 		if ( state == PlayerState.SYSMSG) {
-			return hint = "²é¿´ÏûÏ¢";
+			return hint = "æŸ¥çœ‹æ¶ˆæ¯";
 		}
 		if ( state == PlayerState.VIEWWRAP) {
-			return hint = "²é¿´ÎïÆ·";
+			return hint = "æŸ¥çœ‹ç‰©å“";
 		}
 		if ( state == PlayerState.BOX) {
-			return hint = "¿ª±¦Ïä×´Ì¬";
+			return hint = "å¼€å®ç®±çŠ¶æ€";
 		}
 		if ( state == PlayerState.MALL) {
-			return hint = "ÉÌ³Ç×´Ì¬";
+			return hint = "å•†åŸçŠ¶æ€";
 		}
 		return hint;
 	}

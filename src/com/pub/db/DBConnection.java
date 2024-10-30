@@ -1,139 +1,135 @@
 /*
- * ´´½¨ÈÕÆÚ 2005-9-4
+ * åˆ›å»ºæ—¥æœŸ 2005-9-4
  *
- * TODO Òª¸ü¸Ä´ËÉú³ÉµÄÎÄ¼şµÄÄ£°å£¬Çë×ªÖÁ
- * ´°¿Ú £­ Ê×Ñ¡Ïî £­ Java £­ ´úÂëÑùÊ½ £­ ´úÂëÄ£°å
+ * TODO è¦æ›´æ”¹æ­¤ç”Ÿæˆçš„æ–‡ä»¶çš„æ¨¡æ¿ï¼Œè¯·è½¬è‡³
+ * çª—å£ ï¼ é¦–é€‰é¡¹ ï¼ Java ï¼ ä»£ç æ ·å¼ ï¼ ä»£ç æ¨¡æ¿
  */
 package com.pub.db;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.*;
-import javax.naming.*;
-import javax.sql.DataSource;
-
 import org.apache.struts.action.Action;
-	/**
-	 * ±¾ÀàÓÃÓÚÓëÊı¾İ¿â½¨Á¢½Ó
-	 *
-	 * ×÷Õß:Dan.Huang
-	 */
-	    public  class DBConnection  extends Action{ 
-		public Connection conn=null;
-		public Statement stmt=null;
-		ResultSet rs = null;
 
-	//	org.apache.log4j.Logger log = null;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * æœ¬ç±»ç”¨äºä¸æ•°æ®åº“å»ºç«‹æ¥
+ * <p>
+ * ä½œè€…:Dan.Huang
+ */
+public class DBConnection extends Action {
+    public Connection conn = null;
+    public Statement stmt = null;
+    ResultSet rs = null;
+
+    //	org.apache.log4j.Logger log = null;
 
 
-		/**
-		 * ÓëÊı¾İ¿â½¨Á¢Á¬½Ó
-		 *
-		 * ·µ»ØÖµ£­Connection¶ÔÏó
-		 */
-		public DBConnection() throws ClassNotFoundException,SQLException{
-			try{
-				//org.apache.log4j.PropertyConfigurator.configure("log4j.properties");//Ö¸¶¨ÈÕÖ¾ÊäÈëÎÄ¼ş
-			   // log = org.apache.log4j.Logger.getLogger(DBConnection.class);//Ö¸¶¨ÈÕÖ¾Ëù¼ÇÂ¼Àà
-				
-			  
-			    Context ctx=new InitialContext();//ÉùÃ÷Á¬½Ó³Ø
-				DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/mysql");//Ö¸¶¨ËùÊ¹ÓÃµÄÁ¬½Ó³Ø
-		    	
-		    	conn = ds.getConnection();//´´½¨Êı¾İ¿âÁ¬½Ó
-		    	////System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-			}catch(Exception e)//²¶»ñÒì³£
-			{
-				e.printStackTrace();
-			}
-		}
-                /**
-                 * µÃµ½Êı¾İ¿âÁ¬½Ó
-                 *
-                 * ·µ»ØÖµ£­Connection¶ÔÏó
-                 */
+    /**
+     * ä¸æ•°æ®åº“å»ºç«‹è¿æ¥
+     * <p>
+     * è¿”å›å€¼ï¼Connectionå¯¹è±¡
+     */
+    public DBConnection() throws ClassNotFoundException, SQLException {
+        try {
+            //org.apache.log4j.PropertyConfigurator.configure("log4j.properties");//æŒ‡å®šæ—¥å¿—è¾“å…¥æ–‡ä»¶
+            // log = org.apache.log4j.Logger.getLogger(DBConnection.class);//æŒ‡å®šæ—¥å¿—æ‰€è®°å½•ç±»
 
-		public Connection getConn(){
-                      return (conn);//·µ»ØConnection¶ÔÏó
-		}
 
-                 /**
-                 *@method:executeQuery
-                 *<p>@param:SQLÓï¾ä</p>
-                 *<p>@throws:Å×³ö¿ÕÖ¸ÕëÒì³£</p>
-                 *<p>@return: ½á¹û¼¯ </p>
-                 *
-                 */
+            Context ctx = new InitialContext();//å£°æ˜è¿æ¥æ± 
+            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");//æŒ‡å®šæ‰€ä½¿ç”¨çš„è¿æ¥æ± 
 
-		public ResultSet executeQuery(String SQL){
-			rs=null;
-			try{
-				stmt=conn.createStatement();
-				rs=stmt.executeQuery(SQL);//Ö´ĞĞSQLÓï¾ä
-			}
-			catch(SQLException ex)//²¶»ñÒì³£
-			{
-				ex.printStackTrace();
-			}
-			return rs;//·µ»Ø½á¹û¼¯
-		}
-                /**
-                *@method:execute
-                *<p>@param:SQLÓï¾ä</p>
-                *<p>@throws:Å×³ö¿ÕÖ¸ÕëÒì³£</p>
-                *<p>@return: ÎŞ </p>
-                *
-                */
+            conn = ds.getConnection();//åˆ›å»ºæ•°æ®åº“è¿æ¥
+            ////System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        } catch (Exception e)//æ•è·å¼‚å¸¸
+        {
+            e.printStackTrace();
+        }
+    }
 
-		public void execute(String SQL)
-		{
-		    try{
-		        stmt=conn.createStatement();
-		        stmt.execute(SQL);//Ö´ĞĞSQLÓï¾ä
-		    }
-		    catch(SQLException e)//²¶»ñÒì³£
-		    {
-				e.printStackTrace();
-		    }
-		}
-                /**
-                 *@method:executeUpdate
-                 *<p>@param:SQLÓï¾ä</p>
-                 *<p>@throws:Å×³ö¿ÕÖ¸ÕëÒì³£</p>
-                 *<p>@return: ÎŞ </p>
-                */
+    /**
+     * å¾—åˆ°æ•°æ®åº“è¿æ¥
+     * <p>
+     * è¿”å›å€¼ï¼Connectionå¯¹è±¡
+     */
 
-		public void executeUpdate(String SQL){
+    public Connection getConn() {
+        return (conn);//è¿”å›Connectionå¯¹è±¡
+    }
 
-			try{
-				stmt=conn.createStatement();
-				stmt.executeUpdate(SQL);//Ö´ĞĞSQLÓï¾ä
-			}
-			catch(SQLException ex){//²¶»ñÒì³£
-				//log.info("aq.executeUpdate:"+ex.getMessage());
-				//log.info("aq.executeUpdatestrSQL"+SQL);
-			}
-		}
-           /**
-           *@method:destroy
-           *<p>@param:ÎŞÓï¾ä</p>
-           *<p>@throws:Å×³ö¿ÕÖ¸ÕëÒì³£</p>
-           *<p>@return: ÎŞ </p>
-           */
-   
-		public void destroy(){
-			
-			try{
-				if(rs!=null)rs.close();
-				if(stmt!=null)stmt.close();
-				if(conn!=null)conn.close();//Êı¾İ¿âÁ¬½Ó¹Ø±Õ
-			
-			}
-			catch(Exception e)//²¶»ñÒì³£
-			{
-				e.printStackTrace();
-			}
-			
-		}
-	
-	}
+    /**
+     * @method:executeQuery <p>@param:SQLè¯­å¥</p>
+     * <p>@throws:æŠ›å‡ºç©ºæŒ‡é’ˆå¼‚å¸¸</p>
+     * <p>@return: ç»“æœé›† </p>
+     */
+
+    public ResultSet executeQuery(String SQL) {
+        rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(SQL);//æ‰§è¡ŒSQLè¯­å¥
+        } catch (SQLException ex)//æ•è·å¼‚å¸¸
+        {
+            ex.printStackTrace();
+        }
+        return rs;//è¿”å›ç»“æœé›†
+    }
+
+    /**
+     * @method:execute <p>@param:SQLè¯­å¥</p>
+     * <p>@throws:æŠ›å‡ºç©ºæŒ‡é’ˆå¼‚å¸¸</p>
+     * <p>@return: æ—  </p>
+     */
+
+    public void execute(String SQL) {
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(SQL);//æ‰§è¡ŒSQLè¯­å¥
+        } catch (SQLException e)//æ•è·å¼‚å¸¸
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @method:executeUpdate <p>@param:SQLè¯­å¥</p>
+     * <p>@throws:æŠ›å‡ºç©ºæŒ‡é’ˆå¼‚å¸¸</p>
+     * <p>@return: æ—  </p>
+     */
+
+    public void executeUpdate(String SQL) {
+
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate(SQL);//æ‰§è¡ŒSQLè¯­å¥
+        } catch (SQLException ex) {//æ•è·å¼‚å¸¸
+            //log.info("aq.executeUpdate:"+ex.getMessage());
+            //log.info("aq.executeUpdatestrSQL"+SQL);
+        }
+    }
+
+    /**
+     * @method:destroy <p>@param:æ— è¯­å¥</p>
+     * <p>@throws:æŠ›å‡ºç©ºæŒ‡é’ˆå¼‚å¸¸</p>
+     * <p>@return: æ—  </p>
+     */
+
+    public void destroy() {
+
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();//æ•°æ®åº“è¿æ¥å…³é—­
+
+        } catch (Exception e)//æ•è·å¼‚å¸¸
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+}

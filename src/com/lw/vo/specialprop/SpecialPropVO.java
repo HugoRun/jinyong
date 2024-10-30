@@ -2,23 +2,23 @@ package com.lw.vo.specialprop;
 
 public class SpecialPropVO
 {
-	// 物品ID
+	// 鐗╁搧ID
 	private int sppk;
-	// 玩家PPK
+	// 鐜╁PPK
 	private int ppk;
-	// 物品ID
+	// 鐗╁搧ID
 	private int propid;
-	// 特殊字节 1
+	// 鐗规畩瀛楄妭 1
 	private String propoperate1;
-	// 特殊字节 2
+	// 鐗规畩瀛楄妭 2
 	private String propoperate2;
-	// 特殊字节 3
+	// 鐗规畩瀛楄妭 3
 	private String propoperate3;
-	// 计时ID
+	// 璁℃椂ID
 	private int proptime;
-	// 创建时间
+	// 鍒涘缓鏃堕棿
 	private String propdate;
-	// 标记
+	// 鏍囪
 	private int sign;
 
 	public int getSign()

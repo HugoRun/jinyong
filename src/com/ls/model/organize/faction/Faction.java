@@ -19,11 +19,11 @@ import com.pm.vo.mail.MailInfoVO;
 
 /**
  * @author ls
- * °ïÅÉ
+ * å¸®æ´¾
  */
 public class Faction extends Organize
 {
-	/*********Ö°Î»È¨ÏŞ(×å³¤¡¢³¤ÀÏ¡¢»¤·¨ºÍ×åÖÚ)******/
+	/*********èŒä½æƒé™(æ—é•¿ã€é•¿è€ã€æŠ¤æ³•å’Œæ—ä¼—)******/
 	public final static int ZUZHANG = 3;
 	public final static int ZHANGLAO = 2;
 	public final static int HUFA = 1;
@@ -31,26 +31,26 @@ public class Faction extends Organize
 
 	private FactionDao factionDao = new FactionDao();
 	
-	/***********°ïÅÉ»ù±¾ĞÅÏ¢*************/
+	/***********å¸®æ´¾åŸºæœ¬ä¿¡æ¯*************/
 	private int id;
 	private String name;
-	private int memberNum=1;//µ±Ç°³ÉÔ±ÊıÁ¿
+	private int memberNum=1;//å½“å‰æˆå‘˜æ•°é‡
 	private int race;
 	private int grade=1;
-	private int prestige;//ÉùÍû
-	private int citangGrade=1;//ìôÌÃµÈ¼¶:0±íÊ¾»¹Ã»´´½¨£¬´óÓÚ0±íÊ¾ìôÌÃµÈ¼¶
-	private boolean isDisband=false;//ÊÇ·ñ´¦ÔÚ½âÉ¢»º³åÆÚ£¬µ½´ÎÈÕÁè³¿3Ê±²ÅÕæÕı½âÉ¢
-	private Date createTime=null;//´´½¨Ê±¼ä
-	private int mGradeTotal;//³ÉÔ±µÈ¼¶×ÜºÍ
-	private Date changeZZHTime=null;//ÏÂ´Î×ªÈÃ×å³¤µÄÊ±¼ä
+	private int prestige;//å£°æœ›
+	private int citangGrade=1;//ç¥ å ‚ç­‰çº§:0è¡¨ç¤ºè¿˜æ²¡åˆ›å»ºï¼Œå¤§äº0è¡¨ç¤ºç¥ å ‚ç­‰çº§
+	private boolean isDisband=false;//æ˜¯å¦å¤„åœ¨è§£æ•£ç¼“å†²æœŸï¼Œåˆ°æ¬¡æ—¥å‡Œæ™¨3æ—¶æ‰çœŸæ­£è§£æ•£
+	private Date createTime=null;//åˆ›å»ºæ—¶é—´
+	private int mGradeTotal;//æˆå‘˜ç­‰çº§æ€»å’Œ
+	private Date changeZZHTime=null;//ä¸‹æ¬¡è½¬è®©æ—é•¿çš„æ—¶é—´
 	
-	private FStorage fStorage;//°ïÅÉ²Ö¿â
+	private FStorage fStorage;//å¸®æ´¾ä»“åº“
 	
-	//*******·Ç³Ö¾Ã»¯ĞÅÏ¢
-	private FNotice lastedNotice;//×îĞÂµÄÒ»¸ö¹«¸æ
+	//*******éæŒä¹…åŒ–ä¿¡æ¯
+	private FNotice lastedNotice;//æœ€æ–°çš„ä¸€ä¸ªå…¬å‘Š
 	
 	/**
-	 * ³ÉÔ±Éı¼¶£¬Ôö¼Ó°ïÅÉ³ÉÔ±µÈ¼¶×ÜÊı
+	 * æˆå‘˜å‡çº§ï¼Œå¢åŠ å¸®æ´¾æˆå‘˜ç­‰çº§æ€»æ•°
 	 */
 	public void memUpgrade()
 	{
@@ -58,11 +58,11 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ÊÇ·ñÊÇ»îÔ¾°ïÅÉ
+	 * æ˜¯å¦æ˜¯æ´»è·ƒå¸®æ´¾
 	 */
 	public boolean isActived()
 	{
-		//ÅĞ¶Ï´´½¨ÊÇ·ñ³¬¹ı10Ìì
+		//åˆ¤æ–­åˆ›å»ºæ˜¯å¦è¶…è¿‡10å¤©
 		if( DateUtil.getDifferDays(createTime, new Date())>10 && this.isFull()==false)
 		{
 			return false;
@@ -72,7 +72,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * µÃµ½ìôÌÃµ±Ç°µÈ¼¶ĞÅÏ¢
+	 * å¾—åˆ°ç¥ å ‚å½“å‰ç­‰çº§ä¿¡æ¯
 	 * @return
 	 */
 	public FUpgradeMaterial getCitangInfo()
@@ -82,13 +82,13 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * µÃµ½Éı¼¶²ÄÁÏ
-	 * @param upgradeType  Éı¼¶ÀàĞÍ
+	 * å¾—åˆ°å‡çº§ææ–™
+	 * @param upgradeType  å‡çº§ç±»å‹
 	 * @return
 	 */
 	public FUpgradeMaterial getUpgradeMaterial(int upgradeType)
 	{
-		int upgrade_grade = 0;//Éı¼¶µÈ¼¶
+		int upgrade_grade = 0;//å‡çº§ç­‰çº§
 		if( upgradeType==FUpgradeMaterial.F_UPGRADE )
 		{
 			upgrade_grade = this.grade+1;
@@ -102,7 +102,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ÏÔÊ¾
+	 * æ˜¾ç¤º
 	 */
 	public String getDisplay()
 	{
@@ -115,19 +115,19 @@ public class Faction extends Organize
 		}
 		else
 		{
-			leaderName="ÔİÎŞ(³¤ÀÏ¿É½Ó¹Ü¸ÃÊÏ×å)";
+			leaderName="æš‚æ— (é•¿è€å¯æ¥ç®¡è¯¥æ°æ—)";
 		}
 		sb.append(this.getFullName()).append("<br/>");
-		sb.append("ÊÏ×åµÈ¼¶:").append(this.grade).append("¼¶<br/>");
-		sb.append("×å³¤:").append(leaderName).append("<br/>");
-		sb.append("ÏÖÓĞ×åÔ±:").append(this.memberNum).append("ÈË<br/>");
-		sb.append("ÊÏ×åÉùÍû:").append(this.prestige).append("µã<br/>");
-		sb.append("ìôÌÃµÈ¼¶:").append(this.citangGrade).append("¼¶<br/>");
+		sb.append("æ°æ—ç­‰çº§:").append(this.grade).append("çº§<br/>");
+		sb.append("æ—é•¿:").append(leaderName).append("<br/>");
+		sb.append("ç°æœ‰æ—å‘˜:").append(this.memberNum).append("äºº<br/>");
+		sb.append("æ°æ—å£°æœ›:").append(this.prestige).append("ç‚¹<br/>");
+		sb.append("ç¥ å ‚ç­‰çº§:").append(this.citangGrade).append("çº§<br/>");
 		return sb.toString();
 	}
 	
 	/**
-	 * ×îĞÂ¹«¸æ
+	 * æœ€æ–°å…¬å‘Š
 	 */
 	public FNotice getLastedNotice()
 	{
@@ -143,7 +143,7 @@ public class Faction extends Organize
 		return lastedNotice;
 	}
 	/**
-	 * É¾³ı¹«¸æ
+	 * åˆ é™¤å…¬å‘Š
 	 */
 	public void delNotice(int id)
 	{
@@ -156,7 +156,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ·¢²¼¹«¸æ
+	 * å‘å¸ƒå…¬å‘Š
 	 */
 	public void publishNotice(FNotice notice)
 	{
@@ -166,7 +166,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * µÃµ½ÖÖ×åÃû×Ö
+	 * å¾—åˆ°ç§æ—åå­—
 	 */
 	public String getFullName()
 	{
@@ -174,13 +174,13 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ¸üĞÂÉùÍû
+	 * æ›´æ–°å£°æœ›
 	 * @param update_prestige
 	 * @return
 	 */
 	public boolean updatePrestige(int update_prestige)
 	{
-		if( update_prestige<0 && this.prestige<-update_prestige )//ÉùÍû²»×ã
+		if( update_prestige<0 && this.prestige<-update_prestige )//å£°æœ›ä¸è¶³
 		{
 			return false;
 		}
@@ -190,7 +190,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * Éı¼¶
+	 * å‡çº§
 	 */
 	public String upgrade()
 	{
@@ -199,7 +199,7 @@ public class Faction extends Organize
 		return null;
 	}
 	/**
-	 * Éı¼¶
+	 * å‡çº§
 	 */
 	public String upgradeCitang()
 	{
@@ -209,41 +209,41 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ¼ÓÈë°ïÅÉ³ÉÔ±
-	 * @param operater                Ö´ĞĞÕß
-	 * @param member			      ¼ÓÈëµÄ³ÉÔ±
+	 * åˆ¤æ–­æ˜¯å¦å¯ä»¥åŠ å…¥å¸®æ´¾æˆå‘˜
+	 * @param operater                æ‰§è¡Œè€…
+	 * @param member			      åŠ å…¥çš„æˆå‘˜
 	 * @return
 	 */
 	public String isAddMember( RoleEntity member)
 	{
 		if( member==null )
 		{
-			return "ÎŞ¸Ã½ÇÉ«";
+			return "æ— è¯¥è§’è‰²";
 		}
 		if(member.getIsRookie())
 		{
-			return member.getName()+"´¦ÓÚĞÂÊÖÒıµ¼½×¶Î²»¿ÉÑûÇë¼ÓÈë°ïÅÉ£¡";
+			return member.getName()+"å¤„äºæ–°æ‰‹å¼•å¯¼é˜¶æ®µä¸å¯é‚€è¯·åŠ å…¥å¸®æ´¾ï¼";
 		}
 		if( member!=null && member.getBasicInfo().getFaction()!=null )
 		{
-			return member.getName()+"ÒÑ¼ÓÈëÆäËû°ïÅÉ";
+			return member.getName()+"å·²åŠ å…¥å…¶ä»–å¸®æ´¾";
 		}
 		
 		if( member.getBasicInfo().getPRace()!=this.race)
 		{
-			return "ÖÖ×å²»·û";
+			return "ç§æ—ä¸ç¬¦";
 		}
 		
 		if( this.isFull() )
 		{
-			return "°ïÅÉÈËÊıÒÑÂú";
+			return "å¸®æ´¾äººæ•°å·²æ»¡";
 		}
 		return null;
 	}
 	
 	/**
-	 * Ìí¼Ó°ïÅÉ³ÉÔ±
-	 * @param member		 ¼ÓÈëµÄ³ÉÔ±
+	 * æ·»åŠ å¸®æ´¾æˆå‘˜
+	 * @param member		 åŠ å…¥çš„æˆå‘˜
 	 * @return
 	 */
 	public String addMember(RoleEntity member)
@@ -267,25 +267,25 @@ public class Faction extends Organize
 	{
 		if( newLeader==null )
 		{
-			return "¸ÃÍæ¼Ò²»´æÔÚ,²»ÄÜ×ªÈÃ×å³¤";
+			return "è¯¥ç©å®¶ä¸å­˜åœ¨,ä¸èƒ½è½¬è®©æ—é•¿";
 		}
 		
-		//ÅĞ¶ÏÊÇ·ñµ½×ªÈÃµÄÀäÈ´Ê±¼ä£¬Ê±¼äÎª24Ğ¡Ê±
+		//åˆ¤æ–­æ˜¯å¦åˆ°è½¬è®©çš„å†·å´æ—¶é—´ï¼Œæ—¶é—´ä¸º24å°æ—¶
 		String hint = DateUtil.returnTimeStr(this.changeZZHTime);
 		if( hint!=null )
 		{
-			return "ÏÖÔÚ²»ÄÜ×ªÈÃ×å³¤,¾àÏÂ´Î×ªÈÃ×å³¤»¹ÓĞ"+hint;
+			return "ç°åœ¨ä¸èƒ½è½¬è®©æ—é•¿,è·ä¸‹æ¬¡è½¬è®©æ—é•¿è¿˜æœ‰"+hint;
 		}
 		
-		//Ô­×å³¤½µÎª³¤ÀÏ
+		//åŸæ—é•¿é™ä¸ºé•¿è€
 		this.getLeader().getBasicInfo().changeFJob(Faction.ZUZHONG);
-		//¸üĞÂĞÂµÄ×å³¤
+		//æ›´æ–°æ–°çš„æ—é•¿
 		newLeader.getBasicInfo().changeFJob(Faction.ZUZHANG);
 		this.leaderId = newLeader.getPPk();
 		FactionDao factionDao = new FactionDao();
 		
 		Calendar cur_time = Calendar.getInstance();
-		cur_time.add(Calendar.HOUR, 24);//µÃµ½ÏÂ´Î¿ÉÒÔ×ªÈÃÊÏ×åµÄÊ±¼ä
+		cur_time.add(Calendar.HOUR, 24);//å¾—åˆ°ä¸‹æ¬¡å¯ä»¥è½¬è®©æ°æ—çš„æ—¶é—´
 		
 		this.changeZZHTime = cur_time.getTime();
 		factionDao.updateChangeZZHTime(this.id);
@@ -297,12 +297,12 @@ public class Faction extends Organize
 	{
 		if( leader==null )
 		{
-			return "´´½¨´íÎó";
+			return "åˆ›å»ºé”™è¯¯";
 		}
 		
 		if( leader.getBasicInfo().getFaction()!=null )
 		{
-			return "ÄãÒÑ¼ÓÈëÆäËû°ïÅÉ";
+			return "ä½ å·²åŠ å…¥å…¶ä»–å¸®æ´¾";
 		}
 		
 		int leader_id = leader.getBasicInfo().getPPk();
@@ -315,7 +315,7 @@ public class Faction extends Organize
 		factionDao.add(this);
 		if( this.id==0 )
 		{
-			return "´´½¨Ê§°Ü";
+			return "åˆ›å»ºå¤±è´¥";
 		}
 
 		leader.getBasicInfo().jionFaction(id,ZUZHANG);
@@ -331,18 +331,18 @@ public class Faction extends Organize
 		{
 			if( member.getBasicInfo().getFJob()==Faction.ZUZHANG)
 			{
-				//Èç¹ûÊÇ×å³¤Àë¿ª
+				//å¦‚æœæ˜¯æ—é•¿ç¦»å¼€
 				PartInfoDao partInfoDao = new PartInfoDao();
 				List<Integer> list = partInfoDao.getUpZhanglaoListByFId(getId());
 				MailInfoService mailInfoService = new MailInfoService();
 				MailInfoVO mail = new MailInfoVO();
 				mail.setMailType(MailInfoService.F_DISBAND_MAIL);
 				mail.setSendPk(getId());
-				mail.setTitle(getName()+"¼´½«½âÉ¢!");
-				mail.setContent("ÄúµÄÊÏ×åÕı´¦Àí½âÉ¢¹ı³Ì,Èô24Ğ¡Ê±ÄÚ,ÄúÈÔÎ´¸Ä±äĞÄÒâ,ÔòÄúµÄÊÏ×å½«³¹µ×½âÉ¢!");
+				mail.setTitle(getName()+"å³å°†è§£æ•£!");
+				mail.setContent("æ‚¨çš„æ°æ—æ­£å¤„ç†è§£æ•£è¿‡ç¨‹,è‹¥24å°æ—¶å†…,æ‚¨ä»æœªæ”¹å˜å¿ƒæ„,åˆ™æ‚¨çš„æ°æ—å°†å½»åº•è§£æ•£!");
 				for(Integer p_pk:list )
 				{
-					/**¸øÍæ¼Ò·¢ËÍÒ»¸ö¼ÓÈë°ïÅÉµÄÓÊ¼ş  */
+					/**ç»™ç©å®¶å‘é€ä¸€ä¸ªåŠ å…¥å¸®æ´¾çš„é‚®ä»¶  */
 					mail.setReceivePk(p_pk);
 					mailInfoService.sendMail(mail);
 				}
@@ -357,11 +357,11 @@ public class Faction extends Organize
 		return null;
 	}
 	/**
-	 * ½Ó¹Ü°ïÅÉ
+	 * æ¥ç®¡å¸®æ´¾
 	 */
 	public void assume(RoleEntity operater)
 	{
-		//Èç¹ûÊÇ³¤ÀÏ½Ó¹Ü
+		//å¦‚æœæ˜¯é•¿è€æ¥ç®¡
 		if( operater.getBasicInfo().getFaction().getId()==this.id && operater.getBasicInfo().getFJob()==Faction.ZHANGLAO )
 		{
 			RoleEntity role= this.getLeader();
@@ -379,7 +379,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ½âÉ¢
+	 * è§£æ•£
 	 */
 	public void disband()
 	{
@@ -410,22 +410,22 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * ÊÇ·ñ¿ÉÒÔÔö¼Ó×î´ó³¤ÀÏµÄÊıÁ¿
+	 * æ˜¯å¦å¯ä»¥å¢åŠ æœ€å¤§é•¿è€çš„æ•°é‡
 	 */
 	public String isChangeJob(int job)
 	{
 		PartInfoDao partInfoDao = new PartInfoDao();
-		int cur_job_num = partInfoDao.getCurFJobNum(this.id, job);//µ±Ç°Ö°ÒµµÄÊıÁ¿
+		int cur_job_num = partInfoDao.getCurFJobNum(this.id, job);//å½“å‰èŒä¸šçš„æ•°é‡
 		int max_job_num = this.getMaxJobNum(job);
 		if( cur_job_num>=max_job_num )
 		{
-			return ExchangeUtil.getFJobName(job)+"µÄÊıÁ¿ÒÑÂú";
+			return ExchangeUtil.getFJobName(job)+"çš„æ•°é‡å·²æ»¡";
 		}
 		return null;
 	}
 
 	/**
-	 * µÃµ½Ö°ÎñµÄ×î´óÊıÁ¿
+	 * å¾—åˆ°èŒåŠ¡çš„æœ€å¤§æ•°é‡
 	 * @return
 	 */
 	public int getMaxJobNum(int job)
@@ -459,7 +459,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * µÃµ½µ±Ç°°ïÅÉµÄ×î´óÈËÊı
+	 * å¾—åˆ°å½“å‰å¸®æ´¾çš„æœ€å¤§äººæ•°
 	 */
 	public int getMaxMemberNum()
 	{
@@ -472,7 +472,7 @@ public class Faction extends Organize
 	}
 	
 	/**
-	 * µÃµ½µ±Ç°³ÉÔ±ÊıÁ¿
+	 * å¾—åˆ°å½“å‰æˆå‘˜æ•°é‡
 	 */
 	@Override
 	public int getMemberNum()
@@ -481,7 +481,7 @@ public class Faction extends Organize
 	}
 
 	/**
-	 * ÅĞ¶Ï°ïÅÉÊÇ·ñÒÑÂú
+	 * åˆ¤æ–­å¸®æ´¾æ˜¯å¦å·²æ»¡
 	 */
 	public boolean isFull()
 	{

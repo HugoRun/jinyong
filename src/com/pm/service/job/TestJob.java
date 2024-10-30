@@ -11,6 +11,6 @@ public class TestJob implements Job
 
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{
-		//System.out.println("阿肯定是解放");
+		//System.out.println("闃胯偗瀹氭槸瑙ｆ斁");
 	}
 }

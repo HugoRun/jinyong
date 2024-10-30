@@ -5,23 +5,23 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author handan
- * ¶¨Ê±ÊÂ¼ş
+ * å®šæ—¶äº‹ä»¶
  */
 abstract public class TimerEvent implements Delayed
 {
-	private long endTime;//½áÊøÊ±¼ä
+	private long endTime;//ç»“æŸæ—¶é—´
 	
 	public TimerEvent(long endTime)
 	{
 		this.endTime = endTime;
 	}
 	/**
-	 * ÊÂ¼ş´¦Àí
+	 * äº‹ä»¶å¤„ç†
 	 */
 	public abstract void handle();
 	
 	/**
-	 * µ±Ç°Ê±¼ä¾àµ½Ê±»¹²î¶à³¤Ê±¼ä£¨µ¥Î»ºÁÃë£©
+	 * å½“å‰æ—¶é—´è·åˆ°æ—¶è¿˜å·®å¤šé•¿æ—¶é—´ï¼ˆå•ä½æ¯«ç§’ï¼‰
 	 */
 	public long getDelay(TimeUnit unit)
 	{

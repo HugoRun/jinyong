@@ -16,10 +16,10 @@ import com.ls.pub.constant.StatisticsType;
 public class GameSystemStatisticsService
 {
 	/**
-	 * ¸ù¾İÊ±¼äÅĞ¶Ïµ±ÌìÊÇ·ñÓĞÊı¾İ Èç¹ûÓĞÊı¾İ Ö´ĞĞ¸üĞÂ Èç¹ûÃ»ÓĞÖ´ĞĞ²åÈë
+	 * æ ¹æ®æ—¶é—´åˆ¤æ–­å½“å¤©æ˜¯å¦æœ‰æ•°æ® å¦‚æœæœ‰æ•°æ® æ‰§è¡Œæ›´æ–° å¦‚æœæ²¡æœ‰æ‰§è¡Œæ’å…¥
 	 * 
 	 * @param propType
-	 *            6Îª½ğÇ® 7ÎªÔª±¦ 8ÎªÉÌ³ÇÎïÆ·
+	 *            6ä¸ºé‡‘é’± 7ä¸ºå…ƒå® 8ä¸ºå•†åŸç‰©å“
 	 * 
 	 * 
 	 */
@@ -30,8 +30,8 @@ public class GameSystemStatisticsService
 		PropCache propCache = new PropCache();
 		DateFormat dfdate = new SimpleDateFormat("yyyy-MM-dd");
 		DateFormat dftime = new SimpleDateFormat("HH");
-		String thisdate = dfdate.format(date.getTime());// µ±Ç°ÈÕÆÚ
-		String thistime = dftime.format(date.getTime());// µ±Ç°Ê±¼ä
+		String thisdate = dfdate.format(date.getTime());// å½“å‰æ—¥æœŸ
+		String thistime = dftime.format(date.getTime());// å½“å‰æ—¶é—´
 		GameSystemStatisticsDao dao = new GameSystemStatisticsDao();
 		if (propCache.getPropPositionById(propID) == 6
 				&& propApproachType.equals("used"))
@@ -74,8 +74,8 @@ public class GameSystemStatisticsService
 		PropCache propCache = new PropCache();
 		DateFormat dfdate = new SimpleDateFormat("yyyy-MM-dd");
 		DateFormat dftime = new SimpleDateFormat("HH");
-		String thisdate = dfdate.format(date.getTime());// µ±Ç°ÈÕÆÚ
-		String thistime = dftime.format(date.getTime());// µ±Ç°Ê±¼ä
+		String thisdate = dfdate.format(date.getTime());// å½“å‰æ—¥æœŸ
+		String thistime = dftime.format(date.getTime());// å½“å‰æ—¶é—´
 		GameSystemStatisticsDao dao = new GameSystemStatisticsDao();
 		if (propCache.getPropPositionById(propID) == 6
 				&& propApproachType.equals("used"))
@@ -111,9 +111,9 @@ public class GameSystemStatisticsService
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÖ´ĞĞ²åÈëÓï¾ä
+	 * åˆ¤æ–­æ˜¯å¦æ‰§è¡Œæ’å…¥è¯­å¥
 	 * 
-	 * @return true ÎªÖ´ĞĞ²åÈë false Îª²»Ö´ĞĞ²åÈë
+	 * @return true ä¸ºæ‰§è¡Œæ’å…¥ false ä¸ºä¸æ‰§è¡Œæ’å…¥
 	 */
 	public boolean ifTodayHaveProp(int propID, int propType, String propNum,
 			String propApproachType, String propApproach, String date,
@@ -133,9 +133,9 @@ public class GameSystemStatisticsService
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÍ³¼Æ¸ÃÎïÆ·
+	 * åˆ¤æ–­æ˜¯å¦ç»Ÿè®¡è¯¥ç‰©å“
 	 * 
-	 * @return true ÎªÖ´ĞĞÍ³¼Æ false ²»Ö´ĞĞÍ³¼Æ
+	 * @return true ä¸ºæ‰§è¡Œç»Ÿè®¡ false ä¸æ‰§è¡Œç»Ÿè®¡
 	 */
 	public boolean ifHaveThisProp(int propID, int propType)
 	{
@@ -190,7 +190,7 @@ public class GameSystemStatisticsService
 		}
 	}
 
-	/** Í³¼Æ¿â´æ */
+	/** ç»Ÿè®¡åº“å­˜ */
 	public void statisticsPropKuCun()
 	{
 		Date date = new Date();
@@ -199,11 +199,11 @@ public class GameSystemStatisticsService
 		GameSystemStatisticsMessageDao gdao = new GameSystemStatisticsMessageDao();
 
 		List<GameSystemStatisticsMessageVO> list = gdao.getProp();
-		String thisdate = dfdate.format(date.getTime() - 1000 * 60 * 60 * 24);// µ±Ç°ÈÕÆÚ
+		String thisdate = dfdate.format(date.getTime() - 1000 * 60 * 60 * 24);// å½“å‰æ—¥æœŸ
 
 		int money = dao.getPlayerCangkuMoney() + dao.getPlayerTongMoney()
-				+ dao.getPlayerGroupMoney();// Íæ¼Ò²Ö¿â½ğÇ®+°ïÅÉ²Ö¿â½ğÇ®+Íæ¼ÒÉíÉÏ½ğÇ®
-		int yuanbao = dao.getPlayerYuanBao();// Íæ¼ÒÔª±¦
+				+ dao.getPlayerGroupMoney();// ç©å®¶ä»“åº“é‡‘é’±+å¸®æ´¾ä»“åº“é‡‘é’±+ç©å®¶èº«ä¸Šé‡‘é’±
+		int yuanbao = dao.getPlayerYuanBao();// ç©å®¶å…ƒå®
 
 		addPropNum(6, StatisticsType.MONEY, money, StatisticsType.KUCUN, "", 0);
 		addPropNum(7, StatisticsType.YUANBAO, yuanbao, StatisticsType.KUCUN,
@@ -220,7 +220,7 @@ public class GameSystemStatisticsService
 				{
 					int num = dao.getPlayerCangku(prop_id, prop_type)
 							+ dao.getPlayerGroupProp(prop_id)
-							+ dao.getPlayerTongProp(prop_id);// ²Ö¿âµÀ¾ß+°ü¹üµÀ¾ß+°ïÅÉ²Ö¿âµÀ¾ß
+							+ dao.getPlayerTongProp(prop_id);// ä»“åº“é“å…·+åŒ…è£¹é“å…·+å¸®æ´¾ä»“åº“é“å…·
 					dao.insertPropMessage(prop_id, prop_type, num + "",
 							StatisticsType.KUCUN, "", thisdate, "");
 				}
@@ -228,7 +228,7 @@ public class GameSystemStatisticsService
 				{
 					int num = dao.getPlayerGroupZhuangbei(prop_id, prop_type)
 							+ dao.getPlayerTongZhuangbei(prop_id, prop_type)
-							+ dao.getPlayerCangkuEquip(prop_id, prop_type);// °ü¹ü×°±¸+°ïÅÉ²Ö¿â×°±¸+Íæ¼Ò²Ö¿â×°±¸
+							+ dao.getPlayerCangkuEquip(prop_id, prop_type);// åŒ…è£¹è£…å¤‡+å¸®æ´¾ä»“åº“è£…å¤‡+ç©å®¶ä»“åº“è£…å¤‡
 					dao.insertPropMessage(prop_id, prop_type, num + "",
 							StatisticsType.KUCUN, "", thisdate, "");
 				}
@@ -236,7 +236,7 @@ public class GameSystemStatisticsService
 		}
 	}
 
-	/** Ìí¼ÓÍæ¼Ò½»Ò×¼ÇÂ¼ */
+	/** æ·»åŠ ç©å®¶äº¤æ˜“è®°å½• */
 	public void insertSellInfoRecord(int p_pk_give, int p_pk_have,
 			int prop_type, int prop_id, int num, long money)
 	{
@@ -244,7 +244,7 @@ public class GameSystemStatisticsService
 		dao.insertRecord(p_pk_give, p_pk_have, prop_type, prop_id, num, money);
 	}
 
-	/** É¾³ıÍæ¼Ò½»Ò×¼ÇÂ¼£¨7ÆßÌìÇ°£© */
+	/** åˆ é™¤ç©å®¶äº¤æ˜“è®°å½•ï¼ˆ7ä¸ƒå¤©å‰ï¼‰ */
 	public void deleteRecord()
 	{
 		SellInfoRecordDao dao = new SellInfoRecordDao();

@@ -33,17 +33,17 @@ public class ExchangeService
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * »ñµÃÔ­²ÄÁÏµÄÏÔÊ¾×Ö·û´®
+	 * è·å¾—åŸææ–™çš„æ˜¾ç¤ºå­—ç¬¦ä¸²
 	 * @param vo	
 	 * @return
 	 */
 	public List<String> getChangeDisplayList(OperateMenuVO vo)
 	{
 		List<String> list = null;
-		String operate1 = vo.getMenuOperate1();				//ĞèÒª¶Ò»»µÄÔ­²ÄÁÏ	
-		//String operate2 = vo.getMenuOperate2();			//¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate1.split(";");			//ĞèÒª¶Ò»»µÄÔ­²ÄÁÏµÄÊı×é
-		//String[] reChange2 = operate2.split(";");			//¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate1 = vo.getMenuOperate1();				//éœ€è¦å…‘æ¢çš„åŸææ–™	
+		//String operate2 = vo.getMenuOperate2();			//å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate1.split(";");			//éœ€è¦å…‘æ¢çš„åŸææ–™çš„æ•°ç»„
+		//String[] reChange2 = operate2.split(";");			//å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if(reChange == null) {
 			return list;
 		}
@@ -51,57 +51,57 @@ public class ExchangeService
 		int length = reChange.length;
 		
 		for(int i=0;i<length;i++){					
-			String[] materials = reChange[i].split(",");	//Ã¿¸ö¶Ò»»µÄÔ­²ÄÁÏ¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(",");	//æ¯ä¸ªå…‘æ¢çš„åŸææ–™å¯èƒ½ä¸æ­¢ä¸€ç§
 			StringBuffer sb = new StringBuffer();
 			sb.append(i);
 			for(int a = 0;a<materials.length;a++){
 				String[] unit = materials[a].split("-");
-				if(unit[0].equals("d")){					//Èç¹ûÔ­²ÄÁÏÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				if(unit[0].equals("d")){					//å¦‚æœåŸææ–™æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					PropVO propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
 					sb.append("-");
 					sb.append(propvo.getPropName());
-					sb.append("¡Á").append(unit[3]);
-				}else if(unit[0].equals("z")){				//Èç¹ûÔ­²ÄÁÏÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+					sb.append("Ã—").append(unit[3]);
+				}else if(unit[0].equals("z")){				//å¦‚æœåŸææ–™æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 					sb.append("-");
 					int equip_id = Integer.valueOf(unit[1]);
 					GameEquip equip = EquipCache.getById(equip_id);
-					sb.append(equip.getName()).append("¡Á").append(unit[2]);
-				}else if(unit[0].equals("j")){		//Èç¹ûÔ­²ÄÁÏÊÇ½ğÇ®µÄ´¦ÀíÇé¿ö
+					sb.append(equip.getName()).append("Ã—").append(unit[2]);
+				}else if(unit[0].equals("j")){		//å¦‚æœåŸææ–™æ˜¯é‡‘é’±çš„å¤„ç†æƒ…å†µ
 					sb.append("-").append(MoneyUtil.changeCopperToStr(unit[1]));
 					
-				}else if(unit[0].equals("y")){		//Èç¹ûÔ­²ÄÁÏÊÇ¾­ÑéµÄ´¦ÀíÇé¿ö
+				}else if(unit[0].equals("y")){		//å¦‚æœåŸææ–™æ˜¯ç»éªŒçš„å¤„ç†æƒ…å†µ
 					sb.append("-").append(unit[1]);
-					sb.append("¾­Ñé");
-				}else if(unit[0].equals("s")){		//Èç¹ûÔ­²ÄÁÏÊÇÉùÍûµÄ´¦ÀíÇé¿ö
+					sb.append("ç»éªŒ");
+				}else if(unit[0].equals("s")){		//å¦‚æœåŸææ–™æ˜¯å£°æœ›çš„å¤„ç†æƒ…å†µ
 					sb.append("-");
 					Integer cid=Integer.parseInt(unit[1]);
 					CreaditService service=new CreditProce();
 					PlayerCreditVO pcv=service.getPcvDisplay(cid);
 					sb.append(pcv.getCreditname());
-					sb.append("¡Á").append(unit[2]);
-				}else if(unit[0].equals("r")){		//Èç¹ûÔ­²ÄÁÏÊÇÈÙÓşµÄ´¦ÀíÇé¿ö
+					sb.append("Ã—").append(unit[2]);
+				}else if(unit[0].equals("r")){		//å¦‚æœåŸææ–™æ˜¯è£èª‰çš„å¤„ç†æƒ…å†µ
 					sb.append("-").append(unit[1]);
-					sb.append("ÈÙÓş");
+					sb.append("è£èª‰");
 				}
 			}
-				logger.info("iµÄvalue: "+i+" Ô­²ÄÁÏ×°Èë×Ö¶Î"+sb.toString());
+				logger.info("içš„value: "+i+" åŸææ–™è£…å…¥å­—æ®µ"+sb.toString());
 				list.add(sb.toString());
 			}
 			return list;
 		}
 	
 	/**
-	 * »ñµÃÔ­²ÄÁÏµÄÏÔÊ¾×Ö·û´®
+	 * è·å¾—åŸææ–™çš„æ˜¾ç¤ºå­—ç¬¦ä¸²
 	 * @param vo	
 	 * @return
 	
 	public List<String> getChangeDisplayList1(OperateMenuVO vo)
 	{
 		List<String> list = null;
-		String operate1 = vo.getMenuOperate1();				//ĞèÒª¶Ò»»µÄÔ­²ÄÁÏ	
-		//String operate2 = vo.getMenuOperate2();			//¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate1.split(";");			//ĞèÒª¶Ò»»µÄÔ­²ÄÁÏµÄÊı×é
-		//String[] reChange2 = operate2.split(";");			//¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate1 = vo.getMenuOperate1();				//éœ€è¦å…‘æ¢çš„åŸææ–™	
+		//String operate2 = vo.getMenuOperate2();			//å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate1.split(";");			//éœ€è¦å…‘æ¢çš„åŸææ–™çš„æ•°ç»„
+		//String[] reChange2 = operate2.split(";");			//å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if(reChange == null){
 			return list;
 		}
@@ -109,22 +109,22 @@ public class ExchangeService
 		int length = reChange.length;
 		
 		for(int i=0;i<length;i++){					
-			String[] materials = reChange[i].split(",");	//Ã¿¸ö¶Ò»»µÄÔ­²ÄÁÏ¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(",");	//æ¯ä¸ªå…‘æ¢çš„åŸææ–™å¯èƒ½ä¸æ­¢ä¸€ç§
 			StringBuffer sb = new StringBuffer();
 			sb.append(i);
 			for(int a = 0;a<materials.length;a++){
 				String[] unit = materials[a].split("-");
-				if(unit[0].equals("d")){					//Èç¹ûÔ­²ÄÁÏÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				if(unit[0].equals("d")){					//å¦‚æœåŸææ–™æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					PropDao propDao = new PropDao();
 					PropVO propvo = propDao.getById(Integer.valueOf(unit[2]));
 					sb.append("-");
 					sb.append(unit[3]).append("-");
 					sb.append(propvo.getPropName());
 					
-				}else if(unit[0].equals("z")){				//Èç¹ûÔ­²ÄÁÏÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+				}else if(unit[0].equals("z")){				//å¦‚æœåŸææ–™æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 					sb.append("-");
 					sb.append(unit[3]).append("-");
-					if(unit[1].equals("1")){				//1ÊÇ×°±¸£¬2ÊÇÎäÆ÷£¬3ÊÇÊ×ÊÎ
+					if(unit[1].equals("1")){				//1æ˜¯è£…å¤‡ï¼Œ2æ˜¯æ­¦å™¨ï¼Œ3æ˜¯é¦–é¥°
 						AccouteDao aDao = new AccouteDao();
 						AccouteVO avo = aDao.getById(Integer.valueOf(unit[2]));
 						sb.append(avo.getAccName());					
@@ -137,18 +137,18 @@ public class ExchangeService
 						ArmVO avo = aDao.getById(Integer.valueOf(unit[2]));
 						sb.append(avo.getArmName());
 					}
-				}else if(unit[0].equals("j")){		//Èç¹ûÔ­²ÄÁÏÊÇ½ğÇ®µÄ´¦ÀíÇé¿ö
+				}else if(unit[0].equals("j")){		//å¦‚æœåŸææ–™æ˜¯é‡‘é’±çš„å¤„ç†æƒ…å†µ
 					sb.append("-").append(unit[1]);
-					sb.append("-").append("ÎÄ");
-				}else if(unit[0].equals("y")){		//Èç¹ûÔ­²ÄÁÏÊÇ¾­ÑéµÄ´¦ÀíÇé¿ö
+					sb.append("-").append("æ–‡");
+				}else if(unit[0].equals("y")){		//å¦‚æœåŸææ–™æ˜¯ç»éªŒçš„å¤„ç†æƒ…å†µ
 					sb.append("-").append(unit[1]);
-					sb.append("-").append("¾­Ñé");
-				}else if(unit[0].equals("s")){		//Èç¹ûÔ­²ÄÁÏÊÇÉùÍûµÄ´¦ÀíÇé¿ö
+					sb.append("-").append("ç»éªŒ");
+				}else if(unit[0].equals("s")){		//å¦‚æœåŸææ–™æ˜¯å£°æœ›çš„å¤„ç†æƒ…å†µ
 					sb.append("-").append(unit[1]);
-					sb.append("-").append("ÉùÍû");
+					sb.append("-").append("å£°æœ›");
 				}
 			}
-				logger.info("iµÄvalue: "+i+" Ô­²ÄÁÏ×°Èë×Ö¶Î"+sb.toString());
+				logger.info("içš„value: "+i+" åŸææ–™è£…å…¥å­—æ®µ"+sb.toString());
 				list.add(sb.toString());
 			}
 			return list;
@@ -156,14 +156,14 @@ public class ExchangeService
 	 */
 	
 	/**
-	 * »ñµÃ¶Ò»»Æ·µÄÏÔÊ¾×Ö·û´®
+	 * è·å¾—å…‘æ¢å“çš„æ˜¾ç¤ºå­—ç¬¦ä¸²
 	 * @param vo	
 	 * @return
 	 */
 	public List<String> getAimChangeList(OperateMenuVO vo) {
 		List<String> list = null;
-		String operate = vo.getMenuOperate2();				//¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate.split(";");			//¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate = vo.getMenuOperate2();				//å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate.split(";");			//å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if(reChange == null){
 			return list;
 		}
@@ -171,40 +171,40 @@ public class ExchangeService
 		int length = reChange.length;
 		for(int i=0;i<length;i++){	
 			StringBuffer sb = new StringBuffer();
-			String[] materials = reChange[i].split(",");	//Ã¿¸ö¶Ò»»µÄ¶Ò»»Æ·¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(",");	//æ¯ä¸ªå…‘æ¢çš„å…‘æ¢å“å¯èƒ½ä¸æ­¢ä¸€ç§
 			
-			for(int a = 0;a<materials.length;a++) {			//¶ÔÃ¿¸ö¶Ò»»Æ·½øĞĞ²»Í¬µÄ´¦Àí
+			for(int a = 0;a<materials.length;a++) {			//å¯¹æ¯ä¸ªå…‘æ¢å“è¿›è¡Œä¸åŒçš„å¤„ç†
 			String[] unit = materials[a].split("-");		
-			if(unit[0].equals("z")){						//Èç¹û¶Ò»»Æ·ÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+			if(unit[0].equals("z")){						//å¦‚æœå…‘æ¢å“æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 				int equip_id = Integer.valueOf(unit[1]);
 				GameEquip equip = EquipCache.getById(equip_id);
 				sb.append(equip.getName());
-				//sb.append("¡Á").append(unit[2]);
-			}else if(unit[0].equals("d")){				//Èç¹û¶Ò»»Æ·ÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				//sb.append("Ã—").append(unit[2]);
+			}else if(unit[0].equals("d")){				//å¦‚æœå…‘æ¢å“æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 				PropVO propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
 				propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
 				sb.append(propvo.getPropName());
-				//sb.append("¡Á").append(unit[3]);
-			}else if(unit[0].equals("j")){				//Èç¹û¶Ò»»Æ·ÊÇ½ğÇ®µÄ´¦ÀíÇé¿ö
+				//sb.append("Ã—").append(unit[3]);
+			}else if(unit[0].equals("j")){				//å¦‚æœå…‘æ¢å“æ˜¯é‡‘é’±çš„å¤„ç†æƒ…å†µ
 				sb.append(MoneyUtil.changeCopperToStr(unit[1]));
 				
-			}else if(unit[0].equals("y")){				//Èç¹û¶Ò»»Æ·ÊÇ¾­ÑéµÄ´¦ÀíÇé¿ö
-				sb.append(unit[1]).append("¾­Ñé");
+			}else if(unit[0].equals("y")){				//å¦‚æœå…‘æ¢å“æ˜¯ç»éªŒçš„å¤„ç†æƒ…å†µ
+				sb.append(unit[1]).append("ç»éªŒ");
 				
-			}else if(unit[0].equals("s")){				//Èç¹û¶Ò»»Æ·ÊÇÉùÍûµÄ´¦ÀíÇé¿ö		
+			}else if(unit[0].equals("s")){				//å¦‚æœå…‘æ¢å“æ˜¯å£°æœ›çš„å¤„ç†æƒ…å†µ		
 				Integer cid=Integer.parseInt(unit[1]);
 				CreaditService service=new CreditProce();
 				PlayerCreditVO pcv=service.getPcvDisplay(cid);
 				if( pcv==null )
 				{
-					DataErrorLog.debugData("¶Ò»»²Ëµ¥Êı¾İ´íÎó£¬ÎŞ¸ÃÉùÍû£¬cid="+cid);
+					DataErrorLog.debugData("å…‘æ¢èœå•æ•°æ®é”™è¯¯ï¼Œæ— è¯¥å£°æœ›ï¼Œcid="+cid);
 				}
 				sb.append(pcv.getCreditname());
-				sb.append("¡Á").append(unit[2]);
-			}else if(unit[0].equals("r")){				//Èç¹û¶Ò»»Æ·ÊÇÈÙÓşµÄ´¦ÀíÇé¿ö		
+				sb.append("Ã—").append(unit[2]);
+			}else if(unit[0].equals("r")){				//å¦‚æœå…‘æ¢å“æ˜¯è£èª‰çš„å¤„ç†æƒ…å†µ		
 				sb.append(unit[1]);
-				sb.append("ÈÙÓş");
-			}else if(unit[0].equals("yb")){				//Èç¹û¶Ò»»Æ·ÊÇÈÙÓşµÄ´¦ÀíÇé¿ö		
+				sb.append("è£èª‰");
+			}else if(unit[0].equals("yb")){				//å¦‚æœå…‘æ¢å“æ˜¯è£èª‰çš„å¤„ç†æƒ…å†µ		
 				sb.append(unit[1]);
 				sb.append(GameConfig.getYuanbaoName());
 			}
@@ -212,13 +212,13 @@ public class ExchangeService
 				sb.append("-");
 			}
 			}
-			logger.info("iµÄvalue: "+i+" ¶Ò»»Æ·×°Èë×Ö¶Î"+sb.toString());
+			logger.info("içš„value: "+i+" å…‘æ¢å“è£…å…¥å­—æ®µ"+sb.toString());
 			list.add(sb.toString());
 			}
 		return list;
 	}
 			/*String[] aa = reChange[i].split("-");
-			if(aa[0].equals("d")){				//Èç¹ûÔ­²ÄÁÏÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+			if(aa[0].equals("d")){				//å¦‚æœåŸææ–™æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 				//PropDao propDao = new PropDao();
 				PropVO propvo = propDao.getById(Integer.valueOf(aa[2]));
 				StringBuffer sb = new StringBuffer();
@@ -230,11 +230,11 @@ public class ExchangeService
 				String[] bb = reChange2[i].split("-");
 				sb.append(bb[3]).append("-");
 				*  /
-				if(bb[0].equals("d")){				//Èç¹û±»¶Ò»»ÎïÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				if(bb[0].equals("d")){				//å¦‚æœè¢«å…‘æ¢ç‰©æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					propvo = propDao.getById(Integer.valueOf(bb[2]));
 					sb.append(propvo.getPropName());
-				}else if(bb[0].equals("z")){		//Èç¹û±»¶Ò»»ÎïÊÇ×°±¸µÄ´¦ÀíÇé¿ö
-					if(bb[1].equals("1")){			//1ÊÇ×°±¸£¬2ÊÇÎäÆ÷£¬3ÊÇÊ×ÊÎ
+				}else if(bb[0].equals("z")){		//å¦‚æœè¢«å…‘æ¢ç‰©æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
+					if(bb[1].equals("1")){			//1æ˜¯è£…å¤‡ï¼Œ2æ˜¯æ­¦å™¨ï¼Œ3æ˜¯é¦–é¥°
 						AccouteDao aDao = new AccouteDao();
 						AccouteVO avo = aDao.getById(Integer.valueOf(bb[2]));
 						sb.append(avo.getAccName());					
@@ -248,13 +248,13 @@ public class ExchangeService
 						sb.append(avo.getArmName());
 					}
 				}
-				logger.info("iµÄvalue: "+i+" µÀ¾ßµÄ×°Èë×Ö¶Î"+sb.toString());
+				logger.info("içš„value: "+i+" é“å…·çš„è£…å…¥å­—æ®µ"+sb.toString());
 				list.add(sb.toString());
-			}else if(aa[0].equals("z")){		//Èç¹ûÔ­²ÄÁÏÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+			}else if(aa[0].equals("z")){		//å¦‚æœåŸææ–™æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 				StringBuffer sb = new StringBuffer();
 				sb.append(i).append("-");
 				sb.append(aa[3]).append("-");
-				if(aa[1].equals("1")){			//1ÊÇ×°±¸£¬2ÊÇÎäÆ÷£¬3ÊÇÊ×ÊÎ
+				if(aa[1].equals("1")){			//1æ˜¯è£…å¤‡ï¼Œ2æ˜¯æ­¦å™¨ï¼Œ3æ˜¯é¦–é¥°
 					AccouteDao aDao = new AccouteDao();
 					AccouteVO avo = aDao.getById(Integer.valueOf(aa[2]));
 					sb.append(avo.getAccName()).append("-");					
@@ -271,12 +271,12 @@ public class ExchangeService
 				sb.append(bb[3]).append("-");
 				
 			
-				if(bb[0].equals("d")){						//Èç¹û±»¶Ò»»ÎïÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				if(bb[0].equals("d")){						//å¦‚æœè¢«å…‘æ¢ç‰©æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					PropDao propDao = new PropDao();
 					PropVO propvo = propDao.getById(Integer.valueOf(bb[2]));
 					sb.append(propvo.getPropName());
-				}else if(bb[0].equals("z")){				//Èç¹û±»¶Ò»»ÎïÊÇ×°±¸µÄ´¦ÀíÇé¿ö
-					if(bb[1].equals("1")){			//1ÊÇ×°±¸£¬2ÊÇÎäÆ÷£¬3ÊÇÊ×ÊÎ
+				}else if(bb[0].equals("z")){				//å¦‚æœè¢«å…‘æ¢ç‰©æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
+					if(bb[1].equals("1")){			//1æ˜¯è£…å¤‡ï¼Œ2æ˜¯æ­¦å™¨ï¼Œ3æ˜¯é¦–é¥°
 						AccouteDao aDao = new AccouteDao();
 						AccouteVO avo = aDao.getById(Integer.valueOf(bb[2]));
 						sb.append(avo.getAccName());					
@@ -290,19 +290,19 @@ public class ExchangeService
 						sb.append(avo.getArmName());
 					}
 				}
-				logger.info("iµÄvalue: "+i+" ×°±¸µÄ×°Èë×Ö¶Î"+sb.toString());
+				logger.info("içš„value: "+i+" è£…å¤‡çš„è£…å…¥å­—æ®µ"+sb.toString());
 				list.add(sb.toString());
 			}*/
 		
 
 	/*
-	 * ÅĞ¶Ï¸öÈËµÄÔ­²ÄÁÏÊÇ·ñ×ã¹»
-	 * ÏÂÃæ¶ÔÔ­²ÄÁÏÊÇµÀ¾ßºÍÊÇ×°±¸µÄÇé¿ö
-	 * ·Ö±ğ½øĞĞÁËÅĞ¶Ï
-	 * @param pPk ¸öÈË½ÇÉ«id
-	 * @param address ËùÒª¶Ò»»Ô­²ÄÁÏÔÚËùÓĞÔ´²ÄÁÏµÄÎ»ÖÃ£¬´Ó0¿ªÊ¼¼ÆÊı
-	 * @param menu_id Ä¿Â¼id
-	 * @return Èç¹û³É¹¦·µ»Ø1£¬·ñÔò·µ»Ø-1.
+	 * åˆ¤æ–­ä¸ªäººçš„åŸææ–™æ˜¯å¦è¶³å¤Ÿ
+	 * ä¸‹é¢å¯¹åŸææ–™æ˜¯é“å…·å’Œæ˜¯è£…å¤‡çš„æƒ…å†µ
+	 * åˆ†åˆ«è¿›è¡Œäº†åˆ¤æ–­
+	 * @param pPk ä¸ªäººè§’è‰²id
+	 * @param address æ‰€è¦å…‘æ¢åŸææ–™åœ¨æ‰€æœ‰æºææ–™çš„ä½ç½®ï¼Œä»0å¼€å§‹è®¡æ•°
+	 * @param menu_id ç›®å½•id
+	 * @return å¦‚æœæˆåŠŸè¿”å›1ï¼Œå¦åˆ™è¿”å›-1.
 	 */
 	public String getPPkHasGoods(String pPk, String address,OperateMenuVO vo,int exchange_num)
 	{
@@ -310,10 +310,10 @@ public class ExchangeService
 		
 		int i = 1;
 		String sb = "";
-		String[] articles = vo.getMenuOperate1().split(";");	//ËùÓĞÔ­²ÄÁÏµÄ×Ö·û´®
+		String[] articles = vo.getMenuOperate1().split(";");	//æ‰€æœ‰åŸææ–™çš„å­—ç¬¦ä¸²
 		
-		String article = articles[Integer.valueOf(address)];	//ËùÒª¶Ò»»Ô­²ÄÁÏµÄ×Ö·û´®
-		logger.info("Ô­²ÄÁÏµÄarticle:"+article);
+		String article = articles[Integer.valueOf(address)];	//æ‰€è¦å…‘æ¢åŸææ–™çš„å­—ç¬¦ä¸²
+		logger.info("åŸææ–™çš„article:"+article);
 		
 		String[] recourses = article.split(",");	
 		for(int t= 0;t<recourses.length;t++) {
@@ -321,34 +321,34 @@ public class ExchangeService
 			String[] recourse = recourses[t].split("-");
 			
 			if(recourse[0].equals("d")){
-				int number = Integer.valueOf(recourse[3]);				//Ô­²ÄÁÏĞèÒªµÄ¸öÊı
-				number = exchange_num*number;							//¶Ò»»ËùĞèÒªµÄ¸öÊı
+				int number = Integer.valueOf(recourse[3]);				//åŸææ–™éœ€è¦çš„ä¸ªæ•°
+				number = exchange_num*number;							//å…‘æ¢æ‰€éœ€è¦çš„ä¸ªæ•°
 				PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-				int current_num = propGroupDao.getPropNumByByPropID(Integer.valueOf(pPk), Integer.valueOf(recourse[2]));//ÏÖÓĞµÄÊıÁ¿
+				int current_num = propGroupDao.getPropNumByByPropID(Integer.valueOf(pPk), Integer.valueOf(recourse[2]));//ç°æœ‰çš„æ•°é‡
 				if(current_num < number){
 					i = -1;
-					sb = "ÄúÉíÉÏµÄÔ­²ÄÁÏ²»×ã£¡";
+					sb = "æ‚¨èº«ä¸Šçš„åŸææ–™ä¸è¶³ï¼";
 				}
 			} else if(recourse[0].equals("z")){
-				int number = Integer.valueOf(recourse[2]);				//Ô­²ÄÁÏĞèÒªµÄ¸öÊı
-				number = exchange_num*number;							//¶Ò»»ËùĞèÒªµÄ¸öÊı
+				int number = Integer.valueOf(recourse[2]);				//åŸææ–™éœ€è¦çš„ä¸ªæ•°
+				number = exchange_num*number;							//å…‘æ¢æ‰€éœ€è¦çš„ä¸ªæ•°
 				
 				//int wrapClass = storageService.getGoodsClass(Integer.valueOf(recourse[2]),Integer.valueOf(recourse[1]));
-				//²éÕÒ×°±¸
+				//æŸ¥æ‰¾è£…å¤‡
 				//String wrapStr = recourse[2]+ ","+String.valueOf(wrapClass)+","+recourse[1];
-				//logger.info("×°±¸×Ö·û´®:"+wrapStr);
+				//logger.info("è£…å¤‡å­—ç¬¦ä¸²:"+wrapStr);
 				PlayerEquipDao equipDao = new PlayerEquipDao();
 				int equip_num = equipDao.getEquipNumByEquipId(Integer.valueOf(pPk),Integer.valueOf(recourse[2]),Integer.valueOf(recourse[1]));
 				if(equip_num < number){
 					i = -1;
-					sb = "ÄúÉíÉÏµÄÔ­²ÄÁÏ²»×ã£¡";
+					sb = "æ‚¨èº«ä¸Šçš„åŸææ–™ä¸è¶³ï¼";
 				}
 			} else if(recourse[0].equals("j")){
 				long copper = roleInfo.getBasicInfo().getCopper();
-				copper = exchange_num*copper;							//¶Ò»»ËùĞèÒªµÄ½ğÇ®
+				copper = exchange_num*copper;							//å…‘æ¢æ‰€éœ€è¦çš„é‡‘é’±
 				if(copper < Long.valueOf(recourse[1])){
 					i = -1;
-					sb = "ÄúÉíÉÏ½ğÇ®²»×ã£¡";
+					sb = "æ‚¨èº«ä¸Šé‡‘é’±ä¸è¶³ï¼";
 				}
 			} else if(recourse[0].equals("y")){
 				long experience = Long.valueOf(roleInfo.getBasicInfo().getCurExp());
@@ -356,7 +356,7 @@ public class ExchangeService
 				
 				if(experience < Integer.valueOf(recourse[1])){
 					i = -1;
-					sb = "ÄúµÄ¾­Ñé²»×ã£¡";
+					sb = "æ‚¨çš„ç»éªŒä¸è¶³ï¼";
 				}
 			}else if(recourse[0].equals("s")){
 				Integer cid=Integer.parseInt(recourse[1]);
@@ -366,22 +366,22 @@ public class ExchangeService
 				Integer res=service.checkHaveCondition(ppk, cid, ncount);
 				if(res==-1||res.equals(-1)){
 					i=-1;
-					sb="ÄúÔİÎŞ´ËÉùÍû!";
+					sb="æ‚¨æš‚æ— æ­¤å£°æœ›!";
 				}else if(res==0||res.equals(0)){
 					i=-1;
-					sb="ÄúµÄÉùÍû²»×ãÒÔ¶Ò»»´ËÎïÆ·!";
+					sb="æ‚¨çš„å£°æœ›ä¸è¶³ä»¥å…‘æ¢æ­¤ç‰©å“!";
 				}
-			}else if(recourse[0].equals("r")){					// °ïÅÉÈÙÓş´¦Àí
+			}else if(recourse[0].equals("r")){					// å¸®æ´¾è£èª‰å¤„ç†
 				Integer ncount=Integer.parseInt(recourse[1])*exchange_num;
 				Integer ppk=Integer.parseInt(pPk);
 				CreaditService service=new CreditProce();	
 				Integer res=service.checkHonorCondition(ppk,ncount);
 				if(res==-1||res.equals(-1)){
 					i=-1;
-					sb="ÄúÔİÎŞ´ËÈÙÓş!";
+					sb="æ‚¨æš‚æ— æ­¤è£èª‰!";
 				}else if(res==0||res.equals(0)){
 					i=-1;
-					sb="ÄúµÄÈÙÓşÖµ²»×ãÒÔ¶Ò»»´ËÎïÆ·!";
+					sb="æ‚¨çš„è£èª‰å€¼ä¸è¶³ä»¥å…‘æ¢æ­¤ç‰©å“!";
 				}
 			}
 		}
@@ -391,7 +391,7 @@ public class ExchangeService
 	}
 	
 	/**
-	 * ÏûºÄ²ÄÁÏ
+	 * æ¶ˆè€—ææ–™
 	 * @param roleEntity
 	 * @param needMaterialsStr
 	 * @return
@@ -402,16 +402,16 @@ public class ExchangeService
 	}
 	
 	/**
-	 * ÏûºÄ²ÄÁÏ
+	 * æ¶ˆè€—ææ–™
 	 * @param roleEntity
-	 * @param needMaterialsStr                 ²ÄÁÏ×Ö·û´®
-	 * @param needGroupNum					   ĞèÒª²ÄÁÏµÄ×éÊı
+	 * @param needMaterialsStr                 ææ–™å­—ç¬¦ä¸²
+	 * @param needGroupNum					   éœ€è¦ææ–™çš„ç»„æ•°
 	 */
 	public String consumeMaterials(RoleEntity roleEntity,String needMaterialsStr,int needGroupNum)
 	{
 		if( roleEntity!=null || needMaterialsStr==null || needGroupNum<=0)
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		String[] need_material_str_list = needMaterialsStr.split(",");	
 		
@@ -419,39 +419,39 @@ public class ExchangeService
 		{
 			String[] temp = need_material_str.split("-");
 			
-			if(temp[0].equals("d")){								//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥µÀ¾ß
+			if(temp[0].equals("d")){								//ä»ç©å®¶èº«ä¸Šå‡å»é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.removeProps(roleEntity.getPPk(),Integer.valueOf(temp[2]),Integer.valueOf(temp[3])*needGroupNum,GameLogManager.R_EXCHANGE);
-			}else if(temp[0].equals("z")){							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥×°±¸
+			}else if(temp[0].equals("z")){							//ä»ç©å®¶èº«ä¸Šå‡å»è£…å¤‡
 				GoodsService goodsService = new GoodsService();
 				for(int a=0;a<Integer.parseInt(temp[2])*needGroupNum;a++){
 					goodsService.removeEquipByEquipID(roleEntity.getPPk(),Integer.parseInt(temp[1]));
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(Integer.valueOf(temp[2]), Integer.valueOf(temp[1]), Integer.valueOf(temp[2])*needGroupNum, StatisticsType.USED, StatisticsType.DUIHUAN,roleEntity.getPPk());
 				}
-			}else if(temp[0].equals("j")){							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥½ğÇ®
-				//¼à¿Ø
+			}else if(temp[0].equals("j")){							//ä»ç©å®¶èº«ä¸Šå‡å»é‡‘é’±
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordMoneyLog(roleEntity.getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", -Integer.valueOf(temp[1])*needGroupNum+"", "¶Ò»»Ê§È¥");
+				logService.recordMoneyLog(roleEntity.getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", -Integer.valueOf(temp[1])*needGroupNum+"", "å…‘æ¢å¤±å»");
 				roleEntity.getBasicInfo().addCopper(-Integer.valueOf(temp[1])*needGroupNum);
-				//Ö´ĞĞÍ³¼Æ
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, Integer.valueOf(temp[1])*needGroupNum, StatisticsType.USED, StatisticsType.DUIHUAN,roleEntity.getPPk());
 				
-			}else if(temp[0].equals("y")){							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥¾­Ñé
-				//¼à¿Ø
+			}else if(temp[0].equals("y")){							//ä»ç©å®¶èº«ä¸Šå‡å»ç»éªŒ
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordExpLog(roleEntity.getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCurExp(), Integer.parseInt(temp[1])*needGroupNum+"", "¶Ò»»¿Ûµô");
+				logService.recordExpLog(roleEntity.getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCurExp(), Integer.parseInt(temp[1])*needGroupNum+"", "å…‘æ¢æ‰£æ‰");
 				
 				roleEntity.getBasicInfo().updateAddCurExp(-Integer.parseInt(temp[1])*needGroupNum);
 				
-			} else if(temp[0].equals("s")) {							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥ÉùÍû
+			} else if(temp[0].equals("s")) {							//ä»ç©å®¶èº«ä¸Šå‡å»å£°æœ›
 				Integer cid=Integer.parseInt(temp[1]);
 				Integer ncount=Integer.parseInt(temp[2])*needGroupNum;
 				CreaditService service=new CreditProce();
 				service.subtractCredit(roleEntity.getPPk(), cid, ncount);
-			 } else if(temp[0].equals("r")) {						//¸øÍæ¼ÒÉíÉÏ¼õÈ¥°ïÅÉÈÙÓş
+			 } else if(temp[0].equals("r")) {						//ç»™ç©å®¶èº«ä¸Šå‡å»å¸®æ´¾è£èª‰
 				Integer ncount=Integer.parseInt(temp[1])*needGroupNum;
 				roleEntity.getBasicInfo().addFContribute(-ncount);
 			}	
@@ -460,7 +460,7 @@ public class ExchangeService
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ²ÄÁÏ
+	 * åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„ææ–™
 	 */
 	public String isEnoughMaterials( RoleEntity roleEntity,String needMaterialsStr)
 	{
@@ -468,17 +468,17 @@ public class ExchangeService
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ²ÄÁÏ
+	 * åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„ææ–™
 	 * @param roleEntity
-	 * @param needMaterialsStr                 ²ÄÁÏ×Ö·û´®
-	 * @param needGroupNum					   ĞèÒª²ÄÁÏµÄ×éÊı
+	 * @param needMaterialsStr                 ææ–™å­—ç¬¦ä¸²
+	 * @param needGroupNum					   éœ€è¦ææ–™çš„ç»„æ•°
 	 * @return
 	 */
 	public String isEnoughMaterials( RoleEntity roleEntity,String needMaterialsStr,int needGroupNum)
 	{
 		if( roleEntity!=null || needMaterialsStr==null || needGroupNum<=0)
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		String[] need_material_str_list = needMaterialsStr.split(",");	
 		
@@ -488,29 +488,29 @@ public class ExchangeService
 			
 			if(temp[0].equals("d"))
 			{
-				int number = Integer.valueOf(temp[3]);				//Ô­²ÄÁÏĞèÒªµÄ¸öÊı
-				number = needGroupNum*number;							//¶Ò»»ËùĞèÒªµÄ¸öÊı
+				int number = Integer.valueOf(temp[3]);				//åŸææ–™éœ€è¦çš„ä¸ªæ•°
+				number = needGroupNum*number;							//å…‘æ¢æ‰€éœ€è¦çš„ä¸ªæ•°
 				PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-				int current_num = propGroupDao.getPropNumByByPropID(roleEntity.getPPk(), Integer.valueOf(temp[2]));//ÏÖÓĞµÄÊıÁ¿
+				int current_num = propGroupDao.getPropNumByByPropID(roleEntity.getPPk(), Integer.valueOf(temp[2]));//ç°æœ‰çš„æ•°é‡
 				if(current_num < number){
-					return "ÄúÉíÉÏµÄ²ÄÁÏ²»×ã£¡";
+					return "æ‚¨èº«ä¸Šçš„ææ–™ä¸è¶³ï¼";
 				}
 			} 
 			else if(temp[0].equals("z"))
 			{
-				int number = Integer.valueOf(temp[2]);				//Ô­²ÄÁÏĞèÒªµÄ¸öÊı
-				number = needGroupNum*number;							//¶Ò»»ËùĞèÒªµÄ¸öÊı
+				int number = Integer.valueOf(temp[2]);				//åŸææ–™éœ€è¦çš„ä¸ªæ•°
+				number = needGroupNum*number;							//å…‘æ¢æ‰€éœ€è¦çš„ä¸ªæ•°
 				PlayerEquipDao equipDao = new PlayerEquipDao();
 				int equip_num = equipDao.getEquipNumByEquipId(roleEntity.getPPk(),Integer.valueOf(temp[2]),Integer.valueOf(temp[1]));
 				if(equip_num < number){
-					return "ÄúÉíÉÏµÄ²ÄÁÏ²»×ã£¡";
+					return "æ‚¨èº«ä¸Šçš„ææ–™ä¸è¶³ï¼";
 				}
 			} 
 			else if(temp[0].equals("j"))
 			{
 				if( roleEntity.getBasicInfo().isEnoughMoney(Integer.valueOf(temp[1])*needGroupNum)==false)
 				{
-					return "ÄúÉíÉÏµÄ²ÄÁÏ²»×ã£¡";
+					return "æ‚¨èº«ä¸Šçš„ææ–™ä¸è¶³ï¼";
 				}
 			} 
 			else if(temp[0].equals("y"))
@@ -518,7 +518,7 @@ public class ExchangeService
 				long experience = Long.valueOf(roleEntity.getBasicInfo().getCurExp());
 				experience = experience * needGroupNum;
 				if(experience < Integer.valueOf(temp[1])){
-					return "ÄúÉíÉÏµÄ²ÄÁÏ²»×ã£¡";
+					return "æ‚¨èº«ä¸Šçš„ææ–™ä¸è¶³ï¼";
 				}
 			}
 			else if(temp[0].equals("s"))
@@ -528,24 +528,24 @@ public class ExchangeService
 				CreaditService service=new CreditProce();
 				Integer res=service.checkHaveCondition(roleEntity.getPPk(), cid, need_num);
 				if(res==-1||res.equals(-1)){
-					return "ÄúÔİÎŞ´ËÉùÍû!";
+					return "æ‚¨æš‚æ— æ­¤å£°æœ›!";
 				}else if(res==0||res.equals(0)){
-					return "ÄúµÄÉùÍû²»×ãÒÔ¶Ò»»´ËÎïÆ·!";
+					return "æ‚¨çš„å£°æœ›ä¸è¶³ä»¥å…‘æ¢æ­¤ç‰©å“!";
 				}
 			}
 			else if(temp[0].equals("r"))
-			{					// °ïÅÉÈÙÓş´¦Àí
+			{					// å¸®æ´¾è£èª‰å¤„ç†
 				Integer need_num=Integer.parseInt(temp[1])*needGroupNum;
 				if( roleEntity.getBasicInfo().isEnoughFContribute(need_num)==false)
 				{
-					return "ÄúµÄÈÙÓşÖµ²»×ã!";
+					return "æ‚¨çš„è£èª‰å€¼ä¸è¶³!";
 				}
 			}
 		}
 		return null;
 	}
 	
-	//µÃµ½Ä³¸ö×Ö·ûÔÚ×Ö·û´®ÖĞ³öÏÖµÄ´ÎÊı
+	//å¾—åˆ°æŸä¸ªå­—ç¬¦åœ¨å­—ç¬¦ä¸²ä¸­å‡ºç°çš„æ¬¡æ•°
 	public int getAppearNumber(String supString,String subString){
 		int  cnt=0,start  =  0;
 		while(start!=supString.length()){
@@ -561,18 +561,18 @@ public class ExchangeService
 		return cnt;
 	}
 	
-	//¼ì²éÍæ¼ÒÊÇ·ñÓĞ×ã¹»µÄ°ü¹üÒÔ±ãÈİÄÉ¶Ò»»¹ıµÄÎïÆ·
+	//æ£€æŸ¥ç©å®¶æ˜¯å¦æœ‰è¶³å¤Ÿçš„åŒ…è£¹ä»¥ä¾¿å®¹çº³å…‘æ¢è¿‡çš„ç‰©å“
 	public String getHasWareSpare(String pPk,OperateMenuVO vo,String address,int exchange_num){
 		int i = 1;
 		String result = "";
 		
 		RoleEntity  roleInfo = RoleService.getRoleInfoById(pPk);
 		
-		int warespare = roleInfo.getBasicInfo().getWrapSpare();				//µÃµ½Íæ¼Ò°ü¹üÊ£Óà¿Õ¸ñÊı
+		int warespare = roleInfo.getBasicInfo().getWrapSpare();				//å¾—åˆ°ç©å®¶åŒ…è£¹å‰©ä½™ç©ºæ ¼æ•°
 		
-		String[] articles = vo.getMenuOperate2().split(";");	//ËùÓĞ¶Ò»»Æ·µÄ×Ö·û´®
-		String article = articles[Integer.valueOf(address)];	//ËùÒª¶Ò»»¶Ò»»Æ·µÄ×Ö·û´®
-		logger.info("¶Ò»»Æ·µÄarticle:"+article);
+		String[] articles = vo.getMenuOperate2().split(";");	//æ‰€æœ‰å…‘æ¢å“çš„å­—ç¬¦ä¸²
+		String article = articles[Integer.valueOf(address)];	//æ‰€è¦å…‘æ¢å…‘æ¢å“çš„å­—ç¬¦ä¸²
+		logger.info("å…‘æ¢å“çš„article:"+article);
 		
 		String[] recourses = article.split(",");	
 		for(int t= 0;t<recourses.length;t++) {
@@ -580,10 +580,10 @@ public class ExchangeService
 			String[] recourse = recourses[t].split("-");
 			if(recourse[0].equals("z")){
 				warespare = warespare -Integer.valueOf(recourse[3]) * exchange_num;
-				//ÉíÉÏ°ü¹ü¿Õ¼äĞ¡ÓÚËùÄÜ·ÅÈëµÄ¿Õ¼äÊ±
+				//èº«ä¸ŠåŒ…è£¹ç©ºé—´å°äºæ‰€èƒ½æ”¾å…¥çš„ç©ºé—´æ—¶
 				if(warespare < 0){
 					i = -1;
-					result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+					result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 				}
 			} else if(recourse[0].equals("d")){
 				PropVO propvo = PropCache.getPropById(Integer.valueOf(recourse[2]));
@@ -593,15 +593,15 @@ public class ExchangeService
 				//PropDao propDAO = new PropDao();
 					if(warespare < 0){
 						i = -1;
-						result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+						result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
     			}
 			}else if(recourse[0].equals("j")){
 			 	long partCopper = roleInfo.getBasicInfo().getCopper();
-			 	logger.info("ÉíÉÏµÄÇ®:"+partCopper+",¶Ò»»¸øµÄÇ®:"+Long.valueOf(recourse[1])*exchange_num);
+			 	logger.info("èº«ä¸Šçš„é’±:"+partCopper+",å…‘æ¢ç»™çš„é’±:"+Long.valueOf(recourse[1])*exchange_num);
 			 	
 			 	if(partCopper + Long.valueOf(recourse[1])*exchange_num > 1000000000){
 			 		i = -1;
-			 		result = "ÄúÒÑ¾­²»ÄÜĞ¯´ø¸ü¶àµÄÒøÁË£¡";
+			 		result = "æ‚¨å·²ç»ä¸èƒ½æºå¸¦æ›´å¤šçš„é“¶äº†ï¼";
 			 	}
 			}
 		}
@@ -611,20 +611,20 @@ public class ExchangeService
 	}
 	
 	/**
-	 *  ¶Ò»»ÎïÆ·
+	 *  å…‘æ¢ç‰©å“
 	 */
 	public String exchangeGoods(String pPk,OperateMenuVO vo,String address,int exchange_num){
 		StringBuffer resultWml = new StringBuffer();
-		String[] articles = vo.getMenuOperate1().split(";");	//ËùÓĞÔ­²ÄÁÏµÄ×Ö·û´®
-		String[] dharticles = vo.getMenuOperate2().split(";");	//ËùÓĞ¶Ò»»Æ·µÄ×Ö·û´®
+		String[] articles = vo.getMenuOperate1().split(";");	//æ‰€æœ‰åŸææ–™çš„å­—ç¬¦ä¸²
+		String[] dharticles = vo.getMenuOperate2().split(";");	//æ‰€æœ‰å…‘æ¢å“çš„å­—ç¬¦ä¸²
 		
-		String article = articles[Integer.valueOf(address)];	//ËùÒª¶Ò»»Ô­²ÄÁÏµÄ×Ö·û´®
-		String dharticle = dharticles[Integer.valueOf(address)];	//ËùÒª¶Ò»»¶Ò»»Æ·µÄ×Ö·û´®
+		String article = articles[Integer.valueOf(address)];	//æ‰€è¦å…‘æ¢åŸææ–™çš„å­—ç¬¦ä¸²
+		String dharticle = dharticles[Integer.valueOf(address)];	//æ‰€è¦å…‘æ¢å…‘æ¢å“çš„å­—ç¬¦ä¸²
 		
-		String outMaterials = getMaterialsFromWrap(pPk,article,exchange_num);				//´ÓÍæ¼ÒÉíÉÏÖĞÈ¥µô¶Ò»»µÄÔ­²ÄÁÏ
-		String getExchangeGoods = sendDuiHuanToWrap(pPk,dharticle,exchange_num);			//¸øÍæ¼Ò·¢·Å¶Ò»»Æ·
+		String outMaterials = getMaterialsFromWrap(pPk,article,exchange_num);				//ä»ç©å®¶èº«ä¸Šä¸­å»æ‰å…‘æ¢çš„åŸææ–™
+		String getExchangeGoods = sendDuiHuanToWrap(pPk,dharticle,exchange_num);			//ç»™ç©å®¶å‘æ”¾å…‘æ¢å“
 		
-		resultWml.append("¶Ò»»ÒÑ³É¹¦£¡");
+		resultWml.append("å…‘æ¢å·²æˆåŠŸï¼");
 		resultWml.append(outMaterials);
 		resultWml.append(getExchangeGoods);
 		
@@ -634,85 +634,85 @@ public class ExchangeService
 		return resultWml.toString();
 	}
 
-	//¸øÍæ¼Ò·¢·Å¶Ò»»Æ·
+	//ç»™ç©å®¶å‘æ”¾å…‘æ¢å“
 	private String sendDuiHuanToWrap(String pPk, String dharticle,int exchange_num)
 	{
 		if(dharticle.equals("0")){
-			logger.info("²»¸øÍæ¼Ò·¢·ÅÎïÆ·£¡");
+			logger.info("ä¸ç»™ç©å®¶å‘æ”¾ç‰©å“ï¼");
 			return "";
 		}
 		
 		RoleEntity  roleInfo = RoleService.getRoleInfoById(pPk);
 		
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("Äú»ñµÃÁË");
+		resultWml.append("æ‚¨è·å¾—äº†");
 		String[]  articles = dharticle.split(",");
 		for(int t=0;t<articles.length;t++){
 			String[] unit = articles[t].split("-");
-			if(unit[0].equals("d")){							//¸øÍæ¼ÒÉíÉÏÔö¼ÓµÀ¾ß
+			if(unit[0].equals("d")){							//ç»™ç©å®¶èº«ä¸Šå¢åŠ é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.putGoodsToWrap(Integer.valueOf(pPk),Integer.valueOf(unit[2]),Integer.valueOf(unit[1]),Integer.valueOf(unit[3])*exchange_num);
-				//Ö´ĞĞÍ³¼Æ
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(Integer.valueOf(unit[2]), StatisticsType.PROP, Integer.valueOf(unit[3])*exchange_num, StatisticsType.DEDAO, StatisticsType.DUIHUAN,Integer.parseInt(pPk));
 				
 				resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-				resultWml.append("¡Á").append(Integer.valueOf(unit[3])*exchange_num);
-			}else if(unit[0].equals("z")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó×°±¸
+				resultWml.append("Ã—").append(Integer.valueOf(unit[3])*exchange_num);
+			}else if(unit[0].equals("z")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ è£…å¤‡
 				GoodsService goodsService = new GoodsService();
-				for(int i = 0;i<Integer.valueOf(unit[3]);i++){	//Òª¸ø¼¸¸ö×°±¸¾Í¸ø¼¸´Î
+				for(int i = 0;i<Integer.valueOf(unit[3]);i++){	//è¦ç»™å‡ ä¸ªè£…å¤‡å°±ç»™å‡ æ¬¡
 					goodsService.putGoodsToWrap(Integer.valueOf(pPk),Integer.valueOf(unit[2]),Integer.valueOf(unit[1]),Integer.valueOf(unit[3])*exchange_num);
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(Integer.valueOf(unit[2]), Integer.valueOf(unit[1]), Integer.valueOf(unit[3])*exchange_num, StatisticsType.DEDAO, StatisticsType.DUIHUAN,Integer.parseInt(pPk));
 					
 				}
 				
 				resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-				resultWml.append("¡Á").append(Integer.valueOf(unit[3])*exchange_num);
-			}else if(unit[0].equals("j")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó½ğÇ®
+				resultWml.append("Ã—").append(Integer.valueOf(unit[3])*exchange_num);
+			}else if(unit[0].equals("j")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ é‡‘é’±
 				
-				//¼à¿Ø
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", Integer.valueOf(unit[1])*exchange_num+"", "¶Ò»»µÃµ½");
+				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", Integer.valueOf(unit[1])*exchange_num+"", "å…‘æ¢å¾—åˆ°");
 				
 				roleInfo.getBasicInfo().addCopper(Integer.valueOf(unit[1])*exchange_num);
-				//Ö´ĞĞÍ³¼Æ
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY,Integer.valueOf(unit[1])*exchange_num, StatisticsType.DEDAO, StatisticsType.DUIHUAN,Integer.parseInt(pPk));
 				
 				resultWml.append(MoneyUtil.changeCopperToStr(Integer.valueOf(unit[1])*exchange_num));
-			}else if(unit[0].equals("y")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó¾­Ñé
-				//¼à¿Ø
+			}else if(unit[0].equals("y")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ ç»éªŒ
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordExpLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCurExp(), Integer.parseInt(unit[1])*exchange_num+"", "¶Ò»»µÃµ½");
+				logService.recordExpLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCurExp(), Integer.parseInt(unit[1])*exchange_num+"", "å…‘æ¢å¾—åˆ°");
 				
 				roleInfo.getBasicInfo().updateAddCurExp(Integer.parseInt(unit[1])*exchange_num);
-				resultWml.append(Integer.valueOf(unit[1])*exchange_num+"¾­Ñé");
-			}else if(unit[0].equals("s")){						//¸øÍæ¼ÒÉíÉÏÔö¼ÓÉùÍû
+				resultWml.append(Integer.valueOf(unit[1])*exchange_num+"ç»éªŒ");
+			}else if(unit[0].equals("s")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ å£°æœ›
 				Integer ppk=Integer.parseInt(pPk);
 				Integer cid=Integer.parseInt(unit[1]);
 				Integer ncount=Integer.parseInt(unit[2])*exchange_num;
 				CreaditService service=new CreditProce();
 				service.addPlayerCredit(ppk, cid, ncount);
 				PlayerCreditVO pcv=service.getPcvDisplay(cid);
-				resultWml.append(pcv.getCreditname()).append("¡Á").append(ncount);
-			}else if(unit[0].equals("r")){						//¸øÍæ¼ÒÉíÉÏÔö¼ÓÈÙÓş
+				resultWml.append(pcv.getCreditname()).append("Ã—").append(ncount);
+			}else if(unit[0].equals("r")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ è£èª‰
 				Integer ppk=Integer.parseInt(pPk);
 				Integer ncount=Integer.parseInt(unit[1])*exchange_num;
 				CreaditService service=new CreditProce();
 				service.addPlayerHonor(ppk,ncount);
-				resultWml.append("ÈÙÓşÖµ").append("¡Á").append(ncount);											
-			}else if(unit[0].equals("yb")) {					//¸øÍæ¼ÒÉíÉÏÔö¼ÓÔª±¦
-				logger.info("¸øÍæ¼ÒÉíÉÏÔö¼Ó"+GameConfig.getYuanbaoName()+"=");
-				logger.info("¶Ò»»Ê±µÄppk="+pPk);
+				resultWml.append("è£èª‰å€¼").append("Ã—").append(ncount);											
+			}else if(unit[0].equals("yb")) {					//ç»™ç©å®¶èº«ä¸Šå¢åŠ å…ƒå®
+				logger.info("ç»™ç©å®¶èº«ä¸Šå¢åŠ "+GameConfig.getYuanbaoName()+"=");
+				logger.info("å…‘æ¢æ—¶çš„ppk="+pPk);
 				int uPk = roleInfo.getUPk();
 				
-				resultWml.append(GameConfig.getYuanbaoName()).append("¡Á").append(Integer.parseInt(unit[1])*exchange_num);	
+				resultWml.append(GameConfig.getYuanbaoName()).append("Ã—").append(Integer.parseInt(unit[1])*exchange_num);	
 				
 				
 				EconomyService economyService = new EconomyService();
-				//¸øÍæ¼ÒÔö¼ÓÔª±¦
+				//ç»™ç©å®¶å¢åŠ å…ƒå®
 				economyService.addYuanbao(roleInfo.getBasicInfo().getPPk(),uPk, Integer.parseInt(unit[1])*exchange_num,StatisticsType.DUIHUAN);
 			}
 			
@@ -724,79 +724,79 @@ public class ExchangeService
 		return resultWml.toString();
 	}
 
-	//´ÓÍæ¼ÒÉíÉÏÖĞÈ¥µô¶Ò»»µÄÔ­²ÄÁÏ
+	//ä»ç©å®¶èº«ä¸Šä¸­å»æ‰å…‘æ¢çš„åŸææ–™
 	private String getMaterialsFromWrap(String pPk, String article,int exchange_num)
 	{
 		if(article.equals("0")){
-			logger.info("²»´ÓÍæ¼ÒÉíÉÏ¿Û³ıÈçºÎÎïÆ·£¡");
+			logger.info("ä¸ä»ç©å®¶èº«ä¸Šæ‰£é™¤å¦‚ä½•ç‰©å“ï¼");
 			return "";
 		}
 		
 		RoleEntity  roleInfo = RoleService.getRoleInfoById(pPk);
 		
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("ÄúÊ§È¥ÁË");
+		resultWml.append("æ‚¨å¤±å»äº†");
 		String[]  articles = article.split(",");
 		for(int t=0;t<articles.length;t++){
 			String[] unit = articles[t].split("-");
-			if(unit[0].equals("d")){								//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥µÀ¾ß
+			if(unit[0].equals("d")){								//ä»ç©å®¶èº«ä¸Šå‡å»é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.removeProps(Integer.valueOf(pPk),Integer.valueOf(unit[2]),Integer.valueOf(unit[3])*exchange_num,GameLogManager.R_EXCHANGE);
 				resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-				resultWml.append("¡Á").append(Integer.valueOf(unit[3])*exchange_num);
-			}else if(unit[0].equals("z")){							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥×°±¸
+				resultWml.append("Ã—").append(Integer.valueOf(unit[3])*exchange_num);
+			}else if(unit[0].equals("z")){							//ä»ç©å®¶èº«ä¸Šå‡å»è£…å¤‡
 				
 				GoodsService goodsService = new GoodsService();
 
 				for(int a=0;a<Integer.parseInt(unit[2])*exchange_num;a++){
 					goodsService.removeEquipByEquipID(Integer.parseInt(pPk),Integer.parseInt(unit[1]));
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(Integer.valueOf(unit[2]), Integer.valueOf(unit[1]), Integer.valueOf(unit[2])*exchange_num, StatisticsType.USED, StatisticsType.DUIHUAN,Integer.parseInt(pPk));
 
 				}
 				resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-				resultWml.append("¡Á").append(Integer.valueOf(unit[3])*exchange_num);
-			}else if(unit[0].equals("j")){							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥½ğÇ®
+				resultWml.append("Ã—").append(Integer.valueOf(unit[3])*exchange_num);
+			}else if(unit[0].equals("j")){							//ä»ç©å®¶èº«ä¸Šå‡å»é‡‘é’±
 				
-				//¼à¿Ø
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -Integer.valueOf(unit[1])*exchange_num+"", "¶Ò»»Ê§È¥");
+				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -Integer.valueOf(unit[1])*exchange_num+"", "å…‘æ¢å¤±å»");
 				
 				roleInfo.getBasicInfo().addCopper(-Integer.valueOf(unit[1])*exchange_num);
 				
-				//Ö´ĞĞÍ³¼Æ
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, Integer.valueOf(unit[1])*exchange_num, StatisticsType.USED, StatisticsType.DUIHUAN,Integer.parseInt(pPk));
 				
 				resultWml.append(MoneyUtil.changeCopperToStr(Integer.valueOf(unit[1])*exchange_num));
-			}else if(unit[0].equals("y")){							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥¾­Ñé
+			}else if(unit[0].equals("y")){							//ä»ç©å®¶èº«ä¸Šå‡å»ç»éªŒ
 //				PartInfoDao partInfoDao = new PartInfoDao();
 //				partInfoDao.updateExperience(Integer.valueOf(pPk),-Integer.valueOf(unit[1])*exchange_num);
 				
-				//¼à¿Ø
+				//ç›‘æ§
 				LogService logService = new LogService();
-				logService.recordExpLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCurExp(), Integer.parseInt(unit[1])*exchange_num+"", "¶Ò»»¿Ûµô");
+				logService.recordExpLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCurExp(), Integer.parseInt(unit[1])*exchange_num+"", "å…‘æ¢æ‰£æ‰");
 				
 				
 				
 				roleInfo.getBasicInfo().updateAddCurExp(-Integer.parseInt(unit[1])*exchange_num);
 				
-				resultWml.append(Integer.valueOf(unit[1])*exchange_num+"¾­Ñé");
-			} else if(unit[0].equals("s")) {							//´ÓÍæ¼ÒÉíÉÏ¼õÈ¥ÉùÍû
+				resultWml.append(Integer.valueOf(unit[1])*exchange_num+"ç»éªŒ");
+			} else if(unit[0].equals("s")) {							//ä»ç©å®¶èº«ä¸Šå‡å»å£°æœ›
 				Integer cid=Integer.parseInt(unit[1]);
 				Integer ncount=Integer.parseInt(unit[2])*exchange_num;
 				Integer ppk=Integer.parseInt(pPk);
 				CreaditService service=new CreditProce();
 				service.subtractCredit(ppk, cid, ncount);
 				PlayerCreditVO pcv=service.getPcvDisplay(cid);
-				resultWml.append(pcv.getCreditname()).append("¡Á").append(ncount);
-			 } else if(unit[0].equals("r")) {						//¸øÍæ¼ÒÉíÉÏ¼õÈ¥ÈÙÓş
+				resultWml.append(pcv.getCreditname()).append("Ã—").append(ncount);
+			 } else if(unit[0].equals("r")) {						//ç»™ç©å®¶èº«ä¸Šå‡å»è£èª‰
 				Integer ppk=Integer.parseInt(pPk);
 				Integer ncount=Integer.parseInt(unit[1])*exchange_num;
 				CreaditService service=new CreditProce();
 				service.subtractHonor(ppk,ncount);
-				resultWml.append("ÈÙÓş").append("¡Á").append(ncount);
+				resultWml.append("è£èª‰").append("Ã—").append(ncount);
 			}	
 			if(t+1 < articles.length)
 				resultWml.append(",");

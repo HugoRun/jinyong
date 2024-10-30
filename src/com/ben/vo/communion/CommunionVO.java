@@ -6,33 +6,33 @@ package com.ben.vo.communion;
 import java.util.HashMap;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 7:33:53 PM
  */
 public class CommunionVO
 {
-	/** ¹«¹²ÆµµÀid */
+	/** å…¬å…±é¢‘é“id */
 	private int cPk;
-	/** ·¢ËÍ½ÇÉ«id */
+	/** å‘é€è§’è‰²id */
 	private int pPk;
-	/** ·¢ËÍ½ÇÉ«Ãû³Æ */
+	/** å‘é€è§’è‰²åç§° */
 	private String pName;
-	/** ½ÓÊÕ½ÇÉ«id */
+	/** æ¥æ”¶è§’è‰²id */
 	private int pPkBy;
-	/** ½ÓÊÕ½ÇÉ«Ãû³Æ */
+	/** æ¥æ”¶è§’è‰²åç§° */
 	private String pNameBy;
-	/** ËùÊô°ï»á */
+	/** æ‰€å±å¸®ä¼š */
 	private int cBang;
-	/** ËùÊô×é¶Ó */
+	/** æ‰€å±ç»„é˜Ÿ */
 	private int cDui;
-	/** ËùÊôÕóÓª */
+	/** æ‰€å±é˜µè¥ */
 	private int cZhen;
-	/** ÁÄÌìÀàÈİ */
+	/** èŠå¤©ç±»å®¹ */
 	private String cTitle;
-	/** ÀàĞÍ */
+	/** ç±»å‹ */
 	private int cType;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getCPk()

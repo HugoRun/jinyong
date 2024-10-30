@@ -6,39 +6,39 @@ import com.ls.ben.dao.pkhite.PKHiteDao;
 import com.ls.ben.vo.pkhite.PKHiteVO;
 
 /**
- * ´¦ÀíÍæ¼Ò³ğºŞÁĞ±íµÄÀà
+ * å¤„ç†ç©å®¶ä»‡æ¨åˆ—è¡¨çš„ç±»
  * @author Thomas.lei
  */
 public class PKHiteService
 {
 	PKHiteDao pd=new PKHiteDao();
-	/** *****²é¿´ÊÇ·ñ´ËÍæ¼ÒÒÑ¾­ÓĞ³ğºŞ¼ÇÂ¼,Èç¹ûÓĞÔò·µ»Ø¼ÇÂ¼******* */
+	/** *****æŸ¥çœ‹æ˜¯å¦æ­¤ç©å®¶å·²ç»æœ‰ä»‡æ¨è®°å½•,å¦‚æœæœ‰åˆ™è¿”å›è®°å½•******* */
 	public PKHiteVO checkHiteInfo(int ppk,int enemyPpk)
 	{
 		return pd.checkIsHaveHiteRecord(ppk, enemyPpk);
 	}
-	/** ******¸øÍæ¼ÒÌí¼ÓÒ»¸öĞÂµÄ³ğºŞ¶ÔÏó********** */
+	/** ******ç»™ç©å®¶æ·»åŠ ä¸€ä¸ªæ–°çš„ä»‡æ¨å¯¹è±¡********** */
 	public void addEnemy(PKHiteVO pv)
 	{
 		pd.addEnemy(pv);
 	}
-	/** ******Íæ¼ÒÒÑ¾­ÓĞ³ğºŞ¶ÔÏóÔò¸üĞÂ³ğºŞµã******** */
+	/** ******ç©å®¶å·²ç»æœ‰ä»‡æ¨å¯¹è±¡åˆ™æ›´æ–°ä»‡æ¨ç‚¹******** */
 	public void updateHitePoint(PKHiteVO pv)
 	{
 		pd.updateHitePoint(pv);
 	}
-	/**********·ÖÒ³²éÑ¯Íæ¼ÒµÄ³ğºŞ±í************/
+	/**********åˆ†é¡µæŸ¥è¯¢ç©å®¶çš„ä»‡æ¨è¡¨************/
 	public List<PKHiteVO> getEnemys(int ppk,int index,int limit)
 	{
 		return pd.getEnemys(ppk, index, limit);
 	}
 
-	/*************µÃµ½¼ÇÂ¼×ÜÌõÊı**************/
+	/*************å¾—åˆ°è®°å½•æ€»æ¡æ•°**************/
 	public int getRecordNum(int ppk)
 	{
 		return pd.getRecordNum(ppk);
 	}
-	/********Íæ¼ÒÉ¾³ı½ÇÉ«µÄÊ±ºòÉ¾³ıËùÓĞµÄ³ğºŞĞÅÏ¢********/
+	/********ç©å®¶åˆ é™¤è§’è‰²çš„æ—¶å€™åˆ é™¤æ‰€æœ‰çš„ä»‡æ¨ä¿¡æ¯********/
 	public void removeHiteInfo(int ppk)
 	{
 		pd.removeHiteInfo(ppk);

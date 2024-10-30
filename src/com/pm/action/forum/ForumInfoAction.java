@@ -25,9 +25,9 @@ import com.pm.vo.forum.ForumBean;
 import com.pm.vo.forum.ForumClassBean;
 
 /**
- * ÓÃÓÚÂÛÌ³µÄÌû×Ó´¦Àí,Ö÷ÒªÊÇ°ßÖñ´¦ÀíÌû×ÓËùĞèÒªÓÃµ½µÄ·½·¨
+ * ç”¨äºè®ºå›çš„å¸–å­å¤„ç†,ä¸»è¦æ˜¯æ–‘ç«¹å¤„ç†å¸–å­æ‰€éœ€è¦ç”¨åˆ°çš„æ–¹æ³•
  * @version 1.0
- * @author ÕÅ¿¡¿¡
+ * @author å¼ ä¿Šä¿Š
  *
  */
 public class ForumInfoAction extends DispatchAction 
@@ -35,11 +35,11 @@ public class ForumInfoAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.action");
 	
 	
-	// ½øÈë¹ÜÀíÌû×ÓÒ³Ãæ
+	// è¿›å…¥ç®¡ç†å¸–å­é¡µé¢
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 				
-		//ÕâÊÇ»Øµ½°å¿éÊ±µÄÒ³Êı
+		//è¿™æ˜¯å›åˆ°æ¿å—æ—¶çš„é¡µæ•°
 		request.setAttribute("classPageNo", request.getParameter("classPageNo")+"");
 		
 		String page_id = request.getParameter("page_id");
@@ -61,17 +61,17 @@ public class ForumInfoAction extends DispatchAction
          	fb=fs.getByID(Integer.parseInt(page_id)); 
          	if(fb!=null)
       		{
-      			fs.updateNum(fb.getId(),"readNum");//¸üĞÂÔÄ¶Á´ÎÊı
+      			fs.updateNum(fb.getId(),"readNum");//æ›´æ–°é˜…è¯»æ¬¡æ•°
       		}
 			request.setAttribute("forumBean", fb);
       	}else {
-      		logger.info("ÎÄÕÂidÎª¿Õ£¡");
+      		logger.info("æ–‡ç« idä¸ºç©ºï¼");
       	}		
 		return mapping.findForward("contentView");
 	}
 	
 	
-	// ¹ÜÀíÌû×Ó
+	// ç®¡ç†å¸–å­
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -93,11 +93,11 @@ public class ForumInfoAction extends DispatchAction
 		
 		String hint = "";
 		if (!isManager) {
-			hint = "Äú²»ÊÇ¹ÜÀíÔ±!ÎŞÈ¨´¦ÀíÌû×Ó!";
+			hint = "æ‚¨ä¸æ˜¯ç®¡ç†å‘˜!æ— æƒå¤„ç†å¸–å­!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("hint");
 		}
-		// 1Îª½ûÖ¹·¢Ìû£¬2ÎªÉ¾Ìû£¬3ÎªÖÃ¶¥,4ÎªËøÌû
+		// 1ä¸ºç¦æ­¢å‘å¸–ï¼Œ2ä¸ºåˆ å¸–ï¼Œ3ä¸ºç½®é¡¶,4ä¸ºé”å¸–
 		if ( managerType.equals("1")) {
 			String pagePPk = request.getParameter("pagePPk");
 			try {
@@ -113,18 +113,18 @@ public class ForumInfoAction extends DispatchAction
 			}
 			
 		} else if ( managerType.equals("2")) {
-			// ´¦ÀíÉ¾ÌûÊÂÒË
+			// å¤„ç†åˆ å¸–äº‹å®œ
 			ForumInfoService forumInfoService = new ForumInfoService();
 			forumInfoService.deleteForum(page_id);
-			hint = "Ìû×ÓÒÑ¾­É¾³ı!";
+			hint = "å¸–å­å·²ç»åˆ é™¤!";
 			request.setAttribute("type", "delete");
 		}else if ( managerType.equals("3")) {
-			// ´¦ÀíÖÃ¶¥ÊÂÒË
+			// å¤„ç†ç½®é¡¶äº‹å®œ
 			ForumInfoService forumInfoService = new ForumInfoService();
 			hint = forumInfoService.zhiDing(page_id);
 			
 		}else if ( managerType.equals("4")) {
-			// ´¦ÀíËøÌûÊÂÒË
+			// å¤„ç†é”å¸–äº‹å®œ
 			ForumInfoService forumInfoService = new ForumInfoService();
 			hint = forumInfoService.lockForum(page_id);
 		}
@@ -133,7 +133,7 @@ public class ForumInfoAction extends DispatchAction
 		return mapping.findForward("hint");
 	}
 	
-	//  ½ûÖ¹·¢Ìû
+	//  ç¦æ­¢å‘å¸–
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -162,25 +162,25 @@ public class ForumInfoAction extends DispatchAction
 			forbid_time = Integer.parseInt(forbid_time_str);
 			
 		} catch (Exception e) {
-			hint = "ÄúÊäÈëµÄÊ±¼äÓĞÎó,ÇëÊäÈëÊı×Ö!";
+			hint = "æ‚¨è¾“å…¥çš„æ—¶é—´æœ‰è¯¯,è¯·è¾“å…¥æ•°å­—!";
 			request.setAttribute("hint", hint);	
 			return mapping.findForward("hint");
 		}
 		
 		if ( forbid_time <= 0 ) {
-			hint = "ÄúÊäÈëµÄÊ±¼äÓ¦¸Ã´óÓÚÁã!";
+			hint = "æ‚¨è¾“å…¥çš„æ—¶é—´åº”è¯¥å¤§äºé›¶!";
 			request.setAttribute("hint", hint);	
 			return mapping.findForward("hint");
 		}
 		
 		if ( forbid_time > 50000 ) {
-			hint = "ÄúÊäÈëµÄÊ±¼ä×îºÃ²»Òª´óÓÚÎåÍò·ÖÖÓ!";
+			hint = "æ‚¨è¾“å…¥çš„æ—¶é—´æœ€å¥½ä¸è¦å¤§äºäº”ä¸‡åˆ†é’Ÿ!";
 			request.setAttribute("hint", hint);	
 			return mapping.findForward("hint");
 		}
 		
 		if ( roleInfo.getBasicInfo().getPPk() == Integer.parseInt(pagePPk)) {
-			hint = "Çë²»Òª½ûÖ¹×Ô¼º!";
+			hint = "è¯·ä¸è¦ç¦æ­¢è‡ªå·±!";
 			request.setAttribute("hint", hint);	
 			return mapping.findForward("hint");
 		}

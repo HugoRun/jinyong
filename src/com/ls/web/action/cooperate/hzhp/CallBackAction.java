@@ -24,7 +24,7 @@ public class CallBackAction
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		logger.info("##########º¼ÖİÈÈµãÖ±½Ó»Øµ÷############");
+		logger.info("##########æ­å·çƒ­ç‚¹ç›´æ¥å›è°ƒ############");
 		//pay_type
 		String pay_type = request.getParameter("pay_type");
 		//pay_id
@@ -36,7 +36,7 @@ public class CallBackAction
 		//pay_time
 		String pay_time = request.getParameter("pay_time");
 		
-		//²éÑ¯ÊÇÊÇ·ñÓĞ¸Ã³äÖµID
+		//æŸ¥è¯¢æ˜¯æ˜¯å¦æœ‰è¯¥å……å€¼ID
 		UAccountRecordDao dao  = new UAccountRecordDao();
 		UAccountRecordVO vo = dao.getRecord(pay_id, Channel.AIR+"");
 		if(vo == null){
@@ -47,11 +47,11 @@ public class CallBackAction
 				LoginInfoDAO loginInfodao = new LoginInfoDAO();
 				loginInfoVO = loginInfodao.getUserInfoLoginName(user_id);
 				if(loginInfoVO == null){
-					//Ã»ÓĞ¸ÃÓÃ»§
+					//æ²¡æœ‰è¯¥ç”¨æˆ·
 					request.setAttribute("resultWml", "01");
 					return mapping.findForward("success");
 				}else{
-					//³äÖµ³É¹¦
+					//å……å€¼æˆåŠŸ
 					EconomyService es = new EconomyService();
 					es.addYuanbao(loginInfoVO.getUPk(), yuanbao);
 					es.addJifen(loginInfoVO.getUPk(), yuanbao*GameConfig.getJifenNum());
@@ -63,7 +63,7 @@ public class CallBackAction
 					uAccountRecordVO.setAccountState("sucess");
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(0, StatisticsType.RMB, Integer.parseInt(pay_money),
-							StatisticsType.DEDAO, "k½ğ", loginInfoVO.getUPk());// Í³¼ÆRMB
+							StatisticsType.DEDAO, "ké‡‘", loginInfoVO.getUPk());// ç»Ÿè®¡RMB
 					request.setAttribute("resultWml", "00");
 					return mapping.findForward("success");
 				}

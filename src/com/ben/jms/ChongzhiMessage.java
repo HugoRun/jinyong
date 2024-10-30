@@ -14,9 +14,9 @@ public class ChongzhiMessage implements Serializable
 	private String userid;
 	private String phone;
 	private int money;
-	private int shen;//ÉñÖİĞĞ
-	private int yi;//¿¥ÍøÒ»¿¨Í¨Ö§¸¶
-	private int zheng;//Ê¢´ó¿¨Ö§¸¶
+	private int shen;//ç¥å·è¡Œ
+	private int yi;//éªç½‘ä¸€å¡é€šæ”¯ä»˜
+	private int zheng;//ç››å¤§å¡æ”¯ä»˜
 	private String chong_time;
 	public ChongzhiMessage()
 	{

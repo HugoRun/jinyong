@@ -4,24 +4,24 @@
 package com.ls.ben.vo.map;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 10:57:25 AM
  */
 public class BareaVO {
-	/** ´óÇøÓò µØÓòid */
+	/** å¤§åŒºåŸŸ åœ°åŸŸid */
 	private int bareaID;
-	/** µØÓòÃû³Æ */
+	/** åœ°åŸŸåç§° */
 	private String bareaName;
-	/** ÖĞĞÄµã */
+	/** ä¸­å¿ƒç‚¹ */
 	private int bareaPoint;
-	/** µØÓò½éÉÜ */
+	/** åœ°åŸŸä»‹ç» */
 	private String bareaDisplay;
-	/**µØÓòÀàĞÍ1Ñı×åÖ÷³Ç2Î××åÖ÷³Ç0ÖĞÁ¢ÇøÓò**/
+	/**åœ°åŸŸç±»å‹1å¦–æ—ä¸»åŸ2å·«æ—ä¸»åŸ0ä¸­ç«‹åŒºåŸŸ**/
 	private int bareaType;
 
 	/**
-	 * µÃµ½³ÇÊĞµÄË°ÂÊ
+	 * å¾—åˆ°åŸå¸‚çš„ç¨ç‡
 	 * @return
 	 */
 	public int getTax()

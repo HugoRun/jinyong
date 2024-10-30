@@ -21,7 +21,7 @@ public class InstanceOutDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select * from instance_info ";
+			String sql = "SELECT * FROM instance_info ";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);

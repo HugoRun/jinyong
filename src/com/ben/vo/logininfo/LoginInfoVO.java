@@ -8,19 +8,19 @@ package com.ben.vo.logininfo;
  * 
  */
 public class LoginInfoVO {
-	/* ´´½¨ÈËÔ±ĞÅÏ¢ID */
+	/* åˆ›å»ºäººå‘˜ä¿¡æ¯ID */
 	private int uPk;
-	/** ¹ÜÀíÔ±µÇÂ¼Ãû */
+	/** ç®¡ç†å‘˜ç™»å½•å */
 	private String uName;
-	/** ¹ÜÀíÔ±µÇÂ¼ÃÜÂë */
+	/** ç®¡ç†å‘˜ç™»å½•å¯†ç  */
 	private String uPaw;
-	/** µÇÂ½×´Ì¬ 1ÎªµÇÂ½ 0 ÎªÎ´µÇÂ½ */
+	/** ç™»é™†çŠ¶æ€ 1ä¸ºç™»é™† 0 ä¸ºæœªç™»é™† */
 	private int loginState;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
-	/**¸¸ÇşµÀ*/
+	/**çˆ¶æ¸ é“*/
 	private String super_qudao;
-	/**×ÓÇşµÀ*/
+	/**å­æ¸ é“*/
 	private String qudao;
 	
 	public String getSuper_qudao()

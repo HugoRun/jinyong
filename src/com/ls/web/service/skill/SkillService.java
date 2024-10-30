@@ -30,9 +30,9 @@ import com.lw.dao.skill.Passskill;
 import com.lw.service.skill.SkillUpService;
 
 /**
- * ¹¦ÄÜ:Íæ¼Ò¼¼ÄÜ¹ÜÀí
+ * åŠŸèƒ½:ç©å®¶æŠ€èƒ½ç®¡ç†
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 1:36:22 PM
  */
@@ -42,41 +42,41 @@ public class SkillService
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ¼¼ÄÜ¹¥»÷npc
+	 * æŠ€èƒ½æ”»å‡»npc
 	 */
 	public int skillAttackNPC(Fighter player, List npcs)
 	{
 		int skillInjure = 0;
 		if (player == null || npcs == null || npcs.size() == 0)
 		{
-			logger.info("²ÎÊı´íÎó");
+			logger.info("å‚æ•°é”™è¯¯");
 			return skillInjure;
 		}
 		PlayerSkillVO playerSkill = player.getSkill();
 		if (playerSkill == null)
 		{
-			logger.info("Íæ¼ÒÃ»ÓĞ×°ÔØ¼¼ÄÜ");
+			logger.info("ç©å®¶æ²¡æœ‰è£…è½½æŠ€èƒ½");
 			return skillInjure;
 		}
 
-		boolean isUse = true;// ±íÊ¾´Ë¼¼ÄÜÊÇ·ñ¿ÉÓÃ
-		/** *******************ÅĞ¶Ï¼¼ÄÜÊÇ·ñÄÜÊ¹ÓÃ*********************** */
-		// Èç¹ûÏûºÄ¶ÔÏóÊÇmp
+		boolean isUse = true;// è¡¨ç¤ºæ­¤æŠ€èƒ½æ˜¯å¦å¯ç”¨
+		/** *******************åˆ¤æ–­æŠ€èƒ½æ˜¯å¦èƒ½ä½¿ç”¨*********************** */
+		// å¦‚æœæ¶ˆè€—å¯¹è±¡æ˜¯mp
 		if (playerSkill.getSkExpend().equals("MP"))
 		{
 			if (playerSkill.getSkUsecondition() > player.getPMp())
 			{
 				isUse = false;
-				logger.info("½ÇÉ«ÄÚÁ¦²»×ã£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ");
-				player.setSkillDisplay("ÄÚÁ¦²»×ã£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ<br/>");
+				logger.info("è§’è‰²å†…åŠ›ä¸è¶³ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½");
+				player.setSkillDisplay("å†…åŠ›ä¸è¶³ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½<br/>");
 			}
 		}
-		// ÅĞ¶ÏÀäÈ´Ê±¼äÊÇ·ñÒÑ¹ı
+		// åˆ¤æ–­å†·å´æ—¶é—´æ˜¯å¦å·²è¿‡
 
-		// Èç¹û²»¿ÉÓÃÔò²»×ö´¦Àí£¬·µ»Ø
+		// å¦‚æœä¸å¯ç”¨åˆ™ä¸åšå¤„ç†ï¼Œè¿”å›
 		if (!isUse)
 			return skillInjure;
-		/** *******************ÅĞ¶Ï¼¼ÄÜÊÇ·ñÄÜÊ¹ÓÃ½áÊø*********************** */
+		/** *******************åˆ¤æ–­æŠ€èƒ½æ˜¯å¦èƒ½ä½¿ç”¨ç»“æŸ*********************** */
 		NpcService npcService = new NpcService();
 
 		NpcFighter npc = (NpcFighter) npcs.get(0);
@@ -86,9 +86,9 @@ public class SkillService
 		int skillGj = playerSkill.getSkDamage();
 
 		int injure = 0;
-		if (playerSkill.getSkType() == 1) // ÈºÌå¹¥»÷
+		if (playerSkill.getSkType() == 1) // ç¾¤ä½“æ”»å‡»
 		{
-			logger.debug("½ÇÉ«·¢¶¯ÈºÌå¹¥»÷¼¼ÄÜ");
+			logger.debug("è§’è‰²å‘åŠ¨ç¾¤ä½“æ”»å‡»æŠ€èƒ½");
 			for (int i = 0; i < npcs.size(); i++)
 			{
 				npc = (NpcFighter) npcs.get(i);
@@ -107,9 +107,9 @@ public class SkillService
 			}
 		}
 		else
-		// µ¥Ìå¹¥»÷
+		// å•ä½“æ”»å‡»
 		{
-			logger.debug("½ÇÉ«·¢¶¯µ¥ÌåÌå¹¥»÷¼¼ÄÜ");
+			logger.debug("è§’è‰²å‘åŠ¨å•ä½“ä½“æ”»å‡»æŠ€èƒ½");
 			skillInjure = AttackService.normalInjureExpressions(skillGj, npc
 					.getNpcDefance(), player.getPGrade(), npc.getLevel());
 			npc.setPlayerInjure(skillInjure + wxInjure);
@@ -121,7 +121,7 @@ public class SkillService
 			}
 		}
 
-		// ¸üĞÂ¼¼ÄÜÊ¹ÓÃ×´Ì¬
+		// æ›´æ–°æŠ€èƒ½ä½¿ç”¨çŠ¶æ€
 		SkillService skillService = new SkillService();
 		skillService.useSkill(player.getPPk(), playerSkill);
 
@@ -135,7 +135,7 @@ public class SkillService
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ²¶×½³èÎïµÄ¼¼ÄÜ
+	 * åˆ¤æ–­æ˜¯å¦æœ‰æ•æ‰å® ç‰©çš„æŠ€èƒ½
 	 * 
 	 * @return
 	 */
@@ -146,7 +146,7 @@ public class SkillService
 	}
 
 	/**
-	 * Ñ§Ï°¼¼ÄÜ
+	 * å­¦ä¹ æŠ€èƒ½
 	 */
 	public String studySkill(int p_pk, int sk_id)
 	{
@@ -164,8 +164,8 @@ public class SkillService
 
 		playerSkill.setSkName(skill_name);
 		playerSkillDao.add(playerSkill);
-		// ĞŞ¸Ä¸Ã×Ö·û´® Í¨ÖªÁõÍş
-		result = "ÄúÑ§Ï°ÁË" + StringUtil.isoToGBK(skill_name);
+		// ä¿®æ”¹è¯¥å­—ç¬¦ä¸² é€šçŸ¥åˆ˜å¨
+		result = "æ‚¨å­¦ä¹ äº†" + StringUtil.isoToGBK(skill_name);
 
 		PlayerSkillVO playerSkillVO = null;
 		playerSkillVO = playerSkillDao.getBySkId(p_pk, sk_id);
@@ -173,10 +173,10 @@ public class SkillService
 		if (playerSkillVO.getSkType() == 2 || playerSkillVO.getSkType() == 3
 				|| playerSkillVO.getSkType() == 4)
 		{
-			result = "ÄúÁìÎòÁË¾øÑ§" + StringUtil.isoToGBK(skill_name);
+			result = "æ‚¨é¢†æ‚Ÿäº†ç»å­¦" + StringUtil.isoToGBK(skill_name);
 		}
 
-		// ½«Ñ§Ï°µÄ¼¼ÄÜ·ÅÈëÄÚ´æÖĞ
+		// å°†å­¦ä¹ çš„æŠ€èƒ½æ”¾å…¥å†…å­˜ä¸­
 		RoleSkillInfo roleSkillInfo = RoleCache.getByPpk(p_pk + "").getRoleSkillInfo();
 		roleSkillInfo.addSkillToPlayer(playerSkillVO);
 
@@ -184,11 +184,11 @@ public class SkillService
 	}
 
 	/**
-	 * ¸ù¾İs_pkµÃµ½Íæ¼Ò¼¼ÄÜ
+	 * æ ¹æ®s_pkå¾—åˆ°ç©å®¶æŠ€èƒ½
 	 */
 	public PlayerSkillVO getSkillOfPlayer(int p_pk, int sk_id)
 	{
-		// µÃµ½½ÇÉ«skillĞÅÏ¢
+		// å¾—åˆ°è§’è‰²skillä¿¡æ¯
 		PlayerSkillDao playerSkillDao = new PlayerSkillDao();
 		PlayerSkillVO playerSkill = playerSkillDao.getPlayerSkillInfo(p_pk,
 				sk_id);
@@ -196,10 +196,10 @@ public class SkillService
 		return playerSkill;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜ×éµÃµ½¼¼ÄÜĞÅÏ¢ */
+	/** æ ¹æ®æŠ€èƒ½ç»„å¾—åˆ°æŠ€èƒ½ä¿¡æ¯ */
 	public PlayerSkillVO getSkillOfPlayerByGroup(int p_pk, int sk_Group)
 	{
-		// µÃµ½½ÇÉ«skillĞÅÏ¢
+		// å¾—åˆ°è§’è‰²skillä¿¡æ¯
 		PlayerSkillDao playerSkillDao = new PlayerSkillDao();
 		PlayerSkillVO playerSkill = playerSkillDao.getSkillInfoByGroup(p_pk,
 				sk_Group);
@@ -208,13 +208,13 @@ public class SkillService
 	}
 
 	/**
-	 * ¼ÓÔØÍæ¼Ò¼¼ÄÜµÄÏêÏ¸ĞÅÏ¢
+	 * åŠ è½½ç©å®¶æŠ€èƒ½çš„è¯¦ç»†ä¿¡æ¯
 	 */
 	public void loadSkillDetail(PlayerSkillVO playerSkill)
 	{
 		if (playerSkill == null)
 		{
-			logger.info("²ÎÊıplayerSkillÎª¿Õ");
+			logger.info("å‚æ•°playerSkillä¸ºç©º");
 			return;
 		}
 		SkillDao skillDao = new SkillDao();
@@ -222,7 +222,7 @@ public class SkillService
 	}
 
 	/**
-	 * µÃµ½¼¼ÄÜÃû×Ö
+	 * å¾—åˆ°æŠ€èƒ½åå­—
 	 */
 	public String getSkillName(int sk_id)
 	{
@@ -232,63 +232,63 @@ public class SkillService
 	}
 
 	/**
-	 * Ê¹ÓÃ¼¼ÄÜ
+	 * ä½¿ç”¨æŠ€èƒ½
 	 */
 	public void useSkill(int p_pk, PlayerSkillVO skill)
 	{
-		// ½ÇÉ«¼¼ÄÜÉı¼¶
+		// è§’è‰²æŠ€èƒ½å‡çº§
 		SkillUpService skillLevelUp = new SkillUpService();
 		skillLevelUp.addSkillLevelUp(p_pk, skill);
 
 		skill.setSkSleight(skill.getSkSleight() + 1);
-		// ¸üĞÂ¼¼ÄÜÊ¹ÓÃ×´Ì¬
+		// æ›´æ–°æŠ€èƒ½ä½¿ç”¨çŠ¶æ€
 		// PlayerSkillDao playerSkillDao = new PlayerSkillDao();
 		// playerSkillDao.updateUsetimeAndSleight(p_pk, sk_id);
-		// ¸ù¾İ¸ÅÂÊÊÍ·Åbuff
+		// æ ¹æ®æ¦‚ç‡é‡Šæ”¾buff
 		// todo:
 	}
 
 	/**
-	 * ÅĞ¶Ï¼¼ÄÜÊÇ·ñ¿ÉÓÃ
+	 * åˆ¤æ–­æŠ€èƒ½æ˜¯å¦å¯ç”¨
 	 * 
 	 * @param player
 	 * @param playerSkill
-	 * @return ·µ»Ø¿Õ±íÊ¾¿ÉÒÔÊ¹ÓÃ
+	 * @return è¿”å›ç©ºè¡¨ç¤ºå¯ä»¥ä½¿ç”¨
 	 */
 	public String isUsabled(PartInfoVO player, PlayerSkillVO playerSkill)
 	{
 		String result = null;
 		if (playerSkill == null || player == null)
 		{
-			logger.info("²ÎÊıÎª¿Õ");
-			return "¼¼ÄÜ²»ÄÜÊ¹ÓÃ";
+			logger.info("å‚æ•°ä¸ºç©º");
+			return "æŠ€èƒ½ä¸èƒ½ä½¿ç”¨";
 		}
-		/*// ÅĞ¶Ï¼¼ÄÜÊ¹ÓÃÒªÇóµÄÎäÆ÷ÀàĞÍÊÇ·ñÓë×°±¸µÄÎäÆ÷Ïà·û
+		/*// åˆ¤æ–­æŠ€èƒ½ä½¿ç”¨è¦æ±‚çš„æ­¦å™¨ç±»å‹æ˜¯å¦ä¸è£…å¤‡çš„æ­¦å™¨ç›¸ç¬¦
 		EquipService equipService = new EquipService();
 		if (playerSkill.getSkWeapontype() != 0
 				&& playerSkill.getSkWeapontype() != equipService
 						.getArmType(player.getPPk()))
 		{
-			logger.info("ÎäÆ÷ÀàĞÍ²»·û£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ");
-			return result = "ÎäÆ÷ÀàĞÍ²»·û£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ";
+			logger.info("æ­¦å™¨ç±»å‹ä¸ç¬¦ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½");
+			return result = "æ­¦å™¨ç±»å‹ä¸ç¬¦ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½";
 		}*/
 
-		// Èç¹ûÏûºÄ¶ÔÏóÊÇmp
+		// å¦‚æœæ¶ˆè€—å¯¹è±¡æ˜¯mp
 		if (playerSkill.getSkExpend().equals("MP"))
 		{
-			// ÅĞ¶ÏÈç¹ûÊÇPK¼¼ÄÜÈçÏÈÌìÉñ¹¦£¬µ¯Ö¸ÉñÍ¨£¬½µÁúÊ®°ËÕÆ¶¼ÒªÂúÄÚÁ¦²Å¿ÉÒÔÊ¹ÓÃ
+			// åˆ¤æ–­å¦‚æœæ˜¯PKæŠ€èƒ½å¦‚å…ˆå¤©ç¥åŠŸï¼Œå¼¹æŒ‡ç¥é€šï¼Œé™é¾™åå…«æŒéƒ½è¦æ»¡å†…åŠ›æ‰å¯ä»¥ä½¿ç”¨
 			if(playerSkill.getSkType()==7||playerSkill.getSkType()==8||playerSkill.getSkType()==10)
 			{
 					if(player.getPMp()!=player.getPUpMp())
 					{
-						return result="¼¼ÄÜ"+playerSkill.getSkName()+"ÔÚÂúÄÚÁ¦Çé¿öÏÂ²Å¿ÉÒÔÊ¹ÓÃ´Ë¼¼ÄÜ,ÇëÏÈ²¹³äÄúµÄÄÚÁ¦";
+						return result="æŠ€èƒ½"+playerSkill.getSkName()+"åœ¨æ»¡å†…åŠ›æƒ…å†µä¸‹æ‰å¯ä»¥ä½¿ç”¨æ­¤æŠ€èƒ½,è¯·å…ˆè¡¥å……æ‚¨çš„å†…åŠ›";
 					}
-					//Èç¹ûÊÇµ¯Ö¸ÉñÍ¨»¹ÒªÅĞ¶ÏÊÇ·ñÊÇÂúÆøÑª£¬Èç¹ûÊÇÂúÆøÑª²Å¿ÉÒÔÊ¹ÓÃ´Ë¼¼ÄÜ
+					//å¦‚æœæ˜¯å¼¹æŒ‡ç¥é€šè¿˜è¦åˆ¤æ–­æ˜¯å¦æ˜¯æ»¡æ°”è¡€ï¼Œå¦‚æœæ˜¯æ»¡æ°”è¡€æ‰å¯ä»¥ä½¿ç”¨æ­¤æŠ€èƒ½
 					if(playerSkill.getSkType()==8)
 					{
 						if(player.getPHp()!=player.getPUpHp())
 						{
-						    return result="¼¼ÄÜ"+playerSkill.getSkName()+"ÔÚÂúÆøÑªÇé¿öÏÂ²Å¿ÉÒÔÊ¹ÓÃ´Ë¼¼ÄÜ,ÇëÏÈ²¹³äÄúµÄÆøÑª";
+						    return result="æŠ€èƒ½"+playerSkill.getSkName()+"åœ¨æ»¡æ°”è¡€æƒ…å†µä¸‹æ‰å¯ä»¥ä½¿ç”¨æ­¤æŠ€èƒ½,è¯·å…ˆè¡¥å……æ‚¨çš„æ°”è¡€";
 						}
 					}
 			}
@@ -296,19 +296,19 @@ public class SkillService
 			{
 				if((playerSkill.getSkUsecondition() > player.getPMp()))
 				{
-    				return result = "ÄÚÁ¦²»×ã£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ";
+    				return result = "å†…åŠ›ä¸è¶³ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½";
 				}
 			}
 		}
 
-		// Èç¹ûÏûºÄ¶ÔÏóÊÇhp
+		// å¦‚æœæ¶ˆè€—å¯¹è±¡æ˜¯hp
 		if (playerSkill.getSkExpend().equals("HP"))
 		{
 			if (playerSkill.getSkType() == 4)
 			{
 				if (getIsUsedSevenKill(player) == -1)
 				{
-					//"½ÇÉ«ÆøÑª²»×ã£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ");
+					//"è§’è‰²æ°”è¡€ä¸è¶³ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½");
 					return null;
 				}
 			}
@@ -316,28 +316,28 @@ public class SkillService
 			{
 				if (playerSkill.getSkUsecondition() > player.getPHp())
 				{
-					//logger.info("½ÇÉ«ÆøÑª²»×ã£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ");
-					return result = "ÆøÑª²»×ã£¬²»ÄÜÊ¹ÓÃ´Ë¼¼ÄÜ";
+					//logger.info("è§’è‰²æ°”è¡€ä¸è¶³ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½");
+					return result = "æ°”è¡€ä¸è¶³ï¼Œä¸èƒ½ä½¿ç”¨æ­¤æŠ€èƒ½";
 				}
 			}
 		}
 
-		// ÅĞ¶ÏÀäÈ´Ê±¼äÊÇ·ñÒÑ¹ı
+		// åˆ¤æ–­å†·å´æ—¶é—´æ˜¯å¦å·²è¿‡
 
 		if (!DateUtil.isOverdue(playerSkill.getSkUsetime(), playerSkill.getSkLqtime()))
 		{
-			return result = "ÀäÈ´Ê±¼ä»¹Ã»¹ı";
+			return result = "å†·å´æ—¶é—´è¿˜æ²¡è¿‡";
 		}
-		//ÅĞ¶Ï´Ë¼¼ÄÜÄÜ·ñ¶ÔNPC·¢¶¯¹¥»÷£¬ĞÂÔö¼ÓµÄÒ»ÑôÖ¸¾Í²»ÄÜ¶ÔNPC½øĞĞ¹¥»÷
+		//åˆ¤æ–­æ­¤æŠ€èƒ½èƒ½å¦å¯¹NPCå‘åŠ¨æ”»å‡»ï¼Œæ–°å¢åŠ çš„ä¸€é˜³æŒ‡å°±ä¸èƒ½å¯¹NPCè¿›è¡Œæ”»å‡»
 		if(isTowardsNPC(playerSkill))
 		{
-			//logger.info("´Ë¼¼ÄÜ²»ÄÜ¶ÔNPCÊ¹ÓÃ");
-			return result=playerSkill.getSkName()+" ÊôÓÚPK¼¼ÄÜ²»ÄÜ¶ÔNPC½øĞĞ¹¥»÷ÇëÑ¡ÔñÆäËû¼¼ÄÜ";
+			//logger.info("æ­¤æŠ€èƒ½ä¸èƒ½å¯¹NPCä½¿ç”¨");
+			return result=playerSkill.getSkName()+" å±äºPKæŠ€èƒ½ä¸èƒ½å¯¹NPCè¿›è¡Œæ”»å‡»è¯·é€‰æ‹©å…¶ä»–æŠ€èƒ½";
 		}
 		if (result == null)
 		{
 			// PlayerSkillDao playerSkillDao = new PlayerSkillDao();
-			// ¸üĞÂ¼¼ÄÜÊ¹ÓÃ×´Ì¬
+			// æ›´æ–°æŠ€èƒ½ä½¿ç”¨çŠ¶æ€
 			// playerSkillDao.updateUsetimeAndSleight(playerSkill.getPPk(),
 			// playerSkill.getSkId());
 		}
@@ -346,7 +346,7 @@ public class SkillService
 	}
 
 	/**
-	 * µÃµ½Íæ¼ÒËùÓĞ¼¼ÄÜ
+	 * å¾—åˆ°ç©å®¶æ‰€æœ‰æŠ€èƒ½
 	 */
 	public List<PlayerSkillVO> getSkills111(int p_pk)
 	{
@@ -356,7 +356,7 @@ public class SkillService
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ²¶×½³èÎïµÄ¼¼ÄÜ
+	 * åˆ¤æ–­æ˜¯å¦æœ‰æ•æ‰å® ç‰©çš„æŠ€èƒ½
 	 * 
 	 * @param p_pk
 	 */
@@ -367,7 +367,7 @@ public class SkillService
 	}
 
 	/**
-	 * µÃµ½ÏÂÒ»¼¶¼¼ÄÜÊìÁ·¶È
+	 * å¾—åˆ°ä¸‹ä¸€çº§æŠ€èƒ½ç†Ÿç»ƒåº¦
 	 */
 	public int getNextLevelSleight(int sk_id)
 	{
@@ -377,7 +377,7 @@ public class SkillService
 	}
 
 	/**
-	 * ¼ÓÔØÍæ¼ÒµÄ±»¶¯¼¼ÄÜĞ§¹û
+	 * åŠ è½½ç©å®¶çš„è¢«åŠ¨æŠ€èƒ½æ•ˆæœ
 	 * 
 	 * @param player
 	 */
@@ -393,17 +393,17 @@ public class SkillService
 		{
 
 			/*
-			 * //¼ÓÔØÍæ¼Ò³ÆºÅ¸½¼ÓĞ§¹ûÖµ
-			 *//** Ôö¼Ó¹¥»÷ */
+			 * //åŠ è½½ç©å®¶ç§°å·é™„åŠ æ•ˆæœå€¼
+			 *//** å¢åŠ æ”»å‡» */
 			/*
 			 * int hoAttack = 0;
-			 *//** Ôö¼Ó·ÀÓù */
+			 *//** å¢åŠ é˜²å¾¡ */
 			/*
 			 * int hoDef = 0;
-			 *//** Ôö¼ÓÆøÑª */
+			 *//** å¢åŠ æ°”è¡€ */
 			/*
 			 * int hoHp = 0;
-			 *//** Ôö¼Ó±©»÷ */
+			 *//** å¢åŠ æš´å‡» */
 			/*
 			 * double hoCrit = 0; HonourService honourService = new
 			 * HonourService(); RoleHonourVO roleHonourVO =
@@ -413,31 +413,31 @@ public class SkillService
 			 * hoCrit = (double)roleHonourVO.getHoCrit(); }
 			 */
 			DecimalFormat df = new DecimalFormat("0.00");
-			logger.info("Ôö¼ÓÍæ¼ÒµÄ±©»÷ÂÊ=" + passSkillInterface.getSkBjMultiple());
-			// Ôö¼ÓÍæ¼ÒµÄ±©»÷ÂÊ
+			logger.info("å¢åŠ ç©å®¶çš„æš´å‡»ç‡=" + passSkillInterface.getSkBjMultiple());
+			// å¢åŠ ç©å®¶çš„æš´å‡»ç‡
 			double d = player.getDropMultiple()
 					+ passSkillInterface.getSkBjMultiple();
 			String s = df.format(d);
 			player.setDropMultiple(Double.parseDouble(s));
 
-			// Ôö¼ÓÍæ¼ÒµÄ ¹¥»÷Á¦
+			// å¢åŠ ç©å®¶çš„ æ”»å‡»åŠ›
 			player.setPGj((int) (player.getPGj() + infovo.getPGj()
 					* (passSkillInterface.getSkGjMultiple())));
 			player.setPGj(player.getPGj() + passSkillInterface.getSkGjAdd());
 
-			// Ôö¼ÓÍæ¼ÒµÄ·ÀÓùÁ¦
+			// å¢åŠ ç©å®¶çš„é˜²å¾¡åŠ›
 			player.setPFy((int) (player.getPFy() + infovo.getPFy()
 					* (passSkillInterface.getSkFyMultiple())));
 			player.setPFy(player.getPFy() + passSkillInterface.getSkFyAdd());
 
-			// Ôö¼ÓÍæ¼ÒµÄmp
+			// å¢åŠ ç©å®¶çš„mp
 			player.setPUpMp((int) (player.getPUpMp() + infovo.getPUpMp()
 					* (passSkillInterface.getSkMpMultiple())));
 			player
 					.setPUpMp(player.getPUpMp()
 							+ passSkillInterface.getSkMpAdd());
 
-			// Ôö¼ÓÍæ¼ÒµÄhp
+			// å¢åŠ ç©å®¶çš„hp
 			player.setPUpHp((int) (player.getPUpHp() + infovo.getPUpHp()
 					* (passSkillInterface.getSkHpMultiple())));
 			player
@@ -449,7 +449,7 @@ public class SkillService
 	}
 
 	/**
-	 * ¼ÓÔØÍæ¼ÒµÄ±»¶¯¼¼ÄÜĞ§¹û
+	 * åŠ è½½ç©å®¶çš„è¢«åŠ¨æŠ€èƒ½æ•ˆæœ
 	 * @param player
 	 */
 	public void loadPassiveSkillEffectByCache(PartInfoVO player,RoleEntity role_info)
@@ -460,25 +460,25 @@ public class SkillService
 		{
 
 			DecimalFormat df = new DecimalFormat("0.00");
-			logger.info("Ôö¼ÓÍæ¼ÒµÄ±©»÷ÂÊ=" + passSkillInterface.getSkBjMultiple());
-			// Ôö¼ÓÍæ¼ÒµÄ±©»÷ÂÊ
+			logger.info("å¢åŠ ç©å®¶çš„æš´å‡»ç‡=" + passSkillInterface.getSkBjMultiple());
+			// å¢åŠ ç©å®¶çš„æš´å‡»ç‡
 			double d = player.getDropMultiple()+ passSkillInterface.getSkBjMultiple();
 			String s = df.format(d);
 			player.setDropMultiple(Double.parseDouble(s));
 
-			// Ôö¼ÓÍæ¼ÒµÄ ¹¥»÷Á¦
+			// å¢åŠ ç©å®¶çš„ æ”»å‡»åŠ›
 			player.setPGj((int) (player.getPGj() + role_info.getBasicInfo().getBasicGj()* (passSkillInterface.getSkGjMultiple())));
 			player.setPGj(player.getPGj() + passSkillInterface.getSkGjAdd());
 
-			// Ôö¼ÓÍæ¼ÒµÄ·ÀÓùÁ¦
+			// å¢åŠ ç©å®¶çš„é˜²å¾¡åŠ›
 			player.setPFy((int) (player.getPFy() + role_info.getBasicInfo().getBasicFy()* (passSkillInterface.getSkFyMultiple())));
 			player.setPFy(player.getPFy() + passSkillInterface.getSkFyAdd());
 
-			// Ôö¼ÓÍæ¼ÒµÄmp
+			// å¢åŠ ç©å®¶çš„mp
 			player.setPUpMp((int) (player.getPUpMp() + role_info.getBasicInfo().getUpMp()* (passSkillInterface.getSkMpMultiple())));
 			player.setPUpMp(player.getPUpMp()+ passSkillInterface.getSkMpAdd());
 
-			// Ôö¼ÓÍæ¼ÒµÄhp
+			// å¢åŠ ç©å®¶çš„hp
 			player.setPUpHp((int) (player.getPUpHp() + role_info.getBasicInfo().getUpHp()* (passSkillInterface.getSkHpMultiple())));
 			player.setPUpHp(player.getPUpHp()+ passSkillInterface.getSkHpAdd());
 
@@ -486,7 +486,7 @@ public class SkillService
 
 	}
 
-	// Ñ§Ï°¼¼ÄÜµÄÌõ¼şÅĞ¶Ï ·µ»Ø-2 ±íÊ¾ÒÑ¾­Ñ§¹ı¸Ã¼¼ÄÜ ·µ»Ø-1Îª¿ÉÒÔÑ§Ï° ·µ»Ø´óÓÚ0 ±íÊ¾Ìõ¼şID
+	// å­¦ä¹ æŠ€èƒ½çš„æ¡ä»¶åˆ¤æ–­ è¿”å›-2 è¡¨ç¤ºå·²ç»å­¦è¿‡è¯¥æŠ€èƒ½ è¿”å›-1ä¸ºå¯ä»¥å­¦ä¹  è¿”å›å¤§äº0 è¡¨ç¤ºæ¡ä»¶ID
 	private int studySkillTermsBySkill(int p_pk, String terms)
 	{
 		String[] terms_str = terms.split(",");
@@ -520,11 +520,11 @@ public class SkillService
 	}
 
 	/***************************************************************************
-	 * ·µ»ØµÄÖµ 0´ú±íÊìÁ·¶È²»¹» -1±íÊ¾¿ÉÒÔÑ§Ï° -2 ±íÊ¾¸Ã¼¼ÄÜÎª³õÊ¼¼¼ÄÜ
+	 * è¿”å›çš„å€¼ 0ä»£è¡¨ç†Ÿç»ƒåº¦ä¸å¤Ÿ -1è¡¨ç¤ºå¯ä»¥å­¦ä¹  -2 è¡¨ç¤ºè¯¥æŠ€èƒ½ä¸ºåˆå§‹æŠ€èƒ½
 	 **************************************************************************/
 	private int studySkillTermsBySleight(int p_pk, String terms)
 	{
-		String[] terms_str = terms.split(",");// 0Îª¼¼ÄÜ×é Ò»ÎªÊìÁ·¶È
+		String[] terms_str = terms.split(",");// 0ä¸ºæŠ€èƒ½ç»„ ä¸€ä¸ºç†Ÿç»ƒåº¦
 		PlayerSkillVO vo = getSkillOfPlayerByGroup(p_pk, Integer
 				.parseInt(terms_str[0].trim()));
 		if (vo == null)
@@ -550,39 +550,39 @@ public class SkillService
 		PlayerSkillDao playerSkillDao = new PlayerSkillDao();
 		RoleEntity roleEntity = RoleCache.getByPpk(p_pk);
 
-		// µÃµ½¸Ã¼¼ÄÜµÄĞÅÏ¢
+		// å¾—åˆ°è¯¥æŠ€èƒ½çš„ä¿¡æ¯
 		SkillVO skillvo = SkillCache.getById(sk_id);
 
-		// ¸üĞÂÊı¾İ¿âµÄĞÅÏ¢
+		// æ›´æ–°æ•°æ®åº“çš„ä¿¡æ¯
 		playerSkillDao.updatePassSkill(p_pk, skillvo, playerSkillVO.getSkId());
 
-		// ½«Ñ§Ï°µÄ¼¼ÄÜ·ÅÈëÄÚ´æÖĞ
+		// å°†å­¦ä¹ çš„æŠ€èƒ½æ”¾å…¥å†…å­˜ä¸­
 		PlayerSkillVO playerSkillVO_new = playerSkillDao.getById(playerSkillVO
 				.getSPk());
 		RoleSkillInfo roleSkillInfo = roleEntity.getRoleSkillInfo();
 		roleSkillInfo.addSkillToPlayer(playerSkillVO_new);
 
-		// ÖØĞÂ¼ÓÔØ¿ì½İ¼ü
+		// é‡æ–°åŠ è½½å¿«æ·é”®
 		RoleShortCutInfo roleShortCutInfo = roleEntity.getRoleShortCutInfo();
 		roleShortCutInfo.updateShortcutName(playerSkillVO.getSPk(), skillvo
 				.getSkName());
-		// ĞŞ¸Ä¸Ã×Ö·û´® Í¨ÖªÁõÍş
-		result = "ÄúÑ§Ï°ÁË" + StringUtil.isoToGBK(skillvo.getSkName());
+		// ä¿®æ”¹è¯¥å­—ç¬¦ä¸² é€šçŸ¥åˆ˜å¨
+		result = "æ‚¨å­¦ä¹ äº†" + StringUtil.isoToGBK(skillvo.getSkName());
 		return result;
 	}
 
 	/**
-	 * ´«ÈëÍæ¼ÒPPK ºÍ ÎïÆ·ĞÅÏ¢
+	 * ä¼ å…¥ç©å®¶PPK å’Œ ç‰©å“ä¿¡æ¯
 	 * 
-	 * ·µ»Ø 0±íÊ¾ÊìÁ·¶È²»¹» ·µ»Ø´óÓÚ0 ¼¼ÄÜID±íÊ¾ÓĞ¼¼ÄÜÌõ¼şµÄ¼¼ÄÜÃ»ÓĞÑ§Ï°
+	 * è¿”å› 0è¡¨ç¤ºç†Ÿç»ƒåº¦ä¸å¤Ÿ è¿”å›å¤§äº0 æŠ€èƒ½IDè¡¨ç¤ºæœ‰æŠ€èƒ½æ¡ä»¶çš„æŠ€èƒ½æ²¡æœ‰å­¦ä¹ 
 	 * 
 	 */
 	public String studySkillAll(int p_pk, PropVO prop,
 			PropUseEffect propUseEffect)
 	{
 		String display = "";
-		String terms_one = prop.getPropOperate2();// ¼¼ÄÜÏŞÖÆ
-		String terms_two = prop.getPropOperate1();// ÊìÁ·¶ÈºÍÆäËûÏŞÖÆ
+		String terms_one = prop.getPropOperate2();// æŠ€èƒ½é™åˆ¶
+		String terms_two = prop.getPropOperate1();// ç†Ÿç»ƒåº¦å’Œå…¶ä»–é™åˆ¶
 		String[] terms_str_one = terms_one.split(",");
 		String[] terms_str_two = terms_two.split(",");
 		int study_sk_id = Integer.parseInt(terms_str_one[0].trim());
@@ -590,31 +590,31 @@ public class SkillService
 		int retult_one = studySkillTermsBySkill(p_pk, terms_one);
 		if (retult_one > 0)
 		{
-			display = "Äú»¹Ã»ÓĞÑ§Ï°" + StringUtil.isoToGBK(getSkillName(retult_one));
+			display = "æ‚¨è¿˜æ²¡æœ‰å­¦ä¹ " + StringUtil.isoToGBK(getSkillName(retult_one));
 			return display;
 		}
 		else
 			if (retult_one == -2)
 			{
-				display = "ÄúÒÑ¾­Ñ§Ï°¹ı"
+				display = "æ‚¨å·²ç»å­¦ä¹ è¿‡"
 						+ StringUtil.isoToGBK(getSkillName(study_sk_id));
 				return display;
 			}
 		int retult_two = studySkillTermsBySleight(p_pk, terms_two);
-		// ÊìÁ·¶ÈÃ»´ïµ½ÒªÇó
+		// ç†Ÿç»ƒåº¦æ²¡è¾¾åˆ°è¦æ±‚
 		if (retult_two == 0)
 		{
-			return "ÄúµÄ" + StringUtil.isoToGBK(getSkillName(study_sk_id))
-					+ "µÄÊìÁ·¶ÈÃ»´ïµ½ÒªÇó!";
+			return "æ‚¨çš„" + StringUtil.isoToGBK(getSkillName(study_sk_id))
+					+ "çš„ç†Ÿç»ƒåº¦æ²¡è¾¾åˆ°è¦æ±‚!";
 		}
-		// ³õÊ¼¼¼ÄÜ
+		// åˆå§‹æŠ€èƒ½
 		else
 			if (retult_two == -2)
 			{
 				display = studySkill(p_pk, study_sk_id);
 				return display;
 			}
-		// ¼¼ÄÜÉı¼¶µÄ´¦Àí
+		// æŠ€èƒ½å‡çº§çš„å¤„ç†
 		PlayerSkillVO vo = getSkillOfPlayerByGroup(p_pk, Integer
 				.parseInt(terms_str_two[0].trim()));
 		display = updateSkill(p_pk, study_sk_id, vo);
@@ -622,12 +622,12 @@ public class SkillService
 	}
 	
 	
-	// ÆßÉËÈ­µÄµ¥¶À´¦Àí ·µ»ØµÄÊÇÊ¹ÓÃµÄÑªÁ¿ Èç¹ûÎª -1 ´ú±í²»ÄÜÊ¹ÓÃ
+	// ä¸ƒä¼¤æ‹³çš„å•ç‹¬å¤„ç† è¿”å›çš„æ˜¯ä½¿ç”¨çš„è¡€é‡ å¦‚æœä¸º -1 ä»£è¡¨ä¸èƒ½ä½¿ç”¨
 	public int getIsUsedSevenKill(PartInfoVO player)
 	{
 		int result = -1;
-		int usedHp_one = player.getPUpHp() / 10;// ×î´óÑªÁ¿µÄ°Ù·ÖÖ®Ê®
-		int usedHp_two = player.getPHp() * 7 / 10;// µ±Ç°ÑªÁ¿µÄ°Ù·ÖÖ®ÆßÊ®
+		int usedHp_one = player.getPUpHp() / 10;// æœ€å¤§è¡€é‡çš„ç™¾åˆ†ä¹‹å
+		int usedHp_two = player.getPHp() * 7 / 10;// å½“å‰è¡€é‡çš„ç™¾åˆ†ä¹‹ä¸ƒå
 		int hp = player.getPHp();
 		if (hp < usedHp_one)
 		{
@@ -646,7 +646,7 @@ public class SkillService
 		}
 	}
 	
-	//¸òó¡¹¦µÄµ¥¶À´¦Àí,·µ»ØµÄÊÇÊ¹ÓÃµÄÄÚÁ¦
+	//è›¤èŸ†åŠŸçš„å•ç‹¬å¤„ç†,è¿”å›çš„æ˜¯ä½¿ç”¨çš„å†…åŠ›
 /*	public int getIsUsedHaMaSkill(PartInfoVO player)
 	{
 		int result=-1;
@@ -663,7 +663,7 @@ public class SkillService
 		
 	}*/
 
-	/** µÃµ½±»¶¯¼¼ÄÜµÄÊôĞÔ */
+	/** å¾—åˆ°è¢«åŠ¨æŠ€èƒ½çš„å±æ€§ */
 	public PassSkillInterface getPassSkillPropertyInfo(int p_pk)
 	{
 		RoleService roleService = new RoleService();
@@ -680,7 +680,7 @@ public class SkillService
 	}
 
 	/**
-	 * µÃµ½Íæ¼ÒÉíÉÏËùÓĞÖ÷¶¯¹¥»÷µÄ¼¼ÄÜ
+	 * å¾—åˆ°ç©å®¶èº«ä¸Šæ‰€æœ‰ä¸»åŠ¨æ”»å‡»çš„æŠ€èƒ½
 	 */
 	public List<PlayerSkillVO> getAttackSkills(int p_pk)
 	{
@@ -698,7 +698,7 @@ public class SkillService
 	}
 
 	/**
-	 * Í¨¹ıÖ÷¼üµÃµ½Íæ¼Ò¼¼ÄÜĞÅÏ¢
+	 * é€šè¿‡ä¸»é”®å¾—åˆ°ç©å®¶æŠ€èƒ½ä¿¡æ¯
 	 */
 	public PlayerSkillVO getSkillInfo(int p_pk, int s_pk)
 	{
@@ -716,11 +716,11 @@ public class SkillService
 	
 	/**
 	 * 2010.4.16 PM
-	 * @author  À×ºÂÒÕ
+	 * @author  é›·éƒè‰º
 	 * @param PlayerSkillVO
 	 * @return boolean
-	 *   ĞÂÔö¼ÓµÄ¼¼ÄÜ¿ÉÄÜ²»ÄÜ¶ÔNPC½øĞĞ¹¥»÷£¬ÔÚ´Ë×öÍ³Ò»ÅĞ¶Ï
-	 *   Èç¹ûÔÙÔö¼ÓÁË²»ÄÜ¹¥»÷NPCµÄ¼¼ÄÜÔÚ´ËÌí¼Ócase¼´¿É
+	 *   æ–°å¢åŠ çš„æŠ€èƒ½å¯èƒ½ä¸èƒ½å¯¹NPCè¿›è¡Œæ”»å‡»ï¼Œåœ¨æ­¤åšç»Ÿä¸€åˆ¤æ–­
+	 *   å¦‚æœå†å¢åŠ äº†ä¸èƒ½æ”»å‡»NPCçš„æŠ€èƒ½åœ¨æ­¤æ·»åŠ caseå³å¯
 	 */
 	public boolean isTowardsNPC(PlayerSkillVO playerSkillVO)
 	{

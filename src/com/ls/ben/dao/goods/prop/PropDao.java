@@ -13,8 +13,8 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:µÀ¾ß±í
- * @author ÁõË§
+ * åŠŸèƒ½:é“å…·è¡¨
+ * @author åˆ˜å¸…
  * 6:16:15 PM
  */
 public class PropDao extends BasicDaoSupport<PropVO>
@@ -25,7 +25,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 
 	/**
-	 * Í¨¹ıidµÃµ½µÀ¾ßĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°é“å…·ä¿¡æ¯
 	 * @param propId
 	 * @return
 	 */
@@ -35,14 +35,14 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 	
 	/**
-	 * ¼ÓÔØËùÓĞµÀ¾ßĞÅÏ¢
+	 * åŠ è½½æ‰€æœ‰é“å…·ä¿¡æ¯
 	 * @return
 	 */
 	public HashMap<Integer,PropVO> getPropList() 
 	{
 		HashMap<Integer,PropVO> map = new HashMap<Integer,PropVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		String sql = "select * from prop";
+		String sql = "SELECT * FROM prop";
 		try {
 			conn = dbConn.getConn();
 			stmt = conn.createStatement();
@@ -64,14 +64,14 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 	
 	/**
-	 * ¸ù¾İµÀ¾ßµÄÀàĞÍÀ´»ñµÃÒ»¸ö´ËÖÖÀàµÄµÀ¾ßµÄid
+	 * æ ¹æ®é“å…·çš„ç±»å‹æ¥è·å¾—ä¸€ä¸ªæ­¤ç§ç±»çš„é“å…·çš„id
 	 * @param prop_class
 	 * @return
 	 */
 	public int getPropIdByType(int prop_class)
 	{
 		int prop_id = 0;
-		String sql = "select prop_ID from prop where prop_class=" + prop_class
+		String sql = "SELECT prop_ID from prop where prop_class=" + prop_class
 				+ " limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -99,14 +99,14 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 	
 	/**
-	 * ¸ù¾İµÀ¾ßµÄÃû×ÖÀ´»ñµÃÒ»¸ö´ËÖÖÀàµÄµÀ¾ßµÄid
-	 * @param propName		µÀ¾ßÃû×Ö
+	 * æ ¹æ®é“å…·çš„åå­—æ¥è·å¾—ä¸€ä¸ªæ­¤ç§ç±»çš„é“å…·çš„id
+	 * @param propName		é“å…·åå­—
 	 * @return
 	 */
 	public int getPropIdByName(String propName)
 	{
 		int prop_id = -1;
-		String sql = "select prop_ID from prop where prop_name='" + propName+ "' limit 1";
+		String sql = "SELECT prop_ID from prop where prop_name='" + propName+ "' limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -133,14 +133,14 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 
 	/**
-	 * ¸ù¾İbuffµÀ¾ßµÄbuffÖÖÀàÀ´»ñµÃÒ»¸ö´ËÖÖÀàµÄµÀ¾ßµÄid
+	 * æ ¹æ®buffé“å…·çš„buffç§ç±»æ¥è·å¾—ä¸€ä¸ªæ­¤ç§ç±»çš„é“å…·çš„id
 	 * @param prop_operate1
 	 * @return
 	 */
 	public String getPropNameByType(String prop_operate1)
 	{
 		String prop_Name = "";
-		String sql = "select prop_Name from prop where prop_class=23 and prop_operate1 = '"
+		String sql = "SELECT prop_Name from prop where prop_class=23 and prop_operate1 = '"
 				+ prop_operate1 + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -168,7 +168,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 
 	/**
-	 * ¸ù¾İµÈ¼¶ºÍÀàĞÍÅĞ¶Ï¸ÃÎïÆ·µÄID
+	 * æ ¹æ®ç­‰çº§å’Œç±»å‹åˆ¤æ–­è¯¥ç‰©å“çš„ID
 	 * @param prop_level
 	 * @param prop_type
 	 * @return
@@ -176,7 +176,7 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	public int getPropIDByPropLevel(String prop_level, int prop_type)
 	{
 		int prop_id = 0;
-		String sql = "select prop_id from prop where prop_ReLevel = '"
+		String sql = "SELECT prop_id from prop where prop_ReLevel = '"
 				+ prop_level + "' and prop_class = " + prop_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -204,14 +204,14 @@ public class PropDao extends BasicDaoSupport<PropVO>
 	}
 	
 	/**
-	 * ¸ù¾İµÀ¾ßµÄÀàĞÍÀ´»ñµÃÒ»¸ö´ËÖÖÀàµÄµÀ¾ßµÄid
-	 * ³ıÁËÁ½¸öÌåÑé¿¨373£¬374
+	 * æ ¹æ®é“å…·çš„ç±»å‹æ¥è·å¾—ä¸€ä¸ªæ­¤ç§ç±»çš„é“å…·çš„id
+	 * é™¤äº†ä¸¤ä¸ªä½“éªŒå¡373ï¼Œ374
 	 * @return
 	 */
 	public List<PropVO> getListByType(int prop_class )
 	{
 		List<PropVO> list = new ArrayList<PropVO>();
-		String sql = "select prop_ID,prop_Name from prop where prop_class=" + prop_class+" and prop_ID != 373 and prop_ID != 374"; 
+		String sql = "SELECT prop_ID,prop_Name from prop where prop_class=" + prop_class+" and prop_ID != 373 and prop_ID != 374"; 
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try { 
 			conn = dbConn.getConn();
@@ -264,12 +264,12 @@ public class PropDao extends BasicDaoSupport<PropVO>
 		return prop;
 	}
 	/**
-	 * ¸ù¾İÍæ¼ÒÊäÈëµÄÃû³ÆÄ£ºı²éÑ¯³ö×¼È·µÄÃû³Æ
+	 * æ ¹æ®ç©å®¶è¾“å…¥çš„åç§°æ¨¡ç³ŠæŸ¥è¯¢å‡ºå‡†ç¡®çš„åç§°
 	 */
 	public String getPropName(String name)
 	{
 		String propName="";
-		String sql = "select prop_name from prop where prop_name like '%"+name+"%' limit 1";
+		String sql = "SELECT prop_name from prop where prop_name like '%"+name+"%' limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

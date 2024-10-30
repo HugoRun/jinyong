@@ -8,11 +8,11 @@ public class SinaSysVO
 {
 	public static HashMap<String, SinaSysVO> sinapvmap = new HashMap<String, SinaSysVO>();
 
-	// Ê±¼ä
+	// æ—¶é—´
 	private String data;
-	// ÇşµÀºÅ
+	// æ¸ é“å·
 	private String mv;
-	// Ô¤¹ÀÓÃ»§
+	// é¢„ä¼°ç”¨æˆ·
 	private int iplogin;
 	// pv1
 	private int pv1;
@@ -26,7 +26,7 @@ public class SinaSysVO
 		sinapvmap = new HashMap<String, SinaSysVO>();
 	}
 
-	// Ìí¼ÓĞÂµÄÇşµÀÄÚÈİ
+	// æ·»åŠ æ–°çš„æ¸ é“å†…å®¹
 	public void updateNewMv(String mv)
 	{
 		SinaSysVO vo = sinapvmap.get(mv);
@@ -43,7 +43,7 @@ public class SinaSysVO
 		}
 	}
 
-	// Ìí¼ÓĞÂµÄIPÄÚÈİ
+	// æ·»åŠ æ–°çš„IPå†…å®¹
 	public void updateNewIP(String mv, int x)
 	{
 		SinaSysVO vo = sinapvmap.get(mv);
@@ -59,7 +59,7 @@ public class SinaSysVO
 		}
 	}
 
-	// Ìí¼ÓĞÂµÄPV1
+	// æ·»åŠ æ–°çš„PV1
 	public void updateNewPv1(String mv)
 	{
 		SinaSysVO vo = sinapvmap.get(mv);
@@ -76,7 +76,7 @@ public class SinaSysVO
 		}
 	}
 
-	// Ìí¼ÓĞÂµÄPV2
+	// æ·»åŠ æ–°çš„PV2
 	public void updateNewPv2(String mv)
 	{
 		SinaSysVO vo = sinapvmap.get(mv);
@@ -93,7 +93,7 @@ public class SinaSysVO
 		}
 	}
 
-	// Ìí¼ÓĞÂµÄLOGINPV
+	// æ·»åŠ æ–°çš„LOGINPV
 	public void updateNewLoginPv(String mv)
 	{
 		SinaSysVO vo = sinapvmap.get(mv);

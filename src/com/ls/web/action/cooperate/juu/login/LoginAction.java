@@ -4,16 +4,6 @@
  */
 package com.ls.web.action.cooperate.juu.login;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ls.ben.vo.cooperate.dangle.PassportVO;
 import com.ls.pub.config.GameConfig;
 import com.ls.pub.constant.Channel;
@@ -22,95 +12,97 @@ import com.ls.web.service.cooperate.dangle.PassportService;
 import com.ls.web.service.login.LoginService;
 import com.lw.service.systemnotify.SystemNotifyService;
 import com.lw.vo.systemnotify.SystemNotifyVO;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * MyEclipse Struts Creation date: 06-18-2009
- * 
+ * <p>
  * XDoclet definition:
- * 
+ *
  * @struts.action validate="true"
  */
-public class LoginAction extends Action
-{
-	/*
-	 * Generated Methods
-	 */
-	Logger logger = Logger.getLogger("log.service");
+public class LoginAction extends Action {
+    /*
+     * Generated Methods
+     */ Logger logger = Logger.getLogger("log.service");
 
-	/**
-	 * JUUÇşµÀµÇÂ¼
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return ActionForward
-	 */
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String account = request.getParameter("account");// juuÕÊºÅ
-		String time = request.getParameter("time");// UNIXÊ±¼ä´Á
-		String sign = request.getParameter("sign");// MD5¼ÓÃÜ
-		String key = "3IOJ3934KJ3493KJ94K";
-		String sign_bak = MD5Util.md5Hex(account+time+key);
+    /**
+     * JUUæ¸ é“ç™»å½•
+     *
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return ActionForward
+     */
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String account = request.getParameter("account");// juuå¸å·
+        String time = request.getParameter("time");// UNIXæ—¶é—´æˆ³
+        String sign = request.getParameter("sign");// MD5åŠ å¯†
+        String key = "3IOJ3934KJ3493KJ94K";
+        String sign_bak = MD5Util.md5Hex(account + time + key);
 
-		if (GameConfig.getGameState() == 2)// ÅĞ¶ÏÓÎÏ·µÄ×´Ì¬
-		{
-			// ÓÎÏ·×´Ì¬ÎªÉÏÏßÄÚ²¿²âÊÔ×´Ì¬
-			// ¶¯Ì¬¹«¸æ
-			SystemNotifyService systemNotifyService = new SystemNotifyService();
-			SystemNotifyVO first_notify_info = systemNotifyService
-					.getFirstNotifyInfo();
-			request.setAttribute("first_notify_info", first_notify_info);
-			return mapping.findForward("game_test_state");
-		}
-		if(account==null||account.equals("")||account.equals("null")){
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
-			return mapping.findForward("fail");
-		}
+        if (GameConfig.getGameState() == 2)// åˆ¤æ–­æ¸¸æˆçš„çŠ¶æ€
+        {
+            // æ¸¸æˆçŠ¶æ€ä¸ºä¸Šçº¿å†…éƒ¨æµ‹è¯•çŠ¶æ€
+            // åŠ¨æ€å…¬å‘Š
+            SystemNotifyService systemNotifyService = new SystemNotifyService();
+            SystemNotifyVO first_notify_info = systemNotifyService.getFirstNotifyInfo();
+            request.setAttribute("first_notify_info", first_notify_info);
+            return mapping.findForward("game_test_state");
+        }
+        if (account == null || account.equals("") || account.equals("null")) {
+            logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
+            return mapping.findForward("fail");
+        }
 
-		if (!sign_bak.equals(sign))// µÇÂ½ÑéÖ¤Ê§°Ü
-		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
-			return mapping.findForward("fail");
-		}
-		
-		String login_params = request.getQueryString();
-		String login_ip = request.getRemoteAddr();
+        if (!sign_bak.equals(sign))// ç™»é™†éªŒè¯å¤±è´¥
+        {
+            logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
+            return mapping.findForward("fail");
+        }
 
-		LoginService loginService = new LoginService();
+        String login_params = request.getQueryString();
+        String login_ip = request.getRemoteAddr();
 
-		// ÅĞ¶ÏÔÚÏßÈËÊıÊÇ·ñ´ïµ½ÉÏÏß
-		if (loginService.isFullOnlineRoleNum())
-		{
-			// ÔÚÏßÈËÊıÒÑ´ïÏµÍ³ÉèÖÃÉÏÏß
-			return mapping.findForward("user_num_limit_hint");
-		}
-		HttpSession session = request.getSession();
-		session.setAttribute("ssid", account);
+        LoginService loginService = new LoginService();
 
-		logger.info("JUUÓÃ»§µÇÂ½:ssid=" + account);
-		PassportService passportService = new PassportService();
-		PassportVO passport = passportService.loginFromJuu(account, time, sign,
-				login_ip);
+        // åˆ¤æ–­åœ¨çº¿äººæ•°æ˜¯å¦è¾¾åˆ°ä¸Šçº¿
+        if (loginService.isFullOnlineRoleNum()) {
+            // åœ¨çº¿äººæ•°å·²è¾¾ç³»ç»Ÿè®¾ç½®ä¸Šçº¿
+            return mapping.findForward("user_num_limit_hint");
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute("ssid", account);
 
-		if (passport == null || passport.getUPk() == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
-		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
-			return mapping.findForward("fail");
-		}
+        logger.info("JUUç”¨æˆ·ç™»é™†:ssid=" + account);
+        PassportService passportService = new PassportService();
+        PassportVO passport = passportService.loginFromJuu(account, time, sign, login_ip);
 
-		login_params = login_params.replaceAll("&", "&amp;");
-		int uPk = passport.getUPk();
-		String account_passport = passport.getUserId();
+        if (passport == null || passport.getUPk() == -1)// ç™»é™†éªŒè¯å¤±è´¥
+        {
+            logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
+            return mapping.findForward("fail");
+        }
 
-		session.setAttribute("uPk", uPk + "");
-		session.setAttribute("ssid", account_passport);
-		session.setAttribute("user_name", passport.getUserName());
-		session.setAttribute("channel_id", Channel.JUU + "");
-		session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
+        login_params = login_params.replaceAll("&", "&amp;");
+        int uPk = passport.getUPk();
+        String account_passport = passport.getUserId();
 
-		return mapping.findForward("success");
-	}
+        session.setAttribute("uPk", uPk + "");
+        session.setAttribute("ssid", account_passport);
+        session.setAttribute("user_name", passport.getUserName());
+        session.setAttribute("channel_id", Channel.JUU + "");
+        session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
+
+        return mapping.findForward("success");
+    }
 }

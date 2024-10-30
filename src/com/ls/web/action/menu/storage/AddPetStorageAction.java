@@ -23,7 +23,7 @@ public class AddPetStorageAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 
-	// ÉíÉÏ³èÎïÁĞ±í
+	// èº«ä¸Šå® ç‰©åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -41,32 +41,32 @@ public class AddPetStorageAction extends DispatchAction
 		request.setAttribute("pPk", pPk + "");
 		request.setAttribute("uPk", uPk + "");
 
-		/** ²éÑ¯Êı¾İ¿âÖĞ¸Ã½ÇÉ«ÓĞÃ»ÓĞ³èÎï²Ö¿â */
+		/** æŸ¥è¯¢æ•°æ®åº“ä¸­è¯¥è§’è‰²æœ‰æ²¡æœ‰å® ç‰©ä»“åº“ */
 		int warehouseID = wareHouse.getWareHouseIdBypPk(uPk, pPk, 7);
 
-		// Èç¹û²Ö¿â±íÀïÃ»ÓĞ¸ÃtypeµÄ¼ÇÂ¼¾Í²åÈë¸Ãtype¼ÇÂ¼
+		// å¦‚æœä»“åº“è¡¨é‡Œæ²¡æœ‰è¯¥typeçš„è®°å½•å°±æ’å…¥è¯¥typeè®°å½•
 		if (warehouseID == 0)
 		{
 			warehouseID = wareHouse.insertWareHouse(uPk, pPk, 7);
 		}
 
-		// »ñµÃ²Ö¿âÖĞ³èÎïÒÑ´¢´æÊıÁ¿
+		// è·å¾—ä»“åº“ä¸­å® ç‰©å·²å‚¨å­˜æ•°é‡
 		int petStorageNumber = storageService.getPetNumber(pPk);
 		request.setAttribute("petStorageNumber", petStorageNumber + "");
-		logger.info("²Ö¿â³èÎïÊıÁ¿" + petStorageNumber);
+		logger.info("ä»“åº“å® ç‰©æ•°é‡" + petStorageNumber);
 
-		// ´Ó½ÇÉ«ÉíÉÏÈ¡µÃ³èÎïÁĞ±í
+		// ä»è§’è‰²èº«ä¸Šå–å¾—å® ç‰©åˆ—è¡¨
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> pet_list = petInfoDAO.getPetInfoList(pPk + "");
 
-		logger.info("ÉíÉÏ³èÎïÊıÁ¿" + pet_list.size());
+		logger.info("èº«ä¸Šå® ç‰©æ•°é‡" + pet_list.size());
 
 		request.setAttribute("pet_list", pet_list);
 		request.setAttribute("warehouseID", warehouseID);
 		return mapping.findForward("pet_list");
 	}
 
-	// ´¢´æ³èÎï
+	// å‚¨å­˜å® ç‰©
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -82,10 +82,10 @@ public class AddPetStorageAction extends DispatchAction
 			return mapping.findForward("findnot");
 		}
 
-		// ½«³èÎï´ÓÈËÎïÉíÉÏÄÃÏÂ
+		// å°†å® ç‰©ä»äººç‰©èº«ä¸Šæ‹¿ä¸‹
 		String putSussend = storageService.putPetFromPerson(Integer
 				.valueOf(pPk), Integer.valueOf(petPk));
-		// ½«³èÎï¼ÓÈë²Ö¿â
+		// å°†å® ç‰©åŠ å…¥ä»“åº“
 		// String addSussend =
 		// storageService.addPetToWare(Integer.valueOf(pPk),Integer.valueOf(petPk));
 		// if(addSussend.equals("-1")){
@@ -101,7 +101,7 @@ public class AddPetStorageAction extends DispatchAction
 		return mapping.findForward("sussend");
 	}
 
-	/** ²é¿´³èÎïĞÅÏ¢ */
+	/** æŸ¥çœ‹å® ç‰©ä¿¡æ¯ */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

@@ -11,7 +11,8 @@
 	RoleService roleService = new RoleService();
 	RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="bill" title="充值">
 <p>
 <%=roleInfo.getBasicInfo().getName()%>您的<%=GameConfig.getYuanbaoName() %>余额不足,请充值元宝.

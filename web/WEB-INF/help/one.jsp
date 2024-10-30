@@ -15,14 +15,14 @@ if(help.getLink_name().trim().equals(HelpConstant.TESHU.trim())){
  <anchor><go href="<%=response.encodeURL(GameConfig.getContextPath()+"/mall.do?cmd=n0")%>" method="get"></go><%=help.getLink_name() %></anchor><br/>
  <%}else{ %>
 <anchor> 
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do") %>"> 
-	<postfield name="cmd" value="n4" />
-	<postfield name="id" value="<%=help.getId() %>" />
-	<postfield name="id1" value="<%=help.getSuper_id() %>" />
-	<postfield name="nowPa" value="<%=nowp%>" />
-	</go>
-	<%=help.getLink_name() %>
-	</anchor> <br/>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do") %>">
+    <postfield name="cmd" value="n4" />
+    <postfield name="id" value="<%=help.getId() %>" />
+    <postfield name="id1" value="<%=help.getSuper_id() %>" />
+    <postfield name="nowPa" value="<%=nowp%>" />
+    </go>
+    <%=help.getLink_name() %>
+    </anchor> <br/>
 	<%}}else{ %>
 	<%} %>
 	 <anchor><go href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do")%>" method="post">

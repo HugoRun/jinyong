@@ -25,7 +25,7 @@ public class GameLotteryNumService extends TimerTask
 
 	}
 
-	// Éú³É²ÊÆ±
+	// ç”Ÿæˆå½©ç¥¨
 	public void updateLotteryNum()
 	{
 		LotteryService ls = new LotteryService();
@@ -40,6 +40,6 @@ public class GameLotteryNumService extends TimerTask
 			SystemInfoService ss = new SystemInfoService();
 			ss.insertSystemInfoBySystem(info);
 		}
-		ls.setSysLotteryMail();// ¸øÍæ¼Ò·¢ËÍÏµÍ³ÓÊ¼ş
+		ls.setSysLotteryMail();// ç»™ç©å®¶å‘é€ç³»ç»Ÿé‚®ä»¶
 	}
 }

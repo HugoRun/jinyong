@@ -29,7 +29,7 @@ public class SynthesizeService
 {
 	Logger logger = Logger.getLogger("log.service");
 
-	/** µÃµ½Íæ¼Ò¿ÉÒÔÊ¹ÓÃµÄÅä·½ÁĞ±í */
+	/** å¾—åˆ°ç©å®¶å¯ä»¥ä½¿ç”¨çš„é…æ–¹åˆ—è¡¨ */
 	public List<SynthesizeVO> getSynthesizePropList(int s_type, int s_level,
 			int thispage, int perpagenum)
 	{
@@ -37,7 +37,7 @@ public class SynthesizeService
 		return dao.getSynthesizeList(s_type, s_level, thispage, perpagenum);
 	}
 
-	/** ¸ù¾İµÈ¼¶ºÍ¼¼ÄÜÀàĞÍµÃµ½Íæ¼Ò¿ÉÒÔÊ¹ÓÃµÄÅä·½ */
+	/** æ ¹æ®ç­‰çº§å’ŒæŠ€èƒ½ç±»å‹å¾—åˆ°ç©å®¶å¯ä»¥ä½¿ç”¨çš„é…æ–¹ */
 	public List<SynthesizeVO> getSynthesizeProp(int s_type, int s_level)
 	{
 		SynthesizeDao dao = new SynthesizeDao();
@@ -45,7 +45,7 @@ public class SynthesizeService
 
 	}
 
-	/** µÃµ½Åä·½Éú³ÉÎïÆ·µÄÃû³Æ */
+	/** å¾—åˆ°é…æ–¹ç”Ÿæˆç‰©å“çš„åç§° */
 	public List getSynthesizePropInfo(int s_type, int s_level)
 	{
 		List namelist = new ArrayList();
@@ -59,21 +59,21 @@ public class SynthesizeService
 		return namelist;
 	}
 
-	/** Ãû³Æ·ÖÒ³ */
+	/** åç§°åˆ†é¡µ */
 	public List<String> getSynthesizePropInfoList(int s_type, int s_level,
 			int thispage, int perpagenum)
 	{
 		List list = getSynthesizePropInfo(s_type, s_level);
 		int totalSize = list.size();
 		List<String> currentPageV = new ArrayList<String>();
-		/** ×ÜÒ³Êı: */
+		/** æ€»é¡µæ•°: */
 		int totalPageNum = totalSize / perpagenum;
 
 		if (totalSize % perpagenum > 0)
 		{
 			totalPageNum = totalSize / perpagenum + 1;
 		}
-		/** µ±Ç°µÄÒ³Êı:pageNum£» */
+		/** å½“å‰çš„é¡µæ•°:pageNumï¼› */
 
 		for (int j = 0; j < list.size(); j++)
 		{
@@ -92,7 +92,7 @@ public class SynthesizeService
 		return currentPageV;
 	}
 
-	/** µÃµ½Åä·½ID */
+	/** å¾—åˆ°é…æ–¹ID */
 	public List getSynthesizePropInfoID(int s_type, int s_level)
 	{
 		List idlist = new ArrayList();
@@ -106,7 +106,7 @@ public class SynthesizeService
 		return idlist;
 	}
 
-	/** µÃµ½Åä·½ID×î´óµÄ¼¼ÄÜÊìÁ·¶È */
+	/** å¾—åˆ°é…æ–¹IDæœ€å¤§çš„æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public List getSynthesizePropInfoMaxSleight(int s_type, int s_level)
 	{
 		List maxsleightlist = new ArrayList();
@@ -122,7 +122,7 @@ public class SynthesizeService
 		return maxsleightlist;
 	}
 
-	/** µÃµ½Åä·½IDĞèÒªµÄ¼¼ÄÜÊìÁ·¶È */
+	/** å¾—åˆ°é…æ–¹IDéœ€è¦çš„æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public List getSynthesizePropInfoMinSleight(int s_type, int s_level)
 	{
 		List minsleightlist = new ArrayList();
@@ -138,7 +138,7 @@ public class SynthesizeService
 		return minsleightlist;
 	}
 
-	/** ¸ù¾İÅä·½IDµÃµ½Ê¹ÓÃ¸ÃÅä·½»ñµÃ¼¼ÄÜÊìÁ·¶È */
+	/** æ ¹æ®é…æ–¹IDå¾—åˆ°ä½¿ç”¨è¯¥é…æ–¹è·å¾—æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public int getSynthesizeSleight(int s_id)
 	{
 		SynthesizeDao dao = new SynthesizeDao();
@@ -146,7 +146,7 @@ public class SynthesizeService
 	}
 
 	/**
-	 * »ñµÃÔ­²ÄÁÏµÄÏÔÊ¾×Ö·û´®
+	 * è·å¾—åŸææ–™çš„æ˜¾ç¤ºå­—ç¬¦ä¸²
 	 * 
 	 * @param vo
 	 * @return
@@ -154,10 +154,10 @@ public class SynthesizeService
 	public List<String> getSynthesizeList(SynthesizeVO vo)
 	{
 		List<String> list = null;
-		String operate1 = vo.getProp(); // ĞèÒª¶Ò»»µÄÔ­²ÄÁÏ
-		// String operate2 = vo.getSynthesizeProp(); //¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate1.split(";"); // ĞèÒª¶Ò»»µÄÔ­²ÄÁÏµÄÊı×é
-		// String[] reChange2 = operate2.split(";"); //¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate1 = vo.getProp(); // éœ€è¦å…‘æ¢çš„åŸææ–™
+		// String operate2 = vo.getSynthesizeProp(); //å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate1.split(";"); // éœ€è¦å…‘æ¢çš„åŸææ–™çš„æ•°ç»„
+		// String[] reChange2 = operate2.split(";"); //å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if (reChange == null)
 		{
 			return list;
@@ -167,41 +167,41 @@ public class SynthesizeService
 
 		for (int i = 0; i < length; i++)
 		{
-			String[] materials = reChange[i].split(","); // Ã¿¸ö¶Ò»»µÄÔ­²ÄÁÏ¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(","); // æ¯ä¸ªå…‘æ¢çš„åŸææ–™å¯èƒ½ä¸æ­¢ä¸€ç§
 			StringBuffer sb = new StringBuffer();
 			sb.append(i);
 			for (int a = 0; a < materials.length; a++)
 			{
 				String[] unit = materials[a].split("-");
 				if (unit[0].equals("d"))
-				{ // Èç¹ûÔ­²ÄÁÏÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				{ // å¦‚æœåŸææ–™æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					PropVO propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
-					sb.append("-").append(propvo.getPropName()).append("¡Á").append(unit[3]);
+					sb.append("-").append(propvo.getPropName()).append("Ã—").append(unit[3]);
 				}
 				else
 					if (unit[0].equals("z"))
-					{ // Èç¹ûÔ­²ÄÁÏÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+					{ // å¦‚æœåŸææ–™æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 						sb.append("-");
 						int equip_id = Integer.valueOf(unit[1]);
 						GameEquip equip = EquipCache.getById(equip_id);
-						sb.append(equip.getName()).append("¡Á").append(unit[2]);
+						sb.append(equip.getName()).append("Ã—").append(unit[2]);
 					}
 					else
 						if (unit[0].equals("j"))
-						{ // Èç¹ûÔ­²ÄÁÏÊÇ½ğÇ®µÄ´¦ÀíÇé¿ö
+						{ // å¦‚æœåŸææ–™æ˜¯é‡‘é’±çš„å¤„ç†æƒ…å†µ
 							sb.append("-").append(
 									MoneyUtil.changeCopperToStr(unit[1]));
 
 						}
 			}
-			logger.info("iµÄvalue: " + i + " Ô­²ÄÁÏ×°Èë×Ö¶Î" + sb.toString());
+			logger.info("içš„value: " + i + " åŸææ–™è£…å…¥å­—æ®µ" + sb.toString());
 			list.add(sb.toString());
 		}
 		return list;
 	}
 
 	/**
-	 * »ñµÃºÏ³ÉÎïÆ·µÄÏÔÊ¾×Ö·û´®
+	 * è·å¾—åˆæˆç‰©å“çš„æ˜¾ç¤ºå­—ç¬¦ä¸²
 	 * 
 	 * @param vo
 	 * @return
@@ -209,8 +209,8 @@ public class SynthesizeService
 	public List<String> getSynthesizeChangeList(SynthesizeVO vo)
 	{
 		List<String> list = null;
-		String operate = vo.getSynthesizeProp(); // ¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate.split(";"); // ¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate = vo.getSynthesizeProp(); // å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate.split(";"); // å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if (reChange == null)
 		{
 			return list;
@@ -220,51 +220,51 @@ public class SynthesizeService
 		for (int i = 0; i < length; i++)
 		{
 			StringBuffer sb = new StringBuffer();
-			String[] materials = reChange[i].split(","); // Ã¿¸ö¶Ò»»µÄ¶Ò»»Æ·¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(","); // æ¯ä¸ªå…‘æ¢çš„å…‘æ¢å“å¯èƒ½ä¸æ­¢ä¸€ç§
 
 			for (int a = 0; a < materials.length; a++)
-			{ // ¶ÔÃ¿¸ö¶Ò»»Æ·½øĞĞ²»Í¬µÄ´¦Àí
+			{ // å¯¹æ¯ä¸ªå…‘æ¢å“è¿›è¡Œä¸åŒçš„å¤„ç†
 				String[] unit = materials[a].split("-");
 				if (unit[0].equals("z"))
-				{ // Èç¹û¶Ò»»Æ·ÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+				{ // å¦‚æœå…‘æ¢å“æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 					int equip_id = Integer.valueOf(unit[1]);
 					GameEquip equip = EquipCache.getById(equip_id);
 					sb.append(equip.getName());
-					// sb.append("¡Á").append(unit[3]);
+					// sb.append("Ã—").append(unit[3]);
 				}
 				else
 					if (unit[0].equals("d"))
-					{ // Èç¹û¶Ò»»Æ·ÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+					{ // å¦‚æœå…‘æ¢å“æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 						PropVO propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
 						propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
 						sb.append(propvo.getPropName());
-						// sb.append("¡Á").append(unit[3]);
+						// sb.append("Ã—").append(unit[3]);
 					}
 				if (a + 1 != materials.length)
 				{
 					sb.append("-");
 				}
 			}
-			logger.info("iµÄvalue: " + i + " ¶Ò»»Æ·×°Èë×Ö¶Î" + sb.toString());
+			logger.info("içš„value: " + i + " å…‘æ¢å“è£…å…¥å­—æ®µ" + sb.toString());
 			list.add(sb.toString());
 		}
 		return list;
 	}
 
-	/** »ñµÃºÏ³ÉÀàÎïÆ·µÄÃû³Æ */
+	/** è·å¾—åˆæˆç±»ç‰©å“çš„åç§° */
 	public String getSynthesizePropName(SynthesizeVO vo)
 	{
-		String operate = vo.getSynthesizeProp(); // ¶Ò»»µÄÄ¿µÄÆ·
-		String[] materials = operate.split("-"); // Ã¿¸ö¶Ò»»µÄ¶Ò»»Æ·¿ÉÄÜ²»Ö¹Ò»ÖÖ
+		String operate = vo.getSynthesizeProp(); // å…‘æ¢çš„ç›®çš„å“
+		String[] materials = operate.split("-"); // æ¯ä¸ªå…‘æ¢çš„å…‘æ¢å“å¯èƒ½ä¸æ­¢ä¸€ç§
 		if (materials[0].equals("z"))
-		{ // Èç¹û¶Ò»»Æ·ÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+		{ // å¦‚æœå…‘æ¢å“æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 			int equip_id = Integer.valueOf(materials[1]);
 			GameEquip equip = EquipCache.getById(equip_id);
 			return equip.getName();
 		}
 		else
 			if (materials[0].equals("d"))
-			{ // Èç¹û¶Ò»»Æ·ÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+			{ // å¦‚æœå…‘æ¢å“æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 				PropVO propvo = PropCache.getPropById(Integer.valueOf(materials[2]));
 				propvo = PropCache.getPropById(Integer.valueOf(materials[2]));
 				return propvo.getPropName();
@@ -272,18 +272,18 @@ public class SynthesizeService
 		return "";
 	}
 
-	// ¼ì²éÍæ¼ÒÊÇ·ñÓĞ×ã¹»µÄ°ü¹üÒÔ±ãÈİÄÉ¶Ò»»¹ıµÄÎïÆ·
+	// æ£€æŸ¥ç©å®¶æ˜¯å¦æœ‰è¶³å¤Ÿçš„åŒ…è£¹ä»¥ä¾¿å®¹çº³å…‘æ¢è¿‡çš„ç‰©å“
 	public String getHasWareSpare(String pPk, SynthesizeVO vo, String address,
 			int exchange_num)
 	{
 		int i = 1;
 		String result = "";
 		RoleEntity role_info = RoleService.getRoleInfoById(pPk);
-		int warespare = role_info.getBasicInfo().getWrapSpare(); // µÃµ½Íæ¼Ò°ü¹üÊ£Óà¿Õ¸ñÊı
+		int warespare = role_info.getBasicInfo().getWrapSpare(); // å¾—åˆ°ç©å®¶åŒ…è£¹å‰©ä½™ç©ºæ ¼æ•°
 
-		String[] articles = vo.getSynthesizeProp().split(";"); // ËùÓĞ¶Ò»»Æ·µÄ×Ö·û´®
-		String article = articles[Integer.valueOf(address)]; // ËùÒª¶Ò»»¶Ò»»Æ·µÄ×Ö·û´®
-		logger.info("¶Ò»»Æ·µÄarticle:" + article);
+		String[] articles = vo.getSynthesizeProp().split(";"); // æ‰€æœ‰å…‘æ¢å“çš„å­—ç¬¦ä¸²
+		String article = articles[Integer.valueOf(address)]; // æ‰€è¦å…‘æ¢å…‘æ¢å“çš„å­—ç¬¦ä¸²
+		logger.info("å…‘æ¢å“çš„article:" + article);
 
 		String[] recourses = article.split(",");
 		for (int t = 0; t < recourses.length; t++)
@@ -292,11 +292,11 @@ public class SynthesizeService
 			String[] recourse = recourses[t].split("-");
 			if (recourse[0].equals("z"))
 			{
-				// ÉíÉÏ°ü¹ü¿Õ¼äĞ¡ÓÚËùÄÜ·ÅÈëµÄ¿Õ¼äÊ±
+				// èº«ä¸ŠåŒ…è£¹ç©ºé—´å°äºæ‰€èƒ½æ”¾å…¥çš„ç©ºé—´æ—¶
 				if (warespare < Integer.valueOf(recourse[3]) * exchange_num)
 				{
 					i = -1;
-					result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+					result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 				}
 			}
 			else
@@ -305,22 +305,22 @@ public class SynthesizeService
 					PropVO propvo = PropCache.getPropById(Integer.valueOf(recourse[2]));
 					int accumulate = propvo.getPropAccumulate();
 					if (accumulate == 1)
-					{ // ¶ÔÓÚµÀ¾ß²»¿Éµş¼ÓµÄÇé¿ö
+					{ // å¯¹äºé“å…·ä¸å¯å åŠ çš„æƒ…å†µ
 						if (warespare < Integer.valueOf(recourse[3])
 								* exchange_num)
 						{
 							i = -1;
-							result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+							result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 						}
 					}
 					else
-					{ // ¶ÔÓÚµÀ¾ß¿Éµş¼ÓµÄÇé¿ö
+					{ // å¯¹äºé“å…·å¯å åŠ çš„æƒ…å†µ
 						if (Integer.valueOf(recourse[3]) * exchange_num <= accumulate)
 						{
 							if (warespare < 1)
 							{
 								i = -1;
-								result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+								result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 							}
 						}
 						else
@@ -330,7 +330,7 @@ public class SynthesizeService
 							if (warespare < requireNum)
 							{
 								i = -1;
-								result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+								result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 							}
 						}
 					}
@@ -342,25 +342,25 @@ public class SynthesizeService
 	}
 
 	/**
-	 * ÅĞ¶Ï¸öÈËµÄÔ­²ÄÁÏÊÇ·ñ×ã¹» ÏÂÃæ¶ÔÔ­²ÄÁÏÊÇµÀ¾ßºÍÊÇ×°±¸µÄÇé¿ö ·Ö±ğ½øĞĞÁËÅĞ¶Ï
+	 * åˆ¤æ–­ä¸ªäººçš„åŸææ–™æ˜¯å¦è¶³å¤Ÿ ä¸‹é¢å¯¹åŸææ–™æ˜¯é“å…·å’Œæ˜¯è£…å¤‡çš„æƒ…å†µ åˆ†åˆ«è¿›è¡Œäº†åˆ¤æ–­
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @param address
-	 *            ËùÒª¶Ò»»Ô­²ÄÁÏÔÚËùÓĞÔ´²ÄÁÏµÄÎ»ÖÃ£¬´Ó0¿ªÊ¼¼ÆÊı
+	 *            æ‰€è¦å…‘æ¢åŸææ–™åœ¨æ‰€æœ‰æºææ–™çš„ä½ç½®ï¼Œä»0å¼€å§‹è®¡æ•°
 	 * @param menu_id
-	 *            Ä¿Â¼id
-	 * @return Èç¹û³É¹¦·µ»Ø1£¬·ñÔò·µ»Ø-1.
+	 *            ç›®å½•id
+	 * @return å¦‚æœæˆåŠŸè¿”å›1ï¼Œå¦åˆ™è¿”å›-1.
 	 */
 	public String getPPkHasGoods(String pPk, String address, SynthesizeVO vo,
 			int exchange_num)
 	{
 		int i = 1;
 		String sb = "";
-		String[] articles = vo.getProp().split(";"); // ËùÓĞÔ­²ÄÁÏµÄ×Ö·û´®
+		String[] articles = vo.getProp().split(";"); // æ‰€æœ‰åŸææ–™çš„å­—ç¬¦ä¸²
 
-		String article = articles[Integer.valueOf(address)]; // ËùÒª¶Ò»»Ô­²ÄÁÏµÄ×Ö·û´®
-		logger.info("Ô­²ÄÁÏµÄarticle:" + article);
+		String article = articles[Integer.valueOf(address)]; // æ‰€è¦å…‘æ¢åŸææ–™çš„å­—ç¬¦ä¸²
+		logger.info("åŸææ–™çš„article:" + article);
 
 		String[] recourses = article.split(",");
 		for (int t = 0; t < recourses.length; t++)
@@ -370,28 +370,28 @@ public class SynthesizeService
 
 			if (recourse[0].equals("d"))
 			{
-				int number = Integer.valueOf(recourse[3]); // Ô­²ÄÁÏĞèÒªµÄ¸öÊı
-				number = exchange_num * number; // ¶Ò»»ËùĞèÒªµÄ¸öÊı
+				int number = Integer.valueOf(recourse[3]); // åŸææ–™éœ€è¦çš„ä¸ªæ•°
+				number = exchange_num * number; // å…‘æ¢æ‰€éœ€è¦çš„ä¸ªæ•°
 				PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 				int current_num = propGroupDao.getPropNumByByPropID(Integer
-						.valueOf(pPk), Integer.valueOf(recourse[2]));// ÏÖÓĞµÄÊıÁ¿
+						.valueOf(pPk), Integer.valueOf(recourse[2]));// ç°æœ‰çš„æ•°é‡
 				if (current_num < number)
 				{
 					i = -1;
-					sb = "ÄúÉíÉÏµÄÔ­²ÄÁÏ²»×ã£¡";
+					sb = "æ‚¨èº«ä¸Šçš„åŸææ–™ä¸è¶³ï¼";
 				}
 			}
 			else
 				if (recourse[0].equals("z"))
 				{
-					int number = Integer.valueOf(recourse[3]); // Ô­²ÄÁÏĞèÒªµÄ¸öÊı
-					number = exchange_num * number; // ¶Ò»»ËùĞèÒªµÄ¸öÊı
+					int number = Integer.valueOf(recourse[3]); // åŸææ–™éœ€è¦çš„ä¸ªæ•°
+					number = exchange_num * number; // å…‘æ¢æ‰€éœ€è¦çš„ä¸ªæ•°
 					// int wrapClass =
 					// storageService.getGoodsClass(Integer.valueOf(recourse[2]),Integer.valueOf(recourse[1]));
-					// ²éÕÒ×°±¸
+					// æŸ¥æ‰¾è£…å¤‡
 					// String wrapStr = recourse[2]+
 					// ","+String.valueOf(wrapClass)+","+recourse[1];
-					// logger.info("×°±¸×Ö·û´®:"+wrapStr);
+					// logger.info("è£…å¤‡å­—ç¬¦ä¸²:"+wrapStr);
 					PlayerEquipDao equipDao = new PlayerEquipDao();
 					int equip_num = equipDao.getEquipNumByEquipId(Integer
 							.valueOf(pPk), Integer.valueOf(recourse[2]),
@@ -399,7 +399,7 @@ public class SynthesizeService
 					if (equip_num < number)
 					{
 						i = -1;
-						sb = "ÄúÉíÉÏµÄÔ­²ÄÁÏ²»×ã£¡";
+						sb = "æ‚¨èº«ä¸Šçš„åŸææ–™ä¸è¶³ï¼";
 					}
 				}
 				else
@@ -409,11 +409,11 @@ public class SynthesizeService
 						PartInfoVO partInfoVO = partInfoDao
 								.getPartInfoByID(Integer.valueOf(pPk));
 						long copper = Long.valueOf(partInfoVO.getPCopper());
-						copper = exchange_num * copper; // ¶Ò»»ËùĞèÒªµÄ½ğÇ®
+						copper = exchange_num * copper; // å…‘æ¢æ‰€éœ€è¦çš„é‡‘é’±
 						if (copper < Long.valueOf(recourse[1]))
 						{
 							i = -1;
-							sb = "ÄúÉíÉÏ½ğÇ®²»×ã£¡";
+							sb = "æ‚¨èº«ä¸Šé‡‘é’±ä¸è¶³ï¼";
 						}
 					}
 
@@ -424,71 +424,71 @@ public class SynthesizeService
 	}
 
 	/**
-	 * ¶Ò»»ÎïÆ·
+	 * å…‘æ¢ç‰©å“
 	 */
 	public String exchangeGoods(String pPk, SynthesizeVO vo, String address,
 			int exchange_num)
 	{
 		StringBuffer resultWml = new StringBuffer();
-		String[] articles = vo.getProp().split(";"); // ËùÓĞÔ­²ÄÁÏµÄ×Ö·û´®
-		String[] dharticles = vo.getSynthesizeProp().split(";"); // ËùÓĞ¶Ò»»Æ·µÄ×Ö·û´®
+		String[] articles = vo.getProp().split(";"); // æ‰€æœ‰åŸææ–™çš„å­—ç¬¦ä¸²
+		String[] dharticles = vo.getSynthesizeProp().split(";"); // æ‰€æœ‰å…‘æ¢å“çš„å­—ç¬¦ä¸²
 
-		String article = articles[Integer.valueOf(address)]; // ËùÒª¶Ò»»Ô­²ÄÁÏµÄ×Ö·û´®
-		String dharticle = dharticles[Integer.valueOf(address)]; // ËùÒª¶Ò»»¶Ò»»Æ·µÄ×Ö·û´®
+		String article = articles[Integer.valueOf(address)]; // æ‰€è¦å…‘æ¢åŸææ–™çš„å­—ç¬¦ä¸²
+		String dharticle = dharticles[Integer.valueOf(address)]; // æ‰€è¦å…‘æ¢å…‘æ¢å“çš„å­—ç¬¦ä¸²
 
-		getMaterialsFromWrap(pPk, article, exchange_num); // ´ÓÍæ¼ÒÉíÉÏÖĞÈ¥µô¶Ò»»µÄÔ­²ÄÁÏ
+		getMaterialsFromWrap(pPk, article, exchange_num); // ä»ç©å®¶èº«ä¸Šä¸­å»æ‰å…‘æ¢çš„åŸææ–™
 		String getExchangeGoods = sendDuiHuanToWrap(pPk, dharticle,
-				exchange_num); // ¸øÍæ¼Ò·¢·Å¶Ò»»Æ·
+				exchange_num); // ç»™ç©å®¶å‘æ”¾å…‘æ¢å“
 
-		resultWml.append("Éú²úÒÑ³É¹¦£¡");
+		resultWml.append("ç”Ÿäº§å·²æˆåŠŸï¼");
 		resultWml.append(getExchangeGoods);
 		return resultWml.toString();
 	}
 
-	// ¸øÍæ¼Ò·¢·Å¶Ò»»Æ·
+	// ç»™ç©å®¶å‘æ”¾å…‘æ¢å“
 	private String sendDuiHuanToWrap(String pPk, String dharticle,
 			int exchange_num)
 	{
 		if (dharticle.equals("0"))
 		{
-			logger.info("²»¸øÍæ¼Ò·¢·ÅÎïÆ·£¡");
+			logger.info("ä¸ç»™ç©å®¶å‘æ”¾ç‰©å“ï¼");
 			return "";
 		}
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("ÄúÉú²úÁË");
+		resultWml.append("æ‚¨ç”Ÿäº§äº†");
 		String[] articles = dharticle.split(",");
 		for (int t = 0; t < articles.length; t++)
 		{
 			String[] unit = articles[t].split("-");
 			if (unit[0].equals("d"))
-			{ // ¸øÍæ¼ÒÉíÉÏÔö¼ÓµÀ¾ß
+			{ // ç»™ç©å®¶èº«ä¸Šå¢åŠ é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.putGoodsToWrap(Integer.valueOf(pPk), Integer
 						.valueOf(unit[2]), Integer.valueOf(unit[1]), Integer
 						.valueOf(unit[3])
 						* exchange_num);
-				//Ö´ĞĞÍ³¼Æ
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(Integer.valueOf(unit[2]), 4, Integer.valueOf(unit[3]), StatisticsType.DEDAO, StatisticsType.SHENGCHAN,Integer.parseInt(pPk));
 				
 
 				resultWml.append(goodsService.getGoodsName(Integer
 						.valueOf(unit[2]), Integer.valueOf(unit[1])));
-				resultWml.append("¡Á").append(
+				resultWml.append("Ã—").append(
 						Integer.valueOf(unit[3]) * exchange_num);
 			}
 			else
 				if (unit[0].equals("z"))
-				{ // ¸øÍæ¼ÒÉíÉÏÔö¼Ó×°±¸
+				{ // ç»™ç©å®¶èº«ä¸Šå¢åŠ è£…å¤‡
 					GoodsService goodsService = new GoodsService();
 					for (int i = 0; i < Integer.valueOf(unit[3]); i++)
-					{ // Òª¸ø¼¸¸ö×°±¸¾Í¸ø¼¸´Î
+					{ // è¦ç»™å‡ ä¸ªè£…å¤‡å°±ç»™å‡ æ¬¡
 						goodsService.putGoodsToWrap(Integer.valueOf(pPk),
 								Integer.valueOf(unit[2]), Integer
 										.valueOf(unit[1]), Integer
 										.valueOf(unit[3])
 										* exchange_num);
-						//Ö´ĞĞÍ³¼Æ
+						//æ‰§è¡Œç»Ÿè®¡
 						GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 						gsss.addPropNum(Integer.valueOf(unit[2]), Integer.valueOf(unit[1]), Integer.valueOf(unit[3]), StatisticsType.DEDAO, StatisticsType.SHENGCHAN,Integer.parseInt(pPk));
 						
@@ -497,7 +497,7 @@ public class SynthesizeService
 
 					resultWml.append(goodsService.getGoodsName(Integer
 							.valueOf(unit[2]), Integer.valueOf(unit[1])));
-					resultWml.append("¡Á").append(
+					resultWml.append("Ã—").append(
 							Integer.valueOf(unit[3]) * exchange_num);
 				}
 			if (t + 1 < articles.length)
@@ -507,39 +507,39 @@ public class SynthesizeService
 		return resultWml.toString();
 	}
 
-	// ´ÓÍæ¼ÒÉíÉÏÖĞÈ¥µô¶Ò»»µÄÔ­²ÄÁÏ
+	// ä»ç©å®¶èº«ä¸Šä¸­å»æ‰å…‘æ¢çš„åŸææ–™
 	private String getMaterialsFromWrap(String pPk, String article,
 			int exchange_num)
 	{
 		if (article.equals("0"))
 		{
-			logger.info("²»´ÓÍæ¼ÒÉíÉÏ¿Û³ıÈçºÎÎïÆ·£¡");
+			logger.info("ä¸ä»ç©å®¶èº«ä¸Šæ‰£é™¤å¦‚ä½•ç‰©å“ï¼");
 			return "";
 		}
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("ÄúÊ§È¥ÁË");
+		resultWml.append("æ‚¨å¤±å»äº†");
 		String[] articles = article.split(",");
 		for (int t = 0; t < articles.length; t++)
 		{
 			String[] unit = articles[t].split("-");
 			if (unit[0].equals("d"))
-			{ // ´ÓÍæ¼ÒÉíÉÏ¼õÈ¥µÀ¾ß
+			{ // ä»ç©å®¶èº«ä¸Šå‡å»é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.removeProps(Integer.valueOf(pPk), Integer
 						.valueOf(unit[2]), Integer.valueOf(unit[3])
 						* exchange_num,GameLogManager.R_EXCHANGE);
 				resultWml.append(goodsService.getGoodsName(Integer
 						.valueOf(unit[2]), Integer.valueOf(unit[1])));
-				resultWml.append("¡Á").append(
+				resultWml.append("Ã—").append(
 						Integer.valueOf(unit[3]) * exchange_num);
-				//Ö´ĞĞÍ³¼Æ
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(Integer.valueOf(unit[2]), StatisticsType.PROP, Integer.valueOf(unit[3]) * exchange_num, StatisticsType.USED, StatisticsType.SHENGCHAN,Integer.parseInt(pPk));
 				
 			}
 			else
 				if (unit[0].equals("z"))
-				{ // ´ÓÍæ¼ÒÉíÉÏ¼õÈ¥×°±¸
+				{ // ä»ç©å®¶èº«ä¸Šå‡å»è£…å¤‡
 
 					GoodsService goodsService = new GoodsService();
 					for (int a = 0; a < Integer.valueOf(unit[2])*exchange_num; a++)
@@ -548,9 +548,9 @@ public class SynthesizeService
 					}
 					resultWml.append(goodsService.getGoodsName(Integer
 							.valueOf(unit[2]), Integer.valueOf(unit[1])));
-					resultWml.append("¡Á").append(
+					resultWml.append("Ã—").append(
 							Integer.valueOf(unit[3]) * exchange_num);
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(Integer.valueOf(unit[2]), Integer.valueOf(unit[1]), Integer.valueOf(unit[3]) * exchange_num, StatisticsType.USED, StatisticsType.SHENGCHAN,Integer.parseInt(pPk));
 					
@@ -561,16 +561,16 @@ public class SynthesizeService
 						RoleService roleService = new RoleService();
 						RoleEntity roleInfo = roleService.getRoleInfoById(pPk);
 						
-						//¼à¿Ø
+						//ç›‘æ§
 						LogService logService = new LogService();
-						logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", "-"+unit[1], "Éú²ú¶«Î÷");
+						logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", "-"+unit[1], "ç”Ÿäº§ä¸œè¥¿");
 						
-						// ´ÓÍæ¼ÒÉíÉÏ¼õÈ¥½ğÇ®
+						// ä»ç©å®¶èº«ä¸Šå‡å»é‡‘é’±
 						roleInfo.getBasicInfo().addCopper(-Integer.valueOf(unit[1]));
 						resultWml.append(MoneyUtil.changeCopperToStr(Integer
 								.valueOf(unit[1])
 								* exchange_num));
-						//Ö´ĞĞÍ³¼Æ
+						//æ‰§è¡Œç»Ÿè®¡
 						GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 						gsss.addPropNum(6, StatisticsType.MONEY, Integer.parseInt(unit[1]), StatisticsType.USED, StatisticsType.SHENGCHAN,Integer.parseInt(pPk));
 						
@@ -582,14 +582,14 @@ public class SynthesizeService
 		return resultWml.toString();
 	}
 
-	/** µÃµ½Íæ¼ÒÉíÉÏÔ­²ÄÁÏµÄÊıÁ¿ */
+	/** å¾—åˆ°ç©å®¶èº«ä¸ŠåŸææ–™çš„æ•°é‡ */
 	public List<String> getPlayerPropList(int p_pk, SynthesizeVO vo)
 	{
 		List<String> list = null;
-		String operate1 = vo.getProp(); // ĞèÒª¶Ò»»µÄÔ­²ÄÁÏ
-		// String operate2 = vo.getSynthesizeProp(); //¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate1.split(";"); // ĞèÒª¶Ò»»µÄÔ­²ÄÁÏµÄÊı×é
-		// String[] reChange2 = operate2.split(";"); //¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate1 = vo.getProp(); // éœ€è¦å…‘æ¢çš„åŸææ–™
+		// String operate2 = vo.getSynthesizeProp(); //å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate1.split(";"); // éœ€è¦å…‘æ¢çš„åŸææ–™çš„æ•°ç»„
+		// String[] reChange2 = operate2.split(";"); //å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if (reChange == null)
 		{
 			return list;
@@ -599,14 +599,14 @@ public class SynthesizeService
 
 		for (int i = 0; i < length; i++)
 		{
-			String[] materials = reChange[i].split(","); // Ã¿¸ö¶Ò»»µÄÔ­²ÄÁÏ¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(","); // æ¯ä¸ªå…‘æ¢çš„åŸææ–™å¯èƒ½ä¸æ­¢ä¸€ç§
 			StringBuffer sb = new StringBuffer();
 			sb.append(i);
 			for (int a = 0; a < materials.length; a++)
 			{
 				String[] unit = materials[a].split("-");
 				if (unit[0].equals("d"))
-				{ // Èç¹ûÔ­²ÄÁÏÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				{ // å¦‚æœåŸææ–™æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					PropVO propvo = PropCache.getPropById(Integer.valueOf(unit[2]));
 					PlayerPropGroupDao dao = new PlayerPropGroupDao();
 					int num = dao.getPropNumByByPropID(p_pk, Integer
@@ -614,11 +614,11 @@ public class SynthesizeService
 					sb.append("-");
 
 					sb.append(propvo.getPropName());
-					sb.append("¡Á").append(num);
+					sb.append("Ã—").append(num);
 				}
 				else
 					if (unit[0].equals("z"))
-					{ // Èç¹ûÔ­²ÄÁÏÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+					{ // å¦‚æœåŸææ–™æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 						sb.append("-");
 						
 						int equip_id = Integer.valueOf(materials[1]);
@@ -628,35 +628,35 @@ public class SynthesizeService
 						int num = dao.getEquipNum(p_pk, equip_id);
 						
 						sb.append(equip.getName());
-						sb.append("¡Á").append(num);
+						sb.append("Ã—").append(num);
 					}
 					else
 						if (unit[0].equals("j"))
-						{ // Èç¹ûÔ­²ÄÁÏÊÇ½ğÇ®µÄ´¦ÀíÇé¿ö
+						{ // å¦‚æœåŸææ–™æ˜¯é‡‘é’±çš„å¤„ç†æƒ…å†µ
 							PartInfoDao partInfoDao = new PartInfoDao();
 							PartInfoVO partInfoVO = partInfoDao
 									.getPartInfoByID(p_pk);
 							Long copper = Long.valueOf(partInfoVO
 									.getPCopper());
-							sb.append("-").append("ÒøÁ½").append(
+							sb.append("-").append("é“¶ä¸¤").append(
 									MoneyUtil.changeCopperToStr(copper));
 
 						}
 			}
-			logger.info("iµÄvalue: " + i + " Ô­²ÄÁÏ×°Èë×Ö¶Î" + sb.toString());
+			logger.info("içš„value: " + i + " åŸææ–™è£…å…¥å­—æ®µ" + sb.toString());
 			list.add(sb.toString());
 		}
 		return list;
 	}
 
-	/** µÃµ½Íæ¼ÒÉíÉÏÔ­²ÄÁÏµÄÊıÁ¿ */
+	/** å¾—åˆ°ç©å®¶èº«ä¸ŠåŸææ–™çš„æ•°é‡ */
 	public int getNum(int p_pk, SynthesizeVO vo)
 	{
 		List<Integer> list = null;
-		String operate1 = vo.getProp(); // ĞèÒª¶Ò»»µÄÔ­²ÄÁÏ
-		// String operate2 = vo.getSynthesizeProp(); //¶Ò»»µÄÄ¿µÄÆ·
-		String[] reChange = operate1.split(";"); // ĞèÒª¶Ò»»µÄÔ­²ÄÁÏµÄÊı×é
-		// String[] reChange2 = operate2.split(";"); //¶Ò»»µÄÄ¿µÄÆ·µÄÊı×é
+		String operate1 = vo.getProp(); // éœ€è¦å…‘æ¢çš„åŸææ–™
+		// String operate2 = vo.getSynthesizeProp(); //å…‘æ¢çš„ç›®çš„å“
+		String[] reChange = operate1.split(";"); // éœ€è¦å…‘æ¢çš„åŸææ–™çš„æ•°ç»„
+		// String[] reChange2 = operate2.split(";"); //å…‘æ¢çš„ç›®çš„å“çš„æ•°ç»„
 		if (reChange == null)
 		{
 			return 0;
@@ -665,13 +665,13 @@ public class SynthesizeService
 		int length = reChange.length;
 		for (int i = 0; i < length; i++)
 		{
-			String[] materials = reChange[i].split(","); // Ã¿¸ö¶Ò»»µÄÔ­²ÄÁÏ¿ÉÄÜ²»Ö¹Ò»ÖÖ
+			String[] materials = reChange[i].split(","); // æ¯ä¸ªå…‘æ¢çš„åŸææ–™å¯èƒ½ä¸æ­¢ä¸€ç§
 			StringBuffer sb = new StringBuffer();
 			for (int a = 0; a < materials.length; a++)
 			{
 				String[] unit = materials[a].split("-");
 				if (unit[0].equals("d"))
-				{ // Èç¹ûÔ­²ÄÁÏÊÇµÀ¾ßµÄ´¦ÀíÇé¿ö
+				{ // å¦‚æœåŸææ–™æ˜¯é“å…·çš„å¤„ç†æƒ…å†µ
 					PlayerPropGroupDao dao = new PlayerPropGroupDao();
 					int num = dao.getPropNumByByPropID(p_pk, Integer
 							.valueOf(unit[2]));
@@ -680,7 +680,7 @@ public class SynthesizeService
 				}
 				else
 					if (unit[0].equals("z"))
-					{ // Èç¹ûÔ­²ÄÁÏÊÇ×°±¸µÄ´¦ÀíÇé¿ö
+					{ // å¦‚æœåŸææ–™æ˜¯è£…å¤‡çš„å¤„ç†æƒ…å†µ
 						sb.append("-");
 						
 						int equip_id = Integer.valueOf(materials[1]);
@@ -693,7 +693,7 @@ public class SynthesizeService
 					}
 					else
 						if (unit[0].equals("j"))
-						{ // Èç¹ûÔ­²ÄÁÏÊÇ½ğÇ®µÄ´¦ÀíÇé¿ö
+						{ // å¦‚æœåŸææ–™æ˜¯é‡‘é’±çš„å¤„ç†æƒ…å†µ
 							PartInfoDao partInfoDao = new PartInfoDao();
 							PartInfoVO partInfoVO = partInfoDao
 									.getPartInfoByID(p_pk);

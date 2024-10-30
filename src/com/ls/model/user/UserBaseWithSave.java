@@ -2,7 +2,7 @@ package com.ls.model.user;
 
 /**
  * @author ls
- * 需要保存的数据的玩家实体类
+ * 闇�瑕佷繚瀛樼殑鏁版嵁鐨勭帺瀹跺疄浣撶被
  */
 public class UserBaseWithSave extends UserBase
 {
@@ -21,7 +21,7 @@ public class UserBaseWithSave extends UserBase
 	}
 	
 	/**
-	 * 初始化持久化实体
+	 * 鍒濆鍖栨寔涔呭寲瀹炰綋
 	 */
 	public void initPersistenceEntity(String tab_name,String primary_name,String primary_value)
 	{

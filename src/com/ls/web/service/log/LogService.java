@@ -5,12 +5,12 @@ import org.apache.commons.lang.StringUtils;
 import com.ls.ben.dao.log.RoleLogDao;
 
 /**
- * @author hd ÓÎÏ·µÄÈÕÖ¾¼à¿ØÀà
+ * @author hd æ¸¸æˆçš„æ—¥å¿—ç›‘æ§ç±»
  */
 public class LogService
 {
 	/**
-	 * ¼ÇÂ¼Íæ¼ÒµÄÉı¼¶ÈÕÖ¾
+	 * è®°å½•ç©å®¶çš„å‡çº§æ—¥å¿—
 	 */
 	public void recordUpgradeLog(int p_pk, String role_name, String content)
 	{
@@ -19,7 +19,7 @@ public class LogService
 	}
 
 	/***************************************************************************
-	 * Íæ¼Ò½ğÇ®¼ÇÂ¼
+	 * ç©å®¶é‡‘é’±è®°å½•
 	 * 
 	 **************************************************************************/
 	public void recordMoneyLog(int p_pk, String role_name, String old_num,
@@ -43,7 +43,7 @@ public class LogService
 	}
 
 	/**
-	 * Íæ¼Ò½›òÓ›ä›
+	 * ç©å®¶ç¶“é©—è¨˜éŒ„
 	 * 
 	 * 
 	 * 
@@ -64,7 +64,7 @@ public class LogService
 	}
 
 	/***************************************************************************
-	 * Íæ¼ÒÔª±¦¼ÇÂ¼
+	 * ç©å®¶å…ƒå®è®°å½•
 	 * 
 	 * 
 	 * 
@@ -91,7 +91,7 @@ public class LogService
 	}
 
 	/***************************************************************************
-	 * Íæ¼Ò»ù±¾ÊôĞÔ¼ÇÂ¼
+	 * ç©å®¶åŸºæœ¬å±æ€§è®°å½•
 	 * 
 	 * 
 	 * 

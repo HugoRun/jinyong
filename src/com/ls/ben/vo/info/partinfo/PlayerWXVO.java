@@ -13,37 +13,37 @@ import com.ls.pub.constant.WuXing;
 import com.ls.pub.util.MathUtil;
 
 /**
- * ¹¦ÄÜ:ÎåĞĞÊôĞÔ
- * @author ÁõË§
+ * åŠŸèƒ½:äº”è¡Œå±æ€§
+ * @author åˆ˜å¸…
  * 3:24:49 PM
  */
 public class PlayerWXVO implements WXDefence,WXAttack {
 
-	 /**½ğ·ÀÓùÁ¦*/
+	 /**é‡‘é˜²å¾¡åŠ›*/
 	private int jinFy;
-	 /**Ä¾·ÀÓùÁ¦*/
+	 /**æœ¨é˜²å¾¡åŠ›*/
 	private int muFy;
-	 /**Ë®·ÀÓùÁ¦*/
+	 /**æ°´é˜²å¾¡åŠ›*/
 	private int shuiFy;
-	 /**»ğ·ÀÓùÁ¦*/
+	 /**ç«é˜²å¾¡åŠ›*/
 	private int huoFy;
-	 /**ÍÁ·ÀÓùÁ¦*/
+	 /**åœŸé˜²å¾¡åŠ›*/
 	private int tuFy;
 	
-	 /**½ğ¹¥»÷Á¦*/
+	 /**é‡‘æ”»å‡»åŠ›*/
 	private int jinGj;
-	 /**Ä¾¹¥»÷Á¦*/
+	 /**æœ¨æ”»å‡»åŠ›*/
 	private int muGj;
-	 /**Ë®¹¥»÷Á¦*/
+	 /**æ°´æ”»å‡»åŠ›*/
 	private int shuiGj;
-	 /**»ğ¹¥»÷Á¦*/
+	 /**ç«æ”»å‡»åŠ›*/
 	private int huoGj;
-	 /**ÍÁ¹¥»÷Á¦*/
+	 /**åœŸæ”»å‡»åŠ›*/
 	private int tuGj;
 
 	public PlayerWXVO(){}
 	/**
-	 * @param attrisStr ÎåĞĞ×Ö·û´®
+	 * @param attrisStr äº”è¡Œå­—ç¬¦ä¸²
 	 */
 	public PlayerWXVO(String attrisStr)
 	{
@@ -62,10 +62,10 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 		}
 	}
 	/**
-	 * ÎäÆ÷ÅÅĞĞ°ñ£¬ÅÅĞĞ¹æÔò
-	 * Ò»¼¶Ìõ¼ş£¬ÎäÆ÷¹¥»÷Á¦£¨¹¥»÷Á¦+ÊôĞÔ¹¥»÷Á¦*10£©
-	 * ¶ş¼¶Ìõ¼ş£¬¿ÉÒÔ¿ª¿×Êı
-	 * Èı¼¶Ìõ¼ş£¬´ïµ½Ìõ¼şÊ±¼ä
+	 * æ­¦å™¨æ’è¡Œæ¦œï¼Œæ’è¡Œè§„åˆ™
+	 * ä¸€çº§æ¡ä»¶ï¼Œæ­¦å™¨æ”»å‡»åŠ›ï¼ˆæ”»å‡»åŠ›+å±æ€§æ”»å‡»åŠ›*10ï¼‰
+	 * äºŒçº§æ¡ä»¶ï¼Œå¯ä»¥å¼€å­”æ•°
+	 * ä¸‰çº§æ¡ä»¶ï¼Œè¾¾åˆ°æ¡ä»¶æ—¶é—´
 	 * @return
 	 */
 	public int getRankKey()
@@ -90,11 +90,11 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 	}
 	
 	/**
-	 * ×ª»»ÎåĞĞÀàĞÍ
+	 * è½¬æ¢äº”è¡Œç±»å‹
 	 */
 	public String changeWXType()
 	{
-		int old_wx_type = this.getWXType();//ÀÏµÄÎåĞĞÀàĞÍ
+		int old_wx_type = this.getWXType();//è€çš„äº”è¡Œç±»å‹
 		int old_wx_att = 0;
 		int old_wx_def = 0;
 		switch(old_wx_type)
@@ -130,7 +130,7 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 				this.tuFy = 0;
 				break;
 		}
-		int new_wx_type = 0;//ĞÂµÄÎåĞĞÀàĞÍ
+		int new_wx_type = 0;//æ–°çš„äº”è¡Œç±»å‹
 		
 		Map<Integer,Integer> wx_map = new HashMap<Integer,Integer>(WuXing.wx_map);
 		wx_map.remove(old_wx_type);
@@ -162,12 +162,12 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 				this.tuFy = old_wx_def;
 				break;
 		}
-		return "³É¹¦×ª»»Îª"+WuXing.getWxStr(new_wx_type)+"ÊôĞÔ£¡";
+		return "æˆåŠŸè½¬æ¢ä¸º"+WuXing.getWxStr(new_wx_type)+"å±æ€§ï¼";
 	}
 	
 	/**
-	 * µÃµ½×°±¸µÄÎ¨Ò»ÎåĞĞ
-	 * @return                -1±íÊ¾Ã»ÓĞÎåĞĞÊôĞÔ»ò¶à¸öÎåĞĞÊôĞÔ
+	 * å¾—åˆ°è£…å¤‡çš„å”¯ä¸€äº”è¡Œ
+	 * @return                -1è¡¨ç¤ºæ²¡æœ‰äº”è¡Œå±æ€§æˆ–å¤šä¸ªäº”è¡Œå±æ€§
 	 */
 	public int getWXType()
 	{
@@ -188,9 +188,9 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 	}
 	
 	/**
-	 * ¸ù¾İÊôĞÔÀàĞÍ¸ø×°±¸¸½¼ÓÊôĞÔ
-	 * @param attri_type      ÊôĞÔÀàĞÍ
-	 * @param attri_value    ÊôĞÔÖµ
+	 * æ ¹æ®å±æ€§ç±»å‹ç»™è£…å¤‡é™„åŠ å±æ€§
+	 * @param attri_type      å±æ€§ç±»å‹
+	 * @param attri_value    å±æ€§å€¼
 	 */
 	public void appendAttriByAttriType( int attri_type,int attri_value)
 	{
@@ -231,8 +231,8 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 	
 	
 	/**
-	 * µÃµ½´æ´¢×Ö·û´®
-	 * ĞÎÊ½Îª£º3,10-11,5
+	 * å¾—åˆ°å­˜å‚¨å­—ç¬¦ä¸²
+	 * å½¢å¼ä¸ºï¼š3,10-11,5
 	 */
 	public String toString()
 	{
@@ -290,8 +290,8 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 	}
 	
 	/**
-	 * µÃµ½×°±¸µÄÎåĞĞÊôĞÔ
-	 * @return              mapµÄÖ÷¼ü1-5´ú±íÎåĞĞ£¬0±íÊ¾ÎåĞĞµÄÃèÊö×Ö·û´®
+	 * å¾—åˆ°è£…å¤‡çš„äº”è¡Œå±æ€§
+	 * @return              mapçš„ä¸»é”®1-5ä»£è¡¨äº”è¡Œï¼Œ0è¡¨ç¤ºäº”è¡Œçš„æè¿°å­—ç¬¦ä¸²
 	 */
 	public Map<Integer,String> getWxType()
 	{
@@ -327,20 +327,20 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 	}
 	
 	/**
-	 * ÎåĞĞÃèÊö
+	 * äº”è¡Œæè¿°
 	 */
 	public String getDes()
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("ÎåĞĞÊôĞÔ:");
-		Map<Integer,String> equip_wx = getWxType();//×°±¸ÎåĞĞ
+		sb.append("äº”è¡Œå±æ€§:");
+		Map<Integer,String> equip_wx = getWxType();//è£…å¤‡äº”è¡Œ
 		if( equip_wx.size()>1 )
 		{
 			sb.append(equip_wx.get(0));
 		}
 		else
 		{
-			sb.append("ÎŞ");
+			sb.append("æ— ");
 		}
 		sb.append("<br/>");
 		sb.append(this.getGjDes());
@@ -349,7 +349,7 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 	}
 	
 	/**
-	 * ÎåĞĞ¹¥»÷ÃèÊö
+	 * äº”è¡Œæ”»å‡»æè¿°
 	 */
 	private String getGjDes()
 	{
@@ -380,11 +380,11 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 		{
 			return "";
 		}
-		return "ÎåĞĞ¹¥»÷:"+sb.toString().substring(0,sb.length()-1)+"<br/>";
+		return "äº”è¡Œæ”»å‡»:"+sb.toString().substring(0,sb.length()-1)+"<br/>";
 	}
 	
 	/**
-	 * ÎåĞĞ·ÀÓùÃèÊö
+	 * äº”è¡Œé˜²å¾¡æè¿°
 	 */
 	private String getFyDes()
 	{
@@ -415,7 +415,7 @@ public class PlayerWXVO implements WXDefence,WXAttack {
 		{
 			return "";
 		}
-		return "ÎåĞĞ·ÀÓù:"+sb.toString().substring(0,sb.length()-1)+"<br/>";
+		return "äº”è¡Œé˜²å¾¡:"+sb.toString().substring(0,sb.length()-1)+"<br/>";
 	}
 
 	public int getJinFy() {

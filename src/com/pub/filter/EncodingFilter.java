@@ -1,74 +1,69 @@
 package com.pub.filter;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * <p>Title: ÏµÍ³</p>
+ * <p>Title: ç³»ç»Ÿ</p>
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2005</p>
  * <p>Company: zznode</p>
- * @author  
- * @CreatedTime: 2007-10-31
+ *
+ * @author
  * @version 1.0
+ * @CreatedTime: 2007-10-31
  */
 public class EncodingFilter implements Filter {
 
+    Logger logger = Logger.getLogger("log.servcie");
     private FilterConfig filterCfg;
 
-    Logger logger = Logger.getLogger("log.servcie");
     /**
-     * 
+     *
      */
     public EncodingFilter() {
         super();
-        // TODO ×Ô¶¯Éú³É¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆæ„é€ å‡½æ•°å­˜æ ¹
     }
 
-    /* £¨·Ç Javadoc£©
+    /* ï¼ˆé Javadocï¼‰
      * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
      */
     public void init(FilterConfig arg0) throws ServletException {
         this.filterCfg = arg0;
     }
 
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain filterChain) {
-    	HttpServletRequest req = (HttpServletRequest) request;
-    	
-    	long begin_time = System.currentTimeMillis();
-    	logger.debug("#####±¾´ÎÇëÇóµÄÏìÓ¦¿ªÊ¼Ê±¼ä:"+ (begin_time)+"#####");
-    	//System.out.println("#####±¾´ÎÇëÇóµÄÏìÓ¦¿ªÊ¼Ê±¼ä:"+ (begin_time)+"#####");
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) {
+        HttpServletRequest req = (HttpServletRequest) request;
+
+        long begin_time = System.currentTimeMillis();
+        logger.debug("#####æœ¬æ¬¡è¯·æ±‚çš„å“åº”å¼€å§‹æ—¶é—´:" + (begin_time) + "#####");
+        // System.out.println("#####æœ¬æ¬¡è¯·æ±‚çš„å“åº”å¼€å§‹æ—¶é—´:"+ (begin_time)+"#####");
         try {
 
-        	/*java.io.BufferedReader read = req.getReader();
-        	String line = read.readLine();
-        		String[] params = line.split("&");
-        		String[] temp = null;
-        	if( params!=null )
-        	{
-        		for(int i=0;i<params.length;i++)
-        		{
-        			temp = params[i].split("=");
-        			if( temp.length==2)
-        			{
-        				request.setAttribute(temp[0],temp[1]);
-        			}
-        		}
-        	}*/
-    	
+            /*java.io.BufferedReader read = req.getReader();
+            String line = read.readLine();
+                String[] params = line.split("&");
+                String[] temp = null;
+            if( params!=null )
+            {
+                for(int i=0;i<params.length;i++)
+                {
+                    temp = params[i].split("=");
+                    if( temp.length==2)
+                    {
+                        request.setAttribute(temp[0],temp[1]);
+                    }
+                }
+            }*/
+
             String encoding = filterCfg.getInitParameter("encoding");
             if (encoding == null || "".equals(encoding)) {
                 HttpServletRequest hreq = (HttpServletRequest) request;
-               
+
                 String clientEn = hreq.getHeader("accept-language");
                 if ("zh-tw".equals(clientEn)) {
                     encoding = "Big5";
@@ -80,19 +75,20 @@ public class EncodingFilter implements Filter {
             }
             request.setCharacterEncoding(encoding);
             filterChain.doFilter(request, response);
-           
+
             long endTime = System.currentTimeMillis();
         } catch (Exception e) {
-          e.printStackTrace();
+            e.printStackTrace();
         }
         long end_time = System.currentTimeMillis();
-        logger.debug("#####±¾´ÎÇëÇóµÄÏìÓ¦½áÊøÊ±¼ä:"+ (begin_time)+"#####");
-        logger.debug("#####±¾´ÎÇëÇóµÄÏìÓ¦Ê±¼ä:"+ (end_time-begin_time)+"ºÁÃë#####");
-        //System.out.println("#####±¾´ÎÇëÇóµÄÏìÓ¦½áÊøÊ±¼ä:"+ (begin_time)+"#####");
-       //System.out.println("#####±¾´ÎÇëÇóµÄÏìÓ¦Ê±¼ä:"+ (end_time-begin_time)+"ºÁÃë#####");
+        logger.debug("#####æœ¬æ¬¡è¯·æ±‚çš„å“åº”ç»“æŸæ—¶é—´:" + (begin_time) + "#####");
+        logger.debug("#####æœ¬æ¬¡è¯·æ±‚çš„å“åº”æ—¶é—´:" + (end_time - begin_time) + "æ¯«ç§’#####");
+        // System.out.println("#####æœ¬æ¬¡è¯·æ±‚çš„å“åº”ç»“æŸæ—¶é—´:"+ (begin_time)+"#####");
+        // System.out.println("#####æœ¬æ¬¡è¯·æ±‚çš„å“åº”æ—¶é—´:"+ (end_time-begin_time)+"æ¯«ç§’#####");
     }
+
     public void destroy() {
-        // TODO ×Ô¶¯Éú³É·½·¨´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆæ–¹æ³•å­˜æ ¹
 
     }
 

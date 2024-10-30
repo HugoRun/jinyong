@@ -1,34 +1,34 @@
 package com.ls.pub.constant;
 
 /**
- * ¹¦ÄÜ:×°±¸ÓÃ³£Á¿
- * @author ÁõË§
+ * åŠŸèƒ½:è£…å¤‡ç”¨å¸¸é‡
+ * @author åˆ˜å¸…
  * Oct 13, 2008  9:54:26 AM
  */
 public class Equip
 {
-	//×°±¸ËùÔÚÎ»ÖÃ£¨´óÓÚ0±íÊ¾´©ÔÚÉíÉÏµÄÎ»ÖÃ£©
-	public final static int ON_BODY = 1;//´©ÔÚÉíÉÏ
-	public final static int ON_WRAP = 0;//°ü¹ü
-	public final static int ON_STORAGE = -1;//²Ö¿â
+	//è£…å¤‡æ‰€åœ¨ä½ç½®ï¼ˆå¤§äº0è¡¨ç¤ºç©¿åœ¨èº«ä¸Šçš„ä½ç½®ï¼‰
+	public final static int ON_BODY = 1;//ç©¿åœ¨èº«ä¸Š
+	public final static int ON_WRAP = 0;//åŒ…è£¹
+	public final static int ON_STORAGE = -1;//ä»“åº“
 	
-	//×°±¸µÄÆ·ÖÊ
+	//è£…å¤‡çš„å“è´¨
 	public final static int Q_PUTONG = 0;
-	public final static int Q_YOUXIU = 1;//À¶
-	public final static int Q_LIANGHAO = 2;//ÂÌ
-	public final static int Q_JIPIN = 3;//×Ï
-	public final static int Q_ORANGE = 4;//³ÈÉ«×°
+	public final static int Q_YOUXIU = 1;//è“
+	public final static int Q_LIANGHAO = 2;//ç»¿
+	public final static int Q_JIPIN = 3;//ç´«
+	public final static int Q_ORANGE = 4;//æ©™è‰²è£…
 	
-	//×°±¸ÀàĞÍ
+	//è£…å¤‡ç±»å‹
 	public final static int WEAPON = 1;
 	public final static int HAT = 2;
 	public final static int CLOTHING = 3;
-	public final static int TROUSERS = 4;//¿ã×Ó
+	public final static int TROUSERS = 4;//è£¤å­
 	public final static int SHOES = 5;
-	public final static int JEWELRY = 6;//ÊÎÆ·
+	public final static int JEWELRY = 6;//é¥°å“
 	
 	
-	//¸½¼ÓÊôĞÔÀàĞÍ
+	//é™„åŠ å±æ€§ç±»å‹
 	public final static int HP_UPPER = 1;
 	public final static int MP_UPPER = 2;
 	
@@ -47,6 +47,6 @@ public class Equip
 	public final static int ATT = 13;
 	public final static int DEF = 14;
 	
-	//**×°±¸ÎåĞĞÊôĞÔÀàĞÍ¸úÎåĞĞÊôĞÔ¶ÔÓ¦¹ØÏµ
+	//**è£…å¤‡äº”è¡Œå±æ€§ç±»å‹è·Ÿäº”è¡Œå±æ€§å¯¹åº”å…³ç³»
 	
 }

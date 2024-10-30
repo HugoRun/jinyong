@@ -10,7 +10,7 @@ if(message!=null&&!"".equals(message.trim())){
 请您输入您要挑战的对象<br/>
 <input type="text" name="name" maxlength="10" size="10"/>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/tiaozhan.do") %>"> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/tiaozhan.do") %>">
 	<postfield name="cmd" value="n1" />
 	<postfield name="name" value="$(name)" />
 	<postfield name="pg_pk" value="<%=pg_pk %>" />

@@ -7,7 +7,7 @@ import com.ls.ben.dao.info.pet.PetInfoDao;
 import com.ls.ben.vo.info.pet.PetInfoVO;
 
 /**
- * ´¦Àí¸öÈË³èÎïµÄÀà
+ * å¤„ç†ä¸ªäººå® ç‰©çš„ç±»
  * @author Administrator
  *
  */
@@ -15,7 +15,7 @@ public class RolePetInfo
 {
 	private PetInfoDao petinfoDao ;
 	private PetInfoVO petInfovo;
-	private String petNextTime;			// ³èÎïÏû¼õÌåÁ¦Ê±¼ä
+	private String petNextTime;			// å® ç‰©æ¶ˆå‡ä½“åŠ›æ—¶é—´
 	private String petAddTime;
 	
 	
@@ -31,7 +31,7 @@ public class RolePetInfo
 
 
 	/**
-	 * ½«³èÎïµÄÊÙÃü¼õÒ» 
+	 * å°†å® ç‰©çš„å¯¿å‘½å‡ä¸€ 
 	 */
 	public void updatePetLong(int pPk) {
 		if( petInfovo==null )
@@ -46,7 +46,7 @@ public class RolePetInfo
 	}	
 	
 	/**
-	 * ¼õÈ¥³èÎïµÄÒ»µãÌåÁ¦
+	 * å‡å»å® ç‰©çš„ä¸€ç‚¹ä½“åŠ›
 	 */
 	public void updatePetFatigue(int pPk)
 	{
@@ -83,7 +83,7 @@ public class RolePetInfo
 
 
 	/**
-	 * ¹¹ÔìÆ÷, ÓÃÀ´³õÊ¼»¯³èÎï, Èç¹ûÍæ¼ÒÃ»ÓĞ²ÎÕ½µÄ³èÎï,Ôò²»ÓÃ³õÊ¼»¯.
+	 * æ„é€ å™¨, ç”¨æ¥åˆå§‹åŒ–å® ç‰©, å¦‚æœç©å®¶æ²¡æœ‰å‚æˆ˜çš„å® ç‰©,åˆ™ä¸ç”¨åˆå§‹åŒ–.
 	 * @param p_pk
 	 */
 	public RolePetInfo(int p_pk)
@@ -94,7 +94,7 @@ public class RolePetInfo
 	
 	
 	/**
-	 * »ñµÃ Õ½¶·Ê±µÄ³èÎï
+	 * è·å¾— æˆ˜æ–—æ—¶çš„å® ç‰©
 	 * @param 
 	 */
 	public PetInfoVO getBringPet() {
@@ -103,9 +103,9 @@ public class RolePetInfo
 	
 	/**
 	 * 
-	 * ½«Ò»Ö»³èÎïÖÃÓÚ²ÎÕ½×´Ì¬
+	 * å°†ä¸€åªå® ç‰©ç½®äºå‚æˆ˜çŠ¶æ€
 	 * @param pet_pk 
-	 * @param return ·µ»Ø-1±íÊ¾ÒÑ¾­ÓĞ²ÎÕ½³èÎïÁË,Ìæ»»Ê§°Ü,·µ»Ø1±íÊ¾ÖÃÓÚ²ÎÕ½×´Ì¬³É¹¦
+	 * @param return è¿”å›-1è¡¨ç¤ºå·²ç»æœ‰å‚æˆ˜å® ç‰©äº†,æ›¿æ¢å¤±è´¥,è¿”å›1è¡¨ç¤ºç½®äºå‚æˆ˜çŠ¶æ€æˆåŠŸ
 	 */
 	public int bringPet( int pet_pk) {
 		if ( petInfovo != null) {
@@ -119,7 +119,7 @@ public class RolePetInfo
 	}
 		
 	/**
-	 * ½«³öÕ½³èÎïÖÃÓÚÎ´³öÕ½×´Ì¬
+	 * å°†å‡ºæˆ˜å® ç‰©ç½®äºæœªå‡ºæˆ˜çŠ¶æ€
 	 * 
 	 */
 	public void unBringpet () {
@@ -128,7 +128,7 @@ public class RolePetInfo
 	}
 	
 	/**
-	 * ½«³öÕ½³èÎïÖÃÓÚÎ´³öÕ½×´Ì¬
+	 * å°†å‡ºæˆ˜å® ç‰©ç½®äºæœªå‡ºæˆ˜çŠ¶æ€
 	 * 
 	 */
 	public void unBringpetAll () {
@@ -142,7 +142,7 @@ public class RolePetInfo
 	}
 
 	/**
-	 *  ¸üĞÂ
+	 *  æ›´æ–°
 	 * @param pet_pk
 	 * @param pet_nickname
 	 */
@@ -151,7 +151,7 @@ public class RolePetInfo
 		if ( petInfovo == null) {
 			return ;
 		} else {
-    		// Èç¹û¸ü¸ÄÃû×ÖµÄ³èÎï ¾ÍÊÇ²ÎÕ½µÄÕâÖ»,ÄÇ¾Í ¸ü¸ÄÄÚ´æÖĞµÄ³èÎïÃû×Ö
+    		// å¦‚æœæ›´æ”¹åå­—çš„å® ç‰© å°±æ˜¯å‚æˆ˜çš„è¿™åª,é‚£å°± æ›´æ”¹å†…å­˜ä¸­çš„å® ç‰©åå­—
     		if ( petInfovo.getPetPk() == pet_pk) {
     			petInfovo.setPetNickname(pet_nickname);
     		}	
@@ -160,7 +160,7 @@ public class RolePetInfo
 
 
 	/**
-	 * ³èÎïĞÅÏ¢ÖØÔØ
+	 * å® ç‰©ä¿¡æ¯é‡è½½
 	 * @param pet_pk
 	 * @param p_pk
 	 */
@@ -169,7 +169,7 @@ public class RolePetInfo
 	if ( petInfovo == null) {
 		return ;
 	} else {
-		// Èç¹ûÊ¹ÓÃÁË Óë³èÎïÏà¹ØµÄµÀ¾ß£¬ ÄÇÃ´½«³èÎïÖØĞÂ¼ÓÔØÒ»´Î
+		// å¦‚æœä½¿ç”¨äº† ä¸å® ç‰©ç›¸å…³çš„é“å…·ï¼Œ é‚£ä¹ˆå°†å® ç‰©é‡æ–°åŠ è½½ä¸€æ¬¡
 		if ( petInfovo.getPetPk() == pet_pk) {
 			unBringpet();			
 			petInfovo = petinfoDao.getBringPetByPpk(p_pk);

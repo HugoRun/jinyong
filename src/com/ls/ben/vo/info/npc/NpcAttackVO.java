@@ -12,69 +12,69 @@ public class NpcAttackVO extends NpcVO implements WXDefence,SingleWXAttack {
 	
 	public static final int DEADNPC = 1;
 	public static final int LOSENPC = 2;
-	/** ¹¥»÷²»»¹ÊÖµÄnpc,ÈçÕ½³¡µÄÆì¸Ë */
+	/** æ”»å‡»ä¸è¿˜æ‰‹çš„npc,å¦‚æˆ˜åœºçš„æ——æ† */
 	public static final int MAST = 3;
 	
 	
-	/** ¹¥³ÇÕ½³ÇÃÅ */
+	/** æ”»åŸæˆ˜åŸé—¨ */
 	public static final int CITYDOOR = 4;
-	/** ¹¥Ó¢ĞÛµñÏñÕ½ */
+	/** æ”»è‹±é›„é›•åƒæˆ˜ */
 	public static final int DIAOXIANG = 6;
 	
-	/** ¹¥»÷²»»¹ÊÖµÄnpc,¹¥³ÇÕ½³¡µÄÕĞ»êá¦,µ«ÊÇ¾ßÌåºÍÆì¸Ë²»Í¬ */
+	/** æ”»å‡»ä¸è¿˜æ‰‹çš„npc,æ”»åŸæˆ˜åœºçš„æ‹›é­‚å¹¡,ä½†æ˜¯å…·ä½“å’Œæ——æ†ä¸åŒ */
 	public static final int ZHAOHUN = 5;
 	
 	public static final int NIANSHOU = 8;
 	
-	/**µ±Ç°Õ½¶·ID*/
+	/**å½“å‰æˆ˜æ–—ID*/
 	private int ID;
-	/**´´½¨ÈËÔ±ĞÅÏ¢id*/
+	/**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/
 	private int uPk;
-	/**½ÇÉ«ID*/
+	/**è§’è‰²ID*/
 	private int pPk;
-	/**npcµ±Ç°ÑªÖµ*/
+	/**npcå½“å‰è¡€å€¼*/
 	private int currentHP;
 	
-	 /**Ö÷¶¯¹¥»÷¿ª¹Ø	0±íÊ¾´ËµãË¢ĞÂ³öµÄnpc±»¶¯¹¥»÷Íæ¼Ò£¬1±íÊ¾´ËµãË¢ĞÂ³öµÄnpcÖ÷¶¯¹¥»÷Íæ¼Ò£¬*/
+	 /**ä¸»åŠ¨æ”»å‡»å¼€å…³	0è¡¨ç¤ºæ­¤ç‚¹åˆ·æ–°å‡ºçš„npcè¢«åŠ¨æ”»å‡»ç©å®¶ï¼Œ1è¡¨ç¤ºæ­¤ç‚¹åˆ·æ–°å‡ºçš„npcä¸»åŠ¨æ”»å‡»ç©å®¶ï¼Œ*/
 	private int nAttackswitch;
 	
 	
-	/**ÔÚ×î´ó·ÀÓùºÍ×îĞ¡·ÀÓùÖ®¼äËæ»úÈ¡npc·ÀÓùÖµ*/
+	/**åœ¨æœ€å¤§é˜²å¾¡å’Œæœ€å°é˜²å¾¡ä¹‹é—´éšæœºå–npcé˜²å¾¡å€¼*/
 	private int npcDefance;
 
-	/**±êÊ¾npcÊÇ·ñ´¦ÓÚÕ½¶·×´Ì¬£»1±íÊ¾ÊÇ£¬0±íÊ¾·ñ£¬Ä¬ÈÏÎª0*/
+	/**æ ‡ç¤ºnpcæ˜¯å¦å¤„äºæˆ˜æ–—çŠ¶æ€ï¼›1è¡¨ç¤ºæ˜¯ï¼Œ0è¡¨ç¤ºå¦ï¼Œé»˜è®¤ä¸º0*/
 	private int npcIsAttack=0;
 
 	
 	
-	/**¼¼ÄÜÎåĞĞ:½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5¡£*/
+	/**æŠ€èƒ½äº”è¡Œ:é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5ã€‚*/
 	private int wx;
 	
-	/**ÎåĞĞÉËº¦*/
+	/**äº”è¡Œä¼¤å®³*/
 	private int wxValue;
 	
 	/**
-	 * npcÀàĞÍ£¬¿ÉÒÔ±»´ò°ÜµÄnpcÎª2£»ºÍ¿ÉÒÔ±»´òËÀµÄnpcÎª1
+	 * npcç±»å‹ï¼Œå¯ä»¥è¢«æ‰“è´¥çš„npcä¸º2ï¼›å’Œå¯ä»¥è¢«æ‰“æ­»çš„npcä¸º1
 	 */
 	private int npcType;
 	/**
-	 * npcËùÔÚµØµã
+	 * npcæ‰€åœ¨åœ°ç‚¹
 	 */
 	private int sceneId;
 
-	/** »÷ÔÎ×´Ì¬µÄÊ£Óà»ØºÏÊı */
+	/** å‡»æ™•çŠ¶æ€çš„å‰©ä½™å›åˆæ•° */
 	private int dizzyBoutNum;
 	
-	/**ÖĞ¶¾×´Ì¬Ê£Óà»ØºÏÊı**/
+	/**ä¸­æ¯’çŠ¶æ€å‰©ä½™å›åˆæ•°**/
 	private int poisonBoutNum;
 	
-	/**¸½¼Ó¹¥»÷*/
+	/**é™„åŠ æ”»å‡»*/
 	public int appendGj=0;
 
-	/***NPCËÀÍöÃèÊö***/
+	/***NPCæ­»äº¡æè¿°***/
 	public String npcdeaddisplay;
 	
-	/***NPCÉËº¦ÊıÖµ*****/
+	/***NPCä¼¤å®³æ•°å€¼*****/
 	public int npccountnum;
 
 	public int getNpcIsAttack() {
@@ -116,7 +116,7 @@ public class NpcAttackVO extends NpcVO implements WXDefence,SingleWXAttack {
 	public int getNpcDefance() {
 		if( getDefenceDa()==0 )
 		{
-			logger.debug("×î´ó·ÀÓù»ò×îĞ¡·ÀÓùµÄÖµÎ´±»³õÊ¼»¯");
+			logger.debug("æœ€å¤§é˜²å¾¡æˆ–æœ€å°é˜²å¾¡çš„å€¼æœªè¢«åˆå§‹åŒ–");
 			return -1;
 		}
 		npcDefance = MathUtil.getRandomBetweenXY(getDefenceXiao(),getDefenceDa());

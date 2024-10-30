@@ -11,11 +11,11 @@ import com.lw.vo.gamesystemstatistics.GameSystemStatisticsMessageVO;
 public class GameSystemStatisticsMessageDao extends DaoBase
 {
 
-	/** 判断是否该物品被录入后台统计 */
+	/** 鍒ゆ柇鏄惁璇ョ墿鍝佽褰曞叆鍚庡彴缁熻 */
 	public int getGameSystemStatisticsMessage(int propID, int propType)
 	{
 		int id = 0;
-		String sql = "select gsp_id from game_statistics_prop where prop_id = "
+		String sql = "SELECT gsp_id from game_statistics_prop where prop_id = "
 				+ propID + " and prop_type = " + propType;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -42,12 +42,12 @@ public class GameSystemStatisticsMessageDao extends DaoBase
 		return id;
 	}
 
-	/** 得到统计物品 */
+	/** 寰楀埌缁熻鐗╁搧 */
 	public List<GameSystemStatisticsMessageVO> getProp()
 	{
 		List<GameSystemStatisticsMessageVO> list = new ArrayList<GameSystemStatisticsMessageVO>();
 		GameSystemStatisticsMessageVO vo = null;
-		String sql = "select * from game_statistics_prop";
+		String sql = "SELECT * FROM game_statistics_prop";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

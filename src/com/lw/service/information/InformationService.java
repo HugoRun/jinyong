@@ -4,29 +4,29 @@ import com.lw.dao.information.InformationDAO;
 
 public class InformationService
 {
-	/** µÃµ½Íæ¼ÒµÄ×Ê¸ñ ¿´Íæ¼ÒÊÇ·ñÓĞ»ñµÃ´óÀñ°üµÄ×Ê¸ñ */
+	/** å¾—åˆ°ç©å®¶çš„èµ„æ ¼ çœ‹ç©å®¶æ˜¯å¦æœ‰è·å¾—å¤§ç¤¼åŒ…çš„èµ„æ ¼ */
 	public boolean getInformationBy50(int u_pk)
 	{
 		InformationDAO dao = new InformationDAO();
-		if (dao.getInfotmationByUpk(u_pk, "50¼¶") == null)
+		if (dao.getInfotmationByUpk(u_pk, "50çº§") == null)
 		{
 			return true;
 		}
 		return false;
 	}
 
-	/** µÃµ½Íæ¼ÒµÄ×Ê¸ñ ¿´Íæ¼ÒÊÇ·ñÓĞ»ñµÃ´óÀñ°üµÄ×Ê¸ñ */
+	/** å¾—åˆ°ç©å®¶çš„èµ„æ ¼ çœ‹ç©å®¶æ˜¯å¦æœ‰è·å¾—å¤§ç¤¼åŒ…çš„èµ„æ ¼ */
 	public boolean getInformationBy60(int u_pk)
 	{
 		InformationDAO dao = new InformationDAO();
-		if (dao.getInfotmationByUpk(u_pk, "60¼¶") == null)
+		if (dao.getInfotmationByUpk(u_pk, "60çº§") == null)
 		{
 			return true;
 		}
 		return false;
 	}
 
-	/** ²é¿´Íæ¼Ò°ï»áÊÇ·ñ²Î¼Ó¹ı»î¶¯ */
+	/** æŸ¥çœ‹ç©å®¶å¸®ä¼šæ˜¯å¦å‚åŠ è¿‡æ´»åŠ¨ */
 	public boolean getInformationByTong(int u_pk, String tongid)
 	{
 		InformationDAO dao = new InformationDAO();
@@ -37,7 +37,7 @@ public class InformationService
 		return false;
 	}
 
-	/** µÃµ½Íæ¼Ò°ï»á°ïÖ÷µÄ×Ê¸ñ ¿´Íæ¼ÒÊÇ·ñÓĞ»ñµÃ´óÀñ°üµÄ×Ê¸ñ */
+	/** å¾—åˆ°ç©å®¶å¸®ä¼šå¸®ä¸»çš„èµ„æ ¼ çœ‹ç©å®¶æ˜¯å¦æœ‰è·å¾—å¤§ç¤¼åŒ…çš„èµ„æ ¼ */
 	public boolean getInformationByTong(int p_pk)
 	{
 		InformationDAO dao = new InformationDAO();

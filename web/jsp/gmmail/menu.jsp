@@ -5,7 +5,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="s"%>
 <card id="ID" title="<s:message key = "gamename"/>">
 <p>
 多谢您向GM反馈问题,我们将尽最大的努力为大家创造一个神奇的洪荒世界!您的每封正当邮件我们都将派专人回复!<br/>

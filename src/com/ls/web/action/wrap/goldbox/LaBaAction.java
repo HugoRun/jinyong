@@ -21,63 +21,63 @@ import com.ls.web.service.player.RoleService;
 public class LaBaAction extends DispatchAction
 {
 
-	/** Ò»¶¨¸ÅÂÊµÃµ½ÎïÆ· */
+	/** ä¸€å®šæ¦‚ç‡å¾—åˆ°ç‰©å“ */
 	public ActionForward n0(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception
 	{
 		RoleService roleService = new RoleService();
-		// µÃµ½½ÇÉ«ĞÅÏ¢
+		// å¾—åˆ°è§’è‰²ä¿¡æ¯
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
 		if (roleInfo.getBasicInfo().getWrapSpare() < 2)
 		{
-			request.setAttribute("display", "Äú°ü¹ü¿Õ¼ä²»¹»,ÇëÕûÀí°ü¹ü,Ô¤Áô2¸öÒÔÉÏ¸ñ×Ó!");
+			request.setAttribute("display", "æ‚¨åŒ…è£¹ç©ºé—´ä¸å¤Ÿ,è¯·æ•´ç†åŒ…è£¹,é¢„ç•™2ä¸ªä»¥ä¸Šæ ¼å­!");
 			return display(mapping, form, request, response);
 		}
-		roleInfo.getStateInfo().setCurState(PlayerState.BOX);//Íæ¼ÒÔÚÉÌ³ÇÊ±×´Ì¬ÊÜ±£»¤
+		roleInfo.getStateInfo().setCurState(PlayerState.BOX);//ç©å®¶åœ¨å•†åŸæ—¶çŠ¶æ€å—ä¿æŠ¤
 		LaBaService lbs = new LaBaService();
-		// µÃµ½½ÇÉ«ID
+		// å¾—åˆ°è§’è‰²ID
 		String s_p_pk = String.valueOf(roleInfo.getBasicInfo().getPPk());// request.getSession().getAttribute("pPk").toString();
-		// »ñµÃ±¦ÏäID
+		// è·å¾—å®ç®±ID
 		String prop_id = request.getSession().getAttribute("prop_id")
 				.toString();
-		// ¸ù¾İ±¦ÏäIDµÃµ½±¦ÏäĞÅÏ¢
+		// æ ¹æ®å®ç®±IDå¾—åˆ°å®ç®±ä¿¡æ¯
 		PropVO pv = lbs.getGoodByID(prop_id);
-		// ´ÓÌØÊâ×Ö¶ÎÒ»ÀïµÃµ½npcidÒÔ¼°¸ÅÂÊ
+		// ä»ç‰¹æ®Šå­—æ®µä¸€é‡Œå¾—åˆ°npcidä»¥åŠæ¦‚ç‡
 		String s_NPC[] = pv.getPropOperate1().split(",");
-		// ´ó½±µÄ½áÊøÖµ
+		// å¤§å¥–çš„ç»“æŸå€¼
 		int daNum = Integer.parseInt(s_NPC[0].split("-")[1]);
-		// ÖĞ½«µÄ½áÊøÖµ
+		// ä¸­å°†çš„ç»“æŸå€¼
 		int zhongNum = Integer.parseInt(s_NPC[1].split("-")[1]);
-		// »ñµÃ±¾´Î¿ªÆô±¦Ïä»ñµÃµÄ½±ÀøÎïÆ·,¸ù¾İ¸ÅÂÊ£¬Ëæ»ú»ñµÃ¡£npc_vo1×÷Îª½±ÀøÎïÆ·
+		// è·å¾—æœ¬æ¬¡å¼€å¯å®ç®±è·å¾—çš„å¥–åŠ±ç‰©å“,æ ¹æ®æ¦‚ç‡ï¼Œéšæœºè·å¾—ã€‚npc_vo1ä½œä¸ºå¥–åŠ±ç‰©å“
 		labaVO lv = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo, 0);
-		// µÃµ½½±ÀøÎïÆ·µÄID
+		// å¾—åˆ°å¥–åŠ±ç‰©å“çš„ID
 		String goodId = String.valueOf(lv.getNvo().getGoodsId());
-		labaVO lv2 = null;// µÚ¶ş¼şÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾ÔÚÒ³ÃæÉÏ£¬Íæ¼Ò²»»á»ñµÃ´ËÎïÆ·
-		labaVO lv3 = null;// µÚÈı¼şÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾ÔÚÒ³ÃæÉÏ£¬Íæ¼Ò²»»á»ñµÃ´ËÎïÆ·
-		// rdNumÓÃÀ´ÅĞ¶Ï½±ÀøÎïÆ·ÊÇÊôÓÚ´ó½±¡¢ÖĞ½±»¹ÊÇ¹ÄÀø(Ğ¡)½±¡£
-		// getGoodsNameÀïµÄÖµÓĞËù¸Ä±ä£¬ÎªÃû×Ö+»ñµÃ´ó½±(»òÕßÖĞ½±»òÕß¹ÄÀø½±)µÄËæ»úÊı×Ö
+		labaVO lv2 = null;// ç¬¬äºŒä»¶ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤ºåœ¨é¡µé¢ä¸Šï¼Œç©å®¶ä¸ä¼šè·å¾—æ­¤ç‰©å“
+		labaVO lv3 = null;// ç¬¬ä¸‰ä»¶ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤ºåœ¨é¡µé¢ä¸Šï¼Œç©å®¶ä¸ä¼šè·å¾—æ­¤ç‰©å“
+		// rdNumç”¨æ¥åˆ¤æ–­å¥–åŠ±ç‰©å“æ˜¯å±äºå¤§å¥–ã€ä¸­å¥–è¿˜æ˜¯é¼“åŠ±(å°)å¥–ã€‚
+		// getGoodsNameé‡Œçš„å€¼æœ‰æ‰€æ”¹å˜ï¼Œä¸ºåå­—+è·å¾—å¤§å¥–(æˆ–è€…ä¸­å¥–æˆ–è€…é¼“åŠ±å¥–)çš„éšæœºæ•°å­—
 		int rdNum = lv.getSNum();
-		// npc_idÓÃÀ´ÅĞ¶Ï£¬ÕâÀïµÃµ½´æÆğ£¬ºóÃæ»áÓÃµ½¡£
+		// npc_idç”¨æ¥åˆ¤æ–­ï¼Œè¿™é‡Œå¾—åˆ°å­˜èµ·ï¼Œåé¢ä¼šç”¨åˆ°ã€‚
 		int npc_id = lv.getNvo().getNpcID();
-		// -------------µã»÷Ê¹ÓÃºó¾ÍÒÆ³ıµôÒ»¸ö±¦Ïä-----------------------------------
+		// -------------ç‚¹å‡»ä½¿ç”¨åå°±ç§»é™¤æ‰ä¸€ä¸ªå®ç®±-----------------------------------
 		lbs.RemoveBox(roleInfo, Integer.parseInt(prop_id), Integer
-				.parseInt(s_p_pk));// ÔÚÕâÀïÖ±½ÓÉ¾³ıµô±¦Ïä
+				.parseInt(s_p_pk));// åœ¨è¿™é‡Œç›´æ¥åˆ é™¤æ‰å®ç®±
 		HttpSession otherSession = request.getSession();
 
-		if (rdNum >= 0 && rdNum <= daNum)// Èç¹û»ñµÃµÄ½±ÀøÎïÆ·Îª´ó½±
+		if (rdNum >= 0 && rdNum <= daNum)// å¦‚æœè·å¾—çš„å¥–åŠ±ç‰©å“ä¸ºå¤§å¥–
 		{
 			lv2 = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo,
-					(daNum + 1));// ÄÇÃ´ÕâÀïµÃµ½ÖĞ½±ÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾
+					(daNum + 1));// é‚£ä¹ˆè¿™é‡Œå¾—åˆ°ä¸­å¥–ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤º
 			lv3 = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo,
-					(zhongNum + 1));// ÄÇÃ´ÕâÀïµÃµ½¹ÄÀø½±ÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾
+					(zhongNum + 1));// é‚£ä¹ˆè¿™é‡Œå¾—åˆ°é¼“åŠ±å¥–ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤º
 			request.setAttribute("xiao", lv3.getNvo().getGoodsName());
 			request.setAttribute("da", lv.getNvo().getGoodsName());
 			request.setAttribute("zhong", lv2.getNvo().getGoodsName());
-			otherSession.setAttribute("xiao", lv3.getNvo().getGoodsName());// µÃµ½ÎïÆ·Ãû×Ö
-			otherSession.setAttribute("da", lv.getNvo().getGoodsName());// Í¬ÉÏ
-			otherSession.setAttribute("zhong", lv2.getNvo().getGoodsName());// Í¬ÉÏ
+			otherSession.setAttribute("xiao", lv3.getNvo().getGoodsName());// å¾—åˆ°ç‰©å“åå­—
+			otherSession.setAttribute("da", lv.getNvo().getGoodsName());// åŒä¸Š
+			otherSession.setAttribute("zhong", lv2.getNvo().getGoodsName());// åŒä¸Š
 			otherSession.setAttribute("xiao_id", lv3.getNvo().getGoodsId());
 			otherSession.setAttribute("da_id", lv.getNvo().getGoodsId());
 			otherSession.setAttribute("zhong_id", lv2.getNvo().getGoodsId());
@@ -91,26 +91,26 @@ public class LaBaAction extends DispatchAction
 			otherSession
 					.setAttribute("zhong_Type", lv2.getNvo().getGoodsType());
 			// --------------------
-			otherSession.setAttribute("jName", "´ó½±£º"
+			otherSession.setAttribute("jName", "å¤§å¥–ï¼š"
 					+ lv.getNvo().getGoodsName());
 		}
 		else
-			if (rdNum >= (daNum + 1) && rdNum <= zhongNum)// Èç¹û½±ÀøÎïÆ·ÎªÖĞ½±
+			if (rdNum >= (daNum + 1) && rdNum <= zhongNum)// å¦‚æœå¥–åŠ±ç‰©å“ä¸ºä¸­å¥–
 			{
 				lv2 = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo,
-						daNum);// ÄÇÃ´ÕâÀïµÃµ½´ó½±ÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾
+						daNum);// é‚£ä¹ˆè¿™é‡Œå¾—åˆ°å¤§å¥–ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤º
 				lv3 = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo,
-						zhongNum + 1);// ÄÇÃ´ÕâÀïµÃµ½¹ÄÀø½±ÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾
+						zhongNum + 1);// é‚£ä¹ˆè¿™é‡Œå¾—åˆ°é¼“åŠ±å¥–ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤º
 				request.setAttribute("xiao", lv3.getNvo().getGoodsName());
 				request.setAttribute("da", lv2.getNvo().getGoodsName());
 				request.setAttribute("zhong", lv.getNvo().getGoodsName());
-				otherSession.setAttribute("xiao", lv3.getNvo().getGoodsName());// µÃµ½ÎïÆ·Ãû×Ö
-				otherSession.setAttribute("da", lv2.getNvo().getGoodsName());// Í¬ÉÏ
-				otherSession.setAttribute("zhong", lv.getNvo().getGoodsName());// Í¬ÉÏ
+				otherSession.setAttribute("xiao", lv3.getNvo().getGoodsName());// å¾—åˆ°ç‰©å“åå­—
+				otherSession.setAttribute("da", lv2.getNvo().getGoodsName());// åŒä¸Š
+				otherSession.setAttribute("zhong", lv.getNvo().getGoodsName());// åŒä¸Š
 				otherSession.setAttribute("xiao_id", lv3.getNvo().getGoodsId());
 				otherSession.setAttribute("da_id", lv2.getNvo().getGoodsId());
 				otherSession.setAttribute("zhong_id", lv.getNvo().getGoodsId());
-				otherSession.setAttribute("jName", "Ğ¡½±£º"
+				otherSession.setAttribute("jName", "å°å¥–ï¼š"
 						+ lv.getNvo().getGoodsName());
 				otherSession.setAttribute("xiao_Name", lv3.getNvo()
 						.getGoodsName());
@@ -127,22 +127,22 @@ public class LaBaAction extends DispatchAction
 						.getGoodsType());
 			}
 			else
-			{// Èç¹û»ñµÃµÄ½±ÀøÎïÆ·Îª¹ÄÀø(Ğ¡)½±
+			{// å¦‚æœè·å¾—çš„å¥–åŠ±ç‰©å“ä¸ºé¼“åŠ±(å°)å¥–
 				lv2 = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo,
-						daNum);// ÄÇÃ´ÕâÀïµÃµ½´ó½±ÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾
+						daNum);// é‚£ä¹ˆè¿™é‡Œå¾—åˆ°å¤§å¥–ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤º
 				lv3 = lbs.getGood(prop_id, Integer.parseInt(s_p_pk), roleInfo,
-						zhongNum);// ÄÇÃ´ÕâÀïµÃµ½ÖĞ½±ÎïÆ·£¬Ö»ÓÃÀ´ÏÔÊ¾
+						zhongNum);// é‚£ä¹ˆè¿™é‡Œå¾—åˆ°ä¸­å¥–ç‰©å“ï¼Œåªç”¨æ¥æ˜¾ç¤º
 				request.setAttribute("xiao", lv.getNvo().getGoodsName());
 				request.setAttribute("da", lv2.getNvo().getGoodsName());
 				request.setAttribute("zhong", lv3.getNvo().getGoodsName());
-				otherSession.setAttribute("xiao", lv.getNvo().getGoodsName());// µÃµ½ÎïÆ·Ãû×Ö
-				otherSession.setAttribute("da", lv2.getNvo().getGoodsName());// Í¬ÉÏ
-				otherSession.setAttribute("zhong", lv3.getNvo().getGoodsName());// Í¬ÉÏ
+				otherSession.setAttribute("xiao", lv.getNvo().getGoodsName());// å¾—åˆ°ç‰©å“åå­—
+				otherSession.setAttribute("da", lv2.getNvo().getGoodsName());// åŒä¸Š
+				otherSession.setAttribute("zhong", lv3.getNvo().getGoodsName());// åŒä¸Š
 				otherSession.setAttribute("xiao_id", lv.getNvo().getGoodsId());
 				otherSession.setAttribute("da_id", lv2.getNvo().getGoodsId());
 				otherSession
 						.setAttribute("zhong_id", lv3.getNvo().getGoodsId());
-				otherSession.setAttribute("jName", "¹ÄÀø½±£º"
+				otherSession.setAttribute("jName", "é¼“åŠ±å¥–ï¼š"
 						+ lv.getNvo().getGoodsName());
 				otherSession.setAttribute("xiao_Name", lv.getNvo()
 						.getGoodsName());
@@ -158,13 +158,13 @@ public class LaBaAction extends DispatchAction
 				otherSession.setAttribute("zhong_Type", lv3.getNvo()
 						.getGoodsType());
 			}
-		// ÈıÖÖÎïÆ·£¬Òª¸ù¾İ»ñµÃµÄµÚÒ»¸öÎïÆ·À´¾ö¶¨ºóÁ½¸öÎïÆ·ÊÇÄÄ¸ö¼¶±ğµÄ
-		request.setAttribute("count", "0");// ¼ÇÂ¼µã»÷"ĞÒÔËÌáÊ¾×Ö"µÄ´ÎÊı
-		// -----------------------´æÈësession£¬ºóÃæÓÃµ½--------------------
+		// ä¸‰ç§ç‰©å“ï¼Œè¦æ ¹æ®è·å¾—çš„ç¬¬ä¸€ä¸ªç‰©å“æ¥å†³å®šåä¸¤ä¸ªç‰©å“æ˜¯å“ªä¸ªçº§åˆ«çš„
+		request.setAttribute("count", "0");// è®°å½•ç‚¹å‡»"å¹¸è¿æç¤ºå­—"çš„æ¬¡æ•°
+		// -----------------------å­˜å…¥sessionï¼Œåé¢ç”¨åˆ°--------------------
 		otherSession.setAttribute("good_id", goodId);
-		otherSession.setAttribute("str_Word", "-1");// ÓÃÀ´ÏÔÊ¾µã»÷ºóµÄ×Ö»¹ÊÇ"ĞÒÔËÌáÊ¾·û"
-		otherSession.setAttribute("str_Word_2", "-1");// Í¬ÉÏ
-		otherSession.setAttribute("str_Word_3", "-1");// Í¬ÉÏ
+		otherSession.setAttribute("str_Word", "-1");// ç”¨æ¥æ˜¾ç¤ºç‚¹å‡»åçš„å­—è¿˜æ˜¯"å¹¸è¿æç¤ºç¬¦"
+		otherSession.setAttribute("str_Word_2", "-1");// åŒä¸Š
+		otherSession.setAttribute("str_Word_3", "-1");// åŒä¸Š
 		otherSession.setAttribute("prop_id", prop_id);
 		otherSession.setAttribute("count", "0");
 		otherSession.setAttribute("npc_id", npc_id);
@@ -173,7 +173,7 @@ public class LaBaAction extends DispatchAction
 		otherSession.setAttribute("goodType", lv.getNvo().getGoodsType());
 		otherSession.setAttribute("first", "0");
 
-		// ---------------------requestÊı¾İ£¬Ò³ÃæÏÔÊ¾ĞèÒª---------
+		// ---------------------requestæ•°æ®ï¼Œé¡µé¢æ˜¾ç¤ºéœ€è¦---------
 		request.setAttribute("str_Word", "-1");
 		request.setAttribute("str_Word_2", "-1");
 		request.setAttribute("str_Word_3", "-1");
@@ -181,26 +181,26 @@ public class LaBaAction extends DispatchAction
 		return mapping.findForward("toOpenLaba");
 	}
 
-	/** µã»÷"ĞÒÔË"ºóµÄ¿´µ½µÄ×Ö */
+	/** ç‚¹å‡»"å¹¸è¿"åçš„çœ‹åˆ°çš„å­— */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception
 	{
 		LaBaService lbs = new LaBaService();
 		String strs[] = new String[3];
-		// =====================´ÓsessionÀïµÃµ½Êı¾İ========
-		// »ñµÃµÄ½±ÀøÎïÆ·µÄID:goodid
+		// =====================ä»sessioné‡Œå¾—åˆ°æ•°æ®========
+		// è·å¾—çš„å¥–åŠ±ç‰©å“çš„ID:goodid
 		String goodid = request.getSession().getAttribute("good_id").toString();
-		// numÓÃÓÚÅĞ¶Ïµã»÷µÄÊÇµÚ¼¸¸ö"ĞÒÔËÌáÊ¾×Ö"·û
+		// numç”¨äºåˆ¤æ–­ç‚¹å‡»çš„æ˜¯ç¬¬å‡ ä¸ª"å¹¸è¿æç¤ºå­—"ç¬¦
 		String num = request.getParameter("num");
-		// »ñµÃ±¦ÏäID:prop_id
+		// è·å¾—å®ç®±ID:prop_id
 		String prop_id = request.getSession().getAttribute("prop_id")
 				.toString();
-		// npc_id ÓÃÀ´ÅĞ¶Ï»ñµÃÊÇ´ó½±¡¢ÖĞ½±»¹ÊÇĞ¡½±
+		// npc_id ç”¨æ¥åˆ¤æ–­è·å¾—æ˜¯å¤§å¥–ã€ä¸­å¥–è¿˜æ˜¯å°å¥–
 		String npc_id = request.getSession().getAttribute("npc_id").toString();
-		// ¸ù¾İprop_idµÃµ½±¦ÏäÊı¾İ
+		// æ ¹æ®prop_idå¾—åˆ°å®ç®±æ•°æ®
 		PropVO pv = lbs.getGoodByID(prop_id);
-		// °ÑNPCID×é²ğ·Ö
+		// æŠŠNPCIDç»„æ‹†åˆ†
 		String sNPCZone[] = new String[3];
 		String sNPCDA = null;
 		String sNPCZHONG = null;
@@ -211,34 +211,34 @@ public class LaBaAction extends DispatchAction
 		String daNum = null;
 		String zhongNum = null;
 		String first = request.getSession().getAttribute("first").toString();
-		if (first.equals("0"))// Èç¹ûÊÇµÚÒ»´ÎÌøµ½Õâ¸öÒ³Ãæ
+		if (first.equals("0"))// å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡è·³åˆ°è¿™ä¸ªé¡µé¢
 		{
-			// count ÎªÍ³¼Æ´ÎÊı
+			// count ä¸ºç»Ÿè®¡æ¬¡æ•°
 			int count = Integer.parseInt(request.getSession().getAttribute(
 					"count").toString());
-			// daÎª´ó½±ÎïÆ·µÄÃû×Ö
+			// daä¸ºå¤§å¥–ç‰©å“çš„åå­—
 			String da = request.getSession().getAttribute("da").toString();
-			// zhongÎªÖĞ½±ÎïÆ·µÄÃû×Ö
+			// zhongä¸ºä¸­å¥–ç‰©å“çš„åå­—
 			String zhong = request.getSession().getAttribute("zhong")
 					.toString();
-			// xiaoÎª¹ÄÀø(Ğ¡)½±ÎïÆ·µÄÃû×Ö
+			// xiaoä¸ºé¼“åŠ±(å°)å¥–ç‰©å“çš„åå­—
 			String xiao = request.getSession().getAttribute("xiao").toString();
-			// str_WordÓÃÀ´ÏÔÊ¾µã»÷ºóµÄ×Ö»¹ÊÇ"ĞÒÔËÌáÊ¾·û"
+			// str_Wordç”¨æ¥æ˜¾ç¤ºç‚¹å‡»åçš„å­—è¿˜æ˜¯"å¹¸è¿æç¤ºç¬¦"
 			String str_Word = request.getSession().getAttribute("str_Word")
 					.toString();
-			// str_Word_2Í¬ÉÏ
+			// str_Word_2åŒä¸Š
 			String str_Word_2 = request.getSession().getAttribute("str_Word_2")
-					.toString();// Í¬ÉÏ
-			// str_Word_3Í¬ÉÏ
+					.toString();// åŒä¸Š
+			// str_Word_3åŒä¸Š
 			String str_Word_3 = request.getSession().getAttribute("str_Word_3")
-					.toString();// Í¬ÉÏ
+					.toString();// åŒä¸Š
 			HttpSession otherSession = request.getSession();
 			sNPCZone = pv.getPropOperate1().split(",");
-			// ´ó½±µÄNPCµÄID
+			// å¤§å¥–çš„NPCçš„ID
 			sNPCDA = sNPCZone[0].split("-")[0];
-			// ÖĞ½±µÄNPCµÄID
+			// ä¸­å¥–çš„NPCçš„ID
 			sNPCZHONG = sNPCZone[1].split("-")[0];
-			// Ğ¡½±µÄNPCµÄID
+			// å°å¥–çš„NPCçš„ID
 			sNPCXIAO = sNPCZone[2].split("-")[0];
 			otherSession.setAttribute("sNPCDA", sNPCDA);
 			otherSession.setAttribute("sNPCZHONG", sNPCZHONG);
@@ -248,33 +248,33 @@ public class LaBaAction extends DispatchAction
 			strs[0] = str_Word;
 			strs[1] = str_Word_2;
 			strs[2] = str_Word_3;
-			if (npc_id.equals(sNPCDA))// Èç¹ûÊÇ´ó½±
+			if (npc_id.equals(sNPCDA))// å¦‚æœæ˜¯å¤§å¥–
 			{
-				al = lbs.getListThree(strs, num, count);// µ÷ÓÃ»ñµÃ´ó½±ÌáÊ¾×Ö·½·¨
+				al = lbs.getListThree(strs, num, count);// è°ƒç”¨è·å¾—å¤§å¥–æç¤ºå­—æ–¹æ³•
 				request.setAttribute("prop_id", prop_id);
 			}
 			else
-				if (npc_id.equals(sNPCZHONG))// Èç¹û»ñµÃµÄÊÇÖĞ½±
+				if (npc_id.equals(sNPCZHONG))// å¦‚æœè·å¾—çš„æ˜¯ä¸­å¥–
 				{
-					al = lbs.getListTwo(strs, num, count);// µ÷ÓÃ»ñµÃÖĞ½±ÌáÊ¾×Ö·½·¨
+					al = lbs.getListTwo(strs, num, count);// è°ƒç”¨è·å¾—ä¸­å¥–æç¤ºå­—æ–¹æ³•
 					request.setAttribute("prop_id", prop_id);
 				}
 				else
-					if (npc_id.equals(sNPCXIAO))// Èç¹û»ñµÃµÄÊÇ¹ÄÀø½±
+					if (npc_id.equals(sNPCXIAO))// å¦‚æœè·å¾—çš„æ˜¯é¼“åŠ±å¥–
 					{
-						al = lbs.getList(strs, num, count);// µ÷ÓÃ»ñµÃ¹ÄÀø½±ÌáÊ¾×Ö·½·¨
+						al = lbs.getList(strs, num, count);// è°ƒç”¨è·å¾—é¼“åŠ±å¥–æç¤ºå­—æ–¹æ³•
 						request.setAttribute("prop_id", prop_id);
 					}
-			// ------------ĞÂÊı¾İ·ÅÈësession-------------
+			// ------------æ–°æ•°æ®æ”¾å…¥session-------------
 			otherSession.setAttribute("good_id", goodid);
-			otherSession.setAttribute("str_Word", al.get(0));// ÓÃÀ´ÏÔÊ¾µã»÷ºóµÄ×Ö»¹ÊÇ"ĞÒÔËÌáÊ¾·û"
-			otherSession.setAttribute("str_Word_2", al.get(1));// Í¬ÉÏ
-			otherSession.setAttribute("str_Word_3", al.get(2));// Í¬ÉÏ
+			otherSession.setAttribute("str_Word", al.get(0));// ç”¨æ¥æ˜¾ç¤ºç‚¹å‡»åçš„å­—è¿˜æ˜¯"å¹¸è¿æç¤ºç¬¦"
+			otherSession.setAttribute("str_Word_2", al.get(1));// åŒä¸Š
+			otherSession.setAttribute("str_Word_3", al.get(2));// åŒä¸Š
 			otherSession.setAttribute("prop_id", prop_id);
 			count++;
 			otherSession.setAttribute("count", String.valueOf(count));
 			otherSession.setAttribute("npc_id", npc_id);
-			// ---------------------Ò³ÃæÊı¾İĞèÒª-------------------
+			// ---------------------é¡µé¢æ•°æ®éœ€è¦-------------------
 			request.setAttribute("str_Word", al.get(0));
 			request.setAttribute("str_Word_2", al.get(1));
 			request.setAttribute("str_Word_3", al.get(2));
@@ -282,20 +282,20 @@ public class LaBaAction extends DispatchAction
 			request.setAttribute("zhong", zhong);
 			request.setAttribute("xiao", xiao);
 			// ---------------------------
-			if (count == 3) // Èç¹ûµã»÷Èı´Î"ĞÒÔËÌáÊ¾×Ö"ÁË
+			if (count == 3) // å¦‚æœç‚¹å‡»ä¸‰æ¬¡"å¹¸è¿æç¤ºå­—"äº†
 			{
 				String jName = request.getSession().getAttribute("jName")
 						.toString();
 				request.setAttribute("jName", jName);
-				otherSession.setAttribute("jName", jName);// ½±ÀøÎïÆ·µÄÃû×Ö
-				request.setAttribute("cueWord", "");// ÌáÊ¾ĞÅÏ¢
-				return mapping.findForward("toLingQu"); // ÕâÀï»áÌøµ½ÁìÈ¡½±ÀøÒ³Ãæ£¬
+				otherSession.setAttribute("jName", jName);// å¥–åŠ±ç‰©å“çš„åå­—
+				request.setAttribute("cueWord", "");// æç¤ºä¿¡æ¯
+				return mapping.findForward("toLingQu"); // è¿™é‡Œä¼šè·³åˆ°é¢†å–å¥–åŠ±é¡µé¢ï¼Œ
 			}
 			return mapping.findForward("toOpenLaba");
 		}
 		else
 		{
-			// count ÎªÍ³¼Æ´ÎÊı
+			// count ä¸ºç»Ÿè®¡æ¬¡æ•°
 			int count = Integer.parseInt(request.getSession().getAttribute(
 					"count").toString());
 			HttpSession otherSession = request.getSession();
@@ -310,15 +310,15 @@ public class LaBaAction extends DispatchAction
 			daNum = request.getSession().getAttribute("daNum").toString();
 			zhongNum = request.getSession().getAttribute("zhongNum").toString();
 			npc_id = request.getSession().getAttribute("npc_id").toString();
-			// str_WordÓÃÀ´ÏÔÊ¾µã»÷ºóµÄ×Ö»¹ÊÇ"ĞÒÔËÌáÊ¾·û"
+			// str_Wordç”¨æ¥æ˜¾ç¤ºç‚¹å‡»åçš„å­—è¿˜æ˜¯"å¹¸è¿æç¤ºç¬¦"
 			String str_Word = request.getSession().getAttribute("str_Word")
 					.toString();
-			// str_Word_2Í¬ÉÏ
+			// str_Word_2åŒä¸Š
 			String str_Word_2 = request.getSession().getAttribute("str_Word_2")
-					.toString();// Í¬ÉÏ
-			// str_Word_3Í¬ÉÏ
+					.toString();// åŒä¸Š
+			// str_Word_3åŒä¸Š
 			String str_Word_3 = request.getSession().getAttribute("str_Word_3")
-					.toString();// Í¬ÉÏ
+					.toString();// åŒä¸Š
 			String da = request.getSession().getAttribute("da").toString();
 			String zhong = request.getSession().getAttribute("zhong")
 					.toString();
@@ -327,32 +327,32 @@ public class LaBaAction extends DispatchAction
 					.toString();
 			String goodID = request.getSession().getAttribute("good_id")
 					.toString();
-			System.out.println("ÎªºÎµÚÒ»´ÎµÃµ½µÄÊÇÆäËûÎïÆ·ID£º----------->" + goodID);
+			System.out.println("ä¸ºä½•ç¬¬ä¸€æ¬¡å¾—åˆ°çš„æ˜¯å…¶ä»–ç‰©å“IDï¼š----------->" + goodID);
 			strs[0] = str_Word;
 			strs[1] = str_Word_2;
 			strs[2] = str_Word_3;
-			if (npc_id.equals(sNPCDA))// Èç¹ûÊÇ´ó½±
+			if (npc_id.equals(sNPCDA))// å¦‚æœæ˜¯å¤§å¥–
 			{
-				al = lbs.getListThree(strs, num, count);// µ÷ÓÃ»ñµÃ´ó½±ÌáÊ¾×Ö·½·¨
+				al = lbs.getListThree(strs, num, count);// è°ƒç”¨è·å¾—å¤§å¥–æç¤ºå­—æ–¹æ³•
 				request.setAttribute("prop_id", prop_id);
 			}
 			else
-				if (npc_id.equals(sNPCZHONG))// Èç¹û»ñµÃµÄÊÇÖĞ½±
+				if (npc_id.equals(sNPCZHONG))// å¦‚æœè·å¾—çš„æ˜¯ä¸­å¥–
 				{
-					al = lbs.getListTwo(strs, num, count);// µ÷ÓÃ»ñµÃÖĞ½±ÌáÊ¾×Ö·½·¨
+					al = lbs.getListTwo(strs, num, count);// è°ƒç”¨è·å¾—ä¸­å¥–æç¤ºå­—æ–¹æ³•
 					request.setAttribute("prop_id", prop_id);
 				}
 				else
-					if (npc_id.equals(sNPCXIAO))// Èç¹û»ñµÃµÄÊÇ¹ÄÀø½±
+					if (npc_id.equals(sNPCXIAO))// å¦‚æœè·å¾—çš„æ˜¯é¼“åŠ±å¥–
 					{
-						al = lbs.getList(strs, num, count);// µ÷ÓÃ»ñµÃ¹ÄÀø½±ÌáÊ¾×Ö·½·¨
+						al = lbs.getList(strs, num, count);// è°ƒç”¨è·å¾—é¼“åŠ±å¥–æç¤ºå­—æ–¹æ³•
 						request.setAttribute("prop_id", prop_id);
 					}
 			// ---------------------------
-			otherSession.setAttribute("str_Word", al.get(0));// ÓÃÀ´ÏÔÊ¾µã»÷ºóµÄ×Ö»¹ÊÇ"ĞÒÔËÌáÊ¾·û"
-			otherSession.setAttribute("str_Word_2", al.get(1));// Í¬ÉÏ
-			otherSession.setAttribute("str_Word_3", al.get(2));// Í¬ÉÏ
-			otherSession.setAttribute("goodName", goodName);// Í¬ÉÏ
+			otherSession.setAttribute("str_Word", al.get(0));// ç”¨æ¥æ˜¾ç¤ºç‚¹å‡»åçš„å­—è¿˜æ˜¯"å¹¸è¿æç¤ºç¬¦"
+			otherSession.setAttribute("str_Word_2", al.get(1));// åŒä¸Š
+			otherSession.setAttribute("str_Word_3", al.get(2));// åŒä¸Š
+			otherSession.setAttribute("goodName", goodName);// åŒä¸Š
 			request.setAttribute("str_Word", al.get(0));
 			request.setAttribute("str_Word_2", al.get(1));
 			request.setAttribute("str_Word_3", al.get(2));
@@ -361,13 +361,13 @@ public class LaBaAction extends DispatchAction
 			request.setAttribute("xiao", xiao);
 			count++;
 			otherSession.setAttribute("count", String.valueOf(count));
-			if (count == 3) // Èç¹ûµã»÷Èı´Î"ĞÒÔËÌáÊ¾×Ö"ÁË
+			if (count == 3) // å¦‚æœç‚¹å‡»ä¸‰æ¬¡"å¹¸è¿æç¤ºå­—"äº†
 			{
 
 				request.setAttribute("jName", goodName);
-				otherSession.setAttribute("jName", goodName);// ½±ÀøÎïÆ·µÄÃû×Ö
-				request.setAttribute("cueWord", "");// ÌáÊ¾ĞÅÏ¢
-				return mapping.findForward("toLingQu"); // ÕâÀï»áÌøµ½ÁìÈ¡½±ÀøÒ³Ãæ£¬
+				otherSession.setAttribute("jName", goodName);// å¥–åŠ±ç‰©å“çš„åå­—
+				request.setAttribute("cueWord", "");// æç¤ºä¿¡æ¯
+				return mapping.findForward("toLingQu"); // è¿™é‡Œä¼šè·³åˆ°é¢†å–å¥–åŠ±é¡µé¢ï¼Œ
 			}
 			return mapping.findForward("toOpenLaba");
 		}
@@ -375,7 +375,7 @@ public class LaBaAction extends DispatchAction
 	}
 
 	/**
-	 * µ±Íæ¼Òµã»÷ÎÒ²»ÂúÒâµÄÊ±ºò£¬ÕâÀïÒªÖØĞÂÌøµ½³õÊ¼Ò³Ãæ£¬²¢½øĞĞµÀ¾ßÑéÖ¤
+	 * å½“ç©å®¶ç‚¹å‡»æˆ‘ä¸æ»¡æ„çš„æ—¶å€™ï¼Œè¿™é‡Œè¦é‡æ–°è·³åˆ°åˆå§‹é¡µé¢ï¼Œå¹¶è¿›è¡Œé“å…·éªŒè¯
 	 * 
 	 * @param mapping
 	 * @param form
@@ -392,17 +392,17 @@ public class LaBaAction extends DispatchAction
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
 		LaBaService lbs = new LaBaService();
-		// ÕâÀïµÃµ½±¦ÏäµÄID
+		// è¿™é‡Œå¾—åˆ°å®ç®±çš„ID
 		String pIDOfBox = request.getSession().getAttribute("prop_id")
 				.toString();
-		// ¸ù¾İ±¦ÏäidµÃµ½±¦ÏäÊı¾İ
+		// æ ¹æ®å®ç®±idå¾—åˆ°å®ç®±æ•°æ®
 		PropVO pv = lbs.getGoodByID(pIDOfBox);
-		// ÑéÖ¤Íæ¼ÒÉíÉÏÊÇ·ñÓĞ¿ÉÒÔÓÃÀ´Ë¢ĞÂµÄµÀ¾ß,µÚÒ»¸ö²ÎÊıÎªË¢ĞÂ±¦ÏäËùÒªµÀ¾ßµÄpg_pk
+		// éªŒè¯ç©å®¶èº«ä¸Šæ˜¯å¦æœ‰å¯ä»¥ç”¨æ¥åˆ·æ–°çš„é“å…·,ç¬¬ä¸€ä¸ªå‚æ•°ä¸ºåˆ·æ–°å®ç®±æ‰€è¦é“å…·çš„pg_pk
 		boolean boo = lbs.checkHaveThisProp(pv.getPropOperate2(), roleInfo);
 		if (boo == true)
 		{
-			// Ìø»Ø³õÊ¼Ò³,ÕâÀï¿ÉÒÔÊÇÌø»Ø³õÊ¼Ò³£¬Ò²¿ÉÒÔ²»ÊÇÌø»ØÊ×Ò³
-			// ²¢É¾³ıµôÒ»¸öË¢ĞÂÓÃµÀ¾ß
+			// è·³å›åˆå§‹é¡µ,è¿™é‡Œå¯ä»¥æ˜¯è·³å›åˆå§‹é¡µï¼Œä¹Ÿå¯ä»¥ä¸æ˜¯è·³å›é¦–é¡µ
+			// å¹¶åˆ é™¤æ‰ä¸€ä¸ªåˆ·æ–°ç”¨é“å…·
 			boolean booTwo = lbs.RemovePropOfBox(roleInfo, Integer.parseInt(pv
 					.getPropOperate2()));
 			if (booTwo == true)
@@ -441,25 +441,25 @@ public class LaBaAction extends DispatchAction
 						"xiao_Type").toString();
 				String da_Type = request.getSession().getAttribute("da_Type")
 						.toString();
-				// ÕâÀïÖØĞÂµÃµ½ÁË»ñµÃµÄÎïÆ·£¬µ«ÊÇ´ó¡¢Ğ¡¡¢¹ÄÀøµÄNPCidÔõÃ´±äÄØ
+				// è¿™é‡Œé‡æ–°å¾—åˆ°äº†è·å¾—çš„ç‰©å“ï¼Œä½†æ˜¯å¤§ã€å°ã€é¼“åŠ±çš„NPCidæ€ä¹ˆå˜å‘¢
 				ArrayList<String> al = lbs.getGoodTwo(da_id, zhong_id, xiao_id,
 						Integer.parseInt(daNum), Integer.parseInt(zhongNum),
 						sNPCDA, sNPCZHONG, sNPCXIAO, da_Name, zhong_Name,
 						xiao_Name, da_Type, zhong_Type, xiao_Type);
 				// ----------------------------------------------------
-				// ---------------------»¹ĞèÒª°ÑÈı¸öÎïÆ·idÖØĞÂ´æÈësession--------
+				// ---------------------è¿˜éœ€è¦æŠŠä¸‰ä¸ªç‰©å“idé‡æ–°å­˜å…¥session--------
 				HttpSession otherSession = request.getSession();
 				otherSession.setAttribute("good_id", al.get(1));
 				otherSession.setAttribute("npc_id", al.get(2));// NPCid
-				otherSession.setAttribute("str_Word", "-1");// ÓÃÀ´ÏÔÊ¾µã»÷ºóµÄ×Ö»¹ÊÇ"ĞÒÔËÌáÊ¾·û"
-				otherSession.setAttribute("str_Word_2", "-1");// Í¬ÉÏ
-				otherSession.setAttribute("str_Word_3", "-1");// Í¬ÉÏ
-				otherSession.setAttribute("count", "0");// Í¬ÉÏ
-				otherSession.setAttribute("daNum", daNum);// Í¬ÉÏ
-				otherSession.setAttribute("zhongNum", zhongNum);// Í¬ÉÏ
-				otherSession.setAttribute("first", "1");// Í¬ÉÏ
-				otherSession.setAttribute("goodName", al.get(0));// Í¬ÉÏ
-				otherSession.setAttribute("goodType", al.get(3));// Í¬ÉÏ
+				otherSession.setAttribute("str_Word", "-1");// ç”¨æ¥æ˜¾ç¤ºç‚¹å‡»åçš„å­—è¿˜æ˜¯"å¹¸è¿æç¤ºç¬¦"
+				otherSession.setAttribute("str_Word_2", "-1");// åŒä¸Š
+				otherSession.setAttribute("str_Word_3", "-1");// åŒä¸Š
+				otherSession.setAttribute("count", "0");// åŒä¸Š
+				otherSession.setAttribute("daNum", daNum);// åŒä¸Š
+				otherSession.setAttribute("zhongNum", zhongNum);// åŒä¸Š
+				otherSession.setAttribute("first", "1");// åŒä¸Š
+				otherSession.setAttribute("goodName", al.get(0));// åŒä¸Š
+				otherSession.setAttribute("goodType", al.get(3));// åŒä¸Š
 				// ---------------------------------------------------
 				request.setAttribute("da", da);
 				request.setAttribute("zhong", zhong);
@@ -471,7 +471,7 @@ public class LaBaAction extends DispatchAction
 			}
 			else
 			{
-				request.setAttribute("result", "ÒÆ³ıµÀ¾ßÊ§°Ü");
+				request.setAttribute("result", "ç§»é™¤é“å…·å¤±è´¥");
 				return mapping.findForward("the_laba_ok");
 			}
 		}
@@ -496,14 +496,14 @@ public class LaBaAction extends DispatchAction
 			request.setAttribute("str_Word", str_Word);
 			request.setAttribute("str_Word_2", str_Word_2);
 			request.setAttribute("str_Word_3", str_Word_3);
-			// ·ñÔòÌøµ½ÌáÊ¾Ò³£¬µ±Íæ¼ÒÃ»ÓĞ"Èç»¢ÌíÒí"µÀ¾ßÊ±£¬Ö±½ÓÔÚ±¾Ò³ÏÔÊ¾²»¿ÉÒÔÔÙË¢ĞÂ£¬
-			request.setAttribute("cueWord", "ÄúÒÑÃ»ÓĞ¡¾Èç»¢ÌíÒí¡¿µÀ¾ß£¬¿ÉÒÔÈ¥ÉÌ³Ç¹ºÂò¡£");
+			// å¦åˆ™è·³åˆ°æç¤ºé¡µï¼Œå½“ç©å®¶æ²¡æœ‰"å¦‚è™æ·»ç¿¼"é“å…·æ—¶ï¼Œç›´æ¥åœ¨æœ¬é¡µæ˜¾ç¤ºä¸å¯ä»¥å†åˆ·æ–°ï¼Œ
+			request.setAttribute("cueWord", "æ‚¨å·²æ²¡æœ‰ã€å¦‚è™æ·»ç¿¼ã€‘é“å…·ï¼Œå¯ä»¥å»å•†åŸè´­ä¹°ã€‚");
 			return mapping.findForward("toLingQu");
 		}
 	}
 
 	/**
-	 * Ìøµ½ÉÌ³Ç
+	 * è·³åˆ°å•†åŸ
 	 * 
 	 * @param mapping
 	 * @param form
@@ -516,12 +516,12 @@ public class LaBaAction extends DispatchAction
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception
 	{
-		// Ìøµ½ÉÌ³ÇÒ³
+		// è·³åˆ°å•†åŸé¡µ
 		return mapping.findForward("to_shangcheng");
 	}
 
 	/**
-	 * ÁìÈ¡½±Àø
+	 * é¢†å–å¥–åŠ±
 	 * 
 	 * @param mapping
 	 * @param form
@@ -535,17 +535,17 @@ public class LaBaAction extends DispatchAction
 			throws Exception
 	{
 		LaBaService lbs = new LaBaService();
-		// »ñµÃµÄÎïÆ·µÄID
+		// è·å¾—çš„ç‰©å“çš„ID
 		String goodid = request.getSession().getAttribute("good_id").toString();
-		// µÃµ½½ÇÉ«ID
+		// å¾—åˆ°è§’è‰²ID
 		String p_pk = request.getSession().getAttribute("pPk").toString();
-		// ±¦ÏäID
+		// å®ç®±ID
 		String prop_id = request.getSession().getAttribute("prop_id")
 				.toString();
 		String good_type = request.getSession().getAttribute("goodType")
 				.toString();
-		// Íæ¼ÒÁìÈ¡½±Àø£¬Ö»ĞèÒªÉ¾³ıµô±¦Ïä£¬°ÑÎïÆ··ÅÈëÍæ¼Ò±³°üÖĞ¡£
-		// ¶øË¢ĞÂ±¦ÏäµÄµÀ¾ßÔÚÍæ¼ÒÑ¡ÔñË¢ĞÂµÄÊ±ºò¾ÍÉ¾³ıµôÁË¡£
+		// ç©å®¶é¢†å–å¥–åŠ±ï¼Œåªéœ€è¦åˆ é™¤æ‰å®ç®±ï¼ŒæŠŠç‰©å“æ”¾å…¥ç©å®¶èƒŒåŒ…ä¸­ã€‚
+		// è€Œåˆ·æ–°å®ç®±çš„é“å…·åœ¨ç©å®¶é€‰æ‹©åˆ·æ–°çš„æ—¶å€™å°±åˆ é™¤æ‰äº†ã€‚
 		String result = lbs.getGoodAndRemoveABox(goodid, Integer
 				.parseInt(prop_id), Integer.parseInt(p_pk), Integer
 				.parseInt(good_type));

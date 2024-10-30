@@ -33,7 +33,7 @@ public class WeekRankStatisticsJob implements Job
 	Logger logger = Logger.getLogger("log.rank");
 
 	/**
-	 * Ö´ĞĞÃ¿ÖÜÒ»Áè³¿ÁãµãµÄ¸øJOB
+	 * æ‰§è¡Œæ¯å‘¨ä¸€å‡Œæ™¨é›¶ç‚¹çš„ç»™JOB
 	 */
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{
@@ -77,11 +77,11 @@ public class WeekRankStatisticsJob implements Job
 		recordPaiMingData(vlaue14, path);
 		
 		this.sendGongZiMail();
-		logger.debug("ÓÊ¼şÇåÀí½áÊø");
+		logger.debug("é‚®ä»¶æ¸…ç†ç»“æŸ");
 	}
 
 	/**
-	 * Ã¿ÖÜÒ»Áè³¿ÁãµãÖ´ĞĞ¼ÇÂ¼Íæ¼ÒÅÅÃûĞÅÏ¢
+	 * æ¯å‘¨ä¸€å‡Œæ™¨é›¶ç‚¹æ‰§è¡Œè®°å½•ç©å®¶æ’åä¿¡æ¯
 	 */
 	public void recordPaiMingData(String vlaue,String path)
 	{
@@ -109,7 +109,7 @@ public class WeekRankStatisticsJob implements Job
 			chargeForPaiMing(equip_list,vlaue,path);		
 			return ;
 		}else if(vlaue.trim().equals("wei_task")){
-//			Í³¼ÆÍşÍû
+//			ç»Ÿè®¡å¨æœ›
 			return ;
 		}else if(vlaue.trim().equals("yi")){
 			List<FriendVO> list = rankService.paiFriend(1);
@@ -202,7 +202,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 	
 	/**
-	 * ÃÔ¹¬
+	 * è¿·å®«
 	 * @param list
 	 * @param field
 	 * @param path
@@ -220,7 +220,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 	
 	/**
-	 * Ôª±¦°ñ
+	 * å…ƒå®æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -238,7 +238,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ½­ºşÊ¥°ñ
+	 * æ±Ÿæ¹–åœ£æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -255,7 +255,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ÉùÍû°ñ
+	 * å£°æœ›æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -273,7 +273,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * Éñ±ø°ñ
+	 * ç¥å…µæ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -290,7 +290,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ¿ñÊŞ°ñ
+	 * ç‹‚å…½æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -301,14 +301,14 @@ public class WeekRankStatisticsJob implements Job
 		PetInfoVO petInfoVO = null;
 		for ( int i=list.size()-1;i>=0;i--) {
 			petInfoVO = (PetInfoVO) list.get(i);
-			paimingString.append("ppk £º ").append(petInfoVO.getPPk()).append(" petInfoVOName : ").append(petInfoVO.getPetName()).append(" pet_gj_da : ").append(petInfoVO.getPetGjDa())
+			paimingString.append("ppk ï¼š ").append(petInfoVO.getPPk()).append(" petInfoVOName : ").append(petInfoVO.getPetName()).append(" pet_gj_da : ").append(petInfoVO.getPetGjDa())
 					.append("\r\n");		
 		}
 		inputIO(paimingString,field,path);	
 	}
 
 	/**
-	 * Ôª±¦°ñ
+	 * å…ƒå®æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -326,7 +326,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ³èÎï°ñ
+	 * å® ç‰©æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -344,7 +344,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ÈÙÓş°ñ
+	 * è£èª‰æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -362,7 +362,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíVIP
+	 * å¤„ç†VIP
 	 * @param list
 	 * @param field
 	 * @param path
@@ -381,7 +381,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÂòÂô°ñ
+	 * å¤„ç†ä¹°å–æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -398,7 +398,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÃÍ½«°ñ
+	 * å¤„ç†çŒ›å°†æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -415,7 +415,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦Àí»÷É±Boss
+	 * å¤„ç†å‡»æ€Boss
 	 * @param list
 	 * @param field
 	 * @param path
@@ -433,7 +433,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦Àí×ï¶ñÖµ
+	 * å¤„ç†ç½ªæ¶å€¼
 	 * @param list
 	 * @param field
 	 * @param path
@@ -451,7 +451,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÍÀÑª°ñ
+	 * å¤„ç†å± è¡€æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -468,7 +468,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÉ±ÈË°ñ
+	 * å¤„ç†æ€äººæ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -485,7 +485,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦Àínpc»÷É±°ñ
+	 * å¤„ç†npcå‡»æ€æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -503,7 +503,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦Àí¿ª±¦ÏäÊı
+	 * å¤„ç†å¼€å®ç®±æ•°
 	 * @param list
 	 * @param field
 	 * @param path
@@ -521,7 +521,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíËÀÍöÊı
+	 * å¤„ç†æ­»äº¡æ•°
 	 * @param list
 	 * @param field
 	 * @param path
@@ -538,7 +538,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦Àí½ğÇ®
+	 * å¤„ç†é‡‘é’±
 	 * @param list
 	 * @param field
 	 * @param path
@@ -556,7 +556,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÒåÆø°ñ
+	 * å¤„ç†ä¹‰æ°”æ¦œ
 	 * @param list
 	 * @param field
 	 * @param path
@@ -573,7 +573,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÖÒĞÄ¶È
+	 * å¤„ç†å¿ å¿ƒåº¦
 	 * @param list
 	 * @param field
 	 * @param path
@@ -591,7 +591,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦ÀíÇ×ÃÜ¶È
+	 * å¤„ç†äº²å¯†åº¦
 	 * @param list
 	 * @param field
 	 * @param path
@@ -626,7 +626,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ´¦Àí¶ÔÓÚ¾­ÑéÅÅÃûµÄÎÊÌâ
+	 * å¤„ç†å¯¹äºç»éªŒæ’åçš„é—®é¢˜
 	 * @param list
 	 * @param field
 	 */
@@ -644,7 +644,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ½«ÎÄ¼şĞ´ÈëlogÖĞ
+	 * å°†æ–‡ä»¶å†™å…¥logä¸­
 	 * @param paimingString
 	 * @param field
 	 */
@@ -654,7 +654,7 @@ public class WeekRankStatisticsJob implements Job
 	}
 
 	/**
-	 * ½«ÎÄ¼şĞ´ÈëÓ²ÅÌÖĞ
+	 * å°†æ–‡ä»¶å†™å…¥ç¡¬ç›˜ä¸­
 	 * @param paimingString
 	 * @param field
 	 */
@@ -690,11 +690,11 @@ public class WeekRankStatisticsJob implements Job
 	}
 	
 	/**
-	    * ´´½¨Ö¸¶¨µÄÄ¿Â¼¡£
-	    * Èç¹ûÖ¸¶¨µÄÄ¿Â¼µÄ¸¸Ä¿Â¼²»´æÔÚÔò´´½¨ÆäÄ¿Â¼ÊéÉÏËùÓĞĞèÒªµÄ¸¸Ä¿Â¼¡£
-	    * <b>×¢Òâ£º¿ÉÄÜ»áÔÚ·µ»ØfalseµÄÊ±ºò´´½¨²¿·Ö¸¸Ä¿Â¼¡£</b>
-	    * @param fileName Òª´´½¨µÄÄ¿Â¼µÄÄ¿Â¼Ãû
-	    * @return ÍêÈ«´´½¨³É¹¦Ê±·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+	    * åˆ›å»ºæŒ‡å®šçš„ç›®å½•ã€‚
+	    * å¦‚æœæŒ‡å®šçš„ç›®å½•çš„çˆ¶ç›®å½•ä¸å­˜åœ¨åˆ™åˆ›å»ºå…¶ç›®å½•ä¹¦ä¸Šæ‰€æœ‰éœ€è¦çš„çˆ¶ç›®å½•ã€‚
+	    * <b>æ³¨æ„ï¼šå¯èƒ½ä¼šåœ¨è¿”å›falseçš„æ—¶å€™åˆ›å»ºéƒ¨åˆ†çˆ¶ç›®å½•ã€‚</b>
+	    * @param fileName è¦åˆ›å»ºçš„ç›®å½•çš„ç›®å½•å
+	    * @return å®Œå…¨åˆ›å»ºæˆåŠŸæ—¶è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 	    */
 	public static boolean makeDirectory(String fileName) {
 	     File file = new File(fileName);
@@ -702,11 +702,11 @@ public class WeekRankStatisticsJob implements Job
 	  }
 	
 	  /**
-	    * ´´½¨Ö¸¶¨µÄÄ¿Â¼¡£
-	    * Èç¹ûÖ¸¶¨µÄÄ¿Â¼µÄ¸¸Ä¿Â¼²»´æÔÚÔò´´½¨ÆäÄ¿Â¼ÊéÉÏËùÓĞĞèÒªµÄ¸¸Ä¿Â¼¡£
-	    * <b>×¢Òâ£º¿ÉÄÜ»áÔÚ·µ»ØfalseµÄÊ±ºò´´½¨²¿·Ö¸¸Ä¿Â¼¡£</b>
-	    * @param file Òª´´½¨µÄÄ¿Â¼
-	    * @return ÍêÈ«´´½¨³É¹¦Ê±·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+	    * åˆ›å»ºæŒ‡å®šçš„ç›®å½•ã€‚
+	    * å¦‚æœæŒ‡å®šçš„ç›®å½•çš„çˆ¶ç›®å½•ä¸å­˜åœ¨åˆ™åˆ›å»ºå…¶ç›®å½•ä¹¦ä¸Šæ‰€æœ‰éœ€è¦çš„çˆ¶ç›®å½•ã€‚
+	    * <b>æ³¨æ„ï¼šå¯èƒ½ä¼šåœ¨è¿”å›falseçš„æ—¶å€™åˆ›å»ºéƒ¨åˆ†çˆ¶ç›®å½•ã€‚</b>
+	    * @param file è¦åˆ›å»ºçš„ç›®å½•
+	    * @return å®Œå…¨åˆ›å»ºæˆåŠŸæ—¶è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 	    */
 	   public static boolean makeDirectory(File file) {
 	     File parent = file.getParentFile();
@@ -717,13 +717,13 @@ public class WeekRankStatisticsJob implements Job
 	   }
 
 	/**
-	 * Ö´ĞĞÃ¿ÖÜÒ»Áè³¿ÁãµãµÄ¸øÍæ¼Ò·¢ÓÊ¼ş
+	 * æ‰§è¡Œæ¯å‘¨ä¸€å‡Œæ™¨é›¶ç‚¹çš„ç»™ç©å®¶å‘é‚®ä»¶
 	 */
 	private void sendGongZiMail() {
 
 		MailInfoService mailInfoService = new MailInfoService();
-		String mailContent = "Ò»ÖÜÄÚÔÚÏßÊ±¼ä´ïµ½210·ÖÖÓÒÔÉÏ¼´¿ÉÇ°Íù·üôË(Ñı)»òºóÍÁ(Î×)ÁìÈ¡¹¤×Ê!";
-		String title = "ÏµÍ³¹¤×ÊÍ¨Öª";
+		String mailContent = "ä¸€å‘¨å†…åœ¨çº¿æ—¶é—´è¾¾åˆ°210åˆ†é’Ÿä»¥ä¸Šå³å¯å‰å¾€ä¼ç¾²(å¦–)æˆ–ååœŸ(å·«)é¢†å–å·¥èµ„!";
+		String title = "ç³»ç»Ÿå·¥èµ„é€šçŸ¥";
 		PartInfoDao partInfoDao = new PartInfoDao();
 		List<Integer> allPPkList  = partInfoDao.getAllPPkList();
 		int p_pk = 0;

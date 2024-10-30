@@ -6,15 +6,15 @@ public class SystemNotifyVO
 {
 	// id
 	private int id;
-	// 公告标题
+	// 鍏憡鏍囬
 	private String notifytitle;
-	// 公告内容
+	// 鍏憡鍐呭
 	private String notifycontent;
-	// 排序
+	// 鎺掑簭
 	private int ordernum;
-	// 是否上线
+	// 鏄惁涓婄嚎
 	private int isonline;
-	// 建立公告时间
+	// 寤虹珛鍏憡鏃堕棿
 	private Date datetime;
 	public int getId()
 	{

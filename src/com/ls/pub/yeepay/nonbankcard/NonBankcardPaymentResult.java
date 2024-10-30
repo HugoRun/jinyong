@@ -1,16 +1,16 @@
 package com.ls.pub.yeepay.nonbankcard;
 /**
- * ·ÇÒøĞĞ¿¨Ö§¸¶½á¹û
+ * éé“¶è¡Œå¡æ”¯ä»˜ç»“æœ
  * @author lu.li
  *
  */
 public class NonBankcardPaymentResult {
-	private String p0_Cmd;			// ÒµÎñÀàĞÍ
-	private String r1_Code;			// Ïû·ÑÇëÇó½á¹û(¸Ã½á¹û´ú±íÇëÇóÊÇ·ñ³É¹¦£¬²»´ú±íÊµ¼Ê¿Û¿î½á¹û)
-	private String r2_TrxId;		// Ò×±¦Ö§¸¶½»Ò×Á÷Ë®ºÅ
-	private String r6_Order;		// ÉÌ»§¶©µ¥ºÅ
-	private String rq_ReturnMsg;	// ´íÎóĞÅÏ¢
-	private String hmac;			// Ç©ÃûÊı¾İ
+	private String p0_Cmd;			// ä¸šåŠ¡ç±»å‹
+	private String r1_Code;			// æ¶ˆè´¹è¯·æ±‚ç»“æœ(è¯¥ç»“æœä»£è¡¨è¯·æ±‚æ˜¯å¦æˆåŠŸï¼Œä¸ä»£è¡¨å®é™…æ‰£æ¬¾ç»“æœ)
+	private String r2_TrxId;		// æ˜“å®æ”¯ä»˜äº¤æ˜“æµæ°´å·
+	private String r6_Order;		// å•†æˆ·è®¢å•å·
+	private String rq_ReturnMsg;	// é”™è¯¯ä¿¡æ¯
+	private String hmac;			// ç­¾åæ•°æ®
 	
 	public String getP0_Cmd() {
 		return p0_Cmd;

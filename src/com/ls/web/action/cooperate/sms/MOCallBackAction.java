@@ -14,7 +14,7 @@ public class MOCallBackAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * Ó¦´ğ´¦Àí
+	 * åº”ç­”å¤„ç†
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -22,27 +22,27 @@ public class MOCallBackAction extends DispatchAction
 	{
 		String resultWml = "";
 
-		// ÏûÏ¢Àà±ğ
+		// æ¶ˆæ¯ç±»åˆ«
 		String message_type = formatString(request.getParameter("message_type"));
-		// ±êÖ¾Âë
+		// æ ‡å¿—ç 
 		String msgid = formatString(request.getParameter("msgid"));
-		// ÊÖ»úºÅÂë
+		// æ‰‹æœºå·ç 
 		String mobile = formatString(request.getParameter("mobile"));
-		// ÓÃ»§ÀàĞÍ£ºuserType 1£ºÆÕÍ¨ÓÃ»§ 3£ººÚÃûµ¥ÓÃ»§
+		// ç”¨æˆ·ç±»å‹ï¼šuserType 1ï¼šæ™®é€šç”¨æˆ· 3ï¼šé»‘åå•ç”¨æˆ·
 		String userType = formatString(request.getParameter("userType"));
-		// Íø¹Ø±àºÅ
+		// ç½‘å…³ç¼–å·
 		String gwid = formatString(request.getParameter("gwid"));
-		// ÊÖ»úÉÏĞĞÄÚÈİ
+		// æ‰‹æœºä¸Šè¡Œå†…å®¹
 		String momsg = formatString(request.getParameter("momsg"));
-		// ÊÖ»úÉÏĞĞÄ¿µÄµØÖ·
+		// æ‰‹æœºä¸Šè¡Œç›®çš„åœ°å€
 		String spcode = formatString(request.getParameter("spcode"));
-		// ¼Æ·Ñ´úÂë
+		// è®¡è´¹ä»£ç 
 		String serviceType = formatString(request.getParameter("serviceType"));
 		// Linkid
 		String linked = formatString(request.getParameter("linked"));
-		// ÊÇ·ñ¼Æ·Ñ£ºfeeflag 1Îª¼Æ·Ñ£¬0Îª²»¼Æ·Ñ
+		// æ˜¯å¦è®¡è´¹ï¼šfeeflag 1ä¸ºè®¡è´¹ï¼Œ0ä¸ºä¸è®¡è´¹
 		String feeflag = formatString(request.getParameter("feeflag"));
-		// cpproductID²úÆ·±àºÅ
+		// cpproductIDäº§å“ç¼–å·
 		String cpproductID = formatString(request.getParameter("cpproductID"));
 
 		if (message_type != null && msgid != null && mobile != null

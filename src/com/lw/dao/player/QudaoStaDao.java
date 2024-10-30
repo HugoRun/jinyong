@@ -12,14 +12,14 @@ import com.lw.vo.player.QudaoVO;
 public class QudaoStaDao extends DaoBase
 {
 	Logger logger = Logger.getLogger("log.quartz");
-	/** 得到玩家的有效注册用户数 */
+	/** 寰楀埌鐜╁鐨勬湁鏁堟敞鍐岀敤鎴锋暟 */
 	public List<QudaoVO> selectnum(String date)
 	{
 		List<QudaoVO> list = new ArrayList<QudaoVO>();
 		QudaoVO vo = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select count(*) as num , a.channel_id from u_passport_info as a ,u_part_info as b where a.u_pk = b.u_pk and b.p_grade>2 and a.create_time like '%"
+		String sql = "SELECT count(*) as num , a.channel_id from u_passport_info as a ,u_part_info as b where a.u_pk = b.u_pk and b.p_grade>2 and a.create_time like '%"
 				+ date + "%' group by a.channel_id ";
 		logger.debug("sql:"+sql);
 		try
@@ -51,7 +51,7 @@ public class QudaoStaDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "insert into channel_id_num values (null,'" + channel
+		String sql = "INSERT INTO channel_id_num values (null,'" + channel
 				+ "','" + num + "',now())";
 		logger.debug("sql:"+sql);
 		try

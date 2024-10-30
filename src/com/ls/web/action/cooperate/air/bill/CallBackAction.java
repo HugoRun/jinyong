@@ -29,14 +29,14 @@ public class CallBackAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * Ó¦´ğ´¦Àí
+	 * åº”ç­”å¤„ç†
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String resultWml = "";
-		logger.info("##########¿ÕÖĞÍøÖ±½Ó»Øµ÷############");
+		logger.info("##########ç©ºä¸­ç½‘ç›´æ¥å›è°ƒ############");
 		// userId
 		String userId = request.getParameter("userId");
 		// sessionKey
@@ -60,36 +60,36 @@ public class CallBackAction extends DispatchAction
 
 				account_state = "success";
 
-				// ²âÊÔÓÃ
+				// æµ‹è¯•ç”¨
 				PayIsCompletedMethodInvoke p = new PayIsCompletedMethodInvoke(
 						order.getId());
 				if (client.pay_isCompleted(order.getId()))
 				{
-					// ¶Ò»»³É¹¦
+					// å…‘æ¢æˆåŠŸ
 					int add_yuanbao = order.getMoney() * 10;
 					int add_jifen = add_yuanbao * GameConfig.getJifenNum();
 
 					EconomyService economyService = new EconomyService();
-					//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦³äÖµ1ÈËÃñ±Ò=1»ı·Ö
+					//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå……å€¼1äººæ°‘å¸=1ç§¯åˆ†
 					economyService.addJifen(order.getUPk(), add_jifen);
 					economyService.addYuanbao(0,order.getUPk(), add_yuanbao,"chongzhi");
 					
 					
 					long yuanbao = economyService.getYuanbao(order.getUPk());
-					String title = "³äÖµ³É¹¦";
+					String title = "å……å€¼æˆåŠŸ";
 					String time_str = DateUtil.getCurrentTimeStr();
-					String content = "ÄúÓÚ" + time_str + order.getMoney()
-							+ "K½ğ¹ºÂò"+GameConfig.getYuanbaoName()+"³É¹¦£¬»ñµÃ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á" + add_yuanbao + "!Ä¿Ç°Äú¹²ÓĞ"+GameConfig.getYuanbaoName()+""
+					String content = "æ‚¨äº" + time_str + order.getMoney()
+							+ "Ké‡‘è´­ä¹°"+GameConfig.getYuanbaoName()+"æˆåŠŸï¼Œè·å¾—ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—" + add_yuanbao + "!ç›®å‰æ‚¨å…±æœ‰"+GameConfig.getYuanbaoName()+""
 							+ yuanbao;
-					logger.info("ÓÊ¼ş±êÌâ£º" + title);
-					logger.info("ÓÊ¼şÄÚÈİ£º" + content);
+					logger.info("é‚®ä»¶æ ‡é¢˜ï¼š" + title);
+					logger.info("é‚®ä»¶å†…å®¹ï¼š" + content);
 					MailInfoService mailInfoService = new MailInfoService();
 					mailInfoService.sendMailBySystem(order.getPPk(), title,
 							content);
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(0, StatisticsType.RMB, order.getMoney(),
-							StatisticsType.DEDAO, "chongzhi", order.getPPk());// Í³¼ÆRMB
-					gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",order.getUPk());//Í³¼Æ³äÖµÈË´Î
+							StatisticsType.DEDAO, "chongzhi", order.getPPk());// ç»Ÿè®¡RMB
+					gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",order.getUPk());//ç»Ÿè®¡å……å€¼äººæ¬¡
 					resultWml = "{\"userId\":" + userId + ",\"orderId\":"
 							+ orderId + ",\"amount\":" + order.getMoney() + "}";
 					billService.updateState(order.getId(), account_state);
@@ -102,7 +102,7 @@ public class CallBackAction extends DispatchAction
 		}
 		catch (IOException e)
 		{
-			resultWml = "ÍøÂçÒì³£ÇëÖØÊÔ";
+			resultWml = "ç½‘ç»œå¼‚å¸¸è¯·é‡è¯•";
 			e.printStackTrace();
 		}
 		request.setAttribute("resultWml", resultWml);

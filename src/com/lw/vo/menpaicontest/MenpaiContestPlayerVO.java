@@ -7,18 +7,18 @@ public class MenpaiContestPlayerVO
 	private int p_pk;
 	/** ** */
 	private String p_name;
-	/** Íæ¼ÒĞÕÃû* */
+	/** ç©å®¶å§“å* */
 	private int p_type;
-	/** *Íæ¼Ò³ÆÎ½* */
+	/** *ç©å®¶ç§°è°“* */
 	private int into_state;
-	/** ÔÚÃØ¾³ÖĞµÄ×´Ì¬** */
+	/** åœ¨ç§˜å¢ƒä¸­çš„çŠ¶æ€** */
 	private int win_state;
-	/** Ê¤Àû×´Ì¬* */
+	/** èƒœåˆ©çŠ¶æ€* */
 	private int kill_num;
-	/** É±ÈËÊıÁ¿* */
+	/** æ€äººæ•°é‡* */
 	private int win_num;
 
-	/** »ñÈ¡´óµÜ×ÓµÄ´ÎÊı* */
+	/** è·å–å¤§å¼Ÿå­çš„æ¬¡æ•°* */
 	public int getId()
 	{
 		return id;

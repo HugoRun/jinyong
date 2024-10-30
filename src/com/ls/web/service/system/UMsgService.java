@@ -26,14 +26,14 @@ import com.ls.web.service.room.RoomService;
 import com.web.service.popupmsg.PopUpMsgService;
 
 /**
- * @author ls ¹¦ÄÜ:ÓÃ»§µ¯³öÏûÏ¢Âß¼­¹ÜÀí Mar 6, 2009
+ * @author ls åŠŸèƒ½:ç”¨æˆ·å¼¹å‡ºæ¶ˆæ¯é€»è¾‘ç®¡ç† Mar 6, 2009
  */
 public class UMsgService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Çå³ı½ÇÉ«ËùÓĞÏûÏ¢
+	 * æ¸…é™¤è§’è‰²æ‰€æœ‰æ¶ˆæ¯
 	 */
 	public void clear(int p_pk)
 	{
@@ -43,7 +43,7 @@ public class UMsgService
 	
 	
 	/**
-	 * Çå³ı½ÇÉ«Í¬ÀàĞÍËùÓĞÏûÏ¢
+	 * æ¸…é™¤è§’è‰²åŒç±»å‹æ‰€æœ‰æ¶ˆæ¯
 	 */
 	public void clear(int p_pk, int msg_type)
 	{
@@ -52,7 +52,7 @@ public class UMsgService
 	}
 	
 	/**
-	 * µÃµ½µ¯³öÏûÏ¢
+	 * å¾—åˆ°å¼¹å‡ºæ¶ˆæ¯
 	 * 
 	 * @param p_pk
 	 * @return
@@ -64,7 +64,7 @@ public class UMsgService
 	}
 
 	/**
-	 * ·¢ËÍµ¯³öÏûÏ¢
+	 * å‘é€å¼¹å‡ºæ¶ˆæ¯
 	 */
 	public void sendPopUpMsg(UMessageInfoVO msg)
 	{
@@ -77,7 +77,7 @@ public class UMsgService
 	}
 
 	/**
-	 * ¶ÔÏûÏ¢½øĞĞ´¦Àí
+	 * å¯¹æ¶ˆæ¯è¿›è¡Œå¤„ç†
 	 * 
 	 * @param msg
 	 * @param userBean
@@ -96,30 +96,30 @@ public class UMsgService
 		switch (msg.getMsgType())
 		{
 			case PopUpMsgType.INSTANCE:
-				result = processInstanceMsg(msg, roleInfo);// ·µ»Ø¸±±¾ÏûÏ¢ÄÚÈİ
+				result = processInstanceMsg(msg, roleInfo);// è¿”å›å‰¯æœ¬æ¶ˆæ¯å†…å®¹
 				break; 
 			case PopUpMsgType.MESSAGE_SWAP:
-				result = processSwapMsg(msg, roleInfo,request,response);// ·µ»Ø½»Ò×ÏûÏ¢ÄÚÈİ
-				//¸úĞÂÍæ¼Ò×´Ì¬
+				result = processSwapMsg(msg, roleInfo,request,response);// è¿”å›äº¤æ˜“æ¶ˆæ¯å†…å®¹
+				//è·Ÿæ–°ç©å®¶çŠ¶æ€
 				roleInfo.getStateInfo().setCurState(PlayerState.TRADE);
 				break;
 			case PopUpMsgType.MESSAGE_GROUP:
-				result = processGroupMsg(msg, roleInfo,request,response);// ·µ»Ø×é¶ÓÏûÏ¢ÄÚÈİ
-				//¸úĞÂÍæ¼Ò×´Ì¬
+				result = processGroupMsg(msg, roleInfo,request,response);// è¿”å›ç»„é˜Ÿæ¶ˆæ¯å†…å®¹
+				//è·Ÿæ–°ç©å®¶çŠ¶æ€
 				roleInfo.getStateInfo().setCurState(PlayerState.GROUP);
 				break; 
 			case PopUpMsgType.XITONG:
-				msg.setResult(msg.getMsgOperate1());// ·µ»Øµ¯³öÊ½ÏµÍ³ÏûÏ¢				
+				msg.setResult(msg.getMsgOperate1());// è¿”å›å¼¹å‡ºå¼ç³»ç»Ÿæ¶ˆæ¯				
 				break;
-			case PopUpMsgType.SYS_TESHU_MSG:	// ÏµÍ³ÌØÊâÏûÏ¢
+			case PopUpMsgType.SYS_TESHU_MSG:	// ç³»ç»Ÿç‰¹æ®Šæ¶ˆæ¯
 				result = sysSpecialMsg(msg, roleInfo,request,response);
 		}
-		msgDao.deleteById(roleInfo.getPPk(),msg.getId());// É¾³ıÏûÏ¢
+		msgDao.deleteById(roleInfo.getPPk(),msg.getId());// åˆ é™¤æ¶ˆæ¯
 		return msg;
 	}
 
 	/**
-	 * ÏµÍ³ÌØÊâÏûÏ¢
+	 * ç³»ç»Ÿç‰¹æ®Šæ¶ˆæ¯
 	 * @param msg
 	 * @param roleInfo
 	 * @param request
@@ -133,49 +133,49 @@ public class UMsgService
 		PopUpMsgService popUpMsgService = new PopUpMsgService();
 		switch (Integer.parseInt(msg.getMsgOperate1()))
 		{
-			case PopUpMsgType.GO_UP_GRADE:// ##µÈ¼¶Çé¿ö
+			case PopUpMsgType.GO_UP_GRADE:// ##ç­‰çº§æƒ…å†µ
 				hint = popUpMsgService.SysSpecialGrade(msg,response,request);
 				break;
-			case PopUpMsgType.WRAP_LOWER_LIMIT:// ##°ü¹üÇé¿ö
+			case PopUpMsgType.WRAP_LOWER_LIMIT:// ##åŒ…è£¹æƒ…å†µ
 				hint = popUpMsgService.SysSpecialWrapLowerLimit(response,request);
 				break;
-			case PopUpMsgType.PET_FATIGUE:// ##³èÎïÇé¿ö
+			case PopUpMsgType.PET_FATIGUE:// ##å® ç‰©æƒ…å†µ
 				hint = popUpMsgService.SysSpecialPetFatigue(response,request);
 				break;
-			case PopUpMsgType.ATTAIN_PROP_TYPE:// »ñµÃµÀ¾ßÇé¿ö 
+			case PopUpMsgType.ATTAIN_PROP_TYPE:// è·å¾—é“å…·æƒ…å†µ 
 				hint = popUpMsgService.SysSpecialAttainProp(msg,response,request);
 				break;
-			case PopUpMsgType.TASK_INSTANCE://##¸±±¾ÈÎÎñÇé¿ö
+			case PopUpMsgType.TASK_INSTANCE://##å‰¯æœ¬ä»»åŠ¡æƒ…å†µ
 				hint = popUpMsgService.SysSpecialTaskInstance(msg,response,request);
 				break;
-			case PopUpMsgType.TASK_30TONG://30¼¶°ïÅÉ½áÊøÈÎÎñÇé¿ö
+			case PopUpMsgType.TASK_30TONG://30çº§å¸®æ´¾ç»“æŸä»»åŠ¡æƒ…å†µ
 				hint = popUpMsgService.SysSpecialTask30Tong(response,request);
 				break;
-			case PopUpMsgType.TASK_30PK://30¼¶PK½áÊøÈÎÎñÇé¿ö
+			case PopUpMsgType.TASK_30PK://30çº§PKç»“æŸä»»åŠ¡æƒ…å†µ
 				hint = popUpMsgService.SysSpecialTask30Pk(response,request);
 				break;
-			case PopUpMsgType.MENU_INSTANCE://¸±±¾²Ëµ¥
+			case PopUpMsgType.MENU_INSTANCE://å‰¯æœ¬èœå•
 				hint = popUpMsgService.SysSpecialMenuInstance(msg,response,request);
 				break;
-			case PopUpMsgType.MENU_SIEGE://¸±±¾²Ëµ¥
+			case PopUpMsgType.MENU_SIEGE://å‰¯æœ¬èœå•
 				hint = popUpMsgService.SysSpecialMenuSiege(response,request);
 				break;
-			case PopUpMsgType.PROP_GRADE://ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
+			case PopUpMsgType.PROP_GRADE://ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
 				hint = popUpMsgService.SysSpecialPropGrade(response,request);
 				break;
-			case PopUpMsgType.VIP_ENDTIME://ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
+			case PopUpMsgType.VIP_ENDTIME://ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
 				hint = popUpMsgService.SysSpecialVipEndtime(response,request);
 				break;
-			case PopUpMsgType.PK_SWITCH://PK¿ª¹Ø µ±´ò¿ªµÄÊ±ºò
+			case PopUpMsgType.PK_SWITCH://PKå¼€å…³ å½“æ‰“å¼€çš„æ—¶å€™
 				hint = popUpMsgService.SysSpecialPkSwitch(response,request);
 				break;
-			case PopUpMsgType.NEW_ROLE://ĞÂ½ÇÉ«½øÈëÓÎÏ·ÌáÊ¾
+			case PopUpMsgType.NEW_ROLE://æ–°è§’è‰²è¿›å…¥æ¸¸æˆæç¤º
 				hint = popUpMsgService.SysSpecialNewRole(response,request);
 				break;
-			/*case PopUpMsgType.CNN_TODAY://ÉÌ³Ç½ñÈÕ¿ìÑ¶
+			/*case PopUpMsgType.CNN_TODAY://å•†åŸä»Šæ—¥å¿«è®¯
 				hint = popUpMsgService.loginHotDisplay(response,request);
 				break;*/
-			case PopUpMsgType.USE_PROP://Ê¹ÓÃµÀ¾ß
+			case PopUpMsgType.USE_PROP://ä½¿ç”¨é“å…·
 				hint = popUpMsgService.SysSpecialUseProp(msg,response,request);
 				break;
 		}
@@ -187,7 +187,7 @@ public class UMsgService
 
 
 	/**
-	 * ¶Ô¸±±¾ÏûÏ¢´¦Àí
+	 * å¯¹å‰¯æœ¬æ¶ˆæ¯å¤„ç†
 	 */
 	private UMessageInfoVO processInstanceMsg(UMessageInfoVO msg, RoleEntity roleInfo)
 	{
@@ -196,12 +196,12 @@ public class UMsgService
 
 		roleInfo.getBasicInfo().updateSceneId(new_scene_id+"");
 		 
-		msg.setResult("ÄúÒÑÍÑÀë¶ÓÎé,ÒÑÍÑÀë¸±±¾ÇøÓò");
+		msg.setResult("æ‚¨å·²è„±ç¦»é˜Ÿä¼,å·²è„±ç¦»å‰¯æœ¬åŒºåŸŸ");
 		return msg;
 	}
 
 	/**
-	 * ¶Ô½»Ò×ÏûÏ¢´¦Àí
+	 * å¯¹äº¤æ˜“æ¶ˆæ¯å¤„ç†
 	 */
 	private UMessageInfoVO processSwapMsg(UMessageInfoVO msg, RoleEntity roleInfo,HttpServletRequest request, HttpServletResponse response)
 	{
@@ -210,26 +210,26 @@ public class UMsgService
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		PartInfoDAO partInfoDAO = new PartInfoDAO();
 		SellInfoDAO sellInfoDAO = new SellInfoDAO();
-		// ²éÑ¯×Ô¼ºÓĞÃ»ÓĞ±»½»Ò×
+		// æŸ¥è¯¢è‡ªå·±æœ‰æ²¡æœ‰è¢«äº¤æ˜“
 		if (dao.isSellInfoIdBy(roleInfo.getBasicInfo().getPPk()))
 		{
-			// TODO ÕâÀïĞèÒªÔö¼ÓÍæ¼ÒµÄ×´Ì¬
-			// È¡³ö½»Ò×ÀàĞÍ
+			// TODO è¿™é‡Œéœ€è¦å¢åŠ ç©å®¶çš„çŠ¶æ€
+			// å–å‡ºäº¤æ˜“ç±»å‹
 			SellInfoVO sellMode = (SellInfoVO) dao.getSellMode(roleInfo.getBasicInfo().getPPk());
 			if (sellMode != null)
 			{
 				if (sellMode.getSellMode() == SellInfoVO.SELLMONEY)
 				{
-					// ½ğÇ®½»Ò×
+					// é‡‘é’±äº¤æ˜“
 					SellInfoVO vo = (SellInfoVO) sellInfoDAO.getSellView(sellMode.getSPk());
-					result.append("Íæ¼Ò" + partInfoDAO.getPartName(vo.getPPk() + "") + "¸øÓèÄú" + (long)(vo.getSWpSilverMoney()) + "ÁéÊ¯<br/> ");
+					result.append("ç©å®¶" + partInfoDAO.getPartName(vo.getPPk() + "") + "ç»™äºˆæ‚¨" + (long)(vo.getSWpSilverMoney()) + "çµçŸ³<br/> ");
 					result.append("<anchor> ");
 					//result.append("<go method=\"post\" href=\"/sellinfoaction.do\"> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n2\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("È·¶¨");
+					result.append("ç¡®å®š");
 					result.append("</anchor> ");
 					result.append("<anchor> ");
 					//result.append("<go method=\"post\" href=\"/sellinfoaction.do\"> ");
@@ -237,12 +237,12 @@ public class UMsgService
 					result.append("<postfield name=\"cmd\" value=\"n3\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("È¡Ïû");
+					result.append("å–æ¶ˆ");
 					result.append("</anchor>");
 				}
 				if (sellMode.getSellMode() == SellInfoVO.SELLPROP)
 				{
-					// µÀ¾ß½»Ò×
+					// é“å…·äº¤æ˜“
 					SellInfoVO vo = (SellInfoVO) sellInfoDAO.getSellView(sellMode.getSPk());
 					PropVO propVO = PropCache.getPropById(vo.getSWuping());
 					long getSWpSilverMoney = 0;
@@ -250,7 +250,7 @@ public class UMsgService
 					{
 						getSWpSilverMoney = vo.getSWpSilverMoney();
 					}
-					result.append("½»Ò×Ğè½÷É÷£¬Çë×ĞÏ¸²é¿´¶Ô·½µÄ½»Ò×ÎïÆ·£¡<br/>" + partInfoDAO.getPartName(vo.getPPk() + "") + "ÒÔ" + getSWpSilverMoney + "ÁéÊ¯µÄ¼Û¸ñÓëÄú½»Ò×");
+					result.append("äº¤æ˜“éœ€è°¨æ…ï¼Œè¯·ä»”ç»†æŸ¥çœ‹å¯¹æ–¹çš„äº¤æ˜“ç‰©å“ï¼<br/>" + partInfoDAO.getPartName(vo.getPPk() + "") + "ä»¥" + getSWpSilverMoney + "çµçŸ³çš„ä»·æ ¼ä¸æ‚¨äº¤æ˜“");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n14\" /> ");
@@ -259,32 +259,32 @@ public class UMsgService
 					result.append("</go>");
 					result.append(propVO.getPropName() + "*" + vo.getSWpNumber());
 					result.append("</anchor><br/>");
-					result.append("Äú");
+					result.append("æ‚¨");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n8\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("ÊÇ");
+					result.append("æ˜¯");
 					result.append("</anchor> ");
 					result.append(" <anchor>");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n9\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("·ñ");
-					result.append("</anchor>½ÓÊÜ½»Ò×");
+					result.append("å¦");
+					result.append("</anchor>æ¥å—äº¤æ˜“");
 				}
 				if (sellMode.getSellMode() == SellInfoVO.SELLARM)
 				{
-					// ×°±¸½»Ò×
+					// è£…å¤‡äº¤æ˜“
 					PlayerEquipDao playerEquipDao = new PlayerEquipDao();
 					SellInfoVO vo = (SellInfoVO) sellInfoDAO.getSellView(sellMode.getSPk());
 					PartInfoDAO daos = new PartInfoDAO();
 					if (playerEquipDao.isHaveById(vo.getSWuping()) == false)
 					{
 						dao.deleteSelleInfo(sellMode.getSPk() + "");
-						result.append(daos.getPartName(vo.getPPk() + "") + "È¡ÏûÁËÓëÄúµÄ×°±¸½»Ò×");
+						result.append(daos.getPartName(vo.getPPk() + "") + "å–æ¶ˆäº†ä¸æ‚¨çš„è£…å¤‡äº¤æ˜“");
 						msg.setResult(result.toString());
 						return msg;
 					}
@@ -293,7 +293,7 @@ public class UMsgService
 					{
 						getSWpSilverMoney = vo.getSWpSilverMoney();
 					}
-					result.append("½»Ò×Ğè½÷É÷£¬Çë×ĞÏ¸²é¿´¶Ô·½µÄ½»Ò×ÎïÆ·£¡<br/>" + partInfoDAO.getPartName(vo.getPPk() + "") + "ÒÔ" + getSWpSilverMoney + "ÁéÊ¯µÄ¼Û¸ñÓëÄú½»Ò×");
+					result.append("äº¤æ˜“éœ€è°¨æ…ï¼Œè¯·ä»”ç»†æŸ¥çœ‹å¯¹æ–¹çš„äº¤æ˜“ç‰©å“ï¼<br/>" + partInfoDAO.getPartName(vo.getPPk() + "") + "ä»¥" + getSWpSilverMoney + "çµçŸ³çš„ä»·æ ¼ä¸æ‚¨äº¤æ˜“");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n13\" /> ");
@@ -302,36 +302,36 @@ public class UMsgService
 					result.append("</go>");
 					result.append(playerEquipDao.getByID(vo.getSWuping()).getFullName() );
 					result.append("</anchor><br/>");
-					result.append("Äú");
+					result.append("æ‚¨");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n5\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("ÊÇ");
+					result.append("æ˜¯");
 					result.append("</anchor> ");
 					result.append(" <anchor>");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n6\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("·ñ");
-					result.append("</anchor>½ÓÊÜ½»Ò×");
+					result.append("å¦");
+					result.append("</anchor>æ¥å—äº¤æ˜“");
 				}
 				if (sellMode.getSellMode() == SellInfoVO.ZENGSONGARM)
 				{
-					// ×°±¸½»Ò×
+					// è£…å¤‡äº¤æ˜“
 					PlayerEquipDao playerEquipDao = new PlayerEquipDao();
 					SellInfoVO vo = (SellInfoVO) sellInfoDAO.getSellView(sellMode.getSPk());
 					PartInfoDAO daos = new PartInfoDAO();
 					if (playerEquipDao.isHaveById(vo.getSWuping()) == false)
 					{
 						dao.deleteSelleInfo(sellMode.getSPk() + "");
-						result.append(daos.getPartName(vo.getPPk() + "") + "È¡ÏûÁËÓëÄúµÄ×°±¸ÔùËÍ");
+						result.append(daos.getPartName(vo.getPPk() + "") + "å–æ¶ˆäº†ä¸æ‚¨çš„è£…å¤‡èµ é€");
 						msg.setResult(result.toString());
 						return msg;
 					} 
-					result.append(partInfoDAO.getPartName(vo.getPPk() + "") + "ÔùËÍ¸øÄú");
+					result.append(partInfoDAO.getPartName(vo.getPPk() + "") + "èµ é€ç»™æ‚¨");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/jiaoyi.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n10\" /> ");
@@ -340,28 +340,28 @@ public class UMsgService
 					result.append("</go>");
 					result.append(playerEquipDao.getNameById(vo.getSWuping()));
 					result.append("</anchor><br/>");
-					result.append("Äú");
+					result.append("æ‚¨");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/jiaoyi.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n12\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("ÊÇ");
+					result.append("æ˜¯");
 					result.append("</anchor> ");
 					result.append(" <anchor>");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/jiaoyi.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n13\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("·ñ");
-					result.append("</anchor>½ÓÊÜÔùËÍ");
+					result.append("å¦");
+					result.append("</anchor>æ¥å—èµ é€");
 				}
 				if (sellMode.getSellMode() == SellInfoVO.ZENGSONGPROP)
 				{
-					// µÀ¾ß½»Ò×
+					// é“å…·äº¤æ˜“
 
 					SellInfoVO vo = (SellInfoVO) sellInfoDAO.getSellView(sellMode.getSPk());
-					result.append(partInfoDAO.getPartName(vo.getPPk() + "") + "ÔùËÍ¸øÄú");
+					result.append(partInfoDAO.getPartName(vo.getPPk() + "") + "èµ é€ç»™æ‚¨");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/jiaoyi.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n14\" /> ");
@@ -370,43 +370,43 @@ public class UMsgService
 					result.append("</go>");
 					result.append(PropCache.getPropNameById(vo.getSWuping()) + "*" + vo.getSWpNumber());
 					result.append("</anchor><br/>");
-					result.append("Äú");
+					result.append("æ‚¨");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/jiaoyi.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n16\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("ÊÇ");
+					result.append("æ˜¯");
 					result.append("</anchor> ");
 					result.append(" <anchor>");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/jiaoyi.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n17\" /> ");
 					result.append("<postfield name=\"sPk\" value=\"" + vo.getSPk() + "\" /> ");
 					result.append("</go>");
-					result.append("·ñ");
-					result.append("</anchor>½ÓÊÜÔùËÍ");
+					result.append("å¦");
+					result.append("</anchor>æ¥å—èµ é€");
 				}
 			}else{
-				result.append("½»Ò×³¬Ê±,ÏµÍ³×Ô¶¯È¡Ïû½»Ò×ÇëÇó¡£");
+				result.append("äº¤æ˜“è¶…æ—¶,ç³»ç»Ÿè‡ªåŠ¨å–æ¶ˆäº¤æ˜“è¯·æ±‚ã€‚");
 			}
 		}
 		if (petInfoDAO.getPetSellVs(roleInfo.getBasicInfo().getPPk() + ""))
 		{
-			// TODO ÕâÀïĞèÒªÔö¼ÓÍæ¼ÒµÄ×´Ì¬
-			// È¡³ö³èÎï½»Ò×±íÖ÷¼ü
+			// TODO è¿™é‡Œéœ€è¦å¢åŠ ç©å®¶çš„çŠ¶æ€
+			// å–å‡ºå® ç‰©äº¤æ˜“è¡¨ä¸»é”®
 			int ps_pk = petInfoDAO.getSellPet(roleInfo.getBasicInfo().getPPk());
 			if(ps_pk == 0){
-				result.append("½»Ò×³¬Ê±,ÏµÍ³×Ô¶¯È¡Ïû½»Ò×ÇëÇó¡£");
+				result.append("äº¤æ˜“è¶…æ—¶,ç³»ç»Ÿè‡ªåŠ¨å–æ¶ˆäº¤æ˜“è¯·æ±‚ã€‚");
 				msg.setResult(result.toString());
 				return msg;
 			}
 			PetSellVO vo = (PetSellVO) petInfoDAO.getPetSellView(ps_pk);
 			PartInfoDAO daos = new PartInfoDAO();
-			// ÅĞ¶ÏÇëÇó·½¸Ã³èÎïÊÇ·ñ»¹ÔÚÉíÉÏ
+			// åˆ¤æ–­è¯·æ±‚æ–¹è¯¥å® ç‰©æ˜¯å¦è¿˜åœ¨èº«ä¸Š
 			if (petInfoDAO.isPetNot(vo.getPetId(), vo.getPPk()) == false)
 			{
-				result.append(daos.getPartName(vo.getPPk() + "")+ "È¡ÏûÁËÓëÄúµÄ³èÎï½»Ò×");
-				// È·¶¨½»Ò×ºóÉ¾³ı
+				result.append(daos.getPartName(vo.getPPk() + "")+ "å–æ¶ˆäº†ä¸æ‚¨çš„å® ç‰©äº¤æ˜“");
+				// ç¡®å®šäº¤æ˜“ååˆ é™¤
 				petInfoDAO.getPetSellDelete(ps_pk + "");
 				msg.setResult(result.toString());
 				return msg;
@@ -423,7 +423,7 @@ public class UMsgService
 			{
 				getPsCopperMoney = vo.getPsCopperMoney();
 			}
-			result.append("½»Ò×Ğè½÷É÷£¬Çë×ĞÏ¸²é¿´¶Ô·½µÄ½»Ò×³èÎï£¡<br/>" + partInfoDAO.getPartName(vo.getPPk() + "") + "ÒÔ" + getPsSilverMoney + "ÁéÊ¯" + getPsCopperMoney + "ÎÄµÄ¼Û¸ñÓëÄú½»Ò×");
+			result.append("äº¤æ˜“éœ€è°¨æ…ï¼Œè¯·ä»”ç»†æŸ¥çœ‹å¯¹æ–¹çš„äº¤æ˜“å® ç‰©ï¼<br/>" + partInfoDAO.getPartName(vo.getPPk() + "") + "ä»¥" + getPsSilverMoney + "çµçŸ³" + getPsCopperMoney + "æ–‡çš„ä»·æ ¼ä¸æ‚¨äº¤æ˜“");
 			result.append("<anchor> ");
 			result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 			result.append("<postfield name=\"cmd\" value=\"n15\" /> ");
@@ -432,35 +432,35 @@ public class UMsgService
 			result.append("</go>");
 			result.append(petInfoDAO.pet_name(vo.getPetId()));
 			result.append("</anchor><br/>");
-			result.append("Äú");
+			result.append("æ‚¨");
 			result.append("<anchor> ");
 			result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 			result.append("<postfield name=\"cmd\" value=\"n11\" /> ");
 			result.append("<postfield name=\"ps_pk\" value=\"" + vo.getPsPk() + "\" /> ");
 			result.append("</go>");
-			result.append("ÊÇ");
+			result.append("æ˜¯");
 			result.append("</anchor> ");
 			result.append(" <anchor>");
 			result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/sellinfoaction.do")+"\">");
 			result.append("<postfield name=\"cmd\" value=\"n12\" /> ");
 			result.append("<postfield name=\"ps_pk\" value=\"" + vo.getPsPk() + "\" /> ");
 			result.append("</go>");
-			result.append("·ñ");
-			result.append("</anchor>½ÓÊÜ½»Ò×");
+			result.append("å¦");
+			result.append("</anchor>æ¥å—äº¤æ˜“");
 		}
 		msg.setResult(result.toString());
 		return msg;
 	}
 
 	/**
-	 * ¶Ô×é¶ÓÏûÏ¢µÄ¿ØÖÆ
+	 * å¯¹ç»„é˜Ÿæ¶ˆæ¯çš„æ§åˆ¶
 	 */
 	private UMessageInfoVO processGroupMsg(UMessageInfoVO msg, RoleEntity roleInfo,HttpServletRequest request, HttpServletResponse response)
 	{
 		StringBuffer result = new StringBuffer();
 	
 		GroupNotifyService groupNotifyService = new GroupNotifyService();
-		// ÅĞ¶ÏÊÇ·ñÓĞ×é¶ÓÏûÏ¢
+		// åˆ¤æ–­æ˜¯å¦æœ‰ç»„é˜Ÿæ¶ˆæ¯
 		int n_pk = groupNotifyService.isHaveNotify(roleInfo.getBasicInfo().getPPk());
 		if (n_pk != -1)
 		{
@@ -469,15 +469,15 @@ public class UMsgService
 			if( groupNotify!=null )
 			{
 				groupNotifyService.deleteNotify(groupNotify.getNPk());
-				if( groupNotify.getNotifyType()==GroupNotifyService.CREATE || groupNotify.getNotifyType()==GroupNotifyService.JOIN || groupNotify.getNotifyType()==GroupNotifyService.INVITE )//×é¶ÓÍ¨Öª
+				if( groupNotify.getNotifyType()==GroupNotifyService.CREATE || groupNotify.getNotifyType()==GroupNotifyService.JOIN || groupNotify.getNotifyType()==GroupNotifyService.INVITE )//ç»„é˜Ÿé€šçŸ¥
 				{ 
 					int a_pk = groupNotify.getNotifyedPk();
 					int b_pk = groupNotify.getCreateNotifyPk();
 					
 					RoleEntity b_role_info = RoleService.getRoleInfoById(b_pk+"");
 					if(b_role_info == null || b_role_info.isOnline()==false){
-						result.append("¶Ô·½Íæ¼Ò²»ÔÚÏß ");  
-						groupNotifyService.clareNotify(b_pk);// Çå³ı×é¶ÓÍ¨Öª
+						result.append("å¯¹æ–¹ç©å®¶ä¸åœ¨çº¿ ");  
+						groupNotifyService.clareNotify(b_pk);// æ¸…é™¤ç»„é˜Ÿé€šçŸ¥
 						msg.setResult(result.toString());
 						return msg;
 					}
@@ -490,7 +490,7 @@ public class UMsgService
 					result.append("<postfield name=\"notify_type\" value=\"" + groupNotify.getNotifyType() + "\"/> "); 
 					result.append("</go>");
 					result.append(name);
-					result.append("</anchor>Íæ¼ÒÏòÄúÌá³ö×é¶ÓÉêÇë<br/>");
+					result.append("</anchor>ç©å®¶å‘æ‚¨æå‡ºç»„é˜Ÿç”³è¯·<br/>");
 					result.append("<anchor> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/group.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n4\" /> ");
@@ -498,16 +498,16 @@ public class UMsgService
 					result.append("<postfield name=\"b_pk\" value=\"" + b_pk + "\" /> ");
 					result.append("<postfield name=\"notify_type\" value=\"" + groupNotify.getNotifyType() + "\" /> "); 
 					result.append("</go>");
-					result.append("Í¬Òâ×é¶Ó");
+					result.append("åŒæ„ç»„é˜Ÿ");
 					result.append("</anchor>");  
 				}
 				else if( groupNotify.getNotifyType()==GroupNotifyService.GROUPHINT ) 
 				{ 
-					result.append("ÄúÒÑ¼ÓÈë¶ÓÎé");
+					result.append("æ‚¨å·²åŠ å…¥é˜Ÿä¼");
 				}
 			} 
 		}else{
-			result.append("×é¶ÓÇëÇó±»È¡Ïû");
+			result.append("ç»„é˜Ÿè¯·æ±‚è¢«å–æ¶ˆ");
 		}
 		msg.setResult(result.toString());
 		return msg;

@@ -8,14 +8,14 @@ import com.ben.vo.petinfo.PetInfoVO;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:³èÎïÈÎÎñ
+ * åŠŸèƒ½:å® ç‰©ä»»åŠ¡
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class TaskServicePet
 { 
 	/**
-	 * ²é¿´ÊÇ·ñÓĞÈÎÎñĞèÒªµÄ³èÎï
+	 * æŸ¥çœ‹æ˜¯å¦æœ‰ä»»åŠ¡éœ€è¦çš„å® ç‰©
 	 */
 	public String getTaskPet(int petid, int petNumber, int pPk)
 	{
@@ -23,25 +23,25 @@ public class TaskServicePet
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> list = petInfoDAO.getPetInfoByTask(petid, pPk);
 		if(list.size() == 0){
-			hint = "ÏµÍ³Ö»ÊÕÈ¡Ã»ÓĞ¼¼ÄÜµÄ³èÎï";
+			hint = "ç³»ç»Ÿåªæ”¶å–æ²¡æœ‰æŠ€èƒ½çš„å® ç‰©";
 			return hint;
 		}
 		if (list.size() < petNumber)
 		{
-		   hint = "ÄúµÄ³èÎïÊıÁ¿²»¹»";
+		   hint = "æ‚¨çš„å® ç‰©æ•°é‡ä¸å¤Ÿ";
 		   return hint;
 		}
 		
 		return hint;
 	}
 	/**
-	 * É¾³ıÈÎÎñ³èÎï
+	 * åˆ é™¤ä»»åŠ¡å® ç‰©
 	 * */
 	public void getTaskPetDelete(int pPk,int petid){
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
-		//Í¨¹ıpetid ²é³öÀ´³èÎïµÄÃû³Æ È»ºóÍ¨¹ı³èÎïµÄÃû³Æ
+		//é€šè¿‡petid æŸ¥å‡ºæ¥å® ç‰©çš„åç§° ç„¶åé€šè¿‡å® ç‰©çš„åç§°
 		PetDAO petDAO = new PetDAO(); 
-		String petName = StringUtil.isoToGBK(petDAO.getPetName(petid));//»ñµÃºóÌ¨PET±íÖĞ³èÎïµÄÃû³Æ 
+		String petName = StringUtil.isoToGBK(petDAO.getPetName(petid));//è·å¾—åå°PETè¡¨ä¸­å® ç‰©çš„åç§° 
 		petInfoDAO.getDeltePetId(petid, pPk,petName);
 	}
 }

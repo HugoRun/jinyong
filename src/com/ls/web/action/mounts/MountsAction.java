@@ -37,13 +37,13 @@ import com.pm.service.chuansong.SuiBianChuanService;
 import com.pm.vo.chuansong.SuiBianChuanVO;
 import com.web.service.friend.FriendService;
 /**
- * ´¦Àí×øÆïaction
+ * å¤„ç†åéª‘action
  * @author Thomas.lei
  */
 public class MountsAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
-	//µÃµ½³¡¾°´«ËÍĞÅÏ¢
+	//å¾—åˆ°åœºæ™¯ä¼ é€ä¿¡æ¯
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -57,7 +57,7 @@ public class MountsAction extends ActionBase
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		
-		//1Ñı×å2Î××åÁ½´óÖÖ×åÀàĞÍprace
+		//1å¦–æ—2å·«æ—ä¸¤å¤§ç§æ—ç±»å‹prace
 		SuiBianChuanService scs=new SuiBianChuanService();
 		List<SuiBianChuanVO> list= scs.getSuiBianByTypeId(roleInfo.getBasicInfo().getPRace(),1);
 		request.setAttribute("list",list);
@@ -65,7 +65,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("mountState",mountState);
 		return mapping.findForward("scencelist");
 	}
-	//µÃµ½Á·¼¶´«ËÍĞÅÏ¢
+	//å¾—åˆ°ç»ƒçº§ä¼ é€ä¿¡æ¯
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -79,14 +79,14 @@ public class MountsAction extends ActionBase
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		SuiBianChuanService scs=new SuiBianChuanService();
-		//ÀàĞÍ4ÎªÁ·¼¶ÇøÓò
+		//ç±»å‹4ä¸ºç»ƒçº§åŒºåŸŸ
 		List<SuiBianChuanVO> list= scs.getSuiBianByTypeId(roleInfo.getBasicInfo().getPRace(),2);
 		request.setAttribute("list",list);
 		request.setAttribute("mountID", mountID);
 		request.setAttribute("mountState",mountState);
 		return mapping.findForward("lianjilist");
 	}
-	//µÃµ½BOSS´«ËÍµÄĞÅÏ¢
+	//å¾—åˆ°BOSSä¼ é€çš„ä¿¡æ¯
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -100,14 +100,14 @@ public class MountsAction extends ActionBase
 		SuiBianChuanService scs=new SuiBianChuanService();
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		//ÀàĞÍ8ÎªBOSSÇøÓò
+		//ç±»å‹8ä¸ºBOSSåŒºåŸŸ
 		List<SuiBianChuanVO> list= scs.getSuiBianByTypeId(roleInfo.getBasicInfo().getPRace(),3);
 		request.setAttribute("list",list);
 		request.setAttribute("mountID", mountID);
 		request.setAttribute("mountState",mountState);
 		return mapping.findForward("bosslist");
 	}
-	//µÃµ½¸±±¾´«ËÍĞÅÏ¢
+	//å¾—åˆ°å‰¯æœ¬ä¼ é€ä¿¡æ¯
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -121,14 +121,14 @@ public class MountsAction extends ActionBase
 		SuiBianChuanService scs=new SuiBianChuanService();
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		//ÀàĞÍ5Îª¸±±¾ÇøÓò
+		//ç±»å‹5ä¸ºå‰¯æœ¬åŒºåŸŸ
 		List<SuiBianChuanVO> list= scs.getSuiBianByTypeId(roleInfo.getBasicInfo().getPRace(),4);
 		request.setAttribute("list",list);
 		request.setAttribute("mountID", mountID);
 		request.setAttribute("mountState",mountState);
 		return mapping.findForward("fubenlist");
 	}
-	//µÃµ½¶ÓÓÑ´«ËÍĞÅÏ¢
+	//å¾—åˆ°é˜Ÿå‹ä¼ é€ä¿¡æ¯
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -148,7 +148,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("group_info",group_info);
 		return mapping.findForward("duiyoulist");
 	}
-	//µÃµ½ºÃÓÑµÄ´«ËÍĞÅÏ¢
+	//å¾—åˆ°å¥½å‹çš„ä¼ é€ä¿¡æ¯
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -175,7 +175,7 @@ public class MountsAction extends ActionBase
 		int pageall = 0;
 		if(size!=0){
 		pageall = size / queryPage.getPageSize() + (size % queryPage.getPageSize() == 0 ? 0 : 1);
-		// ²éÑ¯ÔÚÏßÍæ¼Ò
+		// æŸ¥è¯¢åœ¨çº¿ç©å®¶
 		friendlist = friendService.listfriend(roleInfo
 				.getBasicInfo().getPPk(), page * queryPage.getPageSize(), queryPage.getPageSize());
 		friendService.getFriendInMapName(friendlist);
@@ -187,7 +187,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("mountState",mountState);
 		return mapping.findForward("friendlist");
 	}
-	//µÃµ½³ğµĞµÄ´«ËÍĞÅÏ¢
+	//å¾—åˆ°ä»‡æ•Œçš„ä¼ é€ä¿¡æ¯
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -218,7 +218,7 @@ public class MountsAction extends ActionBase
 		return mapping.findForward("enemylist");
 	}
 	
-	//µÃµ½ÊÏ×å³ÉÔ±µÄĞÅÏ¢
+	//å¾—åˆ°æ°æ—æˆå‘˜çš„ä¿¡æ¯
 	public ActionForward n18(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -234,7 +234,7 @@ public class MountsAction extends ActionBase
 		String message="";
 		if(faction==null)
 		{
-			message="Äú»¹Ã»ÓĞÊÏ×åĞÅÏ¢";
+			message="æ‚¨è¿˜æ²¡æœ‰æ°æ—ä¿¡æ¯";
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
@@ -246,7 +246,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("item_page", item_page);
 		return mapping.findForward("factionlist");
 	}
-	//´¦Àí³¡¾°´«ËÍºÍ´¦ÀíÁ·¼¶´«ËÍºÍ´¦ÀíºÃÓÑ´«ËÍºÍ´¦Àí¶ÓÓÑ´«ËÍ´¦ÀíBOSS´«ËÍºÍ¸±±¾´«ËÍºÍ³ğµĞ×·É±
+	//å¤„ç†åœºæ™¯ä¼ é€å’Œå¤„ç†ç»ƒçº§ä¼ é€å’Œå¤„ç†å¥½å‹ä¼ é€å’Œå¤„ç†é˜Ÿå‹ä¼ é€å¤„ç†BOSSä¼ é€å’Œå‰¯æœ¬ä¼ é€å’Œä»‡æ•Œè¿½æ€
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -259,7 +259,7 @@ public class MountsAction extends ActionBase
 		int carryGrade=carryGradeStr==null?Integer.parseInt(request.getParameter("carryGrade")):Integer.parseInt(carryGradeStr);
 		if(umv==null||umv.getMountsLevle()==1||umv.getMountsLevle()<carryGrade||!(umv.getId()+"").equals(mountsID))
 		{
-			message="Äú»¹Ã»ÓĞ³Ë×ø×øÆï»òÕßÄúµÄ×øÆïµÈ¼¶Ì«µÍ²»ÄÜ´«ËÍ£¡";
+			message="æ‚¨è¿˜æ²¡æœ‰ä¹˜ååéª‘æˆ–è€…æ‚¨çš„åéª‘ç­‰çº§å¤ªä½ä¸èƒ½ä¼ é€ï¼";
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
@@ -268,7 +268,7 @@ public class MountsAction extends ActionBase
 		String mountState=umv.getMountsState()+"";
 		if("0".equals(mountState))
 		{
-			message="²»ÊÇ³ËÆï×´Ì¬£¬²»ÄÜ´«ËÍ";
+			message="ä¸æ˜¯ä¹˜éª‘çŠ¶æ€ï¼Œä¸èƒ½ä¼ é€";
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
@@ -279,14 +279,14 @@ public class MountsAction extends ActionBase
 		
 		SceneVO new_scene = SceneCache.getById(scenceID);
 		
-		//²»ÄÜ´«ËÍµ½·Ç×Ô¼ºÖÖ×åÖ÷³Ç
+		//ä¸èƒ½ä¼ é€åˆ°éè‡ªå·±ç§æ—ä¸»åŸ
 		String hint = new_scene.isEntered(roleInfo);
 		if(hint!=null)
 		{
 			request.setAttribute("message",hint);
 			return mapping.findForward("hint");
 		}
-		/*********ºìÃû´«ËÍÒª¸½¼Ó´¦Àí********/
+		/*********çº¢åä¼ é€è¦é™„åŠ å¤„ç†********/
 		int needCopper=roleInfo.isRedname()?mv.getOverPay1()*2:mv.getOverPay1();
 		int carryNum=roleInfo.isRedname()?mv.getCarryNum1()/2:mv.getCarryNum1();
 		if(carryGrade==2)
@@ -299,14 +299,14 @@ public class MountsAction extends ActionBase
 					long haveCopper=roleInfo.getBasicInfo().getCopper();
 					if(needCopper>haveCopper)
 					{
-						message="½ñÈÕ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´Î£¬ÄúÁéÊ¯²»×ã²»ÄÜ´«ËÍ";
+						message="ä»Šæ—¥ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡ï¼Œæ‚¨çµçŸ³ä¸è¶³ä¸èƒ½ä¼ é€";
 						request.setAttribute("message",message);
 						return mapping.findForward("hint");
 					}
 					else
 					{
 						roleInfo.getBasicInfo().addCopper(-needCopper);
-						request.setAttribute("mountsHint", "ÄúµÄ×øÆï½ñÈÕÃâ·Ñ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´Î¿Û³ı"+needCopper+"ÁéÊ¯");
+						request.setAttribute("mountsHint", "æ‚¨çš„åéª‘ä»Šæ—¥å…è´¹ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡æ‰£é™¤"+needCopper+"çµçŸ³");
 					}
 				}
 				tcs.updateControlInfo(roleInfo.getBasicInfo().getPPk(),mv.getId(), mv.getLevel());
@@ -331,7 +331,7 @@ public class MountsAction extends ActionBase
 					}
 					if(can)
 					{
-						message="½ñÈÕ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´ÎĞèÒª¿Û³ı"+GameConfig.getYuanbaoName()+"£¬"+GameConfig.getYuanbaoName()+"²»×ãÇë³äÖµ";
+						message="ä»Šæ—¥ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡éœ€è¦æ‰£é™¤"+GameConfig.getYuanbaoName()+"ï¼Œ"+GameConfig.getYuanbaoName()+"ä¸è¶³è¯·å……å€¼";
 						request.setAttribute("message",message);
 						return mapping.findForward("chongzhi");
 					}
@@ -341,7 +341,7 @@ public class MountsAction extends ActionBase
 						{
 							es.spendYuanbao(roleInfo.getBasicInfo().getUPk(), needCopper);
 						}
-						request.setAttribute("mountsHint", "ÄúµÄ×øÆï½ñÈÕÃâ·Ñ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´Î¿Û³ı"+needCopper+"ÏÉ¾§");
+						request.setAttribute("mountsHint", "æ‚¨çš„åéª‘ä»Šæ—¥å…è´¹ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡æ‰£é™¤"+needCopper+"ä»™æ™¶");
 					}
 				}
 				tcs.updateControlInfo(roleInfo.getBasicInfo().getPPk(),mv.getId(), mv.getLevel());
@@ -356,7 +356,7 @@ public class MountsAction extends ActionBase
 				{
 					long haveCopper=es.getYuanbao(roleInfo.getUPk());
 					boolean can=true;
-					/**µçĞÅÆ½Ì¨È¥Æ½Ì¨¿Û·Ñ**/
+					/**ç”µä¿¡å¹³å°å»å¹³å°æ‰£è´¹**/
 					if(GameConfig.getChannelId()==Channel.TELE)
 					{
 						can=ms.mountCarryForTele(request, roleInfo, mv.getId()+"", mv.getLevel()+"");
@@ -367,7 +367,7 @@ public class MountsAction extends ActionBase
 					}
 					if(can)
 					{
-						message="½ñÈÕ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´ÎĞèÒª¿Û³ıÏÉ¾§£¬ÏÉ¾§²»×ãÇë³äÖµ";
+						message="ä»Šæ—¥ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡éœ€è¦æ‰£é™¤ä»™æ™¶ï¼Œä»™æ™¶ä¸è¶³è¯·å……å€¼";
 						request.setAttribute("message",message);
 						return mapping.findForward("chongzhi");
 					}
@@ -377,7 +377,7 @@ public class MountsAction extends ActionBase
 						{
 							es.spendYuanbao(roleInfo.getBasicInfo().getUPk(), needCopper);
 						}
-						request.setAttribute("mountsHint", "ÄúµÄ×øÆï½ñÈÕÃâ·Ñ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´Î¿Û³ı"+needCopper+"ÏÉ¾§");
+						request.setAttribute("mountsHint", "æ‚¨çš„åéª‘ä»Šæ—¥å…è´¹ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡æ‰£é™¤"+needCopper+"ä»™æ™¶");
 					}
 				}
 				tcs.updateControlInfo(roleInfo.getBasicInfo().getPPk(),mv.getId(), mv.getLevel());
@@ -386,7 +386,7 @@ public class MountsAction extends ActionBase
 		roleInfo.getBasicInfo().updateSceneId(scenceID);
 		return mapping.findForward("refurbish_scene");
 	}
-	//´¦Àí×øÆïÉı¼¶
+	//å¤„ç†åéª‘å‡çº§
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -405,7 +405,7 @@ public class MountsAction extends ActionBase
 		int num=0;
 		if(confirm==null)
 		{
-			message="ÄúµÄ×øÆïÉı¼¶Îª"+mv.getLevel()+"¼¶×øÆïĞè»¨·Ñ"+mv.getUplevelPay()+GameConfig.getYuanbaoName()+",ÄúÈ·¶¨Éı¼¶Âğ£¿";
+			message="æ‚¨çš„åéª‘å‡çº§ä¸º"+mv.getLevel()+"çº§åéª‘éœ€èŠ±è´¹"+mv.getUplevelPay()+GameConfig.getYuanbaoName()+",æ‚¨ç¡®å®šå‡çº§å—ï¼Ÿ";
 			request.setAttribute("message",message);
 			request.setAttribute("mountsID",mountsID);
 			request.setAttribute("nextLevelMountsID", nextLevelMountsIDS);
@@ -413,7 +413,7 @@ public class MountsAction extends ActionBase
 		}
 		if(mv.getLevel()==5)
 		{
-			message="²»¿ÉÉı¼¶£¡5¼¶×øÆï¹¦ÄÜÉĞÎ´¿ª·Å¾´ÇëÁôÒâ¹Ù·½Í¨Öª";
+			message="ä¸å¯å‡çº§ï¼5çº§åéª‘åŠŸèƒ½å°šæœªå¼€æ”¾æ•¬è¯·ç•™æ„å®˜æ–¹é€šçŸ¥";
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
@@ -430,22 +430,22 @@ public class MountsAction extends ActionBase
 		}
 		if(num==1)
 		{
-			message="¹§Ï²Äú£¬ÄúµÄ"+mv.getName()+"ÒÑÉıÖÁ"+mv.getLevel()+"¼¶×øÆï£¬"+mv.getFunctionDisplay()+"£¡";
+			message="æ­å–œæ‚¨ï¼Œæ‚¨çš„"+mv.getName()+"å·²å‡è‡³"+mv.getLevel()+"çº§åéª‘ï¼Œ"+mv.getFunctionDisplay()+"ï¼";
 			request.setAttribute("isUpLeve", "yes");
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
 		if(num==2)
 		{
-			message="ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬ÇëÏÈ³äÖµ";
+			message="æ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·å…ˆå……å€¼";
 			request.setAttribute("message",message);
 			return mapping.findForward("chongzhi");
 		}
-		message="Éı¼¶³ö´í£¬ÇëÁªÏµGM";
+		message="å‡çº§å‡ºé”™ï¼Œè¯·è”ç³»GM";
 		request.setAttribute("message",message);
 		return mapping.findForward("hint");
 	}
-	//´¦ÀíÈ¡Ïû³ËÆï
+	//å¤„ç†å–æ¶ˆä¹˜éª‘
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -454,7 +454,7 @@ public class MountsAction extends ActionBase
 		roleInfo.getMountSet().cancelCurMount();
 		return n16(mapping,form,request,response);
 	}
-	//´¦ÀíÍæ¼Òµã»÷»»³Ë×øÆï
+	//å¤„ç†ç©å®¶ç‚¹å‡»æ¢ä¹˜åéª‘
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -464,7 +464,7 @@ public class MountsAction extends ActionBase
 		roleInfo.getMountSet().changeCurMount(Integer.parseInt(mountID));
 		return n16(mapping,form,request,response);
 	}
-	//´¦ÀíÍæ¼ÒÒÅÆú×øÆï
+	//å¤„ç†ç©å®¶é—å¼ƒåéª‘
 	public ActionForward n12(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -476,7 +476,7 @@ public class MountsAction extends ActionBase
 		String message="";
 		if(confirm==null)
 		{
-			message="ÄãÈ·¶¨ÒÅÆú¡¾"+mv.getName()+"¡¿Âğ£¿";
+			message="ä½ ç¡®å®šé—å¼ƒã€"+mv.getName()+"ã€‘å—ï¼Ÿ";
 			request.setAttribute("message",message);
 			request.setAttribute("mountID",mountID);
 			return mapping.findForward("confirmdelete");
@@ -484,7 +484,7 @@ public class MountsAction extends ActionBase
 		roleInfo.getMountSet().deleteMount(Integer.parseInt(mountID));
 		return n16(mapping,form,request,response);
 	}
-	//´¦ÀíÍæ¼Ò¹ºÂò×øÆï
+	//å¤„ç†ç©å®¶è´­ä¹°åéª‘
 	public ActionForward n13(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -500,23 +500,23 @@ public class MountsAction extends ActionBase
 			int type=mv.getType();
 			String strType="";
 			if(type==1)
-				strType="×ßÊŞÀà";
+				strType="èµ°å…½ç±»";
 			if(type==2)
-				strType="·ÉÇİÀà";
+				strType="é£ç¦½ç±»";
 			if(type==3)
-				strType="ÁÛ¼×Àà";
-			message=""+mv.getName()+"Îª"+strType+"£¬ÉıÖÁ5¼¶ÓĞ¿ÉÄÜ½ø»¯Îª¡¾Óñ÷è÷ë¡¿¡¾°×»¢¡¿µÈÉñÊŞ£¬ÄãÈ·¶¨Òª¹ºÂò´Ë×øÆïÂğ?";
+				strType="é³ç”²ç±»";
+			message=""+mv.getName()+"ä¸º"+strType+"ï¼Œå‡è‡³5çº§æœ‰å¯èƒ½è¿›åŒ–ä¸ºã€ç‰éº’éºŸã€‘ã€ç™½è™ã€‘ç­‰ç¥å…½ï¼Œä½ ç¡®å®šè¦è´­ä¹°æ­¤åéª‘å—?";
 			request.setAttribute("message",message);
 			request.setAttribute("mountID",mountID);
 			return  mapping.findForward("confirmbuy");
 		}
 		int num=0;
-		/****µçĞÅÏû·ÑÇşµÀ***/
+		/****ç”µä¿¡æ¶ˆè´¹æ¸ é“***/
 		if(GameConfig.getChannelId()==Channel.TELE)
 		{
 			num=roleInfo.getMountSet().buyMounts(request, Integer.parseInt(mountID));
 		}
-		/****ÆÕÍ¨¹ºÂò****/
+		/****æ™®é€šè´­ä¹°****/
 		else
 		{
 			num=roleInfo.getMountSet().buyMounts(Integer.parseInt(mountID));
@@ -524,27 +524,27 @@ public class MountsAction extends ActionBase
 		if(num==1)
 		{
 			MountsVO mv= ms.getMountsInfo(Integer.parseInt(mountID));
-			message="¹§Ï²Äú£¬ÄúÒÑ³É¹¦ÓµÓĞÁË"+mv.getLevel()+"¼¶¡¾"+mv.getName()+"¡¿,×£ÄúÖÕ½«ÓµÓĞ¡¾Óñ÷è÷ë¡¿¡¾°×»¢¡¿µÈÉñÊŞ£¡";
+			message="æ­å–œæ‚¨ï¼Œæ‚¨å·²æˆåŠŸæ‹¥æœ‰äº†"+mv.getLevel()+"çº§ã€"+mv.getName()+"ã€‘,ç¥æ‚¨ç»ˆå°†æ‹¥æœ‰ã€ç‰éº’éºŸã€‘ã€ç™½è™ã€‘ç­‰ç¥å…½ï¼";
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
 		if(num==2)
 		{
-			message="ÄúÒÑ¾­ÓĞ´Ë×øÆï£¬²»¿ÉÔÙ¹ºÂò";
+			message="æ‚¨å·²ç»æœ‰æ­¤åéª‘ï¼Œä¸å¯å†è´­ä¹°";
 			request.setAttribute("message",message);
 			return mapping.findForward("hint");
 		}
 		if(num==3)
 		{
-			message="¶Ô²»ÆğÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬Çë³äÖµ";
+			message="å¯¹ä¸èµ·æ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·å……å€¼";
 			request.setAttribute("message",message);
 			return mapping.findForward("chongzhi");
 		}
-		message="¹ºÂò³ö´í£¬ÇëÁªÏµGM";
+		message="è´­ä¹°å‡ºé”™ï¼Œè¯·è”ç³»GM";
 		request.setAttribute("message",message);
 		return mapping.findForward("hint");
 	}
-	//´¦ÀíµÃµ½¿ÉÒÔ³öÊÛµÄ×øÆï
+	//å¤„ç†å¾—åˆ°å¯ä»¥å‡ºå”®çš„åéª‘
 	public ActionForward n14(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -553,7 +553,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("list",list);
 		return mapping.findForward("buymounts");
 	}
-	//´¦Àí½øÈë×øÆïÒ³Ãæ
+	//å¤„ç†è¿›å…¥åéª‘é¡µé¢
 	public ActionForward n15(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -585,7 +585,7 @@ public class MountsAction extends ActionBase
 			return mapping.findForward("mountsinfo");
 		}
 	}
-	//´¦ÀíµÃµ½Íæ¼ÒÏÖÔÚÓĞµÃ×øÆï
+	//å¤„ç†å¾—åˆ°ç©å®¶ç°åœ¨æœ‰å¾—åéª‘
 	public ActionForward n16(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -601,7 +601,7 @@ public class MountsAction extends ActionBase
 		return mapping.findForward("mountslist");
 		
 	}
-	//¸ü¾ß×øÆïµÄIDµÃµ½×øÆïµÄÏêÏ¸ĞÅÏ¢
+	//æ›´å…·åéª‘çš„IDå¾—åˆ°åéª‘çš„è¯¦ç»†ä¿¡æ¯
 	public ActionForward n17(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -635,7 +635,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("mountState",mountState);
 		return mapping.findForward("mountinfo");
 	}
-	//µÃµ½ÊÊºÏµ±Ç°µÈ¼¶Íæ¼ÒÁ·¼¶µÄÁ·¼¶µØµã
+	//å¾—åˆ°é€‚åˆå½“å‰ç­‰çº§ç©å®¶ç»ƒçº§çš„ç»ƒçº§åœ°ç‚¹
 	public ActionForward n19(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -648,7 +648,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("lianji", lianji);
 		return mapping.findForward("lianji");
 	}
-	//µÃµ½Ö¸¶¨npcµÄĞÅÏ¢ÒÔ¼°µôÂäĞÅÏ¢
+	//å¾—åˆ°æŒ‡å®šnpcçš„ä¿¡æ¯ä»¥åŠæ‰è½ä¿¡æ¯
 	public ActionForward n20(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -660,7 +660,7 @@ public class MountsAction extends ActionBase
 		request.setAttribute("npcStr",npcStr);
 		return mapping.findForward("npcinfo");
 	}
-	//µÃµ½Ö¸¶¨npcËùµôÂäÎïÆ·µÄÏêÏ¸ĞÅÏ¢
+	//å¾—åˆ°æŒ‡å®šnpcæ‰€æ‰è½ç‰©å“çš„è¯¦ç»†ä¿¡æ¯
 	public ActionForward n21(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

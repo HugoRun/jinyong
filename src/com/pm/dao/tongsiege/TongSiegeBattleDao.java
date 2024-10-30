@@ -15,7 +15,7 @@ import com.pm.vo.tongsiege.TongSiegeBattleVO;
 import com.pm.vo.tongsiege.TongSiegeControlVO;
 
 /**
- * ¹ØÓÚ¹¥³ÇÕ½µÄdao,Ö÷Òª²éÑ¯¹ØÓÚ¹¥³ÇÕ½µÄ¿ØÖÆĞÅÏ¢
+ * å…³äºæ”»åŸæˆ˜çš„dao,ä¸»è¦æŸ¥è¯¢å…³äºæ”»åŸæˆ˜çš„æ§åˆ¶ä¿¡æ¯
  * 
  * @author Administrator
  * 
@@ -25,17 +25,17 @@ public class TongSiegeBattleDao extends DaoBase
 	Logger logger = Logger.getLogger("log.dao");
 
 	/**
-	 * ²éÑ¯µ±Ç°µÄ¹¥³ÇÕ½Õ½³¡µÄ×´Ì¬
+	 * æŸ¥è¯¢å½“å‰çš„æ”»åŸæˆ˜æˆ˜åœºçš„çŠ¶æ€
 	 * 
 	 * @param siege_id
-	 *            ¹¥³ÇÕ½Õ½³¡id
+	 *            æ”»åŸæˆ˜æˆ˜åœºid
 	 */
 	public int isInFight(String siege_id)
 	{
 		int now_phase = 0;
-		String sql = "select now_phase from tong_siege_control where siege_id="
+		String sql = "SELECT now_phase from tong_siege_control where siege_id="
 				+ siege_id + " order by siege_number desc limit 1";
-		logger.debug("²éÑ¯ÊÇ·ñÔÚ¹¥³ÇÕ½Ê±¼äÄÚ=" + sql);
+		logger.debug("æŸ¥è¯¢æ˜¯å¦åœ¨æ”»åŸæˆ˜æ—¶é—´å†…=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -61,18 +61,18 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ²é¿´±¾Õ½³¡µÄ×î½üÒ»´ÎµÄĞÅÏ¢
+	 * æŸ¥çœ‹æœ¬æˆ˜åœºçš„æœ€è¿‘ä¸€æ¬¡çš„ä¿¡æ¯
 	 * 
 	 * @param siege_id
-	 *            ¹¥³ÇÕ½Õ½³¡id
+	 *            æ”»åŸæˆ˜æˆ˜åœºid
 	 */
 	public TongSiegeControlVO getSiegeTongInfo(String siege_id)
 	{
 		TongSiegeControlVO tongSiegeControlVO = null;
 
-		String sql = "select * from tong_siege_control where siege_id="
+		String sql = "SELECT * FROM tong_siege_control where siege_id="
 				+ siege_id + " order by siege_number desc limit 1";
-		logger.debug("²éÑ¯ÊÇ·ñÔÚ¹¥³ÇÕ½Ê±¼äÄÚ=" + sql);
+		logger.debug("æŸ¥è¯¢æ˜¯å¦åœ¨æ”»åŸæˆ˜æ—¶é—´å†…=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -108,7 +108,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ²éÕÒ±¾Õ½³¡ÉÏ´ÎÊ¤ÀûµÄ°ïÅÉID
+	 * æŸ¥æ‰¾æœ¬æˆ˜åœºä¸Šæ¬¡èƒœåˆ©çš„å¸®æ´¾ID
 	 * 
 	 * @param siege_id
 	 * @return
@@ -116,12 +116,12 @@ public class TongSiegeBattleDao extends DaoBase
 	public int getPreviousWinTong(String siege_id, int siegeFightNumber)
 	{
 		int tong_pk = 0;
-		String sql = "select last_win_tongid from tong_siege_control where siege_id = "
+		String sql = "SELECT last_win_tongid from tong_siege_control where siege_id = "
 				+ siege_id
 				+ " and siege_number="
 				+ siegeFightNumber
 				+ " order by siege_number desc";
-		logger.debug(" ²éÕÒ±¾Õ½³¡ÉÏ´ÎÊ¤ÀûµÄ°ïÅÉID=" + sql);
+		logger.debug(" æŸ¥æ‰¾æœ¬æˆ˜åœºä¸Šæ¬¡èƒœåˆ©çš„å¸®æ´¾ID=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -147,7 +147,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÉÏÒ»´ÎÕ½¶·ĞòºÅ
+	 * è·å¾—ä¸Šä¸€æ¬¡æˆ˜æ–—åºå·
 	 * 
 	 * @param siege_id
 	 * @return
@@ -155,9 +155,9 @@ public class TongSiegeBattleDao extends DaoBase
 	public int getPreiousFightNumber(String siege_id)
 	{
 		int siege_number = 0;
-		String sql = "select siege_number from tong_siege_control where siege_id="
+		String sql = "SELECT siege_number from tong_siege_control where siege_id="
 				+ siege_id + " order by siege_number desc limit 1,2";
-		logger.debug("»ñµÃÉÏÒ»´ÎÕ½¶·ĞòºÅ=" + sql);
+		logger.debug("è·å¾—ä¸Šä¸€æ¬¡æˆ˜æ–—åºå·=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -183,7 +183,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ²éÑ¯ÔÚsiege_idÕ½³¡ÖĞsiegeFightNumber´Î°ïÕ½ÊÇ·ñÓĞtong_pk°ïÅÉ±¨¹ıÃûÁË ·µ»ØtrueÎªÒÑ¾­±¨¹ıÃûÁË
+	 * æŸ¥è¯¢åœ¨siege_idæˆ˜åœºä¸­siegeFightNumberæ¬¡å¸®æˆ˜æ˜¯å¦æœ‰tong_pkå¸®æ´¾æŠ¥è¿‡åäº† è¿”å›trueä¸ºå·²ç»æŠ¥è¿‡åäº†
 	 * 
 	 * @param tong_pk
 	 * @param siege_id
@@ -194,10 +194,10 @@ public class TongSiegeBattleDao extends DaoBase
 			int siegeFightNumber)
 	{
 		boolean flag = false;
-		String sql = "select * from tong_siege_list where siege_id=" + siege_id
+		String sql = "SELECT * FROM tong_siege_list where siege_id=" + siege_id
 				+ " and siege_number=" + siegeFightNumber + " and tong_pk="
 				+ tong_pk;
-		logger.debug("²éÑ¯ÊÇ·ñ±¨¹ıÃûÁË=" + sql);
+		logger.debug("æŸ¥è¯¢æ˜¯å¦æŠ¥è¿‡åäº†=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -223,7 +223,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ²åÈë°ïÅÉÕ½±¨Ãû
+	 * æ’å…¥å¸®æ´¾æˆ˜æŠ¥å
 	 * 
 	 * @param tong_pk
 	 * @param siege_id
@@ -232,9 +232,9 @@ public class TongSiegeBattleDao extends DaoBase
 	public int insertSignUp(int tong_pk, String siege_id, int siegeFightNumber)
 	{
 		int result = 0;
-		String sql = "insert into tong_siege_list values (null," + siege_id
+		String sql = "INSERT INTO tong_siege_list values (null," + siege_id
 				+ "," + siegeFightNumber + "," + tong_pk + ",now())";
-		logger.debug("²åÈë°ïÅÉÕ½±¨Ãû=" + sql);
+		logger.debug("æ’å…¥å¸®æ´¾æˆ˜æŠ¥å=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -256,17 +256,17 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İmapIDÀ´È·¶¨¹¥³ÇÕ½³¡µÄID
+	 * æ ¹æ®mapIDæ¥ç¡®å®šæ”»åŸæˆ˜åœºçš„ID
 	 * 
 	 * @param mapID
 	 * @return
 	 */
 	public TongSiegeBattleVO getSiegeByMapId(int mapID)
 	{
-		String sql = "select * from tong_siege_battle where map_id=" + mapID;
+		String sql = "SELECT * FROM tong_siege_battle where map_id=" + mapID;
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 
-		logger.debug("¸ù¾İmapIDÀ´È·¶¨¹¥³ÇÕ½³¡µÄID=" + sql);
+		logger.debug("æ ¹æ®mapIDæ¥ç¡®å®šæ”»åŸæˆ˜åœºçš„ID=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -303,18 +303,18 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İmapIDÀ´È·¶¨¹¥³ÇÕ½³¡µÄID
+	 * æ ¹æ®mapIDæ¥ç¡®å®šæ”»åŸæˆ˜åœºçš„ID
 	 * 
 	 * @param mapID
 	 * @return
 	 */
 	public TongSiegeBattleVO getSiegeByAffectMapId(int mapID)
 	{
-		String sql = "select * from tong_siege_battle where affect_map_id="
+		String sql = "SELECT * FROM tong_siege_battle where affect_map_id="
 				+ mapID;
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 
-		logger.debug("¸ù¾İmapIDÀ´È·¶¨¹¥³ÇÕ½³¡µÄID=" + sql);
+		logger.debug("æ ¹æ®mapIDæ¥ç¡®å®šæ”»åŸæˆ˜åœºçš„ID=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -351,18 +351,18 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İsiegeIdÀ´È·¶¨¹¥³ÇÕ½³¡µÄID
+	 * æ ¹æ®siegeIdæ¥ç¡®å®šæ”»åŸæˆ˜åœºçš„ID
 	 * 
 	 * @param mapID
 	 * @return
 	 */
 	public TongSiegeBattleVO getSiegeBySiegeId(String siegeId)
 	{
-		String sql = "select * from tong_siege_battle where siege_id="
+		String sql = "SELECT * FROM tong_siege_battle where siege_id="
 				+ siegeId;
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 
-		logger.debug("¸ù¾İmapIDÀ´È·¶¨¹¥³ÇÕ½³¡µÄID=" + sql);
+		logger.debug("æ ¹æ®mapIDæ¥ç¡®å®šæ”»åŸæˆ˜åœºçš„ID=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -399,16 +399,16 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½ËùÓĞµÄÕ½³¡Êı¾İ
+	 * å¾—åˆ°æ‰€æœ‰çš„æˆ˜åœºæ•°æ®
 	 * 
 	 * @return
 	 */
 	public List<TongSiegeBattleVO> getAllSiegeInfo()
 	{
-		String sql = "select * from tong_siege_battle";
+		String sql = "SELECT * FROM tong_siege_battle";
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 		List<TongSiegeBattleVO> list = new ArrayList<TongSiegeBattleVO>();
-		logger.debug("µÃµ½ËùÓĞµÄÕ½³¡Êı¾İ=" + sql);
+		logger.debug("å¾—åˆ°æ‰€æœ‰çš„æˆ˜åœºæ•°æ®=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -445,7 +445,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂÕ½³¡µÄ×´Ì¬
+	 * æ›´æ–°æˆ˜åœºçš„çŠ¶æ€
 	 * 
 	 * @return
 	 */
@@ -455,7 +455,7 @@ public class TongSiegeBattleDao extends DaoBase
 		String sql = "update tong_siege_control set now_phase = " + now_phase
 				+ " where siege_id=" + siegeId + " and siege_number="
 				+ siegeNumber;
-		logger.debug("¸üĞÂÕ½³¡µÄ×´Ì¬=" + sql);
+		logger.debug("æ›´æ–°æˆ˜åœºçš„çŠ¶æ€=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -475,7 +475,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂÕ½³¡µÄ×´Ì¬
+	 * æ›´æ–°æˆ˜åœºçš„çŠ¶æ€
 	 * 
 	 * @return
 	 */
@@ -484,7 +484,7 @@ public class TongSiegeBattleDao extends DaoBase
 		String sql = "update tong_siege_control set now_phase = " + now_phase
 				+ " where siege_id=" + siegeId
 				+ " order by control_id desc limit 1";
-		logger.debug("¸üĞÂÕ½³¡µÄ×´Ì¬=" + sql);
+		logger.debug("æ›´æ–°æˆ˜åœºçš„çŠ¶æ€=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -504,7 +504,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃ °ïÅÉÕ½³¡ĞÅÏ¢ ¸ù¾İtongId
+	 * è·å¾— å¸®æ´¾æˆ˜åœºä¿¡æ¯ æ ¹æ®tongId
 	 * 
 	 * @param tongId
 	 * @return
@@ -512,10 +512,10 @@ public class TongSiegeBattleDao extends DaoBase
 	public List<TongSiegeControlVO> getSiegeBattleVOByTongId(int tongId)
 	{
 
-		String sql = "select * from tong_siege_control where last_win_tongid = "
+		String sql = "SELECT * FROM tong_siege_control where last_win_tongid = "
 				+ tongId + " order by control_id desc limit 1";
 		TongSiegeControlVO tongSiegeControlVO = new TongSiegeControlVO();
-		logger.debug("»ñµÃ °ïÅÉÕ½³¡ĞÅÏ¢ ¸ù¾İtongId=" + sql);
+		logger.debug("è·å¾— å¸®æ´¾æˆ˜åœºä¿¡æ¯ æ ¹æ®tongId=" + sql);
 		List<TongSiegeControlVO> list = new ArrayList<TongSiegeControlVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -554,7 +554,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃ °ïÅÉÕ½³¡ĞÅÏ¢
+	 * è·å¾— å¸®æ´¾æˆ˜åœºä¿¡æ¯
 	 * 
 	 * @param tongId
 	 * @return
@@ -562,9 +562,9 @@ public class TongSiegeBattleDao extends DaoBase
 	public List<TongSiegeControlVO> getSiegeBattleVOByTongId()
 	{
 
-		String sql = "select * from (select * from tong_siege_control order by control_id desc )   ts group by siege_id";
+		String sql = "SELECT * FROM (select * from tong_siege_control order by control_id desc )   ts group by siege_id";
 		TongSiegeControlVO tongSiegeControlVO = new TongSiegeControlVO();
-		logger.debug("»ñµÃ °ïÅÉÕ½³¡ĞÅÏ¢ ¸ù¾İtongId=" + sql);
+		logger.debug("è·å¾— å¸®æ´¾æˆ˜åœºä¿¡æ¯ æ ¹æ®tongId=" + sql);
 		List<TongSiegeControlVO> list = new ArrayList<TongSiegeControlVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -603,7 +603,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ĞŞ¸ÄË°ÂÊ
+	 * ä¿®æ”¹ç¨ç‡
 	 * 
 	 * @param tongId
 	 * @param tax
@@ -613,7 +613,7 @@ public class TongSiegeBattleDao extends DaoBase
 	{
 		String sql = "update tong_siege_battle set tax = " + tax
 				+ " where siege_id=" + siegeId;
-		logger.debug("ĞŞ¸ÄË°ÂÊ=" + sql);
+		logger.debug("ä¿®æ”¹ç¨ç‡=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -634,7 +634,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂË°ÊÕ¿î
+	 * æ›´æ–°ç¨æ”¶æ¬¾
 	 * 
 	 * @param sceneMapqy
 	 * @param money
@@ -643,7 +643,7 @@ public class TongSiegeBattleDao extends DaoBase
 	{
 		String sql = "update tong_siege_battle set tax_money = tax_money+"
 				+ money + " where affect_map_id=" + sceneMapqy;
-		logger.debug(" ¸üĞÂË°ÊÕ¿î=" + sql);
+		logger.debug(" æ›´æ–°ç¨æ”¶æ¬¾=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -664,17 +664,17 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂË°ÊÕ¿î
+	 * æ›´æ–°ç¨æ”¶æ¬¾
 	 * 
 	 * @param siegeId
 	 * @param money
-	 *            ¼õÉÙµÄmoney
+	 *            å‡å°‘çš„money
 	 */
 	public void reduceTaxMoney(String siegeId, int money)
 	{
 		String sql = "update tong_siege_battle set tax_money = tax_money-"
 				+ money + " where siege_id=" + siegeId;
-		logger.debug(" ¸üĞÂË°ÊÕ¿î=" + sql);
+		logger.debug(" æ›´æ–°ç¨æ”¶æ¬¾=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
 		{
@@ -695,7 +695,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÇ°300ÃûµÄÇé¿ö
+	 * è·å¾—å‰300åçš„æƒ…å†µ
 	 * 
 	 * @param siegeId
 	 * @param siegeNumber
@@ -704,14 +704,14 @@ public class TongSiegeBattleDao extends DaoBase
 	public List<Integer> getAllKillMostThreehundred(int siegeId, int siegeNumber)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select tsp.p_pk from tong_siege_pklog tsp,u_part_info upi "
+		String sql = "SELECT tsp.p_pk from tong_siege_pklog tsp,u_part_info upi "
 				+ "where siege_id = "
 				+ siegeId
 				+ " and siege_number = "
 				+ siegeNumber
 				+ " and tsp.p_pk=upi.p_pk "
 				+ "order by pk_number desc,p_experience desc limit 300";
-		logger.debug("»ñµÃÇ°300ÃûµÄÇé¿ö=" + sql);
+		logger.debug("è·å¾—å‰300åçš„æƒ…å†µ=" + sql);
 
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -738,7 +738,7 @@ public class TongSiegeBattleDao extends DaoBase
 	}
 
 	/**
-	 * ½«Ê¤Àû°ïÅÉÖÃÎª´Ë´ÎÕ½¶·µÄÊ¤Àû°ïÅÉ, ´æÈëÊı¾İ¿â.
+	 * å°†èƒœåˆ©å¸®æ´¾ç½®ä¸ºæ­¤æ¬¡æˆ˜æ–—çš„èƒœåˆ©å¸®æ´¾, å­˜å…¥æ•°æ®åº“.
 	 * 
 	 * @param winTongId
 	 * @param siegeId
@@ -749,7 +749,7 @@ public class TongSiegeBattleDao extends DaoBase
 		String sql = "update tong_siege_control set last_win_tongid="
 				+ winTongId + " where siege_id=" + siegeId
 				+ " and siege_number=" + siegeNumber;
-		logger.debug(" ½«Ê¤Àû°ïÅÉÖÃÎª´Ë´ÎÕ½¶·µÄÊ¤Àû°ïÅÉ=" + sql);
+		logger.debug(" å°†èƒœåˆ©å¸®æ´¾ç½®ä¸ºæ­¤æ¬¡æˆ˜æ–—çš„èƒœåˆ©å¸®æ´¾=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -771,9 +771,9 @@ public class TongSiegeBattleDao extends DaoBase
 
 	public TongSiegeBattleVO getSiegeByOutScene(String sceneId)
 	{
-		String sql = "select * from tong_siege_battle where out_scene="
+		String sql = "SELECT * FROM tong_siege_battle where out_scene="
 				+ sceneId;
-		logger.debug(" ¸üĞÂË°ÊÕ¿î=" + sql);
+		logger.debug(" æ›´æ–°ç¨æ”¶æ¬¾=" + sql);
 		TongSiegeBattleVO tongSiegeBattleVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -811,7 +811,7 @@ public class TongSiegeBattleDao extends DaoBase
 
 	public int getTongBattleID(int siege_id)
 	{
-		String sql = "select control_id from tong_siege_control where siege_id = "
+		String sql = "SELECT control_id from tong_siege_control where siege_id = "
 				+ siege_id + " order by siege_number desc limit 1 ";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		int id = 0;

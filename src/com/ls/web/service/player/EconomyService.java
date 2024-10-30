@@ -12,7 +12,7 @@ import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 
 /**
  * @author ls
- * ¹¦ÄÜ:Íæ¼Ò¾­¼Ã¹ÜÀí
+ * åŠŸèƒ½:ç©å®¶ç»æµç®¡ç†
  * Feb 20, 2009
  */
 public class EconomyService
@@ -21,10 +21,10 @@ public class EconomyService
 	
 	
 	/**
-	 * ¸øÍæ¼ÒÔö¼ÓÔª±¦ÊıÁ¿
-	 * @param u_pk                           Íæ¼Òid
-	 * @param yb_num                         µÃµ½Ôª±¦ÊıÁ¿
-	 * @param channel						 »ñµÃÔª±¦µÄÍ¾¾¶
+	 * ç»™ç©å®¶å¢åŠ å…ƒå®æ•°é‡
+	 * @param u_pk                           ç©å®¶id
+	 * @param yb_num                         å¾—åˆ°å…ƒå®æ•°é‡
+	 * @param channel						 è·å¾—å…ƒå®çš„é€”å¾„
 	 */
 	public void addYuanbao(int p_Pk, int u_pk,int yb_num,String channel)
 	{
@@ -35,17 +35,17 @@ public class EconomyService
 		EconomyDao economyDao = new EconomyDao();
 		
 		economyDao.updateYuanbao(u_pk, yb_num);
-		//Í³¼ÆĞèÒª
+		//ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(p_Pk, "yuanbao", yb_num);
-		//Ö´ĞĞÍ³¼Æ
-		gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, channel,u_pk);//³äÖµ·½Ê½
+		//æ‰§è¡Œç»Ÿè®¡
+		gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, channel,u_pk);//å……å€¼æ–¹å¼
 	}
 	
 	/**
-	 * ¸øÍæ¼ÒÔö¼ÓÔª±¦ÊıÁ¿
-	 * @param u_pk                           Íæ¼Òid
-	 * @param yb_num                         µÃµ½Ôª±¦ÊıÁ¿
-	 * @param channel						 »ñµÃÔª±¦µÄÍ¾¾¶
+	 * ç»™ç©å®¶å¢åŠ å…ƒå®æ•°é‡
+	 * @param u_pk                           ç©å®¶id
+	 * @param yb_num                         å¾—åˆ°å…ƒå®æ•°é‡
+	 * @param channel						 è·å¾—å…ƒå®çš„é€”å¾„
 	 */
 	public void addYuanbao( int u_pk,long yb_num)
 	{
@@ -58,15 +58,15 @@ public class EconomyService
 		
 		economyDao.updateYuanbao(u_pk, yb_num);
 		
-		//Ö´ĞĞÍ³¼Æ
-		//gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, channel,u_pk);//³äÖµ·½Ê½
+		//æ‰§è¡Œç»Ÿè®¡
+		//gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, channel,u_pk);//å……å€¼æ–¹å¼
 	}
 	
 	/**
-	 * ¸øÍæ¼ÒÔö¼Ó»ı·ÖÊıÁ¿
-	 * @param u_pk                           Íæ¼Òid
-	 * @param yb_num                         µÃµ½Ôª±¦ÊıÁ¿
-	 * @param channel						 »ñµÃÔª±¦µÄÍ¾¾¶
+	 * ç»™ç©å®¶å¢åŠ ç§¯åˆ†æ•°é‡
+	 * @param u_pk                           ç©å®¶id
+	 * @param yb_num                         å¾—åˆ°å…ƒå®æ•°é‡
+	 * @param channel						 è·å¾—å…ƒå®çš„é€”å¾„
 	 */
 	public void addJifen( int u_pk,int jf_num)
 	{
@@ -79,12 +79,12 @@ public class EconomyService
 		
 		economyDao.updateJifen(u_pk, jf_num);
 		
-		//Ö´ĞĞÍ³¼Æ
-		//gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, channel,u_pk);//³äÖµ·½Ê½
+		//æ‰§è¡Œç»Ÿè®¡
+		//gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,StatisticsType.DEDAO, channel,u_pk);//å……å€¼æ–¹å¼
 	}
 	
 	/**
-	 * ÓÃ»§»¨·ÑÔª±¦
+	 * ç”¨æˆ·èŠ±è´¹å…ƒå®
 	 * @param u_pk
 	 * @param yb_num
 	 */
@@ -99,7 +99,7 @@ public class EconomyService
 		
 		economyDao.updateYuanbao(u_pk, -yb_num);
 		
-		// Ö´ĞĞÍ³¼ÆÔª±¦ÏúÊÛ
+		// æ‰§è¡Œç»Ÿè®¡å…ƒå®é”€å”®
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(7, StatisticsType.YUANBAO, yb_num,
 				StatisticsType.USED, StatisticsType.BUY, u_pk);
@@ -107,7 +107,7 @@ public class EconomyService
 	}
 	
 	/**
-	 * ÓÃ»§»¨·Ñ»ı·Ö
+	 * ç”¨æˆ·èŠ±è´¹ç§¯åˆ†
 	 * @param u_pk
 	 * @param yb_num
 	 */
@@ -123,7 +123,7 @@ public class EconomyService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒÕËºÅµÄÔª±¦ÊıÁ¿
+	 * å¾—åˆ°ç©å®¶è´¦å·çš„å…ƒå®æ•°é‡
 	 */
 	public long getYuanbao(int u_pk)
 	{
@@ -135,7 +135,7 @@ public class EconomyService
 	
 	
 	/**
-	 * µÃµ½Íæ¼ÒÕËºÅµÄ»ı·ÖÊı
+	 * å¾—åˆ°ç©å®¶è´¦å·çš„ç§¯åˆ†æ•°
 	 */
 	public int getJifen(int u_pk)
 	{
@@ -149,7 +149,7 @@ public class EconomyService
 	
 	
 	/**
-	 * Íæ¼ÒÕõÇ®
+	 * ç©å®¶æŒ£é’±
 	 * 
 	 * @param player
 	 * @param add_money
@@ -183,7 +183,7 @@ public class EconomyService
 	
 	
 	/**
-	 * »¨Ç®
+	 * èŠ±é’±
 	 */
 	public void spendMoney(int p_pk, int money)
 	{

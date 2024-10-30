@@ -24,7 +24,7 @@ public class TomRecvOrderAction extends DispatchAction
 
 	public static final int TOM_PAY_MONEY = 15;
 	/**
-	 * TOMÇëÇó³äÖµÈ·ÈÏ
+	 * TOMè¯·æ±‚å……å€¼ç¡®è®¤
 	 */
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -35,9 +35,9 @@ public class TomRecvOrderAction extends DispatchAction
 		BillService billService = new BillService();
 		String resultWml = null;
 		String call_key = "1";
-		String pay_result = request.getParameter("pay_result");//Ö§¸¶·µ»ØÖµ 1Îª³äÖµ³É¹¦ 2Îª³äÖµÊ§°Ü 
+		String pay_result = request.getParameter("pay_result");//æ”¯ä»˜è¿”å›å€¼ 1ä¸ºå……å€¼æˆåŠŸ 2ä¸ºå……å€¼å¤±è´¥ 
 		
-		String p_pk = request.getParameter("cons_amigo");//Ö§¸¶·µ»ØÖµ ·µ»ØÍæ¼ÒµÄUPK
+		String p_pk = request.getParameter("cons_amigo");//æ”¯ä»˜è¿”å›å€¼ è¿”å›ç©å®¶çš„UPK
 		
 		RoleService roleService = new RoleService();
 		RoleEntity  roleInfo = roleService.getRoleInfoById(p_pk);
@@ -56,22 +56,22 @@ public class TomRecvOrderAction extends DispatchAction
 		roleInfo.getStateInfo().setSession(session);
 		
 		//System.out.println(u_pk+call_key);
-		//pay_result=MD5(cons_amigo+1) --³äÖµ³É¹¦µÄ½á¹ûpay_result·µ»Ø½á¹ûÎªcons_amigoµÄÖµºÍ1×éºÏÔÚMD5¼ÓÃÜ Ê§°ÜµÄ»°pay_resultËæ±ãÒ»¸öMD5Öµ¾Í¿ÉÒÔ
+		//pay_result=MD5(cons_amigo+1) --å……å€¼æˆåŠŸçš„ç»“æœpay_resultè¿”å›ç»“æœä¸ºcons_amigoçš„å€¼å’Œ1ç»„åˆåœ¨MD5åŠ å¯† å¤±è´¥çš„è¯pay_resultéšä¾¿ä¸€ä¸ªMD5å€¼å°±å¯ä»¥
 		String state = MD5.getInstance().getMD5ofStr(p_pk+call_key).toLowerCase();
 		if (pay_result.equals(state))
 		{
-			logger.info("TOM³äÖµÇşµÀÇëÇó£º³äÖµ³É¹¦");
+			logger.info("TOMå……å€¼æ¸ é“è¯·æ±‚ï¼šå……å€¼æˆåŠŸ");
 			resultWml = billService.getTomSuccessHint();
-			//ÔÚÕâÀï´¦Àí³äÖµºóµÄÔª±¦´¦Àí
+			//åœ¨è¿™é‡Œå¤„ç†å……å€¼åçš„å…ƒå®å¤„ç†
 			EconomyService economyService = new EconomyService(); 
 			economyService.addYuanbao(Integer.parseInt(p_pk),Integer.parseInt(u_pk), this.TOM_PAY_MONEY, "tomchongzhi");
 			//economyService.addYuanbao(u_pk, this.TOM_PAY_MONEY, "tomchongzhi");
 		}
 		else
 		{
-			logger.info("TOM³äÖµÇşµÀÇëÇó£º³äÖµÊ§°Ü");
+			logger.info("TOMå……å€¼æ¸ é“è¯·æ±‚ï¼šå……å€¼å¤±è´¥");
 			resultWml = billService.getTomFailHint(pay_result);
-			//resultWml = "³äÖµÊ§°Ü,ÇëÖØĞÂ²Ù×÷.";
+			//resultWml = "å……å€¼å¤±è´¥,è¯·é‡æ–°æ“ä½œ.";
 		}
 		request.setAttribute("p_pk", p_pk);
 		request.setAttribute("resultWml", resultWml.toString());

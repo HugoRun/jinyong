@@ -8,7 +8,7 @@ import com.ls.web.service.goods.equip.EquipService;
 
 /**
  * @author ls
- * 玩家装备
+ * 鐜╁瑁呭
  */
 public class UEquip extends Item
 {
@@ -33,12 +33,12 @@ public class UEquip extends Item
 		
 		if( uEquip==null)
 		{
-			throw new Exception("无该装备：pwPK="+pwPk);
+			throw new Exception("鏃犺瑁呭锛歱wPK="+pwPk);
 		}
 		
 		if( uEquip.getPPk()!=-1 )
 		{
-			throw new Exception("该装备有拥有者：p_pk="+uEquip.getPPk());
+			throw new Exception("璇ヨ澶囨湁鎷ユ湁鑰咃細p_pk="+uEquip.getPPk());
 		}
 		
 		super.init(uEquip.getWName(), 1);

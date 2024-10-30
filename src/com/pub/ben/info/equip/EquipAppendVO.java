@@ -1,204 +1,171 @@
 /**
- * 
+ *
  */
 package com.pub.ben.info.equip;
 
 /**
- * @author ºîºÆ¾ü ¹¦ÄÜ:×°±¸¸½¼Ó¹¦ÄÜÊôĞÔ 3:30:16 PM
+ * @author ä¾¯æµ©å†› åŠŸèƒ½:è£…å¤‡é™„åŠ åŠŸèƒ½å±æ€§ 3:30:16 PM
  */
-public class EquipAppendVO
-{
-	/** ¸½¼ÓÊôĞÔ×îĞ¡·ÀÓù */
-	private int wFyXiao;
-	/** ¸½¼ÓÊôĞÔ×î´ó·ÀÓù */
-	private int wFyDa;
-	/** ¸½¼ÓÊôĞÔ×îĞ¡¹¥»÷ */
-	private int wGjXiao;
-	/** ¸½¼ÓÊôĞÔ×î´ó¹¥»÷ */
-	private int wGjDa;
-	/** ¸½¼ÓÊôĞÔÆøÑª */
-	private int wHp;
-	/** ¸½¼ÓÊôĞÔ·¨Á¦ */
-	private int wMp;
-	/** ¸½¼ÓÊôĞÔ½ğ·ÀÓùÁ¦ */
-	private int wJinFy;
-	/** ¸½¼ÓÊôĞÔÄ¾·ÀÓùÁ¦ */
-	private int wMuFy;
-	/** ¸½¼ÓÊôĞÔË®·ÀÓùÁ¦ */
-	private int wShuiFy;
-	/** ¸½¼ÓÊôĞÔ»ğ·ÀÓùÁ¦ */
-	private int wHuoFy;
-	/** ¸½¼ÓÊôĞÔÍÁ·ÀÓùÁ¦ */
-	private int wTuFy;
-	/** ¸½¼ÓÊôĞÔ½ğ¹¥»÷Á¦ */
-	private int wJinGj;
-	/** ¸½¼ÓÊôĞÔÄ¾¹¥»÷Á¦ */
-	private int wMuGj;
-	/** ¸½¼ÓÊôĞÔË®¹¥»÷Á¦ */
-	private int wShuiGj;
-	/** ¸½¼ÓÊôĞÔ»ğ¹¥»÷Á¦ */
-	private int wHuoGj;
-	/** ¸½¼ÓÊôĞÔÍÁ¹¥»÷Á¦ */
-	private int wTuGj;
+public class EquipAppendVO {
+    /** é™„åŠ å±æ€§æœ€å°é˜²å¾¡ */
+    private int wFyXiao;
+    /** é™„åŠ å±æ€§æœ€å¤§é˜²å¾¡ */
+    private int wFyDa;
+    /** é™„åŠ å±æ€§æœ€å°æ”»å‡» */
+    private int wGjXiao;
+    /** é™„åŠ å±æ€§æœ€å¤§æ”»å‡» */
+    private int wGjDa;
+    /** é™„åŠ å±æ€§æ°”è¡€ */
+    private int wHp;
+    /** é™„åŠ å±æ€§æ³•åŠ› */
+    private int wMp;
+    /** é™„åŠ å±æ€§é‡‘é˜²å¾¡åŠ› */
+    private int wJinFy;
+    /** é™„åŠ å±æ€§æœ¨é˜²å¾¡åŠ› */
+    private int wMuFy;
+    /** é™„åŠ å±æ€§æ°´é˜²å¾¡åŠ› */
+    private int wShuiFy;
+    /** é™„åŠ å±æ€§ç«é˜²å¾¡åŠ› */
+    private int wHuoFy;
+    /** é™„åŠ å±æ€§åœŸé˜²å¾¡åŠ› */
+    private int wTuFy;
+    /** é™„åŠ å±æ€§é‡‘æ”»å‡»åŠ› */
+    private int wJinGj;
+    /** é™„åŠ å±æ€§æœ¨æ”»å‡»åŠ› */
+    private int wMuGj;
+    /** é™„åŠ å±æ€§æ°´æ”»å‡»åŠ› */
+    private int wShuiGj;
+    /** é™„åŠ å±æ€§ç«æ”»å‡»åŠ› */
+    private int wHuoGj;
+    /** é™„åŠ å±æ€§åœŸæ”»å‡»åŠ› */
+    private int wTuGj;
 
-	public int getWFyXiao()
-	{
-		return wFyXiao;
-	}
+    public int getWFyXiao() {
+        return wFyXiao;
+    }
 
-	public void setWFyXiao(int fyXiao)
-	{
-		wFyXiao = fyXiao;
-	}
+    public void setWFyXiao(int fyXiao) {
+        wFyXiao = fyXiao;
+    }
 
-	public int getWFyDa()
-	{
-		return wFyDa;
-	}
+    public int getWFyDa() {
+        return wFyDa;
+    }
 
-	public void setWFyDa(int fyDa)
-	{
-		wFyDa = fyDa;
-	}
+    public void setWFyDa(int fyDa) {
+        wFyDa = fyDa;
+    }
 
-	public int getWGjXiao()
-	{
-		return wGjXiao;
-	}
+    public int getWGjXiao() {
+        return wGjXiao;
+    }
 
-	public void setWGjXiao(int gjXiao)
-	{
-		wGjXiao = gjXiao;
-	}
+    public void setWGjXiao(int gjXiao) {
+        wGjXiao = gjXiao;
+    }
 
-	public int getWGjDa()
-	{
-		return wGjDa;
-	}
+    public int getWGjDa() {
+        return wGjDa;
+    }
 
-	public void setWGjDa(int gjDa)
-	{
-		wGjDa = gjDa;
-	}
+    public void setWGjDa(int gjDa) {
+        wGjDa = gjDa;
+    }
 
-	public int getWHp()
-	{
-		return wHp;
-	}
+    public int getWHp() {
+        return wHp;
+    }
 
-	public void setWHp(int hp)
-	{
-		wHp = hp;
-	}
+    public void setWHp(int hp) {
+        wHp = hp;
+    }
 
-	public int getWMp()
-	{
-		return wMp;
-	}
+    public int getWMp() {
+        return wMp;
+    }
 
-	public void setWMp(int mp)
-	{
-		wMp = mp;
-	}
+    public void setWMp(int mp) {
+        wMp = mp;
+    }
 
-	public int getWJinFy()
-	{
-		return wJinFy;
-	}
+    public int getWJinFy() {
+        return wJinFy;
+    }
 
-	public void setWJinFy(int jinFy)
-	{
-		wJinFy = jinFy;
-	}
+    public void setWJinFy(int jinFy) {
+        wJinFy = jinFy;
+    }
 
-	public int getWMuFy()
-	{
-		return wMuFy;
-	}
+    public int getWMuFy() {
+        return wMuFy;
+    }
 
-	public void setWMuFy(int muFy)
-	{
-		wMuFy = muFy;
-	}
+    public void setWMuFy(int muFy) {
+        wMuFy = muFy;
+    }
 
-	public int getWShuiFy()
-	{
-		return wShuiFy;
-	}
+    public int getWShuiFy() {
+        return wShuiFy;
+    }
 
-	public void setWShuiFy(int shuiFy)
-	{
-		wShuiFy = shuiFy;
-	}
+    public void setWShuiFy(int shuiFy) {
+        wShuiFy = shuiFy;
+    }
 
-	public int getWHuoFy()
-	{
-		return wHuoFy;
-	}
+    public int getWHuoFy() {
+        return wHuoFy;
+    }
 
-	public void setWHuoFy(int huoFy)
-	{
-		wHuoFy = huoFy;
-	}
+    public void setWHuoFy(int huoFy) {
+        wHuoFy = huoFy;
+    }
 
-	public int getWTuFy()
-	{
-		return wTuFy;
-	}
+    public int getWTuFy() {
+        return wTuFy;
+    }
 
-	public void setWTuFy(int tuFy)
-	{
-		wTuFy = tuFy;
-	}
+    public void setWTuFy(int tuFy) {
+        wTuFy = tuFy;
+    }
 
-	public int getWJinGj()
-	{
-		return wJinGj;
-	}
+    public int getWJinGj() {
+        return wJinGj;
+    }
 
-	public void setWJinGj(int jinGj)
-	{
-		wJinGj = jinGj;
-	}
+    public void setWJinGj(int jinGj) {
+        wJinGj = jinGj;
+    }
 
-	public int getWMuGj()
-	{
-		return wMuGj;
-	}
+    public int getWMuGj() {
+        return wMuGj;
+    }
 
-	public void setWMuGj(int muGj)
-	{
-		wMuGj = muGj;
-	}
+    public void setWMuGj(int muGj) {
+        wMuGj = muGj;
+    }
 
-	public int getWShuiGj()
-	{
-		return wShuiGj;
-	}
+    public int getWShuiGj() {
+        return wShuiGj;
+    }
 
-	public void setWShuiGj(int shuiGj)
-	{
-		wShuiGj = shuiGj;
-	}
+    public void setWShuiGj(int shuiGj) {
+        wShuiGj = shuiGj;
+    }
 
-	public int getWHuoGj()
-	{
-		return wHuoGj;
-	}
+    public int getWHuoGj() {
+        return wHuoGj;
+    }
 
-	public void setWHuoGj(int huoGj)
-	{
-		wHuoGj = huoGj;
-	}
+    public void setWHuoGj(int huoGj) {
+        wHuoGj = huoGj;
+    }
 
-	public int getWTuGj()
-	{
-		return wTuGj;
-	}
+    public int getWTuGj() {
+        return wTuGj;
+    }
 
-	public void setWTuGj(int tuGj)
-	{
-		wTuGj = tuGj;
-	}
+    public void setWTuGj(int tuGj) {
+        wTuGj = tuGj;
+    }
 
 }

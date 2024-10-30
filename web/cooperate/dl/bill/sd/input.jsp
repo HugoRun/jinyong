@@ -2,9 +2,10 @@
 <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
 <%@page contentType="text/vnd.wap.wml"  pageEncoding="UTF-8" errorPage="" %>
 <%
-	String money = (String)request.getParameter("money");
+    String money = (String)request.getParameter("money");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="index" title="盛大充值卡">
 <p>
 盛大游戏卡充值【<%=GameConfig.getYuanbaoName() %>】快速通道<br/>
@@ -15,10 +16,10 @@
 <input name="psw" maxlength="8"></input>(8位)<br/>
 <anchor>
 <go href="<%=response.encodeURL(GameConfig.getContextPath()+"/yeepay/comfirm.do") %>" method="post">
-			<postfield name="pay" value="<%=money %>"/>
-			<postfield name="code" value="$code"/>
-			<postfield name="psw" value="$psw"/>
-			<postfield name="pd_FrpId" value="SNDACARD"/>
+            <postfield name="pay" value="<%=money %>"/>
+            <postfield name="code" value="$code"/>
+            <postfield name="psw" value="$psw"/>
+            <postfield name="pd_FrpId" value="SNDACARD"/>
 </go>立即充值
 </anchor><br/>
 帮助信息<br/>

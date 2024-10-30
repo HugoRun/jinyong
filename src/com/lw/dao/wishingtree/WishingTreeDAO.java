@@ -11,7 +11,7 @@ import com.lw.vo.wishingtree.WishingTreeVO;
 
 public class WishingTreeDAO extends DaoBase
 {
-	/** 得到玩家信息 */
+	/** 寰楀埌鐜╁淇℃伅 */
 	public QueryPage getAllWishing(int page_no)
 	{
 		QueryPage queryPage = null;
@@ -21,7 +21,7 @@ public class WishingTreeDAO extends DaoBase
 
 		int count = 0;
 
-		String count_sql = "select count(*) from p_wishingtree where top = 0 order by create_time desc";
+		String count_sql = "SELECT count(*) from p_wishingtree where top = 0 order by create_time desc";
 		String page_sql = null;
 
 		logger.debug(count_sql);
@@ -41,7 +41,7 @@ public class WishingTreeDAO extends DaoBase
 
 			queryPage = new QueryPage(page_no, count);
 
-			page_sql = "select * from p_wishingtree where top = 0 order by create_time desc limit "
+			page_sql = "SELECT * FROM p_wishingtree where top = 0 order by create_time desc limit "
 					+ queryPage.getStartOfPage()
 					+ ","
 					+ queryPage.getPageSize();
@@ -71,12 +71,12 @@ public class WishingTreeDAO extends DaoBase
 		return queryPage;
 	}
 
-	/** 得到玩家信息 */
+	/** 寰楀埌鐜╁淇℃伅 */
 	public List<WishingTreeVO> getTopWishing()
 	{
 		List<WishingTreeVO> list = new ArrayList<WishingTreeVO>();
 		WishingTreeVO vo = null;
-		String sql = "select * from p_wishingtree where top = 1 order by top_time desc limit 3";
+		String sql = "SELECT * FROM p_wishingtree where top = 1 order by top_time desc limit 3";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -107,10 +107,10 @@ public class WishingTreeDAO extends DaoBase
 		return list;
 	}
 
-	// 插入祝福
+	// 鎻掑叆绁濈
 	public void insertWishing(int p_pk, String p_name, String wishing)
 	{
-		String sql = "insert into p_wishingtree (id,p_pk,p_name,wishing,create_time) values (null,"
+		String sql = "INSERT INTO p_wishingtree (id,p_pk,p_name,wishing,create_time) values (null,"
 				+ p_pk + ",'" + p_name + "','" + wishing + "',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -131,7 +131,7 @@ public class WishingTreeDAO extends DaoBase
 		}
 	}
 
-	// 更新祝福
+	// 鏇存柊绁濈
 	public void setTopWishing(int id)
 	{
 		String sql = "update p_wishingtree set top = 1 ,top_time = now() where id = "
@@ -155,7 +155,7 @@ public class WishingTreeDAO extends DaoBase
 		}
 	}
 
-	// 更新祝福
+	// 鏇存柊绁濈
 	public void setNomarWishing()
 	{
 		String sql = "update p_wishingtree as c set c.top = 0 where c.id in(select a.id from (select b.id from p_wishingtree as b where b.top = 1 order by b.top_time limit 1) a )";
@@ -178,11 +178,11 @@ public class WishingTreeDAO extends DaoBase
 		}
 	}
 
-	/** 得到玩家信息 */
+	/** 寰楀埌鐜╁淇℃伅 */
 	public int getTopWishingNum()
 	{
 		int num = 0;
-		String sql = "select count(*) as num from p_wishingtree where top = 1";
+		String sql = "SELECT count(*) as num from p_wishingtree where top = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -208,7 +208,7 @@ public class WishingTreeDAO extends DaoBase
 		return num;
 	}
 
-	// 更新祝福
+	// 鏇存柊绁濈
 	public void deleteWishing(int id)
 	{
 		String sql = "delete from p_wishingtree where id = " + id;

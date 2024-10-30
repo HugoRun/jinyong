@@ -4,123 +4,107 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class GuajiVo implements Comparable<GuajiVo>, Serializable
-{
-	//id
-	private long id;
-	// ¹Ò»ú½ÇÉ«id
-	private int p_pk;
-	// ¹ÖÎïid
-	private int npc_id;
-	// ¹Ò»úÊ±¼ä(·ÖÖÓ)
-	private int time;
-	// ¹Ò»ú·½Ê½
-	private int guaji_type;
-	// ¹Ò»úÑ¡Ôñ»ñµÃÎïÆ·
-	private Set<GoodVo> good = new TreeSet<GoodVo>();
-	// ¹Ò»ú»ñµÃ×°±¸Æ·ÖÊÑ¡Ôñ,0Ã»ÓĞÉèÖÃ£¬1ÎªÈ«²¿£¬2ÎªÓÅ£¬3Îª¾«£¬4Îª¼«
-	private int level;
-	//¿ªÊ¼Ê±¼ä
-	private String start_time;
+public class GuajiVo implements Comparable<GuajiVo>, Serializable {
+    // id
+    private long id;
+    // æŒ‚æœºè§’è‰²id
+    private int p_pk;
+    // æ€ªç‰©id
+    private int npc_id;
+    // æŒ‚æœºæ—¶é—´(åˆ†é’Ÿ)
+    private int time;
+    // æŒ‚æœºæ–¹å¼
+    private int guaji_type;
+    // æŒ‚æœºé€‰æ‹©è·å¾—ç‰©å“
+    private Set<GoodVo> good = new TreeSet<GoodVo>();
+    // æŒ‚æœºè·å¾—è£…å¤‡å“è´¨é€‰æ‹©,0æ²¡æœ‰è®¾ç½®ï¼Œ1ä¸ºå…¨éƒ¨ï¼Œ2ä¸ºä¼˜ï¼Œ3ä¸ºç²¾ï¼Œ4ä¸ºæ
+    private int level;
+    // å¼€å§‹æ—¶é—´
+    private String start_time;
 
-	public String getStart_time()
-	{
-		return start_time;
-	}
-	public void setStart_time(String start_time)
-	{
-		this.start_time = start_time;
-	}
-	public GuajiVo(){
-		super();
-	}
-	public GuajiVo(int p_pk, int npc_id)
-	{
-		super();
-		this.p_pk = p_pk;
-		this.npc_id = npc_id;
-	}
+    public GuajiVo() {
+        super();
+    }
 
-	public int getP_pk()
-	{
-		return p_pk;
-	}
+    public GuajiVo(int p_pk, int npc_id) {
+        super();
+        this.p_pk = p_pk;
+        this.npc_id = npc_id;
+    }
 
-	public void setP_pk(int p_pk)
-	{
-		this.p_pk = p_pk;
-	}
+    public String getStart_time() {
+        return start_time;
+    }
 
-	public int getNpc_id()
-	{
-		return npc_id;
-	}
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
 
-	public void setNpc_id(int npc_id)
-	{
-		this.npc_id = npc_id;
-	}
+    public int getP_pk() {
+        return p_pk;
+    }
 
-	public int getTime()
-	{
-		return time;
-	}
+    public void setP_pk(int p_pk) {
+        this.p_pk = p_pk;
+    }
 
-	public void setTime(int time)
-	{
-		this.time = time;
-	}
+    public int getNpc_id() {
+        return npc_id;
+    }
 
-	public int getGuaji_type()
-	{
-		return guaji_type;
-	}
+    public void setNpc_id(int npc_id) {
+        this.npc_id = npc_id;
+    }
 
-	public void setGuaji_type(int guaji_type)
-	{
-		this.guaji_type = guaji_type;
-	}
+    public int getTime() {
+        return time;
+    }
 
-	public Set<GoodVo> getGood()
-	{
-		return good;
-	}
+    public void setTime(int time) {
+        this.time = time;
+    }
 
-	public void setGood(Set<GoodVo> good)
-	{
-		this.good = good;
-	}
+    public int getGuaji_type() {
+        return guaji_type;
+    }
 
-	public int getLevel()
-	{
-		return level;
-	}
+    public void setGuaji_type(int guaji_type) {
+        this.guaji_type = guaji_type;
+    }
 
-	public void setLevel(int level)
-	{
-		this.level = level;
-	}
+    public Set<GoodVo> getGood() {
+        return good;
+    }
 
-	public void addGood(GoodVo good)
-	{
-		this.good.add(good);
-	}
+    public void setGood(Set<GoodVo> good) {
+        this.good = good;
+    }
 
-	public int compareTo(GuajiVo o)
-	{
-		if (o.getP_pk() == this.p_pk||o.getId()==this.id)
-		{
-			return 0;
-		}
-		return -1;
-	}
-	public long getId()
-	{
-		return id;
-	}
-	public void setId(long id)
-	{
-		this.id = id;
-	}
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void addGood(GoodVo good) {
+        this.good.add(good);
+    }
+
+    public int compareTo(GuajiVo o) {
+        if (o.getP_pk() == this.p_pk || o.getId() == this.id) {
+            return 0;
+        }
+        return -1;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
 }

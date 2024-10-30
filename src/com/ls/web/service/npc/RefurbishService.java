@@ -34,7 +34,7 @@ public class RefurbishService
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ¸ù¾İµØµãsence_idË¢ĞÂnpc
+	 * æ ¹æ®åœ°ç‚¹sence_idåˆ·æ–°npc
 	 * @param sence_id
 	 * @return
 	 */
@@ -53,15 +53,15 @@ public class RefurbishService
 		NpcrefurbishDao npcrefurbishDao = new NpcrefurbishDao();
 		List<NpcrefurbishVO> npcrefurbishs = npcrefurbishDao.getBySenceId(scene_id);
 
-		// ¸ù¾İnpcË¢ĞÂ±í´´½¨npc
+		// æ ¹æ®npcåˆ·æ–°è¡¨åˆ›å»ºnpc
 		for (int i = 0; i < npcrefurbishs.size(); i++)
 		{
 			npcrefurbishVO = npcrefurbishs.get(i);
-			/*****¸±±¾Ğ¡¹ÖµÄË¢ĞÂÊ±¼äÏÈ×¢ÊÍµô***/
+			/*****å‰¯æœ¬å°æ€ªçš„åˆ·æ–°æ—¶é—´å…ˆæ³¨é‡Šæ‰***/
 			//reLoadRefurbishInfo(p_pk, scene_id, npcrefurbishVO);
 			npc = NpcCache.getById(npcrefurbishVO.getNpcId());
 
-			if (isRefurbished(p_pk, scene_id, npcrefurbishVO, npc) == true)// ÅĞ¶ÏÊÇ·ñË¢ĞÂ
+			if (isRefurbished(p_pk, scene_id, npcrefurbishVO, npc) == true)// åˆ¤æ–­æ˜¯å¦åˆ·æ–°
 			{
 				for (int j = 0; j < npcrefurbishVO.getRandomNum(); j++)
 				{
@@ -70,13 +70,13 @@ public class RefurbishService
 			}
 		}
 		
-		// ²åÈëÄÚ´æ»º´æ
+		// æ’å…¥å†…å­˜ç¼“å­˜
 		insertByNPCs(npcs,p_pk);
 		return npcs;
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñË¢ĞÂ
+	 * åˆ¤æ–­æ˜¯å¦åˆ·æ–°
 	 * 
 	 * @param p_pk
 	 * @param scene_id
@@ -92,16 +92,16 @@ public class RefurbishService
 		}
 		boolean result = false;
 		
-		//ÅĞ¶ÏË¢ĞÂÊ±¼ä
+		//åˆ¤æ–­åˆ·æ–°æ—¶é—´
 		if( !DateUtil.isEffectTime(npcrefurbishVO.getTimeKs(), npcrefurbishVO.getDayTimeJs(), npcrefurbishVO.getTimeKs(), npcrefurbishVO.getTimeJs(),npcrefurbishVO.getWeekStr()))
 		{
 			return false;
 		}
 		
-		if (npcrefurbishVO.getIsBoss() == 1)// ÅĞ¶ÏÊÇ·ñÊÇboss
+		if (npcrefurbishVO.getIsBoss() == 1)// åˆ¤æ–­æ˜¯å¦æ˜¯boss
 		{
 			InstanceService instanceService = new InstanceService();
-			if (instanceService.isHaveArchive(p_pk, scene_id) == true)// ¸ù¾İµØµãÅĞ¶Ï¸Ã¸±±¾µÄbossÊÇ·ñ±»É±
+			if (instanceService.isHaveArchive(p_pk, scene_id) == true)// æ ¹æ®åœ°ç‚¹åˆ¤æ–­è¯¥å‰¯æœ¬çš„bossæ˜¯å¦è¢«æ€
 			{
 				return false;
 			}
@@ -125,10 +125,10 @@ public class RefurbishService
 				
 			}
 		}
-			//¸ù¾İËÀÍöÊ±¼äÅĞ¶ÏÊÇ·ñË¢ĞÂ
+			//æ ¹æ®æ­»äº¡æ—¶é—´åˆ¤æ–­æ˜¯å¦åˆ·æ–°
 			if (isRefurbishByDeadTime(npcrefurbishVO, npc) == true)
 			{
-				// ÅĞ¶ÏÊÇ·ñ°´¸ÅÂÊË¢³ö
+				// åˆ¤æ–­æ˜¯å¦æŒ‰æ¦‚ç‡åˆ·å‡º
 				if (MathUtil.isAppearByPercentage(npcrefurbishVO.getProbability()))
 				{
 					return true;
@@ -139,7 +139,7 @@ public class RefurbishService
 	}
 
 	/**
-	 * ¸ù¾İËÀÍöÊ±¼äÅĞ¶ÏÊÇ·ñË¢ĞÂ
+	 * æ ¹æ®æ­»äº¡æ—¶é—´åˆ¤æ–­æ˜¯å¦åˆ·æ–°
 	 * @param npcrefurbishVO
 	 * @param npc
 	 * @return
@@ -148,18 +148,18 @@ public class RefurbishService
 			NpcVO npc)
 	{
 		boolean result = false;
-		if (npc.getNpcRefurbishTime() == 0)// ÎŞË¢ĞÂÊ±¼ä¿ØÖÆ
+		if (npc.getNpcRefurbishTime() == 0)// æ— åˆ·æ–°æ—¶é—´æ§åˆ¶
 		{
 			return true;
 		}
 
-		if (npcrefurbishVO.getIsDead() == 1)// NPCËÀÁË
+		if (npcrefurbishVO.getIsDead() == 1)// NPCæ­»äº†
 		{
 			if (DateUtil.isOverdue(npcrefurbishVO.getDeadTime(), npc
 					.getNpcRefurbishTime()
 					* DateUtil.MINUTE))
 			{
-				// ³¬¹ıÀäÈ´Ê±¼ä
+				// è¶…è¿‡å†·å´æ—¶é—´
 				reviveNPC(npc.getNpcID(), npcrefurbishVO.getSceneId());
 				result = true;
 			}
@@ -173,20 +173,20 @@ public class RefurbishService
 	}
 
 	/**
-	 * ¸ü¾ßµØµã£¬ÖØÔØnpcË¢ĞÂµÄĞÅÏ¢
+	 * æ›´å…·åœ°ç‚¹ï¼Œé‡è½½npcåˆ·æ–°çš„ä¿¡æ¯
 	 */
 	private NpcrefurbishVO reLoadRefurbishInfo(int p_pk, int scene_id,
 			NpcrefurbishVO npcrefurbishVO)
 	{
 		if (npcrefurbishVO == null)
 		{
-			logger.info("NPCË¢ĞÂ£¨npcrefurbishVO£©ĞÅÏ¢ÎŞĞ§");
+			logger.info("NPCåˆ·æ–°ï¼ˆnpcrefurbishVOï¼‰ä¿¡æ¯æ— æ•ˆ");
 		}
 
 		RoomService roomService = new RoomService();
 		int map_type = roomService.getMapType(scene_id);
 
-		if (npcrefurbishVO.getIsBoss() != 1 && map_type == MapType.INSTANCE)// ²»ÊÇBossÇÒÊÇ¸±±¾ÇøÓò
+		if (npcrefurbishVO.getIsBoss() != 1 && map_type == MapType.INSTANCE)// ä¸æ˜¯Bossä¸”æ˜¯å‰¯æœ¬åŒºåŸŸ
 		{
 			GroupService groupService = new GroupService();
 			NpcDeadRecordDao npcDeadRecordDao = new NpcDeadRecordDao();
@@ -210,7 +210,7 @@ public class RefurbishService
 	}
 
 	/**
-	 * ²åÈënpcÁÙÊ±±í
+	 * æ’å…¥npcä¸´æ—¶è¡¨
 	 */
 	private void insertByNPCs(List<NpcFighter> npcs,int p_pk)
 	{
@@ -229,11 +229,11 @@ public class RefurbishService
 		
 		attacckCache.clearNpcTempData(p_pk+"");
 		
-		// ÒÔÏÂÎª²åÈëÄÚ´æ 
+		// ä»¥ä¸‹ä¸ºæ’å…¥å†…å­˜ 
 		List<NpcFighter> zdNpcs = new ArrayList<NpcFighter>();
 		for ( int i = npcs.size()-1;i>=0;i--) {
 			NpcFighter npcAttackVO = npcs.get(i);
-			npcAttackVO.setID(i);				// ¸ønpcÈ·¶¨Ò»¸öÀàËÆÖ÷¼üµÄ¶«Î÷
+			npcAttackVO.setID(i);				// ç»™npcç¡®å®šä¸€ä¸ªç±»ä¼¼ä¸»é”®çš„ä¸œè¥¿
 			if (npcAttackVO.getNAttackswitch() == 1 ) {
 				zdNpcs.add(npcAttackVO);
 				npcs.remove(i);
@@ -250,18 +250,18 @@ public class RefurbishService
 
 
 	/**
-	 * ´´½¨Ë¢ĞÂ³öÀ´µÄnpcÊµÌå
+	 * åˆ›å»ºåˆ·æ–°å‡ºæ¥çš„npcå®ä½“
 	 * 
 	 * @param npc
 	 * @param pPk
-	 *            ½ÇÉ«id
+	 *            è§’è‰²id
 	 * @return
 	 */
 	public NpcFighter createNPCByRefurbish(NpcVO npc,
 			NpcrefurbishVO npcrefurbishVO, int p_pk)
 	{
 		NpcFighter temp_npc = new NpcFighter();
-		// ÉèÖÃÖ÷¶¯¹¥»÷¿ª¹Ø
+		// è®¾ç½®ä¸»åŠ¨æ”»å‡»å¼€å…³
 		temp_npc.setNAttackswitch(npcrefurbishVO.getAttackswitch());
 		temp_npc.setPPk(p_pk);
 		temp_npc.setNpcID(npc.getNpcID());
@@ -291,11 +291,11 @@ public class RefurbishService
 
 	/**
 	 * 
-	 * ¸ù¾İÌõ¼ş×Ö·û´®condition,À´´´½¨npc
+	 * æ ¹æ®æ¡ä»¶å­—ç¬¦ä¸²condition,æ¥åˆ›å»ºnpc
 	 * 
 	 * @param npc
 	 * @param pPk
-	 *            ½ÇÉ«id
+	 *            è§’è‰²id
 	 * @return
 	 */
 	public void createNPCByCondition(int p_pk, String condition, int npc_type,
@@ -303,7 +303,7 @@ public class RefurbishService
 	{
 		if (condition == null)
 		{
-			logger.info("´´½¨npcÌõ¼ş×Ö·û´®Îª¿Õ");
+			logger.info("åˆ›å»ºnpcæ¡ä»¶å­—ç¬¦ä¸²ä¸ºç©º");
 			return;
 		}
 
@@ -326,7 +326,7 @@ public class RefurbishService
 	}
 	
 	/**
-	 * ¸´»îÀäÈ´µÄnpc
+	 * å¤æ´»å†·å´çš„npc
 	 */
 	public void reviveNPC(int npc_id, int scene_id)
 	{
@@ -335,7 +335,7 @@ public class RefurbishService
 	}
 
 	/**
-	 * Çå³ıµ±Ç°½ÇÉ«Ë¢ĞÂ³öµÄnpcs
+	 * æ¸…é™¤å½“å‰è§’è‰²åˆ·æ–°å‡ºçš„npcs
 	 * 
 	 * @param p_pk
 	 * @return
@@ -345,23 +345,23 @@ public class RefurbishService
 		int result = -1;
 		NpcAttackDao npcAttackDao = new NpcAttackDao();
 		result = npcAttackDao.deleteByPpk(p_pk);
-		logger.info("Çå³ı" + result + "¸öNPC");
+		logger.info("æ¸…é™¤" + result + "ä¸ªNPC");
 		return result;
 	}
 */
 	/**
-	 * ¸üĞÂËÀÍöÊ±¼ä
+	 * æ›´æ–°æ­»äº¡æ—¶é—´
 	 * 
 	 * @param npc_id
 	 * @param scene_id
 	 * @param type
-	 *            1ÎªËÀÍö,2Îª²¶»ñ
+	 *            1ä¸ºæ­»äº¡,2ä¸ºæ•è·
 	 */
 	public void updateTimeOfNPCDead(PartInfoVO player,NpcAttackVO npc,int npc_id,int scene_id,int type )
 	{
 		NpcrefurbishDao npcrefurbishDao = new NpcrefurbishDao();
 			RoomService roomService = new RoomService();
-			if( roomService.getMapType(scene_id) == MapType.INSTANCE )//¸±±¾´øË¢ĞÂÊ±¼äµÄĞ¡¹Ö
+			if( roomService.getMapType(scene_id) == MapType.INSTANCE )//å‰¯æœ¬å¸¦åˆ·æ–°æ—¶é—´çš„å°æ€ª
 			{
 				InstanceService instanceService =  new InstanceService();
 				GroupService groupService = new GroupService();
@@ -369,13 +369,13 @@ public class RefurbishService
 				instanceService.recordNpcDeadTime(caption_pk, scene_id, npc_id);
 				npcrefurbishDao.setDeadState(npc_id, scene_id);
 				
-				//Í³¼ÆĞèÒª
+				//ç»Ÿè®¡éœ€è¦
 				//new RankService().updateAdd(player.getPPk(), "killnpc", npc.getLevel());
 				
-				logger.info("¸±±¾Ğ¡¹ÖËÀÍö»ò±»×¥£¬²»·¢ÏµÍ³ÏûÏ¢");
+				logger.info("å‰¯æœ¬å°æ€ªæ­»äº¡æˆ–è¢«æŠ“ï¼Œä¸å‘ç³»ç»Ÿæ¶ˆæ¯");
 				return;
 			}
-			else// ·¢ËÍÏµÍ³ÏûÏ¢
+			else// å‘é€ç³»ç»Ÿæ¶ˆæ¯
 			{
 				if( !npcrefurbishDao.isDead(npc_id, scene_id) )
 				{
@@ -383,18 +383,18 @@ public class RefurbishService
     				NpcService npcServcie = new NpcService();
     				if(type == 1) {
     					npcServcie.sendSysInfoOfNpcDead(player,npc,npc.getNpcRefurbishTime());
-    					//Í³¼ÆĞèÒª
+    					//ç»Ÿè®¡éœ€è¦
     					//new RankService().updateAdd(player.getPPk(), "killboss", (npc.getLevel()*2));
     				}else {
     					logger.info("player.getPPk()="+player.getPPk());
-    					//5.04È¡Ïû²¶×½ÌáÊ¾ĞÅÏ¢
+    					//5.04å–æ¶ˆæ•æ‰æç¤ºä¿¡æ¯
     					//npcServcie.sendSysInfoOfCatch(player.getPPk(),npc);
     				}
 				}
 			}
 	}
 	/**
-	 * µ±Ç°µØµãNCPÊÇ·ñBOSS
+	 * å½“å‰åœ°ç‚¹NCPæ˜¯å¦BOSS
 	 * @param scene_id
 	 * @param npc_id
 	 * @return

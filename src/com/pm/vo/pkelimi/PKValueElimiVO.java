@@ -1,21 +1,21 @@
 package com.pm.vo.pkelimi;
 /**
- * Ïû³ı×ï¶ñÖµ±í
+ * æ¶ˆé™¤ç½ªæ¶å€¼è¡¨
  * @author zhangjj
  *
  */
 public class PKValueElimiVO
 {
 
-	/** Ïû³ı×ï¶ñÖµid */
+	/** æ¶ˆé™¤ç½ªæ¶å€¼id */
 	private int pkvalue_elimi;
-	/** ¸öÈË½ÇÉ«id */
+	/** ä¸ªäººè§’è‰²id */
 	private int pPK;
-	/** ×ï¶ñÖµ */
+	/** ç½ªæ¶å€¼ */
 	private int pkvalue;
-	/** ÊÇ·ñÔÚ¼àÓüÇøÓò */
+	/** æ˜¯å¦åœ¨ç›‘ç‹±åŒºåŸŸ */
 	private int isPerion;
-	/** ×îºóÏû³ıÊ±¼ä */
+	/** æœ€åæ¶ˆé™¤æ—¶é—´ */
 	private String lastTime;
 	
 	

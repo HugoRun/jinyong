@@ -28,7 +28,7 @@ import com.pub.operation.Operation;
 
 /**
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class PetService
 {
@@ -37,7 +37,7 @@ public class PetService
 	DecimalFormat dfs = new DecimalFormat("0");
 
 	/**
-	 * ¹¦ÄÜ:³èÎï²¶×½ Êı¾İ³õÊ¼»¯
+	 * åŠŸèƒ½:å® ç‰©æ•æ‰ æ•°æ®åˆå§‹åŒ–
 	
 	public boolean PetSinewService11(PetNameBean petNameBean,NpcAttackVO npc, String p_pk)
 	{
@@ -51,7 +51,7 @@ public class PetService
 			// ,petvo==null="+(PetVO != null));
 			if (PetVO != null)
 			{
-				/** ************Íæ¼ÒÏûºÄ*************** *
+				/** ************ç©å®¶æ¶ˆè€—*************** *
 				PartInfoDAO partInfoDAO = new PartInfoDAO();
 				int cur_MP = role_info.getBasicInfo().getMp();
 				int pp = npc.getLevel() + 10;
@@ -61,43 +61,43 @@ public class PetService
 					return false;
 				}
 				int p_mp = cur_MP - pp;
-				role_info.getBasicInfo().updateMp(p_mp);//¸üĞÂMP
-				logger.info("Íæ¼Ò·¢Á¦ÏûºÄ:" + p_mp);
-				/** ***************³èÎï¼¼ÄÜ¸½×Å****************** *
-				/** ¼¼ÄÜ1 ¿ÉÑ§Ï°µÄ¼¼ÄÜid *
+				role_info.getBasicInfo().updateMp(p_mp);//æ›´æ–°MP
+				logger.info("ç©å®¶å‘åŠ›æ¶ˆè€—:" + p_mp);
+				/** ***************å® ç‰©æŠ€èƒ½é™„ç€****************** *
+				/** æŠ€èƒ½1 å¯å­¦ä¹ çš„æŠ€èƒ½id *
 				String petSkillOne = "0";
-				/** ¼¼ÄÜ2 ¿ÉÑ§Ï°µÄ¼¼ÄÜid *
+				/** æŠ€èƒ½2 å¯å­¦ä¹ çš„æŠ€èƒ½id *
 				String petSkillTwo = "0";
-				/** ¼¼ÄÜ3 ¿ÉÑ§Ï°µÄ¼¼ÄÜid *
+				/** æŠ€èƒ½3 å¯å­¦ä¹ çš„æŠ€èƒ½id *
 				String petSkillThree = "0";
-				/** ¼¼ÄÜ4 ¿ÉÑ§Ï°µÄ¼¼ÄÜid *
+				/** æŠ€èƒ½4 å¯å­¦ä¹ çš„æŠ€èƒ½id *
 				String petSkillFour = "0";
-				/** ¼¼ÄÜ5 ¿ÉÑ§Ï°µÄ¼¼ÄÜid *
+				/** æŠ€èƒ½5 å¯å­¦ä¹ çš„æŠ€èƒ½id *
 				String petSkillFive = "0";
 
-				// 11.26³èÎï¼¼ÄÜ¸½×Å¸ÄÕı, Ô­À´Îª¸½×ÅµÄ¼¼ÄÜÑÏ¸ñ¿ØÖÆÎªpet±íÖĞËùÌîµÄ¶ÔÓ¦µÄ¼¼ÄÜ,
-				// ÏÖÔÚĞŞ¸ÄÎª³èÎï¼¼ÄÜÈç¹û¸½×Å³É¹¦, ËùµÃµ½µÄ¼¼ÄÜÊÇ´ËpetËù¿ÉÄÜ¾ßÓĞµÄÈÎºÎÒ»¸ö¼¼ÄÜ.
+				// 11.26å® ç‰©æŠ€èƒ½é™„ç€æ”¹æ­£, åŸæ¥ä¸ºé™„ç€çš„æŠ€èƒ½ä¸¥æ ¼æ§åˆ¶ä¸ºpetè¡¨ä¸­æ‰€å¡«çš„å¯¹åº”çš„æŠ€èƒ½,
+				// ç°åœ¨ä¿®æ”¹ä¸ºå® ç‰©æŠ€èƒ½å¦‚æœé™„ç€æˆåŠŸ, æ‰€å¾—åˆ°çš„æŠ€èƒ½æ˜¯æ­¤petæ‰€å¯èƒ½å…·æœ‰çš„ä»»ä½•ä¸€ä¸ªæŠ€èƒ½.
 				/**
 				 * if(PetVO.getPetSkillOne()!=0){
 				 * if(mathUtil.isAppearByPercentage(30,100)){ petSkillOne =
 				 * PetVO.getPetSkillOne()+""; //30%
-				 * logger.info("µÚ1ÖÖ¼¼ÄÜ30%¿ÉÄÜÒÑ¾­²úÉú¸½×Å"); }
+				 * logger.info("ç¬¬1ç§æŠ€èƒ½30%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€"); }
 				 * }if(PetVO.getPetSkillTwo()!=0){
 				 * if(mathUtil.isAppearByPercentage(3,100)){ petSkillTwo =
 				 * PetVO.getPetSkillTwo()+""; //3%
-				 * logger.info("µÚ2ÖÖ¼¼ÄÜ3%¿ÉÄÜÒÑ¾­²úÉú¸½×Å"); }
+				 * logger.info("ç¬¬2ç§æŠ€èƒ½3%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€"); }
 				 * }if(PetVO.getPetSkillThree()!=0){
 				 * if(mathUtil.PercentageRandomByParamdouble(0.3,100)){
 				 * petSkillThree = PetVO.getPetSkillThree()+"";//%
-				 * logger.info("µÚ3ÖÖ¼¼ÄÜ0.3%¿ÉÄÜÒÑ¾­²úÉú¸½×Å"); }
+				 * logger.info("ç¬¬3ç§æŠ€èƒ½0.3%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€"); }
 				 * }if(PetVO.getPetSkillFour()!=0){
 				 * if(mathUtil.PercentageRandomByParamdouble(0.03,100)){
 				 * petSkillFour = PetVO.getPetSkillFour()+"";//0.03%
-				 * logger.info("µÚ4ÖÖ¼¼ÄÜ0.03%¿ÉÄÜÒÑ¾­²úÉú¸½×Å"); }
+				 * logger.info("ç¬¬4ç§æŠ€èƒ½0.03%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€"); }
 				 * }if(PetVO.getPetSkillFive()!=0){
 				 * if(mathUtil.PercentageRandomByParamdouble(0.003,100)){
 				 * petSkillFive = PetVO.getPetSkillFive()+"";//0.003%
-				 * logger.info("µÚ5ÖÖ¼¼ÄÜ0.003%¿ÉÄÜÒÑ¾­²úÉú¸½×Å"); } }
+				 * logger.info("ç¬¬5ç§æŠ€èƒ½0.003%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€"); } }
 				 *
 
 				int i = 0;
@@ -124,12 +124,12 @@ public class PetService
 						i = random.nextInt(list.size());
 						petSkillOne = list.get(i) + "";
 						skill_num++;
-						logger.info("µÚ1ÖÖ¼¼ÄÜ30%¿ÉÄÜÒÑ¾­²úÉú¸½×Å");
+						logger.info("ç¬¬1ç§æŠ€èƒ½30%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€");
 					}
 					if (MathUtil.isAppearByPercentage(3, 100))
 					{
 						if (skill_num < PetVO.getSkillControl())
-						{ // ÔÚÒÑÓĞµÄ¼¼ÄÜÊıĞ¡ÓÚ³èÎïËùÓ¦ÓĞµÄ¼¼ÄÜÇé¿öÏÂ,²ÅÄÜ¼ÌĞø.
+						{ // åœ¨å·²æœ‰çš„æŠ€èƒ½æ•°å°äºå® ç‰©æ‰€åº”æœ‰çš„æŠ€èƒ½æƒ…å†µä¸‹,æ‰èƒ½ç»§ç»­.
 
 							do
 							{
@@ -139,17 +139,17 @@ public class PetService
 							} while (petSkillTwo == petSkillOne);
 						}
 
-						logger.info("µÚ2ÖÖ¼¼ÄÜ3%¿ÉÄÜÒÑ¾­²úÉú¸½×Å");
+						logger.info("ç¬¬2ç§æŠ€èƒ½3%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€");
 					}
 					if (MathUtil.PercentageRandomByParamdouble(0.3, 100))
 					{
 						if (skill_num < PetVO.getSkillControl())
-						{ // ÔÚÒÑÓĞµÄ¼¼ÄÜÊıĞ¡ÓÚ³èÎïËùÓ¦ÓĞµÄ¼¼ÄÜÇé¿öÏÂ,²ÅÄÜ¼ÌĞø.
+						{ // åœ¨å·²æœ‰çš„æŠ€èƒ½æ•°å°äºå® ç‰©æ‰€åº”æœ‰çš„æŠ€èƒ½æƒ…å†µä¸‹,æ‰èƒ½ç»§ç»­.
 							do
 							{
 								i = random.nextInt(list.size());
 								petSkillThree = list.get(i) + "";
-								logger.info("µÚ3ÖÖ¼¼ÄÜ0.3%¿ÉÄÜÒÑ¾­²úÉú¸½×Å");
+								logger.info("ç¬¬3ç§æŠ€èƒ½0.3%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€");
 								skill_num++;
 							} while (petSkillThree == petSkillOne
 									|| petSkillThree == petSkillTwo);
@@ -159,12 +159,12 @@ public class PetService
 					if (MathUtil.PercentageRandomByParamdouble(0.03, 100))
 					{
 						if (skill_num < PetVO.getSkillControl())
-						{ // ÔÚÒÑÓĞµÄ¼¼ÄÜÊıĞ¡ÓÚ³èÎïËùÓ¦ÓĞµÄ¼¼ÄÜÇé¿öÏÂ,²ÅÄÜ¼ÌĞø.
+						{ // åœ¨å·²æœ‰çš„æŠ€èƒ½æ•°å°äºå® ç‰©æ‰€åº”æœ‰çš„æŠ€èƒ½æƒ…å†µä¸‹,æ‰èƒ½ç»§ç»­.
 							do
 							{
 								i = random.nextInt(list.size());
 								petSkillFour = list.get(i) + "";
-								logger.info("µÚ4ÖÖ¼¼ÄÜ0.03%¿ÉÄÜÒÑ¾­²úÉú¸½×Å");
+								logger.info("ç¬¬4ç§æŠ€èƒ½0.03%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€");
 								skill_num++;
 							} while (petSkillFour == petSkillOne
 								|| petSkillFour == petSkillTwo
@@ -174,12 +174,12 @@ public class PetService
 					if (MathUtil.PercentageRandomByParamdouble(0.003, 100))
 					{
 						if (skill_num < PetVO.getSkillControl())
-						{ // ÔÚÒÑÓĞµÄ¼¼ÄÜÊıĞ¡ÓÚ³èÎïËùÓ¦ÓĞµÄ¼¼ÄÜÇé¿öÏÂ,²ÅÄÜ¼ÌĞø.
+						{ // åœ¨å·²æœ‰çš„æŠ€èƒ½æ•°å°äºå® ç‰©æ‰€åº”æœ‰çš„æŠ€èƒ½æƒ…å†µä¸‹,æ‰èƒ½ç»§ç»­.
 							do
 							{
 								i = random.nextInt(list.size());
 								petSkillFive = list.get(i) + "";
-								logger.info("µÚ5ÖÖ¼¼ÄÜ0.003%¿ÉÄÜÒÑ¾­²úÉú¸½×Å");
+								logger.info("ç¬¬5ç§æŠ€èƒ½0.003%å¯èƒ½å·²ç»äº§ç”Ÿé™„ç€");
 							} while (petSkillFive == petSkillOne
 									|| petSkillFive == petSkillTwo
 									|| petSkillFive == petSkillThree
@@ -188,32 +188,32 @@ public class PetService
 					}
 				}
 
-				/** ***************ÒÔÏÂÊÇÈ¡³ö³èÎïĞÅÏ¢È»ºó»»Ëã³É²¶×½ºóµÄ³èÎïĞÅÏ¢****************** *
-				/** ³èÎï³É³¤ÂÊ *
+				/** ***************ä»¥ä¸‹æ˜¯å–å‡ºå® ç‰©ä¿¡æ¯ç„¶åæ¢ç®—æˆæ•æ‰åçš„å® ç‰©ä¿¡æ¯****************** *
+				/** å® ç‰©æˆé•¿ç‡ *
 				double petDropDa = PetVO.getPetDropDa();
-				/** ³èÎï³É³¤ÂÊ *
+				/** å® ç‰©æˆé•¿ç‡ *
 				double petDropXiao = PetVO.getPetDropXiao();
 				double dd = MathUtil.getRandomDoubleXY(petDropXiao, petDropDa);
 
-				/** ³èÎï³É³¤ÂÊ¡± *
+				/** å® ç‰©æˆé•¿ç‡â€ *
 				String petGrow = df.format(dd);
-				/** ½ÇÉ«id *
+				/** è§’è‰²id *
 				String pPk = p_pk;
-				/** ¶ÔÓ¦pet±íÀïµÄid *
+				/** å¯¹åº”petè¡¨é‡Œçš„id *
 				String petId = PetVO.getPetId() + "";
 				
-				/** ³èÎïÃû³Æ *
+				/** å® ç‰©åç§° *
 				String petName = PetVO.getPetName();
-				/** ³èÎïêÇ³Æ *
+				/** å® ç‰©æ˜µç§° *
 				String petNickname = PetVO.getPetName();
 				String xing = "*";
 				if(!petSkillOne.equals("0")||!petSkillTwo.equals("0")||!petSkillThree.equals("0")||!petSkillFour.equals("0")||!petSkillFive.equals("0")){
 					petNickname = petNickname+xing;
 				} 
 				petNameBean.setPetName(petNickname);
-				/** ³èÎïÍ¼Æ¬ *
+				/** å® ç‰©å›¾ç‰‡ *
 				String pet_img = PetVO.getPetImg();
-				/** µÈ¼¶ ,Èç¹ûÊÇÒìÊŞ¾Í½«ÆäµÈ¼¶ÖÃÎªÁã *
+				/** ç­‰çº§ ,å¦‚æœæ˜¯å¼‚å…½å°±å°†å…¶ç­‰çº§ç½®ä¸ºé›¶ *
 				String petGrade = null;
 				if (PetVO.getPetType() == 2)
 				{
@@ -223,7 +223,7 @@ public class PetService
 				{
 					petGrade = npc.getLevel() + "";
 				}
-				// Í¨¹ı³èÎïµÈ¼¶ºÍ³èÎïIDºÍ³èÎïÀàĞÍ È¥ÕÒ³èÎï³É³¤ĞÅÏ¢
+				// é€šè¿‡å® ç‰©ç­‰çº§å’Œå® ç‰©IDå’Œå® ç‰©ç±»å‹ å»æ‰¾å® ç‰©æˆé•¿ä¿¡æ¯
 				PetShapeVO petShapeVO = petDAO.getPetShapeView(
 						petDAO.npcType(npc.getNpcID()), Integer
 								.valueOf(petGrade));
@@ -232,9 +232,9 @@ public class PetService
 					logger.info("petShapeVO == null");
 					return false;
 				}
-				// ¹¥»÷Á¦³£Êı:³èÎïµÄ³É³¤ÂÊ * µÈ¼¶/3
+				// æ”»å‡»åŠ›å¸¸æ•°:å® ç‰©çš„æˆé•¿ç‡ * ç­‰çº§/3
 				double cc = Double.parseDouble(petGrow) * npc.getLevel() / 3;
-				// (10+µÈ¼¶*5)+4*³É³¤ÂÊ
+				// (10+ç­‰çº§*5)+4*æˆé•¿ç‡
 				double gongji = 0.0;
 				// double gongjix=0.0;
 				if (npc.getLevel() < 9)
@@ -248,26 +248,26 @@ public class PetService
 							+ Double.parseDouble(petGrow)
 							* (5 * npc.getLevel() - npc.getLevel()) / 2;
 				}
-				/** ¾­Ñé *
+				/** ç»éªŒ *
 				double petExps = Double.parseDouble(petShapeVO
 						.getShapeBenExperience())
 						* Double.parseDouble(petGrow);
 				String petExp = dfs.format(petExps);
-				/** ÏÂ¼¶¾­Ñé´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé *
+				/** ä¸‹çº§ç»éªŒè¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ *
 				// double s =
 				// (Math.pow(npc.getLevel(),3)/90+5)*(Math.pow(npc.getLevel(),2)/3+10)*0.36*Double.parseDouble(petGrow);
 				double petXiaExps = Double.parseDouble(petShapeVO
 						.getShapeXiaExperience())
 						* Double.parseDouble(petGrow);
 				String petXiaExp = dfs.format(petXiaExps);
-				/** ×îĞ¡¹¥»÷ *
+				/** æœ€å°æ”»å‡» *
 				int petGjXiao = Integer.parseInt(dfs.format(gongji))
 						- Integer.parseInt(dfs.format(cc));
-				/** ×î´ó¹¥»÷ *
+				/** æœ€å¤§æ”»å‡» *
 				int petGjDa = Integer.parseInt(dfs.format(gongji))
 						+ Integer.parseInt(dfs.format(cc));
 
-				/**ÒìÊŞµÄ¹¥»÷³õÊ¼»¯*
+				/**å¼‚å…½çš„æ”»å‡»åˆå§‹åŒ–*
 				if(PetVO.getPetType() == 2){
 					petGjXiao = (int) (15 + 4 * Double.parseDouble(petGrow));
 					petGjDa = petGjXiao;
@@ -278,13 +278,13 @@ public class PetService
 							+ Integer.parseInt(dfs.format(cc));
 				}
 				
-				/** Âô³ö¼Û¸ñ *
+				/** å–å‡ºä»·æ ¼ *
 				String petSale = petShapeVO.getShapeSale() + "";
-				/** ÎåĞĞÊôĞÔ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 *
+				/** äº”è¡Œå±æ€§é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 *
 				String petWx = PetVO.getPetWx();
-				/** ÎåĞĞÊôĞÔÖµ *
+				/** äº”è¡Œå±æ€§å€¼ *
 				String petWxValue = PetVO.getPetWxValue();
-				/** ÊÙÃü* *
+				/** å¯¿å‘½* *
 
 				int m = 2;
 				String ll = "";
@@ -304,20 +304,20 @@ public class PetService
 				String u = PetVO.getPetLonge() + ll;
 				String petLife = operation.getResult(u) + "";
 				////System.out.println("******************  " + petLife);
-				/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ *
+				/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ *
 				String petType = PetVO.getPetType() + "";
-				/** ÊÇ·ñÔÚÉíÉÏ:1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ *
+				/** æ˜¯å¦åœ¨èº«ä¸Š:1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦ *
 				int petIsBring = 0;
-				/** Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã *
+				/** ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹ *
 				String petFatigue = PetVO.getPetFatigue() + "";
-				/** ³èÎïÊÙÃü *
+				/** å® ç‰©å¯¿å‘½ *
 				String petLonge = operation.getResult(u) + "";
 				////System.out.println("**-----------****  " + petLonge);
-				/** Ôö¼ÓÊÙÃüµÀ¾ßÊ¹ÓÃ´ÎÊı *
+				/** å¢åŠ å¯¿å‘½é“å…·ä½¿ç”¨æ¬¡æ•° *
 				String longeNumber = PetVO.getLongeNumber() + "";
-				/** ÊÙÃüµÀ¾ßÒÑ¾­Ê¹ÓÃ´ÎÊı *
+				/** å¯¿å‘½é“å…·å·²ç»ä½¿ç”¨æ¬¡æ•° *
 				int longeNumberOk = 0;
-				/** Õâ¸ö³èÎï×î¶à¿ÉÒÔÑ§Ï°¶àÉÙ¸ö¼¼ÄÜ *
+				/** è¿™ä¸ªå® ç‰©æœ€å¤šå¯ä»¥å­¦ä¹ å¤šå°‘ä¸ªæŠ€èƒ½ *
 				String skillControl = PetVO.getSkillControl() + "";
 				PetInfoDAO petInfoDAO = new PetInfoDAO();
 				petInfoDAO.getPetInfoAdd(pPk, petId, petName, petNickname,
@@ -328,7 +328,7 @@ public class PetService
 						longeNumber, longeNumberOk, skillControl, PetVO
 								.getPetType(), pet_img, PetVO
 								.getPetViolenceDorp());
-				// //System.out.println("¸ø½ÇÉ«ÖÖ¸½´ø³èÎï");
+				// //System.out.println("ç»™è§’è‰²ç§é™„å¸¦å® ç‰©");
 			}
 			else
 			{
@@ -343,7 +343,7 @@ public class PetService
 	} */
 
 	/**
-	 * ³èÎïÉı¼¶
+	 * å® ç‰©å‡çº§
 	 */
 	public String getPetGrandir(int pPk, int pGrade, int DropExp)
 	{
@@ -359,36 +359,36 @@ public class PetService
 			}
 			if (petInfoVO.getPetGrade() == GameConfig.getGradeUpperLimit())
 			{
-				pet_display = "ÄúµÄ³èÎïÒÑ´ïµ½Âú¼¶!";
+				pet_display = "æ‚¨çš„å® ç‰©å·²è¾¾åˆ°æ»¡çº§!";
 				return pet_display;
 			}
 			else
 				if (petInfoVO.getPetGrade() > (pGrade + 10))
 				{
-					pet_display = "ÄúµÄ³èÎïµÈ¼¶ÒÑ¸ß³öÄúµÄµÈ¼¶10¼¶²»ÄÜÔÙ»ñÈ¡¾­Ñé!";
+					pet_display = "æ‚¨çš„å® ç‰©ç­‰çº§å·²é«˜å‡ºæ‚¨çš„ç­‰çº§10çº§ä¸èƒ½å†è·å–ç»éªŒ!";
 					return pet_display;
 				}
 				else
 				{
-					int petExp = petInfoVO.getPetExp();// ±¾¼¶¾­Ñé
-					int petBenExp = petInfoVO.getPetBenExp();// µ±Ç°¾­Ñé
-					int petXiaExp = petInfoVO.getPetXiaExp();// ÏÂ¼¶¾­Ñé
+					int petExp = petInfoVO.getPetExp();// æœ¬çº§ç»éªŒ
+					int petBenExp = petInfoVO.getPetBenExp();// å½“å‰ç»éªŒ
+					int petXiaExp = petInfoVO.getPetXiaExp();// ä¸‹çº§ç»éªŒ
 
-					double DropExps = DropExp * 1.0; // ³èÎï»ñµÃ¾­Ñé,¿Éµ÷ÕûÏµÊı.
-					// logger.info("NPCµôÂä¾­ÑéÓë³èÎï³É³¤Ïà³Ë:
+					double DropExps = DropExp * 1.0; // å® ç‰©è·å¾—ç»éªŒ,å¯è°ƒæ•´ç³»æ•°.
+					// logger.info("NPCæ‰è½ç»éªŒä¸å® ç‰©æˆé•¿ç›¸ä¹˜:
 					// "+Integer.parseInt(dfs.format(DropExps)));
 					int nonce = Integer.parseInt(dfs.format(DropExps))
 							+ petBenExp;
-					// logger.info("µôÂä¾­ÑéÓë±¾¼¶¾­ÑéÏà¼Ó:
+					// logger.info("æ‰è½ç»éªŒä¸æœ¬çº§ç»éªŒç›¸åŠ :
 					// "+Integer.parseInt(dfs.format(DropExps)));
-					if (nonce > petXiaExp)// µ±Ç°¾­ÑéÒÑµ½Éı¼¶¾­ÑéÒªÇó
+					if (nonce > petXiaExp)// å½“å‰ç»éªŒå·²åˆ°å‡çº§ç»éªŒè¦æ±‚
 					{
-						uppet(petInfoVO, dfs.format(DropExps));// Íæ¼ÒÉı¼¶
+						uppet(petInfoVO, dfs.format(DropExps));// ç©å®¶å‡çº§
 						PetSkillLevelUpService pl = new PetSkillLevelUpService();
 						String pet_skill_level_up = pl
 								.petSkillLevelUp(petInfoVO.getPetPk());
-						pet_display = "ÄúµÄ³èÎïµÈ¼¶Éıµ½ÁË" + petInfoVO.getPetGrade()
-								+ "¼¶" + "  " + pet_skill_level_up;
+						pet_display = "æ‚¨çš„å® ç‰©ç­‰çº§å‡åˆ°äº†" + petInfoVO.getPetGrade()
+								+ "çº§" + "  " + pet_skill_level_up;
 						
 						RoleCache roleCache = new RoleCache();
 						RoleEntity roleEntity = roleCache.getByPpk(pPk+"");		
@@ -402,8 +402,8 @@ public class PetService
 								.getPetBenExp() + DropExps)), petInfoVO
 								.getPetPk()
 								+ "");
-						pet_display = "ÄúµÄ³èÎï»ñµÃÁË:¾­Ñé+" + dfs.format(DropExps)
-								+ "µã";
+						pet_display = "æ‚¨çš„å® ç‰©è·å¾—äº†:ç»éªŒ+" + dfs.format(DropExps)
+								+ "ç‚¹";
 						return pet_display;
 					}
 				}
@@ -416,7 +416,7 @@ public class PetService
 	}
 
 	/**
-	 * ³èÎïÉı¼¶£¬¸ù¾İ³É³¤±í
+	 * å® ç‰©å‡çº§ï¼Œæ ¹æ®æˆé•¿è¡¨
 	 * 
 	 * @param character
 	 * @return
@@ -425,10 +425,10 @@ public class PetService
 	{
 		if (petInfoVO == null)
 		{
-			logger.info("²ÎÊıÎª¿Õ");
+			logger.info("å‚æ•°ä¸ºç©º");
 		}
 		petInfoVO.setPetGrade(petInfoVO.getPetGrade() + 1);
-		// ÕÒ³ö³èÎï³É³¤ Í¨¹ı³èÎïID ºÍ³èÎïµÈ¼¶
+		// æ‰¾å‡ºå® ç‰©æˆé•¿ é€šè¿‡å® ç‰©ID å’Œå® ç‰©ç­‰çº§
 		PetDAO petDAO = new PetDAO();
 		PetShapeVO petShapeVO = petDAO.getPetShapeView(petInfoVO.getPetType(), petInfoVO.getPetGrade());
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
@@ -436,7 +436,7 @@ public class PetService
 	}
 
 	/**
-	 * µİ¼õ³èÎïÌåÁ¦
+	 * é€’å‡å® ç‰©ä½“åŠ›
 	 * 
 	 * @param character
 	 * @return
@@ -448,11 +448,11 @@ public class PetService
 		PetInfoVO vo = petInfoDAO.getPetInfo(pPk + "");
 		if (vo != null)
 		{
-			/*// µ±Ğ¡ÓÚ100µÄÊ±ºò¸ø·¢ÏµÍ³ÏûÏ¢
+			/*// å½“å°äº100çš„æ—¶å€™ç»™å‘ç³»ç»Ÿæ¶ˆæ¯
 			if (vo.getPetFatigue() <= 100 && vo.getPetFatigue() >= 90)
 			{
 				SystemInfoService systemInfoService = new SystemInfoService();
-				String hint = "ÄúµÄ³èÎïÌåÁ¦ÒÑ¾­Ğ¡ÓÚ100£¬Çë¾¡¿ì¸ø³èÎïÔö¼ÓÌåÁ¦£¡";
+				String hint = "æ‚¨çš„å® ç‰©ä½“åŠ›å·²ç»å°äº100ï¼Œè¯·å°½å¿«ç»™å® ç‰©å¢åŠ ä½“åŠ›ï¼";
 				systemInfoService.insertSystemInfoBySystem(pPk, StringUtil
 						.gbToISO(hint));
 			}*/
@@ -461,29 +461,29 @@ public class PetService
 				int petIsBring = 0;
 				petInfoDAO.petIsBring(pPk, vo.getPetPk(), petIsBring);
 				SystemInfoService systemInfoService = new SystemInfoService();
-				String hint = "³èÎïÌåÁ¦¹ıĞ¡,Çë¾¡¿ì¸ø³èÎïÔö¼ÓÌåÁ¦£¡";
+				String hint = "å® ç‰©ä½“åŠ›è¿‡å°,è¯·å°½å¿«ç»™å® ç‰©å¢åŠ ä½“åŠ›ï¼";
 				systemInfoService.insertSystemInfoBySystem(pPk, StringUtil.gbToISO(hint));
-				logger.info("---------------³èÎïÌåÁ¦Ğ¡ÓÚ10µã,½«³èÎï×´Ì¬¸ÄÎªÎ´³öÕ½×´Ì¬");
+				logger.info("---------------å® ç‰©ä½“åŠ›å°äº10ç‚¹,å°†å® ç‰©çŠ¶æ€æ”¹ä¸ºæœªå‡ºæˆ˜çŠ¶æ€");
 			}
 			if (vo.getPetFatigue() == 10)
 			{
 				int petIsBring = 0;
 				petInfoDAO.petIsBring(pPk, vo.getPetPk(), petIsBring);
 				SystemInfoService systemInfoService = new SystemInfoService();
-				String hint = "³èÎïÌåÁ¦¹ıĞ¡,Çë¾¡¿ì¸ø³èÎïÔö¼ÓÌåÁ¦£¡ÒÑ½«³èÎï×´Ì¬¸ÄÎªÎ´³öÕ½×´Ì¬";
+				String hint = "å® ç‰©ä½“åŠ›è¿‡å°,è¯·å°½å¿«ç»™å® ç‰©å¢åŠ ä½“åŠ›ï¼å·²å°†å® ç‰©çŠ¶æ€æ”¹ä¸ºæœªå‡ºæˆ˜çŠ¶æ€";
 				systemInfoService.insertSystemInfoBySystem(pPk, StringUtil.gbToISO(hint));
-				logger.info("---------------³èÎïÌåÁ¦Ğ¡ÓÚ10µã,½«³èÎï×´Ì¬¸ÄÎªÎ´³öÕ½×´Ì¬");
+				logger.info("---------------å® ç‰©ä½“åŠ›å°äº10ç‚¹,å°†å® ç‰©çŠ¶æ€æ”¹ä¸ºæœªå‡ºæˆ˜çŠ¶æ€");
 			}
 			else
 			{
 				petDAO.petFatigue(pPk);
-				logger.info("³èÎïÌåÁ¦¼õÁË1µã");
+				logger.info("å® ç‰©ä½“åŠ›å‡äº†1ç‚¹");
 			}
 		}
 	}
 
 	/**
-	 * ·µ»ØÊÇ·ñĞ¯´ø³èÎï
+	 * è¿”å›æ˜¯å¦æºå¸¦å® ç‰©
 	 * 
 	 * @param character
 	 * @return
@@ -504,7 +504,7 @@ public class PetService
 	}
 
 	/**
-	 * Ò»´Î¹¥»÷¸Ä±ä³èÎï±¾Éí×´Ì¬ÈçÊÙÃüµÈ
+	 * ä¸€æ¬¡æ”»å‡»æ”¹å˜å® ç‰©æœ¬èº«çŠ¶æ€å¦‚å¯¿å‘½ç­‰
 	 * 
 	 * @param pet
 	 
@@ -515,40 +515,40 @@ public class PetService
 		if (pet_longe == 100)
 		{
 			SystemInfoService systemInfoService = new SystemInfoService();
-			String hint = "ÄúµÄ³èÎïÊÙÃüÒÑ¾­Ğ¡ÓÚ100£¬Çë¾¡¿ì¸ø³èÎïÔö¼ÓÊÙÃü£¡";
+			String hint = "æ‚¨çš„å® ç‰©å¯¿å‘½å·²ç»å°äº100ï¼Œè¯·å°½å¿«ç»™å® ç‰©å¢åŠ å¯¿å‘½ï¼";
 			systemInfoService.insertSystemInfoBySystem(pPk, StringUtil
 					.gbToISO(hint));
 		} 
 		if (pet_longe == 50)
 		{
 			SystemInfoService systemInfoService = new SystemInfoService();
-			String hint = "ÄúµÄ³èÎïÊÙÃüÒÑ¾­Ğ¡ÓÚ50£¬Çë¾¡¿ì¸ø³èÎïÔö¼ÓÊÙÃü£¡";
+			String hint = "æ‚¨çš„å® ç‰©å¯¿å‘½å·²ç»å°äº50ï¼Œè¯·å°½å¿«ç»™å® ç‰©å¢åŠ å¯¿å‘½ï¼";
 			systemInfoService.insertSystemInfoBySystem(pPk, StringUtil
 					.gbToISO(hint));
 		}
 		if (pet_longe == 10)
 		{
 			SystemInfoService systemInfoService = new SystemInfoService();
-			String hint = "ÄúµÄ³èÎïÊÙÃüÒÑ¾­Ğ¡ÓÚ10£¬Çë¾¡¿ì¸ø³èÎïÔö¼ÓÊÙÃü£¡";
+			String hint = "æ‚¨çš„å® ç‰©å¯¿å‘½å·²ç»å°äº10ï¼Œè¯·å°½å¿«ç»™å® ç‰©å¢åŠ å¯¿å‘½ï¼";
 			systemInfoService.insertSystemInfoBySystem(pPk, StringUtil
 					.gbToISO(hint));
 		}
 		if (pet_longe > 0)
 		{
 			petInfoDAO.pet_life(pPk);
-			logger.debug("¼õÉÙÒ»´Î³èÎïÊÙÃü");
+			logger.debug("å‡å°‘ä¸€æ¬¡å® ç‰©å¯¿å‘½");
 		}
 		else
 		{
 			int petPk = petInfoDAO.getPetPk(pPk);
 			int petIsBring = 0;
 			petInfoDAO.petIsBring(pPk, petPk, petIsBring);
-			logger.debug("³èÎïÊÙÃüÒÑ¾­´ïµ½Áã ²»ÄÜÔÚ¼õÁË ²¢ÇÒ°É³èÎï¸ÄÎª²»³öÕ½×´Ì¬");
+			logger.debug("å® ç‰©å¯¿å‘½å·²ç»è¾¾åˆ°é›¶ ä¸èƒ½åœ¨å‡äº† å¹¶ä¸”å§å® ç‰©æ”¹ä¸ºä¸å‡ºæˆ˜çŠ¶æ€");
 		}
 	}*/
 
 	/**
-	 * *¹¦ÄÜ:ÒÅÆú³èÎï
+	 * *åŠŸèƒ½:é—å¼ƒå® ç‰©
 	 * @param petPk
 	 * @param pk
 	 */

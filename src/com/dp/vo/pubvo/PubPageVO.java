@@ -3,24 +3,24 @@ package com.dp.vo.pubvo;
 
 public class PubPageVO
 {
-	private Integer spid=0;//ÉÌÆ·ID
-	private Integer spcount=0;//ÉÌÆ·ÊıÁ¿
-	private String  spname="";//ÉÌÆ·Ãû³Æ
-	private Integer sid=0;//ÉÌÆ·µÄÖ÷¼ü
-	private Integer page=1;//ËùÓĞÈÈÏúÉÌÆ·µÄµ±Ç°Ò³
-	private Integer pagesize=7;//ËùÓĞÈÈÏúÉÌÆ·µÄÃ¿Ò³ËùÏÔÊ¾µÄÌõÊı
-	private Integer allcount=0;//ËùÓĞÈÈÏúÉÌÆ·µÄ×ÜÒ³Êı
-	private Integer newpage=1;//±¾ÖÜÌØ¼ÛÉÌÆ·µÄµ±Ç°Ò³
-	private Integer newpagesize=7;//±¾ÖÜÌØ¼ÛÉÌÆ·µÄÃ¿Ò³ÏÔÊ¾µÄÌõÊı
-	private Integer pagecount=0;//±¾ÖÜÌØ¼ÛÉÌÆ·µÄ×ÜÒ³Êı
-	private Integer jfpage=1;//»ı·Ö½»Ò×ÉÌÆ·µÄµ±Ç°Ò³
-	private Integer jfpagesize=7;//»ı·Ö½»Ò×ÉÌÆ·µÄÃ¿Ò³ÏÔÊ¾ÌõÊı
-	private Integer jfpagecount=0;//»ı·Ö½»Ò×ÉÌÆ·µÄ×ÜÒ³Êı
-	private Integer rdpage=1;//½»Ò×¼ÇÂ¼µ±Ç°Ò³
-	private Integer rdpapesize=7;//½»Ò×¼ÇÂ¼Ã¿Ò³ÏÔÊ¾µÄÌõÊı
-	private Integer tipsign=0;//·µ»Ø±ê¼Ç
-	private Integer typeid=0;//ÉÌÆ·Àà±ğ
-	private Integer leapsg=0;//Ìø×ªÒ³Ãæ±ê¼Ç
+	private Integer spid=0;//å•†å“ID
+	private Integer spcount=0;//å•†å“æ•°é‡
+	private String  spname="";//å•†å“åç§°
+	private Integer sid=0;//å•†å“çš„ä¸»é”®
+	private Integer page=1;//æ‰€æœ‰çƒ­é”€å•†å“çš„å½“å‰é¡µ
+	private Integer pagesize=7;//æ‰€æœ‰çƒ­é”€å•†å“çš„æ¯é¡µæ‰€æ˜¾ç¤ºçš„æ¡æ•°
+	private Integer allcount=0;//æ‰€æœ‰çƒ­é”€å•†å“çš„æ€»é¡µæ•°
+	private Integer newpage=1;//æœ¬å‘¨ç‰¹ä»·å•†å“çš„å½“å‰é¡µ
+	private Integer newpagesize=7;//æœ¬å‘¨ç‰¹ä»·å•†å“çš„æ¯é¡µæ˜¾ç¤ºçš„æ¡æ•°
+	private Integer pagecount=0;//æœ¬å‘¨ç‰¹ä»·å•†å“çš„æ€»é¡µæ•°
+	private Integer jfpage=1;//ç§¯åˆ†äº¤æ˜“å•†å“çš„å½“å‰é¡µ
+	private Integer jfpagesize=7;//ç§¯åˆ†äº¤æ˜“å•†å“çš„æ¯é¡µæ˜¾ç¤ºæ¡æ•°
+	private Integer jfpagecount=0;//ç§¯åˆ†äº¤æ˜“å•†å“çš„æ€»é¡µæ•°
+	private Integer rdpage=1;//äº¤æ˜“è®°å½•å½“å‰é¡µ
+	private Integer rdpapesize=7;//äº¤æ˜“è®°å½•æ¯é¡µæ˜¾ç¤ºçš„æ¡æ•°
+	private Integer tipsign=0;//è¿”å›æ ‡è®°
+	private Integer typeid=0;//å•†å“ç±»åˆ«
+	private Integer leapsg=0;//è·³è½¬é¡µé¢æ ‡è®°
 	public Integer getSpid()
 	{
 		return spid;

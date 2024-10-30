@@ -5,7 +5,7 @@
 <%@page import="com.ls.ben.vo.info.partinfo.PlayerPropGroupVO"%>
 <%@ page pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
 <%  FriendVO fo = (FriendVO)request.getAttribute("friendVo");
-	UMessageInfoVO hint = (UMessageInfoVO)request.getAttribute("result");
+    UMessageInfoVO hint = (UMessageInfoVO)request.getAttribute("result");
 	String name = (String)request.getAttribute("name");
 	if( hint!=null&&name!=null )
 	{

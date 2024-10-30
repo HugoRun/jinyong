@@ -2,23 +2,23 @@ package com.pm.vo.forum;
 
 public class ForumForbidVO
 {
-	 /** ¿é±í½ûÖ¹·¢ÑÔ±íÖ÷¼ü*/
+	 /** å—è¡¨ç¦æ­¢å‘è¨€è¡¨ä¸»é”®*/
 	public int frId;
 	
-	/** ·ÖÀà°ïÖúÀàĞÍÖ÷¼ü */
+	/** åˆ†ç±»å¸®åŠ©ç±»å‹ä¸»é”® */
    	public int forbidType ;
    
 	
-	 /**°æÖ÷ID*/
+	 /**ç‰ˆä¸»ID*/
 	public  int pPk;
 	
-	 /**°æÖ÷Ãû³Æ*/
+	 /**ç‰ˆä¸»åç§°*/
 	public String pName ;
 	
-	/** Ìí¼ÓÊ±¼ä  */
+	/** æ·»åŠ æ—¶é—´  */
 	public int addTime;
    	
-   	/** ½áÊøÊ±¼ä */	
+   	/** ç»“æŸæ—¶é—´ */	
 	public  String forbidEndTime;
 
 	public int getFrId()

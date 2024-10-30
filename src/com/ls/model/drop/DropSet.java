@@ -10,7 +10,7 @@ import com.ls.ben.vo.info.attack.DropGoodsVO;
 
 /**
  * @author ls
- * µôÂä¼¯ºÏ£¨ÁÙÊ±´æ·ÅÍæ¼ÒµôÂäÎïÆ·,½ğÇ®ºÍ¾­ÑéµÄµØ·½£©
+ * æ‰è½é›†åˆï¼ˆä¸´æ—¶å­˜æ”¾ç©å®¶æ‰è½ç‰©å“,é‡‘é’±å’Œç»éªŒçš„åœ°æ–¹ï¼‰
  */
 public class DropSet
 {
@@ -18,7 +18,7 @@ public class DropSet
 	private Map<Integer,DropGoodsVO> item_list = new HashMap<Integer,DropGoodsVO>(20);
 	private int key =0;
 	/**
-	 * Ìí¼ÓµôÂäµÄ½ğÇ®ºÍ¾­Ñé
+	 * æ·»åŠ æ‰è½çš„é‡‘é’±å’Œç»éªŒ
 	 * @param expAndMoney
 	 */
 	public void addExpAndMoney(DropExpMoneyVO expAndMoney)
@@ -33,7 +33,7 @@ public class DropSet
 		}
 	}
 	/**
-	 * µÃµ½µôÂäµÄ½ğÇ®ºÍ¾­Ñé
+	 * å¾—åˆ°æ‰è½çš„é‡‘é’±å’Œç»éªŒ
 	 * @param expAndMoney
 	 */
 	public DropExpMoneyVO getExpAndMoney()
@@ -45,7 +45,7 @@ public class DropSet
 		return exp_and_money;
 	}
 	/**
-	 * Çå³ıµôÂäµÄ½ğÇ®ºÍ¾­Ñé
+	 * æ¸…é™¤æ‰è½çš„é‡‘é’±å’Œç»éªŒ
 	 */
 	public void clearExpAndMoney()
 	{
@@ -53,7 +53,7 @@ public class DropSet
 	}
 	
 	/**
-	 * µÃµ½µôÂäÎïÆ·id
+	 * å¾—åˆ°æ‰è½ç‰©å“id
 	 */
 	public int getItemIdById(int index)
 	{
@@ -68,7 +68,7 @@ public class DropSet
 		}
 	}
 	/**
-	 * µÃµ½µôÂäÎïÆ·Ãû×Ö
+	 * å¾—åˆ°æ‰è½ç‰©å“åå­—
 	 */
 	public String getItemNameById(int index)
 	{
@@ -85,7 +85,7 @@ public class DropSet
 	
 	
 	/**
-	 * ¸ù¾İidµÃµ½µôÂÊÎïÆ·
+	 * æ ¹æ®idå¾—åˆ°æ‰ç‡ç‰©å“
 	 * @param index
 	 * @return
 	 */
@@ -97,14 +97,14 @@ public class DropSet
 		}
 		catch (IndexOutOfBoundsException e)
 		{
-			//indexÔ½½ç
+			//indexè¶Šç•Œ
 			return null;
 		}
 	}
 	
 	
 	/**
-	 * µÃµ½ÎïÆ·ÁĞ±í
+	 * å¾—åˆ°ç‰©å“åˆ—è¡¨
 	 * @return
 	 */
 	public List<DropGoodsVO> getList()
@@ -113,9 +113,9 @@ public class DropSet
 	}
 	
 	/**
-	 * Ìí¼ÓÎïÆ·¼¯ºÏ
+	 * æ·»åŠ ç‰©å“é›†åˆ
 	 * @param itemList
-	 * @param maxDropNum   ×î¶àµôÂäÊıÁ¿
+	 * @param maxDropNum   æœ€å¤šæ‰è½æ•°é‡
 	 */
 	public void addDroItem(List<DropGoodsVO> itemList,int maxDropNum)
 	{
@@ -134,7 +134,7 @@ public class DropSet
 		}
 	}
 	/**
-	 * Ìí¼ÓÎïÆ·¼¯ºÏ
+	 * æ·»åŠ ç‰©å“é›†åˆ
 	 */
 	public void addDropItem(List<DropGoodsVO> itemList)
 	{
@@ -144,7 +144,7 @@ public class DropSet
 		}
 	}
 	/**
-	 * Ìí¼ÓÎïÆ·
+	 * æ·»åŠ ç‰©å“
 	 */
 	public void addDropItem(DropGoodsVO dropItem)
 	{
@@ -156,7 +156,7 @@ public class DropSet
 	}
 	
 	/**
-	 * ÒÆ³ıÒ»¸öµôÂÊÎïÆ·
+	 * ç§»é™¤ä¸€ä¸ªæ‰ç‡ç‰©å“
 	 */
 	public void removeDropItem(int index)
 	{
@@ -166,12 +166,12 @@ public class DropSet
 		}
 		catch (IndexOutOfBoundsException e)
 		{
-			//indexÔ½½ç
+			//indexè¶Šç•Œ
 		}
 	}
 	
 	/**
-	 * Çé¿öËùÓĞµôÂäÊı¾İ
+	 * æƒ…å†µæ‰€æœ‰æ‰è½æ•°æ®
 	 */
 	public void clearDropItem()
 	{

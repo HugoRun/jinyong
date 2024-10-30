@@ -7,7 +7,7 @@ import com.ls.ben.dao.BasicDaoSupport;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ºóÌ¨ÕËºÅ¹ÜÀí
+ * åå°è´¦å·ç®¡ç†
  */
 public class SysResourcesDAO extends BasicDaoSupport
 {
@@ -17,7 +17,7 @@ public class SysResourcesDAO extends BasicDaoSupport
 	}
 
 	/**
-	 * ÊÇ·ñÄÜµÇÂ½
+	 * æ˜¯å¦èƒ½ç™»é™†
 	 * @param name
 	 * @param paw
 	 * @return

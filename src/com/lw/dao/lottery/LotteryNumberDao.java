@@ -13,14 +13,14 @@ public class LotteryNumberDao extends DaoBase
 {
 
 	/**
-	 * µÃµ½Íæ¼Ò²ÊÆ±µÄĞÅÏ¢
+	 * å¾—åˆ°ç©å®¶å½©ç¥¨çš„ä¿¡æ¯
 	 * 
 	 * @return
 	 */
 	public LotteryNumberVO getPlayerLottery()
 	{
 		LotteryNumberVO lotteryInfo = null;
-		String sql = "select * from u_lottery_number ";
+		String sql = "SELECT * FROM u_lottery_number ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -51,11 +51,11 @@ public class LotteryNumberDao extends DaoBase
 		return lotteryInfo;
 	}
 
-	/** ¸ù¾İÍæ¼ÒºÍÍ¶×¢ÀàĞÍµÃµ½½±È¯ */
+	/** æ ¹æ®ç©å®¶å’ŒæŠ•æ³¨ç±»å‹å¾—åˆ°å¥–åˆ¸ */
 	public String getLotteryNumber(int p_pk, int lottery_type)
 	{
 		String lottery_number = null;
-		String sql = "select lottery_number from u_lottery_number where p_pk = "
+		String sql = "SELECT lottery_number from u_lottery_number where p_pk = "
 				+ p_pk + " and lottery_type = " + lottery_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -83,11 +83,11 @@ public class LotteryNumberDao extends DaoBase
 		return lottery_number;
 	}
 
-	/** ²åÈëÍæ¼ÒÍ¶×¢²ÊÆ± */
+	/** æ’å…¥ç©å®¶æŠ•æ³¨å½©ç¥¨ */
 	public void insertPlayerLottery(int p_pk, String lottery, int lottery_type,
 			int p_add_money)
 	{
-		String sql = "insert into u_lottery_number values  (null,?,?,?,?)";
+		String sql = "INSERT INTO u_lottery_number values  (null,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -113,7 +113,7 @@ public class LotteryNumberDao extends DaoBase
 		}
 	}
 
-	/** Çå¿Õ²ÊÆ±±í */
+	/** æ¸…ç©ºå½©ç¥¨è¡¨ */
 	public void delAll()
 	{
 		String sql = "delete from u_lottery_number ";
@@ -136,7 +136,7 @@ public class LotteryNumberDao extends DaoBase
 		}
 	}
 
-	/** Çå¿ÕÍæ¼Ò´ÈÉÆ²ÊÆ±ÄÚÈİ */
+	/** æ¸…ç©ºç©å®¶æ…ˆå–„å½©ç¥¨å†…å®¹ */
 	public void delCharityNum(int p_pk)
 	{
 		String sql = "delete * from u_lottery_number where lottery_type = 1 and p_pk = "
@@ -160,13 +160,13 @@ public class LotteryNumberDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½ÖĞ½±×¢Êı */
+	/** å¾—åˆ°ä¸­å¥–æ³¨æ•° */
 	public int getLotteryNumber(String lottery_number, int lottery_type)
 	{
 		int lottery_per_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select count(*) from u_lottery_number where lottery_number = '"
+		String sql = "SELECT count(*) from u_lottery_number where lottery_number = '"
 				+ lottery_number + "'" + " and lottery_type = " + lottery_type;
 		logger.debug(sql);
 		try
@@ -191,13 +191,13 @@ public class LotteryNumberDao extends DaoBase
 		return lottery_per_num;
 	}
 
-	/** µÃµ½½±½ğ·ÖÅä±ÈÀı */
+	/** å¾—åˆ°å¥–é‡‘åˆ†é…æ¯”ä¾‹ */
 	public int getLotteryPer(String lottery_number)
 	{
 		int lottery_per_mum = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select sum(lottery_per_money) from u_lottery_number where lottery_number = '"
+		String sql = "SELECT sum(lottery_per_money) from u_lottery_number where lottery_number = '"
 				+ lottery_number + "'";
 		logger.debug(sql);
 		try
@@ -222,13 +222,13 @@ public class LotteryNumberDao extends DaoBase
 		return lottery_per_mum;
 	}
 
-	/** µÃµ½×¢Êı */
+	/** å¾—åˆ°æ³¨æ•° */
 	public int getLotteryTodayNumber()
 	{
 		int lottery_per_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select count(*) from u_lottery_number where lottery_type = 0";
+		String sql = "SELECT count(*) from u_lottery_number where lottery_type = 0";
 		logger.debug(sql);
 		try
 		{
@@ -252,14 +252,14 @@ public class LotteryNumberDao extends DaoBase
 		return lottery_per_num;
 	}
 
-	/** µÃµ½ÖĞ½±ÕßµÄppk */
+	/** å¾—åˆ°ä¸­å¥–è€…çš„ppk */
 	public List<Integer> getWinPlayer(String lottery_number, int lottery_type)
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select p_pk from u_lottery_number where lottery_number = '"
+		String sql = "SELECT p_pk from u_lottery_number where lottery_number = '"
 				+ lottery_number + "'" + " and lottery_type = " + lottery_type;
 		logger.debug(sql);
 		try
@@ -285,14 +285,14 @@ public class LotteryNumberDao extends DaoBase
 		return list;
 	}
 
-	/** µÃµ½ÖĞ½±ÕßµÄppk */
+	/** å¾—åˆ°ä¸­å¥–è€…çš„ppk */
 	public List<Integer> getNotWinPlayer(String lottery_number, int lottery_type)
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select p_pk from u_lottery_number where lottery_number != '"
+		String sql = "SELECT p_pk from u_lottery_number where lottery_number != '"
 				+ lottery_number + "'" + " and lottery_type = " + lottery_type;
 		logger.debug(sql);
 		try
@@ -318,14 +318,14 @@ public class LotteryNumberDao extends DaoBase
 		return list;
 	}
 
-	/** µÃµ½Âò²ÊÆ±ÕßµÄppk */
+	/** å¾—åˆ°ä¹°å½©ç¥¨è€…çš„ppk */
 	public List<Integer> getAllPlayer(int lottery_type)
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select p_pk from u_lottery_number where lottery_type = "
+		String sql = "SELECT p_pk from u_lottery_number where lottery_type = "
 				+ lottery_type;
 		logger.debug(sql);
 		try

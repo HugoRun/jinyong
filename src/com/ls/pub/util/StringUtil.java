@@ -5,15 +5,15 @@ package com.ls.pub.util;
 
 
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  *
  * 1:31:28 PM
  */
 public class StringUtil {
 
 	/**
-	 * ×Ö·û´®±àÂë×ª»»:ISO-8859-1×ª³Égb2312
+	 * å­—ç¬¦ä¸²ç¼–ç è½¬æ¢:ISO-8859-1è½¬æˆgb2312
 	 * @param str
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class StringUtil {
 	}
 	
 	 /**
-	   * ÊÇ·ñÎªÊı×Ö
+	   * æ˜¯å¦ä¸ºæ•°å­—
 	   * @param str String
 	   * @return boolean
 	   */
@@ -56,7 +56,7 @@ public class StringUtil {
 	  }
 	  
 	  /**
-	   * ÊÇ·ñÎªÊı×ÖºÍ×ÖÄ¸µÄ»ìºÏÌå
+	   * æ˜¯å¦ä¸ºæ•°å­—å’Œå­—æ¯çš„æ··åˆä½“
 	   * @param str String
 	   * @return boolean
 	   */
@@ -79,7 +79,7 @@ public class StringUtil {
 	  }
 	
 	/**
-	 * ×Ö·û´®±àÂë×ª»»:ISO-8859-1×ª³Égbk
+	 * å­—ç¬¦ä¸²ç¼–ç è½¬æ¢:ISO-8859-1è½¬æˆgbk
 	 * @param str
 	 * @return
 	 */
@@ -99,7 +99,7 @@ public class StringUtil {
 	}
 	
 	/**
-	 * ×Ö·û´®±àÂë×ª»»:gbk×ª³ÉISO-8859-1
+	 * å­—ç¬¦ä¸²ç¼–ç è½¬æ¢:gbkè½¬æˆISO-8859-1
 	 * @param str
 	 * @return
 	 */
@@ -121,7 +121,7 @@ public class StringUtil {
 	
 	
 	/**
-	 * sqlÓï¾äÓÃ×Ö·û´®Ìõ¼ş£»°ÑÃ»ÓĞ''À¨ÆğÀ´µÄ×Ö·û´®Ìõ¼şÓÃ''À©ÆğÀ´
+	 * sqlè¯­å¥ç”¨å­—ç¬¦ä¸²æ¡ä»¶ï¼›æŠŠæ²¡æœ‰''æ‹¬èµ·æ¥çš„å­—ç¬¦ä¸²æ¡ä»¶ç”¨''æ‰©èµ·æ¥
 	 */
 	public static String processStringCondition( String str_conditon )
 	{
@@ -144,7 +144,7 @@ public class StringUtil {
 	
 
 	 /**
-	  * ½ØÈ¡×Ö·û´®
+	  * æˆªå–å­—ç¬¦ä¸²
 	  * @param str
 	  * @param begin
 	  * @param length
@@ -171,7 +171,7 @@ public class StringUtil {
 		return s;
 	}
 	/**
-	 * ÖØ×é×Ö·û´®
+	 * é‡ç»„å­—ç¬¦ä¸²
 	 * @param args
 	 * @return
 	 */

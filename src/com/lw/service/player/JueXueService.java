@@ -9,7 +9,7 @@ import com.ls.web.service.player.RoleService;
 
 public class JueXueService
 {
-	// ÅĞ¶Ï¾øÑ§ÊÇ·ñ¿ÉÒÔÊ¹ÓÃ
+	// åˆ¤æ–­ç»å­¦æ˜¯å¦å¯ä»¥ä½¿ç”¨
 	private boolean getIsUsedByTime(int p_pk, int sk_id)
 	{
 		TimeControlService timeControlService = new TimeControlService();
@@ -25,7 +25,7 @@ public class JueXueService
 		}
 	}
 
-	// ÅĞ¶Ï¾­ÑéÊÇ·ñ¿ÉÒÔÊ¹ÓÃ
+	// åˆ¤æ–­ç»éªŒæ˜¯å¦å¯ä»¥ä½¿ç”¨
 	private boolean getIsUsedByExp(int p_pk)
 	{
 		RoleService roleService = new RoleService();
@@ -53,10 +53,10 @@ public class JueXueService
 		}
 	}
 
-	// ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÊ¹ÓÃ
+	// åˆ¤æ–­æ˜¯å¦å¯ä»¥ä½¿ç”¨
 	private boolean getIsUsedByProp(int p_pk)
 	{
-		// ²é¿´Íæ¼ÒÉíÉÏÊÇ·ñÓĞ¸ÃµÀ¾ß
+		// æŸ¥çœ‹ç©å®¶èº«ä¸Šæ˜¯å¦æœ‰è¯¥é“å…·
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 		int tatol_prop_num = propGroupDao.getPropNumByByPropID(p_pk, GameConfig
 				.getJuexuePropID());
@@ -73,7 +73,7 @@ public class JueXueService
 	}
 
 	/***************************************************************************
-	 * ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÊ¹ÓÃ¼¼ÄÜ ·µ»Ø1´ú±í½ñÌìÊ¹ÓÃ¹ıÁË ·µ»Ø2´ú±í¾­Ñé²»ÄÜÊ¹ÓÃ ·µ»Ø3´ú±íÃ»ÓĞ»¯¹¤Íè
+	 * åˆ¤æ–­æ˜¯å¦å¯ä»¥ä½¿ç”¨æŠ€èƒ½ è¿”å›1ä»£è¡¨ä»Šå¤©ä½¿ç”¨è¿‡äº† è¿”å›2ä»£è¡¨ç»éªŒä¸èƒ½ä½¿ç”¨ è¿”å›3ä»£è¡¨æ²¡æœ‰åŒ–å·¥ä¸¸
 	 * 
 	 **************************************************************************/
 	public int userSkillJiayi(int p_pk, int sk_id)
@@ -101,7 +101,7 @@ public class JueXueService
 				}
 	}
 
-	// µÃµ½ Éú³ÉµÀ¾ßµÄID
+	// å¾—åˆ° ç”Ÿæˆé“å…·çš„ID
 	public int getJiayiProducePropID(RoleEntity roleInfo)
 	{
 		// String level = "1," + (roleInfo.getBasicInfo().getGrade() - 10);

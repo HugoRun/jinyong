@@ -4,8 +4,8 @@
 package com.ls.ben.vo.info.attribute.attack;
 
 /**
- * ¹¦ÄÜ:µ¥ÊôĞÔ¹¥»÷½Ó¿Ú
- * @author ÁõË§
+ * åŠŸèƒ½:å•å±æ€§æ”»å‡»æ¥å£
+ * @author åˆ˜å¸…
  *
  * 10:55:59 AM
  */

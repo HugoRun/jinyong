@@ -12,7 +12,7 @@ import com.ls.ben.vo.mounts.UserMountsVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ×øÆïDaoÀà
+ * åéª‘Daoç±»
  * 
  * @author Thomas.lei
  * 
@@ -22,10 +22,10 @@ public class MountsDao extends DaoBase
 	private static Map<Integer, MountsVO> mount_cache = new HashMap<Integer, MountsVO>(
 			100);
 
-	/** *******Îª½ÇÉ«Ôö¼Ó×øÆï********* */
+	/** *******ä¸ºè§’è‰²å¢åŠ åéª‘********* */
 	public int addMounts(UserMountsVO uv)
 	{
-		String sql = "insert into u_mounts_temp (p_pk,mountID,mountState,mountLevel,getTime)values("
+		String sql = "INSERT INTO u_mounts_temp (p_pk,mountID,mountState,mountLevel,getTime)values("
 				+ uv.getPpk()
 				+ ","
 				+ uv.getMountsID()
@@ -59,10 +59,10 @@ public class MountsDao extends DaoBase
 		return num;
 	}
 
-	/** *********²éÑ¯½ÇÉ«ÏÖÔÚÓµÓĞµÄËùÓĞ×øÆïĞÅÏ¢************ */
+	/** *********æŸ¥è¯¢è§’è‰²ç°åœ¨æ‹¥æœ‰çš„æ‰€æœ‰åéª‘ä¿¡æ¯************ */
 	public List<UserMountsVO> getUserMountsList(int ppk)
 	{
-		String sql = "select*from u_mounts_temp where p_pk=" + ppk + "";
+		String sql = "SELECT * FROM u_mounts_temp WHERE p_pk=" + ppk + "";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -96,7 +96,7 @@ public class MountsDao extends DaoBase
 		return list;
 	}
 
-	/** **********¸ù¾İ×øÆïID²éÑ¯×øÆïµÄÏêÏ¸ĞÅÏ¢**************** */
+	/** **********æ ¹æ®åéª‘IDæŸ¥è¯¢åéª‘çš„è¯¦ç»†ä¿¡æ¯**************** */
 	public MountsVO getMountsInfo(int mountID)
 	{
 		MountsVO mv = mount_cache.get(mountID);
@@ -105,7 +105,7 @@ public class MountsDao extends DaoBase
 			return mv;
 		}
 
-		String sql = "select*from u_mounts_table where id=" + mountID + "";
+		String sql = "SELECT * FROM u_mounts_table WHERE id=" + mountID + "";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -152,10 +152,10 @@ public class MountsDao extends DaoBase
 		return mv;
 	}
 
-	/** *****************µÃµ½ÏµÍ³ÔùËÍ×øÆï****************** */
+	/** *****************å¾—åˆ°ç³»ç»Ÿèµ é€åéª‘****************** */
 	public MountsVO getMountsInfoBySystem(int mountsType)
 	{
-		String sql = "select*from u_mounts_table where level=1 and type="
+		String sql = "SELECT * FROM u_mounts_table WHERE level=1 and type="
 				+ mountsType + "";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -200,10 +200,10 @@ public class MountsDao extends DaoBase
 		return mv;
 	}
 
-	/** **********É¾³ıÓÃ»§Ä³¸ö×øÆï£¬×øÆïÉı¼¶µÄÊ±ºòÉ¾³ıµÍµÈ¼¶×øÆï************ */
+	/** **********åˆ é™¤ç”¨æˆ·æŸä¸ªåéª‘ï¼Œåéª‘å‡çº§çš„æ—¶å€™åˆ é™¤ä½ç­‰çº§åéª‘************ */
 	public void deleteUserMounts(int ppk, int mountsID)
 	{
-		String sql = "delete from u_mounts_temp where p_pk=" + ppk
+		String sql = "delete from u_mounts_temp WHERE p_pk=" + ppk
 				+ " and mountID=" + mountsID + " limit 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -225,10 +225,10 @@ public class MountsDao extends DaoBase
 		}
 	}
 
-	/** ***********ÓÃ»§µã»÷È¡ÏûÆï³Ë»òÕßÊÇ»»³ËµÄÊ±ºò¸Ä±ä×´Ì¬¶¼Îª0***************** */
+	/** ***********ç”¨æˆ·ç‚¹å‡»å–æ¶ˆéª‘ä¹˜æˆ–è€…æ˜¯æ¢ä¹˜çš„æ—¶å€™æ”¹å˜çŠ¶æ€éƒ½ä¸º0***************** */
 	public void updateMountState1(int ppk)
 	{
-		String sql = "update u_mounts_temp set mountState=0 where p_pk=" + ppk
+		String sql = "update u_mounts_temp set mountState=0 WHERE p_pk=" + ppk
 				+ "";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -250,10 +250,10 @@ public class MountsDao extends DaoBase
 		}
 	}
 
-	/** ********ÓÃ»§µã»÷»»³ËÔò¸Ä±ä³ËÆï×´Ì¬************ */
+	/** ********ç”¨æˆ·ç‚¹å‡»æ¢ä¹˜åˆ™æ”¹å˜ä¹˜éª‘çŠ¶æ€************ */
 	public void updateMountState2(int ppk, int mountID)
 	{
-		String sql = "update u_mounts_temp set mountState=1 where p_pk=" + ppk
+		String sql = "update u_mounts_temp set mountState=1 WHERE p_pk=" + ppk
 				+ " and mountID=" + mountID + " limit 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -275,10 +275,10 @@ public class MountsDao extends DaoBase
 		}
 	}
 
-	/** ********µÃµ½¿É¹©¹ºÂòµÄ×øÆï********** */
+	/** ********å¾—åˆ°å¯ä¾›è´­ä¹°çš„åéª‘********** */
 	public List<MountsVO> getCanSentMounts()
 	{
-		String sql = "select*from u_mounts_table where level=1";
+		String sql = "SELECT * FROM u_mounts_table WHERE level = 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -323,10 +323,10 @@ public class MountsDao extends DaoBase
 		return list;
 	}
 
-	/** ***µÃµ½×øÆïµÄÅÅĞĞ°ñĞÅÏ¢*** */
+	/** ***å¾—åˆ°åéª‘çš„æ’è¡Œæ¦œä¿¡æ¯*** */
 	public List<UserMountsVO> getMountsRank()
 	{
-		String sql = "select*from u_mounts_temp order by mountLevel desc ,getTime desc  limit 10";
+		String sql = "SELECT * FROM `u_mounts_temp` ORDER BY mountLevel DESC, getTime DESC LIMIT 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -361,10 +361,10 @@ public class MountsDao extends DaoBase
 		return list;
 	}
 
-	/** *****µÃµ½ÓµÓĞ¸Ã×øÆïµÄÍæ¼Ò½ÇÉ«Ãû³Æ***** */
+	/** *****å¾—åˆ°æ‹¥æœ‰è¯¥åéª‘çš„ç©å®¶è§’è‰²åç§°***** */
 	public String getPname(int p_pk)
 	{
-		String sql ="select p_name from u_part_info where p_pk="+p_pk+"";
+		String sql ="select p_name from u_part_info WHERE p_pk="+p_pk+"";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		logger.debug(sql);
@@ -391,10 +391,10 @@ public class MountsDao extends DaoBase
 		}
 		return pName;
 	}
-	/************É¾³ıÍæ¼ÒËùÓĞµÄ×øÆï*******/
+	/************åˆ é™¤ç©å®¶æ‰€æœ‰çš„åéª‘*******/
 	public void removeMountsInfo(int ppk)
 	{
-		String sql ="delete from u_mounts_temp where p_pk="+ppk+"";
+		String sql ="delete from u_mounts_temp WHERE p_pk="+ppk+"";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try

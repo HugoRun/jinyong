@@ -52,7 +52,7 @@ public class SinaJob implements Job
 		}
 		SinaSysVO.getNew();
 		
-		/** *******ÁíÍâµÄÍ³¼Æ*************** */
+		/** *******å¦å¤–çš„ç»Ÿè®¡*************** */
 		SimpleDateFormat simpleDateFormat_2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date_2 = new Date();
 		String date_str_2 = simpleDateFormat_2.format(date_2.getTime());

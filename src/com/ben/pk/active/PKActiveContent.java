@@ -1,26 +1,26 @@
 package com.ben.pk.active;
+
 /**
- * ¹¦ÄÜ£ºPK»î¶¯³£Á¿Àà
+ * åŠŸèƒ½ï¼šPKæ´»åŠ¨å¸¸é‡ç±»
+ *
  * @author thomas.lei
  */
-public class PKActiveContent
-{	
-	public final static int  BAQIANG=8;
-	public final static int SIQIANG=4;
-	public final static int BANJUESAI=2;
-	public final static int GUANJUN=1;
-	public final static int PUTONG=0;
-	//µÀ¾ßID
-	public final static int BPRICEID=4149;//°ËÇ¿
-	public final static int SPRICEID=4149;//ËÄÇ¿
-	public final static int BJPRICEID=1005;//°ë¾öÈü
-	public final static int GPRICEID=1401;//¹Ú¾ü
-	public final static int PPRICEID=1000;//ÆÕÍ¨
-	
-	//ID
-
-	public final static String PROPID="1399";//±¨ÃûµÀ¾ßID
-	public final static String SCENEID_PK="152";//±ÈÈü³¡¾°ID
-	public final static String NPCSCENEID="210";//NPC³¡¾°ID
-	public final static int REGISTMENUID=2653;//±¨Ãû¸¸²Ëµ¥ID20039
-	}
+public class PKActiveContent {
+    //
+    public final static int BAQIANG = 8;
+    public final static int SIQIANG = 4;
+    public final static int BANJUESAI = 2;
+    public final static int GUANJUN = 1;
+    public final static int PUTONG = 0;
+    // é“å…·ID
+    public final static int BPRICEID = 4149;//å…«å¼º
+    public final static int SPRICEID = 4149;//å››å¼º
+    public final static int BJPRICEID = 1005;//åŠå†³èµ›
+    public final static int GPRICEID = 1401;//å† å†›
+    public final static int PPRICEID = 1000;//æ™®é€š
+    // ID
+    public final static String PROPID = "1399";//æŠ¥åé“å…·ID
+    public final static String SCENEID_PK = "152";//æ¯”èµ›åœºæ™¯ID
+    public final static String NPCSCENEID = "210";//NPCåœºæ™¯ID
+    public final static int REGISTMENUID = 2653;//æŠ¥åçˆ¶èœå•ID20039
+}

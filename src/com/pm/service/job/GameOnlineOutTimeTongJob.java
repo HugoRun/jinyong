@@ -10,7 +10,7 @@ public class GameOnlineOutTimeTongJob implements Job{
 	
 	public void execute(JobExecutionContext context)  {
 		
-		//增加在线人数清楚操作
+		//澧炲姞鍦ㄧ嚎浜烘暟娓呮鎿嶄綔
 		JmsUtil.QYDAODETAIL_MAP.clear();
 	}
 

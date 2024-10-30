@@ -4,21 +4,21 @@
 package com.ben.vo.rolebeoff;
 
 /**
- * @author HHJ Íæ¼ÒÀëÏß¼ÇÂ¼
+ * @author HHJ ç©å®¶ç¦»çº¿è®°å½•
  */
 public class RoleBeOffVO
 {
-	/** Ö÷¼üid */
+	/** ä¸»é”®id */
 	private int offId;
-	/** Íæ¼ÒID */
+	/** ç©å®¶ID */
 	private int pPk;
-	/** ÀëÏßÊ±¼ä */
+	/** ç¦»çº¿æ—¶é—´ */
 	private String beOffTime;
-	/** ÀëÏßÊ±¼ä·ÖÖÓ */
+	/** ç¦»çº¿æ—¶é—´åˆ†é’Ÿ */
 	private String alreadyTime;
-	/** ÀëÏß¾­Ñé */
+	/** ç¦»çº¿ç»éªŒ */
 	private String beOffExp;
-	/** µÀ¾ßÀÛ»ıÊ±¼ä ¾ÍÊÇ¿É¹²ÁìÈ¡¾­ÑéµÄÊ±¼ä */
+	/** é“å…·ç´¯ç§¯æ—¶é—´ å°±æ˜¯å¯å…±é¢†å–ç»éªŒçš„æ—¶é—´ */
 	private String propCumulateTime;
 
 	public String getAlreadyTime()

@@ -4,24 +4,24 @@
 package com.ben.vo.communion.privately;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 6:03:55 PM
  */
 public class UPrivatelyVO {
-	/** ¹«¹²ÆµµÀid */
+	/** å…¬å…±é¢‘é“id */
 	private int upPk;
-	/** ·¢ËÍ½ÇÉ«id */
+	/** å‘é€è§’è‰²id */
 	private int pPk;
-	/** ·¢ËÍ½ÇÉ«Ãû³Æ */
+	/** å‘é€è§’è‰²åç§° */
 	private String pName;
-	/** ½ÓÊÕ½ÇÉ«id */
+	/** æ¥æ”¶è§’è‰²id */
 	private int pPkBy;
-	/** ½ÓÊÕ½ÇÉ«Ãû³Æ */
+	/** æ¥æ”¶è§’è‰²åç§° */
 	private String pNameBy;
-	/** ¹«¹²ÁÄÌìÀàÈİ */
+	/** å…¬å…±èŠå¤©ç±»å®¹ */
 	private String upTitle;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getUpPk() {

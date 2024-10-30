@@ -21,13 +21,13 @@ import com.ls.web.service.validate.ValidateService;
 
 /**
  * @author ls
- * °ïÅÉ²Ö¿â
+ * å¸®æ´¾ä»“åº“
  */
 public class FStorageAction extends ActionBase
 {
 
 	/**
-	 * °ïÅÉ²ÄÁÏÁĞ±í
+	 * å¸®æ´¾ææ–™åˆ—è¡¨
 	 */
 	public ActionForward fMList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,7 @@ public class FStorageAction extends ActionBase
 		return mapping.findForward("faction_material_list");
 	}
 	/**
-	 * °ü¹üÀïµÄ²ÄÁÏÁĞ±í
+	 * åŒ…è£¹é‡Œçš„ææ–™åˆ—è¡¨
 	 */
 	/**
 	 * @param mapping
@@ -64,7 +64,7 @@ public class FStorageAction extends ActionBase
 		return mapping.findForward("wrap_material_list");
 	}
 	/**
-	 * ÊäÈë¹±Ï×²ÄÁÏµÄÊıÁ¿
+	 * è¾“å…¥è´¡çŒ®ææ–™çš„æ•°é‡
 	 */
 	public ActionForward inputMNum(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +73,7 @@ public class FStorageAction extends ActionBase
 		return mapping.findForward("input_material_num");
 	}
 	/**
-	 * ¹±Ï×
+	 * è´¡çŒ®
 	 */
 	public ActionForward contribute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -109,7 +109,7 @@ public class FStorageAction extends ActionBase
 		return this.wMList(mapping, form, request, response);
 	}
 	/**
-	 * È«²¿¹±Ï×
+	 * å…¨éƒ¨è´¡çŒ®
 	 */
 	public ActionForward contributeAll(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

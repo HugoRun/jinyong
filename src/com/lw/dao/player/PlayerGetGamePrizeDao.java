@@ -10,13 +10,13 @@ import com.lw.vo.player.PlayerGetGamePrizeVO;
 public class PlayerGetGamePrizeDao extends DaoBase
 {
 
-	/** ¸ù¾İÍæ¼Òu_pk µÃµ½Íæ¼ÒÒªÁìÈ¡µÄµÀ¾ßÁĞ±í */
+	/** æ ¹æ®ç©å®¶u_pk å¾—åˆ°ç©å®¶è¦é¢†å–çš„é“å…·åˆ—è¡¨ */
 	public List<PlayerGetGamePrizeVO> getPlayerPrizeList(String u_passprot,
 			int pageno, int perpage)
 	{
 		List<PlayerGetGamePrizeVO> list = new ArrayList<PlayerGetGamePrizeVO>();
 		PlayerGetGamePrizeVO vo = null;
-		String sql = "select * from game_prize where state != 1 and u_passprot = '"
+		String sql = "SELECT * FROM game_prize where state != 1 and u_passprot = '"
 				+ u_passprot + "' limit " + pageno + "," + perpage;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -54,7 +54,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		return list;
 	}
 
-	/** ¸üĞÂÍæ¼ÒµÄÁìÈ¡×´Ì¬ */
+	/** æ›´æ–°ç©å®¶çš„é¢†å–çŠ¶æ€ */
 	public void updatePlayerPrizeState(String u_passprot, int id)
 	{
 		String sql = "update game_prize set state = 1 , create_time = now() where id = "
@@ -78,10 +78,10 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		}
 	}
 
-	/** ¸øÍæ¼ÒÁìÈ¡¼ÇÂ¼±íÀïÌí¼ÓÊı¾İ */
+	/** ç»™ç©å®¶é¢†å–è®°å½•è¡¨é‡Œæ·»åŠ æ•°æ® */
 	public void insertPlayerPrizeInfo(int u_pk, int p_pk, String content)
 	{
-		String sql = "insert into game_prize_info values (null," + u_pk + ","
+		String sql = "INSERT INTO game_prize_info values (null," + u_pk + ","
 				+ p_pk + ",'" + content + "',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -102,10 +102,10 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒµÄµ¥ÌõÊı¾İ */
+	/** å¾—åˆ°ç©å®¶çš„å•æ¡æ•°æ® */
 	public PlayerGetGamePrizeVO getPrizeByID(int id, String u_passprot)
 	{
-		String sql = "select * from game_prize where id = " + id
+		String sql = "SELECT * FROM game_prize where id = " + id
 				+ " and u_passprot = '" + u_passprot + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -143,11 +143,11 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		return vo;
 	}
 
-	/** µÃµ½Íæ¼ÒÁìÈ¡µÀ¾ßµÄ×ÜÊıÁ¿ */
+	/** å¾—åˆ°ç©å®¶é¢†å–é“å…·çš„æ€»æ•°é‡ */
 	public int getPlayerPrizeNum(int u_pk)
 	{
 		int x = 0;
-		String sql = "select count(*) as num from game_prize where state != 1 and u_pk = "
+		String sql = "SELECT count(*) as num from game_prize where state != 1 and u_pk = "
 				+ u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -175,11 +175,11 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		return x;
 	}
 
-	/** ¸ù¾İÍæ¼Òu_pk µÃµ½Íæ¼ÒÒªÁìÈ¡µÄµÀ¾ßÁĞ±í */
+	/** æ ¹æ®ç©å®¶u_pk å¾—åˆ°ç©å®¶è¦é¢†å–çš„é“å…·åˆ—è¡¨ */
 	public PlayerGetGamePrizeVO getPlayerPrize(int id)
 	{
 		PlayerGetGamePrizeVO vo = new PlayerGetGamePrizeVO();
-		String sql = "select * from game_prize where id = " + id;
+		String sql = "SELECT * FROM game_prize where id = " + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -217,7 +217,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 	public String getUserID(int u_pk)
 	{
 		String user_id = null;
-		String sql = "select user_id from u_passport_info where u_pk = " + u_pk;
+		String sql = "SELECT user_id from u_passport_info where u_pk = " + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -243,14 +243,14 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		return user_id;
 	}
 
-	// Ò»ÏÂ·½·¨ÎªUPKÎªÌõ¼ş
-	/** ¸ù¾İÍæ¼Òu_pk µÃµ½Íæ¼ÒÒªÁìÈ¡µÄµÀ¾ßÁĞ±í */
+	// ä¸€ä¸‹æ–¹æ³•ä¸ºUPKä¸ºæ¡ä»¶
+	/** æ ¹æ®ç©å®¶u_pk å¾—åˆ°ç©å®¶è¦é¢†å–çš„é“å…·åˆ—è¡¨ */
 	public List<PlayerGetGamePrizeVO> getPlayerPrizeListByUpk(String u_pk,
 			int pageno, int perpage)
 	{
 		List<PlayerGetGamePrizeVO> list = new ArrayList<PlayerGetGamePrizeVO>();
 		PlayerGetGamePrizeVO vo = null;
-		String sql = "select * from game_prize where state != 1 and u_pk = '"
+		String sql = "SELECT * FROM game_prize where state != 1 and u_pk = '"
 				+ u_pk + "' limit " + pageno + "," + perpage;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -288,7 +288,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		return list;
 	}
 
-	/** ¸üĞÂÍæ¼ÒµÄÁìÈ¡×´Ì¬ */
+	/** æ›´æ–°ç©å®¶çš„é¢†å–çŠ¶æ€ */
 	public void updatePlayerPrizeStateByUpk(String u_pk, int id)
 	{
 		String sql = "update game_prize set state = 1 , create_time = now() where id = "
@@ -312,10 +312,10 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒµÄµ¥ÌõÊı¾İ */
+	/** å¾—åˆ°ç©å®¶çš„å•æ¡æ•°æ® */
 	public PlayerGetGamePrizeVO getPrizeByIDByUpk(int id, String u_pk)
 	{
-		String sql = "select * from game_prize where id = " + id
+		String sql = "SELECT * FROM game_prize where id = " + id
 				+ " and u_pk = '" + u_pk + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -353,12 +353,12 @@ public class PlayerGetGamePrizeDao extends DaoBase
 		return vo;
 	}
 
-	/** µÃµ½Íæ¼ÒÊÇ·ñÓĞÔÚÏß½±ÀøµÄÊı¾İ */
+	/** å¾—åˆ°ç©å®¶æ˜¯å¦æœ‰åœ¨çº¿å¥–åŠ±çš„æ•°æ® */
 	public PlayerGetGamePrizeVO getPlayerIsHaveOnlineTimePrize(
 			String prize_name, int u_pk, int p_pk, int state, String time,
 			String prize_content)
 	{
-		String sql = "select * from game_prize where u_pk = " + u_pk
+		String sql = "SELECT * FROM game_prize where u_pk = " + u_pk
 				+ " and p_pk = " + p_pk + " and create_time like '%" + time
 				+ "%' and prop = '" + prize_content + "'";
 		logger.debug(sql);
@@ -401,7 +401,7 @@ public class PlayerGetGamePrizeDao extends DaoBase
 			String prize_display, String u_passport, int u_pk, String name,
 			int p_pk, int state, String prize_content)
 	{
-		String sql = "insert into game_prize values (null,'" + prize_name
+		String sql = "INSERT INTO game_prize values (null,'" + prize_name
 				+ "','" + prize_display + "','" + u_passport + "'," + u_pk
 				+ ",'" + name + "'," + p_pk + "," + state + ",'"
 				+ prize_content + "',now())";

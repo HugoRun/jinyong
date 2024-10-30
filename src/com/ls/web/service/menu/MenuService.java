@@ -60,9 +60,9 @@ import com.pm.service.systemInfo.SystemInfoService;
 import com.pm.vo.tongsiege.TongSiegeControlVO;
 
 /**
- * ¹¦ÄÜ:²Ëµ¥npc¹¦ÄÜ´¦Àí
+ * åŠŸèƒ½:èœå•npcåŠŸèƒ½å¤„ç†
  * 
- * @author ÁõË§ 1:09:12 PM
+ * @author åˆ˜å¸… 1:09:12 PM
  */
 public class MenuService
 {
@@ -70,7 +70,7 @@ public class MenuService
 	public static Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Í¨¹ıidµÃµ½Ò»¸ö²Ëµ¥ĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°ä¸€ä¸ªèœå•ä¿¡æ¯
 	 */
 	public OperateMenuVO getMenuById(int id)
 	{
@@ -79,7 +79,7 @@ public class MenuService
 	}
 	
 	/**
-	 * ÅĞ¶Ï¸Ã²Ëµ¥ÊÇ·ñÔÚÖ¸¶¨scene_idµÄ²Ëµ¥
+	 * åˆ¤æ–­è¯¥èœå•æ˜¯å¦åœ¨æŒ‡å®šscene_idçš„èœå•
 	 */
 	private OperateMenuVO getMenuByIdAndSceneId( int id,int scene_id )
 	{
@@ -95,7 +95,7 @@ public class MenuService
 	
 	
 	/**
-	 * Ë¢ĞÂµ±Ç°µØµãµÄÓĞĞ§²Ëµ¥
+	 * åˆ·æ–°å½“å‰åœ°ç‚¹çš„æœ‰æ•ˆèœå•
 	 * @param roleInfo
 	 * @return
 	 */
@@ -104,7 +104,7 @@ public class MenuService
 		OperateMenuVO menu = null;
 		
 		SceneVO cur_scene = roleInfo.getBasicInfo().getSceneInfo();
-		HashMap<String,OperateMenuVO> fatherMenuList = cur_scene.getFatherMenuList();// ËùÓĞ²Ëµ¥
+		HashMap<String,OperateMenuVO> fatherMenuList = cur_scene.getFatherMenuList();// æ‰€æœ‰èœå•
 		
 		HashMap<String,OperateMenuVO> result_menus = new HashMap<String,OperateMenuVO>();
 		
@@ -115,31 +115,31 @@ public class MenuService
 			
 			Iterator<String> it = fatherMenuList.keySet().iterator(); 
 			String key = null;
-			OperateMenuVO effect_menu = null;//ÓĞĞ§²Ëµ¥
+			OperateMenuVO effect_menu = null;//æœ‰æ•ˆèœå•
 			while (it.hasNext()) 
 			{  
 				key = it.next().toString();
 				menu = fatherMenuList.get(key);  
-				//ÅĞ¶ÏÊÇ·ñ¿É°´Ë¢ĞÂÊ±¼ä¹æÔòË¢ĞÂ²Ëµ¥
+				//åˆ¤æ–­æ˜¯å¦å¯æŒ‰åˆ·æ–°æ—¶é—´è§„åˆ™åˆ·æ–°èœå•
 				if( !DateUtil.isEffectTime(menu.getMenuTimeBegin(), menu.getMenuTimeEnd(), menu.getMenuDayBegin(), menu.getMenuDayEnd(),menu.getWeekStr()))
 				{
-					//·ûºÏË¢ĞÂÊ±¼ä¹æÔò
+					//ç¬¦åˆåˆ·æ–°æ—¶é—´è§„åˆ™
 					continue;
 				}
 				
 				effect_menu = menu.clone();
 				result_menus.put(key, effect_menu);
 				
-				// ÅĞ¶¨¸Ã²Ëµ¥ÊÇÓĞÈÎÎñ µÚÒ»ÌõÈÎÎñ
+				// åˆ¤å®šè¯¥èœå•æ˜¯æœ‰ä»»åŠ¡ ç¬¬ä¸€æ¡ä»»åŠ¡
 				String menu_tasks_id = effect_menu.getMenuTasksId();
 				if (menu_tasks_id != null && !menu_tasks_id.equals("") && !menu_tasks_id.equals("0"))
 				{
-					String[] tasks_ids = menu_tasks_id.split(",");// È¡³öÈÎÎñID
+					String[] tasks_ids = menu_tasks_id.split(",");// å–å‡ºä»»åŠ¡ID
 					
-					TaskVO task_info = null;//ÈÎÎñĞÅÏ¢
-					CurTaskInfo role_task = null;//Íæ¼ÒÎ´Íê³ÉµÄÈÎÎñ
+					TaskVO task_info = null;//ä»»åŠ¡ä¿¡æ¯
+					CurTaskInfo role_task = null;//ç©å®¶æœªå®Œæˆçš„ä»»åŠ¡
 					
-					StringBuffer effect_task_ids = new StringBuffer();//ÓĞĞ§µÄÈÎÎñid,(Íæ¼Ò¿ÉÒÔ½ÓÊÜµÄÈÎÎñid)
+					StringBuffer effect_task_ids = new StringBuffer();//æœ‰æ•ˆçš„ä»»åŠ¡id,(ç©å®¶å¯ä»¥æ¥å—çš„ä»»åŠ¡id)
 					
 					for (int t = 0; t < tasks_ids.length; t++)
 					{
@@ -152,12 +152,12 @@ public class MenuService
 						{
 							continue;
 						}
-						role_task = (CurTaskInfo) roleInfo.getTaskInfo().getCurTaskList().getByZu(task_info.getTZu());//¸ù¾İÈÎÎñ×éµÃµ½ÉíÉÏÎ´Íê³É´òÈÎÎñ
+						role_task = (CurTaskInfo) roleInfo.getTaskInfo().getCurTaskList().getByZu(task_info.getTZu());//æ ¹æ®ä»»åŠ¡ç»„å¾—åˆ°èº«ä¸Šæœªå®Œæˆæ‰“ä»»åŠ¡
 						
-						//ÅĞ¶Ï¸ÃÈÎÎñÊÇ·ñÒÑÍê³ÉºÍÊÇ·ñÒÑ¾­½ÓÁË¸ÃÈÎÎñ×éµÄÈÎÎñ
+						//åˆ¤æ–­è¯¥ä»»åŠ¡æ˜¯å¦å·²å®Œæˆå’Œæ˜¯å¦å·²ç»æ¥äº†è¯¥ä»»åŠ¡ç»„çš„ä»»åŠ¡
 						if (roleInfo.getTaskInfo().getTaskCompleteInfo().taskCompleteBoo(task_info.getTZu()) == false && role_task==null )
 						{
-							//Èç¹û¸ÃÈÎÎñ¼ÈÃ»ÓĞÍê³ÉÒ²Ã»ÓĞ½ÓÊÜ¹ı¸ÃÈÎÎñ×éµÄÈÎÎñ£¬ÔòÅĞ¶ÏÈÎÎñµÄ½ÓÊÜÌõ¼ş
+							//å¦‚æœè¯¥ä»»åŠ¡æ—¢æ²¡æœ‰å®Œæˆä¹Ÿæ²¡æœ‰æ¥å—è¿‡è¯¥ä»»åŠ¡ç»„çš„ä»»åŠ¡ï¼Œåˆ™åˆ¤æ–­ä»»åŠ¡çš„æ¥å—æ¡ä»¶
 							if (task_info.getTCycle() == 0 && (task_info.getTLevelXiao() <= roleInfo.getBasicInfo().getGrade())
 									&& roleInfo.getBasicInfo().getGrade() <= task_info.getTLevelDa()
 									&& Integer.parseInt(task_info.getTZuxl()) == 1 && roleInfo.getTitleSet().isHaveByTitleStr(task_info.getTSchool()) )
@@ -168,7 +168,7 @@ public class MenuService
 					}
 					
 					effect_menu.setMenuTasksId(effect_task_ids.toString());
-					if( !effect_task_ids.toString().equals("") )//Èç¹ûÓĞÈÎÎñÔòÏÔÊ¾!ºÅ
+					if( !effect_task_ids.toString().equals("") )//å¦‚æœæœ‰ä»»åŠ¡åˆ™æ˜¾ç¤º!å·
 					{
 						effect_menu.setMenuName("!" + effect_menu.getMenuName());
 					}
@@ -182,40 +182,40 @@ public class MenuService
 	}
 
 	/**
-	 * Ìí¼ÓËùÓĞÈÎÎñ²Ëµ¥ĞÅÏ¢
+	 * æ·»åŠ æ‰€æœ‰ä»»åŠ¡èœå•ä¿¡æ¯
 	 * @param roleInfo
 	 * @return
 	 */
 	public HashMap<String,OperateMenuVO> addAllTaskMenu(RoleEntity roleInfo,HashMap<String,OperateMenuVO> menu_list )
 	{
-		//´Ó»º´æÖĞÈ¡³ö½ÇÉ«ÉíÉÏÈÎÎñÁĞ±í
+		//ä»ç¼“å­˜ä¸­å–å‡ºè§’è‰²èº«ä¸Šä»»åŠ¡åˆ—è¡¨
 		List<CurTaskInfo> task_list = roleInfo.getTaskInfo().getCurTaskList().getCurTaskList();
 		
 		if (task_list != null && task_list.size() != 0)
 		{
-			String tPoint[] = null;//ÖĞ¼äµãÊı×é
-			int point_task_menu_id;//ÖĞ¼äµã²Ëµ¥id
-			int next_task_menu_id;//ÈÎÎñÏÂÒ»Ìõ²Ëµ¥id
-			int cur_task_id;      //ÈÎÎñid
+			String tPoint[] = null;//ä¸­é—´ç‚¹æ•°ç»„
+			int point_task_menu_id;//ä¸­é—´ç‚¹èœå•id
+			int next_task_menu_id;//ä»»åŠ¡ä¸‹ä¸€æ¡èœå•id
+			int cur_task_id;      //ä»»åŠ¡id
 			
 			for (CurTaskInfo u_task:task_list )
 			{
-				// ÅĞ¶ÏÊÇ·ñ»¹ÓĞÃ»Íê³ÉµÄÖĞ¼òµã
+				// åˆ¤æ–­æ˜¯å¦è¿˜æœ‰æ²¡å®Œæˆçš„ä¸­ç®€ç‚¹
 				if (u_task.getTType() == 5 && u_task.getTPoint() != null && !u_task.getTPoint().equals("") && !u_task.getTPoint().equals("0"))
 				{
 					tPoint = u_task.getTPoint().split(",");
 					
 					for (int c = 0; c < tPoint.length; c++)
 					{
-						cur_task_id = u_task.getTId();//µ±Ç°ÈÎÎñid
-						point_task_menu_id =  Integer.parseInt(tPoint[c]);//ÖĞ¼äµã²Ëµ¥id
+						cur_task_id = u_task.getTId();//å½“å‰ä»»åŠ¡id
+						point_task_menu_id =  Integer.parseInt(tPoint[c]);//ä¸­é—´ç‚¹èœå•id
 						addOneTaskMenu(roleInfo, menu_list, cur_task_id,point_task_menu_id);
 					}
 				}
-				else//Èç¹ûÃ»ÓĞÖĞ¼äµã»òÖĞ¼äµãÈÎÎñÒÑÍê³É
+				else//å¦‚æœæ²¡æœ‰ä¸­é—´ç‚¹æˆ–ä¸­é—´ç‚¹ä»»åŠ¡å·²å®Œæˆ
 				{
-					cur_task_id = u_task.getTNext();//ÏÂÒ»ÌõÈÎÎñid
-					next_task_menu_id = u_task.getTXrwnpcId();//ÏÂÒ»ÌõÈÎÎñ²Ëµ¥id
+					cur_task_id = u_task.getTNext();//ä¸‹ä¸€æ¡ä»»åŠ¡id
+					next_task_menu_id = u_task.getTXrwnpcId();//ä¸‹ä¸€æ¡ä»»åŠ¡èœå•id
 					addOneTaskMenu(roleInfo, menu_list,cur_task_id, next_task_menu_id);
 				}
 			}
@@ -225,11 +225,11 @@ public class MenuService
 	}
 
 	/**
-	 * Ôö¼ÓÒ»¸öÈÎÎñ²Ëµ¥£¬°üÀ¨ÖĞ¼äµã²Ëµ¥£¬ºÍÈÎÎñÏÂÒ»Ìõ²Ëµ¥
+	 * å¢åŠ ä¸€ä¸ªä»»åŠ¡èœå•ï¼ŒåŒ…æ‹¬ä¸­é—´ç‚¹èœå•ï¼Œå’Œä»»åŠ¡ä¸‹ä¸€æ¡èœå•
 	 * @param roleInfo
 	 * @param menus_result
-	 * @param u_task                       ĞèÒª¼ÓÈë²Ëµ¥ÈÎÎñµÄÈÎÎñid
-	 * @param task_menu_id                 ÈÎÎñ²Ëµ¥id
+	 * @param u_task                       éœ€è¦åŠ å…¥èœå•ä»»åŠ¡çš„ä»»åŠ¡id
+	 * @param task_menu_id                 ä»»åŠ¡èœå•id
 	 */
 	private void addOneTaskMenu(RoleEntity roleInfo,HashMap menus_result,int task_id ,int task_menu_id )
 	{
@@ -242,17 +242,17 @@ public class MenuService
 		OperateMenuVO cur_menu = null;
 		if( menus_result.containsKey(key) )
 		{
-			//ÒÑ¾­ÓĞ¸Ã²Ëµ¥
+			//å·²ç»æœ‰è¯¥èœå•
 			cur_menu = (OperateMenuVO)menus_result.get(key);
 			String menu_old_name = cur_menu.getMenuName();
 			String menu_new_name = "";
-			if( menu_old_name.indexOf("!") != -1 ) //Èç¹ûÓĞµÚÒ»ÌõÈÎÎñ
+			if( menu_old_name.indexOf("!") != -1 ) //å¦‚æœæœ‰ç¬¬ä¸€æ¡ä»»åŠ¡
 			{
 				menu_new_name = menu_old_name.replace("!", "?");
 			}
-			else //Èç¹û²»ÊÇµÚÒ»ÌõÈÎÎñ²Ëµ¥ÇÒÒÑ¾­ÊÇÖĞ¼äµãµÄ²Ëµ¥
+			else //å¦‚æœä¸æ˜¯ç¬¬ä¸€æ¡ä»»åŠ¡èœå•ä¸”å·²ç»æ˜¯ä¸­é—´ç‚¹çš„èœå•
 			{
-				if( menu_old_name.indexOf("?") == -1 )//Èç¹û¸Ã²Ëµ¥ÊÇÎŞÈÎÎñ´ò²Ëµ¥£¬Ôò¼ÓÎÊºÅ
+				if( menu_old_name.indexOf("?") == -1 )//å¦‚æœè¯¥èœå•æ˜¯æ— ä»»åŠ¡æ‰“èœå•ï¼Œåˆ™åŠ é—®å·
 				{
 					menu_new_name = "?"+menu_old_name;
 				}
@@ -266,30 +266,30 @@ public class MenuService
 		}
 		else
 		{
-			//¹¹ÔìÒ»¸öĞÂµÄ²Ëµ¥
+			//æ„é€ ä¸€ä¸ªæ–°çš„èœå•
 			int scene_id = Integer.parseInt(roleInfo.getBasicInfo().getSceneId());
 			OperateMenuVO new_task_menu = getMenuByIdAndSceneId(task_menu_id,scene_id);
 			
 			if( new_task_menu==null )
 			{
-				logger.debug("²Ëµ¥²»ÔÚ¸Ã³¡¾°ÏÂ£¬ÈÎÎñ²Ëµ¥id:"+task_menu_id+";µ±Ç°scene_id:"+scene_id);
+				logger.debug("èœå•ä¸åœ¨è¯¥åœºæ™¯ä¸‹ï¼Œä»»åŠ¡èœå•id:"+task_menu_id+";å½“å‰scene_id:"+scene_id);
 				return;
 			}
 			
 			if( !DateUtil.isEffectTime(new_task_menu.getMenuTimeBegin(), new_task_menu.getMenuTimeEnd(), new_task_menu.getMenuDayBegin(), new_task_menu.getMenuDayEnd(),new_task_menu.getWeekStr()))
 			{
-				//·ûºÏË¢ĞÂÊ±¼ä¹æÔò
+				//ç¬¦åˆåˆ·æ–°æ—¶é—´è§„åˆ™
 				return;
 			}
 			
 			String menu_tasks_id = new_task_menu.getMenuTasksId();
 			if (menu_tasks_id != null && !menu_tasks_id.equals("") && !menu_tasks_id.equals("0"))
 			{
-				String[] tasks_ids = menu_tasks_id.split(",");// È¡³öÈÎÎñID
+				String[] tasks_ids = menu_tasks_id.split(",");// å–å‡ºä»»åŠ¡ID
 				
-				TaskVO task_info = null;//ÈÎÎñĞÅÏ¢
-				CurTaskInfo role_task = null;//Íæ¼ÒÎ´Íê³ÉµÄÈÎÎñ
-				StringBuffer effect_task_ids = new StringBuffer();//ÓĞĞ§µÄÈÎÎñid,(Íæ¼Ò¿ÉÒÔ½ÓÊÜµÄÈÎÎñid)
+				TaskVO task_info = null;//ä»»åŠ¡ä¿¡æ¯
+				CurTaskInfo role_task = null;//ç©å®¶æœªå®Œæˆçš„ä»»åŠ¡
+				StringBuffer effect_task_ids = new StringBuffer();//æœ‰æ•ˆçš„ä»»åŠ¡id,(ç©å®¶å¯ä»¥æ¥å—çš„ä»»åŠ¡id)
 				
 				for (int t = 0; t < tasks_ids.length; t++)
 				{
@@ -302,12 +302,12 @@ public class MenuService
 					{
 						continue;
 					}
-					role_task = (CurTaskInfo) roleInfo.getTaskInfo().getCurTaskList().getByZu(task_info.getTZu());//¸ù¾İÈÎÎñ×éµÃµ½ÉíÉÏÎ´Íê³É´òÈÎÎñ
+					role_task = (CurTaskInfo) roleInfo.getTaskInfo().getCurTaskList().getByZu(task_info.getTZu());//æ ¹æ®ä»»åŠ¡ç»„å¾—åˆ°èº«ä¸Šæœªå®Œæˆæ‰“ä»»åŠ¡
 					
-					//ÅĞ¶Ï¸ÃÈÎÎñÊÇ·ñÒÑÍê³ÉºÍÊÇ·ñÒÑ¾­½ÓÁË¸ÃÈÎÎñ×éµÄÈÎÎñ
+					//åˆ¤æ–­è¯¥ä»»åŠ¡æ˜¯å¦å·²å®Œæˆå’Œæ˜¯å¦å·²ç»æ¥äº†è¯¥ä»»åŠ¡ç»„çš„ä»»åŠ¡
 					if (roleInfo.getTaskInfo().getTaskCompleteInfo().taskCompleteBoo(task_info.getTZu()) == false && role_task==null )
 					{
-						//Èç¹û¸ÃÈÎÎñ¼ÈÃ»ÓĞÍê³ÉÒ²Ã»ÓĞ½ÓÊÜ¹ı¸ÃÈÎÎñ×éµÄÈÎÎñ£¬ÔòÅĞ¶ÏÈÎÎñµÄ½ÓÊÜÌõ¼ş
+						//å¦‚æœè¯¥ä»»åŠ¡æ—¢æ²¡æœ‰å®Œæˆä¹Ÿæ²¡æœ‰æ¥å—è¿‡è¯¥ä»»åŠ¡ç»„çš„ä»»åŠ¡ï¼Œåˆ™åˆ¤æ–­ä»»åŠ¡çš„æ¥å—æ¡ä»¶
 						if (task_info.getTCycle() == 0 && (task_info.getTLevelXiao() <= roleInfo.getBasicInfo().getGrade())
 								&& roleInfo.getBasicInfo().getGrade() <= task_info.getTLevelDa() 
 								&& (roleInfo.getTitleSet().isHaveByTitleStr(task_info.getTSchool())==true)
@@ -327,7 +327,7 @@ public class MenuService
 	}
 	
 	/**
-	 * ÈÎÎñµÄĞÂ²Ëµ¥
+	 * ä»»åŠ¡çš„æ–°èœå•
 	 * @param roleInfo
 	 * @param menus_result
 	 * @param new_menu
@@ -338,7 +338,7 @@ public class MenuService
 		String map_id = roleInfo.getBasicInfo().getSceneId();
 		int npcid = u_task.getTXrwnpcId();
 		
-		// Èç¹ûÃ»ÓĞÖĞ¼äµã ÄÇÃ´ÅĞ¶ÏÆäËûÈÎÎñ   
+		// å¦‚æœæ²¡æœ‰ä¸­é—´ç‚¹ é‚£ä¹ˆåˆ¤æ–­å…¶ä»–ä»»åŠ¡   
 		OperateMenuVO new_menu = getMenuByIdAndSceneId(npcid,Integer.parseInt(map_id));
 		
 		if( menus_result ==null || new_menu==null )
@@ -346,7 +346,7 @@ public class MenuService
 			return ;
 		}
 		int taskid = u_task.getTNext();
-		//Í¨¹ıÈÎÎñID´ÓcacheÈ¡³öÈÎÎñÊı¾İ
+		//é€šè¿‡ä»»åŠ¡IDä»cacheå–å‡ºä»»åŠ¡æ•°æ®
 		TaskCache taskCache = new TaskCache();
 		TaskVO taskVO = taskCache.getById(taskid+""); 
 		if (taskVO.getTLevelXiao() <= roleInfo.getBasicInfo().getGrade())
@@ -366,7 +366,7 @@ public class MenuService
 
 	
 	/**
-	 * Î¬ĞŞ²Ëµ¥
+	 * ç»´ä¿®èœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -380,7 +380,7 @@ public class MenuService
 	}
 
 	/**
-	 * ¿ÉÒÔ´òËÀµÄnpc²Ëµ¥
+	 * å¯ä»¥æ‰“æ­»çš„npcèœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -390,18 +390,18 @@ public class MenuService
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		RoleEntity roleEntity = (RoleEntity) object;
 		int mapId = Integer.parseInt(roleEntity.getBasicInfo().getSceneId());
 
-		// ´´½¨npcÌõ¼ş
+		// åˆ›å»ºnpcæ¡ä»¶
 		String condition = menu.getMenuOperate1();
 
-		// npcAttackDao.deleteByPpk(userTempBean.getPPk());// Çå¿Õnpc
+		// npcAttackDao.deleteByPpk(userTempBean.getPPk());// æ¸…ç©ºnpc
 
-		// ´´½¨npc
+		// åˆ›å»ºnpc
 		RefurbishService refurbishService = new RefurbishService();
 		refurbishService.createNPCByCondition(roleEntity.getBasicInfo()
 				.getPPk(), condition, NpcAttackVO.DEADNPC, mapId);
@@ -410,7 +410,7 @@ public class MenuService
 	}
 
 	/**
-	 * ¿ÉÒÔ´ò°ÜµÄnpc²Ëµ¥
+	 * å¯ä»¥æ‰“è´¥çš„npcèœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -420,18 +420,18 @@ public class MenuService
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		RoleEntity roleEntity = (RoleEntity) object;
 		int mapId = Integer.parseInt(roleEntity.getBasicInfo().getSceneId());
 
-		// ´´½¨npcÌõ¼ş
+		// åˆ›å»ºnpcæ¡ä»¶
 		String condition = menu.getMenuOperate1();
 
-		// npcAttackDao.deleteByPpk(userTempBean.getPPk());// Çå¿Õnpc
+		// npcAttackDao.deleteByPpk(userTempBean.getPPk());// æ¸…ç©ºnpc
 
-		// ´´½¨npc
+		// åˆ›å»ºnpc
 		RefurbishService refurbishService = new RefurbishService();
 		refurbishService.createNPCByCondition(roleEntity.getBasicInfo()
 				.getPPk(), condition, NpcAttackVO.LOSENPC, mapId);
@@ -440,7 +440,7 @@ public class MenuService
 	}
 	
 	/**
-	 * ¿ÉÒÔ±»´ó¼Ò´òµÄnpc²Ëµ¥
+	 * å¯ä»¥è¢«å¤§å®¶æ‰“çš„npcèœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -450,17 +450,17 @@ public class MenuService
 	{
 		if (menu == null || roleEntity == null)
 		{
-			logger.debug("menu»òroleEntityÎª¿Õ");
+			logger.debug("menuæˆ–roleEntityä¸ºç©º");
 			return null;
 		}
 		
 		int sceneId = Integer.parseInt(roleEntity.getBasicInfo().getSceneId());
 		
-		// ´´½¨npcÌõ¼ş
+		// åˆ›å»ºnpcæ¡ä»¶
 		String condition = menu.getMenuOperate2();
 
 		NpcVO npc = NpcCache.getById(Integer.parseInt(condition));
-		// ´´½¨npc
+		// åˆ›å»ºnpc
 		NpcAttackDao npcAttackDao = new NpcAttackDao();		
 		npcAttackDao.createByNpc(npc,roleEntity.getPPk(), 1, NpcAttackVO.DIAOXIANG, sceneId,0);
 		
@@ -469,7 +469,7 @@ public class MenuService
 	}
 	
 	/**
-	 * ´òÈË²»»¹ÊÖµÄ²Ëµ¥
+	 * æ‰“äººä¸è¿˜æ‰‹çš„èœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -479,7 +479,7 @@ public class MenuService
 	{
 		if (menu == null || roleEntity == null)
 		{
-			logger.debug("menu»òroleEntityÎª¿Õ");
+			logger.debug("menuæˆ–roleEntityä¸ºç©º");
 			return null;
 		}
 		
@@ -488,10 +488,10 @@ public class MenuService
 		
 		int sceneId = Integer.parseInt(roleEntity.getBasicInfo().getSceneId());
 
-		// ´´½¨npcÌõ¼ş
+		// åˆ›å»ºnpcæ¡ä»¶
 		String condition = menu.getMenuOperate1();
 
-		// ÌØÊâ×Ö¶Î3´æ·ÅµÄ ´ËÕĞ»êá¦ÊÇÊôÓÚÄÇ¸ö°ïÅÉËùÓĞ
+		// ç‰¹æ®Šå­—æ®µ3å­˜æ”¾çš„ æ­¤æ‹›é­‚å¹¡æ˜¯å±äºé‚£ä¸ªå¸®æ´¾æ‰€æœ‰
 		String menuTongString = menu.getMenuOperate3();
 		
 		
@@ -501,9 +501,9 @@ public class MenuService
 		TongSiegeBattleVO tongSiegeBattleVO = tongSiegeBattleService.getSiegeByMapId(Integer.parseInt(sceneVO.getSceneMapqy()));
 		TongSiegeControlVO tongSiegeControlVO = tongSiegeBattleService.getSiegeTongInfo(tongSiegeBattleVO.getSiegeId()+"");
 		
-		// µ½³ÇÃÅ±»¹¥ÆÆºó·½ÄÜ±»¹¥»÷
+		// åˆ°åŸé—¨è¢«æ”»ç ´åæ–¹èƒ½è¢«æ”»å‡»
 		if ( tongSiegeControlVO.getNowPhase() < FinalNumber.FORTH) {
-			String hint = "ÏÖÔÚ»¹²»ÄÜ¹¥»÷ÕĞ»êá¦!";
+			String hint = "ç°åœ¨è¿˜ä¸èƒ½æ”»å‡»æ‹›é­‚å¹¡!";
 			return hint;
 		}
 		
@@ -512,17 +512,17 @@ public class MenuService
 		
 		if ( menuTongString.equals(tongPk+"") ) {
 			StringBuffer sBuffer = new StringBuffer();
-			sBuffer.append("´ËÕĞ»êá¦ÊÇ¹ó°ïÅÉËùÓĞ!<br/>");
+			sBuffer.append("æ­¤æ‹›é­‚å¹¡æ˜¯è´µå¸®æ´¾æ‰€æœ‰!<br/>");
 //			sBuffer.append("<anchor><go method=\"post\"   href=\""+response.encodeURL(GameConfig.getContextPath()+"/tongEndaction.do")+"\"> ");
 //			sBuffer.append("<postfield name=\"cmd\" value=\"n3\" /> ");
 //			sBuffer.append("<postfield name=\"menu_id\" value=\""+menu.getId()+"\" /> ");
 //			sBuffer.append("</go>");
-//			sBuffer.append("ÁìÈ¡ÕĞ»êá¦×£¸£");
+//			sBuffer.append("é¢†å–æ‹›é­‚å¹¡ç¥ç¦");
 //			sBuffer.append("</anchor>");
 			
 			return sBuffer.toString();			
 		} else {
-    		// ´´½¨npc
+    		// åˆ›å»ºnpc
     		RefurbishService refurbishService = new RefurbishService();
     				
     		refurbishService.createNPCByCondition(roleEntity.getBasicInfo()
@@ -535,7 +535,7 @@ public class MenuService
 	
 
 	/**
-	 * Ë¢ĞÂÆì¸Ënpc
+	 * åˆ·æ–°æ——æ†npc
 	 * 
 	 * @param menu
 	 * @param object
@@ -545,15 +545,15 @@ public class MenuService
 	{
 		if (menu == null || roleEntity == null)
 		{
-			logger.debug("menu»òroleEntityÎª¿Õ");
+			logger.debug("menuæˆ–roleEntityä¸ºç©º");
 			return null;
 		}
 		String mapId = roleEntity.getBasicInfo().getSceneId();
 
-		// ´´½¨npcÌõ¼ş
+		// åˆ›å»ºnpcæ¡ä»¶
 		String condition = menu.getMenuOperate1();
 
-		// ´´½¨npc
+		// åˆ›å»ºnpc
 		RefurbishService refurbishService = new RefurbishService();
 		refurbishService.createNPCByCondition(roleEntity.getPPk(),condition, NpcAttackVO.MAST, Integer.parseInt(mapId));
 		 
@@ -561,10 +561,10 @@ public class MenuService
 		RoomService roomService = new RoomService();
 		String sceneName = roomService.getName(menu.getMenuMap());
 
-		StringBuffer systemInfo = new StringBuffer("Î»ÓÚ");
-		systemInfo.append(sceneName).append("µÄÆì¸Ë±»");
+		StringBuffer systemInfo = new StringBuffer("ä½äº");
+		systemInfo.append(sceneName).append("çš„æ——æ†è¢«");
 
-		systemInfo.append("¹¥»÷ÁË!");
+		systemInfo.append("æ”»å‡»äº†!");
 
 		systemInfoService.insertSystemInfoByBarea(systemInfo.toString(),
 				FinalNumber.FIELDBAREA);
@@ -573,7 +573,7 @@ public class MenuService
 	}
 
 	/**
-	 * ÁĞ³ö¸¸²Ëµ¥µÄ×Ó²Ëµ¥
+	 * åˆ—å‡ºçˆ¶èœå•çš„å­èœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -583,7 +583,7 @@ public class MenuService
 	{
 		if (father_menu == null)
 		{
-			logger.debug("menuÎª¿Õ");
+			logger.debug("menuä¸ºç©º");
 			return null;
 		}
 		StringBuffer result = new StringBuffer();
@@ -591,8 +591,8 @@ public class MenuService
 		OperateMenuVO son_menu = null;
 
 		OperateMenuDao menuDao = new OperateMenuDao();
-		List<OperateMenuVO> menus = menuDao.getSonMenuByMap(father_menu.getId(),roleInfo.getBasicInfo().getPRace()); // ËùÓĞ×Ó²Ëµ¥
-		List<OperateMenuVO> display_menus = null; // ÓĞĞ§×Ó²Ëµ¥
+		List<OperateMenuVO> menus = menuDao.getSonMenuByMap(father_menu.getId(),roleInfo.getBasicInfo().getPRace()); // æ‰€æœ‰å­èœå•
+		List<OperateMenuVO> display_menus = null; // æœ‰æ•ˆå­èœå•
 
 		result.append(father_menu.getMenuName() + "<br/>");
 
@@ -602,7 +602,7 @@ public class MenuService
 
 		if (menus != null && menus.size() != 0)
 		{
-			logger.info("×Ó²Ëµ¥ÊıÁ¿=" + menus.size());
+			logger.info("å­èœå•æ•°é‡=" + menus.size());
 			for (int i = menus.size() - 1; i >= 0; i--)
 			{
 
@@ -635,12 +635,12 @@ public class MenuService
 			}
 
 			display_menus = menus;
-			logger.info("ÓĞĞ§×Ó²Ëµ¥Îª=" + display_menus.size());
+			logger.info("æœ‰æ•ˆå­èœå•ä¸º=" + display_menus.size());
 			for (int i = 0; i < display_menus.size(); i++)
 			{
 				son_menu = display_menus.get(i);
 
-				// Èç¹ûÊÇÃèÊöĞÔ²Ëµ¥¾ÍÖ»ÏÔÊ¾ÆäÃû, ²»ÓÃÔÚÆäÏÂ¼ÓÁ´½Ó.
+				// å¦‚æœæ˜¯æè¿°æ€§èœå•å°±åªæ˜¾ç¤ºå…¶å, ä¸ç”¨åœ¨å…¶ä¸‹åŠ é“¾æ¥.
 				if (son_menu.getMenuType() == MenuType.DISPLAYOPERATE)
 				{
 					result.append(son_menu.getMenuName());
@@ -662,7 +662,7 @@ public class MenuService
 	}
 
 	/**
-	 * ĞİÏ¢²Ëµ¥´¦Àí
+	 * ä¼‘æ¯èœå•å¤„ç†
 	 * 
 	 * @param menu
 	 * @param object
@@ -686,14 +686,14 @@ public class MenuService
 
 		if (need_money != null && Integer.parseInt(need_money) <= money)
 		{	
-			result.append("ÄúµÄÌåÁ¦£¬ÄÚÁ¦¶¼ÒÑ¼ÓÂú! ");
+			result.append("æ‚¨çš„ä½“åŠ›ï¼Œå†…åŠ›éƒ½å·²åŠ æ»¡! ");
 			
-			//¼à¿Ø
+			//ç›‘æ§
 			LogService logService = new LogService();
-			logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", "-"+need_money, "×¡µê");
+			logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", "-"+need_money, "ä½åº—");
 			
 			roleEntity.getBasicInfo().addCopper(-Integer.parseInt(need_money));
-			// Ö´ĞĞÍ³¼Æ
+			// æ‰§è¡Œç»Ÿè®¡
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(6, StatisticsType.MONEY, Integer
 					.parseInt(need_money), StatisticsType.USED,
@@ -702,7 +702,7 @@ public class MenuService
 		}
 		else
 		{
-			result.append("ÄúµÄÒøÁ½×ã£¡×¡µêĞèÒª"
+			result.append("æ‚¨çš„é“¶ä¸¤è¶³ï¼ä½åº—éœ€è¦"
 					+ MoneyUtil.changeCopperToStr(Integer.parseInt(need_money))
 					+ "!");
 		}
@@ -711,13 +711,13 @@ public class MenuService
 	}
 
 	/*
-	 * ´«ËÍ²Ëµ¥¹¦ÄÜ×Ö¶Î menu_operate1´¢´æ´«ÊäÄ¿µÄµØ menu_operate2´¢´æÒª ÇóµÀ¾ß ±íÏÖĞÎÊ½Îª:1,3-3,2-0,200
-	 * ËµÃ÷:²»Í¬µÀ¾ßÓÃ"-"·Ö¸î£»Ã¿¸öµÀ¾ß¶ººÅÖ®Ç°±íÊ¾µÀ¾ßid,¶ººÅÖ®ºó±íÊ¾µÀ¾ßÊıÁ¿£»µÀ¾ßidÎª0Ê±±íÊ¾½ğÇ®
-	 * menu_operate3´¢´æÊÇ·ñÉ¾³ı¸ÃµÀ¾ß ËµÃ÷:ÄÚÈİÎªÉ¾³ıÊ±£¬±íÊ¾É¾³ı£¬Îª¿Õ±íÊ¾²»ÓÃÉ¾³ı
+	 * ä¼ é€èœå•åŠŸèƒ½å­—æ®µ menu_operate1å‚¨å­˜ä¼ è¾“ç›®çš„åœ° menu_operate2å‚¨å­˜è¦ æ±‚é“å…· è¡¨ç°å½¢å¼ä¸º:1,3-3,2-0,200
+	 * è¯´æ˜:ä¸åŒé“å…·ç”¨"-"åˆ†å‰²ï¼›æ¯ä¸ªé“å…·é€—å·ä¹‹å‰è¡¨ç¤ºé“å…·id,é€—å·ä¹‹åè¡¨ç¤ºé“å…·æ•°é‡ï¼›é“å…·idä¸º0æ—¶è¡¨ç¤ºé‡‘é’±
+	 * menu_operate3å‚¨å­˜æ˜¯å¦åˆ é™¤è¯¥é“å…· è¯´æ˜:å†…å®¹ä¸ºåˆ é™¤æ—¶ï¼Œè¡¨ç¤ºåˆ é™¤ï¼Œä¸ºç©ºè¡¨ç¤ºä¸ç”¨åˆ é™¤
 	 */
 
 	/**
-	 * ÈÎÎñ´«ËÍ²Ëµ¥´¦Àí
+	 * ä»»åŠ¡ä¼ é€èœå•å¤„ç†
 	 * 
 	 * @param menu
 	 * @param object
@@ -727,7 +727,7 @@ public class MenuService
 	{
 		if (menu == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		MountsService ms=new MountsService();
@@ -739,26 +739,26 @@ public class MenuService
 		UserMountsVO uv=role_info.getMountSet().getCurMount();
 		if(uv==null)
 		{
-			result.append("ÄúÃ»ÓĞ³ËÆï×øÆï");
+			result.append("æ‚¨æ²¡æœ‰ä¹˜éª‘åéª‘");
 			return result.toString();
 		}
 		else
 		{
 			MountsVO mv= ms.getMountsInfo(uv.getMountsID());
-			if(mv.getLevel()==1)//Ö»ÓĞÒ»¼¶×øÆï²ÅÓĞÈÎÎñ´«ËÍÏŞÖÆ
+			if(mv.getLevel()==1)//åªæœ‰ä¸€çº§åéª‘æ‰æœ‰ä»»åŠ¡ä¼ é€é™åˆ¶
 			{
 				
 				boolean isUse=tcs.isUseable(pPk, uv.getMountsID(), TimeControlService.ANOTHERPROP, mv.getCarryNum1());
 				if(isUse)
 				{
 				}
-				else//Ã¿ÌìµÄÊ¹ÓÃ´ÎÊıÒÑÂúĞèÒª¿Û·Ñ
+				else//æ¯å¤©çš„ä½¿ç”¨æ¬¡æ•°å·²æ»¡éœ€è¦æ‰£è´¹
 				{
 					int needCopper=mv.getOverPay1();
 					long haveCopper=role_info.getBasicInfo().getCopper();
 					if(needCopper>haveCopper)
 					{
-						result.append("½ñÈÕ×øÆïÊ¹ÓÃ´ÎÊıÒÑÂúĞèÒª¿Û³ıÁéÊ¯£¬ÁéÊ¯²»×ã²»ÄÜ´«ËÍ");
+						result.append("ä»Šæ—¥åéª‘ä½¿ç”¨æ¬¡æ•°å·²æ»¡éœ€è¦æ‰£é™¤çµçŸ³ï¼ŒçµçŸ³ä¸è¶³ä¸èƒ½ä¼ é€");
 						return result.toString();
 					}
 					else
@@ -770,41 +770,41 @@ public class MenuService
 			}
 			
 		}
-		// Ã»ÓĞ´«ËÍÌõ¼ş
+		// æ²¡æœ‰ä¼ é€æ¡ä»¶
 		if (condition == null || condition.equals(""))
 		{
 			return null;
 		}
 		else
-		// ÓĞ´«ËÍÌõ¼ş
+		// æœ‰ä¼ é€æ¡ä»¶
 		{
-			boolean isCarryed = true; // ÊÇ·ñ¿ÉÒÔ´«ËÍ
-			boolean isConfirm = false; // ÊÇ·ñÒª¶ş´ÎÈ·ÈÏ
+			boolean isCarryed = true; // æ˜¯å¦å¯ä»¥ä¼ é€
+			boolean isConfirm = false; // æ˜¯å¦è¦äºŒæ¬¡ç¡®è®¤
 			String conditions[] = condition.split("-");
 			String prop[] = null;
 			for (int i = 0; i < conditions.length; i++)
 			{
 				prop = conditions[i].split(",");
-				if (prop[0].equals("0"))// ÒªÇóµÄÊÇÇ®Êı
+				if (prop[0].equals("0"))// è¦æ±‚çš„æ˜¯é’±æ•°
 				{
 					long copper_num = role_info.getBasicInfo().getCopper();
 					if (copper_num < Integer.parseInt(prop[1]))
 					{
 						isCarryed = false;
-						result.append("<br/>ĞèÒª"
+						result.append("<br/>éœ€è¦"
 								+ MoneyUtil.changeCopperToStr(prop[1])
-								+ ",ÄúÄ¿Ç°ÓĞ:"
+								+ ",æ‚¨ç›®å‰æœ‰:"
 								+ MoneyUtil.changeCopperToStr((int) copper_num)
-								+ ",½ğ¶î²»×ã¡£");
+								+ ",é‡‘é¢ä¸è¶³ã€‚");
 					}
 					else
 					{
-						condition_display.append("ĞèÒª"
+						condition_display.append("éœ€è¦"
 								+ MoneyUtil.changeCopperToStr(prop[1]));
 					}
 				}
 				else
-				// ÒªÇóµÄÊÇµÀ¾ß
+				// è¦æ±‚çš„æ˜¯é“å…·
 				{
 					//PropDao propDao = new PropDao();
 					PropCache propCache = new PropCache();
@@ -816,18 +816,18 @@ public class MenuService
 					if (prop_num < Integer.parseInt(prop[1]))
 					{
 						isCarryed = false;
-						result.append("<br/>ĞèÒª" + prop[1] + "¸ö" + prop_name
-								+ ",ÄúÄ¿Ç°ÓĞ:" + prop_num + "¸ö,ÊıÁ¿²»¹»¡£");
+						result.append("<br/>éœ€è¦" + prop[1] + "ä¸ª" + prop_name
+								+ ",æ‚¨ç›®å‰æœ‰:" + prop_num + "ä¸ª,æ•°é‡ä¸å¤Ÿã€‚");
 					}
 					else
 					{
-						condition_display.append(",ĞèÒª" + prop[1] + "¸ö"
+						condition_display.append(",éœ€è¦" + prop[1] + "ä¸ª"
 								+ prop_name + "");
 						isConfirm = true;
 					}
 				}
 			}
-			if (isCarryed)// ¿ÉÒÔ´«ËÍ,µ«Òª¶ş´ÎÈ·ÈÏ
+			if (isCarryed)// å¯ä»¥ä¼ é€,ä½†è¦äºŒæ¬¡ç¡®è®¤
 			{
 				/*
 				 * if (menuTasksId == null || (menuTasksId != null &&
@@ -835,28 +835,28 @@ public class MenuService
 				 */
 				if (isConfirm)
 				{
-					result.append("´«ËÍĞèÒª:");
+					result.append("ä¼ é€éœ€è¦:");
 					result.append(condition_display.toString());
 					result.append("<br/>");
 					result.append("<anchor> ");
-					// ÕâÀïÓĞ¸ö/j yg¡¢ame
+					// è¿™é‡Œæœ‰ä¸ª/j ygã€ame
 					//result.append("<go method=\"post\" sendreferer=\"true\" href=\"/menu.do\"> ");
 					result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/menu.do")+"\">");
 					result.append("<postfield name=\"cmd\" value=\"n3\" /> ");
 					result.append("<postfield name=\"menu_id\" value=\"" + menu.getId() + "\" /> ");
 					result.append("</go>");
-					result.append("È·¶¨");
+					result.append("ç¡®å®š");
 					result.append("</anchor>");
 				}
 				else
 				{
-					return null;// Ö±½Ó´«ËÍ
+					return null;// ç›´æ¥ä¼ é€
 				}
 				/* } */
 			}
 			else
 			{
-				return "´«ËÍÌõ¼ş²»·ûºÏ" + result.toString();
+				return "ä¼ é€æ¡ä»¶ä¸ç¬¦åˆ" + result.toString();
 			}
 		}
 
@@ -864,7 +864,7 @@ public class MenuService
 	}
 
 	/**
-	 * ´«ËÍÏûºÄ´¦Àí condition´«ËÍÌõ¼ş
+	 * ä¼ é€æ¶ˆè€—å¤„ç† conditionä¼ é€æ¡ä»¶
 	 * 
 	 * @param menu
 	 * @param object
@@ -873,11 +873,11 @@ public class MenuService
 	{
 		if (menu == null || roleEntity == null)
 		{
-			logger.debug("menu»òroleEntityÎª¿Õ");
+			logger.debug("menuæˆ–roleEntityä¸ºç©º");
 			return;
 		}
 
-		// ¶ªÆúÎïÆ·µÀ¾ß
+		// ä¸¢å¼ƒç‰©å“é“å…·
 		String condition = menu.getMenuOperate2();
 		if (!condition.equals(""))
 		{
@@ -886,18 +886,18 @@ public class MenuService
 			for (int i = 0; i < conditions.length; i++)
 			{
 				prop = conditions[i].split(",");
-				if (prop[2].equals("1"))// ÏûºÄÎïÆ·
+				if (prop[2].equals("1"))// æ¶ˆè€—ç‰©å“
 				{
-					if (prop[0].equals("0"))// ÒªÇóµÄÊÇÇ®Êı
+					if (prop[0].equals("0"))// è¦æ±‚çš„æ˜¯é’±æ•°
 					{
 						
-						//¼à¿Ø
+						//ç›‘æ§
 						LogService logService = new LogService();
-						logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", "-"+prop[1], "´«ËÍ");
+						logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", "-"+prop[1], "ä¼ é€");
 						
 						roleEntity.getBasicInfo().addCopper(
-								-Integer.parseInt(prop[1]));// ÏûºÄ½ğÇ®
-						// Ö´ĞĞÍ³¼Æ
+								-Integer.parseInt(prop[1]));// æ¶ˆè€—é‡‘é’±
+						// æ‰§è¡Œç»Ÿè®¡
 						GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 						gsss.addPropNum(6, StatisticsType.MONEY, Integer
 								.parseInt(prop[1]), StatisticsType.USED,
@@ -906,7 +906,7 @@ public class MenuService
 
 					}
 					else
-					// ÒªÇóµÄÊÇµÀ¾ß
+					// è¦æ±‚çš„æ˜¯é“å…·
 					{
 						GoodsService goodsService = new GoodsService();
 						goodsService.removeProps(roleEntity
@@ -921,7 +921,7 @@ public class MenuService
 		if (buffEffectString != null && !buffEffectString.equals("") ) {
 			String[] buffEffectStrings  =  buffEffectString.split(";");
 			if( buffEffectStrings.length >= 3){
-				// ÉùÍûÏŞÖÆ
+				// å£°æœ›é™åˆ¶
 				String[] recourse = buffEffectStrings[2].split(",");
 				if(recourse[0].equals("0")){
 					
@@ -937,7 +937,7 @@ public class MenuService
 	}
 
 	/**
-	 * ÆÕÍ¨¶Ô»°Àà²Ëµ¥´¦Àí
+	 * æ™®é€šå¯¹è¯ç±»èœå•å¤„ç†
 	 * 
 	 * @return
 	 */
@@ -949,7 +949,7 @@ public class MenuService
 	}
 
 	/**
-	 * °ï»á½¨ÉèÒ³ÃæÌø×ª
+	 * å¸®ä¼šå»ºè®¾é¡µé¢è·³è½¬
 	 * 
 	 * @param menu
 	 * @param object
@@ -959,26 +959,26 @@ public class MenuService
 	{
 		if (menu == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
-		// 1µÈ¼¶ 2Ç® 3ÎïÆ·
+		// 1ç­‰çº§ 2é’± 3ç‰©å“
 		StringBuffer result = new StringBuffer();
 		result.append(menu.getMenuDialog());
 		result.append("<br/>");
 		result.append("<anchor> ");
-		// ÕâÀïÓĞ¸ö/jy¡£game
+		// è¿™é‡Œæœ‰ä¸ª/jyã€‚game
 		//result.append("<go method=\"post\" sendreferer=\"true\" href=\"/tongaction.do\"> ");
 		result.append("<go method=\"post\" sendreferer=\"true\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/tongaction.do")+"\">");
 		result.append("<postfield name=\"menu_id\" value=\"" + menu.getId() + "\" /> ");
 		result.append("</go>");
-		result.append("ÎÒÒª´´½¨°ï»á");
+		result.append("æˆ‘è¦åˆ›å»ºå¸®ä¼š");
 		result.append("</anchor>");
 		return result.toString();
 	}
 
 	/**
-	 * °ï»á½¨ÉèÒ³ÃæÌø×ª
+	 * å¸®ä¼šå»ºè®¾é¡µé¢è·³è½¬
 	 * 
 	 * @param menu
 	 * @param object
@@ -988,7 +988,7 @@ public class MenuService
 	{
 		if (menu == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		StringBuffer result = new StringBuffer();
@@ -1000,7 +1000,7 @@ public class MenuService
 		result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/recruitaction.do?cmd=n1")+"\">");
 		
 		result.append("</go>");
-		result.append("·¢²¼ÕĞÄ¼");
+		result.append("å‘å¸ƒæ‹›å‹Ÿ");
 		result.append("</anchor>");
 		result.append("<br/>");
 		result.append("<anchor> ");
@@ -1009,19 +1009,19 @@ public class MenuService
 		result.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/tongbegaction.do?cmd=n1")+"\">");
 		
 		result.append("</go>");
-		result.append("ÉêÇëÈë°ï");
+		result.append("ç”³è¯·å…¥å¸®");
 		result.append("</anchor>");
 		return result.toString();
 	}
 
 	/**
-	 * ¸±±¾µÄÈë¿Ú²Ëµ¥
+	 * å‰¯æœ¬çš„å…¥å£èœå•
 	 */
 	public String instanceDoor(OperateMenuVO menu, Object object)
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		StringBuffer result = new StringBuffer();
@@ -1031,7 +1031,7 @@ public class MenuService
 		InstanceService instanceService = new InstanceService();
 		GroupService groupService = new GroupService();
 
-		String instance_id_str = menu.getMenuOperate1(); // ¸±±¾id
+		String instance_id_str = menu.getMenuOperate1(); // å‰¯æœ¬id
 		int instance_id = -1;
 
 		try
@@ -1040,7 +1040,7 @@ public class MenuService
 		}
 		catch (Exception e)
 		{
-			logger.info("¸±±¾id:" + instance_id_str + ",²ÎÊı´íÎó");
+			logger.info("å‰¯æœ¬id:" + instance_id_str + ",å‚æ•°é”™è¯¯");
 		}
 
 		String hint = null;
@@ -1050,40 +1050,40 @@ public class MenuService
 
 		if (instanceInfo == null)
 		{
-			hint = "ÎŞĞ§instance_id:" + instance_id;
+			hint = "æ— æ•ˆinstance_id:" + instance_id;
 			logger.info(hint);
 			return hint;
 		}
 
-		int group_member_num = 0;// Íæ¼ÒËùÔÚ¶ÓÎéÈËÊı
+		int group_member_num = 0;// ç©å®¶æ‰€åœ¨é˜Ÿä¼äººæ•°
 		group_member_num = groupService.getGroupNumByMember(roleInfo
 				.getBasicInfo().getPPk());
 
 		if (group_member_num < instanceInfo.getGroupLimit())
 		{
-			result.append("¶ÓÎéÈËÊı²»¹»,ĞèÒª" + instanceInfo.getGroupLimit()
-					+ "ÈË²ÅÄÜ½øÈë¸±±¾<br/>");
+			result.append("é˜Ÿä¼äººæ•°ä¸å¤Ÿ,éœ€è¦" + instanceInfo.getGroupLimit()
+					+ "äººæ‰èƒ½è¿›å…¥å‰¯æœ¬<br/>");
 			logger.info(hint);
 		}
 		else
 			if (roleInfo.getBasicInfo().getGrade() < instanceInfo
 					.getLevelLimit())
 			{
-				result.append("µÈ¼¶²»¹»,ĞèÒª" + instanceInfo.getLevelLimit()
-						+ "¼¶²Å¿ÉÒÔ½øÈë¸±±¾<br/>");
+				result.append("ç­‰çº§ä¸å¤Ÿ,éœ€è¦" + instanceInfo.getLevelLimit()
+						+ "çº§æ‰å¯ä»¥è¿›å…¥å‰¯æœ¬<br/>");
 				logger.info(hint);
 			}
 			else
 			{
 
-				if (instanceService.isReset(instanceInfo))// ÅĞ¶ÏÊÇ·ñÖØÖÃ
+				if (instanceService.isReset(instanceInfo))// åˆ¤æ–­æ˜¯å¦é‡ç½®
 				{
-					// ¸±±¾ÖØÖÃ
+					// å‰¯æœ¬é‡ç½®
 					instanceService.reset(roleInfo.getBasicInfo().getPPk(),
 							instanceInfo.getMapId());
 				}
-				roleInfo.getBasicInfo().updateSceneId(instanceInfo.getEnterSenceId() + "");// ²»ÖØÖÃÒ²¿É½øÈë´òĞ¡¹Ö
-				//ÅĞ¶Ï¸±±¾ÀàĞÍ
+				roleInfo.getBasicInfo().updateSceneId(instanceInfo.getEnterSenceId() + "");// ä¸é‡ç½®ä¹Ÿå¯è¿›å…¥æ‰“å°æ€ª
+				//åˆ¤æ–­å‰¯æœ¬ç±»å‹
 				/*if(menu.getMenuType() == Integer.parseInt(GameConfig.getPropertiesObject("menu_instance_type"))){
 					new PopUpMsgService().addSysSpecialMsg(roleInfo.getBasicInfo().getPPk(),Integer.parseInt(menu.getMenuOperate2()),0, PopUpMsgType.MENU_INSTANCE);
 				}*/
@@ -1094,7 +1094,7 @@ public class MenuService
 	}
 
 	/**
-	 * ¹¥³ÇÕ½³¡´«ËÍ²Ëµ¥
+	 * æ”»åŸæˆ˜åœºä¼ é€èœå•
 	 * 
 	 * @param menu
 	 * @param userTempBean
@@ -1109,7 +1109,7 @@ public class MenuService
 		TongSiegeControlVO tongSiegeControlVO = tongSiegeBattleDao.getSiegeTongInfo(siegeId);
 		
 //		if ( tongSiegeControlVO.getNowPhase() != 0) {
-//			hintString = "Õ½¶·ÉĞÎ´¿ªÊ¼,ÇëµÈ´ıÕ½¶·¿ªÊ¼!";
+//			hintString = "æˆ˜æ–—å°šæœªå¼€å§‹,è¯·ç­‰å¾…æˆ˜æ–—å¼€å§‹!";
 //		}
 		Date tongStartTime = null;
 		Date dt1 = new Date();
@@ -1124,7 +1124,7 @@ public class MenuService
 		}
 		
 		if ( dt1.getTime() < tongStartTime.getTime()) {
-			hintString = "Õ½¶·ÉĞÎ´¿ªÊ¼,ÇëµÈ´ıÕ½¶·¿ªÊ¼!";
+			hintString = "æˆ˜æ–—å°šæœªå¼€å§‹,è¯·ç­‰å¾…æˆ˜æ–—å¼€å§‹!";
 		}
 		return hintString;
 	}
@@ -1132,7 +1132,7 @@ public class MenuService
 	
 	
 	/**
-	 * ÆÕÍ¨´«ËÍ²Ëµ¥
+	 * æ™®é€šä¼ é€èœå•
 	 * 
 	 * @param menu
 	 * @param userTempBean
@@ -1142,12 +1142,12 @@ public class MenuService
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 
-		String goods_require = menu.getMenuOperate2(); // ´«ËÍÎïÆ·ÒªÇó
-		String grade_and_taskzu = menu.getMenuOperate3(); // ´«ËÍµÈ¼¶ºÍÈÎÎñÒªÇó
+		String goods_require = menu.getMenuOperate2(); // ä¼ é€ç‰©å“è¦æ±‚
+		String grade_and_taskzu = menu.getMenuOperate3(); // ä¼ é€ç­‰çº§å’Œä»»åŠ¡è¦æ±‚
 
 		String grade_require_str = null;
 		String task_zu_str = null;
@@ -1163,7 +1163,7 @@ public class MenuService
 			if (conditions.length == 2)
 			{
 				grade_require_str = conditions[0];
-				task_zu_str = conditions[1]; // ´«ËÍÈÎÎñÒªÇó
+				task_zu_str = conditions[1]; // ä¼ é€ä»»åŠ¡è¦æ±‚
 			}
 		}
 
@@ -1172,8 +1172,8 @@ public class MenuService
 		StringBuffer result = new StringBuffer();
 		StringBuffer condition_display = new StringBuffer();
 
-		boolean isCarryed = true; // ÊÇ·ñ¿ÉÒÔ´«ËÍ
-		boolean isConfirm = false; // ÊÇ·ñÒª¶ş´ÎÈ·ÈÏ
+		boolean isCarryed = true; // æ˜¯å¦å¯ä»¥ä¼ é€
+		boolean isConfirm = false; // æ˜¯å¦è¦äºŒæ¬¡ç¡®è®¤
 		
 		
 		if (grade_require_str != null && !grade_require_str.equals(""))
@@ -1188,14 +1188,14 @@ public class MenuService
 				isCarryed = false;
 				if (Integer.parseInt(grade_require[1]) == 1000)
 				{
-					result.append("<br/>´«ËÍµÈ¼¶ÒªÇóÔÚ"
-							+ Integer.parseInt(grade_require[0]) + "¼¶ÒÔÉÏ");
+					result.append("<br/>ä¼ é€ç­‰çº§è¦æ±‚åœ¨"
+							+ Integer.parseInt(grade_require[0]) + "çº§ä»¥ä¸Š");
 				}
 				else
 				{
-					result.append("<br/>´«ËÍµÈ¼¶ÒªÇóÔÚ"
-							+ Integer.parseInt(grade_require[0]) + "¼¶µ½"
-							+ Integer.parseInt(grade_require[1]) + "¼¶Ö®¼ä");
+					result.append("<br/>ä¼ é€ç­‰çº§è¦æ±‚åœ¨"
+							+ Integer.parseInt(grade_require[0]) + "çº§åˆ°"
+							+ Integer.parseInt(grade_require[1]) + "çº§ä¹‹é—´");
 				}
 			}
 		}
@@ -1203,17 +1203,17 @@ public class MenuService
 
 		if (task_zu_str != null && !task_zu_str.equals(""))
 		{
-			// ÅĞ¶ÏÍæ¼ÒÊÇ·ñÍê³É´ËÈÎÎñ×é
+			// åˆ¤æ–­ç©å®¶æ˜¯å¦å®Œæˆæ­¤ä»»åŠ¡ç»„
 			TaskSubService taskService = new TaskSubService();
 			if (!taskService.isCompletedOneOfMany(roleEntity.getBasicInfo()
 					.getPPk(), task_zu_str))
 			{
 				isCarryed = false;
-				// result.append("<br/>Ã»ÓĞÍê³ÉÈÎÎñ111111");
+				// result.append("<br/>æ²¡æœ‰å®Œæˆä»»åŠ¡111111");
 			}
 		}
 
-		// ÒÔ","À´·Ö¸ôÎïÆ·ĞèÇóºÍ½ûÖ¹buff´«ËÍID
+		// ä»¥","æ¥åˆ†éš”ç‰©å“éœ€æ±‚å’Œç¦æ­¢buffä¼ é€ID
 		if (goods_require != null && !goods_require.equals(""))
 		{
 			String goods_requires[] = goods_require.split("-");
@@ -1221,27 +1221,27 @@ public class MenuService
 			for (int i = 0; i < goods_requires.length; i++)
 			{
 				prop = goods_requires[i].split(",");
-				if (prop[0].equals("0"))// ÒªÇóµÄÊÇÇ®Êı
+				if (prop[0].equals("0"))// è¦æ±‚çš„æ˜¯é’±æ•°
 				{
 					long copper_num = roleEntity.getBasicInfo().getCopper();
 
 					if (copper_num < Integer.parseInt(prop[1]))
 					{
 						isCarryed = false;
-						result.append("<br/>ĞèÒª"
+						result.append("<br/>éœ€è¦"
 								+ MoneyUtil.changeCopperToStr(prop[1])
-								+ ",ÄúÄ¿Ç°ÓĞ:"
+								+ ",æ‚¨ç›®å‰æœ‰:"
 								+ MoneyUtil.changeCopperToStr((int) copper_num)
-								+ ",½ğ¶î²»×ã¡£");
+								+ ",é‡‘é¢ä¸è¶³ã€‚");
 					}
 					else
 					{
-						condition_display.append("ĞèÒª"
+						condition_display.append("éœ€è¦"
 								+ MoneyUtil.changeCopperToStr(prop[1]));
 					}
 				}
 				else
-				// ÒªÇóµÄÊÇµÀ¾ß
+				// è¦æ±‚çš„æ˜¯é“å…·
 				{
 					//PropDao propDao = new PropDao();
 					PropCache propCache = new PropCache();
@@ -1254,12 +1254,12 @@ public class MenuService
 					if (prop_num < Integer.parseInt(prop[1]))
 					{
 						isCarryed = false;
-						result.append("<br/>ĞèÒª" + prop[1] + "¸ö" + prop_name
-								+ "£¬ÄúÄ¿Ç°ÓĞ:" + prop_num + "¸ö£¬ÊıÁ¿²»¹»¡£");
+						result.append("<br/>éœ€è¦" + prop[1] + "ä¸ª" + prop_name
+								+ "ï¼Œæ‚¨ç›®å‰æœ‰:" + prop_num + "ä¸ªï¼Œæ•°é‡ä¸å¤Ÿã€‚");
 					}
 					else
 					{
-						condition_display.append(",ĞèÒª" + prop[1] + "¸ö"
+						condition_display.append(",éœ€è¦" + prop[1] + "ä¸ª"
 								+ prop_name + "<br/>");
 						isConfirm = true;
 					}
@@ -1271,7 +1271,7 @@ public class MenuService
 		String buffEffectString = menu.getMenuOperate1();		
 		if (buffEffectString != null && !buffEffectString.equals("") ) {
 			String[] buffEffectStrings  =  buffEffectString.split(";");
-			if ( buffEffectStrings.length >= 2 ) {		// Èç¹û´óÓÚµÈÓÚ2,ÔòËµÃ÷ÓĞbuffÀàÏŞÖÆ
+			if ( buffEffectStrings.length >= 2 ) {		// å¦‚æœå¤§äºç­‰äº2,åˆ™è¯´æ˜æœ‰buffç±»é™åˆ¶
 				String[] buffs = buffEffectStrings[1].split(",");
 				if(buffs[0].equals("0")){
 					
@@ -1280,17 +1280,17 @@ public class MenuService
 						BuffEffectDao buffEffectDao = new BuffEffectDao();
 						BuffDao buffDao = new BuffDao();
 			    		int buffType = buffDao.getBuffType(buffs[i]);
-			    		// Èç¹û·µ»ØÖµ´óÓÚ-1,´ú±íÒÑ¾­ÓĞÕâÖÖbuff,·µ»ØÕâÖÖbuffµÄID
+			    		// å¦‚æœè¿”å›å€¼å¤§äº-1,ä»£è¡¨å·²ç»æœ‰è¿™ç§buff,è¿”å›è¿™ç§buffçš„ID
 			    		BuffEffectVO buffEffectVO = buffEffectDao.getBuffEffectByBuffType(roleEntity.getBasicInfo().getPPk(),BuffSystem.PLAYER, buffType);
 			    		if( buffEffectVO != null && buffEffectVO.getBuffId() == Integer.parseInt(buffs[i]) ) {
-			    				result.append(".ÄúÉíÉÏÓĞ").append(buffEffectVO.getBuffName()).append("Ğ§¹û,Òò´Ë²»ÄÜ´«ËÍ!");
+			    				result.append(".æ‚¨èº«ä¸Šæœ‰").append(buffEffectVO.getBuffName()).append("æ•ˆæœ,å› æ­¤ä¸èƒ½ä¼ é€!");
 			    				isCarryed = false;
 			    		}
 					}
 				}
 			}
 			if( buffEffectStrings.length >= 3){
-				// ÉùÍûÏŞÖÆ
+				// å£°æœ›é™åˆ¶
 				String[] recourse = buffEffectStrings[2].split(",");
 				if(recourse[0].equals("0")){
 					
@@ -1301,31 +1301,31 @@ public class MenuService
 				CreaditService service=new CreditProce();
 				Integer res=service.checkHaveCondition(ppk, cid, ncount);
 				if(res==-1||res.equals(-1)){
-					result.append(".ÄúÉíÉÏÓĞ").append("ÄúÔİÎŞ´ËÉùÍû!");
+					result.append(".æ‚¨èº«ä¸Šæœ‰").append("æ‚¨æš‚æ— æ­¤å£°æœ›!");
 	    			isCarryed = false;
 				}else if(res==0||res.equals(0)){
-					result.append(".ÄúÉíÉÏÓĞ").append("ÄúµÄÉùÍû²»×ãÒÔ¶Ò»»´ËÎïÆ·!");
+					result.append(".æ‚¨èº«ä¸Šæœ‰").append("æ‚¨çš„å£°æœ›ä¸è¶³ä»¥å…‘æ¢æ­¤ç‰©å“!");
 	    			isCarryed = false;
 				}
 				}
 			}
 			
 			if( buffEffectStrings.length >= 4){
-				// ³ÆºÅÏŞÖÆ
+				// ç§°å·é™åˆ¶
 				if( roleEntity.getTitleSet().isHaveByTitleStr(buffEffectStrings[3])==false)
 				{
-					result.append(".ÄúµÄ³ÆºÅ²»·û!");
+					result.append(".æ‚¨çš„ç§°å·ä¸ç¬¦!");
 					isCarryed = false;
 				}
 			}
 			
 		}
 		
-		if (isCarryed)// ¿ÉÒÔ´«ËÍ
+		if (isCarryed)// å¯ä»¥ä¼ é€
 		{
 			if (isConfirm)
 			{
-				result.append("´«ËÍĞèÒª:");
+				result.append("ä¼ é€éœ€è¦:");
 				result.append(condition_display.toString());
 				result.append("<anchor> ");
 				//result.append("<go method=\"post\" sendreferer=\"true\" href=\"/menu.do\"> ");
@@ -1335,25 +1335,25 @@ public class MenuService
 				result.append("<postfield name=\"cmd\" value=\"n3\" /> ");
 				result.append("<postfield name=\"menu_id\" value=\"" + menu.getId() + "\" /> ");
 				result.append("</go>");
-				result.append("È·¶¨");
+				result.append("ç¡®å®š");
 				result.append("</anchor>");
 			}
 			else
 			{
-				return null;// Ö±½Ó´«ËÍ
+				return null;// ç›´æ¥ä¼ é€
 			}
 
 		}
 		else
 		{
-			return "´«ËÍÌõ¼ş²»·ûºÏ" + result.toString();
+			return "ä¼ é€æ¡ä»¶ä¸ç¬¦åˆ" + result.toString();
 		}
 
 		return result.toString();
 	}
 
 	/**
-	 * °ïÅÉµØÍ¼´«ËÍ
+	 * å¸®æ´¾åœ°å›¾ä¼ é€
 	 * 
 	 * @param menu
 	 * @param userTempBean
@@ -1363,26 +1363,26 @@ public class MenuService
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 
 		RoleEntity roleEntity = (RoleEntity) object;
 		StringBuffer result = new StringBuffer();
-		// ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ°ïÅÉ
+		// åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰å¸®æ´¾
 		if (roleEntity.getBasicInfo().getFaction() != null)
 		{
 			return null;
 		}
 		else
 		{
-			// ´«´ÓÌõ¼ş²»·û
-			return "ÄúÃ»ÓĞ¼ÓÈë°ïÅÉ" + result.toString();
+			// ä¼ ä»æ¡ä»¶ä¸ç¬¦
+			return "æ‚¨æ²¡æœ‰åŠ å…¥å¸®æ´¾" + result.toString();
 		}
 	}
 
 	/**
-	 * ¹Ø±Õpk¿ª¹Ø²Ëµ¥
+	 * å…³é—­pkå¼€å…³èœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -1392,7 +1392,7 @@ public class MenuService
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		StringBuffer result = new StringBuffer();
@@ -1401,19 +1401,19 @@ public class MenuService
 		Date pk_changetime = roleEntity.getBasicInfo().getPkChangeTime();
 		if (roleEntity.getBasicInfo().getGrade() < 30)
 		{
-			result.append("Äú»¹Ã»ÓĞµ½30¼¶");
+			result.append("æ‚¨è¿˜æ²¡æœ‰åˆ°30çº§");
 		}
 		else if( roleEntity.getBasicInfo().getPkSwitch()==1 )
 		{
-			result.append("PK¿ª¹ØÒÑÊÇ¹Ø±Õ×´Ì¬");
+			result.append("PKå¼€å…³å·²æ˜¯å…³é—­çŠ¶æ€");
 		}
 		else if (!DateUtil.isOverdue(pk_changetime, 24 * 60 * 60))
 		{
-			result.append("²»ÄÜ¸Ä±äPK×´Ì¬£¬¾àÀëÉÏ´Î×´Ì¬¸ü¸ÄÊ±¼äÃ»ÓĞ³¬¹ı24Ğ¡Ê±¡£");
+			result.append("ä¸èƒ½æ”¹å˜PKçŠ¶æ€ï¼Œè·ç¦»ä¸Šæ¬¡çŠ¶æ€æ›´æ”¹æ—¶é—´æ²¡æœ‰è¶…è¿‡24å°æ—¶ã€‚");
 		}
 		else
 		{
-			result.append("PK¿ª¹ØÒÑ¹Ø±Õ");
+			result.append("PKå¼€å…³å·²å…³é—­");
 			roleEntity.getBasicInfo().updatePkSwitch(1);
 		}
 		
@@ -1421,7 +1421,7 @@ public class MenuService
 	}
 
 	/**
-	 * ´ò¿ªpk¿ª¹Ø²Ëµ¥
+	 * æ‰“å¼€pkå¼€å…³èœå•
 	 * 
 	 * @param menu
 	 * @param object
@@ -1431,7 +1431,7 @@ public class MenuService
 	{
 		if (menu == null || object == null)
 		{
-			logger.debug("menu»òobjectÎª¿Õ");
+			logger.debug("menuæˆ–objectä¸ºç©º");
 			return null;
 		}
 		StringBuffer result = new StringBuffer();
@@ -1441,19 +1441,19 @@ public class MenuService
 		
 		if (roleEntity.getBasicInfo().getGrade() < 30)
 		{
-			result.append("Äú»¹Ã»ÓĞµ½30¼¶");
+			result.append("æ‚¨è¿˜æ²¡æœ‰åˆ°30çº§");
 		}
 		else if (roleEntity.getBasicInfo().getPkSwitch()==2)
 		{
-			result.append("PK¿ª¹ØÒÑÊÇ´ò¿ª×´Ì¬");
+			result.append("PKå¼€å…³å·²æ˜¯æ‰“å¼€çŠ¶æ€");
 		}
 		else if (!DateUtil.isOverdue(pk_changetime, 24 * 60 * 60))
 		{
-			result.append("²»ÄÜ¸Ä±äPK×´Ì¬£¬¾àÀëÉÏ´Î×´Ì¬¸ü¸ÄÊ±¼äÃ»ÓĞ³¬¹ı24Ğ¡Ê±¡£");
+			result.append("ä¸èƒ½æ”¹å˜PKçŠ¶æ€ï¼Œè·ç¦»ä¸Šæ¬¡çŠ¶æ€æ›´æ”¹æ—¶é—´æ²¡æœ‰è¶…è¿‡24å°æ—¶ã€‚");
 		}
 		else
 		{
-			result.append("PK¿ª¹ØÒÑ´ò¿ª");
+			result.append("PKå¼€å…³å·²æ‰“å¼€");
 			roleEntity.getBasicInfo().updatePkSwitch(2);
 		}
 
@@ -1461,7 +1461,7 @@ public class MenuService
 	}
 
 	/**
-	 * »ñµÃnpc_idÒÀ¿¿ÈÎÎñid
+	 * è·å¾—npc_idä¾é ä»»åŠ¡id
 	 * 
 	 * @param taskid
 	 * @return
@@ -1475,7 +1475,7 @@ public class MenuService
 	}
 	
 	/**
-	 * »ñµÃmenuvoÒÀ¿¿ sceneIdºÍmenuOperate1
+	 * è·å¾—menuvoä¾é  sceneIdå’ŒmenuOperate1
 	 * 
 	 * @param taskid
 	 * @return
@@ -1489,7 +1489,7 @@ public class MenuService
 	} 
 	
 	/**
-	 * »ñµÃmenuvoÒÀ¿¿ sceneIdºÍmenuOperate1
+	 * è·å¾—menuvoä¾é  sceneIdå’ŒmenuOperate1
 	 * 
 	 * @param taskid
 	 * @return
@@ -1504,25 +1504,25 @@ public class MenuService
 	}
 
 	/**
-	 * »ñµÃÃèÊöĞÔ¸¸²Ëµ¥
+	 * è·å¾—æè¿°æ€§çˆ¶èœå•
 	 * 
 	 * @param menu
 	 * @param userTempBean
 	 * @return
 	 * 
 	 * public String displayFatherList(OperateMenuVO father_menu, UserTempBean
-	 * userTempBean) { if (father_menu == null) { logger.debug("menuÎª¿Õ"); return
+	 * userTempBean) { if (father_menu == null) { logger.debug("menuä¸ºç©º"); return
 	 * null; } StringBuffer result = new StringBuffer(); OperateMenuVO menu =
 	 * null; OperateMenuVO son_menu = null;
 	 * 
 	 * OperateMenuDao menuDao = new OperateMenuDao(); List menus =
-	 * menuDao.getSonMenuByMap(father_menu.getId()); //ËùÓĞ×Ó²Ëµ¥ List display_menus =
-	 * null; //ÓĞĞ§×Ó²Ëµ¥
+	 * menuDao.getSonMenuByMap(father_menu.getId()); //æ‰€æœ‰å­èœå• List display_menus =
+	 * null; //æœ‰æ•ˆå­èœå•
 	 * 
 	 * result.append(father_menu.getMenuName() + "<br/>");
 	 * result.append(father_menu.getMenuDialog() + "<br/>");
 	 * 
-	 * if (menus != null && menus.size() != 0) { logger.info("×Ó²Ëµ¥ÊıÁ¿=" +
+	 * if (menus != null && menus.size() != 0) { logger.info("å­èœå•æ•°é‡=" +
 	 * menus.size()); for (int i = menus.size()-1; i >= 0; i--) {
 	 * 
 	 * menu = (OperateMenuVO) menus.get(i); if
@@ -1538,13 +1538,13 @@ public class MenuService
 	 * menus.remove(i); } }
 	 * 
 	 * 
-	 * display_menus = menus; logger.info("ÓĞĞ§×Ó²Ëµ¥Îª="+display_menus.size()); for
+	 * display_menus = menus; logger.info("æœ‰æ•ˆå­èœå•ä¸º="+display_menus.size()); for
 	 * (int i = 0; i < display_menus.size(); i++) { son_menu = (OperateMenuVO)
 	 * display_menus.get(i);
 	 * 
 	 * result.append(son_menu.getMenuDialog()); result.append("<br/>");
 	 * result.append("<anchor> "); result.append("<go method=\"post\"
-	 * sendreferer=\"true\" href=\"/menu.do\"> "); //ÕâÀïÓĞ¸ö/j¡¢ygame
+	 * sendreferer=\"true\" href=\"/menu.do\"> "); //è¿™é‡Œæœ‰ä¸ª/jã€ygame
 	 * result.append("<postfield name=\"cmd\" value=\"n1\" /> ");
 	 * result.append("<postfield name=\"menu_id\" value=\"" + son_menu.getId() +
 	 * "\" /> "); result.append("</go>");

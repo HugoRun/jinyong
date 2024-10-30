@@ -2,22 +2,21 @@ package com.pub;
 
 import com.ls.pub.util.DateUtil;
 
-public class GameArgs
-{
-	/******pkÀàĞÍÖ®ÆÕÍ¨PK*******/
-	public static final String PK_TYPE_PUTONG="0";
-	/*****pkÀàĞÍÖ®Ç¿ÖÆPK********/
-	public static final String PK_TYPE_QIANGZHI="1";
-	/*******pkÀàĞÍÖ®»î¶¯PK********/
-	public static final String PK_TYPE_ACTIVE="2";
-	/*****pk¿ª¹Ø¿ª********/
-	public static final String PK_SWICH_OPEN="2";
-	/*****pk¿ª¹Ø¹Ø********/
-	public static final String PK_SWICH_CLOSE="1";
-	/****pkËÀÍöµôÂä¼¸ÂÊ****/
-	public static final int PK_DEAD_DROP_RATE=1000;
-	public static final int YELLOW_NAME_VALUE=0;//»ÆÃûÖµ
-	public static final int RED_NAME_VALUE=50;//ºìÃûÖµ
-	
-	public static long CONSUME_TIME_UNIT = 5*DateUtil.MINUTE*1000;//Ïû³ı×ï¶ñÖµµÄµ¥Î»Ê±¼ä£¬5·ÖÖÓ£¨µ¥Î»ºÁÃë£©
+public class GameArgs {
+    /******pkç±»å‹ä¹‹æ™®é€šPK*******/
+    public static final String PK_TYPE_PUTONG = "0";
+    /*****pkç±»å‹ä¹‹å¼ºåˆ¶PK********/
+    public static final String PK_TYPE_QIANGZHI = "1";
+    /*******pkç±»å‹ä¹‹æ´»åŠ¨PK********/
+    public static final String PK_TYPE_ACTIVE = "2";
+    /*****pkå¼€å…³å¼€********/
+    public static final String PK_SWICH_OPEN = "2";
+    /*****pkå¼€å…³å…³********/
+    public static final String PK_SWICH_CLOSE = "1";
+    /****pkæ­»äº¡æ‰è½å‡ ç‡****/
+    public static final int PK_DEAD_DROP_RATE = 1000;
+    public static final int YELLOW_NAME_VALUE = 0;//é»„åå€¼
+    public static final int RED_NAME_VALUE = 50;//çº¢åå€¼
+
+    public static long CONSUME_TIME_UNIT = 5 * DateUtil.MINUTE * 1000;//æ¶ˆé™¤ç½ªæ¶å€¼çš„å•ä½æ—¶é—´ï¼Œ5åˆ†é’Ÿï¼ˆå•ä½æ¯«ç§’ï¼‰
 }

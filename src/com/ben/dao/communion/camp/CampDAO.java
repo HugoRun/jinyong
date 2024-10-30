@@ -5,7 +5,7 @@ package com.ben.dao.communion.camp;
 
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 10:26:21 AM
  */

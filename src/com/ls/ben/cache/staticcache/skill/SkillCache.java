@@ -10,13 +10,13 @@ public class SkillCache extends CacheBase
 	public static String SKILL_BY_ID = "skill_by_id";
 	
 	/**
-	 * 通过id得到skill信息
+	 * 閫氳繃id寰楀埌skill淇℃伅
 	 * @param skill_id
 	 * @return
 	 */
 	public static SkillVO getById( int skill_id )
 	{
-		logger.debug("通过id得到skill信息:skill_id="+skill_id);
+		logger.debug("閫氳繃id寰楀埌skill淇℃伅:skill_id="+skill_id);
 		SkillVO skill_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, SKILL_BY_ID);
 		skill_info = (SkillVO)result.get(skill_id+"");
@@ -25,13 +25,13 @@ public class SkillCache extends CacheBase
 	}
 	
 	/**
-	 * 通过id得到skill名称
+	 * 閫氳繃id寰楀埌skill鍚嶇О
 	 * @param skill_id
 	 * @return
 	 */
 	public static String getNameById( int skill_id )
 	{
-		logger.debug("通过id得到skill信息:skill_id="+skill_id);
+		logger.debug("閫氳繃id寰楀埌skill淇℃伅:skill_id="+skill_id);
 		String skill_name = "";
 		SkillVO skill_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, SKILL_BY_ID);
@@ -45,13 +45,13 @@ public class SkillCache extends CacheBase
 	
 	
 	/**
-	 * 通过id得到skill类型
+	 * 閫氳繃id寰楀埌skill绫诲瀷
 	 * @param skill_id
 	 * @return
 	 */
 	public static int getTypeById( int skill_id )
 	{
-		logger.debug("通过id得到skill类型:skill_id="+skill_id);
+		logger.debug("閫氳繃id寰楀埌skill绫诲瀷:skill_id="+skill_id);
 		int  type = 1;
 		SkillVO skill_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, SKILL_BY_ID);
@@ -63,13 +63,13 @@ public class SkillCache extends CacheBase
 	}
 	
 	/**
-	 * 通过id得到skill组id
+	 * 閫氳繃id寰楀埌skill缁刬d
 	 * @param skill_id
 	 * @return
 	 */
 	public static int getGroupById( String skill_id )
 	{
-		logger.debug("通过id得到skill类型:skill_id="+skill_id);
+		logger.debug("閫氳繃id寰楀埌skill绫诲瀷:skill_id="+skill_id);
 		int  sk_group = 1;
 		SkillVO skill_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, SKILL_BY_ID);
@@ -81,13 +81,13 @@ public class SkillCache extends CacheBase
 	}
 	
 	/**
-	 * 通过id得到skill下一级熟练度
+	 * 閫氳繃id寰楀埌skill涓嬩竴绾х啛缁冨害
 	 * @param skill_id
 	 * @return
 	 */
 	public int getNextSleightById( String skill_id )
 	{
-		logger.debug("通过id得到skill类型:skill_id="+skill_id);
+		logger.debug("閫氳繃id寰楀埌skill绫诲瀷:skill_id="+skill_id);
 		int  sk_next_sleight = 0;
 		SkillVO skill_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, SKILL_BY_ID);

@@ -1,48 +1,48 @@
 <?xml version="1.0" ?>
-<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
-      "http://www.wapforum.org/DTD/wml_1.1.xml">
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
 <%@page contentType="text/vnd.wap.wml"
-	import="java.util.*,com.ben.dao.petinfo.*,com.ben.vo.petinfo.PetInfoVO,com.ben.dao.info.partinfo.*,com.ben.vo.info.partinfo.PartInfoVO"
-	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
-	<%@page import="com.pub.ben.info.*,com.ls.ben.cache.staticcache.pet.*"%>
-	<%@page import="com.ls.ben.dao.info.pet.*,com.pm.service.pic.*"%> 
-	<%@page import="com.ls.web.service.player.RoleService"%> 
-	<%@page import="com.ls.model.user.RoleEntity"%> 
+    import="java.util.*,com.ben.dao.petinfo.*,com.ben.vo.petinfo.PetInfoVO,com.ben.dao.info.partinfo.*,com.ben.vo.info.partinfo.PartInfoVO"
+    pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
+    <%@page import="com.pub.ben.info.*,com.ls.ben.cache.staticcache.pet.*"%>
+    <%@page import="com.ls.ben.dao.info.pet.*,com.pm.service.pic.*"%>
+    <%@page import="com.ls.web.service.player.RoleService"%>
+    <%@page import="com.ls.model.user.RoleEntity"%>
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="act" title="<s:message key = "gamename"/>">
 <p>
-	<%   
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
-	
-	    String pPk =  roleInfo.getBasicInfo().getPPk()+"";
-		String uPk =  roleInfo.getBasicInfo().getUPk()+"";
-		String jumpterm = null;
-		if (request.getParameter("jumpterm") != null) {
-			jumpterm = request.getParameter("jumpterm");
-		} else {
-			jumpterm = (String) request.getAttribute("jumpterm");
-		}
-		String mapid = null;
-		if (request.getParameter("mapid") != null) {
-			mapid = request.getParameter("mapid");
-		} else {
-			mapid = (String) request.getAttribute("mapid");
-		} 
-		String petId = request.getParameter("petId");
-		String petPk = request.getParameter("petPk");
-		PetInfoDAO dao = new PetInfoDAO();
-		PetSkillDao petSkillDao = new PetSkillDao();
-		PetInfoVO vo = (PetInfoVO) dao.getPetInfoView(petPk);
-		PicService picService = new PicService();
-		PetSkillCache petCache = new PetSkillCache();
-		
-		String petImg1 = picService.getPetPicStr(roleInfo,petPk); 
-	%> 
-		
+    <%
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
+
+        String pPk =  roleInfo.getBasicInfo().getPPk()+"";
+        String uPk =  roleInfo.getBasicInfo().getUPk()+"";
+        String jumpterm = null;
+        if (request.getParameter("jumpterm") != null) {
+            jumpterm = request.getParameter("jumpterm");
+        } else {
+            jumpterm = (String) request.getAttribute("jumpterm");
+        }
+        String mapid = null;
+        if (request.getParameter("mapid") != null) {
+            mapid = request.getParameter("mapid");
+        } else {
+            mapid = (String) request.getAttribute("mapid");
+        }
+        String petId = request.getParameter("petId");
+        String petPk = request.getParameter("petPk");
+        PetInfoDAO dao = new PetInfoDAO();
+        PetSkillDao petSkillDao = new PetSkillDao();
+        PetInfoVO vo = (PetInfoVO) dao.getPetInfoView(petPk);
+        PicService picService = new PicService();
+        PetSkillCache petCache = new PetSkillCache();
+
+        String petImg1 = picService.getPetPicStr(roleInfo,petPk);
+    %>
+
 宠物名称:<%=vo.getPetName()%><br/>
 <%=petImg1 %>
 宠物昵称:<%=vo.getPetNickname()%><br/>

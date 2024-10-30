@@ -20,7 +20,7 @@ public class backActiveAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 
-	// ´¦ÀíÍæ¼Ò»ØÍËºóÔÙ´ÎÌá½»ÇëÇóµÄÎÊÌâ
+	// å¤„ç†ç©å®¶å›é€€åå†æ¬¡æäº¤è¯·æ±‚çš„é—®é¢˜
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -46,23 +46,23 @@ public class backActiveAction extends DispatchAction
 						String time = Long.toString(new Date().getTime()/1000);
 						String sign = MD5Util.md5Hex("51"+username+time+key);
 						preiour = outtime_hint+"<br/>";
-						preiour = preiour+"<anchor><go href=\"http://interface.juu.cn/new/no_pws_login.php?gameid=51&amp;username="+username+"&amp;time="+time+"&amp;sign="+sign+"\" method=\"get\"></go>·µ»Ø×¨Çø</anchor><br/>";
+						preiour = preiour+"<anchor><go href=\"http://interface.juu.cn/new/no_pws_login.php?gameid=51&amp;username="+username+"&amp;time="+time+"&amp;sign="+sign+"\" method=\"get\"></go>è¿”å›ä¸“åŒº</anchor><br/>";
 					
 					}else{
 						if(GameConfig.getChannelId() == Channel.AIR){
-							preiour = "Á¬½Ó³¬Ê±,ÇëÖØĞÂµÇÂ½<br/>";
-							preiour = preiour+"<anchor><go method='get' href=\""+response.encodeURL(GameConfig.getContextPath()+"/login.do?cmd=n3")+"\"/>ÖØĞÂµÇÂ½</anchor>";
+							preiour = "è¿æ¥è¶…æ—¶,è¯·é‡æ–°ç™»é™†<br/>";
+							preiour = preiour+"<anchor><go method='get' href=\""+response.encodeURL(GameConfig.getContextPath()+"/login.do?cmd=n3")+"\"/>é‡æ–°ç™»é™†</anchor>";
 						}else{
 							String login_platform_url = GameConfig.getUrlOfLoginPlatform();
 							preiour = outtime_hint+"<br/>";
-							preiour = preiour+"<a href=\""+login_platform_url+"\">·µ»Ø×¨Çø</a>";	
+							preiour = preiour+"<a href=\""+login_platform_url+"\">è¿”å›ä¸“åŒº</a>";	
 						}
 					}
 				}
 				else
 				{ 
-					preiour = "ÎŞĞ§ÇëÇó!<br/>";
-					preiour = preiour+"<anchor><go method='get' href=\""+response.encodeURL(GameConfig.getContextPath()+"/login.do?cmd=n3")+"\"/>·µ»ØÊ×Ò³</anchor>";
+					preiour = "æ— æ•ˆè¯·æ±‚!<br/>";
+					preiour = preiour+"<anchor><go method='get' href=\""+response.encodeURL(GameConfig.getContextPath()+"/login.do?cmd=n3")+"\"/>è¿”å›é¦–é¡µ</anchor>";
 				}
 			}
 			else
@@ -80,14 +80,14 @@ public class backActiveAction extends DispatchAction
 				}
 				catch (Exception ex)
 				{
-					preiour = "Á¬½Ó³¬Ê±,ÇëÖØĞÂµÇÂ½<br/>";
-					preiour = preiour+"<anchor><go method='get' href=\""+response.encodeURL(GameConfig.getContextPath()+"/login.do?cmd=n3")+"\"/>ÖØĞÂµÇÂ½</anchor>";
+					preiour = "è¿æ¥è¶…æ—¶,è¯·é‡æ–°ç™»é™†<br/>";
+					preiour = preiour+"<anchor><go method='get' href=\""+response.encodeURL(GameConfig.getContextPath()+"/login.do?cmd=n3")+"\"/>é‡æ–°ç™»é™†</anchor>";
 				}
 			}else{
 				String outtime_hint = GameConfig.getTimeoutHint();
 				String login_platform_url = GameConfig.getUrlOfLoginPlatform();
 				preiour = outtime_hint+"<br/>";
-				preiour = preiour+"<a href=\""+login_platform_url+"\">·µ»Ø×¨Çø</a>";	
+				preiour = preiour+"<a href=\""+login_platform_url+"\">è¿”å›ä¸“åŒº</a>";	
 			}
 			request.setAttribute("PreviourFile", preiour);
 			return mapping.findForward("back");

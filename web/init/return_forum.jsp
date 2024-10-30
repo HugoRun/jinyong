@@ -1,13 +1,13 @@
 <%@page contentType="text/vnd.wap.wml"
-	import="com.ls.pub.constant.Channel,com.ls.pub.config.GameConfig,com.ls.pub.util.encrypt.MD5Util,java.util.Date"
-	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.constant.Channel,com.ls.pub.config.GameConfig,com.ls.pub.util.encrypt.MD5Util,java.util.Date"
+    pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
 <%
-	String forum_url = GameConfig.getUrlOfForum();
-	String area_id = GameConfig.getAreaId();
-	int channel_id = GameConfig.getChannelId();
+    String forum_url = GameConfig.getUrlOfForum();
+    String area_id = GameConfig.getAreaId();
+    int channel_id = GameConfig.getChannelId();
 
-	if (channel_id == Channel.SINA || channel_id==Channel.OKP) {
-	} else if (channel_id == Channel.AIR) {
+    if (channel_id == Channel.SINA || channel_id==Channel.OKP) {
+    } else if (channel_id == Channel.AIR) {
 %>
 <anchor>
 <go href="http://kong.net/b/wap/t/l.jsp?bid=9397" method="get" ></go>
@@ -15,12 +15,12 @@
 </anchor>
 <br />
 <%
-	} else if (channel_id == Channel.JUU) {
-		String key = "3IOJ3934KJ3493KJ94K";
-		String username = (String) request.getSession().getAttribute(
-				"ssid");
-		String time = Long.toString(new Date().getTime() / 1000);
-		String sign_bak = "51" + username + time + key;
+    } else if (channel_id == Channel.JUU) {
+        String key = "3IOJ3934KJ3493KJ94K";
+        String username = (String) request.getSession().getAttribute(
+                "ssid");
+        String time = Long.toString(new Date().getTime() / 1000);
+    	String sign_bak = "51" + username + time + key;
 		String sign = MD5Util.md5Hex(sign_bak);
 %>
 <anchor>

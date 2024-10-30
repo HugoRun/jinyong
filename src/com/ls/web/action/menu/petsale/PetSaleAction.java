@@ -37,7 +37,7 @@ public class PetSaleAction extends DispatchAction
 
 	Logger logger =  Logger.getLogger("log.action");
 	/** 
-	 * ³èÎïÁĞ±í
+	 * å® ç‰©åˆ—è¡¨
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -60,18 +60,18 @@ public class PetSaleAction extends DispatchAction
 		
 		request.setAttribute("mapid", roleInfo.getBasicInfo().getSceneId()+"");
 		
-		//´Ó½ÇÉ«ÉíÉÏÈ¡µÃ³èÎïÁĞ±í
+		//ä»è§’è‰²èº«ä¸Šå–å¾—å® ç‰©åˆ—è¡¨
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> pet_list = petInfoDAO.getPetInfoList(pPk+"");
 		
-		logger.info("ÉíÉÏ³èÎïÊıÁ¿"+pet_list.size());
+		logger.info("èº«ä¸Šå® ç‰©æ•°é‡"+pet_list.size());
 		
 		request.setAttribute("pet_list",pet_list);
 
 		return mapping.findForward("pet_list");
 	}	
 	
-	//Âô³ö³èÎï
+	//å–å‡ºå® ç‰©
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -87,27 +87,27 @@ public class PetSaleAction extends DispatchAction
 		String hintString = "";
 		
 		if (petvo.getPetIsBring() != 0) {
-			hintString = "´Ë³èÎïµÄÎª³öÕ½×´Ì¬,²»ÄÜÂô³ö!";
+			hintString = "æ­¤å® ç‰©çš„ä¸ºå‡ºæˆ˜çŠ¶æ€,ä¸èƒ½å–å‡º!";
 			request.setAttribute("hint", hintString);			
 			return mapping.findForward("pet_sale_info");			
 		}
 		
 		if (petvo.getPetLonge() == 0) {
-			hintString = "´Ë³èÎïµÄÊÙÃüÎªÁã,²»ÄÜÂô³ö!";
+			hintString = "æ­¤å® ç‰©çš„å¯¿å‘½ä¸ºé›¶,ä¸èƒ½å–å‡º!";
 			request.setAttribute("hint", hintString);			
 			return mapping.findForward("pet_sale_info");			
 		}
-		//½ÇÉ«Âô³ö³èÎï
+		//è§’è‰²å–å‡ºå® ç‰©
 		PetService petService = new PetService();
 		petService.petSale(pPk+"",petPk);
 		
-		hintString = "ÄúÒÔ"+petvo.getPetSale() +"ÎÄµÄ¼Û¸ñÂô³öÁË"+petvo.getPetName();		
+		hintString = "æ‚¨ä»¥"+petvo.getPetSale() +"æ–‡çš„ä»·æ ¼å–å‡ºäº†"+petvo.getPetName();		
 		request.setAttribute("hint", hintString);
 		
 		return mapping.findForward("pet_sale_info");
 	}
 	
-	//ÁĞ³ö³èÎïÏêÏ¸ĞÅÏ¢
+	//åˆ—å‡ºå® ç‰©è¯¦ç»†ä¿¡æ¯
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

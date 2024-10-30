@@ -17,16 +17,16 @@ import com.ls.web.service.mall.MallService;
 import com.ls.web.service.system.UMsgService;
 
 /**
- * @author HHJ ÏµÍ³ÌØÊâÀàĞÍµÄµ¯³öÊ½ÏûÏ¢
+ * @author HHJ ç³»ç»Ÿç‰¹æ®Šç±»å‹çš„å¼¹å‡ºå¼æ¶ˆæ¯
  */
 public class PopUpMsgService
 {
 	/**
-	 * Ôö¼Óµ¯³öÊ½ÏûÏ¢
+	 * å¢åŠ å¼¹å‡ºå¼æ¶ˆæ¯
 	 * @param p_pk
-	 * @param gread Íæ¼ÒµÈ¼¶
-	 * @param digit µÀ¾ßÊı×éÎ»ÖÃ
-	 * @param msgtype ÏûÏ¢ÀàĞÍ
+	 * @param gread ç©å®¶ç­‰çº§
+	 * @param digit é“å…·æ•°ç»„ä½ç½®
+	 * @param msgtype æ¶ˆæ¯ç±»å‹
 	 */
 	public void addSysSpecialMsg(int p_pk,int gread,int digit, int msgtype)
 	{
@@ -37,68 +37,68 @@ public class PopUpMsgService
 		msgInfo.setMsgPriority(PopUpMsgType.SYS_TESHU_MSG_FIRST);
 		switch (msgtype)
 		{
-			case PopUpMsgType.GO_UP_GRADE:// ##µÈ¼¶Çé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.GO_UP_GRADE:// ##ç­‰çº§æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.GO_UP_GRADE + "");
 				msgInfo.setMsgOperate2(gread+","+digit);
 				break;
-			case PopUpMsgType.WRAP_LOWER_LIMIT:// ##°ü¹üÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.WRAP_LOWER_LIMIT:// ##åŒ…è£¹æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.WRAP_LOWER_LIMIT + "");
 				break;
-			case PopUpMsgType.PET_FATIGUE:// ##³èÎïÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.PET_FATIGUE:// ##å® ç‰©æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.PET_FATIGUE + "");
 				break;
-			case PopUpMsgType.ATTAIN_PROP_TYPE:// ##µÀ¾ßÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.ATTAIN_PROP_TYPE:// ##é“å…·æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.ATTAIN_PROP_TYPE + "");
 				msgInfo.setMsgOperate2(gread+","+digit);
 				break;
-			case PopUpMsgType.TASK_INSTANCE://##¸±±¾ÈÎÎñÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.TASK_INSTANCE://##å‰¯æœ¬ä»»åŠ¡æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.TASK_INSTANCE + "");
 				msgInfo.setMsgOperate2(gread+","+digit);
 				break;
-			case PopUpMsgType.TASK_30TONG://30¼¶°ïÅÉ½áÊøÈÎÎñÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.TASK_30TONG://30çº§å¸®æ´¾ç»“æŸä»»åŠ¡æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.TASK_30TONG + "");
 				break;
-			case PopUpMsgType.TASK_30PK://30¼¶PK½áÊøÈÎÎñÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.TASK_30PK://30çº§PKç»“æŸä»»åŠ¡æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.TASK_30PK + "");
 				break;
-			case PopUpMsgType.MENU_INSTANCE://¸±±¾²Ëµ¥
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.MENU_INSTANCE://å‰¯æœ¬èœå•
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.MENU_INSTANCE + "");
 				msgInfo.setMsgOperate2(gread+","+digit);
 				break;
-			case PopUpMsgType.MENU_SIEGE://¹¥³Ç²Ëµ¥Çé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.MENU_SIEGE://æ”»åŸèœå•æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.MENU_SIEGE + "");
 				break;
-			case PopUpMsgType.PROP_GRADE://ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.PROP_GRADE://ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.PROP_GRADE + "");
 				break;
-			case PopUpMsgType.VIP_ENDTIME://VIP»áÔ±µ½ÆÚÒÔºó
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.VIP_ENDTIME://VIPä¼šå‘˜åˆ°æœŸä»¥å
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.VIP_ENDTIME + "");
 				break;
-			case PopUpMsgType.PK_SWITCH://PK¿ª¹Ø´ò¿ª
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.PK_SWITCH://PKå¼€å…³æ‰“å¼€
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.PK_SWITCH + "");
 				break;
-			case PopUpMsgType.NEW_ROLE://ĞÂ×¢²áÕËºÅ
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.NEW_ROLE://æ–°æ³¨å†Œè´¦å·
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.NEW_ROLE + "");
 				break;
-			/*case PopUpMsgType.CNN_TODAY://ÉÌ³Ç½ñÈÕ¿ìÑ¶
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			/*case PopUpMsgType.CNN_TODAY://å•†åŸä»Šæ—¥å¿«è®¯
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.CNN_TODAY + "");
 				break;*/
-			case PopUpMsgType.USE_PROP://Ê¹ÓÃµÀ¾ß
-				// ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			case PopUpMsgType.USE_PROP://ä½¿ç”¨é“å…·
+				// åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 				msgInfo.setMsgOperate1(PopUpMsgType.USE_PROP + "");
 				msgInfo.setMsgOperate2(gread+","+digit);
 				break;
@@ -108,15 +108,15 @@ public class PopUpMsgService
 	}
 
 	/**
-	 * µÈ¼¶ÀàĞÍ
+	 * ç­‰çº§ç±»å‹
 	 * @return
 	 */
 	public String SysSpecialGrade(UMessageInfoVO msg,HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
-		String[] msgOperate2 = msg.getMsgOperate2().split(",");//È¡µÃµÈ¼¶µÄµÈ¼¶ËùÔÚµÄÎ»ÖÃ
-		String[] go_up_mallprop = GameConfig.getPropertiesObjectArray("go_up_mallprop");//È¡µÃÒªÂòµÄµÀ¾ßID
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		String[] msgOperate2 = msg.getMsgOperate2().split(",");//å–å¾—ç­‰çº§çš„ç­‰çº§æ‰€åœ¨çš„ä½ç½®
+		String[] go_up_mallprop = GameConfig.getPropertiesObjectArray("go_up_mallprop");//å–å¾—è¦ä¹°çš„é“å…·ID
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(go_up_mallprop[Integer.parseInt(msgOperate2[1])]);
 		if(commodityVO != null){
@@ -127,19 +127,19 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("go_up_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("µÈ¼¶Êı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("ç­‰çº§æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	/**
-	 * °ü¹üÀàĞÍ
+	 * åŒ…è£¹ç±»å‹
 	 * @return
 	 */
 	public String SysSpecialWrapLowerLimit(HttpServletResponse response,HttpServletRequest request){
@@ -147,16 +147,16 @@ public class PopUpMsgService
 		String wrap_hint = GameConfig.getPropertiesObject("wrap_hint");
 		hint.append(wrap_hint+"<br/><anchor> "); 
 		hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/popupmsg.do?cmd=n4")+"\"></go>");
-		hint.append("È·ÈÏ¹ºÂò");
+		hint.append("ç¡®è®¤è´­ä¹°");
 		hint.append("</anchor>");
 		hint.append("<br/><anchor> "); 
 		hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-		hint.append("ÏÂ´Î°É");
+		hint.append("ä¸‹æ¬¡å§");
 		hint.append("</anchor>");
 		return hint.toString();
 	}
 	/**
-	 * ³èÎïÇé¿ö
+	 * å® ç‰©æƒ…å†µ
 	 * @param resources
 	 * @param response
 	 * @return
@@ -164,7 +164,7 @@ public class PopUpMsgService
 	public String SysSpecialPetFatigue(HttpServletResponse response,HttpServletRequest request){
 		StringBuffer hint = new StringBuffer();
 		String pet_mallprop = GameConfig.getPropertiesObject("pet_mallprop");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(pet_mallprop);
 		if(commodityVO != null){
@@ -175,28 +175,28 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("pet_fatigue_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("³èÎïÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("å® ç‰©æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	/**
-	 * »ñµÃµÀ¾ßÇé¿ö 
+	 * è·å¾—é“å…·æƒ…å†µ 
 	 * @param response
 	 * @return
 	 */
 	public String SysSpecialAttainProp(UMessageInfoVO msg,HttpServletResponse response,HttpServletRequest request){
 		StringBuffer hint = new StringBuffer();
-		String[] msgOperate2 = msg.getMsgOperate2().split(",");//È¡µÃµÈ¼¶µÄµÈ¼¶ËùÔÚµÄÎ»ÖÃ
+		String[] msgOperate2 = msg.getMsgOperate2().split(",");//å–å¾—ç­‰çº§çš„ç­‰çº§æ‰€åœ¨çš„ä½ç½®
 		PropVO prop = PropCache.getPropById(Integer.parseInt(msgOperate2[0]));
-		String[] attainprop_mallprop = GameConfig.getPropertiesObjectArray("attainprop_mallprop");//È¡µÃÒªÂòµÄµÀ¾ßID
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		String[] attainprop_mallprop = GameConfig.getPropertiesObjectArray("attainprop_mallprop");//å–å¾—è¦ä¹°çš„é“å…·ID
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(attainprop_mallprop[Integer.parseInt(msgOperate2[1])]);
 		if(commodityVO != null){
@@ -207,28 +207,28 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("attainprop_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("µÀ¾ßÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("é“å…·æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * ¸±±¾ÈÎÎñÇé¿ö
+	 * å‰¯æœ¬ä»»åŠ¡æƒ…å†µ
 	 * @return
 	 */
 	public String SysSpecialTaskInstance(UMessageInfoVO msg,HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
-		String[] msgOperate2 = msg.getMsgOperate2().split(",");//È¡µÃµÈ¼¶µÄµÈ¼¶ËùÔÚµÄÎ»ÖÃ
-		String[] task_instance_mallprop = GameConfig.getPropertiesObjectArray("task_instance_mallprop");//È¡µÃÒªÂòµÄµÀ¾ßID
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		String[] msgOperate2 = msg.getMsgOperate2().split(",");//å–å¾—ç­‰çº§çš„ç­‰çº§æ‰€åœ¨çš„ä½ç½®
+		String[] task_instance_mallprop = GameConfig.getPropertiesObjectArray("task_instance_mallprop");//å–å¾—è¦ä¹°çš„é“å…·ID
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(task_instance_mallprop[Integer.parseInt(msgOperate2[1])]);
 		if(commodityVO != null){
@@ -239,27 +239,27 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("task_instance_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("¸±±¾Êı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("å‰¯æœ¬æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * //30¼¶°ïÅÉ½áÊøÈÎÎñÇé¿ö
+	 * //30çº§å¸®æ´¾ç»“æŸä»»åŠ¡æƒ…å†µ
 	 * @return
 	 */
 	public String SysSpecialTask30Tong(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String task_30tong_mallprop = GameConfig.getPropertiesObject("task_30tong_mallprop");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(task_30tong_mallprop);
 		if(commodityVO != null){
@@ -270,26 +270,26 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("task_30tong_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("°ïÅÉÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("å¸®æ´¾æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	/**
-	 * //30¼¶PK½áÊøÈÎÎñÇé¿ö
+	 * //30çº§PKç»“æŸä»»åŠ¡æƒ…å†µ
 	 * @return
 	 */
 	public String SysSpecialTask30Pk(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String task_30pk_mallprop = GameConfig.getPropertiesObject("task_30pk_mallprop");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(task_30pk_mallprop);
 		if(commodityVO != null){
@@ -300,30 +300,30 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("task_30pk_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("pkÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("pkæ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * ²Ëµ¥½øÈë¸±±¾Çé¿ö
+	 * èœå•è¿›å…¥å‰¯æœ¬æƒ…å†µ
 	 * @return
 	 */
 	public String SysSpecialMenuInstance(UMessageInfoVO msg,HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
-		String[] msgOperate2 = msg.getMsgOperate2().split(",");//È¡µÃµÈ¼¶µÄµÈ¼¶ËùÔÚµÄÎ»ÖÃ
+		String[] msgOperate2 = msg.getMsgOperate2().split(",");//å–å¾—ç­‰çº§çš„ç­‰çº§æ‰€åœ¨çš„ä½ç½®
 		int digit  = GameConfig.getMenuInstance(msgOperate2[0], "menu_instance_grade");
 		if(digit != -1){
-			String[] menu_instance_mallprop = GameConfig.getPropertiesObjectArray("menu_instance_mallprop");//È¡µÃÒªÂòµÄµÀ¾ßID
-			//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+			String[] menu_instance_mallprop = GameConfig.getPropertiesObjectArray("menu_instance_mallprop");//å–å¾—è¦ä¹°çš„é“å…·ID
+			//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 			MallService mallService = new MallService();
 			CommodityVO commodityVO = mallService.getPropCommodityInfo(menu_instance_mallprop[digit]);
 			if(commodityVO != null){
@@ -334,30 +334,30 @@ public class PopUpMsgService
 				hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 				hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("menu_instance_discount") + "\" /> ");
 				hint.append("</go>");
-				hint.append("È·ÈÏ¹ºÂò");
+				hint.append("ç¡®è®¤è´­ä¹°");
 				hint.append("</anchor>");
 				hint.append("<br/><anchor> "); 
 				hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-				hint.append("ÏÂ´Î°É");
+				hint.append("ä¸‹æ¬¡å§");
 				hint.append("</anchor>");
 			}else{
-				hint.append("²Ëµ¥Êı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+				hint.append("èœå•æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 			}
 		}else{
-			hint.append("²Ëµ¥Êı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("èœå•æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * ¹¥³Ç²Ëµ¥Çé¿ö
+	 * æ”»åŸèœå•æƒ…å†µ
 	 * @return
 	 */
 	public String SysSpecialMenuSiege(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String menu_siege_mallprop = GameConfig.getPropertiesObject("menu_siege_mallprop");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(menu_siege_mallprop);
 		if(commodityVO != null){
@@ -368,27 +368,27 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("menu_siege_mallprop") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("¹¥³ÇÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("æ”»åŸæ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
+	 * ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
 	 * @return
 	 */
 	public String SysSpecialPropGrade(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String prop_grade_mallprop = GameConfig.getPropertiesObject("prop_grade_mallprop");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(prop_grade_mallprop);
 		if(commodityVO != null){
@@ -399,27 +399,27 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("prop_grade_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("ÌØÊâµÀ¾ßÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("ç‰¹æ®Šé“å…·æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * VIPµ½ÆÚ
+	 * VIPåˆ°æœŸ
 	 * @return
 	 */
 	public String SysSpecialVipEndtime(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String vip_endtime_proptype = GameConfig.getPropertiesObject("vip_endtime_proptype");
-		//Ê×ÏÈµÃµ½ËùÓĞ»áÔ±ÀàĞÍµÄµÀ¾ß
+		//é¦–å…ˆå¾—åˆ°æ‰€æœ‰ä¼šå‘˜ç±»å‹çš„é“å…·
 		PropDao propDao = new PropDao();
 		List list = propDao.getListByType(Integer.parseInt(vip_endtime_proptype));
 	    if(list != null && list.size() > 0){
@@ -435,28 +435,28 @@ public class PopUpMsgService
 	    		hint.append("<postfield name=\"prop_id\" value=\""+vo.getPropID()+"\" />");
 	    		hint.append("<postfield name=\"discount\" value=\""+GameConfig.getPropertiesObject("vip_endtime_discount")+"\" />");
 	    		hint.append("</go>");
-	    		hint.append("¹ºÂò");
+	    		hint.append("è´­ä¹°");
 	    		hint.append("</anchor><br/>");
 	    	}
 	    	hint.append("<anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 	    }else{
-	    	hint.append("vipµ½ÆÚÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+	    	hint.append("vipåˆ°æœŸæ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 	    } 
 		return hint.toString();
 	}
 	
 	/**
-	 * PK¿ª¹Ø´ò¿ªµÄÊ±ºò
+	 * PKå¼€å…³æ‰“å¼€çš„æ—¶å€™
 	 * @return
 	 */
 	public String SysSpecialPkSwitch(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String pk_switch_mallprop = GameConfig.getPropertiesObject("pk_switch_mallprop");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(pk_switch_mallprop);
 		if(commodityVO != null){
@@ -467,27 +467,27 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("pk_switch_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("pk¿ª¹ØÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("pkå¼€å…³æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	
 	/**
-	 * ĞÂ½ÇÉ«½øÈëÓÎÏ·ÌáÊ¾
+	 * æ–°è§’è‰²è¿›å…¥æ¸¸æˆæç¤º
 	 * @return
 	 */
 	public String SysSpecialNewRole(HttpServletResponse response,HttpServletRequest request)
 	{
 		StringBuffer hint = new StringBuffer();
 		String new_role_prop_id = GameConfig.getPropertiesObject("new_role_prop_id");
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(new_role_prop_id);
 		if(commodityVO != null){
@@ -498,54 +498,54 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("new_role_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("½ÇÉ«½øÈëÓÎÏ·Êı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("è§’è‰²è¿›å…¥æ¸¸æˆæ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}
 	/**
-	 * ÉÌ³Ç½ñÈÕ¿ìÑ¶
+	 * å•†åŸä»Šæ—¥å¿«è®¯
 	 * @return
 	 *//*
 	public String loginHotDisplay(HttpServletResponse response,HttpServletRequest request){
 		StringBuffer hint = new StringBuffer();
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getRandomHotCommodity();
-		hint.append("¡¾½ñÈÕ¿ìÑ¶¡¿<br/>");
+		hint.append("ã€ä»Šæ—¥å¿«è®¯ã€‘<br/>");
 		if(commodityVO != null){
 			hint.append(commodityVO.getHotDisplay()+"<br/><anchor> "); 
 			hint.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/popupmsg.do?cmd=n3")+"\">");
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + commodityVO.getDiscount() + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("½ñÈÕÃ»ÓĞÈÈÏúÉÌÆ·");
+			hint.append("ä»Šæ—¥æ²¡æœ‰çƒ­é”€å•†å“");
 		}
 		return hint.toString();
 	}*/
 	
 	/**
-	 * Ê¹ÓÃµÀ¾ßÇé¿ö 
+	 * ä½¿ç”¨é“å…·æƒ…å†µ 
 	 * @param response
 	 * @return
 	 */
 	public String SysSpecialUseProp(UMessageInfoVO msg,HttpServletResponse response,HttpServletRequest request){
 		StringBuffer hint = new StringBuffer();
-		String[] msgOperate2 = msg.getMsgOperate2().split(",");//È¡µÃµÈ¼¶µÄµÈ¼¶ËùÔÚµÄÎ»ÖÃ
-		String[] use_prop_mallprop = GameConfig.getPropertiesObjectArray("use_prop_mallprop");//È¡µÃÒªÂòµÄµÀ¾ßID
-		//µÃµ½ÉÌ³ÇÉÌÆ·ĞÅÏ¢
+		String[] msgOperate2 = msg.getMsgOperate2().split(",");//å–å¾—ç­‰çº§çš„ç­‰çº§æ‰€åœ¨çš„ä½ç½®
+		String[] use_prop_mallprop = GameConfig.getPropertiesObjectArray("use_prop_mallprop");//å–å¾—è¦ä¹°çš„é“å…·ID
+		//å¾—åˆ°å•†åŸå•†å“ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(use_prop_mallprop[Integer.parseInt(msgOperate2[1])]);
 		if(commodityVO != null){
@@ -556,14 +556,14 @@ public class PopUpMsgService
 			hint.append("<postfield name=\"c_id\" value=\"" + commodityVO.getId() + "\" /> ");
 			hint.append("<postfield name=\"discount\" value=\"" + GameConfig.getPropertiesObject("use_prop_discount") + "\" /> ");
 			hint.append("</go>");
-			hint.append("È·ÈÏ¹ºÂò");
+			hint.append("ç¡®è®¤è´­ä¹°");
 			hint.append("</anchor>");
 			hint.append("<br/><anchor> "); 
 			hint.append("<go method=\"get\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")+"\"></go>");
-			hint.append("ÏÂ´Î°É");
+			hint.append("ä¸‹æ¬¡å§");
 			hint.append("</anchor>");
 		}else{
-			hint.append("Ê¹ÓÃµÀ¾ßÊı¾İ´íÎó!ÇëÁªÏµ¹ÜÀíÔ±!");
+			hint.append("ä½¿ç”¨é“å…·æ•°æ®é”™è¯¯!è¯·è”ç³»ç®¡ç†å‘˜!");
 		}
 		return hint.toString();
 	}

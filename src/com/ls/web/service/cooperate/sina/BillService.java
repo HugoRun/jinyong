@@ -58,7 +58,7 @@ public class BillService
 		params.put("hs", hashStr);
 		params.put("cbUrl", GameConfig.getContextPath()+"/sina/callback.do");
 		params.put("backUrl", GameConfig.getContextPath()+"/mall.do?cmd=n0");
-		params.put("backTitle", "³äÖµ¶Ò»»");
+		params.put("backTitle", "å……å€¼å…‘æ¢");
 		params.put("item", GameConfig.getYuanbaoName()+sina_amt);
 		params.put("info", "info");
 		try
@@ -67,7 +67,7 @@ public class BillService
 		}
 		catch (IOException e)
 		{
-			this.logger.debug("ÀË»¨Ïû·ÑÇëÇóÒì³£");
+			this.logger.debug("æµªèŠ±æ¶ˆè´¹è¯·æ±‚å¼‚å¸¸");
 			e.printStackTrace();
 			return pay_results;
 		}
@@ -129,33 +129,33 @@ public class BillService
 
 		if (pay_results == null)
 		{
-			return (hint = "³äÖµÊ§°Ü,ÇëÖØÊÔ!");
+			return (hint = "å……å€¼å¤±è´¥,è¯·é‡è¯•!");
 		}
 
 		String respones_result = (String) pay_results.get("result");
 
 		if (respones_result == null)
 		{
-			return (hint = "³äÖµÊ§°Ü,ÇëÖØÊÔ!");
+			return (hint = "å……å€¼å¤±è´¥,è¯·é‡è¯•!");
 		}
 
 		if (respones_result.equals("0000"))
 		{
-			hint = "³äÖµ³É¹¦";
+			hint = "å……å€¼æˆåŠŸ";
 		}
 		else
 			if (respones_result.equals("2002"))
 			{
-				hint = "ÎŞ´ËÕÊºÅ";
+				hint = "æ— æ­¤å¸å·";
 			}
 			else
 				if ((respones_result.equals("2004")))
 				{
-						hint = "Óà¶î²»×ã";
+						hint = "ä½™é¢ä¸è¶³";
 				}
 				else
 					{
-					hint = "³äÖµÊ§°Ü";
+					hint = "å……å€¼å¤±è´¥";
 					}
 		return hint;
 	}
@@ -186,9 +186,9 @@ public class BillService
 					.trim();
 			goodsService.putPropToWrap(p_pk, Integer.parseInt(prop_id), 1,GameLogManager.G_SYSTEM);
 			hint = begintime
-					+ "¡ª"
+					+ "â€”"
 					+ endtime
-					+ ",Ã¿³äÖµ2000"+GameConfig.getYuanbaoName()+"¼´¿É»ñµÃ1888ÒøÁ½µÄÇ®´ü(Ç®´ü½«·ÅÈë°ü¹üµÄÉÌ³ÇÀ¸,Èç¹û°ü¹ü¸ñÊı²»¹»µ¼ÖÂÎ´·¢·Å³É¹¦,¹Ù·½²»Óè²¹³¥)";
+					+ ",æ¯å……å€¼2000"+GameConfig.getYuanbaoName()+"å³å¯è·å¾—1888é“¶ä¸¤çš„é’±è¢‹(é’±è¢‹å°†æ”¾å…¥åŒ…è£¹çš„å•†åŸæ ,å¦‚æœåŒ…è£¹æ ¼æ•°ä¸å¤Ÿå¯¼è‡´æœªå‘æ”¾æˆåŠŸ,å®˜æ–¹ä¸äºˆè¡¥å¿)";
 		}
 
 		return hint;
@@ -305,11 +305,11 @@ public class BillService
 		return yueout;
 	}
 	
-	// ÃÎÍø¿Û·Ñ
+	// æ¢¦ç½‘æ‰£è´¹
 	public void payByYiDong(String uid,String errcode,String snum,String tm,String hs)
 	{
 		/**
-		 * ¼ÇÂ¼ĞÅÏ¢
+		 * è®°å½•ä¿¡æ¯
 		 */
 		String skybillid1 = "skybillid1";
 		String skybillid2 = "skybillid2";
@@ -317,28 +317,28 @@ public class BillService
 		if (errcode == null || !errcode.equals("0"))
 		{
 			updatePayRecord(Integer.parseInt(snum), "sina", skybillid1, skybillid2,
-					balance, errcode);// ¸üĞÂÏû·Ñ¼ÇÂ¼
+					balance, errcode);// æ›´æ–°æ¶ˆè´¹è®°å½•
 		}
 		else
 		{
 			PassportDao passportDao = new PassportDao();
 			PassportVO passport = passportDao.getPassportByUserID(uid, Channel.SINA);
 			
-			// ¸øÍæ¼Ò³äÔª±¦
+			// ç»™ç©å®¶å……å…ƒå®
 			EconomyService economyService = new EconomyService();
 			int u_pk = passport.getUPk();
-			// ¸øÍæ¼ÒÔö¼ÓÔª±¦
+			// ç»™ç©å®¶å¢åŠ å…ƒå®
 			UPayRecordDao uPayRecordDao = new UPayRecordDao();
-			int yb_num = uPayRecordDao.getMoney(Integer.parseInt(snum))*100;// 1KB»ñµÃ1¸öÔª±¦
-			int jf_num = yb_num * GameConfig.getJifenNum();// 1KB»ñµÃ1¸ö»ı·Ö
+			int yb_num = uPayRecordDao.getMoney(Integer.parseInt(snum))*100;// 1KBè·å¾—1ä¸ªå…ƒå®
+			int jf_num = yb_num * GameConfig.getJifenNum();// 1KBè·å¾—1ä¸ªç§¯åˆ†
 
 			economyService.addYuanbao(0, u_pk, yb_num, "chongzhi");
-			economyService.addJifen(u_pk, jf_num);// Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+			economyService.addJifen(u_pk, jf_num);// å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",
-					u_pk);// Í³¼Æ³äÖµÈË´Î
-			updatePayRecord(Integer.parseInt(snum), "sina", "", "", "", errcode);// ¸üĞÂÏû·Ñ¼ÇÂ¼
+					u_pk);// ç»Ÿè®¡å……å€¼äººæ¬¡
+			updatePayRecord(Integer.parseInt(snum), "sina", "", "", "", errcode);// æ›´æ–°æ¶ˆè´¹è®°å½•
 		}
 	}
 }

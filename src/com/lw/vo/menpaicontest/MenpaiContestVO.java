@@ -5,23 +5,23 @@ public class MenpaiContestVO
 	private int id;
 	/** ID* */
 	private String time_week;
-	/** *ĞÇÆÚ* */
+	/** *æ˜ŸæœŸ* */
 	private int ready_hour;
-	/** *×¼±¸Ê±¼ä */
+	/** *å‡†å¤‡æ—¶é—´ */
 	private int ready_minute;
-	/** *×¼±¸Ê±¼ä */
+	/** *å‡†å¤‡æ—¶é—´ */
 	private int run_hour;
-	/** *¿ªÊ¼Ê±¼ä */
+	/** *å¼€å§‹æ—¶é—´ */
 	private int run_minute;
-	/** *¿ªÊ¼Ê±¼ä */
+	/** *å¼€å§‹æ—¶é—´ */
 	private int over_hour;
-	/** *½áÊøÊ±¼ä */
+	/** *ç»“æŸæ—¶é—´ */
 	private int over_minute;
-	/** ***È«²¿½áÊøÊ±¼ä*** */
+	/** ***å…¨éƒ¨ç»“æŸæ—¶é—´*** */
 	private int all_hour;
 	private int all_minute;
 
-	/** *½áÊøÊ±¼ä */
+	/** *ç»“æŸæ—¶é—´ */
 	public int getId()
 	{
 		return id;

@@ -38,7 +38,7 @@ public class TianGuanAction extends DispatchAction
 		OperateMenuVO vo = new OperateMenuVO();
 		if (menu_id == null || menu_id.equals("") || menu_id.equals("null"))
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM!");
+			request.setAttribute("display", "è¯·è”ç³»GM!");
 			return mapping.findForward("display");
 		}
 		else
@@ -51,21 +51,21 @@ public class TianGuanAction extends DispatchAction
 		int scence_id = vo.getMenuOperate4();
 
 		
-		int group_member_num = 0;//Íæ¼ÒËùÔÚ¶ÓÎéÈËÊı
+		int group_member_num = 0;//ç©å®¶æ‰€åœ¨é˜Ÿä¼äººæ•°
 		GroupService  groupService = new GroupService();
 		group_member_num = groupService.getGroupNumByMember(role_info.getBasicInfo().getPPk());
 		if(group_member_num > 1){
-			request.setAttribute("display", "×é¶Ó×´Ì¬²»ÄÜ½øÈëÌôÕ½!");
+			request.setAttribute("display", "ç»„é˜ŸçŠ¶æ€ä¸èƒ½è¿›å…¥æŒ‘æˆ˜!");
 			return mapping.findForward("display");
 		}
-		// ¸øÍæ¼Ò¼ÆÊ±¿ªÊ¼
+		// ç»™ç©å®¶è®¡æ—¶å¼€å§‹
 		if (add_time.equals("1"))
 		{
-			// µÈ¼¶ÏŞÖÆ
+			// ç­‰çº§é™åˆ¶
 			if (role_info.getBasicInfo().getGrade() < Integer
 					.parseInt(npc_id[0]))
 			{
-				request.setAttribute("display", "ÄúµÄµÈ¼¶Ì«µÍ,Çë´ïµ½ÏàÓ¦µÄµÈ¼¶ÔÚ½øÈëÌôÕ½!");
+				request.setAttribute("display", "æ‚¨çš„ç­‰çº§å¤ªä½,è¯·è¾¾åˆ°ç›¸åº”çš„ç­‰çº§åœ¨è¿›å…¥æŒ‘æˆ˜!");
 				return mapping.findForward("display");
 			}
 			else
@@ -78,7 +78,7 @@ public class TianGuanAction extends DispatchAction
 					role_info.getBasicInfo().updateSceneId(scence_id + "");
 					SystemInfoService infoService = new SystemInfoService();
 					infoService.insertSystemInfoBySystem(role_info.getBasicInfo()
-							.getPPk(), "ÄúµÄÌôÕ½Ö®ÂÃÏÖÔÚ¿ªÊ¼¼ÆÊ±!");
+							.getPPk(), "æ‚¨çš„æŒ‘æˆ˜ä¹‹æ—…ç°åœ¨å¼€å§‹è®¡æ—¶!");
 					return mapping.findForward("return");
 				}else{
 					PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
@@ -87,7 +87,7 @@ public class TianGuanAction extends DispatchAction
 									.parseInt(prop[0]));
 					if (tatol_prop_num == 0)
 					{
-						request.setAttribute("display", "ÄúÉíÉÏÃ»ÓĞÓ¢ĞÛÌû,¿ÉÒÔµ½ÉÌ³ÇÖĞÈ¥¹ºÂò!");
+						request.setAttribute("display", "æ‚¨èº«ä¸Šæ²¡æœ‰è‹±é›„å¸–,å¯ä»¥åˆ°å•†åŸä¸­å»è´­ä¹°!");
 						return mapping.findForward("display");
 					}
 					else
@@ -96,7 +96,7 @@ public class TianGuanAction extends DispatchAction
 						{
 							request
 									.setAttribute("display",
-											"ÄúÉíÉÏµÄÓ¢ĞÛÌûÊıÁ¿²»¹»,¿ÉÒÔµ½ÉÌ³ÇÖĞÈ¥¹ºÂò!");
+											"æ‚¨èº«ä¸Šçš„è‹±é›„å¸–æ•°é‡ä¸å¤Ÿ,å¯ä»¥åˆ°å•†åŸä¸­å»è´­ä¹°!");
 							return mapping.findForward("display");
 						}else{
 							GoodsService gs = new GoodsService();
@@ -107,7 +107,7 @@ public class TianGuanAction extends DispatchAction
 							role_info.getBasicInfo().updateSceneId(scence_id + "");
 							SystemInfoService infoService = new SystemInfoService();
 							infoService.insertSystemInfoBySystem(role_info.getBasicInfo()
-									.getPPk(), "ÄúµÄÌôÕ½Ö®ÂÃÏÖÔÚ¿ªÊ¼¼ÆÊ±!");
+									.getPPk(), "æ‚¨çš„æŒ‘æˆ˜ä¹‹æ—…ç°åœ¨å¼€å§‹è®¡æ—¶!");
 							return mapping.findForward("return");
 						}
 					}
@@ -122,21 +122,21 @@ public class TianGuanAction extends DispatchAction
 		String[] condition = mapVO.getMapSkill().split(",");
 		int time = Integer.parseInt(condition[3]);
 		long now = new Date().getTime();
-		long time_now = (now - role_info.getBasicInfo().getTianguan_time()) / 1000;// Ãë
+		long time_now = (now - role_info.getBasicInfo().getTianguan_time()) / 1000;// ç§’
 		long time_out = time * 60 - time_now;
 		if (time_out != 0 && time_out < 1)
 		{
 			RoomService rs = new RoomService();
 			int resurrection_point = rs.getResurrectionPoint(role_info);
 			role_info.getBasicInfo().updateSceneId(resurrection_point + "");
-			request.setAttribute("display", "ÒÔÄãµÄÊµÁ¦¶øÑÔ,ÄÜµ½ÕâÀïÒÑ¾­ÊÇÆæ¼£ÁË,»ØÈ¥ºÃºÃÄ¥Á·ÏÂÔÙÀ´°É!");
+			request.setAttribute("display", "ä»¥ä½ çš„å®åŠ›è€Œè¨€,èƒ½åˆ°è¿™é‡Œå·²ç»æ˜¯å¥‡è¿¹äº†,å›å»å¥½å¥½ç£¨ç»ƒä¸‹å†æ¥å§!");
 			return mapping.findForward("display");
 		}
 		else
 		{
 			if (role_info.getBasicInfo().getTianguan_npc().equals(npc_id[0]))
 			{
-				// ÅĞ¶ÏÍæ¼Ò ÊÇ·ñ¹»É±µĞÊı
+				// åˆ¤æ–­ç©å®¶ æ˜¯å¦å¤Ÿæ€æ•Œæ•°
 				if (role_info.getBasicInfo().getTianguan_kill_num() >= Integer
 						.parseInt(npc_id[1]))
 				{
@@ -147,7 +147,7 @@ public class TianGuanAction extends DispatchAction
 						role_info.getBasicInfo().setTianguan_kill_num(0);
 						role_info.getBasicInfo().updateSceneId(scence_id + "");
 						request.setAttribute("display",
-								"Äã¾ÓÈ»Í¨¹ıÁË,¿´À´Õâ¶ÔÄã²»ËãÊÇÌôÕ½,ÏÂ´Î»¹ÓĞ¸üÄÑµÄÊÔÁ¶µÈ×ÅÄã!");
+								"ä½ å±…ç„¶é€šè¿‡äº†,çœ‹æ¥è¿™å¯¹ä½ ä¸ç®—æ˜¯æŒ‘æˆ˜,ä¸‹æ¬¡è¿˜æœ‰æ›´éš¾çš„è¯•ç‚¼ç­‰ç€ä½ !");
 						return mapping.findForward("display");
 					}
 					else
@@ -159,19 +159,19 @@ public class TianGuanAction extends DispatchAction
 						SystemInfoService infoService = new SystemInfoService();
 						infoService.insertSystemInfoBySystem(role_info
 								.getBasicInfo().getPPk(),
-								"Äã¾ÓÈ»Í¨¹ıÁË,½ÄĞÒ¶øÒÑÏÂÒ»¹Ø¾ÍÃ»ÕâÃ´ĞÒÔËÁË!");
+								"ä½ å±…ç„¶é€šè¿‡äº†,ä¾¥å¹¸è€Œå·²ä¸‹ä¸€å…³å°±æ²¡è¿™ä¹ˆå¹¸è¿äº†!");
 						return mapping.findForward("return");
 					}
 				}
 				else
 				{
-					request.setAttribute("display", "Äã»¹Ã»ÓĞÉ±¹»¹ÖÄØ!ÏëÍµÀÁ?");
+					request.setAttribute("display", "ä½ è¿˜æ²¡æœ‰æ€å¤Ÿæ€ªå‘¢!æƒ³å·æ‡’?");
 					return mapping.findForward("display");
 				}
 			}
 			else
 			{
-				request.setAttribute("display", "ÇëÁªÏµGM!");
+				request.setAttribute("display", "è¯·è”ç³»GM!");
 				return mapping.findForward("display");
 			}
 		}

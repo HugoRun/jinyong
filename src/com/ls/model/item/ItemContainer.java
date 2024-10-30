@@ -9,7 +9,7 @@ import com.ls.model.user.RoleEntity;
 
 /**
  * @author ls
- * ÓÎÏ·Àï¿ÉÒÔÁ÷Í¨µÄµÄÎïÆ·£¨µÀ¾ß£¬×°±¸£¬½ğÇ®£¬ÉùÍû£¬¾­Ñé£¬°ïÅÉ¹±Ï×¶È£©ÈİÆ÷
+ * æ¸¸æˆé‡Œå¯ä»¥æµé€šçš„çš„ç‰©å“ï¼ˆé“å…·ï¼Œè£…å¤‡ï¼Œé‡‘é’±ï¼Œå£°æœ›ï¼Œç»éªŒï¼Œå¸®æ´¾è´¡çŒ®åº¦ï¼‰å®¹å™¨
  */
 public class ItemContainer
 {
@@ -37,7 +37,7 @@ public class ItemContainer
 	}
 	
 	/**
-	 * µÃµ½ĞèÒª°ü¹üµÄ¿Õ¼ä
+	 * å¾—åˆ°éœ€è¦åŒ…è£¹çš„ç©ºé—´
 	 * @return
 	 */
 	public int getNeedWrapSpace()
@@ -51,12 +51,12 @@ public class ItemContainer
 	}
 	
 	/**
-	 * Íæ¼Ò»ñµÃ¸ÃÎïÆ·¼¯ºÏ
+	 * ç©å®¶è·å¾—è¯¥ç‰©å“é›†åˆ
 	 * @return
 	 */
 	public String gainItems(RoleEntity roleInfo,int gain_type )
 	{
-		//ĞèÒª°ü¹üµÄ¿Õ¼äÊı
+		//éœ€è¦åŒ…è£¹çš„ç©ºé—´æ•°
 		int need_wrap_space = getNeedWrapSpace();
 		
 		String hint = roleInfo.getBasicInfo().isEnoughWrapSpace(need_wrap_space);
@@ -73,7 +73,7 @@ public class ItemContainer
 	}
 	
 	/**
-	 * µÃµ½ÎïÆ·×éÊı
+	 * å¾—åˆ°ç‰©å“ç»„æ•°
 	 * @return
 	 */
 	public int getItemGroupNum()
@@ -82,7 +82,7 @@ public class ItemContainer
 	}
 	
 	/**
-	 * ²ÄÁÏÊÇ·ñ×ã¹»
+	 * ææ–™æ˜¯å¦è¶³å¤Ÿ
 	 * @return
 	 */
 	public boolean isEnough()
@@ -91,7 +91,7 @@ public class ItemContainer
 	}
 	
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 */
 	public void add(Item item)
 	{
@@ -102,7 +102,7 @@ public class ItemContainer
 	}
 	
 	/**
-	 * µÃµ½ÃèÊö×Ö·û´®
+	 * å¾—åˆ°æè¿°å­—ç¬¦ä¸²
 	 */
 	public String getDes()
 	{
@@ -123,7 +123,7 @@ public class ItemContainer
 	}
 	
 	/**
-	 * ×ª»»³É×Ö·û´®
+	 * è½¬æ¢æˆå­—ç¬¦ä¸²
 	 */
 	public String toString()
 	{

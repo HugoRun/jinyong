@@ -2,22 +2,22 @@ package com.ls.ben.vo.info.title;
 
 
 /**
- * ¹¦ÄÜ:µÈ¼¶³ÆºÅ
- * @author ÁõË§
+ * åŠŸèƒ½:ç­‰çº§ç§°å·
+ * @author åˆ˜å¸…
  * 4:33:12 PM
  */
 public class GradeTitleVO  {
-	/**³ÆÎ½id£¬Èç:saodiseng*/
+	/**ç§°è°“idï¼Œå¦‚:saodiseng*/
 	private String titleId;
-	 /**³ÆÎ½Ãû³Æ*/
+	 /**ç§°è°“åç§°*/
 	private String  titleName;
-	/**ÃÅÅÉid*/
+	/**é—¨æ´¾id*/
 	private String  schoolId;
-	/**ÃÅÅÉÃû³Æ*/
+	/**é—¨æ´¾åç§°*/
 	private String  schoolName;
-	/**ÒªÇóµÄµÈ¼¶ÏÂÏß*/
+	/**è¦æ±‚çš„ç­‰çº§ä¸‹çº¿*/
 	private int  titleLevelDown;
-	 /**ÒªÇóµÄµÈ¼¶ÉÏÏß*/
+	 /**è¦æ±‚çš„ç­‰çº§ä¸Šçº¿*/
 	private int  titleLevelUp;
 	
 	

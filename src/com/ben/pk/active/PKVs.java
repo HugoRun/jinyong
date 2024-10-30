@@ -1,66 +1,63 @@
 package com.ben.pk.active;
 
 /**
- * 
  * @author thomas.lei
- * ¹¦ÄÜ£ºPK»î¶¯¶ÔÕó±í¶ÔÓ¦µÄ·â×°Àà
+ * åŠŸèƒ½ï¼šPKæ´»åŠ¨å¯¹é˜µè¡¨å¯¹åº”çš„å°è£…ç±»
  * 27/04/10 PM
- *
  */
-public class PKVs
-{
-	private int id;
-	private int roleAID;//½ÇÉ«AµÄID
-	private int roleBID;//½ÇÉ«BµÄID
-	private String roleAName;//½ÇÉ«AµÄÃû³Æ
-	private String roleBName;//½ÇÉ«BµÄÃû³Æ
-	private int winRoleID;//PK»ñÊ¤·½µÄID
-	public int getId()
-	{
-		return id;
-	}
-	public void setId(int id)
-	{
-		this.id = id;
-	}
-	public int getRoleAID()
-	{
-		return roleAID;
-	}
-	public void setRoleAID(int roleAID)
-	{
-		this.roleAID = roleAID;
-	}
-	public int getRoleBID()
-	{
-		return roleBID;
-	}
-	public void setRoleBID(int roleBID)
-	{
-		this.roleBID = roleBID;
-	}
-	public String getRoleAName()
-	{
-		return roleAName;
-	}
-	public void setRoleAName(String roleAName)
-	{
-		this.roleAName = roleAName;
-	}
-	public String getRoleBName()
-	{
-		return roleBName;
-	}
-	public void setRoleBName(String roleBName)
-	{
-		this.roleBName = roleBName;
-	}
-	public int getWinRoleID()
-	{
-		return winRoleID;
-	}
-	public void setWinRoleID(int winRoleID)
-	{
-		this.winRoleID = winRoleID;
-	}
+public class PKVs {
+    private int id;
+    private int roleAID; // è§’è‰²Açš„ID
+    private String roleAName; // è§’è‰²Açš„åç§°
+    private int roleBID; // è§’è‰²Bçš„ID
+    private String roleBName; // è§’è‰²Bçš„åç§°
+    private int winRoleID; // PKè·èƒœæ–¹çš„ID
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getRoleAID() {
+        return roleAID;
+    }
+
+    public void setRoleAID(int roleAID) {
+        this.roleAID = roleAID;
+    }
+
+    public int getRoleBID() {
+        return roleBID;
+    }
+
+    public void setRoleBID(int roleBID) {
+        this.roleBID = roleBID;
+    }
+
+    public String getRoleAName() {
+        return roleAName;
+    }
+
+    public void setRoleAName(String roleAName) {
+        this.roleAName = roleAName;
+    }
+
+    public String getRoleBName() {
+        return roleBName;
+    }
+
+    public void setRoleBName(String roleBName) {
+        this.roleBName = roleBName;
+    }
+
+    public int getWinRoleID() {
+        return winRoleID;
+    }
+
+    public void setWinRoleID(int winRoleID) {
+        this.winRoleID = winRoleID;
+    }
 }

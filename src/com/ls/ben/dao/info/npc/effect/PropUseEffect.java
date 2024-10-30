@@ -1,25 +1,25 @@
 package com.ls.ben.dao.info.npc.effect;
 
 /**
- * ¹¦ÄÜ:¼ÇÂ¼µÀ¾ßÊ¹ÓÃĞ§¹û
- * @author ÁõË§
+ * åŠŸèƒ½:è®°å½•é“å…·ä½¿ç”¨æ•ˆæœ
+ * @author åˆ˜å¸…
  * 2:57:26 PM
  */
 public class PropUseEffect
 {
-	/**µÀ¾ßÖÖÀà*/
+	/**é“å…·ç§ç±»*/
 	private int propType;
 	
-	/**Ê¹ÓÃĞ§¹ûÃèÊö*/
+	/**ä½¿ç”¨æ•ˆæœæè¿°*/
 	private String effectDisplay;
 	
-	/**Ê¹ÓÃĞ§¹û±ä»¯ÊıÖµ*/
+	/**ä½¿ç”¨æ•ˆæœå˜åŒ–æ•°å€¼*/
 	private String effectValue;
 	
-	/**±êÊ¾µÀ¾ßÊÇ·ñ³É¹¦Ê¹ÓÃ*/
+	/**æ ‡ç¤ºé“å…·æ˜¯å¦æˆåŠŸä½¿ç”¨*/
 	private boolean isEffected;
 	
-	/**²»ÄÜÊ¹ÓÃÃèÊö*/
+	/**ä¸èƒ½ä½¿ç”¨æè¿°*/
 	private String noUseDisplay;
 	
 	

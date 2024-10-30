@@ -1,30 +1,31 @@
 package com.ls.pub.constant;
 
 /**
- * @author ls ¹¦ÄÜ:ºÏ×÷Æ½Ì¨³£Á¿ Feb 17, 2009
+ * @author ls åŠŸèƒ½:åˆä½œå¹³å°å¸¸é‡ Feb 17, 2009
  */
-public class Channel
-{
-	public static final int WANXIANG = 99;
-	public static final int DANGLE = 1;
-	public static final int SKY = 2;
-	public static final int JINYINDAO = 3;
-	public static final int SINA = 6;
-	public static final int TIAO = 7;
-	public static final int JUU = 8;
-	public static final int YOUVB = 9;
-	public static final int AIR = 10;
-	public static final int TXW = 16;
-	public static final int TOM = 188;
-	public static final int OKP = 11;
-	public static final int TELE=20;
-	public static final int DEFAULT = SKY;
-	/*******¸ö¸öÍæ²ÎÊı*************/
-	public static final int GGW = 12;
-	public static final String GGW12KEY = "b280c790acdfb54517302cbf37261a59";
-	public static final int GGWM = 100;
-	/*******º¼ÖİÈÈµãÍæ²ÎÊı*************/
-	public static final int HZRD = 13;
-	public static final String HZRD13KEY = "0ca779207b9de389200b6b3d4aeb61a6";
-	public static final int HZRDM = 100;
+public class Channel {
+    public static final int WANXIANG    = 99;// æ¸¸ä¹
+
+    public static final int DANGLE      = 1; // å½“ä¹
+    public static final int SKY         = 2; // æ€å‡¯
+    public static final int JINYINDAO   = 3; // é‡‘é“¶å²›
+    public static final int SINA        = 6; // æ–°æµª
+    public static final int TIAO        = 7; // è·³ç½‘å¹³å°
+    public static final int JUU         = 8; // JUU
+    public static final int YOUVB       = 9; // æ¸¸ç©å§
+    public static final int AIR         = 10; // ç©ºä¸­ç½‘
+    public static final int TXW         = 16; // å¤©ä¸‹ç½‘
+    public static final int TOM         = 188; // TOM
+    public static final int OKP         = 11; // WAP OK
+    public static final int TELE        = 20; // æ±Ÿè‹ç”µä¿¡
+    public static final int DEFAULT     = SKY; // é»˜è®¤æ¸ é“
+
+    /*******ä¸ªä¸ªç©å‚æ•°*************/
+    public static final int GGW = 12;
+    public static final String GGW12KEY = "b280c790acdfb54517302cbf37261a59";
+    public static final int GGWM = 100;
+    /*******æ­å·çƒ­ç‚¹ç©å‚æ•°*************/
+    public static final int HZRD = 13;
+    public static final String HZRD13KEY = "0ca779207b9de389200b6b3d4aeb61a6";
+    public static final int HZRDM = 100;
 }

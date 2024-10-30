@@ -21,66 +21,66 @@ public class LaBaService
 	Random rd = new Random();
 
 	/**
-	 * Ò»¶¨¸ÅÂÊ£¬Ëæ»ú»ñµÃÒ»¸öÎïÆ·£¬×÷Îª¿ª±¦ÏäµÄ½±Àø
+	 * ä¸€å®šæ¦‚çŽ‡ï¼ŒéšæœºèŽ·å¾—ä¸€ä¸ªç‰©å“ï¼Œä½œä¸ºå¼€å®ç®±çš„å¥–åŠ±
 	 * 
 	 * @return
 	 */
 	public labaVO getGood(String prop_id, int p_pk, RoleEntity roleInfo,
 			int other)
 	{
-		// ÕâÀïÓ¦¸ÃÊÇ´ÓÊý¾Ý¿âÖÐµÃµ½NPCid£¬È»ºó°´ÕÕ¸ÅÂÊ´ÓNPCÖÐid³éÈ¡Ò»¸ö
+		// è¿™é‡Œåº”è¯¥æ˜¯ä»Žæ•°æ®åº“ä¸­å¾—åˆ°NPCidï¼Œç„¶åŽæŒ‰ç…§æ¦‚çŽ‡ä»ŽNPCä¸­idæŠ½å–ä¸€ä¸ª
 		PropVO pv = PropCache.getPropById(Integer.parseInt(prop_id));
 		String s_NPC[] = pv.getPropOperate1().split(",");
-		// È»ºó¸ù¾ÝµÃµ½µÄNPC_idµÃµ½Ò»¸öÎïÆ·µÄÃû×Ö
+		// ç„¶åŽæ ¹æ®å¾—åˆ°çš„NPC_idå¾—åˆ°ä¸€ä¸ªç‰©å“çš„åå­—
 		PlayerService playerService = new PlayerService();
 		PartInfoVO player = playerService.getPlayerByPpk(roleInfo
 				.getBasicInfo().getPPk());
 		NpcService npcService = new NpcService();
 		int npc_id = 0;
 		int num = 0;
-		if (other == 0)// Èç¹ûÊÇÐÂ¿ª±¦Ïä
+		if (other == 0)// å¦‚æžœæ˜¯æ–°å¼€å®ç®±
 		{
-			num = rd.nextInt(100);// ÄÇÃ´¾ÍµÃµ½Ò»¸öËæ»úÊý
+			num = rd.nextInt(100);// é‚£ä¹ˆå°±å¾—åˆ°ä¸€ä¸ªéšæœºæ•°
 		}
 		else
-		// ²»ÊÇÐÂ¿ª±¦Ïä
+		// ä¸æ˜¯æ–°å¼€å®ç®±
 		{
-			num = other;// ¸ønum¸³Öµ
+			num = other;// ç»™numèµ‹å€¼
 		}
 		String s_NPC_id[] = new String[2];
-		int daNum = 0;// ´ó½±µÄ½áÊøÖµ
-		int zhongNum = 0;// ÖÐ½«µÄ½áÊøÖµ
+		int daNum = 0;// å¤§å¥–çš„ç»“æŸå€¼
+		int zhongNum = 0;// ä¸­å°†çš„ç»“æŸå€¼
 		daNum = Integer.parseInt(s_NPC[0].split("-")[1]);
 		zhongNum = Integer.parseInt(s_NPC[1].split("-")[1]);
-		// ¿´numµÄÖµ£¬È»ºó¸ù¾Ý¼¸ÂÊ·¶Î§È·¶¨µÃµ½µÄÊÇ´ó½±¡¢ÖÐ½±»¹ÊÇ¹ÄÀø½±
+		// çœ‹numçš„å€¼ï¼Œç„¶åŽæ ¹æ®å‡ çŽ‡èŒƒå›´ç¡®å®šå¾—åˆ°çš„æ˜¯å¤§å¥–ã€ä¸­å¥–è¿˜æ˜¯é¼“åŠ±å¥–
 		if (num >= 0 && num <= daNum)
 		{
 			s_NPC_id = s_NPC[0].split("-");
-			npc_id = Integer.parseInt(s_NPC_id[0]);// µÃµ½´ó½±npc
+			npc_id = Integer.parseInt(s_NPC_id[0]);// å¾—åˆ°å¤§å¥–npc
 		}
 		else
 			if (num >= (daNum + 1) && num <= zhongNum)
 			{
 				s_NPC_id = s_NPC[1].split("-");
-				npc_id = Integer.parseInt(s_NPC_id[0]);// µÃµ½ÖÐ½±npc
+				npc_id = Integer.parseInt(s_NPC_id[0]);// å¾—åˆ°ä¸­å¥–npc
 			}
 			else
 			{
 				s_NPC_id = s_NPC[2].split("-");
-				npc_id = Integer.parseInt(s_NPC_id[0]);// µÃµ½¹ÄÀø½±npc
+				npc_id = Integer.parseInt(s_NPC_id[0]);// å¾—åˆ°é¼“åŠ±å¥–npc
 			}
 		NpcdropVO npcVo = npcService
-				.dropGoodsByLabaBoxTwo(npc_id, player, p_pk);// È»ºó´ÓµôÂä±íÀïµÃµ½Ò»¼þÎïÆ·
+				.dropGoodsByLabaBoxTwo(npc_id, player, p_pk);// ç„¶åŽä»ŽæŽ‰è½è¡¨é‡Œå¾—åˆ°ä¸€ä»¶ç‰©å“
 		// npcVo.setGoodsName(npcVo.getGoodsName() + "-" + num);//
-		// ´ËnumÓÃÀ´¾ö¶¨ºóÁ½¸ö½±µÄÏÔÊ¾
+		// æ­¤numç”¨æ¥å†³å®šåŽä¸¤ä¸ªå¥–çš„æ˜¾ç¤º
 		labaVO lv = new labaVO();
 		lv.setNvo(npcVo);
 		lv.setSNum(num);
-		return lv;// ·µ»Ø»ñµÃÎïÆ·
+		return lv;// è¿”å›žèŽ·å¾—ç‰©å“
 	}
 
 	/**
-	 * ´ÓÒÑ¿ª³öµÄ±¦ÏäÎïÆ·ÖØÐÂ³éÈ¡Ò»¸ö´ó½±¡¢Ð¡½±»òÕß¹ÄÀø
+	 * ä»Žå·²å¼€å‡ºçš„å®ç®±ç‰©å“é‡æ–°æŠ½å–ä¸€ä¸ªå¤§å¥–ã€å°å¥–æˆ–è€…é¼“åŠ±
 	 * 
 	 * @return
 	 */
@@ -90,13 +90,13 @@ public class LaBaService
 			String xiaoName, String daType, String zhongType, String xiaoType)
 	{
 		ArrayList<String> idAndName = new ArrayList<String>();
-		// ÕâÀïÓ¦¸ÃÊÇ´ÓÊý¾Ý¿âÖÐµÃµ½NPCid£¬È»ºó°´ÕÕ¸ÅÂÊ´ÓNPCÖÐid³éÈ¡Ò»¸ö
+		// è¿™é‡Œåº”è¯¥æ˜¯ä»Žæ•°æ®åº“ä¸­å¾—åˆ°NPCidï¼Œç„¶åŽæŒ‰ç…§æ¦‚çŽ‡ä»ŽNPCä¸­idæŠ½å–ä¸€ä¸ª
 		String name = "";
 		int num = rd.nextInt(100);
-		// ¿´numµÄÖµ£¬È»ºó¸ù¾Ý¼¸ÂÊ·¶Î§È·¶¨µÃµ½µÄÊÇ´ó½±¡¢ÖÐ½±»¹ÊÇ¹ÄÀø½±
+		// çœ‹numçš„å€¼ï¼Œç„¶åŽæ ¹æ®å‡ çŽ‡èŒƒå›´ç¡®å®šå¾—åˆ°çš„æ˜¯å¤§å¥–ã€ä¸­å¥–è¿˜æ˜¯é¼“åŠ±å¥–
 		if (num >= 0 && num <= daNum)
 		{
-			name = "´ó½±£º" + daName;// µÃµ½´ó½±npc
+			name = "å¤§å¥–ï¼š" + daName;// å¾—åˆ°å¤§å¥–npc
 			idAndName.add(name);
 			idAndName.add(da_id);
 			idAndName.add(NPC_DA);
@@ -105,7 +105,7 @@ public class LaBaService
 		else
 			if (num >= (daNum + 1) && num <= zhongNum)
 			{
-				name = "Ð¡½±£º" + zhongName;// µÃµ½ÖÐ½±npc
+				name = "å°å¥–ï¼š" + zhongName;// å¾—åˆ°ä¸­å¥–npc
 				idAndName.add(name);
 				idAndName.add(zhong_id);
 				idAndName.add(NPC_ZHONG);
@@ -113,27 +113,27 @@ public class LaBaService
 			}
 			else
 			{
-				name = "¹ÄÀø½±£º" + xiaoName;// µÃµ½¹ÄÀø½±npc
+				name = "é¼“åŠ±å¥–ï¼š" + xiaoName;// å¾—åˆ°é¼“åŠ±å¥–npc
 				idAndName.add(name);
 				idAndName.add(xiao_id);
 				idAndName.add(NPC_XIAO);
 				idAndName.add(xiaoType);
 			}
-		return idAndName;// ·µ»Ø»ñµÃÎïÆ·
+		return idAndName;// è¿”å›žèŽ·å¾—ç‰©å“
 	}
 
 	/**
-	 * ¸ù¾Ý±¦ÏäIDµÃµ½±¦ÏäÊý¾Ý
+	 * æ ¹æ®å®ç®±IDå¾—åˆ°å®ç®±æ•°æ®
 	 * 
 	 * @return
 	 */
 	public PropVO getGoodByID(String prop_id)
 	{
-		return PropCache.getPropById(Integer.parseInt(prop_id));// ·µ»Ø»ñµÃµÀ¾ßÀà
+		return PropCache.getPropById(Integer.parseInt(prop_id));// è¿”å›žèŽ·å¾—é“å…·ç±»
 	}
 
 	/**
-	 * ²é¿´ËùÐèÒªµÄÎïÆ·ÊÇ·ñ¶¼ÔÚÍæ¼ÒÉíÉÏ
+	 * æŸ¥çœ‹æ‰€éœ€è¦çš„ç‰©å“æ˜¯å¦éƒ½åœ¨çŽ©å®¶èº«ä¸Š
 	 * 
 	 * @param pg_pk
 	 * @param gold_box_pgpk
@@ -150,7 +150,7 @@ public class LaBaService
 	}
 
 	/**
-	 * °ÑÎïÆ·Ìí¼Óµ½±³°üÀï£¬²¢ÒÆ³ýµôÒ»¸ö±¦Ïä
+	 * æŠŠç‰©å“æ·»åŠ åˆ°èƒŒåŒ…é‡Œï¼Œå¹¶ç§»é™¤æŽ‰ä¸€ä¸ªå®ç®±
 	 * 
 	 * @param goodId
 	 * @param roleInfo
@@ -163,22 +163,22 @@ public class LaBaService
 	{
 		GoodsService goodsService = new GoodsService();
 		String name = "";
-		// °ÑÎïÆ··ÅÈëÍæ¼Ò±³°üÀï
+		// æŠŠç‰©å“æ”¾å…¥çŽ©å®¶èƒŒåŒ…é‡Œ
 		int a = goodsService.putGoodsToWrap(p_pk, Integer.parseInt(goodId),
 				good_type, 1);
 		if (a == -1)
 		{
-			name = "ÄãµÄ±³°üÒÑÂú";
+			name = "ä½ çš„èƒŒåŒ…å·²æ»¡";
 		}
 		else
 		{
-			name = "ÎïÆ·ÒÑ·ÅÈëÄúµÄ±³°ü£¬Çë×¢Òâ²é¿´!";
+			name = "ç‰©å“å·²æ”¾å…¥æ‚¨çš„èƒŒåŒ…ï¼Œè¯·æ³¨æ„æŸ¥çœ‹!";
 		}
 		return name;
 	}
 
 	/**
-	 * ÔÚµã»÷Ê¹ÓÃµÄÊ±ºò¾ÍÒÆ³ýµôÒ»¸ö±¦Ïä
+	 * åœ¨ç‚¹å‡»ä½¿ç”¨çš„æ—¶å€™å°±ç§»é™¤æŽ‰ä¸€ä¸ªå®ç®±
 	 * 
 	 * @param goodId
 	 * @param roleInfo
@@ -190,18 +190,18 @@ public class LaBaService
 	{
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		GoodsService goodsService = new GoodsService();
-		// »ñµÃ±¦ÏäµÄpg_pk
+		// èŽ·å¾—å®ç®±çš„pg_pk
 		PlayerPropGroupVO boxGroupVO = dao.getPropGroupByTime(roleInfo
 				.getBasicInfo().getPPk(), prop_id);
-		// É¾³ýµôÒ»¸ö±¦Ïä
+		// åˆ é™¤æŽ‰ä¸€ä¸ªå®ç®±
 		goodsService.removeProps(boxGroupVO, 1);
-		// ¼ÇÂ¼ÏÂ±¦ÏäµÄÐÅÏ¢
-		String recordString = roleInfo.getBasicInfo().getName() + "Ò»¸öÀ­°Ô±¦Ïä";
+		// è®°å½•ä¸‹å®ç®±çš„ä¿¡æ¯
+		String recordString = roleInfo.getBasicInfo().getName() + "ä¸€ä¸ªæ‹‰éœ¸å®ç®±";
 		insertRecordInfo(roleInfo.getBasicInfo().getPPk(), 2, recordString);
 	}
 
 	/**
-	 * ÒÆ³ýË¢ÐÂ±¦ÏäËùÓÃµÄµÀ¾ß
+	 * ç§»é™¤åˆ·æ–°å®ç®±æ‰€ç”¨çš„é“å…·
 	 * 
 	 * @param goodId
 	 * @param roleInfo
@@ -214,30 +214,30 @@ public class LaBaService
 		boolean boo = false;
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		GoodsService goodsService = new GoodsService();
-		// »ñµÃ±¦ÏäµÄpg_pk
+		// èŽ·å¾—å®ç®±çš„pg_pk
 		PlayerPropGroupVO boxGroupVO = dao.getPropGroupByTime(roleInfo
 				.getBasicInfo().getPPk(), prop_id);
-		// É¾³ýµôÒ»¸öµÀ¾ß
+		// åˆ é™¤æŽ‰ä¸€ä¸ªé“å…·
 		goodsService.removeProps(boxGroupVO, 1);
 		boo = true;
 		return boo;
 	}
 
 	/**
-	 * »ñµÃÌáÊ¾×Ö
+	 * èŽ·å¾—æç¤ºå­—
 	 * 
 	 * @return
 	 */
 	public String getWords()
 	{
 		String word = "";
-		String words[] = { "»¢»¢ÉúÍþ", "¹§Ï²°lØ”", "Îå¸£ÅRéT" };
+		String words[] = { "è™Žè™Žç”Ÿå¨", "æ­å–œç™¼è²¡", "äº”ç¦è‡¨é–€" };
 		word = words[rd.nextInt(3)];
 		return word;
 	}
 
 	/**
-	 * Èý¸öÌáÊ¾×ÖÒ»Ñù
+	 * ä¸‰ä¸ªæç¤ºå­—ä¸€æ ·
 	 * 
 	 * @param strs
 	 * @param num
@@ -250,22 +250,22 @@ public class LaBaService
 		ArrayList<String> al = new ArrayList<String>();
 		String sWord = "";
 		if (count == 0)
-		{// Èç¹ûÊÇµÚÒ»´Îµã
-			if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+		{// å¦‚æžœæ˜¯ç¬¬ä¸€æ¬¡ç‚¹
+			if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 			{
 				strs[0] = getWords();
 			}
-			if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+			if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 			{
 				strs[1] = getWords();
 			}
-			if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+			if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 			{
 				strs[2] = getWords();
 			}
 		}
 		else
-			if (count == 1 || count == 2)// µÚ¶þ´Îµã»÷
+			if (count == 1 || count == 2)// ç¬¬äºŒæ¬¡ç‚¹å‡»
 			{
 				for (int i = 0; i < strs.length; i++)
 				{
@@ -275,15 +275,15 @@ public class LaBaService
 						break;
 					}
 				}
-				if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+				if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 				{
 					strs[0] = sWord;
 				}
-				if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+				if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 				{
 					strs[1] = sWord;
 				}
-				if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+				if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 				{
 					strs[2] = sWord;
 				}
@@ -295,7 +295,7 @@ public class LaBaService
 	}
 
 	/**
-	 * Á½¸öÌáÊ¾×ÖÒ»Ñù
+	 * ä¸¤ä¸ªæç¤ºå­—ä¸€æ ·
 	 * 
 	 * @param strs
 	 * @param num
@@ -309,32 +309,32 @@ public class LaBaService
 		String ss[] = new String[2];
 		Random rd = new Random();
 		if (count == 0)
-		{// Èç¹ûÊÇµÚÒ»´Îµã
-			if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+		{// å¦‚æžœæ˜¯ç¬¬ä¸€æ¬¡ç‚¹
+			if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 			{
 				strs[0] = getWords();
 			}
-			if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+			if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 			{
 				strs[1] = getWords();
 			}
-			if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+			if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 			{
 				strs[2] = getWords();
 			}
 		}
 		else
-			if (count == 1)// µÚ¶þ´Îµã»÷
+			if (count == 1)// ç¬¬äºŒæ¬¡ç‚¹å‡»
 			{
-				if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+				if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 				{
 					strs[0] = getWords();
 				}
-				if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+				if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 				{
 					strs[1] = getWords();
 				}
-				if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+				if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 				{
 					strs[2] = getWords();
 				}
@@ -342,7 +342,7 @@ public class LaBaService
 			else
 				if (count == 2)
 				{
-					if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+					if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 					{
 						if (strs[1].equals(strs[2]))
 						{
@@ -358,7 +358,7 @@ public class LaBaService
 							strs[0] = ss[rd.nextInt(2)];
 						}
 					}
-					if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+					if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 					{
 						if (strs[0].equals(strs[2]))
 						{
@@ -374,7 +374,7 @@ public class LaBaService
 							strs[1] = ss[rd.nextInt(2)];
 						}
 					}
-					if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+					if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 					{
 						if (strs[0].equals(strs[1]))
 						{
@@ -398,7 +398,7 @@ public class LaBaService
 	}
 
 	/**
-	 * Èý¸öÌáÊ¾×Ö¶¼²»Ò»Ñù
+	 * ä¸‰ä¸ªæç¤ºå­—éƒ½ä¸ä¸€æ ·
 	 * 
 	 * @param strs
 	 * @param num
@@ -410,22 +410,22 @@ public class LaBaService
 	{
 		ArrayList<String> al = new ArrayList<String>();
 		if (count == 0)
-		{// Èç¹ûÊÇµÚÒ»´Îµã
-			if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+		{// å¦‚æžœæ˜¯ç¬¬ä¸€æ¬¡ç‚¹
+			if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 			{
 				strs[0] = getWords();
 			}
-			if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+			if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 			{
 				strs[1] = getWords();
 			}
-			if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+			if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 			{
 				strs[2] = getWords();
 			}
 		}
 		else
-			if (count == 1)// µÚ¶þ´Îµã»÷
+			if (count == 1)// ç¬¬äºŒæ¬¡ç‚¹å‡»
 			{
 				String sWord = "";
 				for (int i = 0; i < strs.length; i++)
@@ -436,21 +436,21 @@ public class LaBaService
 						break;
 					}
 				}
-				if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+				if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 				{
 					do
 					{
 						strs[0] = getWords();
 					} while (strs[0].equals(sWord));
 				}
-				if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+				if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 				{
 					do
 					{
 						strs[1] = getWords();
 					} while (strs[1].equals(sWord));
 				}
-				if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+				if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 				{
 					do
 					{
@@ -461,7 +461,7 @@ public class LaBaService
 			else
 				if (count == 2)
 				{
-					if (num.equals("1")) // Èç¹ûµã»÷µÄµÚÒ»¸ö
+					if (num.equals("1")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸€ä¸ª
 					{
 						do
 						{
@@ -469,7 +469,7 @@ public class LaBaService
 						} while (strs[0].equals(strs[1])
 								|| strs[0].equals(strs[2]));
 					}
-					if (num.equals("2")) // Èç¹ûµã»÷µÄµÚ¶þ¸ö
+					if (num.equals("2")) // å¦‚æžœç‚¹å‡»çš„ç¬¬äºŒä¸ª
 					{
 						do
 						{
@@ -477,7 +477,7 @@ public class LaBaService
 						} while (strs[1].equals(strs[0])
 								|| strs[1].equals(strs[2]));
 					}
-					if (num.equals("3")) // Èç¹ûµã»÷µÄµÚÈý¸ö
+					if (num.equals("3")) // å¦‚æžœç‚¹å‡»çš„ç¬¬ä¸‰ä¸ª
 					{
 						do
 						{
@@ -493,7 +493,7 @@ public class LaBaService
 	}
 
 	/**
-	 * °Ñ±¦ÏäµÄÐÅÏ¢¼ÇÂ¼ÏÂÀ´
+	 * æŠŠå®ç®±çš„ä¿¡æ¯è®°å½•ä¸‹æ¥
 	 * 
 	 * @param pk
 	 * @param info_type
@@ -505,7 +505,7 @@ public class LaBaService
 		playerPropGroupDao.sendRecordGoldInfo(pPk, info_type, content);
 		if (info_type == 1)
 		{
-			// Í³¼ÆÐèÒª
+			// ç»Ÿè®¡éœ€è¦
 			new RankService().updateAdd(pPk, "open", 1);
 		}
 	}

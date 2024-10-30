@@ -15,7 +15,7 @@ public class DES
 	private byte[] cipherByte;
 
 	/**
-	 * ³õÊ¼»¯ DES ÊµÀı
+	 * åˆå§‹åŒ– DES å®ä¾‹
 	 */
 	public DES()
 	{
@@ -42,11 +42,11 @@ public class DES
 	}
 
 	/**
-	 * ¶Ô String ½øĞĞ¼ÓÃÜ
+	 * å¯¹ String è¿›è¡ŒåŠ å¯†
 	 * 
 	 * @param str
-	 *            Òª¼ÓÃÜµÄÊı¾İ
-	 * @return ·µ»Ø¼ÓÃÜºóµÄ byte Êı×é
+	 *            è¦åŠ å¯†çš„æ•°æ®
+	 * @return è¿”å›åŠ å¯†åçš„ byte æ•°ç»„
 	 */
 	public byte[] createEncryptor(String str)
 	{
@@ -71,11 +71,11 @@ public class DES
 	}
 
 	/**
-	 * ¶Ô Byte Êı×é½øĞĞ½âÃÜ
+	 * å¯¹ Byte æ•°ç»„è¿›è¡Œè§£å¯†
 	 * 
 	 * @param buff
-	 *            Òª½âÃÜµÄÊı¾İ
-	 * @return ·µ»Ø¼ÓÃÜºóµÄ String
+	 *            è¦è§£å¯†çš„æ•°æ®
+	 * @return è¿”å›åŠ å¯†åçš„ String
 	 */
 	public String createDecryptor(byte[] buff)
 	{
@@ -100,7 +100,7 @@ public class DES
 	}
 
 	/**
-	 * ÒÑÖªÃÜÔ¿µÄÇé¿öÏÂ¼ÓÃÜ
+	 * å·²çŸ¥å¯†é’¥çš„æƒ…å†µä¸‹åŠ å¯†
 	 */
 	public static String encode(String str, String key) throws Exception
 	{
@@ -120,10 +120,10 @@ public class DES
 	}
 
 	/**
-	 * ÒÑÖªÃÜÔ¿µÄÇé¿öÏÂ½âÃÜ
+	 * å·²çŸ¥å¯†é’¥çš„æƒ…å†µä¸‹è§£å¯†
 	 * 
 	 * @param str
-	 *            ¼ÓÃÜ´®
+	 *            åŠ å¯†ä¸²
 	 * @param key
 	 *            key
 	 * @return decode
@@ -145,11 +145,11 @@ public class DES
 	}
 
 	/**
-	 * Éú³É DESKey
+	 * ç”Ÿæˆ DESKey
 	 * 
-	 * @return DESKey Ò»×Ö·û´®ĞÎÊ½±£´æ
+	 * @return DESKey ä¸€å­—ç¬¦ä¸²å½¢å¼ä¿å­˜
 	 * @throws java.security.NoSuchAlgorithmException
-	 *             ¸ÃËã·¨²»´æÔÚ
+	 *             è¯¥ç®—æ³•ä¸å­˜åœ¨
 	 */
 
 	public static String generatorDESKey() throws NoSuchAlgorithmException
@@ -161,17 +161,17 @@ public class DES
 	}
 
 	/**
-	 * ¶Ô¿¨ĞÅÏ¢½øĞĞdes¼ÓÃÜ£¬²¢½øĞĞbase64±àÂë
+	 * å¯¹å¡ä¿¡æ¯è¿›è¡ŒdesåŠ å¯†ï¼Œå¹¶è¿›è¡Œbase64ç¼–ç 
 	 * 
 	 * @param cardMoney
-	 *            ¿¨½ğ¶î
+	 *            å¡é‡‘é¢
 	 * @param cardSn
-	 *            ¿¨ĞòÁĞºÅ
+	 *            å¡åºåˆ—å·
 	 * @param cardPwd
-	 *            ¿¨ÃÜÂë
+	 *            å¡å¯†ç 
 	 * @param desKey
-	 *            desÃÜÂë
-	 * @return ½øĞĞdes¼ÓÃÜ£¬²¢½øĞĞbase64µÄ×Ö·û´®
+	 *            deså¯†ç 
+	 * @return è¿›è¡ŒdesåŠ å¯†ï¼Œå¹¶è¿›è¡Œbase64çš„å­—ç¬¦ä¸²
 	 */
 	public static String getDesEncryptBase64String(String cardMoney,
 			String cardSn, String cardPwd, String desKey)
@@ -195,7 +195,7 @@ public class DES
 	}
 
 	/*
-	 * ²âÊÔ DES
+	 * æµ‹è¯• DES
 	 */
 	public static void main(String args[])
 	{

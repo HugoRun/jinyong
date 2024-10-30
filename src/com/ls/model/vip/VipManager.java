@@ -7,14 +7,14 @@ import java.util.Map;
 
 /**
  * @author ls
- * »áÔ±ĞÅÏ¢¹ÜÀí
+ * ä¼šå‘˜ä¿¡æ¯ç®¡ç†
  */
 public class VipManager
 {
-	//»áÔ±µÈ¼¶
-	public final static int LEVEL_0=0;//ÆÕÍ¨³ÉÔ±
-	public final static int LEVEL_1=1;//1¼¶»áÔ±
-	public final static int LEVEL_2=2;//2¼¶»áÔ±
+	//ä¼šå‘˜ç­‰çº§
+	public final static int LEVEL_0=0;//æ™®é€šæˆå‘˜
+	public final static int LEVEL_1=1;//1çº§ä¼šå‘˜
+	public final static int LEVEL_2=2;//2çº§ä¼šå‘˜
 	
 	private static Map<Integer,Vip> vip_factory = new HashMap<Integer,Vip>(5);
 	
@@ -32,7 +32,7 @@ public class VipManager
 	}
 	
 	/**
-	 * ¸ù¾İ»áÔ±µÈ¼¶µÃµ½»áÔ±ĞÅÏ¢
+	 * æ ¹æ®ä¼šå‘˜ç­‰çº§å¾—åˆ°ä¼šå‘˜ä¿¡æ¯
 	 * @return
 	 */
 	public static Vip getByLevel(int level)
@@ -53,7 +53,7 @@ public class VipManager
 	}
 	
 	/**
-	 * ¸ù¾İ»áÔ±³ÆºÅidµÃµ½»áÔ±ĞÅÏ¢
+	 * æ ¹æ®ä¼šå‘˜ç§°å·idå¾—åˆ°ä¼šå‘˜ä¿¡æ¯
 	 */
 	public static Vip getByTId( int t_id )
 	{

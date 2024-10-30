@@ -11,59 +11,59 @@ import com.ls.model.user.RoleEntity;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 11:57:17 AM
  */
 public class SceneVO {
-	/** µØµã */
+	/** åœ°ç‚¹ */
 	private int sceneID;
-	/** ³¡¾°Ãû³Æ */
+	/** åœºæ™¯åç§° */
 	private String sceneName;
-	/** ³¡¾°×ø±ê */
+	/** åœºæ™¯åæ ‡ */
 	private String sceneCoordinate;
-	/** ´«ËÍÏŞÖÆ */
+	/** ä¼ é€é™åˆ¶ */
 	private String sceneLimit;
-	/** µØÍ¼Ìø×ª */
+	/** åœ°å›¾è·³è½¬ */
 	private int sceneJumpterm;
-	/** µØÍ¼ÊôĞÔ(¿ÉÒÔÊÇ¼¸¸ö) */
+	/** åœ°å›¾å±æ€§(å¯ä»¥æ˜¯å‡ ä¸ª) */
 	private String sceneAttribute;
-	/** µØÍ¼ÊôĞÔÖµ1ÊÇ2·ñ */
+	/** åœ°å›¾å±æ€§å€¼1æ˜¯2å¦ */
 	private String sceneAttributeValue;
-	/** PK¿ª¹Ø */
+	/** PKå¼€å…³ */
 	private int sceneSwitch;
-	/** ÊÓÒ°±àºÅ */
+	/** è§†é‡ç¼–å· */
 	private String sceneKen;
-	/** ÏÖ×öÃÔ¹¬²ãÊıÓÃ£¬±íÊ¾ÊÇÃÔ¹¬µÄµÚ¼¸²ã */
+	/** ç°åšè¿·å®«å±‚æ•°ç”¨ï¼Œè¡¨ç¤ºæ˜¯è¿·å®«çš„ç¬¬å‡ å±‚ */
 	private int sceneSkill;
-	/** ³¡¾°Í¼Æ¬ */
+	/** åœºæ™¯å›¾ç‰‡ */
 	private String scenePhoto;
-	/** ³¡¾°ËµÃ÷ */
+	/** åœºæ™¯è¯´æ˜ */
 	private String sceneDisplay;
-	/** Ë¢ĞÂÊ±¼ä */
+	/** åˆ·æ–°æ—¶é—´ */
 	private int sceneRenovatetime;
-	/** MAPÇøÓò */
+	/** MAPåŒºåŸŸ */
 	private String sceneMapqy;
-	/** ³¡¾°Ìõ¼şÉÏ 0ÎŞÏŞÖÆ 1ÓĞÏŞÖÆ */
+	/** åœºæ™¯æ¡ä»¶ä¸Š 0æ— é™åˆ¶ 1æœ‰é™åˆ¶ */
 	private int sceneShang;
-	/** ³¡¾°Ìõ¼şĞ¡ 0ÎŞÏŞÖÆ 1ÓĞÏŞÖÆ */
+	/** åœºæ™¯æ¡ä»¶å° 0æ— é™åˆ¶ 1æœ‰é™åˆ¶ */
 	private int sceneXia;
-	/** ³¡¾°Ìõ¼ş×ó 0ÎŞÏŞÖÆ 1ÓĞÏŞÖÆ */
+	/** åœºæ™¯æ¡ä»¶å·¦ 0æ— é™åˆ¶ 1æœ‰é™åˆ¶ */
 	private int sceneZuo;
-	/** ³¡¾°Ìõ¼şÓÒ 0ÎŞÏŞÖÆ 1ÓĞÏŞÖÆ */
+	/** åœºæ™¯æ¡ä»¶å³ 0æ— é™åˆ¶ 1æœ‰é™åˆ¶ */
 	private int sceneYou;
 	
-	/**³¡¾°ËùÔÚmap*/
+	/**åœºæ™¯æ‰€åœ¨map*/
 	private MapVO map = null;
-	/**Ìø×ªµÄ³¡¾°ĞÅÏ¢*/
+	/**è·³è½¬çš„åœºæ™¯ä¿¡æ¯*/
 	private SceneVO jumpScene;
 	
 	/**
-	 * µ±Ç°³¡¾°ÏÂµÄ¸¸²Ëµ¥
+	 * å½“å‰åœºæ™¯ä¸‹çš„çˆ¶èœå•
 	 */
 	private HashMap<String,OperateMenuVO> fatherMenuList = new HashMap<String,OperateMenuVO>(10);
 	
 	/**
-	 * µÃµ½¿ÉÒÔÌø×ªµÄ³¡¾°ĞÅÏ¢
+	 * å¾—åˆ°å¯ä»¥è·³è½¬çš„åœºæ™¯ä¿¡æ¯
 	 * @return
 	 */
 	public SceneVO getJumpSceneInfo()
@@ -73,33 +73,33 @@ public class SceneVO {
 			jumpScene = SceneCache.getById(sceneJumpterm+"");
 			if( jumpScene==null )
 			{
-				DataErrorLog.debugData("¸Ã³¡¾°µÄÌø×ª³¡¾°id´íÎó£ºscene_id="+this.sceneID+";sceneJumpterm="+sceneJumpterm);
+				DataErrorLog.debugData("è¯¥åœºæ™¯çš„è·³è½¬åœºæ™¯idé”™è¯¯ï¼šscene_id="+this.sceneID+";sceneJumpterm="+sceneJumpterm);
 			}
 		}
 		return jumpScene;
 	}
 	
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ½øÈë¸Ã³¡¾°
+	 * æ˜¯å¦å¯ä»¥è¿›å…¥è¯¥åœºæ™¯
 	 * @return
 	 */
 	public String isEntered( RoleEntity roleInfo )
 	{
 		if( roleInfo==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		int targetType= this.getMap().getBarea().getBareaType();
 		int selfType=roleInfo.getBasicInfo().getPRace();
 		if(targetType!=selfType&&targetType!=0)
 		{
-			return "²»ÄÜ½øÈëËü×åÖ÷³Ç";
+			return "ä¸èƒ½è¿›å…¥å®ƒæ—ä¸»åŸ";
 		}
 		return null;
 	}
 
 	/**
-	 * ÊÇ·ñÔÊĞíPK
+	 * æ˜¯å¦å…è®¸PK
 	 * @return
 	 */
 	public boolean isAllowPK()
@@ -115,7 +115,7 @@ public class SceneVO {
 	}
 	
 	/**
-	 * µÃµ½³¡¾°µÄÃèÊö
+	 * å¾—åˆ°åœºæ™¯çš„æè¿°
 	 * @return
 	 */
 	public String getFullName()
@@ -127,25 +127,25 @@ public class SceneVO {
 		result.append("]");
 		if( this.getSceneSwitch()==1 )
 		{
-			result.append("°²");
+			result.append("å®‰");
 		}
 		else
 		{
-			result.append("Î£");
+			result.append("å±");
 		}
 		
 		return result.toString();
 	}
 	
 	/**
-	 * µÃµ½µ±Ç°³¡¾°ÏÂboss¹Ö£¨ÓĞË¢ĞÂÊ±¼ä¿ØÖÆµÄnpc£©µÄË¢ĞÂÌáÊ¾
+	 * å¾—åˆ°å½“å‰åœºæ™¯ä¸‹bossæ€ªï¼ˆæœ‰åˆ·æ–°æ—¶é—´æ§åˆ¶çš„npcï¼‰çš„åˆ·æ–°æç¤º
 	 * @return
 	 */
 	public String getBossRefHint()
 	{
 		StringBuffer result = new StringBuffer();;
 		NpcrefurbishDao npcrefurbishDao = new NpcrefurbishDao();
-		//µÃµ½µ±Ç°µØµãnpcÒÑËÀµÄËùÓĞnpcĞÅÏ¢
+		//å¾—åˆ°å½“å‰åœ°ç‚¹npcå·²æ­»çš„æ‰€æœ‰npcä¿¡æ¯
 		List<NpcrefurbishVO> refurbish_list = npcrefurbishDao.getDeadBySenceId(this.sceneID);
 		for (NpcrefurbishVO refurbish : refurbish_list)
 		{

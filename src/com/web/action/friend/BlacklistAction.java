@@ -1,16 +1,5 @@
 package com.web.action.friend;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.vo.friend.BlacklistVO;
 import com.ben.vo.friend.FriendVO;
 import com.ls.model.user.RoleEntity;
@@ -19,186 +8,170 @@ import com.ls.web.action.ActionBase;
 import com.ls.web.service.player.RoleService;
 import com.web.service.friend.BlacklistService;
 import com.web.service.friend.FriendService;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
- * @author ºîºÆ¾ü ¹¦ÄÜ:ºÚÃûµ¥ 9:40:46 AM
+ * @author ä¾¯æµ©å†› åŠŸèƒ½:é»‘åå• 9:40:46 AM
  */
-public class BlacklistAction extends ActionBase
-{
-	/**
-	 * Ôö¼ÓºÚÃûµ¥
-	 */
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleEntity roleInfo = this.getRoleEntity(request);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+public class BlacklistAction extends ActionBase {
+    /**
+     * å¢åŠ é»‘åå•
+     */
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        RoleEntity roleInfo = this.getRoleEntity(request);
+        // å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
-		String pByPk = request.getParameter("pByPk");
-		String pByName = request.getParameter("pByName");
+        String pByPk = request.getParameter("pByPk");
+        String pByName = request.getParameter("pByName");
         FriendService fs = new FriendService();
         FriendVO fv = fs.viewfriend(roleInfo.getBasicInfo().getPPk(), pByPk);
-        if(fv!=null){
-        	if(fv.getRelation()==1){
-        		String pa = "ÇëÏÈ½â³ı½áÒå¹ØÏµ";
-    			request.setAttribute("pa", pa);
-    			request.setAttribute("pByPk", pByPk);
-    			request.setAttribute("pByName", pByName);
-    			return mapping.findForward("friendadd");
-        	}else if(fv.getRelation()==2){
-        		String pa = "ÇëÏÈ½â³ı»éÒö¹ØÏµ";
-    			request.setAttribute("pa", pa);
-    			request.setAttribute("pByPk", pByPk);
-    			request.setAttribute("pByName", pByName);
-    			return mapping.findForward("friendadd");
-        	}
+        if (fv != null) {
+            if (fv.getRelation() == 1) {
+                String pa = "è¯·å…ˆè§£é™¤ç»“ä¹‰å…³ç³»";
+                request.setAttribute("pa", pa);
+                request.setAttribute("pByPk", pByPk);
+                request.setAttribute("pByName", pByName);
+                return mapping.findForward("friendadd");
+            } else if (fv.getRelation() == 2) {
+                String pa = "è¯·å…ˆè§£é™¤å©šå§»å…³ç³»";
+                request.setAttribute("pa", pa);
+                request.setAttribute("pByPk", pByPk);
+                request.setAttribute("pByName", pByName);
+                return mapping.findForward("friendadd");
+            }
         }
-		BlacklistService blacklistService = new BlacklistService();
-		if (blacklistService.whetherblacklist(roleInfo.getBasicInfo().getPPk(),
-				pByPk) == false)
-		{
-			String pa = "¸ÃÍæ¼ÒÒÑ¾­ÔÚÄúµÄºÚÃûµ¥ÀïÁË²»ĞèÒªÔÙÌí¼ÓÁË£¡";
-			request.setAttribute("pa", pa);
-			request.setAttribute("pByPk", pByPk);
-			request.setAttribute("pByName", pByName);
-			return mapping.findForward("friendadd");
+        BlacklistService blacklistService = new BlacklistService();
+        if (!blacklistService.whetherblacklist(roleInfo.getBasicInfo().getPPk(),
+                pByPk)) {
+            String pa = "è¯¥ç©å®¶å·²ç»åœ¨æ‚¨çš„é»‘åå•é‡Œäº†ä¸éœ€è¦å†æ·»åŠ äº†ï¼";
+            request.setAttribute("pa", pa);
+            request.setAttribute("pByPk", pByPk);
+            request.setAttribute("pByName", pByName);
+            return mapping.findForward("friendadd");
 
-		}
-		if (blacklistService.blacklistupperlimit(roleInfo.getBasicInfo()
-				.getPPk()) == false)
-		{
-			String pa = "ÄúµÄºÚÃûµ¥ÊıÁ¿ÒÑ¾­´ïµ½ÉÏÏŞ£¡";
-			request.setAttribute("pa", pa);
-			request.setAttribute("pByPk", pByPk);
-			request.setAttribute("pByName", pByName);
-			return mapping.findForward("friendadd");
-		}
-		if (Integer.parseInt(pByPk) == roleInfo.getBasicInfo().getPPk())
-		{
-			String pa = "Äú²»ÄÜ×Ô¼º¼Ó×Ô¼ººÚÃûµ¥!";
-			request.setAttribute("pa", pa);
-			request.setAttribute("pByPk", pByPk);
-			request.setAttribute("pByName", pByName);
-			return mapping.findForward("friendadd");
-		}
-		
-		// É¾³ıºÃÓÑÁĞ±í
-		FriendService friendService = new FriendService();
-		friendService.deletefriend(roleInfo.getBasicInfo().getPPk(), pByPk);
-		// ¼ÓÈëºÚÃûµ¥
-		blacklistService.addblacklist(roleInfo.getBasicInfo().getPPk(), pByPk,
-				pByName, Time);
-		String pa = "ÄúÒÑ½«" + pByName + "¼ÓÈëÄúµÄºÚÃûµ¥ÁĞ±íÀï£¡";
-		request.setAttribute("pa", pa);
-		request.setAttribute("pByPk", pByPk);
-		request.setAttribute("pByName", pByName);
-		return mapping.findForward("blacklistadd");
-	}
-
-	/**
-	 * Ôö¼ÓºÚÃûµ¥
-	 */
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleEntity roleInfo = this.getRoleEntity(request);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
-
-		String pByPk = request.getParameter("pByPk");
-		String pByName = request.getParameter("pByName");
-		
-		request.setAttribute("pByPk", pByPk);
-		request.setAttribute("pByName", pByName);
-		
-		String hint = "";
-		
-		FriendService fs = new FriendService();
-		BlacklistService blacklistService = new BlacklistService();
-		FriendVO fv = fs.viewfriend(roleInfo.getPPk(), pByPk);
-        if(fv!=null){
-        	if(fv.getRelation()==1){
-        		hint = "ÇëÏÈ½â³ı½áÒå¹ØÏµ";
-        	}else if(fv.getRelation()==2){
-        		hint = "ÇëÏÈ½â³ı»éÒö¹ØÏµ";
-        	}
         }
-        else if (blacklistService.whetherblacklist(roleInfo.getPPk(),pByPk) == false)
-		{
-			hint = "¸ÃÍæ¼ÒÒÑ¾­ÔÚÄúµÄºÚÃûµ¥ÀïÁË²»ĞèÒªÔÙÌí¼ÓÁË£¡";
-
-		}
-        else if (blacklistService.blacklistupperlimit(roleInfo.getPPk()) == false)
-		{
-			hint = "ÄúµÄºÚÃûµ¥ÊıÁ¿ÒÑ¾­´ïµ½ÉÏÏŞ£¡";
-		}
-        else if (Integer.parseInt(pByPk) == roleInfo.getPPk())
-		{
-			hint = "Äú²»ÄÜ×Ô¼º¼Ó×Ô¼ººÚÃûµ¥!";
-		}
-        else
-        {
-        	// É¾³ıºÃÓÑÁĞ±í
-    		FriendService friendService = new FriendService();
-    		friendService.deletefriend(roleInfo.getBasicInfo().getPPk(), pByPk);
-    		// ¼ÓÈëºÚÃûµ¥
-    		blacklistService.addblacklist(roleInfo.getBasicInfo().getPPk(), pByPk,pByName, Time);
-    		hint = "ÄúÒÑ½«" + pByName + "¼ÓÈëÄúµÄºÚÃûµ¥ÁĞ±íÀï£¡";
+        if (!blacklistService.blacklistupperlimit(roleInfo.getBasicInfo()
+                .getPPk())) {
+            String pa = "æ‚¨çš„é»‘åå•æ•°é‡å·²ç»è¾¾åˆ°ä¸Šé™ï¼";
+            request.setAttribute("pa", pa);
+            request.setAttribute("pByPk", pByPk);
+            request.setAttribute("pByName", pByName);
+            return mapping.findForward("friendadd");
         }
-		this.setHint(request, hint);
-		return super.dispath(request, response, "/swapaction.do?cmd=n13&pPks="+pByPk);
-	}
+        if (Integer.parseInt(pByPk) == roleInfo.getBasicInfo().getPPk()) {
+            String pa = "æ‚¨ä¸èƒ½è‡ªå·±åŠ è‡ªå·±é»‘åå•!";
+            request.setAttribute("pa", pa);
+            request.setAttribute("pByPk", pByPk);
+            request.setAttribute("pByName", pByName);
+            return mapping.findForward("friendadd");
+        }
 
-	/**
-	 * ºÚÃûµ¥List
-	 */
-	public ActionForward n3(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
-				.getSession());
-		BlacklistService blacklistService = new BlacklistService();
-		List<BlacklistVO> list1 = blacklistService.listblacklist(roleInfo
-				.getBasicInfo().getPPk());
-		List<BlacklistVO> list = null;
-		QueryPage queryPage = new QueryPage();
-		String page_Str = request.getParameter("page");
-		int pagenum = 0;
-		if (page_Str != null)
-		{
-			pagenum = Integer.parseInt(page_Str);
-		}
-		int allnum = list1.size();
-		int pageall = 0;
-		if (allnum != 0)
-		{
-			pageall = allnum / queryPage.getPageSize()
-					+ (allnum % queryPage.getPageSize() == 0 ? 0 : 1);
+        // åˆ é™¤å¥½å‹åˆ—è¡¨
+        FriendService friendService = new FriendService();
+        friendService.deletefriend(roleInfo.getBasicInfo().getPPk(), pByPk);
+        // åŠ å…¥é»‘åå•
+        blacklistService.addblacklist(roleInfo.getBasicInfo().getPPk(), pByPk, pByName, Time);
+        String pa = "æ‚¨å·²å°†" + pByName + "åŠ å…¥æ‚¨çš„é»‘åå•åˆ—è¡¨é‡Œï¼";
+        request.setAttribute("pa", pa);
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("pByName", pByName);
+        return mapping.findForward("blacklistadd");
+    }
 
-			list = blacklistService.listpage(roleInfo
-					.getBasicInfo().getPPk(), pagenum, queryPage.getPageSize());
-		}
-		request.setAttribute("pagenum", pagenum);
-		request.setAttribute("pageall", pageall);
-		request.setAttribute("list", list);
-		return mapping.findForward("blacklist");
-	}
+    /**
+     * å¢åŠ é»‘åå•
+     */
+    public ActionForward n2(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        RoleEntity roleInfo = this.getRoleEntity(request);
+        // å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
+        String Time = formatter.format(new Date());
 
-	/**
-	 * Ìß³öºÚÃûµ¥
-	 */
-	public ActionForward n4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
-				.getSession());
-		String pByPk = request.getParameter("pByPk");
-		BlacklistService blacklistService = new BlacklistService();
-		blacklistService.deleteblacklist(roleInfo.getBasicInfo().getPPk(),
-				pByPk);
-		return mapping.findForward("blackdelete");
-	}
+        String pByPk = request.getParameter("pByPk");
+        String pByName = request.getParameter("pByName");
+
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("pByName", pByName);
+
+        String hint = "";
+
+        FriendService fs = new FriendService();
+        BlacklistService blacklistService = new BlacklistService();
+        FriendVO fv = fs.viewfriend(roleInfo.getPPk(), pByPk);
+        if (fv != null) {
+            if (fv.getRelation() == 1) {
+                hint = "è¯·å…ˆè§£é™¤ç»“ä¹‰å…³ç³»";
+            } else if (fv.getRelation() == 2) {
+                hint = "è¯·å…ˆè§£é™¤å©šå§»å…³ç³»";
+            }
+        } else if (!blacklistService.whetherblacklist(roleInfo.getPPk(), pByPk)) {
+            hint = "è¯¥ç©å®¶å·²ç»åœ¨æ‚¨çš„é»‘åå•é‡Œäº†ä¸éœ€è¦å†æ·»åŠ äº†ï¼";
+
+        } else if (!blacklistService.blacklistupperlimit(roleInfo.getPPk())) {
+            hint = "æ‚¨çš„é»‘åå•æ•°é‡å·²ç»è¾¾åˆ°ä¸Šé™ï¼";
+        } else if (Integer.parseInt(pByPk) == roleInfo.getPPk()) {
+            hint = "æ‚¨ä¸èƒ½è‡ªå·±åŠ è‡ªå·±é»‘åå•!";
+        } else {
+            // åˆ é™¤å¥½å‹åˆ—è¡¨
+            FriendService friendService = new FriendService();
+            friendService.deletefriend(roleInfo.getBasicInfo().getPPk(), pByPk);
+            // åŠ å…¥é»‘åå•
+            blacklistService.addblacklist(roleInfo.getBasicInfo().getPPk(), pByPk, pByName, Time);
+            hint = "æ‚¨å·²å°†" + pByName + "åŠ å…¥æ‚¨çš„é»‘åå•åˆ—è¡¨é‡Œï¼";
+        }
+        this.setHint(request, hint);
+        return super.dispath(request, response, "/swapaction.do?cmd=n13&pPks=" + pByPk);
+    }
+
+    /**
+     * é»‘åå•List
+     */
+    public ActionForward n3(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+        BlacklistService blacklistService = new BlacklistService();
+        List<BlacklistVO> list1 = blacklistService.listblacklist(roleInfo.getBasicInfo().getPPk());
+        List<BlacklistVO> list = null;
+        QueryPage queryPage = new QueryPage();
+        String page_Str = request.getParameter("page");
+        int pagenum = 0;
+        if (page_Str != null) {
+            pagenum = Integer.parseInt(page_Str);
+        }
+        int allnum = list1.size();
+        int pageall = 0;
+        if (allnum != 0) {
+            pageall = allnum / queryPage.getPageSize() + (allnum % queryPage.getPageSize() == 0 ? 0 : 1);
+            list = blacklistService.listpage(roleInfo.getBasicInfo().getPPk(), pagenum, queryPage.getPageSize());
+        }
+        request.setAttribute("pagenum", pagenum);
+        request.setAttribute("pageall", pageall);
+        request.setAttribute("list", list);
+        return mapping.findForward("blacklist");
+    }
+
+    /**
+     * è¸¢å‡ºé»‘åå•
+     */
+    public ActionForward n4(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+        String pByPk = request.getParameter("pByPk");
+        BlacklistService blacklistService = new BlacklistService();
+        blacklistService.deleteblacklist(roleInfo.getBasicInfo().getPPk(), pByPk);
+        return mapping.findForward("blackdelete");
+    }
 }

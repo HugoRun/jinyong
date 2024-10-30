@@ -16,7 +16,7 @@ import com.pm.vo.auction.AuctionVO;
 public class AuctionInfoDAO extends DaoBase
 {
 	/**
-	 * @param pPk ¸öÈË½ÇÉ«id
+	 * @param pPk ä¸ªäººè§’è‰²id
 	 * @return	list 
 	 */
 	public QueryPage getAuctionInfoList(int pPk,int page_no){
@@ -40,7 +40,7 @@ public class AuctionInfoDAO extends DaoBase
 
 			queryPage = new QueryPage(page_no, count);
 			stmt = conn.createStatement();
-			String sql = "select * from u_auction_info where p_pk=" + pPk+" order by addInfoTime desc limit "+queryPage.getStartOfPage()+","+queryPage.getPageSize()+" ";
+			String sql = "SELECT * FROM u_auction_info where p_pk=" + pPk+" order by addInfoTime desc limit "+queryPage.getStartOfPage()+","+queryPage.getPageSize()+" ";
 			rs = stmt.executeQuery(sql);
 			while (rs.next())
 			{
@@ -65,12 +65,12 @@ public class AuctionInfoDAO extends DaoBase
 		}
 	/**
 	 * 
-	 * @param auctionId ÅÄÂôĞÅÏ¢±íid
-	 * @return	AuctionInfoVO ÅÄÂôĞÅÏ¢VO
+	 * @param auctionId æ‹å–ä¿¡æ¯è¡¨id
+	 * @return	AuctionInfoVO æ‹å–ä¿¡æ¯VO
 	 */
 	public AuctionInfoVO getAuctionView(int auctionId){
 		AuctionInfoVO auctionInfoVO = null;
-		String sql = "select * from u_auction_info where auction_id=" + auctionId;
+		String sql = "SELECT * FROM u_auction_info where auction_id=" + auctionId;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -106,7 +106,7 @@ public class AuctionInfoDAO extends DaoBase
 		Date dt = new Date();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql =  "insert into u_auction_info values(null,"+pPk+",'"+StringUtil.gbToISO(auction_info)+"','"+sf.format(dt)+"')";
+		String sql =  "INSERT INTO u_auction_info values(null,"+pPk+",'"+StringUtil.gbToISO(auction_info)+"','"+sf.format(dt)+"')";
 		logger.debug(sql);
 		try
 		{
@@ -121,18 +121,18 @@ public class AuctionInfoDAO extends DaoBase
 		}
 	
 	/**
-	 * ÏòÅÄÂôĞÅÏ¢±í²åÈëÒ»ÌõĞÅÏ¢,
-	 * @param pPk ¹ºÂòÕßid
+	 * å‘æ‹å–ä¿¡æ¯è¡¨æ’å…¥ä¸€æ¡ä¿¡æ¯,
+	 * @param pPk è´­ä¹°è€…id
 	 * @param auctionVO
-	 * @con ĞèÒª²åÈëµÄÓï¾ä
+	 * @con éœ€è¦æ’å…¥çš„è¯­å¥
 	 */
 	public void insertAuctionInfo(AuctionVO auctionVO,String con){
-		int pPk2 = auctionVO.getPPk();			//ÅÄÂôÕßid
+		int pPk2 = auctionVO.getPPk();			//æ‹å–è€…id
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dt = new Date();
 		
-		String sql = "insert into u_auction_info values(null,"+pPk2+",'"+StringUtil.gbToISO(con)+"','"+sf.format(dt)+"')";
-		logger.debug("ÏòÅÄÂôĞÅÏ¢±íÖĞ²åÈëĞÅÏ¢ :"+sql);
+		String sql = "INSERT INTO u_auction_info values(null,"+pPk2+",'"+StringUtil.gbToISO(con)+"','"+sf.format(dt)+"')";
+		logger.debug("å‘æ‹å–ä¿¡æ¯è¡¨ä¸­æ’å…¥ä¿¡æ¯ :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try{
@@ -158,12 +158,12 @@ public class AuctionInfoDAO extends DaoBase
 	}
 	
 	/**
-	 * É¾³ı°´Ê±¼äÅÅĞòµÄ10ÌõÖ®ºóµÄ¸öÈËÅÄÂôĞÅÏ¢¼ÇÂ¼
-	 * @param pPk ¸öÈË½ÇÉ«id
+	 * åˆ é™¤æŒ‰æ—¶é—´æ’åºçš„10æ¡ä¹‹åçš„ä¸ªäººæ‹å–ä¿¡æ¯è®°å½•
+	 * @param pPk ä¸ªäººè§’è‰²id
 	 */
 	public void clearAuctionInfo(int pPk){
-		String sql = "select auction_info_id from u_auction_info where p_pk="+pPk+" order by addInfoTime desc ";
-		//logger.debug("´ÓÅÄÂôĞÅÏ¢±íÖĞÈ¡³öĞÅÏ¢id :"+sql);
+		String sql = "SELECT auction_info_id from u_auction_info where p_pk="+pPk+" order by addInfoTime desc ";
+		//logger.debug("ä»æ‹å–ä¿¡æ¯è¡¨ä¸­å–å‡ºä¿¡æ¯id :"+sql);
 		List<Integer> list = new ArrayList<Integer>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
-      "http://www.wapforum.org/DTD/wml_1.1.xml">
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
 <%@page contentType="text/vnd.wap.wml" import="java.util.*" pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %> 
 <%@page import="com.ls.model.user.*,com.ls.web.service.player.*" %>
 
@@ -10,7 +9,8 @@
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
 	
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p> 
     请选择您的师门:

@@ -32,15 +32,15 @@ public class SellMoneyAction extends Action {
 		int p_pk= roleInfo.getBasicInfo().getPPk();
 		
 		String pByuPk = request.getParameter("pByuPk");
-		String pByPk = request.getParameter("pByPk");//±»ÇëÇóÈËID
+		String pByPk = request.getParameter("pByPk");//è¢«è¯·æ±‚äººID
 		
 		
-		String pSilver = request.getParameter("pSilver"); //ÇëÇó·½×ÔÉíÒø×Ó
-		String pCopper = request.getParameter("pCopper"); //ÇëÇó·½×ÔÉíÍ­Ç®
+		String pSilver = request.getParameter("pSilver"); //è¯·æ±‚æ–¹è‡ªèº«é“¶å­
+		String pCopper = request.getParameter("pCopper"); //è¯·æ±‚æ–¹è‡ªèº«é“œé’±
 		
-		String BypSilver = request.getParameter("BypSilver"); //ÇëÇó·½½»Ò×Òø×Ó
-		String BypCopper = request.getParameter("BypCopper"); //ÇëÇó·½½»Ò×Í­Ç®
-		//ÅĞ¶ÏÇëÇó½»Ò×µÄÇ®ÊÇ·ñ·ûºÏ×Ô¼ºÉíËù´øµÄÇ®
+		String BypSilver = request.getParameter("BypSilver"); //è¯·æ±‚æ–¹äº¤æ˜“é“¶å­
+		String BypCopper = request.getParameter("BypCopper"); //è¯·æ±‚æ–¹äº¤æ˜“é“œé’±
+		//åˆ¤æ–­è¯·æ±‚äº¤æ˜“çš„é’±æ˜¯å¦ç¬¦åˆè‡ªå·±èº«æ‰€å¸¦çš„é’±
 		if(Integer.parseInt(pSilver)<Integer.parseInt(BypSilver)){
 			String c = "c";
 			request.setAttribute("c",c);

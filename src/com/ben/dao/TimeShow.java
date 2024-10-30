@@ -5,13 +5,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author ºîºÆ¾ü ¹¦ÄÜ È¡³ıµ±Ç°Ê±ºòºóµÄÄ³¸öÊ±¼ä 1:00:44 PM
+ * @author ä¾¯æµ©å†› åŠŸèƒ½ å–é™¤å½“å‰æ—¶å€™åçš„æŸä¸ªæ—¶é—´ 1:00:44 PM
  */ 
 public class TimeShow
 {
 
 	/**
-	 * times ·Öµ¥Î»
+	 * times åˆ†å•ä½
 	 */
 	public String time(int times)
 	{
@@ -51,7 +51,7 @@ public class TimeShow
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°Ê±¼äÖ®Ç°¼¸·ÖÖÓµÄµÄÊ±¼ä
+	 * è·å–å½“å‰æ—¶é—´ä¹‹å‰å‡ åˆ†é’Ÿçš„çš„æ—¶é—´
 	 * */
 	@SuppressWarnings("deprecation")
 	public String Minutes(int minutes){
@@ -64,7 +64,7 @@ public class TimeShow
 	}
 	
 	/**
-	 * »ñÈ¡µ½µ±Ç°Ê±¼äN·ÖÖÓºóµÄÊ±¼ä ·µ»Ø¸ñÊ½Îªyyyy-MM-dd HH:mm:ss
+	 * è·å–åˆ°å½“å‰æ—¶é—´Nåˆ†é’Ÿåçš„æ—¶é—´ è¿”å›æ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss
 	 * @param time
 	 * @return
 	 */
@@ -73,9 +73,9 @@ public class TimeShow
 		cal.add(Calendar.MINUTE,time); 
 		Date d = new Date();
 		d.setTime(cal.getTimeInMillis());
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String endTime = formatter.format(d);// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String endTime = formatter.format(d);// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		return endTime;
 	}
 	
@@ -84,9 +84,9 @@ public class TimeShow
 		cal.add(Calendar.MINUTE,43200); 
 		Date d = new Date();
 		d.setTime(cal.getTimeInMillis());
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String endTime = formatter.format(d);// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String endTime = formatter.format(d);// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		System.out.println(endTime);
 	}
 }

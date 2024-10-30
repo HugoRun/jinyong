@@ -3,27 +3,27 @@ package com.ls.ben.vo.info.npc;
 import com.ls.model.user.RoleEntity;
 
 /**
- * ¹¦ÄÜ:npcshop
- * @author ÁõË§
+ * åŠŸèƒ½:npcshop
+ * @author åˆ˜å¸…
  * 2:53:43 PM
  */
 public class NpcShopVO {
 
-	/**NPCÂô³öid*/
+	/**NPCå–å‡ºid*/
 	private int npcshopId;
-	/**²Ëµ¥id*/
+	/**èœå•id*/
 	private int npcId;
-	/**ÎïÆ·ÀàĞÍ,±íÊ¾ÊÇÄÄ¸ö±í*/
+	/**ç‰©å“ç±»å‹,è¡¨ç¤ºæ˜¯å“ªä¸ªè¡¨*/
 	private int goodsType;
-	/**ÎïÆ·id*/
+	/**ç‰©å“id*/
 	private int goodsId;
-	/**ÎïÆ·Ãû×Ö*/
+	/**ç‰©å“åå­—*/
 	private String goodsName;
-	/**¼ÛÇ®*/
+	/**ä»·é’±*/
 	private int npcShopGoodsbuy;
 	
 	/**
-	 * µÃµ½Íæ¼Ò¹ºÂòµÄÊµ¼Ê¼ÛÇ®
+	 * å¾—åˆ°ç©å®¶è´­ä¹°çš„å®é™…ä»·é’±
 	 * @return
 	 */
 	public int getPrice( RoleEntity roleInfo )
@@ -32,7 +32,7 @@ public class NpcShopVO {
 		int tax = roleInfo.getBasicInfo().getSceneInfo().getMap().getBarea().getTax();
 		price *= (100 + tax) / 100;
 		
-		if( roleInfo.isRedname() )//ºìÃûÍæ¼ÒÓÎÏ·ÉÌµê¹ºÂòÒ©Æ·¡¢¾íÖá¡¢×°±¸µÈ£¬ÒÔ¼°ĞŞÀí×°±¸¼Û¸ñ·­±¶
+		if( roleInfo.isRedname() )//çº¢åç©å®¶æ¸¸æˆå•†åº—è´­ä¹°è¯å“ã€å·è½´ã€è£…å¤‡ç­‰ï¼Œä»¥åŠä¿®ç†è£…å¤‡ä»·æ ¼ç¿»å€
 		{
 			price *= 2;
 		}

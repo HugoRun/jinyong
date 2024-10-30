@@ -14,7 +14,7 @@ public class SceneCache extends CacheBase
 	public static String SCENE_BY_ID = "scene_by_id";
 	
 	/**
-	 * 通过id得到scene信息
+	 * 閫氳繃id寰楀埌scene淇℃伅
 	 * @param scene_id
 	 * @return
 	 */
@@ -22,7 +22,7 @@ public class SceneCache extends CacheBase
 	{
 		if( StringUtils.isEmpty(scene_id)==true )
 		{
-			DataErrorLog.debugData("SceneCache.getById:参数错误：scene_id="+scene_id);
+			DataErrorLog.debugData("SceneCache.getById:鍙傛暟閿欒锛歴cene_id="+scene_id);
 			return null;
 		}
 		SceneVO scene = null;
@@ -39,14 +39,14 @@ public class SceneCache extends CacheBase
 			}
 			else
 			{
-				DataErrorLog.debugData("数据错误，无该场景：scene_id="+scene_id);
+				DataErrorLog.debugData("鏁版嵁閿欒锛屾棤璇ュ満鏅細scene_id="+scene_id);
 			}
 		}
 		return scene;
 	}
 	
 	/**
-	 * 得到所有scene信息
+	 * 寰楀埌鎵�鏈塻cene淇℃伅
 	 * @param scene_id
 	 * @return
 	 */
@@ -57,7 +57,7 @@ public class SceneCache extends CacheBase
 	}
 	
 	/**
-	 * 重新加在一条scene信息
+	 * 閲嶆柊鍔犲湪涓�鏉cene淇℃伅
 	 */
 	public void reloadOneScene(SceneVO sceneVO)
 	{
@@ -90,7 +90,7 @@ public class SceneCache extends CacheBase
 			
 			
 			//result.remove(sceneVO.getSceneID()+"");
-			//重载MAP
+			//閲嶈浇MAP
 			//MapCache mapCache = new MapCache();
 			//MapVO mapVO = mapCache.getById(sceneVO.getSceneMapqy());
 			//sceneVO.setMap(mapVO);

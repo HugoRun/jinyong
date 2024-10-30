@@ -8,15 +8,15 @@ import com.ls.pub.db.DBConnection;
 public class PlayerOnlineNumRecordDao extends DaoBase 
 {
 	/**
-	 * 获得当前在线人数
+	 * 鑾峰緱褰撳墠鍦ㄧ嚎浜烘暟
 	 * @param pk
 	 * @return
 	 */
 	public int getPlayerOnlineNum()
 	{
 		int flag = 0;
-		String sql="select * from t_online limit 1";
-		logger.debug("获得当前在线人数="+sql);
+		String sql="SELECT * FROM t_online limit 1";
+		logger.debug("鑾峰緱褰撳墠鍦ㄧ嚎浜烘暟="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -39,14 +39,14 @@ public class PlayerOnlineNumRecordDao extends DaoBase
 	}
 	
 	/**
-	 * 减少当前在线人数一
+	 * 鍑忓皯褰撳墠鍦ㄧ嚎浜烘暟涓�
 	 * 
 	 */
 	public void reduceOnlineNum()
 	{
 
 		String sql="update t_online set onlinecount = onlinecount - 1";
-		logger.debug("减少当前在线人数1="+sql);
+		logger.debug("鍑忓皯褰撳墠鍦ㄧ嚎浜烘暟1="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -65,13 +65,13 @@ public class PlayerOnlineNumRecordDao extends DaoBase
 	
 	
 	/**
-	 * 增加在线人数数量
+	 * 澧炲姞鍦ㄧ嚎浜烘暟鏁伴噺
 	 */
 	public void addOnlineNumElse()
 	{
 
 		String sql="update t_online set onlinecount = onlinecount + 1";
-		logger.debug("增加在线人数数量="+sql);
+		logger.debug("澧炲姞鍦ㄧ嚎浜烘暟鏁伴噺="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();

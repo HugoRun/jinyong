@@ -17,7 +17,7 @@ public class RecvOrderAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * ³äÖµÈ·ÈÏ
+	 * å……å€¼ç¡®è®¤
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -27,7 +27,7 @@ public class RecvOrderAction extends DispatchAction
 		
 		String resultWml = null;
 		
-		String u_k = request.getParameter("uid");// Ìá½»À´µÄu_pk
+		String u_k = request.getParameter("uid");// æäº¤æ¥çš„u_pk
 		String pay_result = request.getParameter("pay_result");
 		String cmd = request.getParameter("cmd");
 		String amount = request.getParameter("amount");
@@ -37,15 +37,15 @@ public class RecvOrderAction extends DispatchAction
 
 		if ("1".equals(pay_result))
 		{
-			logger.info("¿¥ÍøÍ¨µÀÌá½»³äÖµÇëÇó£º³É¹¦Ìá½»³äÖµÇëÇó,¿¨ºÅ£º"+order_id+";³äÖµ½ğ¶î£º"+amount+"Ôª");
+			logger.info("éªç½‘é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šæˆåŠŸæäº¤å……å€¼è¯·æ±‚,å¡å·ï¼š"+order_id+";å……å€¼é‡‘é¢ï¼š"+amount+"å…ƒ");
 			resultWml = billService.getSuccessHint();
-			//resultWml = resultWml + "Äã½«µÃµ½" + amount + "Ôª±¦<br/>";
+			//resultWml = resultWml + "ä½ å°†å¾—åˆ°" + amount + "å…ƒå®<br/>";
 		}
 		else
 		{
-			logger.info("¿¥ÍøÍ¨µÀÌá½»³äÖµÇëÇó£ºÌá½»³äÖµÇëÇóÊ§°Ü,´íÎó´úÂë"+pay_result);
+			logger.info("éªç½‘é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šæäº¤å……å€¼è¯·æ±‚å¤±è´¥,é”™è¯¯ä»£ç "+pay_result);
 			resultWml = billService.getFailHint(pay_result);
-			//resultWml = "³äÖµÊ§°Ü,ÇëÖØĞÂ²Ù×÷.";
+			//resultWml = "å……å€¼å¤±è´¥,è¯·é‡æ–°æ“ä½œ.";
 		}
 
 		request.setAttribute("resultWml", resultWml.toString());

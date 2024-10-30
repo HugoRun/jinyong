@@ -10,7 +10,7 @@ if(message!=null&&!"".equals(message.trim())){
   <%=message %><br/>
   <%} %>
  <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/jiehun.do") %>"> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/jiehun.do") %>">
 	<postfield name="cmd" value="n18" />
 	</go>
 	确定

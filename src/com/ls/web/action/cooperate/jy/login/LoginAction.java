@@ -29,7 +29,7 @@ public class LoginAction extends Action
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String ip=request.getRemoteAddr();
-		logger.info("############金银岛户登陆##############");
+		logger.info("############閲戦摱宀涙埛鐧婚檰##############");
 		String user_id = request.getParameter("userid");
 		String user_name = request.getParameter("username");
 		
@@ -44,9 +44,9 @@ public class LoginAction extends Action
 		
 		//request.getSession().setAttribute("channel_id", Channel.JINYINDAO+"");
 		
-		if( u_pk ==-1 )//登陆验证失败
+		if( u_pk ==-1 )//鐧婚檰楠岃瘉澶辫触
 		{
-			logger.info("用户验证失败");
+			logger.info("鐢ㄦ埛楠岃瘉澶辫触");
 			return mapping.findForward("fail");
 		}
 		

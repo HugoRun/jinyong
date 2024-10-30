@@ -18,20 +18,20 @@ public class MailInfoService
 	public final static int OTHER_MAIL=1;
 	public final static int SYSTEM_MAIL=2;
 	public final static int ITEM_MAIL=3;
-	public final static int F_INVITE_MAIL=4;//°ïÅÉÑûÇëÓÊ¼ş
-	public final static int F_DISBAND_MAIL=5;//°ïÅÉ½âÉ¢ÌáĞÑÓÊ¼ş
+	public final static int F_INVITE_MAIL=4;//å¸®æ´¾é‚€è¯·é‚®ä»¶
+	public final static int F_DISBAND_MAIL=5;//å¸®æ´¾è§£æ•£æé†’é‚®ä»¶
 	
-	public final static int HAVE_ATTACHMENT=10;//ÓĞ¸½¼şµÄÓÊ¼ş
+	public final static int HAVE_ATTACHMENT=10;//æœ‰é™„ä»¶çš„é‚®ä»¶
 	
 	
 	/**
-	 * ½ÓÊÕÓÊ¼ş¸½¼ş
+	 * æ¥æ”¶é‚®ä»¶é™„ä»¶
 	 */
 	public String receiveAttachment(RoleEntity roleInfo,MailInfoVO mailInfo )
 	{
 		if( mailInfo==null || mailInfo.getMailType()!=HAVE_ATTACHMENT || StringUtils.isEmpty(mailInfo.getAttachmentStr()))
 		{
-			return "¸ÃÓÊ¼şÃ»ÓĞ¸½¼ş¿ÉÒÔÁìÈ¡";
+			return "è¯¥é‚®ä»¶æ²¡æœ‰é™„ä»¶å¯ä»¥é¢†å–";
 		}
 		
 		ItemContainer attachment = mailInfo.getAttachment();
@@ -46,8 +46,8 @@ public class MailInfoService
 	}
 	
 	/**
-	 * ²é¿´ÊÇ·ñÓĞĞÂÓÊ¼ş
-	 * @prarm pPk ¸öÈË½ÇÉ«id
+	 * æŸ¥çœ‹æ˜¯å¦æœ‰æ–°é‚®ä»¶
+	 * @prarm pPk ä¸ªäººè§’è‰²id
 	 * @return if have new mail,it will return the number of new mail,else return -1;
 	 */
 	public int havingNewMail(String pPk){
@@ -56,8 +56,8 @@ public class MailInfoService
 	}	
 	
 	/**
-	 * ²é¿´¸öÈËËùÓĞÓÊ¼şÁĞ±í
-	 * @param pPk ¸öÈË½ÇÉ«id
+	 * æŸ¥çœ‹ä¸ªäººæ‰€æœ‰é‚®ä»¶åˆ—è¡¨
+	 * @param pPk ä¸ªäººè§’è‰²id
 	 * @return list 
 	 */
 	public QueryPage getPersonMailList(String pPk,int page_no){
@@ -66,8 +66,8 @@ public class MailInfoService
 	}
 	
 	/**
-	 * ¸ù¾İid²é¿´ÓÊ¼ş
-	 * @param pPk ¸öÈË½ÇÉ«id
+	 * æ ¹æ®idæŸ¥çœ‹é‚®ä»¶
+	 * @param pPk ä¸ªäººè§’è‰²id
 	 * @return MailInfoVO 
 	 */
 	public MailInfoVO getPersonMailView(String mailId){
@@ -75,7 +75,7 @@ public class MailInfoService
 		return mailDao.getPersonMailView(mailId);
 	}
 	
-	/** ¸ù¾İÓÊ¼şidÉ¾³ıÓÊ¼ş  */
+	/** æ ¹æ®é‚®ä»¶idåˆ é™¤é‚®ä»¶  */
 	public String deleteMailByid(String mailId,int u_pk,int pPk){
 		MailInfoDao mailDao = new MailInfoDao();
 		StringBuffer sf = new StringBuffer();
@@ -84,30 +84,30 @@ public class MailInfoService
 			SecondPassDao secondPass = new SecondPassDao();
 			String hasSetting = secondPass.getUserLoginPawByUPk(u_pk);
 			if(hasSetting == null || hasSetting.equals("")) {	
-				sf.append("Äú»¹Ã»ÓĞÉèÖÃ¹ı¶ş¼¶ÃÜÂë,¹Ê´ËÓÊ¼ş²»¿É±»É¾³ı!");
+				sf.append("æ‚¨è¿˜æ²¡æœ‰è®¾ç½®è¿‡äºŒçº§å¯†ç ,æ•…æ­¤é‚®ä»¶ä¸å¯è¢«åˆ é™¤!");
 			}
 		} 
 		else if ( mail_type == 6) {
-			sf.append("ÌØÊâÓÊ¼ş,ÎŞ·¨É¾³ı,Çë´ò¿ª´ËÓÊ¼ş,µã»÷È·¶¨,È¡»Ø½ğÇ®»ò"+GameConfig.getYuanbaoName()+"ºóÓÊ¼ş¿É×Ô¶¯É¾³ı!");
+			sf.append("ç‰¹æ®Šé‚®ä»¶,æ— æ³•åˆ é™¤,è¯·æ‰“å¼€æ­¤é‚®ä»¶,ç‚¹å‡»ç¡®å®š,å–å›é‡‘é’±æˆ–"+GameConfig.getYuanbaoName()+"åé‚®ä»¶å¯è‡ªåŠ¨åˆ é™¤!");
 		}
 		else {
 		
 			int i = mailDao.deleteMailByid(mailId,pPk);
 		
 			if(i == -1 || i ==0){
-				sf.append("É¾³ıÓÊ¼şÊ§°Ü£¬ÇëÔÙÊÔÒ»´Î£¡");
+				sf.append("åˆ é™¤é‚®ä»¶å¤±è´¥ï¼Œè¯·å†è¯•ä¸€æ¬¡ï¼");
 			}else {
-				sf.append("Äú³É¹¦É¾³ıÁË´ËÓÊ¼ş£¡");
+				sf.append("æ‚¨æˆåŠŸåˆ é™¤äº†æ­¤é‚®ä»¶ï¼");
 			}
 		
-			//µ÷ÓÃÉ¾³ıÈ«²¿³¬¹ıÆßÈÕµÄÓÊ¼şµÄ·½·¨
+			//è°ƒç”¨åˆ é™¤å…¨éƒ¨è¶…è¿‡ä¸ƒæ—¥çš„é‚®ä»¶çš„æ–¹æ³•
 			//mailDao.deleteMailIfOutSeven();
 		}
 		
 		return sf.toString();
 	}
 	
-	/** ¸ù¾İÓÊ¼şidÉ¾³ıÓÊ¼ş  */
+	/** æ ¹æ®é‚®ä»¶idåˆ é™¤é‚®ä»¶  */
 	public String deleteMailByid(String mailId,int pPk){
 		MailInfoDao mailDao = new MailInfoDao();
 		
@@ -115,20 +115,20 @@ public class MailInfoService
 		StringBuffer sf = new StringBuffer();
 		
 		if(i == -1 || i ==0){
-			sf.append("É¾³ıÓÊ¼şÊ§°Ü£¬ÇëÔÙÊÔÒ»´Î£¡");
+			sf.append("åˆ é™¤é‚®ä»¶å¤±è´¥ï¼Œè¯·å†è¯•ä¸€æ¬¡ï¼");
 		}else {
-			sf.append("Äú³É¹¦É¾³ıÁË´ËÓÊ¼ş£¡");
+			sf.append("æ‚¨æˆåŠŸåˆ é™¤äº†æ­¤é‚®ä»¶ï¼");
 		}
 		
-		//µ÷ÓÃÉ¾³ıÈ«²¿³¬¹ıÆßÈÕµÄÓÊ¼şµÄ·½·¨
+		//è°ƒç”¨åˆ é™¤å…¨éƒ¨è¶…è¿‡ä¸ƒæ—¥çš„é‚®ä»¶çš„æ–¹æ³•
 		//mailDao.deleteMailIfOutSeven();
 		
 		
 		return sf.toString();
 	}
 	/**
-	 * ¸ù¾İpPk É¾³ı¸öÈËËùÓĞÓÊ¼ş
-	 * @param pk ¸öÈË½ÇÉ«id
+	 * æ ¹æ®pPk åˆ é™¤ä¸ªäººæ‰€æœ‰é‚®ä»¶
+	 * @param pk ä¸ªäººè§’è‰²id
 	 * @return if delete sussens return 1,else return -1;
 	 */
 	public String deletePersonMailBypPk(String pk){
@@ -136,15 +136,15 @@ public class MailInfoService
 		StringBuffer sb = new StringBuffer();
 		int i = mailDao.deletePersonMailBypPk(pk);
 		if(i == -1 || i == 0){
-			sb.append("É¾³ıËùÓĞÓÊ¼şÎ´³É¹¦£¡");
+			sb.append("åˆ é™¤æ‰€æœ‰é‚®ä»¶æœªæˆåŠŸï¼");
 		}else {
-			sb.append("ÄúÒÑ³É¹¦É¾³ıËùÓĞÓÊ¼ş£¡");
+			sb.append("æ‚¨å·²æˆåŠŸåˆ é™¤æ‰€æœ‰é‚®ä»¶ï¼");
 		}
 		return sb.toString();
 	}
 	
 	/**
-	 * ¸ù¾İmailId½«ÓÊ¼şµÄÔÄ¶Á×´Ì¬ÖÃÎªÒÑ¶Á
+	 * æ ¹æ®mailIdå°†é‚®ä»¶çš„é˜…è¯»çŠ¶æ€ç½®ä¸ºå·²è¯»
 	 * @param mailId 
 	 */
 	public void updateMailRead(String mailId){
@@ -154,30 +154,30 @@ public class MailInfoService
 	
 	
 	/**
-	 * ·¢ËÍÆÕÍ¨ÓÊ¼ş¹¦ÄÜ
-	 * @param receive_pk ½ÓÊÕÕßpk
-	 * @param send_pk 	·¢ËÍÕßpk
-	 * @param title 	ÓÊ¼ş±êÌâ
-	 * @param content   ÓÊ¼şÄÚÈİ
+	 * å‘é€æ™®é€šé‚®ä»¶åŠŸèƒ½
+	 * @param receive_pk æ¥æ”¶è€…pk
+	 * @param send_pk 	å‘é€è€…pk
+	 * @param title 	é‚®ä»¶æ ‡é¢˜
+	 * @param content   é‚®ä»¶å†…å®¹
 	 * @return  
 	 */
 	public String sendPersonMail(int receive_pk,int send_pk,String title,String content){
 		StringBuffer sb = new StringBuffer();
 		int i = this.insertMail(receive_pk, send_pk,1,title,content,1);
 		if(i == -1){
-			sb.append("ÓÊ¼şÎ´·¢³ö£¡");
+			sb.append("é‚®ä»¶æœªå‘å‡ºï¼");
 		}else {
-			sb.append("ÓÊ¼ş·¢ËÍ³É¹¦£¡");
+			sb.append("é‚®ä»¶å‘é€æˆåŠŸï¼");
 		}
 		return sb.toString();
 	}
 	
 	/**
-	 * ·¢ËÍÏµÍ³ÓÊ¼ş¹¦ÄÜ
-	 * @param receive_pk ½ÓÊÕÕßpk
-	 * @param send_pk 	·¢ËÍÕßpk
-	 * @param title 	ÓÊ¼ş±êÌâ
-	 * @param content   ÓÊ¼şÄÚÈİ
+	 * å‘é€ç³»ç»Ÿé‚®ä»¶åŠŸèƒ½
+	 * @param receive_pk æ¥æ”¶è€…pk
+	 * @param send_pk 	å‘é€è€…pk
+	 * @param title 	é‚®ä»¶æ ‡é¢˜
+	 * @param content   é‚®ä»¶å†…å®¹
 	 * @return
 	 */
 	public int sendMailBySystem(int receive_pk,String title,String content){
@@ -185,11 +185,11 @@ public class MailInfoService
 	}
 	
 	/**
-	 * ·¢ËÍÏµÍ³ÓÊ¼ş¹¦ÄÜ,Í¬Ê±·¢ËÍÏµÍ³ÏûÏ¢(ºÆ¾ü×¨ÓÃ)
-	 * @param receive_pk ½ÓÊÕÕßpk
-	 * @param send_pk 	·¢ËÍÕßpk
-	 * @param title 	ÓÊ¼ş±êÌâ
-	 * @param content   ÓÊ¼şÄÚÈİ
+	 * å‘é€ç³»ç»Ÿé‚®ä»¶åŠŸèƒ½,åŒæ—¶å‘é€ç³»ç»Ÿæ¶ˆæ¯(æµ©å†›ä¸“ç”¨)
+	 * @param receive_pk æ¥æ”¶è€…pk
+	 * @param send_pk 	å‘é€è€…pk
+	 * @param title 	é‚®ä»¶æ ‡é¢˜
+	 * @param content   é‚®ä»¶å†…å®¹
 	 * @return  
 	 */
 	public int sendMailAndSystemInfo(int receive_pk,String title,String content){
@@ -201,65 +201,65 @@ public class MailInfoService
 	}
 	
 	/**
-	 * ·¢ËÍÓÊ¼ş¹¦ÄÜ
-	 * @param receive_pk ½ÓÊÕÕßpk
-	 * @param send_pk 	·¢ËÍÕßpk
-	 * @param mail_type ÓÊ¼şÀàĞÍ 1ÎªÆÕÍ¨¸öÈËÓÊ¼ş,2ÎªÏµÍ³ÓÊ¼ş.4ÎªÉèÖÃ¶ş¼¶ÃÜÂëÓÊ¼ş. 5¼´Ê±É¾³ıÀàĞÍ,6ÎªÔª±¦ÅÄÂô³¡ÓÊ¼ş
+	 * å‘é€é‚®ä»¶åŠŸèƒ½
+	 * @param receive_pk æ¥æ”¶è€…pk
+	 * @param send_pk 	å‘é€è€…pk
+	 * @param mail_type é‚®ä»¶ç±»å‹ 1ä¸ºæ™®é€šä¸ªäººé‚®ä»¶,2ä¸ºç³»ç»Ÿé‚®ä»¶.4ä¸ºè®¾ç½®äºŒçº§å¯†ç é‚®ä»¶. 5å³æ—¶åˆ é™¤ç±»å‹,6ä¸ºå…ƒå®æ‹å–åœºé‚®ä»¶
 	 * 								
-	 * @param title 	ÓÊ¼ş±êÌâ
-	 * @param content   ÓÊ¼şÄÚÈİ
+	 * @param title 	é‚®ä»¶æ ‡é¢˜
+	 * @param content   é‚®ä»¶å†…å®¹
 	 * @return  
 	 */
 	public String sendMail(int receive_pk,int send_pk,int mail_type,String title,String content){
 		
 		StringBuffer sb = new StringBuffer();
 		if(content == null || content.equals("")) {
-			return "Çë²»Òª·¢¿ÕÓÊ¼ş";
+			return "è¯·ä¸è¦å‘ç©ºé‚®ä»¶";
 		}
 		int i = this.insertMail(receive_pk, send_pk,mail_type,title,content,1);
 		if(i == -1){
-			sb.append("ÓÊ¼şÎ´·¢³ö£¡");
+			sb.append("é‚®ä»¶æœªå‘å‡ºï¼");
 		}else {
-			sb.append("ÓÊ¼ş·¢ËÍ³É¹¦£¡");
+			sb.append("é‚®ä»¶å‘é€æˆåŠŸï¼");
 		}
 		return sb.toString();
 	}
 	
 	/**
-	 * ·¢ËÍÓÊ¼ş¹¦ÄÜ
-	 * @param receive_pk ½ÓÊÕÕßpk
-	 * @param send_pk 	·¢ËÍÕßpk
-	 * @param mail_type ÓÊ¼şÀàĞÍ 1ÎªÆÕÍ¨¸öÈËÓÊ¼ş,2ÎªÏµÍ³ÓÊ¼ş.4ÎªÉèÖÃ¶ş¼¶ÃÜÂëÓÊ¼ş. 5¼´Ê±É¾³ıÀàĞÍ,6ÎªÔª±¦ÅÄÂô³¡ÓÊ¼ş
-	 * @param title 	ÓÊ¼ş±êÌâ
-	 * @param content   ÓÊ¼şÄÚÈİ
+	 * å‘é€é‚®ä»¶åŠŸèƒ½
+	 * @param receive_pk æ¥æ”¶è€…pk
+	 * @param send_pk 	å‘é€è€…pk
+	 * @param mail_type é‚®ä»¶ç±»å‹ 1ä¸ºæ™®é€šä¸ªäººé‚®ä»¶,2ä¸ºç³»ç»Ÿé‚®ä»¶.4ä¸ºè®¾ç½®äºŒçº§å¯†ç é‚®ä»¶. 5å³æ—¶åˆ é™¤ç±»å‹,6ä¸ºå…ƒå®æ‹å–åœºé‚®ä»¶
+	 * @param title 	é‚®ä»¶æ ‡é¢˜
+	 * @param content   é‚®ä»¶å†…å®¹
 	 * @return  
 	 */
 	public String sendMailUseByZjj(int receive_pk,int send_pk,int mail_type,String title,String content){
 		
 		if (content.length() > 100) {
-			return "ÄúÓÊ¼şµÄÄÚÈİÌ«³¤!";
+			return "æ‚¨é‚®ä»¶çš„å†…å®¹å¤ªé•¿!";
 		}
 		StringBuffer sb = new StringBuffer();
 		if(content == null || content.equals("")) {
-			return "Çë²»Òª·¢¿ÕÓÊ¼ş";
+			return "è¯·ä¸è¦å‘ç©ºé‚®ä»¶";
 		}
 		int i = this.insertMail(receive_pk, send_pk,mail_type,title,content,1);
 		if(i == -1){
-			sb.append("ÓÊ¼şÎ´·¢³ö£¡");
+			sb.append("é‚®ä»¶æœªå‘å‡ºï¼");
 		}else {
-			sb.append("ÓÊ¼ş·¢ËÍ³É¹¦£¡");
+			sb.append("é‚®ä»¶å‘é€æˆåŠŸï¼");
 		}
 		return sb.toString();
 	}
 	
 	/**
-	 * ·¢ËÍÓÊ¼ş¹¦ÄÜ,´Ëº¯Êı°üº¬ÖØÒªĞÔ²ÎÊı£¬
-	 * @param receive_pk ½ÓÊÕÕßpk
-	 * @param send_pk 	·¢ËÍÕßpk
-	 * @param mail_type ÓÊ¼şÀàĞÍ 1ÎªÆÕÍ¨¸öÈËÓÊ¼ş£¬2ÎªÏµÍ³ÓÊ¼ş.4ÎªÉèÖÃ¶ş¼¶ÃÜÂëÓÊ¼ş. 5¼´Ê±É¾³ıÀàĞÍ,6ÎªÔª±¦ÅÄÂô³¡ÓÊ¼ş
-	 * @param title 	ÓÊ¼ş±êÌâ
-	 * @param content   ÓÊ¼şÄÚÈİ
-	 * @param improtant ÖØÒªĞÔ²ÎÊı£¬Ä¬ÈÏÎª1£¬Êı×ÖÔ½´óÖØÒªĞÔÔ½¸ß.´ËÎªÒÑ¶ÁÎ´¶ÁÖ®ºóµÚ¶şÓÅÏÈÅÅĞò
+	 * å‘é€é‚®ä»¶åŠŸèƒ½,æ­¤å‡½æ•°åŒ…å«é‡è¦æ€§å‚æ•°ï¼Œ
+	 * @param receive_pk æ¥æ”¶è€…pk
+	 * @param send_pk 	å‘é€è€…pk
+	 * @param mail_type é‚®ä»¶ç±»å‹ 1ä¸ºæ™®é€šä¸ªäººé‚®ä»¶ï¼Œ2ä¸ºç³»ç»Ÿé‚®ä»¶.4ä¸ºè®¾ç½®äºŒçº§å¯†ç é‚®ä»¶. 5å³æ—¶åˆ é™¤ç±»å‹,6ä¸ºå…ƒå®æ‹å–åœºé‚®ä»¶
+	 * @param title 	é‚®ä»¶æ ‡é¢˜
+	 * @param content   é‚®ä»¶å†…å®¹
+	 * @param improtant é‡è¦æ€§å‚æ•°ï¼Œé»˜è®¤ä¸º1ï¼Œæ•°å­—è¶Šå¤§é‡è¦æ€§è¶Šé«˜.æ­¤ä¸ºå·²è¯»æœªè¯»ä¹‹åç¬¬äºŒä¼˜å…ˆæ’åº
 	 * @return  if sussend return 1,else return -1.
 	 */
 	public int sendMailReply(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
@@ -268,7 +268,7 @@ public class MailInfoService
 	
 
 	/**
-	 * É¾³ı¶ş¼¶ÃÜÂëÉèÖÃÓÊ¼ş
+	 * åˆ é™¤äºŒçº§å¯†ç è®¾ç½®é‚®ä»¶
 	 * @param pk
 	 */
 	public void deleteSecondPassMail(int pk)
@@ -278,18 +278,18 @@ public class MailInfoService
 	}
 
 	/**
-	 * ¸øÍæ¼Ò·¢ËÍ¾Å¼¶Í¨ÖªÓÊ¼ş
+	 * ç»™ç©å®¶å‘é€ä¹çº§é€šçŸ¥é‚®ä»¶
 	 * @param pk
 	*/
 	public void send9Grademail(int p_pk)
 	{		
-		String mailTitle = "9¼¶Í¨Öª";
-		String content = "¹§Ï²ÄúµÈ¼¶´ïµ½9¼¶,µ±ÄúÍê³É\"³õ³öÃ©Â®\"ÈÎÎñºó,¿ÉÔÚ´å¿Úµã»÷³µ°ÑÊ½´«ÍùÁÙ°²,¿ªÊ¼ĞÂµÄÃ°ÏÕ.";
+		String mailTitle = "9çº§é€šçŸ¥";
+		String content = "æ­å–œæ‚¨ç­‰çº§è¾¾åˆ°9çº§,å½“æ‚¨å®Œæˆ\"åˆå‡ºèŒ…åº\"ä»»åŠ¡å,å¯åœ¨æ‘å£ç‚¹å‡»è½¦æŠŠå¼ä¼ å¾€ä¸´å®‰,å¼€å§‹æ–°çš„å†’é™©.";
 		sendMail(p_pk,-1,2, mailTitle, content);
 	} 
 
 	/**
-	 *  ·µ»Ø¸öÈËÊÇ·ñÓĞÓÊ¼şÀàĞÍÎªmail_typeµÄÓÊ¼ş
+	 *  è¿”å›ä¸ªäººæ˜¯å¦æœ‰é‚®ä»¶ç±»å‹ä¸ºmail_typeçš„é‚®ä»¶
 	 * @param pk
 	 * @return
 	 */
@@ -300,13 +300,13 @@ public class MailInfoService
 	}
 
 	/**
-	 * ¸øÍæ¼Ò·¢ËÍ °ü¹üÊ£Óà¿Õ¸ñÊı²»¹»µÄÓÊ¼ş
+	 * ç»™ç©å®¶å‘é€ åŒ…è£¹å‰©ä½™ç©ºæ ¼æ•°ä¸å¤Ÿçš„é‚®ä»¶
 	 * @param p_pk
 	 */
 	public void sendWrapSpareMail(int p_pk)
 	{
-		String mailTitle = "ÄúµÄ°ü¹üÊ£Óà¿Õ¼ä²»¶àÁË!";
-		String content = "ÄúµÄ°ü¹üÊ£Óà¿Õ¼ä²»¶àÁË£¬Çë×¢ÒâÇåÀíÒÔÃâ¶ªÊ§ÎïÆ·!";
+		String mailTitle = "æ‚¨çš„åŒ…è£¹å‰©ä½™ç©ºé—´ä¸å¤šäº†!";
+		String content = "æ‚¨çš„åŒ…è£¹å‰©ä½™ç©ºé—´ä¸å¤šäº†ï¼Œè¯·æ³¨æ„æ¸…ç†ä»¥å…ä¸¢å¤±ç‰©å“!";
 		sendMail(p_pk,-1,2, mailTitle, content);
 		
 	}
@@ -319,7 +319,7 @@ public class MailInfoService
 		return insertMail(receive_pk, -1, 2, title, content, 1);
 	}
 	
-	/**½±ÀøÓÊ¼ş·¢ËÍ  ¸øÍæ¼Ò·¢ËÍ½±ÀøÓÊ¼ş  ²¢ÔÚ½±Àø±íÀïÌí¼ÓÊı¾İ  ½±ÀøÓÊ¼şÀàĞÍÎª3*/
+	/**å¥–åŠ±é‚®ä»¶å‘é€  ç»™ç©å®¶å‘é€å¥–åŠ±é‚®ä»¶  å¹¶åœ¨å¥–åŠ±è¡¨é‡Œæ·»åŠ æ•°æ®  å¥–åŠ±é‚®ä»¶ç±»å‹ä¸º3*/
 	public void insertBonusMail(int p_pk,String title,String content,String bonus){
 		int mail_id = insertMail(p_pk, -1, 3, title, content, 1);
 		if(mail_id != -1){
@@ -329,7 +329,7 @@ public class MailInfoService
 	}
 	
 	/**
-	 * ·¢ËÍÓÊ¼ş
+	 * å‘é€é‚®ä»¶
 	 * @param mail
 	 * @return
 	 */
@@ -342,14 +342,14 @@ public class MailInfoService
 	}
 	
 	/**
-	 * ²åÈëÓÊ¼şĞÅÏ¢
-	 * @prarm receive_pk 	ÊÕĞÅÈËid 
-	 * @prarm send_pk		·¢ĞÅÈËid
-	 * @param mail_type		ÓÊ¼şÀàĞÍ£¬1ÎªÆÕÍ¨ÓÊ¼ş£¬2ÎªÏµÍ³¡£
-	 * @prarm title 		±êÌâ
-	 * @param context 		ÄÚÈİ
-	 * @param improtant  	ÖØÒªĞÔ£¬Ä¬ÈÏÎª1£¬Êı×ÖÔ½´óÔ½ÖØÒª
-	 * @return 				·µ»ØÓÊ¼şÖ÷¼ü
+	 * æ’å…¥é‚®ä»¶ä¿¡æ¯
+	 * @prarm receive_pk 	æ”¶ä¿¡äººid 
+	 * @prarm send_pk		å‘ä¿¡äººid
+	 * @param mail_type		é‚®ä»¶ç±»å‹ï¼Œ1ä¸ºæ™®é€šé‚®ä»¶ï¼Œ2ä¸ºç³»ç»Ÿã€‚
+	 * @prarm title 		æ ‡é¢˜
+	 * @param context 		å†…å®¹
+	 * @param improtant  	é‡è¦æ€§ï¼Œé»˜è®¤ä¸º1ï¼Œæ•°å­—è¶Šå¤§è¶Šé‡è¦
+	 * @return 				è¿”å›é‚®ä»¶ä¸»é”®
 	 */
 	private int insertMail(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		return new MailInfoDao().addAndReturnKey(receive_pk, send_pk, mail_type, title, content, improtant);

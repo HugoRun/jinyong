@@ -1,11 +1,10 @@
 package com.pub;
 
-public class GameHint
-{
-	public final static String PK_HINT_1="Í¬ÖÖ×åÖ®¼äĞèPK¿ª¹Ø¶¼¿ªÆô¿ÉÒÔPK";
-	public final static String PK_HINT_2="×øÆï²»ÔÙ³ËÆï×´Ì¬²»¿É×·É±";
-	public final static String PK_HINT_3="ÄúÔİÊ±Ã»ÓĞ³ğµĞ";
-	public final static String PK_HINT_4="×·É±³ö´íÇë·µ»Ø´ÓĞÂ³¢ÊÔ";
-	public final static String PK_HINT_5="×øÆïµÈ¼¶²»¹»²»¿É×·É±£¬ÇëÄúÏÈÉı¼¶×øÆï";
-	
+public class GameHint {
+    public final static String PK_HINT_1 = "åŒç§æ—ä¹‹é—´éœ€PKå¼€å…³éƒ½å¼€å¯å¯ä»¥PK";
+    public final static String PK_HINT_2 = "åéª‘ä¸å†ä¹˜éª‘çŠ¶æ€ä¸å¯è¿½æ€";
+    public final static String PK_HINT_3 = "æ‚¨æš‚æ—¶æ²¡æœ‰ä»‡æ•Œ";
+    public final static String PK_HINT_4 = "è¿½æ€å‡ºé”™è¯·è¿”å›ä»æ–°å°è¯•";
+    public final static String PK_HINT_5 = "åéª‘ç­‰çº§ä¸å¤Ÿä¸å¯è¿½æ€ï¼Œè¯·æ‚¨å…ˆå‡çº§åéª‘";
+
 }

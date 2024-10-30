@@ -11,7 +11,7 @@ import com.pm.dao.statistics.StatisticsDao;
 
 public class PlayerStatisticsService
 {
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ¼à¿ØµÄÊı¾İ* */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰ç›‘æ§çš„æ•°æ®* */
 	public boolean getPlayerStaInfo(int u_pk, int p_pk, String date)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
@@ -26,7 +26,7 @@ public class PlayerStatisticsService
 		}
 	}
 
-	/** Íæ¼ÒµÇÂ½²¢ÇÒ½øÈëÍ³¼ÆĞÅÏ¢Á÷³Ì* */
+	/** ç©å®¶ç™»é™†å¹¶ä¸”è¿›å…¥ç»Ÿè®¡ä¿¡æ¯æµç¨‹* */
 	public void playerStatisticsFlow(RoleEntity roleEntity)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
@@ -50,7 +50,7 @@ public class PlayerStatisticsService
 		}
 	}
 
-	/** ¸üĞÂÍæ¼ÒÔÚÏßÊ±¼ä */
+	/** æ›´æ–°ç©å®¶åœ¨çº¿æ—¶é—´ */
 	public void updatePlayerOnlineTime(RoleEntity roleEntity)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
@@ -87,63 +87,63 @@ public class PlayerStatisticsService
 
 	}
 
-	/** ½ñÌìÈÕÆÚ */
+	/** ä»Šå¤©æ—¥æœŸ */
 	public String getTodayDate()
 	{
 		Date date = new Date();
 		DateFormat dfdate = new SimpleDateFormat("yyyy-MM-dd");
-		String thisdate = dfdate.format(date.getTime());// µ±Ç°ÈÕÆÚ
+		String thisdate = dfdate.format(date.getTime());// å½“å‰æ—¥æœŸ
 		return thisdate;
 	}
 
-	/** ÈıÌìÇ°ÈÕÆÚ */
+	/** ä¸‰å¤©å‰æ—¥æœŸ */
 	public String getTodayDateAfter()
 	{
 		Date date = new Date();
 		long i = date.getTime() - 3 * 24 * 60 * 60 * 1000;
 		DateFormat dfdate = new SimpleDateFormat("yyyy-MM-dd");
-		String thisdate = dfdate.format(i);// µ±Ç°ÈÕÆÚ
+		String thisdate = dfdate.format(i);// å½“å‰æ—¥æœŸ
 		return thisdate;
 	}
 
-	/** ½ñÌìĞ¡Ê± */
+	/** ä»Šå¤©å°æ—¶ */
 	public String getTodayHour()
 	{
 		Date date = new Date();
 		DateFormat dftime = new SimpleDateFormat("HH");
-		String thistime = dftime.format(date.getTime());// µ±Ç°Ê±¼ä
+		String thistime = dftime.format(date.getTime());// å½“å‰æ—¶é—´
 		return thistime;
 	}
 
-	/** Í³¼ÆÍæ¼ÒµÄÔÚÏßÊ±¼ä */
+	/** ç»Ÿè®¡ç©å®¶çš„åœ¨çº¿æ—¶é—´ */
 	public int getOnlineTime(String date)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
 		return dao.getOnlineTime(date);
 	}
 
-	/** Í³¼ÆÍæ¼ÒÔÚÏßµÈ¼¶ */
+	/** ç»Ÿè®¡ç©å®¶åœ¨çº¿ç­‰çº§ */
 	public int getOnlineGrade(String date)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
 		return dao.getOnlineGrade(date);
 	}
 
-	/** Í³¼ÆÍæ¼ÒÔÚÏßÆ½¾ùµÈ¼¶ */
+	/** ç»Ÿè®¡ç©å®¶åœ¨çº¿å¹³å‡ç­‰çº§ */
 	public int getOnlineAvgGrade(String date)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
 		return dao.getOnlineAvgGrade(9, date);
 	}
 
-	/** µÃµ½½ñÌìÓĞ¶àÉÙÍæ¼ÒµÇÂ½ÓÎÏ· */
+	/** å¾—åˆ°ä»Šå¤©æœ‰å¤šå°‘ç©å®¶ç™»é™†æ¸¸æˆ */
 	public int getOnlinePlayer(String date)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
 		return dao.getOnlinePlayer(date);
 	}
 
-	/** µÃµ½Íæ¼ÒµÄ»îÔ¾ÓÃ»§ÊıÁ¿ */
+	/** å¾—åˆ°ç©å®¶çš„æ´»è·ƒç”¨æˆ·æ•°é‡ */
 	public int getPlayerOnlineActivity()
 	{
 		String date = getTodayDateAfter();
@@ -151,14 +151,14 @@ public class PlayerStatisticsService
 		return dao.getPlayerOnlineActivity(date);
 	}
 
-	/** µÃµ½Íæ¼ÒÕËºÅÊıÁ¿½ñÌìµÇÂ½ */
+	/** å¾—åˆ°ç©å®¶è´¦å·æ•°é‡ä»Šå¤©ç™»é™† */
 	public int getOnlinePassport(String date)
 	{
 		PlayerStatisticsDao dao = new PlayerStatisticsDao();
 		return dao.getOnlinePassport(date);
 	}
 
-	/** Æ½¾ùÔÚÏß ÈËÊıµÄ¼ÆËã */
+	/** å¹³å‡åœ¨çº¿ äººæ•°çš„è®¡ç®— */
 
 	public int getOnlinePlayerAvg(String today)
 	{

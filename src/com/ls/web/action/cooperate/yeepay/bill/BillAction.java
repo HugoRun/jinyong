@@ -28,7 +28,7 @@ public class BillAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.pay");
 	
 	/**
-	 * ¸÷¸ö³äÖµÍ¨µÀµÄÌø×ª
+	 * å„ä¸ªå……å€¼é€šé“çš„è·³è½¬
 	 */
 	public ActionForward subIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -44,36 +44,36 @@ public class BillAction extends DispatchAction {
 				case 1 :
 				{
 					session.setAttribute("cardType","3003");
-					return mapping.findForward("szx_index");//ÉñÖİĞĞ
+					return mapping.findForward("szx_index");//ç¥å·è¡Œ
 				}
 				case 2 :
 				{
 					session.setAttribute("cardType","3006");
-					return mapping.findForward("sd_index");//Ê¢´ó¿¨
+					return mapping.findForward("sd_index");//ç››å¤§å¡
 				}
 				case 3 :
 				{
 					session.setAttribute("cardType","3004");
-					return mapping.findForward("jun_index");//¿¥ÍøÒ»¿¨Í¨
+					return mapping.findForward("jun_index");//éªç½‘ä¸€å¡é€š
 				}
 				case 4 :
 				{
-					return mapping.findForward("zht_index");//Õ÷Í¾¿¨
+					return mapping.findForward("zht_index");//å¾é€”å¡
 				}
 				case 5 :
 				{
 					session.setAttribute("cardType","3011");
-					return mapping.findForward("szftelecom_index");//µçĞÅ¿¨
+					return mapping.findForward("szftelecom_index");//ç”µä¿¡å¡
 				}
 				case 6 :
 				{
 					session.setAttribute("cardType","3008");
-					return mapping.findForward("szfunicom_index");//ÁªÍ¨¿¨
+					return mapping.findForward("szfunicom_index");//è”é€šå¡
 				}
 				case 7 :
 				{
 					session.setAttribute("cardType","3003");
-					return mapping.findForward("szfszx_index");//ÉñÖİĞĞ
+					return mapping.findForward("szfszx_index");//ç¥å·è¡Œ
 				}
 			}
 		}
@@ -83,7 +83,7 @@ public class BillAction extends DispatchAction {
 	
 	
 	/**
-	 * ÊäÈë¿¨ºÅºÍÃÜÂëµÄ¸÷¸ö³äÖµÍ¨µÀµÄÌø×ª
+	 * è¾“å…¥å¡å·å’Œå¯†ç çš„å„ä¸ªå……å€¼é€šé“çš„è·³è½¬
 	 */
 	public ActionForward input(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -101,31 +101,31 @@ public class BillAction extends DispatchAction {
 			{
 				case 1 :
 				{
-					return mapping.findForward("szx_input");//ÉñÖİĞĞ
+					return mapping.findForward("szx_input");//ç¥å·è¡Œ
 				}
 				case 2 :
 				{
-					return mapping.findForward("sd_input");//Ê¢´ó¿¨
+					return mapping.findForward("sd_input");//ç››å¤§å¡
 				}
 				case 3 :
 				{
-					return mapping.findForward("jun_input");//¿¥ÍøÒ»¿¨Í¨
+					return mapping.findForward("jun_input");//éªç½‘ä¸€å¡é€š
 				}
 				case 4 :
 				{
-					return mapping.findForward("zht_input");//Õ÷Í¾¿¨
+					return mapping.findForward("zht_input");//å¾é€”å¡
 				}
 				case 5 :
 				{
-					return mapping.findForward("szftelecom_input");//µçĞÅ¿¨
+					return mapping.findForward("szftelecom_input");//ç”µä¿¡å¡
 				}
 				case 6 :
 				{
-					return mapping.findForward("szfunicom_input");//ÁªÍ¨¿¨
+					return mapping.findForward("szfunicom_input");//è”é€šå¡
 				}
 				case 7 :
 				{
-					return mapping.findForward("szfszx_input");//ÉñÖİĞĞ
+					return mapping.findForward("szfszx_input");//ç¥å·è¡Œ
 				}
 			}
 		}
@@ -134,7 +134,7 @@ public class BillAction extends DispatchAction {
 	}
 	
 	/**
-	 * Ìø×ªµ½È·ÈÏÒ³Ãæ
+	 * è·³è½¬åˆ°ç¡®è®¤é¡µé¢
 	 */
 	public ActionForward comfirm(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -159,37 +159,37 @@ public class BillAction extends DispatchAction {
 				case 1 :
 				{
 					request.setAttribute("pd_FrpId","SZX");
-					return mapping.findForward("pay_comfirm");//ÉñÖİĞĞ
+					return mapping.findForward("pay_comfirm");//ç¥å·è¡Œ
 				}
 				case 2 :
 				{
 					request.setAttribute("pd_FrpId","SNDACARD");
-					return mapping.findForward("pay_comfirm");//Ê¢´ó¿¨
+					return mapping.findForward("pay_comfirm");//ç››å¤§å¡
 				}
 				case 3 :
 				{
 					request.setAttribute("pd_FrpId", "JUNNET");
-					return mapping.findForward("pay_comfirm");//¿¥ÍøÒ»¿¨Í¨
+					return mapping.findForward("pay_comfirm");//éªç½‘ä¸€å¡é€š
 				}
 				case 4 :
 				{
 					request.setAttribute("pd_FrpId", "ZHENGTU");
-					return mapping.findForward("pay_comfirm");//Õ÷Í¾¿¨
+					return mapping.findForward("pay_comfirm");//å¾é€”å¡
 				}
 				case 5 :
 				{
 					request.setAttribute("pd_FrpId", "2");
-					return mapping.findForward("szf_pay_comfirm");//µçĞÅ¿¨
+					return mapping.findForward("szf_pay_comfirm");//ç”µä¿¡å¡
 				}
 				case 6 :
 				{
 					request.setAttribute("pd_FrpId", "1");
-					return mapping.findForward("szf_pay_comfirm");//ÁªÍ¨¿¨
+					return mapping.findForward("szf_pay_comfirm");//è”é€šå¡
 				}
 				case 7 :
 				{
 					request.setAttribute("pd_FrpId", "0");
-					return mapping.findForward("szf_pay_comfirm");//ÉñÖİĞĞ
+					return mapping.findForward("szf_pay_comfirm");//ç¥å·è¡Œ
 				}
 			}
 		}
@@ -198,7 +198,7 @@ public class BillAction extends DispatchAction {
 	}
 	
 	/**
-	 * ³äÖµÌá½»
+	 * å……å€¼æäº¤
 	 */
 	public ActionForward pay(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -210,7 +210,7 @@ public class BillAction extends DispatchAction {
 		
 		if( p_pk==null || u_pk==null  )
 		{
-			logger.info("sessionÖĞÒÑÎŞÓĞĞ§µÄpPkºÍuPk");
+			logger.info("sessionä¸­å·²æ— æœ‰æ•ˆçš„pPkå’ŒuPk");
 			return null;
 		}
 		
@@ -226,30 +226,30 @@ public class BillAction extends DispatchAction {
 		{
 			e1.printStackTrace();
 		}
-		// ÉÌ»§¶©µ¥ºÅ
+		// å•†æˆ·è®¢å•å·
 		String addtime = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
 		String order_id=GameConfig.getChannelId()+"s"+addtime;
 		//String p2_Order = formatString(request.getParameter("p2_Order"));
 		String p2_Order=order_id;
-		// ¶©µ¥½ğ¶î
+		// è®¢å•é‡‘é¢
 		String p3_Amt = formatString(request.getParameter("pay"));
 
-		// ¿¨ºÅ
+		// å¡å·
 		String pa7_cardNo = formatString(request.getParameter("code"));
 
-		// ¿¨ÃÜÂë
+		// å¡å¯†ç 
 		String pa8_cardPwd = formatString(request.getParameter("psw"));
 
 
-		// ¾ßÌåÍ¨µÀ
+		// å…·ä½“é€šé“
 		String pd_FrpId = formatString(request.getParameter("pd_FrpId"));
 		
-		// ½»Ò×³É¹¦Í¨ÖªµØÖ·
+		// äº¤æ˜“æˆåŠŸé€šçŸ¥åœ°å€
 		String p8_Url = formatString(GameConfig.getUrlOfGame()+"/game/yeepay/callback.do");
 		
-		logger.info("»Øµ÷µØÖ·£º"+p8_Url);
+		logger.info("å›è°ƒåœ°å€ï¼š"+p8_Url);
 		String RechargeStatus="";
-		//¼ÇÂ¼Íæ¼Ò³äÖµĞÅÏ¢
+		//è®°å½•ç©å®¶å……å€¼ä¿¡æ¯
 		UAccountRecordVO account_record = new UAccountRecordVO();
 		account_record.setUPk(Integer.parseInt(u_pk));
 		account_record.setPPk(Integer.parseInt(p_pk));
@@ -257,25 +257,25 @@ public class BillAction extends DispatchAction {
 		account_record.setPwd(pa8_cardPwd);
 		account_record.setMoney(Integer.parseInt(p3_Amt));
 		account_record.setChannel(pd_FrpId);
-		account_record.setAccountState("·¢ËÍ³äÖµÇëÇó");
+		account_record.setAccountState("å‘é€å……å€¼è¯·æ±‚");
 		
-		logger.info("Ò×±¦("+pd_FrpId+")Í¨µÀ");
+		logger.info("æ˜“å®("+pd_FrpId+")é€šé“");
 		int record_id = billService.account(account_record);
 		
 		
-		// ÉÌ»§À©Õ¹ĞÅÏ¢
+		// å•†æˆ·æ‰©å±•ä¿¡æ¯
 		String pa_MP = record_id+"";
 		
 		try {
 			NonBankcardPaymentResult rs = NonBankcardService.pay(p2_Order,p3_Amt,p8_Url,pa_MP,pa7_cardNo,pa8_cardPwd,pd_FrpId);
-			//³äÖµµÄ³É¹¦
+			//å……å€¼çš„æˆåŠŸ
 			if("1".equals(rs.getR1_Code()))
 			{
 				resultWml = billService.getSuccessHint();
 				RechargeStatus="0";
 			}else
 			{
-				logger.info("Ò×±¦("+pd_FrpId+")Í¨µÀÌá½»³äÖµÇëÇó£ºÌá½»³äÖµÇëÇóÊ§°Ü,´íÎó´úÂë"+rs.getR1_Code());
+				logger.info("æ˜“å®("+pd_FrpId+")é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šæäº¤å……å€¼è¯·æ±‚å¤±è´¥,é”™è¯¯ä»£ç "+rs.getR1_Code());
 				resultWml = billService.getFailHint(rs.getR1_Code());
 				RechargeStatus="1";
 			}
@@ -291,7 +291,7 @@ public class BillAction extends DispatchAction {
 		catch(Exception e )
 		{
 			e.printStackTrace();
-			logger.info("Ò×±¦("+pd_FrpId+")Í¨µÀÌá½»³äÖµÇëÇó£º³äÖµÊ§°Ü,´íÎó´úÂë"+e.toString());
+			logger.info("æ˜“å®("+pd_FrpId+")é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šå……å€¼å¤±è´¥,é”™è¯¯ä»£ç "+e.toString());
 			resultWml = billService.getFailHint(e.toString());
 			billService.updateState(record_id, e.toString());
 		}
@@ -308,7 +308,7 @@ public class BillAction extends DispatchAction {
 	}
 	
 	/**
-	 * ³äÖµÌá½»
+	 * å……å€¼æäº¤
 	 */
 	public ActionForward payBySZF(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -320,7 +320,7 @@ public class BillAction extends DispatchAction {
 		
 		if( p_pk==null || u_pk==null  )
 		{
-			logger.info("sessionÖĞÒÑÎŞÓĞĞ§µÄpPkºÍuPk");
+			logger.info("sessionä¸­å·²æ— æœ‰æ•ˆçš„pPkå’ŒuPk");
 			return null;
 		}
 		
@@ -328,30 +328,30 @@ public class BillAction extends DispatchAction {
 		
 		String resultWml = null;
 		
-		// ÉÌ»§¶©µ¥ºÅ
+		// å•†æˆ·è®¢å•å·
 		String addtime = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
 		
-		//¶©µ¥ºÅID
+		//è®¢å•å·ID
 		String orderId = GameConfig.getChannelId()+"s"+addtime;
 		
-		// ¶©µ¥½ğ¶î
+		// è®¢å•é‡‘é¢
 		String payMoney = formatString(request.getParameter("pay"));
 
-		// ¿¨ºÅ
+		// å¡å·
 		String code = formatString(request.getParameter("code"));
 
-		// ¿¨ÃÜÂë
+		// å¡å¯†ç 
 		String psw = formatString(request.getParameter("psw"));
 
-		// ¾ßÌåÍ¨µÀ
+		// å…·ä½“é€šé“
 		String cardTypeCombine = formatString(request.getParameter("pd_FrpId"));
 		
-		// ½»Ò×³É¹¦Í¨ÖªµØÖ·
+		// äº¤æ˜“æˆåŠŸé€šçŸ¥åœ°å€
 		String returnUrl = formatString(GameConfig.getUrlOfGame()+"/szf/callback.do");
 		
-		logger.info("»Øµ÷µØÖ·£º"+returnUrl);
+		logger.info("å›è°ƒåœ°å€ï¼š"+returnUrl);
 		
-		//¼ÇÂ¼Íæ¼Ò³äÖµĞÅÏ¢
+		//è®°å½•ç©å®¶å……å€¼ä¿¡æ¯
 		UAccountRecordVO account_record = new UAccountRecordVO();
 		account_record.setUPk(Integer.parseInt(u_pk));
 		account_record.setPPk(Integer.parseInt(p_pk));
@@ -359,25 +359,25 @@ public class BillAction extends DispatchAction {
 		account_record.setPwd(psw);
 		account_record.setMoney(Integer.parseInt(payMoney));
 		account_record.setChannel(cardTypeCombine);
-		account_record.setAccountState("·¢ËÍ³äÖµÇëÇó");
+		account_record.setAccountState("å‘é€å……å€¼è¯·æ±‚");
 		String RechargeStatus="";
-		logger.info("ÉñÖİ¸¶("+cardTypeCombine+")Í¨µÀ");
+		logger.info("ç¥å·ä»˜("+cardTypeCombine+")é€šé“");
 		int record_id = billService.account(account_record);
 		
-		// ÉÌ»§À©Õ¹ĞÅÏ¢
+		// å•†æˆ·æ‰©å±•ä¿¡æ¯
 		String pa_MP = record_id+"";
 		
 		try {
 			SZFService s = new SZFService();
 			String rs = s.payBySZF(orderId,Integer.parseInt(payMoney),returnUrl,pa_MP,code,psw,cardTypeCombine);
-			//³äÖµµÄ³É¹¦
+			//å……å€¼çš„æˆåŠŸ
 			if(rs.equals("200"))
 			{
 				resultWml = billService.getSuccessHint();
 				RechargeStatus="0";
 			}else
 			{
-				logger.info("ÉñÖİ¸¶"+cardTypeCombine+")Í¨µÀÌá½»³äÖµÇëÇó£ºÌá½»³äÖµÇëÇóÊ§°Ü,´íÎó´úÂë"+rs);
+				logger.info("ç¥å·ä»˜"+cardTypeCombine+")é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šæäº¤å……å€¼è¯·æ±‚å¤±è´¥,é”™è¯¯ä»£ç "+rs);
 				resultWml = billService.getFailHint(rs);
 				RechargeStatus="1";
 			}
@@ -393,7 +393,7 @@ public class BillAction extends DispatchAction {
 		catch(Exception e )
 		{
 			e.printStackTrace();
-			logger.info("ÉñÖİ¸¶("+cardTypeCombine+")Í¨µÀÌá½»³äÖµÇëÇó£º³äÖµÊ§°Ü,´íÎó´úÂë"+e.toString());
+			logger.info("ç¥å·ä»˜("+cardTypeCombine+")é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šå……å€¼å¤±è´¥,é”™è¯¯ä»£ç "+e.toString());
 			resultWml = billService.getFailHint(e.toString());
 			billService.updateState(record_id, e.toString());
 		}

@@ -1,36 +1,21 @@
 package com.pub;
 
+import javax.servlet.*;
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
+public class SecurityFilter implements Filter {
 
-import com.ls.model.user.RoleEntity;
-import com.ls.pub.constant.player.PlayerState;
-import com.ls.web.service.player.RoleService;
+    /**
+     * @see javax.servlet.Filter#init(FilterConfig)
+     */
+    public void init(FilterConfig arg0) throws ServletException {
+    }
 
-public class SecurityFilter implements Filter
-{
-
-	/**
-	 * @see javax.servlet.Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig arg0) throws ServletException
-	{
-	}
-
-	/**
-	 * @see javax.servlet.Filter#doFilter(ServletRequest, ServletResponse,
-	 *      FilterChain)
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException
-	{
+    /**
+     * @see javax.servlet.Filter#doFilter(ServletRequest, ServletResponse,
+     * FilterChain)
+     */
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		/*HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
@@ -47,54 +32,54 @@ public class SecurityFilter implements Filter
 		{
 			if (userTempBean.getState() == 0)
 			{ 
-			// ²éÑ¯×Ô¼ºÓĞÃ»ÓĞ±»½»Ò×
+			// æŸ¥è¯¢è‡ªå·±æœ‰æ²¡æœ‰è¢«äº¤æ˜“
 			if (dao.isSellInfoIdBy(userTempBean.getPPk()))
 			{
-				      // ×´Ì¬
+				      // çŠ¶æ€
 				      int state = 1;
 				      userTempBean.setState(state);
 				      session.setAttribute("userTempBean", userTempBean);
-				      //ĞŞ¸ÄÈ«¾ÖÖĞ¸ÃÍæ¼ÒµÄ×´Ì¬ ×´Ì¬Îª½»Ò××´Ì¬ 
+				      //ä¿®æ”¹å…¨å±€ä¸­è¯¥ç©å®¶çš„çŠ¶æ€ çŠ¶æ€ä¸ºäº¤æ˜“çŠ¶æ€ 
 					  UserInfoVO userAInfoa = playerService.getUserInfo(req, userTempBean.getPPk());
 					  userAInfoa.setStat(PlayerState.TRADE);		
 					
-					// È¡³ö½»Ò×ÀàĞÍ
+					// å–å‡ºäº¤æ˜“ç±»å‹
 					SellInfoVO sellMode = dao.getSellMode(userTempBean.getPPk());
 					if (sellMode != null)
 					{
 						if (sellMode.getSellMode() == SellInfoVO.SELLMONEY)
-						{// ½ğÇ®½»Ò×&chair="+request.getParameter("chair"));
+						{// é‡‘é’±äº¤æ˜“&chair="+request.getParameter("chair"));
 							request.getRequestDispatcher("/sellinfoaction.do?cmd=n1&sPk="+ sellMode.getSPk() + "&chair="+ request.getParameter("chair")).forward(request, response);
 							return;
 						}
 						if (sellMode.getSellMode() == SellInfoVO.SELLPROP)
-						{// µÀ¾ß½»Ò×
+						{// é“å…·äº¤æ˜“
 							request.getRequestDispatcher("/sellinfoaction.do?cmd=n7&sPk="+ sellMode.getSPk() + "&chair="+ request.getParameter("chair")).forward(request, response);
 							return;
 						}
 						if (sellMode.getSellMode() == SellInfoVO.SELLARM)
-						{// ×°±¸½»Ò×
+						{// è£…å¤‡äº¤æ˜“
 							request.getRequestDispatcher("/sellinfoaction.do?cmd=n4&sPk="+ sellMode.getSPk() + "&chair="+ request.getParameter("chair")).forward(request, response);
 							return;
 						} 
 					}
 				}
 			    if(petInfoDAO.getPetSellVs(userTempBean.getPPk()+"")){
-			    // ×´Ì¬
+			    // çŠ¶æ€
 				int state = 1;
 				userTempBean.setState(state);
 				session.setAttribute("userTempBean", userTempBean);
-				//ĞŞ¸ÄÈ«¾ÖÖĞ¸ÃÍæ¼ÒµÄ×´Ì¬ ×´Ì¬Îª½»Ò××´Ì¬ 
+				//ä¿®æ”¹å…¨å±€ä¸­è¯¥ç©å®¶çš„çŠ¶æ€ çŠ¶æ€ä¸ºäº¤æ˜“çŠ¶æ€ 
 				UserInfoVO userAInfoa = playerService.getUserInfo(req, userTempBean.getPPk());
 				userAInfoa.setStat(PlayerState.TRADE);
-			    //È¡³ö³èÎï½»Ò×±íÖ÷¼ü 
+			    //å–å‡ºå® ç‰©äº¤æ˜“è¡¨ä¸»é”® 
 			    int ps_pk = petInfoDAO.getSellPet(userTempBean.getPPk());
 				//request.getRequestDispatcher("/jsp/petinfo/petsellby/pet_sell_by.jsp?pPks="+userTempBean.getPPk()).forward(request, response);
 			    request.getRequestDispatcher("/sellinfoaction.do?cmd=n10&ps_pk="+ ps_pk + "&chair="+ request.getParameter("chair")).forward(request, response);
 				return;
 			}
 			}
-			//Íæ¼Òµ½9¼¶ÒÔºó ÏµÍ³×Ô¶¯Ìø×ªÑ¡ÔñÃÅÅÉ¼ÓÈë
+			//ç©å®¶åˆ°9çº§ä»¥å ç³»ç»Ÿè‡ªåŠ¨è·³è½¬é€‰æ‹©é—¨æ´¾åŠ å…¥
 			if (userTempBean.getPGrade() == 9 && growService.isUpgradeByExperience(userTempBean.getPPk()))
 			{
 				request.getRequestDispatcher("/jsp/task/visitlead/visit_lead.jsp?chair="+ request.getParameter("chair")).forward(request,response);
@@ -108,7 +93,7 @@ public class SecurityFilter implements Filter
 		
 		if( rolo_info!=null && rolo_info.getStateInfo().getCurState()==PlayerState.GENERAL )
 		{
-			//Íæ¼Òµ½9¼¶ÒÔºó ÏµÍ³×Ô¶¯Ìø×ªÑ¡ÔñÃÅÅÉ¼ÓÈë
+			//ç©å®¶åˆ°9çº§ä»¥å ç³»ç»Ÿè‡ªåŠ¨è·³è½¬é€‰æ‹©é—¨æ´¾åŠ å…¥
 			int grade = rolo_info.getBasicInfo().getGrade();
 			String cur_exp = rolo_info.getBasicInfo().getCurExp();
 			String next_grade_exp = rolo_info.getBasicInfo().getNextGradeExp();
@@ -120,14 +105,13 @@ public class SecurityFilter implements Filter
 			}
 		}
 		*/
-		chain.doFilter(request, response);
-	}
+        chain.doFilter(request, response);
+    }
 
-	/**
-	 * @see javax.servlet.Filter#destroy()
-	 */
-	public void destroy()
-	{
-	}
+    /**
+     * @see javax.servlet.Filter#destroy()
+     */
+    public void destroy() {
+    }
 
 }

@@ -17,7 +17,7 @@ public class RoleBeOffDAO
 	SqlData con;
 
 	/**
-	 * Í¨¹ıÍæ¼ÒID ÕÒ³ö×Ô¼ºµÄÀëÏßĞÅÏ¢
+	 * é€šè¿‡ç©å®¶ID æ‰¾å‡ºè‡ªå·±çš„ç¦»çº¿ä¿¡æ¯
 	 * 
 	 * @param p_pk
 	 * @return
@@ -27,7 +27,7 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from role_be_off where p_pk='" + p_pk + "'";
+			String sql = "SELECT * FROM role_be_off where p_pk='" + p_pk + "'";
 			ResultSet rs = con.query(sql);
 			RoleBeOffVO vo = null;
 			if (rs.next())
@@ -54,7 +54,7 @@ public class RoleBeOffDAO
 	}
 
 	/**
-	 * ¸üĞÂÀëÏßÊ±¼ä ¾ÍÊÇÍæ¼ÒÃ¿´ÎÏÂÏßĞŞ¸ÄÒ»´ÎÕâ¸ö±í
+	 * æ›´æ–°ç¦»çº¿æ—¶é—´ å°±æ˜¯ç©å®¶æ¯æ¬¡ä¸‹çº¿ä¿®æ”¹ä¸€æ¬¡è¿™ä¸ªè¡¨
 	 * 
 	 * @param p_pk
 	 */
@@ -77,7 +77,7 @@ public class RoleBeOffDAO
 	}
 	
 	/**
-	 * Ôö¼ÓÏÂÏßÊ±¼ä
+	 * å¢åŠ ä¸‹çº¿æ—¶é—´
 	 * @param be_off_time
 	 * @param p_pk
 	 */
@@ -85,7 +85,7 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "insert into role_be_off(off_id,p_pk,be_off_time) values(null,'"+p_pk+"','"+be_off_time+"')";
+			String sql = "INSERT INTO role_be_off(off_id,p_pk,be_off_time) values(null,'"+p_pk+"','"+be_off_time+"')";
 			con.update(sql);
 		}
 		catch (Exception e)
@@ -100,7 +100,7 @@ public class RoleBeOffDAO
 	
 
 	/**
-	 * ¸üĞÂÀÛ»ı¾­Ñé
+	 * æ›´æ–°ç´¯ç§¯ç»éªŒ
 	 */
 	public void upAlreadyTime(String already_time, int p_pk)
 	{
@@ -122,7 +122,7 @@ public class RoleBeOffDAO
 	}
 	
 	/**
-	 * ¸üĞÂÀÛ»ıÊ±¼ä
+	 * æ›´æ–°ç´¯ç§¯æ—¶é—´
 	 * 
 	 * @param cumulate_time
 	 * @param p_pk
@@ -147,7 +147,7 @@ public class RoleBeOffDAO
 	}
 	
 	/**
-	 * Ôö¼ÓÀÛ»ıÊ±¼ä
+	 * å¢åŠ ç´¯ç§¯æ—¶é—´
 	 * @param be_off_time
 	 * @param p_pk
 	 */
@@ -155,7 +155,7 @@ public class RoleBeOffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "insert into role_be_off(off_id,p_pk,prop_cumulate_time) values(null,'"+p_pk+"','"+prop_cumulate_time+"')";
+			String sql = "INSERT INTO role_be_off(off_id,p_pk,prop_cumulate_time) values(null,'"+p_pk+"','"+prop_cumulate_time+"')";
 			con.update(sql);
 		}
 		catch (Exception e)

@@ -1,14 +1,14 @@
 package com.ls.pub.bean;
 
 /**
- * 功能:保存id和概率的baen
- * @author 刘帅
+ * 鍔熻兘:淇濆瓨id鍜屾鐜囩殑baen
+ * @author 鍒樺竻
  * 6:32:44 PM
  */
 public class ProbabilityBean {
 	/**id*/
 	private int   id;
-	/**出现概率*/
+	/**鍑虹幇姒傜巼*/
 	private int probability;
 	public int getId() {
 		return id;

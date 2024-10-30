@@ -20,7 +20,7 @@ public class ForumRevertService extends BaseService {
 	DBConnection dbConn = null;
 	
 	/**
-	 * Ôö¼ÓÌû×ÓµÄ»Ø¸´Ìû×Ó
+	 * å¢åŠ å¸–å­çš„å›å¤å¸–å­
 	 * @param frb
 	 * @return
 	 */
@@ -90,7 +90,7 @@ public class ForumRevertService extends BaseService {
 			return fr.getNum(fid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			message = e.getMessage();
 		} finally {
 			dbConn.closeConn();
@@ -107,7 +107,7 @@ public class ForumRevertService extends BaseService {
 			return fr.getAllForumRevert(fid,page_no);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			message = e.getMessage();
 		} finally {
 			dbConn.closeConn();
@@ -116,7 +116,7 @@ public class ForumRevertService extends BaseService {
 	}
 	
 	/**
-	 * µÃµ½Ö¸¶¨µÄ»Ø¸´
+	 * å¾—åˆ°æŒ‡å®šçš„å›å¤
 	 * @param row
 	 * @param fid
 	 * @return
@@ -131,7 +131,7 @@ public class ForumRevertService extends BaseService {
 			return fr.getRowForumRevert(row,fid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			message = e.getMessage();
 		} finally {
 			dbConn.closeConn();
@@ -140,7 +140,7 @@ public class ForumRevertService extends BaseService {
 	}
 	
 	/**
-	 * µÃµ½Ö¸¶¨µÄ»Ø¸´
+	 * å¾—åˆ°æŒ‡å®šçš„å›å¤
 	 * @param row
 	 * @param fid
 	 * @return
@@ -155,7 +155,7 @@ public class ForumRevertService extends BaseService {
 			return fr.getForumRevertById(revertId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			message = e.getMessage();
 		} finally {
 			dbConn.closeConn();
@@ -164,14 +164,14 @@ public class ForumRevertService extends BaseService {
 	}
 	
 	/**
-	 * È·¶¨´ËÈËÊÇ·ñÔÚ¶ş·ÖÖÓÄÚ·¢¹ıÌû.Èç¹û·¢¹ı·µ»Øtrue,
-	 * ·ñÔò·µ»Øfalse.
+	 * ç¡®å®šæ­¤äººæ˜¯å¦åœ¨äºŒåˆ†é’Ÿå†…å‘è¿‡å¸–.å¦‚æœå‘è¿‡è¿”å›true,
+	 * å¦åˆ™è¿”å›false.
 	 * @param pk
 	 * @return
 	 */
 	public boolean isInTwoMinute(int pPk)
 	{
-		// Èç¹ûÊÇ¹ÜÀíÔ±,ÄÇ¾Í²»¼ÆËã»ØÌûºÍ·¢ÌûÊ±¼äÏŞÖÆ.
+		// å¦‚æœæ˜¯ç®¡ç†å‘˜,é‚£å°±ä¸è®¡ç®—å›å¸–å’Œå‘å¸–æ—¶é—´é™åˆ¶.
 		ForumService fas=new ForumService();
 		boolean isManager = fas.isManager(pPk);
 		if (isManager) {

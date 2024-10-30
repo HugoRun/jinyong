@@ -3,9 +3,9 @@ package com.ls.ben.vo.info.group;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ:×é¶ÓÍ¨Öªu_groupnotify_info
+ * åŠŸèƒ½:ç»„é˜Ÿé€šçŸ¥u_groupnotify_info
  * 
- * @author ÁõË§ 3:47:01 PM
+ * @author åˆ˜å¸… 3:47:01 PM
  */
 public class GroupNotifyVO {
 
@@ -13,15 +13,15 @@ public class GroupNotifyVO {
 
 	/** id */
 	private int nPk;
-	/** ±»Í¨ÖªµÄÍæ¼Òid */
+	/** è¢«é€šçŸ¥çš„ç©å®¶id */
 	private int notifyedPk;
-	/** ²úÉúÍ¨ÖªµÄÍæ¼Òid */
+	/** äº§ç”Ÿé€šçŸ¥çš„ç©å®¶id */
 	private int createNotifyPk;
-	/** Í¨ÖªµÄÄÚÈİ* */
+	/** é€šçŸ¥çš„å†…å®¹* */
 	private String notifyContent;
-	/** Í¨ÖªÀàĞÍ:1:Í¨ÖªÓĞÈËÉêÇë×é¶Ó£»2:Í¨Öª¶ÓÎé½âÉ¢£»3.Í¨Öª¶Ô·½Í¬Òâ×é¶Ó£»4:¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£** */
+	/** é€šçŸ¥ç±»å‹:1:é€šçŸ¥æœ‰äººç”³è¯·ç»„é˜Ÿï¼›2:é€šçŸ¥é˜Ÿä¼è§£æ•£ï¼›3.é€šçŸ¥å¯¹æ–¹åŒæ„ç»„é˜Ÿï¼›4:ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚** */
 	private int notifyType;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private Date createTime;
 
 	public int getNPk() {

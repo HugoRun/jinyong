@@ -23,7 +23,7 @@ String goods_type = (String)request.getAttribute("goods_type");
 <br />
 
 <anchor>
-<go	href="<%=response.encodeURL(GameConfig.getContextPath()+ "/pubbuckaction.do")%>" method="get"></go>
+<go    href="<%=response.encodeURL(GameConfig.getContextPath()+ "/pubbuckaction.do")%>" method="get"></go>
 否
 </anchor>
 <br />

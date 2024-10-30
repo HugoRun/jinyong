@@ -18,9 +18,9 @@ public class ForumInfoService
 	Logger logger = Logger.getLogger(ForumClassService.class);
 
 	/**
-	 * ½ûÖ¹·¢Ìû¹¦ÄÜ
-	 * @param roleInfo ÂÛÌ³¹ÜÀíÔ±
-	 * @param pPk	±»·âµÄÍæ¼ÒpPk
+	 * ç¦æ­¢å‘å¸–åŠŸèƒ½
+	 * @param roleInfo è®ºå›ç®¡ç†å‘˜
+	 * @param pPk	è¢«å°çš„ç©å®¶pPk
 	 * @return
 	 */
 	public String insertIntoForbid(RoleEntity roleInfo, String pPk,int forbid_time)
@@ -46,7 +46,7 @@ public class ForumInfoService
 			}
 			
 			if (dt1.getTime() > (new Date()).getTime()) {    			
-    			hint = forbidvo.getPName()+"ÒÑ¾­ÔÚ±»½ûÖ¹·¢ÑÔÃûµ¥ÖĞÁË,µ½"+simpleDateFormat.format(dt1)+"½â·â!";
+    			hint = forbidvo.getPName()+"å·²ç»åœ¨è¢«ç¦æ­¢å‘è¨€åå•ä¸­äº†,åˆ°"+simpleDateFormat.format(dt1)+"è§£å°!";
 			}
 		} else {
 			PropertyService propertyService = new PropertyService();
@@ -54,14 +54,14 @@ public class ForumInfoService
 			
 			forumClassDAOImpl.deleteForumForbid(Integer.parseInt(pPk));
 			forumClassDAOImpl.addForbidName(pPk,pName,1,forbid_time);
-			hint = "²Ù×÷³É¹¦!"+pName+"ÔÚ"+forbid_time+"·ÖÖÓºó½â·â!";
+			hint = "æ“ä½œæˆåŠŸ!"+pName+"åœ¨"+forbid_time+"åˆ†é’Ÿåè§£å°!";
 		}
 		
 		return hint;		
 	}
 
 	/**
-	 * É¾³ıÌû×Ó,ÒÔ¼°´Ó»ØÌû±íÖĞÉ¾³ı»ØÌû
+	 * åˆ é™¤å¸–å­,ä»¥åŠä»å›å¸–è¡¨ä¸­åˆ é™¤å›å¸–
 	 * @param page_id
 	 */
 	public void deleteForum(String page_id)
@@ -73,13 +73,13 @@ public class ForumInfoService
 		}		
 		catch (Exception e)
 		{
-			System.out.println("É¾³ıÌû×ÓÊ±³ö´í,page_id="+page_id);
+			System.out.println("åˆ é™¤å¸–å­æ—¶å‡ºé”™,page_id="+page_id);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * ´¦ÀíÖÃ¶¥ÊÂÒË
+	 * å¤„ç†ç½®é¡¶äº‹å®œ
 	 * @param page_id
 	 */
 	public String zhiDing(String page_id)
@@ -92,21 +92,21 @@ public class ForumInfoService
 			ForumBean forumBean = forumService.getByID(Integer.parseInt(page_id));
 			if (forumBean.getTaxis() == 0) {
 				forumDAOImpl.zhiDing(Integer.parseInt(page_id), 1);
-				resultWmlString = "Ìû×ÓÒÑ¾­ÖÃ¶¥!";
+				resultWmlString = "å¸–å­å·²ç»ç½®é¡¶!";
 			} else {
 				forumDAOImpl.zhiDing(Integer.parseInt(page_id),0);
-				resultWmlString = "Ìû×ÓÈ¡ÏûÖÃ¶¥!";
+				resultWmlString = "å¸–å­å–æ¶ˆç½®é¡¶!";
 			}
 		} catch (Exception e)
 		{
-			System.out.println("´¦ÀíÖÃ¶¥ÊÂÒËÊ±³ö´í,page_id="+page_id);
+			System.out.println("å¤„ç†ç½®é¡¶äº‹å®œæ—¶å‡ºé”™,page_id="+page_id);
 			e.printStackTrace();
 		}	
 		return resultWmlString;
 	}
 
 	/**
-	 * ´¦ÀíËøÌûÊÂÒË
+	 * å¤„ç†é”å¸–äº‹å®œ
 	 * @param page_id
 	 */
 	public String lockForum(String page_id)
@@ -119,14 +119,14 @@ public class ForumInfoService
 			ForumBean forumBean = forumService.getByID(Integer.parseInt(page_id));
 			if (forumBean.getVouch() == 0) {
 				forumDAOImpl.lockForum(Integer.parseInt(page_id), 1);
-				resultWmlString = "Ìû×ÓÒÑ¾­ËøÌû!";
+				resultWmlString = "å¸–å­å·²ç»é”å¸–!";
 			} else {
 				forumDAOImpl.lockForum(Integer.parseInt(page_id), 0);
-				resultWmlString = "Ìû×ÓÒÑ¾­½âËø!";
+				resultWmlString = "å¸–å­å·²ç»è§£é”!";
 			}
 		} catch (Exception e)
 		{
-			System.out.println("´¦ÀíÖÃ¶¥ÊÂÒËÊ±³ö´í,page_id="+page_id);
+			System.out.println("å¤„ç†ç½®é¡¶äº‹å®œæ—¶å‡ºé”™,page_id="+page_id);
 			e.printStackTrace();
 		}
 		

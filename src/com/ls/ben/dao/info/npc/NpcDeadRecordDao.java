@@ -6,25 +6,25 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * ¹¦ÄÜ:npc_deadtime_record
+ * åŠŸèƒ½:npc_deadtime_record
  * Mar 5, 2009
  */
 public class NpcDeadRecordDao extends DaoBase
 {
 	/**
-	 * ²åÈëÒ»Ìõ¼ÇÂ¼
+	 * æ’å…¥ä¸€æ¡è®°å½•
 	 */
 	public void incert( NpcDeadRecordVO npcDeadRecord  )
 	{
 		if( npcDeadRecord==null )
 		{
-			logger.debug("²åÈënpcDeadRecordÊ±Îª¿Õ");
+			logger.debug("æ’å…¥npcDeadRecordæ—¶ä¸ºç©º");
 			return; 
 		}
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "insert into npc_dead_record values (null,"+npcDeadRecord.getPPk()+
+		String sql = "INSERT INTO npc_dead_record values (null,"+npcDeadRecord.getPPk()+
 		","+npcDeadRecord.getNpcId()+","+npcDeadRecord.getSceneId()+","+npcDeadRecord.getMapId()+",now())";
 		logger.debug(sql);
 		try
@@ -45,7 +45,7 @@ public class NpcDeadRecordDao extends DaoBase
 	}
 	
 	/**
-	 * ¸üĞÂnpcËÀÍöÊ±¼ä
+	 * æ›´æ–°npcæ­»äº¡æ—¶é—´
 	 * @param p_pk
 	 * @param npc_id
 	 * @param scene_id
@@ -73,7 +73,7 @@ public class NpcDeadRecordDao extends DaoBase
 		}	
 	}
 	/**
-	 * Çå³ı¶ÓÎéµÄËùÓĞ¼ÇÂ¼
+	 * æ¸…é™¤é˜Ÿä¼çš„æ‰€æœ‰è®°å½•
 	 * @param caption_pk
 	 * @param map_id
 	 */
@@ -100,7 +100,7 @@ public class NpcDeadRecordDao extends DaoBase
 		}	
 	}
 	/**
-	 * Çå³ımapÏÂµÄËùÓĞ¼ÇÂ¼
+	 * æ¸…é™¤mapä¸‹çš„æ‰€æœ‰è®°å½•
 	 * @param caption_pk
 	 * @param map_id
 	 */
@@ -128,7 +128,7 @@ public class NpcDeadRecordDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½¸ÃµØµãµÄnpc¼ÇÂ¼
+	 * å¾—åˆ°è¯¥åœ°ç‚¹çš„npcè®°å½•
 	 */
 	public NpcDeadRecordVO getRecord( int p_pk,int scene_id )
 	{
@@ -136,7 +136,7 @@ public class NpcDeadRecordDao extends DaoBase
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select *  from npc_dead_record where p_pk ="+p_pk+" and scene_id="+scene_id;
+		String sql = "SELECT *  from npc_dead_record where p_pk ="+p_pk+" and scene_id="+scene_id;
 		logger.debug(sql);
 		try
 		{

@@ -3,53 +3,53 @@ package com.pm.vo.passiveskill;
 import com.ls.model.property.PassSkillInterface;
 
 /**
- * ´æ´¢±»¶¯¼¼ÄÜµÄÊôĞÔ
+ * å­˜å‚¨è¢«åŠ¨æŠ€èƒ½çš„å±æ€§
  * 
  * @author zjj
  * 
  */
 public class PassSkillVO  implements PassSkillInterface
 {
-	/** ¸½¼ÓmpµÄ°Ù·Ö±È */
+	/** é™„åŠ mpçš„ç™¾åˆ†æ¯” */
 	private double skMpMultiple;
 
-	/** ¸½¼ÓhpµÄ°Ù·Ö±È */
+	/** é™„åŠ hpçš„ç™¾åˆ†æ¯” */
 	private double skHpMultiple;
 
-	/** ¸½¼Ó±©»÷ÂÊµÄ°Ù·Ö±È */
+	/** é™„åŠ æš´å‡»ç‡çš„ç™¾åˆ†æ¯” */
 	private double skBjMultiple;
 
-	/** ¸½¼Ó¹¥»÷µÄ°Ù·Ö±È */
+	/** é™„åŠ æ”»å‡»çš„ç™¾åˆ†æ¯” */
 	private double skGjMultiple;
 
-	/** ¸½¼Ó·ÀÓùµÄ°Ù·Ö±È */
+	/** é™„åŠ é˜²å¾¡çš„ç™¾åˆ†æ¯” */
 	private double skFyMultiple;
 
-	/** ¸½¼Ó¹¥»÷µÄÊıÖµ */
+	/** é™„åŠ æ”»å‡»çš„æ•°å€¼ */
 	private int skGjAdd;
 
-	/** ¸½¼Ó·ÀÓùµÄÊıÖµ */
+	/** é™„åŠ é˜²å¾¡çš„æ•°å€¼ */
 	private int skFyAdd;
 
-	/** ¸½¼ÓhpµÄÊıÖµ */
+	/** é™„åŠ hpçš„æ•°å€¼ */
 	private int skHpAdd;
 
-	/** ¸½¼ÓmpµÄÊıÖµ */
+	/** é™„åŠ mpçš„æ•°å€¼ */
 	private int skMpAdd;
 
-	/** ¸½¼Ó½ğµÄ°Ù·Ö±È */
+	/** é™„åŠ é‡‘çš„ç™¾åˆ†æ¯” */
 	private double skJMultiple;
 
-	/** ¸½¼ÓÄ¾µÄ°Ù·Ö±È */
+	/** é™„åŠ æœ¨çš„ç™¾åˆ†æ¯” */
 	private double skMMultiple;
 
-	/** ¸½¼ÓË®µÄ°Ù·Ö±È */
+	/** é™„åŠ æ°´çš„ç™¾åˆ†æ¯” */
 	private double skSMultiple;
 
-	/** ¸½¼Ó»ğµÄ°Ù·Ö±È */
+	/** é™„åŠ ç«çš„ç™¾åˆ†æ¯” */
 	private double skHMultiple;
 
-	/** ¸½¼ÓÍÁµÄ°Ù·Ö±È */
+	/** é™„åŠ åœŸçš„ç™¾åˆ†æ¯” */
 	private double skTMultiple;
 
 	public double getSkMpMultiple()
@@ -143,7 +143,7 @@ public class PassSkillVO  implements PassSkillInterface
 	}
 
 	/**
-	 * ¸ù¾İ ÒÑ¾­¼Ó³ÉºóµÄÖµÀ´ÅĞ¶ÏÆäÓ¦¸Ã¼ÓµÄÊıÖµ
+	 * æ ¹æ® å·²ç»åŠ æˆåçš„å€¼æ¥åˆ¤æ–­å…¶åº”è¯¥åŠ çš„æ•°å€¼
 	 * 
 	 * @param property
 	 * @param multiry

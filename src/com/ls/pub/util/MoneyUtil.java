@@ -3,18 +3,18 @@ package com.ls.pub.util;
 import com.ls.pub.config.GameConfig;
 
 /**
- * ¹¦ÄÜ:½ğÇ®°ïÖú¹¤¾ß
- * @author ÁõË§
+ * åŠŸèƒ½:é‡‘é’±å¸®åŠ©å·¥å…·
+ * @author åˆ˜å¸…
  * 10:56:58 AM
  */
 public class MoneyUtil
 {
 	/**
-	 * ÎÄ×ªÒøµÄÏµÊı
+	 * æ–‡è½¬é“¶çš„ç³»æ•°
 	 */
 	public static final int MODULUS = 100;
 	/**
-	 * °ÑÎÄ×°»»³ÉÒøÎÄ×Ö·û´®
+	 * æŠŠæ–‡è£…æ¢æˆé“¶æ–‡å­—ç¬¦ä¸²
 	 * @param copper
 	 * @return
 	 */
@@ -24,7 +24,7 @@ public class MoneyUtil
 	}
 	
 	/**
-	 * °ÑÎÄ×°»»³ÉÒøÎÄ×Ö·û´®
+	 * æŠŠæ–‡è£…æ¢æˆé“¶æ–‡å­—ç¬¦ä¸²
 	 * @param copper
 	 * @return
 	 */
@@ -34,25 +34,25 @@ public class MoneyUtil
 		String copper_str = "";
 		if( copper<=0 )
 		{
-			return "0ÎÄ";
+			return "0æ–‡";
 		}
 			
 		long silver = copper/MODULUS;
 		if( silver>0 )
 		{
-			silver_str = silver+"Á½";
+			silver_str = silver+"ä¸¤";
 		}
 		copper = copper%MODULUS;
 		if( copper>0 )
 		{
-			copper_str = copper+"ÎÄ";
+			copper_str = copper+"æ–‡";
 		}*/
 		
 		return copper+GameConfig.getMoneyUnitName();
 	}
 	
 	/**
-	 * °ÑÎÄ×°»»³ÉÒøÎÄ×Ö·û´®
+	 * æŠŠæ–‡è£…æ¢æˆé“¶æ–‡å­—ç¬¦ä¸²
 	 * @param copper
 	 * @return
 	 */
@@ -60,21 +60,21 @@ public class MoneyUtil
 	{
 		if( copper_str==null )
 		{
-			return "copperÎª¿Õ";
+			return "copperä¸ºç©º";
 		}
 		long copper = 0 ;
 		try {
 			copper = Long.parseLong(copper_str.trim());
 		} catch (NumberFormatException e) {
 			
-			return "copper×Ö·û´®¸ñÊ½´íÎó";
+			return "copperå­—ç¬¦ä¸²æ ¼å¼é”™è¯¯";
 		}
 		
 		return changeCopperToStr(copper);
 	}
 	
 	/**
-	 * °ÑÒøÎÄ×°»»³ÉÎÄ
+	 * æŠŠé“¶æ–‡è£…æ¢æˆæ–‡
 	 * @param silver
 	 * @param copper
 	 * @return
@@ -85,8 +85,8 @@ public class MoneyUtil
 	}
 	
 	/**
-	 * ÑéÖ¤½ğÇ®ÊÇ·ñÊÇºÏ·¨×Ö·û´®:
-	 * ¹æÔò£º×Ö·û´®Îª£¬·Ç¸ºÕûÊı
+	 * éªŒè¯é‡‘é’±æ˜¯å¦æ˜¯åˆæ³•å­—ç¬¦ä¸²:
+	 * è§„åˆ™ï¼šå­—ç¬¦ä¸²ä¸ºï¼Œéè´Ÿæ•´æ•°
 	 */
 	public static boolean validateMoneyStr(String money_str)
 	{

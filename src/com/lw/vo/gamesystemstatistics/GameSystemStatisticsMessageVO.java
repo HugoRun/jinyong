@@ -2,13 +2,13 @@ package com.lw.vo.gamesystemstatistics;
 
 public class GameSystemStatisticsMessageVO
 {
-	/** 主键 */
+	/** 涓婚敭 */
 	private int houtaiID;
-	/** 物品ID */
+	/** 鐗╁搧ID */
 	private int propID;
-	/** 物品类型 */
+	/** 鐗╁搧绫诲瀷 */
 	private int propType;
-	/** 日期 */
+	/** 鏃ユ湡 */
 	private String date;
 
 	public String getDate()

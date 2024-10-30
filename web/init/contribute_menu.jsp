@@ -1,8 +1,8 @@
 <%@page contentType="text/vnd.wap.wml" pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 <%@page import="com.ls.pub.constant.*"%>
 <%
-	String w_type = request.getParameter("w_type");
+    String w_type = request.getParameter("w_type");
 	String resultWml = (String)request.getAttribute("resultWml");
 	if( resultWml!=null )
 	{

@@ -12,12 +12,12 @@ import com.ls.web.action.ActionBase;
 import com.web.service.taskpage.TaskPageService;
 
 /**
- * 菜单任务详情
+ * 鑿滃崟浠诲姟璇︽儏
  */
 public class TaskMenuAction extends ActionBase
 {
 	/**
-	 * 任务菜单
+	 * 浠诲姟鑿滃崟
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +33,7 @@ public class TaskMenuAction extends ActionBase
 		RoleEntity role_info  = this.getRoleEntity(request);
 		
 		TaskPageService taskPageService = new TaskPageService();
-		//得到任务页面显示
+		//寰楀埌浠诲姟椤甸潰鏄剧ず
 		String display = taskPageService.taskPageViewService(role_info,task_id, menu_id,menu_type, sg, xd, xw, fh,request,response);
 		
 		request.setAttribute("display", display);

@@ -12,18 +12,18 @@ if(ppv!=null){
 %>
 <anchor><go method="post" href="<%=response.encodeURL(GameConfig.getContextPath()+"/jiehun.do")%>">
 <postfield name="cmd" value="n3" />
-	 <postfield name="option" value="1" />
-	 <postfield name="propgroup" value="<%=ppv.getPgPk() %>" />
-	 <postfield name="good_id" value="<%=ppv.getPropId() %>" />
-	 <postfield name="caozuo" value="2" />
-	 </go>
+     <postfield name="option" value="1" />
+     <postfield name="propgroup" value="<%=ppv.getPgPk() %>" />
+     <postfield name="good_id" value="<%=ppv.getPropId() %>" />
+     <postfield name="caozuo" value="2" />
+     </go>
 <%=ppv.getPropName() %></anchor>
 
 <%}else{ %>
 <anchor><go method="post" href="<%=response.encodeURL(GameConfig.getContextPath()+"/jiehun.do")%>">
 <postfield name="cmd" value="n2" />
-	 <postfield name="option" value="1" />
-	 </go>
+     <postfield name="option" value="1" />
+     </go>
 物品栏</anchor>
 <%} %>
 <%PlayerPropGroupVO ppv2 = (PlayerPropGroupVO)request.getAttribute("good2"); 
@@ -31,9 +31,9 @@ if(ppv2!=null){
 %>
 <anchor><go method="post" href="<%=response.encodeURL(GameConfig.getContextPath()+"/jiehun.do")%>">
 <postfield name="cmd" value="n3" />
-	 <postfield name="option" value="2" />
-	 <postfield name="propgroup" value="<%=ppv2.getPgPk() %>" />
-	 <postfield name="good_id" value="<%=ppv2.getPropId() %>" />
+     <postfield name="option" value="2" />
+     <postfield name="propgroup" value="<%=ppv2.getPgPk() %>" />
+     <postfield name="good_id" value="<%=ppv2.getPropId() %>" />
 	 <postfield name="caozuo" value="2" />
 	 </go>
 <%=ppv2.getPropName() %></anchor>

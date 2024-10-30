@@ -8,28 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.ls.pub.config.GameConfig;
 
 /**
- * ¹¦ÄÜ:·ÖÒ³¶ÔÏó. °üº¬µ±Ç°Ò³Êı¾İ¼°·ÖÒ³ĞÅÏ¢Èç×Ü¼ÇÂ¼Êı.
+ * åŠŸèƒ½:åˆ†é¡µå¯¹è±¡. åŒ…å«å½“å‰é¡µæ•°æ®åŠåˆ†é¡µä¿¡æ¯å¦‚æ€»è®°å½•æ•°.
  * 
- * @author ÁõË§ 8:07:28 AM
+ * @author åˆ˜å¸… 8:07:28 AM
  */
 public class QueryPage
 {
 
-	public static int DEFAULT_PAGE_SIZE = 7;// Ä¬ÈÏ±¾Ò³ÈİÁ¿
+	public static int DEFAULT_PAGE_SIZE = 7;// é»˜è®¤æœ¬é¡µå®¹é‡
 
-	private int pageSize = DEFAULT_PAGE_SIZE; // Ã¿Ò³µÄ¼ÇÂ¼Êı
+	private int pageSize = DEFAULT_PAGE_SIZE; // æ¯é¡µçš„è®°å½•æ•°
 
-	private long start; // µ±Ç°Ò³µÚÒ»ÌõÊı¾İÔÚListÖĞµÄÎ»ÖÃ,´Ó0¿ªÊ¼
+	private long start; // å½“å‰é¡µç¬¬ä¸€æ¡æ•°æ®åœ¨Listä¸­çš„ä½ç½®,ä»0å¼€å§‹
 
-	private Object data; // µ±Ç°Ò³ÖĞ´æ·ÅµÄ¼ÇÂ¼,ÀàĞÍÒ»°ãÎªList
+	private Object data; // å½“å‰é¡µä¸­å­˜æ”¾çš„è®°å½•,ç±»å‹ä¸€èˆ¬ä¸ºList
 
-	private long totalCount; // ×Ü¼ÇÂ¼Êı
+	private long totalCount; // æ€»è®°å½•æ•°
 	
 	private HttpServletResponse response;
 	private String url;
 
 	/**
-	 * ¹¹Ôì·½·¨£¬Ö»¹¹Ôì¿ÕÒ³.
+	 * æ„é€ æ–¹æ³•ï¼Œåªæ„é€ ç©ºé¡µ.
 	 */
 	public QueryPage()
 	{
@@ -37,9 +37,9 @@ public class QueryPage
 	}
 
 	/**
-	 * Í¨¹ıÒ³ºÅºÍ¼ÇÂ¼×ÜÊı¹¹Ôì
-	 * @param page_no     ´Ó1¿ªÊ¼µÄÒ³ºÅ
-	 * @param totalSize   Êı¾İ¿âÖĞ×Ü¼ÇÂ¼ÌõÊı
+	 * é€šè¿‡é¡µå·å’Œè®°å½•æ€»æ•°æ„é€ 
+	 * @param page_no     ä»1å¼€å§‹çš„é¡µå·
+	 * @param totalSize   æ•°æ®åº“ä¸­æ€»è®°å½•æ¡æ•°
 	 */
 	public QueryPage(int page_no, long totalSize)
 	{
@@ -48,10 +48,10 @@ public class QueryPage
 	}
 	
 	/**
-	 * Í¨¹ıÒ³ºÅºÍ¼ÇÂ¼×ÜÊı¹¹Ôì
-	 * @param page_no     ´Ó1¿ªÊ¼µÄÒ³ºÅ
-	 * @param totalSize   Êı¾İ¿âÖĞ×Ü¼ÇÂ¼ÌõÊı
-	 * @param pageSize 	  Ã¿Ò³ÏÔÊ¾ÌõÊı
+	 * é€šè¿‡é¡µå·å’Œè®°å½•æ€»æ•°æ„é€ 
+	 * @param page_no     ä»1å¼€å§‹çš„é¡µå·
+	 * @param totalSize   æ•°æ®åº“ä¸­æ€»è®°å½•æ¡æ•°
+	 * @param pageSize 	  æ¯é¡µæ˜¾ç¤ºæ¡æ•°
 	 */
 	public QueryPage(int page_no, long totalSize,int pageSize)
 	{
@@ -61,16 +61,16 @@ public class QueryPage
 	}
 
 	/**
-	 * Ä¬ÈÏ¹¹Ôì·½·¨.
+	 * é»˜è®¤æ„é€ æ–¹æ³•.
 	 * 
 	 * @param start
-	 *            ±¾Ò³Êı¾İÔÚÊı¾İ¿âÖĞµÄÆğÊ¼Î»ÖÃ
+	 *            æœ¬é¡µæ•°æ®åœ¨æ•°æ®åº“ä¸­çš„èµ·å§‹ä½ç½®
 	 * @param totalSize
-	 *            Êı¾İ¿âÖĞ×Ü¼ÇÂ¼ÌõÊı
+	 *            æ•°æ®åº“ä¸­æ€»è®°å½•æ¡æ•°
 	 * @param pageSize
-	 *            ±¾Ò³ÈİÁ¿
+	 *            æœ¬é¡µå®¹é‡
 	 * @param data
-	 *            ±¾Ò³°üº¬µÄÊı¾İ
+	 *            æœ¬é¡µåŒ…å«çš„æ•°æ®
 	 */
 	public QueryPage(long start, long totalSize, int pageSize, Object data)
 	{
@@ -81,7 +81,7 @@ public class QueryPage
 	}
 	
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 * @param page_no
 	 * @param allData
 	 */
@@ -102,7 +102,7 @@ public class QueryPage
 	}
 
 	/**
-	 * È¡×Ü¼ÇÂ¼Êı.
+	 * å–æ€»è®°å½•æ•°.
 	 */
 	public long getTotalCount()
 	{
@@ -110,7 +110,7 @@ public class QueryPage
 	}
 
 	/**
-	 * È¡×ÜÒ³Êı.
+	 * å–æ€»é¡µæ•°.
 	 */
 	public long getTotalPageCount()
 	{
@@ -121,7 +121,7 @@ public class QueryPage
 	}
 
 	/**
-	 * È¡Ã¿Ò³Êı¾İÈİÁ¿.
+	 * å–æ¯é¡µæ•°æ®å®¹é‡.
 	 */
 	public int getPageSize()
 	{
@@ -129,7 +129,7 @@ public class QueryPage
 	}
 
 	/**
-	 * È¡µ±Ç°Ò³ÖĞµÄ¼ÇÂ¼.
+	 * å–å½“å‰é¡µä¸­çš„è®°å½•.
 	 */
 	public Object getResult()
 	{
@@ -137,7 +137,7 @@ public class QueryPage
 	}
 	
 	/**
-	 * ÉèÖÃÇ°Ò³ÖĞµÄ¼ÇÂ¼.
+	 * è®¾ç½®å‰é¡µä¸­çš„è®°å½•.
 	 */
 	public void setResult(Object data)
 	{
@@ -145,7 +145,7 @@ public class QueryPage
 	}
 	
 	/**
-	 * ÉèÖÃÇ°Ò³ÖĞµÄ¼ÇÂ¼.
+	 * è®¾ç½®å‰é¡µä¸­çš„è®°å½•.
 	 */
 	public void setPageSize(int size)
 	{
@@ -153,7 +153,7 @@ public class QueryPage
 	}
 
 	/**
-	 * È¡¸ÃÒ³µ±Ç°Ò³Âë,Ò³Âë´Ó1¿ªÊ¼.
+	 * å–è¯¥é¡µå½“å‰é¡µç ,é¡µç ä»1å¼€å§‹.
 	 */
 	public long getCurrentPageNo()
 	{
@@ -161,7 +161,7 @@ public class QueryPage
 	}
 
 	/**
-	 * ¸ÃÒ³ÊÇ·ñÓĞÏÂÒ»Ò³.
+	 * è¯¥é¡µæ˜¯å¦æœ‰ä¸‹ä¸€é¡µ.
 	 */
 	public boolean hasNextPage()
 	{
@@ -169,7 +169,7 @@ public class QueryPage
 	}
 
 	/**
-	 * ¸ÃÒ³ÊÇ·ñÓĞÉÏÒ»Ò³.
+	 * è¯¥é¡µæ˜¯å¦æœ‰ä¸Šä¸€é¡µ.
 	 */
 	public boolean hasPreviousPage()
 	{
@@ -177,7 +177,7 @@ public class QueryPage
 	}
 
 	/**
-	 * µ±Ç°Ò³µÚÒ»ÌõÊı¾İÔÚListÖĞµÄÎ»ÖÃ,´Ó0¿ªÊ¼
+	 * å½“å‰é¡µç¬¬ä¸€æ¡æ•°æ®åœ¨Listä¸­çš„ä½ç½®,ä»0å¼€å§‹
 	 */
 	public long getStartOfPage()
 	{
@@ -185,7 +185,7 @@ public class QueryPage
 	}
 	
 	/**
-	 * »ñÈ¡ÈÎÒ»Ò³µÚÒ»ÌõÊı¾İÔÚÊı¾İ¼¯µÄÎ»ÖÃ£¬Ã¿Ò³ÌõÊıÊ¹ÓÃÄ¬ÈÏÖµ.
+	 * è·å–ä»»ä¸€é¡µç¬¬ä¸€æ¡æ•°æ®åœ¨æ•°æ®é›†çš„ä½ç½®ï¼Œæ¯é¡µæ¡æ•°ä½¿ç”¨é»˜è®¤å€¼.
 	 * 
 	 * @see #getStartOfPage(int,int)
 	 */
@@ -195,13 +195,13 @@ public class QueryPage
 	}
 
 	/**
-	 * »ñÈ¡ÈÎÒ»Ò³µÚÒ»ÌõÊı¾İÔÚÊı¾İ¼¯µÄÎ»ÖÃ.
+	 * è·å–ä»»ä¸€é¡µç¬¬ä¸€æ¡æ•°æ®åœ¨æ•°æ®é›†çš„ä½ç½®.
 	 * 
 	 * @param pageNo
-	 *            ´Ó1¿ªÊ¼µÄÒ³ºÅ
+	 *            ä»1å¼€å§‹çš„é¡µå·
 	 * @param pageSize
-	 *            Ã¿Ò³¼ÇÂ¼ÌõÊı
-	 * @return ¸ÃÒ³µÚÒ»ÌõÊı¾İ
+	 *            æ¯é¡µè®°å½•æ¡æ•°
+	 * @return è¯¥é¡µç¬¬ä¸€æ¡æ•°æ®
 	 */
 	public static int getStartOfPage(int pageNo, int pageSize)
 	{
@@ -209,7 +209,7 @@ public class QueryPage
 	}
 	
 	/**
-	 * ÉèÖÃurl
+	 * è®¾ç½®url
 	 * @param response
 	 * @param url
 	 */
@@ -220,7 +220,7 @@ public class QueryPage
 	}
 	
 	/**
-	 * µÃµ½·ÖÒ³Ò³½ÅÏÔÊ¾
+	 * å¾—åˆ°åˆ†é¡µé¡µè„šæ˜¾ç¤º
 	 * @return
 	 */
 	public String getPageFoot()
@@ -231,14 +231,14 @@ public class QueryPage
 		}
 		if( this.data==null || ((List)this.data).size()==0 )
 		{
-			return "ÎŞ<br/><br/>";
+			return "æ— <br/><br/>";
 		}
 		
 		StringBuffer sb = new StringBuffer();
 		
 		if( hasNextPage() )
 		{
-			sb.append("<anchor>ÏÂÒ»Ò³");
+			sb.append("<anchor>ä¸‹ä¸€é¡µ");
 			sb.append("<go method=\"post\" href=\"");
 			sb.append(response.encodeURL(GameConfig.getContextPath()+url)).append("\">");
 			sb.append("<postfield name=\"page_no\" value=\"").append(getCurrentPageNo()+1).append("\" />");
@@ -247,7 +247,7 @@ public class QueryPage
 		}
 		if( hasPreviousPage() )
 		{
-			sb.append("<anchor>ÉÏÒ»Ò³");
+			sb.append("<anchor>ä¸Šä¸€é¡µ");
 			sb.append("<go method=\"post\" href=\"");
 			sb.append(response.encodeURL(GameConfig.getContextPath()+url)).append("\">");
 			sb.append("<postfield name=\"page_no\" value=\"").append(getCurrentPageNo()-1).append("\" />");
@@ -256,7 +256,7 @@ public class QueryPage
 		}
 		if ( getCurrentPageNo() == 1 && getTotalPageCount() > 2) 
 		{
-			sb.append("<anchor>µ½Ä©Ò³");
+			sb.append("<anchor>åˆ°æœ«é¡µ");
 			sb.append("<go method=\"post\" href=\"");
 			sb.append(response.encodeURL(GameConfig.getContextPath()+url)).append("\">");
 			sb.append("<postfield name=\"page_no\" value=\"").append(getTotalPageCount()).append("\" />");
@@ -265,7 +265,7 @@ public class QueryPage
 		}
     	if( getCurrentPageNo() == getTotalPageCount() && getTotalPageCount() > 2 ) 
     	{	 
-    		sb.append("<anchor>µ½Ê×Ò³");
+    		sb.append("<anchor>åˆ°é¦–é¡µ");
 			sb.append("<go method=\"post\" href=\"");
 			sb.append(response.encodeURL(GameConfig.getContextPath()+url)).append("\">");
 			sb.append("<postfield name=\"page_no\" value=\"1\" />");

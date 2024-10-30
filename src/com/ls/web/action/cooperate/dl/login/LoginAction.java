@@ -32,21 +32,21 @@ public class LoginAction extends Action
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		
 		String login_params = request.getQueryString(); 
 		String ip=request.getRemoteAddr();
 		
-		logger.info("############µ±ÀÖÓÃ»§µÇÂ½##############");
+		logger.info("############å½“ä¹ç”¨æˆ·ç™»é™†##############");
 		String user_id = request.getParameter("userid");
 		String user_name = request.getParameter("username");
 		String verify_string = request.getParameter("verify-string");
 		String timestamp = request.getParameter("timestamp");
 		String encrypt_type = request.getParameter("encrypt-type");
 		
-		logger.info("µ±ÀÖµÇÂ½½Ó¿Ú´«¹ıÀ´µÄ²ÎÊı:"+login_params);
+		logger.info("å½“ä¹ç™»é™†æ¥å£ä¼ è¿‡æ¥çš„å‚æ•°:"+login_params);
 		
 		logger.info("IP:"+ip);
 		
@@ -56,9 +56,9 @@ public class LoginAction extends Action
 		
 		u_pk = passportService.loginFromDangLe(user_id, user_name, verify_string, timestamp, encrypt_type,ip);
 		
-		if( u_pk ==-1 )//µÇÂ½ÑéÖ¤Ê§°Ü
+		if( u_pk ==-1 )//ç™»é™†éªŒè¯å¤±è´¥
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		} 
 		
@@ -69,7 +69,7 @@ public class LoginAction extends Action
 		session.setAttribute("uPk", u_pk+"");
 		session.setAttribute("user_name", user_name);
 		session.setAttribute("channel_id", Channel.DANGLE+"");
-		session.setAttribute("login_params", login_params);//µÇÂ½²ÎÊı
+		session.setAttribute("login_params", login_params);//ç™»é™†å‚æ•°
 		return mapping.findForward("success");
 	}
 }

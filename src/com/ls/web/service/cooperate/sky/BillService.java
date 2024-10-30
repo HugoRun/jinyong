@@ -29,7 +29,7 @@ import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 
 
 /**
- * ¹¦ÄÜ£ºË¼¿­k±ÒÏû·Ñ´¦Àí
+ * åŠŸèƒ½ï¼šæ€å‡¯kå¸æ¶ˆè´¹å¤„ç†
  * @author ls
  * Jun 19, 2009
  * 11:20:15 AM
@@ -38,25 +38,25 @@ public class BillService {
 	
 	Logger logger = Logger.getLogger("log.pay");
 	/**
-	 * Ìá½»Ïû·ÑÇëÇó
+	 * æäº¤æ¶ˆè´¹è¯·æ±‚
 	 * @param ssid
 	 * @param skyid
-	 * @param kbamt             Ïû·Ñ½ğ¶î
+	 * @param kbamt             æ¶ˆè´¹é‡‘é¢
 	 */
 	public Map<String,String> pay(String uPk,String ssid,String skyid,String kbamt,int p_pk)
 	{
 		Map<String,String> pay_results = new HashMap<String,String>();
 		
 		/**
-		 * ¿Û³ık±ÒÇëÇóµÄurl
+		 * æ‰£é™¤kå¸è¯·æ±‚çš„url
 		 */
 		String validate_url = ConfigOfSky.getUrlOfPayKB();
 		
-		int pay_record_id = addPayRecord(skyid, kbamt,p_pk);//Ìí¼ÓÏû·Ñ¼ÇÂ¼
+		int pay_record_id = addPayRecord(skyid, kbamt,p_pk);//æ·»åŠ æ¶ˆè´¹è®°å½•
 		
 		String billid = this.createBilld(pay_record_id);
 		
-		Map<String, String> params = new HashMap<String, String>();//ÅäÖÃÌá½»²ÎÊı
+		Map<String, String> params = new HashMap<String, String>();//é…ç½®æäº¤å‚æ•°
 		params.put("ssid", ssid);
 		params.put("skyid", skyid);
 		params.put("billid", billid +"");
@@ -68,82 +68,82 @@ public class BillService {
          
          
          try {
-			response = request.sendGet(validate_url, params);//Ìá½»¿Û·ÑÇëÇó
+			response = request.sendGet(validate_url, params);//æäº¤æ‰£è´¹è¯·æ±‚
 			
 		} catch (IOException e) {
-			logger.debug("Ë¼¿­Ïû·Ñk±ÒÇëÇóÒì³£");
+			logger.debug("æ€å‡¯æ¶ˆè´¹kå¸è¯·æ±‚å¼‚å¸¸");
 			e.printStackTrace();
 			return pay_results;
 		}   
 		
-		if( response.getCode()!=200 )//¿Û·ÑÇëÇóÊ§°Ü
+		if( response.getCode()!=200 )//æ‰£è´¹è¯·æ±‚å¤±è´¥
 		{
-			logger.debug("Ë¼¿­Ïû·Ñk±ÒÇëÇóÊ§°Ü£¬ÏìÓ¦´úÂëÎª£º"+response.getCode());
+			logger.debug("æ€å‡¯æ¶ˆè´¹kå¸è¯·æ±‚å¤±è´¥ï¼Œå“åº”ä»£ç ä¸ºï¼š"+response.getCode());
 			return pay_results;
 		}
 		
 		try
 		{
 			ParseNormalContent parseContent = new ParseNormalContent();
-			pay_results = parseContent.parse(response.getContent());//µÃµ½½âÎöºóµÄÏìÓ¦½á¹û
+			pay_results = parseContent.parse(response.getContent());//å¾—åˆ°è§£æåçš„å“åº”ç»“æœ
 			
-			String respones_result = pay_results.get("result");//ÏìÓ¦½á¹û
+			String respones_result = pay_results.get("result");//å“åº”ç»“æœ
 			
-			//³É¹¦¿Û·ÑµÄ´¦Àí
+			//æˆåŠŸæ‰£è´¹çš„å¤„ç†
 			String skybillid1 = "skybillid1";
 			String skybillid2 = "skybillid2";
 			String balance = "balance";
-			if( respones_result.equals("0") )//±íÊ¾¿Û·Ñ³É¹¦
+			if( respones_result.equals("0") )//è¡¨ç¤ºæ‰£è´¹æˆåŠŸ
 			{
-				//³É¹¦¿Û·ÑµÄ´¦Àí
+				//æˆåŠŸæ‰£è´¹çš„å¤„ç†
 				skybillid1 = pay_results.get("skybillid1");
 				skybillid2 = pay_results.get("skybillid2");
 				balance = pay_results.get("balance");
 				
-				//¸øÍæ¼Ò³äÔª±¦
+				//ç»™ç©å®¶å……å…ƒå®
 				EconomyService economyService = new EconomyService();
 				
 				int u_pk = Integer.parseInt(uPk);
-				//¸øÍæ¼ÒÔö¼ÓÔª±¦
-				int yb_num = Integer.parseInt(kbamt);//1KB»ñµÃ1¸öÔª±¦
-				int jf_num = yb_num*GameConfig.getJifenNum();//1KB»ñµÃ1¸ö»ı·Ö
+				//ç»™ç©å®¶å¢åŠ å…ƒå®
+				int yb_num = Integer.parseInt(kbamt);//1KBè·å¾—1ä¸ªå…ƒå®
+				int jf_num = yb_num*GameConfig.getJifenNum();//1KBè·å¾—1ä¸ªç§¯åˆ†
 
 				economyService.addYuanbao(p_pk,u_pk, yb_num,"chongzhi");
-				economyService.addJifen(u_pk,jf_num);//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+				economyService.addJifen(u_pk,jf_num);//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 				
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-				gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//Í³¼Æ³äÖµÈË´Î
+				gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//ç»Ÿè®¡å……å€¼äººæ¬¡
 
 			}
 			else if( respones_result.equals("2") )
 			{
-				//³¬´ó×Ô¼ºµÄÓªÕÊÏµÍ³timeout
-				//ÕâÖÖÇé¿öÓĞ¿ÉÄÜÒÑ¾­¿Û¿î³É¹¦¡£ ÎªÁË´¦Àí¿Í»§Í¶Ëß£¬ ÇëÒ»¶¨Òª½«Õâ±Ê½»Ò×[skyBillID1ºÍskyBillID2]¼ÇÂ¼µ½Êı¾İ¿â¡£ Balance×Ö¶Î²»³öÏÖ
+				//è¶…å¤§è‡ªå·±çš„è¥å¸ç³»ç»Ÿtimeout
+				//è¿™ç§æƒ…å†µæœ‰å¯èƒ½å·²ç»æ‰£æ¬¾æˆåŠŸã€‚ ä¸ºäº†å¤„ç†å®¢æˆ·æŠ•è¯‰ï¼Œ è¯·ä¸€å®šè¦å°†è¿™ç¬”äº¤æ˜“[skyBillID1å’ŒskyBillID2]è®°å½•åˆ°æ•°æ®åº“ã€‚ Balanceå­—æ®µä¸å‡ºç°
 				skybillid1 = pay_results.get("skybillid1");
 				skybillid2 = pay_results.get("skybillid2");
 			}
 			else if( respones_result.equals("3") )
 			{
-				//Óà¶î²»×ã
-				//ÏÔÊ¾Íæ¼ÒµÄÓà¶î£¨balance×Ö¶Î£©£¬ Òıµ¼Íæ¼Ò³äÖµ¡£
+				//ä½™é¢ä¸è¶³
+				//æ˜¾ç¤ºç©å®¶çš„ä½™é¢ï¼ˆbalanceå­—æ®µï¼‰ï¼Œ å¼•å¯¼ç©å®¶å……å€¼ã€‚
 				balance = pay_results.get("balance");
 			}
-			updatePayRecord( pay_record_id,billid, skybillid1, skybillid2, balance, respones_result);//¸üĞÂÏû·Ñ¼ÇÂ¼
+			updatePayRecord( pay_record_id,billid, skybillid1, skybillid2, balance, respones_result);//æ›´æ–°æ¶ˆè´¹è®°å½•
 		}
 		catch (Exception e)
 		{
-			updatePayRecord( pay_record_id,billid, "fail", "fail", "fail", "fail");//¸üĞÂÏû·Ñ¼ÇÂ¼
+			updatePayRecord( pay_record_id,billid, "fail", "fail", "fail", "fail");//æ›´æ–°æ¶ˆè´¹è®°å½•
 		}
 		return pay_results;
 	}
 
 	/**
-	 * Ìí¼ÓÏû·Ñ¼ÇÂ¼
+	 * æ·»åŠ æ¶ˆè´¹è®°å½•
 	 * @param skyid
 	 * @param kbamt
 	 * @result:0
-	 * @Skybillid1 ºÍ skybillid2£º ÊÇ³¬¼¶´óÍæ¼ÒµÄ¶ÔÕËÁ÷Ë®ºÅ¡£ Çë±£´æµ½Ïû·Ñ¼ÇÂ¼ÖĞÒÔ±ãÓÚ¶ÔÕË
-	 * @balance:0     ÓÃ»§µ±Ç°ÕË»§ÖĞµÄÓà¶î
+	 * @Skybillid1 å’Œ skybillid2ï¼š æ˜¯è¶…çº§å¤§ç©å®¶çš„å¯¹è´¦æµæ°´å·ã€‚ è¯·ä¿å­˜åˆ°æ¶ˆè´¹è®°å½•ä¸­ä»¥ä¾¿äºå¯¹è´¦
+	 * @balance:0     ç”¨æˆ·å½“å‰è´¦æˆ·ä¸­çš„ä½™é¢
 	 * @return
 	 */
 	public int addPayRecord( String skyid,String kbamt,int p_pk )
@@ -153,13 +153,13 @@ public class BillService {
 	}
 	
 	/**
-	 * Ìí¼ÓÏû·Ñ¼ÇÂ¼
+	 * æ·»åŠ æ¶ˆè´¹è®°å½•
 	 * @param skyid
 	 * @param billid
 	 * @param kbamt
 	 * @result:0
-	 * @Skybillid1 ºÍ skybillid2£º ÊÇ³¬¼¶´óÍæ¼ÒµÄ¶ÔÕËÁ÷Ë®ºÅ¡£ Çë±£´æµ½Ïû·Ñ¼ÇÂ¼ÖĞÒÔ±ãÓÚ¶ÔÕË
-	 * @balance:0     ÓÃ»§µ±Ç°ÕË»§ÖĞµÄÓà¶î
+	 * @Skybillid1 å’Œ skybillid2ï¼š æ˜¯è¶…çº§å¤§ç©å®¶çš„å¯¹è´¦æµæ°´å·ã€‚ è¯·ä¿å­˜åˆ°æ¶ˆè´¹è®°å½•ä¸­ä»¥ä¾¿äºå¯¹è´¦
+	 * @balance:0     ç”¨æˆ·å½“å‰è´¦æˆ·ä¸­çš„ä½™é¢
 	 * @return
 	 */
 	public void updatePayRecord( int id,String billid,String skybillid1,String skybillid2,String balance,String respones_result )
@@ -170,8 +170,8 @@ public class BillService {
 	
 	
 	/**
-	 * ¸ù¾İÏìÓ¦½á¹û£¬¸øÍæ¼ÒÏàÓ¦µÄÌáÊ¾
-	 * @param pay_results          ÏìÓ¦½á¹û
+	 * æ ¹æ®å“åº”ç»“æœï¼Œç»™ç©å®¶ç›¸åº”çš„æç¤º
+	 * @param pay_results          å“åº”ç»“æœ
 	 * @return
 	 */
 	public String getPayHintByResult( Map<String,String> pay_results )
@@ -180,57 +180,57 @@ public class BillService {
 		
 		if( pay_results==null )
 		{
-			return hint = "³äÖµÊ§°Ü,ÇëÖØÊÔ!";
+			return hint = "å……å€¼å¤±è´¥,è¯·é‡è¯•!";
 		}
 		
 		String respones_result = pay_results.get("result");
 		
 		if( respones_result==null )
 		{
-			return hint = "³äÖµÊ§°Ü,ÇëÖØÊÔ!";
+			return hint = "å……å€¼å¤±è´¥,è¯·é‡è¯•!";
 		}
 		
-		//¿Û¿î³É¹¦
+		//æ‰£æ¬¾æˆåŠŸ
 		if( respones_result.equals("0"))
 		{
-			hint = "³äÖµ³É¹¦";
+			hint = "å……å€¼æˆåŠŸ";
 		}
-		//ÈÏÖ¤Ê§°Ü:Ssid ÎŞĞ§»òÕßºÍskyid²»Æ¥Åä,Ó¦¸ÃÌáÊ¾Íæ¼ÒÖØĞÂµÇÂ½³¬´ó
-		//ÆäËû×Ö¶Î£¨skybillid1£¬skybillid2£¬balance£©²»³öÏÖ¡£
+		//è®¤è¯å¤±è´¥:Ssid æ— æ•ˆæˆ–è€…å’Œskyidä¸åŒ¹é…,åº”è¯¥æç¤ºç©å®¶é‡æ–°ç™»é™†è¶…å¤§
+		//å…¶ä»–å­—æ®µï¼ˆskybillid1ï¼Œskybillid2ï¼Œbalanceï¼‰ä¸å‡ºç°ã€‚
 		else if( respones_result.equals("1") )
 		{
-			hint = "ÇëÖØĞÂÔÚ³¬¼¶´óÍæ¼ÒµÇÂ½";
+			hint = "è¯·é‡æ–°åœ¨è¶…çº§å¤§ç©å®¶ç™»é™†";
 		}
-		//³¬´ó×Ô¼ºµÄÓªÕÊÏµÍ³timeout
-		//ÕâÖÖÇé¿öÓĞ¿ÉÄÜÒÑ¾­¿Û¿î³É¹¦¡£ ÎªÁË´¦Àí¿Í»§Í¶Ëß£¬ ÇëÒ»¶¨Òª½«Õâ±Ê½»Ò×[skyBillID1ºÍskyBillID2]¼ÇÂ¼µ½Êı¾İ¿â¡£ Balance×Ö¶Î²»³öÏÖ
+		//è¶…å¤§è‡ªå·±çš„è¥å¸ç³»ç»Ÿtimeout
+		//è¿™ç§æƒ…å†µæœ‰å¯èƒ½å·²ç»æ‰£æ¬¾æˆåŠŸã€‚ ä¸ºäº†å¤„ç†å®¢æˆ·æŠ•è¯‰ï¼Œ è¯·ä¸€å®šè¦å°†è¿™ç¬”äº¤æ˜“[skyBillID1å’ŒskyBillID2]è®°å½•åˆ°æ•°æ®åº“ã€‚ Balanceå­—æ®µä¸å‡ºç°
 		else if( respones_result.equals("2") )
 		{
 			
 		}
-		//Óà¶î²»×ã
-		//ÏÔÊ¾Íæ¼ÒµÄÓà¶î£¨balance×Ö¶Î£©£¬ Òıµ¼Íæ¼Ò³äÖµ¡£
+		//ä½™é¢ä¸è¶³
+		//æ˜¾ç¤ºç©å®¶çš„ä½™é¢ï¼ˆbalanceå­—æ®µï¼‰ï¼Œ å¼•å¯¼ç©å®¶å……å€¼ã€‚
 		else if( respones_result.equals("3") )
 		{
 			String balance = pay_results.get("balance");
-			//Óà¶î²»×ã£¡ÄúÖ»ÓĞ10K±Ò£¬Çë³äÖµºóÔÙ³¢ÊÔ¶Ò»»£¡
-			hint = "Óà¶î²»×ã!ÄúÖ»ÓĞ"+balance+"K±Ò,Çë³äÖµºóÔÙ³¢ÊÔ¶Ò»»!";
+			//ä½™é¢ä¸è¶³ï¼æ‚¨åªæœ‰10Kå¸ï¼Œè¯·å……å€¼åå†å°è¯•å…‘æ¢ï¼
+			hint = "ä½™é¢ä¸è¶³!æ‚¨åªæœ‰"+balance+"Kå¸,è¯·å……å€¼åå†å°è¯•å…‘æ¢!";
 		}
-		//: billID ÖØ¸´£¬ ÆäËû×Ö¶ÎÎŞĞ§
+		//: billID é‡å¤ï¼Œ å…¶ä»–å­—æ®µæ— æ•ˆ
 		else if( respones_result.equals("6") )
 		{
-			hint = "³äÖµÊ§°Ü,ÇëÖØÊÔ!";
+			hint = "å……å€¼å¤±è´¥,è¯·é‡è¯•!";
 		}
-		//ÆäËûÖµ£º  ÊôÓÚÄÚ²¿´íÎó£¬ Ö»ĞèÒªÌáÊ¾²Ù×÷Ê§°Ü£¬ errorcodeÏÔÊ¾¸øÓÃ»§ÓÃÓÚ·´À¡¾Í¿ÉÒÔÁË¡£  [ÆäËû×Ö¶Î²»³öÏÖ]
+		//å…¶ä»–å€¼ï¼š  å±äºå†…éƒ¨é”™è¯¯ï¼Œ åªéœ€è¦æç¤ºæ“ä½œå¤±è´¥ï¼Œ errorcodeæ˜¾ç¤ºç»™ç”¨æˆ·ç”¨äºåé¦ˆå°±å¯ä»¥äº†ã€‚  [å…¶ä»–å­—æ®µä¸å‡ºç°]
 		else
 		{
-			hint = "³äÖµÊ§°Ü,´íÎó´úÂë:"+respones_result+",ÇëÖØÊÔ!";
+			hint = "å……å€¼å¤±è´¥,é”™è¯¯ä»£ç :"+respones_result+",è¯·é‡è¯•!";
 		}
 		
 		return hint;
 	}
 	
 	/**
-	 * Éú³Ébilld,Éú³É¹æÔò£º·ÖÇøid(1Î»)+s+pay_record_id(3Î»)+s+Ê±¼ä£¨ºÁÃëÊı£©£¨13Î»£©,×Ü³¤19Î»
+	 * ç”Ÿæˆbilld,ç”Ÿæˆè§„åˆ™ï¼šåˆ†åŒºid(1ä½)+s+pay_record_id(3ä½)+s+æ—¶é—´ï¼ˆæ¯«ç§’æ•°ï¼‰ï¼ˆ13ä½ï¼‰,æ€»é•¿19ä½
 	 * @return
 	 */
 	public String createBilld( int pay_record_id )
@@ -242,8 +242,8 @@ public class BillService {
 		return result.toString();
 	}
 	/**
-	 * ³äÖµ½±Àø  ÔÚ°Ù±¦ÄÒÖĞ·Å³äÖµ½±Àø
-	 * @param yb_numÔª±¦ÊıÁ¿
+	 * å……å€¼å¥–åŠ±  åœ¨ç™¾å®å›Šä¸­æ”¾å……å€¼å¥–åŠ±
+	 * @param yb_numå…ƒå®æ•°é‡
 	 */
 	public String chongZhiJiangLi(int p_pk,int yb_num){
 		String hint = "";
@@ -256,11 +256,11 @@ public class BillService {
 		{
 			if(yb_num == 2000)
 			{
-				//³äÖµ2000ËÍÇ®´ü
+				//å……å€¼2000é€é’±è¢‹
 				GoodsService goodsService = new GoodsService();
-				String prop_id = GameConfig.getChongzhijiangliCommodityinfoId().trim();//·¢·ÅµÄµÀ¾ßid
-				goodsService.putPropToWrap(p_pk, Integer.parseInt(prop_id), 1,GameLogManager.G_SYSTEM);//·ÅÈë°ü¹ü
-				hint = begintime+"¡ª"+endtime+",Ã¿³äÖµ2000"+GameConfig.getYuanbaoName()+"¼´¿É»ñµÃ1888ÒøÁ½µÄÇ®´ü(Ç®´ü½«·ÅÈë°ü¹üµÄÉÌ³ÇÀ¸,Èç¹û°ü¹ü¸ñÊı²»¹»µ¼ÖÂÎ´·¢·Å³É¹¦,¹Ù·½²»Óè²¹³¥)";
+				String prop_id = GameConfig.getChongzhijiangliCommodityinfoId().trim();//å‘æ”¾çš„é“å…·id
+				goodsService.putPropToWrap(p_pk, Integer.parseInt(prop_id), 1,GameLogManager.G_SYSTEM);//æ”¾å…¥åŒ…è£¹
+				hint = begintime+"â€”"+endtime+",æ¯å……å€¼2000"+GameConfig.getYuanbaoName()+"å³å¯è·å¾—1888é“¶ä¸¤çš„é’±è¢‹(é’±è¢‹å°†æ”¾å…¥åŒ…è£¹çš„å•†åŸæ ,å¦‚æœåŒ…è£¹æ ¼æ•°ä¸å¤Ÿå¯¼è‡´æœªå‘æ”¾æˆåŠŸ,å®˜æ–¹ä¸äºˆè¡¥å¿)";
 			}
 		}
 		return hint;
@@ -277,15 +277,15 @@ public class BillService {
 		Map<String,String> pay_results = new HashMap<String,String>();
 		
 		/**
-		 * ¿Û³ık±ÒÇëÇóµÄurl
+		 * æ‰£é™¤kå¸è¯·æ±‚çš„url
 		 */
 		String validate_url = "http://wapok.cn/n_gamevoucher.php";
 		
-		int pay_record_id = addPayRecord(skyid, amt,p_pk);//Ìí¼ÓÏû·Ñ¼ÇÂ¼
+		int pay_record_id = addPayRecord(skyid, amt,p_pk);//æ·»åŠ æ¶ˆè´¹è®°å½•
 		
 		String billid = this.createBilld(pay_record_id);
 		
-		Map<String, String> params = new HashMap<String, String>();//ÅäÖÃÌá½»²ÎÊı
+		Map<String, String> params = new HashMap<String, String>();//é…ç½®æäº¤å‚æ•°
 		params.put("osid", osid);
 		params.put("account", skyid);
 		params.put("amt", amt);
@@ -297,10 +297,10 @@ public class BillService {
          
          
          try {
-			response = request.sendGet(validate_url, params);//Ìá½»¿Û·ÑÇëÇó
+			response = request.sendGet(validate_url, params);//æäº¤æ‰£è´¹è¯·æ±‚
 			
 		} catch (IOException e) {
-			logger.debug("Ë¼¿­Ïû·Ñk±ÒÇëÇóÒì³£");
+			logger.debug("æ€å‡¯æ¶ˆè´¹kå¸è¯·æ±‚å¼‚å¸¸");
 			e.printStackTrace();
 			return pay_results;
 		}   
@@ -308,7 +308,7 @@ public class BillService {
 		try
 		{
 			ParseNormalContent parseContent = new ParseNormalContent();
-			pay_results = parseContent.parse(response.getContent());//µÃµ½½âÎöºóµÄÏìÓ¦½á¹û
+			pay_results = parseContent.parse(response.getContent());//å¾—åˆ°è§£æåçš„å“åº”ç»“æœ
 			
 			String respones_result = null;
 			Set<String> keys = pay_results.keySet();
@@ -320,42 +320,42 @@ public class BillService {
 				}
 			}
 			
-			//³É¹¦¿Û·ÑµÄ´¦Àí
+			//æˆåŠŸæ‰£è´¹çš„å¤„ç†
 			String skybillid1 = "skybillid1";
 			String skybillid2 = "skybillid2";
 			String balance = "balance";
-			if( respones_result.equals("10") )//±íÊ¾¿Û·Ñ³É¹¦
+			if( respones_result.equals("10") )//è¡¨ç¤ºæ‰£è´¹æˆåŠŸ
 			{
-				//³É¹¦¿Û·ÑµÄ´¦Àí
+				//æˆåŠŸæ‰£è´¹çš„å¤„ç†
 				skybillid1 = pay_results.get("okbillid1");
 				skybillid2 = pay_results.get("okbillid2");
 				balance = pay_results.get("balance");
 				
-				//¸øÍæ¼Ò³äÔª±¦
+				//ç»™ç©å®¶å……å…ƒå®
 				EconomyService economyService = new EconomyService();
 				
 				int u_pk = Integer.parseInt(uPk);
-				//¸øÍæ¼ÒÔö¼ÓÔª±¦
-				int yb_num = Integer.parseInt(amt)*112;//1KB»ñµÃ112¸öÔª±¦
-				int jf_num = yb_num*GameConfig.getJifenNum();//1KB»ñµÃ1¸ö»ı·Ö
+				//ç»™ç©å®¶å¢åŠ å…ƒå®
+				int yb_num = Integer.parseInt(amt)*112;//1KBè·å¾—112ä¸ªå…ƒå®
+				int jf_num = yb_num*GameConfig.getJifenNum();//1KBè·å¾—1ä¸ªç§¯åˆ†
 
 				economyService.addYuanbao(p_pk,u_pk, yb_num,"chongzhi");
-				economyService.addJifen(u_pk,jf_num);//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+				economyService.addJifen(u_pk,jf_num);//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 				
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-				gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//Í³¼Æ³äÖµÈË´Î
+				gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",u_pk);//ç»Ÿè®¡å……å€¼äººæ¬¡
 
 			}
 			else{
-				//Óà¶î²»×ã
-				//ÏÔÊ¾Íæ¼ÒµÄÓà¶î£¨balance×Ö¶Î£©£¬ Òıµ¼Íæ¼Ò³äÖµ¡£
+				//ä½™é¢ä¸è¶³
+				//æ˜¾ç¤ºç©å®¶çš„ä½™é¢ï¼ˆbalanceå­—æ®µï¼‰ï¼Œ å¼•å¯¼ç©å®¶å……å€¼ã€‚
 				balance = pay_results.get("balance");
 			}
-			updatePayRecord( pay_record_id,billid, skybillid1, skybillid2, balance, respones_result);//¸üĞÂÏû·Ñ¼ÇÂ¼
+			updatePayRecord( pay_record_id,billid, skybillid1, skybillid2, balance, respones_result);//æ›´æ–°æ¶ˆè´¹è®°å½•
 		}
 		catch (Exception e)
 		{
-			updatePayRecord( pay_record_id,billid, "fail", "fail", "fail", "fail");//¸üĞÂÏû·Ñ¼ÇÂ¼
+			updatePayRecord( pay_record_id,billid, "fail", "fail", "fail", "fail");//æ›´æ–°æ¶ˆè´¹è®°å½•
 		}
 		return pay_results;
 	}
@@ -363,9 +363,9 @@ public class BillService {
 	public String OKcallbackpay(String okid ,String okbillid1, String okbillid2 ,String oknum)
 	{
 		/**
-		 * ¿Û³ık±ÒÇëÇóµÄurl
+		 * æ‰£é™¤kå¸è¯·æ±‚çš„url
 		 */
-		int pay_record_id = addPayRecord(okid, oknum,0);//Ìí¼ÓÏû·Ñ¼ÇÂ¼
+		int pay_record_id = addPayRecord(okid, oknum,0);//æ·»åŠ æ¶ˆè´¹è®°å½•
 		
 		String billid = this.createBilld(pay_record_id);
 				
@@ -373,14 +373,14 @@ public class BillService {
 		PassportService passportService = new PassportService();
 		PassportVO passport = passportService.getPassportInfoByUserName(okid, Channel.OKP);
 		
-		int yb_num = Integer.parseInt(oknum)*112;//1KB»ñµÃ1¸öÔª±¦
-		int jf_num = yb_num*GameConfig.getJifenNum();//1KB»ñµÃ1¸ö»ı·Ö
+		int yb_num = Integer.parseInt(oknum)*112;//1KBè·å¾—1ä¸ªå…ƒå®
+		int jf_num = yb_num*GameConfig.getJifenNum();//1KBè·å¾—1ä¸ªç§¯åˆ†
 		economyService.addYuanbao(0,passport.getUPk(), yb_num,"chongzhi");
-		economyService.addJifen(passport.getUPk(),jf_num);//Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+		economyService.addJifen(passport.getUPk(),jf_num);//å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 			
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",passport.getUPk());//Í³¼Æ³äÖµÈË´Î
-		updatePayRecord( pay_record_id,billid, okbillid1, okbillid2, "callback", "0");//¸üĞÂÏû·Ñ¼ÇÂ¼
+		gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",passport.getUPk());//ç»Ÿè®¡å……å€¼äººæ¬¡
+		updatePayRecord( pay_record_id,billid, okbillid1, okbillid2, "callback", "0");//æ›´æ–°æ¶ˆè´¹è®°å½•
 		return "success";
 	}
 }

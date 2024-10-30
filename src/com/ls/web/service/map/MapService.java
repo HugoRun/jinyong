@@ -9,8 +9,8 @@ import com.ls.ben.vo.map.SceneVO;
 import com.ls.web.service.room.RoomService;
 
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  * 10:01:45 AM
  */
 public class MapService {
@@ -20,7 +20,7 @@ public class MapService {
 
 	
 	/**
-	 * scene_idËùÔÚbareaµÄÖĞĞÄµã
+	 * scene_idæ‰€åœ¨bareaçš„ä¸­å¿ƒç‚¹
 	 * @param scene_id
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class MapService {
 	
 	
 	/**
-	 * µÃµ½µØÍ¼µÄÃèÊö
+	 * å¾—åˆ°åœ°å›¾çš„æè¿°
 	 * @param map_id
 	 * @return
 	 */

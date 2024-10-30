@@ -6,13 +6,13 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * 功能:副本信息
+ * 鍔熻兘:鍓湰淇℃伅
  * Feb 3, 2009
  */
 public class InstanceInfoDao extends DaoBase
 {
 	/**
-	 * 根据地点id得到副本信息
+	 * 鏍规嵁鍦扮偣id寰楀埌鍓湰淇℃伅
 	 * @param map_id
 	 * @return
 	 */
@@ -23,7 +23,7 @@ public class InstanceInfoDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select * from instance_info where id=" + id+" limit 1";
+			String sql = "SELECT * FROM instance_info where id=" + id+" limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -52,7 +52,7 @@ public class InstanceInfoDao extends DaoBase
 		return instanceInfo;
 	}
 	/**
-	 * 根据地点id得到副本信息
+	 * 鏍规嵁鍦扮偣id寰楀埌鍓湰淇℃伅
 	 * @param map_id
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class InstanceInfoDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select * from instance_info where map_id=" + map_id+" limit 1";
+			String sql = "SELECT * FROM instance_info where map_id=" + map_id+" limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -93,7 +93,7 @@ public class InstanceInfoDao extends DaoBase
 	}
 	
 	/**
-	 * 更新重置时间
+	 * 鏇存柊閲嶇疆鏃堕棿
 	 * @param map_id
 	 */
 	public void updateResetTime(int map_id)

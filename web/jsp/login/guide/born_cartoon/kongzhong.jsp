@@ -4,7 +4,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p>
 <img src="<%=GameConfig.getGameUrl()%>/image/prelude/duanxugao/yisheng1.png" alt="" /><br/>

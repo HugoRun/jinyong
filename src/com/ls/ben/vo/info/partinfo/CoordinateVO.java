@@ -1,21 +1,21 @@
 package com.ls.ben.vo.info.partinfo;
 
 /**
- * ¹¦ÄÜ:Íæ¼Ò¼ÇÂ¼×ø±ê£¨¼´:¼ÇÂ¼map_id£©
- * @author ÁõË§
+ * åŠŸèƒ½:ç©å®¶è®°å½•åæ ‡ï¼ˆå³:è®°å½•map_idï¼‰
+ * @author åˆ˜å¸…
  * 4:00:45 PM
  */
 public class CoordinateVO {
 	
 	/**id*/
 	 private int cPk;
-	 /**½ÇÉ«id*/
+	 /**è§’è‰²id*/
 	 private int  pPk;
-	 /**×ø±êµÀ¾ßid*/
+	 /**åæ ‡é“å…·id*/
 	 private int  coordinatePropId;
-	 /**±ê¼Ç×ø±ê*/
+	 /**æ ‡è®°åæ ‡*/
 	 private int  coordinate;
-	 /**¼ÇÂ¼ÊÇ·ñÊ¹ÓÃ*/
+	 /**è®°å½•æ˜¯å¦ä½¿ç”¨*/
 	 private int isUse;
 	 
 	public int getCPk() {

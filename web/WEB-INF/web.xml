@@ -1,285 +1,261 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-	<servlet>
-		<servlet-name>action</servlet-name>
-		<servlet-class>
-			org.apache.struts.action.ActionServlet
-		</servlet-class>
-		<init-param>
-			<param-name>config</param-name>
-			<param-value>
-				/WEB-INF/struts-config.xml
-				,/WEB-INF/struts-config-ls.xml
-				,/WEB-INF/struts-config-th.xml
-				,/WEB-INF/struts-config-pay.xml
-			</param-value>
-		</init-param>
-		<init-param>
-			<param-name>debug</param-name>
-			<param-value>3</param-value>
-		</init-param>
-		<init-param>
-			<param-name>detail</param-name>
-			<param-value>3</param-value>
-		</init-param>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>action</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>
+                /WEB-INF/struts-config.xml, /WEB-INF/struts-config-ls.xml, /WEB-INF/struts-config-th.xml, /WEB-INF/struts-config-pay.xml
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>3</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>3</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
 
-	<!--  初始化 计时器  -->
-	<servlet>
-		<servlet-name>QuartzServlet</servlet-name>
-		<servlet-class>
-			org.quartz.ee.servlet.QuartzInitializerServlet
-		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+    <!--  初始化 计时器  -->
+    <servlet>
+        <servlet-name>QuartzServlet</servlet-name>
+        <servlet-class>
+            org.quartz.ee.servlet.QuartzInitializerServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
-	<servlet-mapping>
-		<servlet-name>QuartzServlet</servlet-name>
-		<url-pattern>/servlet/QuartzServlet</url-pattern>
-	</servlet-mapping>
-	<!--  计时器结束  -->
+    <servlet-mapping>
+        <servlet-name>QuartzServlet</servlet-name>
+        <url-pattern>/servlet/QuartzServlet</url-pattern>
+    </servlet-mapping>
+    <!--  计时器结束  -->
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 
+    <!-- 项目根目录默认访问页面 -->
+    <welcome-file-list>
+        <welcome-file>channel.jsp</welcome-file>
+    </welcome-file-list>
 
-	<session-config>
-		<session-timeout>15</session-timeout>
-	</session-config>
+    <!-- 参数解析 -->
+    <filter>
+        <filter-name>ParamParseFilter</filter-name>
+        <filter-class>com.pub.filter.ParamParseFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ParamParseFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
 
+    <!-- 字符过滤类 编码方式为UTF-8 -->
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.pub.filter.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-	<!-- 项目根目录默认访问页面 -->
-	<welcome-file-list>
-		<welcome-file>channel.jsp</welcome-file>
-	</welcome-file-list>
+    <!--
+    <filter>
+        <filter-name>EncodeURLFilter</filter-name>
+        <filter-class>
+            com.pub.filter.EncodeURLFilter
+        </filter-class>
+        <init-param>
+            <param-name>encode</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
 
-	<!-- 参数解析 -->
-	<filter>
-		<filter-name>ParamParseFilter</filter-name>
-		<filter-class>com.pub.filter.ParamParseFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>ParamParseFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-	</filter-mapping>
-	
-	<!-- 字符过滤类 编码方式为UTF-8 -->
-	<filter>
-		<filter-name>EncodingFilter</filter-name>
-		<filter-class>com.pub.filter.EncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>EncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<!--  
-		<filter>
-		<filter-name>EncodeURLFilter</filter-name>
-		<filter-class>
-		com.pub.filter.EncodeURLFilter
-		</filter-class>
-		<init-param>
-		<param-name>encode</param-name>
-		<param-value>UTF-8</param-value>
-		</init-param>
-		</filter>
-		
-		<filter-mapping>
-		<filter-name>EncodeURLFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-		</filter-mapping>
-		<filter-mapping>
-		<filter-name>EncodeURLFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-		</filter-mapping>
-	-->
-	
-    
-	<!-- 清除缓存 -->
-	<filter>
-		<filter-name>ClearCacheFilter</filter-name>
-		<filter-class>com.pub.filter.ClearCacheFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>ClearCacheFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>ClearCacheFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
+    <filter-mapping>
+        <filter-name>EncodeURLFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>EncodeURLFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    -->
 
+    <!-- 清除缓存 -->
+    <filter>
+        <filter-name>ClearCacheFilter</filter-name>
+        <filter-class>com.pub.filter.ClearCacheFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ClearCacheFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ClearCacheFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
+    <!-- 控制玩家点击速度 0.8秒 601改成1秒-->
+    <filter>
+        <filter-name>SpeedControlFilter</filter-name>
+        <filter-class>
+            com.ls.pub.filter.SpeedControlFilter
+        </filter-class>
+        <init-param>
+            <param-name>time_distance</param-name>
+            <param-value>50</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SpeedControlFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SpeedControlFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
-	<!-- 控制玩家点击速度 0.8秒 601改成1秒-->
-	<filter>
-		<filter-name>SpeedControlFilter</filter-name>
-		<filter-class>
-			com.ls.pub.filter.SpeedControlFilter
-		</filter-class>
-		<init-param>
-			<param-name>time_distance</param-name>
-			<param-value>50</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>SpeedControlFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SpeedControlFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
+    <!-- 回退问题过滤器-->
+    <filter>
+        <filter-name>BackFilter</filter-name>
+        <filter-class>com.pub.filter.BackFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BackFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>BackFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
+    <!-- 检查玩家session信息是否有效-->
+    <filter>
+        <filter-name>SessionValidityFilter</filter-name>
+        <filter-class>com.ls.pub.filter.SessionValidityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionValidityFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SessionValidityFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
+    <!-- 验证重复登陆过滤器 (12.06考虑玩家反映,将此过滤器暂时屏蔽）-->
+    <filter>
+        <filter-name>ReLoginValidateFilter</filter-name>
+        <filter-class>
+            com.ls.pub.filter.ReLoginValidateFilter
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ReLoginValidateFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ReLoginValidateFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 
-	<!-- 回退问题过滤器-->
-	<filter>
-		<filter-name>BackFilter</filter-name>
-		<filter-class>com.pub.filter.BackFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>BackFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>BackFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
+    <!-- 监听玩家弹出式消息的过滤器 -->
+    <filter>
+        <filter-name>PopUpMsgFilter</filter-name>
+        <filter-class>com.ls.pub.filter.PopUpMsgFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PopUpMsgFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>PopUpMsgFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
+    <!-- 监听玩家交易的过滤器 -->
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>com.pub.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
+    <!-- 递减宠物体力
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>com.pub.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>-->
 
+    <!-- 定时事件监听过滤器 -->
+    <filter>
+        <filter-name>TimerEventFilter</filter-name>
+        <filter-class>com.ls.pub.filter.TimerEventFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TimerEventFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TimerEventFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
+    <!-- session销毁监听 -->
+    <listener>
+        <listener-class>
+            com.ls.pub.listener.SessionListener
+        </listener-class>
+    </listener>
 
+    <!-- 服务器启动时清除玩家非正常推出数据 -->
+    <listener>
+        <listener-class>
+            com.ls.pub.listener.ShutdownContextListener
+        </listener-class>
+    </listener>
 
+    <!-- JDNI -->
+    <resource-ref>
+        <description>jygame Connection</description>
+        <res-ref-name>jdbc/jygame</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
 
-	<!-- 检查玩家session信息是否有效-->
-	<filter>
-		<filter-name>SessionValidityFilter</filter-name>
-		<filter-class>
-			com.ls.pub.filter.SessionValidityFilter
-		</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SessionValidityFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SessionValidityFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-
-	<!-- 验证重复登陆过滤器 (12.06考虑玩家反映,将此过滤器暂时屏蔽）-->
-	<filter>
-		<filter-name>ReLoginValidateFilter</filter-name>
-		<filter-class>
-			com.ls.pub.filter.ReLoginValidateFilter
-		</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>ReLoginValidateFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>ReLoginValidateFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-
-	<!-- 监听玩家弹出式消息的过滤器 -->
-	<filter>
-		<filter-name>PopUpMsgFilter</filter-name>
-		<filter-class>com.ls.pub.filter.PopUpMsgFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>PopUpMsgFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>PopUpMsgFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-
-	<!-- 监听玩家交易的过滤器 -->
-	<filter>
-		<filter-name>SecurityFilter</filter-name>
-		<filter-class>com.pub.SecurityFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SecurityFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SecurityFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-
-
-	<!-- 递减宠物体力 
-	<filter>
-		<filter-name>SessionFilter</filter-name>
-		<filter-class>com.pub.SessionFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SessionFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>SessionFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>-->
-	
-	<!-- 定时事件监听过滤器 -->
-	<filter>
-		<filter-name>TimerEventFilter</filter-name>
-		<filter-class>com.ls.pub.filter.TimerEventFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>TimerEventFilter</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>TimerEventFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-	
-
-	<!-- session销毁监听 -->
-	<listener>
-		<listener-class>
-			com.ls.pub.listener.SessionListener
-		</listener-class>
-	</listener>
-
-
-
-	<!-- 服务器启动时清除玩家非正常推出数据 -->
-	<listener>
-		<listener-class>
-			com.ls.pub.listener.ShutdownContextListener
-		</listener-class>
-	</listener>
-
-	<resource-ref>
-		<description>jygame Connection</description>
-		<res-ref-name>jdbc/jygame</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-
-	<resource-ref>
-		<description>jygame_user Connection</description>
-		<res-ref-name>jdbc/jygame_user</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-
+    <resource-ref>
+        <description>jygame_user Connection</description>
+        <res-ref-name>jdbc/jygame_user</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
 
 </web-app>
 

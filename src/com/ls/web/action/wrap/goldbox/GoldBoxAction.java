@@ -36,7 +36,7 @@ public class GoldBoxAction  extends DispatchAction
 	Logger logger = Logger.getLogger("log.action");
 	
 	
-	// ×ªÏòÊ¹ÓÃÎïÆ·Ö®ÁĞ£¬ÁĞ³ö ËùÓĞµÄ»Æ½ğ±¦Ïä
+	// è½¬å‘ä½¿ç”¨ç‰©å“ä¹‹åˆ—ï¼Œåˆ—å‡º æ‰€æœ‰çš„é»„é‡‘å®ç®±
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -64,12 +64,12 @@ public class GoldBoxAction  extends DispatchAction
 		request.setAttribute("w_type", w_type);
 		request.setAttribute("pg_pk", pg_pk);
 		
-		// »ñµÃÌìÑÛ·ûµÄ ĞÅÏ¢
+		// è·å¾—å¤©çœ¼ç¬¦çš„ ä¿¡æ¯
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		PlayerPropGroupVO groupVO = dao.getByPgPk(Integer.parseInt(pg_pk));
 	 	PropVO propVO = PropCache.getPropById(groupVO.getPropId());	 	
 	 		 	
-	 	// µÚÒ»¸öÊÇ»Æ½ğ±¦ÏäID,µÚ¶ş¸öÊÇ½ğÔ¿³×ID
+	 	// ç¬¬ä¸€ä¸ªæ˜¯é»„é‡‘å®ç®±ID,ç¬¬äºŒä¸ªæ˜¯é‡‘é’¥åŒ™ID
 	 	String box_idString = propVO.getPropOperate1();
 	 	String key_idString = propVO.getPropOperate2();
 	 	request.getSession().setAttribute("key_info", key_idString);
@@ -85,7 +85,7 @@ public class GoldBoxAction  extends DispatchAction
 		return mapping.findForward("gold_box_list");
 	}
 	
-	// ´ò¿ª»Æ½ğ±¦Ïä
+	// æ‰“å¼€é»„é‡‘å®ç®±
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -114,10 +114,10 @@ public class GoldBoxAction  extends DispatchAction
 		GoldBoxService goldBoxService = new GoldBoxService();
 		String hintString = "";
 		if ( box_PropVO.getPropClass() == PropType.GOLD_BOX) {
-			// Èç¹ûÊÇ»Æ½ğ±¦Ïä
+			// å¦‚æœæ˜¯é»„é‡‘å®ç®±
 			hintString = goldBoxService.openGoldBox(pg_pk,gold_box_pgpk,roleInfo);
 		} else if ( box_PropVO.getPropClass() == PropType.OTHER_GOLD_BOX){
-			// Èç¹û²»ÊÇ»Æ½ğ±¦Ïä
+			// å¦‚æœä¸æ˜¯é»„é‡‘å®ç®±
 			hintString = goldBoxService.openGoldBoxByOther(pg_pk, gold_box_pgpk, roleInfo);
 		}
 		
@@ -133,7 +133,7 @@ public class GoldBoxAction  extends DispatchAction
 		return mapping.findForward("goods_list");
 	}
 	
-	// ²é¿´»Æ½ğ±¦ÏäÀïµÄÎïÆ·
+	// æŸ¥çœ‹é»„é‡‘å®ç®±é‡Œçš„ç‰©å“
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -149,7 +149,7 @@ public class GoldBoxAction  extends DispatchAction
 		
 		if (goods_id == null || goods_type_str == null || goods_type_str.equals("") || goods_id.equals(""))
 		{
-			System.out.print("buyActionÖĞn2·½·¨³öÏÖÒâÍâ£ºnpcShop»ònpcshop_idÎª¿Õ");
+			System.out.print("buyActionä¸­n2æ–¹æ³•å‡ºç°æ„å¤–ï¼šnpcShopæˆ–npcshop_idä¸ºç©º");
 		}
 		
 		GoodsService goodsService = new GoodsService();
@@ -174,7 +174,7 @@ public class GoldBoxAction  extends DispatchAction
 		
 	}
 	
-	// ÊÔÍ¼»ñµÃ»Æ½ğ±¦ÏäÖĞµÄÎïÆ·
+	// è¯•å›¾è·å¾—é»„é‡‘å®ç®±ä¸­çš„ç‰©å“
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -196,11 +196,11 @@ public class GoldBoxAction  extends DispatchAction
 		
 		String hint = "";
 		if (goldBoxService.checkHaveGoldYueShi(roleInfo,key_info)) {
-			// Èç¹ûÊÇ»Æ½ğ±¦Ïä
+			// å¦‚æœæ˜¯é»„é‡‘å®ç®±
 			if ( boxVO.getPropClass() == PropType.GOLD_BOX) {
 				hint = goldBoxService.getGoldBoxGoods(roleInfo,key_info,keyVO,boxVO,response,request);
 			} else if ( boxVO.getPropClass() == PropType.OTHER_GOLD_BOX){
-				// Èç¹û²»ÊÇ»Æ½ğ±¦Ïä
+				// å¦‚æœä¸æ˜¯é»„é‡‘å®ç®±
 				hint = goldBoxService.getGoldBoxGoodsByOtherBox(roleInfo,key_info,keyVO,boxVO,response,request);
 			}
 			npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
@@ -208,11 +208,11 @@ public class GoldBoxAction  extends DispatchAction
 			return mapping.findForward("hint");
 			
 		} else {
-			int digit = GameConfig.useProp(boxVO.getPropID(), "use_prop_id");//·µ»ØÍæ¼ÒµÈ¼¶ÊÇ·ñÔÚÏµÍ³Éè¶¨Ö®ÄÚ
+			int digit = GameConfig.useProp(boxVO.getPropID(), "use_prop_id");//è¿”å›ç©å®¶ç­‰çº§æ˜¯å¦åœ¨ç³»ç»Ÿè®¾å®šä¹‹å†…
 			if( digit != -1){
 				new PopUpMsgService().addSysSpecialMsg(roleInfo.getBasicInfo().getPPk(),boxVO.getPropID(),digit, PopUpMsgType.USE_PROP);
 			}
-			hint = "ÄúÉíÉÏÃ»ÓĞ"+keyVO.getPropName()+",´ò¿ª"+boxVO.getPropName()+"Ê§°Ü!";
+			hint = "æ‚¨èº«ä¸Šæ²¡æœ‰"+keyVO.getPropName()+",æ‰“å¼€"+boxVO.getPropName()+"å¤±è´¥!";
 			npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
 			request.setAttribute("hint", hint);
 			return mapping.findForward("hint");
@@ -220,7 +220,7 @@ public class GoldBoxAction  extends DispatchAction
 	}
 	
 	
-	// ·ÅÆú»ñµÃ»Æ½ğ±¦ÏäÖĞµÄÎïÆ·
+	// æ”¾å¼ƒè·å¾—é»„é‡‘å®ç®±ä¸­çš„ç‰©å“
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -244,7 +244,7 @@ public class GoldBoxAction  extends DispatchAction
 	
 	
 
-	// ÓÃ½ğÔ¿³×Ö±½Ó´ò¿ª»Æ½ğ±¦Ïä
+	// ç”¨é‡‘é’¥åŒ™ç›´æ¥æ‰“å¼€é»„é‡‘å®ç®±
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -260,28 +260,28 @@ public class GoldBoxAction  extends DispatchAction
 		request.setAttribute("goods_id", goods_id);
 		request.setAttribute("pg_pk", pg_pk);
 		 
-		//»ñµÃ±¦ÏäµÄÊı¾İ
+		//è·å¾—å®ç®±çš„æ•°æ®
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		PlayerPropGroupVO groupVO = dao.getByPgPk(Integer.parseInt(pg_pk));
 	 	PropVO boxVO = PropCache.getPropById(groupVO.getPropId());	
 		
-		/***********************ÕâÀïÅĞ¶Ï¿ªÆôµÄÎïÆ·****************************************/
-	 	//»ñµÃ¿ªÆôµÄµÀ¾ßID [0] µôÂäÊıÁ¿ [1]¿ªÆôµÄID
+		/***********************è¿™é‡Œåˆ¤æ–­å¼€å¯çš„ç‰©å“****************************************/
+	 	//è·å¾—å¼€å¯çš„é“å…·ID [0] æ‰è½æ•°é‡ [1]å¼€å¯çš„ID
 	 	String[] oper_prop_id = boxVO.getPropOperate2().split(",");
 	 	PropVO oper_prop_vo = PropCache.getPropById(Integer.parseInt(oper_prop_id[1]));
-	 	//ÊÇ·ñÓĞÄ³ÖÖµÀ¾ß
+	 	//æ˜¯å¦æœ‰æŸç§é“å…·
 	 	boolean flag = dao.getUserHasProp(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(oper_prop_id[1]));
 	 	if ( !flag) {
-	 		int digit = GameConfig.useProp(Integer.parseInt(goods_id), "use_prop_id");//·µ»ØÍæ¼ÒµÈ¼¶ÊÇ·ñÔÚÏµÍ³Éè¶¨Ö®ÄÚ
+	 		int digit = GameConfig.useProp(Integer.parseInt(goods_id), "use_prop_id");//è¿”å›ç©å®¶ç­‰çº§æ˜¯å¦åœ¨ç³»ç»Ÿè®¾å®šä¹‹å†…
 			if( digit != -1){
 				new PopUpMsgService().addSysSpecialMsg(roleInfo.getBasicInfo().getPPk(),Integer.parseInt(goods_id),digit, PopUpMsgType.USE_PROP);
 			}
 			CommodityDao commodityDao = new CommodityDao();
 			CommodityVO commodityVO = commodityDao.getPropCommodity(oper_prop_vo.getPropID()+"");
 			if(commodityVO == null){
-				request.setAttribute("hint", "ÄúÉíÉÏÃ»ÓĞ"+oper_prop_vo.getPropName()+"!");
+				request.setAttribute("hint", "æ‚¨èº«ä¸Šæ²¡æœ‰"+oper_prop_vo.getPropName()+"!");
 			}else{
-				request.setAttribute("hint", "ÄúÉíÉÏÃ»ÓĞ<anchor><go method=\"post\" href=\"mall.do\"><postfield name=\"cmd\" value=\"n6\"/><postfield name=\"c_id\" value=\""+commodityVO.getId()+"\"/></go>"+oper_prop_vo.getPropName()+"</anchor>!");
+				request.setAttribute("hint", "æ‚¨èº«ä¸Šæ²¡æœ‰<anchor><go method=\"post\" href=\"mall.do\"><postfield name=\"cmd\" value=\"n6\"/><postfield name=\"c_id\" value=\""+commodityVO.getId()+"\"/></go>"+oper_prop_vo.getPropName()+"</anchor>!");
 			}
 			return mapping.findForward("hint");
 		}
@@ -290,7 +290,7 @@ public class GoldBoxAction  extends DispatchAction
 	 	String hint = null;
 		GoldBoxService goldBoxService = new GoldBoxService();
 		NpcService npcService = new NpcService();		
-		// Èç¹ûÊÇ»Æ½ğ±¦Ïä
+		// å¦‚æœæ˜¯é»„é‡‘å®ç®±
 		if ( boxVO.getPropClass() == PropType.GOLD_BOX) {
     		String hintString = goldBoxService.isOpenGoldBox(pg_pk,roleInfo,box_id);		
     		if (hintString != null && !hintString.equals("")) {
@@ -299,7 +299,7 @@ public class GoldBoxAction  extends DispatchAction
     		}		
     		hint = goldBoxService.getGoldBoxGoods(roleInfo,oper_prop_vo.getPropID()+"",oper_prop_vo,boxVO,response,request);
 		} else if (boxVO.getPropClass() == PropType.OTHER_GOLD_BOX) {
-			// Èç¹û²»ÊÇ»Æ½ğ±¦Ïä
+			// å¦‚æœä¸æ˜¯é»„é‡‘å®ç®±
 			String hintString = goldBoxService.zhiJieOpenGoldBoxByOther(pg_pk,roleInfo,box_id);		
     		if (hintString != null && !hintString.equals("")) {
     			request.setAttribute("hint", hintString);
@@ -314,7 +314,7 @@ public class GoldBoxAction  extends DispatchAction
 		 
 		
 		/*
-		// »ñµÃ½ğÔ¿³×µÄ ĞÅÏ¢
+		// è·å¾—é‡‘é’¥åŒ™çš„ ä¿¡æ¯
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		//PropDao propDAO = new PropDao();
 		PropCache propCache = new PropCache();
@@ -327,13 +327,13 @@ public class GoldBoxAction  extends DispatchAction
 	 	boolean flag = dao.getUserHasProp(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(box_id));
 	 			
 		if ( !flag) {
-			request.setAttribute("hint", "ÄúÉíÉÏÃ»ÓĞ"+boxVO.getPropName()+"!");
+			request.setAttribute("hint", "æ‚¨èº«ä¸Šæ²¡æœ‰"+boxVO.getPropName()+"!");
 			return mapping.findForward("hint");
 		}
 		String hint = null;
 		GoldBoxService goldBoxService = new GoldBoxService();
 		NpcService npcService = new NpcService();		
-		// Èç¹ûÊÇ»Æ½ğ±¦Ïä
+		// å¦‚æœæ˜¯é»„é‡‘å®ç®±
 		if ( boxVO.getPropClass() == PropType.GOLD_BOX) {
     		String hintString = goldBoxService.zhiJieOpenGoldBox(pg_pk,roleInfo,box_id);		
     		if (hintString != null && !hintString.equals("")) {
@@ -342,7 +342,7 @@ public class GoldBoxAction  extends DispatchAction
     		}		
     		hint = goldBoxService.getGoldBoxGoods(roleInfo,groupVO.getPropId()+"",propVO,boxVO);
 		} else if (boxVO.getPropClass() == PropType.OTHER_GOLD_BOX) {
-			// Èç¹û²»ÊÇ»Æ½ğ±¦Ïä
+			// å¦‚æœä¸æ˜¯é»„é‡‘å®ç®±
 			String hintString = goldBoxService.zhiJieOpenGoldBoxByOther(pg_pk,roleInfo,box_id);		
     		if (hintString != null && !hintString.equals("")) {
     			request.setAttribute("hint", hintString);
@@ -355,7 +355,7 @@ public class GoldBoxAction  extends DispatchAction
 		return mapping.findForward("hint");
 	}
 	
-	// ·µ»Øµ½ Ñ¡ÔñÎïÆ·µÄÒ³ÃæÉÏÀ´ 
+	// è¿”å›åˆ° é€‰æ‹©ç‰©å“çš„é¡µé¢ä¸Šæ¥ 
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

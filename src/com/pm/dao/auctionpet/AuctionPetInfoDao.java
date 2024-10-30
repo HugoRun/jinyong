@@ -11,11 +11,11 @@ import com.pm.vo.auctionpet.AuctionPetVO;
 
 public class AuctionPetInfoDao extends DaoBase 
 {
-	//²åÈë
+	//æ’å…¥
 	public void insertPetInfo(int pPk, String str)
 	{
-		String sql = "insert into u_auctionpet_info values(null,"+pPk+",'"+StringUtil.gbToISO(str)+"',now())";
-		logger.debug("²åÈë³èÎïÅÄÂôĞÅÏ¢±íµÄsql:"+sql);
+		String sql = "INSERT INTO u_auctionpet_info values(null,"+pPk+",'"+StringUtil.gbToISO(str)+"',now())";
+		logger.debug("æ’å…¥å® ç‰©æ‹å–ä¿¡æ¯è¡¨çš„sql:"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try {
 			conn = dbConn.getConn();
@@ -32,7 +32,7 @@ public class AuctionPetInfoDao extends DaoBase
 	}
 	
 	/**
-	 * °´Ê±¼äË³ĞòÉ¾³ı¶àÓà10ÌõµÄĞÅÏ¢¼ÇÂ¼
+	 * æŒ‰æ—¶é—´é¡ºåºåˆ é™¤å¤šä½™10æ¡çš„ä¿¡æ¯è®°å½•
 	 * @param pk
 	 */
 	public int deleteSuperfluousInfo(int pPk)
@@ -59,19 +59,19 @@ public class AuctionPetInfoDao extends DaoBase
 	}
 
 	/**
-	 * Ïò³èÎïÅÄÂôĞÅÏ¢±í²åÈëÒ»ÌõĞÅÏ¢,
-	 * @param pPk ¹ºÂòÕßid
+	 * å‘å® ç‰©æ‹å–ä¿¡æ¯è¡¨æ’å…¥ä¸€æ¡ä¿¡æ¯,
+	 * @param pPk è´­ä¹°è€…id
 	 * @param AuctionPetVO
-	 * @con ĞèÒª²åÈëµÄÓï¾ä
+	 * @con éœ€è¦æ’å…¥çš„è¯­å¥
 	 */
 	public void insertAuctionInfo(AuctionPetVO vo, String con)
 	{
-		int pPk2 = vo.getPPk();			//ÅÄÂôÕßid
+		int pPk2 = vo.getPPk();			//æ‹å–è€…id
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dt = new Date();
 		
-		String sql = "insert into u_auctionpet_info values(null,"+pPk2+",'"+StringUtil.gbToISO(con)+"','"+sf.format(dt)+"')";
-		logger.debug("Ïò³èÎïÅÄÂôĞÅÏ¢±íÖĞ²åÈëĞÅÏ¢ :"+sql);
+		String sql = "INSERT INTO u_auctionpet_info values(null,"+pPk2+",'"+StringUtil.gbToISO(con)+"','"+sf.format(dt)+"')";
+		logger.debug("å‘å® ç‰©æ‹å–ä¿¡æ¯è¡¨ä¸­æ’å…¥ä¿¡æ¯ :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try{

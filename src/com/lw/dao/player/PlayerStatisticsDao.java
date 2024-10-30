@@ -8,11 +8,11 @@ import com.lw.vo.player.PlayerStatisticsVO;
 public class PlayerStatisticsDao extends DaoBase
 {
 
-	/** ²åÈëÍæ¼ÒÍ³¼ÆĞÅÏ¢±í */
+	/** æ’å…¥ç©å®¶ç»Ÿè®¡ä¿¡æ¯è¡¨ */
 	public void insertPlayerStatistics(int u_pk, int p_pk, int grade,
 			String date, String time)
 	{
-		String sql = "insert into game_player_statistics_info values (null,"
+		String sql = "INSERT INTO game_player_statistics_info values (null,"
 				+ u_pk + "," + p_pk + "," + grade + ",0,'" + date + "','"
 				+ time + "',now(),now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -34,11 +34,11 @@ public class PlayerStatisticsDao extends DaoBase
 		}
 	}
 
-	/** ¸ú¾İÍæ¼ÒPPKµÃµ½Íæ¼ÒĞÅÏ¢ */
+	/** è·Ÿæ®ç©å®¶PPKå¾—åˆ°ç©å®¶ä¿¡æ¯ */
 	public PlayerStatisticsVO getPlayerInfo(int u_pk, int p_pk, String date)
 	{
 		PlayerStatisticsVO vo = null;
-		String sql = "select * from game_player_statistics_info where u_pk = "
+		String sql = "SELECT * FROM game_player_statistics_info where u_pk = "
 				+ u_pk + " and p_pk = " + p_pk + " and p_date = '" + date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -75,7 +75,7 @@ public class PlayerStatisticsDao extends DaoBase
 		return vo;
 	}
 
-	/** ¸üĞÂÍæ¼ÒĞÅÏ¢ */
+	/** æ›´æ–°ç©å®¶ä¿¡æ¯ */
 	public void updatePlayerInfo(int u_pk, int p_pk, int grade, String date,
 			String time, int id)
 	{
@@ -106,12 +106,12 @@ public class PlayerStatisticsDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂÍæ¼ÒÔÚÏßÊ±¼ä* */
+	/** æ›´æ–°ç©å®¶åœ¨çº¿æ—¶é—´* */
 	public void updatePlayerOnlineTime(int u_pk, int p_pk, int time, int id)
 	{
 		String sql = "update game_player_statistics_info set p_onlinetime = p_onlinetime + "
 				+ time + " where id = " + id;
-		//Í³¼ÆĞèÒª
+		//ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(p_pk, "zhong", time);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -132,11 +132,11 @@ public class PlayerStatisticsDao extends DaoBase
 		}
 	}
 
-	/** Í³¼ÆÍæ¼ÒµÄÔÚÏßÊ±¼ä */
+	/** ç»Ÿè®¡ç©å®¶çš„åœ¨çº¿æ—¶é—´ */
 	public int getOnlineTime(String date)
 	{
 		int num = 0;
-		String sql = "select sum(p_onlinetime) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT sum(p_onlinetime) as num from game_player_statistics_info where p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -164,11 +164,11 @@ public class PlayerStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼ÆÍæ¼ÒÔÚÏßµÈ¼¶ */
+	/** ç»Ÿè®¡ç©å®¶åœ¨çº¿ç­‰çº§ */
 	public int getOnlineGrade(String date)
 	{
 		int num = 0;
-		String sql = "select sum(p_grade) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT sum(p_grade) as num from game_player_statistics_info where p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -196,11 +196,11 @@ public class PlayerStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** Í³¼ÆÍæ¼ÒÔÚÏßÆ½¾ùµÈ¼¶ */
+	/** ç»Ÿè®¡ç©å®¶åœ¨çº¿å¹³å‡ç­‰çº§ */
 	public int getOnlineAvgGrade(int grade, String date)
 	{
 		int num = 0;
-		String sql = "select avg(p_grade) as num from game_player_statistics_info where p_grade > "
+		String sql = "SELECT avg(p_grade) as num from game_player_statistics_info where p_grade > "
 				+ grade + " and p_date = '" + date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -228,11 +228,11 @@ public class PlayerStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** µÃµ½½ñÌìÓĞ¶àÉÙÍæ¼ÒµÇÂ½ÓÎÏ· */
+	/** å¾—åˆ°ä»Šå¤©æœ‰å¤šå°‘ç©å®¶ç™»é™†æ¸¸æˆ */
 	public int getOnlinePlayer(String date)
 	{
 		int num = 0;
-		String sql = "select count(distinct(p_pk)) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT count(distinct(p_pk)) as num from game_player_statistics_info where p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -260,11 +260,11 @@ public class PlayerStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** µÃµ½Íæ¼ÒµÄ»îÔ¾ÓÃ»§ÊıÁ¿ */
+	/** å¾—åˆ°ç©å®¶çš„æ´»è·ƒç”¨æˆ·æ•°é‡ */
 	public int getPlayerOnlineActivity(String date)
 	{
 		int num = 0;
-		String sql = "select count(distinct(u_pk)) as num from game_player_statistics_info where p_login_time > '"
+		String sql = "SELECT count(distinct(u_pk)) as num from game_player_statistics_info where p_login_time > '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
@@ -292,11 +292,11 @@ public class PlayerStatisticsDao extends DaoBase
 		return num;
 	}
 
-	/** µÃµ½Íæ¼ÒÕËºÅÊıÁ¿½ñÌìµÇÂ½ */
+	/** å¾—åˆ°ç©å®¶è´¦å·æ•°é‡ä»Šå¤©ç™»é™† */
 	public int getOnlinePassport(String date)
 	{
 		int num = 0;
-		String sql = "select count(distinct(u_pk)) as num from game_player_statistics_info where p_date = '"
+		String sql = "SELECT count(distinct(u_pk)) as num from game_player_statistics_info where p_date = '"
 				+ date + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);

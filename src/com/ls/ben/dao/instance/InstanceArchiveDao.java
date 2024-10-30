@@ -6,19 +6,19 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * ¸±±¾´æµµ
+ * å‰¯æœ¬å­˜æ¡£
  */
 public class InstanceArchiveDao extends DaoBase
 {
 	/**
-	 * ²åÈë¸±±¾´æµµ
+	 * æ’å…¥å‰¯æœ¬å­˜æ¡£
 	 */
 	public void insertArchive( int p_pk,int map_id )
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "insert into instance_archive(p_pk,map_id,dead_boss_record,create_time) values ("+p_pk+","+map_id+",'',now())";
+			String sql = "INSERT INTO instance_archive(p_pk,map_id,dead_boss_record,create_time) values ("+p_pk+","+map_id+",'',now())";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -33,7 +33,7 @@ public class InstanceArchiveDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½½ÇÉ«ÊÇ·ñÓĞ¸±±¾´æµµ
+	 * å¾—åˆ°è§’è‰²æ˜¯å¦æœ‰å‰¯æœ¬å­˜æ¡£
 	 * @param p_pk
 	 * @param map_id
 	 * @return
@@ -45,7 +45,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select p_pk from instance_archive where p_pk="+p_pk+" and map_id=" + map_id+" limit 1";
+			String sql = "SELECT p_pk from instance_archive where p_pk="+p_pk+" and map_id=" + map_id+" limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -65,7 +65,7 @@ public class InstanceArchiveDao extends DaoBase
 		return result;
 	}
 	/**
-	 * µÃµ½½ÇÉ«¸±±¾´æµµ
+	 * å¾—åˆ°è§’è‰²å‰¯æœ¬å­˜æ¡£
 	 * @param p_pk
 	 * @param map_id
 	 * @return
@@ -77,7 +77,7 @@ public class InstanceArchiveDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select * from instance_archive where p_pk="+p_pk+" and map_id=" + map_id+" limit 1";
+			String sql = "SELECT * FROM instance_archive where p_pk="+p_pk+" and map_id=" + map_id+" limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -102,10 +102,10 @@ public class InstanceArchiveDao extends DaoBase
 	}
 	
 	/**
-	 * ¸üĞÂbossËÀÍö¼ÇÂ¼
+	 * æ›´æ–°bossæ­»äº¡è®°å½•
 	 * @param p_pk
 	 * @param map_id
-	 * @param sence_id              bossËÀÍöµØµã
+	 * @param sence_id              bossæ­»äº¡åœ°ç‚¹
 	 */
 	public void updateArchive( int p_pk,int map_id,int sence_id )
 	{
@@ -126,7 +126,7 @@ public class InstanceArchiveDao extends DaoBase
 		}
 	}
 	/**
-	 * ³õÊ¼»¯¸±±¾´æµµ
+	 * åˆå§‹åŒ–å‰¯æœ¬å­˜æ¡£
 	 * @param p_pk
 	 * @param map_id
 	 */
@@ -149,7 +149,7 @@ public class InstanceArchiveDao extends DaoBase
 		}
 	}
 	/**
-	 * Çå³ıËùÓĞ¸±±¾´æµµ
+	 * æ¸…é™¤æ‰€æœ‰å‰¯æœ¬å­˜æ¡£
 	 * @param p_pk
 	 * @param map_id
 	 */

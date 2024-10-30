@@ -24,7 +24,7 @@ public class SendMailAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.action");
 	
 	/**
-	 *  Íæ¼ÒÓÃ»Ø¸´¹¦ÄÜ·¢ËÍÓÊ¼ş
+	 *  ç©å®¶ç”¨å›å¤åŠŸèƒ½å‘é€é‚®ä»¶
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -37,7 +37,7 @@ public class SendMailAction extends DispatchAction {
 		BlacklistService blacklistService = new BlacklistService();
 		if(blacklistService.whetherblacklist(Integer.parseInt(sendPk),roleInfo.getBasicInfo().getPPk()+"") == false)
 		{
-			String hints = "¶Ô·½ÒÔ½«Äú¼ÓÈëºÚÃûµ¥,Äú²»¿ÉÔÙÏò¶Ô·½·¢ËÍÓÊ¼ş!";
+			String hints = "å¯¹æ–¹ä»¥å°†æ‚¨åŠ å…¥é»‘åå•,æ‚¨ä¸å¯å†å‘å¯¹æ–¹å‘é€é‚®ä»¶!";
 			request.setAttribute("hints", hints);
 			return mapping.findForward("blacklisthint");
 		}
@@ -50,23 +50,23 @@ public class SendMailAction extends DispatchAction {
 		
 		boolean flag = false ;
 		if(Expression.hasPublish(content) == -1) {
-			resultWml = "ÄúÊäÈëÁË·Ç·¨·ûºÅ, ÇëÖØĞÂÊäÈë!";
+			resultWml = "æ‚¨è¾“å…¥äº†éæ³•ç¬¦å·, è¯·é‡æ–°è¾“å…¥!";
 		}else {		
 			if(mail_type.equals("1")){
 				MailInfoService mailInfoService = new MailInfoService();
 				/*RoleEntity role_info = roleService.getRoleInfoById(sendPk);
 				if(role_info!=null){
-					String mail_title = "À´×Ô"+role_info.getBasicInfo().getName() +"µÄÓÊ¼ş";//7ÔÂ27ÈÕĞŞ¸Ä
+					String mail_title = "æ¥è‡ª"+role_info.getBasicInfo().getName() +"çš„é‚®ä»¶";//7æœˆ27æ—¥ä¿®æ”¹
 					resultWml = mailInfoService.sendMailUseByZjj(Integer.valueOf(sendPk),p_pk,1,mail_title,content);
 				}else{
 					PropertyService propertyService = new PropertyService();
-					String mail_title = "À´×Ô"+propertyService.getPlayerName(Integer.parseInt(sendPk)) +"µÄÓÊ¼ş";//7ÔÂ27ÈÕĞŞ¸Ä
+					String mail_title = "æ¥è‡ª"+propertyService.getPlayerName(Integer.parseInt(sendPk)) +"çš„é‚®ä»¶";//7æœˆ27æ—¥ä¿®æ”¹
 					resultWml = mailInfoService.sendMailUseByZjj(Integer.valueOf(sendPk),p_pk,1,mail_title,content);
 				}*/
-				String mail_title = "À´×Ô"+roleInfo.getBasicInfo().getName() +"µÄÓÊ¼ş";//7ÔÂ27ÈÕĞŞ¸Ä
+				String mail_title = "æ¥è‡ª"+roleInfo.getBasicInfo().getName() +"çš„é‚®ä»¶";//7æœˆ27æ—¥ä¿®æ”¹
 				resultWml = mailInfoService.sendMailUseByZjj(Integer.valueOf(sendPk),p_pk,1,mail_title,content);
 			} else {
-				resultWml = "ÏµÍ³ÓÊ¼ş£¬ÎŞĞè»Ø¸´£¡";
+				resultWml = "ç³»ç»Ÿé‚®ä»¶ï¼Œæ— éœ€å›å¤ï¼";
 			}
 		}
 		request.setAttribute("resultWml",resultWml);
@@ -74,7 +74,7 @@ public class SendMailAction extends DispatchAction {
 	}
 	
 	/**
-	 *  Íæ¼ÒÖ±½ÓĞ´ÓÊ¼ş·¢ËÍ
+	 *  ç©å®¶ç›´æ¥å†™é‚®ä»¶å‘é€
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,12 +91,12 @@ public class SendMailAction extends DispatchAction {
 		
 		StringBuffer resultWml = new StringBuffer();
 		if ( receive_name.length() > 10) {
-			resultWml.append("ÄúÊäÈëµÄÍæ¼ÒÃûÓĞÎó!");
+			resultWml.append("æ‚¨è¾“å…¥çš„ç©å®¶åæœ‰è¯¯!");
 			request.setAttribute("resultWml",resultWml.toString());
 			return mapping.findForward("send_hint");
 		}
 		if(Expression.hasPublishWithMail(receive_name) == -1) {
-			resultWml.append("ÄúÊäÈëµÄÍæ¼ÒÃûÓĞÎó!");
+			resultWml.append("æ‚¨è¾“å…¥çš„ç©å®¶åæœ‰è¯¯!");
 			
 		} else {
 			PartInfoDao partInfoDao = new PartInfoDao();
@@ -104,41 +104,41 @@ public class SendMailAction extends DispatchAction {
 			int sendPk =partInfoDao.getByName(receive_name);
 			logger.info("sendPk="+sendPk);
 			
-			//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÊÇÔÚ×Ô¼ºµÄºÚÃûµ¥
+			//åˆ¤æ–­ç©å®¶æ˜¯å¦æ˜¯åœ¨è‡ªå·±çš„é»‘åå•
 			BlacklistService blacklistService = new BlacklistService();
 			int res = blacklistService.isBlacklist(p_pk, sendPk);
 			if(res == 1){
-				String hints = "¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞÓÊ¼şÍ¨ĞÅ.";
+				String hints = "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œé‚®ä»¶é€šä¿¡.";
 				request.setAttribute("hints", hints);
 				return mapping.findForward("blacklisthint");
 			}else if(res == 2){
-				String hints = "ÄúÔÚ¸ÃÍæ¼ÒµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞÓÊ¼şÍ¨ĞÅ.";
+				String hints = "æ‚¨åœ¨è¯¥ç©å®¶çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œé‚®ä»¶é€šä¿¡.";
 				request.setAttribute("hints", hints);
 				return mapping.findForward("blacklisthint");
 			}
-			//Èç¹ûÌá½»Íæ¼Ò±»¼ÓÈëºÚÃûµ¥ ·µ»Ø
+			//å¦‚æœæäº¤ç©å®¶è¢«åŠ å…¥é»‘åå• è¿”å›
 			if(blacklistService.whetherblacklist(sendPk,roleInfo.getBasicInfo().getPPk()+"") == false)
 			{
-				String hints = "¶Ô·½ÒÔ½«Äú¼ÓÈëºÚÃûµ¥,Äú²»¿ÉÔÙÏò¶Ô·½·¢ËÍÓÊ¼ş!";
+				String hints = "å¯¹æ–¹ä»¥å°†æ‚¨åŠ å…¥é»‘åå•,æ‚¨ä¸å¯å†å‘å¯¹æ–¹å‘é€é‚®ä»¶!";
 				request.setAttribute("hints", hints);
 				return mapping.findForward("blacklisthint");
 			}
 			if(sendPk == -1 || sendPk == 0){
-				resultWml.append("²»´æÔÚ¸ÃÍæ¼Ò£¡");
+				resultWml.append("ä¸å­˜åœ¨è¯¥ç©å®¶ï¼");
 			} else {
 				if(Expression.hasPublish(content) == -1) {
-					resultWml.append("ÄúÊäÈëÁË·Ç·¨·ûºÅ, ÇëÖØĞÂÊäÈë!");
+					resultWml.append("æ‚¨è¾“å…¥äº†éæ³•ç¬¦å·, è¯·é‡æ–°è¾“å…¥!");
 				} else {
 					/*RoleEntity role_info = roleService.getRoleInfoById(sendPk+"");
 					if(role_info!=null){
-						String mail_title = "À´×Ô"+role_info.getBasicInfo().getName() +"µÄÓÊ¼ş";//7ÔÂ27ÈÕĞŞ¸Ä
+						String mail_title = "æ¥è‡ª"+role_info.getBasicInfo().getName() +"çš„é‚®ä»¶";//7æœˆ27æ—¥ä¿®æ”¹
 						resultWml.append(mailInfoService.sendMailUseByZjj(Integer.valueOf(sendPk),p_pk,1,mail_title,content));
 					}else{
 						PropertyService propertyService = new PropertyService();
-						String mail_title = "À´×Ô"+propertyService.getPlayerName(sendPk) +"µÄÓÊ¼ş";//7ÔÂ27ÈÕĞŞ¸Ä
+						String mail_title = "æ¥è‡ª"+propertyService.getPlayerName(sendPk) +"çš„é‚®ä»¶";//7æœˆ27æ—¥ä¿®æ”¹
 						resultWml.append(mailInfoService.sendMailUseByZjj(Integer.valueOf(sendPk),p_pk,1,mail_title,content));
 					}*/
-					String mail_title = "À´×Ô"+roleInfo.getBasicInfo().getName() +"µÄÓÊ¼ş";//7ÔÂ27ÈÕĞŞ¸Ä
+					String mail_title = "æ¥è‡ª"+roleInfo.getBasicInfo().getName() +"çš„é‚®ä»¶";//7æœˆ27æ—¥ä¿®æ”¹
 					resultWml.append(mailInfoService.sendMailUseByZjj(Integer.valueOf(sendPk),p_pk,1,mail_title,content));
 				}
 			}
@@ -149,7 +149,7 @@ public class SendMailAction extends DispatchAction {
 	}
 	
 	/**
-	 *  Íæ¼Òµã»÷Ğ´ÓÊ¼ş£¬×ªµ½ÓÊ¼ş·¢ËÍÒ³Ãæ
+	 *  ç©å®¶ç‚¹å‡»å†™é‚®ä»¶ï¼Œè½¬åˆ°é‚®ä»¶å‘é€é¡µé¢
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -157,7 +157,7 @@ public class SendMailAction extends DispatchAction {
 	}
 	
 	/**
-	 *  Íæ¼Òµã»÷»Ö¸´ÓÊ¼ş£¬×ªµ½ÓÊ¼ş·¢ËÍÒ³Ãæ
+	 *  ç©å®¶ç‚¹å‡»æ¢å¤é‚®ä»¶ï¼Œè½¬åˆ°é‚®ä»¶å‘é€é¡µé¢
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {

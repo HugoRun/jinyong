@@ -39,7 +39,7 @@ public class BrotherAction extends BaseAction
 		return mapping.findForward(BROTHER);
 	}
 	
-//	ÁìÈ¡¾­Ñé
+//	é¢†å–ç»éªŒ
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -50,10 +50,10 @@ public class BrotherAction extends BaseAction
 		FriendVO fv = friendService.findById(f_pk);
 		if(fv!=null){
 		friendService.getExp(fv.getFPk());
-		request.setAttribute("message", "ÄãÁìÈ¡ÁË"+fv.getFdName()+"µÄ"+fv.getExpShare()+"µã¾­Ñé£¡");
-		//¼à¿Ø
+		request.setAttribute("message", "ä½ é¢†å–äº†"+fv.getFdName()+"çš„"+fv.getExpShare()+"ç‚¹ç»éªŒï¼");
+		//ç›‘æ§
 		LogService logService = new LogService();
-		logService.recordExpLog(bi.getPPk(), bi.getName(), bi.getCurExp()+"", fv.getExpShare()+"", "ĞÖµÜÁìÈ¡"+fv.getFdName());
+		logService.recordExpLog(bi.getPPk(), bi.getName(), bi.getCurExp()+"", fv.getExpShare()+"", "å…„å¼Ÿé¢†å–"+fv.getFdName());
 		
 		bi.updateAddCurExp(fv.getExpShare());
 		
@@ -74,7 +74,7 @@ public class BrotherAction extends BaseAction
 		return mapping.findForward(GET_EXP);
 	}
 	
-	//·òÆŞÇéÉî·û
+	//å¤«å¦»æƒ…æ·±ç¬¦
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -87,14 +87,14 @@ public class BrotherAction extends BaseAction
 		BasicInfo bi = getBasicInfo(request);
 		List<FriendVO> list = friendService.findCanGetExp(bi.getPPk(), 2, 0, 0);
 		if(list==null||list.size()==0){
-			request.setAttribute("message", "ÄãÃ»ÓĞÈÎºÎ¾­Ñé¿ÉÒÔÁìÈ¡£¡");
+			request.setAttribute("message", "ä½ æ²¡æœ‰ä»»ä½•ç»éªŒå¯ä»¥é¢†å–ï¼");
 		}else{
 			FriendVO fv = list.get(0);
-			request.setAttribute("message", "ÄãÁìÈ¡ÁË"+(bi.getSex()==1?"ÀÏÆÅ":"ÀÏ¹«")+fv.getFdName()+"µÄ"+fv.getExpShare()+"µã¾­Ñé£¡");
+			request.setAttribute("message", "ä½ é¢†å–äº†"+(bi.getSex()==1?"è€å©†":"è€å…¬")+fv.getFdName()+"çš„"+fv.getExpShare()+"ç‚¹ç»éªŒï¼");
 			
-			//¼à¿Ø
+			//ç›‘æ§
 			LogService logService = new LogService();
-			logService.recordExpLog(bi.getPPk(), bi.getName(), bi.getCurExp()+"", fv.getExpShare()+"", "·òÆŞÁìÈ¡"+fv.getFdName());
+			logService.recordExpLog(bi.getPPk(), bi.getName(), bi.getCurExp()+"", fv.getExpShare()+"", "å¤«å¦»é¢†å–"+fv.getFdName());
 			
 			friendService.getExp(fv.getFPk());
 			bi.updateAddCurExp(fv.getExpShare());
@@ -102,23 +102,23 @@ public class BrotherAction extends BaseAction
 		return mapping.findForward(FUQI);
 	}
 	
-//	Ôö¼Ó·òÆŞÌğÃÛÖµµÀ¾ß
+//	å¢åŠ å¤«å¦»ç”œèœœå€¼é“å…·
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		BasicInfo bi = getBasicInfo(request);
 		String prop_id = (String)request.getAttribute("goods_id");
 		if(prop_id==null||"".equals(prop_id.trim())){
-			request.setAttribute("message", "²»ÄÜÊ¹ÓÃ¸ÃÎïÆ·");
+			request.setAttribute("message", "ä¸èƒ½ä½¿ç”¨è¯¥ç‰©å“");
 		}
 		PropVO pv = goodsService.getPropInfo(Integer.parseInt(prop_id.trim()));
 		if(pv!=null&&pv.getPropOperate1()!=null&&!"".equals(pv.getPropOperate1())){
-			//½«ÌğÃÛ¶ÈÔö¼Óµ½·òÆŞË«·½
+			//å°†ç”œèœœåº¦å¢åŠ åˆ°å¤«å¦»åŒæ–¹
 			List<FriendVO> list = friendService.isMerry(bi.getPPk()+"");
 			if(list!=null&&list.size()>0){
 				FriendVO fv = list.get(0);
 				friendService.addLoveDear(fv.getPPk(), fv.getFdPk(),fv.getFdName(),Integer.parseInt(pv.getPropOperate1().trim()),bi.getName());
-				request.setAttribute("message", "ÄúÊ¹ÓÃ"+pv.getPropName()+"£¬·òÆŞË«·½Ôö¼Ó°®ÇéÌğÃÛÖµ"+pv.getPropOperate1().trim()+"¡£Ä¿Ç°ÄãµÄ°®ÇéÌğÃÛÖµÎª"+(fv.getLove_dear()+Integer.parseInt(pv.getPropOperate1().trim()))+"£¬µ±°®ÇéÌğÃÛÖµÎª0Ê±¡¾½á»é½äÖ¸¡¿½«Ê§È¥×÷ÓÃ¡£");
+				request.setAttribute("message", "æ‚¨ä½¿ç”¨"+pv.getPropName()+"ï¼Œå¤«å¦»åŒæ–¹å¢åŠ çˆ±æƒ…ç”œèœœå€¼"+pv.getPropOperate1().trim()+"ã€‚ç›®å‰ä½ çš„çˆ±æƒ…ç”œèœœå€¼ä¸º"+(fv.getLove_dear()+Integer.parseInt(pv.getPropOperate1().trim()))+"ï¼Œå½“çˆ±æƒ…ç”œèœœå€¼ä¸º0æ—¶ã€ç»“å©šæˆ’æŒ‡ã€‘å°†å¤±å»ä½œç”¨ã€‚");
 			    if(Integer.parseInt(pv.getPropOperate1().trim())>0){
 			    	specoalPropService.getEquipItemSign1(bi.getPPk(), 0,Constant.MERRY_GIFT);
 			    	specoalPropService.getEquipItemSign1(fv.getFdPk(), 0,Constant.MERRY_GIFT);
@@ -132,10 +132,10 @@ public class BrotherAction extends BaseAction
 			    	}
 			    }
 			}else{
-				request.setAttribute("message", "Äú»¹Ã»½á»é£¬²»ÄÜÊ¹ÓÃ¸ÃµÀ¾ß");
+				request.setAttribute("message", "æ‚¨è¿˜æ²¡ç»“å©šï¼Œä¸èƒ½ä½¿ç”¨è¯¥é“å…·");
 			}
 		}else{
-			request.setAttribute("message", "¸ÃµÀ¾ß²»ÄÜÊ¹ÓÃ");
+			request.setAttribute("message", "è¯¥é“å…·ä¸èƒ½ä½¿ç”¨");
 		}
 		request.setAttribute("w_type", request.getAttribute("w_type"));
 		request.setAttribute("propUseEffect", request.getAttribute("propUseEffect"));
@@ -146,7 +146,7 @@ public class BrotherAction extends BaseAction
 		return mapping.findForward(FUQI);
 	}
 	
-	//Ôö¼ÓÇ×ÃÜ¶ÈµÀ¾ß
+	//å¢åŠ äº²å¯†åº¦é“å…·
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -164,7 +164,7 @@ public class BrotherAction extends BaseAction
 		return mapping.findForward("addlove");
 	}
 	
-	//Ôö¼ÓÇ×ÃÜ¶ÈµÀ¾ß
+	//å¢åŠ äº²å¯†åº¦é“å…·
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -180,17 +180,17 @@ public class BrotherAction extends BaseAction
 		String prop_id = request.getParameter("goods_id");
 		String pg_pk = request.getParameter("pg_pk");
 		if(pg_pk==null||"".equals(pg_pk.trim())||"null".equals(pg_pk.trim())||fd_pk==null||"".equals(fd_pk.trim())||"null".equals(fd_pk.trim())||fdName==null||prop_id==null||"".equals(prop_id.trim())||"null".equals(prop_id.trim())){
-			request.setAttribute("message", "¶Ô²»Æğ£¬ÇëÖØĞÂ²Ù×÷");
+			request.setAttribute("message", "å¯¹ä¸èµ·ï¼Œè¯·é‡æ–°æ“ä½œ");
 			return mapping.findForward(FUQI);
 		}
 		boolean b = friendService.whetherfriend(Integer.parseInt(fd_pk.trim()), bi.getPPk()+"");
 		if(b){
-			request.setAttribute("message", "¶Ô²»Æğ£¬"+fdName+"Ã»ÓĞ¼ÓÄúÎªºÃÓÑ");
+			request.setAttribute("message", "å¯¹ä¸èµ·ï¼Œ"+fdName+"æ²¡æœ‰åŠ æ‚¨ä¸ºå¥½å‹");
 			return mapping.findForward(FUQI);
 		}
 		PropVO pv = goodsService.getPropInfo(Integer.parseInt(prop_id.trim()));
 		if(pv==null||pv.getPropOperate1()==null||"".equals(pv.getPropOperate1().trim())||Integer.parseInt(pv.getPropOperate1().trim())<=0){
-			request.setAttribute("message", "¶Ô²»Æğ£¬¸ÃµÀ¾ß²»¿ÉÓÃ");
+			request.setAttribute("message", "å¯¹ä¸èµ·ï¼Œè¯¥é“å…·ä¸å¯ç”¨");
 			return mapping.findForward(FUQI);
 		}
 		PlayerPropGroupVO propGroup = null;
@@ -198,8 +198,8 @@ public class BrotherAction extends BaseAction
 		propGroup = propGroupDao.getByPgPk(Integer.parseInt(pg_pk.trim()));
 		goodsService.removeProps(propGroup, 1);
 		friendService.addLove(bi.getPPk(), fd_pk, Integer.parseInt(pv.getPropOperate1().trim()));
-		request.setAttribute("message", "ÄúºÍ"+fdName+"µÄÇ×ÃÜ¶ÈÔö¼ÓÁË"+pv.getPropOperate1().trim());
-		systemInfoService.insertSystemInfoBySystem(Integer.parseInt(fd_pk.trim()), "ÄúµÄºÃÓÑ"+bi.getName()+"Ê¹ÓÃÁË"+propGroup.getPropName()+",ÄúºÍËûµÄÇ×ÃÜ¶ÈÔö¼ÓÁË"+pv.getPropOperate1().trim());
+		request.setAttribute("message", "æ‚¨å’Œ"+fdName+"çš„äº²å¯†åº¦å¢åŠ äº†"+pv.getPropOperate1().trim());
+		systemInfoService.insertSystemInfoBySystem(Integer.parseInt(fd_pk.trim()), "æ‚¨çš„å¥½å‹"+bi.getName()+"ä½¿ç”¨äº†"+propGroup.getPropName()+",æ‚¨å’Œä»–çš„äº²å¯†åº¦å¢åŠ äº†"+pv.getPropOperate1().trim());
 		return mapping.findForward(FUQI);
 	}
 }

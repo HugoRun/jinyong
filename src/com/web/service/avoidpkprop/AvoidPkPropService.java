@@ -10,14 +10,14 @@ import com.ben.vo.avoidpkprop.AvoidPkPropVO;
 import com.ls.pub.util.DateUtil;
 
 /**
- * @author ºîºÆ¾ü ÃâPK µÀ¾ß
+ * @author ä¾¯æµ©å†› å…PK é“å…·
  */
 public class AvoidPkPropService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ²åÈëÃâPKµÀ¾ßÊ¹ÓÃÊ±¼ä
+	 * æ’å…¥å…PKé“å…·ä½¿ç”¨æ—¶é—´
 	 * 
 	 * @param pPK
 	 * @param beginTime
@@ -31,7 +31,7 @@ public class AvoidPkPropService
 		dao.addAvoidPkProp(pPK, beginTime, endTime);
 	}
 	/**
-	 * É¾³ı±£»¤Ê±¼ä
+	 * åˆ é™¤ä¿æŠ¤æ—¶é—´
 	 * @param pPk
 	 */
 	public void deleteAvoidPkProp(int pPk){
@@ -39,7 +39,7 @@ public class AvoidPkPropService
 		dao.deleteAvoidPkProp(pPk);
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÔÚ±£»¤Ê±¼äÄÚ
+	 * åˆ¤æ–­æ˜¯å¦åœ¨ä¿æŠ¤æ—¶é—´å†…
 	 * @param pPk
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public class AvoidPkPropService
 	}
 
 	/**
-	 * ·µ»Ø»¹Ê£ÏÂ¶àÉÙ±£»¤Ê±¼ä
+	 * è¿”å›è¿˜å‰©ä¸‹å¤šå°‘ä¿æŠ¤æ—¶é—´
 	 * 
 	 * @param pPk
 	 * @return
@@ -58,13 +58,13 @@ public class AvoidPkPropService
 	public int getAvoidPkProp(int pPk)
 	{
 		AvoidPkPropDAO dao = new AvoidPkPropDAO();
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		AvoidPkPropVO vo = (AvoidPkPropVO) dao.getAvoidPkProp(pPk, Time);
 		int s = 0;
 		if (vo != null)
-		{   //Èç¹ûVO²»Îª¿ÕËµÃ÷ÔÚ±£»¤·¶Î§ÄÚÓĞ±£»¤Ğ§¹ûÄÇÃ´
+		{   //å¦‚æœVOä¸ä¸ºç©ºè¯´æ˜åœ¨ä¿æŠ¤èŒƒå›´å†…æœ‰ä¿æŠ¤æ•ˆæœé‚£ä¹ˆ
 			Date begin = DateUtil.strToDate(Time);
 			Date end = DateUtil.strToDate(vo.getEndTime()); 
 			 s = DateUtil.getDifferTimes(begin,end);

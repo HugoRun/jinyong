@@ -5,26 +5,25 @@ import java.util.HashMap;
 
 import com.ben.vo.pet.pet.PetShapeVO;
 import com.ben.vo.pet.pet.PetVO;
-import com.ben.vo.petinfo.PetInfoVO;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 import com.pub.db.mysql.SqlData;
 
 /**
- * ¹¦ÄÜ:³èÎï
+ * åŠŸèƒ½:å® ç‰©
  * 
- * @author ºîºÆ¾ü 11:29:22 AM
+ * @author ä¾¯æµ©å†› 11:29:22 AM
  */
 public class PetDAO {
-	Jygamedb con;
+	JyGameDB con;
 	SqlData conn;
 
 	/**
-	 * Í¨¹ıNPCID È¥ÕÒÏà¹Ø³èÎï±íµÄĞÅÏ¢
+	 * é€šè¿‡NPCID å»æ‰¾ç›¸å…³å® ç‰©è¡¨çš„ä¿¡æ¯
 	 */
 	public PetVO getPetView(int npcId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from pet where npc_id='" + npcId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM pet WHERE npc_id='" + npcId + "'";
 			ResultSet rs = con.query(sql);
 			PetVO vo = null;
 			if (rs.next()) {
@@ -62,8 +61,8 @@ public class PetDAO {
 	
 	public PetVO getPetViewByPetID(int pet_id) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from pet where pet_id='" + pet_id + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM pet WHERE pet_id = '" + pet_id + "'";
 			ResultSet rs = con.query(sql);
 			PetVO vo = null;
 			if (rs.next()) {
@@ -100,12 +99,12 @@ public class PetDAO {
 	}
 
 	/**
-	 * Í¨¹ı³èÎïµÈ¼¶ºÍ³èÎïIDºÍ³èÎïÀàĞÍ È¥ÕÒ³èÎï³É³¤ĞÅÏ¢
+	 * é€šè¿‡å® ç‰©ç­‰çº§å’Œå® ç‰©IDå’Œå® ç‰©ç±»å‹ å»æ‰¾å® ç‰©æˆé•¿ä¿¡æ¯
 	 */
 	public PetShapeVO getPetShapeView(int petType, int petLevel) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from pet_shape where pet_type='"+petType+"' and shape_rating='"+petLevel+"'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM pet_shape WHERE pet_type='"+petType+"' and shape_rating='"+petLevel+"'";
 			ResultSet rs = con.query(sql);
 			PetShapeVO vo = null;
 			if (rs.next()) {
@@ -131,12 +130,12 @@ public class PetDAO {
 	}
 	
 	/**
-	 * Í¨¹ıNPCID È¡³öNPCÀàĞÍ
+	 * é€šè¿‡NPCID å–å‡ºNPCç±»å‹
 	 */
 	public int npcType(int npcId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select npc_type from npc where npc_ID='" + npcId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT npc_type from npc WHERE npc_ID='" + npcId + "'";
 			ResultSet rs = con.query(sql);
 			int npcType = 0;
 			if (rs.next()) {
@@ -152,12 +151,12 @@ public class PetDAO {
 	}
 	
 	/**
-	 * Í¨¹ıpetID È¡³öNPCId
+	 * é€šè¿‡petID å–å‡ºNPCId
 	 */
 	public int getNpcId(int petId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select npc_id from pet where pet_id='" + petId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT npc_id from pet WHERE pet_id='" + petId + "'";
 			ResultSet rs = con.query(sql);
 			int npc_id = 0;
 			if (rs.next()) {
@@ -173,12 +172,12 @@ public class PetDAO {
 	}
 	
 	/**
-	 * ·µ»Ø³èÎïÃû³Æ
+	 * è¿”å›å® ç‰©åç§°
 	 */
 	public String getPetName(int petId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select pet_name from pet where pet_id='" + petId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT pet_name from pet WHERE pet_id='" + petId + "'";
 			ResultSet rs = con.query(sql);
 			String pet_name = null;
 			if (rs.next()) {
@@ -193,12 +192,12 @@ public class PetDAO {
 		return null;
 	}
 	/**
-	 * µİ¼õ³èÎïÌåÁ¦
+	 * é€’å‡å® ç‰©ä½“åŠ›
 	 */
 	public void petFatigue(int pPk) {
 		try {
 			conn = new SqlData();
-			String sql = "update p_pet_info set pet_fatigue=pet_fatigue-1 where p_pk='"+pPk+"' and pet_isBring=1";
+			String sql = "UPDATE p_pet_info SET pet_fatigue = pet_fatigue - 1 WHERE p_pk = '"+pPk+"' AND pet_isBring = 1";
 			conn.update(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,18 +207,18 @@ public class PetDAO {
 	}
 
 	/**
-	 * »ñµÃ ËùÓĞ³èÎïĞÅÏ¢
+	 * è·å¾— æ‰€æœ‰å® ç‰©ä¿¡æ¯
 	 * @return
 	 */
 	public HashMap<Integer, PetVO> getAllPet()
 	{
 		int total_num = 0;
-		String total_num_sql = "select count(*) from pet";
-		String sql = "select * from pet";
+		String total_num_sql = "SELECT count(*) from pet";
+		String sql = "SELECT * FROM pet";
 		HashMap<Integer,PetVO> map = null;
 		PetVO vo = null;
 		try {
-			con = new Jygamedb();
+			con = new JyGameDB();
 			ResultSet rs = con.query(total_num_sql);
 			if( rs.next() )
 			{

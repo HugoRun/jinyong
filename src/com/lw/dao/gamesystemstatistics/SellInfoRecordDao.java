@@ -8,11 +8,11 @@ import com.ls.pub.db.DBConnection;
 public class SellInfoRecordDao extends DaoBase
 {
 
-	/** ²åÈëÒ»ÌõÍæ¼Ò½»Ò×¼ÇÂ¼ */
+	/** æ’å…¥ä¸€æ¡ç©å®¶äº¤æ˜“è®°å½• */
 	public void insertRecord(int p_pk_give, int p_pk_have, int prop_type,
 			int prop_id, int num, long money)
 	{
-		String sql = "insert into game_sellinfo_record values (null,"
+		String sql = "INSERT INTO game_sellinfo_record values (null,"
 				+ p_pk_give + "," + p_pk_have + "," + prop_type + "," + prop_id
 				+ "," + num + "," + money + ",now())";
 		logger.debug(sql);
@@ -34,7 +34,7 @@ public class SellInfoRecordDao extends DaoBase
 		}
 	}
 
-	/** É¾³ıÇ°ÆßÌìµÄÊı¾İ */
+	/** åˆ é™¤å‰ä¸ƒå¤©çš„æ•°æ® */
 	public void deleteRecord()
 	{
 		String sql = "delete from game_sellinfo_record where s_date < DATE_ADD(now(), INTERVAL -7 DAY)";

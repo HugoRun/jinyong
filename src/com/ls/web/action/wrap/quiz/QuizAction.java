@@ -47,7 +47,7 @@ public class QuizAction extends DispatchAction {
 	 * @param response
 	 * @return ActionForward
 	 */
-	//»Ø´ğÎÊÌâ´¦Àí
+	//å›ç­”é—®é¢˜å¤„ç†
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -70,26 +70,26 @@ public class QuizAction extends DispatchAction {
 		EconomyService economyServcie = new EconomyService();
 		
 		if(roleInfo.getBasicInfo().isPlayerExpFull() && roleInfo.getBasicInfo().isPlayerHaveTransfer()){
-			resultWml.append("ÄúĞèÒª×ªÖ°ºó²ÅÄÜÊ¹ÓÃ¸ÃµÀ¾ß");
+			resultWml.append("æ‚¨éœ€è¦è½¬èŒåæ‰èƒ½ä½¿ç”¨è¯¥é“å…·");
 			request.setAttribute("resultWml", resultWml.toString());
 			request.setAttribute("w_type", w_type);
 			return mapping.findForward("answer_over");
 		}
 		
 		QuizVO quiz = quizService.getAwardById(Integer.parseInt(quiz_id));
-		// ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ·ÅÏÂÌâÄ¿Ëù·¢µÀ¾ß»ò×°±¸
+		// åˆ¤æ–­æ˜¯å¦å¯ä»¥æ”¾ä¸‹é¢˜ç›®æ‰€å‘é“å…·æˆ–è£…å¤‡
 		String goodstr = quiz.getAwardGoods();
 		if ( goodstr != null && !goodstr.equals("") && !goodstr.equals("null")) {
 			String[] goodStrings = goodstr.split(";");
 			if ( roleInfo.getBasicInfo().getWrapSpare() < goodStrings.length) {
-				resultWml.append("ÄúµÄ°ü¹ü¿Õ¼ä²»¹»!");
+				resultWml.append("æ‚¨çš„åŒ…è£¹ç©ºé—´ä¸å¤Ÿ!");
 				request.setAttribute("resultWml", resultWml.toString());
 				request.setAttribute("w_type", w_type);
 				return mapping.findForward("answer_over");
 			}
 		}
 		
-		// ±êÖ¾,µÀ¾ßÊÇ·ñĞèÒªÉ¾³ı
+		// æ ‡å¿—,é“å…·æ˜¯å¦éœ€è¦åˆ é™¤
 		boolean flag = false;
 		if( Integer.parseInt(player_answer)==quiz.getQuziRightAnswer() )
 		{
@@ -97,8 +97,8 @@ public class QuizAction extends DispatchAction {
 			{
 				flag = true;
 				economyServcie.addMoney(p_pk, (int)quiz.getAwardMoney());
-				resultWml.append("Äú»ñµÃ"+MoneyUtil.changeCopperToStr((int)quiz.getAwardMoney())+"<br/>");
-				//Ö´ĞĞÍ³¼Æ
+				resultWml.append("æ‚¨è·å¾—"+MoneyUtil.changeCopperToStr((int)quiz.getAwardMoney())+"<br/>");
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, (int)quiz.getAwardMoney(), StatisticsType.DEDAO, StatisticsType.XITONG,p_pk);
 				
@@ -109,21 +109,21 @@ public class QuizAction extends DispatchAction {
 				int cur_exp = Integer.parseInt(roleInfo.getBasicInfo().getCurExp());
 				
 				if ( (cur_exp+(int)quiz.getAwardExperience()) >= 560429425) {
-					resultWml.append("ÄúÒÑ¾­µ½´ï×î¸ß¼¶,²»ÄÜÔö¼Ó¾­ÑéÁË!<br/>");					
+					resultWml.append("æ‚¨å·²ç»åˆ°è¾¾æœ€é«˜çº§,ä¸èƒ½å¢åŠ ç»éªŒäº†!<br/>");					
 									
 				} else {
 					flag = true;
-					resultWml.append("Äú»ñµÃÁË:¾­Ñé+"+(int)quiz.getAwardExperience() + "µã<br/>");
-    				//¸øÍæ¼ÒÔö¼Ó¾­Ñé
+					resultWml.append("æ‚¨è·å¾—äº†:ç»éªŒ+"+(int)quiz.getAwardExperience() + "ç‚¹<br/>");
+    				//ç»™ç©å®¶å¢åŠ ç»éªŒ
     				roleInfo.getBasicInfo().updateCurExp( (cur_exp+(int)quiz.getAwardExperience())+"");
-    				//¼à¿Ø
+    				//ç›‘æ§
     				LogService logService = new LogService();
-    				logService.recordExpLog(p_pk, roleInfo.getBasicInfo().getName(), cur_exp+"", quiz.getAwardExperience()+"", "´ğÌâ");				    		
+    				logService.recordExpLog(p_pk, roleInfo.getBasicInfo().getName(), cur_exp+"", quiz.getAwardExperience()+"", "ç­”é¢˜");				    		
 				}
 			}
 			if ( quiz.getAwardGoods() != null && !quiz.getAwardGoods().equals("") && !quiz.getAwardGoods().equals("null")) {
 				flag = true;
-				resultWml.append("Äú»ñµÃÁË:");
+				resultWml.append("æ‚¨è·å¾—äº†:");
 				String[] awardGoods = quiz.getAwardGoods().split(";");
 				for( int i=0;i<awardGoods.length;i++) {
 					String goods = awardGoods[i];
@@ -132,18 +132,18 @@ public class QuizAction extends DispatchAction {
 							,Integer.parseInt(goods.split("-")[0]), Integer.parseInt(goods.split("-")[2]));
 					
 					resultWml.append(goodsService.getGoodsName(Integer.parseInt(goods.split("-")[1]), Integer.parseInt(goods.split("-")[0]))
-							).append("¡Á").append(goods.split("-")[2]).append(",");
+							).append("Ã—").append(goods.split("-")[2]).append(",");
 				}
 				resultWml.deleteCharAt(resultWml.length()-1);				
 			}
 			
 			if (flag) {
-    			//´ğÌâºóÉ¾³ıÊ¹ÓÃµÀ¾ß
+    			//ç­”é¢˜ååˆ é™¤ä½¿ç”¨é“å…·
     			GoodsService goodsService = new GoodsService();
     			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
     			PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(Integer.parseInt(pg_pk));
-    			if(propGroup.getPropName().indexOf("»¹µ¤")==-1){
-    				//Í³¼ÆĞèÒª
+    			if(propGroup.getPropName().indexOf("è¿˜ä¸¹")==-1){
+    				//ç»Ÿè®¡éœ€è¦
     				new RankService().updateAdd(p_pk, "ans", 1);
     			}
     			goodsService.removeProps(propGroup, 1);
@@ -152,8 +152,8 @@ public class QuizAction extends DispatchAction {
 		}
 		else
 		{
-			resultWml.append("»Ø´ğ´íÎó£¬¼ÌĞøÅ¬Á¦¡£");
-			//´ğÌâºóÉ¾³ıÊ¹ÓÃµÀ¾ß
+			resultWml.append("å›ç­”é”™è¯¯ï¼Œç»§ç»­åŠªåŠ›ã€‚");
+			//ç­”é¢˜ååˆ é™¤ä½¿ç”¨é“å…·
 			GoodsService goodsService = new GoodsService();
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 			PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(Integer.parseInt(pg_pk));

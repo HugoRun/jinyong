@@ -2,11 +2,11 @@ package com.ls.ben.vo.info.pet;
 
 public class PetSkillDisplay
 {
-	// »ØºÏÊıÁ¿
+	// å›åˆæ•°é‡
 	private int petSkillRound = 0;
-	// ¼Ó³ÉµÄÖÖÀà
+	// åŠ æˆçš„ç§ç±»
 	private int petSkillTypeMultiple = 0;
-	// ¼Ó³ÉÏµÊı
+	// åŠ æˆç³»æ•°
 	private double petSkillMultiple = 0;
 
 	public int getPetSkillRound()

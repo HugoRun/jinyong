@@ -8,21 +8,21 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * ¹¦ÄÜ:µ±ÀÖÍ¨ĞĞÖ¤dao£¨u_passport_info£©
+ * åŠŸèƒ½:å½“ä¹é€šè¡Œè¯daoï¼ˆu_passport_infoï¼‰
  * Jan 10, 2009
  */
 public class PassportDao extends DaoBase
 {
 	/**
-	 * Ìí¼ÓĞÂµÄÍ¨ĞĞÖ¤ĞÅÏ¢
+	 * æ·»åŠ æ–°çš„é€šè¡Œè¯ä¿¡æ¯
 	 * @param user_id
 	 * @param user_name
 	 * @param u_pk
-	 * @param channel_id                         ÇşµÀid
+	 * @param channel_id                         æ¸ é“id
 	 */
 	public void addNewPassport(String user_id,String user_name,int u_pk,int channel_id)
 	{
-		String sql = "insert into u_passport_info (user_id,user_name,channel_id,u_pk,create_time) values (?,?,?,?,now())";
+		String sql = "INSERT INTO u_passport_info (user_id,user_name,channel_id,u_pk,create_time) values (?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -44,16 +44,16 @@ public class PassportDao extends DaoBase
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞµ±Ç°Í¨ĞĞÖ¤ĞÅÏ¢
+	 * åˆ¤æ–­æ˜¯å¦æœ‰å½“å‰é€šè¡Œè¯ä¿¡æ¯
 	 * @param user_id
-	 * @param channel_id             ÇşµÀid
+	 * @param channel_id             æ¸ é“id
 	 * @return
 	 */
 	public boolean isHavePassport( int user_id,int channel_id )
 	{
 		boolean result = false;
 		
-		String sql = "select id from u_passport_info where user_id="+user_id+" and channel_id="+channel_id;
+		String sql = "SELECT id from u_passport_info where user_id="+user_id+" and channel_id="+channel_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -80,16 +80,16 @@ public class PassportDao extends DaoBase
 	}
 	
 	/**
-	 * ¸ù¾İuser_id²éÑ¯Í¨ĞĞÖ¤ĞÅÏ¢
+	 * æ ¹æ®user_idæŸ¥è¯¢é€šè¡Œè¯ä¿¡æ¯
 	 * @param user_id
-	 * @param channel_id            ÇşµÀid
+	 * @param channel_id            æ¸ é“id
 	 * @return
 	 */
 	public PassportVO getPassportByUserID( String user_id, int channel_id)
 	{
 		PassportVO passport = null;
 		
-		String sql = "select * from u_passport_info where user_id='"+user_id+"' and channel_id="+channel_id;
+		String sql = "SELECT * FROM u_passport_info where user_id='"+user_id+"' and channel_id="+channel_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -120,7 +120,7 @@ public class PassportDao extends DaoBase
 		return passport;
 	}
 	/**
-	 * ¸ù¾İÓÃ»§Ãû²éÑ¯Í¨ĞĞÖ¤ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·åæŸ¥è¯¢é€šè¡Œè¯ä¿¡æ¯
 	 * @param user_name
 	 * @param channel_id
 	 * @return
@@ -129,7 +129,7 @@ public class PassportDao extends DaoBase
 	{
 		PassportVO passport = null;
 		
-		String sql = "select * from u_passport_info where user_name='"+user_name+"' and channel_id='"+channel_id+"'";
+		String sql = "SELECT * FROM u_passport_info where user_name='"+user_name+"' and channel_id='"+channel_id+"'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -160,13 +160,13 @@ public class PassportDao extends DaoBase
 		return passport;
 	}
 	/**
-	 * ¸ù¾İu_pk²éÑ¯Í¨ĞĞÖ¤ĞÅÏ¢
+	 * æ ¹æ®u_pkæŸ¥è¯¢é€šè¡Œè¯ä¿¡æ¯
 	 */
 	public PassportVO getPassportByUPk( int u_pk )
 	{
 		PassportVO passport = null;
 		
-		String sql = "select * from u_passport_info where u_pk="+u_pk;
+		String sql = "SELECT * FROM u_passport_info where u_pk="+u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -199,7 +199,7 @@ public class PassportDao extends DaoBase
 	
 	
 	/**
-	 * ¸üĞÂÓÃ»§×´Ì¬
+	 * æ›´æ–°ç”¨æˆ·çŠ¶æ€
 	 */
 	public void updateState( int u_pk ,int state )
 	{

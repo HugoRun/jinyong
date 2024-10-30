@@ -3,7 +3,7 @@
 <%@page import="com.ls.ben.vo.map.SceneVO"%>
 <%SceneVO scene = (SceneVO)request.getAttribute("scenevo"); %>
 离线挂机说明：<br/>
-1.	只能在冒险区域离线挂机<br/>
+1.    只能在冒险区域离线挂机<br/>
 2.	挂机地点刷新的npc等级不能高于挂机角色等级<br/>
 3.	一次挂机的时间不得大于6小时<br/>
 4.	挂机所得物品直接放入角色物品栏，物品栏满后物品直接消失。<br/>

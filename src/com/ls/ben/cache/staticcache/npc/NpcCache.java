@@ -12,7 +12,7 @@ public class NpcCache extends CacheBase
 	public static String All_NPC_MAP = "all_npc_map";
 	
 	/**
-	 * 通过id得到npc信息
+	 * 閫氳繃id寰楀埌npc淇℃伅
 	 * @param npc_id
 	 * @return
 	 */
@@ -25,7 +25,7 @@ public class NpcCache extends CacheBase
 	}
 
 	/**
-	 * 通过id 得到 npc等级
+	 * 閫氳繃id 寰楀埌 npc绛夌骇
 	 * @param npc_id
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public class NpcCache extends CacheBase
 	}
 	
 	/**
-	 * 通过id 得到 npc名字
+	 * 閫氳繃id 寰楀埌 npc鍚嶅瓧
 	 * @param npc_id
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class NpcCache extends CacheBase
 		}
 	}
 	 /**
-	 * 重新加在一条NPC数据
+	 * 閲嶆柊鍔犲湪涓�鏉PC鏁版嵁
 	 */
 	public void reloadOneNPC(NpcVO npcVO)
 	{

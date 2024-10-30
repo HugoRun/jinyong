@@ -3,43 +3,43 @@ package com.ben.vo.friend;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ:ºÃÓÑ
+ * åŠŸèƒ½:å¥½å‹
  * 
- * @author ºîºÆ¾ü 9:23:19 AM
+ * @author ä¾¯æµ©å†› 9:23:19 AM
  */
 public class FriendVO
 {
-	/** Íæ¼ÒºÃÓÑid */
+	/** ç©å®¶å¥½å‹id */
 	private int fPk;
-	/** Íæ¼Òid */
+	/** ç©å®¶id */
 	private int pPk;
-	/** ºÃÓÑID */
+	/** å¥½å‹ID */
 	private int fdPk;
-	/** ºÃÓÑÃû³Æ */
+	/** å¥½å‹åç§° */
 	private String fdName;
-	/** ¼ÓÈëÊ±¼ä */
+	/** åŠ å…¥æ—¶é—´ */
 	private String createTime;
-	/** ºÃÓÑÊÇ·ñÔÚÏß */
+	/** å¥½å‹æ˜¯å¦åœ¨çº¿ */
 	private int fOnline;
-	/** ºÃÓÑËùÔÚµØÍ¼ */
+	/** å¥½å‹æ‰€åœ¨åœ°å›¾ */
 	private int pMap;
 
-	/** ºÃÓÑËùÔÚµØÍ¼Ãû */
+	/** å¥½å‹æ‰€åœ¨åœ°å›¾å */
 	private String pMapName;
 	private Date tim;
-	/***ĞÂ¼ÓÁËºÃÓÑÊÇ·ñÔÚÏßµÄ×Ö½Ú***/
+	/***æ–°åŠ äº†å¥½å‹æ˜¯å¦åœ¨çº¿çš„å­—èŠ‚***/
 	private int login_state;
 	
-	//Ç×ÃÜ¶È
+	//äº²å¯†åº¦
 	private int dear;
 	
-	//Ë«·½¹ØÏµ
+	//åŒæ–¹å…³ç³»
 	private int relation;
 	
-	//¾­Ñé·ÖÏíÖµ
+	//ç»éªŒåˆ†äº«å€¼
 	private int expShare;
 	
-	//°®ÇéÌğÃÛÖµ
+	//çˆ±æƒ…ç”œèœœå€¼
 	private int love_dear;
 	
 	

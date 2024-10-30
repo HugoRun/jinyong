@@ -5,29 +5,29 @@ import com.pm.vo.passiveskill.PassSkillVO;
 
 public class RoleSkillPropertyInfo implements PassSkillInterface
 {
-	private double skGjMultiple = 0;// ¹¥“ô±¶”µ
-	private double skFyMultiple = 0;// ·À¶R±¶”µ
-	private double skHpMultiple = 0;// ÑªÁ¿±¶”µ
-	private double skMpMultiple = 0;// Ë{É«±¶”µ
-	private double skBjMultiple = 0;// ±©“ôÂÊ
-	private int skGjAdd = 0;// ¹¥“ô¼ÓµÄ”µÖµ
-	private int skFyAdd = 0;// ·À¶R¼ÓµÄ”µÖµ
-	private int skHpAdd = 0;// ÑªÁ¿¼ÓµÄ”µÖµ
-	private int skMpAdd = 0;// ƒÈÁ¦¼ÓµÄ”µÖµ
-	private double skJMultiple = 0;// ½ğ±¶”µ
-	private double skMMultiple = 0;// Ä¾±¶”µ
-	private double skSMultiple = 0;// Ë®±¶”µ
-	private double skHMultiple = 0;// »ğ±¶”µ
-	private double skTMultiple = 0;// ÍÁ±¶”µ
+	private double skGjMultiple = 0;// æ”»æ“Šå€æ•¸
+	private double skFyMultiple = 0;// é˜²ç¦¦å€æ•¸
+	private double skHpMultiple = 0;// è¡€é‡å€æ•¸
+	private double skMpMultiple = 0;// è—è‰²å€æ•¸
+	private double skBjMultiple = 0;// æš´æ“Šç‡
+	private int skGjAdd = 0;// æ”»æ“ŠåŠ çš„æ•¸å€¼
+	private int skFyAdd = 0;// é˜²ç¦¦åŠ çš„æ•¸å€¼
+	private int skHpAdd = 0;// è¡€é‡åŠ çš„æ•¸å€¼
+	private int skMpAdd = 0;// å…§åŠ›åŠ çš„æ•¸å€¼
+	private double skJMultiple = 0;// é‡‘å€æ•¸
+	private double skMMultiple = 0;// æœ¨å€æ•¸
+	private double skSMultiple = 0;// æ°´å€æ•¸
+	private double skHMultiple = 0;// ç«å€æ•¸
+	private double skTMultiple = 0;// åœŸå€æ•¸
 
-	/** ÑbİdÍæ¼Ò¼¼ÄÜŒÙĞÔ */
+	/** è£è¼‰ç©å®¶æŠ€èƒ½å±¬æ€§ */
 	protected RoleSkillPropertyInfo(int p_pk)
 	{
 		loadPropertys(p_pk);
 	}
 
 	/**
-	 * ¼ÓÔØÊôĞÔÖµ
+	 * åŠ è½½å±æ€§å€¼
 	 */
 	protected void loadPropertys(int p_pk)
 	{
@@ -50,7 +50,7 @@ public class RoleSkillPropertyInfo implements PassSkillInterface
 		this.skTMultiple = passSkillVO_wx.getSkTMultiple();
 	}
 
-	/** ¸üĞÂÍæ¼Ò¼¼ÄÜ»ù±¾ŒÙĞÔ£¨ŒWÁ•¼¼ÄÜ•rºòÕ{ÓÃ£© */
+	/** æ›´æ–°ç©å®¶æŠ€èƒ½åŸºæœ¬å±¬æ€§ï¼ˆå­¸ç¿’æŠ€èƒ½æ™‚å€™èª¿ç”¨ï¼‰ */
 	public void updateSkillProperty(PassSkillVO passSkillVO)
 	{
 		if (this.skGjMultiple < passSkillVO.getSkGjMultiple())
@@ -79,7 +79,7 @@ public class RoleSkillPropertyInfo implements PassSkillInterface
 		this.skMpAdd = this.skMpAdd + passSkillVO.getSkMpAdd();
 	}
 
-	/** ¸üĞÂÍæ¼Ò¼¼ÄÜÎåĞĞŒÙĞÔ£¨ŒWÁ•¼¼ÄÜ•rºòÕ{ÓÃ£© */
+	/** æ›´æ–°ç©å®¶æŠ€èƒ½äº”è¡Œå±¬æ€§ï¼ˆå­¸ç¿’æŠ€èƒ½æ™‚å€™èª¿ç”¨ï¼‰ */
 	public void updateSkillWxProperty(PassSkillVO passSkillVO)
 	{
 		if (this.skJMultiple < passSkillVO.getSkJMultiple())

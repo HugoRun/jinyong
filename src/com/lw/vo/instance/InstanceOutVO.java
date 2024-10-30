@@ -2,11 +2,11 @@ package com.lw.vo.instance;
 
 public class InstanceOutVO
 {
-	/** 副本名称 */
+	/** 鍓湰鍚嶇О */
 	private String instanceName;
-	/** 副本等级 */
+	/** 鍓湰绛夌骇 */
 	private String instanceLv;
-	/** 副本时间 */
+	/** 鍓湰鏃堕棿 */
 	private String instanceTime;
 
 	public String getInstanceName()

@@ -2,9 +2,9 @@ package com.pm.vo.miji;
 
 public class MiJiVO
 {
-	/**ÃØ¼®ID*/ 
+	/**ç§˜ç±ID*/ 
 	private   int mjId;
-	 /** ÃØ¼®ÄÚÈİ  */
+	 /** ç§˜ç±å†…å®¹  */
 	private   String  mjInfo ;
 	
 	public int getMjId()

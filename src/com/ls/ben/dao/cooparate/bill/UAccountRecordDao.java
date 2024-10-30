@@ -10,25 +10,25 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * ¹¦ÄÜ:u_account_record
+ * åŠŸèƒ½:u_account_record
  * Mar 13, 2009
  */
 public class UAccountRecordDao extends DaoBase
 {
 	Logger logger = Logger.getLogger("log.pay");
 	/**
-	 * ²åÈëÒ»Ìõ³äÖµ¼ÇÂ¼
+	 * æ’å…¥ä¸€æ¡å……å€¼è®°å½•
 	 * @param account_record
-	 * @return  ·µ»Ø¼üÖµ
+	 * @return  è¿”å›é”®å€¼
 	 */
 	public int insert(UAccountRecordVO account_record)
 	{
 		if( account_record==null )
 		{
-			logger.debug("²åÈë³äÖµ¼ÇÂ¼Ê±´íÎó£¬UAccountRecordVOÎª¿Õ");
+			logger.debug("æ’å…¥å……å€¼è®°å½•æ—¶é”™è¯¯ï¼ŒUAccountRecordVOä¸ºç©º");
 		}
 		int id = -1;
-		String sql = "insert into u_account_record  values (null,"
+		String sql = "INSERT INTO u_account_record  values (null,"
 				+account_record.getUPk()+","
 				+account_record.getPPk()+",'"
 				+account_record.getCode()+"','"
@@ -60,7 +60,7 @@ public class UAccountRecordDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½Ò»Ìõ³äÖµ¼ÇÂ¼
+	 * å¾—åˆ°ä¸€æ¡å……å€¼è®°å½•
 	 * @param user_id
 	 * @param channel_id
 	 * @return
@@ -69,7 +69,7 @@ public class UAccountRecordDao extends DaoBase
 	{
 		UAccountRecordVO account_record = null;
 		
-		String sql = "select * from u_account_record where id="+id;
+		String sql = "SELECT * FROM u_account_record where id="+id;
 		logger.info(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -101,7 +101,7 @@ public class UAccountRecordDao extends DaoBase
 		return account_record;
 	}
 	/**
-	 * µÃµ½Ò»Ìõ³äÖµ¼ÇÂ¼
+	 * å¾—åˆ°ä¸€æ¡å……å€¼è®°å½•
 	 * @param user_id
 	 * @param channel_id
 	 * @return
@@ -110,7 +110,7 @@ public class UAccountRecordDao extends DaoBase
 	{
 		UAccountRecordVO account_record = null;
 		
-		String sql = "select * from u_account_record where code='"+code+"' and channel="+channel+" limit 1";
+		String sql = "SELECT * FROM u_account_record where code='"+code+"' and channel="+channel+" limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -144,7 +144,7 @@ public class UAccountRecordDao extends DaoBase
 	
 	
 	/**
-	 * ¸üĞÂ³äÖµ×´Ì¬
+	 * æ›´æ–°å……å€¼çŠ¶æ€
 	 * @param id
 	 * @param account_state
 	 */

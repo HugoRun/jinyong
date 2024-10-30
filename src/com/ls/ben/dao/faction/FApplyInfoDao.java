@@ -10,7 +10,7 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * ÉêÇëÈë°ï±í
+ * ç”³è¯·å…¥å¸®è¡¨
  */
 public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 {
@@ -31,14 +31,14 @@ public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 	}
 	
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 * @param 
 	 */
 	public int add( int p_pk,int f_id)
 	{
 		int key = 0;
 		
-		String sql = "insert into f_apply_info(p_pk,f_id,create_time) values (?,?,now())";
+		String sql = "INSERT INTO f_apply_info(p_pk,f_id,create_time) values (?,?,now())";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -66,7 +66,7 @@ public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 	}
 	
 	/**
-	 * ÊÇ·ñÉêÇë¹ı¸Ã°ïÅÉ
+	 * æ˜¯å¦ç”³è¯·è¿‡è¯¥å¸®æ´¾
 	 */
 	public boolean isHave( int p_pk ,int f_id )
 	{
@@ -75,7 +75,7 @@ public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 	}
 	
 	/**
-	 * É¾³ıÍæ¼ÒµÄËùÓĞÉêÇë
+	 * åˆ é™¤ç©å®¶çš„æ‰€æœ‰ç”³è¯·
 	 * @param p_pk
 	 */
 	public void delByPPk(int p_pk )
@@ -84,7 +84,7 @@ public class FApplyInfoDao extends BasicDaoSupport<FApplyInfo>
 	}
 	
 	/**
-	 * ·ÖÒ³ÁĞ±í
+	 * åˆ†é¡µåˆ—è¡¨
 	 */
 	public QueryPage getPageList(int f_id ,int page_no)
 	{

@@ -4,14 +4,14 @@ import java.util.Date;
 
 /**
  * @author ls
- * ¸±±¾´æµµ
+ * å‰¯æœ¬å­˜æ¡£
  */
 public class InstanceArchiveVO
 {
-	int pPk;/** ½ÇÉ«id*/
-    int mapId;/**¸±±¾ËùÔÚmap_id*/
-    String deadBossRecord; /**¼ÇÂ¼ÒÑ´òËÀµÄbossËùÔÚµÄsence_id,ĞÎÊ½Èç:223,45,1132*/
-    Date createTime;/**½øÈë¸±±¾Ê±¼ä*/
+	int pPk;/** è§’è‰²id*/
+    int mapId;/**å‰¯æœ¬æ‰€åœ¨map_id*/
+    String deadBossRecord; /**è®°å½•å·²æ‰“æ­»çš„bossæ‰€åœ¨çš„sence_id,å½¢å¼å¦‚:223,45,1132*/
+    Date createTime;/**è¿›å…¥å‰¯æœ¬æ—¶é—´*/
 	public int getPPk()
 	{
 		return pPk;

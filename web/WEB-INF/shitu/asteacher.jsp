@@ -16,7 +16,7 @@ if(message!=null&&!"".equals(message.trim())){
 for(Shitu st : list){
 %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>"> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>">
 	<postfield name="cmd" value="n6" />
 	<postfield name="stu_id" value="<%=st.getStu_id() %>" />
 	<postfield name="id" value="<%=st.getId() %>" />

@@ -6,7 +6,7 @@ import com.ls.model.user.RoleEntity;
 
 /**
  * @author handan
- * �ƺų�ʱ�¼�
+ * 称号超时事件
  */
 public class TitleEvent extends TimerEvent
 {

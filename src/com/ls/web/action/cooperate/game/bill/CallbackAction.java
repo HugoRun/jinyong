@@ -13,25 +13,25 @@ import com.ls.web.service.cooperate.bill.BillService;
 public class CallbackAction extends DispatchAction
 {
 	/**
-	 * Ó¦´ğ´¦Àí
+	 * åº”ç­”å¤„ç†
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		// Íæ¼ÒÕÊºÅ
+		// ç©å®¶å¸å·
 		String account = formatString(request.getParameter("account"));
-		// ³äÖµ½ğ¶î
+		// å……å€¼é‡‘é¢
 		String pay_money = formatString(request.getParameter("pay_money"));
-		// Ê±¼ä
+		// æ—¶é—´
 		String timestamp = formatString(request.getParameter("timestamp"));
-		// ÓÎÏ·µãÊı
+		// æ¸¸æˆç‚¹æ•°
 		String gamepoint = formatString(request.getParameter("gamepoint"));
-		// ÓÎÏ·ID
+		// æ¸¸æˆID
 		String gameid = formatString(request.getParameter("gameid"));
 		// MD5string
 		String MD5string = formatString(request.getParameter("MD5string"));
-		//¶©µ¥ºÅ
+		//è®¢å•å·
 		String orderid = formatString(request.getParameter("orderid"));
 		String resultWml = "";
 		BillService bs = new BillService();

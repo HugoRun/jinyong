@@ -5,7 +5,7 @@ package com.ben.dao.communion.privately;
 
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 9:53:26 AM
  */

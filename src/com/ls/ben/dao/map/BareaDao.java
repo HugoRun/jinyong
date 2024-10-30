@@ -13,7 +13,7 @@ import com.ls.pub.db.DBConnection;
 public class BareaDao extends DaoBase {
 	
 	/**
-	 * 初始化barea表，将barea表里的内容都放入到内存表里去
+	 * 鍒濆鍖朾area琛紝灏哹area琛ㄩ噷鐨勫唴瀹归兘鏀惧叆鍒板唴瀛樿〃閲屽幓
 	 * @throws Exception 
 	 * 
 	 */
@@ -23,8 +23,8 @@ public class BareaDao extends DaoBase {
 		int total_num = 0;
 		BareaVO barea_info = null;
 		
-		String total_sql = "select count(*) from  barea";
-		String sql = "select * from barea";
+		String total_sql = "SELECT count(*) from `barea`";
+		String sql = "SELECT * FROM `barea`";
 		logger.debug(sql);
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -50,7 +50,7 @@ public class BareaDao extends DaoBase {
 				
 				if( barea_info.getBareaPoint()<=0 )
 				{
-					throw new Exception("barea表数据错误：中心点错误，barea_Name="+barea_info.getBareaName());
+					throw new Exception("barea琛ㄦ暟鎹敊璇細涓績鐐归敊璇紝barea_Name="+barea_info.getBareaName());
 				}
 				
 				result.put(barea_info.getBareaID()+"", barea_info);
@@ -59,7 +59,7 @@ public class BareaDao extends DaoBase {
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new Exception("barea表数据错误："+e.toString());
+			throw new Exception("barea琛ㄦ暟鎹敊璇細"+e.toString());
 		}
 		finally
 		{

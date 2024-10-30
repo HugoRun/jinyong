@@ -28,7 +28,7 @@ public class ViewPicAction extends DispatchAction
 
 	Logger logger =  Logger.getLogger("log.action");
 	
-	// �鿴��ͼ��ͼƬ
+	// 查看地图的图片
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -57,7 +57,7 @@ public class ViewPicAction extends DispatchAction
 	
 	
 	
-	// �鿴��ͼ��ͼƬ
+	// 查看地图的图片
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -69,7 +69,7 @@ public class ViewPicAction extends DispatchAction
 			String mapid = request.getParameter("mapid");
 			if( mapid==null )
 			{
-				logger.debug("mapidΪ��");
+				logger.debug("mapid为空");
 			}
 			
 			logger.info("mapid="+mapid+" ,pPk="+pPk);

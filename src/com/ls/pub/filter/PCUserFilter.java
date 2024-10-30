@@ -1,51 +1,42 @@
 package com.ls.pub.filter;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
 /**
- * ¹¦ÄÜ:ÅĞ¶ÏÊÇ·ñÊÇµçÄÔÓÃ»§
- * @author ÁõË§
+ * åŠŸèƒ½:åˆ¤æ–­æ˜¯å¦æ˜¯ç”µè„‘ç”¨æˆ·
+ *
+ * @author åˆ˜å¸…
  * 3:19:41 PM
  */
-public class PCUserFilter implements Filter
-{
-	int control_switch = 0;//ÊÇ·ñÊ¹ÓÃ´Ë¹ıÂËÆ÷µÄ¿ª¹Ø
-	public void destroy()
-	{
+public class PCUserFilter implements Filter {
+    int control_switch = 0;//æ˜¯å¦ä½¿ç”¨æ­¤è¿‡æ»¤å™¨çš„å¼€å…³
 
-	}
+    public void destroy() {
 
-	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-			FilterChain chain) throws IOException, ServletException
-	{
+    }
 
-		if( control_switch==0 )//²»Ê¹ÓÃ´Ë¹ıÂËÆ÷
-		{
-			chain.doFilter(servletRequest, servletResponse);
-			return;
-		}
-		
-		HttpServletRequest request = (HttpServletRequest)servletRequest;
-		String ua = request.getHeader("user-agent").toLowerCase();
-		if( ua.indexOf("nt")!=-1 )//Èç¹ûuaÀïÓĞntÔò±íÊ¾ÊÇµçÄÔÓÃ»§
-		{
-			request.getRequestDispatcher("/comm/pc_user_hint.jsp").forward(request, servletResponse); 
-			return;
-		}
-		chain.doFilter(request, servletResponse);
-	}
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 
-	public void init(FilterConfig filterConfig) throws ServletException
-	{
-		control_switch = Integer.parseInt(filterConfig.getInitParameter("control_switch"));
-	}
+        if (control_switch == 0) {// ä¸ä½¿ç”¨æ­¤è¿‡æ»¤å™¨
+
+            chain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        String ua = request.getHeader("user-agent").toLowerCase();
+        if (ua.indexOf("nt") != -1) {
+            // å¦‚æœuaé‡Œæœ‰ntåˆ™è¡¨ç¤ºæ˜¯ç”µè„‘ç”¨æˆ·
+            request.getRequestDispatcher("/comm/pc_user_hint.jsp").forward(request, servletResponse);
+            return;
+        }
+        chain.doFilter(request, servletResponse);
+    }
+
+    public void init(FilterConfig filterConfig) throws ServletException {
+        control_switch = Integer.parseInt(filterConfig.getInitParameter("control_switch"));
+    }
 
 }

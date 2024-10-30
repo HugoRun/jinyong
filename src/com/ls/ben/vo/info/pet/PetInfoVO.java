@@ -3,9 +3,9 @@ package com.ls.ben.vo.info.pet;
 import com.ls.ben.vo.info.attribute.attack.SingleWXAttack;
 
 /**
- * ¹¦ÄÜ:petÊµÀıÀà
+ * åŠŸèƒ½:petå®ä¾‹ç±»
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 9:05:32 AM
  */
@@ -13,71 +13,71 @@ public class PetInfoVO implements SingleWXAttack
 {
 	/** ID */
 	private int petPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ¶ÔÓ¦pet±íÀïµÄid */
+	/** å¯¹åº”petè¡¨é‡Œçš„id */
 	private int petId;
-	/** ³èÎïÃû³Æ */
+	/** å® ç‰©åç§° */
 
-	/** ³èÎï¶ÔÓ¦µÄnpcID */
+	/** å® ç‰©å¯¹åº”çš„npcID */
 	private int npcId;
-	/** ³èÎïÃû³Æ */
+	/** å® ç‰©åç§° */
 	private String petName;
-	/** ³èÎïêÇ³Æ */
+	/** å® ç‰©æ˜µç§° */
 	private String petNickname;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int petGrade;
-	/** ¾­Ñé */
+	/** ç»éªŒ */
 	private int petExp;
-	/** µ±Ç°¾­Ñé¾­Ñé */
+	/** å½“å‰ç»éªŒç»éªŒ */
 	private int petBenExp;
-	/** ÏÂ¼¶¾­Ñé ´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé */
+	/** ä¸‹çº§ç»éªŒ è¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ */
 	private int petXiaExp;
-	/** ×îĞ¡¹¥»÷ */
+	/** æœ€å°æ”»å‡» */
 	private int petGjXiao;
-	/** ×î´ó¹¥»÷ */
+	/** æœ€å¤§æ”»å‡» */
 	private int petGjDa;
-	/** Âô³ö¼Û¸ñ */
+	/** å–å‡ºä»·æ ¼ */
 	private int petSale;
-	/** ³èÎïÍ¼Æ¬ */
+	/** å® ç‰©å›¾ç‰‡ */
 	private String petImg;
-	/** ³èÎï³É³¤ÂÊ ¡± */
+	/** å® ç‰©æˆé•¿ç‡ â€ */
 	private double petGrow;
 
-	/** ÎåĞĞÊôĞÔ ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
+	/** äº”è¡Œå±æ€§ é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
 	private int wx;
-	/** ÎåĞĞÊôĞÔÖµ */
+	/** äº”è¡Œå±æ€§å€¼ */
 	private int wxValue;
 
-	/** ¼¼ÄÜ1 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½1 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillOne;
-	/** ¼¼ÄÜ2 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½2 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillTwo;
-	/** ¼¼ÄÜ3 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½3 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillThree;
-	/** ¼¼ÄÜ4 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½4 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillFour;
-	/** ¼¼ÄÜ5 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½5 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillFive;
-	/** ÊÙÃü* */
+	/** å¯¿å‘½* */
 	private int petLife;
-	/** ³èÎïµ±Ç°ÊÙÃü */
+	/** å® ç‰©å½“å‰å¯¿å‘½ */
 	private int petLonge;
-	/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ */
+	/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ */
 	private int petIsAutoGrow;
-	/** ÊÇ·ñÔÚÉíÉÏ */
+	/** æ˜¯å¦åœ¨èº«ä¸Š */
 	private int petIsBring;
-	/** Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã */
+	/** ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹ */
 	private int petFatigue;
 
 	private int petType;
 
 	private int petInitNum;
 
-	/** ³èÎï±©»÷ÂÊ */
+	/** å® ç‰©æš´å‡»ç‡ */
 	private double petViolenceDrop;
 
-	// ³èÎï¼¼ÄÜ¸½¼Ó
+	// å® ç‰©æŠ€èƒ½é™„åŠ 
 	private PetSkillDisplay petSkillDisplay;
 
 	public double getPetViolenceDrop()

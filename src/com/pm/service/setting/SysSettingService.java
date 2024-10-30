@@ -8,7 +8,7 @@ public class SysSettingService
 {
 
 	/**
-	 * ¸Ä±äÖ¸¶¨ÏµÍ³¿ª¹ØÉèÖÃµÄÀàĞÍµÄÉèÖÃ
+	 * æ”¹å˜æŒ‡å®šç³»ç»Ÿå¼€å…³è®¾ç½®çš„ç±»å‹çš„è®¾ç½®
 	 * @param roleInfo
 	 * @param type
 	 */

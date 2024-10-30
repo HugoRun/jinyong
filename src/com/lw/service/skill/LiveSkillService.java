@@ -21,9 +21,9 @@ import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 public class LiveSkillService
 {
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒÊÇ·ñÑ§Ï°¹ı¸ÃÉú»î¼¼ÄÜ
+	 * åˆ¤æ–­ç©å®¶æ˜¯å¦å­¦ä¹ è¿‡è¯¥ç”Ÿæ´»æŠ€èƒ½
 	 * 
-	 * @return true Îª¿ÉÒÔÑ§Ï°¸Ã¼¼ÄÜ false Îª²»ÄÜÑ§Ï°¸Ã¼¼ÄÜ
+	 * @return true ä¸ºå¯ä»¥å­¦ä¹ è¯¥æŠ€èƒ½ false ä¸ºä¸èƒ½å­¦ä¹ è¯¥æŠ€èƒ½
 	 */
 	public boolean isHaveThisLiveSkill(int p_pk, String sk_id)
 	{
@@ -62,9 +62,9 @@ public class LiveSkillService
 	}
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒÊÇ·ñ¿ÉÒÔÑ§Ï°Éú»î¼¼ÄÜ
+	 * åˆ¤æ–­ç©å®¶æ˜¯å¦å¯ä»¥å­¦ä¹ ç”Ÿæ´»æŠ€èƒ½
 	 * 
-	 * @return true Îª¿ÉÒÔÑ§´ÎÉú»î¼¼ÄÜ falseÎª²»ÄÜÑ§Ï°
+	 * @return true ä¸ºå¯ä»¥å­¦æ¬¡ç”Ÿæ´»æŠ€èƒ½ falseä¸ºä¸èƒ½å­¦ä¹ 
 	 */
 	public boolean isHaveLiveSkill(int p_pk)
 	{
@@ -80,7 +80,7 @@ public class LiveSkillService
 		}
 	}
 
-	/** µÃµ½Íæ¼Ò¿ÉÒÔÑ§Ï°µÄÉú»î¼¼ÄÜĞÅÏ¢ */
+	/** å¾—åˆ°ç©å®¶å¯ä»¥å­¦ä¹ çš„ç”Ÿæ´»æŠ€èƒ½ä¿¡æ¯ */
 	public List<SkillVO> getLiveSkill()
 	{
 		LiveSkillDao dao = new LiveSkillDao();
@@ -88,7 +88,7 @@ public class LiveSkillService
 		return skill;
 	}
 
-	/** µÃµ½Íæ¼ÒÑ§Ï°¹ıµÄÉú»î¼¼ÄÜ */
+	/** å¾—åˆ°ç©å®¶å­¦ä¹ è¿‡çš„ç”Ÿæ´»æŠ€èƒ½ */
 	public List getPlayerLiveSkill(int p_pk)
 	{
 		PlayerLiveSkillDao dao = new PlayerLiveSkillDao();
@@ -96,14 +96,14 @@ public class LiveSkillService
 		return list;
 	}
 
-	/** Íü¼ÇÉú»î¼¼ÄÜ */
+	/** å¿˜è®°ç”Ÿæ´»æŠ€èƒ½ */
 	public void delLiveSkill(int s_pk)
 	{
 		PlayerLiveSkillDao dao = new PlayerLiveSkillDao();
 		dao.delLiveSkill(s_pk);
 	}
 
-	/** Íæ¼ÒÑ§Ï°Éú»î¼¼ÄÜ */
+	/** ç©å®¶å­¦ä¹ ç”Ÿæ´»æŠ€èƒ½ */
 	public void studyLiveSkill(int p_pk, int sk_id, int money)
 	{
 		RoleService roleService = new RoleService();
@@ -112,17 +112,17 @@ public class LiveSkillService
 		SkillService ss = new SkillService();
 		ss.studySkill(p_pk, sk_id);
 		
-		//¼à¿Ø
+		//ç›‘æ§
 		LogService logService = new LogService();
-		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -money+"", "Ñ§Ï°Éú»î¼¼ÄÜ");
+		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -money+"", "å­¦ä¹ ç”Ÿæ´»æŠ€èƒ½");
 		
 		roleInfo.getBasicInfo().addCopper(-money);
-		// Ö´ĞĞÍ³¼Æ
+		// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(6,StatisticsType.MONEY, money, StatisticsType.USED, StatisticsType.BUY,p_pk);
 	}
 
-	/** ÅĞ¶ÏÍæ¼Ò¾ßÓĞÄÄÖÖÀàĞÍµÄÉú»î¼¼ÄÜ */
+	/** åˆ¤æ–­ç©å®¶å…·æœ‰å“ªç§ç±»å‹çš„ç”Ÿæ´»æŠ€èƒ½ */
 	public List getPlayerLiveSkillType(int p_pk)
 	{
 		List list = new ArrayList();
@@ -135,27 +135,27 @@ public class LiveSkillService
 		if (skill.size() == 1)
 		{
 			PlayerSkillVO vo1 = (PlayerSkillVO) skill.get(0);
-			if (vo1.getSkName().contains("Åëâ¿"))
+			if (vo1.getSkName().contains("çƒ¹é¥ª"))
 			{
 				list.add(1);
 			}
-			if (vo1.getSkName().contains("Á¶Ò©"))
+			if (vo1.getSkName().contains("ç‚¼è¯"))
 			{
 				list.add(2);
 			}
-			if (vo1.getSkName().contains("¶ÍÔì"))
+			if (vo1.getSkName().contains("é”»é€ "))
 			{
 				list.add(3);
 			}
-			if (vo1.getSkName().contains("Ö¯Ôì"))
+			if (vo1.getSkName().contains("ç»‡é€ "))
 			{
 				list.add(4);
 			}
-			if (vo1.getSkName().contains("Öé±¦"))
+			if (vo1.getSkName().contains("ç å®"))
 			{
 				list.add(5);
 			}
-			if (vo1.getSkName().contains("Ä¾½³"))
+			if (vo1.getSkName().contains("æœ¨åŒ "))
 			{
 				list.add(6);
 			}
@@ -166,54 +166,54 @@ public class LiveSkillService
 			PlayerSkillVO vo2 = (PlayerSkillVO) skill.get(1);
 			if (vo1 != null)
 			{
-				if (vo1.getSkName().contains("Åëâ¿"))
+				if (vo1.getSkName().contains("çƒ¹é¥ª"))
 				{
 					list.add(1);
 				}
-				if (vo1.getSkName().contains("Á¶Ò©"))
+				if (vo1.getSkName().contains("ç‚¼è¯"))
 				{
 					list.add(2);
 				}
-				if (vo1.getSkName().contains("¶ÍÔì"))
+				if (vo1.getSkName().contains("é”»é€ "))
 				{
 					list.add(3);
 				}
-				if (vo1.getSkName().contains("Ö¯Ôì"))
+				if (vo1.getSkName().contains("ç»‡é€ "))
 				{
 					list.add(4);
 				}
-				if (vo1.getSkName().contains("Öé±¦"))
+				if (vo1.getSkName().contains("ç å®"))
 				{
 					list.add(5);
 				}
-				if (vo1.getSkName().contains("Ä¾½³"))
+				if (vo1.getSkName().contains("æœ¨åŒ "))
 				{
 					list.add(6);
 				}
 			}
 			if (vo2 != null)
 			{
-				if (vo2.getSkName().contains("Åëâ¿"))
+				if (vo2.getSkName().contains("çƒ¹é¥ª"))
 				{
 					list.add(1);
 				}
-				if (vo2.getSkName().contains("Á¶Ò©"))
+				if (vo2.getSkName().contains("ç‚¼è¯"))
 				{
 					list.add(2);
 				}
-				if (vo2.getSkName().contains("¶ÍÔì"))
+				if (vo2.getSkName().contains("é”»é€ "))
 				{
 					list.add(3);
 				}
-				if (vo2.getSkName().contains("Ö¯Ôì"))
+				if (vo2.getSkName().contains("ç»‡é€ "))
 				{
 					list.add(4);
 				}
-				if (vo2.getSkName().contains("Öé±¦"))
+				if (vo2.getSkName().contains("ç å®"))
 				{
 					list.add(5);
 				}
-				if (vo2.getSkName().contains("Ä¾½³"))
+				if (vo2.getSkName().contains("æœ¨åŒ "))
 				{
 					list.add(6);
 				}
@@ -223,9 +223,9 @@ public class LiveSkillService
 	}
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒÊÇ·ñ¾ßÓĞ¸ÃÀàĞÍµÄÉú»î¼¼ÄÜ
+	 * åˆ¤æ–­ç©å®¶æ˜¯å¦å…·æœ‰è¯¥ç±»å‹çš„ç”Ÿæ´»æŠ€èƒ½
 	 * 
-	 * @return true ÎªÓĞ false ÎªÃ»ÓĞ
+	 * @return true ä¸ºæœ‰ false ä¸ºæ²¡æœ‰
 	 */
 	public boolean isHaveSkillType(int p_pk, int s_type)
 	{
@@ -267,9 +267,9 @@ public class LiveSkillService
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò¼¼ÄÜµÈ¼¶
+	 * å¾—åˆ°ç©å®¶æŠ€èƒ½ç­‰çº§
 	 * 
-	 * @return 0ÎªÃ»ÓĞ´Ë¼¼ÄÜ 1Îª³õ¼¶ 2ÎªÖĞ¼¶ 3Îª¸ß¼¶ 4Îª×ÚÊ¦¼¶
+	 * @return 0ä¸ºæ²¡æœ‰æ­¤æŠ€èƒ½ 1ä¸ºåˆçº§ 2ä¸ºä¸­çº§ 3ä¸ºé«˜çº§ 4ä¸ºå®—å¸ˆçº§
 	 */
 	public int getPlayerLiveSkillLevel(int p_pk, int s_type)
 	{
@@ -282,19 +282,19 @@ public class LiveSkillService
 			PlayerSkillVO vo1 = (PlayerSkillVO) skill.get(0);
 			if (vo1 != null && vo1.getSkGroup() == sk_group)
 			{
-				if (vo1.getSkName().contains("³õ¼¶"))
+				if (vo1.getSkName().contains("åˆçº§"))
 				{
 					return 1;
 				}
-				if (vo1.getSkName().contains("ÖĞ¼¶"))
+				if (vo1.getSkName().contains("ä¸­çº§"))
 				{
 					return 2;
 				}
-				if (vo1.getSkName().contains("¸ß¼¶"))
+				if (vo1.getSkName().contains("é«˜çº§"))
 				{
 					return 3;
 				}
-				if (vo1.getSkName().contains("×ÚÊ¦"))
+				if (vo1.getSkName().contains("å®—å¸ˆ"))
 				{
 					return 4;
 				}
@@ -306,38 +306,38 @@ public class LiveSkillService
 			PlayerSkillVO vo2 = (PlayerSkillVO) skill.get(1);
 			if (vo1 != null && vo1.getSkGroup() == sk_group)
 			{
-				if (vo1.getSkName().contains("³õ¼¶"))
+				if (vo1.getSkName().contains("åˆçº§"))
 				{
 					return 1;
 				}
-				if (vo1.getSkName().contains("ÖĞ¼¶"))
+				if (vo1.getSkName().contains("ä¸­çº§"))
 				{
 					return 2;
 				}
-				if (vo1.getSkName().contains("¸ß¼¶"))
+				if (vo1.getSkName().contains("é«˜çº§"))
 				{
 					return 3;
 				}
-				if (vo1.getSkName().contains("×ÚÊ¦"))
+				if (vo1.getSkName().contains("å®—å¸ˆ"))
 				{
 					return 4;
 				}
 			}
 			if (vo2 != null && vo2.getSkGroup() == sk_group)
 			{
-				if (vo2.getSkName().contains("³õ¼¶"))
+				if (vo2.getSkName().contains("åˆçº§"))
 				{
 					return 1;
 				}
-				if (vo2.getSkName().contains("ÖĞ¼¶"))
+				if (vo2.getSkName().contains("ä¸­çº§"))
 				{
 					return 2;
 				}
-				if (vo2.getSkName().contains("¸ß¼¶"))
+				if (vo2.getSkName().contains("é«˜çº§"))
 				{
 					return 3;
 				}
-				if (vo2.getSkName().contains("×ÚÊ¦"))
+				if (vo2.getSkName().contains("å®—å¸ˆ"))
 				{
 					return 4;
 				}
@@ -347,9 +347,9 @@ public class LiveSkillService
 	}
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒÊÇ·ñ¾ßÓĞ¼¼ÄÜÊé
+	 * åˆ¤æ–­ç©å®¶æ˜¯å¦å…·æœ‰æŠ€èƒ½ä¹¦
 	 * 
-	 * @return trueÎªÓĞ falseÎªÃ»ÓĞ
+	 * @return trueä¸ºæœ‰ falseä¸ºæ²¡æœ‰
 	 */
 	public boolean isPlayerHaveSynthesizeBook(int p_pk, int s_id)
 	{
@@ -371,50 +371,50 @@ public class LiveSkillService
 			}
 	}
 
-	/** ¸ù¾İ¼¼ÄÜÀàĞÍ»ñÈ¡¼¼ÄÜ×é */
+	/** æ ¹æ®æŠ€èƒ½ç±»å‹è·å–æŠ€èƒ½ç»„ */
 	public int getSkillGroup(int s_type)
 	{
 		int group = 0;
 		if (s_type == 1)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Åëâ¿(³õ¼¶)";
+			String sk_name = "çƒ¹é¥ª(åˆçº§)";
 			group = dao.getLiveSkillGroup(sk_name);
 		}
 		if (s_type == 2)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Á¶Ò©(³õ¼¶)";
+			String sk_name = "ç‚¼è¯(åˆçº§)";
 			group = dao.getLiveSkillGroup(sk_name);
 		}
 		if (s_type == 3)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "¶ÍÔì(³õ¼¶)";
+			String sk_name = "é”»é€ (åˆçº§)";
 			group = dao.getLiveSkillGroup(sk_name);
 		}
 		if (s_type == 4)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Ö¯Ôì(³õ¼¶)";
+			String sk_name = "ç»‡é€ (åˆçº§)";
 			group = dao.getLiveSkillGroup(sk_name);
 		}
 		if (s_type == 5)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Öé±¦(³õ¼¶)";
+			String sk_name = "ç å®(åˆçº§)";
 			group = dao.getLiveSkillGroup(sk_name);
 		}
 		if (s_type == 6)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Ä¾½³(³õ¼¶)";
+			String sk_name = "æœ¨åŒ (åˆçº§)";
 			group = dao.getLiveSkillGroup(sk_name);
 		}
 		return group;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜ×éµÃµ½Íæ¼ÒµÄÊìÁ·¶È */
+	/** æ ¹æ®æŠ€èƒ½ç»„å¾—åˆ°ç©å®¶çš„ç†Ÿç»ƒåº¦ */
 	public int getPlayerSleight(int p_pk, int sk_group)
 	{
 		PlayerSkillDao dao = new PlayerSkillDao();
@@ -422,7 +422,7 @@ public class LiveSkillService
 		return vo.getSkSleight();
 	}
 
-	/** ¸üĞÂÉú»î¼¼ÄÜÊìÁ·¶È */
+	/** æ›´æ–°ç”Ÿæ´»æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public void updatePlayerSleight(int p_pk, int sk_group, int sleight,
 			int maxsleight)
 	{
@@ -440,44 +440,44 @@ public class LiveSkillService
 		}
 	}
 
-	/** ¸ù¾İ¼¼ÄÜÀàĞÍ»ñÈ¡¼¼ÄÜ×é */
+	/** æ ¹æ®æŠ€èƒ½ç±»å‹è·å–æŠ€èƒ½ç»„ */
 	public int getSkillID(int s_type)
 	{
 		int id = 0;
 		if (s_type == 1)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Åëâ¿(³õ¼¶)";
+			String sk_name = "çƒ¹é¥ª(åˆçº§)";
 			id = dao.getLiveSkillID(sk_name);
 		}
 		if (s_type == 2)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Á¶Ò©(³õ¼¶)";
+			String sk_name = "ç‚¼è¯(åˆçº§)";
 			id = dao.getLiveSkillID(sk_name);
 		}
 		if (s_type == 3)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "¶ÍÔì(³õ¼¶)";
+			String sk_name = "é”»é€ (åˆçº§)";
 			id = dao.getLiveSkillID(sk_name);
 		}
 		if (s_type == 4)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Ö¯Ôì(³õ¼¶)";
+			String sk_name = "ç»‡é€ (åˆçº§)";
 			id = dao.getLiveSkillID(sk_name);
 		}
 		if (s_type == 5)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Öé±¦(³õ¼¶)";
+			String sk_name = "ç å®(åˆçº§)";
 			id = dao.getLiveSkillID(sk_name);
 		}
 		if (s_type == 6)
 		{
 			LiveSkillDao dao = new LiveSkillDao();
-			String sk_name = "Ä¾½³(³õ¼¶)";
+			String sk_name = "æœ¨åŒ (åˆçº§)";
 			id = dao.getLiveSkillID(sk_name);
 		}
 		return id;

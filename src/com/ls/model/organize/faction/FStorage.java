@@ -17,7 +17,7 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * °ïÅÉ²Ö¿â
+ * å¸®æ´¾ä»“åº“
  */
 public class FStorage
 {
@@ -25,7 +25,7 @@ public class FStorage
 	private Map<Integer,Item> material_list = new HashMap<Integer,Item>(10);
 
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 * @param fId
 	 * @param storageStr
 	 */
@@ -46,7 +46,7 @@ public class FStorage
 					}
 					catch (Exception e)
 					{
-						DataErrorLog.debugData("FStorage³õÊ¼»¯°ïÅÉ²Ö¿â´íÎó£¬storageStr="+storageStr);
+						DataErrorLog.debugData("FStorageåˆå§‹åŒ–å¸®æ´¾ä»“åº“é”™è¯¯ï¼ŒstorageStr="+storageStr);
 					}
 				}
 			}
@@ -54,7 +54,7 @@ public class FStorage
 	}
 	
 	/**
-	 * °ïÅÉ²Ö¿âÎïÆ·ÁĞ±í
+	 * å¸®æ´¾ä»“åº“ç‰©å“åˆ—è¡¨
 	 */
 	public List<Item> getList()
 	{
@@ -62,7 +62,7 @@ public class FStorage
 	}
 	
 	/**
-	 * °ÑµÀ¾ß×éÈ«²¿¹±Ï×£¨Íù°ïÅÉ²Ö¿â·ÅÈë²ÄÁÏ£©
+	 * æŠŠé“å…·ç»„å…¨éƒ¨è´¡çŒ®ï¼ˆå¾€å¸®æ´¾ä»“åº“æ”¾å…¥ææ–™ï¼‰
 	 * @param prop
 	 * @param num
 	 * @return
@@ -71,13 +71,13 @@ public class FStorage
 	{
 		if( material==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		return this.contribute(roleEntity, material, material.getPropNum());
 	}
 	
 	/**
-	 * ¹±Ï×£¨Íù°ïÅÉ²Ö¿â·ÅÈë²ÄÁÏ£©
+	 * è´¡çŒ®ï¼ˆå¾€å¸®æ´¾ä»“åº“æ”¾å…¥ææ–™ï¼‰
 	 * @param prop
 	 * @param num
 	 * @return
@@ -86,29 +86,29 @@ public class FStorage
 	{
 		if( roleEntity==null || material==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		
 		Faction faction = roleEntity.getBasicInfo().getFaction();
 		if( faction==null )
 		{
-			return "ÊÏ×åÒÑ½âÉ¢";
+			return "æ°æ—å·²è§£æ•£";
 		}
 		
 		if( material.getPropNum()<num )
 		{
-			return material.getPropName()+"ÊıÁ¿²»×ã";
+			return material.getPropName()+"æ•°é‡ä¸è¶³";
 		}
 		String contribute_point = material.getPropInfo().getPropOperate1();
 		
-		//Ôö¼Ó¹±Ï×¶È
+		//å¢åŠ è´¡çŒ®åº¦
 		roleEntity.getBasicInfo().addFContribute(Integer.parseInt(contribute_point)*num);
-		//Ôö¼Ó°ïÅÉÉùÍû
+		//å¢åŠ å¸®æ´¾å£°æœ›
 		faction.updatePrestige(num);
-		//¿Û³ıµÀ¾ß
+		//æ‰£é™¤é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(material, num);
-		//·ÅÈë²ÄÁÏ²Ö¿â
+		//æ”¾å…¥ææ–™ä»“åº“
 		this.put(material.getPropId(), num);
 		return null;
 	}
@@ -128,7 +128,7 @@ public class FStorage
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ°ïÅÉ²ÄÁÏ
+	 * åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„å¸®æ´¾ææ–™
 	 */
 	public String isEnoughMaterial( String needMaterialsStr)
 	{
@@ -143,13 +143,13 @@ public class FStorage
 			Item item = this.isHave(Integer.parseInt(temp[0]));
 			if( item==null || item.isEnough(Integer.parseInt(temp[1]))==false )
 			{
-				return "²ÄÁÏ²»×ã";
+				return "ææ–™ä¸è¶³";
 			}
 		}
 		return null;
 	}
 	/**
-	 * ÏûºÄ°ïÅÉ²ÄÁÏ
+	 * æ¶ˆè€—å¸®æ´¾ææ–™
 	 */
 	public String consumeMaterial( String needMaterialsStr)
 	{
@@ -173,8 +173,8 @@ public class FStorage
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ¸ÃÎïÆ·
-	 * @param new_item   Èç¹ûÓĞÔò·µ»Øµ±Ç°µÄÎïÆ·£¬Èç¹ûÃ»ÓĞ·µ»Ønull
+	 * åˆ¤æ–­æ˜¯å¦æœ‰è¯¥ç‰©å“
+	 * @param new_item   å¦‚æœæœ‰åˆ™è¿”å›å½“å‰çš„ç‰©å“ï¼Œå¦‚æœæ²¡æœ‰è¿”å›null
 	 * @return
 	 */
 	private Item isHave(int propId)
@@ -183,14 +183,14 @@ public class FStorage
 	}
 	
 	/**
-	 * ±£´æÊı¾İ
+	 * ä¿å­˜æ•°æ®
 	 * @return
 	 */
 	private void save()
 	{
 		StringBuffer sb = new StringBuffer();
 		Set<Integer> key_list = material_list.keySet();
-		int material_total = 0 ;//²ÄÁÏ×ÜÊı
+		int material_total = 0 ;//ææ–™æ€»æ•°
 		for(Integer key:key_list)
 		{
 			Item material = material_list.get(key);

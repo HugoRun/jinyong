@@ -30,6 +30,6 @@ ${playerB.contentdisplay}<br/>
 <c:if test="${!empty playerB.skillDisplay}">
 ${playerB.PName}使用了${playerB.skillDisplay}<br/>
 </c:if>
-	
-	
+
+
 <%@ include file="inc/fight_foot.jsp" %>

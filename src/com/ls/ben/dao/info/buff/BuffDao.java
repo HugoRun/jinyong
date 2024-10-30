@@ -11,8 +11,8 @@ import com.ls.pub.db.DBConnection;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * ¹¦ÄÜ:buff±í
- * @author ÁõË§
+ * åŠŸèƒ½:buffè¡¨
+ * @author åˆ˜å¸…
  * 12:21:18 PM
  */
 public class BuffDao extends DaoBase {
@@ -20,7 +20,7 @@ public class BuffDao extends DaoBase {
 	private static Map<Integer,BuffVO> buff_cache = new HashMap<Integer,BuffVO>();
 	
 	/**
-	 * Í¨¹ıidµÃµ½buffĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°buffä¿¡æ¯
 	 * @param buff_id
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public class BuffDao extends DaoBase {
 			buff = this.getBuffByDB(buff_id);
 			if( buff==null )
 			{
-				DataErrorLog.debugData("BuffDao.getBuff:ÎŞĞ§buffId="+buff_id);
+				DataErrorLog.debugData("BuffDao.getBuff:æ— æ•ˆbuffId="+buff_id);
 			}
 			else
 			{
@@ -43,7 +43,7 @@ public class BuffDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½buffÀàĞÍ
+	 * å¾—åˆ°buffç±»å‹
 	 */
 	public int getBuffType( String buff_id) 
 	{
@@ -52,7 +52,7 @@ public class BuffDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½buffÃèÊö
+	 * å¾—åˆ°buffæè¿°
 	 */
 	public String getBuffDisplay( int buff_id) 
 	{
@@ -61,12 +61,12 @@ public class BuffDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½buffĞÅÏ¢
+	 * å¾—åˆ°buffä¿¡æ¯
 	 */
 	private BuffVO getBuffByDB( int buff_id) 
 	{
 		BuffVO buff = null;
-		String sql = "select * from buff where buff_id = "+buff_id;
+		String sql = "SELECT * FROM buff where buff_id = "+buff_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

@@ -1,200 +1,200 @@
 package com.ls.pub.constant;
 
 /**
- * ¹¦ÄÜ:µÀ¾ßÀàĞÍ³£Á¿
+ * åŠŸèƒ½:é“å…·ç±»å‹å¸¸é‡
  * 
- * @author ÁõË§ 4:00:46 PM
+ * @author åˆ˜å¸… 4:00:46 PM
  */
 public class PropType
 {
-	/** ¼ÓÑªµÀ¾ß */
+	/** åŠ è¡€é“å…· */
 	public static final int ADDHP = 1;
-	/** ¼ÓÀ¶µÀ¾ß */
+	/** åŠ è“é“å…· */
 	public static final int ADDMP = 2;
-	/** ×ªÖ°µÀ¾ß */
+	/** è½¬èŒé“å…· */
 	public static final int ZHUANZHI = 3;
-	/** »Ø³ÇµÀ¾ß */
+	/** å›åŸé“å…· */
 	public static final int GOBACKCITY = 4;
-	/** ½ÓÊÜÈÎÎñµÀ¾ß */
+	/** æ¥å—ä»»åŠ¡é“å…· */
 	public static final int ACCEPTTASK = 5;
-	/** ´ğÌâµÀ¾ß */
+	/** ç­”é¢˜é“å…· */
 	public static final int QUIZ = 6;
-	/** ÕÙ»½µÀ¾ß */
+	/** å¬å”¤é“å…· */
 	public static final int CONJURE = 7;
-	/** ±ê¼ÇµÀ¾ß */
+	/** æ ‡è®°é“å…· */
 	public static final int MARKUP = 8;
-	/** ´«ËÍµÀ¾ß */
+	/** ä¼ é€é“å…· */
 	public static final int Carry = 9;
-	/** ³èÎï»Ø¸´ÌåÁ¦ */
+	/** å® ç‰©å›å¤ä½“åŠ› */
 	public static final int PETSINEW = 20;
-	/** ³èÎï»Ø¸´ÊÙÃü */
+	/** å® ç‰©å›å¤å¯¿å‘½ */
 	public static final int PETLONGE = 21;
-	/** ¼¼ÄÜÊéµÀ¾ß */
+	/** æŠ€èƒ½ä¹¦é“å…· */
 	public static final int SKILLBOOK = 22;
-	/** buffµÀ¾ß */
+	/** buffé“å…· */
 	public static final int BUFF = 23;
-	/** ÆÕÍ¨µÀ¾ß,²»ÄÜÊ¹ÓÃµÄµÀ¾ß */
+	/** æ™®é€šé“å…·,ä¸èƒ½ä½¿ç”¨çš„é“å…· */
 	public static final int NORMAL = 24;
-	/** Ï´³èÎïµÀ¾ß */
+	/** æ´—å® ç‰©é“å…· */
 	public static final int INIT_PET = 25;
-	/** ³èÎïµ°µÀ¾ß */
+	/** å® ç‰©è›‹é“å…· */
 	public static final int PET_EGG = 26;
-	/** ½ÓÊÜÖ¸¶¨ÈÎÎñ */
+	/** æ¥å—æŒ‡å®šä»»åŠ¡ */
 	public static final int ACCEPT_SPECIFY_TASK = 27;
-	/** ´ÓÈÎÎñÁĞ±íÖĞ½ÓÊÜÈÎÎñ */
+	/** ä»ä»»åŠ¡åˆ—è¡¨ä¸­æ¥å—ä»»åŠ¡ */
 	public static final int ACCEPT_TASK_FROM_LIST = 28;
-	/** ±¦ÏäµÀ¾ß */
+	/** å®ç®±é“å…· */
 	public static final int RARE_BOX = 29;
-	/** À¦×°Ò©Æ· */
+	/** æ†è£…è¯å“ */
 	public static final int BOX_CURE = 30;
-	/** µã»¯µÀ¾ß *//*
+	/** ç‚¹åŒ–é“å…· *//*
 	public static final int ENCHANTMENT = 31;*/
-	/** ·¢½±±¦Ïä,ºÍÆÕÍ¨±¦Ïä²»Í¬µÄÊÇ,´Ë±¦Ïä¿ÉÄÜ»áµôÂä¶à¼şÎïÆ·. */
+	/** å‘å¥–å®ç®±,å’Œæ™®é€šå®ç®±ä¸åŒçš„æ˜¯,æ­¤å®ç®±å¯èƒ½ä¼šæ‰è½å¤šä»¶ç‰©å“. */
 	public static final int GEI_RARE_BOX = 32;
-	/** ³èÎï¼¼ÄÜÊé */
+	/** å® ç‰©æŠ€èƒ½ä¹¦ */
 	public static final int PETSKILLBOOK = 33;
-	/** ×°±¸Éú²úÌáÉı³É¹¦ÂÊµÄµÀ¾ß */
+	/** è£…å¤‡ç”Ÿäº§æå‡æˆåŠŸç‡çš„é“å…· */
 	public static final int UPGRADEHELPPROP = 34;
-	/** ×°±¸Éı¼¶²ÄÁÏ */
+	/** è£…å¤‡å‡çº§ææ–™ */
 	//public static final int UPGRADEPROP = 35;
-	/** ×°±¸×ª»»ÎåĞĞµÀ¾ß */
+	/** è£…å¤‡è½¬æ¢äº”è¡Œé“å…· */
 	public static final int EQUIP_CHANGE_WX = 36;
-	/** ½»Ò×ºóÊ¹ÓÃµÀ¾ß */
+	/** äº¤æ˜“åä½¿ç”¨é“å…· */
 	public static final int EXCHANGEUSEPROP = 37;
-	/** Ğ¡À®°ÈµÀ¾ß */
+	/** å°å–‡å­é“å…· */
 	public static final int SPEAKER = 38;
-	/** ÃâËÀµÀ¾ß£¨Ô­µØ¸´»î£© */
+	/** å…æ­»é“å…·ï¼ˆåŸåœ°å¤æ´»ï¼‰ */
 	public static final int EXONERATIVE = 39;
-	/** Ä³Ê±¼äÄÚËÀÍöÎŞ³Í·£µÀ¾ß */
+	/** æŸæ—¶é—´å†…æ­»äº¡æ— æƒ©ç½šé“å…· */
 	public static final int OUTPUBLISH = 40;
-	/** ×°±¸ÀàµÀ¾ß */
+	/** è£…å¤‡ç±»é“å…· */
 	public static final int EQUIPPROP = 41;
-	/** Éú»î¼¼ÄÜÊé */
+	/** ç”Ÿæ´»æŠ€èƒ½ä¹¦ */
 	public static final int LIVESKILLBOOK = 42;
-	/** Åä·½Êé */
+	/** é…æ–¹ä¹¦ */
 	public static final int SYNTHESIZEBOOK = 43;
-	/** ×°±¸½â³ı°ó¶¨×´Ì¬µÀ¾ß */
+	/** è£…å¤‡è§£é™¤ç»‘å®šçŠ¶æ€é“å…· */
 	public static final int EQUIP_UNBIND = 44;
 	
 	public static final int REDUCEPKVALUE = 45;
-	/** ¼õ×ï¶ñÖµµÀ¾ß£¬×¢£ºÔİÎŞÓÃ */
-	// public static final int ADDHPLIMIT = 46;/** Ôö¼ÓhpÉÏÏŞµÀ¾ß£¬×¢£ºÔİÎŞÓÃ */
-	/** ±£»¤×°±¸µÀ¾ß
-	 * operate1:±íÊ¾±£»¤µÄÊ±¼ä£¨·ÖÖÓ£©
+	/** å‡ç½ªæ¶å€¼é“å…·ï¼Œæ³¨ï¼šæš‚æ— ç”¨ */
+	// public static final int ADDHPLIMIT = 46;/** å¢åŠ hpä¸Šé™é“å…·ï¼Œæ³¨ï¼šæš‚æ— ç”¨ */
+	/** ä¿æŠ¤è£…å¤‡é“å…·
+	 * operate1:è¡¨ç¤ºä¿æŠ¤çš„æ—¶é—´ï¼ˆåˆ†é’Ÿï¼‰
 	 *  */
 	public static final int EQUIP_PROTECT = 47;
-	/** ³èÎï¾­ÑéµÀ¾ß */
+	/** å® ç‰©ç»éªŒé“å…· */
 	public static final int PETEXP = 48;
-	/** µôÂäÔª±¦µÄ±¦Ïä */
+	/** æ‰è½å…ƒå®çš„å®ç®± */
 	public static final int GET_YUANBAO_BOX = 49;
-	/** ÃâPKµÀ¾ß */
+	/** å…PKé“å…· */
 	public static final int AVOIDPKPROP = 50;
-	/** ¿ÉĞ´ËÀ³èÎïµ°µÀ¾ß */
+	/** å¯å†™æ­»å® ç‰©è›‹é“å…· */
 	public static final int PET_EGG_GUDING = 51;
-	/** ÌìÑÛ·û */
+	/** å¤©çœ¼ç¬¦ */
 	public static final int TIANYANFU = 52;
-	/** »Æ½ğ±¦Ïä */
+	/** é»„é‡‘å®ç®± */
 	public static final int GOLD_BOX = 53;
-	/** ½ğÔ¿³× */
+	/** é‡‘é’¥åŒ™ */
 	public static final int GOLD_KEY = 54;
-	/** ¶àbuff µÀ¾ß */
+	/** å¤šbuff é“å…· */
 	// public static final int MANYBUFF = 55;
-	/** Êé¼®ÀàµÀ¾ß * */
+	/** ä¹¦ç±ç±»é“å…· * */
 	public static final int BOOK = 56;
-	/** ÆäËû±¦ÏäµÀ¾ß * */
+	/** å…¶ä»–å®ç®±é“å…· * */
 	public static final int OTHER_GOLD_BOX = 57;
-	/** ³ÆºÅ * */
+	/** ç§°å· * */
 	public static final int HONOUR = 58;
-	/** ĞŞÀí×°±¸µÀ¾ß * */
+	/** ä¿®ç†è£…å¤‡é“å…· * */
 	public static final int FIX_ARM_PROP = 59;
-	/** ´«ËÍ·ûµÀ¾ß * */
+	/** ä¼ é€ç¬¦é“å…· * */
 	public static final int SUIBIANCHUAN = 60;
-	/** ºÃÓÑ´«ËÍ·ûµÀ¾ß * */
+	/** å¥½å‹ä¼ é€ç¬¦é“å…· * */
 	public static final int FRIENDCHUAN = 61;
-	/** ¶ÓÎé´«ËÍ·ûµÀ¾ß * */
+	/** é˜Ÿä¼ä¼ é€ç¬¦é“å…· * */
 	public static final int GROUPCHUAN = 62;
-	/** ĞÄÓ¡·ûµÀ¾ß* */
+	/** å¿ƒå°ç¬¦é“å…·* */
 	public static final int XINYINDU = 63;
 
-	/** ĞÖµÜÇéÉî·ûµÀ¾ß */
+	/** å…„å¼Ÿæƒ…æ·±ç¬¦é“å…· */
 	public static final int BROTHERFU = 64;
 
-	/** ·òÆŞÇéÉî·ûµÀ¾ß */
+	/** å¤«å¦»æƒ…æ·±ç¬¦é“å…· */
 	public static final int MERRYFU = 65;
 
-	/** Ôö¼ÓÌğÃÛÖµµÀ¾ß */
+	/** å¢åŠ ç”œèœœå€¼é“å…· */
 	public static final int ADD_LOVE_DEAR = 66;
 
-	/** ½á»é½äÖ¸ */
+	/** ç»“å©šæˆ’æŒ‡ */
 	public static final int JIEHUN_JIEZHI = 67;
-	/** ÁìÈ¡ÀëÏß¾­ÑéµÄµÀ¾ß */
+	/** é¢†å–ç¦»çº¿ç»éªŒçš„é“å…· */
 	public static final int ROLE_BEOFF_EXP = 68;
-	/** Ôö¼ÓÇ×ÃÜ¶ÈµÀ¾ß */
+	/** å¢åŠ äº²å¯†åº¦é“å…· */
 	public static final int ADD_DEAR = 69;
-	/** ³ÉÎªVIPµÄµÀ¾ß */
+	/** æˆä¸ºVIPçš„é“å…· */
 	public static final int VIP = 70;
-	/** ÒşÉí·û */
+	/** éšèº«ç¬¦ */
 	public static final int YINSHEN = 71;
-	/** Ïİº¦·û */
+	/** é™·å®³ç¬¦ */
 	public static final int XIANHAI = 72;
-	/** ÎäÆ÷±¦Ïä* */
+	/** æ­¦å™¨å®ç®±* */
 	public static final int ARMBOX = 73;
-	/** Ö¸ÄÏÕë */
+	/** æŒ‡å—é’ˆ */
 	public static final int COMPASS = 75;
-	/** ÃØ¾³µØÍ¼ */
+	/** ç§˜å¢ƒåœ°å›¾ */
 	public static final int MIJING_MAP = 74;
-	/** ·´ÒşÉí·û */
+	/** åéšèº«ç¬¦ */
 	public static final int FAN_YINSHEN = 76;
-	/** Ç§ÀïÑÛ */
+	/** åƒé‡Œçœ¼ */
 	public static final int QIANLIYAN = 77;
-	/** ÌôÕ½Êé */
+	/** æŒ‘æˆ˜ä¹¦ */
 	public static final int TIAOZHAN = 78;
-	/** ¹Î¹ÎÀÖ */
+	/** åˆ®åˆ®ä¹ */
 	public static final int SCRTCHTICKET = 79;
-	/** PK²»ÄÜÊ¹ÓÃµÄÒ©Æ· */
+	/** PKä¸èƒ½ä½¿ç”¨çš„è¯å“ */
 	public static final int CRUEALLHMP = 80;
-	/** Ëæ»úBUFF */
+	/** éšæœºBUFF */
 	public static final int BUFFRODAM = 81;
-	/** Â½ÌÎĞÂ±¦Ïä */
+	/** é™†æ¶›æ–°å®ç®± */
 	public static final int TTBOX = 82;
-	/** À­°Ô±¦Ïä */
+	/** æ‹‰éœ¸å®ç®± */
 	public static final int LABABOX = 83;
-	/*****³èÎï²¶×½**********/
+	/*****å® ç‰©æ•æ‰**********/
 	public static final int GETPETPROP = 84;
-	/** À­°Ô±¦ÏäË¢ĞÂµÀ¾ß */
+	/** æ‹‰éœ¸å®ç®±åˆ·æ–°é“å…· */
 	public static final int PROPOFLABABOX = 85;
-	/*******ÌáÉı×°±¸Æ·ÖÊ********/
+	/*******æå‡è£…å¤‡å“è´¨********/
 	public static final int EQUIP_UPGRADE_QUALITY = 86;
-	/**×°±¸±£»¤µÀ¾ß£¨Éı¼¶£¬×ª»»ÎåĞĞÓÃ£©*/
+	/**è£…å¤‡ä¿æŠ¤é“å…·ï¼ˆå‡çº§ï¼Œè½¬æ¢äº”è¡Œç”¨ï¼‰*/
 	public static final int SUCCESS_RATE = 87;
-	/** ×°±¸Éı¼¶ÓÃ²ÄÁÏ1 *//*
+	/** è£…å¤‡å‡çº§ç”¨ææ–™1 *//*
 	public static final int EQUIP_UPGRADE_MATRIAL1 = 88;
-	*//** ×°±¸Éı¼¶ÓÃ²ÄÁÏ2 *//*
+	*//** è£…å¤‡å‡çº§ç”¨ææ–™2 *//*
 	public static final int EQUIP_UPGRADE_MATRIAL2 = 89;*/
 	/**
-	 * ´ò¿×µÀ¾ß
+	 * æ‰“å­”é“å…·
 	 */
 	public static final int EQUIP_PUNCH = 91;
 	
 	/**
-	 * ÏâÇ¶×°±¸ÓÃµÄ±¦Ê¯£º
-	 * µÈ¼¶±íÊ¾±¦Ê¯µÄµÈ¼¶
-	 * operate1:±íÊ¾×°±¸µÄÊôĞÔ
-	 * operate2:±íÊ¾ÏÂÒ»¼¶±¦Ê¯µÄid
-	 * operate3:±íÊ¾ÃèÊö£¬Èç£ºÄ¾¹¥+5
+	 * é•¶åµŒè£…å¤‡ç”¨çš„å®çŸ³ï¼š
+	 * ç­‰çº§è¡¨ç¤ºå®çŸ³çš„ç­‰çº§
+	 * operate1:è¡¨ç¤ºè£…å¤‡çš„å±æ€§
+	 * operate2:è¡¨ç¤ºä¸‹ä¸€çº§å®çŸ³çš„id
+	 * operate3:è¡¨ç¤ºæè¿°ï¼Œå¦‚ï¼šæœ¨æ”»+5
 	 */
-	public static final int EQUIP_INLAY_STONE_JIN = 92;//½ğÊôĞÔ±¦Ê¯
-	public static final int EQUIP_INLAY_STONE_MU = 93;//Ä¾ÊôĞÔ±¦Ê¯
-	public static final int EQUIP_INLAY_STONE_SHUI = 94;//Ë®ÊôĞÔ±¦Ê¯
-	public static final int EQUIP_INLAY_STONE_HUO = 95;//»ğ½ğÊôĞÔ±¦Ê¯
-	public static final int EQUIP_INLAY_STONE_TU = 96;//ÍÁ½ğÊôĞÔ±¦Ê¯
+	public static final int EQUIP_INLAY_STONE_JIN = 92;//é‡‘å±æ€§å®çŸ³
+	public static final int EQUIP_INLAY_STONE_MU = 93;//æœ¨å±æ€§å®çŸ³
+	public static final int EQUIP_INLAY_STONE_SHUI = 94;//æ°´å±æ€§å®çŸ³
+	public static final int EQUIP_INLAY_STONE_HUO = 95;//ç«é‡‘å±æ€§å®çŸ³
+	public static final int EQUIP_INLAY_STONE_TU = 96;//åœŸé‡‘å±æ€§å®çŸ³
 	/**
-	 * ĞŞ¸´ÆÆËğµÄµÀ¾ß
+	 * ä¿®å¤ç ´æŸçš„é“å…·
 	 */
 	public static final int MIANTAIN_BAD_EQUIP = 97;
 	/**
-	 * °ïÅÉ²ÄÁÏµÀ¾ß
-	 * operate1:±íÊ¾¹±Ï×¶È
+	 * å¸®æ´¾ææ–™é“å…·
+	 * operate1:è¡¨ç¤ºè´¡çŒ®åº¦
 	 */
 	public static final int F_MATERIAL = 98;
 }

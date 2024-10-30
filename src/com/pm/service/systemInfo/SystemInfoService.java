@@ -28,10 +28,10 @@ public class SystemInfoService
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢»á±»ËùÓĞÍæ¼Ò¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰ç©å®¶çœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @return if sussend return 1,else return -1
 	 */
 	public int insertSystemInfoBySystem(String info)
@@ -41,17 +41,17 @@ public class SystemInfoService
 			return -1;
 		}
 		SysInfoDao sysInfoDao = new SysInfoDao();
-		// É¾³ı³¬¹ıÊ®Îå·ÖÖÓµÄÏµÍ³ÏûÏ¢
+		// åˆ é™¤è¶…è¿‡åäº”åˆ†é’Ÿçš„ç³»ç»Ÿæ¶ˆæ¯
 		// sysInfoDao.deleteMoreFifteenMinutes();
 		return sysInfoDao.insertSysInfo(0, 2, info);
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢»á±»ËùÓĞÍæ¼Ò¿´¼û,¸½´øÑÓÊ±Ê±¼ä
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰ç©å®¶çœ‹è§,é™„å¸¦å»¶æ—¶æ—¶é—´
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
-	 * @param »áÔÚÒÔµ±Ç°Ê±¼ä¼ÆËãµÄminute·ÖÖÓºóÏÔÊ¾
+	 *            ä¿¡æ¯å†…å®¹
+	 * @param ä¼šåœ¨ä»¥å½“å‰æ—¶é—´è®¡ç®—çš„minuteåˆ†é’Ÿåæ˜¾ç¤º
 	 * @return if sussend return 1,else return -1
 	 */
 	public int insertSystemInfoBySystem(String info, int minute)
@@ -66,12 +66,12 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢»á±»ËùÓĞÍæ¼Ò¿´¼û,ÔÚ¹æ¶¨Ê±¼äµÄÊ±¼ä±»Íæ¼Ò¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰ç©å®¶çœ‹è§,åœ¨è§„å®šæ—¶é—´çš„æ—¶é—´è¢«ç©å®¶çœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @param time
-	 *            Ê±¼ä,¸ñÊ½Îª 12:26:15
+	 *            æ—¶é—´,æ ¼å¼ä¸º 12:26:15
 	 * @return if sussend return 1,else return -1
 	 */
 	public void insertSystemInfoBySystem(String info, String time)
@@ -84,14 +84,14 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢»á±»ËùÓĞÍæ¼Ò¿´¼û,ÔÚ¹æ¶¨Ê±¼äµÄÊ±¼ä±»Íæ¼Ò¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰ç©å®¶çœ‹è§,åœ¨è§„å®šæ—¶é—´çš„æ—¶é—´è¢«ç©å®¶çœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @param time
-	 *            Ê±¼ä,¸ñÊ½Îª 12:26:15
+	 *            æ—¶é—´,æ ¼å¼ä¸º 12:26:15
 	 * @param info_type
-	 *            ĞÅÏ¢ÀàĞÍ
+	 *            ä¿¡æ¯ç±»å‹
 	 * @return if sussend return 1,else return -1
 	 */
 	public void insertSystemInfoBySystem(String info, String time, int info_type)
@@ -104,12 +104,12 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈë¶Ô¸öÈË·¢µÄÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢½ö»á±»´ËÈË¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥å¯¹ä¸ªäººå‘çš„ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä»…ä¼šè¢«æ­¤äººçœ‹è§
 	 * 
 	 * @param p_pk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @return if sussend return 1,else return -1.
 	 */
 	public int insertSystemInfoBySystem(int p_pk, String info)
@@ -123,14 +123,14 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈë¶Ô¸öÈË·¢µÄÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢½ö»á±»´ËÈË¿´¼û,¸½´øÑÓ³ÙÊ±¼ä
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥å¯¹ä¸ªäººå‘çš„ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä»…ä¼šè¢«æ­¤äººçœ‹è§,é™„å¸¦å»¶è¿Ÿæ—¶é—´
 	 * 
 	 * @param second
-	 *            ÑÓ³ÙsecondÃëºó·¢ËÍ
+	 *            å»¶è¿Ÿsecondç§’åå‘é€
 	 * @param p_pk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @return if sussend return 1,else return -1.
 	 */
 	public int insertSystemInfoBySystem(int p_pk, String info, int second)
@@ -145,14 +145,14 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈë¶Ô¸öÈË·¢µÄÏµÍ³ÏûÏ¢£¬´ËÏûÏ¢½ö»á±»´ËÈË¿´¼û,¸½´øÑÓ³ÙÊ±¼ä
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥å¯¹ä¸ªäººå‘çš„ç³»ç»Ÿæ¶ˆæ¯ï¼Œæ­¤æ¶ˆæ¯ä»…ä¼šè¢«æ­¤äººçœ‹è§,é™„å¸¦å»¶è¿Ÿæ—¶é—´
 	 * 
 	 * @param second
-	 *            ÑÓ³ÙsecondÃëºó·¢ËÍ
+	 *            å»¶è¿Ÿsecondç§’åå‘é€
 	 * @param p_pk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @return if sussend return 1,else return -1.
 	 */
 	public int insertSystemInfoBySystem(int p_pk, int info_type, String info,
@@ -167,10 +167,10 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÌØ±ğÍ¨Öª(¹©ºóÌ¨Ê¹ÓÃ)£¬´ËÏûÏ¢»á±»ËùÓĞÈË¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç‰¹åˆ«é€šçŸ¥(ä¾›åå°ä½¿ç”¨)ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰äººçœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ
+	 *            ä¿¡æ¯å†…å®¹
 	 * @return if sussend return 1,else return -1
 	 */
 	public int insertSystemInfoByBack(String info)
@@ -184,10 +184,10 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÌØ±ğÍ¨Öª(¹©°ï»á½áÊøÊ¹ÓÃ)£¬´ËÏûÏ¢»á±»ËùÓĞÈË¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç‰¹åˆ«é€šçŸ¥(ä¾›å¸®ä¼šç»“æŸä½¿ç”¨)ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰äººçœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ time ½áÊøÊ±¼ä
+	 *            ä¿¡æ¯å†…å®¹ time ç»“æŸæ—¶é—´
 	 * @return if sussend return 1,else return -1
 	 */
 	public int insertSystemInfoByBackTong(String info, String time)
@@ -201,10 +201,10 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëÌØ±ğÍ¨Öª(¹©°ï»á½áÊøÊ¹ÓÃ)£¬´ËÏûÏ¢»á±»ËùÓĞÈË¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥ç‰¹åˆ«é€šçŸ¥(ä¾›å¸®ä¼šç»“æŸä½¿ç”¨)ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰äººçœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ time ½áÊøÊ±¼ä
+	 *            ä¿¡æ¯å†…å®¹ time ç»“æŸæ—¶é—´
 	 * @return if sussend return 1,else return -1
 	 */
 	public int insertSystemInfoByBackTong(String info, String time,
@@ -219,10 +219,10 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÏòÏµÍ³ÏûÏ¢±í²åÈëĞ¡À®°È(¹©Ğ¡À®°ÈÊ¹ÓÃ)£¬´ËÏûÏ¢»á±»ËùÓĞÈË¿´¼û
+	 * å‘ç³»ç»Ÿæ¶ˆæ¯è¡¨æ’å…¥å°å–‡å­(ä¾›å°å–‡å­ä½¿ç”¨)ï¼Œæ­¤æ¶ˆæ¯ä¼šè¢«æ‰€æœ‰äººçœ‹è§
 	 * 
 	 * @param info
-	 *            ĞÅÏ¢ÄÚÈİ time ½áÊøÊ±¼ä
+	 *            ä¿¡æ¯å†…å®¹ time ç»“æŸæ—¶é—´
 	 * @return if sussend return 1,else return -1
 	 */
 	public void insertSystemInfoBySpeaker(String info, int p_pk)
@@ -236,13 +236,13 @@ public class SystemInfoService
 	}
 
 	/**
-	 * °´´ÎĞò»ñµÃÏµÍ³ÏûÏ¢£¬Ê×ÏÈ»áÅĞ¶ÏÉÏÒ»ÌõÏµÍ³ÏûÏ¢ÊÇ·ñÒÑ¾­³¬¹ıÊ®Ãë£¬Èç¹ûÎ´³¬¹ıÔò
-	 * ÈÔÈ»ÏÔÊ¾ÕâÒ»Ìõ£¬Èç¹û³¬¹ıÔòÏÔÊ¾ÏÂÒ»Ìõ£¬ÕâÏÂÒ»Ìõ°´ÕÕÒÔÏÂ´ÎĞòÏÔÊ¾:Ê×ÏÈ¼ìË÷ÏµÍ³ÏûÏ¢±íÖĞ
-	 * 10ÃëÄÚµÄ¸öÈËÏûÏ¢£¬Èç¹ûÓĞµÄ»°ÔòÏÈÏÔÊ¾£¬ÒªÊÇÒªÁ½ÌõÒÔÉÏ¾ÍÏÔÊ¾Ê±¼ä½ÏÔ¶µÄÒ»Ìõ¡£Èç¹û¸öÈË
-	 * ÏûÏ¢Ã»ÓĞ£¬Ôò¿ªÊ¼¼ìË÷ÏµÍ³ĞÅÏ¢±íÖĞÏµÍ³ÏûÏ¢£¬Í¬ÑùÈ¡ÔÚ10ÃëÄÚÊ±¼ä½ÏÔ¶µÄÒ»Ìõ£¬Èç¹û¶¼Ã»ÓĞ¼ìË÷µ½£¬ Ôò²»ÏÔÊ¾.
+	 * æŒ‰æ¬¡åºè·å¾—ç³»ç»Ÿæ¶ˆæ¯ï¼Œé¦–å…ˆä¼šåˆ¤æ–­ä¸Šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯æ˜¯å¦å·²ç»è¶…è¿‡åç§’ï¼Œå¦‚æœæœªè¶…è¿‡åˆ™
+	 * ä»ç„¶æ˜¾ç¤ºè¿™ä¸€æ¡ï¼Œå¦‚æœè¶…è¿‡åˆ™æ˜¾ç¤ºä¸‹ä¸€æ¡ï¼Œè¿™ä¸‹ä¸€æ¡æŒ‰ç…§ä»¥ä¸‹æ¬¡åºæ˜¾ç¤º:é¦–å…ˆæ£€ç´¢ç³»ç»Ÿæ¶ˆæ¯è¡¨ä¸­
+	 * 10ç§’å†…çš„ä¸ªäººæ¶ˆæ¯ï¼Œå¦‚æœæœ‰çš„è¯åˆ™å…ˆæ˜¾ç¤ºï¼Œè¦æ˜¯è¦ä¸¤æ¡ä»¥ä¸Šå°±æ˜¾ç¤ºæ—¶é—´è¾ƒè¿œçš„ä¸€æ¡ã€‚å¦‚æœä¸ªäºº
+	 * æ¶ˆæ¯æ²¡æœ‰ï¼Œåˆ™å¼€å§‹æ£€ç´¢ç³»ç»Ÿä¿¡æ¯è¡¨ä¸­ç³»ç»Ÿæ¶ˆæ¯ï¼ŒåŒæ ·å–åœ¨10ç§’å†…æ—¶é—´è¾ƒè¿œçš„ä¸€æ¡ï¼Œå¦‚æœéƒ½æ²¡æœ‰æ£€ç´¢åˆ°ï¼Œ åˆ™ä¸æ˜¾ç¤º.
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @param request
 	 *            HttpServletRequest
 	 * @return SystemInfoVO
@@ -255,7 +255,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ÔÚÁÄÌìÀ¹¿´ÏµÍ³ÏûÏ¢Ê±¼ä¶¨Òå20·ÖÖÓ
+	 * åœ¨èŠå¤©æ‹¦çœ‹ç³»ç»Ÿæ¶ˆæ¯æ—¶é—´å®šä¹‰20åˆ†é’Ÿ
 	 */
 	public List<SystemInfoVO> getSystemInfoByPPkTime(String pPk,
 			HttpServletRequest request)
@@ -267,7 +267,7 @@ public class SystemInfoService
 		Date atime = (Date) request.getSession().getAttribute("sysInfoTime");
 		Date now = new Date();
 		// SystemInfoVO sysInfo = null;
-		// »ñµÃÏµÍ³ÏûÏ¢
+		// è·å¾—ç³»ç»Ÿæ¶ˆæ¯
 		if (atime == null || atime.equals(""))
 		{ // date is null or no point.
 			atime = now;
@@ -287,14 +287,14 @@ public class SystemInfoService
 			 * sysInfo = infoDao.getSystemSelfInfo(pPk); if(sysInfo == null){
 			 * sysInfo = infoDao.getSystemInfo(); } if(sysInfo != null){
 			 * request.getSession().setAttribute("sysInfoTime",atime);
-			 * //°Ñ¿ªÊ¼ÏÔÊ¾Ê±¼ä±£´æ
+			 * //æŠŠå¼€å§‹æ˜¾ç¤ºæ—¶é—´ä¿å­˜
 			 * request.getSession().setAttribute("sysInfoId",sysInfo.getSysInfoId());
-			 * //¼ÇÂ¼ÏÂÕâ¸öÏûÏ¢µÄid }
+			 * //è®°å½•ä¸‹è¿™ä¸ªæ¶ˆæ¯çš„id }
 			 */
 			list = infoDao.getSystemInfoThreeTime(pPk);
 			if (list != null && list.size() != 0)
 			{
-				request.getSession().setAttribute("sysInfoTime", atime); // °Ñ¿ªÊ¼ÏÔÊ¾Ê±¼ä±£´æ
+				request.getSession().setAttribute("sysInfoTime", atime); // æŠŠå¼€å§‹æ˜¾ç¤ºæ—¶é—´ä¿å­˜
 				request.getSession().setAttribute("systemInfoList", list);
 			}
 		}
@@ -303,7 +303,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ¸ù¾İÏµÍ³ÏûÏ¢ºóÌ¨¿ØÖÆ±íÖĞµÄµÈ¼¶×Ö¶ÎµÄĞÅÏ¢,Èç¹ûp_gradeµÄµÈ¼¶·ûºÏ ¿ØÖÆ±íÖĞµÄÌõ¼ş,¾Í¸øËû·¢ËÍÒ»ÌõÏµÍ³ÏûÏ¢
+	 * æ ¹æ®ç³»ç»Ÿæ¶ˆæ¯åå°æ§åˆ¶è¡¨ä¸­çš„ç­‰çº§å­—æ®µçš„ä¿¡æ¯,å¦‚æœp_gradeçš„ç­‰çº§ç¬¦åˆ æ§åˆ¶è¡¨ä¸­çš„æ¡ä»¶,å°±ç»™ä»–å‘é€ä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯
 	 * 
 	 * @param pPk
 	 * @param p_grade
@@ -321,7 +321,7 @@ public class SystemInfoService
 			{
 				SystemControlInfoVO vo = list.get(i);
 				String[] grade = vo.getPlayerGrade().split(",");
-				// ¼ì²éÊÇ·ñÓĞÔÚÕâ¸öµÈ¼¶ĞèÒª·¢µÄÏµÍ³ÏûÏ¢
+				// æ£€æŸ¥æ˜¯å¦æœ‰åœ¨è¿™ä¸ªç­‰çº§éœ€è¦å‘çš„ç³»ç»Ÿæ¶ˆæ¯
 				if (p_grade >= Integer.valueOf(grade[0])
 						&& p_grade <= Integer.valueOf(grade[1]))
 					if (vo.getSendType() == 1)
@@ -331,13 +331,13 @@ public class SystemInfoService
 					else
 						if (vo.getSendType() == 2)
 						{
-							mailInfoService.sendMail(pPk, -1, 2, "ÏµÍ³µÈ¼¶ÌáÊ¾", vo
+							mailInfoService.sendMail(pPk, -1, 2, "ç³»ç»Ÿç­‰çº§æç¤º", vo
 									.getSendContent());
 						}
 						else
 							if (vo.getSendType() == 3)
 							{
-								mailInfoService.sendMail(pPk, -1, 2, "ÏµÍ³µÈ¼¶ÌáÊ¾",
+								mailInfoService.sendMail(pPk, -1, 2, "ç³»ç»Ÿç­‰çº§æç¤º",
 										vo.getSendContent());
 								insertSystemInfoBySystem(pPk, vo
 										.getSendContent());
@@ -345,7 +345,7 @@ public class SystemInfoService
 							else
 								if (vo.getSendType() == 4)
 								{
-									// Îª4·¢µ¯³öÊ½ÏûÏ¢
+									// ä¸º4å‘å¼¹å‡ºå¼æ¶ˆæ¯
 									insertPopMsggse(pPk, vo.getSendContent());
 
 								}
@@ -355,7 +355,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * Íæ¼Ò½»Ò×³É¹¦Óë·ñµÄÏµÍ³ÌáÊ¾ÏûÏ¢
+	 * ç©å®¶äº¤æ˜“æˆåŠŸä¸å¦çš„ç³»ç»Ÿæç¤ºæ¶ˆæ¯
 	 */
 	public void sendSystemInfoByTransaction(int ppk,String content)
 	{
@@ -364,7 +364,7 @@ public class SystemInfoService
 	}
 	
 	/**
-	 * ¸ù¾İÏµÍ³ÏûÏ¢ºóÌ¨¿ØÖÆ±íÖĞµÄµÈ¼¶×Ö¶ÎµÄĞÅÏ¢,Èç¹ûtask_idµÄµÈ¼¶·ûºÏ ¿ØÖÆ±íÖĞµÄÌõ¼ş,¾Í¸øËû·¢ËÍÒ»ÌõÏµÍ³ÏûÏ¢
+	 * æ ¹æ®ç³»ç»Ÿæ¶ˆæ¯åå°æ§åˆ¶è¡¨ä¸­çš„ç­‰çº§å­—æ®µçš„ä¿¡æ¯,å¦‚æœtask_idçš„ç­‰çº§ç¬¦åˆ æ§åˆ¶è¡¨ä¸­çš„æ¡ä»¶,å°±ç»™ä»–å‘é€ä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯
 	 * 
 	 * @param pPk
 	 * @param p_grade
@@ -391,13 +391,13 @@ public class SystemInfoService
 					else
 						if (vo.getSendType() == 2)
 						{
-							mailInfoService.sendMail(pPk, -1, 2, "ÏµÍ³ÈÎÎñÌáÊ¾", vo
+							mailInfoService.sendMail(pPk, -1, 2, "ç³»ç»Ÿä»»åŠ¡æç¤º", vo
 									.getSendContent());
 						}
 						else
 							if (vo.getSendType() == 3)
 							{
-								mailInfoService.sendMail(pPk, -1, 2, "ÏµÍ³ÈÎÎñÌáÊ¾",
+								mailInfoService.sendMail(pPk, -1, 2, "ç³»ç»Ÿä»»åŠ¡æç¤º",
 										vo.getSendContent());
 								insertSystemInfoBySystem(pPk, vo
 										.getSendContent());
@@ -405,7 +405,7 @@ public class SystemInfoService
 							else
 								if (vo.getSendType() == 4)
 								{
-									// Îª4·¢µ¯³öÊ½ÏûÏ¢
+									// ä¸º4å‘å¼¹å‡ºå¼æ¶ˆæ¯
 									insertPopMsggse(pPk, vo.getSendContent());
 								}
 				}
@@ -413,19 +413,19 @@ public class SystemInfoService
 		}
 		// if(map.size() != 0){
 		// Set<Integer> mapset = map.keySet();
-		// //logger.info("¸öÈËidÎª="+pPk+" ,task_id="+task_id);
-		// //logger.info("ÓĞÕâ¸öÈÎÎñµÄÏµÍ³ÏûÏ¢="+mapset.contains(task_id));
-		// if(mapset.contains(task_id)){ //¼ì²éÊÇ·ñÓĞÔÚÕâ¸öµÈ¼¶ĞèÒª·¢µÄÏµÍ³ÏûÏ¢
-		// logger.info("ÓĞÕâ¸öÈÎÎñµÄÏµÍ³ÏûÏ¢£¡");
+		// //logger.info("ä¸ªäººidä¸º="+pPk+" ,task_id="+task_id);
+		// //logger.info("æœ‰è¿™ä¸ªä»»åŠ¡çš„ç³»ç»Ÿæ¶ˆæ¯="+mapset.contains(task_id));
+		// if(mapset.contains(task_id)){ //æ£€æŸ¥æ˜¯å¦æœ‰åœ¨è¿™ä¸ªç­‰çº§éœ€è¦å‘çš„ç³»ç»Ÿæ¶ˆæ¯
+		// logger.info("æœ‰è¿™ä¸ªä»»åŠ¡çš„ç³»ç»Ÿæ¶ˆæ¯ï¼");
 		// insertSystemInfoBySystem(pPk,map.get(task_id));
 		// }
 		// }
-		// ÒòÎª»áÔì³ÉÒ»Ìõ×ÛºÏĞÅÏ¢²»Í£Ë¢µÄÇé¿ö,ËùÓĞÔİÊ±¹Ø±ÕÕâÌõ¡£
+		// å› ä¸ºä¼šé€ æˆä¸€æ¡ç»¼åˆä¿¡æ¯ä¸åœåˆ·çš„æƒ…å†µ,æ‰€æœ‰æš‚æ—¶å…³é—­è¿™æ¡ã€‚
 		// sendCollageSystemInfo(pPk,task_id,"0",0,0);
 	}
 
 	/**
-	 * ¸ù¾İÏµÍ³ÏûÏ¢ºóÌ¨¿ØÖÆ±íÖĞµÄµÈ¼¶×Ö¶ÎµÄĞÅÏ¢,Èç¹ûtitleµÄµÈ¼¶·ûºÏ ¿ØÖÆ±íÖĞµÄÌõ¼ş,¾Í¸øËû·¢ËÍÒ»ÌõÏµÍ³ÏûÏ¢
+	 * æ ¹æ®ç³»ç»Ÿæ¶ˆæ¯åå°æ§åˆ¶è¡¨ä¸­çš„ç­‰çº§å­—æ®µçš„ä¿¡æ¯,å¦‚æœtitleçš„ç­‰çº§ç¬¦åˆ æ§åˆ¶è¡¨ä¸­çš„æ¡ä»¶,å°±ç»™ä»–å‘é€ä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯
 	 * 
 	 * @param pPk
 	 * @param p_grade
@@ -448,27 +448,27 @@ public class SystemInfoService
 				else
 					if (vo.getSendType() == 2)
 					{
-						mailInfoService.sendMail(pPk, -1, 2, "ÏµÍ³³ÆÎ½ÌáÊ¾", vo
+						mailInfoService.sendMail(pPk, -1, 2, "ç³»ç»Ÿç§°è°“æç¤º", vo
 								.getSendContent());
 					}
 					else
 						if (vo.getSendType() == 3)
 						{
-							mailInfoService.sendMail(pPk, -1, 2, "ÏµÍ³³ÆÎ½ÌáÊ¾", vo
+							mailInfoService.sendMail(pPk, -1, 2, "ç³»ç»Ÿç§°è°“æç¤º", vo
 									.getSendContent());
 							insertSystemInfoBySystem(pPk, vo.getSendContent());
 						}
 						else
 							if (vo.getSendType() == 4)
 							{
-								// Îª4·¢µ¯³öÊ½ÏûÏ¢
+								// ä¸º4å‘å¼¹å‡ºå¼æ¶ˆæ¯
 								insertPopMsggse(pPk, vo.getSendContent());
 							}
 			}
 		}
 		// Map<String,String> map =
 		// infoDao.getSystemInfoControlByTitle(title_id);
-		// Èç¹û³ÆÎ½Ìõ¼şÏàÍ¬,¾ÍÃ¿¸ô10ÃëÏòËû·¢ËÍÒ»¸öÏûÏ¢
+		// å¦‚æœç§°è°“æ¡ä»¶ç›¸åŒ,å°±æ¯éš”10ç§’å‘ä»–å‘é€ä¸€ä¸ªæ¶ˆæ¯
 		// for(int i=0;i < map.size();i++) {
 		// insertSystemInfoBySystem(pPk,map.get(i),i*10);
 		// }
@@ -476,15 +476,15 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ¸ù¾İÏµÍ³ÏûÏ¢ºóÌ¨¿ØÖÆ±íÖĞµÄ×ÛºÏ·¢ËÍÏûÏ¢µÄÌõ¼ş,Èç¹ûÌõ¼ş¶¼·ûºÏ ¿ØÖÆ±íÖĞµÄÌõ¼ş,¾Í¸øËû·¢ËÍÒ»ÌõÏµÍ³ÏûÏ¢ ×ÛºÏÏµÍ³µÄÌõ¼şÓĞËÄ¸ö,
-	 * µÈ¼¶·ûºÏ²ÅĞĞ,µÈ¼¶ÏÈÓÉÍâ²¿´«Èë,Èç¹û´«ÈëÖµÎªÁã,´ÓpartvoÖĞÈ¡³ö, ÉùÍû·ûºÏ²ÅĞĞ,ÉùÍûÏÈÓÉÍâ²¿´«Èë,Èç¹û´«ÈëÖµÎªÁã,´ÓpartvoÖĞÈ¡³ö.
-	 * ÈÎÎñid·ûºÏ,ÈÎÎñÓÉÍâ²¿´«Èë¡£ ³ÆÎ½·ûºÏ,³ÆÎ½ÈÎÎñÏÈÓÉÍâ²¿´«Èë,Èç¹û´«ÈëÖµÎªÁã,´ÓpartvoÖĞÈ¡³ö.
+	 * æ ¹æ®ç³»ç»Ÿæ¶ˆæ¯åå°æ§åˆ¶è¡¨ä¸­çš„ç»¼åˆå‘é€æ¶ˆæ¯çš„æ¡ä»¶,å¦‚æœæ¡ä»¶éƒ½ç¬¦åˆ æ§åˆ¶è¡¨ä¸­çš„æ¡ä»¶,å°±ç»™ä»–å‘é€ä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯ ç»¼åˆç³»ç»Ÿçš„æ¡ä»¶æœ‰å››ä¸ª,
+	 * ç­‰çº§ç¬¦åˆæ‰è¡Œ,ç­‰çº§å…ˆç”±å¤–éƒ¨ä¼ å…¥,å¦‚æœä¼ å…¥å€¼ä¸ºé›¶,ä»partvoä¸­å–å‡º, å£°æœ›ç¬¦åˆæ‰è¡Œ,å£°æœ›å…ˆç”±å¤–éƒ¨ä¼ å…¥,å¦‚æœä¼ å…¥å€¼ä¸ºé›¶,ä»partvoä¸­å–å‡º.
+	 * ä»»åŠ¡idç¬¦åˆ,ä»»åŠ¡ç”±å¤–éƒ¨ä¼ å…¥ã€‚ ç§°è°“ç¬¦åˆ,ç§°è°“ä»»åŠ¡å…ˆç”±å¤–éƒ¨ä¼ å…¥,å¦‚æœä¼ å…¥å€¼ä¸ºé›¶,ä»partvoä¸­å–å‡º.
 	 * 
 	 * @param pPk
 	 * @param task_id
-	 *            ÈÎÎñid
+	 *            ä»»åŠ¡id
 	 * @param title
-	 *            ³ÆÎ½
+	 *            ç§°è°“
 	 */
 	private void sendCollageSystemInfo(int p_pk, int task_id, String title,
 			int p_grade, int popularity)
@@ -497,39 +497,39 @@ public class SystemInfoService
 		}
 		if (popularity == 0)
 		{
-			// ÉùÍûÔİÊ±²»´¦Àí
-			// TODO-¸ù¾İÉùÍû·¢ËÍÏµÍ³ÏûÏ¢ÔİÊ±²»´¦Àí
+			// å£°æœ›æš‚æ—¶ä¸å¤„ç†
+			// TODO-æ ¹æ®å£°æœ›å‘é€ç³»ç»Ÿæ¶ˆæ¯æš‚æ—¶ä¸å¤„ç†
 		}
-		// int num = 0; //µ±·¢ËÍ¶à¸öÊ±µÄ¶¨Ê±Æ÷
-		// »ñµÃ×ÛºÏÀàĞÅÏ¢µÄ·¢ËÍÌõ¼ş
+		// int num = 0; //å½“å‘é€å¤šä¸ªæ—¶çš„å®šæ—¶å™¨
+		// è·å¾—ç»¼åˆç±»ä¿¡æ¯çš„å‘é€æ¡ä»¶
 		SysInfoDao sysInfoDao = new SysInfoDao();
 		List<SystemControlInfoVO> list = sysInfoDao.getSystemInfoControlByPCollage();
-		// logger.info("×ÛºÏÀàĞÍµÄÌõÊı="+list.size());
+		// logger.info("ç»¼åˆç±»å‹çš„æ¡æ•°="+list.size());
 		if (list.size() != 0)
 		{
 			for (int i = 0; i < list.size(); i++)
 			{
 				SystemControlInfoVO systemInfovo = list.get(i);
 				String sqlPGrade = systemInfovo.getPlayerGrade();
-				// Èç¹ûµÈ¼¶Ïà·ûºÏ
+				// å¦‚æœç­‰çº§ç›¸ç¬¦åˆ
 				// logger.info("sqlPGrade="+sqlPGrade+" ,p_grade="+p_grade);
 				if (p_grade >= Integer.valueOf(sqlPGrade.split(",")[0])
 						&& p_grade <= Integer.valueOf(sqlPGrade.split(",")[1]))
 				{
-					// Èç¹ûÌõ¼ş³ÆÎ½ÒªÇó²»Îª0ÇÒ³ÆÎ½·ûºÏ
+					// å¦‚æœæ¡ä»¶ç§°è°“è¦æ±‚ä¸ä¸º0ä¸”ç§°è°“ç¬¦åˆ
 					// logger.info("getTitle="+systemInfovo.getTitle()+"
 					// ,title="+title);
 					if (systemInfovo.getTitle().equals("0")|| role_info.getTitleSet().isHaveByTitleStr(systemInfovo.getTitle())==true)
 					{
-						// Èç¹ûÈÎÎñid·ûºÏ
+						// å¦‚æœä»»åŠ¡idç¬¦åˆ
 						// logger.info("getTaskId="+systemInfovo.getTaskId()+"
 						// ,task_id="+task_id);
 						if (systemInfovo.getTaskId() == 0
 								|| task_id == systemInfovo.getTaskId())
 						{
-							// Èç¹ûÉùÍû·ûºÏ£¬ÔİÊ±²»×ö
-							// if£¨£©{}
-							// logger.info("ÖÕÓÚ·¢ËÍÁË");
+							// å¦‚æœå£°æœ›ç¬¦åˆï¼Œæš‚æ—¶ä¸åš
+							// ifï¼ˆï¼‰{}
+							// logger.info("ç»ˆäºå‘é€äº†");
 							MailInfoService mailInfoService = new MailInfoService();
 							if (systemInfovo.getSendType() == 1)
 							{
@@ -540,14 +540,14 @@ public class SystemInfoService
 								if (systemInfovo.getSendType() == 2)
 								{
 									mailInfoService.sendMail(p_pk, -1, 2,
-											"ÏµÍ³ÌáÊ¾", systemInfovo
+											"ç³»ç»Ÿæç¤º", systemInfovo
 													.getSendContent());
 								}
 								else
 									if (systemInfovo.getSendType() == 3)
 									{
 										mailInfoService.sendMail(p_pk, -1, 2,
-												"ÏµÍ³ÌáÊ¾", systemInfovo
+												"ç³»ç»Ÿæç¤º", systemInfovo
 														.getSendContent());
 										insertSystemInfoBySystem(p_pk,
 												systemInfovo.getSendContent());
@@ -555,7 +555,7 @@ public class SystemInfoService
 									else
 										if (systemInfovo.getSendType() == 4)
 										{
-											// Îª4·¢µ¯³öÊ½ÏûÏ¢
+											// ä¸º4å‘å¼¹å‡ºå¼æ¶ˆæ¯
 											insertPopMsggse(p_pk, systemInfovo
 													.getSendContent());
 										}
@@ -577,39 +577,39 @@ public class SystemInfoService
 		}
 		if (popularity == 0)
 		{
-			// ÉùÍûÔİÊ±²»´¦Àí
-			// TODO-¸ù¾İÉùÍû·¢ËÍÏµÍ³ÏûÏ¢ÔİÊ±²»´¦Àí
+			// å£°æœ›æš‚æ—¶ä¸å¤„ç†
+			// TODO-æ ¹æ®å£°æœ›å‘é€ç³»ç»Ÿæ¶ˆæ¯æš‚æ—¶ä¸å¤„ç†
 		}
-		// int num = 0; //µ±·¢ËÍ¶à¸öÊ±µÄ¶¨Ê±Æ÷
-		// »ñµÃ×ÛºÏÀàĞÅÏ¢µÄ·¢ËÍÌõ¼ş
+		// int num = 0; //å½“å‘é€å¤šä¸ªæ—¶çš„å®šæ—¶å™¨
+		// è·å¾—ç»¼åˆç±»ä¿¡æ¯çš„å‘é€æ¡ä»¶
 		SysInfoDao sysInfoDao = new SysInfoDao();
 		List<SystemControlInfoVO> list = sysInfoDao
 				.getSystemInfoControlByNewPlayer();
-		// logger.info("×ÛºÏÀàĞÍµÄÌõÊı="+list.size());
+		// logger.info("ç»¼åˆç±»å‹çš„æ¡æ•°="+list.size());
 		if (list.size() != 0)
 		{
 			for (int i = 0; i < list.size(); i++)
 			{
 				SystemControlInfoVO systemInfovo = list.get(i);
 				String sqlPGrade = systemInfovo.getPlayerGrade();
-				// Èç¹ûµÈ¼¶Ïà·ûºÏ
+				// å¦‚æœç­‰çº§ç›¸ç¬¦åˆ
 				// logger.info("sqlPGrade="+sqlPGrade+" ,p_grade="+p_grade);
 				if (p_grade >= Integer.valueOf(sqlPGrade.split(",")[0])
 						&& p_grade <= Integer.valueOf(sqlPGrade.split(",")[1]))
 				{
-					// Èç¹ûÌõ¼ş³ÆÎ½ÒªÇó²»Îª0ÇÒ³ÆÎ½·ûºÏ
+					// å¦‚æœæ¡ä»¶ç§°è°“è¦æ±‚ä¸ä¸º0ä¸”ç§°è°“ç¬¦åˆ
 					// logger.info("getTitle="+systemInfovo.getTitle()+"
 					// ,title="+title);
 					
 					if (systemInfovo.getTitle().equals("0") || role_info.getTitleSet().isHaveByTitleStr(systemInfovo.getTitle())==true)
 					{
-						// Èç¹ûÈÎÎñid·ûºÏ
+						// å¦‚æœä»»åŠ¡idç¬¦åˆ
 						// logger.info("getTaskId="+systemInfovo.getTaskId()+"
 						// ,task_id="+task_id);
 						if (systemInfovo.getTaskId() == 0
 								|| task_id == systemInfovo.getTaskId())
 						{
-							// Îª4·¢µ¯³öÊ½ÏûÏ¢
+							// ä¸º4å‘å¼¹å‡ºå¼æ¶ˆæ¯
 							insertPopMsggse(p_pk, systemInfovo.getSendContent());
 						}
 					}
@@ -619,7 +619,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ·¢ËÍµ¯³öÊ½ÏûÏ¢
+	 * å‘é€å¼¹å‡ºå¼æ¶ˆæ¯
 	 * 
 	 * @param pPk
 	 * @param sendContent
@@ -636,7 +636,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ·¢ËÍ¶¨Ê±ÏµÍ³ÏûÏ¢
+	 * å‘é€å®šæ—¶ç³»ç»Ÿæ¶ˆæ¯
 	 */
 	public void sendTimeSystemInfo()
 	{
@@ -654,7 +654,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * »ñµÃÃ¿ÌìÊ±¼äµÄ¸ñÊ½»¯±íÊ¾
+	 * è·å¾—æ¯å¤©æ—¶é—´çš„æ ¼å¼åŒ–è¡¨ç¤º
 	 * 
 	 * @return
 	 */
@@ -670,7 +670,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ¸øÔÚ´ËbareaÏÂµÄËùÓĞÈË·¢ÏµÍ³ÏûÏ¢
+	 * ç»™åœ¨æ­¤bareaä¸‹çš„æ‰€æœ‰äººå‘ç³»ç»Ÿæ¶ˆæ¯
 	 * 
 	 * @param string
 	 * @param barea
@@ -685,7 +685,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ¸ù¾İpPkºÍÏµÍ³ÏûÏ¢µÄÒ»Ğ©¹Ø¼ü´ÊÀ´É¾³ı²»ĞèÒªµÄÏµÍ³ÏûÏ¢
+	 * æ ¹æ®pPkå’Œç³»ç»Ÿæ¶ˆæ¯çš„ä¸€äº›å…³é”®è¯æ¥åˆ é™¤ä¸éœ€è¦çš„ç³»ç»Ÿæ¶ˆæ¯
 	 * 
 	 * @param pPk
 	 * @param propName
@@ -698,7 +698,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ¸üĞÂÒ»Ğ©ÏµÍ³ÏûÏ¢µÄ·¢²¼Ê±¼ä
+	 * æ›´æ–°ä¸€äº›ç³»ç»Ÿæ¶ˆæ¯çš„å‘å¸ƒæ—¶é—´
 	 * 
 	 * @param effectObject
 	 * @param propName
@@ -711,7 +711,7 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ²éÑ¯ÊÇ·ñÓĞ ÌØ¶¨µÄ ÏµÍ³ÏûÏ¢
+	 * æŸ¥è¯¢æ˜¯å¦æœ‰ ç‰¹å®šçš„ ç³»ç»Ÿæ¶ˆæ¯
 	 * 
 	 * @param effectObject
 	 * @param propName
@@ -724,13 +724,13 @@ public class SystemInfoService
 	}
 
 	/**
-	 * ·¢ËÍ°ïÅÉÊ¤ÀûµÄÏµÍ³
+	 * å‘é€å¸®æ´¾èƒœåˆ©çš„ç³»ç»Ÿ
 	 * 
 	 * @param info
 	 */
 	public void tongSiegeSendInfo(String info)
 	{
-		// ÒªÇó·¢ËÍÊ®´Î
+		// è¦æ±‚å‘é€åæ¬¡
 		for (int i = 0; i < 10; i++)
 		{
 			this.insertSystemInfoBySystem(info, i);
@@ -738,11 +738,11 @@ public class SystemInfoService
 
 	}
 
-	// ¸øÍæ¼ÒµÄĞÂÊÖÒıµ¼ ÀàĞÍ10ÎªĞÂÊÖµÄµÈ¼¶Ìõ¼şµÄÒıµ¼ 8ÎªÈÎÎñµÄÒıµ¼
+	// ç»™ç©å®¶çš„æ–°æ‰‹å¼•å¯¼ ç±»å‹10ä¸ºæ–°æ‰‹çš„ç­‰çº§æ¡ä»¶çš„å¼•å¯¼ 8ä¸ºä»»åŠ¡çš„å¼•å¯¼
 	public void setNewPlayerGuideInfoMSG(RoleEntity roleinfo, String type,
 			String id)
 	{
-		// Èç¹ûÍæ¼ÒÊÇĞÂÊÖ Ìø³öµ¯³öÊ½ÏûÏ¢
+		// å¦‚æœç©å®¶æ˜¯æ–°æ‰‹ è·³å‡ºå¼¹å‡ºå¼æ¶ˆæ¯
 		if (roleinfo.getBasicInfo().getPlayer_state_by_new() == 11
 				|| roleinfo.getBasicInfo().getPlayer_state_by_new() == 1)
 		{
@@ -764,11 +764,11 @@ public class SystemInfoService
 				}
 			}
 		}
-		// Èç¹ûÍæ¼ÒÊÇÓÎ¿ÍÌø³öÈÃÍæ¼Ò×¢²áµÄÏûÏ¢
+		// å¦‚æœç©å®¶æ˜¯æ¸¸å®¢è·³å‡ºè®©ç©å®¶æ³¨å†Œçš„æ¶ˆæ¯
 		if (roleinfo.getBasicInfo().getPlayer_state_by_new() == 11
 				|| roleinfo.getBasicInfo().getPlayer_state_by_new() == 10)
 		{
-			// Íæ¼Ò´óÓÚ9¼¶ÁË ÎÒÃÇ¸øÍæ¼ÒÌß³öÓÎÏ·
+			// ç©å®¶å¤§äº9çº§äº† æˆ‘ä»¬ç»™ç©å®¶è¸¢å‡ºæ¸¸æˆ
 			if (roleinfo.getBasicInfo().getGrade() > 9)
 			{
 				if (type != null && id != null)
@@ -790,7 +790,7 @@ public class SystemInfoService
 				}
 			}
 			else
-			{// Íæ¼Ò²»µ½9¼¶ÁË ÎÒÃÇ¸øÍæ¼ÒÌáÊ¾ ×¢²áĞÅÏ¢
+			{// ç©å®¶ä¸åˆ°9çº§äº† æˆ‘ä»¬ç»™ç©å®¶æç¤º æ³¨å†Œä¿¡æ¯
 				if (type != null && id != null)
 				{
 					SysInfoDao sysInfoDao = new SysInfoDao();
@@ -811,7 +811,7 @@ public class SystemInfoService
 		}
 	}
 
-	// ĞÂÊÖµÄµ¯³öÊ½ÏûÏ¢
+	// æ–°æ‰‹çš„å¼¹å‡ºå¼æ¶ˆæ¯
 	private void intsertNewPlayerGuideInfo(int pPk, String sendContent, int id)
 	{
 		UMsgService uMsgService = new UMsgService();

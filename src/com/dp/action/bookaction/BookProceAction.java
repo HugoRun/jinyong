@@ -24,8 +24,8 @@ import com.ls.ben.cache.dynamic.manual.user.RoleCache;
 import com.ls.model.user.RoleEntity;
 import com.pub.Listener.OnlineCounterListener;
 public class BookProceAction extends DispatchAction{
-	 //½øÈëÊé³ÇÊ±µÄÊ±¼ä
-	 //´¦ÀíÊé³ÇÇëÇó ²éÑ¯Êé¼®Àà±ğ ²éÑ¯Êé¼®ĞÂĞÅÏ¢
+	 //è¿›å…¥ä¹¦åŸæ—¶çš„æ—¶é—´
+	 //å¤„ç†ä¹¦åŸè¯·æ±‚ æŸ¥è¯¢ä¹¦ç±ç±»åˆ« æŸ¥è¯¢ä¹¦ç±æ–°ä¿¡æ¯
 	  public ActionForward n1(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  HttpSession session=request.getSession();
@@ -49,7 +49,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("typelist");
 	  }
-	  //¸ù¾İĞ¡ËµÃû³Æ¹Ø¼ü×ÖËÑË÷³öÊé¼®
+	  //æ ¹æ®å°è¯´åç§°å…³é”®å­—æœç´¢å‡ºä¹¦ç±
 	  public ActionForward n2(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -63,7 +63,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("bookresult");
 	  }
-	  //¸ù¾İĞ¡ËµÀà±ğ²éÑ¯Ğ¡Ëµ
+	  //æ ¹æ®å°è¯´ç±»åˆ«æŸ¥è¯¢å°è¯´
 	  public ActionForward n3(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -92,7 +92,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("booklist");
 	  }
-	  //²éÑ¯Ä³ÀàĞ¡ËµµÄÅÅĞĞ°ñ
+	  //æŸ¥è¯¢æŸç±»å°è¯´çš„æ’è¡Œæ¦œ
 	  public ActionForward n4(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -122,7 +122,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("showphb");
 	  }
-	  //²éÑ¯Ğ¡ËµµÄ»ù±¾ĞÅÏ¢¼°ÕÂ½ÚÄÚÈİ
+	  //æŸ¥è¯¢å°è¯´çš„åŸºæœ¬ä¿¡æ¯åŠç« èŠ‚å†…å®¹
 	  public ActionForward n5(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -133,7 +133,7 @@ public class BookProceAction extends DispatchAction{
     		  try{
     			  bookpagebean.setZjlistpage(Integer.parseInt(request.getParameter("page")));
     		  }catch(NumberFormatException e){
-    			  request.setAttribute("mess","ÊäÈëµÄÒ³Âë±ØĞëÎªÕûÊı!");
+    			  request.setAttribute("mess","è¾“å…¥çš„é¡µç å¿…é¡»ä¸ºæ•´æ•°!");
     			  bookpagebean.setExists(1);
     			  return this.n5(mapping, form, request, response);
     		  }
@@ -160,7 +160,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("zjinfo");
 	  }
-	  //¸øÕÂ½Ú·ÖÒ³²¢ÏÔÊ¾¸øÍæ¼ÒÔÄ¶Á
+	  //ç»™ç« èŠ‚åˆ†é¡µå¹¶æ˜¾ç¤ºç»™ç©å®¶é˜…è¯»
 	  public ActionForward n17(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		  BookProce proce=new BookProce();
@@ -192,7 +192,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("readline");
     	}
-	  //ÔÄ¶ÁÊé¼®IDºÍÕÂ½ÚÊıÔÄ¶ÁÕÂ½ÚÄÚÈİ
+	  //é˜…è¯»ä¹¦ç±IDå’Œç« èŠ‚æ•°é˜…è¯»ç« èŠ‚å†…å®¹
 	  public ActionForward n7(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  HttpSession session=request.getSession();
 		  String pPk = (String) request.getSession().getAttribute("pPk");
@@ -237,20 +237,20 @@ public class BookProceAction extends DispatchAction{
 			  boolean bool=proce.checkHaveEnoughCopper(Integer.valueOf(pPk));
 			  if(bool==false){
 				  request.setAttribute("sign",1);
-				  request.setAttribute("copmess","ÄúÏÖÓĞµÄÒøÁ½Îª"+copper+"ÎÄ!");
-				  request.setAttribute("message","±§Ç¸,ÄúÏÖÓĞµÄÒøÁ½²»×ãÒÔÄú¿´ÏÂÒ»ÕÂĞ¡Ëµ!");
+				  request.setAttribute("copmess","æ‚¨ç°æœ‰çš„é“¶ä¸¤ä¸º"+copper+"æ–‡!");
+				  request.setAttribute("message","æŠ±æ­‰,æ‚¨ç°æœ‰çš„é“¶ä¸¤ä¸è¶³ä»¥æ‚¨çœ‹ä¸‹ä¸€ç« å°è¯´!");
 				  proce=null;
 				  return mapping.findForward("clewmess");
 			  }else{
 				  request.setAttribute("sign",2);
-				  request.setAttribute("copmess","ÄúÏÖÓĞµÄÒøÁ½Îª"+copper+"ÎÄ!");
-				  request.setAttribute("message","¿´Ò»ÕÂĞ¡Ëµ½«ÏûºÄÒøÁ½"+grade*2+"ÎÄ!");
+				  request.setAttribute("copmess","æ‚¨ç°æœ‰çš„é“¶ä¸¤ä¸º"+copper+"æ–‡!");
+				  request.setAttribute("message","çœ‹ä¸€ç« å°è¯´å°†æ¶ˆè€—é“¶ä¸¤"+grade*2+"æ–‡!");
 				  proce=null;
 				  return mapping.findForward("clewmess");
 			  }
 		  }
 	  }
-	  //¸ù¾İ¶ÁÕßµÄÑ¡ÔñÇé¿öÀ´¶ÔÍæ¼ÒµÄÒøÁ½×ö³öÊÊµ±µÄ´¦Àí
+	  //æ ¹æ®è¯»è€…çš„é€‰æ‹©æƒ…å†µæ¥å¯¹ç©å®¶çš„é“¶ä¸¤åšå‡ºé€‚å½“çš„å¤„ç†
     	public ActionForward n18(ActionMapping mapping, ActionForm form,
     			HttpServletRequest request, HttpServletResponse response) throws Exception{
     	   HttpSession session=request.getSession();
@@ -261,8 +261,8 @@ public class BookProceAction extends DispatchAction{
     	   Integer ppk= Integer.valueOf(pPk);
     	   BookProce proce=new BookProce();
     	   if(sign==2){
-    			proce.addReadRecord(ppk,bookpagebean.getN7bookid(),bookpagebean.getN7zjid());//Ìí¼ÓÔÄ¶Á¼ÇÂ¼
-        		proce.substrutTheRate(ppk);//¿Ûµô¶ÁÕßÏàÓ¦ÒøÁ½
+    			proce.addReadRecord(ppk,bookpagebean.getN7bookid(),bookpagebean.getN7zjid());//æ·»åŠ é˜…è¯»è®°å½•
+        		proce.substrutTheRate(ppk);//æ‰£æ‰è¯»è€…ç›¸åº”é“¶ä¸¤
     	   }else{
     		   if(bookpagebean.getTipsign()==1){
     			   bookpagebean.setN7zjid(bookpagebean.getN7zjid()-1);
@@ -294,7 +294,7 @@ public class BookProceAction extends DispatchAction{
   		   proce=null;
   		   return mapping.findForward("readline");
     	}
-	  //¸ù¾İĞ¡ËµÃû³Æ¹Ø¼ü×ÖºÍĞ¡ËµÀà±ğËÑË÷³öÊé¼®
+	  //æ ¹æ®å°è¯´åç§°å…³é”®å­—å’Œå°è¯´ç±»åˆ«æœç´¢å‡ºä¹¦ç±
 	  public ActionForward n8(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -309,7 +309,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("bookresult");
 	  }
-	  //µã»÷ÎÒµÄÊé¼ÜÏÔÊ¾ÎÒµÄÊé¼Ü 
+	  //ç‚¹å‡»æˆ‘çš„ä¹¦æ¶æ˜¾ç¤ºæˆ‘çš„ä¹¦æ¶ 
 	  public ActionForward n9(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  HttpSession session=request.getSession();
@@ -328,7 +328,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("mybookbox");
 	  }
-	 //°ÑĞ¡ËµÊÕ²Øµ½ÎÒµÄÊé¼Ü
+	 //æŠŠå°è¯´æ”¶è—åˆ°æˆ‘çš„ä¹¦æ¶
 	  public ActionForward n10(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  Integer bookid=Integer.parseInt(request.getParameter("bookid"));
@@ -339,12 +339,12 @@ public class BookProceAction extends DispatchAction{
 		  Integer ppkid= Integer.valueOf(pPk);
 		  boolean bool=proce.checkReplace(ppkid,bookid);
 		  if(bool==true){
-			  request.setAttribute("mess","²»ÄÜÊÕ²ØÖØ¸´Êé¼®!");
+			  request.setAttribute("mess","ä¸èƒ½æ”¶è—é‡å¤ä¹¦ç±!");
 			  return mapping.findForward("message");
 		  }
 		  Integer count=proce.getMyBookCount(ppkid);
 		  if(count>=5){
-			  request.setAttribute("mess","±§Ç¸,ÄúµÄÊé¼ÜÒÑÂú!");
+			  request.setAttribute("mess","æŠ±æ­‰,æ‚¨çš„ä¹¦æ¶å·²æ»¡!");
 			  return mapping.findForward("message");
 		  }
 		  BookMeVO bm=new BookMeVO();
@@ -356,7 +356,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return this.n9(mapping, form, request, response);
 	  }
-	//°ÑÊé¼ÜÀïÍ·µÄÊé¼®É¾³ıµô
+	//æŠŠä¹¦æ¶é‡Œå¤´çš„ä¹¦ç±åˆ é™¤æ‰
 	  public ActionForward n11(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  Integer myid=Integer.parseInt(request.getParameter("myid"));
@@ -364,7 +364,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return this.n9(mapping, form, request, response);
 	  }
-	  //¸ù¾İĞ¡ËµÃû¹Ø¼ü×ÖºÍ½ÇÉ«Ö÷¼ü²éÑ¯ÎÒµÄÊé¼ÜÀïµÄĞ¡Ëµ
+	  //æ ¹æ®å°è¯´åå…³é”®å­—å’Œè§’è‰²ä¸»é”®æŸ¥è¯¢æˆ‘çš„ä¹¦æ¶é‡Œçš„å°è¯´
 	  public ActionForward n12(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -381,7 +381,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("bookresult");
 	  }
-	  //¸ù¾İ×÷ÕßÃû²éÑ¯Í¼Êé
+	  //æ ¹æ®ä½œè€…åæŸ¥è¯¢å›¾ä¹¦
 	  public ActionForward n13(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -397,7 +397,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("bookresult");
 	  }
-	  //²éÑ¯ËùÓĞÊé¼®ÖĞÅÅĞĞ°ñ±íµ¥
+	  //æŸ¥è¯¢æ‰€æœ‰ä¹¦ç±ä¸­æ’è¡Œæ¦œè¡¨å•
 	  public ActionForward n14(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");
@@ -417,7 +417,7 @@ public class BookProceAction extends DispatchAction{
 		  proce=null;
 		  return mapping.findForward("allphb");
 	  }
-	  //½«µ±Ç°ÕÂ½ÚÉèÎªÊéÇ©¸ù¾İµ±Ç°Íæ¼Ò½ÇÉ«IDºÍÊé¼®id
+	  //å°†å½“å‰ç« èŠ‚è®¾ä¸ºä¹¦ç­¾æ ¹æ®å½“å‰ç©å®¶è§’è‰²IDå’Œä¹¦ç±id
 	  public ActionForward n15(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  BookProce proce=new BookProce();
 		  HttpSession session=request.getSession();
@@ -437,15 +437,15 @@ public class BookProceAction extends DispatchAction{
 		  Integer typeid=proce.getTypeIdByBookId(bookpagebean.getBookid());
 		  Integer count=proce.getMyBookCount(ppkid);
 		  if(count>=5){
-			  request.setAttribute("mess","±§Ç¸,ÄúµÄÊé¼ÜÒÑÂú!");
+			  request.setAttribute("mess","æŠ±æ­‰,æ‚¨çš„ä¹¦æ¶å·²æ»¡!");
 			  return mapping.findForward("message");
 		  }
 		  proce.addOrupdateMyBookMark(bookpagebean.getBookid(), ppkid,(bookpagebean.getZjid()+","+bookpagebean.getPage()), typeid);
 		  proce=null;
-		  request.setAttribute("mess","ÊéÇ©ÉèÖÃ³É¹¦!");
+		  request.setAttribute("mess","ä¹¦ç­¾è®¾ç½®æˆåŠŸ!");
 		  return mapping.findForward("message");
 	  }
-	  //ÍË³öÊé³Ç
+	  //é€€å‡ºä¹¦åŸ
 	  public ActionForward n16(ActionMapping mapping,ActionForm form,HttpServletRequest request,HttpServletResponse response){
 		  ExprienceProce proce=new ExprienceProce();
 		  Date enddate=new Date();
@@ -461,7 +461,7 @@ public class BookProceAction extends DispatchAction{
 		  Integer ppk= Integer.valueOf(pPk);
 		  if(submins<10){
 			  proce=null;
-			  request.setAttribute("mess","ÄúÔÚÊé³ÇËù´ôÊ±¼ä²»×ãÒÔÎªÄúÓ®È¡¾­Ñé!");
+			  request.setAttribute("mess","æ‚¨åœ¨ä¹¦åŸæ‰€å‘†æ—¶é—´ä¸è¶³ä»¥ä¸ºæ‚¨èµ¢å–ç»éªŒ!");
 			  return mapping.findForward("exmess");
 		  }else{
 			  Integer dengji=proce.getPpkDengJi(ppk);
@@ -474,14 +474,14 @@ public class BookProceAction extends DispatchAction{
 			  yuanex+=addex;
 			  proce.addPlayerExprience(ppk,yuanex);
 			  proce=null;
-			  request.setAttribute("mess","¹§Ï²Äú,ÒÑ¼Ó¾­ÑéÎª:"+addex+"!");
+			  request.setAttribute("mess","æ­å–œæ‚¨,å·²åŠ ç»éªŒä¸º:"+addex+"!");
 			  bookpagebean.setHour(0);bookpagebean.setMinutes(0);
 			  //OnlineCounterListener.hour=0;
 			  //OnlineCounterListener.minute=0;
 			  return mapping.findForward("exmess");
 		  }
 	  }
-	  //·µ»ØÉÏÒ»²ã
+	  //è¿”å›ä¸Šä¸€å±‚
 	public ActionForward n19(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		 BookPageVO bookpagebean=(BookPageVO)request.getSession().getAttribute("bookpagebean");

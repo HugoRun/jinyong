@@ -30,10 +30,10 @@ public class ScratchTicketAction extends DispatchAction
 				.getSession());
 		if (roleInfo.getBasicInfo().getWrapSpare() < 5)
 		{
-			request.setAttribute("display", "Äú°ü¹ü²»×ãÒÔ·ÅÏÂ¹Î³öµÄÎïÆ·,ÇëÕûÀí°ü¹ü,Ô¤Áô5¸öÒÔÉÏ¸ñ×Ó!");
+			request.setAttribute("display", "æ‚¨åŒ…è£¹ä¸è¶³ä»¥æ”¾ä¸‹åˆ®å‡ºçš„ç‰©å“,è¯·æ•´ç†åŒ…è£¹,é¢„ç•™5ä¸ªä»¥ä¸Šæ ¼å­!");
 			return display(mapping, form, request, response);
 		}
-		roleInfo.getStateInfo().setCurState(PlayerState.BOX);//Íæ¼ÒÔÚÉÌ³ÇÊ±×´Ì¬ÊÜ±£»¤
+		roleInfo.getStateInfo().setCurState(PlayerState.BOX);//ç©å®¶åœ¨å•†åŸæ—¶çŠ¶æ€å—ä¿æŠ¤
 		HashMap<Integer, String> map = (HashMap<Integer, String>) Constant.SCRTCHTICKETMAP
 				.get(roleInfo.getBasicInfo().getPPk());
 		String prop_id = (String) request.getAttribute("prop_id");
@@ -47,7 +47,7 @@ public class ScratchTicketAction extends DispatchAction
 		{
 			for (int i = 1; i < 11; i++)
 			{
-				new_map.put(i, "*Éñ*ÃØ*±¦*Îï*");
+				new_map.put(i, "*ç¥*ç§˜*å®*ç‰©*");
 			}
 			Constant.SCRTCHTICKETMAP.put(roleInfo.getBasicInfo().getPPk(),
 					new_map);
@@ -57,7 +57,7 @@ public class ScratchTicketAction extends DispatchAction
 			Constant.SCRTCHTICKETMAP.remove(roleInfo.getBasicInfo().getPPk());
 			for (int i = 1; i < 11; i++)
 			{
-				new_map.put(i, "*Éñ*ÃØ*±¦*Îï*");
+				new_map.put(i, "*ç¥*ç§˜*å®*ç‰©*");
 			}
 			Constant.SCRTCHTICKETMAP.put(roleInfo.getBasicInfo().getPPk(),
 					new_map);
@@ -83,7 +83,7 @@ public class ScratchTicketAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (map == null)
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM²¹·¢µÀ¾ß!");
+			request.setAttribute("display", "è¯·è”ç³»GMè¡¥å‘é“å…·!");
 			return display(mapping, form, request, response);
 		}
 		ScratchTicketService ss = new ScratchTicketService();
@@ -110,7 +110,7 @@ public class ScratchTicketAction extends DispatchAction
 				"scratchticket_id");
 		ScratchTicketService ss = new ScratchTicketService();
 		ss.getAllMap(roleInfo, map, Integer.parseInt(scratchticket_id));
-		String display = "Ï£ÍûÄúÏÂ´Î¹Î³ö¸üºÃµÄ½±Æ·!<br/>";
+		String display = "å¸Œæœ›æ‚¨ä¸‹æ¬¡åˆ®å‡ºæ›´å¥½çš„å¥–å“!<br/>";
 		request.setAttribute("hint", display);
 		request.setAttribute("outmap", map);
 		request.setAttribute("num", roleInfo.getBasicInfo()
@@ -128,7 +128,7 @@ public class ScratchTicketAction extends DispatchAction
 		return mapping.findForward("display");
 	}
 
-	// Ôö¼Ó´ÎÊıµÀ¾ß 4150
+	// å¢åŠ æ¬¡æ•°é“å…· 4150
 	public ActionForward addnum(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -138,17 +138,17 @@ public class ScratchTicketAction extends DispatchAction
 		String hint = "";
 		if (roleInfo.getBasicInfo().getAddscratchticketnum() < 1)
 		{
-			hint = "ÄúµÄÊ¹ÓÃ´ÎÊıÒÑ¾­´ïµ½×î´óÏŞÖÆ!<br/>";
+			hint = "æ‚¨çš„ä½¿ç”¨æ¬¡æ•°å·²ç»è¾¾åˆ°æœ€å¤§é™åˆ¶!<br/>";
 		}
 		else
 		{
-			// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
+			// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 			int tatol_prop_num = propGroupDao.getPropNumByByPropID(roleInfo
 					.getBasicInfo().getPPk(), 4150);
 			if (tatol_prop_num == 0)
 			{
-				hint = "ÄúµÄ°ü¹üÀïÃ»ÓĞ¡¾ÉñËã·û¡¿!<br/>";
+				hint = "æ‚¨çš„åŒ…è£¹é‡Œæ²¡æœ‰ã€ç¥ç®—ç¬¦ã€‘!<br/>";
 			}
 			else
 			{
@@ -164,7 +164,7 @@ public class ScratchTicketAction extends DispatchAction
 				.get(roleInfo.getBasicInfo().getPPk());
 		if (map == null)
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM²¹·¢µÀ¾ß!");
+			request.setAttribute("display", "è¯·è”ç³»GMè¡¥å‘é“å…·!");
 			return display(mapping, form, request, response);
 		}
 		request.setAttribute("hint", hint);

@@ -2,18 +2,17 @@ package com.ben.tiaozhan;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class TiaozhanConstant
-{
-	public static Map<Integer, Date> TIAOZHAN_TIME = new HashMap<Integer, Date>();//ÌôÕ½Ê±¼äµÄ¼¯ºÏ
-
-	public final static int OVER_TIME = 1;// ³¬Ê±Ê±¼ä£¬µ¥Î»Îª·ÖÖÓ
-	
-	public static Map<Integer,Integer> TIAOZHAN = new HashMap<Integer, Integer>();//ÌôÕ½Ë«·½µÄ¼¯ºÏ
-	
-	public final static int TIAOZHAN_SCENE = 11227;//ÌôÕ½µÄ³¡¾°
-	
-	public final static int TIAOZHAN_RETURN_SCENE = 210;//ÌôÕ½½áÊø·µ»ØµÄ³¡¾°
+public class TiaozhanConstant {
+    // è¶…æ—¶æ—¶é—´ï¼Œå•ä½ä¸ºåˆ†é’Ÿ
+    public final static int OVER_TIME = 1;
+    // æŒ‘æˆ˜çš„åœºæ™¯
+    public final static int TIAOZHAN_SCENE = 11227;
+    // æŒ‘æˆ˜ç»“æŸè¿”å›çš„åœºæ™¯
+    public final static int TIAOZHAN_RETURN_SCENE = 210;
+    // æŒ‘æˆ˜æ—¶é—´çš„é›†åˆ
+    public static Map<Integer, Date> TIAOZHAN_TIME = new HashMap<Integer, Date>();
+    // æŒ‘æˆ˜åŒæ–¹çš„é›†åˆ
+    public static Map<Integer, Integer> TIAOZHAN = new HashMap<Integer, Integer>();
 }

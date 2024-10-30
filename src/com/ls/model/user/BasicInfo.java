@@ -37,102 +37,102 @@ import com.pub.GameArgs;
 import com.web.service.popupmsg.PopUpMsgService;
 
 /**
- * ¹¦ÄÜ£ºÍæ¼Ò»ù±¾ĞÅÏ¢¶ÔÓ¦u_part_info±í
+ * åŠŸèƒ½ï¼šç©å®¶åŸºæœ¬ä¿¡æ¯å¯¹åº”u_part_infoè¡¨
  * @author ls Apr 3, 2009 1:51:51 PM
  */
 public class BasicInfo  extends UserBaseWithSave
 {
-	/** ***********************½ÇÉ«´´½¨ºó²»±äµÄÊôĞÔ************************* */
+	/** ***********************è§’è‰²åˆ›å»ºåä¸å˜çš„å±æ€§************************* */
 
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ´´½¨ÈËÔ±ĞÅÏ¢id */
+	/** åˆ›å»ºäººå‘˜ä¿¡æ¯id */
 	private int uPk;
-	/** ½ÇÉ«Ãû */
+	/** è§’è‰²å */
 	private String name;
-	/** ÏÔÊ¾½ÇÉ«Ãû,¿ÉÄÜ»áÒò×´Ì¬µÄ²»Í¬¶ø¼ÓÉÏ²»Í¬µÄ±ê¼Ç */
+	/** æ˜¾ç¤ºè§’è‰²å,å¯èƒ½ä¼šå› çŠ¶æ€çš„ä¸åŒè€ŒåŠ ä¸Šä¸åŒçš„æ ‡è®° */
 	private String displayName;
-	/** ĞÔ±ğ */
+	/** æ€§åˆ« */
 	private int sex;
-	/**ÖÖ×å£¬1Ñı2Î×**/
+	/**ç§æ—ï¼Œ1å¦–2å·«**/
 	private int pRace;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
-	/** ***********************½ÇÉ«´´½¨ºó±ä»°µÄÊôĞÔ************************* */
+	/** ***********************è§’è‰²åˆ›å»ºåå˜è¯çš„å±æ€§************************* */
 
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int grade;
-	/** µ±Ç°³¡¾°µÄid */
+	/** å½“å‰åœºæ™¯çš„id */
 	private String sceneId;
 	private SceneVO sceneInfo;
 
-	/** ÊÇ·ñÒÑ»é 1Ã»½á»é 2 ½á»é */
+	/** æ˜¯å¦å·²å©š 1æ²¡ç»“å©š 2 ç»“å©š */
 	private int married;
-	/** °éÂÂID */
+	/** ä¼´ä¾£ID */
 	private int partner;
 
-	/** °ï»á */
-	private int fId;//°ïÅÉid
-	private int fJob;//°ïÅÉÖ°Î»
-	private int fContribute;//°ïÅÉ¹±Ï×
-	private Date fJoinTime;//¼ÓÈë°ïÅÉµÄÊ±¼ä
-	private String fTitle;//°ïÅÉ³ÆºÅ
+	/** å¸®ä¼š */
+	private int fId;//å¸®æ´¾id
+	private int fJob;//å¸®æ´¾èŒä½
+	private int fContribute;//å¸®æ´¾è´¡çŒ®
+	private Date fJoinTime;//åŠ å…¥å¸®æ´¾çš„æ—¶é—´
+	private String fTitle;//å¸®æ´¾ç§°å·
 	
-	/** Í­Ç® */
+	/** é“œé’± */
 	private long copper;
-	/** °ü¹üÈİÁ¿ */
+	/** åŒ…è£¹å®¹é‡ */
 	private int wrapContent;
-	/** °ü¹üÊ£ÓàÊıÁ¿ */
-	private int wrapSpare=-1;//²»ĞèÒª´æ´¢µ½Êı¾İ¿â
+	/** åŒ…è£¹å‰©ä½™æ•°é‡ */
+	private int wrapSpare=-1;//ä¸éœ€è¦å­˜å‚¨åˆ°æ•°æ®åº“
 
-	/** ÉúÃüÖµ */
+	/** ç”Ÿå‘½å€¼ */
 	private int hp;
-	/** ·¨Á¦Öµ */
+	/** æ³•åŠ›å€¼ */
 	private int mp;
-	/** ÑªÁ¿±¾¼¶ÉÏÏŞ */
+	/** è¡€é‡æœ¬çº§ä¸Šé™ */
 	private int upHp;
-	/** mp±¾¼¶ÉÏÏŞ */
+	/** mpæœ¬çº§ä¸Šé™ */
 	private int upMp;
 
-	/** ½ÇÉ«µ±Ç°¾­Ñé */
+	/** è§’è‰²å½“å‰ç»éªŒ */
 	private String curExp;
 
-	/** pk×ï¶ñÖµ */
+	/** pkç½ªæ¶å€¼ */
 	private int evilValue;
-	/** ¿ª¹Ø1¹Ø2¿ª */
+	/** å¼€å…³1å…³2å¼€ */
 	private int pkSwitch;
 	/**
-	 * pk¸ü¸ÄÊ±¼ä
+	 * pkæ›´æ”¹æ—¶é—´
 	 */
 	private Date pkChangeTime;
 
-	/** ½ÇÉ«±¾Éí¹¥»÷ */
+	/** è§’è‰²æœ¬èº«æ”»å‡» */
 	private int basicGj;
-	/** ½ÇÉ«±¾Éí·ÀÓù */
+	/** è§’è‰²æœ¬èº«é˜²å¾¡ */
 	private int basicFy;
 
-	/** ±©»÷ÂÊ */
+	/** æš´å‡»ç‡ */
 	private double multipleDamage;
-	/** pkºóÈç¹ûËÀÍö£¬ÉíÉÏ´øÓĞ¾Å×ªµ¤Ê±,ËùÓ¦¸ÃÈ¥µÄµØ·½ */
+	/** pkåå¦‚æœæ­»äº¡ï¼Œèº«ä¸Šå¸¦æœ‰ä¹è½¬ä¸¹æ—¶,æ‰€åº”è¯¥å»çš„åœ°æ–¹ */
 	private int shouldScene;
 
-	/** ×÷ÎªÊ¦¸¸µÄµÈ¼¶ */
+	/** ä½œä¸ºå¸ˆçˆ¶çš„ç­‰çº§ */
 	private int te_level;
 
-	/** ÉÏÒ»´Î´«¹¦Ê±¼ä */
+	/** ä¸Šä¸€æ¬¡ä¼ åŠŸæ—¶é—´ */
 	private String chuangong;
 
-	// ×îºóÒ»´ÎÕĞÍ½»òÕß°İÊ¦µÄÊ±¼ä
+	// æœ€åä¸€æ¬¡æ‹›å¾’æˆ–è€…æ‹œå¸ˆçš„æ—¶é—´
 	private Date last_shoutu_time;
 
-	/** ÁÙÊ±Ãû³Æ */
+	/** ä¸´æ—¶åç§° */
 	private String temp_Name;
 
-	/** »î¶¯ÀŞÌ¨µÄ×é±ğ */
+	/** æ´»åŠ¨æ“‚å°çš„ç»„åˆ« */
 	private int zu = -1;
 
-	// Íæ¼ÒµÄĞÂÊÖ×´Ì¬
+	// ç©å®¶çš„æ–°æ‰‹çŠ¶æ€
 	private int player_state_by_new;
 
 	private int attack_npc = 0;
@@ -140,42 +140,42 @@ public class BasicInfo  extends UserBaseWithSave
 	private int scratchticketnum = 0;
 
 	private int addscratchticketnum = 0;
-	/**Ñ£ÔÎ»ØºÏ**/
+	/**çœ©æ™•å›åˆ**/
 	private int xuanyunhuihe = 0;
-	/**¹¥»÷»ØºÏ**/
+	/**æ”»å‡»å›åˆ**/
 	private int acthuihe = 0;
-	/**Ğ§¹û**/
+	/**æ•ˆæœ**/
 	private int actcontent = 0;
-	/**·ÀÓù»ØºÏ**/
+	/**é˜²å¾¡å›åˆ**/
 	private int defhuihe = 0;
-	/**Ğ§¹û**/
+	/**æ•ˆæœ**/
 	private int defcontent = 0;
-	/**ÃèÊö**/
+	/**æè¿°**/
 	private String menpaiskilldisplay = "";
-	/**pk±£»¤Ê±¼ä*/
+	/**pkä¿æŠ¤æ—¶é—´*/
 	private long pk_safe_time = 0;
-	/**PK±£»¤×´Ì¬**/
+	/**PKä¿æŠ¤çŠ¶æ€**/
 	private int pk_safe_state = 0;
-	//Íæ¼Ò½øÈëÌì¹ØÊ±¼ä
+	//ç©å®¶è¿›å…¥å¤©å…³æ—¶é—´
 	private long tianguan_time = 0;
-	//Íæ¼Ò½øÈëµ½Ìì¹ØµÄµÚ¼¸²ã
+	//ç©å®¶è¿›å…¥åˆ°å¤©å…³çš„ç¬¬å‡ å±‚
 	private String tianguan_npc = "";
-	//Íæ¼ÒÔÚ¸ÃÌì¹ØµÄÉ±µĞÊı
+	//ç©å®¶åœ¨è¯¥å¤©å…³çš„æ€æ•Œæ•°
 	private int tianguan_kill_num = 0;
-	//Íæ¼ÒÊÇ·ñÔÚÉ±NPC
+	//ç©å®¶æ˜¯å¦åœ¨æ€NPC
 	private int menpainpcstate = 0;
-	//Íæ¼ÒÉ±µÄNPC MENU ´æ·Å
+	//ç©å®¶æ€çš„NPC MENU å­˜æ”¾
 	private int menpainpcid = 0;
 	/**
 	 * 
-	 * ÊÇ·ñÖĞ¶¾
+	 * æ˜¯å¦ä¸­æ¯’
 	 */
 	private boolean isPoisoning=false; 
 	/**
-	 * ÖĞ¶¾ºóÔâÊÜµÄ¶îÍâÉËº¦
+	 * ä¸­æ¯’åé­å—çš„é¢å¤–ä¼¤å®³
 	 */
 	/**
-	 * ÖĞ¶¾»ØºÏÊı
+	 * ä¸­æ¯’å›åˆæ•°
 	 */
 	private int poisonCount=0;
 	private int addDamage;
@@ -207,33 +207,33 @@ public class BasicInfo  extends UserBaseWithSave
 		married = vo.getPHarness();
 		partner = vo.getPFere();
 		pRace=vo.getPRace();
-		/** ½ğÇ® */
+		/** é‡‘é’± */
 		copper = Long.parseLong(vo.getPCopper());
-		/** °ü¹ü×î´óÈİÁ¿ */
+		/** åŒ…è£¹æœ€å¤§å®¹é‡ */
 		wrapContent = vo.getPWrapContent();
 		
-		/** ÉúÃüÖµ */
+		/** ç”Ÿå‘½å€¼ */
 		hp = vo.getHP();
-		/** ·¨Á¦Öµ */
+		/** æ³•åŠ›å€¼ */
 		mp = vo.getPMp();
-		/** ÑªÁ¿±¾¼¶ÉÏÏŞ */
+		/** è¡€é‡æœ¬çº§ä¸Šé™ */
 		upHp = vo.getPUpHp();
-		/** mp±¾¼¶ÉÏÏŞ */
+		/** mpæœ¬çº§ä¸Šé™ */
 		upMp = vo.getPUpMp();
 	
-		/** ½ÇÉ«µ±Ç°¾­Ñé */
+		/** è§’è‰²å½“å‰ç»éªŒ */
 		curExp = vo.getPExperience();
 		
-		/** pk×ï¶ñÖµ */
+		/** pkç½ªæ¶å€¼ */
 		evilValue = vo.getPPkValue();
-		/** ¿ª¹Ø1¹Ø2¿ª */
+		/** å¼€å…³1å…³2å¼€ */
 		pkSwitch = vo.getPPks();
-		/** ÉÏ´Î¸ü¸Äpk¿ª¹ØµÄÊ±¼ä */
+		/** ä¸Šæ¬¡æ›´æ”¹pkå¼€å…³çš„æ—¶é—´ */
 		pkChangeTime = vo.getPkChangeTime();
 
-		/** ½ÇÉ«±¾Éí¹¥»÷ */
+		/** è§’è‰²æœ¬èº«æ”»å‡» */
 		basicGj = vo.getPGj();
-		/** ½ÇÉ«±¾Éí·ÀÓù */
+		/** è§’è‰²æœ¬èº«é˜²å¾¡ */
 		basicFy = vo.getPFy();
 		
 
@@ -243,7 +243,7 @@ public class BasicInfo  extends UserBaseWithSave
 		last_shoutu_time = vo.getLast_shoutu_time();
 		player_state_by_new = vo.getPlayer_state_by_new();
 		
-		//********°ïÅÉÏà¹ØĞÅÏ¢
+		//********å¸®æ´¾ç›¸å…³ä¿¡æ¯
 		this.fId = vo.getFId(); 
 		this.fJob = vo.getFJob(); 
 		this.fContribute = vo.getFContribute(); 
@@ -252,7 +252,7 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 
 	/**
-	 * Õ½¶·½áÊø£¬³õÊ¼»¯Õ½¶·Ïà¹Ø×´Ì¬±äÁ¿
+	 * æˆ˜æ–—ç»“æŸï¼Œåˆå§‹åŒ–æˆ˜æ–—ç›¸å…³çŠ¶æ€å˜é‡
 	 */
 	public void initFightState()
 	{
@@ -270,8 +270,8 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * Í¨¹ı°ïÅÉÖ°Î»ÅĞ¶ÏÊÇ·ñÓĞÈ¨ÏŞ²Ù×÷£ºÖ»ÓÃjobÖ°Îñ£¨°üÀ¨jobÖ°Îñ£©µÄÈ¨ÏŞ²Å¿ÉÖ´ĞĞ
-	 * @param job      ¿ÉÒÔÖ´ĞĞµÄÖ°Îñ
+	 * é€šè¿‡å¸®æ´¾èŒä½åˆ¤æ–­æ˜¯å¦æœ‰æƒé™æ“ä½œï¼šåªç”¨jobèŒåŠ¡ï¼ˆåŒ…æ‹¬jobèŒåŠ¡ï¼‰çš„æƒé™æ‰å¯æ‰§è¡Œ
+	 * @param job      å¯ä»¥æ‰§è¡Œçš„èŒåŠ¡
 	 * @return
 	 */
 	public boolean isOperateByFJob( int job )
@@ -284,42 +284,42 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ×ªÈÃ×å³¤
+	 * æ˜¯å¦å¯ä»¥è½¬è®©æ—é•¿
 	 */
 	public boolean getIsChangeZuzhang()
 	{
 		return this.isOperateByFJob(Faction.ZUZHANG);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ·¢²¼ÕĞÄ¼ĞÅÏ¢
+	 * æ˜¯å¦å¯ä»¥å‘å¸ƒæ‹›å‹Ÿä¿¡æ¯
 	 */
 	public boolean getIsRecruit()
 	{
 		return this.isOperateByFJob(Faction.HUFA);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ¸ü¸Ä³ÉÔ±³ÆºÅ
+	 * æ˜¯å¦å¯ä»¥æ›´æ”¹æˆå‘˜ç§°å·
 	 */
 	public boolean getIsChangeTitle()
 	{
 		return this.isOperateByFJob(Faction.ZHANGLAO);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ¸ü¸ÄÖ°Î»
+	 * æ˜¯å¦å¯ä»¥æ›´æ”¹èŒä½
 	 */
 	public boolean getIsChangeJob()
 	{
 		return this.isOperateByFJob(Faction.ZHANGLAO);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ¹ÜÀíÈë°ïÉêÇë
+	 * æ˜¯å¦å¯ä»¥ç®¡ç†å…¥å¸®ç”³è¯·
 	 */
 	public boolean getIsManageApply()
 	{
 		return this.isOperateByFJob(Faction.ZHANGLAO);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔÉ¾³ı³ÉÔ±
+	 * æ˜¯å¦å¯ä»¥åˆ é™¤æˆå‘˜
 	 * @return
 	 */
 	public boolean getIsDelMember()
@@ -327,7 +327,7 @@ public class BasicInfo  extends UserBaseWithSave
 		return this.isOperateByFJob(Faction.ZHANGLAO);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ·¢²¼¹«¸æ
+	 * æ˜¯å¦å¯ä»¥å‘å¸ƒå…¬å‘Š
 	 * @return
 	 */
 	public boolean getIsPublishNotice()
@@ -335,7 +335,7 @@ public class BasicInfo  extends UserBaseWithSave
 		return this.isOperateByFJob(Faction.HUFA);
 	}
 	/**
-	 * ÊÇ·ñ¿ÉÒÔÉ¾³ı¹«¸æ
+	 * æ˜¯å¦å¯ä»¥åˆ é™¤å…¬å‘Š
 	 * @return
 	 */
 	public boolean getIsDelNotice()
@@ -344,24 +344,24 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * PKÔö¼ÓÊÏ×å¹±Ï×ºÍÊÏ×åÉùÍû
-	 * @return		ÊÇ·ñÔö¼ÓÊÏ×å¹±Ï×
+	 * PKå¢åŠ æ°æ—è´¡çŒ®å’Œæ°æ—å£°æœ›
+	 * @return		æ˜¯å¦å¢åŠ æ°æ—è´¡çŒ®
 	 */
 	public boolean addFContributeAndFPrestige()
 	{
 		Faction faction = getFaction();
 		if( faction!=null )
 		{
-			//***********Èç¹û¼ÓÈë°ïÅÉ
-			addFContribute(1);//Ôö¼Ó¸öÈË°ïÅÉ¹±Ï×
-			faction.updatePrestige(1);//Ôö¼Ó°ïÅÉÉùÍû
+			//***********å¦‚æœåŠ å…¥å¸®æ´¾
+			addFContribute(1);//å¢åŠ ä¸ªäººå¸®æ´¾è´¡çŒ®
+			faction.updatePrestige(1);//å¢åŠ å¸®æ´¾å£°æœ›
 			return true;
 		}
 		return false;
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉÃû×Ö
+	 * å¾—åˆ°å¸®æ´¾åå­—
 	 */
 	public String getFactionName()
 	{
@@ -372,11 +372,11 @@ public class BasicInfo  extends UserBaseWithSave
 		}
 		else
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 	}
 	/**
-	 * µÃµ½°ïÅÉĞÅÏ¢
+	 * å¾—åˆ°å¸®æ´¾ä¿¡æ¯
 	 */
 	public Faction getFaction()
 	{
@@ -392,7 +392,7 @@ public class BasicInfo  extends UserBaseWithSave
 		return faction;
 	}
 	/**
-	 * µÃµ½°ïÅÉid
+	 * å¾—åˆ°å¸®æ´¾id
 	 */
 	public int getFId()
 	{
@@ -408,7 +408,7 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * Àë¿ª°ïÅÉ
+	 * ç¦»å¼€å¸®æ´¾
 	 */
 	public void leaveFaction()
 	{
@@ -423,7 +423,7 @@ public class BasicInfo  extends UserBaseWithSave
 		save();
 	}
 	/**
-	 * ¸ü¸Ä°ïÅÉ³ÆºÅ
+	 * æ›´æ”¹å¸®æ´¾ç§°å·
 	 * @param new_job
 	 */
 	public void changeFTitle(String new_title)
@@ -436,7 +436,7 @@ public class BasicInfo  extends UserBaseWithSave
 		save();
 	}
 	/**
-	 * ¸ü¸Ä°ïÅÉÖ°Î»
+	 * æ›´æ”¹å¸®æ´¾èŒä½
 	 * @param new_job
 	 */
 	public void changeFJob(int new_job)
@@ -450,7 +450,7 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ°ïÅÉÈÙÓş
+	 * åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„å¸®æ´¾è£èª‰
 	 * @return
 	 */
 	public boolean isEnoughFContribute( int need_attribute )
@@ -463,8 +463,8 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * ¸ü¸Ä°ïÅÉÈÙÓş
-	 * @param update_attribute    ÕıÊı±íÊ¾¼Ó£¬¸ºÊı±íÊ¾¼õ
+	 * æ›´æ”¹å¸®æ´¾è£èª‰
+	 * @param update_attribute    æ­£æ•°è¡¨ç¤ºåŠ ï¼Œè´Ÿæ•°è¡¨ç¤ºå‡
 	 */
 	public void addFContribute(int update_attribute)
 	{
@@ -481,7 +481,7 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * ¼ÓÈë°ïÅÉ
+	 * åŠ å…¥å¸®æ´¾
 	 */
 	public void jionFaction( int fId ,int job )
 	{
@@ -496,19 +496,19 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * ÅĞ¶Ï°ü¹ü¸öÊıÊÇ·ñ×ã¹»
+	 * åˆ¤æ–­åŒ…è£¹ä¸ªæ•°æ˜¯å¦è¶³å¤Ÿ
 	 */
 	public String isEnoughWrapSpace( int need_space)
 	{
 		if( need_space>this.getWrapSpare())
 		{
-			return "°ü¹ü¿Õ¼äĞèÒª"+need_space+"¸ñ×Ó,ÏÖÔÚÖ»ÓĞ"+this.wrapSpare+"¸ñ×Ó";
+			return "åŒ…è£¹ç©ºé—´éœ€è¦"+need_space+"æ ¼å­,ç°åœ¨åªæœ‰"+this.wrapSpare+"æ ¼å­";
 		}
 		return null;
 	}
 	
 	/**
-	 * µÃµ½½ğÇ®ÃèÊö
+	 * å¾—åˆ°é‡‘é’±æè¿°
 	 * @return
 	 */
 	public String getMoneyDes()
@@ -518,7 +518,7 @@ public class BasicInfo  extends UserBaseWithSave
 	
 	
 	/**
-	 * ÅĞ¶ÏÇ®ÊÇ·ñ×ã¹»
+	 * åˆ¤æ–­é’±æ˜¯å¦è¶³å¤Ÿ
 	 */
 	public boolean isEnoughMoney( int need_money )
 	{
@@ -530,41 +530,41 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 	
 	/**
-	 * ½ÇÉ«ÊôĞÔÖØÖÃ
+	 * è§’è‰²å±æ€§é‡ç½®
 	 */
 	public void reset()
 	{
 		UGrowDao u_grow_dao = new UGrowDao();
-		UGrowVO init_info = u_grow_dao.getByGradeAndRace(1, this.pRace);//µÃµ½½ÇÉ«³õÊ¼»¯ĞÅÏ¢
+		UGrowVO init_info = u_grow_dao.getByGradeAndRace(1, this.pRace);//å¾—åˆ°è§’è‰²åˆå§‹åŒ–ä¿¡æ¯
 		
 		
-		/** ÉúÃüÖµÉÏÏŞ */
+		/** ç”Ÿå‘½å€¼ä¸Šé™ */
 		int pUpHp = init_info.getGHP();
-		/** ÉúÃüÖµÉÏÏŞ */
+		/** ç”Ÿå‘½å€¼ä¸Šé™ */
 		int pUpMp = init_info.getGMP();
-		/** ¹¥»÷ */
+		/** æ”»å‡» */
 		int pGj = init_info.getGGj();
-		/** ·ÀÓù */
+		/** é˜²å¾¡ */
 		int pFy = init_info.getGFy();
-		/** ±©»÷ÂÊ */
+		/** æš´å‡»ç‡ */
 		double pDropMultiple = init_info.getGDropMultiple();
 		
-		/** ³õÊ¼½ğÇ® */
+		/** åˆå§‹é‡‘é’± */
 		int pCopper = 100;
-		/** ¿ª¹Ø1¹Ø2¿ª */
+		/** å¼€å…³1å…³2å¼€ */
 		int pPks = 1;
-		/** °ü¹üÈİÁ¿ */
+		/** åŒ…è£¹å®¹é‡ */
 		int pWrapContent = 50;
 
-		/** ³öÉúµØ×ø±ê */
+		/** å‡ºç”Ÿåœ°åæ ‡ */
 		String pMap = "1";
 		switch(this.pRace)
 		{
-			case 1:pMap="1";break;//Ñı
-			case 2:pMap="66";break;//Î×
+			case 1:pMap="1";break;//å¦–
+			case 2:pMap="66";break;//å·«
 		}
 		
-		this.setGrade(1);//³õÊ¼»¯³É1¼¶
+		this.setGrade(1);//åˆå§‹åŒ–æˆ1çº§
 		this.setCurExp("0");
 		this.setUpHp(pUpHp);
 		this.setUpMp(pUpMp);
@@ -575,13 +575,13 @@ public class BasicInfo  extends UserBaseWithSave
 		this.setWrapContent(pWrapContent);
 		this.setMultipleDamage(pDropMultiple);
 		
-		this.setPlayer_state_by_new(0);//·ÇĞÂÊÖ×´Ì¬
+		this.setPlayer_state_by_new(0);//éæ–°æ‰‹çŠ¶æ€
 		
-		//»¹Ô­µ±Ç°ÑªÁ¿ºÍ·¨Á¦
+		//è¿˜åŸå½“å‰è¡€é‡å’Œæ³•åŠ›
 		this.setHp(upHp);
 		this.setMp(upMp);
 		
-		this.wrapSpare = pWrapContent;//³õÊ¼»¯Ê£Óà°ü¹ü¸öÊı
+		this.wrapSpare = pWrapContent;//åˆå§‹åŒ–å‰©ä½™åŒ…è£¹ä¸ªæ•°
 		
 		this.updateSceneId(pMap);
 		
@@ -590,19 +590,19 @@ public class BasicInfo  extends UserBaseWithSave
 
 	
 	/**
-	 * Ôö¼ÓµÈ¼¶£¨Éı¼¶£©
+	 * å¢åŠ ç­‰çº§ï¼ˆå‡çº§ï¼‰
 	 */
 	public void addGrade()
 	{
 		this.setGrade(++grade);
 		UGrowDao growDao = new UGrowDao();
 		UGrowVO grow = growDao.getByGradeAndRace(grade, this.pRace);
-		// ¸üĞÂpartInfoVO(Éı¼¶)
+		// æ›´æ–°partInfoVO(å‡çº§)
 		LogService logService = new LogService();
-		logService.recordPlayerLog(this.getPPk(), this.getName(), upHp + "",grow.getGHP() + "", "HPÍæ¼ÒµÈ¼¶" + this.getGrade());
-		logService.recordPlayerLog(this.getPPk(), this.getName(), upMp + "",grow.getGMP() + "", "MPÍæ¼ÒµÈ¼¶" + this.getGrade());
-		logService.recordPlayerLog(this.getPPk(), this.getName(), basicGj + "",grow.getGGj() + "", "GJÍæ¼ÒµÈ¼¶" + this.getGrade());
-		logService.recordPlayerLog(this.getPPk(), this.getName(), basicFy + "",grow.getGFy() + "", "FYÍæ¼ÒµÈ¼¶" + this.getGrade());
+		logService.recordPlayerLog(this.getPPk(), this.getName(), upHp + "",grow.getGHP() + "", "HPç©å®¶ç­‰çº§" + this.getGrade());
+		logService.recordPlayerLog(this.getPPk(), this.getName(), upMp + "",grow.getGMP() + "", "MPç©å®¶ç­‰çº§" + this.getGrade());
+		logService.recordPlayerLog(this.getPPk(), this.getName(), basicGj + "",grow.getGGj() + "", "GJç©å®¶ç­‰çº§" + this.getGrade());
+		logService.recordPlayerLog(this.getPPk(), this.getName(), basicFy + "",grow.getGFy() + "", "FYç©å®¶ç­‰çº§" + this.getGrade());
 		this.setUpHp(upHp + grow.getGHP());
 		this.setUpMp(upMp + grow.getGMP());
 		this.setHp(upHp + grow.getGHP());
@@ -610,23 +610,23 @@ public class BasicInfo  extends UserBaseWithSave
 		this.setBasicGj(basicGj + grow.getGGj());
 		this.setBasicFy(basicFy + grow.getGFy());
 
-		this.setMultipleDamage(grow.getGDropMultiple());// ±©»÷ÂÊÃ»ÓĞ±»³Ö¾Ã»¯
+		this.setMultipleDamage(grow.getGDropMultiple());// æš´å‡»ç‡æ²¡æœ‰è¢«æŒä¹…åŒ–
 
-		// Íæ¼ÒµÈ¼¶´ïµ½30¼¶£¬pk¿ª¹ØÄ¬ÈÏĞŞ¸ÄÎª¿ªÆô
+		// ç©å®¶ç­‰çº§è¾¾åˆ°30çº§ï¼Œpkå¼€å…³é»˜è®¤ä¿®æ”¹ä¸ºå¼€å¯
 		if( this.grade == 30)
 		{
 			updatePkSwitchIn30Grade(2);
 		}
 
-		String content = "½ÇÉ«Ãû:" + name + ";Éı¼¶ºóµÈ¼¶Îª:" + grade + ";µ±Ç°¾­ÑéÎª:"+ curExp;
+		String content = "è§’è‰²å:" + name + ";å‡çº§åç­‰çº§ä¸º:" + grade + ";å½“å‰ç»éªŒä¸º:"+ curExp;
 		logService.recordUpgradeLog(pPk, name, content);
-		int digit = GameConfig.getGoUpGrade(grade, "go_up_grade");// ·µ»ØÍæ¼ÒµÈ¼¶ÊÇ·ñÔÚÏµÍ³Éè¶¨Ö®ÄÚµÄ
+		int digit = GameConfig.getGoUpGrade(grade, "go_up_grade");// è¿”å›ç©å®¶ç­‰çº§æ˜¯å¦åœ¨ç³»ç»Ÿè®¾å®šä¹‹å†…çš„
 		if (digit != -1)
 		{
 			new PopUpMsgService().addSysSpecialMsg(pPk, grade, digit,
 					PopUpMsgType.GO_UP_GRADE);
 		}
-		// ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
+		// ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
 		if (grade == Integer.parseInt(GameConfig
 				.getPropertiesObject("prop_grade_role_grade")))
 		{
@@ -637,7 +637,7 @@ public class BasicInfo  extends UserBaseWithSave
 		{
 			new ShituService().delShitu(pPk);
 		}
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(pPk, "p_level", 1);
 		new MyServiceImpl().levelUp(pPk);
 		RoleEntity role_info = this.getRoleEntity();
@@ -655,14 +655,14 @@ public class BasicInfo  extends UserBaseWithSave
 	{
 		if (sceneId.equals(new_scene_id))
 		{
-			return;// scene_idÃ»±ä²»×ö´¦Àí
+			return;// scene_idæ²¡å˜ä¸åšå¤„ç†
 		}
 
 		RoomService roomService = new RoomService();
 		SceneVO scene_info = roomService.getById(new_scene_id);
 		if (scene_info == null)
 		{
-			// Èç¹ûÃ»ÓĞ¸ÃµØÍ¼idµÄÊı¾İ
+			// å¦‚æœæ²¡æœ‰è¯¥åœ°å›¾idçš„æ•°æ®
 			return;
 		}
 
@@ -670,15 +670,15 @@ public class BasicInfo  extends UserBaseWithSave
 		UnchartedRoomService rs = new UnchartedRoomService();
 		RoleEntity role_info = this.getRoleEntity();
 		ms.updatePlayerMenpaiContestState(role_info,new_scene_id);
-		rs.updatePlayerUnchartedRoomState(role_info,new_scene_id);// ÃØ¾³
+		rs.updatePlayerUnchartedRoomState(role_info,new_scene_id);// ç§˜å¢ƒ
 		
-		// ³¡¾°¸Ä±äÊ±´¦Àí
+		// åœºæ™¯æ”¹å˜æ—¶å¤„ç†
 		this.setSceneId(new_scene_id);
 		this.setSceneInfo(scene_info);
 
 		AttacckCache attacckCache = new AttacckCache();
 
-		attacckCache.destoryAllNpc(this.pPk);// Çå³ıÖ÷¶¯¹Ö
+		attacckCache.destoryAllNpc(this.pPk);// æ¸…é™¤ä¸»åŠ¨æ€ª
 		
 		CompassService.pass(this);
 	}
@@ -695,8 +695,8 @@ public class BasicInfo  extends UserBaseWithSave
 
 
 	/**
-	 * Ôö¼Ó½ğÇ®µÄÖµ
-	 * @param addCopper 	Ôö¼ÓµÄÖµ(ÔöÁ¿)
+	 * å¢åŠ é‡‘é’±çš„å€¼
+	 * @param addCopper 	å¢åŠ çš„å€¼(å¢é‡)
 	 */
 	public void addCopper(long addCopper)
 	{
@@ -705,13 +705,13 @@ public class BasicInfo  extends UserBaseWithSave
 			return;
 		}
 		this.setCopper(copper + addCopper);
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(pPk, "money", addCopper);
 	}
 
 	/**
-	 * Ôö¼Ó°ü¹üÈİÁ¿
-	 * @param addWrapContent	Ôö¼ÓµÄÖµ(ÔöÁ¿)
+	 * å¢åŠ åŒ…è£¹å®¹é‡
+	 * @param addWrapContent	å¢åŠ çš„å€¼(å¢é‡)
 	 */
 	public void addWrapContent(int addWrapContent)
 	{
@@ -719,8 +719,8 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 
 	/**
-	 * ¸Ä±ä°ü¹üµÄ¿Õ¼ä
-	 * @param updateWrapSpare	Ôö¼Ó»ò¼õÉÙµÄ°ü¹üµÄÊ£Óà¿Õ¼äµÄÊıÁ¿(ÔöÁ¿)
+	 * æ”¹å˜åŒ…è£¹çš„ç©ºé—´
+	 * @param updateWrapSpare	å¢åŠ æˆ–å‡å°‘çš„åŒ…è£¹çš„å‰©ä½™ç©ºé—´çš„æ•°é‡(å¢é‡)
 	 */
 	public void addWrapSpare(int addWrapSpare)
 	{
@@ -748,19 +748,19 @@ public class BasicInfo  extends UserBaseWithSave
 
 
 	/**
-	 * Ôö¼Ó¾­Ñé
-	 * @param curExp	ÎªÔö¼ÓºóµÄ¾­Ñé£¬²»ÊÇÔö¼ÓµÄ·ù¶È
+	 * å¢åŠ ç»éªŒ
+	 * @param curExp	ä¸ºå¢åŠ åçš„ç»éªŒï¼Œä¸æ˜¯å¢åŠ çš„å¹…åº¦
 	 */
 	public void updateCurExp(String curExp)
 	{
 		this.setCurExp(curExp);
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updatea(pPk, "p_exp", curExp);
 	}
 
 	/**
-	 * Ôö¼Ó¾­Ñé
-	 * @param addExp	Îª¾­ÑéÔö¼Ó·ù¶È
+	 * å¢åŠ ç»éªŒ
+	 * @param addExp	ä¸ºç»éªŒå¢åŠ å¹…åº¦
 	 */
 	public void updateAddCurExp(long addExp)
 	{
@@ -769,13 +769,13 @@ public class BasicInfo  extends UserBaseWithSave
 		{
 			return;
 		}
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(pPk, "p_exp", addExp);
 		this.setCurExp(currentExp + "");
 	}
 
 	/**
-	 * ĞŞ¸ÄÊ¦¸¸µÈ¼¶
+	 * ä¿®æ”¹å¸ˆçˆ¶ç­‰çº§
 	 * @param evilValue
 	 */
 	public void updateTeLevel(int te_level)
@@ -787,7 +787,7 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 
 	/**
-	 * ĞŞ¸ÄÊ¦¸¸´«¹¦Ê±¼ä
+	 * ä¿®æ”¹å¸ˆçˆ¶ä¼ åŠŸæ—¶é—´
 	 * @param evilValue
 	 */
 	public void updateChuangong()
@@ -795,7 +795,7 @@ public class BasicInfo  extends UserBaseWithSave
 		this.setChuangong(com.ben.shitu.model.DateUtil.getDateSecondFormat());
 	}
 
-	// ¸üĞÂ×ï¶ñÖµ,evilValueÎª¸üĞÂºóµÄÖµ
+	// æ›´æ–°ç½ªæ¶å€¼,evilValueä¸ºæ›´æ–°åçš„å€¼
 	private void updateEvilValue(int evilValue)
 	{
 		if( evilValue<0 )
@@ -806,13 +806,13 @@ public class BasicInfo  extends UserBaseWithSave
 		{
 			return;
 		}
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updatea(pPk, "evil", evilValue);
 		this.setEvilValue(evilValue);
 	}
 
 	/**
-	 * °´Ê±¼äÏûºÄ×ï¶ñÖµ
+	 * æŒ‰æ—¶é—´æ¶ˆè€—ç½ªæ¶å€¼
 	 */
 	public void consumeEvilValueByTime()
 	{
@@ -820,9 +820,9 @@ public class BasicInfo  extends UserBaseWithSave
 			return ;
 		}
 		long cur_time = Calendar.getInstance().getTimeInMillis();
-		long pre_reduce_time = this.getRoleEntity().getStateInfo().getEvilValueConsumeTime();//Ç°Ò»´ÎÏûºÄ×ï¶ñÖµµÄÊ±¼ä
+		long pre_reduce_time = this.getRoleEntity().getStateInfo().getEvilValueConsumeTime();//å‰ä¸€æ¬¡æ¶ˆè€—ç½ªæ¶å€¼çš„æ—¶é—´
 	
-		int sub_evil_value = (int) ((cur_time-pre_reduce_time)/GameArgs.CONSUME_TIME_UNIT);//¿ÉÒÔÏû³ıµÄ×ï¶ñÖµ
+		int sub_evil_value = (int) ((cur_time-pre_reduce_time)/GameArgs.CONSUME_TIME_UNIT);//å¯ä»¥æ¶ˆé™¤çš„ç½ªæ¶å€¼
 		if( sub_evil_value>0 )
 		{
 			addEvilValue(-sub_evil_value);	
@@ -830,14 +830,14 @@ public class BasicInfo  extends UserBaseWithSave
 		}
 	}
 	
-	// ¸üĞÂ×ï¶ñÖµ,addEvilValueÎªÒª¸üĞÂºóµÄÖµ,addEvilValueÎª¸º´ú±í¼õÉÙ
+	// æ›´æ–°ç½ªæ¶å€¼,addEvilValueä¸ºè¦æ›´æ–°åçš„å€¼,addEvilValueä¸ºè´Ÿä»£è¡¨å‡å°‘
 	public void addEvilValue(int addEvilValue)
 	{
 		if( addEvilValue==0 )
 		{
 			return;
 		}
-		if( addEvilValue<0 )//¼õ×ï¶ñÖµ
+		if( addEvilValue<0 )//å‡ç½ªæ¶å€¼
 		{
 			BuffEffectService buffEffectService = new BuffEffectService();
 			BuffEffectDao buffEffectDao = new BuffEffectDao();
@@ -851,7 +851,7 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 
 	/**
-	 * ¿ØÖÆPK¿ª¹Ø
+	 * æ§åˆ¶PKå¼€å…³
 	 * @param pkSwitch
 	 */
 	public void updatePkSwitch(int pkSwitch)
@@ -861,13 +861,13 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 
 	/**
-	 * ¿ØÖÆPK¿ª¹Ø,½öÔÚ30¼¶ÓĞ³ÌĞò×Ô¶¯µ÷ÓÃ,ÆäËûµÄÈ«²¿²»ÄÜÓÃ, ´Ë·½·¨Ö»ĞŞ¸Äpk¿ª¹Ø,²»ĞŞ¸Äpk¿ª¹ØĞŞ¸ÄÊ±¼ä
+	 * æ§åˆ¶PKå¼€å…³,ä»…åœ¨30çº§æœ‰ç¨‹åºè‡ªåŠ¨è°ƒç”¨,å…¶ä»–çš„å…¨éƒ¨ä¸èƒ½ç”¨, æ­¤æ–¹æ³•åªä¿®æ”¹pkå¼€å…³,ä¸ä¿®æ”¹pkå¼€å…³ä¿®æ”¹æ—¶é—´
 	 * @param pkSwitch
 	 */
 	public void updatePkSwitchIn30Grade(int pkSwitch)
 	{
 		this.setPkSwitch(pkSwitch);
-		// ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
+		// ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
 		if (pkSwitch == Integer.parseInt(GameConfig
 				.getPropertiesObject("pk_switch_type")))
 		{
@@ -878,7 +878,7 @@ public class BasicInfo  extends UserBaseWithSave
 
 
 	/**
-	 * ĞÂÊÖ×´Ì¬
+	 * æ–°æ‰‹çŠ¶æ€
 	 * @param player_state_by_new
 	 */
 	public void updatePlayer_state_by_new(int player_state_by_new)
@@ -1004,14 +1004,14 @@ public class BasicInfo  extends UserBaseWithSave
 	public String getPreGradeExp()
 	{
 		UGrowDao u_grow_dao = new UGrowDao();
-		UGrowVO grow_info = u_grow_dao.getByGradeAndRace(this.grade, this.pRace);//µÃµ½½ÇÉ«³õÊ¼»¯ĞÅÏ¢
+		UGrowVO grow_info = u_grow_dao.getByGradeAndRace(this.grade, this.pRace);//å¾—åˆ°è§’è‰²åˆå§‹åŒ–ä¿¡æ¯
 		return grow_info.getGExp();
 	}
 
 	public String getNextGradeExp()
 	{
 		UGrowDao u_grow_dao = new UGrowDao();
-		UGrowVO grow_info = u_grow_dao.getByGradeAndRace(this.grade, this.pRace);//µÃµ½½ÇÉ«³õÊ¼»¯ĞÅÏ¢
+		UGrowVO grow_info = u_grow_dao.getByGradeAndRace(this.grade, this.pRace);//å¾—åˆ°è§’è‰²åˆå§‹åŒ–ä¿¡æ¯
 		return grow_info.getGNextExp();
 	}
 
@@ -1022,18 +1022,18 @@ public class BasicInfo  extends UserBaseWithSave
 	}
 
 	/**
-	 * µÃµ½pk¿ª¹ØÃèÊö
+	 * å¾—åˆ°pkå¼€å…³æè¿°
 	 * @return
 	 */
 	public String getPkSwitchDes()
 	{
 		if( pkSwitch==2 )
 		{
-			return "¿ÉPK";
+			return "å¯PK";
 		}
 		else
 		{
-			return "²»¿ÉPK";
+			return "ä¸å¯PK";
 		}
 	}
 	
@@ -1216,7 +1216,7 @@ public class BasicInfo  extends UserBaseWithSave
 				player_state_by_new + "");
 	}
 
-	// ÅĞ¶ÏÍæ¼ÒÔÚ²»ÔÚ×ªÖ°µÄÊ±ºò
+	// åˆ¤æ–­ç©å®¶åœ¨ä¸åœ¨è½¬èŒçš„æ—¶å€™
 	public boolean isPlayerHaveTransfer()
 	{
 		if (this.grade == 39 || this.grade == 59 || this.grade == 69
@@ -1230,7 +1230,7 @@ public class BasicInfo  extends UserBaseWithSave
 		}
 	}
 
-	// ÅĞ¶ÏÍæ¼ÒµÄ¾­ÑéÊÇ·ñÂú¼¶
+	// åˆ¤æ–­ç©å®¶çš„ç»éªŒæ˜¯å¦æ»¡çº§
 	public boolean isPlayerExpFull()
 	{
 		if (Long.parseLong(this.curExp) >= Long.parseLong(this.getNextGradeExp()))

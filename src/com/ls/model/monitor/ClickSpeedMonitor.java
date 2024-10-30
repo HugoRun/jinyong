@@ -9,7 +9,7 @@ import com.ben.dao.TimeShow;
 import com.ls.ben.dao.system.ExceptionUserLogDao;
 
 /**
- * ¹¦ÄÜ£ºÍæ¼Òµã»÷ËÙ¶È¼à¿ØÆ÷,¼à¿ØÍæ¼Òµã»÷ËÙ¶È
+ * åŠŸèƒ½ï¼šç©å®¶ç‚¹å‡»é€Ÿåº¦ç›‘æ§å™¨,ç›‘æ§ç©å®¶ç‚¹å‡»é€Ÿåº¦
  * @author ls
  * Apr 29, 2009
  * 9:51:22 AM
@@ -18,30 +18,30 @@ public class ClickSpeedMonitor
 {
 	protected Logger logger = Logger.getLogger("log.service");
 	
-	/**¼à¿ØÍæ¼ÒÁ¬Ğøµã»÷µÄ´ÎÊı*/
+	/**ç›‘æ§ç©å®¶è¿ç»­ç‚¹å‡»çš„æ¬¡æ•°*/
 	private int monitor_time = 3;
 	
-	/**Íæ¼ÒÁ¬Ğøµã»÷Ê±¼äÏŞÖÆ£¬µ¥Î»ºÁÃë£¬Ä¬ÈÏÖµ800ºÁÃë*/
+	/**ç©å®¶è¿ç»­ç‚¹å‡»æ—¶é—´é™åˆ¶ï¼Œå•ä½æ¯«ç§’ï¼Œé»˜è®¤å€¼800æ¯«ç§’*/
 	private int click_time_limit = 800;
 	
-	/**Á¬Ğøµã»÷Ê±¼äÒì³£Ê±¼äÉÏÏŞ£¬µ¥Î»ºÁÃë£¬Ä¬ÈÏÖµ800ºÁÃë£¬µ±Íæ¼Ò×îĞ¡Æ½¾ùµã»÷Ê±¼ä£¬Ğ¡ÓÚ¸ÃÖµÎªÒì³£Íæ¼Ò£¬¼ÇÂ¼*/
+	/**è¿ç»­ç‚¹å‡»æ—¶é—´å¼‚å¸¸æ—¶é—´ä¸Šé™ï¼Œå•ä½æ¯«ç§’ï¼Œé»˜è®¤å€¼800æ¯«ç§’ï¼Œå½“ç©å®¶æœ€å°å¹³å‡ç‚¹å‡»æ—¶é—´ï¼Œå°äºè¯¥å€¼ä¸ºå¼‚å¸¸ç©å®¶ï¼Œè®°å½•*/
 	private int exception_click_time = 2000;
 	
-	/**¼ÇÂ¼Íæ¼ÒÉÏ´ÎÒì³£µÄµã»÷ËÙ¶È*/
+	/**è®°å½•ç©å®¶ä¸Šæ¬¡å¼‚å¸¸çš„ç‚¹å‡»é€Ÿåº¦*/
 	private long pre_exception_click_time = 0;
-	/**Íæ¼ÒÁ¬ĞøµÚ¼¸´Îµã»÷ËÙ¶ÈÒì³£*/
+	/**ç©å®¶è¿ç»­ç¬¬å‡ æ¬¡ç‚¹å‡»é€Ÿåº¦å¼‚å¸¸*/
 	private int exception_index=0;
 	
-	/**Íæ¼Òµã»÷´ÎÊı*/
+	/**ç©å®¶ç‚¹å‡»æ¬¡æ•°*/
 	private int click_point = 0;
 	
-	/**Ç°Ò»´ÎµÄµã»÷Ê±¼ä*/
+	/**å‰ä¸€æ¬¡çš„ç‚¹å‡»æ—¶é—´*/
 	private long pre_click_time = 0;
 	
-	/**×îĞ¡Æ½¾ùµã»÷Ê±¼ä*/
+	/**æœ€å°å¹³å‡ç‚¹å‡»æ—¶é—´*/
 	//private long min_avg_click_speed = Integer.MAX_VALUE;
 	
-	/**Òì³£½ÇÉ«id*/
+	/**å¼‚å¸¸è§’è‰²id*/
 	//private String pPk = null;
 	
 	public ClickSpeedMonitor()
@@ -55,21 +55,21 @@ public class ClickSpeedMonitor
 	}
 	
 	/**
-	 * ÉèÖÃÍæ¼Ò±¾´ÎµÄÇëÇóÊ±¼ä
+	 * è®¾ç½®ç©å®¶æœ¬æ¬¡çš„è¯·æ±‚æ—¶é—´
 	 */
 	private void setCurTime(long cur_time)
 	{
 		if( pre_click_time!=0 )
 		{
-			long time_interval = cur_time - pre_click_time;/**ÉÏÒ»´ÎÓë±¾´ÎµÄÊ±¼ä¼ä¸ô*/
+			long time_interval = cur_time - pre_click_time;/**ä¸Šä¸€æ¬¡ä¸æœ¬æ¬¡çš„æ—¶é—´é—´éš”*/
 			
-			if( time_interval < exception_click_time )//µã»÷ËÙ¶ÈÒì³£Ôò¼ÇÂ¼
+			if( time_interval < exception_click_time )//ç‚¹å‡»é€Ÿåº¦å¼‚å¸¸åˆ™è®°å½•
 			{
 				pre_exception_click_time=time_interval;
 				exception_index++;
-				logger.info("µÚ"+exception_index+"´Îµã»÷ËÙ¶ÈÒì³£,Òì³£µã»÷Ê±¼ä£º"+pre_exception_click_time+"ºÁÃë");
+				logger.info("ç¬¬"+exception_index+"æ¬¡ç‚¹å‡»é€Ÿåº¦å¼‚å¸¸,å¼‚å¸¸ç‚¹å‡»æ—¶é—´ï¼š"+pre_exception_click_time+"æ¯«ç§’");
 			}
-			else//µã»÷ËÙ¶ÈÕı³£Ê±³õÊ¼»¯²ÎÊı
+			else//ç‚¹å‡»é€Ÿåº¦æ­£å¸¸æ—¶åˆå§‹åŒ–å‚æ•°
 			{
 				exception_index = 0;
 			}
@@ -79,7 +79,7 @@ public class ClickSpeedMonitor
 	}
 	
 	/**
-	 * ÉèÖÃ×îĞ¡Æ½¾ùËÙ¶È
+	 * è®¾ç½®æœ€å°å¹³å‡é€Ÿåº¦
 	 * @return
 	 *//*
 	private void setMinAvgClickSpeed()
@@ -101,8 +101,8 @@ public class ClickSpeedMonitor
 	
 	
 	/**
-	 * ÅĞ¶ÏÍæ¼Òµã»÷ËÙ¶ÈÊÇ·ñ¹ı¿ì£¬¸ù¾İÍæ¼ÒÁ¬Ğøµã»÷Ê±¼äÏŞÖÆ£¬ÅĞ¶Ï±¾´Îµã»÷ÊÇ·ñÓĞĞ§
-	 * @return    true±íÊ¾¹ı¿ì
+	 * åˆ¤æ–­ç©å®¶ç‚¹å‡»é€Ÿåº¦æ˜¯å¦è¿‡å¿«ï¼Œæ ¹æ®ç©å®¶è¿ç»­ç‚¹å‡»æ—¶é—´é™åˆ¶ï¼Œåˆ¤æ–­æœ¬æ¬¡ç‚¹å‡»æ˜¯å¦æœ‰æ•ˆ
+	 * @return    trueè¡¨ç¤ºè¿‡å¿«
 	 */
 	public boolean isQuickClickSpeed(long cur_time)
 	{
@@ -115,13 +115,13 @@ public class ClickSpeedMonitor
 			result = false;
 		}
 		
-		logger.info("µ±Ç°Ê±¼ä¼ä¸ô£º"+cur_time_space+"ºÁÃë");
+		logger.info("å½“å‰æ—¶é—´é—´éš”ï¼š"+cur_time_space+"æ¯«ç§’");
 		
 		return result;
 	}
 	
 	/**
-	 * ³õÊ¼»¯¼à¿Ø²ÎÊı
+	 * åˆå§‹åŒ–ç›‘æ§å‚æ•°
 	 *//*
 	private void initMonitorParas()
 	{
@@ -129,7 +129,7 @@ public class ClickSpeedMonitor
 	}*/
 	
 	/**
-	 * ¼à¿Øµã»÷ËÙ¶È£¬µ±Íæ¼Ò×îĞ¡Æ½¾ùµã»÷Ê±¼ä£¬Ğ¡ÓÚ¸ÃÖµÎªÒì³£Íæ¼Ò£¬Ôò¼ÇÂ¼
+	 * ç›‘æ§ç‚¹å‡»é€Ÿåº¦ï¼Œå½“ç©å®¶æœ€å°å¹³å‡ç‚¹å‡»æ—¶é—´ï¼Œå°äºè¯¥å€¼ä¸ºå¼‚å¸¸ç©å®¶ï¼Œåˆ™è®°å½•
 	 * @param session
 	 */
 	public String monitor(String uPk,String pPk,String cur_IP,long cur_time )
@@ -143,18 +143,18 @@ public class ClickSpeedMonitor
 		setCurTime(cur_time);
 		
 		
-		if( exception_index>=monitor_time )//Èç¹ûÍæ¼Òµã»÷ËÙ¶ÈÒì³£,Ôò¼ÇÂ¼
+		if( exception_index>=monitor_time )//å¦‚æœç©å®¶ç‚¹å‡»é€Ÿåº¦å¼‚å¸¸,åˆ™è®°å½•
 		{
 			recordExceptionLog(uPk,pPk, cur_IP);
-			hint = "ÄúµÄµã»÷ËÙËÙ¹ı¿ìÈÃÄúÍË³öÓÎÏ·À²";
-			exception_index = 0;//³õÊ¼»¯¼à¿Ø²ÎÊı
+			hint = "æ‚¨çš„ç‚¹å‡»é€Ÿé€Ÿè¿‡å¿«è®©æ‚¨é€€å‡ºæ¸¸æˆå•¦";
+			exception_index = 0;//åˆå§‹åŒ–ç›‘æ§å‚æ•°
 		}
 		
 		return hint;
 	}
 	
 	/**
-	 * ¼ÇÂ¼Òì³£ÈÕÖ¾
+	 * è®°å½•å¼‚å¸¸æ—¥å¿—
 	 */
 	private void recordExceptionLog(String uPk,String pPk,String exception_ip)
 	{

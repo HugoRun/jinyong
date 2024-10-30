@@ -10,16 +10,16 @@ import com.ls.ben.vo.info.pet.PetSkillControlVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:
+ * åŠŸèƒ½:
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 9:52:22 AM
  */
 public class PetSkillControlDao extends DaoBase
 {
 	/**
-	 * Í¨¹ı³èÎïidºÍ³èÎï¼¼ÄÜidµÄµ½³èÎï¼¼ÄÜ³öÕĞ¼¸ÂÊ
+	 * é€šè¿‡å® ç‰©idå’Œå® ç‰©æŠ€èƒ½idçš„åˆ°å® ç‰©æŠ€èƒ½å‡ºæ‹›å‡ ç‡
 	 * 
 	 * @param pet_id
 	 * @param pet_skill_group
@@ -28,7 +28,7 @@ public class PetSkillControlDao extends DaoBase
 	public PetSkillControlVO getByPetAndSkillGroup(int pet_id, int pet_skill_group)
 	{
 		PetSkillControlVO petControl = null;
-		String sql = "select * from pet_skill_control where pet_id=" + pet_id
+		String sql = "SELECT * FROM pet_skill_control where pet_id=" + pet_id
 				+ " and pet_skill_group=" + pet_skill_group + " limit 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

@@ -23,7 +23,7 @@ if(message!=null&&!"".equals(message.trim())){
 for(FriendVO fv : list){
 %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/brother.do") %>"> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/brother.do") %>">
 	<postfield name="fd_pk" value="<%=fv.getFdPk()%>" />
 	<postfield name="fdName" value="<%=fv.getFdName() %>" />
 	<postfield name="fdE" value="<%=fv.getExpShare() %>" />

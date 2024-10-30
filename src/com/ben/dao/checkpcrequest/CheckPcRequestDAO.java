@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ben.vo.checkpcrequest.CheckPcRequestVO;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 
 /**
- * @author ºîºÆ¾ü ÆÁ±ÎPCµçÄÔÓÃ»§·ÃÎÊ
+ * @author ä¾¯æµ©å†› å±è”½PCç”µè„‘ç”¨æˆ·è®¿é—®
  * 
  */
 public class CheckPcRequestDAO
 {
-	Jygamedb con;
+	JyGameDB con;
 
 	/**
-	 * ²éÑ¯¿àÀï±ßÊ±ºòÓĞÏà¹Ø°×Ãûµ¥IP
+	 * æŸ¥è¯¢è‹¦é‡Œè¾¹æ—¶å€™æœ‰ç›¸å…³ç™½åå•IP
 	 * 
 	 * @return
 	 */
@@ -27,8 +27,8 @@ public class CheckPcRequestDAO
 	{
 		try
 		{
-			con = new Jygamedb();
-			String sql = "select * from ip_whitelist";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM ip_whitelist";
 			ResultSet rs = con.query(sql);
 			List list = new ArrayList();
 			while (rs.next())
@@ -53,7 +53,7 @@ public class CheckPcRequestDAO
 	}
 
 	/**
-	 * ºÚÃûµ¥
+	 * é»‘åå•
 	 * @param ip
 	 * @return
 	 */
@@ -61,8 +61,8 @@ public class CheckPcRequestDAO
 	{
 		try
 		{
-			con = new Jygamedb();
-			String sql = "select * from ip_blacklist where ip_list='" + ip + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM ip_blacklist where ip_list='" + ip + "'";
 			//System.out.println("**************  " + sql);
 			ResultSet rs = con.query(sql);
 			if (rs.next())

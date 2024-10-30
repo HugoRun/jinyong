@@ -10,7 +10,7 @@ public class ExprienceProce
 {
 	private DBConnection dbconn;
 	/**
-	 * ÍË³öÊé³Ç¼ÆËã¾­ÑéÖµ
+	 * é€€å‡ºä¹¦åŸè®¡ç®—ç»éªŒå€¼
 	 * */
 	public void addPlayerExprience(Integer ppk,Integer allex){
 		String sql="update u_part_info set p_benji_experience='"+allex.toString()+"' where p_pk="+ppk;
@@ -27,7 +27,7 @@ public class ExprienceProce
 		}
 	}
 	/**
-	 * ¸ù¾İ½ÇÉ«ID»ñÈ¡¸Ã½ÇÉ«µÈ¼¶¾­ÑéÖµ
+	 * æ ¹æ®è§’è‰²IDè·å–è¯¥è§’è‰²ç­‰çº§ç»éªŒå€¼
 	 * */
 	public Integer getPpkExprience(Integer ppk){
 		String sql="select p_benji_experience from u_part_info where p_pk="+ppk;
@@ -53,7 +53,7 @@ public class ExprienceProce
 		return null;
 	}
 	/**
-	 * »ñÈ¡Íæ¼ÒµÈ¼¶
+	 * è·å–ç©å®¶ç­‰çº§
 	 * */
 	public Integer getPpkDengJi(Integer ppk){
 		String sql="select p_grade from u_part_info where p_pk="+ppk;

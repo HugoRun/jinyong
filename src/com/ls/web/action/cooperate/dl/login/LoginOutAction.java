@@ -38,7 +38,7 @@ public class LoginOutAction extends Action
 		
 		if( p_pk==null || u_pk==null  )
 		{
-			logger.info("sessionÖÐÒÑÎÞÓÐÐ§µÄpPkºÍuPk");
+			logger.info("sessionä¸­å·²æ— æœ‰æ•ˆçš„pPkå’ŒuPk");
 			return null;
 		}
 
@@ -57,9 +57,9 @@ public class LoginOutAction extends Action
 		String timestamp=new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
 		
 		String u="logout-17-1-1.gmcs?username="+userName+"&timestamp="+timestamp+"&encrypt-type=0&merchant-key=xWx86231";
-        logger.info("×Ö·û´®:"+u);
+        logger.info("å­—ç¬¦ä¸²:"+u);
 		String ver=MD5Util.md5Hex(u);
-		logger.info("¼ÓÃÜ×Ö·û´®:"+ver);
+		logger.info("åŠ å¯†å­—ç¬¦ä¸²:"+ver);
         String urls="http://jy1.downjoy.com/plaf/wml/logout-17-1-1.gmcs?username="+userName+"&encrypt-type=0&verify-string="+ver+"&timestamp="+timestamp;
 		
         try

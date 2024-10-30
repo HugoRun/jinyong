@@ -12,7 +12,7 @@ import com.ls.pub.bean.QueryPage;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ£º°Ù±¦ÄÒ(u_mall_store)Íæ¼ÒÉÌ³ÇÉÌÆ·²Ö¿â
+ * åŠŸèƒ½ï¼šç™¾å®å›Š(u_mall_store)ç©å®¶å•†åŸå•†å“ä»“åº“
  * @author ls
  * May 12, 2009
  * 4:38:54 PM
@@ -20,7 +20,7 @@ import com.ls.pub.db.DBConnection;
 public class UMallStoreDao extends DaoBase
 {
 	/**
-	 * É¾³ı°Ù±¦ÄÒÉÌÆ·
+	 * åˆ é™¤ç™¾å®å›Šå•†å“
 	 */
 	public void delete(int u_pk,int prop_id )
 	{
@@ -41,11 +41,11 @@ public class UMallStoreDao extends DaoBase
 		}
 	}
 	/**
-	 * ²åÈë°Ù±¦ÄÒÉÌÆ·
+	 * æ’å…¥ç™¾å®å›Šå•†å“
 	 */
 	public void insert(int u_pk,int prop_id,String prop_name,int prop_num )
 	{
-		String sql = "insert into u_mall_store values (null,"+u_pk+","+prop_id+",'"+prop_name+"',"+prop_num+",now())";
+		String sql = "INSERT INTO u_mall_store values (null,"+u_pk+","+prop_id+",'"+prop_name+"',"+prop_num+",now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -63,7 +63,7 @@ public class UMallStoreDao extends DaoBase
 	}
 	
 	/**
-	 * Ôö¼Ó°Ù±¦ÄÒÉÌÆ·ÊıÁ¿
+	 * å¢åŠ ç™¾å®å›Šå•†å“æ•°é‡
 	 */
 	public void updatePropNum(int u_pk,int prop_id,int prop_num )
 	{
@@ -85,12 +85,12 @@ public class UMallStoreDao extends DaoBase
 	}
 	
 	/**
-	 * ÅĞ¶Ï°Ù±¦ÄÒÄÚÊÇ·ñÒÑÓĞ¸ÃÎïÆ·
+	 * åˆ¤æ–­ç™¾å®å›Šå†…æ˜¯å¦å·²æœ‰è¯¥ç‰©å“
 	 */
 	public boolean isHave(int u_pk,int prop_id)
 	{
 		boolean result = false;
-		String sql = "select id from u_mall_store where u_pk="+u_pk+" and prop_id="+prop_id;
+		String sql = "SELECT id from u_mall_store where u_pk="+u_pk+" and prop_id="+prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -114,7 +114,7 @@ public class UMallStoreDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½°Ù±¦ÄÒÁĞ±í
+	 * å¾—åˆ°ç™¾å®å›Šåˆ—è¡¨
 	 */
 	public QueryPage getLogList( int u_pk ,int page_no )
 	{
@@ -125,7 +125,7 @@ public class UMallStoreDao extends DaoBase
 		
 		int count=0;
 		
-		String count_sql = "select count(*) from u_mall_store where u_pk="+u_pk;
+		String count_sql = "SELECT count(*) from u_mall_store where u_pk="+u_pk;
 		String page_sql = null;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -141,7 +141,7 @@ public class UMallStoreDao extends DaoBase
 			
 			queryPage = new QueryPage(page_no, count);
 			
-			page_sql = "select * from u_mall_store where u_pk="+u_pk+" order by last_buy_time desc limit "
+			page_sql = "SELECT * FROM u_mall_store where u_pk="+u_pk+" order by last_buy_time desc limit "
 			+ queryPage.getStartOfPage() + ","
 			+ queryPage.getPageSize();
 			
@@ -174,13 +174,13 @@ public class UMallStoreDao extends DaoBase
 	
 	
 	/**
-	 * µÃµ½°Ù±¦ÄÒÁĞ±í
+	 * å¾—åˆ°ç™¾å®å›Šåˆ—è¡¨
 	 */
 	public UMallStoreVO getMallStorePropInfo( int u_pk ,int prop_id )
 	{
 		UMallStoreVO uMallStore = null;
 		
-		String sql = "select commodity_num,prop_name from u_mall_store where u_pk="+u_pk+" and prop_id="+prop_id;
+		String sql = "SELECT commodity_num,prop_name from u_mall_store where u_pk="+u_pk+" and prop_id="+prop_id;
 		logger.debug(sql);
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

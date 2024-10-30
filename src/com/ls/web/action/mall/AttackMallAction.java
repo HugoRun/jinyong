@@ -31,7 +31,7 @@ public class AttackMallAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.action");
 
 
-	// ²é¿´»¹»êµ¤
+	// æŸ¥çœ‹è¿˜é­‚ä¸¹
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 			
@@ -40,7 +40,7 @@ public class AttackMallAction extends DispatchAction {
 		
 		int p_pk = role_info.getBasicInfo().getPPk();
 		
-		String c_id = (String)request.getAttribute("c_id");//ÉÌÆ·id
+		String c_id = (String)request.getAttribute("c_id");//å•†å“id
 		if (c_id == null || c_id.equals("")) {
 			c_id = "20";
 		}
@@ -59,7 +59,7 @@ public class AttackMallAction extends DispatchAction {
 	}
 	
 	
-	// ¹ºÂò»¹»êµ¤
+	// è´­ä¹°è¿˜é­‚ä¸¹
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -79,7 +79,7 @@ public class AttackMallAction extends DispatchAction {
 		}
 		else
 		{
-			error_hint  = mallService.buy(role_info, commodity, sell_num.trim(),2);//¹ºÂò
+			error_hint  = mallService.buy(role_info, commodity, sell_num.trim(),2);//è´­ä¹°
 		}
 		if( error_hint!=null )
 		{
@@ -92,23 +92,23 @@ public class AttackMallAction extends DispatchAction {
 			}
 			catch (Exception e)
 			{
-				System.out.println("Íù³äÖµ½çÃæÌø×ª³ö´í!");
+				System.out.println("å¾€å……å€¼ç•Œé¢è·³è½¬å‡ºé”™!");
 			}
 			return null;
 		}
 		
 		
-		int user_discount = 100;//vipÕÛ¿Û		
+		int user_discount = 100;//vipæŠ˜æ‰£		
 		Vip role_vip = role_info.getTitleSet().getVIP();
 		if( role_vip!=null )
 		{
 			user_discount = role_vip.getDiscount();
 		}
-		int need_num = commodity.getCurPrice(user_discount)*Integer.parseInt(sell_num);//ĞèÒªÏûºÄµÄÊıÁ¿
+		int need_num = commodity.getCurPrice(user_discount)*Integer.parseInt(sell_num);//éœ€è¦æ¶ˆè€—çš„æ•°é‡
 		
 		
 		String buy_hint = null;
-		buy_hint = "ÌáÊ¾:Äú¹ºÂòÁË"+commodity.getPropName()+"¡Á"+sell_num+",Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+need_num+"!";
+		buy_hint = "æç¤º:æ‚¨è´­ä¹°äº†"+commodity.getPropName()+"Ã—"+sell_num+",æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+need_num+"!";
 		request.setAttribute("commodity", commodity);
 		
 		request.setAttribute("hint", buy_hint);
@@ -119,7 +119,7 @@ public class AttackMallAction extends DispatchAction {
 	}
 	
 	
-	//   ÔÚÉÌ³ÇÂòÍê»¹»êµ¤ºóµÄ´¦Àí
+	//   åœ¨å•†åŸä¹°å®Œè¿˜é­‚ä¸¹åçš„å¤„ç†
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -141,7 +141,7 @@ public class AttackMallAction extends DispatchAction {
 //			return mapping.findForward("buy_hint");
 //		}
 		
-		error_hint  = mallService.buy(role_info, commodity, sell_num.trim(),2);//¹ºÂò
+		error_hint  = mallService.buy(role_info, commodity, sell_num.trim(),2);//è´­ä¹°
 		
 		
 		if( error_hint!=null )
@@ -152,17 +152,17 @@ public class AttackMallAction extends DispatchAction {
 		}
 		
 		
-		int user_discount = 100;//vipÕÛ¿Û		
+		int user_discount = 100;//vipæŠ˜æ‰£		
 		Vip role_vip = role_info.getTitleSet().getVIP();
 		if( role_vip!=null )
 		{
 			user_discount = role_vip.getDiscount();
 		}
-		int need_num = commodity.getCurPrice(user_discount)*Integer.parseInt(sell_num);//ĞèÒªÏûºÄµÄÊıÁ¿
+		int need_num = commodity.getCurPrice(user_discount)*Integer.parseInt(sell_num);//éœ€è¦æ¶ˆè€—çš„æ•°é‡
 		
 		
 		String buy_hint = null;
-		buy_hint = "ÌáÊ¾:Äú¹ºÂòÁË"+commodity.getPropName()+"¡Á"+sell_num+",Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+need_num+"!";
+		buy_hint = "æç¤º:æ‚¨è´­ä¹°äº†"+commodity.getPropName()+"Ã—"+sell_num+",æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+need_num+"!";
 		request.setAttribute("commodity", commodity);
 		
 		request.setAttribute("hint", buy_hint);

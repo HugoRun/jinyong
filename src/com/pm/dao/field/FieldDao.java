@@ -12,9 +12,9 @@ import com.ls.pub.db.DBConnection;
 public class FieldDao extends DaoBase {
 	
 	/**
-	 * »ñµÃµ±Ç°ËùÓĞÔÚÕ½³¡µÄÍæ¼Òlist,
-	 * ÏÈ»ñµÃscene_IDµÄÊı¾İ,ÒÔ"(110£¬112£¬116)"ÕâÑùµÄĞÎÊ½À´ÈÃµÚ¶ş¸ösqlÊ¹ÓÃ£¬
-	 * ÒòÎªµÚ¶ş¸öÒª»ñµÃµ±Ç°ËùÓĞÔÚÕ½³¡µÄÈËÔ±Ãûµ¥
+	 * è·å¾—å½“å‰æ‰€æœ‰åœ¨æˆ˜åœºçš„ç©å®¶list,
+	 * å…ˆè·å¾—scene_IDçš„æ•°æ®,ä»¥"(110ï¼Œ112ï¼Œ116)"è¿™æ ·çš„å½¢å¼æ¥è®©ç¬¬äºŒä¸ªsqlä½¿ç”¨ï¼Œ
+	 * å› ä¸ºç¬¬äºŒä¸ªè¦è·å¾—å½“å‰æ‰€æœ‰åœ¨æˆ˜åœºçš„äººå‘˜åå•
 	 * @return
 	 
 	public List<Integer> getNowInFieldPlayer2()
@@ -26,7 +26,7 @@ public class FieldDao extends DaoBase {
 		SceneDao scenedao = new SceneDao();
 		String sceneStr = scenedao.getSceneIdByMap(barea_point);
 		
-		String sql = "select p_pk from jygame_user_test.u_part_info where p_map in " +
+		String sql = "SELECT p_pk from jygame_user_test.u_part_info where p_map in " +
 				"( select scene_ID from jygame_test.scene where scene_mapqy = 3)";
 		List<Integer> personlist =  new ArrayList<Integer>();
 		try
@@ -53,12 +53,12 @@ public class FieldDao extends DaoBase {
 
 
 	/**
-	 * ²åÈëµ½±íÖĞ£¬ÒÔ±ã¹ıÂËÆ÷²éÕÒÕâ¸ö±í
+	 * æ’å…¥åˆ°è¡¨ä¸­ï¼Œä»¥ä¾¿è¿‡æ»¤å™¨æŸ¥æ‰¾è¿™ä¸ªè¡¨
 	 * @param personlist
 	 */
 	public void insertIntoRemoveTable(List personlist)
 	{
-		//TODO ²åÈëµ½±íÖĞ£¬ÒÔ±ã¹ıÂËÆ÷²éÕÒÕâ¸ö±í
+		//TODO æ’å…¥åˆ°è¡¨ä¸­ï¼Œä»¥ä¾¿è¿‡æ»¤å™¨æŸ¥æ‰¾è¿™ä¸ªè¡¨
 		for(int i=0;i<personlist.size();i++) {
 			
 		}
@@ -66,9 +66,9 @@ public class FieldDao extends DaoBase {
 	}
 	
 	/**
-	 * »ñµÃµ±Ç°ËùÓĞÔÚmap_idÕ½³¡µÄÍæ¼ÒÈËÊı,
-	 * @param p_camp Íæ¼ÒÕóÓª
-	 * @param map_id µØÍ¼id
+	 * è·å¾—å½“å‰æ‰€æœ‰åœ¨map_idæˆ˜åœºçš„ç©å®¶äººæ•°,
+	 * @param p_camp ç©å®¶é˜µè¥
+	 * @param map_id åœ°å›¾id
 	 * @return
 	 */
 	public int getNowInFieldPlayerByCamp(int p_camp,String map_id)
@@ -100,17 +100,17 @@ public class FieldDao extends DaoBase {
 		SceneDao scenedao = new SceneDao();
 		String sceneStr = scenedao.getSceneIdByMap(map_id);
 		
-		logger.debug("Õ½³¡µÄmap_id="+map_id+" ,Õ½³¡µÄscene_id="+sceneStr);
+		logger.debug("æˆ˜åœºçš„map_id="+map_id+" ,æˆ˜åœºçš„scene_id="+sceneStr);
 		
-		//Èç¹ûµ±Ç°µÄÕ½³¡Ã»ÓĞsceneµØÍ¼£¬¾Í·µ»ØÁã
+		//å¦‚æœå½“å‰çš„æˆ˜åœºæ²¡æœ‰sceneåœ°å›¾ï¼Œå°±è¿”å›é›¶
 		if(sceneStr.length() == 2) {
 			return 0;
 		}
 		
-		String sql = "select p_pk from u_part_info where p_camp = "+p_camp+
+		String sql = "SELECT p_pk from u_part_info where p_camp = "+p_camp+
 				" and p_map in " + sceneStr;
 		
-		logger.debug("Ö´ĞĞÊı¾İ¿âÍ³¼ÆµÄ="+sql);
+		logger.debug("æ‰§è¡Œæ•°æ®åº“ç»Ÿè®¡çš„="+sql);
 		List<Integer> personlist =  new ArrayList<Integer>();
 		DBConnection dbConn1 = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn1.getConn();
@@ -140,13 +140,13 @@ public class FieldDao extends DaoBase {
 
 
 	/**
-	 * ½«Õ½³¡ÖĞµÄÆì¸ËÕóÓªÊôĞÔ»¹Ô­£¬Ô­ÕóÓª´æ·ÅÔÚmenu_operate3¡£
+	 * å°†æˆ˜åœºä¸­çš„æ——æ†é˜µè¥å±æ€§è¿˜åŸï¼ŒåŸé˜µè¥å­˜æ”¾åœ¨menu_operate3ã€‚
 	 * 
 	 */
 	public void rebackFlagCamp()
 	{
 		String sql = "update operate_menu_info set menu_camp = menu_operate3 where menu_type = "+MenuType.MAST;
-		logger.debug("Õ½³¡ÖĞµÄÆì¸ËÕóÓªÊôĞÔ»¹Ô­="+sql);
+		logger.debug("æˆ˜åœºä¸­çš„æ——æ†é˜µè¥å±æ€§è¿˜åŸ="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try

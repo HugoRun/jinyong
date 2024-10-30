@@ -1,115 +1,103 @@
 package com.ls.web.action.cooperate.yeepay.bill;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
+import com.ls.web.service.cooperate.bill.BillService;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
-import com.ls.pub.config.GameConfig;
-import com.ls.pub.constant.Channel;
-import com.ls.web.action.cooperate.youle.login.LoginService;
-import com.ls.web.service.cooperate.bill.BillService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 public class CallBackAction extends DispatchAction {
-	
 
-	Logger logger = Logger.getLogger("log.pay");
 
-	/**
-	 * Ó¦´ğ´¦Àí
-	 */
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		logger.info("##########Ò×±¦Ö±½Ó»Øµ÷############");
-		
-		String resultWml = "";
-		
-		// ÒµÎñÀàĞÍ
-		String r0_Cmd = formatString(request.getParameter("r0_Cmd"));
-		// Ö§¸¶½á¹û
-		String r1_Code = formatString(request.getParameter("r1_Code"));
-		// ÉÌ»§±àºÅ
-		String p1_MerId = formatString(request.getParameter("p1_MerId"));
-		// ÉÌ»§¶©µ¥ºÅ
-		String rb_Order = formatString(request.getParameter("rb_Order"));
-		// Ò×±¦Ö§¸¶½»Ò×Á÷Ë®ºÅ
-		String r2_TrxId = formatString(request.getParameter("r2_TrxId"));
-		// ÉÌ»§À©Õ¹ĞÅÏ¢
-		String pa_MP = formatString(request.getParameter("pa_MP"));
-		// Ö§¸¶½ğ¶î
-		String rc_Amt = formatString(request.getParameter("rc_Amt"));
-		// Ç©ÃûÊı¾İ
-		String hmac	= formatString(request.getParameter("hmac"));
-		logger.info("r0_Cmd:"+r0_Cmd);
-		logger.info("r1_Code:"+r1_Code);
-		logger.info("p1_MerId:"+p1_MerId);
-		logger.info("rb_Order:"+rb_Order);
-		logger.info("r2_TrxId:"+r2_TrxId);
-		logger.info("pa_MP:"+pa_MP);
-		logger.info("rc_Amt:"+rc_Amt);
-		logger.info("hmac:"+hmac);
-		
-		int record_id = -1;
-		try
-		{
-			 record_id = Integer.parseInt(pa_MP.trim());
-		}
-		catch(Exception e)
-		{
-			logger.info("PM½âÎö´íÎó");
-		}
-		
-		BillService billService = new BillService();
-		UAccountRecordVO account_record = billService.getAccountRecord(record_id);
+    Logger logger = Logger.getLogger("log.pay");
 
-		if( account_record==null )
-		{
-			logger.info("#####ÎŞĞ§IDÎª£º"+pa_MP+"µÄÖµ¼ÇÂ¼#####");
-		}
-		
-		
-		//ÓÃ»§ÔÚµ±ÀÖ×¢²áµÄÓÃ»§Ãû
-		//ÓÃ»§Ö§¸¶µÄÊµ¼Ê½ğ¶î£¬µ¥Î»ÎªÔª
-		//ÓÃ»§Ö§¸¶Ê¹ÓÃµÄÍ¨µÀID£¬Ö§¸¶Í¨µÀ¶ÔÕÕ±íÓÉµ±ÀÖÌá¹©¸øÉÌ»§,Ïê¼û:±í¸ñ 3 pc-id£¨¸¶¿îÇşµÀ£©¶ÔÕÕ±í
-		//Î¨Ò»±àºÅ,¶©µ¥ºÅ»òÏµÍ³Éú³ÉµÄÎ¨Ò»ĞòÁĞºÅ£¬ÓÉÓÎÏ·³§ÉÌÉú³É(·ÀÖ¹ÖØ¸´Ìá½»)ÏµÍ³ÖĞ»á¸ù¾İmerchant-idgame-idserver-idseq-strÎ¨Ò»Æ¥ÅäÊı¾İ
-		//userName = passport.getUserName();
-				
-				//NonBankcardService.verifyCallback(r0_Cmd,r1_Code,p1_MerId,rb_Order,r2_TrxId,pa_MP,rc_Amt,hmac);
-		
-		if(r1_Code.equals("1"))
-		{
-			account_record.setMoney((int)Double.parseDouble(rc_Amt));//³äÖµ½ğ¶îÒÔ»Øµ÷½ğ¶îÎªÖ÷
-			//logger.info(userName);
-			if( billService.accountSuccessNotify(account_record)==true )
-			{
-				logger.info("Ò×±¦»Øµ÷,³äÖµ³É¹¦;¶©µ¥ºÅ£º"+rb_Order);
-			}
-		}
-		else
-		{
-		    logger.info("Ò×±¦»Øµ÷,³äÖµÊ§°Ü,´íÎóĞÅÏ¢£º"+r1_Code+"£»¶©µ¥ºÅ£º"+rb_Order);
-		    billService.accountFailNotify(account_record, r1_Code);
-		}
-		// Ó¦´ğ»úÖÆÊÕµ½Ö§¸¶½á¹ûÍ¨ÖªÊ±±ØĞë»ØĞ´ÒÔ"success"¿ªÍ·µÄ×Ö·û´®
-		resultWml = "success";
-		request.setAttribute("resultWml", resultWml);
-		return mapping.findForward("success");
-	}
-	
-	
-	String formatString(String text){ 
-		if(text == null) {
-			return ""; 
-		}
-		return text;
-	}
+    /**
+     * åº”ç­”å¤„ç†
+     */
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form,
+                                 HttpServletRequest request, HttpServletResponse response) {
+
+        logger.info("##########æ˜“å®ç›´æ¥å›è°ƒ############");
+
+        String resultWml = "";
+
+        // ä¸šåŠ¡ç±»å‹
+        String r0_Cmd = formatString(request.getParameter("r0_Cmd"));
+        // æ”¯ä»˜ç»“æœ
+        String r1_Code = formatString(request.getParameter("r1_Code"));
+        // å•†æˆ·ç¼–å·
+        String p1_MerId = formatString(request.getParameter("p1_MerId"));
+        // å•†æˆ·è®¢å•å·
+        String rb_Order = formatString(request.getParameter("rb_Order"));
+        // æ˜“å®æ”¯ä»˜äº¤æ˜“æµæ°´å·
+        String r2_TrxId = formatString(request.getParameter("r2_TrxId"));
+        // å•†æˆ·æ‰©å±•ä¿¡æ¯
+        String pa_MP = formatString(request.getParameter("pa_MP"));
+        // æ”¯ä»˜é‡‘é¢
+        String rc_Amt = formatString(request.getParameter("rc_Amt"));
+        // ç­¾åæ•°æ®
+        String hmac = formatString(request.getParameter("hmac"));
+        logger.info("r0_Cmd:" + r0_Cmd);
+        logger.info("r1_Code:" + r1_Code);
+        logger.info("p1_MerId:" + p1_MerId);
+        logger.info("rb_Order:" + rb_Order);
+        logger.info("r2_TrxId:" + r2_TrxId);
+        logger.info("pa_MP:" + pa_MP);
+        logger.info("rc_Amt:" + rc_Amt);
+        logger.info("hmac:" + hmac);
+
+        int record_id = -1;
+        try {
+            record_id = Integer.parseInt(pa_MP.trim());
+        } catch (Exception e) {
+            logger.info("PMè§£æé”™è¯¯");
+        }
+
+        BillService billService = new BillService();
+        UAccountRecordVO account_record = billService.getAccountRecord(record_id);
+
+        if (account_record == null) {
+            logger.info("#####æ— æ•ˆIDä¸ºï¼š" + pa_MP + "çš„å€¼è®°å½•#####");
+        }
+
+
+        //ç”¨æˆ·åœ¨å½“ä¹æ³¨å†Œçš„ç”¨æˆ·å
+        //ç”¨æˆ·æ”¯ä»˜çš„å®é™…é‡‘é¢ï¼Œå•ä½ä¸ºå…ƒ
+        //ç”¨æˆ·æ”¯ä»˜ä½¿ç”¨çš„é€šé“IDï¼Œæ”¯ä»˜é€šé“å¯¹ç…§è¡¨ç”±å½“ä¹æä¾›ç»™å•†æˆ·,è¯¦è§:è¡¨æ ¼ 3 pc-idï¼ˆä»˜æ¬¾æ¸ é“ï¼‰å¯¹ç…§è¡¨
+        //å”¯ä¸€ç¼–å·,è®¢å•å·æˆ–ç³»ç»Ÿç”Ÿæˆçš„å”¯ä¸€åºåˆ—å·ï¼Œç”±æ¸¸æˆå‚å•†ç”Ÿæˆ(é˜²æ­¢é‡å¤æäº¤)ç³»ç»Ÿä¸­ä¼šæ ¹æ®merchant-idgame-idserver-idseq-strå”¯ä¸€åŒ¹é…æ•°æ®
+        //userName = passport.getUserName();
+
+        //NonBankcardService.verifyCallback(r0_Cmd,r1_Code,p1_MerId,rb_Order,r2_TrxId,pa_MP,rc_Amt,hmac);
+
+        if (r1_Code.equals("1")) {
+            account_record.setMoney((int) Double.parseDouble(rc_Amt));//å……å€¼é‡‘é¢ä»¥å›è°ƒé‡‘é¢ä¸ºä¸»
+            //logger.info(userName);
+            if (billService.accountSuccessNotify(account_record)) {
+                logger.info("æ˜“å®å›è°ƒ,å……å€¼æˆåŠŸ;è®¢å•å·ï¼š" + rb_Order);
+            }
+        } else {
+            logger.info("æ˜“å®å›è°ƒ,å……å€¼å¤±è´¥,é”™è¯¯ä¿¡æ¯ï¼š" + r1_Code + "ï¼›è®¢å•å·ï¼š" + rb_Order);
+            billService.accountFailNotify(account_record, r1_Code);
+        }
+        // åº”ç­”æœºåˆ¶æ”¶åˆ°æ”¯ä»˜ç»“æœé€šçŸ¥æ—¶å¿…é¡»å›å†™ä»¥"success"å¼€å¤´çš„å­—ç¬¦ä¸²
+        resultWml = "success";
+        request.setAttribute("resultWml", resultWml);
+        return mapping.findForward("success");
+    }
+
+
+    String formatString(String text) {
+        if (text == null) {
+            return "";
+        }
+        return text;
+    }
 }

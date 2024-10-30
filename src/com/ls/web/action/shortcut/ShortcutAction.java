@@ -30,21 +30,21 @@ import com.ls.web.service.player.RoleService;
 import com.ls.web.service.player.ShortcutService;
 
 /** 
- * ¿ì½İ¼ü
+ * å¿«æ·é”®
  */
 public class ShortcutAction extends DispatchAction {
 	Logger logger =  Logger.getLogger("log.action");
 
 	
 	/**
-	 * ¿ì½İ¼üÁĞ±í
+	 * å¿«æ·é”®åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String pPk = (String)request.getSession().getAttribute("pPk");
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 		}
 		
 		ShortcutService shortcutService = new ShortcutService();
@@ -57,7 +57,7 @@ public class ShortcutAction extends DispatchAction {
 	
 
 	/**
-	 * ¸ü¸Ä¿ì½İ¼ü
+	 * æ›´æ”¹å¿«æ·é”®
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -70,7 +70,7 @@ public class ShortcutAction extends DispatchAction {
 		String operate_id = request.getParameter("operate_id");
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 		}
 		if( operate_id==null )
 		{
@@ -119,22 +119,22 @@ public class ShortcutAction extends DispatchAction {
 	}
 	
 	/**
-	 *  ÏÔÊ¾¿ì½İ¼üÖÖÀà
+	 *  æ˜¾ç¤ºå¿«æ·é”®ç§ç±»
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String pPk = (String)request.getSession().getAttribute("pPk");
-		String sc_pk = request.getParameter("sc_pk");//¿ì½İ¼üpk
+		String sc_pk = request.getParameter("sc_pk");//å¿«æ·é”®pk
 		
 		
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 			pPk = (String)request.getAttribute("p_pk");
 		}
 		if( sc_pk==null  )
 		{
-			logger.debug("s_pkÎª¿Õ");
+			logger.debug("s_pkä¸ºç©º");
 		}
 		
 		
@@ -144,14 +144,14 @@ public class ShortcutAction extends DispatchAction {
 	}
 	
 	/**
-	 *  Çå¿Õ¿ì½İ¼ü
+	 *  æ¸…ç©ºå¿«æ·é”®
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String pPk = (String)request.getSession().getAttribute("pPk");
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 		} 
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
@@ -166,7 +166,7 @@ public class ShortcutAction extends DispatchAction {
 	}
 	
 	/**
-	 *  ¼¼ÄÜÁĞ±í
+	 *  æŠ€èƒ½åˆ—è¡¨
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -178,7 +178,7 @@ public class ShortcutAction extends DispatchAction {
 		RoleEntity roleEntity = roleCache.getByPpk(pPk);		
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 		}  				
 		PlayerSkillVO playerSkillVO = null;
 		RoleSkillInfo useSkill = roleEntity.getRoleSkillInfo();
@@ -213,7 +213,7 @@ public class ShortcutAction extends DispatchAction {
 		//SkillService skillService = new SkillService();
 		if(flag)
 		{
-			isCatchPet = "ÓĞ²¶×½³èÎï¼¼ÄÜ";
+			isCatchPet = "æœ‰æ•æ‰å® ç‰©æŠ€èƒ½";
 		}
 		request.setAttribute("isCatchPet", isCatchPet);
 		request.setAttribute("p_pk", pPk);
@@ -223,7 +223,7 @@ public class ShortcutAction extends DispatchAction {
 	}
 	
 	/**
-	 *  Ò©Æ·ÁĞ±í
+	 *  è¯å“åˆ—è¡¨
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -234,7 +234,7 @@ public class ShortcutAction extends DispatchAction {
 		
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 		}
 		
 		
@@ -250,8 +250,8 @@ public class ShortcutAction extends DispatchAction {
 	}
 	
 	/**
-	 * ¿ì½İ¼üÁĞ±í
-	 * ´ËÁĞ±íÊÇ×¨ÃÅÓÃÀ´½ÓÊÕÍæ¼ÒÑ§Ï°¼¼ÄÜºóÌø×ªµÄ
+	 * å¿«æ·é”®åˆ—è¡¨
+	 * æ­¤åˆ—è¡¨æ˜¯ä¸“é—¨ç”¨æ¥æ¥æ”¶ç©å®¶å­¦ä¹ æŠ€èƒ½åè·³è½¬çš„
 	 * 
 	 */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
@@ -260,11 +260,11 @@ public class ShortcutAction extends DispatchAction {
 		String skill_id = request.getParameter("skill_id");
 		if( pPk==null )
 		{	
-			logger.debug("p_pkÎª¿Õ");
+			logger.debug("p_pkä¸ºç©º");
 		}	
 		if( skill_id==null )
 		{	
-			logger.debug("skill_idÎª¿Õ");
+			logger.debug("skill_idä¸ºç©º");
 		}
 		request.setAttribute("skill_id", skill_id);
 		

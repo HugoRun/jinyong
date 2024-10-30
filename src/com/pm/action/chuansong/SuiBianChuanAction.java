@@ -26,7 +26,7 @@ public class SuiBianChuanAction extends DispatchAction
 
 	/**
 	 * 
-	 * »ñµÃ´«ËÍ·û¿ÉÒÔ ´«ËÍµ½µÄµØ·½ÀàĞÍÒ»ÀÀ
+	 * è·å¾—ä¼ é€ç¬¦å¯ä»¥ ä¼ é€åˆ°çš„åœ°æ–¹ç±»å‹ä¸€è§ˆ
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -50,7 +50,7 @@ public class SuiBianChuanAction extends DispatchAction
 		SuiBianChuanService suiBianChuanService = new SuiBianChuanService();
 		String result = suiBianChuanService.checkIsUse(roleInfo,pg_pk);
 		if ( result != null && !result.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", result);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -60,7 +60,7 @@ public class SuiBianChuanAction extends DispatchAction
 		RoomService roomService = new RoomService();
 		String carry_hint = roomService.isCarryedOut(Integer.parseInt(roleInfo.getBasicInfo().getSceneId()));
 		if ( carry_hint != null && !carry_hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", carry_hint);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -80,7 +80,7 @@ public class SuiBianChuanAction extends DispatchAction
 
 	/**
 	 * 
-	 * »ñµÃ´«ËÍ·û¿ÉÒÔ ´«ËÍµ½µÄµØ·½ÀàĞÍÒ»ÀÀ
+	 * è·å¾—ä¼ é€ç¬¦å¯ä»¥ ä¼ é€åˆ°çš„åœ°æ–¹ç±»å‹ä¸€è§ˆ
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -105,7 +105,7 @@ public class SuiBianChuanAction extends DispatchAction
 		SuiBianChuanService suiBianChuanService = new SuiBianChuanService();
 		String result = suiBianChuanService.checkIsUse(roleInfo,pg_pk);
 		if ( result != null && !result.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", result);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pg_pk", pg_pk);
@@ -123,7 +123,7 @@ public class SuiBianChuanAction extends DispatchAction
 	}
 	
 	/**
-	 * ¿ªÊ¼½øĞĞ´«ËÍ
+	 * å¼€å§‹è¿›è¡Œä¼ é€
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -144,7 +144,7 @@ public class SuiBianChuanAction extends DispatchAction
 		SuiBianChuanService suiBianChuanService = new SuiBianChuanService();
 		String result = suiBianChuanService.checkIsUse(roleInfo,pg_pk);
 		if ( result != null && !result.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", result);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pg_pk", pg_pk);
@@ -154,7 +154,7 @@ public class SuiBianChuanAction extends DispatchAction
 		RoomService roomService = new RoomService();
 		String carry_hint = roomService.isCarryedOut(Integer.parseInt(roleInfo.getBasicInfo().getSceneId()));
 		if ( carry_hint != null && !carry_hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", carry_hint);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -163,7 +163,7 @@ public class SuiBianChuanAction extends DispatchAction
 		
 		String hint = suiBianChuanService.useSuiBianChuan(roleInfo, pg_pk, carryId);
 		if ( hint != null && !hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pg_pk", pg_pk);
@@ -172,7 +172,7 @@ public class SuiBianChuanAction extends DispatchAction
 		
 		
 		
-		hint = "´«ËÍÏûºÄÒ»ÕÅ´«ËÍ·û!";
+		hint = "ä¼ é€æ¶ˆè€—ä¸€å¼ ä¼ é€ç¬¦!";
 		request.setAttribute("hint", hint);
 		
 		try

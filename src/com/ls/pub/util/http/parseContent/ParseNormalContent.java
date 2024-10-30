@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ¹¦ÄÜ£º½âÎöĞÎÈç£ºkey:valueµÄÏìÓ¦ÄÚÈİ
+ * åŠŸèƒ½ï¼šè§£æå½¢å¦‚ï¼škey:valueçš„å“åº”å†…å®¹
  * @author ls
  * Jun 19, 2009
  * 10:20:17 AM

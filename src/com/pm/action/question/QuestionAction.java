@@ -43,7 +43,7 @@ public class QuestionAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.action");
 	
 	/**
-	 *  ×ªÏò´ğÌâÒ³Ãæ
+	 *  è½¬å‘ç­”é¢˜é¡µé¢
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -54,7 +54,7 @@ public class QuestionAction extends DispatchAction {
 	}
 	
 	/**
-	 *  ¿ªÊ¼´ğÌâ
+	 *  å¼€å§‹ç­”é¢˜
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -68,7 +68,7 @@ public class QuestionAction extends DispatchAction {
 		String menu_id = request.getParameter("menu_id");
 		request.setAttribute("menu_id", menu_id);
 		
-		//¸ù¾İ´ğÌâ±êÖ¾,½øĞĞÓĞ¹ØÁ¬Ó®ÊıµÄ²Ù×÷
+		//æ ¹æ®ç­”é¢˜æ ‡å¿—,è¿›è¡Œæœ‰å…³è¿èµ¢æ•°çš„æ“ä½œ
 		QuestionService questionService = new QuestionService();
 		questionService.operateCountieWin(pPk);
 		
@@ -76,32 +76,32 @@ public class QuestionAction extends DispatchAction {
 		OperateMenuVO menuvo = menuService.getMenuById(Integer.parseInt(menu_id));
 		
 		if(roleInfo.getBasicInfo().getGrade() < Integer.valueOf(menuvo.getMenuOperate3())) {
-			String resultWml = "ÄúµÄµÈ¼¶²»¹»,´ğÌâĞèÒªµÈ¼¶"+menuvo.getMenuOperate3()+"!";
+			String resultWml = "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ,ç­”é¢˜éœ€è¦ç­‰çº§"+menuvo.getMenuOperate3()+"!";
 			request.setAttribute("resultWml", resultWml);
 			return mapping.findForward("failed");
 		}
 		
 		TimeControlService timeControlService = new TimeControlService();
-		//´ğÌâ²Ëµ¥×î¶àÖ»ÄÜ´ğÊ®´Î
+		//ç­”é¢˜èœå•æœ€å¤šåªèƒ½ç­”åæ¬¡
 		if(!timeControlService.isUseable(roleInfo.getBasicInfo().getPPk(), Integer.valueOf(menu_id), TimeControlService.MENU,Integer.valueOf(menuvo.getMenuOperate2()))){
-			String resultWml = "ÄúÃ¿ÈÕ×î¶àÖ»ÄÜ´ğ10µÀÌâ£¡";
+			String resultWml = "æ‚¨æ¯æ—¥æœ€å¤šåªèƒ½ç­”10é“é¢˜ï¼";
 			request.setAttribute("resultWml", resultWml);
 			return mapping.findForward("failed");
 		} else {
 			QuizService quizService = new QuizService();
 			QuizVO quiz = null;
-			//ÔÚsessionÖĞ´æ´¢ÓÃ»§ÒÑ¾­»Ø´ğµÄÎÊÌâ
+			//åœ¨sessionä¸­å­˜å‚¨ç”¨æˆ·å·²ç»å›ç­”çš„é—®é¢˜
 			ArrayList<Integer> arrayList = (ArrayList<Integer>)session.getAttribute("quizIdList");
 			if(arrayList == null){
-				logger.info("Ã¿ÈÕÊ×´Î´ğÌâ£¡");
-				quiz = quizService.getRandomQuizByConfine(menuvo.getMenuOperate1());// Ëæ»úµÃµ½Ò»¸öÌâÄ¿
+				logger.info("æ¯æ—¥é¦–æ¬¡ç­”é¢˜ï¼");
+				quiz = quizService.getRandomQuizByConfine(menuvo.getMenuOperate1());// éšæœºå¾—åˆ°ä¸€ä¸ªé¢˜ç›®
 				arrayList = new ArrayList<Integer>();
 				arrayList.add(quiz.getId());
 				session.setAttribute("quizIdList", arrayList);
 			} else {
-				//ÒÑ¾­ÌáÎÊ¹ıµÄ²»ÔÙ´ÎÌáÎÊ.
+				//å·²ç»æé—®è¿‡çš„ä¸å†æ¬¡æé—®.
 				do{
-					quiz = quizService.getRandomQuizByConfine(menuvo.getMenuOperate1());// Ëæ»úµÃµ½Ò»¸öÌâÄ¿
+					quiz = quizService.getRandomQuizByConfine(menuvo.getMenuOperate1());// éšæœºå¾—åˆ°ä¸€ä¸ªé¢˜ç›®
 					logger.info("quizId="+quiz.getId());
 				}
 				while (arrayList.contains(quiz.getId()));
@@ -111,7 +111,7 @@ public class QuestionAction extends DispatchAction {
 				session.setAttribute("quizIdList", arrayList);
 				
 			}
-			//½«µ±Ç°µÄÊ±¼äºÍ´ğÌâ±êÖ¾´æÈëÊı¾İ¿âÖĞ
+			//å°†å½“å‰çš„æ—¶é—´å’Œç­”é¢˜æ ‡å¿—å­˜å…¥æ•°æ®åº“ä¸­
 			questionService.updateQuestionTimeAndFlag(roleInfo.getBasicInfo().getPPk());
 			
 			request.setAttribute("quiz",quiz);
@@ -124,7 +124,7 @@ public class QuestionAction extends DispatchAction {
 		}
 	}
 	
-	//»Ø´ğÎÊÌâ´¦Àí
+	//å›ç­”é—®é¢˜å¤„ç†
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -144,7 +144,7 @@ public class QuestionAction extends DispatchAction {
 		{
 			return null ;
 		}
-		//Ê×ÏÈ½«ÓÃ»§µÄ´ğÌâ±êÖ¾ÖÃÎªÁã,±íÊ¾ËûÃ»ÓĞÍË³öÓÎÏ·µÈµÈ.
+		//é¦–å…ˆå°†ç”¨æˆ·çš„ç­”é¢˜æ ‡å¿—ç½®ä¸ºé›¶,è¡¨ç¤ºä»–æ²¡æœ‰é€€å‡ºæ¸¸æˆç­‰ç­‰.
 		QuestionService questionService = new QuestionService();
 		questionService.updateQuestionFlagByPPk(roleEntity.getBasicInfo().getPPk());
 		
@@ -157,10 +157,10 @@ public class QuestionAction extends DispatchAction {
 		StringBuffer resultWml = new StringBuffer();
 		
 		if(answer_time == null || answer_time.equals("")) {
-			logger.info("´ğÌâ¿ªÊ¼Ê±¼äÎªÁã");
-			resultWml.append("¶Ô²»Æğ£¬»Ø´ğ³¬Ê±£¡ÇëÔÚ20ÃëÄÚÑ¡ÔñÕıÈ·´ğ°¸£¡");
+			logger.info("ç­”é¢˜å¼€å§‹æ—¶é—´ä¸ºé›¶");
+			resultWml.append("å¯¹ä¸èµ·ï¼Œå›ç­”è¶…æ—¶ï¼è¯·åœ¨20ç§’å†…é€‰æ‹©æ­£ç¡®ç­”æ¡ˆï¼");
 			request.setAttribute("resultWml", resultWml.toString());
-			//½«Á¬Ê¤Êı¸Ä³ÉÁã
+			//å°†è¿èƒœæ•°æ”¹æˆé›¶
 			questionService.updateConutiuteWinToZero(roleEntity.getBasicInfo().getPPk());
 			int alreadyAnswerNum = timeControlService.alreadyUseNumber(roleEntity.getBasicInfo().getPPk(), Integer.valueOf(menu_id), TimeControlService.MENU);
 			request.setAttribute("alreadyAnswerNum",alreadyAnswerNum);
@@ -168,12 +168,12 @@ public class QuestionAction extends DispatchAction {
 		}
 		
 		logger.info("answer_time="+answer_time+" ,,dt.getTime()="+dt.getTime());
-		logger.info("´ğÌâ³¬³öÊ±¼ä="+(Long.valueOf(answer_time) < dt.getTime()-1000*20));
+		logger.info("ç­”é¢˜è¶…å‡ºæ—¶é—´="+(Long.valueOf(answer_time) < dt.getTime()-1000*20));
 		
 		if(Long.valueOf(answer_time) < dt.getTime()-1000*20) {
-			resultWml.append("¶Ô²»Æğ£¬»Ø´ğ³¬Ê±£¡ÇëÔÚ20ÃëÄÚÑ¡ÔñÕıÈ·´ğ°¸£¡");
+			resultWml.append("å¯¹ä¸èµ·ï¼Œå›ç­”è¶…æ—¶ï¼è¯·åœ¨20ç§’å†…é€‰æ‹©æ­£ç¡®ç­”æ¡ˆï¼");
 			request.setAttribute("resultWml", resultWml.toString());
-			//½«Á¬Ê¤Êı¸Ä³ÉÁã
+			//å°†è¿èƒœæ•°æ”¹æˆé›¶
 			questionService.updateConutiuteWinToZero(roleEntity.getBasicInfo().getPPk());
 			int alreadyAnswerNum = timeControlService.alreadyUseNumber(roleEntity.getBasicInfo().getPPk(), Integer.valueOf(menu_id), TimeControlService.MENU);
 			request.setAttribute("alreadyAnswerNum",alreadyAnswerNum);
@@ -192,8 +192,8 @@ public class QuestionAction extends DispatchAction {
 			if( quiz.getAwardMoney() > 0 )
 			{
 				economyServcie.addMoney(roleEntity.getBasicInfo().getPPk(), (int)quiz.getAwardMoney());
-				resultWml.append("¹§Ï²ÄúÑ¡ÔñÁËÕıÈ·´ğ°¸£¡<br/>Äú»ñµÃ"+MoneyUtil.changeCopperToStr((int)quiz.getAwardMoney())+"<br/>");
-				//Ö´ĞĞÍ³¼Æ
+				resultWml.append("æ­å–œæ‚¨é€‰æ‹©äº†æ­£ç¡®ç­”æ¡ˆï¼<br/>æ‚¨è·å¾—"+MoneyUtil.changeCopperToStr((int)quiz.getAwardMoney())+"<br/>");
+				//æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, (int)quiz.getAwardMoney(), StatisticsType.DEDAO, StatisticsType.XITONG,roleEntity.getBasicInfo().getPPk());
 				
@@ -204,15 +204,15 @@ public class QuestionAction extends DispatchAction {
 				//PartInfoVO player = partInfoDao.getPartInfoByID(userTempBean.getPPk());
 				
 				int awaedExperience = questionService.getAddExperience(roleEntity.getBasicInfo().getGrade(),conuniteWinNum,quiz.getAwardExperience(),Integer.valueOf(menuvo.getMenuOperate3()));
-				resultWml.append("¹§Ï²ÄúÑ¡ÔñÁËÕıÈ·´ğ°¸£¡<br/>Äú»ñµÃÁË:¾­Ñé+"+awaedExperience + "µã");
-				//¸øÍæ¼ÒÔö¼Ó¾­Ñé
+				resultWml.append("æ­å–œæ‚¨é€‰æ‹©äº†æ­£ç¡®ç­”æ¡ˆï¼<br/>æ‚¨è·å¾—äº†:ç»éªŒ+"+awaedExperience + "ç‚¹");
+				//ç»™ç©å®¶å¢åŠ ç»éªŒ
 				TaskService taskService = new TaskService();
 				taskService.getAddExp(roleEntity,roleEntity.getBasicInfo().getPPk(), awaedExperience);
 				
 				//partInfoDao.updatExperience(player,Integer.valueOf(player.getPExperience())+awaedExperience);
 			}
 			questionService.updateIntegral(roleEntity.getBasicInfo().getPPk());
-			//Í³¼ÆĞèÒª
+			//ç»Ÿè®¡éœ€è¦
 			new RankService().updateAdd(pPk, "ans", 1);
 			
 		}
@@ -222,11 +222,11 @@ public class QuestionAction extends DispatchAction {
 			logger.info("question_num="+question_num);
 			if(question_num != null) {
 				int question_number = Integer.valueOf(question_num);
-				resultWml.append("¶Ô²»Æğ£¬ÄúÑ¡ÔñÁË´íÎóµÄ´ğ°¸£¡<br/>Äú»¹¿ÉÒÔ»Ø´ğ").append((10-question_number)+"").append("µÀÌâÄ¿£¡");
+				resultWml.append("å¯¹ä¸èµ·ï¼Œæ‚¨é€‰æ‹©äº†é”™è¯¯çš„ç­”æ¡ˆï¼<br/>æ‚¨è¿˜å¯ä»¥å›ç­”").append((10-question_number)+"").append("é“é¢˜ç›®ï¼");
 			} else {
-				resultWml.append("¶Ô²»Æğ£¬ÄúÑ¡ÔñÁË´íÎóµÄ´ğ°¸£¡");
+				resultWml.append("å¯¹ä¸èµ·ï¼Œæ‚¨é€‰æ‹©äº†é”™è¯¯çš„ç­”æ¡ˆï¼");
 			}
-			//½«Á¬Ê¤Êı¸Ä³ÉÁã
+			//å°†è¿èƒœæ•°æ”¹æˆé›¶
 			questionService.updateConutiuteWinToZero(roleEntity.getBasicInfo().getPPk());
 		}
 		int alreadyAnswerNum = timeControlService.alreadyUseNumber(roleEntity.getBasicInfo().getPPk(), Integer.valueOf(menu_id), TimeControlService.MENU);
@@ -244,7 +244,7 @@ public class QuestionAction extends DispatchAction {
 	}
 	
 	/**
-	 *  ²é¿´ÅÅÃû
+	 *  æŸ¥çœ‹æ’å
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {

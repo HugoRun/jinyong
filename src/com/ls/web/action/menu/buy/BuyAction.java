@@ -22,13 +22,13 @@ import com.ls.web.service.goods.equip.EquipDisplayService;
 import com.pub.ben.info.Expression;
 
 /**
- * ÔÚNPC´¦¹ºÂò
+ * åœ¨NPCå¤„è´­ä¹°
  */
 public class BuyAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
 
-	// ÏÔÊ¾ËùÂòµÄÎïÆ·
+	// æ˜¾ç¤ºæ‰€ä¹°çš„ç‰©å“
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -40,7 +40,7 @@ public class BuyAction extends ActionBase
 		return mapping.findForward("buy_list");
 	}
 
-	// ÏÔÊ¾ÎïÆ·ÏêÇé
+	// æ˜¾ç¤ºç‰©å“è¯¦æƒ…
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -73,7 +73,7 @@ public class BuyAction extends ActionBase
 		return mapping.findForward("goods_display");
 	}
 
-	// ¹ºÂò
+	// è´­ä¹°
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -93,12 +93,12 @@ public class BuyAction extends ActionBase
 		boolean b = m.matches();
 		if (b == false)
 		{
-			resultWml = "¹ºÂòÊıÁ¿¸ñÊ½²»ÕıÈ·,ÇëÊäÈëÊı×Ö<br/>";
+			resultWml = "è´­ä¹°æ•°é‡æ ¼å¼ä¸æ­£ç¡®,è¯·è¾“å…¥æ•°å­—<br/>";
 		}
 		if(goods_num_str.length() > 5){
-		    resultWml = "¹ºÂòÊıÁ¿¸ñÊ½²»ÕıÈ·,ÇëÊäÈëÊı×Ö<br/>";
+		    resultWml = "è´­ä¹°æ•°é‡æ ¼å¼ä¸æ­£ç¡®,è¯·è¾“å…¥æ•°å­—<br/>";
 		}
-		if (resultWml == null)// Íæ¼ÒµÄ¹ºÂòÊıÁ¿¸ñÊ½ÕıÈ·
+		if (resultWml == null)// ç©å®¶çš„è´­ä¹°æ•°é‡æ ¼å¼æ­£ç¡®
 		{
 			RoleEntity  roleInfo = this.getRoleEntity(request);
 			

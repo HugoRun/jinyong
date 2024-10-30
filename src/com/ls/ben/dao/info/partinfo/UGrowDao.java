@@ -10,20 +10,20 @@ import com.ls.pub.db.DBConnection;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * ¹¦ÄÜ:²Ù×÷u_grow_info±í
- * @author ÁõË§
+ * åŠŸèƒ½:æ“ä½œu_grow_infoè¡¨
+ * @author åˆ˜å¸…
  * 6:27:39 PM
  */
 public class UGrowDao extends DaoBase
 {
-	//³É³¤ĞÅÏ¢»º´æ
+	//æˆé•¿ä¿¡æ¯ç¼“å­˜
 	private static Map<String,UGrowVO> grow_cache = new HashMap<String,UGrowVO>(300);
 	
-	//×î¸ß¼¶³É³¤ĞÅÏ¢
+	//æœ€é«˜çº§æˆé•¿ä¿¡æ¯
 	private static Map<Integer,UGrowVO> max_grade_grow_cache = new HashMap<Integer,UGrowVO>(2);
 	
 	/**
-	 * µÃµ½×î¸ßµÈ¼¶³É³¤ĞÅÏ¢£¨¾ø¶ÔÖµ£©
+	 * å¾—åˆ°æœ€é«˜ç­‰çº§æˆé•¿ä¿¡æ¯ï¼ˆç»å¯¹å€¼ï¼‰
 	 * @return
 	 */
 	public UGrowVO getMaxGradeInfo(int race)
@@ -43,7 +43,7 @@ public class UGrowDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select sum(g_HP),sum(g_MP),sum(g_gj),sum(g_fy) from u_grow_info where g_grade=" + max_grade
+			String sql = "SELECT sum(g_HP),sum(g_MP),sum(g_gj),sum(g_fy) from u_grow_info where g_grade=" + max_grade
 					+ " and g_race='" + race + "'";
 			logger.debug(sql);
 			stmt = conn.createStatement();
@@ -73,15 +73,15 @@ public class UGrowDao extends DaoBase
 	
 	
 	/**
-	 * ¸ù¾İ¼¶ÊıºÍÖÖ×å·µ»ØÏÂÒ»¼¶Éı¼¶ËùĞèµÄÖµ
-	 * @param grade		µÈ¼¶
-	 * @param race		ÖÖ×å
+	 * æ ¹æ®çº§æ•°å’Œç§æ—è¿”å›ä¸‹ä¸€çº§å‡çº§æ‰€éœ€çš„å€¼
+	 * @param grade		ç­‰çº§
+	 * @param race		ç§æ—
 	 * @return
 	 */
 	public UGrowVO getByGradeAndRace(int grade, int race)
 	{
 		String cache_key = grade+"*"+race;
-		UGrowVO growVO = grow_cache.get(cache_key);//´Ó»º´æ¶ÁÈ¡
+		UGrowVO growVO = grow_cache.get(cache_key);//ä»ç¼“å­˜è¯»å–
 		if( growVO!=null )
 		{
 			return growVO;
@@ -91,7 +91,7 @@ public class UGrowDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select * from u_grow_info where g_grade=" + grade
+			String sql = "SELECT * FROM u_grow_info where g_grade=" + grade
 					+ " and g_race='" + race + "'";
 			logger.debug(sql);
 			stmt = conn.createStatement();
@@ -122,7 +122,7 @@ public class UGrowDao extends DaoBase
 		}
 		if( growVO==null )
 		{
-			DataErrorLog.debugData("Êı¾İ´íÎó£¬³É³¤ĞÅÏ¢£ºgrade="+grade+";race="+race);
+			DataErrorLog.debugData("æ•°æ®é”™è¯¯ï¼Œæˆé•¿ä¿¡æ¯ï¼šgrade="+grade+";race="+race);
 		}
 		else
 		{
@@ -133,7 +133,7 @@ public class UGrowDao extends DaoBase
 
 
 	/**
-	 * ¸ù¾İ¼¶ÊıºÍÖÖ×åÅĞ¶ÏÊÇ·ñ¿É×Ô¶¯Éı¼¶
+	 * æ ¹æ®çº§æ•°å’Œç§æ—åˆ¤æ–­æ˜¯å¦å¯è‡ªåŠ¨å‡çº§
 	 * @param grade
 	 * @param race
 	 * @return

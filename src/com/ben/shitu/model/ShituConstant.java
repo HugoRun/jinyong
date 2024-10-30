@@ -1,226 +1,167 @@
 package com.ben.shitu.model;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.ben.vo.info.partinfo.PartInfoVO;
 import com.ls.model.user.BasicInfo;
 import com.ls.pub.config.GameConfig;
 
-public class ShituConstant
-{
-	// ÕĞÍ½ËùĞèµÈ¼¶
-	public final static int ZHAOTU_LEVEL_LIMIT = 40;
+import java.util.ArrayList;
+import java.util.List;
 
-	// °İÊ¦×î¸ßµÈ¼¶
-	public final static int BAISHI_LEVEL_LIMIT = 30;
+public class ShituConstant {
+    // æ‹›å¾’æ‰€éœ€ç­‰çº§
+    public final static int ZHAOTU_LEVEL_LIMIT = 40;
 
-	// ÕĞÍ½ÀàĞÍ
-	public final static int ZHAOTU_TYPE = 0;
+    // æ‹œå¸ˆæœ€é«˜ç­‰çº§
+    public final static int BAISHI_LEVEL_LIMIT = 30;
 
-	// °İÊ¦ÀàĞÍ
-	public final static int BAISHI_TYPE = 1;
+    // æ‹›å¾’ç±»å‹
+    public final static int ZHAOTU_TYPE = 0;
 
-	// Ê¦¸¸ÁĞ±í
-	public static List<Shitu> TEACHER = new ArrayList<Shitu>();
+    // æ‹œå¸ˆç±»å‹
+    public final static int BAISHI_TYPE = 1;
+    // è§£é™¤å¸ˆå¾’å…³ç³»å¸ˆå‚…æ‰¿å—ç½ªæ¶åº¦
+    public final static int TEA_ZUIE = 800;
+    // è§£é™¤å¸ˆå¾’å…³ç³»å¾’å¼Ÿæ‰¿å—ç½ªæ¶åº¦
+    public final static int STU_ZUIE = 500;
+    //å¸ˆçˆ¶ä¼ åŠŸè·å¾—å£°æœ›çš„ID
+    public final static int CREDIT_ID = 10;
+    //å¸ˆçˆ¶ä¼ åŠŸè·å¾—å£°æœ›çš„ç‚¹æ•°
+    public final static int CREDIT_COUNT = 10;
+    //å¾’å¼Ÿå‡ºå¸ˆå¸ˆçˆ¶è·å¾—å£°æœ›çš„ID
+    public final static int CHUSHI_CREDIT_ID = 10;
+    //å¾’å¼Ÿå‡ºå¸ˆå¸ˆçˆ¶è·å¾—å£°æœ›çš„ç‚¹æ•°
+    public final static int CHUSHI_CREDIT_COUNT = 100;
+    //å¸ˆå¾’åŒæ—¶åœ¨çº¿è·å¾—çš„é¢å¤–ç»éªŒå¥–åŠ±
+    public final static int MORE_EXP = 120;
+    //å¾’å¼Ÿç¬¬ä¸€æ¬¡åŠ å…¥é—¨æ´¾å¸ˆå‚…è·å¾—ã€å…ƒå®å·ã€‘çš„id
+    public final static int YUANBAOQUAN_ID = 170;
+    //å¾’å¼Ÿç¬¬ä¸€æ¬¡åŠ å…¥é—¨æ´¾å¸ˆå‚…è·å¾—ã€å…ƒå®å·ã€‘çš„æ•°é‡
+    public final static int YUANBAOQUAN_COUNT = 100;
+    //å¸ˆçˆ¶è·å¾—å‡ºå¸ˆå¤§ç¤¼åŒ…ID
+    public final static int TEA_DALIBAO = 848;
+    //å¾’å¼Ÿè·å¾—å‡ºå¸ˆå¤§ç¤¼åŒ…ID
+    public final static int STU_DALIBAO = 848;
+    //å¾’å¼Ÿè·å¾—ä»»åŠ¡å¥–åŠ±çš„æ¯”ç‡
+    public final static int MORE_TASK = 150;
+    //è§’è‰²å°é¡¶ç­‰çº§
+    public final static int MAX_LEVEL = GameConfig.getGradeUpperLimit();
+    //è§’è‰²å°é¡¶å‰ä¸€çº§å‡çº§ç»éªŒ
+    public final static int MAX_EXP = 50948130;
+    public final static String SHOUTUSQL  = "SELECT COUNT(*) AS cou FROM `shitu` s WHERE s.te_id = ? ";
+    public final static String SHOUTUSQL1 = "SELECT * FROM `shitu` s WHERE s.stu_id = ?";
+    public final static String SHOUTUSQL2 = "DELETE FROM `shitu` WHERE stu_id = ?";
+    public final static String SHOUTUSQL3 = "UPDATE `shitu` s SET s.te_id = ?, s.te_name = ?, s.te_level = ? WHERE s.id = ?";
+    public final static String SHOUTUSQL4 = "DELETE FROM `shitu` WHERE te_id = ? AND stu_id = 0";
+    public final static String BAISHISQL1 = "SELECT COUNT(*) AS cou FROM `shitu` s WHERE s.stu_id = ? AND s.te_id !=0";
+    public final static String BAISHISQL2 = "SELECT COUNT(*) AS cou FROM `shitu` s WHERE s.stu_id = ? AND s.te_id = 0";
+    public final static String BAISHISQL3 = "UPDATE `shitu` s SET s.stu_id = ?, s.stu_name = ?, s.stu_level = ? WHERE s.id = ?";
+    public final static String BAISHISQL4 = "DELETE FROM `shitu` WHERE stu_id = ? AND te_id = 0";
+    public final static String CHUANGONG  = "UPDATE `shitu` s SET s.chuangong = now() WHERE s.id = ?";
+    // å¸ˆçˆ¶åˆ—è¡¨
+    public static List<Shitu> TEACHER = new ArrayList<Shitu>();
+    // å¾’å¼Ÿåˆ—è¡¨
+    public static List<Shitu> STUDENT = new ArrayList<Shitu>();
 
-	// Í½µÜÁĞ±í
-	public static List<Shitu> STUDENT = new ArrayList<Shitu>();
+    // æ ¹æ®å‡ºå¾’äººæ•°å®šä¹‰å¸ˆå‚…ç§°å·
+    public static String getTeLevel(int te_level) {
+        String teLevel = "";
+        if (te_level >= 2 && te_level < 5) {
+            teLevel = "å…ˆç”Ÿ";
+        } else if (te_level >= 5 && te_level < 9) {
+            teLevel = "æ•™æˆ";
+        } else if (te_level >= 9 && te_level < 15) {
+            teLevel = "åå¸ˆ";
+        } else if (te_level >= 15) {
+            teLevel = "ä¼¯ä¹";
+        }
+        return teLevel;
+    }
 
-	// ½â³ıÊ¦Í½¹ØÏµÊ¦¸µ³ĞÊÜ×ï¶ñ¶È
-	public final static int TEA_ZUIE = 800;
+    // æ ¹æ®å‡ºå¾’äººæ•°å®šä¹‰å¸ˆå‚…ç§°å·
+    public static String getTeLevel1(int te_level) {
+        String teLevel = "";
+        if (te_level >= 2 && te_level < 5) {
+            teLevel = "(å…ˆç”Ÿ)";
+        } else if (te_level >= 5 && te_level < 9) {
+            teLevel = "(æ•™æˆ)";
+        } else if (te_level >= 9 && te_level < 15) {
+            teLevel = "(åå¸ˆ)";
+        } else if (te_level >= 15) {
+            teLevel = "(ä¼¯ä¹)";
+        }
+        return teLevel;
+    }
 
-	// ½â³ıÊ¦Í½¹ØÏµÍ½µÜ³ĞÊÜ×ï¶ñ¶È
-	public final static int STU_ZUIE = 500;
-	
-	//Ê¦¸¸´«¹¦»ñµÃÉùÍûµÄID
-	public final static int CREDIT_ID = 10;
-	
-	//Ê¦¸¸´«¹¦»ñµÃÉùÍûµÄµãÊı
-	public final static int CREDIT_COUNT = 10;
-	
-	//Í½µÜ³öÊ¦Ê¦¸¸»ñµÃÉùÍûµÄID
-	public final static int CHUSHI_CREDIT_ID = 10;
-	
-	//Í½µÜ³öÊ¦Ê¦¸¸»ñµÃÉùÍûµÄµãÊı
-	public final static int CHUSHI_CREDIT_COUNT = 100;
-	
-	//Ê¦Í½Í¬Ê±ÔÚÏß»ñµÃµÄ¶îÍâ¾­Ñé½±Àø
-	public final static int MORE_EXP = 120;
-	
-	//Í½µÜµÚÒ»´Î¼ÓÈëÃÅÅÉÊ¦¸µ»ñµÃ¡¾Ôª±¦¾í¡¿µÄid
-	public final static int YUANBAOQUAN_ID = 170;
-	//Í½µÜµÚÒ»´Î¼ÓÈëÃÅÅÉÊ¦¸µ»ñµÃ¡¾Ôª±¦¾í¡¿µÄÊıÁ¿
-	public final static int YUANBAOQUAN_COUNT = 100;
-	//Ê¦¸¸»ñµÃ³öÊ¦´óÀñ°üID
-	public final static int TEA_DALIBAO = 848;
-    //Í½µÜ»ñµÃ³öÊ¦´óÀñ°üID
-	public final static int STU_DALIBAO = 848;
-	//Í½µÜ»ñµÃÈÎÎñ½±ÀøµÄ±ÈÂÊ
-	public final static int MORE_TASK = 150;
-	
-	//½ÇÉ«·â¶¥µÈ¼¶
-	public final static int MAX_LEVEL = GameConfig.getGradeUpperLimit();
-	//½ÇÉ«·â¶¥Ç°Ò»¼¶Éı¼¶¾­Ñé
-	public final static int MAX_EXP = 50948130;
-	
+    // æ ¹æ®å‡ºå¾’äººæ•°å®šä¹‰å¸ˆå‚…èƒ½æ”¶å¾’çš„æ•°é‡
+    public static int getCANRECCOUNT(int te_level) {
+        int count = 1;
+        if (te_level >= 2 && te_level < 5) {
+            count = 2;
+        } else if (te_level >= 5 && te_level < 9) {
+            count = 3;
+        } else if (te_level >= 9 && te_level < 15) {
+            count = 4;
+        } else if (te_level >= 15) {
+            count = 5;
+        }
+        return count;
+    }
 
-	public final static String SHOUTUSQL = "select count(*) as cou from shitu s where s.te_id = ? ";
-	public final static String SHOUTUSQL1 = "select * from shitu s where s.stu_id = ?";
-	public final static String SHOUTUSQL2 = "delete from shitu where stu_id = ?";
-	public final static String SHOUTUSQL3 = "update shitu s set s.te_id = ?,s.te_name = ? , s.te_level = ? where s.id = ?";
-	public final static String SHOUTUSQL4 = "delete from shitu where te_id = ? and stu_id = 0";
-	public final static String BAISHISQL1 = "select count(*) as cou from shitu s where s.stu_id = ? and s.te_id !=0";
-	public final static String BAISHISQL2 = "select count(*) as cou from shitu s where s.stu_id = ? and s.te_id = 0";
-	public final static String BAISHISQL3 = "update shitu s set s.stu_id = ?,s.stu_name = ?,s.stu_level = ? where s.id = ?";
-	public final static String BAISHISQL4 = "delete from shitu where stu_id = ? and te_id = 0";
-	public final static String CHUANGONG = "update shitu s set s.chuangong = now() where s.id = ?";
+    // å¸ˆå‚…ä¼ åŠŸæŸå¤±ç»éªŒï¼šå¸ˆå‚…æœ¬çº§å‡çº§ç»éªŒ/25*ï¼ˆå¾’å¼Ÿç­‰çº§/å¸ˆå‚…ç­‰çº§ï¼‰
+    public static int getTeaEXP(BasicInfo bi, int stu_level) {
+        if (bi.getGrade() == ShituConstant.MAX_LEVEL) {
+            return getTeaExpMax(stu_level);
+        }
+        int teaExp = 0;
+        try {
+            teaExp = (Integer.parseInt(bi.getNextGradeExp().trim()) - Integer.parseInt(bi.getPreGradeExp().trim())) / 25 * stu_level / (bi.getGrade() == 0 ? 1 : bi.getGrade());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return teaExp;
+        }
+    }
 
-	// ¸ù¾İ³öÍ½ÈËÊı¶¨ÒåÊ¦¸µ³ÆºÅ
-	public static String getTeLevel(int te_level)
-	{
-		String teLevel = "";
-		if (te_level >= 2 && te_level < 5)
-		{
-			teLevel = "ÏÈÉú";
-		}
-		else
-			if (te_level >= 5 && te_level < 9)
-			{
-				teLevel = "½ÌÊÚ";
-			}
-			else
-				if (te_level >= 9 && te_level < 15)
-				{
-					teLevel = "ÃûÊ¦";
-				}
-				else
-					if (te_level >= 15)
-					{
-						teLevel = "²®ÀÖ";
-					}
-		return teLevel;
-	}
-	
-	// ¸ù¾İ³öÍ½ÈËÊı¶¨ÒåÊ¦¸µ³ÆºÅ
-	public static String getTeLevel1(int te_level)
-	{
-		String teLevel = "";
-		if (te_level >= 2 && te_level < 5)
-		{
-			teLevel = "(ÏÈÉú)";
-		}
-		else
-			if (te_level >= 5 && te_level < 9)
-			{
-				teLevel = "(½ÌÊÚ)";
-			}
-			else
-				if (te_level >= 9 && te_level < 15)
-				{
-					teLevel = "(ÃûÊ¦)";
-				}
-				else
-					if (te_level >= 15)
-					{
-						teLevel = "(²®ÀÖ)";
-					}
-		return teLevel;
-	}
+    public static int getTeaExpMax(int stu_level) {
+        return ShituConstant.MAX_EXP / 25 * stu_level / ShituConstant.MAX_LEVEL;
+    }
 
-	// ¸ù¾İ³öÍ½ÈËÊı¶¨ÒåÊ¦¸µÄÜÊÕÍ½µÄÊıÁ¿
-	public static int getCANRECCOUNT(int te_level)
-	{
-		int count = 1;
-		if (te_level >= 2 && te_level < 5)
-		{
-			count = 2;
-		}
-		else
-			if (te_level >= 5 && te_level < 9)
-			{
-				count = 3;
-			}
-			else
-				if (te_level >= 9 && te_level < 15)
-				{
-					count = 4;
-				}
-				else
-					if (te_level >= 15)
-					{
-						count = 5;
-					}
-		return count;
-	}
 
-	// Ê¦¸µ´«¹¦ËğÊ§¾­Ñé£ºÊ¦¸µ±¾¼¶Éı¼¶¾­Ñé/25*£¨Í½µÜµÈ¼¶/Ê¦¸µµÈ¼¶£©
-	public static int getTeaEXP(BasicInfo bi, int stu_level)
-	{
-		if(bi.getGrade()==ShituConstant.MAX_LEVEL){
-			return getTeaExpMax(stu_level);
-		}
-		int teaExp = 0;
-		try
-		{
-			teaExp = (Integer.parseInt(bi.getNextGradeExp().trim())-Integer.parseInt(bi.getPreGradeExp().trim())) / 25
-					* stu_level / (bi.getGrade()==0?1:bi.getGrade());
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			return teaExp;
-		}
-	}
-	
-	public static int getTeaExpMax(int stu_level){
-		return ShituConstant.MAX_EXP/25*stu_level/ShituConstant.MAX_LEVEL;
-	}
-	
-	
-//	Í½µÜ»ñµÃ¾­Ñé£ºÊ¦¸µ´«¹¦ËğÊ§¾­Ñé*0.85
-	public static int getStuExp(int teaExp){
-		int stuEXP = teaExp*85/100;
-		return stuEXP>0?stuEXP:1;
-	}
-	
-//  Í½µÜÃ¿Éı5¼¶Ê¦¸¸»ñµÃ¾­Ñé½±Àø
-//	Ê¦¸µµ±Ç°µÈ¼¶Éı¼¶¾­Ñé/20*(Í½µÜµ±Ç°µÈ¼¶/Ê¦¸µµ±Ç°µÈ¼¶)
-	public static long getTeaExpGet(int stu_grade,PartInfoVO pv){
-		long teaExpGet = 0;
-		try{
-			teaExpGet =  Long.parseLong(pv.getPXiaExperience().trim())/20*stu_grade/(pv.getPGrade()==0?1:pv.getPGrade());
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			return teaExpGet;
-		}
-	}
-	
-//  Í½µÜÃ¿Éı5¼¶Ê¦¸¸»ñµÃ¾­Ñé½±Àø
-//	»ñµÃÒøÁ½½±Àø¹«Ê½£º5*Í½µÜµÈ¼¶
-	public static int getTeaMoneyGet(int stu_grade){
-		return stu_grade*500;
-	}
-	
-//	Í½µÜ³öÊ¦Ê¦¸¸¿É»ñµÃ¾­Ñé,Ê¦¸µµ±Ç°Éı¼¶¾­ÑéµÄ10%
-	public static long getChushiExp(PartInfoVO pv){
-		long chushiExp = 0;
-		try{
-			chushiExp = (Long.parseLong(pv.getPXiaExperience().trim())-pv.getPBenJiExp())/10;
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			return chushiExp;
-		}
-	}
+    // å¾’å¼Ÿè·å¾—ç»éªŒï¼šå¸ˆå‚…ä¼ åŠŸæŸå¤±ç»éªŒ*0.85
+    public static int getStuExp(int teaExp) {
+        int stuEXP = teaExp * 85 / 100;
+        return stuEXP > 0 ? stuEXP : 1;
+    }
+
+    // å¾’å¼Ÿæ¯å‡5çº§å¸ˆçˆ¶è·å¾—ç»éªŒå¥–åŠ±
+    // å¸ˆå‚…å½“å‰ç­‰çº§å‡çº§ç»éªŒ/20*(å¾’å¼Ÿå½“å‰ç­‰çº§/å¸ˆå‚…å½“å‰ç­‰çº§)
+    public static long getTeaExpGet(int stu_grade, PartInfoVO pv) {
+        long teaExpGet = 0;
+        try {
+            teaExpGet = Long.parseLong(pv.getPXiaExperience().trim()) / 20 * stu_grade / (pv.getPGrade() == 0 ? 1 : pv.getPGrade());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return teaExpGet;
+        }
+    }
+
+    // å¾’å¼Ÿæ¯å‡5çº§å¸ˆçˆ¶è·å¾—ç»éªŒå¥–åŠ±
+    // è·å¾—é“¶ä¸¤å¥–åŠ±å…¬å¼ï¼š5*å¾’å¼Ÿç­‰çº§
+    public static int getTeaMoneyGet(int stu_grade) {
+        return stu_grade * 500;
+    }
+
+    // å¾’å¼Ÿå‡ºå¸ˆå¸ˆçˆ¶å¯è·å¾—ç»éªŒ,å¸ˆå‚…å½“å‰å‡çº§ç»éªŒçš„10%
+    public static long getChushiExp(PartInfoVO pv) {
+        long chushiExp = 0;
+        try {
+            chushiExp = (Long.parseLong(pv.getPXiaExperience().trim()) - pv.getPBenJiExp()) / 10;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return chushiExp;
+        }
+    }
 
 }

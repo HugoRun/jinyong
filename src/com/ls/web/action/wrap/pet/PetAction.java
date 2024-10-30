@@ -35,7 +35,7 @@ public class PetAction extends DispatchAction {
 	 */
 
 	/** 
-	 * ±»Ï´³èÎïµÄÁĞ±í
+	 * è¢«æ´—å® ç‰©çš„åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -60,7 +60,7 @@ public class PetAction extends DispatchAction {
 	}
 	
 	/** 
-	 * ±»Ï´³èÎïµÄÏêÏ¸ĞÅÏ¢
+	 * è¢«æ´—å® ç‰©çš„è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -79,7 +79,7 @@ public class PetAction extends DispatchAction {
 	}
 	
 	/** 
-	 * Ï´³èÎï
+	 * æ´—å® ç‰©
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -100,7 +100,7 @@ public class PetAction extends DispatchAction {
 	
 	
 	/** 
-	 * ³èÎïµ°Éú³ÉµÄ³èÎïÏêÏ¸ĞÅÏ¢
+	 * å® ç‰©è›‹ç”Ÿæˆçš„å® ç‰©è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {

@@ -5,39 +5,39 @@ import java.util.List;
 
 public class HelpConstant
 {
-	public static final int HUODONG = 1;// ½ñÈÕ»î¶¯
-	public static final int LIANJI = 2;// Á·¼¶ÇøÓò
-	public static final int TASK = 3;// ÈÎÎñÁìÈ¡
-	public static final int FUBEN = 4;// ¸±±¾½éÉÜ
-	public static final int SHENGWANG = 5;// ÉùÍû½±Àø
-	public static final int XITONG = 6;// ÏµÍ³½éÉÜ
-	public static final int DIAOLUO = 7;//µôÂä²éÑ¯
-	public static final int GM = 8;//Ñ°ÕÒGM
+	public static final int HUODONG = 1;// ä»Šæ—¥æ´»åŠ¨
+	public static final int LIANJI = 2;// ç»ƒçº§åŒºåŸŸ
+	public static final int TASK = 3;// ä»»åŠ¡é¢†å–
+	public static final int FUBEN = 4;// å‰¯æœ¬ä»‹ç»
+	public static final int SHENGWANG = 5;// å£°æœ›å¥–åŠ±
+	public static final int XITONG = 6;// ç³»ç»Ÿä»‹ç»
+	public static final int DIAOLUO = 7;//æ‰è½æŸ¥è¯¢
+	public static final int GM = 8;//å¯»æ‰¾GM
 	
-	public static final int EACH_LENGTH = 200;//Ã¿Ò³ÏÔÊ¾µÄÄÚÈİ³¤¶È
+	public static final int EACH_LENGTH = 200;//æ¯é¡µæ˜¾ç¤ºçš„å†…å®¹é•¿åº¦
 	
-	public static final String LEVEL_NOT_ALLOW = "ÄúÄ¿Ç°µÄµÈ¼¶»¹ÎŞ·¨Ê¹ÓÃ´Ë´¦µÄ´«ËÍ¹¦ÄÜ";
-	public static final String LEVEL_TSAK_NOT_ALLOW = "ÄúÄ¿Ç°µÄµÈ¼¶»¹ÎŞ·¨ÁìÈ¡´ËÈÎÎñ";
-	public static final String TASK_NOT_ALLOW = "ÄúÒÑ¾­Íê³É¸ÃÈÎÎñ£¬Òò´ËÎŞ·¨ÔÙÁìÈ¡";
-	public static final String TASK_MEN_NOT_ALLOW = "ÖÖ×å²»·û£¬ÎŞ·¨ÁìÈ¡´ËÈÎÎñ";
-//	public static final String BACK_LINK = "<br/><anchor><go href=\"/help.do?cmd=n1\" method=\"get\"/>·µ»Ø</anchor><br/>";
+	public static final String LEVEL_NOT_ALLOW = "æ‚¨ç›®å‰çš„ç­‰çº§è¿˜æ— æ³•ä½¿ç”¨æ­¤å¤„çš„ä¼ é€åŠŸèƒ½";
+	public static final String LEVEL_TSAK_NOT_ALLOW = "æ‚¨ç›®å‰çš„ç­‰çº§è¿˜æ— æ³•é¢†å–æ­¤ä»»åŠ¡";
+	public static final String TASK_NOT_ALLOW = "æ‚¨å·²ç»å®Œæˆè¯¥ä»»åŠ¡ï¼Œå› æ­¤æ— æ³•å†é¢†å–";
+	public static final String TASK_MEN_NOT_ALLOW = "ç§æ—ä¸ç¬¦ï¼Œæ— æ³•é¢†å–æ­¤ä»»åŠ¡";
+//	public static final String BACK_LINK = "<br/><anchor><go href=\"/help.do?cmd=n1\" method=\"get\"/>è¿”å›</anchor><br/>";
     public static final String SHAOLIN = "shaolin";
     public static final String GAIBANG = "gaibang";
     public static final String MINGJIAO = "mingjiao";
     
-    public static final int COUNT = 5;//ÏÔÊ¾µôÂä¹ÖÎïÊı
-    public static final String TESHU = "ÉÌ³Ç";
+    public static final int COUNT = 5;//æ˜¾ç¤ºæ‰è½æ€ªç‰©æ•°
+    public static final String TESHU = "å•†åŸ";
     
     public final static List<Integer> SHOW = new ArrayList<Integer>();
     
     static {
-    	SHOW.add(189);//»Æ½ğ±¦Ïä
-    	SHOW.add(859);//½ğµ°
+    	SHOW.add(189);//é»„é‡‘å®ç®±
+    	SHOW.add(859);//é‡‘è›‹
     }
     
-    public final static Integer HUANGJINBAOXIANG = 189;//»Æ½ğ±¦Ïä
+    public final static Integer HUANGJINBAOXIANG = 189;//é»„é‡‘å®ç®±
     
-    public final static Integer JINDAN = 859;//½ğµ°
+    public final static Integer JINDAN = 859;//é‡‘è›‹
     
 
 

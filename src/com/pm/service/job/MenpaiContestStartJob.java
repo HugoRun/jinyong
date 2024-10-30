@@ -1,144 +1,100 @@
 package com.pm.service.job;
 
+import com.lw.dao.menpaicontest.MenpaiContestDAO;
+import com.lw.vo.menpaicontest.MenpaiContestVO;
+import org.apache.log4j.Logger;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
+
 import java.text.ParseException;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
-import org.quartz.CronTrigger;
-import org.quartz.Job;
-import org.quartz.JobDetail;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.impl.StdSchedulerFactory;
+public class MenpaiContestStartJob implements Job {
+    Logger logger = Logger.getLogger("log.service");
 
-import com.lw.dao.menpaicontest.MenpaiContestDAO;
-import com.lw.vo.menpaicontest.MenpaiContestVO;
+    public void execute(JobExecutionContext arg0) throws JobExecutionException {
+        runScheduler();
+    }
 
-public class MenpaiContestStartJob implements Job
-{
-	Logger logger = Logger.getLogger("log.service");
+    public void runScheduler() {
 
-	public void execute(JobExecutionContext arg0) throws JobExecutionException
-	{
-		runScheduler();
-	}
+        Scheduler scheduler = null;
 
-	public void runScheduler()
-	{
+        try {
+            // æ¯”æ­¦å‡†å¤‡ Create a default instance of the Scheduler
+            scheduler = StdSchedulerFactory.getDefaultScheduler();
+            scheduler.start();
+            logger.info("Scheduler was started at " + new Date());
 
-		Scheduler scheduler = null;
+            MenpaiContestDAO dao = new MenpaiContestDAO();
+            MenpaiContestVO vo = dao.selectMenpaiContestData();
+            if (vo != null) {
+                // Create the JobDetail
+                JobDetail jobDetail_ready = new JobDetail("MenpaiContest_ready", Scheduler.DEFAULT_GROUP, MenpaiContestReady.class);
 
-		try
-		{
-			// ±ÈÎä×¼±¸ Create a default instance of the Scheduler
-			scheduler = StdSchedulerFactory.getDefaultScheduler();
-			scheduler.start();
-			logger.info("Scheduler was started at " + new Date());
+                // åˆ›å»ºæ¯ä¸ªJOBè¦æ‰§è¡Œçš„æ—¶é—´
+                try {
+                    String time = "0 " + vo.getReady_minute() + " " + vo.getReady_hour() + " ? * " + vo.getTime_week().trim();
+                    // è‡ªå®šä¹‰æ—¶é—´
+                    CronTrigger trigger_ready = new CronTrigger("MyTrigger_ready", null, time);
+                    Date date = new Date();
+                    trigger_ready.setStartTime(date);
+                    scheduler.scheduleJob(jobDetail_ready, trigger_ready);
+                    logger.info("æ¯”æ­¦å¼€å§‹å®šæ—¶");
+                } catch (ParseException ex) {
+                    logger.error("Couldn't parse cron expr", ex);
+                }
 
-			MenpaiContestDAO dao = new MenpaiContestDAO();
-			MenpaiContestVO vo = dao.selectMenpaiContestData();
-			if (vo != null)
-			{
-				// Create the JobDetail
-				JobDetail jobDetail_ready = new JobDetail(
-						"MenpaiContest_ready", Scheduler.DEFAULT_GROUP,
-						MenpaiContestReady.class);
+                // æ¯”æ­¦å¼€å§‹Create the JobDetail
+                JobDetail jobDetail_start = new JobDetail("MenpaiContest_start", Scheduler.DEFAULT_GROUP, MenpaiContestRun.class);
 
-				// ´´½¨Ã¿¸öJOBÒªÖ´ĞĞµÄÊ±¼ä
-				try
-				{
-					String time = "0 " + vo.getReady_minute() + " "
-							+ vo.getReady_hour() + " ? * "
-							+ vo.getTime_week().trim();
-					// ×Ô¶¨ÒåÊ±¼ä
-					CronTrigger trigger_ready = new CronTrigger(
-							"MyTrigger_ready", null, time);
-					Date date = new Date();
-					trigger_ready.setStartTime(date);
-					scheduler.scheduleJob(jobDetail_ready, trigger_ready);
-					logger.info("±ÈÎä¿ªÊ¼¶¨Ê±");
-				}
-				catch (ParseException ex)
-				{
-					logger.error("Couldn't parse cron expr", ex);
-				}
+                // åˆ›å»ºæ¯ä¸ªJOBè¦æ‰§è¡Œçš„æ—¶é—´
+                try {
+                    String time = "0 " + vo.getRun_minute() + " " + vo.getRun_hour() + " ? * " + vo.getTime_week().trim();
+                    // è‡ªå®šä¹‰æ—¶é—´
+                    CronTrigger trigger_start = new CronTrigger("MyTrigger_start" + vo.getId(), null, time);
+                    Date date = new Date();
+                    trigger_start.setStartTime(date);
+                    scheduler.scheduleJob(jobDetail_start, trigger_start);
+                    logger.info("æ¯”æ­¦å®šæ—¶");
+                } catch (ParseException ex) {
+                    logger.error("Couldn't parse cron expr", ex);
+                }
 
-				// ±ÈÎä¿ªÊ¼Create the JobDetail
-				JobDetail jobDetail_start = new JobDetail(
-						"MenpaiContest_start", Scheduler.DEFAULT_GROUP,
-						MenpaiContestRun.class);
+                // æ¯”æ­¦å¼€å§‹Create the JobDetail
+                JobDetail jobDetail_over = new JobDetail("MenpaiContest_over", Scheduler.DEFAULT_GROUP, MenpaiContestOver.class);
 
-				// ´´½¨Ã¿¸öJOBÒªÖ´ĞĞµÄÊ±¼ä
-				try
-				{
-					String time = "0 " + vo.getRun_minute() + " "
-							+ vo.getRun_hour() + " ? * "
-							+ vo.getTime_week().trim();
-					// ×Ô¶¨ÒåÊ±¼ä
-					CronTrigger trigger_start = new CronTrigger(
-							"MyTrigger_start" + vo.getId(), null, time);
-					Date date = new Date();
-					trigger_start.setStartTime(date);
-					scheduler.scheduleJob(jobDetail_start, trigger_start);
-					logger.info("±ÈÎä¶¨Ê±");
-				}
-				catch (ParseException ex)
-				{
-					logger.error("Couldn't parse cron expr", ex);
-				}
+                // åˆ›å»ºæ¯ä¸ªJOBè¦æ‰§è¡Œçš„æ—¶é—´
+                try {
+                    String time = "0 " + vo.getOver_minute() + " " + vo.getOver_hour() + " ? * " + vo.getTime_week().trim();
+                    // è‡ªå®šä¹‰æ—¶é—´
+                    CronTrigger trigger_over = new CronTrigger("MyTrigger_over", null, time);
+                    Date date = new Date();
+                    trigger_over.setStartTime(date);
+                    scheduler.scheduleJob(jobDetail_over, trigger_over);
+                    logger.info("æ¯”æ­¦å®šæ—¶");
+                } catch (ParseException ex) {
+                    logger.error("Couldn't parse cron expr", ex);
+                }
 
-				// ±ÈÎä¿ªÊ¼Create the JobDetail
-				JobDetail jobDetail_over = new JobDetail("MenpaiContest_over",
-						Scheduler.DEFAULT_GROUP, MenpaiContestOver.class);
+                // æ¯”æ­¦å¼€å§‹Create the JobDetail
+                JobDetail jobDetail_all = new JobDetail("MenpaiContest_all", Scheduler.DEFAULT_GROUP, MenpaiContestAll.class);
 
-				// ´´½¨Ã¿¸öJOBÒªÖ´ĞĞµÄÊ±¼ä
-				try
-				{
-					String time = "0 " + vo.getOver_minute() + " "
-							+ vo.getOver_hour() + " ? * "
-							+ vo.getTime_week().trim();
-					// ×Ô¶¨ÒåÊ±¼ä
-					CronTrigger trigger_over = new CronTrigger(
-							"MyTrigger_over", null, time);
-					Date date = new Date();
-					trigger_over.setStartTime(date);
-					scheduler.scheduleJob(jobDetail_over, trigger_over);
-					logger.info("±ÈÎä¶¨Ê±");
-				}
-				catch (ParseException ex)
-				{
-					logger.error("Couldn't parse cron expr", ex);
-				}
-				
-				// ±ÈÎä¿ªÊ¼Create the JobDetail
-				JobDetail jobDetail_all = new JobDetail("MenpaiContest_all",
-						Scheduler.DEFAULT_GROUP, MenpaiContestAll.class);
-
-				// ´´½¨Ã¿¸öJOBÒªÖ´ĞĞµÄÊ±¼ä
-				try
-				{
-					String time = "0 " + vo.getAll_minute() + " "
-							+ vo.getAll_hour() + " ? * "
-							+ vo.getTime_week().trim();
-					// ×Ô¶¨ÒåÊ±¼ä
-					CronTrigger trigger_all = new CronTrigger(
-							"MyTrigger_all", null, time);
-					Date date = new Date();
-					trigger_all.setStartTime(date);
-					scheduler.scheduleJob(jobDetail_all, trigger_all);
-					logger.info("±ÈÎä¶¨Ê±");
-				}
-				catch (ParseException ex)
-				{
-					logger.error("Couldn't parse cron expr", ex);
-				}
-			}
-		}
-		catch (SchedulerException ex)
-		{
-			logger.error(ex);
-		}
-	}
+                // åˆ›å»ºæ¯ä¸ªJOBè¦æ‰§è¡Œçš„æ—¶é—´
+                try {
+                    String time = "0 " + vo.getAll_minute() + " " + vo.getAll_hour() + " ? * " + vo.getTime_week().trim();
+                    // è‡ªå®šä¹‰æ—¶é—´
+                    CronTrigger trigger_all = new CronTrigger("MyTrigger_all", null, time);
+                    Date date = new Date();
+                    trigger_all.setStartTime(date);
+                    scheduler.scheduleJob(jobDetail_all, trigger_all);
+                    logger.info("æ¯”æ­¦å®šæ—¶");
+                } catch (ParseException ex) {
+                    logger.error("Couldn't parse cron expr", ex);
+                }
+            }
+        } catch (SchedulerException ex) {
+            logger.error(ex);
+        }
+    }
 }

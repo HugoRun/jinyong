@@ -1,13 +1,13 @@
 package com.ls.pub.constant;
 
 /**
- * @author ls ����:map���ͳ��� Feb 4, 2009
+ * @author ls 功能:map类型常量 Feb 4, 2009
  */
 public class MapType
 {
 	/**
-	 * ��ͼ���ͣ�1Ϊ��ȫ����2ΪΣ������3Ϊ��̨��4Ϊ������5Ϊ����,6Ϊս��,7Ϊ���ɹ���ս��,8Ϊ���̨,9Ϊ����̨,10Ϊ�Թ�
-	 * ,11Ϊ��ս��̨,12��������̨,13Ϊ��ս��̨
+	 * 地图类型，1为安全区域，2为危险区域，3为擂台，4为副本，5为监狱,6为战场,7为帮派攻城战场,8为活动擂台,9为新擂台,10为迷宫
+	 * ,11为挑战擂台,12插旗子擂台,13为对战擂台
 	 */
 
 	public final static int SAFE = 1;

@@ -4,7 +4,7 @@ import com.pm.dao.statistics.PlayerOnlineNumRecordDao;
 import com.pub.db.mysql.SqlData;
 
 /**
- * ÓÃ»§ÔÚÏßÈËÊıÍ³¼Æ
+ * ç”¨æˆ·åœ¨çº¿äººæ•°ç»Ÿè®¡
  * @author Administrator
  *
  */
@@ -15,7 +15,7 @@ public class PlayerOnlineNumRecord
 	
 	
 	/**
-	 * Ôö¼ÓÔÚÏßÈËÊıÊıÁ¿
+	 * å¢åŠ åœ¨çº¿äººæ•°æ•°é‡
 	 */
 	public synchronized void addOnlineNum(){
 		/*try{
@@ -23,7 +23,7 @@ public class PlayerOnlineNumRecord
 //    		BufferedReader reader=new BufferedReader(new FileReader(file));
 //    		playerOnlineNum=Integer.parseInt(reader.readLine());
 //    		playerOnlineNum++;
-//    		//System.out.println("µ±Ç°ÔÚÏßÈËÊıÎª:"+playerOnlineNum+"ÈË");
+//    		//System.out.println("å½“å‰åœ¨çº¿äººæ•°ä¸º:"+playerOnlineNum+"äºº");
 //    		reader.close();
 //    		BufferedWriter writer=new BufferedWriter(new FileWriter(file));
 //    		writer.write(playerOnlineNum+"");
@@ -40,8 +40,8 @@ public class PlayerOnlineNumRecord
 	}
 	
 	/**
-	 * Ôö¼ÓÔÚÏßÈËÊıÊıÁ¿
-	 * ´Ë·½·¨Ó¦ÔÚÇÒÖ»ÔÚ´´½¨½ÇÉ«Ê±ºÍÔÚloginpageµÄn2·½·¨ÖĞ±»µ÷ÓÃ¡£
+	 * å¢åŠ åœ¨çº¿äººæ•°æ•°é‡
+	 * æ­¤æ–¹æ³•åº”åœ¨ä¸”åªåœ¨åˆ›å»ºè§’è‰²æ—¶å’Œåœ¨loginpageçš„n2æ–¹æ³•ä¸­è¢«è°ƒç”¨ã€‚
 	 */
 	public void addOnlineNumElse(){
 		PlayerOnlineNumRecordDao playerOnlineNumRecordDao = new PlayerOnlineNumRecordDao();
@@ -49,7 +49,7 @@ public class PlayerOnlineNumRecord
 	}
 	
 	/**
-	 * ¼õÉÙµ±Ç°ÔÚÏßÈËÊıÒ»
+	 * å‡å°‘å½“å‰åœ¨çº¿äººæ•°ä¸€
 	 */
 	public  void reduceOnlineNum(){
 		
@@ -62,7 +62,7 @@ public class PlayerOnlineNumRecord
 		
 	}
 	/**
-	 * »ñµÃµ±Ç°ÔÚÏßÈËÊı
+	 * è·å¾—å½“å‰åœ¨çº¿äººæ•°
 	 * @return
 	 */
 	public int getPlayerOnlineNum(){
@@ -72,7 +72,7 @@ public class PlayerOnlineNumRecord
 	}
 	
 	
-	/** µ±·şÎñÆ÷Æô¶¯Ê±, ½«µ±Ç°ÔÚÏßÈËÊıÖÃÁã. */
+	/** å½“æœåŠ¡å™¨å¯åŠ¨æ—¶, å°†å½“å‰åœ¨çº¿äººæ•°ç½®é›¶. */
 	public void setOnlineNumToZero(){
 		try{
 			con=new SqlData();

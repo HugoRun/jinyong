@@ -15,7 +15,7 @@ public class CompassDao extends DaoBase
 {
 	public Compass findById(int scene_id)
 	{
-		String sql = "select * from compass c where c.scene_id = " + scene_id;
+		String sql = "SELECT * FROM `compass` c WHERE c.scene_id = " + scene_id;
 		List<Compass> list = new ArrayList<Compass>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -41,7 +41,7 @@ public class CompassDao extends DaoBase
 
 	public List<Compass> findAll()
 	{
-		String sql = "select * from compass";
+		String sql = "SELECT * FROM `compass`";
 		List<Compass> list = new ArrayList<Compass>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

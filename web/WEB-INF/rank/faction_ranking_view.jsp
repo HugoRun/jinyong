@@ -5,7 +5,7 @@
     <% 
     RankingVO vo = (RankingVO)request.getAttribute("rankingVO");
     %>
-	<%=vo.getTName() %><%if (Integer.parseInt(vo.getTCamp()) == 1) {%>(正)<%} else {%>(邪)<%}%>
+    <%=vo.getTName() %><%if (Integer.parseInt(vo.getTCamp()) == 1) {%>(正)<%} else {%>(邪)<%}%>
 	<br/>
 	等级:<%=vo.getTongGrade() %>级帮
 	<br/>

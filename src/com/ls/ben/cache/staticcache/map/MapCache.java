@@ -10,13 +10,13 @@ public class MapCache extends CacheBase
 	public static String MAP_BY_ID = "map_by_id";
 	
 	/**
-	 * 通过id得到map信息
+	 * 閫氳繃id寰楀埌map淇℃伅
 	 * @param scene_id
 	 * @return
 	 */
 	public static MapVO getById( String map_id )
 	{
-		logger.debug("通过id得到map信息:map_id="+map_id);
+		logger.debug("閫氳繃id寰楀埌map淇℃伅:map_id="+map_id);
 		MapVO map_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, MAP_BY_ID);
 		map_info = (MapVO)result.get(map_id);
@@ -25,7 +25,7 @@ public class MapCache extends CacheBase
 	}
 	
 	/**
-	 * 得到所有map信息
+	 * 寰楀埌鎵�鏈塵ap淇℃伅
 	 * @param scene_id
 	 * @return
 	 */

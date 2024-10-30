@@ -28,7 +28,7 @@ public class ExchangeAction extends DispatchAction
 {
 	Logger logger = Logger.getLogger("log.action");
 	
-	//ÁĞ³ö¿É¶Ò»»µÄÎïÆ·
+	//åˆ—å‡ºå¯å…‘æ¢çš„ç‰©å“
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -36,7 +36,7 @@ public class ExchangeAction extends DispatchAction
 		
 		if( menu_id==null )
 		{
-			logger.info("exchangeActionÖĞmenu_idÎª¿Õ!");
+			logger.info("exchangeActionä¸­menu_idä¸ºç©º!");
 		}
 		
 		
@@ -55,7 +55,7 @@ public class ExchangeAction extends DispatchAction
 		String operate3s = vo.getMenuOperate3();
 		String[] operate3 = operate3s.split(";");
 		
-		//µÚÈı¸öÌØÊâ×Ö½ÚµÄµÚÁù¸öÊı×Ö¿ØÖÆµÄÊÇ·ñÖ§³ÖÅúÁ¿×ª»»¹¦ÄÜ, 1ÎªÖ§³Ö,0Îª²»Ö§³Ö.
+		//ç¬¬ä¸‰ä¸ªç‰¹æ®Šå­—èŠ‚çš„ç¬¬å…­ä¸ªæ•°å­—æ§åˆ¶çš„æ˜¯å¦æ”¯æŒæ‰¹é‡è½¬æ¢åŠŸèƒ½, 1ä¸ºæ”¯æŒ,0ä¸ºä¸æ”¯æŒ.
 		if(operate3.length >= 6) {
 			//logger.info("operate3s="+operate3s);
 			request.setAttribute("operate3",operate3[5] );
@@ -71,7 +71,7 @@ public class ExchangeAction extends DispatchAction
 		return mapping.findForward("list");
 	}
 	
-	//¶Ò»»ÎïÆ·
+	//å…‘æ¢ç‰©å“
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -94,21 +94,21 @@ public class ExchangeAction extends DispatchAction
 		OperateMenuVO operateMenuVO = menuService.getMenuById(Integer.parseInt(menu_id));
 		
 		
-		String[] contorl = operateMenuVO.getMenuOperate3().split(";");		//»ñÈ¡¶Ò»»¿ØÖÆÌõ¼ş
+		String[] contorl = operateMenuVO.getMenuOperate3().split(";");		//è·å–å…‘æ¢æ§åˆ¶æ¡ä»¶
 		
 		PartInfoDao partInfoDao = new PartInfoDao();
 		PartInfoVO partInfoVO = partInfoDao.getPartInfoByID(Integer.valueOf(pPk));
 		
-		logger.info("Ä¿Ç°µÈ¼¶:"+partInfoVO.getPGrade()+",ÒªÇóµÈ¼¶:"+contorl[0]+"×Ô¼ºĞÔ±ğ:"+partInfoVO.getPSex()+",ÒªÇóĞÔ±ğ:"+contorl[1]);
+		logger.info("ç›®å‰ç­‰çº§:"+partInfoVO.getPGrade()+",è¦æ±‚ç­‰çº§:"+contorl[0]+"è‡ªå·±æ€§åˆ«:"+partInfoVO.getPSex()+",è¦æ±‚æ€§åˆ«:"+contorl[1]);
 		if(!contorl[0].equals("0") ){
 			String[] grade = contorl[0].split("-");
 			if(Integer.valueOf(grade[0]) > partInfoVO.getPGrade()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄµÈ¼¶²»×ã£¡µÈ¼¶×îµÍÒªÇó"+grade[0];
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç­‰çº§ä¸è¶³ï¼ç­‰çº§æœ€ä½è¦æ±‚"+grade[0];
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
 			}else if(Integer.valueOf(grade[1]) < partInfoVO.getPGrade()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄµÈ¼¶³¬³öÒªÇó£¡µÈ¼¶×î¸ßÒªÇó"+grade[1];
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç­‰çº§è¶…å‡ºè¦æ±‚ï¼ç­‰çº§æœ€é«˜è¦æ±‚"+grade[1];
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
@@ -116,16 +116,16 @@ public class ExchangeAction extends DispatchAction
 		}
 		if(Integer.valueOf(contorl[1]) != 0){
 			if(Integer.valueOf(contorl[1]) != partInfoVO.getPSex()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄĞÔ±ğ²»Âú×ãÌõ¼ş£¡";
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„æ€§åˆ«ä¸æ»¡è¶³æ¡ä»¶ï¼";
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
 			}
 		}
-		logger.info("ÄúµÄ»éÒö×´¿ö:"+partInfoVO.getPHarness()+",ÒªÇó»éÒö×´¿ö:"+contorl[2]);
+		logger.info("æ‚¨çš„å©šå§»çŠ¶å†µ:"+partInfoVO.getPHarness()+",è¦æ±‚å©šå§»çŠ¶å†µ:"+contorl[2]);
 		if(Integer.valueOf(contorl[2]) != 0){
 			if(Integer.valueOf(contorl[2]) != partInfoVO.getPHarness()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄ»éÒö×´¿ö²»Âú×ãÌõ¼ş£¡";
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å©šå§»çŠ¶å†µä¸æ»¡è¶³æ¡ä»¶ï¼";
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
@@ -133,7 +133,7 @@ public class ExchangeAction extends DispatchAction
 		}
 		if (!contorl[3].equals("0") && roleInfo.getTitleSet().isHaveByTitleStr(contorl[3])==false )
 		{
-			String resultWml = "¶Ô²»Æğ£¬ÄúµÄ³ÆÎ½×´¿ö²»Âú×ãÌõ¼ş£¡";
+			String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç§°è°“çŠ¶å†µä¸æ»¡è¶³æ¡ä»¶ï¼";
 			request.setAttribute("resultWml",resultWml);
 			request.setAttribute("menu_id",menu_id);
 			return mapping.findForward("display");
@@ -141,10 +141,10 @@ public class ExchangeAction extends DispatchAction
 		if (!contorl[4].equals("0"))
 		{
 			TimeControlService timeControlService = new TimeControlService();
-			logger.info("Õâ´ÎÊÇ·ñ¿ÉÓÃ:"+timeControlService.isUseable(Integer.valueOf(pPk), Integer.valueOf(menu_id), TimeControlService.MENU, Integer.valueOf(contorl[4]))+",ÔÊĞíÊ¹ÓÃ´ÎÊı:"+contorl[4]);
+			logger.info("è¿™æ¬¡æ˜¯å¦å¯ç”¨:"+timeControlService.isUseable(Integer.valueOf(pPk), Integer.valueOf(menu_id), TimeControlService.MENU, Integer.valueOf(contorl[4]))+",å…è®¸ä½¿ç”¨æ¬¡æ•°:"+contorl[4]);
 			
 			if(!timeControlService.isUseable(Integer.valueOf(pPk), Integer.valueOf(menu_id), TimeControlService.MENU, Integer.valueOf(contorl[4]))){
-				String resultWml = "¶Ô²»Æğ£¬Äú±¾ÈÕÒÑ¾­Ê¹ÓÃ"+contorl[4]+"´Î£¬ÒÑ¾­´ïµ½ÏŞÖÆ£¬ÇëÃ÷ÈÕÔÙÀ´£¡";
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨æœ¬æ—¥å·²ç»ä½¿ç”¨"+contorl[4]+"æ¬¡ï¼Œå·²ç»è¾¾åˆ°é™åˆ¶ï¼Œè¯·æ˜æ—¥å†æ¥ï¼";
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
@@ -153,9 +153,9 @@ public class ExchangeAction extends DispatchAction
 			}
 		}
 		
-		//ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄÔ­²ÄÁÏ
+		//åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„åŸææ–™
 		String result = exservice.getPPkHasGoods(pPk,address,operateMenuVO,1);
-		logger.info("Ô­²ÄÁÏÊÇ·ñ×ã¹»: "+result);
+		logger.info("åŸææ–™æ˜¯å¦è¶³å¤Ÿ: "+result);
 		String[] results = result.split(",");
 		if(Integer.valueOf(results[0]) == -1){
 			String resultWml = results[1];
@@ -163,9 +163,9 @@ public class ExchangeAction extends DispatchAction
 			request.setAttribute("menu_id",menu_id);
 			return mapping.findForward("display");
 		}else if(Integer.valueOf(results[0]) == 1){
-			//ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ¿Õ¼äÀ´´æ·Å×°±¸µÀ¾ß»ò½ğÇ®
+			//åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„ç©ºé—´æ¥å­˜æ”¾è£…å¤‡é“å…·æˆ–é‡‘é’±
 			String hasWareSpare = exservice.getHasWareSpare(pPk,operateMenuVO,address,1);
-			logger.info("ÊÇ·ñÓĞ×ã¹»¿Õ¸ñÊı :"+hasWareSpare);
+			logger.info("æ˜¯å¦æœ‰è¶³å¤Ÿç©ºæ ¼æ•° :"+hasWareSpare);
 			String hasWareSpares = hasWareSpare.split(",")[0];
 			if(Integer.valueOf(hasWareSpares) == 1){
 				String resultWml = exservice.exchangeGoods(pPk,operateMenuVO,address,1);
@@ -182,7 +182,7 @@ public class ExchangeAction extends DispatchAction
 		return mapping.findForward("list");
 	}
 	
-	//²é¿´Ëù¶Ò»»ÎïÆ·ÊôĞÔ
+	//æŸ¥çœ‹æ‰€å…‘æ¢ç‰©å“å±æ€§
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -190,7 +190,7 @@ public class ExchangeAction extends DispatchAction
 		RoleEntity  roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		int pPk = roleInfo.getBasicInfo().getPPk();
 		
-		//ÎïÆ·ÀàĞÍ,4ÎªµÀ¾ß,1Îª×°±¸
+		//ç‰©å“ç±»å‹,4ä¸ºé“å…·,1ä¸ºè£…å¤‡
 		String goodsType = request.getParameter("goodsType");
 		String goodsId = request.getParameter("goodsId");
 		
@@ -211,7 +211,7 @@ public class ExchangeAction extends DispatchAction
 		return mapping.findForward("goodsView");
 	}
 	
-	//¶Ò»»ÎïÆ·
+	//å…‘æ¢ç‰©å“
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -236,7 +236,7 @@ public class ExchangeAction extends DispatchAction
 			}
 		}
 		if(exchange_num < 1){
-			String resultWml = "¶Ô²»Æğ,ÇëÊäÈëÕıÈ·Êı×Ö!";
+			String resultWml = "å¯¹ä¸èµ·,è¯·è¾“å…¥æ­£ç¡®æ•°å­—!";
 			request.setAttribute("resultWml",resultWml);
 			request.setAttribute("menu_id",menu_id);
 			return mapping.findForward("display");
@@ -251,22 +251,22 @@ public class ExchangeAction extends DispatchAction
 		OperateMenuVO operateMenuVO = menuService.getMenuById(Integer.parseInt(menu_id));
 		
 		
-		String[] contorl = operateMenuVO.getMenuOperate3().split(";");		//»ñÈ¡¶Ò»»¿ØÖÆÌõ¼ş
+		String[] contorl = operateMenuVO.getMenuOperate3().split(";");		//è·å–å…‘æ¢æ§åˆ¶æ¡ä»¶
 		
 		PartInfoDao partInfoDao = new PartInfoDao();
 		PartInfoVO partInfoVO = partInfoDao.getPartInfoByID(Integer.valueOf(pPk));
 		
-		//¶Ô¶Ò»»¿ØÖÆÌõ¼ş½øĞĞÅĞ¶Ï
-		logger.info("Ä¿Ç°µÈ¼¶:"+partInfoVO.getPGrade()+",ÒªÇóµÈ¼¶:"+contorl[0]+"×Ô¼ºĞÔ±ğ:"+partInfoVO.getPSex()+",ÒªÇóĞÔ±ğ:"+contorl[1]);
+		//å¯¹å…‘æ¢æ§åˆ¶æ¡ä»¶è¿›è¡Œåˆ¤æ–­
+		logger.info("ç›®å‰ç­‰çº§:"+partInfoVO.getPGrade()+",è¦æ±‚ç­‰çº§:"+contorl[0]+"è‡ªå·±æ€§åˆ«:"+partInfoVO.getPSex()+",è¦æ±‚æ€§åˆ«:"+contorl[1]);
 		if(!contorl[0].equals("0") ){
 			String[] grade = contorl[0].split("-");
 			if(Integer.valueOf(grade[0]) > partInfoVO.getPGrade()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄµÈ¼¶²»×ã£¡µÈ¼¶×îµÍÒªÇó"+grade[0];
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç­‰çº§ä¸è¶³ï¼ç­‰çº§æœ€ä½è¦æ±‚"+grade[0];
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
 			} else if(Integer.valueOf(grade[1]) < partInfoVO.getPGrade()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄµÈ¼¶³¬³öÒªÇó£¡µÈ¼¶×î¸ßÒªÇó"+grade[1];
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç­‰çº§è¶…å‡ºè¦æ±‚ï¼ç­‰çº§æœ€é«˜è¦æ±‚"+grade[1];
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
@@ -274,16 +274,16 @@ public class ExchangeAction extends DispatchAction
 		}
 		if(Integer.valueOf(contorl[1]) != 0){
 			if(Integer.valueOf(contorl[1]) != partInfoVO.getPSex()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄĞÔ±ğ²»Âú×ãÌõ¼ş£¡";
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„æ€§åˆ«ä¸æ»¡è¶³æ¡ä»¶ï¼";
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
 			}
 		}
-		logger.info("ÄúµÄ»éÒö×´¿ö:"+partInfoVO.getPHarness()+",ÒªÇó»éÒö×´¿ö:"+contorl[2]);
+		logger.info("æ‚¨çš„å©šå§»çŠ¶å†µ:"+partInfoVO.getPHarness()+",è¦æ±‚å©šå§»çŠ¶å†µ:"+contorl[2]);
 		if(Integer.valueOf(contorl[2]) != 0){
 			if(Integer.valueOf(contorl[2]) != partInfoVO.getPHarness()){
-				String resultWml = "¶Ô²»Æğ£¬ÄúµÄ»éÒö×´¿ö²»Âú×ãÌõ¼ş£¡";
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å©šå§»çŠ¶å†µä¸æ»¡è¶³æ¡ä»¶ï¼";
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
@@ -291,7 +291,7 @@ public class ExchangeAction extends DispatchAction
 		}
 		if (!contorl[3].equals("0") && roleInfo.getTitleSet().isHaveByTitleStr(contorl[3])==false)
 		{
-			String resultWml = "¶Ô²»Æğ£¬ÄúµÄ³ÆÎ½×´¿ö²»Âú×ãÌõ¼ş£¡";
+			String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç§°è°“çŠ¶å†µä¸æ»¡è¶³æ¡ä»¶ï¼";
 			request.setAttribute("resultWml",resultWml);
 			request.setAttribute("menu_id",menu_id);
 			return mapping.findForward("display");
@@ -299,10 +299,10 @@ public class ExchangeAction extends DispatchAction
 		if (!contorl[4].equals("0"))
 		{
 			TimeControlService timeControlService = new TimeControlService();
-			logger.info("Õâ´ÎÊÇ·ñ¿ÉÓÃ:"+timeControlService.isUseable(Integer.valueOf(pPk), Integer.valueOf(menu_id), TimeControlService.MENU, Integer.valueOf(contorl[4]))+",ÔÊĞíÊ¹ÓÃ´ÎÊı:"+contorl[4]);
+			logger.info("è¿™æ¬¡æ˜¯å¦å¯ç”¨:"+timeControlService.isUseable(Integer.valueOf(pPk), Integer.valueOf(menu_id), TimeControlService.MENU, Integer.valueOf(contorl[4]))+",å…è®¸ä½¿ç”¨æ¬¡æ•°:"+contorl[4]);
 			
 			if(!timeControlService.isUseable(Integer.valueOf(pPk), Integer.valueOf(menu_id), TimeControlService.MENU, Integer.valueOf(contorl[4]))){
-				String resultWml = "¶Ô²»Æğ£¬Äú±¾ÈÕÒÑ¾­Ê¹ÓÃ"+contorl[4]+"´Î£¬ÒÑ¾­´ïµ½ÏŞÖÆ£¬ÇëÃ÷ÈÕÔÙÀ´£¡";
+				String resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨æœ¬æ—¥å·²ç»ä½¿ç”¨"+contorl[4]+"æ¬¡ï¼Œå·²ç»è¾¾åˆ°é™åˆ¶ï¼Œè¯·æ˜æ—¥å†æ¥ï¼";
 				request.setAttribute("resultWml",resultWml);
 				request.setAttribute("menu_id",menu_id);
 				return mapping.findForward("display");
@@ -311,9 +311,9 @@ public class ExchangeAction extends DispatchAction
 			}
 		}
 		
-		//ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄÔ­²ÄÁÏ
+		//åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„åŸææ–™
 		String result = exservice.getPPkHasGoods(pPk,address,operateMenuVO,exchange_num);
-		logger.info("Ô­²ÄÁÏÊÇ·ñ×ã¹»: "+result);
+		logger.info("åŸææ–™æ˜¯å¦è¶³å¤Ÿ: "+result);
 		String[] results = result.split(",");
 		if(Integer.valueOf(results[0]) == -1){
 			String resultWml = results[1];
@@ -321,9 +321,9 @@ public class ExchangeAction extends DispatchAction
 			request.setAttribute("menu_id",menu_id);
 			return mapping.findForward("display");
 		}else if(Integer.valueOf(results[0]) == 1){
-			//ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ¿Õ¼äÀ´´æ·Å×°±¸µÀ¾ß»ò½ğÇ®
+			//åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„ç©ºé—´æ¥å­˜æ”¾è£…å¤‡é“å…·æˆ–é‡‘é’±
 			String hasWareSpare = exservice.getHasWareSpare(pPk,operateMenuVO,address,exchange_num);
-			logger.info("ÊÇ·ñÓĞ×ã¹»¿Õ¸ñÊı :"+hasWareSpare);
+			logger.info("æ˜¯å¦æœ‰è¶³å¤Ÿç©ºæ ¼æ•° :"+hasWareSpare);
 			String hasWareSpares = hasWareSpare.split(",")[0];
 			if(Integer.valueOf(hasWareSpares) == 1){
 				String resultWml = exservice.exchangeGoods(pPk,operateMenuVO,address,exchange_num);

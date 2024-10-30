@@ -24,7 +24,7 @@ public class LoginAction extends Action
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ĞÂÀËÇşµÀµÇÂ¼9
+	 * æ–°æµªæ¸ é“ç™»å½•9
 	 * 
 	 * @param mapping
 	 * @param form
@@ -37,17 +37,17 @@ public class LoginAction extends Action
 	{
 		HttpSession session = request.getSession();
 		String wm = request.getParameter("wm");
-		String sign = request.getParameter("sign");// ÅĞ¶ÏÍæ¼ÒÊÇ²»ÊÇÖØĞÂµÇÂ½
+		String sign = request.getParameter("sign");// åˆ¤æ–­ç©å®¶æ˜¯ä¸æ˜¯é‡æ–°ç™»é™†
 		session.setAttribute("wm", wm);
 		String wm_bak = (String) session.getAttribute("wm");
-		String sina_uid = request.getParameter("sina_uid");// UID×Ö·û´®
-		String key = request.getParameter("key");// UID×Ö·û´®
+		String sina_uid = request.getParameter("sina_uid");// UIDå­—ç¬¦ä¸²
+		String key = request.getParameter("key");// UIDå­—ç¬¦ä¸²
 		String sina_uid_key = sina_uid+"sina_uid_jytiexue";
 		String key_bak = MD5Util.md5Hex(sina_uid_key);
-		if (GameConfig.getGameState() == 2)// ÅĞ¶ÏÓÎÏ·µÄ×´Ì¬
+		if (GameConfig.getGameState() == 2)// åˆ¤æ–­æ¸¸æˆçš„çŠ¶æ€
 		{
-			// ÓÎÏ·×´Ì¬ÎªÉÏÏßÄÚ²¿²âÊÔ×´Ì¬
-			// ¶¯Ì¬¹«¸æ
+			// æ¸¸æˆçŠ¶æ€ä¸ºä¸Šçº¿å†…éƒ¨æµ‹è¯•çŠ¶æ€
+			// åŠ¨æ€å…¬å‘Š
 			SystemNotifyService systemNotifyService = new SystemNotifyService();
 			SystemNotifyVO first_notify_info = systemNotifyService
 					.getFirstNotifyInfo();
@@ -60,24 +60,24 @@ public class LoginAction extends Action
 
 		LoginService loginService = new LoginService();
 
-		// ÅĞ¶ÏÔÚÏßÈËÊıÊÇ·ñ´ïµ½ÉÏÏß
+		// åˆ¤æ–­åœ¨çº¿äººæ•°æ˜¯å¦è¾¾åˆ°ä¸Šçº¿
 		if (loginService.isFullOnlineRoleNum())
 		{
-			// ÔÚÏßÈËÊıÒÑ´ïÏµÍ³ÉèÖÃÉÏÏß
+			// åœ¨çº¿äººæ•°å·²è¾¾ç³»ç»Ÿè®¾ç½®ä¸Šçº¿
 			return mapping.findForward("user_num_limit_hint");
 		}
 
 		if (sina_uid == null || sina_uid.equals("null") || sina_uid.equals(""))
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		}
 		if(!key_bak.equals(key)){
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		}
 		
-		logger.info("ĞÂÀËÓÃ»§µÇÂ½:sina_uid=" + sina_uid);
+		logger.info("æ–°æµªç”¨æˆ·ç™»é™†:sina_uid=" + sina_uid);
 
 		PassportService passportService = new PassportService();
 
@@ -97,9 +97,9 @@ public class LoginAction extends Action
 		PassportVO passport = passportService.loginFromSina(sina_uid,
 				login_ip, wm);
 
-		if (passport == null || passport.getUPk() == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
+		if (passport == null || passport.getUPk() == -1)// ç™»é™†éªŒè¯å¤±è´¥
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		}
 
@@ -114,7 +114,7 @@ public class LoginAction extends Action
 		session.setAttribute("skyid", skyid);
 		session.setAttribute("user_name", skyid);
 		session.setAttribute("channel_id", Channel.SINA + "");
-		session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
+		session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
 		session.setAttribute("ssid", sina_uid);
 		return mapping.findForward("success");
 

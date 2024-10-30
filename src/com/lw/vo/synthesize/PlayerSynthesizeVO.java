@@ -2,11 +2,11 @@ package com.lw.vo.synthesize;
 
 public class PlayerSynthesizeVO
 {
-	// Ö÷¼ü
+	// ä¸»é”®
 	private int id;
-	// Íæ¼ÒPPK
+	// ç©å®¶PPK
 	private int pPk;
-	// Åä·½ID
+	// é…æ–¹ID
 	private int synthesizeID;
 
 	public int getId()

@@ -30,7 +30,7 @@ public class BillAction extends DispatchAction
 		String pPk = (String) request.getSession().getAttribute("pPk");
 		String sessionKey = request.getParameter("SessionKey");
 
-		String kbamt_str = request.getParameter("kbamt");// ÓÃ»§Ìá½»¿Û·Ñ½ğ¶î
+		String kbamt_str = request.getParameter("kbamt");// ç”¨æˆ·æäº¤æ‰£è´¹é‡‘é¢
 
 		ValidateService validateService = new ValidateService();
 		String hint = validateService
@@ -45,7 +45,7 @@ public class BillAction extends DispatchAction
 		int kbamt = Integer.parseInt(kbamt_str);
 
 		UAccountRecordDao dao = new UAccountRecordDao();
-		// Éú³É¶©µ¥
+		// ç”Ÿæˆè®¢å•
 		UAccountRecordVO order = new UAccountRecordVO();
 		order.setUPk(Integer.parseInt(uPk));
 		order.setPPk(Integer.parseInt(pPk));
@@ -65,10 +65,10 @@ public class BillAction extends DispatchAction
 		{
 			client = ClientFactory.createInstance(sessionKey);
 
-			// ÕıÊ½ÓÃ
+			// æ­£å¼ç”¨
 			PayRegOrderResponse result = client.pay_regOrder(orderId, amount,
 					PayRegOrderResponse.PayType.K_GOLD, desc, remark1, remark2);
-			// ²âÊÔÓÃ
+			// æµ‹è¯•ç”¨
 			// Pay4TestRegOrderResponse result =
 			// client.pay4Test_regOrder(orderId,amount,
 			// Pay4TestRegOrderResponse.PayType.K_GOLD, desc,, remark2);
@@ -78,9 +78,9 @@ public class BillAction extends DispatchAction
 				String token = result.getToken();
 				String code = result.getCode();
 				logger.info("uPk=" + uPk + ";pPk=" + pPk);
-				logger.info("Ö§¸¶½á¹û£º" + result.getCode());
-				logger.info("Ö§¸¶token£º" + result.getToken());
-				logger.info("¶©µ¥ºÅÎª£º" + orderId + "");
+				logger.info("æ”¯ä»˜ç»“æœï¼š" + result.getCode());
+				logger.info("æ”¯ä»˜tokenï¼š" + result.getToken());
+				logger.info("è®¢å•å·ä¸ºï¼š" + orderId + "");
 
 				if (token != null && !token.equals(""))
 				{
@@ -96,59 +96,59 @@ public class BillAction extends DispatchAction
 
 					if (code.equals("100101"))
 					{
-						hint = "½ğ¶î²»×ã";
+						hint = "é‡‘é¢ä¸è¶³";
 					}
 					else
 						if (code.equals("100100"))
 						{
-							hint = "K½ğÕÊ»§²»´æÔÚ";
+							hint = "Ké‡‘å¸æˆ·ä¸å­˜åœ¨";
 						}
 						else
 							if (code.equals("100102"))
 							{
-								hint = "K½ğÕÊ»§±»¶³½á";
+								hint = "Ké‡‘å¸æˆ·è¢«å†»ç»“";
 							}
 							else
 								if (code.equals("100010"))
 								{
-									hint = "Ö§¸¶½ğ¶î´íÎó";
+									hint = "æ”¯ä»˜é‡‘é¢é”™è¯¯";
 								}
 								else
 									if (code.equals("100003"))
 									{
-										hint = "¶©µ¥ÒÑ´æÔÚ";
+										hint = "è®¢å•å·²å­˜åœ¨";
 									}
 									else
 										if (code.equals("100004"))
 										{
-											hint = "tokenÖØ¸´";
+											hint = "tokené‡å¤";
 										}
 										else
 											if (code.equals("100005"))
 											{
-												hint = "session_key³¬Ê±";
+												hint = "session_keyè¶…æ—¶";
 											}
 											else
 												if (code.equals("100020"))
 												{
-													hint = "¶Ò»»ÒÑ³¬¹ı½ñÈÕ×î´óÉÏÏŞ,Ã¿ÈËÃ¿ÈÕ×î¸ß¿É¶Ò»»15K½ğ";
+													hint = "å…‘æ¢å·²è¶…è¿‡ä»Šæ—¥æœ€å¤§ä¸Šé™,æ¯äººæ¯æ—¥æœ€é«˜å¯å…‘æ¢15Ké‡‘";
 												}
 												else
 												{
-													hint = "ÍøÂçÒì³£ÇëÖØÊÔ";
+													hint = "ç½‘ç»œå¼‚å¸¸è¯·é‡è¯•";
 												}
 				}
 
-				dao.update(order.getId(), account_state);// ¸üĞÂ×´Ì¬
+				dao.update(order.getId(), account_state);// æ›´æ–°çŠ¶æ€
 			}
 			else
 			{
-				hint = "ÍøÂçÒì³£ÇëÖØÊÔ";
+				hint = "ç½‘ç»œå¼‚å¸¸è¯·é‡è¯•";
 			}
 		}
 		catch (IOException e)
 		{
-			hint = "ÍøÂçÒì³£ÇëÖØÊÔ";
+			hint = "ç½‘ç»œå¼‚å¸¸è¯·é‡è¯•";
 			e.printStackTrace();
 		}
 		request.setAttribute("hint", hint);

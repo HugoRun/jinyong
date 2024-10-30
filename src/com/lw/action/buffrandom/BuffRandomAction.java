@@ -41,7 +41,7 @@ public class BuffRandomAction extends DispatchAction
 		String display = "";
 		if (pg_pk == null || pg_pk.equals("null") || pg_pk.equals(""))
 		{
-			display = "µÀ¾ß´íÎóÇëÁªÏµGM!";
+			display = "é“å…·é”™è¯¯è¯·è”ç³»GM!";
 		}
 		else
 		{
@@ -54,21 +54,21 @@ public class BuffRandomAction extends DispatchAction
 			PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(Integer
 					.parseInt(pg_pk));
 			PropVO vo = pc.getPropById(propGroup.getPropId());
-			// µÃµ½Íæ¼ÒBUFFµÄ×ÜºÍ
+			// å¾—åˆ°ç©å®¶BUFFçš„æ€»å’Œ
 			String propOperate1 = vo.getPropOperate1();
-			// µÃµ½µÈ¼¶µÄÏŞÖÆ
+			// å¾—åˆ°ç­‰çº§çš„é™åˆ¶
 			String gradeFenBu = vo.getPropOperate2();
-			// È¡³öBUFF¸÷¸öµÈ¼¶µÄBUFF
+			// å–å‡ºBUFFå„ä¸ªç­‰çº§çš„BUFF
 			String[] buffIdStrings = propOperate1.split(";");
 			List<Probability> list = new ArrayList<Probability>();
-			// µÃµ½¾ßÌåµÈ¼¶µÄËùÓĞBUFF
+			// å¾—åˆ°å…·ä½“ç­‰çº§çš„æ‰€æœ‰BUFF
 			int gradeZhi = gs.getGradeNum(gradeFenBu, roleInfo.getBasicInfo()
 					.getGrade());
 			String npcString = buffIdStrings[gradeZhi];
 			NpcGaiLv buffGaiLv = null;
 			String[] npcGaolv = npcString.split(",");
-			// µÃµ½µÈ¼¶ÏŞÖÆ
-			/** ********È¡³öÊ¹ÓÃµÄBUFFID********** */
+			// å¾—åˆ°ç­‰çº§é™åˆ¶
+			/** ********å–å‡ºä½¿ç”¨çš„BUFFID********** */
 			for (int i = 0; i < npcGaolv.length; i++)
 			{
 				buffGaiLv = new NpcGaiLv();
@@ -81,8 +81,8 @@ public class BuffRandomAction extends DispatchAction
 			Probability probability = MathUtil.getRandomEntityFromList(list,
 					MathUtil.DENOMINATOR);
 			int buff_id = probability.getId();
-			/** ******È¡³ö½áÊø*********** */
-			/** **»ñÈ¡ĞÂµÄBUFFºÍÀÏµÄBUFFÅĞ¶ÏÊÇ·ñ ¸²¸Ç**** */
+			/** ******å–å‡ºç»“æŸ*********** */
+			/** **è·å–æ–°çš„BUFFå’Œè€çš„BUFFåˆ¤æ–­æ˜¯å¦ è¦†ç›–**** */
 			BuffVO buffvo = buffDao.getBuff(buff_id);
 			BuffEffectVO buffEffectVO_old = buffEffectDao
 					.getBuffEffectByBuffType(roleInfo.getBasicInfo().getPPk(),
@@ -93,16 +93,16 @@ public class BuffRandomAction extends DispatchAction
 
 				buffMenuService.setBuffStatus(roleInfo.getBasicInfo().getPPk(),
 						buff_id);
-				display = "Ò»µÀ½ğ¹âÉÁ¹ı,Äú»ñµÃÁË" + buffvo.getBuffTime() + "·ÖÖÓ"
-						+ buffvo.getBuffName() + "µÄĞ§¹û!µ«ÊÇÄãÄúµÄ"
-						+ buffEffectVO_old.getBuffName() + "µÄĞ§¹ûÏûÊ§ÁË¡­¡­";
+				display = "ä¸€é“é‡‘å…‰é—ªè¿‡,æ‚¨è·å¾—äº†" + buffvo.getBuffTime() + "åˆ†é’Ÿ"
+						+ buffvo.getBuffName() + "çš„æ•ˆæœ!ä½†æ˜¯ä½ æ‚¨çš„"
+						+ buffEffectVO_old.getBuffName() + "çš„æ•ˆæœæ¶ˆå¤±äº†â€¦â€¦";
 			}
 			else
 			{
 				buffMenuService.setBuffStatus(roleInfo.getBasicInfo().getPPk(),
 						buff_id);
-				display = "Ò»µÀ½ğ¹âÉÁ¹ı,Äú»ñµÃÁË" + buffvo.getBuffTime() + "·ÖÖÓ"
-						+ buffvo.getBuffName() + "µÄĞ§¹û!";
+				display = "ä¸€é“é‡‘å…‰é—ªè¿‡,æ‚¨è·å¾—äº†" + buffvo.getBuffTime() + "åˆ†é’Ÿ"
+						+ buffvo.getBuffName() + "çš„æ•ˆæœ!";
 			}
 			GoodsService goodsService = new GoodsService();
 			goodsService.removeProps(propGroup, 1);

@@ -12,10 +12,10 @@ public class QudaoJob implements Job
 
 	public void execute(JobExecutionContext context)
 	{
-		logger.debug("ÇşµÀÍ³¼Æ¿ªÊ¼");
+		logger.debug("æ¸ é“ç»Ÿè®¡å¼€å§‹");
 		QudaoService qs = new QudaoService();
 		qs.insertQudao();
-		logger.debug("ÇşµÀÍ³¼Æ½áÊø");
+		logger.debug("æ¸ é“ç»Ÿè®¡ç»“æŸ");
 	}
 
 }

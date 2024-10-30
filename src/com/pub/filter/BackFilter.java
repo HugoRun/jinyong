@@ -1,20 +1,5 @@
 package com.pub.filter;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
-
 import com.ls.model.user.RoleEntity;
 import com.ls.pub.config.GameConfig;
 import com.ls.pub.constant.Channel;
@@ -24,188 +9,156 @@ import com.ls.web.service.login.LoginService;
 import com.ls.web.service.player.RoleService;
 import com.lw.vo.sinasys.SinaSysVO;
 import com.pm.constant.RandomChar;
+import org.apache.log4j.Logger;
 
-public class BackFilter implements Filter
-{
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
-	Logger logger = Logger.getLogger("log.service");
+public class BackFilter implements Filter {
 
-	public void destroy()
-	{
+    Logger logger = Logger.getLogger("log.service");
 
-	}
+    public void destroy() {
 
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain chain)
-			throws IOException, ServletException
-	{
-		HttpServletRequest request = (HttpServletRequest) servletRequest;
-		HttpServletResponse response = (HttpServletResponse) servletResponse;
+    }
 
-		WrapperResponse wrapperResponse = new WrapperResponse(response);
-		HttpSession session = request.getSession();
-		String servletPath = request.getServletPath();
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-		
-		RoleService roleService = new RoleService();
-		RoleEntity role_info = roleService.getRoleInfoBySession(request.getSession());
-		try
-		{
-			InstanceService is = new InstanceService();
-			if(is.ifPlayerOut(role_info)==true){
-				request.getRequestDispatcher("/pubbuckaction.do").forward(
-						request, response);
-			}
-			
-			List<String> urlOfNoNeedFilter = SystemConfig.UrlOfNoNeedFilter;// ²»ĞèÒª¹ıÂËµÄurl
+        WrapperResponse wrapperResponse = new WrapperResponse(response);
+        HttpSession session = request.getSession();
+        String servletPath = request.getServletPath();
 
-			String curCheckStr = (String) session.getAttribute("curCheckStr");// µ±Ç°µÄÑéÖ¤´®
-			String userCheckStr = request.getParameter("chair");// ¿Í»§¶Ë´«¹ıÀ´µÄÑéÖ¤´®
+        RoleService roleService = new RoleService();
+        RoleEntity role_info = roleService.getRoleInfoBySession(request.getSession());
+        try {
+            InstanceService is = new InstanceService();
+            if (is.ifPlayerOut(role_info)) {
+                request.getRequestDispatcher("/pubbuckaction.do").forward(request, response);
+            }
+            // ä¸éœ€è¦è¿‡æ»¤çš„url
+            List<String> urlOfNoNeedFilter = SystemConfig.UrlOfNoNeedFilter;
+            // å½“å‰çš„éªŒè¯ä¸²
+            String curCheckStr = (String) session.getAttribute("curCheckStr");
+            // å®¢æˆ·ç«¯ä¼ è¿‡æ¥çš„éªŒè¯ä¸²
+            String userCheckStr = request.getParameter("chair");
 
-			if (Channel.SINA == GameConfig.getChannelId())
-			{
-				String wm = (String) session.getAttribute("wm");
-				if (wm == null || wm.equals("null"))
-				{
-					String wm_bak = request.getParameter("wm");
-					if(wm_bak == null || wm_bak.equals("null")){
-						wm = "-";
-					}else{
-						wm = wm_bak;
-					}
-					session.setAttribute("wm", wm);
-				}
-				
-				int x = LoginService.getOnlineNum();//µ±Ç°ÔÚÏßÈËÊı
-				SinaSysVO vo = new SinaSysVO();
-				vo.updateNewIP(wm, x);
-				vo.updateNewMv(wm);
-				vo.updateNewPv1(wm);
-			}
+            if (Channel.SINA == GameConfig.getChannelId()) {
+                String wm = (String) session.getAttribute("wm");
+                if (wm == null || wm.equals("null")) {
+                    String wm_bak = request.getParameter("wm");
+                    if (wm_bak == null || wm_bak.equals("null")) {
+                        wm = "-";
+                    } else {
+                        wm = wm_bak;
+                    }
+                    session.setAttribute("wm", wm);
+                }
 
-			/*
-			 * //Ñ¹Á¦²âÊÔÓÃ
-			 * request.getRequestDispatcher(requirpath).forward(request,response);
-			 * return;
-			 */
+                int x = LoginService.getOnlineNum();//å½“å‰åœ¨çº¿äººæ•°
+                SinaSysVO vo = new SinaSysVO();
+                vo.updateNewIP(wm, x);
+                vo.updateNewMv(wm);
+                vo.updateNewPv1(wm);
+            }
 
-			if (urlOfNoNeedFilter.contains(servletPath))
-			{
-				// ²»ĞèÒª¹ıÂËµÄurl,Ö±½ÓÇëÇó£¬²»¾­¹ıÖ®ºóµÄ¹ıÂËÆ÷
-				request.getRequestDispatcher(servletPath).forward(request,
-						response);
-				return;
-			}
-			else
-			{
-				logger.info("preCheckStr=" + ";curCheckStr=" + curCheckStr
-						+ ";userCheckStr=" + userCheckStr);
+            /*
+             * //å‹åŠ›æµ‹è¯•ç”¨
+             * request.getRequestDispatcher(requirpath).forward(request,response);
+             * return;
+             */
 
-				if (userCheckStr != null && curCheckStr != null
-						&& !userCheckStr.equals(curCheckStr))// ·ÀÖ¹Íæ¼ÒºóÍË
-				{
-					logger.info("Íæ¼ÒºóÍËÌá½»");
-					request.getRequestDispatcher("/backActive.do").forward(
-							request, response);
-					return;
-				}
+            if (urlOfNoNeedFilter.contains(servletPath)) {
+                // ä¸éœ€è¦è¿‡æ»¤çš„url,ç›´æ¥è¯·æ±‚ï¼Œä¸ç»è¿‡ä¹‹åçš„è¿‡æ»¤å™¨
+                request.getRequestDispatcher(servletPath).forward(request, response);
+            } else {
+                logger.info("preCheckStr = " + "; curCheckStr = " + curCheckStr + "; userCheckStr = " + userCheckStr);
 
-				String newCheckStr = getCheckStr();// Éú³ÉĞÂµÄÑéÖ¤´®
-				session.setAttribute("curCheckStr", newCheckStr);
+                if (userCheckStr != null && curCheckStr != null && !userCheckStr.equals(curCheckStr)) {
+                    // é˜²æ­¢ç©å®¶åé€€
+                    logger.info("ç©å®¶åé€€æäº¤");
+                    request.getRequestDispatcher("/backActive.do").forward(request, response);
+                    return;
+                }
+                // ç”Ÿæˆæ–°çš„éªŒè¯ä¸²
+                String newCheckStr = getCheckStr();
+                session.setAttribute("curCheckStr", newCheckStr);
+                // ä¸²è”å…¶å®ƒè¿‡æ»¤å™¨
+                chain.doFilter(request, wrapperResponse);
 
-				chain.doFilter(request, wrapperResponse);// ´®ÁªÆäËü¹ıÂËÆ÷
+                //ä¿å­˜å½“å‰é¡µé¢è„šæœ¬ä¿¡æ¯
+                String previourFile = getPreiourFileStr(session, wrapperResponse, curCheckStr, newCheckStr);
+                session.setAttribute("PreviourFile", previourFile);
 
-				//±£´æµ±Ç°Ò³Ãæ½Å±¾ĞÅÏ¢
-				String previourFile = getPreiourFileStr(session,wrapperResponse, curCheckStr, newCheckStr);
-				session.setAttribute("PreviourFile", previourFile);
+                //ç»™å®¢æˆ·ç«¯å‘é€è„šæœ¬ä¿¡æ¯
+                response.getWriter().print(previourFile);
 
-				//¸ø¿Í»§¶Ë·¢ËÍ½Å±¾ĞÅÏ¢
-				response.getWriter().print(previourFile);
-				
-			}
-			// ***Ñ¹Á¦²âÊÔÁÙÊ±È¥µôÑéÖ¤...begin
-			// chain.doFilter(request, wrapperResponse);
-			// ***Ñ¹Á¦²âÊÔÁÙÊ±È¥µôÑéÖ¤...end
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			if( role_info!=null )
-			{
-				role_info.save();
-			}
-		}
+            }
+            // ***å‹åŠ›æµ‹è¯•ä¸´æ—¶å»æ‰éªŒè¯...begin
+            // chain.doFilter(request, wrapperResponse);
+            // ***å‹åŠ›æµ‹è¯•ä¸´æ—¶å»æ‰éªŒè¯...end
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (role_info != null) {
+                role_info.save();
+            }
+        }
 
-	}
+    }
 
-	/**
-	 * µÃµ½µ±Ç°Ò³Ãæ¼ÓÈëÑéÖ¤ÂëµÄ½Å±¾
-	 * 
-	 * @param cur_page_script
-	 *            Î´¼ÓÈëÑéÖ¤ÂëÊ±£¬Ò³ÃæµÄ½Å±¾
-	 * @param oldCheckStr
-	 * @param newCheckStr
-	 * @return
-	 */
-	private String getPreiourFileStr(HttpSession session,
-			WrapperResponse wrapperResponse, String oldCheckStr,
-			String newCheckStr)
-	{
-		String cur_page_script = wrapperResponse.getContent();
-		int wenHaoChar = cur_page_script.indexOf("<");
-		if (wenHaoChar != -1)
-		{
-			cur_page_script = cur_page_script.substring(wenHaoChar);
-		}
+    /**
+     * å¾—åˆ°å½“å‰é¡µé¢åŠ å…¥éªŒè¯ç çš„è„šæœ¬
+     *
+     * @param cur_page_script æœªåŠ å…¥éªŒè¯ç æ—¶ï¼Œé¡µé¢çš„è„šæœ¬
+     * @param oldCheckStr
+     * @param newCheckStr
+     * @return
+     */
+    private String getPreiourFileStr(HttpSession session, WrapperResponse wrapperResponse, String oldCheckStr, String newCheckStr) {
+        String cur_page_script = wrapperResponse.getContent();
+        int wenHaoChar = cur_page_script.indexOf("<");
+        if (wenHaoChar != -1) {
+            cur_page_script = cur_page_script.substring(wenHaoChar);
+        }
+        // å¾—åˆ°å½“å‰é¡µé¢åŠ å…¥éªŒè¯ç çš„è„šæœ¬
+        String new_page_script = cur_page_script;
 
-		String new_page_script = cur_page_script;// µÃµ½µ±Ç°Ò³Ãæ¼ÓÈëÑéÖ¤ÂëµÄ½Å±¾
+        if (cur_page_script.contains("chair=" + oldCheckStr)) {
+            // å¦‚æœä¹‹å‰é¡µé¢æœ‰chairï¼Œåˆ™æ›¿æ¢æˆæ–°çš„
+            new_page_script = new_page_script.replaceAll("chair=" + oldCheckStr, "chair=" + newCheckStr);
+            return new_page_script;
+        }
+        if (new_page_script.contains("jsessionid")) {
+            // æœ‰å‚actionè¿æ¥çš„æ›¿æ¢
+            new_page_script = new_page_script.replaceAll(session.getId() + "\\?", session.getId() + "?chair=" + newCheckStr + "&amp;");
+            // æ— å‚actionè¿æ¥çš„æ›¿æ¢
+            new_page_script = new_page_script.replaceAll(session.getId() + "\"", session.getId() + "?chair=" + newCheckStr + "\"");
 
-		if (cur_page_script.indexOf("chair=" + oldCheckStr) != -1)
-		{
-			new_page_script = new_page_script.replaceAll(
-					"chair=" + oldCheckStr, "chair=" + newCheckStr);// Èç¹ûÖ®Ç°Ò³ÃæÓĞchair£¬ÔòÌæ»»³ÉĞÂµÄ
-			return new_page_script;
-		}
-		if (new_page_script.indexOf("jsessionid") != -1)
-		{
-			new_page_script = new_page_script.replaceAll("" + session.getId()
-					+ "\\?", "" + session.getId() + "?chair=" + newCheckStr
-					+ "&amp;");// ÓĞ²ÎactionÁ¬½ÓµÄÌæ»»
+        } else {
+            // æœ‰å‚actionè¿æ¥çš„æ›¿æ¢
+            new_page_script = new_page_script.replaceAll(".do\\?", ".do?chair=" + newCheckStr + "&amp;");
+            // æ— å‚actionè¿æ¥çš„æ›¿æ¢
+            new_page_script = new_page_script.replaceAll(".do\"", ".do?chair=" + newCheckStr + "\"");
+            // æ— å‚jspè¿æ¥çš„æ›¿æ¢
+            new_page_script = new_page_script.replaceAll(".jsp\\?", ".jsp?chair=" + newCheckStr + "&amp;");
+            // æ— å‚jspè¿æ¥çš„æ›¿æ¢
+            new_page_script = new_page_script.replaceAll(".jsp\"", ".jsp?chair=" + newCheckStr + "\"");
+        }
+        return new_page_script;
+    }
 
-			new_page_script = new_page_script.replaceAll("" + session.getId()
-					+ "\"", "" + session.getId() + "?chair=" + newCheckStr
-					+ "\"");// ÎŞ²ÎactionÁ¬½ÓµÄÌæ»»
+    private String getCheckStr() {
+        return RandomChar.getChars(RandomChar.RANDOM_ALL, 2);
+    }
 
-		}
-		else
-		{
-			new_page_script = new_page_script.replaceAll(".do\\?", ".do?chair="
-					+ newCheckStr + "&amp;");// ÓĞ²ÎactionÁ¬½ÓµÄÌæ»»
+    public void init(FilterConfig arg0) throws ServletException {
 
-			new_page_script = new_page_script.replaceAll(".do\"", ".do?chair="
-					+ newCheckStr + "\"");// ÎŞ²ÎactionÁ¬½ÓµÄÌæ»»
-
-			new_page_script = new_page_script.replaceAll(".jsp\\?",
-					".jsp?chair=" + newCheckStr + "&amp;");// ÎŞ²ÎjspÁ¬½ÓµÄÌæ»»
-
-			new_page_script = new_page_script.replaceAll(".jsp\"",
-					".jsp?chair=" + newCheckStr + "\"");// ÎŞ²ÎjspÁ¬½ÓµÄÌæ»»
-		}
-
-		return new_page_script;
-	}
-
-	private String getCheckStr()
-	{
-		return RandomChar.getChars(RandomChar.RANDOM_ALL, 2);
-	}
-
-	public void init(FilterConfig arg0) throws ServletException
-	{
-
-	}
+    }
 
 }

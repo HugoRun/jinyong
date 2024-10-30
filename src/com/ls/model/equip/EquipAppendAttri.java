@@ -2,7 +2,7 @@ package com.ls.model.equip;
 
 /**
  * @author ls
- * µ±×°±¸Éıµ½×î¸ß¼¶Ê±£¬¸ø×°±¸¸½¼ÓµÄÊôĞÔ
+ * å½“è£…å¤‡å‡åˆ°æœ€é«˜çº§æ—¶ï¼Œç»™è£…å¤‡é™„åŠ çš„å±æ€§
  */
 public class EquipAppendAttri
 {

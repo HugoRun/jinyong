@@ -7,28 +7,28 @@ import com.ls.ben.dao.DaoBase;
 
 /**
  * @author handan
- * ³Ö¾Ã»¯ÊµÌå
+ * æŒä¹…åŒ–å®ä½“
  */
 public class PersistenceEntity
 {
 	/**
-	 * ³Ö¾Ã»¯ĞèÒªµÄdao
+	 * æŒä¹…åŒ–éœ€è¦çš„dao
 	 */
 	private DaoBase dao=null;
 	/**
-	 * ±íÃû
+	 * è¡¨å
 	 */
 	private String tab_name;
 	/**
-	 * primaryÖ÷¼ü×Ö¶ÎÃû
+	 * primaryä¸»é”®å­—æ®µå
 	 */
 	private String primary_name;
 	/**
-	 * primaryÖ÷¼üÖµ
+	 * primaryä¸»é”®å€¼
 	 */
 	private String primary_value;
 	/**
-	 * ĞèÒª³Ö¾Ã»¯µÄ×Ö¶Î
+	 * éœ€è¦æŒä¹…åŒ–çš„å­—æ®µ
 	 */
 	private HashMap<String,String> persistenceColumns;
 	
@@ -44,7 +44,7 @@ public class PersistenceEntity
 	}
 	
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 */
 	public void init(String tab_name,String primary_name,String primary_value)
 	{
@@ -56,7 +56,7 @@ public class PersistenceEntity
 	}
 	
 	/**
-	 * Ôö¼ÓÒª³Ö¾Ã»¯µÄ×Ö¶Î
+	 * å¢åŠ è¦æŒä¹…åŒ–çš„å­—æ®µ
 	 */
 	public void addPersistenceColumn(String column,String value )
 	{
@@ -70,8 +70,8 @@ public class PersistenceEntity
 
 
 	/**
-	 * Ö´ĞĞ³Ö¾Ã»¯²Ù×÷
-	 * @param primaryÖ÷¼ü
+	 * æ‰§è¡ŒæŒä¹…åŒ–æ“ä½œ
+	 * @param primaryä¸»é”®
 	 */
 	public void persistence()
 	{

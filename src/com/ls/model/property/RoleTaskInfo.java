@@ -20,24 +20,24 @@ import com.ls.pub.constant.TaskType;
 import com.ls.web.service.player.RoleService;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«ÈÎÎñÏà¹Ø
+ * åŠŸèƒ½ï¼šè§’è‰²ä»»åŠ¡ç›¸å…³
  * 
  * @author hhj Apr 2, 2009 4:09:39 PM
  */
 public class RoleTaskInfo extends UserBase
 {
-	private TaskCompleteInfo taskCompleteInfo;// ÒÑ¾­Íê³ÉµÄÈÎÎñ
-	private CurTaskList curTaskList;// Î´Íê³ÉµÄÈÎÎñ
+	private TaskCompleteInfo taskCompleteInfo;// å·²ç»å®Œæˆçš„ä»»åŠ¡
+	private CurTaskList curTaskList;// æœªå®Œæˆçš„ä»»åŠ¡
 
-	/** ***************½ÇÉ«ÈÎÎñ×´Ì¬**************************** */
-	private int taskId = -1;// ÈÎÎñID
-	private int taskMenu = -1;// ÈÎÎñ²Ëµ¥ID
-	private String taskPoint = null;// ÈÎÎñÖĞ¼äµã
-	private String taskMidstGs = null;// ÖĞ¼äµã¸øÎïÆ·
-	private String taskMidstZb = null;// ÖĞ¼äµã¸ø×°±¸
+	/** ***************è§’è‰²ä»»åŠ¡çŠ¶æ€**************************** */
+	private int taskId = -1;// ä»»åŠ¡ID
+	private int taskMenu = -1;// ä»»åŠ¡èœå•ID
+	private String taskPoint = null;// ä»»åŠ¡ä¸­é—´ç‚¹
+	private String taskMidstGs = null;// ä¸­é—´ç‚¹ç»™ç‰©å“
+	private String taskMidstZb = null;// ä¸­é—´ç‚¹ç»™è£…å¤‡
 	
 	/**
-	 * ³õÊ¼»¯Íæ¼ÒÉíÉÏËùÓĞÈÎÎñ
+	 * åˆå§‹åŒ–ç©å®¶èº«ä¸Šæ‰€æœ‰ä»»åŠ¡
 	 * @param pPk
 	 */
 	public RoleTaskInfo(int pPk)
@@ -53,20 +53,20 @@ public class RoleTaskInfo extends UserBase
 	}
 
 	/**
-	 * ½ÓÊÜÒ»¸öĞÂµÄÈÎÎñ
+	 * æ¥å—ä¸€ä¸ªæ–°çš„ä»»åŠ¡
 	 */
 	private void acceptNewTask(CurTaskInfo new_task)
 	{
 		UTaskDAO dao = new UTaskDAO();
 		int t_pk = -1;
-		if (new_task.getTType() == TaskType.DIALOG)// ¶Ô»°ÈÎÎñ 
+		if (new_task.getTType() == TaskType.DIALOG)// å¯¹è¯ä»»åŠ¡ 
 		{
 			t_pk = dao.getUTaskAdd(new_task.getPPk() + "", new_task.getPName(),new_task.getTZu(), new_task.getTPx(), new_task.getTId()
 					+ "", new_task.getTTitle(), new_task.getTType()
 					+ "", new_task.getTXrwnpcId() + "", new_task.getTNext()
 					+ "", new_task.getCreateTime(), new_task.getTTime()+ "",new_task.getTGiveUp()+"",new_task.getUpTaskId()+"");
 		}
-		if (new_task.getTType() == TaskType.KILL)// É±¹ÖÈÎÎñ
+		if (new_task.getTType() == TaskType.KILL)// æ€æ€ªä»»åŠ¡
 		{
 			t_pk = dao.getUTaskAddXG(new_task.getPPk() + "", new_task.getPName(),
 					new_task.getTZu(), new_task.getTPx(), new_task.getTId()
@@ -76,7 +76,7 @@ public class RoleTaskInfo extends UserBase
 							+ "", new_task.getCreateTime(), new_task.getTTime()
 							+ "",new_task.getTGiveUp()+"",new_task.getUpTaskId()+"");
 		}
-		if (new_task.getTType() == TaskType.CARRY)// Ğ¯´øÀà
+		if (new_task.getTType() == TaskType.CARRY)// æºå¸¦ç±»
 		{
 			t_pk = dao.getUTaskAddXD(new_task.getPPk() + "", new_task.getPName(),
 					new_task.getTZu(), new_task.getTPx(), new_task.getTId()
@@ -87,7 +87,7 @@ public class RoleTaskInfo extends UserBase
 					new_task.getCreateTime(), new_task.getTTime() + "",
 					new_task.getTPet(), new_task.getTPetNumber(),new_task.getTGiveUp()+"",new_task.getUpTaskId()+"");
 		}
-		if (new_task.getTType() == TaskType.FIND)// Ñ°ÎïÀà
+		if (new_task.getTType() == TaskType.FIND)// å¯»ç‰©ç±»
 		{
 			t_pk = dao.getUTaskAddXD(new_task.getPPk() + "", new_task.getPName(),
 					new_task.getTZu(), new_task.getTPx(), new_task.getTId()
@@ -98,7 +98,7 @@ public class RoleTaskInfo extends UserBase
 					new_task.getCreateTime(), new_task.getTTime() + "",
 					new_task.getTPet(), new_task.getTPetNumber(),new_task.getTGiveUp()+"",new_task.getUpTaskId()+"");
 		}
-		if (new_task.getTType() == TaskType.COMPLEX)// ¸´ºÏÀà  
+		if (new_task.getTType() == TaskType.COMPLEX)// å¤åˆç±»  
 		{
 			t_pk = dao.getUTaskAddFH(new_task.getPPk() + "", new_task.getPName(),
 					new_task.getTZu(), new_task.getTPx(), new_task.getTId()
@@ -123,23 +123,23 @@ public class RoleTaskInfo extends UserBase
 	}
 
 	/**
-	 * ¸üĞÂÒ»×éÈÎÎñ
+	 * æ›´æ–°ä¸€ç»„ä»»åŠ¡
 	 * @param curTaskInfo
 	 */
 	private void updateTask(CurTaskInfo curTaskInfo)
 	{
 		UTaskDAO dao = new UTaskDAO();
 		RoleEntity roleEntity = RoleService.getRoleInfoById(curTaskInfo.getPPk()+ "");
-		UTaskVO uTaskVO = (UTaskVO) roleEntity.getTaskInfo().getCurTaskList().getByZu(curTaskInfo.getTZu());// Í¨¹ı×éKEY µÃµ½½ÇÉ«ÈÎÎñĞÅÏ¢
-		/** µ±¸ÃÈÎÎñÎªÖĞ¼ä×ªÕÛÈÎÎñÊ±ºòÖ´ĞĞĞŞ¸ÄÁÙÊ±±í²Ù×÷ * */
-		if (curTaskInfo.getTType() == TaskType.DIALOG)// ¶Ô»°ÈÎÎñ
+		UTaskVO uTaskVO = (UTaskVO) roleEntity.getTaskInfo().getCurTaskList().getByZu(curTaskInfo.getTZu());// é€šè¿‡ç»„KEY å¾—åˆ°è§’è‰²ä»»åŠ¡ä¿¡æ¯
+		/** å½“è¯¥ä»»åŠ¡ä¸ºä¸­é—´è½¬æŠ˜ä»»åŠ¡æ—¶å€™æ‰§è¡Œä¿®æ”¹ä¸´æ—¶è¡¨æ“ä½œ * */
+		if (curTaskInfo.getTType() == TaskType.DIALOG)// å¯¹è¯ä»»åŠ¡
 		{
 			dao.getUTaskUpdate(curTaskInfo.getPPk() + "", curTaskInfo.getPName(), curTaskInfo.getTZu(), curTaskInfo.getTPx(),
 					curTaskInfo.getTId() + "", curTaskInfo.getTTitle(),
 					curTaskInfo.getTType() + "", curTaskInfo.getTXrwnpcId() + "", curTaskInfo.getTNext() + "", 
 					curTaskInfo.getCreateTime(), curTaskInfo.getTTime() + "",curTaskInfo.getTGiveUp()+"",curTaskInfo.getUpTaskId()+"");
 		}
-		if (curTaskInfo.getTType() == TaskType.KILL)// É±¹Ö
+		if (curTaskInfo.getTType() == TaskType.KILL)// æ€æ€ª
 		{
 			dao.getUTaskUpdateXG(curTaskInfo.getPPk() + "", curTaskInfo.getPName(), curTaskInfo.getTZu(), curTaskInfo.getTPx(),
 					curTaskInfo.getTId() + "", curTaskInfo.getTTitle(),
@@ -147,7 +147,7 @@ public class RoleTaskInfo extends UserBase
 					curTaskInfo.getTNext() + "", curTaskInfo.getTKilling(), curTaskInfo.getTKillingNo() + "",
 					curTaskInfo.getTKillingOk() + "", curTaskInfo.getCreateTime(), curTaskInfo.getTTime() + "",curTaskInfo.getTGiveUp()+"",curTaskInfo.getUpTaskId()+"");
 		}
-		if (curTaskInfo.getTType() == TaskType.CARRY)// Ğ¯´ø
+		if (curTaskInfo.getTType() == TaskType.CARRY)// æºå¸¦
 		{
 			dao.getUTaskUpdateXD(curTaskInfo.getPPk() + "", curTaskInfo.getPName(), curTaskInfo.getTZu(), curTaskInfo.getTPx(),
 					curTaskInfo.getTId() + "", curTaskInfo.getTTitle(),
@@ -157,7 +157,7 @@ public class RoleTaskInfo extends UserBase
 					curTaskInfo.getCreateTime(), curTaskInfo.getTTime() + "",
 					curTaskInfo.getTPet(), curTaskInfo.getTPetNumber(),curTaskInfo.getTGiveUp()+"",curTaskInfo.getUpTaskId()+"");
 		}
-		if (curTaskInfo.getTType() == TaskType.FIND)// Ñ°ÎïÀà
+		if (curTaskInfo.getTType() == TaskType.FIND)// å¯»ç‰©ç±»
 		{
 			dao.getUTaskUpdateXD(curTaskInfo.getPPk() + "", curTaskInfo.getPName(), curTaskInfo.getTZu(), curTaskInfo.getTPx(),
 					curTaskInfo.getTId() + "", curTaskInfo.getTTitle(),
@@ -167,7 +167,7 @@ public class RoleTaskInfo extends UserBase
 					curTaskInfo.getCreateTime(), curTaskInfo.getTTime() + "",
 					curTaskInfo.getTPet(), curTaskInfo.getTPetNumber(),curTaskInfo.getTGiveUp()+"",curTaskInfo.getUpTaskId()+"");
 		}
-		if (curTaskInfo.getTType() == TaskType.COMPLEX)// ¸´ºÏÀà
+		if (curTaskInfo.getTType() == TaskType.COMPLEX)// å¤åˆç±»
 		{
 			dao.getUTaskUpdateFH(curTaskInfo.getPPk() + "", curTaskInfo.getPName(), curTaskInfo.getTZu(), curTaskInfo.getTPx(),
 					curTaskInfo.getTId() + "", curTaskInfo.getTTitle(),
@@ -185,19 +185,19 @@ public class RoleTaskInfo extends UserBase
 	}
 
 	/**
-	 * ÒÆ³ıÒ»¸öÈÎÎñ
+	 * ç§»é™¤ä¸€ä¸ªä»»åŠ¡
 	 * 
 	 * @param taskVo
 	 */
 	public void deleteTask(String tId, String pPk)
 	{
-		TaskVO taskVO = TaskCache.getById(tId);// »ñµÃÈÎÎñĞÅÏ¢
+		TaskVO taskVO = TaskCache.getById(tId);// è·å¾—ä»»åŠ¡ä¿¡æ¯
 		RoleEntity roleEntity = RoleService.getRoleInfoById(pPk);
-		UTaskVO uTaskVO = (UTaskVO) roleEntity.getTaskInfo().getCurTaskList().getByZu(taskVO.getTZu());// Í¨¹ı×éKEY µÃµ½½ÇÉ«ÈÎÎñĞÅÏ¢
+		UTaskVO uTaskVO = (UTaskVO) roleEntity.getTaskInfo().getCurTaskList().getByZu(taskVO.getTZu());// é€šè¿‡ç»„KEY å¾—åˆ°è§’è‰²ä»»åŠ¡ä¿¡æ¯
 		UTaskDAO uTaskDAO = new UTaskDAO();
-		uTaskDAO.getUTaskDelete(uTaskVO.getTPk() + "");// É¾³ıÈÎÎñ
+		uTaskDAO.getUTaskDelete(uTaskVO.getTPk() + "");// åˆ é™¤ä»»åŠ¡
 		curTaskList.removeTask(uTaskVO);
-		// »º´æÔö¼ÓÒÑÍê³ÉµÄÈÎÎñ
+		// ç¼“å­˜å¢åŠ å·²å®Œæˆçš„ä»»åŠ¡
 		UtaskCompleteVO utaskCompleteVO = new UtaskCompleteVO();
 		utaskCompleteVO.setPPk(Integer.parseInt(pPk));
 		utaskCompleteVO.setTaskZu(taskVO.getTZu());
@@ -205,36 +205,36 @@ public class RoleTaskInfo extends UserBase
 	}
 	
 	/**
-	 * ·ÅÆúÈÎÎñ
+	 * æ”¾å¼ƒä»»åŠ¡
 	 */
 	public void dropTask(UTaskVO uTaskVO)
 	{
 		UTaskDAO uTaskDAO = new UTaskDAO();
-		uTaskDAO.getUTaskDelete(uTaskVO.getTPk() + "");// É¾³ıÈÎÎñ
+		uTaskDAO.getUTaskDelete(uTaskVO.getTPk() + "");// åˆ é™¤ä»»åŠ¡
 		curTaskList.removeTask(uTaskVO);
 	}
 	
 	/**
-	 * Çå³ıËù½ÓµÄËùÓĞÈÎÎñ
+	 * æ¸…é™¤æ‰€æ¥çš„æ‰€æœ‰ä»»åŠ¡
 	 */
 	public void clear()
 	{
 		curTaskList.clear();
 		UTaskDAO uTaskDAO = new UTaskDAO();
-		uTaskDAO.clear(p_pk);// É¾³ıÈÎÎñ
+		uTaskDAO.clear(p_pk);// åˆ é™¤ä»»åŠ¡
 	}
 	
 	/**
-	 * ¶ÔÏó×ª»¯
+	 * å¯¹è±¡è½¬åŒ–
 	 * @param roleInfo
 	 * @param taskVO
 	 * @return 
 	 */
 	private CurTaskInfo taskVOORUTaskVO(RoleEntity roleInfo,TaskVO taskVO)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		UTaskDAO dao = new UTaskDAO();
 		CurTaskInfo curTaskInfo = new CurTaskInfo(dao);
 		curTaskInfo.setCreateTime(Time);

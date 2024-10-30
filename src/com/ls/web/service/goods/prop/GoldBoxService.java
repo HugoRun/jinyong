@@ -34,7 +34,7 @@ public class GoldBoxService
 {
 
 	/**
-	 * ´ò¿ª»Æ½ğ±¦Ïä
+	 * æ‰“å¼€é»„é‡‘å®ç®±
 	 * @param pg_pk
 	 * @param gold_box_pgpk
 	 * @param roleInfo
@@ -48,56 +48,56 @@ public class GoldBoxService
 		GoodsService goodsService = new GoodsService();
 		
 		if (roleInfo.getBasicInfo().getWrapSpare() < 1) {
-			reuslWmlString = "ÄúÎïÆ·À¸¿Õ¼ä²»¹»,Çë±£Áô×ã¹»µÄ¿Õ¼äÔÙ³¢ÊÔ¿ªÆô±¦Ïä!";
+			reuslWmlString = "æ‚¨ç‰©å“æ ç©ºé—´ä¸å¤Ÿ,è¯·ä¿ç•™è¶³å¤Ÿçš„ç©ºé—´å†å°è¯•å¼€å¯å®ç®±!";
 			return reuslWmlString;
 		}
 		
 		if (roleInfo.getBasicInfo().getGrade() < 10) {
-			reuslWmlString = "10¼¶ÒÔÏÂ²»ÄÜ´ò¿ª»Æ½ğ±¦Ïä!";
+			reuslWmlString = "10çº§ä»¥ä¸‹ä¸èƒ½æ‰“å¼€é»„é‡‘å®ç®±!";
 			return reuslWmlString;
 		}
-	 	 // Ê×ÏÈ¼ìÑéÕâÁ½¸öµÀ¾ßÊÇ²»ÊÇÕæµÄ¶¼ÔÚÍæ¼ÒÉíÉÏ¡£
+	 	 // é¦–å…ˆæ£€éªŒè¿™ä¸¤ä¸ªé“å…·æ˜¯ä¸æ˜¯çœŸçš„éƒ½åœ¨ç©å®¶èº«ä¸Šã€‚
 		 if ( checkHaveThisProp(pg_pk,Integer.parseInt(gold_box_pgpk),roleInfo)) {
 			 TimeControlService timeControlService = new TimeControlService();
-			// ²é¿´ÆäÊÇ·ñÔÚ 100´ÎµÄ·¶Î§Ö®ÄÚ
+			// æŸ¥çœ‹å…¶æ˜¯å¦åœ¨ 100æ¬¡çš„èŒƒå›´ä¹‹å†…
 				if ( timeControlService.isUseable(roleInfo.getBasicInfo().getPPk(), PropType.GOLD_BOX, 
 								TimeControlService.ANOTHERPROP, 100)) {
 				
-    			 	// ¿ªÊ¼µôÂäÎïÆ·
+    			 	// å¼€å§‹æ‰è½ç‰©å“
     			 	PlayerPropGroupVO groupVO = dao.getByPgPk(Integer.parseInt(gold_box_pgpk));
     			 	PropVO propVO = PropCache.getPropById(groupVO.getPropId());
     			 	//String npcId = getDuiYingGrade(roleInfo,propVO);
     			 	NpcService npcService = new NpcService();
     			 	
-    			 	// Çå³şÔ­À´µÄµôÂäÎï
+    			 	// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
     			 	roleInfo.getDropSet().clearDropItem();
-    			 	// »Æ½ğ±¦ÏäµôÂä°Ë¸öÎïÆ·
+    			 	// é»„é‡‘å®ç®±æ‰è½å…«ä¸ªç‰©å“
     			 	PlayerService playerService = new PlayerService();
     				PartInfoVO player = playerService.getPlayerByPpk(roleInfo.getBasicInfo().getPPk());
     			 	npcService.dropGoodsByRareBoxByGOLD(roleInfo, player,propVO);
     			 	
-    			 	// É¾³ıµôÕâÁ½¸öµÀ¾ß
+    			 	// åˆ é™¤æ‰è¿™ä¸¤ä¸ªé“å…·
     			 	PlayerPropGroupVO groupVO2 = dao.getByPgPk(Integer.parseInt(pg_pk));
     			 	goodsService.removeProps(groupVO2, 1);
     			 	goodsService.removeProps(groupVO, 1);
     			 	
-    			 	// ¼ÇÂ¼ÏÂ±¦ÏäµÄĞÅÏ¢
-    			 	String recordString = roleInfo.getBasicInfo().getName()+"ÌìÑÛ·ûÒ»¸ö±¦Ïä";
+    			 	// è®°å½•ä¸‹å®ç®±çš„ä¿¡æ¯
+    			 	String recordString = roleInfo.getBasicInfo().getName()+"å¤©çœ¼ç¬¦ä¸€ä¸ªå®ç®±";
     				insertRecordInfo(roleInfo.getBasicInfo().getPPk(),2,recordString);
     				
 				} else {
-					 reuslWmlString = "ÕâÁ½¸öµÀ¾ß¿ÉÄÜÒÑ¾­²»ÔÚÄúÉíÉÏÁË!";
+					 reuslWmlString = "è¿™ä¸¤ä¸ªé“å…·å¯èƒ½å·²ç»ä¸åœ¨æ‚¨èº«ä¸Šäº†!";
 					
 				}
 		 } else {
-			 reuslWmlString = "Äú¿ªÆô±¦Ïä³¬¹ı100´ÎÁË!";
+			 reuslWmlString = "æ‚¨å¼€å¯å®ç®±è¶…è¿‡100æ¬¡äº†!";
 		 }
 		return reuslWmlString;
 	}
 	
 	
 	/**
-	 * ´ò¿ªÆäËû±¦Ïä(·Ç»Æ½ğ±¦Ïä)
+	 * æ‰“å¼€å…¶ä»–å®ç®±(éé»„é‡‘å®ç®±)
 	 * @param pg_pk
 	 * @param gold_box_pgpk
 	 * @param roleInfo
@@ -111,43 +111,43 @@ public class GoldBoxService
 		GoodsService goodsService = new GoodsService();
 		
 		if (roleInfo.getBasicInfo().getWrapSpare() < 1) {
-			reuslWmlString = "ÄúÎïÆ·À¸¿Õ¼ä²»¹»,Çë±£Áô×ã¹»µÄ¿Õ¼äÔÙ³¢ÊÔ¿ªÆô±¦Ïä!";
+			reuslWmlString = "æ‚¨ç‰©å“æ ç©ºé—´ä¸å¤Ÿ,è¯·ä¿ç•™è¶³å¤Ÿçš„ç©ºé—´å†å°è¯•å¼€å¯å®ç®±!";
 			return reuslWmlString;
 		}
 		
 		if (roleInfo.getBasicInfo().getGrade() < 10) {
-			reuslWmlString = "10¼¶ÒÔÏÂ²»ÄÜ´ò¿ª´Ë±¦Ïä!";
+			reuslWmlString = "10çº§ä»¥ä¸‹ä¸èƒ½æ‰“å¼€æ­¤å®ç®±!";
 			return reuslWmlString;
 		}
-	 	 // Ê×ÏÈ¼ìÑéÕâÁ½¸öµÀ¾ßÊÇ²»ÊÇÕæµÄ¶¼ÔÚÍæ¼ÒÉíÉÏ¡£
+	 	 // é¦–å…ˆæ£€éªŒè¿™ä¸¤ä¸ªé“å…·æ˜¯ä¸æ˜¯çœŸçš„éƒ½åœ¨ç©å®¶èº«ä¸Šã€‚
 		 if ( checkHaveThisProp(pg_pk,Integer.parseInt(gold_box_pgpk),roleInfo)) {
 			 
-    			 	// ¿ªÊ¼µôÂäÎïÆ·
+    			 	// å¼€å§‹æ‰è½ç‰©å“
     			 	PlayerPropGroupVO groupVO = dao.getByPgPk(Integer.parseInt(gold_box_pgpk));
     			 	PropVO propVO = PropCache.getPropById(groupVO.getPropId());
     			 	NpcService npcService = new NpcService();
     			 	
-    			 	// Çå³şÔ­À´µÄµôÂäÎï
+    			 	// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
     			 	roleInfo.getDropSet().clearDropItem();
-    			 	// »Æ½ğ±¦ÏäµôÂä°Ë¸öÎïÆ·
+    			 	// é»„é‡‘å®ç®±æ‰è½å…«ä¸ªç‰©å“
     			 	PlayerService playerService = new PlayerService();
     				PartInfoVO player = playerService.getPlayerByPpk(roleInfo.getBasicInfo().getPPk());
     			 	npcService.dropGoodsByRareBoxByGOLD(roleInfo, player,propVO);
     			 	
-    			 	// É¾³ıµôÕâÁ½¸öµÀ¾ß
+    			 	// åˆ é™¤æ‰è¿™ä¸¤ä¸ªé“å…·
     			 	PlayerPropGroupVO groupVO2 = dao.getByPgPk(Integer.parseInt(pg_pk));
     			 	goodsService.removeProps(groupVO2, 1);
     			 	goodsService.removeProps(groupVO, 1);
     			 	
     			 	
 			 } else {
-				 reuslWmlString = "ÕâÁ½¸öµÀ¾ß¿ÉÄÜÒÑ¾­²»ÔÚÄúÉíÉÏÁË!";				
+				 reuslWmlString = "è¿™ä¸¤ä¸ªé“å…·å¯èƒ½å·²ç»ä¸åœ¨æ‚¨èº«ä¸Šäº†!";				
     		 }
 		return reuslWmlString;
 	}
 
 	/**
-	 * ¿ªÆô»Æ½ğ±¦ÏäÏûÏ¢
+	 * å¼€å¯é»„é‡‘å®ç®±æ¶ˆæ¯
 	 */
 	private String openGoldBoxInfo(RoleEntity roleInfo)
 	{
@@ -157,8 +157,8 @@ public class GoldBoxService
 		String info = "";
 		if (already_num % 10 == 0 && already_num != 0) {
 			SystemInfoService infoService = new SystemInfoService();
-			info = "ÍÛ¡«"+roleInfo.getBasicInfo().getName()+"ÊµÔÚÊÇÌ«¸»ÓĞÁË£¬Ëû£¨Ëı£©½ñÌìÒÑ¾­¿ªÆô"+
-					already_num+"¸öºèÃÉÏÉ²Ø£¬²¢»ñµÃÏµÍ³ÔùËÍµÄ¡¾ÏÉ²ØÓñ·û¡¿Ò»¸ö£¡";
+			info = "å“‡ï½"+roleInfo.getBasicInfo().getName()+"å®åœ¨æ˜¯å¤ªå¯Œæœ‰äº†ï¼Œä»–ï¼ˆå¥¹ï¼‰ä»Šå¤©å·²ç»å¼€å¯"+
+					already_num+"ä¸ªé¸¿è’™ä»™è—ï¼Œå¹¶è·å¾—ç³»ç»Ÿèµ é€çš„ã€ä»™è—ç‰ç¬¦ã€‘ä¸€ä¸ªï¼";
 			infoService.insertSystemInfoBySystem(info) ;
 			GoodsService goodsService = new GoodsService();
 			PropDao propDao = new PropDao();
@@ -171,7 +171,7 @@ public class GoldBoxService
 	}
 
 	/**
-	 * °Ñ±¦ÏäµÄĞÅÏ¢¼ÇÂ¼ÏÂÀ´
+	 * æŠŠå®ç®±çš„ä¿¡æ¯è®°å½•ä¸‹æ¥
 	 * @param pk
 	 * @param info_type
 	 * @param content
@@ -181,27 +181,27 @@ public class GoldBoxService
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
 		playerPropGroupDao.sendRecordGoldInfo(pPk,info_type,content);
 			if(info_type == 1){
-				//Í³¼ÆĞèÒª
+				//ç»Ÿè®¡éœ€è¦
 				new RankService().updateAdd(pPk, "open", 1);
 			}	
 	}
 
 
 	/**
-	 * µÃµ½¶ÔÓ¦
+	 * å¾—åˆ°å¯¹åº”
 	 * @param roleInfo
 	 * @param propVO 
 	 * @return
 	 */
 	public int getDuiYingGrade(RoleEntity roleInfo, PropVO propVO)
 	{
-		// µÚÒ»ÌØÊâ×Ö¶ÎÊÇ npc·Ö¶Î
+		// ç¬¬ä¸€ç‰¹æ®Šå­—æ®µæ˜¯ npcåˆ†æ®µ
 		String propOperate1 = propVO.getPropOperate1();
-		// µÚÈıÌØÊâ×Ö¶ÎÊÇ µÈ¼¶·Ö¶Î
+		// ç¬¬ä¸‰ç‰¹æ®Šå­—æ®µæ˜¯ ç­‰çº§åˆ†æ®µ
 		String gradeFenBu = propVO.getPropOperate3();
 		String[] npcIdStrings = propOperate1.split(";");
 		
-		// µÃµ½µ±Ç°µÈ¼¶¶ÎµÄÎ»ÖÃ
+		// å¾—åˆ°å½“å‰ç­‰çº§æ®µçš„ä½ç½®
 		int gradeZhi = getGradeNum(gradeFenBu,roleInfo.getBasicInfo().getGrade());
 		String npcString = npcIdStrings[gradeZhi];
 		
@@ -224,9 +224,9 @@ public class GoldBoxService
 	
 	
 	/**
-	 * µÃµ½µÈ¼¶ÔÚ×Ö·û´®ÖĞµÄÎ»ÖÃ
-	 * @param gradeFenBu ĞÎÈç40,50,60 ÕâÑùµÄ×Ö·û´®
-	 * @param grade	Íæ¼ÒµÈ¼¶
+	 * å¾—åˆ°ç­‰çº§åœ¨å­—ç¬¦ä¸²ä¸­çš„ä½ç½®
+	 * @param gradeFenBu å½¢å¦‚40,50,60 è¿™æ ·çš„å­—ç¬¦ä¸²
+	 * @param grade	ç©å®¶ç­‰çº§
 	 * @return
 	 */
 	public int getGradeNum(String gradeFenBu, int grade)
@@ -268,7 +268,7 @@ public class GoldBoxService
 	}
 
 	/**
-	 * ²é¿´ËùĞèÒªµÄÎïÆ·ÊÇ·ñ¶¼ÔÚÍæ¼ÒÉíÉÏ
+	 * æŸ¥çœ‹æ‰€éœ€è¦çš„ç‰©å“æ˜¯å¦éƒ½åœ¨ç©å®¶èº«ä¸Š
 	 * @param pg_pk
 	 * @param gold_box_pgpk
 	 * @param roleInfo
@@ -295,7 +295,7 @@ public class GoldBoxService
 	}
 
 	/**
-	 * ²é¿´ÆäÊÇ·ñÓĞ½ğÔ¿³×
+	 * æŸ¥çœ‹å…¶æ˜¯å¦æœ‰é‡‘é’¥åŒ™
 	 * @param roleInfo
 	 * @return
 	 */
@@ -310,9 +310,9 @@ public class GoldBoxService
 	}	
 
 	/**
-	 * »ñµÃ»Æ½ğ±¦ÏäÀïµÄÎïÆ·
+	 * è·å¾—é»„é‡‘å®ç®±é‡Œçš„ç‰©å“
 	 * @param roleInfo
-	 * @param key_id ½ğÔ¿³×ID
+	 * @param key_id é‡‘é’¥åŒ™ID
 	 */
 	public String  getGoldBoxGoods(RoleEntity roleInfo,String key_id,PropVO keyVO,PropVO boxVO,HttpServletResponse response,HttpServletRequest request)
 	{
@@ -325,9 +325,9 @@ public class GoldBoxService
 		
 		
 		if (dropgoods!= null && dropgoods.size() != 0) {
-			// ²é¿´ÆäÊÇ·ñÓµÓĞ½ğÔ¿³×
+			// æŸ¥çœ‹å…¶æ˜¯å¦æ‹¥æœ‰é‡‘é’¥åŒ™
 			if ( checkHaveGoldYueShi(roleInfo,key_id)) {
-				// ²é¿´ÆäÊÇ·ñÔÚ 101´ÎµÄ·¶Î§Ö®ÄÚ
+				// æŸ¥çœ‹å…¶æ˜¯å¦åœ¨ 101æ¬¡çš„èŒƒå›´ä¹‹å†…
 				if ( timeControlService.isUseable(roleInfo.getBasicInfo().getPPk(), PropType.GOLD_BOX, 
 								TimeControlService.ANOTHERPROP, 101)) {
 				
@@ -336,15 +336,15 @@ public class GoldBoxService
     			DropGoodsVO dropGoods = dropgoods.get(num);
     			
     			
-    			// ½«Íæ¼ÒÓ¦¸Ã»ñµÃµÄÎïÆ·ĞÅÏ¢¼ÇÂ¼ÏÂÀ´
-    			String hintString = roleInfo.getBasicInfo().getName()+"ÓÃÁË½ğÔ¿³×,Ó¦¸Ã»ñµÃ"+dropGoods.getGoodsName()+"*"+dropGoods.getDropNum();
+    			// å°†ç©å®¶åº”è¯¥è·å¾—çš„ç‰©å“ä¿¡æ¯è®°å½•ä¸‹æ¥
+    			String hintString = roleInfo.getBasicInfo().getName()+"ç”¨äº†é‡‘é’¥åŒ™,åº”è¯¥è·å¾—"+dropGoods.getGoodsName()+"*"+dropGoods.getDropNum();
     			insertRecordInfo(roleInfo.getBasicInfo().getPPk(),2,hintString);
     			
     			GoodsService goodsService = new GoodsService();
     			result = goodsService.pickupGoods(roleInfo.getBasicInfo().getPPk(), dropGoods.getDPk(),0,response,request);
     			
     			if ( result == -1) {
-    				resultWmlString = "ÄúµÄ°ü¹ü¿Õ¼ä²»¹»!";
+    				resultWmlString = "æ‚¨çš„åŒ…è£¹ç©ºé—´ä¸å¤Ÿ!";
     				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
     			} else {
     				this.getGoldBoxInfo(dropGoods,roleInfo,timeControlService);
@@ -352,38 +352,38 @@ public class GoldBoxService
     				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
     				
     				insertRecordInfo(roleInfo.getBasicInfo().getPPk(),1,hintString);
-    				// ¸ø´ÎÊı¿ØÖÆÔö¼Ó1    			 	
+    				// ç»™æ¬¡æ•°æ§åˆ¶å¢åŠ 1    			 	
     			 	timeControlService.updateControlInfo(roleInfo.getBasicInfo().getPPk(), PropType.GOLD_BOX, TimeControlService.ANOTHERPROP);
-    			 	//Íæ¼ÒµÄ¿ª±¦Ïä×Ü´ÎÊıÔö¼Ó
+    			 	//ç©å®¶çš„å¼€å®ç®±æ€»æ¬¡æ•°å¢åŠ 
     			 	playerOpenGoldBox(roleInfo.getBasicInfo().getUPk(), roleInfo.getBasicInfo().getPPk());
     			 	
-    			 	// ¶îÍâµÄ±¦ÏäÏûÏ¢
+    			 	// é¢å¤–çš„å®ç®±æ¶ˆæ¯
     				String reuslWmlString = openGoldBoxInfo(roleInfo);
     			 	
-    			 	resultWmlString = "ÄúÊ¹ÓÃÁËÒ»¸ö"+keyVO.getPropName()+"´ò¿ªÁË"+boxVO.getPropName()+"£¬Ò»¼ş½ğ¹âÉÁÉÁµÄÁé±¦³ÊÏÖÑÛÇ°!<br/> Äú»ñµÃÁË"+dropGoods.getGoodsName()+"¡Á"+dropGoods.getDropNum()
+    			 	resultWmlString = "æ‚¨ä½¿ç”¨äº†ä¸€ä¸ª"+keyVO.getPropName()+"æ‰“å¼€äº†"+boxVO.getPropName()+"ï¼Œä¸€ä»¶é‡‘å…‰é—ªé—ªçš„çµå®å‘ˆç°çœ¼å‰!<br/> æ‚¨è·å¾—äº†"+dropGoods.getGoodsName()+"Ã—"+dropGoods.getDropNum()
 					+"<br/>"+reuslWmlString;
     			}
 				} else {
-					// ¿ªÆô»Æ½ğ±¦Ïä³¬¹ı100µÄ
-					resultWmlString = "Äú¿ªÆô±¦Ïä³¬¹ı100´ÎÁË!";
+					// å¼€å¯é»„é‡‘å®ç®±è¶…è¿‡100çš„
+					resultWmlString = "æ‚¨å¼€å¯å®ç®±è¶…è¿‡100æ¬¡äº†!";
 					npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
 					
 				}
 			} else {
-				// Èç¹ûÃ»ÓĞ½ğÔ¿³×¾Í¿ªÆô±¦ÏäÊ§°Ü
-				resultWmlString = "ÄúÃ»ÓĞ"+keyVO.getPropName()+",¿ªÆôÊ§°Ü!";
+				// å¦‚æœæ²¡æœ‰é‡‘é’¥åŒ™å°±å¼€å¯å®ç®±å¤±è´¥
+				resultWmlString = "æ‚¨æ²¡æœ‰"+keyVO.getPropName()+",å¼€å¯å¤±è´¥!";
 				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
 			}
 		}else {
-			resultWmlString = "ÄúÒÑ¾­¿ªÆô¹ı±¦Ïä!";			
+			resultWmlString = "æ‚¨å·²ç»å¼€å¯è¿‡å®ç®±!";			
 		}
 		return resultWmlString;
 	}
 	
 	/**
-	 * »ñµÃÆäËû±¦Ïä(·Ç»Æ½ğ±¦Ïä)ÀïµÄÎïÆ·
+	 * è·å¾—å…¶ä»–å®ç®±(éé»„é‡‘å®ç®±)é‡Œçš„ç‰©å“
 	 * @param roleInfo
-	 * @param key_id ½ğÔ¿³×ID
+	 * @param key_id é‡‘é’¥åŒ™ID
 	 */
 	public String  getGoldBoxGoodsByOtherBox(RoleEntity roleInfo,String key_id,PropVO keyVO,PropVO boxVO,HttpServletResponse response,HttpServletRequest request)
 	{
@@ -395,7 +395,7 @@ public class GoldBoxService
 		String resultWmlString = "";
 				
 		if (dropgoods!= null && dropgoods.size() != 0) {
-			// ²é¿´ÆäÊÇ·ñÓµÓĞ½ğÔ¿³×
+			// æŸ¥çœ‹å…¶æ˜¯å¦æ‹¥æœ‰é‡‘é’¥åŒ™
 			if ( checkHaveGoldYueShi(roleInfo,key_id)) {
 				
     			Random random = new Random();
@@ -405,21 +405,21 @@ public class GoldBoxService
     			result = goodsService.pickupGoods(roleInfo.getBasicInfo().getPPk(), dropGoods.getDPk(),0,response,request);
     			
     			if ( result == -1) {
-    				resultWmlString = "ÄúµÄ°ü¹ü¿Õ¼ä²»¹»!";
+    				resultWmlString = "æ‚¨çš„åŒ…è£¹ç©ºé—´ä¸å¤Ÿ!";
     				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
     			} else {
     				goodsService.removeProps(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(key_id), 1,GameLogManager.R_USE);
     				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
-    				resultWmlString = "ÄúÊ¹ÓÃÁËÒ»¸ö"+keyVO.getPropName()+"´ò¿ªÁË"+boxVO.getPropName()+"£¬Ò»¼ş½ğ¹âÉÁÉÁµÄ±¦±´ÉÁÏÖÔÚÄúÑÛÇ°!<br/> Äú»ñµÃÁË"+dropGoods.getGoodsName()+"¡Á"+dropGoods.getDropNum();	
+    				resultWmlString = "æ‚¨ä½¿ç”¨äº†ä¸€ä¸ª"+keyVO.getPropName()+"æ‰“å¼€äº†"+boxVO.getPropName()+"ï¼Œä¸€ä»¶é‡‘å…‰é—ªé—ªçš„å®è´é—ªç°åœ¨æ‚¨çœ¼å‰!<br/> æ‚¨è·å¾—äº†"+dropGoods.getGoodsName()+"Ã—"+dropGoods.getDropNum();	
     			}
 				
 			} else {
-				// Èç¹ûÃ»ÓĞ½ğÔ¿³×¾Í¿ªÆô±¦ÏäÊ§°Ü
-				resultWmlString = "ÄúÃ»ÓĞ"+keyVO.getPropName()+",¿ªÆôÊ§°Ü!";
+				// å¦‚æœæ²¡æœ‰é‡‘é’¥åŒ™å°±å¼€å¯å®ç®±å¤±è´¥
+				resultWmlString = "æ‚¨æ²¡æœ‰"+keyVO.getPropName()+",å¼€å¯å¤±è´¥!";
 				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
 			}
 		}else {
-			resultWmlString = "ÄúÒÑ¾­¿ªÆô¹ı±¦Ïä!";			
+			resultWmlString = "æ‚¨å·²ç»å¼€å¯è¿‡å®ç®±!";			
 		}
 		return resultWmlString;
 	}
@@ -430,7 +430,7 @@ public class GoldBoxService
 	
 
 	/**
-	 * ¼ñÈ¡µ½ÌØÊâÎïÆ·Ê±·¢ÏûÏ¢
+	 * æ¡å–åˆ°ç‰¹æ®Šç‰©å“æ—¶å‘æ¶ˆæ¯
 	 * @param dropGoods
 	 * @param roleInfo
 	 */
@@ -441,7 +441,7 @@ public class GoldBoxService
     		SystemInfoService infoService = new SystemInfoService();
     		int already_num = timeControlService.alreadyUseNumber(roleInfo.getBasicInfo().getPPk(), 
     				PropType.GOLD_BOX, TimeControlService.ANOTHERPROP) ;
-    		info = "¹§Ï²"+roleInfo.getBasicInfo().getName()+"¿ªÆôµÚ"+already_num+"¸ö»Æ½ğ±¦ÏäÊ±»ñµÃÁË"+dropGoods.getGoodsName()+"!";
+    		info = "æ­å–œ"+roleInfo.getBasicInfo().getName()+"å¼€å¯ç¬¬"+already_num+"ä¸ªé»„é‡‘å®ç®±æ—¶è·å¾—äº†"+dropGoods.getGoodsName()+"!";
     		infoService.insertSystemInfoBySystem(info) ;
 		}
 		
@@ -452,7 +452,7 @@ public class GoldBoxService
 	}
 
 	/**
-	 * ·ÅÆú»Æ½ğ±¦ÏäÀïµÄÎïÆ·
+	 * æ”¾å¼ƒé»„é‡‘å®ç®±é‡Œçš„ç‰©å“
 	 * @param roleInfo
 	 * @return
 	 */
@@ -462,12 +462,12 @@ public class GoldBoxService
 		NpcService npcService = new NpcService();
 		npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
 		
-		String hint = "Äú·ÅÆúÁË"+boxVO.getPropName()+"ÀïµÄÎïÆ·!";
+		String hint = "æ‚¨æ”¾å¼ƒäº†"+boxVO.getPropName()+"é‡Œçš„ç‰©å“!";
 		return hint;
 	}
 	
 	/**
-	 * ÓÃ½ğÔ¿³×´ò¿ªÆäËû±¦Ïä(·Ç»Æ½ğ±¦Ïä)
+	 * ç”¨é‡‘é’¥åŒ™æ‰“å¼€å…¶ä»–å®ç®±(éé»„é‡‘å®ç®±)
 	 * @param pg_pk
 	 * @param gold_box_pgpk
 	 * @param roleInfo
@@ -480,49 +480,49 @@ public class GoldBoxService
 		String reuslWmlString = "";
 		GoodsService goodsService = new GoodsService();
 		
-		// »ñµÃ»Æ½ğ±¦ÏäµÄid
+		// è·å¾—é»„é‡‘å®ç®±çš„id
 		int prop_id = Integer.parseInt(box_id);
 		
 		if (roleInfo.getBasicInfo().getWrapSpare() < 1) {
-			reuslWmlString = "ÄúÎïÆ·À¸¿Õ¼ä²»¹»,Çë±£Áô×ã¹»µÄ¿Õ¼äÔÙ³¢ÊÔ¿ªÆô±¦Ïä!";
+			reuslWmlString = "æ‚¨ç‰©å“æ ç©ºé—´ä¸å¤Ÿ,è¯·ä¿ç•™è¶³å¤Ÿçš„ç©ºé—´å†å°è¯•å¼€å¯å®ç®±!";
 			return reuslWmlString;
 		}
 
 		if (roleInfo.getBasicInfo().getGrade() < 10) {
-			reuslWmlString = "10¼¶ÒÔÏÂ²»ÄÜ´ò¿ª´Ë±¦Ïä!";
+			reuslWmlString = "10çº§ä»¥ä¸‹ä¸èƒ½æ‰“å¼€æ­¤å®ç®±!";
 			return reuslWmlString;
 		}
-		// »ñµÃ»Æ½ğ±¦ÏäµÄpg_pk
+		// è·å¾—é»„é‡‘å®ç®±çš„pg_pk
 		PlayerPropGroupVO boxGroupVO = dao.getPropGroupByTime(roleInfo.getBasicInfo().getPPk(),prop_id);
 		
 		PlayerPropGroupVO keyGroupVO = dao.getByPgPk(Integer.parseInt(pg_pk));
-	 	 // Ê×ÏÈ¼ìÑéÕâÁ½¸öµÀ¾ßÊÇ²»ÊÇÕæµÄ¶¼ÔÚÍæ¼ÒÉíÉÏ¡£
+	 	 // é¦–å…ˆæ£€éªŒè¿™ä¸¤ä¸ªé“å…·æ˜¯ä¸æ˜¯çœŸçš„éƒ½åœ¨ç©å®¶èº«ä¸Šã€‚
 		 if ( keyGroupVO != null) {
 			 
-					// ¿ªÊ¼µôÂäÎïÆ·
+					// å¼€å§‹æ‰è½ç‰©å“
     			 	PropVO propVO = PropCache.getPropById(prop_id);
     			 	NpcService npcService = new NpcService();
     			 	
-    			 	// Çå³şÔ­À´µÄµôÂäÎï
+    			 	// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
     			 	roleInfo.getDropSet().clearDropItem();
-    			 	// »Æ½ğ±¦ÏäµôÂä°Ë¸öÎïÆ·
+    			 	// é»„é‡‘å®ç®±æ‰è½å…«ä¸ªç‰©å“
     			 	PlayerService playerService = new PlayerService();
     				PartInfoVO player = playerService.getPlayerByPpk(roleInfo.getBasicInfo().getPPk());
     			 	npcService.dropGoodsByRareBoxByGOLD(roleInfo, player,propVO);
     			 	
-    			 	// É¾³ıµô»Æ½ğ±¦Ïä
+    			 	// åˆ é™¤æ‰é»„é‡‘å®ç®±
     			 	goodsService.removeProps(boxGroupVO, 1);
     			 	
     			 	
 			} else {
-			 reuslWmlString = "»Æ½ğ±¦Ïä¿ÉÄÜÒÑ¾­²»ÔÚÄúÉíÉÏÁË!";
+			 reuslWmlString = "é»„é‡‘å®ç®±å¯èƒ½å·²ç»ä¸åœ¨æ‚¨èº«ä¸Šäº†!";
 			}
 		return reuslWmlString;
 	}
 	
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ´ò¿ª»Æ½ğ±¦Ïä
+	 * åˆ¤æ–­æ˜¯å¦å¯ä»¥æ‰“å¼€é»„é‡‘å®ç®±
 	 * @param pg_pk
 	 * @param box_id
 	 * @param roleInfo
@@ -536,58 +536,58 @@ public class GoldBoxService
 		GoodsService goodsService = new GoodsService();
 		
 		int prop_id = Integer.parseInt(box_id);
-		//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÄÃµ½½ğÔ¿³×
+		//åˆ¤æ–­æ˜¯å¦å¯ä»¥æ‹¿åˆ°é‡‘é’¥åŒ™
 		if (roleInfo.getBasicInfo().getWrapSpare() < 2) {
-			reuslWmlString = "ÄúÎïÆ·À¸¿Õ¼ä²»¹»,Çë±£Áô×ã¹»µÄ¿Õ¼äÔÙ³¢ÊÔ¿ªÆô±¦Ïä!";
+			reuslWmlString = "æ‚¨ç‰©å“æ ç©ºé—´ä¸å¤Ÿ,è¯·ä¿ç•™è¶³å¤Ÿçš„ç©ºé—´å†å°è¯•å¼€å¯å®ç®±!";
 			return reuslWmlString;
 		}
 
 		if (roleInfo.getBasicInfo().getGrade() < 10) {
-			reuslWmlString = "10¼¶ÒÔÏÂ²»ÄÜ´ò¿ª»Æ½ğ±¦Ïä!";
+			reuslWmlString = "10çº§ä»¥ä¸‹ä¸èƒ½æ‰“å¼€é»„é‡‘å®ç®±!";
 			return reuslWmlString;
 		}
-		// »ñµÃ»Æ½ğ±¦ÏäµÄpg_pk
+		// è·å¾—é»„é‡‘å®ç®±çš„pg_pk
 		PlayerPropGroupVO boxGroupVO = dao.getPropGroupByTime(roleInfo.getBasicInfo().getPPk(),prop_id);
 		
 		PlayerPropGroupVO keyGroupVO = dao.getByPgPk(Integer.parseInt(pg_pk));
-	 	 // Ê×ÏÈ¼ìÑéÕâÁ½¸öµÀ¾ßÊÇ²»ÊÇÕæµÄ¶¼ÔÚÍæ¼ÒÉíÉÏ¡£
+	 	 // é¦–å…ˆæ£€éªŒè¿™ä¸¤ä¸ªé“å…·æ˜¯ä¸æ˜¯çœŸçš„éƒ½åœ¨ç©å®¶èº«ä¸Šã€‚
 		 if ( keyGroupVO != null) {
 			 TimeControlService timeControlService = new TimeControlService();
-			// ²é¿´ÆäÊÇ·ñÔÚ 100´ÎµÄ·¶Î§Ö®ÄÚ
+			// æŸ¥çœ‹å…¶æ˜¯å¦åœ¨ 100æ¬¡çš„èŒƒå›´ä¹‹å†…
 				if ( timeControlService.isUseable(roleInfo.getBasicInfo().getPPk(), PropType.GOLD_BOX, 
 								TimeControlService.ANOTHERPROP, 100)) {
 					
-					// ¿ªÊ¼µôÂäÎïÆ·
+					// å¼€å§‹æ‰è½ç‰©å“
     			 	PropVO propVO = PropCache.getPropById(prop_id);
     			 	NpcService npcService = new NpcService();
     			 	
-    			 	// Çå³şÔ­À´µÄµôÂäÎï
+    			 	// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
     			 	roleInfo.getDropSet().clearDropItem();
-    			 	// »Æ½ğ±¦ÏäµôÂä°Ë¸öÎïÆ·
+    			 	// é»„é‡‘å®ç®±æ‰è½å…«ä¸ªç‰©å“
     			 	PlayerService playerService = new PlayerService();
     				PartInfoVO player = playerService.getPlayerByPpk(roleInfo.getBasicInfo().getPPk());
     			 	npcService.dropGoodsByRareBoxByGOLD(roleInfo, player,propVO);
     			 	
-    			 	// É¾³ıµô»Æ½ğ±¦Ïä
+    			 	// åˆ é™¤æ‰é»„é‡‘å®ç®±
     			 	goodsService.removeProps(boxGroupVO, 1);
     			 	
 				} else {
-					 reuslWmlString = "ÄúÃ¿Ìì×î¶àÖ»ÄÜ¿ªÆô100¸ö»Æ½ğ±¦Ïä!";
+					 reuslWmlString = "æ‚¨æ¯å¤©æœ€å¤šåªèƒ½å¼€å¯100ä¸ªé»„é‡‘å®ç®±!";
 				}
 		 } else {
-			 reuslWmlString = "»Æ½ğ±¦Ïä¿ÉÄÜÒÑ¾­²»ÔÚÄúÉíÉÏÁË!";
+			 reuslWmlString = "é»„é‡‘å®ç®±å¯èƒ½å·²ç»ä¸åœ¨æ‚¨èº«ä¸Šäº†!";
 		 }
 		return reuslWmlString;
 	}
 	
-	//·ÖÒ³
+	//åˆ†é¡µ
 	public QueryPage getGoldBoxList(int p_pk, String  prop_id,int page_no)
 	{
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		return dao.getGoldBoxList(p_pk, prop_id,page_no);
 	}
 	
-	//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ»Æ½ğ±¦Ïä¼ÇÂ¼
+	//åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰é»„é‡‘å®ç®±è®°å½•
 	private void playerOpenGoldBox(int u_pk,int p_pk){
 		UntangLeDao dao = new UntangLeDao();
 		int result = dao.getPlayerGoldBoxRecord(u_pk, p_pk);

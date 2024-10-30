@@ -40,14 +40,14 @@ import com.pm.service.pic.PicService;
 import com.web.service.friend.FriendService;
 
 /**
- * @author ºîºÆ¾ü ×´Ì¬
+ * @author ä¾¯æµ©å†› çŠ¶æ€
  */
 public class StateAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
 
 	/**
-	 * ²é¿´×Ô¼º×´Ì¬
+	 * æŸ¥çœ‹è‡ªå·±çŠ¶æ€
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -58,13 +58,13 @@ public class StateAction extends ActionBase
 		PicService picService = new PicService();
 		BuffEffectService buffService = new BuffEffectService();
 
-		// »ñÈ¡ÈËÎïÍ¼Æ¬
+		// è·å–äººç‰©å›¾ç‰‡
 		String playerPic = picService.getPlayerPicStr(roleInfo, roleInfo.getBasicInfo().getPPk());
 		String buff_list_describe = buffService.getBuffListDescribe(p_pk);
 		
-		int glory_value = roleInfo.getBasicInfo().getFContribute();//°ïÅÉ¹±Ï×
+		int glory_value = roleInfo.getBasicInfo().getFContribute();//å¸®æ´¾è´¡çŒ®
 
-		//µÃµ½½áÒå½á»é
+		//å¾—åˆ°ç»“ä¹‰ç»“å©š
 		FriendService friendService = new FriendService();
 		String  jieyiname = friendService.returnjieyilist(p_pk);
 		String  jiehunname = friendService.returnjiehun(p_pk);
@@ -79,7 +79,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´±ğÈË×´Ì¬
+	 * æŸ¥çœ‹åˆ«äººçŠ¶æ€
 	 */
 	public ActionForward n15(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -92,9 +92,9 @@ public class StateAction extends ActionBase
 
 		PlayerService playerService = new PlayerService();
 		PicService picService = new PicService();
-		// ¼ÓÔØÈÎÎñĞÅÏ¢
+		// åŠ è½½ä»»åŠ¡ä¿¡æ¯
 		player = playerService.getPlayerBasicInfo(Integer.parseInt(other_pk));
-		// »ñÈ¡ÈËÎïÍ¼Æ¬
+		// è·å–äººç‰©å›¾ç‰‡
 		String playerPic = picService.getPlayerPicStr(roleInfo, other_pk);
 
 		request.setAttribute("pPks", other_pk);
@@ -105,7 +105,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ÈËÎïÊôĞÔ
+	 * äººç‰©å±æ€§
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -121,7 +121,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´¶Ô·½×°±¸ÏêÇé
+	 * æŸ¥çœ‹å¯¹æ–¹è£…å¤‡è¯¦æƒ…
 	 */
 	public ActionForward n17(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -146,7 +146,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´±ğÈË×°±¸
+	 * æŸ¥çœ‹åˆ«äººè£…å¤‡
 	 */
 	public ActionForward n16(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -172,14 +172,14 @@ public class StateAction extends ActionBase
 		request.setAttribute("partEquipVO7", equip_on_body.getByPositin(PositionOnEquip.JEWELRY_2));
 		request.setAttribute("partEquipVO8", equip_on_body.getByPositin(PositionOnEquip.JEWELRY_3));
 		
-		//»ñµÃĞ¯´ø³èÎï
+		//è·å¾—æºå¸¦å® ç‰©
 		//PetInfoVO petInfoVO = other_role.getRolePetInfo().getBringPet();
 		//request.setAttribute("petInfoVO", petInfoVO);
 		return mapping.findForward("other_accouter");
 	}
 
 	/**
-	 * ²é¿´×Ô¼º×°±¸
+	 * æŸ¥çœ‹è‡ªå·±è£…å¤‡
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -223,7 +223,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´×Ô¼ºµÄ×°±¸ÏêÇé
+	 * æŸ¥çœ‹è‡ªå·±çš„è£…å¤‡è¯¦æƒ…
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -247,7 +247,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ÈËÎï¼¼ÄÜ
+	 * äººç‰©æŠ€èƒ½
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -262,7 +262,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´¼¼ÄÜÏêÇé
+	 * æŸ¥çœ‹æŠ€èƒ½è¯¦æƒ…
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -290,7 +290,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * É±¹ÖÈËÎï×´Ì¬
+	 * æ€æ€ªäººç‰©çŠ¶æ€
 	 */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -311,7 +311,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * É±¹ÖÈËÎïÊôĞÔ
+	 * æ€æ€ªäººç‰©å±æ€§
 	 */
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -328,7 +328,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * É±¹ÖÈËÎï×°±¸
+	 * æ€æ€ªäººç‰©è£…å¤‡
 	 */
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -350,7 +350,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¸ü»»×°±¸List
+	 * è§’è‰²æ›´æ¢è£…å¤‡List
 	 */
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -375,7 +375,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¸ü»»´©×°±¸
+	 * è§’è‰²æ›´æ¢ç©¿è£…å¤‡
 	 */
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -400,7 +400,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ÈËÎï×°±¸²é¿´
+	 * äººç‰©è£…å¤‡æŸ¥çœ‹
 	 */
 	public ActionForward n12(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -424,7 +424,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * Ğ¶ÏÂÈËÎï×°±¸
+	 * å¸ä¸‹äººç‰©è£…å¤‡
 	 */
 	public ActionForward n13(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -443,7 +443,7 @@ public class StateAction extends ActionBase
 	}
 
 	/**
-	 * ×£¸£ÁĞ±í
+	 * ç¥ç¦åˆ—è¡¨
 	 */
 	public ActionForward n14(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -461,7 +461,7 @@ public class StateAction extends ActionBase
 		return mapping.findForward("buff_list");
 	}
 
-	/** ÈËÎï×°±¸¿É×°±¸µÀ¾ß */
+	/** äººç‰©è£…å¤‡å¯è£…å¤‡é“å…· */
 	public ActionForward n18(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -480,7 +480,7 @@ public class StateAction extends ActionBase
 		int sex = ppvo.getPropSex();
 		if(sex != 0 && roleInfo.getBasicInfo().getSex() != sex){
 			request.setAttribute("wupinlan", wupinlan);
-			request.setAttribute("display", "ÄúµÄĞÔ±ğ²»·û");
+			request.setAttribute("display", "æ‚¨çš„æ€§åˆ«ä¸ç¬¦");
 			return mapping.findForward("prop_display");
 		}
 		String hint = sps.getEquipItemOff(p_pk);
@@ -491,13 +491,13 @@ public class StateAction extends ActionBase
 			if (x == 0)
 			{
 				request.setAttribute("wupinlan", wupinlan);
-				request.setAttribute("display", "ÄúµÄµÈ¼¶²»¹»");
+				request.setAttribute("display", "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ");
 				return mapping.findForward("prop_display");
 			}
 			else
 			{
 				request.setAttribute("wupinlan", wupinlan);
-				request.setAttribute("display", "µÀ¾ßÒÑ×°±¸");
+				request.setAttribute("display", "é“å…·å·²è£…å¤‡");
 				return mapping.findForward("prop_display");
 			}
 
@@ -510,7 +510,7 @@ public class StateAction extends ActionBase
 		}
 	}
 
-	/** ÈËÎïĞ¶ÏÂ×°±¸ÀàµÀ¾ß */
+	/** äººç‰©å¸ä¸‹è£…å¤‡ç±»é“å…· */
 	public ActionForward n19(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -524,7 +524,7 @@ public class StateAction extends ActionBase
 		return n3(mapping, form, request, response);
 	}
 
-	/** ²é¿´×°±¸ÀàµÀ¾ßÏêÇé */
+	/** æŸ¥çœ‹è£…å¤‡ç±»é“å…·è¯¦æƒ… */
 	public ActionForward n20(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -546,7 +546,7 @@ public class StateAction extends ActionBase
 		return mapping.findForward("prop_display");
 	}
 
-	/** µÃµ½×°±¸ÀàµÀ¾ßµÄÁĞ±í */
+	/** å¾—åˆ°è£…å¤‡ç±»é“å…·çš„åˆ—è¡¨ */
 	public ActionForward n21(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -578,7 +578,7 @@ public class StateAction extends ActionBase
 		return mapping.findForward("prop_list");
 	}
 
-	/** ¸øÍæ¼Ò×°±¸ÀàµÀ¾ßµÄÅĞ¶Ï */
+	/** ç»™ç©å®¶è£…å¤‡ç±»é“å…·çš„åˆ¤æ–­ */
 	public ActionForward n22(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -603,7 +603,7 @@ public class StateAction extends ActionBase
 			if (vo.getSign() == 3)
 			{
 				request.setAttribute("wupinlan", wupinlan);
-				request.setAttribute("display", "¸ÃµÀ¾ßµÄÊ¹ÓÃÊ±¼äÒÑµ½,²»ÄÜÔÙÊ¹ÓÃ!");
+				request.setAttribute("display", "è¯¥é“å…·çš„ä½¿ç”¨æ—¶é—´å·²åˆ°,ä¸èƒ½å†ä½¿ç”¨!");
 				return mapping.findForward("prop_display");
 			}
 			else
@@ -616,13 +616,13 @@ public class StateAction extends ActionBase
 					if (x == 0)
 					{
 						request.setAttribute("wupinlan", wupinlan);
-						request.setAttribute("display", "ÄúµÄµÈ¼¶²»¹»");
+						request.setAttribute("display", "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ");
 						return mapping.findForward("prop_display");
 					}
 					else
 					{
 						request.setAttribute("wupinlan", wupinlan);
-						request.setAttribute("display", "µÀ¾ßÒÑ×°±¸");
+						request.setAttribute("display", "é“å…·å·²è£…å¤‡");
 						return mapping.findForward("prop_display");
 					}
 				}
@@ -636,7 +636,7 @@ public class StateAction extends ActionBase
 		}
 	}
 
-	/** ²é¿´±ğÈË³èÎï×´Ì¬ */
+	/** æŸ¥çœ‹åˆ«äººå® ç‰©çŠ¶æ€ */
 	public ActionForward n23(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -659,7 +659,7 @@ public class StateAction extends ActionBase
 	}
 	
 	/**
-	 * ²é¿´×Ô¼ºŒÙĞÔ
+	 * æŸ¥çœ‹è‡ªå·±å±¬æ€§
 	 */
 	public ActionForward n24(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -673,10 +673,10 @@ public class StateAction extends ActionBase
 		int evil_value = roleInfo.getBasicInfo().getEvilValue();
 		
 		PartInfoVO player = playerService.getPlayerByPpk(p_pk);
-		// »ñÈ¡ÈËÎïÍ¼Æ¬
+		// è·å–äººç‰©å›¾ç‰‡
 		String playerPic = picService.getPlayerPicStr(roleInfo, roleInfo.getBasicInfo().getPPk());
 		
-		int glory_value = roleInfo.getBasicInfo().getFContribute();//°ïÅÉ¹±Ï×
+		int glory_value = roleInfo.getBasicInfo().getFContribute();//å¸®æ´¾è´¡çŒ®
 		
 		request.setAttribute("pk_value", evil_value);
 		request.setAttribute("player", player);

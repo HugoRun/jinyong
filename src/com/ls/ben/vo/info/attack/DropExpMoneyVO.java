@@ -1,16 +1,16 @@
 package com.ls.ben.vo.info.attack;
 
 /**
- * ¹¦ÄÜ:µôÂäµÄ½ğÇ®ºÍ¾­Ñé
- * @author ÁõË§
+ * åŠŸèƒ½:æ‰è½çš„é‡‘é’±å’Œç»éªŒ
+ * @author åˆ˜å¸…
  * 9:21:09 AM
  */
 public class DropExpMoneyVO {
-	/**npcµôÂä¾­Ñé*/	
+	/**npcæ‰è½ç»éªŒ*/	
 	private int dropExp;
-	/**npcµôÂäµÄÇ®Êı*/
+	/**npcæ‰è½çš„é’±æ•°*/
 	private int dropMoney;
-	/** npc¸øpetµôÂäµÄ¾­Ñé */
+	/** npcç»™petæ‰è½çš„ç»éªŒ */
 	private int dropPetExp;
 	
 	public void add(DropExpMoneyVO dropExpMoney)

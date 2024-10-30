@@ -4,60 +4,60 @@ import com.ls.ben.cache.staticcache.map.MapCache;
 import com.ls.ben.cache.staticcache.map.SceneCache;
 import com.ls.ben.cache.staticcache.task.TaskCache;
 import com.ls.web.service.log.DataErrorLog;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 
 /**
- * @author ºîºÆ¾ü µ÷ÓÃjygame¿âÖĞµÄ³¡¾°±í 2:24:09 PM   sceneSwitch
+ * @author ä¾¯æµ©å†› è°ƒç”¨jygameåº“ä¸­çš„åœºæ™¯è¡¨ 2:24:09 PM   sceneSwitch
  */
 public class PartMapDAO {
-	Jygamedb con;
+	JyGameDB con;
 
 	/**
-	 * ×ø±ê²éÑ¯
+	 * åæ ‡æŸ¥è¯¢
 	 */
 	public String getsceneCoordinate(int scene_id) {
 		try {
 			return SceneCache.getById(scene_id+"").getSceneCoordinate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataErrorLog.debugData("³¡¾°Êı¾İ´íÎó£¬scene_id="+scene_id);
+			DataErrorLog.debugData("åœºæ™¯æ•°æ®é”™è¯¯ï¼Œscene_id="+scene_id);
 		} 
 		return null;
 	}
 	
 	/**
-	 * ¹¦ÄÜ:²éÑ¯³¡¾°µÄmapÇøÓò
+	 * åŠŸèƒ½:æŸ¥è¯¢åœºæ™¯çš„mapåŒºåŸŸ
 	 */
 	public int getmap(int scene_id) {
 		try {
 			return Integer.parseInt(SceneCache.getById(scene_id+"").getSceneMapqy());
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataErrorLog.debugData("³¡¾°Êı¾İ´íÎó£¬scene_id="+scene_id);
+			DataErrorLog.debugData("åœºæ™¯æ•°æ®é”™è¯¯ï¼Œscene_id="+scene_id);
 		}
 		return 0;
 	}
 	/**
-	 * ¹¦ÄÜ:²éÑ¯³¡¾°µÄbarea
+	 * åŠŸèƒ½:æŸ¥è¯¢åœºæ™¯çš„barea
 	 */
 	public int getbarea(int map_id) {
 		try {
 			return MapCache.getById(map_id+"").getMapFrom();
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataErrorLog.debugData("map±íÊı¾İ´íÎó£¬map_id="+map_id);
+			DataErrorLog.debugData("mapè¡¨æ•°æ®é”™è¯¯ï¼Œmap_id="+map_id);
 		} 
 		return 0;
 	}
 	/**
-	 * ¹¦ÄÜ:²éÑ¯ÈÎÎñµÈ¼¶
+	 * åŠŸèƒ½:æŸ¥è¯¢ä»»åŠ¡ç­‰çº§
 	 */
 	public int gettaskGrade(int tid) {
 		try {
 			return TaskCache.getById(tid+"").getTLevelXiao();
 		} catch (Exception e) {
 			e.printStackTrace();
-			DataErrorLog.task(tid, "²éÑ¯ÈÎÎñµÈ¼¶£¬tId="+tid);
+			DataErrorLog.task(tid, "æŸ¥è¯¢ä»»åŠ¡ç­‰çº§ï¼ŒtId="+tid);
 		} 
 		return 0;
 	}

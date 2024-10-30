@@ -10,7 +10,7 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * °ïÅÉ¹«¸æ
+ * å¸®æ´¾å…¬å‘Š
  */
 public class FNoticeDao extends BasicDaoSupport<FNotice>
 {
@@ -21,7 +21,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 	}
 	
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 * @param 
 	 */
 	public int add(FNotice notice)
@@ -33,7 +33,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 			return 0;
 		}
 		
-		String sql = "insert into f_notice(f_id,content,create_time) values (?,?,now())";
+		String sql = "INSERT INTO f_notice(f_id,content,create_time) values (?,?,now())";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -67,7 +67,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 	}
 	
 	/**
-	 * Í¨¹ıidµÃµ½¹«¸æĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°å…¬å‘Šä¿¡æ¯
 	 */
 	public FNotice getById( int id )
 	{
@@ -75,7 +75,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 		return super.getOneBySql(condition_sql);
 	}
 	/**
-	 * µÃµ½°ïÅÉµÄ×îĞÂµÄÒ»Ìõ¹«¸æ
+	 * å¾—åˆ°å¸®æ´¾çš„æœ€æ–°çš„ä¸€æ¡å…¬å‘Š
 	 */
 	public FNotice getLastedNotice(int fId)
 	{
@@ -84,7 +84,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 	}
 	
 	/**
-	 * Í¨¹ıidÉ¾³ı¹«¸æĞÅÏ¢
+	 * é€šè¿‡idåˆ é™¤å…¬å‘Šä¿¡æ¯
 	 */
 	public void delById( int id )
 	{
@@ -93,7 +93,7 @@ public class FNoticeDao extends BasicDaoSupport<FNotice>
 	}
 	
 	/**
-	 * ·ÖÒ³ÁĞ±í
+	 * åˆ†é¡µåˆ—è¡¨
 	 */
 	public QueryPage getPageList(int f_id,int page_no)
 	{

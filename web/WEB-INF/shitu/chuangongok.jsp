@@ -10,10 +10,10 @@ if(message!=null&&!"".equals(message.trim())){
   <%=message %><br/>
   <%} %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>"> 
-	<postfield name="cmd" value="n5" />
-	</go>
-	返回
-	</anchor> <br/> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>">
+    <postfield name="cmd" value="n5" />
+    </go>
+    返回
+    </anchor> <br/>
 <anchor><go href="<%=response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")%>" method="get"></go>返回游戏</anchor><br/>
 <%@ include file="/WEB-INF/inc/footer.jsp"%>

@@ -17,17 +17,17 @@ public class TongMoneyInfoDao extends DaoBase
 {
 
 	/**
-	 * Ôö¼Ó ·¢ËÍ½±½ğµÄÇé¿ö
+	 * å¢åŠ  å‘é€å¥–é‡‘çš„æƒ…å†µ
 	 * @param pPk
 	 * @param tPk
 	 * @param personMoney
 	 */
 	public int addTongMoneyInfo(int pPk, int tPk, int personMoney)
 	{
-		String sql = "insert into tong_money_info values (null,"+pPk+","+tPk+",1,"+personMoney+",now())";
+		String sql = "INSERT INTO tong_money_info values (null,"+pPk+","+tPk+",1,"+personMoney+",now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		logger.debug("Ôö¼Ó ·¢ËÍ½±½ğµÄÇé¿ö="+sql);
+		logger.debug("å¢åŠ  å‘é€å¥–é‡‘çš„æƒ…å†µ="+sql);
 		int result = 0;
 		try
 		{
@@ -50,17 +50,17 @@ public class TongMoneyInfoDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÎ´È¡»ØµÄ½ğÇ®ĞÅÏ¢
+	 * è·å¾—æœªå–å›çš„é‡‘é’±ä¿¡æ¯
 	 * @param pPk
 	 * @param infoId
 	 * @return
 	 */
 	public TongMoneyInfoVO getBackMoneyInfo(int pPk, String infoId)
 	{
-		String sql = "select * from tong_money_info where back_type = 1 and  p_pk="+pPk+" and info_id = "+infoId;
+		String sql = "SELECT * FROM tong_money_info where back_type = 1 and  p_pk="+pPk+" and info_id = "+infoId;
 		TongMoneyInfoVO tongMoneyInfoVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("»ñµÃÎ´È¡»ØµÄ½ğÇ®ĞÅÏ¢="+sql);
+		logger.debug("è·å¾—æœªå–å›çš„é‡‘é’±ä¿¡æ¯="+sql);
 		conn = dbConn.getConn();
 		try
 		{
@@ -90,7 +90,7 @@ public class TongMoneyInfoDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂÈ¡»Ø×´Ì¬
+	 * æ›´æ–°å–å›çŠ¶æ€
 	 * @param pPk
 	 * @param infoId
 	 */
@@ -98,7 +98,7 @@ public class TongMoneyInfoDao extends DaoBase
 	{
 		String sql = "update tong_money_info set back_type = 2  where p_pk="+pPk+" and info_id = "+infoId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("¸üĞÂÈ¡»Ø×´Ì¬="+sql);
+		logger.debug("æ›´æ–°å–å›çŠ¶æ€="+sql);
 		conn = dbConn.getConn();
 		try
 		{

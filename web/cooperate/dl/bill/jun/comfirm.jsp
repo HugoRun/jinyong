@@ -7,37 +7,38 @@
 <%@page import="com.ls.model.user.*,com.ls.web.service.player.*" %>
 <%@page import="com.ls.pub.config.GameConfig"%>
 
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="index" title="充值确认">
 <p>
 <%
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
-		
-		String checkStr = (String)session.getAttribute("checkStr");
-		int u_pk = -1;
-		int p_pk = -1;
-		if (roleInfo != null) {
-			u_pk = roleInfo.getBasicInfo().getUPk();
-			p_pk = roleInfo.getBasicInfo().getPPk();
-		}
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
 
-		String merchant_key = "2WE46VM162146qso9tCcg5T3oiEf3659UW71w9V63qQ959R93LR2aw2IT4op";
-		String cmd = "BankDirectConnect";
-		String merchant_id = "10000469871";
-		String addtime = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
-				.format(new java.util.Date());
-		String order_id = "017001" + addtime;//订单号
-		String amount = request.getParameter("pay");
-		String currency = "CNY";
-		String order_pid = "";
-		String order_pcat = "";
-		String order_pdesc = "";
-		String returl = response.encodeURL(GameConfig.getUrlOfGame()+"/jun/recvOrder.do");//返回游戏的地址
-		String pay_cardno = request.getParameter("code");
-		String pay_cardpwd = request.getParameter("psw");
-		String pm_id = "JUNNET-NET";
-		String hmac = "";
+        String checkStr = (String)session.getAttribute("checkStr");
+        int u_pk = -1;
+        int p_pk = -1;
+        if (roleInfo != null) {
+            u_pk = roleInfo.getBasicInfo().getUPk();
+            p_pk = roleInfo.getBasicInfo().getPPk();
+        }
+
+        String merchant_key = "2WE46VM162146qso9tCcg5T3oiEf3659UW71w9V63qQ959R93LR2aw2IT4op";
+        String cmd = "BankDirectConnect";
+        String merchant_id = "10000469871";
+        String addtime = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
+                .format(new java.util.Date());
+        String order_id = "017001" + addtime;//订单号
+        String amount = request.getParameter("pay");
+        String currency = "CNY";
+        String order_pid = "";
+        String order_pcat = "";
+        String order_pdesc = "";
+        String returl = response.encodeURL(GameConfig.getUrlOfGame()+"/jun/recvOrder.do");//返回游戏的地址
+        String pay_cardno = request.getParameter("code");
+        String pay_cardpwd = request.getParameter("psw");
+        String pm_id = "JUNNET-NET";
+        String hmac = "";
 		
 		//记录玩家充值信息
 		BillService billService = new BillService();

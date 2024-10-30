@@ -14,12 +14,12 @@ import com.ls.web.service.player.RoleService;
 import com.pm.service.setting.SysSettingService;
 
 /**
- * ÏµÍ³ÉèÖÃ
+ * ç³»ç»Ÿè®¾ç½®
  */
 public class SysSettingAction extends DispatchAction {
 
 	/**
-	 * ÏµÍ³ÉèÖÃÖ÷Ò³
+	 * ç³»ç»Ÿè®¾ç½®ä¸»é¡µ
 	 */
 	public ActionForward index(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -27,7 +27,7 @@ public class SysSettingAction extends DispatchAction {
 	}
 	
 	/**
-	 * ÏµÍ³ÉèÖÃÁĞ±í£¨Í¼Æ¬ÉèÖÃºÍ½»Ò×ÉèÖÃ£©
+	 * ç³»ç»Ÿè®¾ç½®åˆ—è¡¨ï¼ˆå›¾ç‰‡è®¾ç½®å’Œäº¤æ˜“è®¾ç½®ï¼‰
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -42,7 +42,7 @@ public class SysSettingAction extends DispatchAction {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÏµÍ³ÉèÖÃ£¨Í¼Æ¬ÉèÖÃºÍ½»Ò×ÉèÖÃ£©
+	 * ä¿®æ”¹ç³»ç»Ÿè®¾ç½®ï¼ˆå›¾ç‰‡è®¾ç½®å’Œäº¤æ˜“è®¾ç½®ï¼‰
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -61,7 +61,7 @@ public class SysSettingAction extends DispatchAction {
 	}
 	
 	/**
-	 * ÏµÍ³ÉèÖÃÒ³Ãæ
+	 * ç³»ç»Ÿè®¾ç½®é¡µé¢
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -69,7 +69,7 @@ public class SysSettingAction extends DispatchAction {
 	}
 	
 	/**
-	 * ÁÄÌìÉèÖÃ
+	 * èŠå¤©è®¾ç½®
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -82,7 +82,7 @@ public class SysSettingAction extends DispatchAction {
 		return mapping.findForward("chat_setting");
 	}
 	/**
-	 * ĞŞ¸ÄÁÄÌì¿ª¹ØÉèÖÃ
+	 * ä¿®æ”¹èŠå¤©å¼€å…³è®¾ç½®
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -101,7 +101,7 @@ public class SysSettingAction extends DispatchAction {
 	}
 	
 	/**
-	 * ÏµÍ³ÉèÖÃÁĞ±í£¨Í¼Æ¬ÉèÖÃºÍ½»Ò×ÉèÖÃ£©
+	 * ç³»ç»Ÿè®¾ç½®åˆ—è¡¨ï¼ˆå›¾ç‰‡è®¾ç½®å’Œäº¤æ˜“è®¾ç½®ï¼‰
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -116,7 +116,7 @@ public class SysSettingAction extends DispatchAction {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÏµÍ³ÉèÖÃ£¨Í¼Æ¬ÉèÖÃºÍ½»Ò×ÉèÖÃ£©
+	 * ä¿®æ”¹ç³»ç»Ÿè®¾ç½®ï¼ˆå›¾ç‰‡è®¾ç½®å’Œäº¤æ˜“è®¾ç½®ï¼‰
 	 */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {

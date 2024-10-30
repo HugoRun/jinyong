@@ -9,14 +9,14 @@ import com.ls.ben.vo.goods.prop.PropVO;
 
 /**
  * @author ls
- * Êı¾İ´íÎóÈÕÖ¾
+ * æ•°æ®é”™è¯¯æ—¥å¿—
  */
 public class DataErrorLog
 {
-	private static Logger logger = Logger.getLogger("log.data");//Êı¾İ×ö´íÈÕÖ¾
+	private static Logger logger = Logger.getLogger("log.data");//æ•°æ®åšé”™æ—¥å¿—
 	
 	/**
-	 * µ÷ÊÔÂß¼­´íÎó
+	 * è°ƒè¯•é€»è¾‘é”™è¯¯
 	 * @param errer_log
 	 */
 	public static void debugLogic( String errer_log)
@@ -25,7 +25,7 @@ public class DataErrorLog
 	}
 	
 	/**
-	 * µ÷ÊÔÊı¾İ´íÎó
+	 * è°ƒè¯•æ•°æ®é”™è¯¯
 	 * @param errer_log
 	 */
 	public static void debugData( String errer_log)
@@ -34,7 +34,7 @@ public class DataErrorLog
 	}
 	
 	/**
-	 * ¼ÇÂ¼µÀ¾ßÊı¾İ´íÎó
+	 * è®°å½•é“å…·æ•°æ®é”™è¯¯
 	 * @param errer_log
 	 */
 	public static void prop( int prop_id,String errer_log)
@@ -42,12 +42,12 @@ public class DataErrorLog
 		PropVO prop = PropCache.getPropById(prop_id);
 		if( prop!=null )
 		{
-			logger.error("µÀ¾ßÊı¾İ´íÎó£¨µÀ¾ßid="+prop_id+";µÀ¾ßÃû×Ö="+prop.getPropName()+"£©;´íÎóĞÅÏ¢£º"+errer_log);
+			logger.error("é“å…·æ•°æ®é”™è¯¯ï¼ˆé“å…·id="+prop_id+";é“å…·åå­—="+prop.getPropName()+"ï¼‰;é”™è¯¯ä¿¡æ¯ï¼š"+errer_log);
 		}
 	}
 	
 	/**
-	 * ¼ÇÂ¼ÈÎÎñÊı¾İ´íÎó
+	 * è®°å½•ä»»åŠ¡æ•°æ®é”™è¯¯
 	 * @param errer_log
 	 */
 	public static void task( int id,String errer_log)
@@ -55,16 +55,16 @@ public class DataErrorLog
 		TaskVO tesk = TaskCache.getById(id+"");
 		if( tesk!=null )
 		{
-			logger.error("ÈÎÎñÊı¾İ´íÎó£¨ÈÎÎñid="+id+";ÈÎÎñÃû×Ö="+tesk.getTName()+"£©;´íÎóĞÅÏ¢£º"+errer_log);
+			logger.error("ä»»åŠ¡æ•°æ®é”™è¯¯ï¼ˆä»»åŠ¡id="+id+";ä»»åŠ¡åå­—="+tesk.getTName()+"ï¼‰;é”™è¯¯ä¿¡æ¯ï¼š"+errer_log);
 		}
 	}
 	
 	/**
-	 * ¼ÇÂ¼ÈÎÎñÊı¾İ´íÎó
+	 * è®°å½•ä»»åŠ¡æ•°æ®é”™è¯¯
 	 * @param errer_log
 	 */
 	public static void task( String errer_log)
 	{
-		debugData("ÈÎÎñÊı¾İ´íÎó£º"+errer_log);
+		debugData("ä»»åŠ¡æ•°æ®é”™è¯¯ï¼š"+errer_log);
 	}
 }

@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class PlayerStatisticsVO
 {
-	// 主键
+	// 涓婚敭
 	private int id;
 	// ppk
 	private int upk;
 	// ppk
 	private int ppk;
-	// 等级
+	// 绛夌骇
 	private int grade;
-	// 在线时间
+	// 鍦ㄧ嚎鏃堕棿
 	private int onlinetime;
-	// 日期
+	// 鏃ユ湡
 	private String p_date;
-	// 时间
+	// 鏃堕棿
 	private String p_time;
-	// 上次登录时间
+	// 涓婃鐧诲綍鏃堕棿
 	private Date logintimeold;
-	// 本次登录时间
+	// 鏈鐧诲綍鏃堕棿
 	private Date logintime;
 
 	public int getId()

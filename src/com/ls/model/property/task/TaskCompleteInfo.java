@@ -18,7 +18,7 @@ import com.ls.web.service.system.UMsgService;
 import com.web.service.popupmsg.PopUpMsgService;
 
 /**
- * ÒÑÍê³ÉµÄÈÎÎñ
+ * å·²å®Œæˆçš„ä»»åŠ¡
  */
 public class TaskCompleteInfo extends UserBase
 {
@@ -33,7 +33,7 @@ public class TaskCompleteInfo extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÒÑÍê³ÉµÄÈÎÎñÁĞ±í
+	 * å¾—åˆ°å·²å®Œæˆçš„ä»»åŠ¡åˆ—è¡¨
 	 * @return
 	 */
 	public List<UtaskCompleteVO> taskCompleteList(){
@@ -41,7 +41,7 @@ public class TaskCompleteInfo extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÒÑÍê³ÉµÄÈÎÎñÁĞ±í
+	 * å¾—åˆ°å·²å®Œæˆçš„ä»»åŠ¡åˆ—è¡¨
 	 * @return
 	 */
 	public HashMap<String,UtaskCompleteVO> taskCompleteHashMap(){  
@@ -49,42 +49,42 @@ public class TaskCompleteInfo extends UserBase
 	}
 	
 	/**
-	 * ÊÇ·ñÒÑ¾­×öÍêÈÎÎñ
+	 * æ˜¯å¦å·²ç»åšå®Œä»»åŠ¡
 	 */
 	public boolean taskCompleteBoo(String taskZu)
 	{
 		if (taskComplete.containsKey(taskZu))
 		{
-			return true;//×öÍê
+			return true;//åšå®Œ
 		}
-		return false;//Ã»×öÍê
+		return false;//æ²¡åšå®Œ
 	}
 	
 	/**
-	 * ÒÑ¾­Íê³É¸ÃÈÎÎñ£¬²¢¼ÇÂ¼
+	 * å·²ç»å®Œæˆè¯¥ä»»åŠ¡ï¼Œå¹¶è®°å½•
 	 */
 	public void completeTask(UtaskCompleteVO utaskCompleteVO){
 		
 		int p_pk = utaskCompleteVO.getPPk();
-		String task_zu = utaskCompleteVO.getTaskZu();//ÈÎÎñ×é
+		String task_zu = utaskCompleteVO.getTaskZu();//ä»»åŠ¡ç»„
 		
-		//Ôö¼ÓÍê³ÉÈÎÎñ¼ÇÂ¼
+		//å¢åŠ å®Œæˆä»»åŠ¡è®°å½•
 		UTaskDAO uTaskDAO = new UTaskDAO();
 		uTaskDAO.taskComplete(p_pk, task_zu);
 		taskComplete.put(task_zu, utaskCompleteVO);
 		
-		//************************Íê³ÉÒ»Ğ©ÈÎÎñĞèÒªÌØÊâ´¦Àí
-		//ÅĞ¶ÏÊÇ·ñÊÇ30¼¶°ïÅÉµÄ
+		//************************å®Œæˆä¸€äº›ä»»åŠ¡éœ€è¦ç‰¹æ®Šå¤„ç†
+		//åˆ¤æ–­æ˜¯å¦æ˜¯30çº§å¸®æ´¾çš„
 		if( task_zu.equals(GameConfig.getPropertiesObject("task_30tong_zu")) )
 		{
 			new PopUpMsgService().addSysSpecialMsg(p_pk,30,0, PopUpMsgType.TASK_30TONG);
 		}
-		//ÅĞ¶ÏÊÇPKÈÎÎñ×öÍêÁË
+		//åˆ¤æ–­æ˜¯PKä»»åŠ¡åšå®Œäº†
 		else if(task_zu.equals(GameConfig.getPropertiesObject("task_30pk_zu")))
 		{
 			new PopUpMsgService().addSysSpecialMsg(p_pk,30,0, PopUpMsgType.TASK_30PK);
 		}
-		//ÅĞ¶ÏÊÇ·ñÊÇĞÂÊÖÌåÑéÈÎÎñ
+		//åˆ¤æ–­æ˜¯å¦æ˜¯æ–°æ‰‹ä½“éªŒä»»åŠ¡
 		else if( task_zu.indexOf("ty_juezhanbuzhoushan")!=-1 )
 		{
 			RoleEntity role_info = RoleService.getRoleInfoById(p_pk+"");

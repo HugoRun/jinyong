@@ -25,12 +25,12 @@ import com.ls.web.service.player.EconomyService;
 import com.pub.ben.info.Expression;
 
 /**
- * Âô³öÎïÆ·
+ * å–å‡ºç‰©å“
  * @author ls
  */
 public class SaleAction extends ActionBase
 {
-	// ÎïÆ·ÁĞ±í
+	// ç‰©å“åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -103,7 +103,7 @@ public class SaleAction extends ActionBase
 		return mapping.findForward("wrap_list");
 	}
 
-	// Âô³ö²Ù×÷
+	// å–å‡ºæ“ä½œ
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -121,7 +121,7 @@ public class SaleAction extends ActionBase
 		int good_type = 0;
 		if( Integer.parseInt(w_type)!=Wrap.EQUIP )
 		{
-			good_type = 4;//µÀ¾ß
+			good_type = 4;//é“å…·
 		}
 
 		String bind_hint = goodsSerivce.isBinded(Integer.parseInt(goods_id), good_type,ActionType.SALE);
@@ -134,18 +134,18 @@ public class SaleAction extends ActionBase
 		}
 		
 		
-		// Âô×°±¸
+		// å–è£…å¤‡
 		if (Integer.parseInt(w_type) == Wrap.EQUIP)
 		{
 
 			PlayerEquipVO playerEquip = goodsSerivce.getEquipByID(Integer
 					.parseInt(goods_id));
 
-			//if (goodsSerivce.isReconfirmByEquipID(playerEquip.getPwPk()))// ĞèÒª¶ş´ÎÈ·ÈÏ
+			//if (goodsSerivce.isReconfirmByEquipID(playerEquip.getPwPk()))// éœ€è¦äºŒæ¬¡ç¡®è®¤
 			//{
-				if (reconfirm.equals("0"))// Ã»ÓĞ¶ş´ÎÈ·ÈÏ
+				if (reconfirm.equals("0"))// æ²¡æœ‰äºŒæ¬¡ç¡®è®¤
 				{
-					hint = "ÄúÈ·ÈÏÒªÂô³ö" + StringUtil.isoToGBK(playerEquip.getWName()) + "£¿";
+					hint = "æ‚¨ç¡®è®¤è¦å–å‡º" + StringUtil.isoToGBK(playerEquip.getWName()) + "ï¼Ÿ";
 					request.setAttribute("resultWml", hint);
 					request.setAttribute("w_type", w_type);
 					request.setAttribute("pw_pk", playerEquip.getPwPk());
@@ -154,20 +154,20 @@ public class SaleAction extends ActionBase
 				else if (reconfirm.equals("1"))
 				{
 					goodsSerivce.saleEquip(roleInfo, Integer.parseInt(goods_id),playerEquip.getWPrice());
-					hint = "ÄúÂô³ö"
+					hint = "æ‚¨å–å‡º"
 							+ StringUtil.isoToGBK(playerEquip.getWName())
-							+ ",»ñµÃ"
+							+ ",è·å¾—"
 							+ MoneyUtil.changeCopperToStr(playerEquip
 									.getWPrice()) + "!";
 				}
 
 			//}
 			else
-			// ²»ĞèÒª¶ş´ÎÈ·ÈÏ
+			// ä¸éœ€è¦äºŒæ¬¡ç¡®è®¤
 			{
 				goodsSerivce.saleEquip(roleInfo, Integer.parseInt(goods_id),playerEquip.getWPrice());
-				hint = "ÄúÂô³ö" + StringUtil.isoToGBK(playerEquip.getWName())
-						+ ",»ñµÃ"
+				hint = "æ‚¨å–å‡º" + StringUtil.isoToGBK(playerEquip.getWName())
+						+ ",è·å¾—"
 						+ MoneyUtil.changeCopperToStr(playerEquip.getWPrice())
 						+ "!";
 			}
@@ -175,7 +175,7 @@ public class SaleAction extends ActionBase
 			request.setAttribute("hint", hint);
 
 		}
-		// ÂôµÀ¾ß
+		// å–é“å…·
 		else
 		{
 			PlayerPropGroupVO goodsGroup = goodsSerivce
@@ -190,14 +190,14 @@ public class SaleAction extends ActionBase
 			boolean b = m.matches();
 			if (b == false)
 			{
-				hint = "ÇëÊäÈëÕıÈ·µÄÊı×Ö";
+				hint = "è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—";
 				request.setAttribute("w_type", w_type);
 				request.setAttribute("pg_pk", goods_id);
 				request.setAttribute("resultWml", hint);
 				return mapping.findForward("input_num");
 			}
 			if(prop_num_str.length() >6){
-				hint = "ÇëÊäÈëÕıÈ·µÄÊı×Ö";
+				hint = "è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—";
 				request.setAttribute("w_type", w_type);
 				request.setAttribute("pg_pk", goods_id);
 				request.setAttribute("resultWml", hint);
@@ -208,14 +208,14 @@ public class SaleAction extends ActionBase
 			if (prop_num_str == null)
 			{
 				 
-				// ÂôµÀ¾ß
-				if (goodsGroup.getPropNum() == 1)// Ö»ÓĞÒ»¸ö
+				// å–é“å…·
+				if (goodsGroup.getPropNum() == 1)// åªæœ‰ä¸€ä¸ª
 				{
-					// ÖØÒªÎïÆ·¶ş´ÎÈ·ÈÏ
-					if (reconfirm == null)// Ã»ÓĞ¶ş´ÎÈ·ÈÏ
+					// é‡è¦ç‰©å“äºŒæ¬¡ç¡®è®¤
+					if (reconfirm == null)// æ²¡æœ‰äºŒæ¬¡ç¡®è®¤
 					{
 						if (!goodsSerivce.isReconfirmByPropId(goodsGroup
-								.getPropId())) // ²»ĞèÒª¶ş´ÎÈ·ÈÏ
+								.getPropId())) // ä¸éœ€è¦äºŒæ¬¡ç¡®è®¤
 						{
 							hint = goodsSerivce.saleProps(Integer
 									.parseInt(goods_id), goodsGroup
@@ -223,7 +223,7 @@ public class SaleAction extends ActionBase
 						}
 						else
 						{
-							hint = "ÄúÈ·ÈÏÒªÂô³ö" + StringUtil.isoToGBK(goodsGroup.getPropName()) + "£¿";
+							hint = "æ‚¨ç¡®è®¤è¦å–å‡º" + StringUtil.isoToGBK(goodsGroup.getPropName()) + "ï¼Ÿ";
 							request.setAttribute("resultWml", hint);
 							request.setAttribute("w_type", w_type);
 							request.setAttribute("pg_pk", goods_id);
@@ -233,14 +233,14 @@ public class SaleAction extends ActionBase
 						}
 					}
 					else
-					// ÒÑ¾­¶ş´ÎÈ·ÈÏ
+					// å·²ç»äºŒæ¬¡ç¡®è®¤
 					{
 						hint = goodsSerivce.saleProps(Integer
 								.parseInt(goods_id), goodsGroup.getPropNum());
 					}
 				}
 				else
-				// ÓĞ¶à¸ö£¬ÈÃÓÃ»§Ìí¼ÓÊıÁ¿
+				// æœ‰å¤šä¸ªï¼Œè®©ç”¨æˆ·æ·»åŠ æ•°é‡
 				{
 					request.setAttribute("w_type", w_type);
 					request.setAttribute("pg_pk", goods_id);
@@ -265,19 +265,19 @@ public class SaleAction extends ActionBase
 					
 					if (goodsGroup.getPropNum() >= prop_num)
 					{
-						// ÖØÒªÎïÆ·¶ş´ÎÈ·ÈÏ
-						if (reconfirm == null) // Ã»ÓĞ¶ş´ÎÈ·ÈÏ
+						// é‡è¦ç‰©å“äºŒæ¬¡ç¡®è®¤
+						if (reconfirm == null) // æ²¡æœ‰äºŒæ¬¡ç¡®è®¤
 						{
 							if (!goodsSerivce.isReconfirmByPropId(goodsGroup
-									.getPropId())) // ²»ĞèÒª¶ş´ÎÈ·ÈÏ
+									.getPropId())) // ä¸éœ€è¦äºŒæ¬¡ç¡®è®¤
 							{
 								hint = goodsSerivce.saleProps(Integer
 										.parseInt(goods_id), prop_num);
 							}
 							else
 							{
-								hint = "ÄúÈ·ÈÏÒªÂô³ö" + StringUtil.isoToGBK(goodsGroup.getPropName())
-										+ "¡Á" + prop_num + "£¿";
+								hint = "æ‚¨ç¡®è®¤è¦å–å‡º" + StringUtil.isoToGBK(goodsGroup.getPropName())
+										+ "Ã—" + prop_num + "ï¼Ÿ";
 								request.setAttribute("resultWml", hint);
 								request.setAttribute("w_type", w_type);
 								request.setAttribute("pg_pk", goods_id);
@@ -287,7 +287,7 @@ public class SaleAction extends ActionBase
 							}
 						}
 						else
-						// ÒÑ¾­¶ş´ÎÈ·ÈÏ
+						// å·²ç»äºŒæ¬¡ç¡®è®¤
 						{
 							hint = goodsSerivce.saleProps(Integer
 									.parseInt(goods_id), prop_num);
@@ -295,8 +295,8 @@ public class SaleAction extends ActionBase
 					}
 					else
 					{
-						// ÊıÁ¿²»¹»
-						hint = "¶Ô²»Æğ£¬¸ÃÎïÆ·ÊıÁ¿²»¹»£¡";
+						// æ•°é‡ä¸å¤Ÿ
+						hint = "å¯¹ä¸èµ·ï¼Œè¯¥ç‰©å“æ•°é‡ä¸å¤Ÿï¼";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("pg_pk", goods_id);
 						request.setAttribute("resultWml", hint);
@@ -306,8 +306,8 @@ public class SaleAction extends ActionBase
 				}
 				catch (NumberFormatException e)
 				{
-					// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-					hint = "ÕıÈ·ÊäÈëÎïÆ·ÊıÁ¿";
+					// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+					hint = "æ­£ç¡®è¾“å…¥ç‰©å“æ•°é‡";
 					request.setAttribute("w_type", w_type);
 					request.setAttribute("pg_pk", goods_id);
 					request.setAttribute("resultWml", hint);
@@ -323,7 +323,7 @@ public class SaleAction extends ActionBase
 		return n1(mapping, form, request, response);
 	}
 
-	// ÏÔÊ¾ÎïÆ·ÏêÇé
+	// æ˜¾ç¤ºç‰©å“è¯¦æƒ…
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -344,7 +344,7 @@ public class SaleAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«°ü¹ü×°±¸²é¿´ÏêÏ¸ĞÅÏ¢
+	 * è§’è‰²åŒ…è£¹è£…å¤‡æŸ¥çœ‹è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

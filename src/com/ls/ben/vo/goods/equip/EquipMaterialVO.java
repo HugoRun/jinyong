@@ -2,16 +2,16 @@ package com.ls.ben.vo.goods.equip;
 
 /**
  * @author ls
- * ×°±¸Éı¼¶²ÄÁÏ
+ * è£…å¤‡å‡çº§ææ–™
  */
 public class EquipMaterialVO
 {
-	private int quality;//Æ·ÖÊ
-	private int grade;//µÈ¼¶
-	private int material1;//ĞèÒª²ÄÁÏ1µÄÊıÁ¿
-	private int material2;//ĞèÒª²ÄÁÏ2µÄÊıÁ¿
-	private int needMoney;//ĞèÒªµÄÇ®
-	private int rate;//³É¹¦ÂÊ
+	private int quality;//å“è´¨
+	private int grade;//ç­‰çº§
+	private int material1;//éœ€è¦ææ–™1çš„æ•°é‡
+	private int material2;//éœ€è¦ææ–™2çš„æ•°é‡
+	private int needMoney;//éœ€è¦çš„é’±
+	private int rate;//æˆåŠŸç‡
 	public int getQuality()
 	{
 		return quality;

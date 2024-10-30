@@ -10,7 +10,7 @@ import com.ben.vo.task.UTaskVO;
 import com.ls.model.user.PersistenceEntity;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«ÈÎÎñÏà¹Ø
+ * åŠŸèƒ½ï¼šè§’è‰²ä»»åŠ¡ç›¸å…³
  * 
  * @author hhj Apr 2, 2009 4:09:39 PM
  */
@@ -20,7 +20,7 @@ public class CurTaskInfo extends UTaskVO
 	private UTaskDAO dao = null;
 
 	/**
-	 * ³õÊ¼»¯Íæ¼ÒÉíÉÏËùÓĞÈÎÎñ
+	 * åˆå§‹åŒ–ç©å®¶èº«ä¸Šæ‰€æœ‰ä»»åŠ¡
 	 * 
 	 * @param pPk
 	 */
@@ -30,17 +30,17 @@ public class CurTaskInfo extends UTaskVO
 	}
 
 	/**
-	 * ¸üĞÂÖĞ¼äµã
+	 * æ›´æ–°ä¸­é—´ç‚¹
 	 */
 	public void updatePoint(String taskPoint)
 	{
-		//logger.debug("-----------É¾³ı----------------"+taskPoint);
+		//logger.debug("-----------åˆ é™¤----------------"+taskPoint);
 		this.setTPoint(taskPoint);
 		dao.getUpMenuId(this.getTPk(), taskPoint);
 	}
 
 	/**
-	 * ¸üĞÂÉ±¹ÖÊıÁ¿
+	 * æ›´æ–°æ€æ€ªæ•°é‡
 	 */
 	public void updateKillingOk(int killingNumber)
 	{
@@ -53,7 +53,7 @@ public class CurTaskInfo extends UTaskVO
 	}
 
 	/**
-	 * ÊÇ·ñ·ÅÆúÈÎÎñ
+	 * æ˜¯å¦æ”¾å¼ƒä»»åŠ¡
 	 */
 	public void updateGiveUp(int type)
 	{

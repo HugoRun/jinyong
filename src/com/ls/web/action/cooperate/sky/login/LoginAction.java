@@ -36,7 +36,7 @@ public class LoginAction extends Action {
 	 */
 	Logger logger = Logger.getLogger("log.service");
 	/** 
-	 * Ë¼¿­ÇşµÀµÇÂ¼
+	 * æ€å‡¯æ¸ é“ç™»å½•
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -45,13 +45,13 @@ public class LoginAction extends Action {
 	 */
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		String ssid = request.getParameter("ssid");//Ë¼¿­ÇşµÀµÇÂ½ÈÏÖ¤Âë
+		String ssid = request.getParameter("ssid");//æ€å‡¯æ¸ é“ç™»é™†è®¤è¯ç 
 		HttpSession session = request.getSession();
 		session.setAttribute("ssid", ssid);
-		if( GameConfig.getGameState()==2 )//ÅĞ¶ÏÓÎÏ·µÄ×´Ì¬
+		if( GameConfig.getGameState()==2 )//åˆ¤æ–­æ¸¸æˆçš„çŠ¶æ€
 		{
-			//ÓÎÏ·×´Ì¬ÎªÉÏÏßÄÚ²¿²âÊÔ×´Ì¬
-			//¶¯Ì¬¹«¸æ
+			//æ¸¸æˆçŠ¶æ€ä¸ºä¸Šçº¿å†…éƒ¨æµ‹è¯•çŠ¶æ€
+			//åŠ¨æ€å…¬å‘Š
 			SystemNotifyService systemNotifyService = new SystemNotifyService();
 			SystemNotifyVO first_notify_info = systemNotifyService.getFirstNotifyInfo();
 			request.setAttribute("first_notify_info", first_notify_info);
@@ -63,20 +63,20 @@ public class LoginAction extends Action {
 
 		LoginService loginService = new LoginService();
 		
-		//ÅĞ¶ÏÔÚÏßÈËÊıÊÇ·ñ´ïµ½ÉÏÏß
+		//åˆ¤æ–­åœ¨çº¿äººæ•°æ˜¯å¦è¾¾åˆ°ä¸Šçº¿
 		if( loginService.isFullOnlineRoleNum() )
 		{
-			//ÔÚÏßÈËÊıÒÑ´ïÏµÍ³ÉèÖÃÉÏÏß
+			//åœ¨çº¿äººæ•°å·²è¾¾ç³»ç»Ÿè®¾ç½®ä¸Šçº¿
 			return mapping.findForward("user_num_limit_hint");
 		}
 		
-		logger.info("Ë¼¿­ÓÃ»§µÇÂ½:ssid="+ssid);
+		logger.info("æ€å‡¯ç”¨æˆ·ç™»é™†:ssid="+ssid);
 		PassportService passportService = new PassportService();
 		PassportVO passport = passportService.loginFromSky(ssid, login_ip);
 		
-		if( passport ==null || passport.getUPk()==-1 )//µÇÂ½ÑéÖ¤Ê§°Ü
+		if( passport ==null || passport.getUPk()==-1 )//ç™»é™†éªŒè¯å¤±è´¥
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		} 
 
@@ -88,7 +88,7 @@ public class LoginAction extends Action {
 		session.setAttribute("skyid", skyid);
 		session.setAttribute("user_name",passport.getUserName() );
 		session.setAttribute("channel_id", Channel.SKY+"");
-		session.setAttribute("login_params", login_params);//µÇÂ½²ÎÊı
+		session.setAttribute("login_params", login_params);//ç™»é™†å‚æ•°
 		
 		return mapping.findForward("success");
 	}

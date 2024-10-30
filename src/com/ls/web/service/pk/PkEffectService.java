@@ -12,9 +12,9 @@ import com.ls.web.service.room.RoomService;
 public class PkEffectService
 {
 	/**
-	 * ÓÃÀ´´¦Àí ËÀÍöºó pkÖµÒÔ¼° ÈÙÓşÖµµÈ ËÀÍöºóµÄ´¦Àí
-	 * @param winer Ê¤ÀûÕß
-	 * @param loser	Ê§°ÜÕß
+	 * ç”¨æ¥å¤„ç† æ­»äº¡å pkå€¼ä»¥åŠ è£èª‰å€¼ç­‰ æ­»äº¡åçš„å¤„ç†
+	 * @param winer èƒœåˆ©è€…
+	 * @param loser	å¤±è´¥è€…
 	 *//*
 	public void dealPkEffect(Fighter winer, Fighter loser,String tong)
 	{
@@ -25,54 +25,54 @@ public class PkEffectService
 		
 		SceneVO cur_scene = winer_info.getBasicInfo().getSceneInfo();
 		
-		if( cur_scene.getMap().getMapType()==MapType.DANGER )//Èç¹ûÔÚÎ£ÏÕÇøÓò
+		if( cur_scene.getMap().getMapType()==MapType.DANGER )//å¦‚æœåœ¨å±é™©åŒºåŸŸ
 		{
-			if( winer.getPRace()!=loser.getPRace() )//Èç¹û²»ÊÇÒ»¸öÖÖ×å(ËæÒâPK)
+			if( winer.getPRace()!=loser.getPRace() )//å¦‚æœä¸æ˜¯ä¸€ä¸ªç§æ—(éšæ„PK)
 			{
 				Faction faction = winer_info.getBasicInfo().getFaction();
 				if( faction!=null )
 				{
-					//***********Èç¹û¼ÓÈë°ïÅÉ
-					winer_info.getBasicInfo().addFContribute(1);//Ôö¼Ó¸öÈË°ïÅÉ¹±Ï×
-					faction.updatePrestige(1);//Ôö¼Ó°ïÅÉÉùÍû
+					//***********å¦‚æœåŠ å…¥å¸®æ´¾
+					winer_info.getBasicInfo().addFContribute(1);//å¢åŠ ä¸ªäººå¸®æ´¾è´¡çŒ®
+					faction.updatePrestige(1);//å¢åŠ å¸®æ´¾å£°æœ›
 				}
 			}
-			else//Èç¹ûÊÇÒ»¸öÖÖ×å(Ç¿ÖÆPK)
+			else//å¦‚æœæ˜¯ä¸€ä¸ªç§æ—(å¼ºåˆ¶PK)
 			{
 				
 				
 			}
 		}
-		//ÆäËûÇøÓò
+		//å…¶ä»–åŒºåŸŸ
 		{
-			//»î¶¯PK
+			//æ´»åŠ¨PK
 		}
 		
 		
 		
 		
-		//tong 0 ÊÇÆÕÍ¨PK 1ÊÇ°ïÕ½ 2ÊÇÕóÓª 
+		//tong 0 æ˜¯æ™®é€šPK 1æ˜¯å¸®æˆ˜ 2æ˜¯é˜µè¥ 
 		if(tong.equals("0")){
-			// Èç¹ûÍæ¼ÒaÊÇÖ÷¶¯¹¥»÷Õß£¬ ÄÇÃ´¾Í»áÔö¼Ó×ï¶ñÖµ 
+			// å¦‚æœç©å®¶aæ˜¯ä¸»åŠ¨æ”»å‡»è€…ï¼Œ é‚£ä¹ˆå°±ä¼šå¢åŠ ç½ªæ¶å€¼ 
 			if( pKLogService.isZDAttacker(winer.getPPk())) {
 			
-    			//Ôö¼ÓÍæ¼ÒAµÄ×ï¶ñÖµ£¬Èç¹ûmapÇøÓò¿ÉÒÔÔö¼Ó×ï¶ñÖµ,²È¿ÉÒÔÔö¼Ó.
+    			//å¢åŠ ç©å®¶Açš„ç½ªæ¶å€¼ï¼Œå¦‚æœmapåŒºåŸŸå¯ä»¥å¢åŠ ç½ªæ¶å€¼,è¸©å¯ä»¥å¢åŠ .
     			RoomService roomService = new RoomService();
     			if(!roomService.isLimitedByAttribute(Integer.valueOf(winer.getPMap()), RoomService.PK_PUNISH)) {
     				int add_pk_value = fightService.addPkValue(winer,loser);
     				fightService.setPkValueElimiTime(winer_info,add_pk_value);
     			}	
 			}
-		} else if(tong.equals("1")) {//°ïÕ½PK×´Ì¬ Ôö¼ÓÉ±ÈËÊıÁ¿ºÍÈÙÓşÖµ
-		//É±ËÀÍæ¼ÒºóÔÚÈÙÓş±íÖĞÔö¼ÓÉ±ÈËÊıÁ¿
+		} else if(tong.equals("1")) {//å¸®æˆ˜PKçŠ¶æ€ å¢åŠ æ€äººæ•°é‡å’Œè£èª‰å€¼
+		//æ€æ­»ç©å®¶ååœ¨è£èª‰è¡¨ä¸­å¢åŠ æ€äººæ•°é‡
 			winer_info.getBasicInfo().addFContribute(1);
 		} else if(tong.equals("2")) {
-			// ÕóÓªPK×´Ì¬ Ôö¼ÓÈÙÓşÖµ
-			// Èç¹ûÊÇÔÚÕ½³¡ÖĞ£¬Ôö¼ÓÍæ¼ÒÈÙÓşºÍÕ½³¡É±ÈËÊı¡£Èç·ñÔòÔÚÉ±ËÀÍæ¼ÒºóÔÚÈÙÓş±íÖĞÔö¼ÓÉ±ÈËÊıÁ¿¡£
+			// é˜µè¥PKçŠ¶æ€ å¢åŠ è£èª‰å€¼
+			// å¦‚æœæ˜¯åœ¨æˆ˜åœºä¸­ï¼Œå¢åŠ ç©å®¶è£èª‰å’Œæˆ˜åœºæ€äººæ•°ã€‚å¦‚å¦åˆ™åœ¨æ€æ­»ç©å®¶ååœ¨è£èª‰è¡¨ä¸­å¢åŠ æ€äººæ•°é‡ã€‚
 			winer_info.getBasicInfo().addFContribute(1);
-		} else if ( tong.equals("5")) { // Èç¹ûÊÇÔÚ ¹¥³ÇÕ½³¡ÉÏ, 
-			//É±ËÀÍæ¼ÒºóÔÚÈÙÓş±íÖĞÔö¼ÓÉ±ÈËÊıÁ¿
-			// ¸øÍæ¼ÒÔö¼Ó °ïÅÉÈÙÓş,¼´ÔÚ´Ë°ïÅÉÀïµÄÈÙÓş
+		} else if ( tong.equals("5")) { // å¦‚æœæ˜¯åœ¨ æ”»åŸæˆ˜åœºä¸Š, 
+			//æ€æ­»ç©å®¶ååœ¨è£èª‰è¡¨ä¸­å¢åŠ æ€äººæ•°é‡
+			// ç»™ç©å®¶å¢åŠ  å¸®æ´¾è£èª‰,å³åœ¨æ­¤å¸®æ´¾é‡Œçš„è£èª‰
 			winer_info.getBasicInfo().addFContribute(1);
 		} 
 		

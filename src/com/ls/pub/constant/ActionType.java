@@ -2,17 +2,17 @@ package com.ls.pub.constant;
 
 /**
  * @author ls
- * ¹¦ÄÜ:Íæ¼ÒĞĞÎªÀàĞÍ
+ * åŠŸèƒ½:ç©å®¶è¡Œä¸ºç±»å‹
  * Feb 12, 2009
  */
 public class ActionType
 {
-	public static int BUY = 1;//Âò
-	public static int SALE = 2;//Âô
-	public static int THROW = 3;//¶ªÆú
-	public static int EXCHANGE = 4;//½»Ò×
-	public static int PUTON = 5;//´©×°±¸
-	public static int USE = 6;//Ê¹ÓÃ
-	public static int AUCTION = 7;//ÅÄÂô
+	public static int BUY = 1;//ä¹°
+	public static int SALE = 2;//å–
+	public static int THROW = 3;//ä¸¢å¼ƒ
+	public static int EXCHANGE = 4;//äº¤æ˜“
+	public static int PUTON = 5;//ç©¿è£…å¤‡
+	public static int USE = 6;//ä½¿ç”¨
+	public static int AUCTION = 7;//æ‹å–
 	
 }

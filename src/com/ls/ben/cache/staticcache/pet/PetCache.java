@@ -6,7 +6,7 @@ import com.ben.vo.pet.pet.PetVO;
 import com.ls.ben.cache.CacheBase;
 
 /**
- *  ±£´æ³èÎï ÔÚÄÚ´æÖĞ,ÒÔ±ãËæÊ±È¡ÓÃ
+ *  ä¿å­˜å® ç‰© åœ¨å†…å­˜ä¸­,ä»¥ä¾¿éšæ—¶å–ç”¨
  * @author Administrator
  */
 public class PetCache  extends CacheBase
@@ -14,7 +14,7 @@ public class PetCache  extends CacheBase
 	public static String PET_BY_ID = "pet_by_id";
 	
 	/**
-	 * Í¨¹ıidµÃµ½ ³èÎïĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ° å® ç‰©ä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
@@ -23,7 +23,7 @@ public class PetCache  extends CacheBase
 		if (pet_id == 0) {
 			return null;
 		}
-		logger.debug("µÃµ½Ò»¸ö³èÎïĞÅÏ¢");
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©ä¿¡æ¯");
 		PetVO petvo = null;
 		HashMap<Integer,PetVO> pet_skill = (HashMap<Integer,PetVO>)getElementValue(STATIC_CACHE_NAME, PET_BY_ID);
 		
@@ -37,7 +37,7 @@ public class PetCache  extends CacheBase
 	
 	
 	/**
-	 * Í¨¹ıidµÃµ½ npcId
+	 * é€šè¿‡idå¾—åˆ° npcId
 	 * @param scene_id
 	 * @return
 	 */
@@ -46,7 +46,7 @@ public class PetCache  extends CacheBase
 		if (pet_id == 0) {
 			return 0;
 		}
-		logger.debug("µÃµ½Ò»¸ö³èÎïĞÅÏ¢");
+		logger.debug("å¾—åˆ°ä¸€ä¸ªå® ç‰©ä¿¡æ¯");
 		PetVO petvo = null;
 		HashMap<Integer,PetVO> pet_skill = (HashMap<Integer,PetVO>)getElementValue(STATIC_CACHE_NAME, PET_BY_ID);
 		

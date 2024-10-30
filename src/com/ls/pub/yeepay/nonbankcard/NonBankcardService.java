@@ -18,20 +18,20 @@ import com.ls.pub.yeepay.HttpUtils;
  */
 public class NonBankcardService {
 	private static Log log 						= LogFactory.getLog(NonBankcardService.class);
-	private static String p0_Cmd 				= "AnnulCard"; 												// ÇëÇóÃüÁîÃû³Æ
-	private static String decodeCharset 		= "GBK"; 													// ×Ö·û·½Ê½
-	private static String p1_MerId 				= Configuration.getInstance().getValue("p1_MerId"); 		// ÉÌ»§±àºÅ
-	private static String keyValue 				= Configuration.getInstance().getValue("keyValue"); 		// ÉÌ»§ÃÜÔ¿
-	private static String annulCardReqURL 		= Configuration.getInstance().getValue("annulCardReqURL"); 	// ÇëÇóµØÖ·
+	private static String p0_Cmd 				= "AnnulCard"; 												// è¯·æ±‚å‘½ä»¤åç§°
+	private static String decodeCharset 		= "GBK"; 													// å­—ç¬¦æ–¹å¼
+	private static String p1_MerId 				= Configuration.getInstance().getValue("p1_MerId"); 		// å•†æˆ·ç¼–å·
+	private static String keyValue 				= Configuration.getInstance().getValue("keyValue"); 		// å•†æˆ·å¯†é’¥
+	private static String annulCardReqURL 		= Configuration.getInstance().getValue("annulCardReqURL"); 	// è¯·æ±‚åœ°å€
 	
-	// ¿¨ºÅ¿¨ÃÜ²ÉÓÃËã·¨Ä£Ê½£¬µ±Ç°¹Ì¶¨Îª¸ÃÖµ
+	// å¡å·å¡å¯†é‡‡ç”¨ç®—æ³•æ¨¡å¼ï¼Œå½“å‰å›ºå®šä¸ºè¯¥å€¼
 	private static String annulCardReqDESMode = "1";
-	// Ê¹ÓÃÓ¦´ğ»úÖÆ
+	// ä½¿ç”¨åº”ç­”æœºåˆ¶
 	private static String NEEDRESPONSE	= "1";
 	/**
-	 * Ïû·ÑÇëÇó
-	 * ¸Ã·½·¨ÊÇ¸ù¾İ¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·¶Ô·¢ÆğÖ§¸¶ÇëÇó½øĞĞµÄ·â×°
-	 * ¾ßÌå²ÎÊıº¬ÒåÇë×ĞÏ¸ÔÄ¶Á¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·
+	 * æ¶ˆè´¹è¯·æ±‚
+	 * è¯¥æ–¹æ³•æ˜¯æ ¹æ®ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹å¯¹å‘èµ·æ”¯ä»˜è¯·æ±‚è¿›è¡Œçš„å°è£…
+	 * å…·ä½“å‚æ•°å«ä¹‰è¯·ä»”ç»†é˜…è¯»ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹
 	 * @param p2_Order
 	 * @param p3_Amt
 	 * @param p8_Url
@@ -43,17 +43,17 @@ public class NonBankcardService {
 	 */
 	public static NonBankcardPaymentResult pay(String p2_Order, String p3_Amt,
 			String p8_Url, String pa_MP,String pa7_cardNo, String pa8_cardPwd,String pd_FrpId) {
-		// ¿¨ºÅºÍ¿¨ÃÜ²»µÃÎª¿Õ
+		// å¡å·å’Œå¡å¯†ä¸å¾—ä¸ºç©º
 		if(pa7_cardNo == null || pa7_cardNo.equals("") || pa8_cardPwd == null || pa8_cardPwd.equals("")) {
 			log.error("pa7_cardNo or pa8_cardPwd is empty.");
 			throw new RuntimeException("pa7_cardNo or pa8_cardPwd is empty.");
 		}
 
-		// Éú³Éhmac£¬±£Ö¤½»Ò×ĞÅÏ¢²»±»´Û¸Ä,¹ØÓÚhmacÏê¼û¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·
+		// ç”Ÿæˆhmacï¼Œä¿è¯äº¤æ˜“ä¿¡æ¯ä¸è¢«ç¯¡æ”¹,å…³äºhmacè¯¦è§ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹
 		String hmac = "";
 		hmac = DigestUtil.getHmac(new String[] { p0_Cmd, p1_MerId, p2_Order,
 				p3_Amt, p8_Url, pa_MP,pa7_cardNo, pa8_cardPwd,pd_FrpId,annulCardReqDESMode,NEEDRESPONSE }, keyValue);
-		// ·â×°ÇëÇó²ÎÊı£¬²ÎÊıËµÃ÷Ïê¼û¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·
+		// å°è£…è¯·æ±‚å‚æ•°ï¼Œå‚æ•°è¯´æ˜è¯¦è§ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹
 		Map reqParams = new HashMap();
 		reqParams.put("p0_Cmd", p0_Cmd);
 		reqParams.put("p1_MerId", p1_MerId);
@@ -69,7 +69,7 @@ public class NonBankcardService {
 		reqParams.put("hmac", hmac);
 		List responseStr = null;
 		try {
-			// ·¢ÆğÖ§¸¶ÇëÇó
+			// å‘èµ·æ”¯ä»˜è¯·æ±‚
 			log.debug("Begin http communications,request params[" + reqParams
 					+ "]");
 			responseStr = HttpUtils.URLPost(annulCardReqURL, reqParams);
@@ -82,9 +82,9 @@ public class NonBankcardService {
 			log.error("no response.");
 			throw new RuntimeException("no response.");
 		}
-		// ´´½¨·ÇÒøĞĞ¿¨×¨Òµ°æÏû·ÑÇëÇó½á¹û
+		// åˆ›å»ºéé“¶è¡Œå¡ä¸“ä¸šç‰ˆæ¶ˆè´¹è¯·æ±‚ç»“æœ
 		NonBankcardPaymentResult rs = new NonBankcardPaymentResult();
-		// ½âÎöÒ×±¦Ö§¸¶·µ»ØµÄÏû·ÑÇëÇó½á¹û,¹ØÓÚ·µ»Ø½á¹ûÊı¾İÏê¼û¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·
+		// è§£ææ˜“å®æ”¯ä»˜è¿”å›çš„æ¶ˆè´¹è¯·æ±‚ç»“æœ,å…³äºè¿”å›ç»“æœæ•°æ®è¯¦è§ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹
 		for (int t = 0; t < responseStr.size(); t++) {
 			String currentResult = (String) responseStr.get(t);
 			log.debug("responseStr[" + t + "]:" + currentResult);
@@ -119,7 +119,7 @@ public class NonBankcardService {
 				throw new RuntimeException(currentResult);
 			}
 		}
-		// ²»³É¹¦ÔòÅ×³öÒì³£
+		// ä¸æˆåŠŸåˆ™æŠ›å‡ºå¼‚å¸¸
 		if (!rs.getR1_Code().equals("1")) {
 			log.error("errorCode:" + rs.getR1_Code() + ";errorMessage:"
 					+ rs.getRq_ReturnMsg());
@@ -130,7 +130,7 @@ public class NonBankcardService {
 		newHmac = DigestUtil.getHmac(new String[] { rs.getP0_Cmd(),
 				rs.getR1_Code(), rs.getR2_TrxId(), rs.getR6_Order(),
 				rs.getRq_ReturnMsg() }, keyValue);
-		// hmac²»Ò»ÖÂÔòÅ×³öÒì³£
+		// hmacä¸ä¸€è‡´åˆ™æŠ›å‡ºå¼‚å¸¸
 		if (!newHmac.equals(rs.getHmac())) {
 			log.error("Hmac error");
 			throw new RuntimeException("Hmac error");
@@ -139,24 +139,24 @@ public class NonBankcardService {
 	}
 
 	/**
-	 * Ğ£Ñé½»Ò×½á¹ûÍ¨Öª
-	 * ¸Ã·½·¨ÊÇ¸ù¾İ¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·¶ÔÒ×±¦Ö§¸¶·µ»Ø¿Û¿îÊı¾İ½øĞĞĞ£Ñé
-	 * ¾ßÌå²ÎÊıº¬ÒåÇë×ĞÏ¸ÔÄ¶Á¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·
-	 * ÒµÎñÀàĞÍ
+	 * æ ¡éªŒäº¤æ˜“ç»“æœé€šçŸ¥
+	 * è¯¥æ–¹æ³•æ˜¯æ ¹æ®ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹å¯¹æ˜“å®æ”¯ä»˜è¿”å›æ‰£æ¬¾æ•°æ®è¿›è¡Œæ ¡éªŒ
+	 * å…·ä½“å‚æ•°å«ä¹‰è¯·ä»”ç»†é˜…è¯»ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹
+	 * ä¸šåŠ¡ç±»å‹
 	 * @param r0_Cmd
-	 * Ö§¸¶½á¹û
+	 * æ”¯ä»˜ç»“æœ
 	 * @param r1_Code
-	 * ÉÌ»§±àºÅ
+	 * å•†æˆ·ç¼–å·
 	 * @param p1_MerId
-	 * ÉÌ»§¶©µ¥ºÅ
+	 * å•†æˆ·è®¢å•å·
 	 * @param rb_Order
-	 * Ò×±¦Ö§¸¶½»Ò×Á÷Ë®ºÅ
+	 * æ˜“å®æ”¯ä»˜äº¤æ˜“æµæ°´å·
 	 * @param r2_TrxId
-	 * ÉÌ»§À©Õ¹ĞÅÏ¢
+	 * å•†æˆ·æ‰©å±•ä¿¡æ¯
 	 * pa_MP
-	 * Ö§¸¶½ğ¶î
+	 * æ”¯ä»˜é‡‘é¢
 	 * @param rc_Amt
-	 * Ç©ÃûÊı¾İ
+	 * ç­¾åæ•°æ®
 	 * @param hmac
 	 */
 	public static void verifyCallback(String r0_Cmd, String r1_Code,
@@ -178,10 +178,10 @@ public class NonBankcardService {
 		}
 	}
 	/**
-	 * ¸Ã·½·¨ÊÇ¸ù¾İ¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·Éú³ÉÒ»¸öÄ£ÄâµÄ½»Ò×½á¹ûÍ¨Öª´®.
-	 * ÉÌ»§Ê¹ÓÃÄ£ÄâµÄ½»Ò×½á¹ûÍ¨Öª´®¿ÉÒÔÖ±½Ó²âÊÔ×Ô¼ºµÄ½»Ò×½á¹û½ÓÊÕ³ÌĞò(callback)µÄÕıÈ·ĞÔ.
-	 * Êµ¼ÊµÄ½»Ò×½á¹ûÍ¨Öª»úÖÆÒÔ¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·Îª×¼£¬¸Ã·½·¨Ö»ÊÇ
-	 * Ä£ÄâÁË½»Ò×½á¹ûÍ¨Öª´®.
+	 * è¯¥æ–¹æ³•æ˜¯æ ¹æ®ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹ç”Ÿæˆä¸€ä¸ªæ¨¡æ‹Ÿçš„äº¤æ˜“ç»“æœé€šçŸ¥ä¸².
+	 * å•†æˆ·ä½¿ç”¨æ¨¡æ‹Ÿçš„äº¤æ˜“ç»“æœé€šçŸ¥ä¸²å¯ä»¥ç›´æ¥æµ‹è¯•è‡ªå·±çš„äº¤æ˜“ç»“æœæ¥æ”¶ç¨‹åº(callback)çš„æ­£ç¡®æ€§.
+	 * å®é™…çš„äº¤æ˜“ç»“æœé€šçŸ¥æœºåˆ¶ä»¥ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹ä¸ºå‡†ï¼Œè¯¥æ–¹æ³•åªæ˜¯
+	 * æ¨¡æ‹Ÿäº†äº¤æ˜“ç»“æœé€šçŸ¥ä¸².
 	 * @param p2_Order
 	 * @param p3_Amt
 	 * @param p8_Url
@@ -205,7 +205,7 @@ public class NonBankcardService {
 		reqParams.put("pr_NeedResponse", NEEDRESPONSE);
 		List responseStr = null;
 		try {
-			// ·¢ÆğÖ§¸¶ÇëÇó
+			// å‘èµ·æ”¯ä»˜è¯·æ±‚
 			log.debug("Begin http communications,request params[" + reqParams
 					+ "]");
 			responseStr = HttpUtils.URLPost("http://localhost:8080/yeepay/callback.do", reqParams);

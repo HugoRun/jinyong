@@ -1,8 +1,8 @@
 package com.ls.iface.function;
 
 /**
- * ¹¦ÄÜ:ÓµÓĞ¸ÅÂÊ¹¦ÄÜ×Ö¶ÎµÄÊµÌå
- * @author ÁõË§
+ * åŠŸèƒ½:æ‹¥æœ‰æ¦‚ç‡åŠŸèƒ½å­—æ®µçš„å®ä½“
+ * @author åˆ˜å¸…
  * Sep 23, 2008  10:41:23 AM
  */
 public interface Probability

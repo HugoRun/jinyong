@@ -9,12 +9,12 @@ import com.lw.vo.lottery.LotteryInfoVO;
 public class LotteryInfoDao extends DaoBase
 {
 
-	/** µÃµ½²©²ÊÏûÏ¢ */
+	/** å¾—åˆ°åšå½©æ¶ˆæ¯ */
 	public LotteryInfoVO getLotteryInfo()
 	{
 
 		LotteryInfoVO lotteryInfo = null;
-		String sql = "select * from lottery ";
+		String sql = "SELECT * FROM lottery ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -54,7 +54,7 @@ public class LotteryInfoDao extends DaoBase
 		return lotteryInfo;
 	}
 
-	/** ¸üĞÂÃ¿ÈÕÖĞ½±ºÅÂë */
+	/** æ›´æ–°æ¯æ—¥ä¸­å¥–å·ç  */
 	public void updateLotteryNumber(String sys_lottery_number)
 	{
 		String sql = "update lottery set sys_lottery_number = '"
@@ -78,7 +78,7 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** Éú³É´ÈÉÆÖĞ½±ºÅÂë */
+	/** ç”Ÿæˆæ…ˆå–„ä¸­å¥–å·ç  */
 	public void updateLotteryCharityNumber(String lottery_number)
 	{
 		String sql = "update lottery set sys_charity_number = '"
@@ -102,11 +102,11 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½Ã¿ÈÕÖĞ½±ºÅÂë */
+	/** å¾—åˆ°æ¯æ—¥ä¸­å¥–å·ç  */
 	public String getLotteryNumberEveryday()
 	{
 		String sys_lottery_number = null;
-		String sql = "select sys_lottery_number from lottery ";
+		String sql = "SELECT sys_lottery_number from lottery ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -132,11 +132,11 @@ public class LotteryInfoDao extends DaoBase
 		return sys_lottery_number;
 	}
 
-	/** ´ÈÉÆÖĞ½±ºÅÂë */
+	/** æ…ˆå–„ä¸­å¥–å·ç  */
 	public String getLotteryCharityNumber()
 	{
 		String lottery_number = null;
-		String sql = "select sys_charity_number from lottery ";
+		String sql = "SELECT sys_charity_number from lottery ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -162,7 +162,7 @@ public class LotteryInfoDao extends DaoBase
 		return lottery_number;
 	}
 
-	/** ¸üĞÂ½±³Ø½ğ¶î */
+	/** æ›´æ–°å¥–æ± é‡‘é¢ */
 	public void updateBotteryBonus(int lottery_bonus)
 	{
 		String sql = "update lottery set lottery_bonus = lottery_bonus + "
@@ -186,7 +186,7 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** Íæ¼ÒµÃµ½½±½ğÔÚÖ§³ö±íÀï µİ¼Ó½±½ğ½ğ¶î */
+	/** ç©å®¶å¾—åˆ°å¥–é‡‘åœ¨æ”¯å‡ºè¡¨é‡Œ é€’åŠ å¥–é‡‘é‡‘é¢ */
 	public void descLotteryBonus(int lottery_bonus)
 	{
 		String sql = "update lottery set lottery_bonus = lottery_all_bonus + "
@@ -211,7 +211,7 @@ public class LotteryInfoDao extends DaoBase
 
 	}
 
-	/** ½±³ØÁì½±ºóµÄ½±½ğ */
+	/** å¥–æ± é¢†å¥–åçš„å¥–é‡‘ */
 	public void delLotteryBonus(int lottery_bonus)
 	{
 		String sql = "update lottery set lottery_bonus = lottery_bonus - "
@@ -235,7 +235,7 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂ´ÈÉÆ½ğ¶î */
+	/** æ›´æ–°æ…ˆå–„é‡‘é¢ */
 	public void updateCharityBonus(int sys_charity_bonus)
 	{
 		String sql = "update lottery set sys_charity_bonus = sys_charity_bonus + "
@@ -259,7 +259,7 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** ´ÈÉÆ½±½ğµİ¼õ */
+	/** æ…ˆå–„å¥–é‡‘é€’å‡ */
 	public void delCharityBonus(int sys_charity_bonus)
 	{
 		String sql = "update lottery set sys_charity_bonus = sys_charity_bonus - "
@@ -283,7 +283,7 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** Í³¼ÆÏµÍ³²¹Ìù½±½ğ */
+	/** ç»Ÿè®¡ç³»ç»Ÿè¡¥è´´å¥–é‡‘ */
 	public void updateLotterySunjoin(int sys_subjoin)
 	{
 		String sql = "update lottery set lottery_subjoin = sys_subjoin + "
@@ -307,7 +307,7 @@ public class LotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂÇ°ÈÕÖĞ½±×¢Êı */
+	/** æ›´æ–°å‰æ—¥ä¸­å¥–æ³¨æ•° */
 	public void updateLotteryWinNumber(int lottery_win_num)
 	{
 		String sql = "update lottery set lottery_win_num = " + lottery_win_num;

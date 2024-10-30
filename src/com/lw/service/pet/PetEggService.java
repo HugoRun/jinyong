@@ -16,19 +16,19 @@ public class PetEggService
 
 		DecimalFormat dfs = new DecimalFormat("0");
 		int pet_id = Integer.parseInt(prop.getPropOperate1());
-		// Éú³É³èÎï»ù±¾ĞÅÏ¢
+		// ç”Ÿæˆå® ç‰©åŸºæœ¬ä¿¡æ¯
 		PetDAO petDAO = new PetDAO();
 		PetVO pet = (PetVO) petDAO.getPetViewByPetID(pet_id);
 		if (pet != null)
 		{
 			String[] unit = prop.getPropOperate2().split(",");
-			int pet_level = Integer.parseInt(unit[0]);// ³èÎïµÈ¼¶
-			double pet_grow = Double.parseDouble(unit[1]);// ³èÎï³É³¤
-			int pet_skill1 = Integer.parseInt(unit[2]);// ³èÎï¼¼ÄÜ1
-			int pet_skill2 = Integer.parseInt(unit[3]);// ³èÎï¼¼ÄÜ2
-			int pet_skill3 = Integer.parseInt(unit[4]);// ³èÎï¼¼ÄÜ3
-			int pet_skill4 = Integer.parseInt(unit[5]);// ³èÎï¼¼ÄÜ4
-			int pet_skill5 = Integer.parseInt(unit[6]);// ³èÎï¼¼ÄÜ5
+			int pet_level = Integer.parseInt(unit[0]);// å® ç‰©ç­‰çº§
+			double pet_grow = Double.parseDouble(unit[1]);// å® ç‰©æˆé•¿
+			int pet_skill1 = Integer.parseInt(unit[2]);// å® ç‰©æŠ€èƒ½1
+			int pet_skill2 = Integer.parseInt(unit[3]);// å® ç‰©æŠ€èƒ½2
+			int pet_skill3 = Integer.parseInt(unit[4]);// å® ç‰©æŠ€èƒ½3
+			int pet_skill4 = Integer.parseInt(unit[5]);// å® ç‰©æŠ€èƒ½4
+			int pet_skill5 = Integer.parseInt(unit[6]);// å® ç‰©æŠ€èƒ½5
 
 			double cc = pet_grow * pet_level / 3;
 			double gongji = 0.0;
@@ -50,9 +50,9 @@ public class PetEggService
 			PetShapeVO petShapeVO = (PetShapeVO) petDAO.getPetShapeView(pet
 					.getPetType(), pet_level);
 
-			/** ³èÎïÍ¼Æ¬ */
+			/** å® ç‰©å›¾ç‰‡ */
 			String petPic = pet.getPetImg();
-			/** ³èÎïÃû³Æ */
+			/** å® ç‰©åç§° */
 			String petName = null;
 			if (pet_skill1 == 0 && pet_skill2 == 0 && pet_skill3 == 0
 					&& pet_skill4 == 0 && pet_skill5 == 0)
@@ -64,34 +64,34 @@ public class PetEggService
 				petName = pet.getPetName() + "*";
 			}
 
-			/** ³èÎïêÇ³Æ */
+			/** å® ç‰©æ˜µç§° */
 			String petNickname = petName;
-			/** Âô³ö¼Û¸ñ */
+			/** å–å‡ºä»·æ ¼ */
 			String petSale = petShapeVO.getShapeSale() + "";
-			/** ÎåĞĞÊôĞÔ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
+			/** äº”è¡Œå±æ€§é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
 			String petWx = pet.getPetWx();
-			/** ÎåĞĞÊôĞÔÖµ */
+			/** äº”è¡Œå±æ€§å€¼ */
 			String petWxValue = pet.getPetWxValue();
-			/** ÊÙÃü* */
+			/** å¯¿å‘½* */
 			String petLife = pet.getPetLonge() + "";
-			/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ */
+			/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ */
 			String petType = pet.getPetType() + "";
-			/** ÊÇ·ñÔÚÉíÉÏ:1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ */
+			/** æ˜¯å¦åœ¨èº«ä¸Š:1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦ */
 			int petIsBring = 0;
-			/** Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã */
+			/** ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹ */
 			String petFatigue = pet.getPetFatigue() + "";
-			/** ³èÎïÊÙÃü */
+			/** å® ç‰©å¯¿å‘½ */
 			String petLonge = pet.getPetLonge() + "";
-			/** Ôö¼ÓÊÙÃüµÀ¾ßÊ¹ÓÃ´ÎÊı */
+			/** å¢åŠ å¯¿å‘½é“å…·ä½¿ç”¨æ¬¡æ•° */
 			String longeNumber = pet.getLongeNumber() + "";
-			/** ÊÙÃüµÀ¾ßÒÑ¾­Ê¹ÓÃ´ÎÊı */
+			/** å¯¿å‘½é“å…·å·²ç»ä½¿ç”¨æ¬¡æ•° */
 			int longeNumberOk = 0;
-			/** Õâ¸ö³èÎï×î¶à¿ÉÒÔÑ§Ï°¶àÉÙ¸ö¼¼ÄÜ */
+			/** è¿™ä¸ªå® ç‰©æœ€å¤šå¯ä»¥å­¦ä¹ å¤šå°‘ä¸ªæŠ€èƒ½ */
 			String skillControl = pet.getSkillControl() + "";
 
-			/** ¾­Ñé */
+			/** ç»éªŒ */
 			String petExp = petShapeVO.getShapeBenExperience();
-			/** ÏÂ¼¶¾­Ñé´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé */
+			/** ä¸‹çº§ç»éªŒè¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ */
 			int petXiaExps = (int) (Integer.parseInt(petShapeVO
 					.getShapeXiaExperience().trim()) * pet_grow);
 			String petXiaExp = petXiaExps + "";
@@ -109,7 +109,7 @@ public class PetEggService
 		}
 		else
 		{
-			hint = "´´½¨³èÎïÊ§°Ü";
+			hint = "åˆ›å»ºå® ç‰©å¤±è´¥";
 		}
 		return hint;
 

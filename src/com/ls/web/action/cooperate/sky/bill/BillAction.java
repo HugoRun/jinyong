@@ -27,61 +27,61 @@ public class BillAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.pay");
 	
 	/**
-	 * ¸¶·ÑÍ¨µÀÊ×Ò³
+	 * ä»˜è´¹é€šé“é¦–é¡µ
 	 */
 	public ActionForward n0(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		int channel_id = GameConfig.getChannelId();
-		if( channel_id==Channel.SINA)//ĞÂÀËÆ½Ì¨
+		if( channel_id==Channel.SINA)//æ–°æµªå¹³å°
 		{
 			return mapping.findForward("sina_bill_index");
 		}
-		if( channel_id==Channel.DANGLE)//µ±ÀÖÆ½Ì¨
+		if( channel_id==Channel.DANGLE)//å½“ä¹å¹³å°
 		{
 			return mapping.findForward("dl_bill_index");
 		}
-		else if( channel_id==Channel.WANXIANG)//×Ô¼ºÆ½Ì¨
+		else if( channel_id==Channel.WANXIANG)//è‡ªå·±å¹³å°
 		{
 			return mapping.findForward("yeepay_bill_index");
 		}
-		else if( channel_id==Channel.TIAO)//ÌøÍøÆ½Ì¨
+		else if( channel_id==Channel.TIAO)//è·³ç½‘å¹³å°
 		{
 			return mapping.findForward("tiao_bill_index");
 		}
-		else if( channel_id==Channel.JUU)//ÌøÍøÆ½Ì¨
+		else if( channel_id==Channel.JUU)//è·³ç½‘å¹³å°
 		{
 			return mapping.findForward("juu_bill_index");
 		}
-		else if( channel_id==Channel.YOUVB)//ÌøÍøÆ½Ì¨
+		else if( channel_id==Channel.YOUVB)//è·³ç½‘å¹³å°
 		{
 			return mapping.findForward("youvb_bill_index");
 		}
-		else if( channel_id==Channel.AIR)//¿ÕÖĞÍø
+		else if( channel_id==Channel.AIR)//ç©ºä¸­ç½‘
 		{
 			return mapping.findForward("air_bill_index");
 		}
-		else if( channel_id==Channel.GGW)//¸ö¸öÍæ
+		else if( channel_id==Channel.GGW)//ä¸ªä¸ªç©
 		{
 			return mapping.findForward("ggw_bill_index");
 		}
-		else if( channel_id==Channel.OKP)//¸ö¸öÍæ
+		else if( channel_id==Channel.OKP)//ä¸ªä¸ªç©
 		{
 			return mapping.findForward("ok_bill_index");
 		}
-		else if( channel_id==Channel.TXW)//ÌìÏÂÍø
+		else if( channel_id==Channel.TXW)//å¤©ä¸‹ç½‘
 		{
 			return mapping.findForward("txw_bill_index");
 		}
-		else if( channel_id==Channel.TELE)//½­ËÕµçĞÅ
+		else if( channel_id==Channel.TELE)//æ±Ÿè‹ç”µä¿¡
 		{
 			return mapping.findForward("tele_bill_index");
 		}
-		return mapping.findForward("index");//Ä¬ÈÏË¼¿­³äÖµÍ¨µÀ
+		return mapping.findForward("index");//é»˜è®¤æ€å‡¯å……å€¼é€šé“
 	}
 
 	/**
-	 * Ë¼¿­¸¶·ÑÍ¨µÀ
+	 * æ€å‡¯ä»˜è´¹é€šé“
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -92,7 +92,7 @@ public class BillAction extends DispatchAction {
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
 		
-		String kbamt_str = request.getParameter("kbamt");//ÓÃ»§Ìá½»¿Û·Ñ½ğ¶î
+		String kbamt_str = request.getParameter("kbamt");//ç”¨æˆ·æäº¤æ‰£è´¹é‡‘é¢
 		
 		ValidateService validateService = new ValidateService();
 		String hint = validateService.validateNonZeroNegativeIntegers(kbamt_str);
@@ -107,7 +107,7 @@ public class BillAction extends DispatchAction {
 		
 		if( kbamt>2000 )
 		{
-			hint = "Ã¿´Î¶Ò»»KBµÄÊıÁ¿²»µÃ³¬¹ı2000KB,¿É½øĞĞ¶à´Î¶Ò»»";
+			hint = "æ¯æ¬¡å…‘æ¢KBçš„æ•°é‡ä¸å¾—è¶…è¿‡2000KB,å¯è¿›è¡Œå¤šæ¬¡å…‘æ¢";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("index");
 		}
@@ -125,9 +125,9 @@ public class BillAction extends DispatchAction {
 		{
 			EconomyService economyService = new EconomyService();
 			long yuanbao = economyService.getYuanbao(Integer.parseInt(uPk));
-			//¶Ò»»³É¹¦,Äú»ñµÃÁË50¸ö¡¾Ôª±¦¡¿£¬Ä¿Ç°Äú¹²ÓĞ¡¾Ôª±¦¡¿¡Á120£¡
+			//å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†50ä¸ªã€å…ƒå®ã€‘ï¼Œç›®å‰æ‚¨å…±æœ‰ã€å…ƒå®ã€‘Ã—120ï¼
 			String sd = billService.chongZhiJiangLi(roleInfo.getBasicInfo().getPPk(), kbamt);
-			hint = "¶Ò»»³É¹¦,Äú»ñµÃÁË"+kbamt+"¸ö¡¾"+GameConfig.getYuanbaoName()+"¡¿,Ä¿Ç°Äú¹²ÓĞ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+yuanbao+"!"+sd;
+			hint = "å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†"+kbamt+"ä¸ªã€"+GameConfig.getYuanbaoName()+"ã€‘,ç›®å‰æ‚¨å…±æœ‰ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+yuanbao+"!"+sd;
 			request.setAttribute("hint", hint);
 			return mapping.findForward("success");
 		}

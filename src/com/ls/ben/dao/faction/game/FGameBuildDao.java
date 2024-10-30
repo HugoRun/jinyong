@@ -13,7 +13,7 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * °ïÅÉ½¨Öþ
+ * å¸®æ´¾å»ºç­‘
  */
 public class FGameBuildDao extends BasicDaoSupport<FGameBuild>
 {
@@ -29,8 +29,8 @@ public class FGameBuildDao extends BasicDaoSupport<FGameBuild>
 	}
 	
 	/**
-	 * µÃµ½»¹Ã»ÓÐ½¨ÔìµÄ°ïÅÉ½¨Öþ·ÖÒ³ÁÐ±í
-	 * @param excludeIdStr                    ÅÅ³ýµÄid×Ö·û´®
+	 * å¾—åˆ°è¿˜æ²¡æœ‰å»ºé€ çš„å¸®æ´¾å»ºç­‘åˆ†é¡µåˆ—è¡¨
+	 * @param excludeIdStr                    æŽ’é™¤çš„idå­—ç¬¦ä¸²
 	 * @param page_no
 	 * @return
 	 */

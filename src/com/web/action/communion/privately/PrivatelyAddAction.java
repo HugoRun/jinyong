@@ -27,7 +27,7 @@ import com.pub.ben.info.Expression;
 import com.web.service.friend.BlacklistService;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 9:40:46 AM
  */
@@ -37,9 +37,9 @@ public class PrivatelyAddAction extends Action
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		RoleService roleService = new RoleService();
 		RoleEntity  roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		String pPk = roleInfo.getBasicInfo().getPPk() + "";
@@ -54,65 +54,65 @@ public class PrivatelyAddAction extends Action
 		boolean b = m.matches();
 		if (b == false)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}*/
 		int flag = Expression.hasPublish(upTitle);
 		if (flag == -1)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
 		if(upTitle.length() > 30) { 
-			String hint1 = "ÄúÖ»ÄÜÊäÈë30¸ö×Ö·û";
+			String hint1 = "æ‚¨åªèƒ½è¾“å…¥30ä¸ªå­—ç¬¦";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("successnoss");
 		}
 		if (dao.getPartTypeListName(pNameBy) == false)
 		{
-			hint = "¶Ô²»Æğ£¬²»´æÔÚ¸ÃÍæ¼Ò¡£";
+			hint = "å¯¹ä¸èµ·ï¼Œä¸å­˜åœ¨è¯¥ç©å®¶ã€‚";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
 		int pk = dao.getPartPk(pNameBy);
 		if (pk == Integer.parseInt(pPk))
 		{
-			hint = "Äú²»ÄÜ¸ø×Ô¼º·¢ËÍ¡£";
+			hint = "æ‚¨ä¸èƒ½ç»™è‡ªå·±å‘é€ã€‚";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
 		BlacklistService blacklistService = new BlacklistService();
 		if (blacklistService.whetherblacklist(roleInfo.getBasicInfo().getPPk(), pk+"") == false)
 		{
-			hint = "¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥Àï!";
+			hint = "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•é‡Œ!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
 		int res = blacklistService.isBlacklist(pk, roleInfo.getPPk());
 		if(res == 2){
-			hint = "¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞÃÜÁÄ.";
+			hint = "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œå¯†èŠ.";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}else if(res == 1){
-			hint = "ÄúÔÚ¸ÃÍæ¼ÒµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞÃÜÁÄ.";
+			hint = "æ‚¨åœ¨è¯¥ç©å®¶çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œå¯†èŠ.";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
 		if (Expression.hasForbidChar(upTitle,ForBidCache.FORBIDCOMM))
 		{
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
 		if(upTitle.trim().equals("")){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
-		if(upTitle.indexOf("¡¡") != -1){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(upTitle.indexOf("ã€€") != -1){
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successnoss");
 		}
@@ -121,14 +121,14 @@ public class PrivatelyAddAction extends Action
 		hint = playerService.checkRoleState(pk, PlayerState.TALK);
 		if(hint != null){
 			MailInfoService mailInfoService = new MailInfoService();
-			String mailtitle = "À´×ÔºÃÓÑ"+roleInfo.getBasicInfo().getName()+"µÄÓÊ¼ş";
+			String mailtitle = "æ¥è‡ªå¥½å‹"+roleInfo.getBasicInfo().getName()+"çš„é‚®ä»¶";
 			mailInfoService.sendPersonMail(pk, roleInfo.getBasicInfo().getPPk(), mailtitle, upTitle);
-		String apply_hint = hint+",ÏµÍ³ÒÑ¾­°ïÄú×ª·¢ÖÁËû(Ëı)µÄÓÊÏäÖĞ!";
+		String apply_hint = hint+",ç³»ç»Ÿå·²ç»å¸®æ‚¨è½¬å‘è‡³ä»–(å¥¹)çš„é‚®ç®±ä¸­!";
 		request.setAttribute("hint", apply_hint);
 		return mapping.findForward("successnoss");
 		}
 		
-		// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼ c_pk,p_pk,p_name,p_pk_by,p_name_by,c_title,c_type,create_time
+		// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½• c_pk,p_pk,p_name,p_pk_by,p_name_by,c_title,c_type,create_time
 		CommunionVO communionVO = new CommunionVO();
 		communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 		communionVO.setPName(roleInfo.getBasicInfo().getName());

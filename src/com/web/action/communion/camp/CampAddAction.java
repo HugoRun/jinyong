@@ -26,7 +26,7 @@ import com.ls.web.service.player.RoleService;
 import com.pub.ben.info.Expression;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 9:40:46 AM
  */
@@ -37,9 +37,9 @@ public class CampAddAction extends Action
 	{
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		String puTitle = request.getParameter("puTitle");
 		String cType = request.getParameter("type");
 		String hint = null;
@@ -48,47 +48,47 @@ public class CampAddAction extends Action
 		boolean b = m.matches();
 		if (b == false)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}*/
 		int flag = Expression.hasPublish(puTitle);
 		if (flag == -1)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if (puTitle.length() > 30)
 		{
-			String hint1 = "ÄúÖ»ÄÜÊäÈë30¸ö×Ö·û";
+			String hint1 = "æ‚¨åªèƒ½è¾“å…¥30ä¸ªå­—ç¬¦";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("successno");
 		}
-		// Èç¹û½ÇÉ«Ã»ÓĞ¼ÓÈëÕóÓª¾Í²»ÄÜÁÄÌì
+		// å¦‚æœè§’è‰²æ²¡æœ‰åŠ å…¥é˜µè¥å°±ä¸èƒ½èŠå¤©
 		if (roleInfo.getBasicInfo().getPRace() == 0)
 		{
-			hint = "¶Ô²»Æğ£¬ÄúÄ¿Ç°Ã»ÓĞ¼ÓÈëÕóÓª£¬ÎŞ·¨ÔÚÕóÓªÆµµÀ·¢ÑÔ£¡";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨ç›®å‰æ²¡æœ‰åŠ å…¥é˜µè¥ï¼Œæ— æ³•åœ¨é˜µè¥é¢‘é“å‘è¨€ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if (Expression.hasForbidChar(puTitle,ForBidCache.FORBIDCOMM))
 		{
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if(puTitle.trim().equals("")){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
-		if(puTitle.indexOf("¡¡") != -1){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(puTitle.indexOf("ã€€") != -1){
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
-		// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼ c_pk,p_pk,p_name,c_zhen,c_title,c_type,create_time
+		// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½• c_pk,p_pk,p_name,c_zhen,c_title,c_type,create_time
 		CommunionVO communionVO = new CommunionVO();
 		communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 		communionVO.setPName(roleInfo.getBasicInfo().getName());

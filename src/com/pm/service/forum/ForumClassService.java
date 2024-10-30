@@ -52,7 +52,7 @@ public class ForumClassService {
 		}
 	}
 	/**
-	 * »ñµÃÂÛÌ³·ÖÀàÁĞ±í
+	 * è·å¾—è®ºå›åˆ†ç±»åˆ—è¡¨
 	 * @return
 	 */
 	public List<ForumClassBean> getAllForumClass()
@@ -64,7 +64,7 @@ public class ForumClassService {
 			return fc.getAllForumClass();
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			
 		} finally {
 			dbConn.closeConn();
@@ -82,7 +82,7 @@ public class ForumClassService {
 			return fc.getByID(id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			
 		} finally {
 			dbConn.closeConn();
@@ -98,7 +98,7 @@ public class ForumClassService {
 			return fc.getForumClass(fid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			
 		} finally {
 			dbConn.closeConn();
@@ -114,7 +114,7 @@ public class ForumClassService {
 			return fc.getRowForumClass(row,fid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 			
 		} finally {
 			dbConn.closeConn();

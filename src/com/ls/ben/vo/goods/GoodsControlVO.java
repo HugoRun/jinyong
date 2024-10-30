@@ -1,8 +1,8 @@
 package com.ls.ben.vo.goods;
 
 /**
- * ����:��Ʒ���Ʋ��������壬��������ȷ�ϣ��Ƿ񱣻����Ƿ�ʰȡ�󶨣��Ƿ�װ����
- * @author ��˧
+ * 功能:物品控制参数的载体，包括二次确认，是否保护，是否拾取绑定，是否装备绑定
+ * @author 刘帅
  * Oct 16, 2008  11:25:55 AM
  */
 public class GoodsControlVO 

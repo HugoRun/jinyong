@@ -1,26 +1,25 @@
 /**
- * 
+ *
  */
 package com.pub.ben.info.taskgroup;
 
 /**
- * @author ºîºÆ¾ü
- *
+ * @author ä¾¯æµ©å†›
+ * <p>
  * 3:17:34 PM
  */
-public class TaskGroup
-{
-	 /**
-	  * 1A£®¾Û±¦Åè  ¸»ÉÌ        fh_zhuxian      shaoye
-	  * 2B£®ÍÀÁúµ¶  ÎäÁÖ         wl_zhuxian     shaoxia
-	  * 3C£®Áè²¨Î¢²½  ÆßÔÓ½ÖÊĞ     hh_zhuxian    shaotu
-	  * 4D£®ºÚÓñ¶ÏĞø¸à  ÊÀÍâÒ½Ëù    ys_zhuxian   yizhisheng
-	  * 5E£®Èíâ¬¼×  ½«¾üÉÏ¸®       jj_zhuxian   jiangzhizi
-	  */
-	public static final int FH_ZHUXIAN=1;
-	public static final int WL_ZHUXIAN=2;
-	public static final int	HH_ZHUXIAN=3;
-	public static final int YS_ZHUXIAN=4;
-	public static final int JJ_ZHUXIAN=5;
+public class TaskGroup {
+    /**
+     * 1A. èšå®ç›†           å¯Œå•†          fh_zhuxian      shaoye
+     * 2B. å± é¾™åˆ€           æ­¦æ—          wl_zhuxian      shaoxia
+     * 3C. å‡Œæ³¢å¾®æ­¥         ä¸ƒæ‚è¡—å¸‚       hh_zhuxian      shaotu
+     * 4D. é»‘ç‰æ–­ç»­è†        ä¸–å¤–åŒ»æ‰€       ys_zhuxian      yizhisheng
+     * 5E. è½¯çŒ¬ç”²           å°†å†›ä¸Šåºœ       jj_zhuxian      jiangzhizi
+     */
+    public static final int FH_ZHUXIAN = 1;
+    public static final int WL_ZHUXIAN = 2;
+    public static final int HH_ZHUXIAN = 3;
+    public static final int YS_ZHUXIAN = 4;
+    public static final int JJ_ZHUXIAN = 5;
 
 }

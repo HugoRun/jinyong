@@ -13,16 +13,16 @@ import com.ls.web.service.player.RoleService;
 import com.ls.web.service.room.RoomService;
 
 /**
- * ºÃÓÑ
+ * å¥½å‹
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class FriendService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Ôö¼ÓºÃÓÑ
+	 * å¢åŠ å¥½å‹
 	 */
 	public String addfriend(int pPk, String pByPk, String pByName, String time)
 	{
@@ -36,12 +36,12 @@ public class FriendService
 		}
 		FriendDAO friendDAO = new FriendDAO();
 		friendDAO.friendAdd(pPk, pByPk, pByName, online, time);
-		logger.info("½« " + pByName + "¼ÓÎªºÃÓÑÁË");
+		logger.info("å°† " + pByName + "åŠ ä¸ºå¥½å‹äº†");
 		return null;
 	}
 
 	/**
-	 * ÅĞ¶Ï¸ÃÍæ¼ÒÊÇ·ñÒÑ¾­ÊÇ×Ô¼ºµÄºÃÓÑÁË
+	 * åˆ¤æ–­è¯¥ç©å®¶æ˜¯å¦å·²ç»æ˜¯è‡ªå·±çš„å¥½å‹äº†
 	 */
 	public boolean whetherfriend(int pPk, String pByPk)
 	{
@@ -61,7 +61,7 @@ public class FriendService
 	}
 
 	/**
-	 * ÅĞ¶Ï¸ÃÍæ¼ÒÊÇ·ñÒÑ¾­ÊÇ´ïµ½50¸öºÃÓÑÁË
+	 * åˆ¤æ–­è¯¥ç©å®¶æ˜¯å¦å·²ç»æ˜¯è¾¾åˆ°50ä¸ªå¥½å‹äº†
 	 */
 	public boolean friendupperlimit(int pPk)
 	{
@@ -85,7 +85,7 @@ public class FriendService
 	}
 
 	/**
-	 * ºÃÓÑList pageno ÊıÁ¿µÄË³Ğò perpage Ã¿Ò³¸öÊı
+	 * å¥½å‹List pageno æ•°é‡çš„é¡ºåº perpage æ¯é¡µä¸ªæ•°
 	 */
 	public List<FriendVO> listfriend(int pPk, int pageno, int perpage)
 	{
@@ -107,7 +107,7 @@ public class FriendService
 	}
 	
 	/**
-	 * ºÃÓÑList pageno ÊıÁ¿µÄË³Ğò perpage Ã¿Ò³¸öÊı
+	 * å¥½å‹List pageno æ•°é‡çš„é¡ºåº perpage æ¯é¡µä¸ªæ•°
 	 */
 	public List<FriendVO> listfriend1(int pPk, int pageno, int perpage,int relation)
 	{
@@ -130,7 +130,7 @@ public class FriendService
 	
 	
 	/**
-	 * ºÃÓÑList pageno ÊıÁ¿µÄË³Ğò perpage Ã¿Ò³¸öÊı
+	 * å¥½å‹List pageno æ•°é‡çš„é¡ºåº perpage æ¯é¡µä¸ªæ•°
 	 */
 	public List<FriendVO> addMyFriend(int pPk)
 	{
@@ -143,7 +143,7 @@ public class FriendService
 	
 
 	/**
-	 * ºÃÓÑView
+	 * å¥½å‹View
 	 */
 	public FriendVO viewfriend(int pPk, String pByPk)
 	{
@@ -164,7 +164,7 @@ public class FriendService
 	}
 
 	/**
-	 * É¾³ıºÃÓÑ
+	 * åˆ é™¤å¥½å‹
 	 */
 	public String deletefriend(int pPk, String pByPk)
 	{
@@ -181,7 +181,7 @@ public class FriendService
 	}
 
 	/**
-	 * ¸ù¾İºÃÓÑËùÔÚsceneÃûÀ´ÕÒ³öÍæ¼ÒËùÔÚµÄmapÃû
+	 * æ ¹æ®å¥½å‹æ‰€åœ¨sceneåæ¥æ‰¾å‡ºç©å®¶æ‰€åœ¨çš„mapå
 	 * 
 	 * @param list
 	 */
@@ -189,7 +189,7 @@ public class FriendService
 	{
 		if (list == null || list.size() == 0)
 		{
-			logger.error("´íÎó²ÎÊı!");
+			logger.error("é”™è¯¯å‚æ•°!");
 			return null;
 		}
 		List<FriendVO> friendlist = new ArrayList<FriendVO>();
@@ -208,7 +208,7 @@ public class FriendService
 		return friendlist;
 	}
 
-	/** µÃµ½ºÃÓÑÊıÁ¿ */
+	/** å¾—åˆ°å¥½å‹æ•°é‡ */
 	public int getFriendNum(int pPk)
 	{
 		FriendDAO friendDAO = new FriendDAO();
@@ -218,7 +218,7 @@ public class FriendService
 		return i;
 	}
 	
-	/** µÃµ½jieyi ºÃÓÑÊıÁ¿ */
+	/** å¾—åˆ°jieyi å¥½å‹æ•°é‡ */
 	public int getFriendNum1(int pPk,int relation)
 	{
 		FriendDAO friendDAO = new FriendDAO();
@@ -227,37 +227,37 @@ public class FriendService
 		return i;
 	}
 	
-	//½áÒå³É¹¦´¦Àí
+	//ç»“ä¹‰æˆåŠŸå¤„ç†
 	public void jieyi(String pPk,String pByPk,int relation){
 		FriendDAO friendDAO = new FriendDAO();
 		friendDAO.jieyi(pPk, pByPk, relation);
 	}
 	
-	//²é¿´×Ô¼ºÊÇ·ñÒÑ»é
+	//æŸ¥çœ‹è‡ªå·±æ˜¯å¦å·²å©š
 	public List<FriendVO> isMerry(String pPk){
 		return new FriendDAO().isMerry(pPk);
 	}
 	
-	/**µÃµ½¿ÉÒÔ½á»éµÄÈË*/
+	/**å¾—åˆ°å¯ä»¥ç»“å©šçš„äºº*/
 	
 	public List<FriendVO> getCanMerry(int pPk,int gender,int pageno,int perpage){
 		return new FriendDAO().getCanMerry(pPk, gender, pageno, perpage);
 	}
 	
-	/**¿ÉÒÔ½á»éµÄºÃÓÑÊıÁ¿*/
+	/**å¯ä»¥ç»“å©šçš„å¥½å‹æ•°é‡*/
 	
 	public int getCanMerryCount(int pPk,int gender){
 		return new FriendDAO().getCanMerry(pPk, gender, 0, 0).size();
 	}
 	
 	/**
-	 * Ôö¼ÓÇ×ÃÜ¶È
+	 * å¢åŠ äº²å¯†åº¦
 	 * @param p_pk
 	 * @param fd_pk
 	 * @param dear
 	 */
 	public void addDear(String p_pk,String fd_pk,String f_name,String fd_name,String dear){
-		//Í³¼ÆĞèÒª
+		//ç»Ÿè®¡éœ€è¦
 		new FriendDAO().addDear(p_pk, fd_pk, dear,f_name,fd_name);
 	}
 	
@@ -294,7 +294,7 @@ public class FriendService
 	}
 	
 	/**
-	 * Ôö¼Ó°®ÇéÌğÃÛ
+	 * å¢åŠ çˆ±æƒ…ç”œèœœ
 	 * @param p_pk
 	 * @param fd_pk
 	 * @param fdName
@@ -314,7 +314,7 @@ public class FriendService
 	
 	
 	/**
-	 * ÔÚÏßºÃÓÑÊıÁ¿ºÃÓÑList pageno ÊıÁ¿µÄË³Ğò perpage Ã¿Ò³¸öÊı
+	 * åœ¨çº¿å¥½å‹æ•°é‡å¥½å‹List pageno æ•°é‡çš„é¡ºåº perpage æ¯é¡µä¸ªæ•°
 	 */
 	public List<FriendVO> listfriendOnline(int pPk, int pageno, int perpage)
 	{
@@ -335,7 +335,7 @@ public class FriendService
 		return null;
 	}
 	
-	/** µÃµ½ÔÚÏßºÃÓÑÊıÁ¿ */
+	/** å¾—åˆ°åœ¨çº¿å¥½å‹æ•°é‡ */
 	public int getFriendNumOnline(int pPk)
 	{
 		FriendDAO friendDAO = new FriendDAO();
@@ -349,7 +349,7 @@ public class FriendService
 		return new FriendDAO().findById(id);
 	}
 	
-	//Ôö¼ÓÇ×ÃÜ¶È
+	//å¢åŠ äº²å¯†åº¦
 	public void addLove(Object p_pk,Object fd_pk,int addlovel){
 		new FriendDAO().addLove(p_pk, fd_pk, addlovel);
 	}
@@ -359,7 +359,7 @@ public class FriendService
 	}
 	
 	/**
-	 * ·µ»ØÄ³¸öÈËµÄËùÓĞ½áÒåĞÖµÜ
+	 * è¿”å›æŸä¸ªäººçš„æ‰€æœ‰ç»“ä¹‰å…„å¼Ÿ
 	 * @param p_pk
 	 * @return
 	 */
@@ -375,7 +375,7 @@ public class FriendService
 		return jieyiName;
 	}
 	/**
-	 * ·µ»ØÄ³¸öÈËµÄËùÓĞ½áÒå½á»é¶ÔÏó
+	 * è¿”å›æŸä¸ªäººçš„æ‰€æœ‰ç»“ä¹‰ç»“å©šå¯¹è±¡
 	 * @param p_pk
 	 * @return
 	 */
@@ -388,7 +388,7 @@ public class FriendService
 		}
 		return jieyiName;
 	}
-	/** ********Íæ¼ÒÉ¾³ı½ÇÉ«µÄÊ±ºòÉ¾³ıËùÓĞ¹ØÁªµÄºÃÓÑĞÅÏ¢****** */
+	/** ********ç©å®¶åˆ é™¤è§’è‰²çš„æ—¶å€™åˆ é™¤æ‰€æœ‰å…³è”çš„å¥½å‹ä¿¡æ¯****** */
 	public void removeFriendInfo(int ppk)
 	{
 		FriendDAO friendDAO = new FriendDAO();

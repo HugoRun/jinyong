@@ -21,10 +21,10 @@ import com.ls.web.service.player.PlayerService;
 public class ScratchTicketService
 {
 	/***************************************************************************
-	 * @param Íæ¼ÒÊı¾İ
-	 * @param ¹Î¹ÎÀÖµÀ¾ßID
+	 * @param ç©å®¶æ•°æ®
+	 * @param åˆ®åˆ®ä¹é“å…·ID
 	 * @param MAP
-	 * @param ¹Î¹ÎÀÖµÄÎ»ÖÃ
+	 * @param åˆ®åˆ®ä¹çš„ä½ç½®
 	 **************************************************************************/
 	public String getScratchTicketPrize(RoleEntity roleInfo,
 			int scratchticket_id, Map<Integer, String> map, String ss_num,
@@ -58,7 +58,7 @@ public class ScratchTicketService
 			else
 			{
 				npcService.deleteByPpk(roleInfo.getBasicInfo().getPPk());
-				hint = "Äú»ñµÃÁË" + dropGoods.getGoodsName() + "¡Á"
+				hint = "æ‚¨è·å¾—äº†" + dropGoods.getGoodsName() + "Ã—"
 						+ dropGoods.getDropNum();
 				map.put(Integer.parseInt(ss_num), dropGoods.getGoodsName());
 				int num_bak = roleInfo.getBasicInfo().getScratchticketnum() - 1;
@@ -75,24 +75,24 @@ public class ScratchTicketService
 		return hint;
 	}
 
-	// µôÂäÎïÆ·
+	// æ‰è½ç‰©å“
 	private String dropPropByScratchTicket(RoleEntity roleInfo,
 			int scratchticket_id)
 	{
 		String hint = null;
-		// ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÄÃµ½
+		// åˆ¤æ–­æ˜¯å¦å¯ä»¥æ‹¿åˆ°
 		if (roleInfo.getBasicInfo().getWrapSpare() < 2)
 		{
-			hint = "ÄúÎïÆ·À¸¿Õ¼ä²»¹»!";
+			hint = "æ‚¨ç‰©å“æ ç©ºé—´ä¸å¤Ÿ!";
 			return hint;
 		}
-		// ¿ªÊ¼µôÂäÎïÆ·
+		// å¼€å§‹æ‰è½ç‰©å“
 		PropVO propVO = PropCache.getPropById(scratchticket_id);
 		NpcService npcService = new NpcService();
 
-		// Çå³şÔ­À´µÄµôÂäÎï
+		// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
 		roleInfo.getDropSet().clearDropItem();
-		// »Æ½ğ±¦ÏäµôÂä°Ë¸öÎïÆ·
+		// é»„é‡‘å®ç®±æ‰è½å…«ä¸ªç‰©å“
 		PlayerService playerService = new PlayerService();
 		PartInfoVO player = playerService.getPlayerByPpk(roleInfo
 				.getBasicInfo().getPPk());
@@ -111,7 +111,7 @@ public class ScratchTicketService
 				0 + "");
 		for (int i = 1; i < 11; i++)
 		{
-			if (map.get(i).equals("*Éñ*ÃØ*±¦*Îï*"))
+			if (map.get(i).equals("*ç¥*ç§˜*å®*ç‰©*"))
 			{
 				NpcdropVO vo = npcdrops.get(i);
 				map.put(i, vo.getGoodsName());

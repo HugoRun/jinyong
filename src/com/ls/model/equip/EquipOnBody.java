@@ -24,26 +24,26 @@ import com.lw.dao.specialprop.SpecialPropDAO;
 import com.lw.vo.specialprop.SpecialPropVO;
 
 /**
- * ¹¦ÄÜ£ºÉíÉÏ´©µÄ×°±¸Ä£ĞÍ
+ * åŠŸèƒ½ï¼šèº«ä¸Šç©¿çš„è£…å¤‡æ¨¡å‹
  * 
  * @author ls Aug 13, 2009 2:55:40 PM
  */
 public class EquipOnBody extends UserBase
 {
-	// µ±Ç°ÉíÉÏ´©µÄ×°±¸<×°±¸Ö÷¼ü(pwPk)£¬×°±¸ĞÅÏ¢>
+	// å½“å‰èº«ä¸Šç©¿çš„è£…å¤‡<è£…å¤‡ä¸»é”®(pwPk)ï¼Œè£…å¤‡ä¿¡æ¯>
 	private LinkedHashMap<Integer, PlayerEquipVO> equips_on_body = new LinkedHashMap<Integer, PlayerEquipVO>(PositionOnEquip.EQUIP_NUM_ON_BODY);
-	// °´²¿Î»´©µÄ×°±¸<´©×Å²¿Î»£¬×°±¸ĞÅÏ¢>
+	// æŒ‰éƒ¨ä½ç©¿çš„è£…å¤‡<ç©¿ç€éƒ¨ä½ï¼Œè£…å¤‡ä¿¡æ¯>
 	private LinkedHashMap<Integer, PlayerEquipVO> equips_on_position = new LinkedHashMap<Integer, PlayerEquipVO>(PositionOnEquip.EQUIP_NUM_ON_BODY);
 
-	PropertyModel equipPropertyModel = new PropertyModel();// ×°±¸ÊôĞÔÄ£ĞÍ
-	PropertyModel suitPropertyModel = new PropertyModel();// Ì××°ÊôĞÔÄ£ĞÍ
-	//ÉíÉÏ´©µÄÌ××°ÊıÁ¿<Ì××°id,Ì××°ÊıÁ¿>
+	PropertyModel equipPropertyModel = new PropertyModel();// è£…å¤‡å±æ€§æ¨¡å‹
+	PropertyModel suitPropertyModel = new PropertyModel();// å¥—è£…å±æ€§æ¨¡å‹
+	//èº«ä¸Šç©¿çš„å¥—è£…æ•°é‡<å¥—è£…id,å¥—è£…æ•°é‡>
 	private Map<Integer,Integer> suit_equip_num = new HashMap<Integer,Integer>(PositionOnEquip.EQUIP_NUM_ON_BODY);
-	//ÉíÉÏ´©µÄÎåĞĞ×°±¸µÄÊıÁ¿<ÎåĞĞÀàĞÍ,¶ÔÓ¦ÎåĞĞÌ××°ÊıÁ¿>
+	//èº«ä¸Šç©¿çš„äº”è¡Œè£…å¤‡çš„æ•°é‡<äº”è¡Œç±»å‹,å¯¹åº”äº”è¡Œå¥—è£…æ•°é‡>
 	private Map<Integer,Integer> wx_num = new HashMap<Integer,Integer>(5);
 
 	/**
-	 * ½ÇÉ«µÇÂ½Ê±¼ÓÔØÉíÉÏ´©µÄ×°±¸
+	 * è§’è‰²ç™»é™†æ—¶åŠ è½½èº«ä¸Šç©¿çš„è£…å¤‡
 	 */
 	public EquipOnBody(int p_pk )
 	{
@@ -59,11 +59,11 @@ public class EquipOnBody extends UserBase
 					.getEquipListOnBody(p_pk);
 			for (PlayerEquipVO equip : equips)
 			{
-				put(equip);// °Ñµ±Ç°×°±¸·ÅÈëÉíÉÏ
+				put(equip);// æŠŠå½“å‰è£…å¤‡æ”¾å…¥èº«ä¸Š
 				//onEquipSpecialContent(equip.getPPk(), equip.getSpecialcontent());
 			}
 			loadSuitProperty();
-			//¼ÓÔØ»é½ä×°±¸
+			//åŠ è½½å©šæˆ’è£…å¤‡
 			SpecialPropDAO dao = new SpecialPropDAO();
 			SpecialPropVO vo = dao.getEquipProp(this.p_pk);
 			if (vo != null)
@@ -80,7 +80,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * Çå¿ÕÉíÉÏµÄ×°±¸
+	 * æ¸…ç©ºèº«ä¸Šçš„è£…å¤‡
 	 */
 	public void clear()
 	{
@@ -93,7 +93,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * µÃµ½¸újewelryÍ¬Ò»idÊÎÆ·µÄÊıÁ¿
+	 * å¾—åˆ°è·ŸjewelryåŒä¸€idé¥°å“çš„æ•°é‡
 	 * @param jewelry
 	 * @return
 	 */
@@ -116,9 +116,9 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * ¸üĞÂÌ××°ÊıÁ¿
+	 * æ›´æ–°å¥—è£…æ•°é‡
 	 * @param equip
-	 * @param update_type    ±íÊ¾¼Ó»ò¼õ
+	 * @param update_type    è¡¨ç¤ºåŠ æˆ–å‡
 	 */
 	private void updateSuitNum(PlayerEquipVO equip ,int update_type)
 	{
@@ -127,18 +127,18 @@ public class EquipOnBody extends UserBase
 			return ;
 		}
 		
-		//Èç¹û×°±¸ÊÇÊÎÆ·£¬ÔòÍ¬Ò»¸öidµÄÊÎÆ·ËãÒ»¼ş
+		//å¦‚æœè£…å¤‡æ˜¯é¥°å“ï¼Œåˆ™åŒä¸€ä¸ªidçš„é¥°å“ç®—ä¸€ä»¶
 		if( equip.getGameEquip().getType()==Equip.JEWELRY)
 		{
-			int same_id_num = this.getSameJewelryIdNum(equip);//Í¬Ò»idµÄÊÎÆ·µÄÊıÁ¿
+			int same_id_num = this.getSameJewelryIdNum(equip);//åŒä¸€idçš„é¥°å“çš„æ•°é‡
 			if( update_type>0 && same_id_num>=2 )
 			{
-				//´©Á½¼şÒÔÉÏÍ¬Ò»idµÄÊÎÆ·
+				//ç©¿ä¸¤ä»¶ä»¥ä¸ŠåŒä¸€idçš„é¥°å“
 				return;
 			}
 			else if( update_type<0 && same_id_num>=1 )
 			{
-				//ÍÑ×°±¸£¬»¹ÓĞÍ¬Ò»idµÄÊÎÆ·
+				//è„±è£…å¤‡ï¼Œè¿˜æœ‰åŒä¸€idçš„é¥°å“
 				return;
 			}
 		}
@@ -161,7 +161,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * µÃµ½Ì××°Ğ§¹ûÃèÊö
+	 * å¾—åˆ°å¥—è£…æ•ˆæœæè¿°
 	 * @return
 	 */
 	public String getSuitEffectDes()
@@ -180,15 +180,15 @@ public class EquipOnBody extends UserBase
 				if( suit_num>=2)
 				{
 					suit_effect_describe.append(suit.getSuitName()).append(":<br/>");
-					suit_effect_describe.append("2¼şÌ×:").append(suit.getTwoEffectsDescribe()).append("<br/>");
+					suit_effect_describe.append("2ä»¶å¥—:").append(suit.getTwoEffectsDescribe()).append("<br/>");
 				}
 				if( suit_num>=3)
 				{
-					suit_effect_describe.append("3¼şÌ×:").append(suit.getThreeEffectsDescribe()).append("<br/>");
+					suit_effect_describe.append("3ä»¶å¥—:").append(suit.getThreeEffectsDescribe()).append("<br/>");
 				}
 				if( suit_num>=4)
 				{
-					suit_effect_describe.append("4¼şÌ×:").append(suit.getFourEffectsDescribe()).append("<br/>");
+					suit_effect_describe.append("4ä»¶å¥—:").append(suit.getFourEffectsDescribe()).append("<br/>");
 				}
 			}
 		}
@@ -196,7 +196,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÉíÉÏ´©µÄ×°±¸ÎåĞĞ¸½¼ÓÃèÊö
+	 * å¾—åˆ°èº«ä¸Šç©¿çš„è£…å¤‡äº”è¡Œé™„åŠ æè¿°
 	 */
 	public String getWXAppendDes()
 	{
@@ -212,11 +212,11 @@ public class EquipOnBody extends UserBase
 				{
 					switch (wx_type)
 					{
-						case WuXing.JIN:result.append("È«½ğÊôĞÔ¸½¼Ó:¹¥»÷Á¦Ìá¸ß10%");break;
-						case WuXing.MU:result.append("È«Ä¾ÊôĞÔ¸½¼Ó:ÆøÑªÌá¸ß25%");break;
-						case WuXing.SHUI:result.append("È«Ë®ÊôĞÔ¸½¼Ó:ÄÚÁ¦Ìá¸ß10%");break;
-						case WuXing.HUO:result.append("È«»ğÊôĞÔ¸½¼Ó:±©»÷ÂÊÌá¸ß8%");break;
-						case WuXing.TU:result.append("È«ÍÁÊôĞÔ¸½¼Ó:·ÀÓùÌá¸ß20%");break;
+						case WuXing.JIN:result.append("å…¨é‡‘å±æ€§é™„åŠ :æ”»å‡»åŠ›æé«˜10%");break;
+						case WuXing.MU:result.append("å…¨æœ¨å±æ€§é™„åŠ :æ°”è¡€æé«˜25%");break;
+						case WuXing.SHUI:result.append("å…¨æ°´å±æ€§é™„åŠ :å†…åŠ›æé«˜10%");break;
+						case WuXing.HUO:result.append("å…¨ç«å±æ€§é™„åŠ :æš´å‡»ç‡æé«˜8%");break;
+						case WuXing.TU:result.append("å…¨åœŸå±æ€§é™„åŠ :é˜²å¾¡æé«˜20%");break;
 					}
 					result.append("<br/>");
 				}
@@ -226,7 +226,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÉíÉÏËù´©µÄ×°±¸
+	 * å¾—åˆ°èº«ä¸Šæ‰€ç©¿çš„è£…å¤‡
 	 */
 	public List<PlayerEquipVO> getEquipList()
 	{
@@ -234,7 +234,7 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * ¸ù¾İÀàĞÍµÃµ½ÉíÉÏµÄ×°±¸µÄ
+	 * æ ¹æ®ç±»å‹å¾—åˆ°èº«ä¸Šçš„è£…å¤‡çš„
 	 * @return
 	 */
 	public PlayerEquipVO getByPositin( int position)
@@ -243,7 +243,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * ´¢´æ×°±¸
+	 * å‚¨å­˜è£…å¤‡
 	 * @throws Exception
 	 */
 	private void put(PlayerEquipVO equip)
@@ -258,14 +258,14 @@ public class EquipOnBody extends UserBase
 
 		equips_on_position.put(position, equip);
 		equips_on_body.put(equip.getPwPk(), equip);
-		if (equip.isEffected() == true)// Èç¹û´©ÉÏµÄ×°±¸ÓĞĞ§£¬×°±¸»¹ÓĞĞ§ÔÚ¸ü¸ÄÊôĞÔ
+		if (equip.isEffected() == true)// å¦‚æœç©¿ä¸Šçš„è£…å¤‡æœ‰æ•ˆï¼Œè£…å¤‡è¿˜æœ‰æ•ˆåœ¨æ›´æ”¹å±æ€§
 		{
 			updatePropertyByEquip(equip, PropertyModel.ADD_PROPERTY);
 		}
 	}
 
 	/**
-	 * ÍÑµôÖ¸¶¨Î»ÖÃµÄ×°±¸
+	 * è„±æ‰æŒ‡å®šä½ç½®çš„è£…å¤‡
 	 * @throws Exception
 	 */
 	private void remove(PlayerEquipVO equip,int position)
@@ -278,14 +278,14 @@ public class EquipOnBody extends UserBase
 		equip.setWType(0);
 		equips_on_position.remove(position);
 		equips_on_body.remove(equip.getPwPk());
-		if (equip.isEffected() == true)// Èç¹ûÍÑÏÂ×°±¸Ê±£¬×°±¸»¹ÓĞĞ§ÔÚ¸ü¸ÄÊôĞÔ
+		if (equip.isEffected() == true)// å¦‚æœè„±ä¸‹è£…å¤‡æ—¶ï¼Œè£…å¤‡è¿˜æœ‰æ•ˆåœ¨æ›´æ”¹å±æ€§
 		{
 			updatePropertyByEquip(equip, PropertyModel.SUB_PROPERTY);
 		}
 	}
 
 	/**
-	 * ĞŞÀíËùÓĞ×°±¸µÄÄÍ¾ÃÎªÈ«ÂúµÄ·ÑÓÃ
+	 * ä¿®ç†æ‰€æœ‰è£…å¤‡çš„è€ä¹…ä¸ºå…¨æ»¡çš„è´¹ç”¨
 	 */
 	public int getMaintainAllFee()
 	{
@@ -300,7 +300,7 @@ public class EquipOnBody extends UserBase
 		}
 		if( this.getRoleEntity().isRedname() )
 		{
-			//ºìÃûÍæ¼ÒÓÎÏ·ÉÌµê¹ºÂòÒ©Æ·¡¢¾íÖá¡¢×°±¸µÈ£¬ÒÔ¼°ĞŞÀí×°±¸¼Û¸ñ·­±¶
+			//çº¢åç©å®¶æ¸¸æˆå•†åº—è´­ä¹°è¯å“ã€å·è½´ã€è£…å¤‡ç­‰ï¼Œä»¥åŠä¿®ç†è£…å¤‡ä»·æ ¼ç¿»å€
 			fee*=2;
 		}
 		
@@ -308,7 +308,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * ĞŞÀíËùÓĞ×°±¸ÏûºÄÄÍ¾ÃµÄ×ÜÊı
+	 * ä¿®ç†æ‰€æœ‰è£…å¤‡æ¶ˆè€—è€ä¹…çš„æ€»æ•°
 	 * @return
 	 */
 	public int getConsumeEndureTotal()
@@ -319,7 +319,7 @@ public class EquipOnBody extends UserBase
 		{
 			for (PlayerEquipVO equip : equip_list)
 			{
-				if (equip.isEffected() == true)// Ö»ÄÜĞŞÀí×°±¸ÄÍ¾Ã²»Îª0µÄ£¨×°±¸ÓĞĞ§µÄ²ÅÄÜĞŞÀí£©
+				if (equip.isEffected() == true)// åªèƒ½ä¿®ç†è£…å¤‡è€ä¹…ä¸ä¸º0çš„ï¼ˆè£…å¤‡æœ‰æ•ˆçš„æ‰èƒ½ä¿®ç†ï¼‰
 				{
 					consume_total+=equip.getConsumeEndure();
 				}
@@ -329,9 +329,9 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * ĞŞÀíËùÓĞ×°±¸ÏûºÄÄÍ¾ÃµÄ×ÜÊı
-	 * @param endure              ÓÃendure¸öµãÊıÀ´ĞŞ¸´ÉíÉÏµÄ×°±¸
-	 * @return                    ·µ»ØÊ£Óà»¹Ã»ĞŞ¸´µÄÄÍ¾ÃµãÊı
+	 * ä¿®ç†æ‰€æœ‰è£…å¤‡æ¶ˆè€—è€ä¹…çš„æ€»æ•°
+	 * @param endure              ç”¨endureä¸ªç‚¹æ•°æ¥ä¿®å¤èº«ä¸Šçš„è£…å¤‡
+	 * @return                    è¿”å›å‰©ä½™è¿˜æ²¡ä¿®å¤çš„è€ä¹…ç‚¹æ•°
 	 */
 	public int maintainAllByEndure( int endure )
 	{
@@ -347,7 +347,7 @@ public class EquipOnBody extends UserBase
 				{
 					left_un_maintain_endure+=equip.getConsumeEndure();
 				}
-				if (equip.isEffected() == true)// Ö»ÄÜĞŞÀí×°±¸ÄÍ¾Ã²»Îª0µÄ£¨×°±¸ÓĞĞ§µÄ²ÅÄÜĞŞÀí£©
+				if (equip.isEffected() == true)// åªèƒ½ä¿®ç†è£…å¤‡è€ä¹…ä¸ä¸º0çš„ï¼ˆè£…å¤‡æœ‰æ•ˆçš„æ‰èƒ½ä¿®ç†ï¼‰
 				{
 					if( endure>=equip.getConsumeEndure())
 					{
@@ -368,7 +368,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * ĞŞÀíËùÓĞ×°±¸µÄÄÍ¾ÃÎªÈ«Âú
+	 * ä¿®ç†æ‰€æœ‰è£…å¤‡çš„è€ä¹…ä¸ºå…¨æ»¡
 	 */
 	public void maintainAll()
 	{
@@ -380,7 +380,7 @@ public class EquipOnBody extends UserBase
 		{
 			for (PlayerEquipVO equip : equip_list)
 			{
-				if (equip.isEffected() == true)// Ö»ÄÜĞŞÀí×°±¸ÄÍ¾Ã²»Îª0µÄ£¨×°±¸ÓĞĞ§µÄ²ÅÄÜĞŞÀí£©
+				if (equip.isEffected() == true)// åªèƒ½ä¿®ç†è£…å¤‡è€ä¹…ä¸ä¸º0çš„ï¼ˆè£…å¤‡æœ‰æ•ˆçš„æ‰èƒ½ä¿®ç†ï¼‰
 				{
 					equip.setCurEndure(equip.getMaxEndure());
 					equip.save();
@@ -390,12 +390,12 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * ĞŞÀíµ¥¸ö×°±¸Ö¸¶¨ÄÍ¾ÃµãÊı
+	 * ä¿®ç†å•ä¸ªè£…å¤‡æŒ‡å®šè€ä¹…ç‚¹æ•°
 	 */
 	public void maintainOneEquip(int pw_pk, int maintain_point)
 	{
 		PlayerEquipVO cur_equip = equips_on_body.get(pw_pk);
-		if (cur_equip != null && cur_equip.isEffected() == true)// Ö»ÄÜĞŞÀí×°±¸ÄÍ¾Ã²»Îª0µÄ£¨×°±¸ÓĞĞ§µÄ²ÅÄÜĞŞÀí£©
+		if (cur_equip != null && cur_equip.isEffected() == true)// åªèƒ½ä¿®ç†è£…å¤‡è€ä¹…ä¸ä¸º0çš„ï¼ˆè£…å¤‡æœ‰æ•ˆçš„æ‰èƒ½ä¿®ç†ï¼‰
 		{
 			if (cur_equip.getEquipType() != Equip.JEWELRY)
 			{
@@ -405,9 +405,9 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * PKËÀÍöÊ±£¬ÏûºÄÄÍ¾ÃÉÏÏŞ(Ëæ»ú³éÈ¡Ò»¼şÉíÉÏ´©µÄ)
-	 * ÏûºÄµãÊı£¨1£¬3µÄËæ»úÊı£©
-	 * return ·µ»ØÃèÊöĞÅÏ¢
+	 * PKæ­»äº¡æ—¶ï¼Œæ¶ˆè€—è€ä¹…ä¸Šé™(éšæœºæŠ½å–ä¸€ä»¶èº«ä¸Šç©¿çš„)
+	 * æ¶ˆè€—ç‚¹æ•°ï¼ˆ1ï¼Œ3çš„éšæœºæ•°ï¼‰
+	 * return è¿”å›æè¿°ä¿¡æ¯
 	 */
 	public String consumeMaxEndure()
 	{
@@ -418,29 +418,29 @@ public class EquipOnBody extends UserBase
 			int consume_point =0;
 			if( this.getRoleEntity().getBasicInfo().getEvilValue()>0 )
 			{
-				consume_point = 5;//ºì»ÆÃûÍæ¼ÒPKËÀÍö£¬ÄÍ¾ÃÉÏÏŞ¿Û³ıÎª5µã
+				consume_point = 5;//çº¢é»„åç©å®¶PKæ­»äº¡ï¼Œè€ä¹…ä¸Šé™æ‰£é™¤ä¸º5ç‚¹
 			}
 			else
 			{
-				consume_point = MathUtil.getRandomBetweenXY(1,3);//ÏûºÄµãÊı£¨1£¬3µÄËæ»úÊı£©
+				consume_point = MathUtil.getRandomBetweenXY(1,3);//æ¶ˆè€—ç‚¹æ•°ï¼ˆ1ï¼Œ3çš„éšæœºæ•°ï¼‰
 			}
 			int random_index = MathUtil.getRandomBetweenXY(0,equip_list.size()-1);
 			
 			PlayerEquipVO random_equip = equip_list.get(random_index);
-			boolean isEffectBeforeConsume = random_equip.isEffected();// ¸üĞÂÄÍ¾ÃÖ®Ç°ÅĞ¶Ï×°±¸ÊÇ·ñÓĞĞ§
-			random_equip.consumeMaxEndure(consume_point);//ÏûºÄÄÍ¾ÃÉÏÏŞ
-			if (isEffectBeforeConsume == true && random_equip.isEffected() == false)// ¸üĞÂÇ°ÓĞĞ§ÇÒ¸üĞÂºóÎŞĞ§£¬ĞèÒª¼õµô¸Ã×°±¸µÄÊôĞÔ
+			boolean isEffectBeforeConsume = random_equip.isEffected();// æ›´æ–°è€ä¹…ä¹‹å‰åˆ¤æ–­è£…å¤‡æ˜¯å¦æœ‰æ•ˆ
+			random_equip.consumeMaxEndure(consume_point);//æ¶ˆè€—è€ä¹…ä¸Šé™
+			if (isEffectBeforeConsume == true && random_equip.isEffected() == false)// æ›´æ–°å‰æœ‰æ•ˆä¸”æ›´æ–°åæ— æ•ˆï¼Œéœ€è¦å‡æ‰è¯¥è£…å¤‡çš„å±æ€§
 			{
 				updatePropertyByEquip(random_equip, PropertyModel.SUB_PROPERTY);
 			}
-			return random_equip.getGameEquip().getName()+"ÏûºÄÄÍ¾ÃÉÏÏŞ"+consume_point+"µã";
+			return random_equip.getGameEquip().getName()+"æ¶ˆè€—è€ä¹…ä¸Šé™"+consume_point+"ç‚¹";
 		}
 		return "";
 	}
 	/**
-	 * ÏûºÄÄÍ¾Ã
+	 * æ¶ˆè€—è€ä¹…
 	 * 
-	 * @return true±íÊ¾¸úĞÂ×°±¸ÊôĞÔ£¬false±íÊ¾Ã»¼ÓÔØ×°±¸ÊôĞÔ
+	 * @return trueè¡¨ç¤ºè·Ÿæ–°è£…å¤‡å±æ€§ï¼Œfalseè¡¨ç¤ºæ²¡åŠ è½½è£…å¤‡å±æ€§
 	 */
 	private boolean consumeEndure(PlayerEquipVO equip)
 	{
@@ -449,13 +449,13 @@ public class EquipOnBody extends UserBase
 		{
 			return false;
 		}
-		boolean isEffectBeforeConsume = equip.isEffected();// ¸üĞÂÄÍ¾ÃÖ®Ç°ÅĞ¶Ï×°±¸ÊÇ·ñÓĞĞ§
+		boolean isEffectBeforeConsume = equip.isEffected();// æ›´æ–°è€ä¹…ä¹‹å‰åˆ¤æ–­è£…å¤‡æ˜¯å¦æœ‰æ•ˆ
 		if (equip.getCurEndure() > 0)
 		{
 			equip.setCurEndure(equip.getCurEndure() - 1);
 		}
 		
-		if (isEffectBeforeConsume == true && equip.isEffected() == false)// ¸üĞÂÇ°ÓĞĞ§ÇÒ¸üĞÂºóÎŞĞ§£¬ĞèÒª¼õµô¸Ã×°±¸µÄÊôĞÔ
+		if (isEffectBeforeConsume == true && equip.isEffected() == false)// æ›´æ–°å‰æœ‰æ•ˆä¸”æ›´æ–°åæ— æ•ˆï¼Œéœ€è¦å‡æ‰è¯¥è£…å¤‡çš„å±æ€§
 		{
 			updatePropertyByEquip(equip, PropertyModel.SUB_PROPERTY);
 			result = true;
@@ -464,16 +464,16 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * Ê¹ÓÃÎäÆ÷(ÏûºÄÎäÆ÷ÄÍ¾Ã)
+	 * ä½¿ç”¨æ­¦å™¨(æ¶ˆè€—æ­¦å™¨è€ä¹…)
 	 */
 	public void useArm()
 	{
-		// ÏûºÄÎäÆ÷ÄÍ¾Ã
+		// æ¶ˆè€—æ­¦å™¨è€ä¹…
 		PlayerEquipVO arm_info = equips_on_position.get(PositionOnEquip.WEAPON);
 		if (arm_info != null)
 		{
 			boolean isUpdateProperty = consumeEndure(arm_info);
-			// System.out.println("µ±Ç°ÎäÆ÷ÄÍ¾ÃÎª£º"+arm_info.getWDuraConsume());
+			// System.out.println("å½“å‰æ­¦å™¨è€ä¹…ä¸ºï¼š"+arm_info.getWDuraConsume());
 			if (isUpdateProperty == true)
 			{
 				loadSuitPropertyByEquip(arm_info);
@@ -482,25 +482,25 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * Ê¹ÓÃ×°±¸(ÏûºÄ×°±¸ÄÍ¾Ã)
+	 * ä½¿ç”¨è£…å¤‡(æ¶ˆè€—è£…å¤‡è€ä¹…)
 	 */
 	public void useEquip()
 	{
-		// ÏûºÄÉíÉÏ×°±¸ÄÍ¾Ã
+		// æ¶ˆè€—èº«ä¸Šè£…å¤‡è€ä¹…
 
 		List<PlayerEquipVO> equip_list = new ArrayList<PlayerEquipVO>(equips_on_position.values());
 
 		if (equip_list != null && equip_list.size() > 0)
 		{
-			boolean isReloadSuitPropertys = false;// ÊÇ·ñÓĞÎŞĞ§µÄ×°±¸,false±íÊ¾²»ÖØÔØ
+			boolean isReloadSuitPropertys = false;// æ˜¯å¦æœ‰æ— æ•ˆçš„è£…å¤‡,falseè¡¨ç¤ºä¸é‡è½½
 
 			for (PlayerEquipVO equip : equip_list)
 			{
-				if (equip.getEquipType()!=Equip.WEAPON )//²»ÊÇÎäÆ÷
+				if (equip.getEquipType()!=Equip.WEAPON )//ä¸æ˜¯æ­¦å™¨
 				{
-					boolean isUpdateProperty = consumeEndure(equip);// ¸üĞÂÄÍ¾Ã
+					boolean isUpdateProperty = consumeEndure(equip);// æ›´æ–°è€ä¹…
 
-					if (isUpdateProperty == true)// µ±Ç°×°±¸ÒÑÎŞĞ§
+					if (isUpdateProperty == true)// å½“å‰è£…å¤‡å·²æ— æ•ˆ
 					{
 						isReloadSuitPropertys = true;
 					}
@@ -509,7 +509,7 @@ public class EquipOnBody extends UserBase
 
 			if (isReloadSuitPropertys == true)
 			{
-				// ÓĞÎŞĞ§µÄ×°±¸£¬ÔòÖØÔØÌ××°ÊôĞÔ
+				// æœ‰æ— æ•ˆçš„è£…å¤‡ï¼Œåˆ™é‡è½½å¥—è£…å±æ€§
 				loadSuitProperty();
 			}
 		}
@@ -517,7 +517,7 @@ public class EquipOnBody extends UserBase
 
 
 	/**
-	 * ´©×°±¸
+	 * ç©¿è£…å¤‡
 	 *//*
 	public void puton(int pw_pk)
 	{
@@ -527,7 +527,7 @@ public class EquipOnBody extends UserBase
 	}*/
 	
 	/**
-	 * ´©×°±¸
+	 * ç©¿è£…å¤‡
 	 */
 	public PlayerEquipVO puton(PlayerEquipVO equip_info )
 	{
@@ -537,45 +537,45 @@ public class EquipOnBody extends UserBase
 	
 
 	/**
-	 * ´©×°±¸(Ö¸¶¨Î»ÖÃ)
+	 * ç©¿è£…å¤‡(æŒ‡å®šä½ç½®)
 	 */
 	public PlayerEquipVO puton(PlayerEquipVO equip_info,int position )
 	{
 		if (equip_info != null)
 		{
-			PlayerEquipVO takeoff_equip = takeoff(position);//ÍÑµôÏàÓ¦Î»ÖÃµÄ×°±¸
-			equip_info.setWType(position);//¸Ä±ä×°±¸µÄÎ»ÖÃ
-			put(equip_info);// ·ÅÈëÉíÉÏ
-			loadSuitPropertyByEquip(equip_info);// ÖØÔØÌ××°ÊôĞÔ
+			PlayerEquipVO takeoff_equip = takeoff(position);//è„±æ‰ç›¸åº”ä½ç½®çš„è£…å¤‡
+			equip_info.setWType(position);//æ”¹å˜è£…å¤‡çš„ä½ç½®
+			put(equip_info);// æ”¾å…¥èº«ä¸Š
+			loadSuitPropertyByEquip(equip_info);// é‡è½½å¥—è£…å±æ€§
 			return takeoff_equip;
 		}
 		return null;
 	}
 
 	/**
-	 * ÍÑ×°±¸
+	 * è„±è£…å¤‡
 	 */
 	public PlayerEquipVO takeoff(int position)
 	{
 		PlayerEquipVO equip_info = this.equips_on_position.get(position);
 		if( equip_info!=null )
 		{
-			remove(equip_info,position);// ´ÓÉíÉÏÒÆ³ı
-			loadSuitPropertyByEquip(equip_info);// ÖØÔØÌ××°ÊôĞÔ
+			remove(equip_info,position);// ä»èº«ä¸Šç§»é™¤
+			loadSuitPropertyByEquip(equip_info);// é‡è½½å¥—è£…å±æ€§
 			return equip_info;
 		}
 		return null;
 	}
 	
 	/**
-	 * ÍÑ×°±¸
+	 * è„±è£…å¤‡
 	 */
 	public PlayerEquipVO takeoff(PlayerEquipVO equip_info)
 	{
 		if( equip_info!=null )
 		{
 			int position = -1;
-			//ÕÒµ½¸Ã×°±¸ÔÚÉíÉÏµÄÎ»ÖÃ
+			//æ‰¾åˆ°è¯¥è£…å¤‡åœ¨èº«ä¸Šçš„ä½ç½®
 			Set<Integer> position_set = equips_on_position.keySet();
 			for (Integer cur_position : position_set)
 			{
@@ -592,22 +592,22 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * ÍÑ×°±¸
-	 * return ÍÑÏÂµÄ×°±¸
+	 * è„±è£…å¤‡
+	 * return è„±ä¸‹çš„è£…å¤‡
 	 *//*
 	public PlayerEquipVO takeoff(PlayerEquipVO equip_info,int position)
 	{
 		if (equip_info != null)
 		{
-			remove(equip_info,position);// ´ÓÉíÉÏÒÆ³ı
-			loadSuitPropertyByEquip(equip_info);// ÖØÔØÌ××°ÊôĞÔ
+			remove(equip_info,position);// ä»èº«ä¸Šç§»é™¤
+			loadSuitPropertyByEquip(equip_info);// é‡è½½å¥—è£…å±æ€§
 			return equip_info;
 		}
 		return null;
 	}*/
 
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØ¸½¼ÓÊôĞÔ
+	 * ç»™ç©å®¶åŠ è½½é™„åŠ å±æ€§
 	 */
 	public void loadEquipProterty(PartInfoVO player)
 	{
@@ -622,7 +622,7 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØ¸½¼ÓÊôĞÔ
+	 * ç»™ç©å®¶åŠ è½½é™„åŠ å±æ€§
 	 */
 	private void loadWXProterty(PartInfoVO player)
 	{
@@ -638,24 +638,24 @@ public class EquipOnBody extends UserBase
 			{
 				switch (wx_type)
 				{
-					case WuXing.JIN:// ¹¥»÷Á¦Ìá¸ß10%
+					case WuXing.JIN:// æ”»å‡»åŠ›æé«˜10%
 						int gj = (int) ((1.0 * (player.getPZbgjXiao() + player.getPZbgjDa()) / 2 * 10) / 100);
 						player.setPZbgjXiao(player.getPZbgjXiao() + gj);
 						player.setPZbgjDa(player.getPZbgjDa() + gj);
 						break;
-					case WuXing.MU:// ÆøÑªÌá¸ß25%
+					case WuXing.MU:// æ°”è¡€æé«˜25%
 						int hp = (int) (1.0 * (player.getPUpHp() * 25) / 100);
 						player.setPUpHp(player.getPUpHp() + hp);
 						break;
-					case WuXing.SHUI:// ÄÚÁ¦Ìá¸ß10%
+					case WuXing.SHUI:// å†…åŠ›æé«˜10%
 						int mp = (int) (1.0 * (player.getPUpMp() * 10) / 100);
 						player.setPUpMp(player.getPUpMp() + mp);
 						break;
-					case WuXing.HUO:// ±©»÷ÂÊÌá¸ß8%
+					case WuXing.HUO:// æš´å‡»ç‡æé«˜8%
 						double bj = MathUtil.getDoubleValueByAddRate(player.getDropMultiple(),  8);
 						player.setDropMultiple(bj);
 						break;
-					case WuXing.TU:// ·ÀÓùÌá¸ß20%
+					case WuXing.TU:// é˜²å¾¡æé«˜20%
 						int fy = (int) ((1.0 * (player.getPZbfyXiao() + player.getPZbfyDa()) / 2 * 20) / 100);
 						player.setPZbfyXiao(player.getPZbfyXiao() + fy);
 						player.setPZbfyDa(player.getPZbfyDa() + fy);
@@ -666,7 +666,7 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * ¸üĞÂ¶ÔÓ¦ÎåĞĞÊıÁ¿
+	 * æ›´æ–°å¯¹åº”äº”è¡Œæ•°é‡
 	 * 
 	 * @param wx_type
 	 */
@@ -699,18 +699,18 @@ public class EquipOnBody extends UserBase
 
 
 	/**
-	 * ¸ù¾İ×°±¸¸üĞÂÍæ¼ÒÉíÉÏµÄ×°±¸ÊôĞÔ
+	 * æ ¹æ®è£…å¤‡æ›´æ–°ç©å®¶èº«ä¸Šçš„è£…å¤‡å±æ€§
 	 * 
 	 * @param equip_info
 	 * @param update_type
-	 *            ¸üĞÂÀàĞÍ1±íÊ¾¼Ó£¬-1±íÊ¾¼õ
+	 *            æ›´æ–°ç±»å‹1è¡¨ç¤ºåŠ ï¼Œ-1è¡¨ç¤ºå‡
 	 */
 	private void updatePropertyByEquip(PlayerEquipVO equip_info, int update_type)
 	{
-		if (equip_info != null)// ×°±¸ÄÍ¾ÃÔÚ10ÒÔÏÂÊôĞÔÎŞĞ§
+		if (equip_info != null)// è£…å¤‡è€ä¹…åœ¨10ä»¥ä¸‹å±æ€§æ— æ•ˆ
 		{
 			if (update_type == PropertyModel.ADD_PROPERTY
-					&& equip_info.getCurEndure() < 10)// Èç¹û¸Ã×°±¸ÎŞĞ§£¬Ôò²»¼Ó³ÉĞ§¹û
+					&& equip_info.getCurEndure() < 10)// å¦‚æœè¯¥è£…å¤‡æ— æ•ˆï¼Œåˆ™ä¸åŠ æˆæ•ˆæœ
 			{
 				return;
 			}
@@ -763,7 +763,7 @@ public class EquipOnBody extends UserBase
 	
 
 	/**
-	 * ¼ÓÔØÌ××°ÊôĞÔ
+	 * åŠ è½½å¥—è£…å±æ€§
 	 */
 	private void loadSuitPropertyByEquip(PlayerEquipVO equip_info)
 	{
@@ -774,11 +774,11 @@ public class EquipOnBody extends UserBase
 	}
 
 	/**
-	 * ¼ÓÔØÌ××°ÊôĞÔ
+	 * åŠ è½½å¥—è£…å±æ€§
 	 */
 	private void loadSuitProperty()
 	{
-		suitPropertyModel.init();// ³õÊ¼»¯Ì××°µÄÊôĞÔÖµ
+		suitPropertyModel.init();// åˆå§‹åŒ–å¥—è£…çš„å±æ€§å€¼
 		Set<Integer> suit_id_list = suit_equip_num.keySet();
 		if( suit_id_list!=null && suit_id_list.size()>0 )
 		{
@@ -789,7 +789,7 @@ public class EquipOnBody extends UserBase
 				SuitVO suit = suitDao.getById(suit_id);
 				if( suit!=null )
 				{
-					String suit_effect_str = "";//Ì××°Ğ§¹û×Ö·û´®
+					String suit_effect_str = "";//å¥—è£…æ•ˆæœå­—ç¬¦ä¸²
 					int suit_num = suit_equip_num.get(suit_id);
 					if( suit_num>=2)
 					{
@@ -813,7 +813,7 @@ public class EquipOnBody extends UserBase
 	
 	
 	/**
-	 * µÃµ½µ±Ç°×°±¸´©ÔÚÉíÉÏµÄÎ»ÖÃ
+	 * å¾—åˆ°å½“å‰è£…å¤‡ç©¿åœ¨èº«ä¸Šçš„ä½ç½®
 	 * @param equip
 	 * @return
 	 * @throws Exception 
@@ -824,7 +824,7 @@ public class EquipOnBody extends UserBase
 	}
 	
 	/**
-	 * ¸ù¾İ×°±¸ÀàĞÍµÃµ½×°±¸´©ÔÚÉíÉÏµÄÎ»ÖÃ
+	 * æ ¹æ®è£…å¤‡ç±»å‹å¾—åˆ°è£…å¤‡ç©¿åœ¨èº«ä¸Šçš„ä½ç½®
 	 * @param equip
 	 * @return
 	 * @throws Exception 
@@ -833,7 +833,7 @@ public class EquipOnBody extends UserBase
 	{
 		if( equip_type==Equip.JEWELRY )
 		{
-			//²éÕÒÊÎÆ·Ëù´©µÄÎ»ÖÃ
+			//æŸ¥æ‰¾é¥°å“æ‰€ç©¿çš„ä½ç½®
 			for( int j_postion=PositionOnEquip.JEWELRY_1;j_postion<=PositionOnEquip.JEWELRY_3;j_postion++)
 			{
 				if( this.equips_on_position.get(j_postion)==null )
@@ -841,7 +841,7 @@ public class EquipOnBody extends UserBase
 					return j_postion;
 				}
 			}
-			//Èç¹ûÎŞÊ£Óà¿ÉÒÔ·ÅÖÃÊÎÆ·µÄÎ»ÖÃ£¬ÔòÌæ»»µÚÒ»¸öÊÎÆ·
+			//å¦‚æœæ— å‰©ä½™å¯ä»¥æ”¾ç½®é¥°å“çš„ä½ç½®ï¼Œåˆ™æ›¿æ¢ç¬¬ä¸€ä¸ªé¥°å“
 			return PositionOnEquip.JEWELRY_1;
 		}
 		

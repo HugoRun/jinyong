@@ -5,13 +5,13 @@
 <!--<%@ include file="/init/inc_mall/mall_menu.jsp"%><br/>
 请选择你要进入的商城!<br/>-->
 <%
- 	String enterMall=(String)request.getAttribute("enterMall");
- 	if(enterMall!=null)
- 	{
- 		%>
- 		进入商城|
-		<anchor>快速充值<go href="<%=response.encodeURL(GameConfig.getContextPath()+ "/sky/bill.do?cmd=n0")%>" method="get" ></go></anchor>
-		<%
+     String enterMall=(String)request.getAttribute("enterMall");
+     if(enterMall!=null)
+     {
+         %>
+         进入商城|
+        <anchor>快速充值<go href="<%=response.encodeURL(GameConfig.getContextPath()+ "/sky/bill.do?cmd=n0")%>" method="get" ></go></anchor>
+        <%
 			if(GameConfig.getChannelId()!=Channel.TELE)
 			{
 				%>

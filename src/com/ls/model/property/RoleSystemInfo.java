@@ -12,7 +12,7 @@ import com.pm.dao.systemInfo.SysInfoDao;
 import com.pm.vo.sysInfo.SystemInfoVO;
 
 /**
- * ÏµÍ³ÏûÏ¢µÄ´æ´¢ºÍ»ñµÃ
+ * ç³»ç»Ÿæ¶ˆæ¯çš„å­˜å‚¨å’Œè·å¾—
  * @author Administrator
  *
  */
@@ -42,7 +42,7 @@ public class RoleSystemInfo
 		SystemInfoVO new_infoVO = null;
 		DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		checkList(infoList);
-		// Èç¹ûÓĞÎ´³öÏÖµÄĞÅÏ¢,¸øÆä¼ÇÂ¼ÆğÀ´.
+		// å¦‚æœæœ‰æœªå‡ºç°çš„ä¿¡æ¯,ç»™å…¶è®°å½•èµ·æ¥.
 		for ( int a =0;a < new_List.size();a++) {
 			new_infoVO = new_List.get(a);
 			if ( infoList == null || infoList.size() == 0) {
@@ -51,7 +51,7 @@ public class RoleSystemInfo
 			} else {
 			
 				boolean flag =false;
-        		// ×÷Ñ­»·,Èç¹ûÓĞĞÂµÄĞÅÏ¢iD³öÀ´,¾Í¸øÆäÏÔÊ¾³öÀ´
+        		// ä½œå¾ªç¯,å¦‚æœæœ‰æ–°çš„ä¿¡æ¯iDå‡ºæ¥,å°±ç»™å…¶æ˜¾ç¤ºå‡ºæ¥
         		for ( int i =0;i < infoList.size();i++) {
         			list_infoVO = infoList.get(i);	        			
     				if ( new_infoVO.getSysInfoId() == list_infoVO.getSysInfoId() ) {
@@ -63,7 +63,7 @@ public class RoleSystemInfo
     				infoList.add(new_infoVO);
     			}
 			}
-			// Èç¹ûĞÅÏ¢¼ÇÂ¼³¬¹ıÈıÌõ,Ôò
+			// å¦‚æœä¿¡æ¯è®°å½•è¶…è¿‡ä¸‰æ¡,åˆ™
 			if (infoList.size() >= 3) {
 				break;
 			}
@@ -81,7 +81,7 @@ public class RoleSystemInfo
 		SystemInfoVO infoVO = null;
 		Date dt = new Date();
 		DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		// ³¬¹ıÈıÊ®ÃëµÄ´ÓlistÀïÌß³ö
+		// è¶…è¿‡ä¸‰åç§’çš„ä»listé‡Œè¸¢å‡º
 		Date infotimeDate = null;
 		Date appearTime = null;
 		try
@@ -89,7 +89,7 @@ public class RoleSystemInfo
     		for ( int i =0;i < infoList.size();i++) {
     			infoVO = infoList.get(i);
     			infotimeDate = dFormat.parse(infoVO.getCreateTime());
-    			// ³¬¹ıÈıÊ®ÃëµÄ¿Ï¶¨É¾³ı
+    			// è¶…è¿‡ä¸‰åç§’çš„è‚¯å®šåˆ é™¤
     			if ( infotimeDate.getTime() < (dt.getTime() - 1000*30) ) {
     				infoList.remove(i);
     			}
@@ -99,7 +99,7 @@ public class RoleSystemInfo
     			infoVO = infoList.get(i);
     			appearTime = dFormat.parse(infoVO.getAppearTime());
     				
-    			// ÏÔÊ¾Ê±¼ä³¬¹ıÊ®ÃëµÄÒ²É¾³ı,¿¼ÂÇµ½ÏµÍ³´¦ÀíµÄÊ±¼äºÍ´«ËÍµÄÊ±¼ä,Òò´Ë·ÅËÉµ½10Ãë,
+    			// æ˜¾ç¤ºæ—¶é—´è¶…è¿‡åç§’çš„ä¹Ÿåˆ é™¤,è€ƒè™‘åˆ°ç³»ç»Ÿå¤„ç†çš„æ—¶é—´å’Œä¼ é€çš„æ—¶é—´,å› æ­¤æ”¾æ¾åˆ°10ç§’,
     			switch (infoVO.getInfoType())
 				{
 					case SystemInfoType.EQUIPRELELA:

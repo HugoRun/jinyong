@@ -4,7 +4,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="timeout" title="<s:message key = "gamename"/>">
 <p>
 您点击过快,请返回专区重新登陆<br/>

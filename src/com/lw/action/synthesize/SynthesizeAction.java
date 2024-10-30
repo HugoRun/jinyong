@@ -30,7 +30,7 @@ public class SynthesizeAction extends DispatchAction
 		return mapping.findForward("synthesize_menu");
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ¸ÃÉú»î¼¼ÄÜ ÓĞÔòÁĞ³ö¼¼ÄÜµÄÅä·½±í Ã»ÓĞÌáÊ¾Íæ¼Ò */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰è¯¥ç”Ÿæ´»æŠ€èƒ½ æœ‰åˆ™åˆ—å‡ºæŠ€èƒ½çš„é…æ–¹è¡¨ æ²¡æœ‰æç¤ºç©å®¶ */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -51,7 +51,7 @@ public class SynthesizeAction extends DispatchAction
 		}
 		if (lss.isHaveSkillType(roleInfo.getBasicInfo().getPPk(), s_type) == false)
 		{
-			request.setAttribute("display", "ÄúÃ»ÓĞÕÆÎÕ¸ÃÉú»î¼¼ÄÜ!");
+			request.setAttribute("display", "æ‚¨æ²¡æœ‰æŒæ¡è¯¥ç”Ÿæ´»æŠ€èƒ½!");
 			return mapping.findForward("display");
 		}
 		else
@@ -75,7 +75,7 @@ public class SynthesizeAction extends DispatchAction
 		}
 	}
 
-	/** ¶Ò»»ÎïÆ·µÄÏÔÊ¾ */
+	/** å…‘æ¢ç‰©å“çš„æ˜¾ç¤º */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -102,13 +102,13 @@ public class SynthesizeAction extends DispatchAction
 
 		if (playersleight < minsleight)
 		{
-			request.setAttribute("display", "ÄúµÄÊìÁ·¶ÈÃ»ÓĞ´ïµ½ÒªÇó!");
+			request.setAttribute("display", "æ‚¨çš„ç†Ÿç»ƒåº¦æ²¡æœ‰è¾¾åˆ°è¦æ±‚!");
 			return mapping.findForward("display");
 		}
 		else
 			if (lss.isPlayerHaveSynthesizeBook(p_pk, s_id) == false)
 			{
-				request.setAttribute("display", "Äú»¹Ã»ÓĞÑ§Ï°¸ÃÅä·½!");
+				request.setAttribute("display", "æ‚¨è¿˜æ²¡æœ‰å­¦ä¹ è¯¥é…æ–¹!");
 				return mapping.findForward("display");
 			}
 			else
@@ -132,14 +132,14 @@ public class SynthesizeAction extends DispatchAction
 			}
 	}
 
-	/** ¶Ò»»ÎïÆ· */
+	/** å…‘æ¢ç‰©å“ */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String num = request.getParameter("num");
 		if (num.equals(""))
 		{
-			request.setAttribute("display", "ÊäÈë´íÎó!");
+			request.setAttribute("display", "è¾“å…¥é”™è¯¯!");
 			return mapping.findForward("display");
 		}
 		int s_id = Integer.parseInt(request.getParameter("s_id"));
@@ -155,10 +155,10 @@ public class SynthesizeAction extends DispatchAction
 		SynthesizeDao dao = new SynthesizeDao();
 		SynthesizeVO SynthesizeVO = dao.getSynthesize(s_id);
 
-		// ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄÔ­²ÄÁÏ
+		// åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„åŸææ–™
 		String result = ss.getPPkHasGoods(pPk, address, SynthesizeVO, Integer
 				.parseInt(num));
-		logger.info("Ô­²ÄÁÏÊÇ·ñ×ã¹»: " + result);
+		logger.info("åŸææ–™æ˜¯å¦è¶³å¤Ÿ: " + result);
 		String[] results = result.split(",");
 		if (Integer.valueOf(results[0]) == -1)
 		{
@@ -169,10 +169,10 @@ public class SynthesizeAction extends DispatchAction
 		else
 			if (Integer.valueOf(results[0]) == 1)
 			{
-				// ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄ¿Õ¼äÀ´´æ·Å×°±¸µÀ¾ß»ò½ğÇ®
+				// åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„ç©ºé—´æ¥å­˜æ”¾è£…å¤‡é“å…·æˆ–é‡‘é’±
 				String hasWareSpare = ss.getHasWareSpare(pPk, SynthesizeVO,
 						address, Integer.parseInt(num));
-				logger.info("ÊÇ·ñÓĞ×ã¹»¿Õ¸ñÊı :" + hasWareSpare);
+				logger.info("æ˜¯å¦æœ‰è¶³å¤Ÿç©ºæ ¼æ•° :" + hasWareSpare);
 				String hasWareSpares = hasWareSpare.split(",")[0];
 				if (Integer.valueOf(hasWareSpares) == 1)
 				{

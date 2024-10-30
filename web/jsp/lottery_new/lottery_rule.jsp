@@ -4,7 +4,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="map" title="<s:message key = "gamename"/>">
 <p>
 警告:5级以上玩家可参与竞猜,未满5级的玩家请在师父的陪同下观看!<br/>

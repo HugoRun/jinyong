@@ -25,7 +25,7 @@ public class GameLotteryAndLaborageService extends TimerTask
 		updateLaborageMessage();
 	}
 
-	// 删除玩家彩票信息
+	// 鍒犻櫎鐜╁褰╃エ淇℃伅
 	public void delPlayMessage()
 	{
 		LotteryService ls = new LotteryService();
@@ -33,7 +33,7 @@ public class GameLotteryAndLaborageService extends TimerTask
 
 	}
 
-	// 更新玩家的工资信息表
+	// 鏇存柊鐜╁鐨勫伐璧勪俊鎭〃
 	public void updateLaborageMessage()
 	{
 		LaborageService ls = new LaborageService();

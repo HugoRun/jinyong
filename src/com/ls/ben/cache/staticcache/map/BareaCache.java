@@ -10,13 +10,13 @@ public class BareaCache extends CacheBase
 	public static String BAREA_BY_ID = "barea_by_id";
 	
 	/**
-	 * Í¨¹ıidµÃµ½bareaĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°bareaä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
 	public BareaVO getById( String barea_id )
 	{
-		logger.debug("Í¨¹ıidµÃµ½µØÍ¼´óÇøÓòĞÅÏ¢:barea_id="+barea_id);
+		logger.debug("é€šè¿‡idå¾—åˆ°åœ°å›¾å¤§åŒºåŸŸä¿¡æ¯:barea_id="+barea_id);
 		BareaVO barea_info = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, BAREA_BY_ID);
 		barea_info = (BareaVO)result.get(barea_id);
@@ -25,7 +25,7 @@ public class BareaCache extends CacheBase
 	}
 	
 	/**
-	 * µÃµ½ËùÓĞbareaĞÅÏ¢
+	 * å¾—åˆ°æ‰€æœ‰bareaä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */

@@ -10,22 +10,22 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:u_buffeffect_info±í
+ * åŠŸèƒ½:u_buffeffect_infoè¡¨
  * 
- * @author ÁõË§ 12:31:24 PM
+ * @author åˆ˜å¸… 12:31:24 PM
  */
 public class BuffEffectDao extends DaoBase {
 	/**
-	 * Ìí¼ÓbuffĞ§¹û
+	 * æ·»åŠ buffæ•ˆæœ
 	 * 
 	 * @param buffEffect
 	 */
 	public void add(BuffEffectVO buffEffect) {
 		if (buffEffect == null) {
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 		}
 		buffEffect.log();
-		String sql = "insert into u_buffeffect_info  values (null,?,?,?,?,?,?,?,?,now(),?,?,?,?,?)";
+		String sql = "INSERT INTO u_buffeffect_info  values (null,?,?,?,?,?,?,?,?,now(),?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -59,7 +59,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 
 	/**
-	 * É¾³ıÖ¸¶¨buffĞ§¹û
+	 * åˆ é™¤æŒ‡å®šbuffæ•ˆæœ
 	 * 
 	 * @param bf_pk
 	 */
@@ -80,7 +80,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½Ö¸¶¨×÷ÓÃ¶ÔÏóµÄbuffĞ§¹û¼¯ºÏ
+	 * å¾—åˆ°æŒ‡å®šä½œç”¨å¯¹è±¡çš„buffæ•ˆæœé›†åˆ
 	 * @param effect_object
 	 * @param effect_object_type
 	 * @return
@@ -89,7 +89,7 @@ public class BuffEffectDao extends DaoBase {
 	{
 		List<BuffEffectVO> buffEffects = new ArrayList<BuffEffectVO>();
 		BuffEffectVO buffEffect = null;
-		String sql = "select * from u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" group by buff_type order by  bf_pk,buff_type desc";
+		String sql = "SELECT * FROM u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" group by buff_type order by  bf_pk,buff_type desc";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -134,7 +134,7 @@ public class BuffEffectDao extends DaoBase {
 	
 	
 	/**
-	 * µÃµ½Ö¸¶¨×÷ÓÃ¶ÔÏóµÄbuffĞ§¹û¼¯ºÏ
+	 * å¾—åˆ°æŒ‡å®šä½œç”¨å¯¹è±¡çš„buffæ•ˆæœé›†åˆ
 	 * @param effect_object
 	 * @param effect_object_type
 	 * @return
@@ -142,7 +142,7 @@ public class BuffEffectDao extends DaoBase {
 	public String getBuffListDescribe( int effect_object,int effect_object_type )
 	{
 		StringBuffer buff_list_describe = new StringBuffer();
-		String sql = "select * from u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" group by buff_type order by  bf_pk,buff_type desc ";
+		String sql = "SELECT * FROM u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" group by buff_type order by  bf_pk,buff_type desc ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -172,7 +172,7 @@ public class BuffEffectDao extends DaoBase {
 		
 		if( buff_list_describe.toString().equals(""))
 		{
-			buff_list_describe.append("ÎŞ");
+			buff_list_describe.append("æ— ");
 		}
 		
 		return buff_list_describe.toString();
@@ -180,7 +180,7 @@ public class BuffEffectDao extends DaoBase {
 	
 	
 	/**
-	 * µÃµ½Ö¸¶¨×÷ÓÃ¶ÔÏóµÄbuffĞ§¹û¼¯ºÏ
+	 * å¾—åˆ°æŒ‡å®šä½œç”¨å¯¹è±¡çš„buffæ•ˆæœé›†åˆ
 	 * @param effect_object
 	 * @param effect_object_type
 	 * @return
@@ -188,7 +188,7 @@ public class BuffEffectDao extends DaoBase {
 	public BuffEffectVO getBuffEffectByBuffType( int effect_object,int effect_object_type,int buff_type )
 	{
 		BuffEffectVO buffEffect = null;
-		String sql = "select * from u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" and buff_type="+buff_type + " order by bf_pk limit 1";
+		String sql = "SELECT * FROM u_buffeffect_info where effect_object=" + effect_object+" and effect_object_type="+effect_object_type+" and buff_type="+buff_type + " order by bf_pk limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -232,7 +232,7 @@ public class BuffEffectDao extends DaoBase {
 	
 	
 	/**
-	 * ¸üĞÂËùÓĞ»ØºÏÖÆÊ£ÓàµÄ»ØºÏÊı
+	 * æ›´æ–°æ‰€æœ‰å›åˆåˆ¶å‰©ä½™çš„å›åˆæ•°
 	 */
 	public void updateSpareBout( int p_pk )
 	{
@@ -252,7 +252,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 	
 	/**
-	 * Çå³şÄ³Ò»ÊµÌåµÄËùÓĞbuff
+	 * æ¸…æ¥šæŸä¸€å®ä½“çš„æ‰€æœ‰buff
 	 */
 	public void clearBuffEffect( int object_id,int object_type )
 	{
@@ -273,7 +273,7 @@ public class BuffEffectDao extends DaoBase {
 	
 	
 	/**
-	 * Çå³şÄ³Ò»ÊµÌåµÄÄ³Ò»ÌØ¶¨buff_idµÄbuff
+	 * æ¸…æ¥šæŸä¸€å®ä½“çš„æŸä¸€ç‰¹å®šbuff_idçš„buff
 	 */
 	public void clearBuffEffectByBuffId( int object_id,int object_type,int buff_id )
 	{
@@ -293,7 +293,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 
 	/**
-	 * ÕÒ³öÄ³¶ÔÏóÊÇ·ñÒÑ¾­Ä³ÀàĞÍµÄbuff,Èç¹ûÃ»ÓĞ·µ»Ø-1,·ñÔò·µ»Ø×Ü¹²ÓĞ¼¸ÌõÍ¬ÀàĞÍbuff
+	 * æ‰¾å‡ºæŸå¯¹è±¡æ˜¯å¦å·²ç»æŸç±»å‹çš„buff,å¦‚æœæ²¡æœ‰è¿”å›-1,å¦åˆ™è¿”å›æ€»å…±æœ‰å‡ æ¡åŒç±»å‹buff
 	 * @param object_id
 	 * @param object_type
 	 * @param buff_type
@@ -302,7 +302,7 @@ public class BuffEffectDao extends DaoBase {
 	public int hasAlreadyBuff(int object_id, int object_type, int buff_type)
 	{
 		int i = 0;
-		String sql = "select count(1) as all_num from u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
+		String sql = "SELECT count(1) as all_num from u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
 						+" and buff_type="+buff_type;
 		
 		logger.debug(sql);
@@ -328,7 +328,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 
 	/**
-	 * ÕÒ³öÄ³¶ÔÏóÊÇ·ñÒÑ¾­Ä³ÀàĞÍµÄbuff
+	 * æ‰¾å‡ºæŸå¯¹è±¡æ˜¯å¦å·²ç»æŸç±»å‹çš„buff
 	 * @param object_id
 	 * @param object_type
 	 * @param buff_type
@@ -337,7 +337,7 @@ public class BuffEffectDao extends DaoBase {
 	public BuffEffectVO hasAlreadyBuff(int object_id, int object_type, String buff_type)
 	{
 		
-		String sql = "select * from u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
+		String sql = "SELECT * FROM u_buffeffect_info where effect_object="+object_id+" and effect_object_type="+object_type
 						+" and buff_type="+buff_type;
 		
 		logger.debug(sql);
@@ -381,7 +381,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 	
 	/**
-	 * É¾³ıÄ³¶ÔÏóÉíÉÏÒÑ¾­ÓĞµÄÍ¬ÀàĞÍµÄbuff
+	 * åˆ é™¤æŸå¯¹è±¡èº«ä¸Šå·²ç»æœ‰çš„åŒç±»å‹çš„buff
 	 * @param object_id
 	 * @param object_type
 	 * @param buff_type
@@ -405,7 +405,7 @@ public class BuffEffectDao extends DaoBase {
 	}
 
 	/**
-	 * Èç¹ûbuffµÄÊ±¼ä¿ÉÒÔµş¼Ó, ÄÇÃ´½«Ê±¼äµş¼ÓÔÚÒ»Æğ.
+	 * å¦‚æœbuffçš„æ—¶é—´å¯ä»¥å åŠ , é‚£ä¹ˆå°†æ—¶é—´å åŠ åœ¨ä¸€èµ·.
 	 * @param valueOf
 	 * @param player
 	 * @param valueOf2
@@ -430,7 +430,7 @@ public class BuffEffectDao extends DaoBase {
 
 
 	/**
-	 * Èç¹ûbuffµÄ»ØºÏÊı¿ÉÒÔµş¼Ó, ÄÇÃ´½«»ØºÏÊıµş¼ÓÔÚÒ»Æğ.
+	 * å¦‚æœbuffçš„å›åˆæ•°å¯ä»¥å åŠ , é‚£ä¹ˆå°†å›åˆæ•°å åŠ åœ¨ä¸€èµ·.
 	 * @param valueOf
 	 * @param player
 	 * @param valueOf2

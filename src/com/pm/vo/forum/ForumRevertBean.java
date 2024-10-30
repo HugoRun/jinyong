@@ -2,12 +2,12 @@ package com.pm.vo.forum;
 
 public class ForumRevertBean {
 
-	private int id; /**帖子ID:类别主键*/
-	private int fid;/**分类ID*/
-	private int UserID;/**发帖人ID*/
-	private String UserName;/**发帖人用户名*/
-	private String content; /**内容*/
-	private String addTime;/**添加时间*/
+	private int id; /**甯栧瓙ID:绫诲埆涓婚敭*/
+	private int fid;/**鍒嗙被ID*/
+	private int UserID;/**鍙戝笘浜篒D*/
+	private String UserName;/**鍙戝笘浜虹敤鎴峰悕*/
+	private String content; /**鍐呭*/
+	private String addTime;/**娣诲姞鏃堕棿*/
 	
 	private String nickName;
 	private String userImage;
@@ -79,7 +79,7 @@ public class ForumRevertBean {
 	public String getSmallMobile() {
 		if(UserName!=null&&UserName.length()==11)
 		{
-			return UserName.substring(0,3)+"×××"+UserName.substring(8);
+			return UserName.substring(0,3)+"脳脳脳"+UserName.substring(8);
 		}
 		return UserName;
 	}

@@ -7,21 +7,21 @@ import org.apache.log4j.Logger;
 
 import com.ben.vo.info.partinfo.PartInfoVO;
 import com.ls.pub.util.StringUtil;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 import com.pub.db.mysql.SqlData;
 
 /**
- * @author ºîºÆ¾ü pUpHp, pHp,pUpMp, 8:41:31 PM
+ * @author ä¾¯æµ©å†› pUpHp, pHp,pUpMp, 8:41:31 PM
  */
 public class PartInfoDAO
 {
 	SqlData con;
-	Jygamedb con1;
+	JyGameDB con1;
 
 	Logger logger = Logger.getLogger(PartInfoDAO.class);
 
 	/**
-	 * ³õÊ¼»¯¿ì½Ý¼ü
+	 * åˆå§‹åŒ–å¿«æ·é”®
 	 * 
 	 * @param pPk
 	 */
@@ -31,13 +31,13 @@ public class PartInfoDAO
 		{
 			con = new SqlData();
 			StringBuffer sql = new StringBuffer();
-			sql.append("insert into u_shortcut_info values ");
-			sql.append("(null,'").append(pPk).append("','¿ì½Ý¼ü1','¿ì½Ý¼ü1',0,0,0)");
-			sql.append(",(null,'").append(pPk).append("','¿ì½Ý¼ü2','¿ì½Ý¼ü2',0,0,0)");
-			sql.append(",(null,'").append(pPk).append("','¿ì½Ý¼ü3','¿ì½Ý¼ü3',0,0,0)");
-			sql.append(",(null,'").append(pPk).append("','¿ì½Ý¼ü4','¿ì½Ý¼ü4',0,0,0)");
-			sql.append(",(null,'").append(pPk).append("','¿ì½Ý¼ü5','¿ì½Ý¼ü5',0,0,0)");
-			sql.append(",(null,'").append(pPk).append("','¿ì½Ý¼ü6','¿ì½Ý¼ü6',0,0,0)");
+			sql.append("INSERT INTO u_shortcut_info values ");
+			sql.append("(null,'").append(pPk).append("','å¿«æ·é”®1','å¿«æ·é”®1',0,0,0)");
+			sql.append(",(null,'").append(pPk).append("','å¿«æ·é”®2','å¿«æ·é”®2',0,0,0)");
+			sql.append(",(null,'").append(pPk).append("','å¿«æ·é”®3','å¿«æ·é”®3',0,0,0)");
+			sql.append(",(null,'").append(pPk).append("','å¿«æ·é”®4','å¿«æ·é”®4',0,0,0)");
+			sql.append(",(null,'").append(pPk).append("','å¿«æ·é”®5','å¿«æ·é”®5',0,0,0)");
+			sql.append(",(null,'").append(pPk).append("','å¿«æ·é”®6','å¿«æ·é”®6',0,0,0)");
 			con.update(sql.toString());
 		}
 		catch (Exception e)
@@ -52,14 +52,14 @@ public class PartInfoDAO
 
 
 	/**
-	 * Í¨¹ý×¢²áID È¥ÕÒ½ÇÉ«ÃûÊÇ·ñ´æÔÚ
+	 * é€šè¿‡æ³¨å†ŒID åŽ»æ‰¾è§’è‰²åæ˜¯å¦å­˜åœ¨
 	 */
 	public boolean getPartTypeListName(String pName)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select p_pk from u_part_info where p_name='" + pName+ "'";
+			String sql = "SELECT p_pk from u_part_info where p_name='" + pName+ "'";
 			ResultSet rs = con.query(sql);
 			if (rs.next())
 			{
@@ -77,14 +77,14 @@ public class PartInfoDAO
 		return false;
 	}
 	/**
-	 * ÅÐ¶Ï½ÇÉ«ÊÇ·ñÊÇÐÂÊÖ×´Ì¬
+	 * åˆ¤æ–­è§’è‰²æ˜¯å¦æ˜¯æ–°æ‰‹çŠ¶æ€
 	 */
 	public boolean getIsNewState(String pName)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from u_part_info where p_name='" + pName+ "' and player_state_by_new=1";
+			String sql = "SELECT * FROM u_part_info where p_name='" + pName+ "' and player_state_by_new=1";
 			ResultSet rs = con.query(sql);
 			if (rs.next())
 			{
@@ -103,7 +103,7 @@ public class PartInfoDAO
 	}
 
 	/**
-	 * Í¨¹ý×¢²áIDµÃµ½Íæ¼ÒµÄ½ÇÉ«µÄÊýÁ¿
+	 * é€šè¿‡æ³¨å†ŒIDå¾—åˆ°çŽ©å®¶çš„è§’è‰²çš„æ•°é‡
 	 */
 	public int getRoleNum(String uPk)
 	{
@@ -111,7 +111,7 @@ public class PartInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select count(p_pk) as role_num from u_part_info where u_pk="
+			String sql = "SELECT count(p_pk) as role_num from u_part_info where u_pk="
 					+ uPk + " and delete_flag=0";
 			ResultSet rs = con.query(sql);
 			if (rs.next())
@@ -133,14 +133,14 @@ public class PartInfoDAO
 
 
 	/**
-	 * Í¨¹ý½ÇÉ«ID È¥ÕÒ½ÇÉ«Ïà¹ØÐÅÏ¢
+	 * é€šè¿‡è§’è‰²ID åŽ»æ‰¾è§’è‰²ç›¸å…³ä¿¡æ¯
 	 */
 	public PartInfoVO getPartView(String pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from u_part_info where p_pk='" + pPk + "'";
+			String sql = "SELECT * FROM u_part_info where p_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PartInfoVO vo = new PartInfoVO();
 			while (rs.next())
@@ -184,7 +184,7 @@ public class PartInfoDAO
 	}
 
 	/**
-	 * ·µ»Ø½ÇÉ«Ãû³Æ
+	 * è¿”å›žè§’è‰²åç§°
 	 */
 	public String getPartName(String pPk)
 	{
@@ -192,7 +192,7 @@ public class PartInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select p_name from u_part_info where p_pk=" + pPk;
+			String sql = "SELECT p_name from u_part_info where p_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			while (rs.next())
 			{
@@ -211,14 +211,14 @@ public class PartInfoDAO
 	}
 
 	/**
-	 * ·µ»Ø½ÇÉ«ID
+	 * è¿”å›žè§’è‰²ID
 	 */
 	public int getPartPk(String pName)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select p_pk from u_part_info where p_name='" + pName
+			String sql = "SELECT p_pk from u_part_info where p_name='" + pName
 					+ "'";
 			ResultSet rs = con.query(sql);
 			int p_pk = 0;
@@ -241,14 +241,14 @@ public class PartInfoDAO
 
 
 	/**
-	 * ·µ»Ø½ÇÉ«ID
+	 * è¿”å›žè§’è‰²ID
 	 */
 	public int getPartuPk(int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select u_pk from u_part_info where p_pk='" + pPk
+			String sql = "SELECT u_pk from u_part_info where p_pk='" + pPk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			int u_pk = 0;
@@ -271,14 +271,14 @@ public class PartInfoDAO
 
 
 	/**
-	 * ·µ»Ø½ÇÉ«ËùÔÚµØÍ¼
+	 * è¿”å›žè§’è‰²æ‰€åœ¨åœ°å›¾
 	 */
 	public int getPartMap(int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select p_map from u_part_info where p_pk=" + pPk;
+			String sql = "SELECT p_map from u_part_info where p_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			int mapid = 0;
 			if (rs.next())
@@ -300,7 +300,7 @@ public class PartInfoDAO
 
 
 	/**
-	 * ²éÑ¯Íæ¼ÒµÄÓÃ»§ÃûÊÇ·ñÎ¥·´È¡Ãû¹æÔò, Èç¹ûÎ¥·´ÁË¹æÔò, ·µ»Øtrue
+	 * æŸ¥è¯¢çŽ©å®¶çš„ç”¨æˆ·åæ˜¯å¦è¿åå–åè§„åˆ™, å¦‚æžœè¿åäº†è§„åˆ™, è¿”å›žtrue
 	 * 
 	 * @param name
 	 * @return
@@ -308,11 +308,11 @@ public class PartInfoDAO
 	public boolean getForbidName(String name)
 	{
 		boolean flag = false;
-		String sql = "select count(1) as num from jy_forbid_name where str like '%"
+		String sql = "SELECT count(1) as num from jy_forbid_name where str like '%"
 				+ StringUtil.gbToISO(name) + "%'";
 		try
 		{
-			con1 = new Jygamedb();
+			con1 = new JyGameDB();
 			ResultSet rs = con1.query(sql);
 			if (rs.next())
 			{
@@ -340,7 +340,7 @@ public class PartInfoDAO
 
 
 	/**
-	 * µÃµ½ÃÅÅÉ55¼¶ÐÅÏ¢
+	 * å¾—åˆ°é—¨æ´¾55çº§ä¿¡æ¯
 	 * 
 	 * @param list
 	 * @param i
@@ -349,26 +349,26 @@ public class PartInfoDAO
 	{
 		String sqlString = "";
 		if (menpai == 0)
-		{ // 0ÊÇÃ÷½Ì
+		{ // 0æ˜¯æ˜Žæ•™
 			sqlString = "select sum(g_exp),sum(g_next_exp),sum(g_HP),sum(g_MP),sum(g_gj),sum(g_fy) from u_grow_info "
 					+ "where g_pk in (1,2,3,4,5,6,7,8,9) or (g_pk > 60 and g_pk < 107)";
 		}
 		else
 			if (menpai == 1)
-			{ // 1ÊÇØ¤°ï
+			{ // 1æ˜¯ä¸å¸®
 				sqlString = "select sum(g_exp),sum(g_next_exp),sum(g_HP),sum(g_MP),sum(g_gj),sum(g_fy) from u_grow_info "
 						+ "where g_pk in (1,2,3,4,5,6,7,8,9) or (g_pk > 111 and g_pk < 158)";
 			}
 			else
 				if (menpai == 2)
-				{ // 2ÊÇÉÙÁÖ
+				{ // 2æ˜¯å°‘æž—
 					sqlString = "select sum(g_exp),sum(g_next_exp),sum(g_HP),sum(g_MP),sum(g_gj),sum(g_fy) from u_grow_info "
 							+ "where g_pk < 51";
 				}
 
 		try
 		{
-			con1 = new Jygamedb();
+			con1 = new JyGameDB();
 			ResultSet rs = con1.query(sqlString);
 			if (rs.next())
 			{
@@ -395,7 +395,7 @@ public class PartInfoDAO
 	
 
 	/**
-	 * Ìí¼Ó³ýÁË³èÎï²¶×½ºÍ60¼¶¼¼ÄÜÒÔÍâµÄËùÓÐ60¼¶ÒÔÏÂ¼¼ÄÜ
+	 * æ·»åŠ é™¤äº†å® ç‰©æ•æ‰å’Œ60çº§æŠ€èƒ½ä»¥å¤–çš„æ‰€æœ‰60çº§ä»¥ä¸‹æŠ€èƒ½
 	 * 
 	 * @param p_pk
 	 * @param menpai
@@ -405,80 +405,80 @@ public class PartInfoDAO
 		String sql = "";
 		if (menpai == 0)
 		{
-			sql = "insert into u_skill_info values (null,"
+			sql = "INSERT INTO u_skill_info values (null,"
 					+ p_pk
-					+ ",13,'Ã÷½Ì½£·¨(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,310),"
+					+ ",13,'æ˜Žæ•™å‰‘æ³•(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,310),"
 					+ "(null,"
 					+ p_pk
-					+ ",25,'·èÄ§½£·¨(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,311),"
+					+ ",25,'ç–¯é­”å‰‘æ³•(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,311),"
 					+ "(null,"
 					+ p_pk
-					+ ",34,'ÇóÈ«¾÷(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,320),"
+					+ ",34,'æ±‚å…¨è¯€(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,320),"
 					+ "(null,"
 					+ p_pk
-					+ ",43,'Ê¥»ð³õ¶¯(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,321),"
+					+ ",43,'åœ£ç«åˆåŠ¨(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,321),"
 					+ "(null," + p_pk
-					+ ",4,'Ò°ÇòÈ­(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,100),"
+					+ ",4,'é‡Žçƒæ‹³(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,100),"
 					+ "(null," + p_pk
-					+ ",16,'ÏòÑô¹¦',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111113),"
+					+ ",16,'å‘é˜³åŠŸ',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111113),"
 					+ "(null," + p_pk
-					+ ",47,'Ô½Å®ÐÄ·¨',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111116),"
+					+ ",47,'è¶Šå¥³å¿ƒæ³•',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111116),"
 					+"(null,"+p_pk
-					+"152,'¸òó¡¹¦',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,0)";
+					+"152,'è›¤èŸ†åŠŸ',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,0)";
 		}
 		else
 			if (menpai == 1)
 			{
-				sql = "insert into u_skill_info values (null,"
+				sql = "INSERT INTO u_skill_info values (null,"
 						+ p_pk
-						+ ",10,'Ø¤°ï¹÷·¨(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,210),"
+						+ ",10,'ä¸å¸®æ£æ³•(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,210),"
 						+ "(null,"
 						+ p_pk
-						+ ",22,'ÇýÉß¹÷·¨(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,211),"
+						+ ",22,'é©±è›‡æ£æ³•(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,211),"
 						+ "(null,"
 						+ p_pk
-						+ ",31,'°ô´ò¹·Í·(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,220),"
+						+ ",31,'æ£’æ‰“ç‹—å¤´(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,220),"
 						+ "(null,"
 						+ p_pk
-						+ ",40,'¿ºÁúÓÐ»Ú(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,221),"
+						+ ",40,'äº¢é¾™æœ‰æ‚”(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,221),"
 						+ "(null,"
 						+ p_pk
-						+ ",4,'Ò°ÇòÈ­(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,100),"
+						+ ",4,'é‡Žçƒæ‹³(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,100),"
 						+ "(null,"
 						+ p_pk
-						+ ",15,'Á«»¨¹¦',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111112),"
+						+ ",15,'èŽ²èŠ±åŠŸ',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111112),"
 						+ "(null,"
 						+ p_pk
-						+ ",47,'Ô½Å®ÐÄ·¨',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111116)'"
+						+ ",47,'è¶Šå¥³å¿ƒæ³•',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111116)'"
 						+"(null,"+p_pk
-						+"152,'¸òó¡¹¦',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,0)";
+						+"152,'è›¤èŸ†åŠŸ',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,0)";
 			}
 			else
 				if (menpai == 2)
 				{
-					sql = "insert into u_skill_info values (null,"
+					sql = "INSERT INTO u_skill_info values (null,"
 							+ p_pk
-							+ ",7,'ÉÙÁÖµ¶·¨(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,110),"
+							+ ",7,'å°‘æž—åˆ€æ³•(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,110),"
 							+ "(null,"
 							+ p_pk
-							+ ",19,'½µÄ§µ¶·¨(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,111),"
+							+ ",19,'é™é­”åˆ€æ³•(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,111),"
 							+ "(null,"
 							+ p_pk
-							+ ",28,'´©ÔÆÊÆ(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,120),"
+							+ ",28,'ç©¿äº‘åŠ¿(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,120),"
 							+ "(null,"
 							+ p_pk
-							+ ",36,'·ð¹â³õÏÖ(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,121),"
+							+ ",36,'ä½›å…‰åˆçŽ°(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,121),"
 							+ "(null,"
 							+ p_pk
-							+ ",4,'Ò°ÇòÈ­(¾«Í¨)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,100),"
+							+ ",4,'é‡Žçƒæ‹³(ç²¾é€š)',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,100),"
 							+ "(null,"
 							+ p_pk
-							+ ",14,'ôÂôÄ¹¦',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111111),"
+							+ ",14,'è¢ˆè£ŸåŠŸ',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111111),"
 							+ "(null,"
 							+ p_pk
-							+ ",47,'Ô½Å®ÐÄ·¨',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111116),"
+							+ ",47,'è¶Šå¥³å¿ƒæ³•',1000,now(),now(),0,0,0,0,0,0,0,0,0,0,111116),"
 							+"(null,"+p_pk
-							+"152,'¸òó¡¹¦',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,0)";
+							+"152,'è›¤èŸ†åŠŸ',1000,now(),now(),1,0,0,0,0,0,0,0,0,0,0)";
 				}
 
 		try
@@ -504,7 +504,7 @@ public class PartInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select u.p_name,u.p_sex from u_part_info u where u.p_pk = "
+			String sql = "SELECT u.p_name,u.p_sex from u_part_info u where u.p_pk = "
 					+ p_pk;
 			ResultSet rs = con.query(sql);
 			if (rs.next())

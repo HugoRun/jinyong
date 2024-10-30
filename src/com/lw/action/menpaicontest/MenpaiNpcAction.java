@@ -24,7 +24,7 @@ import com.web.jieyi.util.Constant;
 
 public class MenpaiNpcAction extends DispatchAction
 {
-	// ¹¥»÷NPC
+	// æ”»å‡»NPC
 	public ActionForward attack(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -35,7 +35,7 @@ public class MenpaiNpcAction extends DispatchAction
 			OperateMenuVO vo = new OperateMenuVO();
 			if (menu_id == null || menu_id.equals("") || menu_id.equals("null"))
 			{
-				request.setAttribute("display", "ÇëÁªÏµGM!");
+				request.setAttribute("display", "è¯·è”ç³»GM!");
 				return mapping.findForward("display");
 			}
 			else
@@ -47,11 +47,11 @@ public class MenpaiNpcAction extends DispatchAction
 					.getSession());
 			String menpai = vo.getMenuOperate1();
 			if(roleInfo.getBasicInfo().getGrade() < 80){
-				request.setAttribute("display", "ÄúµÄµÈ¼¶²»×ã80¼¶²»ÄÜÌôÕ½!");
+				request.setAttribute("display", "æ‚¨çš„ç­‰çº§ä¸è¶³80çº§ä¸èƒ½æŒ‘æˆ˜!");
 				return mapping.findForward("display");
 			}
 
-			int group_member_num = 0;// Íæ¼ÒËùÔÚ¶ÓÎéÈËÊı
+			int group_member_num = 0;// ç©å®¶æ‰€åœ¨é˜Ÿä¼äººæ•°
 			GroupService groupService = new GroupService();
 			group_member_num = groupService.getGroupNumByMember(roleInfo
 					.getBasicInfo().getPPk());
@@ -60,7 +60,7 @@ public class MenpaiNpcAction extends DispatchAction
 				RoleEntity role = roleService.getRoleInfoById(ppk+"");
 				if(role!=null){
 					if(ppk != roleInfo.getBasicInfo().getPPk()){
-						request.setAttribute("display", "ÓĞÍæ¼ÒÕıÔÚÌôÕ½NPC!");
+						request.setAttribute("display", "æœ‰ç©å®¶æ­£åœ¨æŒ‘æˆ˜NPC!");
 						return mapping.findForward("display");
 					}
 				}else{
@@ -69,7 +69,7 @@ public class MenpaiNpcAction extends DispatchAction
 			}
 			if (group_member_num > 1)
 			{
-				request.setAttribute("display", "×é¶Ó×´Ì¬²»ÄÜ½øÈëÌôÕ½!");
+				request.setAttribute("display", "ç»„é˜ŸçŠ¶æ€ä¸èƒ½è¿›å…¥æŒ‘æˆ˜!");
 				return mapping.findForward("display");
 			}
 
@@ -82,23 +82,23 @@ public class MenpaiNpcAction extends DispatchAction
 						.getBasicInfo().getPPk(), Integer.parseInt(prop[0]));
 				if (tatol_prop_num == 0)
 				{
-					request.setAttribute("display", "ÄúÉíÉÏÃ»ÓĞ" + propVO.getPropName()
-							+ ",¿ÉÒÔµ½ÉÌ³ÇÖĞÈ¥¹ºÂò!");
+					request.setAttribute("display", "æ‚¨èº«ä¸Šæ²¡æœ‰" + propVO.getPropName()
+							+ ",å¯ä»¥åˆ°å•†åŸä¸­å»è´­ä¹°!");
 					return mapping.findForward("display");
 				}
 				else
 				{
 					if (tatol_prop_num < Integer.parseInt(prop[1]))
 					{
-						request.setAttribute("display", "ÄúÉíÉÏµÄ"
-								+ propVO.getPropName() + "ÊıÁ¿²»¹»,ÇëÍê³É´³Ìì¹Ø»î¶¯»ñµÃ!");
+						request.setAttribute("display", "æ‚¨èº«ä¸Šçš„"
+								+ propVO.getPropName() + "æ•°é‡ä¸å¤Ÿ,è¯·å®Œæˆé—¯å¤©å…³æ´»åŠ¨è·å¾—!");
 						return mapping.findForward("display");
 					}
 					else
 					{
 						if (!menpai.equals(roleInfo.getBasicInfo().getPRace()+ ""))
 						{
-							request.setAttribute("display", "ÃÅÅÉ²»·û,²»ÄÜÌôÕ½!");
+							request.setAttribute("display", "é—¨æ´¾ä¸ç¬¦,ä¸èƒ½æŒ‘æˆ˜!");
 							return mapping.findForward("display");
 						}
 						else
@@ -122,7 +122,7 @@ public class MenpaiNpcAction extends DispatchAction
 			{
 				if (!menpai.equals(roleInfo.getBasicInfo().getPRace()+ ""))
 				{
-					request.setAttribute("display", "ÃÅÅÉ²»·û,²»ÄÜÌôÕ½!");
+					request.setAttribute("display", "é—¨æ´¾ä¸ç¬¦,ä¸èƒ½æŒ‘æˆ˜!");
 					return mapping.findForward("display");
 				}
 				else
@@ -141,12 +141,12 @@ public class MenpaiNpcAction extends DispatchAction
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("display", "³¤ÀÏÕıÔÚ±Õ¹ØĞŞÁ¶,ÇëÏÂÖÜÔÙÀ´!");
+			request.setAttribute("display", "é•¿è€æ­£åœ¨é—­å…³ä¿®ç‚¼,è¯·ä¸‹å‘¨å†æ¥!");
 			return mapping.findForward("display");
 		}
 	}
 
-	// ²é¿´ÅÅÃû
+	// æŸ¥çœ‹æ’å
 	public ActionForward rank(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -157,7 +157,7 @@ public class MenpaiNpcAction extends DispatchAction
 			OperateMenuVO vo = new OperateMenuVO();
 			if (menu_id == null || menu_id.equals("") || menu_id.equals("null"))
 			{
-				request.setAttribute("display", "ÇëÁªÏµGM!");
+				request.setAttribute("display", "è¯·è”ç³»GM!");
 				return mapping.findForward("display");
 			}
 			else
@@ -165,14 +165,14 @@ public class MenpaiNpcAction extends DispatchAction
 				vo = ms.getMenuById(Integer.parseInt(menu_id));
 			}
 			String menpai = vo.getMenuOperate1();
-			// ÅÅÃû È¡µ½ÅÅÃûĞÅÏ¢
-			request.setAttribute("display", "¹¦ÄÜÔİÎ´¿ª·Å!");
+			// æ’å å–åˆ°æ’åä¿¡æ¯
+			request.setAttribute("display", "åŠŸèƒ½æš‚æœªå¼€æ”¾!");
 			return mapping.findForward("display");
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			request.setAttribute("display", "¹¦ÄÜÔİÎ´¿ª·Å!");
+			request.setAttribute("display", "åŠŸèƒ½æš‚æœªå¼€æ”¾!");
 			return mapping.findForward("display");
 		}
 	}

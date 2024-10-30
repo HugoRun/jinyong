@@ -1,82 +1,64 @@
 package com.ben.pk.active;
 
+import org.apache.log4j.Logger;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
+
 import java.text.ParseException;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
-import org.quartz.CronTrigger;
-import org.quartz.Job;
-import org.quartz.JobDetail;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.Trigger;
-import org.quartz.helpers.TriggerUtils;
-import org.quartz.impl.StdSchedulerFactory;
+public class PKActiveStartJob implements Job {
+    Logger logger = Logger.getLogger("log.service");
 
-public class PKActiveStartJob implements Job
-{
-	Logger logger = Logger.getLogger("log.service");
-	public void execute(JobExecutionContext arg0) throws JobExecutionException
-	{
-		runScheduler();
-	}
-	public void runScheduler()
-	{
-		Scheduler scheduler = null;
-		try
-		{
-			scheduler = StdSchedulerFactory.getDefaultScheduler();
-			scheduler.start();
-			logger.info("Scheduler was started at " + new Date());
-			//´´½¨¶ÔÕó±í
-			JobDetail jobDetail_createVs = new JobDetail("PkActive_createVS", Scheduler.DEFAULT_GROUP,PKActiveCreateVS.class);
-			try
-			{
-				CronTrigger trigger_createVS = new CronTrigger("MyTrigger_createVS", null, "0 00 00 ? * *");//Ã¿ÌìÏÂÎç24:00Ö´ĞĞ
-				Date date = new Date();
-				trigger_createVS.setStartTime(date);
-				scheduler.scheduleJob(jobDetail_createVs, trigger_createVS);
-				logger.info("´´½¨¶ÔÕó±í¶¨Ê±¿ªÊ¼.........");
-			}
-			catch (ParseException e)
-			{
-				logger.error(e);
-			}
-			//±ÈÈüÊ±¼äÃ»ÓĞ½øÈë±ÈÈü³¡µØ
-			JobDetail jobDetail_outOfEnter=new JobDetail("PKActive_outOfEnter",Scheduler.DEFAULT_GROUP,PKActiveOutOfEnter.class);
-			try
-			{
-				CronTrigger trigger_outOFEnter=new CronTrigger("MyTrigger_outOfEnter",null,"0 5 13 ? * *");//Ã¿ÌìÏÂÎçÒ»µãÎå·ÖÖ´ĞĞ
-				Date date = new Date();
-				trigger_outOFEnter.setStartTime(date);
-				scheduler.scheduleJob(jobDetail_outOfEnter,trigger_outOFEnter);//trigger_outOFEnter
-				logger.info("µ½Ê±¼äÃ»ÓĞ½øÈë±ÈÈü³¡µØ¼ÆÊ±¿ªÊ¼.......");
-			}
-			catch (ParseException e)
-			{
-				logger.error(e);
-			}
-			//±ÈÈü³¬Ê±
-			JobDetail jobDetail_outOfPK=new JobDetail("PKActive_outOfPK",Scheduler.DEFAULT_GROUP,PKActiveOutOfPk.class);
-			try
-			{
-				CronTrigger trigger_outOfPK=new CronTrigger("MyTrigger_outOfPK",null,"0 30 13 ? * *");//Ã¿ÌìÏÂÎçÒ»µã°ë
-				Date date = new Date();
-				trigger_outOfPK.setStartTime(date);
-				scheduler.scheduleJob(jobDetail_outOfPK,trigger_outOfPK);//trigger_outOFEnter
-			}
-			catch (ParseException e)
-			{
-				logger.error(e);
-			}
+    public void execute(JobExecutionContext arg0) throws JobExecutionException {
+        runScheduler();
+    }
 
-		}
-		catch (SchedulerException ex)
-		{
-			logger.error(ex);
-		}
-	}
+    public void runScheduler() {
+        Scheduler scheduler = null;
+        try {
+            scheduler = StdSchedulerFactory.getDefaultScheduler();
+            scheduler.start();
+            logger.info("Scheduler was started at " + new Date());
+            //åˆ›å»ºå¯¹é˜µè¡¨
+            JobDetail jobDetail_createVs = new JobDetail("PkActive_createVS", Scheduler.DEFAULT_GROUP, PKActiveCreateVS.class);
+            try {
+                // æ¯å¤©ä¸‹åˆ24:00æ‰§è¡Œ
+                CronTrigger trigger_createVS = new CronTrigger("MyTrigger_createVS", null, "0 00 00 ? * *");
+                Date date = new Date();
+                trigger_createVS.setStartTime(date);
+                scheduler.scheduleJob(jobDetail_createVs, trigger_createVS);
+                logger.info("åˆ›å»ºå¯¹é˜µè¡¨å®šæ—¶å¼€å§‹.........");
+            } catch (ParseException e) {
+                logger.error(e);
+            }
+            //æ¯”èµ›æ—¶é—´æ²¡æœ‰è¿›å…¥æ¯”èµ›åœºåœ°
+            JobDetail jobDetail_outOfEnter = new JobDetail("PKActive_outOfEnter", Scheduler.DEFAULT_GROUP, PKActiveOutOfEnter.class);
+            try {
+                // æ¯å¤©ä¸‹åˆä¸€ç‚¹äº”åˆ†æ‰§è¡Œ
+                CronTrigger trigger_outOFEnter = new CronTrigger("MyTrigger_outOfEnter", null, "0 5 13 ? * *");
+                Date date = new Date();
+                trigger_outOFEnter.setStartTime(date);
+                scheduler.scheduleJob(jobDetail_outOfEnter, trigger_outOFEnter);//trigger_outOFEnter
+                logger.info("åˆ°æ—¶é—´æ²¡æœ‰è¿›å…¥æ¯”èµ›åœºåœ°è®¡æ—¶å¼€å§‹.......");
+            } catch (ParseException e) {
+                logger.error(e);
+            }
+            // æ¯”èµ›è¶…æ—¶
+            JobDetail jobDetail_outOfPK = new JobDetail("PKActive_outOfPK", Scheduler.DEFAULT_GROUP, PKActiveOutOfPk.class);
+            try {
+                // æ¯å¤©ä¸‹åˆä¸€ç‚¹åŠ
+                CronTrigger trigger_outOfPK = new CronTrigger("MyTrigger_outOfPK", null, "0 30 13 ? * *");
+                Date date = new Date();
+                trigger_outOfPK.setStartTime(date);
+                scheduler.scheduleJob(jobDetail_outOfPK, trigger_outOfPK);//trigger_outOFEnter
+            } catch (ParseException e) {
+                logger.error(e);
+            }
+
+        } catch (SchedulerException ex) {
+            logger.error(ex);
+        }
+    }
 
 }

@@ -24,20 +24,20 @@ public class SpecialPropService
 {
 	PropertyModel suitPropertyModel = new PropertyModel();
 	/**
-	 * Ê¹ÓÃ×°±¸ÀàÎïÆ·µÄ·½·¨HP
+	 * ä½¿ç”¨è£…å¤‡ç±»ç‰©å“çš„æ–¹æ³•HP
 	 */
 	private int useEquipHpItemHP(PartInfoVO player, SpecialPropVO vo)
 	{
 
-		// µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó
+		// é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚
 		if (player.getPHp() != player.getPMaxHp())
 		{
-			// ÎïÆ·µÄÑªÁ¿¼õÉÙ
+			// ç‰©å“çš„è¡€é‡å‡å°‘
 			String hp1 = vo.getPropoperate1();
 			String[] x = hp1.split(",");
-			Integer intx1 = Integer.valueOf(x[0]);// Ã¿»ØºÏ×î´ó¼ÓÑªÁ¿
-			Integer intx2 = Integer.valueOf(x[1]);// Ê£ÓàÑªÁ¿
-			int playerHp = player.getPMaxHp() - player.getPHp();// Íæ¼ÒÒª¼ÓµÄÑªÁ¿
+			Integer intx1 = Integer.valueOf(x[0]);// æ¯å›åˆæœ€å¤§åŠ è¡€é‡
+			Integer intx2 = Integer.valueOf(x[1]);// å‰©ä½™è¡€é‡
+			int playerHp = player.getPMaxHp() - player.getPHp();// ç©å®¶è¦åŠ çš„è¡€é‡
 
 			RoleService roleService = new RoleService();
 			RoleEntity roleInfo = roleService.getRoleInfoById(player.getPPk()
@@ -45,14 +45,14 @@ public class SpecialPropService
 
 			if (playerHp > intx1)
 			{
-				// ÑªÁ¿¸üĞÂ
+				// è¡€é‡æ›´æ–°
 				player.setPHp(player.getPHp() + intx1);
 				roleInfo.getBasicInfo().updateHp(player.getPHp());
 				return intx1;
 			}
 			else
 			{
-				// ÑªÁ¿¸üĞÂ
+				// è¡€é‡æ›´æ–°
 				player.setPHp(player.getPHp() + playerHp);
 				roleInfo.getBasicInfo().updateHp(player.getPHp());
 				return playerHp;
@@ -61,24 +61,24 @@ public class SpecialPropService
 			 * if (intx2 != 0) { if (playerHp > intx1) { if (intx2 < intx1) {
 			 * intx2 = 0; x[1] = intx2.toString(); String hp2 = x[0] + "," +
 			 * x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," + x[5]; //
-			 * ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿ dao.updateEquipItemNumHM(player.getPPk(), i, hp2); //
-			 * ÑªÁ¿¸üĞÂ player.setPHp(player.getPHp() + intx2); playerDao
+			 * æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡ dao.updateEquipItemNumHM(player.getPPk(), i, hp2); //
+			 * è¡€é‡æ›´æ–° player.setPHp(player.getPHp() + intx2); playerDao
 			 * .updateHP(player.getPPk(), player.getPHp()); return intx2; } else {
 			 * intx2 = intx2 - intx1; x[1] = intx2.toString(); String hp2 = x[0] +
 			 * "," + x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," + x[5]; //
-			 * ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿ dao.updateEquipItemNumHM(player.getPPk(), i, hp2); //
-			 * ÑªÁ¿¸üĞÂ player.setPHp(player.getPHp() + intx1); playerDao
+			 * æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡ dao.updateEquipItemNumHM(player.getPPk(), i, hp2); //
+			 * è¡€é‡æ›´æ–° player.setPHp(player.getPHp() + intx1); playerDao
 			 * .updateHP(player.getPPk(), player.getPHp()); return intx1; } }
 			 * else { if (intx2 < playerHp) { intx2 = 0; x[1] =
 			 * intx2.toString(); String hp2 = x[0] + "," + x[1] + "," + x[2] +
-			 * "," + x[3] + "," + x[4] + "," + x[5]; // ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿
-			 * dao.updateEquipItemNumHM(player.getPPk(), i, hp2); // ÑªÁ¿¸üĞÂ
+			 * "," + x[3] + "," + x[4] + "," + x[5]; // æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡
+			 * dao.updateEquipItemNumHM(player.getPPk(), i, hp2); // è¡€é‡æ›´æ–°
 			 * player.setPHp(player.getPHp() + intx2); playerDao
 			 * .updateHP(player.getPPk(), player.getPHp()); return intx2; } else {
 			 * intx2 = intx2 - playerHp; x[1] = intx2.toString(); String hp2 =
 			 * x[0] + "," + x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," +
-			 * x[5]; // ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿ dao.updateEquipItemNumHM(player.getPPk(), i,
-			 * hp2); // ÑªÁ¿¸üĞÂ player.setPHp(player.getPHp() + playerHp);
+			 * x[5]; // æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡ dao.updateEquipItemNumHM(player.getPPk(), i,
+			 * hp2); // è¡€é‡æ›´æ–° player.setPHp(player.getPHp() + playerHp);
 			 * playerDao .updateHP(player.getPPk(), player.getPHp()); return
 			 * playerHp; } } } else { return 0; }
 			 */
@@ -90,19 +90,19 @@ public class SpecialPropService
 	}
 
 	/**
-	 * Ê¹ÓÃ×°±¸ÀàÎïÆ·µÄ·½·¨MP
+	 * ä½¿ç”¨è£…å¤‡ç±»ç‰©å“çš„æ–¹æ³•MP
 	 */
 	private int useEquipMpItemMP(PartInfoVO player, SpecialPropVO vo)
 	{
-		// µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó
+		// é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚
 		if (player.getPMp() != player.getPMaxMp())
 		{
-			// ÎïÆ·µÄÑªÁ¿¼õÉÙ
+			// ç‰©å“çš„è¡€é‡å‡å°‘
 			String mp1 = vo.getPropoperate1();
 			String[] x = mp1.split(",");
 			Integer intx1 = Integer.valueOf(x[3]);
 			Integer intx2 = Integer.valueOf(x[4]);
-			int playerMp = player.getPMaxMp() - player.getPMp();// Íæ¼ÒÒª¼ÓµÄÑªÁ¿
+			int playerMp = player.getPMaxMp() - player.getPMp();// ç©å®¶è¦åŠ çš„è¡€é‡
 
 			RoleService roleService = new RoleService();
 			RoleEntity roleInfo = roleService.getRoleInfoById(player.getPPk()
@@ -110,14 +110,14 @@ public class SpecialPropService
 
 			if (playerMp > intx1)
 			{
-				// ÑªÁ¿¸üĞÂ
+				// è¡€é‡æ›´æ–°
 				player.setPMp(player.getPMp() + intx1);
 				roleInfo.getBasicInfo().updateMp(player.getPMp());
 				return intx1;
 			}
 			else
 			{
-				// ÑªÁ¿¸üĞÂ
+				// è¡€é‡æ›´æ–°
 				player.setPMp(player.getPMp() + playerMp);
 				roleInfo.getBasicInfo().updateMp(player.getPMp());
 				return playerMp;
@@ -126,24 +126,24 @@ public class SpecialPropService
 			 * if (intx2 != 0) { if (playerMp > intx1) { if (intx2 < intx1) {
 			 * intx2 = 0; x[4] = intx2.toString(); String mp2 = x[0] + "," +
 			 * x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," + x[5]; //
-			 * ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿ dao.updateEquipItemNumHM(player.getPPk(), i, mp2); //
-			 * ÑªÁ¿¸üĞÂ player.setPMp(player.getPMp() + intx2); playerDao
+			 * æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡ dao.updateEquipItemNumHM(player.getPPk(), i, mp2); //
+			 * è¡€é‡æ›´æ–° player.setPMp(player.getPMp() + intx2); playerDao
 			 * .updateMP(player.getPPk(), player.getPMp()); return intx2; } else {
 			 * intx2 = intx2 - intx1; x[4] = intx2.toString(); String mp2 = x[0] +
 			 * "," + x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," + x[5]; //
-			 * ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿ dao.updateEquipItemNumHM(player.getPPk(), i, mp2); //
-			 * ÑªÁ¿¸üĞÂ player.setPMp(player.getPMp() + intx1); playerDao
+			 * æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡ dao.updateEquipItemNumHM(player.getPPk(), i, mp2); //
+			 * è¡€é‡æ›´æ–° player.setPMp(player.getPMp() + intx1); playerDao
 			 * .updateMP(player.getPPk(), player.getPMp()); return intx1; } }
 			 * else { if (intx2 < playerMp) { intx2 = 0; x[4] =
 			 * intx2.toString(); String mp2 = x[0] + "," + x[1] + "," + x[2] +
-			 * "," + x[3] + "," + x[4] + "," + x[5]; // ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿
-			 * dao.updateEquipItemNumHM(player.getPPk(), i, mp2); // ÑªÁ¿¸üĞÂ
+			 * "," + x[3] + "," + x[4] + "," + x[5]; // æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡
+			 * dao.updateEquipItemNumHM(player.getPPk(), i, mp2); // è¡€é‡æ›´æ–°
 			 * player.setPMp(player.getPMp() + intx2); playerDao
 			 * .updateMP(player.getPPk(), player.getPMp()); return intx2; } else {
 			 * intx2 = intx2 - playerMp; x[4] = intx2.toString(); String mp2 =
 			 * x[0] + "," + x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," +
-			 * x[5]; // ¸üĞÂÎïÆ·µÄÊ¹ÓÃÁ¿ dao.updateEquipItemNumHM(player.getPPk(), i,
-			 * mp2); // ÑªÁ¿¸üĞÂ player.setPMp(player.getPMp() + playerMp);
+			 * x[5]; // æ›´æ–°ç‰©å“çš„ä½¿ç”¨é‡ dao.updateEquipItemNumHM(player.getPPk(), i,
+			 * mp2); // è¡€é‡æ›´æ–° player.setPMp(player.getPMp() + playerMp);
 			 * playerDao .updateMP(player.getPPk(), player.getPMp()); return
 			 * playerMp; } } } else { return 0; }
 			 */
@@ -155,7 +155,7 @@ public class SpecialPropService
 
 	}
 
-	/** µÃµ½Íæ¼Ò¿ÉÒÔ×°±¸µÄ×°±¸ÀàµÀ¾ßµÄÊıÁ¿ */
+	/** å¾—åˆ°ç©å®¶å¯ä»¥è£…å¤‡çš„è£…å¤‡ç±»é“å…·çš„æ•°é‡ */
 	public List<PlayerPropGroupVO> getPlayerEquipNum(int p_pk)
 	{
 		SpecialPropDAO propGroupDao = new SpecialPropDAO();
@@ -163,7 +163,7 @@ public class SpecialPropService
 		return propGroupVO;
 	}
 
-	/** ×°±¸ÀàµÀ¾ß·ÖÒ³´¦Àí */
+	/** è£…å¤‡ç±»é“å…·åˆ†é¡µå¤„ç† */
 	public List<PlayerPropGroupVO> getPlayerEquipList(int pPk, int thispage,
 			int perpagenum)
 	{
@@ -174,7 +174,7 @@ public class SpecialPropService
 	}
 
 	/**
-	 * ¸üĞÂ×Ô¶¯²¹Ñª²¹À¶²¹³å·½·¨µÀ¾ß ·µ»ØµÄÊÇÊ¹ÓÃÎïÆ·µÄÊıÁ¿ Èç¹ûÊÇ0 Ôò±íÊ¾È«²¿¶¼Ê¹ÓÃ
+	 * æ›´æ–°è‡ªåŠ¨è¡¥è¡€è¡¥è“è¡¥å†²æ–¹æ³•é“å…· è¿”å›çš„æ˜¯ä½¿ç”¨ç‰©å“çš„æ•°é‡ å¦‚æœæ˜¯0 åˆ™è¡¨ç¤ºå…¨éƒ¨éƒ½ä½¿ç”¨
 	 */
 	/*
 	 * public int updateEquipHpItemHP(PropVO prop, int p_pk, int num, String
@@ -194,7 +194,7 @@ public class SpecialPropService
 	 * else { return -1; } }
 	 * 
 	 *//**
-		 * ¸üĞÂ×Ô¶¯²¹Ñª²¹À¶²¹Âú·½·¨µÀ¾ß ·µ»ØµÄÊÇÊ¹ÓÃÎïÆ·µÄÊıÁ¿ Èç¹ûÊÇ0 Ôò±íÊ¾È«²¿¶¼Ê¹ÓÃ
+		 * æ›´æ–°è‡ªåŠ¨è¡¥è¡€è¡¥è“è¡¥æ»¡æ–¹æ³•é“å…· è¿”å›çš„æ˜¯ä½¿ç”¨ç‰©å“çš„æ•°é‡ å¦‚æœæ˜¯0 åˆ™è¡¨ç¤ºå…¨éƒ¨éƒ½ä½¿ç”¨
 		 */
 	/*
 	 * public int updateEquipHpItemMP(PropVO prop, int p_pk, int num, String
@@ -214,7 +214,7 @@ public class SpecialPropService
 	 * else { return -1; } }
 	 */
 
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 
 	private String getPropDisplay(String propReLevel)
 	{
@@ -251,7 +251,7 @@ public class SpecialPropService
 		}
 	}
 
-	/** Íæ¼Ò×°±¸ÀàµÀ¾ß¸üĞÂ */
+	/** ç©å®¶è£…å¤‡ç±»é“å…·æ›´æ–° */
 	public int getEquipItemOn(int p_pk, int pg_pk, int p_level)
 	{
 		RoleCache rc = new RoleCache();
@@ -289,7 +289,7 @@ public class SpecialPropService
 		}
 	}
 
-	/** ¸øÍæ¼ÒĞ¶ÏÂ×°±¸ */
+	/** ç»™ç©å®¶å¸ä¸‹è£…å¤‡ */
 	public String getEquipItemOff(int p_pk)
 	{
 		String hint = null;
@@ -299,11 +299,11 @@ public class SpecialPropService
 
 		SpecialPropDAO dao = new SpecialPropDAO();
 		SpecialPropVO vo = dao.getEquipProp(p_pk);
-		// µÃµ½°ü¹üÊ£ÓàµÄ¿Õ¼ä
+		// å¾—åˆ°åŒ…è£¹å‰©ä½™çš„ç©ºé—´
 		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();
 		if (wrap_spare == 0)
 		{
-			hint = "°ü¹ü¸ñ²»¹»ÁË£¡";
+			hint = "åŒ…è£¹æ ¼ä¸å¤Ÿäº†ï¼";
 			return hint;
 		}
 		else
@@ -337,7 +337,7 @@ public class SpecialPropService
 		}
 	}
 
-	/** ÅĞ¶ÏÊÇ·ñÊ¹ÓÃÁ¿Îª0 ÊÇ0 Í£Ö¹Õ½¶· */
+	/** åˆ¤æ–­æ˜¯å¦ä½¿ç”¨é‡ä¸º0 æ˜¯0 åœæ­¢æˆ˜æ–— */
 	private int getEquipNum(int p_pk)
 	{
 		SpecialPropDAO dao = new SpecialPropDAO();
@@ -357,7 +357,7 @@ public class SpecialPropService
 		return 1;
 	}
 
-	/** ¼ÆËãÊ¹ÓÃÊ±¼ä */
+	/** è®¡ç®—ä½¿ç”¨æ—¶é—´ */
 	private int getUserTime(int p_pk)
 	{
 		SpecialPropDAO dao = new SpecialPropDAO();
@@ -389,7 +389,7 @@ public class SpecialPropService
 		return -1;
 	}
 
-	/** ¼ÆËãÊ¹ÓÃÊ±¼ä */
+	/** è®¡ç®—ä½¿ç”¨æ—¶é—´ */
 	public int getUserTimeByPgpk(int p_pk, String pg_pk)
 	{
 		SpecialPropDAO dao = new SpecialPropDAO();
@@ -416,36 +416,36 @@ public class SpecialPropService
 		return 0;
 	}
 
-	/** ´¦Àí×°±¸µÀ¾ßµÄ ·½·¨ */
+	/** å¤„ç†è£…å¤‡é“å…·çš„ æ–¹æ³• */
 	/*
 	 * public String addEquipPropHpMp(int p_pk, int pg_pk, int prop_id, int
 	 * prop_id1, int num, int type, String pg_pk1) { PlayerPropGroupDao pdao =
 	 * new PlayerPropGroupDao(); PlayerPropGroupVO pgvo = pdao.getByPgPk(pg_pk);
 	 * GoodsService gse = new GoodsService(); if (num > pgvo.getPropNum()) {
-	 * return "ÄúÊäÈëµÄÊıÁ¿Ì«¶àÁË"; } else { SpecialPropService se = new
+	 * return "æ‚¨è¾“å…¥çš„æ•°é‡å¤ªå¤šäº†"; } else { SpecialPropService se = new
 	 * SpecialPropService(); PropDao dao = new PropDao(); PropVO prop =
 	 * dao.getById(prop_id); PropVO prop1 = dao.getById(prop_id1);
 	 * getEquipItemSign(p_pk, 0); int num1 = 0; if (type == 1) { num1 =
 	 * se.updateEquipHpItemHP(prop, p_pk, num, pg_pk1); if (num1 == -1) { return
-	 * "ÄúµÄµÀ¾ßÒÑ¾­ÂúÁË"; } else { if (num1 == 0) { int add_hp =
+	 * "æ‚¨çš„é“å…·å·²ç»æ»¡äº†"; } else { if (num1 == 0) { int add_hp =
 	 * Integer.parseInt(prop.getPropOperate1()) num; gse.removeProps(p_pk,
-	 * prop_id, num); return prop1.getPropName() + "Î´²¹Âú<br/>ÄúÊ¹ÓÃÁË" +
-	 * prop.getPropName() + "¡Á" + num + "²¹³äÁËHP" + add_hp; } else { int add_hp =
+	 * prop_id, num); return prop1.getPropName() + "æœªè¡¥æ»¡<br/>æ‚¨ä½¿ç”¨äº†" +
+	 * prop.getPropName() + "Ã—" + num + "è¡¥å……äº†HP" + add_hp; } else { int add_hp =
 	 * Integer.parseInt(prop.getPropOperate1()) num1; gse.removeProps(p_pk,
-	 * prop_id, num1); return prop1.getPropName() + "ÒÑ²¹Âú<br/>ÄúÊ¹ÓÃÁË" +
-	 * prop.getPropName() + "¡Á" + num1 + "²¹³äÁËHP" + add_hp; } } } if (type == 2) {
+	 * prop_id, num1); return prop1.getPropName() + "å·²è¡¥æ»¡<br/>æ‚¨ä½¿ç”¨äº†" +
+	 * prop.getPropName() + "Ã—" + num1 + "è¡¥å……äº†HP" + add_hp; } } } if (type == 2) {
 	 * num1 = se.updateEquipHpItemMP(prop, p_pk, num, pg_pk1); if (num1 == -1) {
-	 * return "ÄúµÄµÀ¾ßÒÑ¾­ÂúÁË"; } else { if (num1 == 0) { int add_mp =
+	 * return "æ‚¨çš„é“å…·å·²ç»æ»¡äº†"; } else { if (num1 == 0) { int add_mp =
 	 * Integer.parseInt(prop.getPropOperate1()) num; gse.removeProps(p_pk,
-	 * prop_id, num); return prop1.getPropName() + "Î´²¹Âú<br/>ÄúÊ¹ÓÃÁË" +
-	 * prop.getPropName() + "¡Á" + num + "²¹³äÁËMP" + add_mp; } else {
+	 * prop_id, num); return prop1.getPropName() + "æœªè¡¥æ»¡<br/>æ‚¨ä½¿ç”¨äº†" +
+	 * prop.getPropName() + "Ã—" + num + "è¡¥å……äº†MP" + add_mp; } else {
 	 * 
 	 * int add_mp = Integer.parseInt(prop.getPropOperate1()) num1;
-	 * gse.removeProps(p_pk, prop_id, num1); return prop1.getPropName() + "ÒÑ²¹Âú<br/>ÄúÊ¹ÓÃÁË" +
-	 * prop.getPropName() + "¡Á" + num1 + "²¹³äÁËMP" + add_mp; } } } } return null; }
+	 * gse.removeProps(p_pk, prop_id, num1); return prop1.getPropName() + "å·²è¡¥æ»¡<br/>æ‚¨ä½¿ç”¨äº†" +
+	 * prop.getPropName() + "Ã—" + num1 + "è¡¥å……äº†MP" + add_mp; } } } } return null; }
 	 */
 
-	/** ¸øµÀ¾ß±ê¼Ç ÒÔ´ËÅĞ¶ÏÊÇ·ñÊÇÅ¼ÄÇ¸öÍê±Ï */
+	/** ç»™é“å…·æ ‡è®° ä»¥æ­¤åˆ¤æ–­æ˜¯å¦æ˜¯å¶é‚£ä¸ªå®Œæ¯• */
 	public void getEquipItemSign(int p_pk, int sign)
 	{
 		SpecialPropDAO dao = new SpecialPropDAO();
@@ -460,7 +460,7 @@ public class SpecialPropService
 		}
 	}
 	
-	/** ¸øµÀ¾ß±ê¼Ç ÒÔ´ËÅĞ¶ÏÊÇ·ñÊÇÅ¼ÄÇ¸öÍê±Ï */
+	/** ç»™é“å…·æ ‡è®° ä»¥æ­¤åˆ¤æ–­æ˜¯å¦æ˜¯å¶é‚£ä¸ªå®Œæ¯• */
 	public void getEquipItemSign1(int p_pk, int sign,int prop_id)
 	{
 		SpecialPropDAO dao = new SpecialPropDAO();
@@ -484,7 +484,7 @@ public class SpecialPropService
 					if (vo.getSign() == 3)
 					{
 
-						display = "ÄúµÄµÀ¾ß" + propvo.getPropName() + "Ê¹ÓÃÊ±¼äÒÑµ½";
+						display = "æ‚¨çš„é“å…·" + propvo.getPropName() + "ä½¿ç”¨æ—¶é—´å·²åˆ°";
 						return display;
 					}
 				}
@@ -501,8 +501,8 @@ public class SpecialPropService
 					if (i < 1)
 					{
 
-						display = "ÄãµÄ" + propvo.getPropName()
-								+ "°®ÇéÌğÃÛ¶ÈÒÑ¾­ÎªÁã,±ØĞëÔö¼Ó°®ÇéÌğÃÛ¶È·½¿É¼ÌĞøÊ¹ÓÃ,Ê¹ÓÃÃµ¹å»¨¿ÉÔö¼Ó°®ÇéÌğÃÛ¶È!";
+						display = "ä½ çš„" + propvo.getPropName()
+								+ "çˆ±æƒ…ç”œèœœåº¦å·²ç»ä¸ºé›¶,å¿…é¡»å¢åŠ çˆ±æƒ…ç”œèœœåº¦æ–¹å¯ç»§ç»­ä½¿ç”¨,ä½¿ç”¨ç«ç‘°èŠ±å¯å¢åŠ çˆ±æƒ…ç”œèœœåº¦!";
 						return display;
 					}
 				}

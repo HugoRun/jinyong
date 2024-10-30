@@ -1,9 +1,5 @@
 package com.web.service;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import com.ben.shitu.model.ShituConstant;
 import com.ben.vo.task.TaskVO;
 import com.dp.dao.credit.CreditProce;
@@ -26,22 +22,26 @@ import com.ls.web.service.player.MyServiceImpl;
 import com.ls.web.service.player.PlayerService;
 import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 import com.pm.service.systemInfo.SystemInfoService;
+import org.apache.log4j.Logger;
+
+import java.util.List;
 
 /**
- * ¹¦ÄÜ:²Ëµ¥ÈÎÎñÅĞ¶Ï
- * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * åŠŸèƒ½:èœå•ä»»åŠ¡åˆ¤æ–­
+ *
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class TaskService {
-	Logger logger = Logger.getLogger("log.task");
-	/**
-	 * Ö´ĞĞ¶Ô»°ÈÎÎñ
-	 */
-	public String getDuiHuaService(RoleEntity roleEntity,TaskVO taskVO) {
-		String hint = null;
-		try { 
-			int pPk = roleEntity.getBasicInfo().getPPk();
-			CurTaskInfo curTaskInfo = (CurTaskInfo)roleEntity.getTaskInfo().getCurTaskList().getByZu(taskVO.getTZu());
+    Logger logger = Logger.getLogger("log.task");
+
+    /**
+     * æ‰§è¡Œå¯¹è¯ä»»åŠ¡
+     */
+    public String getDuiHuaService(RoleEntity roleEntity, TaskVO taskVO) {
+        String hint = null;
+        try {
+            int pPk = roleEntity.getBasicInfo().getPPk();
+            CurTaskInfo curTaskInfo = roleEntity.getTaskInfo().getCurTaskList().getByZu(taskVO.getTZu());
 			/*TaskDAO taskDAO = new TaskDAO();
 			if(Integer.parseInt(taskVO.getTZuxl()) == 1){
 				taskVO.setUpTaskId(taskVO.getTId());
@@ -49,357 +49,359 @@ public class TaskService {
 				int task_id = taskDAO.getTaskZUXl(taskVO.getTZu(), (Integer.parseInt(taskVO.getTZuxl()) - 1)+"");
 				taskVO.setUpTaskId(task_id);
 			} */
-			int addMoney = ((taskVO.getTMoney() != null && !taskVO.getTMoney().equals("0") && !taskVO.getTMoney().trim().equals(""))?Integer.parseInt(taskVO.getTMoney().trim()):0);
-			int addExp = ((taskVO.getTExp() != null && !taskVO.getTExp().equals("0") && !taskVO.getTExp().trim().equals(""))?Integer.parseInt(taskVO.getTExp().trim()):0);
-			int addCredit = ((taskVO.getTSw() != null && !taskVO.getTSw().equals("0") && !taskVO.getTSw().trim().equals(""))?Integer.parseInt(taskVO.getTSw().trim()):0);
-			MyService my = new MyServiceImpl();
-			if(my.isShitu(pPk)){
-				addMoney = addMoney*ShituConstant.MORE_TASK/100;
-				addExp = addExp*ShituConstant.MORE_TASK/100;
-				addCredit = addCredit*ShituConstant.MORE_TASK/100;
-			}
-			if (curTaskInfo == null && taskVO.getTId() != taskVO.getTNext()) {
-				List list = roleEntity.getTaskInfo().getCurTaskList().getCurTaskNotGiveUpList();
-				if(list.size()==GameConfig.getTaskMaxNum()){
-					hint = "¶Ô²»Æğ£¬Äú×î¶àÖ»ÄÜÍ¬Ê±ÁìÈ¡"+GameConfig.getTaskMaxNum()+"ÌõÈÎÎñ£¡";
-					return hint;
-				}  
-				//ÈÎÎñ¸øµÀ¾ßÅĞ¶Ï°ü¹ü¸÷ÊıÊÇ·ñ×ã¹» 
-				if(taskJiangLiBaoGuoManZu(roleEntity,roleEntity.getBasicInfo().getPPk(),taskVO)==false){
-					hint = "°ü¹ü¸ñÊı²»¹»";
-					return hint;
-				}
-				// ¸øÍæ¼ÒµÀ¾ß
-				if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
-					 hint = getGeiDJService(pPk, taskVO.getTGeidj(), GoodsType.PROP, taskVO.getTGeidjNumber());
-					 if(hint != null){
-						 return hint;
-					 }
-				}
-				// ÈÎÎñ½áÊø¸øÍæ¼ÒµÀ¾ß
-				if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
-					hint = this.getGeiDJService(pPk, taskVO.getTEncouragement(), GoodsType.PROP, taskVO.getTWncouragementNo());
-					if(hint != null){
-						 return hint;
-					 }
-				} 
-				// ÈÎÎñ½áÊø¸øÍæ¼Ò×°±¸ 
-				if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
-					hint = this.getGeiZBService(pPk, taskVO.getTEncouragementZb(), taskVO.getTEncouragementNoZb());
-					if(hint != null){
-						 return hint;
-					 }
-				}
-				//¸øÇ®
-				if (addMoney!=0) {
-					 this.getAddMoney(roleEntity, addMoney);
-				}
-				//¸ø¾­Ñé
-				if (addExp!=0) {
-					 this.getAddExp(roleEntity,pPk, addExp);
-				} 
-				//¸øÉùÍû 
-				if (addCredit!=0) {
-					 this.addPlayerCredit(pPk, taskVO.getTSwType(), addCredit);
-				} 
-				//TODO
-				logger.info(roleEntity.getBasicInfo().getName()+"£ºÁìÈ¡Ò»ÌõĞÂµÄÈÎÎñ---"+taskVO.getTName());
-				roleEntity.getTaskInfo().acceptNewTask(roleEntity,taskVO); 
-			} else {
-				// µ±ÈÎÎñID ºÍ ÏÂÒ»¸öÈÎÎñID ÏàÍ¬µÄÊ±ºòÖ´ĞĞ²Ù×÷ ËµÃ÷¸ÄÌõÎªÈÎÎñµÄ½áÊøÈÎÎñ
-				if (taskVO.getTId() == taskVO.getTNext()) { 
-					if(curTaskInfo.getTGiveUp() == 1){
-						curTaskInfo.updateGiveUp(0);
-					}
-					
-					//ÈÎÎñ¸øµÀ¾ßÅĞ¶Ï°ü¹ü¸÷ÊıÊÇ·ñ×ã¹» 
-					if(taskJiangLiBaoGuoManZu(roleEntity,roleEntity.getBasicInfo().getPPk(),taskVO)==false){
-						hint = "°ü¹ü¸ñÊı²»¹»";
-						return hint;
-					}
-					// ¸øÍæ¼ÒµÀ¾ß
-					if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
-						 hint = getGeiDJService(pPk, taskVO.getTGeidj(), GoodsType.PROP, taskVO.getTGeidjNumber());
-						 if(hint != null){
-							 return hint;
-						 }
-					}
-					// ÈÎÎñ½áÊø¸øÍæ¼ÒµÀ¾ß
-					if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
-						hint = this.getGeiDJService(pPk, taskVO.getTEncouragement(), GoodsType.PROP, taskVO.getTWncouragementNo());
-						if(hint != null){
-							 return hint;
-						 }
-					} 
-					// ÈÎÎñ½áÊø¸øÍæ¼Ò×°±¸ 
-					if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
-						hint = this.getGeiZBService(pPk, taskVO.getTEncouragementZb(), taskVO.getTEncouragementNoZb());
-						if(hint != null){
-							 return hint;
-						 }
-					}
-					//¸øÇ®
-					if (addMoney!=0) {
-						 this.getAddMoney(roleEntity, addMoney);
-					}
-					//¸ø¾­Ñé
-					if (addExp!=0) {
-						 this.getAddExp(roleEntity,pPk, addExp);
-					}
-					//¸øÉùÍû 
-					if (addCredit!=0) {
-						 this.addPlayerCredit(pPk, taskVO.getTSwType(), addCredit);
-					} 
-					//TODO É¾³ıÈÎÎñ Çå³ı»º´æÖĞµÄÈÎÎñ¼ÇÂ¼
-					logger.info(roleEntity.getBasicInfo().getName()+"£ºÍê³ÉÒ»×éÈÎÎñ---"+taskVO.getTName());
-					roleEntity.getTaskInfo().deleteTask(taskVO.getTId()+"", pPk+""); 
-					if(taskVO.getTZu().equals("yindao")){
-						hint = "-1";
-						return hint;
-					}
-				} else { 
-					if(curTaskInfo.getTGiveUp() == 1){
-						curTaskInfo.updateGiveUp(0);
-					}
-					//ÈÎÎñ¸øµÀ¾ßÅĞ¶Ï°ü¹ü¸÷ÊıÊÇ·ñ×ã¹» 
-					if(taskJiangLiBaoGuoManZu(roleEntity,roleEntity.getBasicInfo().getPPk(),taskVO)==false){
-						hint = "°ü¹ü¸ñÊı²»¹»";
-						return hint;
-					}
-					// ¸øÍæ¼ÒµÀ¾ß
-					if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
-						hint = this.getGeiDJService(pPk, taskVO.getTGeidj(), GoodsType.PROP, taskVO.getTGeidjNumber());
-						if(hint != null){
-							 return hint;
-						 }
-					}
-					
-					// ÈÎÎñ½áÊø¸øÍæ¼ÒµÀ¾ß
-					if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
-						hint = this.getGeiDJService(pPk, taskVO.getTEncouragement(), GoodsType.PROP, taskVO.getTWncouragementNo());
-						if(hint != null){
-							 return hint;
-						 }
-					} 
-					// ÈÎÎñ½áÊø¸øÍæ¼Ò×°±¸ 
-					if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
-						hint = this.getGeiZBService(pPk, taskVO.getTEncouragementZb(), taskVO.getTEncouragementNoZb());
-						if(hint != null){
-							 return hint;
-						 }
-					}
-					//¸øÇ®
-					if (addMoney!=0) {
-						 this.getAddMoney(roleEntity, addMoney);
-					}
-					//¸ø¾­Ñé
-					if (addExp!=0) {
-						 this.getAddExp(roleEntity,pPk, addExp);
-					}
-					//¸øÉùÍû 
-					if (addCredit!=0) {
-						 this.addPlayerCredit(pPk, taskVO.getTSwType(), addCredit);
-					}  
-					//TODO ½«¸Ã×éÈÎÎñ´æ·ÅÔÚ»º´æÖĞ 
-					logger.info(roleEntity.getBasicInfo().getName()+"£º¼ÌĞøÈÎÎñ---"+taskVO.getTName()+",ÈÎÎñ×éÎª£º"+taskVO.getTZu()+"£¬×éĞòÁĞÎª"+taskVO.getTZuxl());
-					roleEntity.getTaskInfo().updateTask(roleEntity,taskVO); 
-				}
-			}  
-			//µ±ÈÎÎñid·ûºÏÏµÍ³ÏûÏ¢¿ØÖÆ±íÖĞµÄÈÎÎñidÊ±£¬¾Í·¢Ò»¸öÏµÍ³ÏûÏ¢¸ø¸ÃÍæ¼Ò.
-			SystemInfoService systemInfoService = new SystemInfoService();
-			systemInfoService.sendSystemInfoByTaskId(pPk,taskVO.getTId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return hint;
-	}
-    
-	/**
-	 * ¸øÍæ¼ÒµÀ¾ß 
-	 */
-	public String getGeiDJService(int pPk, String tGeidj, int pROP,String tGeidjNumber) {
-		GoodsService goodsService = new GoodsService();
-			String[] tGeidjs = tGeidj.split(",");
-			String[] tGeidjNumbers = tGeidjNumber.split(",");
-			for(int i = 0 ; i < tGeidjs.length ;i++){
-				int hint = goodsService.putGoodsToWrap(pPk, Integer.parseInt(tGeidjs[i]), pROP, Integer.parseInt(tGeidjNumbers[i]));
-				if(hint == -1){
-					String ss = "°ü¹ü¸ñÊı²»¹»";
-					return ss;
-				}
-				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-				gsss.addPropNum(Integer.parseInt(tGeidjs[i]), StatisticsType.PROP, Integer.parseInt(tGeidjNumbers[i]), StatisticsType.DEDAO, StatisticsType.RENWU,pPk);
-				
-			}
-		return null;
-	}
-	
-	/**
-	 * ¸øÇ®
-	 */
-	public String getAddMoney(RoleEntity roleEntity, int money) {
-		//¼à¿Ø
-		LogService logService = new LogService();
-		logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper()+"", money+"", "ÈÎÎñ");
-		
-		//ĞŞ¸ÄÇ® 
-		roleEntity.getBasicInfo().addCopper(money);
-		//Ö´ĞĞÍ³¼Æ
-		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-		gsss.addPropNum(6, StatisticsType.MONEY, ((long)(roleEntity.getBasicInfo().getCopper()) + money), StatisticsType.DEDAO, StatisticsType.RENWU,roleEntity.getBasicInfo().getPPk());
-		return null;
-	}
-	/**
-	 * ¸ø¾­Ñé
-	 */
-	public String getAddExp(RoleEntity roleEntity,int pPk, int exp) {
-		// ×°ÔØÓÃ»§ĞÅÏ¢ 
-		GrowService growService = new GrowService();
-		Fighter player = new Fighter();
-		PlayerService playerService = new PlayerService();
-		playerService.loadFighterByPpk(player, pPk);
-		String hint = growService.playerGrowTask(roleEntity,player, exp);
-		SystemInfoService systemInfoService = new SystemInfoService();
-	    systemInfoService.insertSystemInfoBySystem(pPk, StringUtil.gbToISO(hint)); 
-		return null;
-	}
-	
-	/**
-	 * ¸øÍæ¼Ò×°±¸
-	 * @param pPk
-	 * @param tGeizbId				×°±¸id
-	 * @param tGeizbNumber			×°±¸ÊıÁ¿
-	 * @return
-	 */
-	public String getGeiZBService(int pPk, String tGeizbId, String tGeizbNumber) {
-		GoodsService goodsService = new GoodsService();
-		int hint  = goodsService.putEquipToWrap(pPk, Integer.parseInt(tGeizbId), Integer.parseInt(tGeizbNumber));
-		if(hint == -1)
-		{
-			return "°ü¹ü¸ñÊı²»¹»";
-		}
-		//Ö´ĞĞÍ³¼Æ
-		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-		gsss.addPropNum(Integer.parseInt(tGeizbId), GoodsType.EQUIP, Integer.parseInt(tGeizbNumber), StatisticsType.DEDAO, StatisticsType.RENWU,pPk);
-		return null;
-	}
+            int addMoney = ((taskVO.getTMoney() != null && !taskVO.getTMoney().equals("0") && !taskVO.getTMoney().trim().equals("")) ? Integer.parseInt(taskVO.getTMoney().trim()) : 0);
+            int addExp = ((taskVO.getTExp() != null && !taskVO.getTExp().equals("0") && !taskVO.getTExp().trim().equals("")) ? Integer.parseInt(taskVO.getTExp().trim()) : 0);
+            int addCredit = ((taskVO.getTSw() != null && !taskVO.getTSw().equals("0") && !taskVO.getTSw().trim().equals("")) ? Integer.parseInt(taskVO.getTSw().trim()) : 0);
+            MyService my = new MyServiceImpl();
+            if (my.isShitu(pPk)) {
+                addMoney = addMoney * ShituConstant.MORE_TASK / 100;
+                addExp = addExp * ShituConstant.MORE_TASK / 100;
+                addCredit = addCredit * ShituConstant.MORE_TASK / 100;
+            }
+            if (curTaskInfo == null && taskVO.getTId() != taskVO.getTNext()) {
+                List list = roleEntity.getTaskInfo().getCurTaskList().getCurTaskNotGiveUpList();
+                if (list.size() == GameConfig.getTaskMaxNum()) {
+                    hint = "å¯¹ä¸èµ·ï¼Œæ‚¨æœ€å¤šåªèƒ½åŒæ—¶é¢†å–" + GameConfig.getTaskMaxNum() + "æ¡ä»»åŠ¡ï¼";
+                    return hint;
+                }
+                //ä»»åŠ¡ç»™é“å…·åˆ¤æ–­åŒ…è£¹å„æ•°æ˜¯å¦è¶³å¤Ÿ
+                if (!taskJiangLiBaoGuoManZu(roleEntity, roleEntity.getBasicInfo().getPPk(), taskVO)) {
+                    hint = "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
+                    return hint;
+                }
+                // ç»™ç©å®¶é“å…·
+                if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
+                    hint = getGeiDJService(pPk, taskVO.getTGeidj(), GoodsType.PROP, taskVO.getTGeidjNumber());
+                    if (hint != null) {
+                        return hint;
+                    }
+                }
+                // ä»»åŠ¡ç»“æŸç»™ç©å®¶é“å…·
+                if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
+                    hint = this.getGeiDJService(pPk, taskVO.getTEncouragement(), GoodsType.PROP, taskVO.getTWncouragementNo());
+                    if (hint != null) {
+                        return hint;
+                    }
+                }
+                // ä»»åŠ¡ç»“æŸç»™ç©å®¶è£…å¤‡
+                if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
+                    hint = this.getGeiZBService(pPk, taskVO.getTEncouragementZb(), taskVO.getTEncouragementNoZb());
+                    if (hint != null) {
+                        return hint;
+                    }
+                }
+                //ç»™é’±
+                if (addMoney != 0) {
+                    this.getAddMoney(roleEntity, addMoney);
+                }
+                //ç»™ç»éªŒ
+                if (addExp != 0) {
+                    this.getAddExp(roleEntity, pPk, addExp);
+                }
+                //ç»™å£°æœ›
+                if (addCredit != 0) {
+                    this.addPlayerCredit(pPk, taskVO.getTSwType(), addCredit);
+                }
+                //TODO
+                logger.info(roleEntity.getBasicInfo().getName() + "ï¼šé¢†å–ä¸€æ¡æ–°çš„ä»»åŠ¡---" + taskVO.getTName());
+                roleEntity.getTaskInfo().acceptNewTask(roleEntity, taskVO);
+            } else {
+                // å½“ä»»åŠ¡ID å’Œ ä¸‹ä¸€ä¸ªä»»åŠ¡ID ç›¸åŒçš„æ—¶å€™æ‰§è¡Œæ“ä½œ è¯´æ˜æ”¹æ¡ä¸ºä»»åŠ¡çš„ç»“æŸä»»åŠ¡
+                if (taskVO.getTId() == taskVO.getTNext()) {
+                    if (curTaskInfo.getTGiveUp() == 1) {
+                        curTaskInfo.updateGiveUp(0);
+                    }
 
-	/**
-	 * Ïû³ıÍæ¼Ò×°±¸
-	 */
-	public boolean getXiaoZBService(String tGoodszb,int pPk,int uPk,String number) {
-		String equip_id_str = tGoodszb;
-		int equip_id = -1;
-		try{
-			equip_id = Integer.parseInt(equip_id_str);
-		}
-		catch (Exception e) {
-			DataErrorLog.task(" Íê³ÉÈÎÎñĞèÒª×°±¸Êı¾İ´íÎó£º"+equip_id_str);
-		}
-		
-		//ÅĞ¶ÏÊÇ·ñÓĞ¸Ã×°±¸
-		PlayerEquipDao equipDao = new PlayerEquipDao();
-		if(equipDao.isHaveByEquipId(pPk, equip_id)==false){
-			return false;
-		}else{
-		for(int i = 0 ; i < Integer.parseInt(number) ;i++){ 
-		GoodsService goodsService = new GoodsService();
-		goodsService.removeEquipByEquipID(pPk, equip_id); 
-		}
-		}
-		return true;
-	}
-	/**
-	 * ÈÎÎñ¸øÍæ¼ÒÉùÍû
-	 * @param pPk
-	 * @param cID
-	 * @param ncount
-	 */
-	public void addPlayerCredit(int pPk, int cID ,int ncount){
-		CreditProce creditProce = new CreditProce();
-		creditProce.addPlayerCredit(pPk, cID, ncount);
-	}
-	
-	
-	public void removeTaskStartBestowGoods(int pPk,int getTId){
-		GoodsService  goodsService = new GoodsService();
-		TaskVO taskVO =(TaskVO) TaskCache.getById(getTId+""); 
-		// Ïû³ıÈÎÎñ¸øÍæ¼ÒµÄµÀ¾ß
-		if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
-			this.removeTaskStartProp(pPk, taskVO);
-		}
-		//Ïû³ıÈÎÎñ¸øÍæ¼ÒµÄÖĞ¼äµã¸øµÄÎïÆ·
-		if (taskVO.getTMidstGs() != null && !taskVO.getTMidstGs().equals("0") && !taskVO.getTMidstGs().equals("")) {
-			int dd = goodsService.getPropNum(pPk, Integer.parseInt(taskVO.getTMidstGs()));
-			goodsService.removeProps(pPk, Integer.parseInt(taskVO.getTMidstGs()), dd,GameLogManager.R_TASK);
-		} 
-	}
-	/**
-	 * ÒÆ³ıÈÎÎñ½±ÀøµÀ¾ß
-	 * @param pPk
-	 * @param taskVO
-	 */
-	private void removeTaskStartProp(int pPk,TaskVO taskVO){
-		GoodsService  goodsService = new GoodsService();
-		String[] getTGoods = taskVO.getTGeidj().split(",");
-		String[] getTGoodsNo = taskVO.getTGeidjNumber().split(",");
-		for(int i = 0 ; i < getTGoods.length ;i++){
-			if(getTGoods[i] != null && !getTGoods[i].equals("0") && !getTGoods[i].equals("")) {
-				goodsService.removeProps(pPk, Integer.parseInt(getTGoods[i]), Integer.parseInt(getTGoodsNo[i]),GameLogManager.R_TASK);
-			}
-		}
-	}
-	
-	/**
-	 * ÈÎÎñ¸øµÀ¾ßÅĞ¶Ï°ü¹ü¸÷ÊıÊÇ·ñ×ã¹» 
-	 * @param taskVO
-	 * @return
-	 */
-	public boolean taskJiangLiBaoGuoManZu(RoleEntity roleEntity,int p_pk,TaskVO taskVO){
-		GoodsService goodsService = new GoodsService();
-		//ÓÃÒÔ´¢´æÃ¿¸öµÀ¾ßµÄĞèÒªÕ¼¾İµÄ°ü¹ü¿Õ¼ä£¬Ç°Ò»¸ö²ÎÊıÎªµÀ¾ßid,ºóÒ»¸ö²ÎÊıÎª°ü¹ü¿Õ¼ä
-		int geidaoju= 0;
-		if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
-			String[] tGeidjs = taskVO.getTGeidj().split(",");
-			String[] tGeidjNumbers = taskVO.getTGeidjNumber().split(",");
-			for(int i = 0 ; i < tGeidjs.length ;i++){
-				//p_pk, , 
-				int s = goodsService.returnpropspare(roleEntity,p_pk,Integer.parseInt(tGeidjs[i]),Integer.parseInt(tGeidjNumbers[i]));
-				 if(s == -1){
-					 return false;
-				 }else{
-					 geidaoju += s;
-						logger.info("½áÊø¸øµÀ¾ßÕ¼ÓÃ°ü¹ü¸÷Êı"+geidaoju); 
-				 }
-			}
-			logger.info("¸øµÀ¾ßÕ¼ÓÃ°ü¹ü¸÷Êı"+geidaoju);
-		}
-		// ÈÎÎñ½áÊø¸øÍæ¼ÒµÀ¾ß
-		int jieshugeidaoju = 0;
-		if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
-			String[] tGeidjs = taskVO.getTEncouragement().split(",");
-			String[] tGeidjNumbers = taskVO.getTWncouragementNo().split(",");
-			for(int i = 0 ; i < tGeidjs.length ;i++){
-				//p_pk, , 
-				int s = goodsService.returnpropspare(roleEntity,p_pk,Integer.parseInt(tGeidjs[i]),Integer.parseInt(tGeidjNumbers[i]));
-				 if(s == -1){
-					 return false;
-				 }else{
-					 jieshugeidaoju += s;
-						logger.info("½áÊø¸øµÀ¾ßÕ¼ÓÃ°ü¹ü¸÷Êı"+jieshugeidaoju); 
-				 }
-			}
-		} 
-		// ÈÎÎñ½áÊø¸øÍæ¼Ò×°±¸ 
-		int jieshugeizhuangbei = 0;
-		if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
-			jieshugeizhuangbei = Integer.parseInt(taskVO.getTEncouragementNoZb());
-			logger.info("½áÊø¸ø×°±¸Õ¼ÓÃ°ü¹ü¸÷Êı"+jieshugeizhuangbei);
-		}
-		int number = geidaoju + jieshugeidaoju + jieshugeizhuangbei;
-		if(goodsService.isEnoughWrapSpace(p_pk, number) == false){
-			return false;
-		}
-		return true;
-	}
+                    //ä»»åŠ¡ç»™é“å…·åˆ¤æ–­åŒ…è£¹å„æ•°æ˜¯å¦è¶³å¤Ÿ
+                    if (!taskJiangLiBaoGuoManZu(roleEntity, roleEntity.getBasicInfo().getPPk(), taskVO)) {
+                        hint = "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
+                        return hint;
+                    }
+                    // ç»™ç©å®¶é“å…·
+                    if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
+                        hint = getGeiDJService(pPk, taskVO.getTGeidj(), GoodsType.PROP, taskVO.getTGeidjNumber());
+                        if (hint != null) {
+                            return hint;
+                        }
+                    }
+                    // ä»»åŠ¡ç»“æŸç»™ç©å®¶é“å…·
+                    if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
+                        hint = this.getGeiDJService(pPk, taskVO.getTEncouragement(), GoodsType.PROP, taskVO.getTWncouragementNo());
+                        if (hint != null) {
+                            return hint;
+                        }
+                    }
+                    // ä»»åŠ¡ç»“æŸç»™ç©å®¶è£…å¤‡
+                    if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
+                        hint = this.getGeiZBService(pPk, taskVO.getTEncouragementZb(), taskVO.getTEncouragementNoZb());
+                        if (hint != null) {
+                            return hint;
+                        }
+                    }
+                    //ç»™é’±
+                    if (addMoney != 0) {
+                        this.getAddMoney(roleEntity, addMoney);
+                    }
+                    //ç»™ç»éªŒ
+                    if (addExp != 0) {
+                        this.getAddExp(roleEntity, pPk, addExp);
+                    }
+                    //ç»™å£°æœ›
+                    if (addCredit != 0) {
+                        this.addPlayerCredit(pPk, taskVO.getTSwType(), addCredit);
+                    }
+                    //TODO åˆ é™¤ä»»åŠ¡ æ¸…é™¤ç¼“å­˜ä¸­çš„ä»»åŠ¡è®°å½•
+                    logger.info(roleEntity.getBasicInfo().getName() + "ï¼šå®Œæˆä¸€ç»„ä»»åŠ¡---" + taskVO.getTName());
+                    roleEntity.getTaskInfo().deleteTask(taskVO.getTId() + "", pPk + "");
+                    if (taskVO.getTZu().equals("yindao")) {
+                        hint = "-1";
+                        return hint;
+                    }
+                } else {
+                    if (curTaskInfo.getTGiveUp() == 1) {
+                        curTaskInfo.updateGiveUp(0);
+                    }
+                    //ä»»åŠ¡ç»™é“å…·åˆ¤æ–­åŒ…è£¹å„æ•°æ˜¯å¦è¶³å¤Ÿ
+                    if (!taskJiangLiBaoGuoManZu(roleEntity, roleEntity.getBasicInfo().getPPk(), taskVO)) {
+                        hint = "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
+                        return hint;
+                    }
+                    // ç»™ç©å®¶é“å…·
+                    if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
+                        hint = this.getGeiDJService(pPk, taskVO.getTGeidj(), GoodsType.PROP, taskVO.getTGeidjNumber());
+                        if (hint != null) {
+                            return hint;
+                        }
+                    }
+
+                    // ä»»åŠ¡ç»“æŸç»™ç©å®¶é“å…·
+                    if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
+                        hint = this.getGeiDJService(pPk, taskVO.getTEncouragement(), GoodsType.PROP, taskVO.getTWncouragementNo());
+                        if (hint != null) {
+                            return hint;
+                        }
+                    }
+                    // ä»»åŠ¡ç»“æŸç»™ç©å®¶è£…å¤‡
+                    if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
+                        hint = this.getGeiZBService(pPk, taskVO.getTEncouragementZb(), taskVO.getTEncouragementNoZb());
+                        if (hint != null) {
+                            return hint;
+                        }
+                    }
+                    //ç»™é’±
+                    if (addMoney != 0) {
+                        this.getAddMoney(roleEntity, addMoney);
+                    }
+                    //ç»™ç»éªŒ
+                    if (addExp != 0) {
+                        this.getAddExp(roleEntity, pPk, addExp);
+                    }
+                    //ç»™å£°æœ›
+                    if (addCredit != 0) {
+                        this.addPlayerCredit(pPk, taskVO.getTSwType(), addCredit);
+                    }
+                    //TODO å°†è¯¥ç»„ä»»åŠ¡å­˜æ”¾åœ¨ç¼“å­˜ä¸­
+                    logger.info(roleEntity.getBasicInfo().getName() + "ï¼šç»§ç»­ä»»åŠ¡---" + taskVO.getTName() + ",ä»»åŠ¡ç»„ä¸ºï¼š" + taskVO.getTZu() + "ï¼Œç»„åºåˆ—ä¸º" + taskVO.getTZuxl());
+                    roleEntity.getTaskInfo().updateTask(roleEntity, taskVO);
+                }
+            }
+            //å½“ä»»åŠ¡idç¬¦åˆç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨ä¸­çš„ä»»åŠ¡idæ—¶ï¼Œå°±å‘ä¸€ä¸ªç³»ç»Ÿæ¶ˆæ¯ç»™è¯¥ç©å®¶.
+            SystemInfoService systemInfoService = new SystemInfoService();
+            systemInfoService.sendSystemInfoByTaskId(pPk, taskVO.getTId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hint;
+    }
+
+    /**
+     * ç»™ç©å®¶é“å…·
+     */
+    public String getGeiDJService(int pPk, String tGeidj, int pROP, String tGeidjNumber) {
+        GoodsService goodsService = new GoodsService();
+        String[] tGeidjs = tGeidj.split(",");
+        String[] tGeidjNumbers = tGeidjNumber.split(",");
+        for (int i = 0; i < tGeidjs.length; i++) {
+            int hint = goodsService.putGoodsToWrap(pPk, Integer.parseInt(tGeidjs[i]), pROP, Integer.parseInt(tGeidjNumbers[i]));
+            if (hint == -1) {
+                String ss = "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
+                return ss;
+            }
+            GameSystemStatisticsService gsss = new GameSystemStatisticsService();
+            gsss.addPropNum(Integer.parseInt(tGeidjs[i]), StatisticsType.PROP, Integer.parseInt(tGeidjNumbers[i]), StatisticsType.DEDAO, StatisticsType.RENWU, pPk);
+
+        }
+        return null;
+    }
+
+    /**
+     * ç»™é’±
+     */
+    public String getAddMoney(RoleEntity roleEntity, int money) {
+        //ç›‘æ§
+        LogService logService = new LogService();
+        logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(), roleEntity.getBasicInfo().getName(), roleEntity.getBasicInfo().getCopper() + "", money + "", "ä»»åŠ¡");
+
+        //ä¿®æ”¹é’±
+        roleEntity.getBasicInfo().addCopper(money);
+        //æ‰§è¡Œç»Ÿè®¡
+        GameSystemStatisticsService gsss = new GameSystemStatisticsService();
+        gsss.addPropNum(6, StatisticsType.MONEY, (roleEntity.getBasicInfo().getCopper() + money), StatisticsType.DEDAO, StatisticsType.RENWU, roleEntity.getBasicInfo().getPPk());
+        return null;
+    }
+
+    /**
+     * ç»™ç»éªŒ
+     */
+    public String getAddExp(RoleEntity roleEntity, int pPk, int exp) {
+        // è£…è½½ç”¨æˆ·ä¿¡æ¯
+        GrowService growService = new GrowService();
+        Fighter player = new Fighter();
+        PlayerService playerService = new PlayerService();
+        playerService.loadFighterByPpk(player, pPk);
+        String hint = growService.playerGrowTask(roleEntity, player, exp);
+        SystemInfoService systemInfoService = new SystemInfoService();
+        systemInfoService.insertSystemInfoBySystem(pPk, StringUtil.gbToISO(hint));
+        return null;
+    }
+
+    /**
+     * ç»™ç©å®¶è£…å¤‡
+     *
+     * @param pPk
+     * @param tGeizbId     è£…å¤‡id
+     * @param tGeizbNumber è£…å¤‡æ•°é‡
+     * @return
+     */
+    public String getGeiZBService(int pPk, String tGeizbId, String tGeizbNumber) {
+        GoodsService goodsService = new GoodsService();
+        int hint = goodsService.putEquipToWrap(pPk, Integer.parseInt(tGeizbId), Integer.parseInt(tGeizbNumber));
+        if (hint == -1) {
+            return "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
+        }
+        //æ‰§è¡Œç»Ÿè®¡
+        GameSystemStatisticsService gsss = new GameSystemStatisticsService();
+        gsss.addPropNum(Integer.parseInt(tGeizbId), GoodsType.EQUIP, Integer.parseInt(tGeizbNumber), StatisticsType.DEDAO, StatisticsType.RENWU, pPk);
+        return null;
+    }
+
+    /**
+     * æ¶ˆé™¤ç©å®¶è£…å¤‡
+     */
+    public boolean getXiaoZBService(String tGoodszb, int pPk, int uPk, String number) {
+        String equip_id_str = tGoodszb;
+        int equip_id = -1;
+        try {
+            equip_id = Integer.parseInt(equip_id_str);
+        } catch (Exception e) {
+            DataErrorLog.task(" å®Œæˆä»»åŠ¡éœ€è¦è£…å¤‡æ•°æ®é”™è¯¯ï¼š" + equip_id_str);
+        }
+
+        //åˆ¤æ–­æ˜¯å¦æœ‰è¯¥è£…å¤‡
+        PlayerEquipDao equipDao = new PlayerEquipDao();
+        if (!equipDao.isHaveByEquipId(pPk, equip_id)) {
+            return false;
+        } else {
+            for (int i = 0; i < Integer.parseInt(number); i++) {
+                GoodsService goodsService = new GoodsService();
+                goodsService.removeEquipByEquipID(pPk, equip_id);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * ä»»åŠ¡ç»™ç©å®¶å£°æœ›
+     *
+     * @param pPk
+     * @param cID
+     * @param ncount
+     */
+    public void addPlayerCredit(int pPk, int cID, int ncount) {
+        CreditProce creditProce = new CreditProce();
+        creditProce.addPlayerCredit(pPk, cID, ncount);
+    }
+
+
+    public void removeTaskStartBestowGoods(int pPk, int getTId) {
+        GoodsService goodsService = new GoodsService();
+        TaskVO taskVO = TaskCache.getById(getTId + "");
+        // æ¶ˆé™¤ä»»åŠ¡ç»™ç©å®¶çš„é“å…·
+        if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
+            this.removeTaskStartProp(pPk, taskVO);
+        }
+        //æ¶ˆé™¤ä»»åŠ¡ç»™ç©å®¶çš„ä¸­é—´ç‚¹ç»™çš„ç‰©å“
+        if (taskVO.getTMidstGs() != null && !taskVO.getTMidstGs().equals("0") && !taskVO.getTMidstGs().equals("")) {
+            int dd = goodsService.getPropNum(pPk, Integer.parseInt(taskVO.getTMidstGs()));
+            goodsService.removeProps(pPk, Integer.parseInt(taskVO.getTMidstGs()), dd, GameLogManager.R_TASK);
+        }
+    }
+
+    /**
+     * ç§»é™¤ä»»åŠ¡å¥–åŠ±é“å…·
+     *
+     * @param pPk
+     * @param taskVO
+     */
+    private void removeTaskStartProp(int pPk, TaskVO taskVO) {
+        GoodsService goodsService = new GoodsService();
+        String[] getTGoods = taskVO.getTGeidj().split(",");
+        String[] getTGoodsNo = taskVO.getTGeidjNumber().split(",");
+        for (int i = 0; i < getTGoods.length; i++) {
+            if (getTGoods[i] != null && !getTGoods[i].equals("0") && !getTGoods[i].equals("")) {
+                goodsService.removeProps(pPk, Integer.parseInt(getTGoods[i]), Integer.parseInt(getTGoodsNo[i]), GameLogManager.R_TASK);
+            }
+        }
+    }
+
+    /**
+     * ä»»åŠ¡ç»™é“å…·åˆ¤æ–­åŒ…è£¹å„æ•°æ˜¯å¦è¶³å¤Ÿ
+     *
+     * @param taskVO
+     * @return
+     */
+    public boolean taskJiangLiBaoGuoManZu(RoleEntity roleEntity, int p_pk, TaskVO taskVO) {
+        GoodsService goodsService = new GoodsService();
+        //ç”¨ä»¥å‚¨å­˜æ¯ä¸ªé“å…·çš„éœ€è¦å æ®çš„åŒ…è£¹ç©ºé—´ï¼Œå‰ä¸€ä¸ªå‚æ•°ä¸ºé“å…·id,åä¸€ä¸ªå‚æ•°ä¸ºåŒ…è£¹ç©ºé—´
+        int geidaoju = 0;
+        if (taskVO.getTGeidj() != null && !taskVO.getTGeidj().equals("0") && !taskVO.getTGeidj().equals("")) {
+            String[] tGeidjs = taskVO.getTGeidj().split(",");
+            String[] tGeidjNumbers = taskVO.getTGeidjNumber().split(",");
+            for (int i = 0; i < tGeidjs.length; i++) {
+                //p_pk, ,
+                int s = goodsService.returnpropspare(roleEntity, p_pk, Integer.parseInt(tGeidjs[i]), Integer.parseInt(tGeidjNumbers[i]));
+                if (s == -1) {
+                    return false;
+                } else {
+                    geidaoju += s;
+                    logger.info("ç»“æŸç»™é“å…·å ç”¨åŒ…è£¹å„æ•°" + geidaoju);
+                }
+            }
+            logger.info("ç»™é“å…·å ç”¨åŒ…è£¹å„æ•°" + geidaoju);
+        }
+        // ä»»åŠ¡ç»“æŸç»™ç©å®¶é“å…·
+        int jieshugeidaoju = 0;
+        if (taskVO.getTEncouragement() != null && !taskVO.getTEncouragement().equals("0") && !taskVO.getTEncouragement().equals("")) {
+            String[] tGeidjs = taskVO.getTEncouragement().split(",");
+            String[] tGeidjNumbers = taskVO.getTWncouragementNo().split(",");
+            for (int i = 0; i < tGeidjs.length; i++) {
+                //p_pk, ,
+                int s = goodsService.returnpropspare(roleEntity, p_pk, Integer.parseInt(tGeidjs[i]), Integer.parseInt(tGeidjNumbers[i]));
+                if (s == -1) {
+                    return false;
+                } else {
+                    jieshugeidaoju += s;
+                    logger.info("ç»“æŸç»™é“å…·å ç”¨åŒ…è£¹å„æ•°" + jieshugeidaoju);
+                }
+            }
+        }
+        // ä»»åŠ¡ç»“æŸç»™ç©å®¶è£…å¤‡
+        int jieshugeizhuangbei = 0;
+        if (taskVO.getTEncouragementZb() != null && !taskVO.getTEncouragementZb().equals("0") && !taskVO.getTEncouragementZb().equals("")) {
+            jieshugeizhuangbei = Integer.parseInt(taskVO.getTEncouragementNoZb());
+            logger.info("ç»“æŸç»™è£…å¤‡å ç”¨åŒ…è£¹å„æ•°" + jieshugeizhuangbei);
+        }
+        int number = geidaoju + jieshugeidaoju + jieshugeizhuangbei;
+        return goodsService.isEnoughWrapSpace(p_pk, number);
+    }
 }

@@ -2,36 +2,36 @@ package com.pm.vo.setting;
 
 public class SettingVO
 {
-	/** ÏµÍ³ÉèÖÃ±í */
+	/** ç³»ç»Ÿè®¾ç½®è¡¨ */
 	private int settingId;
-	/** ¸öÈË½ÇÉ«id */
+	/** ä¸ªäººè§’è‰²id */
 	private int pPk;
-	/** ÎïÆ·Í¼Æ¬¿ª¹Ø */
+	/** ç‰©å“å›¾ç‰‡å¼€å…³ */
 	private int goodsPic;
-	/** ½ÇÉ«ĞÎÏóÍ¼ */
+	/** è§’è‰²å½¢è±¡å›¾ */
 	private int personPic;
-	/**  npc¹ÖÎïÍ¼¿ª¹Ø */
+	/**  npcæ€ªç‰©å›¾å¼€å…³ */
 	private int npcPic;
-	/**  ³èÎïÍ¼¿ª¹Ø */
+	/**  å® ç‰©å›¾å¼€å…³ */
 	private int petPic;
-	/**  npcÈËÎïÍ¼¿ª¹Ø */
+	/**  npcäººç‰©å›¾å¼€å…³ */
 	private int operatePic;
-	/**  ½»Ò×¿ØÖÆ¿ª¹Ø */
+	/**  äº¤æ˜“æ§åˆ¶å¼€å…³ */
 	private int dealControl;
-	/** npcÑªÌõÏÔÊ¾ */
+	/** npcè¡€æ¡æ˜¾ç¤º */
 	private int npcHpUp;
 	
-	/** ¹«¸æÁÄÌì¿ª¹Ø */
+	/** å…¬å‘ŠèŠå¤©å¼€å…³ */
 	private int publicComm;
-	/** ÕóÓªÁÄÌì */
+	/** é˜µè¥èŠå¤© */
 	private int campComm;
-	/** ¶ÓÎéÁÄÌì */
+	/** é˜Ÿä¼èŠå¤© */
 	private int duiwuComm;
-	/** °ïÅÉÁÄÌì */
+	/** å¸®æ´¾èŠå¤© */
 	private int tongComm;
-	/** ÃÜÓïÁÄÌì */
+	/** å¯†è¯­èŠå¤© */
 	private int secretComm;
-	/**Ê×Ò³ÁÄÌì¿ì½İÊäÈëÀ¸*/
+	/**é¦–é¡µèŠå¤©å¿«æ·è¾“å…¥æ */
 	private int indexComm;
 	
 	

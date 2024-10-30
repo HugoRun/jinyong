@@ -1,82 +1,76 @@
 /**
- * 
+ *
  */
 package com.ls.ben.cache.dynamic.manual.chat;
+
+import com.ben.vo.communion.CommunionVO;
+import com.ls.ben.cache.CacheBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import com.ben.vo.communion.CommunionVO;
-import com.ls.ben.cache.CacheBase;
-import com.ls.model.user.RoleEntity;
-
 /**
- * @author HHJ ÁÄÌìÆµµÀ
+ * @author HHJ èŠå¤©é¢‘é“
  */
-public class ChatInfoCahe extends CacheBase
-{
-	public static String CHAT_PUBLIC_CACHE = "chat_public_cache";// ¹«¹²
-	
-	/**
-	 * Í¨¹ıÁÄÌìÆµµÀÀàĞÍ»ñµÃËùÓĞÁÄÌìĞÅÏ¢
-	 * 
-	 * @param view
-	 * @return
-	 */
-	public LinkedHashSet getPublicChatInfo(String chatType)
-	{
-		LinkedHashSet role_list = null;
-		HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, CHAT_PUBLIC_CACHE);
-		role_list = result.get(chatType);
-		if (role_list == null)
-		{
-			role_list = new LinkedHashSet();
-			result.put(chatType, role_list);
-		}
-		return role_list;
-	}
-	
-	/**
-	 * ÁÄÌìÆµµÀĞÅÏ¢·ÅÈë»º´æÍ¨¹ıÁÄÌìÀàĞÍ
-	 * 
-	 * @param roleInfo
-	 * @return
-	 */
-	public void put(CommunionVO communion)
-	{
-		HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, CHAT_PUBLIC_CACHE);
-		LinkedHashSet role_list = result.get(communion.getCType() + "");
-		if (role_list == null)
-		{
-			role_list = new LinkedHashSet();
-			result.put(communion.getCType() + "", role_list);
-		}
-		role_list.add(communion);
-	}
-	
-	/**
-	 * Çå³ıÍæ¼Ò»º´æĞÅÏ¢
-	 * @param communion
-	 */ 
-	public void removeChat(int p_pk,String chatType)
-	{ 
-		
-		HashMap<String,LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, CHAT_PUBLIC_CACHE);
-		LinkedHashSet role_list = result.get(chatType); 
-		if ( role_list != null ) {
-    		List list = new ArrayList(role_list);
-    		for(int i = 0 ; i < list.size() ;i++){
-    			CommunionVO vo = (CommunionVO) list.get(i);
-    			if(p_pk == vo.getPPk()){
-    				list.remove(i);
-    				//System.out.println("Íæ¼ÒÁÄÌìÕâÀïÇå³ı³öÈ¥");
-    			}
-    			role_list = new LinkedHashSet();
-    			LinkedHashSet linkedHashSet = new LinkedHashSet(list);
-    			result.put(chatType , linkedHashSet);
-    		} 
-		}
-	}
+public class ChatInfoCahe extends CacheBase {
+    // å…¬å…±
+    public static String CHAT_PUBLIC_CACHE = "chat_public_cache";
+
+    /**
+     * é€šè¿‡èŠå¤©é¢‘é“ç±»å‹è·å¾—æ‰€æœ‰èŠå¤©ä¿¡æ¯
+     *
+     * @param chatType chatType
+     * @return LinkedHashSet
+     */
+    public LinkedHashSet getPublicChatInfo(String chatType) {
+        LinkedHashSet roleList = null;
+        HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, CHAT_PUBLIC_CACHE);
+        roleList = result.get(chatType);
+        if (roleList == null) {
+            roleList = new LinkedHashSet();
+            result.put(chatType, roleList);
+        }
+        return roleList;
+    }
+
+    /**
+     * èŠå¤©é¢‘é“ä¿¡æ¯æ”¾å…¥ç¼“å­˜é€šè¿‡èŠå¤©ç±»å‹
+     *
+     * @param communion communion
+     */
+    public void put(CommunionVO communion) {
+        HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, CHAT_PUBLIC_CACHE);
+        LinkedHashSet roleList = result.get(communion.getCType() + "");
+        if (roleList == null) {
+            roleList = new LinkedHashSet();
+            result.put(communion.getCType() + "", roleList);
+        }
+        roleList.add(communion);
+    }
+
+    /**
+     * æ¸…é™¤ç©å®¶ç¼“å­˜ä¿¡æ¯
+     *
+     * @param p_pk     p_pk
+     * @param chatType chatType
+     */
+    public void removeChat(int p_pk, String chatType) {
+        HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, CHAT_PUBLIC_CACHE);
+        LinkedHashSet roleList = result.get(chatType);
+        if (roleList != null) {
+            List list = new ArrayList(roleList);
+            for (int i = 0; i < list.size(); i++) {
+                CommunionVO vo = (CommunionVO) list.get(i);
+                if (p_pk == vo.getPPk()) {
+                    list.remove(i);
+                    //System.out.println("ç©å®¶èŠå¤©è¿™é‡Œæ¸…é™¤å‡ºå»");
+                }
+                roleList = new LinkedHashSet();
+                LinkedHashSet linkedHashSet = new LinkedHashSet(list);
+                result.put(chatType, linkedHashSet);
+            }
+        }
+    }
 }

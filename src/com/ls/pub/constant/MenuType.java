@@ -1,371 +1,371 @@
 package com.ls.pub.constant;
 
 /**
- * ¹¦ÄÜ:²Ëµ¥ÀàĞÍ³£Á¿
+ * åŠŸèƒ½:èœå•ç±»å‹å¸¸é‡
  * 
- * @author ÁõË§ 9:09:43 AM
+ * @author åˆ˜å¸… 9:09:43 AM
  */
 public class MenuType
 {
 	/**
-	 * ¶Ô»°Àà
+	 * å¯¹è¯ç±»
 	 */
 	public static final int DIALOG = 1;
 	/**
-	 * ÈÎÎñ´«ËÍÀà
+	 * ä»»åŠ¡ä¼ é€ç±»
 	 */
 	public static final int TASKCARRY = 2;
 	/**
-	 * ĞİÏ¢Àà
+	 * ä¼‘æ¯ç±»
 	 */
 	public static final int REST = 3;
 	/**
-	 * ¸¸²Ëµ¥
+	 * çˆ¶èœå•
 	 */
 	public static final int FATHER = 4;
 	/**
-	 * Î¬ĞŞ²Ëµ¥
+	 * ç»´ä¿®èœå•
 	 */
 	public static final int MAINTAIN = 5;
 	/**
-	 * Âô²Ëµ¥
+	 * å–èœå•
 	 */
 	public static final int SAlE = 7;
 	/**
-	 * ÎïÆ·²Ö¿â´¢´æ²Ëµ¥
+	 * ç‰©å“ä»“åº“å‚¨å­˜èœå•
 	 */
 	public static final int GOODSCCSTORAGE = 8;
 	/**
-	 * ¶Ò»»²Ëµ¥
+	 * å…‘æ¢èœå•
 	 */
 	public static final int EXCHANGE = 9;
 	/**
-	 * Âô³èÎï²Ëµ¥
+	 * å–å® ç‰©èœå•
 	 */
 	public static final int PETSALE = 10;
 	/**
-	 * ¿ÉÒÔ±»´òËÀµÄNPC²Ëµ¥
+	 * å¯ä»¥è¢«æ‰“æ­»çš„NPCèœå•
 	 */
 	public static final int DEADNPC = 11;
 	/**
-	 * Âò²Ëµ¥
+	 * ä¹°èœå•
 	 */
 	public static final int BUY = 12;
 	/**
-	 * ¿ÉÒÔ´ò°ÜµÄNPC²Ëµ¥
+	 * å¯ä»¥æ‰“è´¥çš„NPCèœå•
 	 */
 	public static final int FAILNPC = 13;
 
 	/**
-	 * ½ğÇ®²Ö¿â´¢´æ²Ëµ¥
+	 * é‡‘é’±ä»“åº“å‚¨å­˜èœå•
 	 */
 	public static final int MONEYCCSTORAGE = 14;
 
 	/**
-	 * ½ğÇ®²Ö¿âÈ¡³ö²Ëµ¥
+	 * é‡‘é’±ä»“åº“å–å‡ºèœå•
 	 */
 	public static final int MONEYQCSTORAGE = 15;
 
 	/**
-	 * ³èÎï²Ö¿â´¢´æ²Ëµ¥
+	 * å® ç‰©ä»“åº“å‚¨å­˜èœå•
 	 */
 	public static final int PETCCSTORAGE = 16;
 	/**
-	 * ³èÎï²Ö¿âÈ¡³ö²Ëµ¥
+	 * å® ç‰©ä»“åº“å–å‡ºèœå•
 	 */
 	public static final int PETQCSTORAGE = 17;
 
 	/**
-	 * ÎïÆ·²Ö¿âÈ¡³ö²Ëµ¥
+	 * ç‰©å“ä»“åº“å–å‡ºèœå•
 	 */
 	public static final int GOODSQCSTORAGE = 18;
 
 	/**
-	 * °ï»áÉêÇëNPC²Ëµ¥
+	 * å¸®ä¼šç”³è¯·NPCèœå•
 	 */
 	public static final int TONG = 19;
 	/**
-	 * ÅÄÂô³¡Âô
+	 * æ‹å–åœºå–
 	 */
 	public static final int AUCTIONSELL = 20;
 	/**
-	 * ÅÄÂô³¡Âò
+	 * æ‹å–åœºä¹°
 	 */
 	public static final int AUCTIONBUY = 21;
 	/**
-	 * ´ò¿ªpk¿ª¹Ø²Ëµ¥
+	 * æ‰“å¼€pkå¼€å…³èœå•
 	 */
 	public static final int OPENPK = 22;
 	/**
-	 * ÆÕÍ¨´«ËÍ²Ëµ¥
+	 * æ™®é€šä¼ é€èœå•
 	 */
 	public static final int NORMALCARRY = 23;
 	/**
-	 * ¹Ø±Õpk¿ª¹Ø²Ëµ¥
+	 * å…³é—­pkå¼€å…³èœå•
 	 */
 	public static final int CLOSEPK = 24;
 	/**
-	 * ÅÄÂôÖúÊÖ²Ëµ¥
+	 * æ‹å–åŠ©æ‰‹èœå•
 	 */
 	public static final int AUCTIONHELP = 25;
 	/**
-	 * ÅÄÂô²Ö¿â²Ëµ¥
+	 * æ‹å–ä»“åº“èœå•
 	 */
 	public static final int AUCTIONHOUSE = 26;
 	/**
-	 * ³èÎïÅÄÂô³¡Âô³èÎï
+	 * å® ç‰©æ‹å–åœºå–å® ç‰©
 	 */
 	public static final int PETSELL = 27;
 	/**
-	 * ³èÎïÅÄÂô³¡Âò³èÎï
+	 * å® ç‰©æ‹å–åœºä¹°å® ç‰©
 	 */
 	public static final int PETBUY = 28;
 	/**
-	 * ³èÎïÅÄÂô³¡ÖúÊÖ²Ëµ¥
+	 * å® ç‰©æ‹å–åœºåŠ©æ‰‹èœå•
 	 */
 	public static final int AUCTIONPETHELP = 29;
 	/**
-	 * ³èÎïÅÄÂô³¡²Ö¿â²Ëµ¥
+	 * å® ç‰©æ‹å–åœºä»“åº“èœå•
 	 */
 	public static final int AUCTIONPETHOUSE = 30;
 	/**
-	 * ×°±¸ĞŞÀí
+	 * è£…å¤‡ä¿®ç†
 	 */
 	public static final int EQUIP_MAINTAIN = 31;
 	/**
-	 * °ïÖÚÕĞÄ¼
+	 * å¸®ä¼—æ‹›å‹Ÿ
 	 */
 	public static final int RECRUIT = 32;
 	/**
-	 * °ï»á¹ØÏµ
+	 * å¸®ä¼šå…³ç³»
 	 */
 	public static final int RELATION = 33;
 	/**
-	 * ´ğÌâ²Ëµ¥
+	 * ç­”é¢˜èœå•
 	 */
 	public static final int QUESTION = 34;
 	/**
-	 * ÃèÊöĞÔ²Ëµ¥
+	 * æè¿°æ€§èœå•
 	 */
 	public static final int DISPLAYOPERATE = 35;
 	/**
-	 * buff²Ëµ¥
+	 * buffèœå•
 	 */
 	public static final int BUFF = 36;
 	/**
-	 * Êé³Ç²Ëµ¥
+	 * ä¹¦åŸèœå•
 	 */
 	public static final int BOOK = 37;
 
 	/**
-	 * ×°±¸Éı¼¶
+	 * è£…å¤‡å‡çº§
 	 */
 	public static final int EQUIP_UPGRADE = 38;
 	/**
-	 * ×°±¸·Ö½â
+	 * è£…å¤‡åˆ†è§£
 	 */
 
 	public static final int DECOMPOSE = 39;
 	/**
-	 * ¾º²Â
+	 * ç«çŒœ
 	 */
 	public static final int LOTTERY = 40;
 
 	/**
-	 * ×°±¸×ª»¯
+	 * è£…å¤‡è½¬åŒ–
 	 */
 	public static final int EQUIPTRANSLATE = 41;
 	/**
-	 * °ï»áµØÍ¼
+	 * å¸®ä¼šåœ°å›¾
 	 */
 	public static final int TONGMAP = 42;
 	/**
-	 * ÁìÈ¡¹¤×Ê
+	 * é¢†å–å·¥èµ„
 	 */
 	public static final int LABORAGE = 43;
 	/**
-	 * °ï»á½¨Öş
+	 * å¸®ä¼šå»ºç­‘
 	 */
 	public static final int TONGBUILD = 44;
 	/**
-	 * ·â²â×ÊÁÏÌá½»
+	 * å°æµ‹èµ„æ–™æäº¤
 	 */
 	public static final int INFORMATION = 45;
 	/**
-	 * °ïÅÉ×ÊÔ´
+	 * å¸®æ´¾èµ„æº
 	 */
 	public static final int TONGRES = 46;
 	/**
-	 * ¾èÏ×ÒøÁ½
+	 * æçŒ®é“¶ä¸¤
 	 */
 	public static final int TONGCONTRIBUTEMONEY = 47;
 	/**
-	 * ¾èÏ×ÒøÁ½
+	 * æçŒ®é“¶ä¸¤
 	 */
 	public static final int TONGCONTRIBUTEGOODS = 48;
 	/**
-	 * ÑİÎä¹ÜÀíÔ±
+	 * æ¼”æ­¦ç®¡ç†å‘˜
 	 */
 	public static final int FIELDMANAGER = 49;
 	/**
-	 * ÑİÎäÅÅĞĞ°ñ
+	 * æ¼”æ­¦æ’è¡Œæ¦œ
 	 */
 	public static final int FIGHERFIELD = 50;
 	/**
-	 * Æì¸Ë
+	 * æ——æ†
 	 */
 	public static final int MAST = 51;
 	/**
-	 * ·Ö·¢×ÊÔ´
+	 * åˆ†å‘èµ„æº
 	 */
 	public static final int DISPENSERES = 52;
 	/**
-	 * ½øÈë¸±±¾£¨¸±±¾Ö®ÃÅ£©
+	 * è¿›å…¥å‰¯æœ¬ï¼ˆå‰¯æœ¬ä¹‹é—¨ï¼‰
 	 */
 	public static final int INSTANCE_DOOR = 53;
 	/**
-	 * °ïÅÉµØÍ¼´«ËÍ²Ëµ¥
+	 * å¸®æ´¾åœ°å›¾ä¼ é€èœå•
 	 */
 	public static final int TONGMAPCARRYMENU = 54;
 	/**
-	 * Åëâ¿
+	 * çƒ¹é¥ª
 	 */
 	public static final int COOKMENU = 55;
 	/**
-	 * Á¶Ò©
+	 * ç‚¼è¯
 	 */
 	public static final int LIANYAOMENU = 56;
 	/**
-	 * ¶ÍÔì
+	 * é”»é€ 
 	 */
 	public static final int DUANZAOMENU = 57;
 	/**
-	 * Ö¯Ôì
+	 * ç»‡é€ 
 	 */
 	public static final int ZHIZAOMENU = 58;
 	/**
-	 * Öé±¦
+	 * ç å®
 	 */
 	public static final int ZHUBAOMENU = 59;
 	/**
-	 * Ä¾½³
+	 * æœ¨åŒ 
 	 */
 	public static final int NUJIANGMENU = 60;
 	/**
-	 * Éú»î¼¼ÄÜ
+	 * ç”Ÿæ´»æŠ€èƒ½
 	 */
 	public static final int LIVESKILLMENU = 61;
 	/**
-	 * ²Ëµ¥´¥·¢ÈÎÎñ
+	 * èœå•è§¦å‘ä»»åŠ¡
 	 */
 	public static final int MENUTOUCHTASK = 62;
 	/**
-	 * ÃâPK½â³ı±£»¤×´Ì¬²Ëµ¥
+	 * å…PKè§£é™¤ä¿æŠ¤çŠ¶æ€èœå•
 	 */
 	public static final int AVOIDPKPROP = 63;
-	/** ÁìÈ¡ÏµÍ³½±Àø²Ëµ¥ */
+	/** é¢†å–ç³»ç»Ÿå¥–åŠ±èœå• */
 	public static final int SYSPRIZE = 64;
-	/** GMÌßÈËÏÂÏß¹¦ÄÜ */
+	/** GMè¸¢äººä¸‹çº¿åŠŸèƒ½ */
 	public static final int GMKICK = 65;
-	/** ¹¥³ÇÕ½³ÇÃÅ */
+	/** æ”»åŸæˆ˜åŸé—¨ */
 	public static final int CITYDOOR = 66;
 
-	/** Ìá½»°ïÅÉÎïÆ· */
+	/** æäº¤å¸®æ´¾ç‰©å“ */
 	public static final int TIJIAO = 67;
-	/** ¹¥³ÇÕ½±¨Ãû * */
+	/** æ”»åŸæˆ˜æŠ¥å * */
 	public static final int SIGNUP = 68;
-	/** * ½øÈë¹¥³ÇÕ½ÇøÓò* */
+	/** * è¿›å…¥æ”»åŸæˆ˜åŒºåŸŸ* */
 	public static final int JOINUP = 69;
-	/** * ¹¥³ÇÇøÓòµÄÕĞ»êá¦* */
+	/** * æ”»åŸåŒºåŸŸçš„æ‹›é­‚å¹¡* */
 	public static final int ZHAOHUN = 70;
-	/** * Õ½³¡ÇøÓòÌØÊâ´«ËÍ²Ëµ¥* */
+	/** * æˆ˜åœºåŒºåŸŸç‰¹æ®Šä¼ é€èœå•* */
 	public static final int CHUANSONG = 71;
 
-	// ½áÒå¹¦ÄÜ
+	// ç»“ä¹‰åŠŸèƒ½
 	public final static int JIEYI = 72;
 
-	// ½â³ı½áÒå¹¦ÄÜ
+	// è§£é™¤ç»“ä¹‰åŠŸèƒ½
 	public final static int JIECHUJIEYI = 73;
 
-	// ½á»é
+	// ç»“å©š
 	public final static int JIEHUN = 74;
 
-	// Àë»é
+	// ç¦»å©š
 	public final static int LIHUN = 75;
-	/** ¹¥³ÇÕ½µñÏñ */
+	/** æ”»åŸæˆ˜é›•åƒ */
 	public static final int DIAOXIANG = 76;
 
-	// °İÊ¦
+	// æ‹œå¸ˆ
 	public final static int BAISHI = 77;
 
-	// ÕĞÍ½
+	// æ‹›å¾’
 	public final static int ZHAOTU = 78;
 
-	// VIPÁã¹¤×Ê
+	// VIPé›¶å·¥èµ„
 	public final static int VIPLABORAGE = 79;
 
-	// ÀŞÌ¨±¨Ãû
+	// æ“‚å°æŠ¥å
 	public final static int LEITAI = 80;
 
-	// ½øÈëÀŞÌ¨
+	// è¿›å…¥æ“‚å°
 	public final static int INTO_LEITAI = 81;
 
-	// ²é¿´±ÈÈü³É¼¨
+	// æŸ¥çœ‹æ¯”èµ›æˆç»©
 	public final static int VIEW_COM_RESULT = 82;
 
-	// ÀŞÌ¨¶ÔÕó±í
+	// æ“‚å°å¯¹é˜µè¡¨
 	public final static int ACTIVE_LEITAI = 83;
 
-	// ÆÆ¾ÉÏä×Ó
+	// ç ´æ—§ç®±å­
 	public final static int OLD_XIANG = 84;
-	// Õ¼²·ÀÏÈË
+	// å åœè€äºº
 	public final static int LIYONG = 87;
-	// ¹²Ïí²Ëµ¥
+	// å…±äº«èœå•
 	public final static int SHEARE = 88;
-	// ÀŞÌ¨±¨Ãû
+	// æ“‚å°æŠ¥å
 	public final static int LEITAI_ACTIVE = 89;
-	// ÌôÕ½ÀŞÌ¨¹ÜÀíÔ±
+	// æŒ‘æˆ˜æ“‚å°ç®¡ç†å‘˜
 	public final static int LEITAI_CHALLENGE_MAGAGER = 90;
-	// ¶ÔÕ½ÀŞÌ¨²Ëµ¥
+	// å¯¹æˆ˜æ“‚å°èœå•
 	public final static int BATTLE = 91;
-	// ÃØ¾³µÄ²Ëµ¥
+	// ç§˜å¢ƒçš„èœå•
 	public final static int UNCHARTEDROOMSERVICE = 92;
-	// ×£¸£Ê÷
+	// ç¥ç¦æ ‘
 	public final static int WISHINGTREE = 93;
-	// ×£¸£Ê÷
+	// ç¥ç¦æ ‘
 	public final static int WISHINGTREEGM = 94;
-	// ÃÅÅÉ´óµÜ×ÓÅÅÃû
+	// é—¨æ´¾å¤§å¼Ÿå­æ’å
 	public final static int MENPAICONTESTRANK = 95;
-	// ÃÅÅÉ´óµÜ×ÓÁì½±
+	// é—¨æ´¾å¤§å¼Ÿå­é¢†å¥–
 	public final static int MENPAICONTESTBONUS = 96;
-	//ÅĞ¶ÏÍæ¼Ò½øÈëÌì¹ØµÄÌõ¼ş
+	//åˆ¤æ–­ç©å®¶è¿›å…¥å¤©å…³çš„æ¡ä»¶
 	public final static int TIANGUANINNOMAL = 97;
-	//Ìì¹Ø¶şÆÚ¹Ì¶¨´òNPC
+	//å¤©å…³äºŒæœŸå›ºå®šæ‰“NPC
 	public final static int MENPAINPC = 98;
-	//Ìì¹Ø¶şÆÚ¹Ì¶¨´òNPCrank
+	//å¤©å…³äºŒæœŸå›ºå®šæ‰“NPCrank
 	public final static int MENPAINPCRANK = 99;
-	/** * PK±¨Ãû* */
+	/** * PKæŠ¥å* */
 	public final static int PKREGIST=100;
-	/** *PK½øÈë±ÈÈü³¡µØ* */
+	/** *PKè¿›å…¥æ¯”èµ›åœºåœ°* */
 	public final static int ENTERPKVIEW=101;
-	/** * PK²é¿´¶ÔÕó±í* */
+	/** * PKæŸ¥çœ‹å¯¹é˜µè¡¨* */
 	public final static int SHOWVSTABLE=102;
-	/** * PK²é¿´±ÈÈü½á¹û* */
+	/** * PKæŸ¥çœ‹æ¯”èµ›ç»“æœ* */
 	public final static int SHOWPKRESULT=103;
-	/** * PK¹æÔò* */
+	/** * PKè§„åˆ™* */
 	public final static int PKRULE=104;
-	/** * PKÁìÈ¡½±Æ·* */
+	/** * PKé¢†å–å¥–å“* */
 	public final static int PKPRICE=105;
 	/**
-	 * ¸ø×°±¸ÏâÇ¶±¦Ê¯²Ëµ¥
+	 * ç»™è£…å¤‡é•¶åµŒå®çŸ³èœå•
 	 */
 	public final static int EQUIP_INLAY_STONE=106;
 	/**
-	 * ×°±¸ÎåĞĞ×ª»»
+	 * è£…å¤‡äº”è¡Œè½¬æ¢
 	 */
 	public final static int EQUIP_CHANGE_WX=107;
 	/**
-	 * ±¦Ê¯ºÏ³É
+	 * å®çŸ³åˆæˆ
 	 */
 	public final static int STONE_UPGRADE=108;
 }

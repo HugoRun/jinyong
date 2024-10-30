@@ -16,20 +16,20 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * 
- * ¹¦ÄÜ:²Ö¿âµÄÊı¾İ¿â²Ù×÷Àà
- * @author ÕÅ¿¡¿¡
+ * åŠŸèƒ½:ä»“åº“çš„æ•°æ®åº“æ“ä½œç±»
+ * @author å¼ ä¿Šä¿Š
  * 10:27:18 AM
  */
 public class WareHouseDao extends DaoBase {
 	/**
-	 * µÃµ½Íæ¼ÒµÄ²Ö¿âĞÅÏ¢
+	 * å¾—åˆ°ç©å®¶çš„ä»“åº“ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
 	public WareHouseVO getStorageByPPk(int p_pk){
 
 		WareHouseVO wareHouse = null;
-		String sql = "select * from u_warehouse_info where  p_pk = " + p_pk + " and uw_type = "+Wrap.COPPER;
+		String sql = "SELECT * FROM u_warehouse_info where  p_pk = " + p_pk + " and uw_type = "+Wrap.COPPER;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug(sql);
 		try
@@ -71,11 +71,11 @@ public class WareHouseDao extends DaoBase {
 	}
 
 
-	/** ¼ì²é½ÇÉ«ÊÇ·ñÒÑ½¨Á¢Ä³ÀàĞÍÉÏ²Ö¿â£¬ÈçÓĞ·µ»Ø¸öÈËÀàĞÍ²Ö¿âid£¬Ã»ÓĞ·µ»Ø0  */
+	/** æ£€æŸ¥è§’è‰²æ˜¯å¦å·²å»ºç«‹æŸç±»å‹ä¸Šä»“åº“ï¼Œå¦‚æœ‰è¿”å›ä¸ªäººç±»å‹ä»“åº“idï¼Œæ²¡æœ‰è¿”å›0  */
 	public int getWareHouseIdBypPk(int uPk,int pPk,int type) {
 		int i = 0;
 		
-		String sql = "select uw_id from u_warehouse_info where  p_pk = " + pPk + " and uw_type = " + type;
+		String sql = "SELECT uw_id from u_warehouse_info where  p_pk = " + pPk + " and uw_type = " + type;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		logger.debug("wareHouseDao: " + sql);
@@ -101,11 +101,11 @@ public class WareHouseDao extends DaoBase {
 	}
 
 
-	/** ¸ù¾İpPk£¬type²éÑ¯WareHouse  */
+	/** æ ¹æ®pPkï¼ŒtypeæŸ¥è¯¢WareHouse  */
 	public WareHouseVO getWareHouseIdBypPk(String pPk,int type) {
 		WareHouseVO wareHouse = null;
-		String sql = "select * from u_warehouse_info where  p_pk = '" + pPk + "' and uw_type = '" + type +"'";
-		logger.debug("wareHouseDao ÀïµÄgetWareHouseIdBypPkÀïsql : " + sql);
+		String sql = "SELECT * FROM u_warehouse_info where  p_pk = '" + pPk + "' and uw_type = '" + type +"'";
+		logger.debug("wareHouseDao é‡Œçš„getWareHouseIdBypPké‡Œsql : " + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -148,16 +148,16 @@ public class WareHouseDao extends DaoBase {
 	
 	
 	/** 
-	 * ¸ù¾İ¸öÈËp_pk²éÑ¯²Ö¿â¿ÕÓà¸ñÊı
-	 * @param p_pk ¸öÈËid
-	 * @return ²Ö¿â¿ÕÓà¸ñÊı
+	 * æ ¹æ®ä¸ªäººp_pkæŸ¥è¯¢ä»“åº“ç©ºä½™æ ¼æ•°
+	 * @param p_pk ä¸ªäººid
+	 * @return ä»“åº“ç©ºä½™æ ¼æ•°
 	 */
 	public int getEmptyNum(int pPk){
 		int wareSpare = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
-		String sql = "select uw_warehouse_spare from u_warehouse_info where p_pk = " + pPk + " and uw_type = " + Wrap.COPPER;
-		logger.debug("¸ù¾İ¸öÈËp_pk²éÑ¯²Ö¿â¿ÕÓà¸ñÊıµÄsql=" + sql);
+		String sql = "SELECT uw_warehouse_spare from u_warehouse_info where p_pk = " + pPk + " and uw_type = " + Wrap.COPPER;
+		logger.debug("æ ¹æ®ä¸ªäººp_pkæŸ¥è¯¢ä»“åº“ç©ºä½™æ ¼æ•°çš„sql=" + sql);
 		try
 		{
 			conn = dbConn.getConn();
@@ -179,7 +179,7 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	
-	/** ÔÚ²Ö¿â±íÖĞ½¨Á¢½ÇÉ«¸Ãuw_typeÀàĞÍµÄÊı¾İ */
+	/** åœ¨ä»“åº“è¡¨ä¸­å»ºç«‹è§’è‰²è¯¥uw_typeç±»å‹çš„æ•°æ® */
 	public int  insertWareHouse(int uPk, int pPk, int uw_type) {
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
@@ -187,9 +187,9 @@ public class WareHouseDao extends DaoBase {
 		int wareSpare = 80;
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dt = new Date();
-		String sql = "insert into u_warehouse_info(uw_id,u_pk,p_pk,uw_type,uw_number,uw_article,uw_money,uw_pet,uw_money_number,uw_pet_number,uw_warehouse_spare,create_time) values(null,'"+ uPk +"','" + pPk +"','" + uw_type +"',"+wareSpare+",'',10000000000,0,0,5,'"+ wareSpare+"','"+sf.format(dt)+"')";
+		String sql = "INSERT INTO u_warehouse_info(uw_id,u_pk,p_pk,uw_type,uw_number,uw_article,uw_money,uw_pet,uw_money_number,uw_pet_number,uw_warehouse_spare,create_time) values(null,'"+ uPk +"','" + pPk +"','" + uw_type +"',"+wareSpare+",'',10000000000,0,0,5,'"+ wareSpare+"','"+sf.format(dt)+"')";
 				
-		logger.debug("warehouseDAOÖĞµÄ ²åÈë¿Õ²Ö¿âÊı¾İ±íµÄsql "+ sql);
+		logger.debug("warehouseDAOä¸­çš„ æ’å…¥ç©ºä»“åº“æ•°æ®è¡¨çš„sql "+ sql);
 		try
 		{
 			conn = dbConn.getConn();
@@ -207,12 +207,12 @@ public class WareHouseDao extends DaoBase {
 	
 	
 	
-	/** ¸ù¾İidÀ´È¡µÃ¸Ã½ÇÉ«µÄ²Ö¿â¿ÕÓà¸ñÊı */
+	/** æ ¹æ®idæ¥å–å¾—è¯¥è§’è‰²çš„ä»“åº“ç©ºä½™æ ¼æ•° */
 	public int getWareSpareById(int pPk){
 		int uw_warehouse_spare = -1;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql = "select * from u_warehouse_info where p_pk="+pPk+ " and uw_type="+Wrap.COPPER+" limit 1";
-		logger.debug("warehouseDAO ÖĞgetWareSpareById µÄsql : "+sql);
+		String sql = "SELECT * FROM u_warehouse_info where p_pk="+pPk+ " and uw_type="+Wrap.COPPER+" limit 1";
+		logger.debug("warehouseDAO ä¸­getWareSpareById çš„sql : "+sql);
 		try
 		{
 			conn = dbConn.getConn();
@@ -233,10 +233,10 @@ public class WareHouseDao extends DaoBase {
 		return uw_warehouse_spare;
 	}
 	
-	/** ¼õÉÙ¸öÈË²Ö¿âµÄ¿ÕÓà¸ñÊı */
+	/** å‡å°‘ä¸ªäººä»“åº“çš„ç©ºä½™æ ¼æ•° */
 	public void reduceWareHouseSpare(int pPk,int remove_num){
 		String sql = "update u_warehouse_info set uw_warehouse_spare = uw_warehouse_spare"+" - "+remove_num +" where p_pk="+pPk;
-		logger.debug("pPk µÄ²Ö¿â¼õÉÙÁË "+ remove_num+"¸ö²ÖÎ»");
+		logger.debug("pPk çš„ä»“åº“å‡å°‘äº† "+ remove_num+"ä¸ªä»“ä½");
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -253,9 +253,9 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½½ÇÉ«²Ö¿âÖĞÄ³ÀàĞÍµÄµÀ¾ß·ÖÒ³ÁĞ±í
+	 * å¾—åˆ°è§’è‰²ä»“åº“ä¸­æŸç±»å‹çš„é“å…·åˆ†é¡µåˆ—è¡¨
 	 * @param pPk
-	 * @param type               ÀàĞÍ
+	 * @param type               ç±»å‹
 	 * @param page_no
 	 * @return
 	 */
@@ -265,10 +265,10 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	
-	/** ¸ù¾İ²Ö¿âidµÃ³ö²Ö¿âĞÅÏ¢ */
+	/** æ ¹æ®ä»“åº“idå¾—å‡ºä»“åº“ä¿¡æ¯ */
 	public WareHouseVO getWareHouseVOByWareHouseId(String warehouseID,int p_pk){
 		WareHouseVO wareHouse = null;
-		String sql = "select * from u_warehouse_info where uw_id=" + warehouseID+" and p_pk="+p_pk;
+		String sql = "SELECT * FROM u_warehouse_info where uw_id=" + warehouseID+" and p_pk="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -311,7 +311,7 @@ public class WareHouseDao extends DaoBase {
 		return wareHouse;
 	}
 	
-	/** ´Ó²Ö¿âÀïÄÃµôremove_num¸öµÀ¾ß */
+	/** ä»ä»“åº“é‡Œæ‹¿æ‰remove_numä¸ªé“å…· */
 	public void reduceWareHouseProp(int pPk,int remove_num,WareHouseVO warehouseVO){
 		
 		int current_num = warehouseVO.getUwPropNumber() - remove_num;
@@ -332,7 +332,7 @@ public class WareHouseDao extends DaoBase {
 		}
 		}
 	
-	/** É¾³ı²Ö¿âÀïµÀ¾ßÊıÁ¿ÎªÁãµÄÇé¿ö */
+	/** åˆ é™¤ä»“åº“é‡Œé“å…·æ•°é‡ä¸ºé›¶çš„æƒ…å†µ */
 	public void deleteStorageZero(int pPk){
 		String sql = "delete from u_warehouse_info where p_pk=" + pPk+" and uw_type != 8 and uw_prop_number = 0";
 
@@ -353,10 +353,10 @@ public class WareHouseDao extends DaoBase {
 	
 	
 	/**
-	 *  Íù²Ö¿âÀï¼ÓÇ® 
-	 *  @param pPk ½ÇÉ«id
-	 *  @param input_num ¼ÓÈëÊıÖµ ÎªÕıÊ±¼ÓÇ®£¬Îª¸ºÊ±¼õÇ®¡£
-	 *  @return ÕıÈ·¸üĞÂ·µ»Ø1£¬·ñÔò·µ»Ø0
+	 *  å¾€ä»“åº“é‡ŒåŠ é’± 
+	 *  @param pPk è§’è‰²id
+	 *  @param input_num åŠ å…¥æ•°å€¼ ä¸ºæ­£æ—¶åŠ é’±ï¼Œä¸ºè´Ÿæ—¶å‡é’±ã€‚
+	 *  @return æ­£ç¡®æ›´æ–°è¿”å›1ï¼Œå¦åˆ™è¿”å›0
 	 */
 	public int addWareHouseMoney(int pPk,long input_num){
 		int i = 0;
@@ -380,9 +380,9 @@ public class WareHouseDao extends DaoBase {
 		return i;
 	}
 	
-	/** ´ÓÉíÉÏÄÃÏÂ³èÎï£¬¾ÍÊÇ½«ÈËÎï³èÎï±íÖĞ´ËĞĞµÄpPkÉèÖÃÎª-pPk */
+	/** ä»èº«ä¸Šæ‹¿ä¸‹å® ç‰©ï¼Œå°±æ˜¯å°†äººç‰©å® ç‰©è¡¨ä¸­æ­¤è¡Œçš„pPkè®¾ç½®ä¸º-pPk */
 	public String putPetFromPerson(int pPk,int petPk,String diffent){
-		String resultWml = "´Ë³èÎïÎŞ·¨´¢´æ";
+		String resultWml = "æ­¤å® ç‰©æ— æ³•å‚¨å­˜";
 		String sql = "update p_pet_info set p_pk = "+pPk+" where pet_pk="+petPk;
 		logger.debug("diffent"+diffent);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -393,9 +393,9 @@ public class WareHouseDao extends DaoBase {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			if(diffent.equals("setIn")){
-				resultWml = "³èÎïÒÑ´¢´æµ½²Ö¿â£¡";
+				resultWml = "å® ç‰©å·²å‚¨å­˜åˆ°ä»“åº“ï¼";
 			}else if(diffent.equals("getOut")){
-				resultWml = "³èÎïÒÑ´Ó³èÎï±£¹ÜËùÖĞÈ¡³ö£¡";
+				resultWml = "å® ç‰©å·²ä»å® ç‰©ä¿ç®¡æ‰€ä¸­å–å‡ºï¼";
 			}
 		} catch (SQLException e){
 			e.printStackTrace();
@@ -405,7 +405,7 @@ public class WareHouseDao extends DaoBase {
 		return resultWml;
 	}
 	
-	//½«³èÎï¼ÓÈë²Ö¿â
+	//å°†å® ç‰©åŠ å…¥ä»“åº“
 	public String addPetToWare(int pPk,int petPk){
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -414,13 +414,13 @@ public class WareHouseDao extends DaoBase {
 		
 		String newPetArticle = petArticle + "-"+petPk;
 		String sql = "update u_warehouse_info set uw_article ='"+newPetArticle +"' where uw_type ='7' and p_pk = "+pPk;
-		logger.debug("´¢´æ³èÎï"+sql);
+		logger.debug("å‚¨å­˜å® ç‰©"+sql);
 		try
 		{
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
-			resuleWml = "ÄúÒÑ¾­³É¹¦½«³èÎï´¢´æµ½³èÎï²Ö¿â £¡";
+			resuleWml = "æ‚¨å·²ç»æˆåŠŸå°†å® ç‰©å‚¨å­˜åˆ°å® ç‰©ä»“åº“ ï¼";
 		} catch (SQLException e){
 			e.printStackTrace();
 		} finally {
@@ -429,13 +429,13 @@ public class WareHouseDao extends DaoBase {
 		return resuleWml;
 	}
 	
-	//½«³èÎïÄÃ³ö²Ö¿â
+	//å°†å® ç‰©æ‹¿å‡ºä»“åº“
 	public String deletePetFromWare(int pPk,int petPk){
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		String resuleWml = "-1";
 		String petArticle = getPetArticle(pPk);
-		logger.debug("³èÎïµÄarticle"+petArticle);
+		logger.debug("å® ç‰©çš„article"+petArticle);
 		String newPetArticle = "";
 		String[] petArticles = new String[2];
 		try{
@@ -447,14 +447,14 @@ public class WareHouseDao extends DaoBase {
 		
 		
 		newPetArticle = petArticles[0] + petArticles[1];
-		logger.debug("³èÎïµÄneAarticle"+newPetArticle);
+		logger.debug("å® ç‰©çš„neAarticle"+newPetArticle);
 		String sql = "update u_warehouse_info set uw_article ='"+newPetArticle +"' where uw_type ='7' and p_pk = "+pPk;
 		try
 		{
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
-			resuleWml = "ÄúÒÑ¾­³É¹¦´Ó³èÎï²Ö¿âÈ¡³ö³èÎï £¡";
+			resuleWml = "æ‚¨å·²ç»æˆåŠŸä»å® ç‰©ä»“åº“å–å‡ºå® ç‰© ï¼";
 		} catch (SQLException e){
 			e.printStackTrace();
 		} finally {
@@ -464,10 +464,10 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	
-	/** ¸ù¾İ½ÇÉ«pk»ñµÃ´Ë½ÇÉ«µÄ³èÎï×Ö¶Î */
+	/** æ ¹æ®è§’è‰²pkè·å¾—æ­¤è§’è‰²çš„å® ç‰©å­—æ®µ */
 	public String getPetArticle(int pPk){
 		String petArticle = "";
-		String sql = "select uw_article from u_warehouse_info where p_pk = "+pPk+" and uw_type = 7";
+		String sql = "SELECT uw_article from u_warehouse_info where p_pk = "+pPk+" and uw_type = 7";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -476,7 +476,7 @@ public class WareHouseDao extends DaoBase {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()){
 				petArticle = rs.getString("uw_article");
-				logger.debug("²Ö¿âÖĞµÄ³èÎï×Ö¶Î"+petArticle);
+				logger.debug("ä»“åº“ä¸­çš„å® ç‰©å­—æ®µ"+petArticle);
 			}
 			rs.close();
 			stmt.close();
@@ -488,12 +488,12 @@ public class WareHouseDao extends DaoBase {
 		return petArticle;
 	}
 	
-	/** ¸ù¾İpPk£¬¸üĞÂ³èÎïµÄÊıÁ¿£¬ÕıÎª¼ÓÒ»ÊıÁ¿£¬¸ºÎª¼õÒ»ÊıÁ¿ */
+	/** æ ¹æ®pPkï¼Œæ›´æ–°å® ç‰©çš„æ•°é‡ï¼Œæ­£ä¸ºåŠ ä¸€æ•°é‡ï¼Œè´Ÿä¸ºå‡ä¸€æ•°é‡ */
 	public void updatePetNumber(int pPk,int number){
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		String sql = "update u_warehouse_info set uw_pet = uw_pet +'"+ number+"' where p_pk="+pPk;
-		logger.debug("warehouseDAO ÖĞupdatePetNumber : "+sql);
+		logger.debug("warehouseDAO ä¸­updatePetNumber : "+sql);
 		try
 		{
 			stmt = conn.createStatement();
@@ -507,11 +507,11 @@ public class WareHouseDao extends DaoBase {
 		}
 	}
 	
-	/** »ñµÃ³èÎï±íÖĞµÄÈËÎïµÄ³èÎïÊıÁ¿ */
+	/** è·å¾—å® ç‰©è¡¨ä¸­çš„äººç‰©çš„å® ç‰©æ•°é‡ */
 	public int getPetNumber(int pPk){
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select count(*) from p_pet_info where p_pk="+pPk;
+		String sql = "SELECT count(*) from p_pet_info where p_pk="+pPk;
 		//logger.debug("warehouseDAO getPetNumber : "+sql);
 		int petNumber = 0;
 		try
@@ -533,12 +533,12 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½Ä³Ò»ÖÖµÀ¾ßµÄ×ÜÊı
+	 * å¾—åˆ°æŸä¸€ç§é“å…·çš„æ€»æ•°
 	 */
 	public int getPropNumByByPropID(int p_pk, int prop_id)
 	{
 		int prop_num = 0;
-		String sql = "select sum(uw_prop_number) as prop_sum from u_warehouse_info where p_pk="
+		String sql = "SELECT sum(uw_prop_number) as prop_sum from u_warehouse_info where p_pk="
 				+ p_pk + " and uw_prop_id=" + prop_id + "";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -561,12 +561,12 @@ public class WareHouseDao extends DaoBase {
 		{
 			dbConn.closeConn();
 		}
-		logger.debug("²Ö¿âÖĞÊ£ÓàµÄ×ÜÊı"+prop_num);
+		logger.debug("ä»“åº“ä¸­å‰©ä½™çš„æ€»æ•°"+prop_num);
 		return prop_num;
 	}
 	
 	/**
-	 * Ôö¼ÓÒ»×éµÀ¾ß
+	 * å¢åŠ ä¸€ç»„é“å…·
 	 */
 	public int addPropGroup(WareHouseVO warevo)
 	{
@@ -576,7 +576,7 @@ public class WareHouseDao extends DaoBase {
 			return -1;
 		}
 		int result = -1;
-		String sql = "insert into u_warehouse_info (u_pk,p_pk,uw_prop_id,uw_prop_number,uw_type,uw_prop_type,uw_article,create_time,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_operate1) values (?,?,?,?,?,?,?,now(),?,?,?,?,?)";
+		String sql = "INSERT INTO u_warehouse_info (u_pk,p_pk,uw_prop_id,uw_prop_number,uw_type,uw_prop_type,uw_article,create_time,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_operate1) values (?,?,?,?,?,?,?,now(),?,?,?,?,?)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -614,12 +614,12 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İprop_idµÃµ½ÊıÁ¿×îÉÙµÄÒ»×é
+	 * æ ¹æ®prop_idå¾—åˆ°æ•°é‡æœ€å°‘çš„ä¸€ç»„
 	 */
 	public WareHouseVO getWareHouseByPropID(int p_pk, int prop_id)
 	{
 		WareHouseVO wareHouse = null;
-		String sql = "select * from u_warehouse_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_warehouse_info where p_pk=" + p_pk
 				+ " and uw_prop_id=" + prop_id + " order by uw_prop_number limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -668,11 +668,11 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸üĞÂµÀ¾ß×éÊıÁ¿
+	 * æ›´æ–°é“å…·ç»„æ•°é‡
 	 * 
 	 * @param pg_pk
 	 * @param prop_num
-	 *            ĞÂµÄµÀ¾ßÊıÁ¿
+	 *            æ–°çš„é“å…·æ•°é‡
 	 * @return
 	 */
 	public int updatePropGroupNum(int uwId, int prop_num)
@@ -700,14 +700,14 @@ public class WareHouseDao extends DaoBase {
 
 
 	/**
-	 * ½«×°±¸´Ó²Ö¿â×°½ø°ü¹ü
+	 * å°†è£…å¤‡ä»ä»“åº“è£…è¿›åŒ…è£¹
 	 * @param p_pk
 	 * @param vo
 	 */
 	public int putAccToWrap(int p_pk, WareHouseEquipVO vo)
 	{
 		int i = -1;
-		String sql = "insert into u_part_equip values (null,'"+vo.getPPk()+"','"+vo.getTableType()+"','"
+		String sql = "INSERT INTO u_part_equip values (null,'"+vo.getPPk()+"','"+vo.getTableType()+"','"
 						+vo.getGoodsType()+"','"+vo.getWId()+"','"
 						+vo.getWName()+"','"+vo.getWDurability()+"','"+vo.getWDuraConsume()+"','"+vo.getWBonding()+"','"+vo.getWProtect()+"','"
 						+vo.getWIsreconfirm()+"','"+vo.getWPrice()+"','"+vo.getWFyXiaoYuan()+"','"+vo.getWFyDaYuan()+"','"+vo.getWGjXiaoYuan()+"','"
@@ -726,7 +726,7 @@ public class WareHouseDao extends DaoBase {
 						+"','"+vo.getEnchantType()+"',"+vo.getEnchantValue()+","+vo.getWZjHp()+","+vo.getWZjMp()+","+vo.getWZjWxGj()
 						+","+vo.getWZjWxFy()+","+vo.getWZbGrade()+",now(),"+vo.getPPoss()+","+vo.getWBondingNum()+","+vo.getSpecialcontent()+")";
 		
-		logger.debug("²åÈë¸öÈË°ü¹üÀïµÄsql="+sql);
+		logger.debug("æ’å…¥ä¸ªäººåŒ…è£¹é‡Œçš„sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -745,11 +745,11 @@ public class WareHouseDao extends DaoBase {
 
 
 	/**
-	 * ¸ù¾İprop_idµÃµ½ÊıÁ¿×îÉÙµÄÒ»×é
+	 * æ ¹æ®prop_idå¾—åˆ°æ•°é‡æœ€å°‘çš„ä¸€ç»„
 	 */
 	public int getPropGroupNumByPropID(int p_pk, int prop_id)
 	{
-		String sql = "select count(1) as ware_group from u_warehouse_info where p_pk=" + p_pk
+		String sql = "SELECT count(1) as ware_group from u_warehouse_info where p_pk=" + p_pk
 				+ " and uw_prop_id=" + prop_id + "";
 		logger.debug(sql);
 		int prop_group = 0;
@@ -778,10 +778,10 @@ public class WareHouseDao extends DaoBase {
 		
 	}
 	
-	/**µÃµ½Íæ¼ÒÏÖÔÚµÄ°ü¹ü¸ñ×Ó*/
+	/**å¾—åˆ°ç©å®¶ç°åœ¨çš„åŒ…è£¹æ ¼å­*/
 	public int getPlayerWarehouseNum(int p_pk){
 		int num = 0;
-		String sql = "select uw_number from u_warehouse_info where uw_type = "+Wrap.COPPER+" and p_pk="+p_pk;
+		String sql = "SELECT uw_number from u_warehouse_info where uw_type = "+Wrap.COPPER+" and p_pk="+p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -805,7 +805,7 @@ public class WareHouseDao extends DaoBase {
 		}
 		return num;
 	}
-	/**¸üĞÂÍæ¼Ò°ü¹ü¸ñ×Ó*/
+	/**æ›´æ–°ç©å®¶åŒ…è£¹æ ¼å­*/
 	public void updatePlayerWarehouseMaxNum(int p_pk,int num){
 		String sql = "update u_warehouse_info set uw_number = uw_number + "+num+" where p_pk ="+p_pk;
 		logger.debug(sql);
@@ -825,7 +825,7 @@ public class WareHouseDao extends DaoBase {
 			dbConn.closeConn();
 		}
 	}
-	/**¸üĞÂÍæ¼ÒÊ£Óà°ü¹ü¸ñ×Ó*/
+	/**æ›´æ–°ç©å®¶å‰©ä½™åŒ…è£¹æ ¼å­*/
 	public void updatePlayerWarehouseNum(int p_pk,int num){
 		String sql = "update u_warehouse_info set uw_warehouse_spare = uw_warehouse_spare + "+num+" where p_pk ="+p_pk;
 		logger.debug(sql);
@@ -848,7 +848,7 @@ public class WareHouseDao extends DaoBase {
 
 
 	/**
-	 * É¾³ıµÀ¾ß,°´×éÉ¾³ı
+	 * åˆ é™¤é“å…·,æŒ‰ç»„åˆ é™¤
 	 * @param pPk
 	 * @param propId
 	 * @param group_num
@@ -877,7 +877,7 @@ public class WareHouseDao extends DaoBase {
 	
 	
 	/**
-	 * ¸üĞÂÍæ¼ÒµÀ¾ß¸ñ×ÓµÄÊıÁ¿
+	 * æ›´æ–°ç©å®¶é“å…·æ ¼å­çš„æ•°é‡
 	 * @param p_pk
 	 * @param propId
 	 * @param propAccumulate
@@ -903,7 +903,7 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İÌõ¼ş×Ö·û´®ºÍµ±Ç°Ò³ºÅµÃµ½·ÖÒ³Êı¾İ
+	 * æ ¹æ®æ¡ä»¶å­—ç¬¦ä¸²å’Œå½“å‰é¡µå·å¾—åˆ°åˆ†é¡µæ•°æ®
 	 */
 	private QueryPage loadPageList( String condition_sql,int page_no)
 	{
@@ -918,7 +918,7 @@ public class WareHouseDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "select count(*) from u_warehouse_info "+condition_sql ;
+			count_sql = "SELECT count(*) from u_warehouse_info "+condition_sql ;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if (rs.next())
@@ -929,7 +929,7 @@ public class WareHouseDao extends DaoBase {
 			
 			queryPage = new QueryPage(page_no, count);
 			
-			page_sql = "select * from u_warehouse_info "+condition_sql
+			page_sql = "SELECT * FROM u_warehouse_info "+condition_sql
 			+ "  limit " + queryPage.getStartOfPage()
 			+ "," + queryPage.getPageSize();
 			logger.debug(page_sql);
@@ -958,7 +958,7 @@ public class WareHouseDao extends DaoBase {
 	}
 	
 	/**
-	 * ×°ÔØÒ»Ìõ¼ÇÂ¼
+	 * è£…è½½ä¸€æ¡è®°å½•
 	 * @param rs
 	 * @return
 	 * @throws SQLException 

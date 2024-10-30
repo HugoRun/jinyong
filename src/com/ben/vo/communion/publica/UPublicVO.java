@@ -4,20 +4,20 @@
 package com.ben.vo.communion.publica;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 5:59:22 PM
  */
 public class UPublicVO {
-	/** ¹«¹²ÆµµÀid */
+	/** å…¬å…±é¢‘é“id */
 	private int puPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ½ÇÉ«Ãû³Æ */
+	/** è§’è‰²åç§° */
 	private String pName;
-	/** ¹«¹²ÁÄÌìÀàÈİ */
+	/** å…¬å…±èŠå¤©ç±»å®¹ */
 	private String puTitle;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getPuPk() {

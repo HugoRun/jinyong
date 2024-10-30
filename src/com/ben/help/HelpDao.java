@@ -11,7 +11,7 @@ public class HelpDao extends DaoBase
 	public List<Help> findBySuperId(Object super_id,int begin,int limit)
 	{
 		List<Help> list = new ArrayList<Help>();
-		String sql = "select * from help h where h.super_id = " + super_id +" order by h.shunxu asc limit "+begin+","+limit;
+		String sql = "SELECT * FROM help h WHERE h.super_id = " + super_id +" ORDER BY h.shunxu ASC limit "+begin+","+limit;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -36,7 +36,7 @@ public class HelpDao extends DaoBase
 	
 	public int findBySuperId(Object super_id){
 		int i = 0;
-		String sql = "select count(*) from help h where h.super_id = " + super_id ;
+		String sql = "SELECT count(*) FROM help h WHERE h.super_id = " + super_id ;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -88,7 +88,7 @@ public class HelpDao extends DaoBase
 	
 	public Help findById(Object id){
 		List<Help> list = new ArrayList<Help>();
-		String sql = "select * from help h where h.id = "+id;
+		String sql = "SELECT * FROM help h WHERE h.id = "+id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -113,7 +113,7 @@ public class HelpDao extends DaoBase
 	
 	public List<Guai> findByDiaoluo(Object goods_id,Object type){
 		List<Guai> list = new ArrayList<Guai>();
-		String sql = "select m.npc_ID,m.npc_Name,m.npc_Level from npcdrop n,npc m where n.goods_id = "+goods_id+" and n.goods_type = "+type+" and n.npc_ID = m.npc_ID and m.npc_Name like '%(%' group by m.npc_ID  limit "+HelpConstant.COUNT;
+		String sql = "SELECT m.npc_ID, m.npc_Name, m.npc_Level FROM npcdrop n, npc m WHERE n.goods_id = "+goods_id+" AND n.goods_type = "+type+" AND n.npc_ID = m.npc_ID AND m.npc_Name LIKE '%(%' GROUP BY m.npc_ID LIMIT "+HelpConstant.COUNT;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -139,7 +139,7 @@ public class HelpDao extends DaoBase
 	
 	public List<Guai> findByDiaoluo1(Object goods_id,Object type){
 		List<Guai> list = new ArrayList<Guai>();
-		String sql = "select m.npc_ID,m.npc_Name,m.npc_Level,s.scene_Name,n.npcdrop_importance from npcdrop n,npc m, npcrefurbish o ,scene s where n.goods_id = "+goods_id+" and n.goods_type = "+type+" and n.npc_ID = m.npc_ID and o.npc_id = n.npc_id and o.scene_id = s.scene_ID group by m.npc_ID order by npcdrop_importance desc  limit "+HelpConstant.COUNT;
+		String sql = "SELECT m.npc_ID, m.npc_Name, m.npc_Level, s.scene_Name, n.npcdrop_importance FROM npcdrop n, npc m, npcrefurbish o ,scene s WHERE n.goods_id = " + goods_id + " AND n.goods_type = " + type + " AND n.npc_ID = m.npc_ID AND o.npc_id = n.npc_id AND o.scene_id = s.scene_ID GROUP BY m.npc_ID ORDER BY npcdrop_importance DESC LIMIT "+HelpConstant.COUNT;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
@@ -164,7 +164,7 @@ public class HelpDao extends DaoBase
 	
 	public String findScene(Object npc_id){
 		String name = null;
-		String sql = "select s.scene_Name from npcrefurbish o ,scene s where o.scene_id = s.scene_ID and o.npc_id = "+npc_id+" limit 1";
+		String sql = "SELECT s.scene_Name FROM npcrefurbish o, scene s WHERE o.scene_id = s.scene_ID AND o.npc_id = " + npc_id + " LIMIT 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try

@@ -6,17 +6,17 @@ import com.ben.shitu.model.Shitu;
 
 public class Help implements Serializable, Comparable<Help>
 {
-	private int id;//²Ëµ¥id
-	private int super_id;//¸¸ÀàĞÍid
-	private String name;//ÀàĞÍÃû³Æ
-	private String des;//ÀàĞÍÃèÊö
-	private int shunxu;//ÅÅĞò
-	private int scene_id;//´«ËÍµØµã
-	private int level_limit;//´«ËÍµÈ¼¶
-	private int type;//²Ëµ¥ÀàĞÍ
-	private String link_name;//Á¬½ÓÃû³Æ
-	private int task_men;//ÈÎÎñÀàĞÍ:ÊÇ·ñÊÇ±¾ÃÅÅÉ£¬0ĞèÒª£¬1Ã÷½Ì£¬2Ø¤°ï£¬3ÉÙÁÖ
-	private String task_zu;//ÈÎÎñ×éµÄÃû³Æ
+	private int id;//èœå•id
+	private int super_id;//çˆ¶ç±»å‹id
+	private String name;//ç±»å‹åç§°
+	private String des;//ç±»å‹æè¿°
+	private int shunxu;//æ’åº
+	private int scene_id;//ä¼ é€åœ°ç‚¹
+	private int level_limit;//ä¼ é€ç­‰çº§
+	private int type;//èœå•ç±»å‹
+	private String link_name;//è¿æ¥åç§°
+	private int task_men;//ä»»åŠ¡ç±»å‹:æ˜¯å¦æ˜¯æœ¬é—¨æ´¾ï¼Œ0éœ€è¦ï¼Œ1æ˜æ•™ï¼Œ2ä¸å¸®ï¼Œ3å°‘æ—
+	private String task_zu;//ä»»åŠ¡ç»„çš„åç§°
 	
 	public String getTask_zu()
 	{

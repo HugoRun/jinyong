@@ -25,21 +25,21 @@ public class AuctionYbService
 {
 
 	/**
-	 * »ñÈ¡Ôª±¦ÅÄÂôµÄlist
+	 * è·å–å…ƒå®æ‹å–çš„list
 	 * @param roleInfo
 	 * @param page_no
 	 * @return
 	 */
 	public QueryPage getYbPageList(RoleEntity roleInfo, int page_no,HttpServletRequest request,HttpServletResponse response)
 	{
-		// ÎïÆ·ÈıÌìÏÂ¼Ü
+		// ç‰©å“ä¸‰å¤©ä¸‹æ¶
 		this.threeDayDown(request,response);
 		AuctionYbDao ybdao  = new AuctionYbDao();
 		return ybdao.getYbPageList(roleInfo,page_no);		
 	}
 
 	/**
-	 * ÎïÆ·ÈıÌìÏÂ¼Ü
+	 * ç‰©å“ä¸‰å¤©ä¸‹æ¶
 	 */
 	private void threeDayDown(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -48,11 +48,11 @@ public class AuctionYbService
 		for(AuctionYBVO auctionYBVO:list) {
 			this.sendGiveYbMail(auctionYBVO,request,response);
 		}
-		ybdao.updateAllSailedYuanbaoToUnSaleEd();	// ½«³¬¹ıÈıÌìÅÄÂôÊ§°ÜµÄÔª±¦ÖÃÓÚÏÂ¼Ü×´Ì¬
+		ybdao.updateAllSailedYuanbaoToUnSaleEd();	// å°†è¶…è¿‡ä¸‰å¤©æ‹å–å¤±è´¥çš„å…ƒå®ç½®äºä¸‹æ¶çŠ¶æ€
 	}
 
 	/**
-	 * ¸ù¾İ ÅÄÂôÔª±¦±íid »ñµÃ Ôª±¦ÅÄÂôĞÅÏ¢
+	 * æ ¹æ® æ‹å–å…ƒå®è¡¨id è·å¾— å…ƒå®æ‹å–ä¿¡æ¯
 	 * @param uyb_id
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class AuctionYbService
 	}
 	
 	/**
-	 * ¸ù¾İ ÅÄÂôÔª±¦±íid »ñµÃ Ôª±¦ÅÄÂôĞÅÏ¢
+	 * æ ¹æ® æ‹å–å…ƒå®è¡¨id è·å¾— å…ƒå®æ‹å–ä¿¡æ¯
 	 * @param uyb_id
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class AuctionYbService
 	}
 
 	/**
-	 * ÂòÔª±¦
+	 * ä¹°å…ƒå®
 	 * @param auctionYBVO
 	 * @param roleInfo
 	 * @return
@@ -83,45 +83,45 @@ public class AuctionYbService
 	{
 		String hint = null;
 		if ( auctionYBVO == null) {
-			hint = "¸Ã"+GameConfig.getYuanbaoName()+"ÒÑ¾­±»ÅÄÂô!";
+			hint = "è¯¥"+GameConfig.getYuanbaoName()+"å·²ç»è¢«æ‹å–!";
 			return hint;
 		}
 		
 		AuctionYBVO vo = getAuctionYbByUybId(auctionYBVO.getUybId()+"", AuctionNumber.YUANSELLING);
 		
 		if ( vo == null) {
-			hint = "¸Ã"+GameConfig.getYuanbaoName()+"ÒÑ¾­±»ÅÄÂô!";
+			hint = "è¯¥"+GameConfig.getYuanbaoName()+"å·²ç»è¢«æ‹å–!";
 			return hint;
 		}
 		
 		if(roleInfo.getBasicInfo().getPPk() == auctionYBVO.getPPk()){
-			hint = "Äú²»ÄÜ¹ºÂò×Ô¼ºµÄ¶«Î÷!";
+			hint = "æ‚¨ä¸èƒ½è´­ä¹°è‡ªå·±çš„ä¸œè¥¿!";
 		}
 		EconomyService economyService = new EconomyService();
 		PropertyService propertyService = new PropertyService();
 		
-		// ´ÓÂò¼ÒÉíÉÏ¼õÈ¥Ëù ĞèÒªµÄ½ğÇ®
+		// ä»ä¹°å®¶èº«ä¸Šå‡å»æ‰€ éœ€è¦çš„é‡‘é’±
 		economyService.spendMoney(roleInfo.getBasicInfo().getPPk(),auctionYBVO.getYbPrice());
 		
-		// ½«´ËÌõĞÅÏ¢ÖÃÎªÒÑ¾­Âô³ö×´Ì¬
+		// å°†æ­¤æ¡ä¿¡æ¯ç½®ä¸ºå·²ç»å–å‡ºçŠ¶æ€
 		this.updateYuanbaoState(auctionYBVO.getUybId(),AuctionNumber.YUANSELLED);
 		
 		long oldYuanBao = economyService.getYuanbao(roleInfo.getBasicInfo().getUPk());
 		
-		// ÍùÂò¼ÒÉíÉÏ¼ÓÉÏËù»ñµÃ µÄÔª±¦
+		// å¾€ä¹°å®¶èº«ä¸ŠåŠ ä¸Šæ‰€è·å¾— çš„å…ƒå®
 		economyService.addYuanbao(roleInfo.getBasicInfo().getUPk(), auctionYBVO.getYbNum());
 		
-		hint = "Äú»¨·ÑÒøÁ½"+MoneyUtil.changeCopperToStr(auctionYBVO.getYbPrice())+"¹ºÂòÁË"+
-				propertyService.getPlayerName(auctionYBVO.getPPk())+"ÅÄÂôµÄ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+auctionYBVO.getYbNum()+"¡£ÄúÏÖÓĞ¡¾ÏÉ¾§¡¿¡Á"
+		hint = "æ‚¨èŠ±è´¹é“¶ä¸¤"+MoneyUtil.changeCopperToStr(auctionYBVO.getYbPrice())+"è´­ä¹°äº†"+
+				propertyService.getPlayerName(auctionYBVO.getPPk())+"æ‹å–çš„ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+auctionYBVO.getYbNum()+"ã€‚æ‚¨ç°æœ‰ã€ä»™æ™¶ã€‘Ã—"
 				+(oldYuanBao+auctionYBVO.getYbNum())+".";
 		
 		
 		String jiluString  = roleInfo.getBasicInfo().getName() + hint.substring(1);
 		
-		// °ÑÕâ´ÎÊÂ¼ş¼ÇÂ¼ÏÂÀ´
+		// æŠŠè¿™æ¬¡äº‹ä»¶è®°å½•ä¸‹æ¥
 		this.recordYuanBaoAuction(roleInfo.getBasicInfo().getPPk(),auctionYBVO,jiluString);
 		
-		// ¸øÅÄÂôÕß·¢ÓÊ¼ş,ÒÔ±ãÆäÄÜ»ñµÃËûËùµÃµÄÒøÁ½.
+		// ç»™æ‹å–è€…å‘é‚®ä»¶,ä»¥ä¾¿å…¶èƒ½è·å¾—ä»–æ‰€å¾—çš„é“¶ä¸¤.
 		try
 		{
 			this.sendGiveMoneyMail(roleInfo,auctionYBVO,request, response);
@@ -134,7 +134,7 @@ public class AuctionYbService
 	}
 
 	/**
-	 * ½«´ËÌõĞÅÏ¢µÄ×´Ì¬ÖÃÎªsellState
+	 * å°†æ­¤æ¡ä¿¡æ¯çš„çŠ¶æ€ç½®ä¸ºsellState
 	 * @param uybId
 	 * @param sellState
 	 */
@@ -146,10 +146,10 @@ public class AuctionYbService
 	}
 
 	/**
-	 * ÈıÌìÅÄÂôÊ§°Ü,¸øÅÄÂôÕß·¢ÓÊ¼ş,ÒÔ±ãÆäÄÜ»ñµÃËûËùµÃµÄÔª±¦.
-	 * @param roleInfo	Âò¼ÒµÄ
+	 * ä¸‰å¤©æ‹å–å¤±è´¥,ç»™æ‹å–è€…å‘é‚®ä»¶,ä»¥ä¾¿å…¶èƒ½è·å¾—ä»–æ‰€å¾—çš„å…ƒå®.
+	 * @param roleInfo	ä¹°å®¶çš„
 	 * 
-	 * @param auctionYBVO ÅÄÂôµÄÇé¿ö
+	 * @param auctionYBVO æ‹å–çš„æƒ…å†µ
 	 */
 	private void sendGiveYbMail(AuctionYBVO auctionYBVO,HttpServletRequest request,HttpServletResponse response)
 	{
@@ -160,7 +160,7 @@ public class AuctionYbService
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat ygFormat = new SimpleDateFormat("MM-dd");
 		MailInfoDao mailDao = new MailInfoDao();
-		String mailTitle = ""+GameConfig.getYuanbaoName()+"ÅÄÂôÊ§°Ü£¡";
+		String mailTitle = ""+GameConfig.getYuanbaoName()+"æ‹å–å¤±è´¥ï¼";
 		MailInfoService mailInfoService = new MailInfoService();
 		int mailId = mailInfoService.sendMailReply(auctionYBVO.getPPk(),-1,6, mailTitle, sBuffer.toString(),1);
 		
@@ -174,21 +174,21 @@ public class AuctionYbService
 			e.printStackTrace();
 		}
 		
-		sBuffer.append("ÄúÔÚ"+ygFormat.format(dt)+"ÅÄÂôµÄ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+auctionYBVO.getYbNum()+"ÎŞÈË¹ºÂò<br/>");
+		sBuffer.append("æ‚¨åœ¨"+ygFormat.format(dt)+"æ‹å–çš„ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+auctionYBVO.getYbNum()+"æ— äººè´­ä¹°<br/>");
 		//sBuffer.append("<anchor><go method=\"post\" href=\"/auctionyb.do\">");
 		sBuffer.append("<anchor><go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/auctionyb.do")+"\">");
 		sBuffer.append("<postfield name=\"cmd\" value=\"n10\" />");
 		sBuffer.append("<postfield name=\"uybId\" value=\""+auctionYBVO.getUybId()+"\" />");
 		sBuffer.append("<postfield name=\"mailId\" value=\""+mailId+"\" />");
-		sBuffer.append("</go>È·¶¨</anchor>");
+		sBuffer.append("</go>ç¡®å®š</anchor>");
 		mailDao.updateMail(mailId,sBuffer.toString());
 	}
 	
 	/**
-	 * ¸øÅÄÂôÕß·¢ÓÊ¼ş,ÒÔ±ãÆäÄÜ»ñµÃËûËùµÃµÄÒøÁ½.
-	 * @param roleInfo	Âò¼ÒµÄ
+	 * ç»™æ‹å–è€…å‘é‚®ä»¶,ä»¥ä¾¿å…¶èƒ½è·å¾—ä»–æ‰€å¾—çš„é“¶ä¸¤.
+	 * @param roleInfo	ä¹°å®¶çš„
 	 * 
-	 * @param auctionYBVO ÅÄÂôµÄÇé¿ö
+	 * @param auctionYBVO æ‹å–çš„æƒ…å†µ
 	 * @throws ParseException 
 	 */
 	private void sendGiveMoneyMail(RoleEntity roleInfo, AuctionYBVO auctionYBVO,HttpServletRequest request,HttpServletResponse response) throws ParseException
@@ -201,7 +201,7 @@ public class AuctionYbService
 		DateFormat ygormat = new SimpleDateFormat("MM-dd");
 		MailInfoService mailInfoService = new MailInfoService();
 		MailInfoDao mailDao = new MailInfoDao();
-		String mailTitle = ""+GameConfig.getYuanbaoName()+"ÅÄÂô³É¹¦£¡";
+		String mailTitle = ""+GameConfig.getYuanbaoName()+"æ‹å–æˆåŠŸï¼";
 		
 		int mailId = mailInfoService.sendMailReply(auctionYBVO.getPPk(),-1,6, mailTitle, sBuffer.toString(),1);
 		
@@ -209,20 +209,20 @@ public class AuctionYbService
 		
 		Date dt = dFormat.parse(auctionYBVO.getAuctionTime());
 		
-		sBuffer.append("ÄúÔÚ"+ygormat.format(dt)+"ÅÄÂôµÄ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á"+auctionYBVO.getYbNum()+"ÒÑ±»"+
-		propertyService.getPlayerName(roleInfo.getBasicInfo().getPPk())+"¹ºÂò,"+"ÇëÈ¡»ØÄúËùµÃµÄ½ğÇ®<br/>");
+		sBuffer.append("æ‚¨åœ¨"+ygormat.format(dt)+"æ‹å–çš„ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—"+auctionYBVO.getYbNum()+"å·²è¢«"+
+		propertyService.getPlayerName(roleInfo.getBasicInfo().getPPk())+"è´­ä¹°,"+"è¯·å–å›æ‚¨æ‰€å¾—çš„é‡‘é’±<br/>");
 		
 		sBuffer.append("<anchor><go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/auctionyb.do")+"\">");
 		//sBuffer.append("<anchor><go method=\"post\" href=\"/auctionyb.do\">");
 		sBuffer.append("<postfield name=\"cmd\" value=\"n9\" />");
 		sBuffer.append("<postfield name=\"uybId\" value=\""+auctionYBVO.getUybId()+"\" />");
 		sBuffer.append("<postfield name=\"mailId\" value=\""+mailId+"\" />");
-		sBuffer.append("</go>È·¶¨</anchor>");
+		sBuffer.append("</go>ç¡®å®š</anchor>");
 		mailDao.updateMail(mailId,sBuffer.toString());
 	}
 
 	/**
-	 * ¼ÇÂ¼Ôª±¦ÅÄÂô
+	 * è®°å½•å…ƒå®æ‹å–
 	 * @param jiluString
 	 */
 	private void recordYuanBaoAuction(int pPk, AuctionYBVO auctionYBVO ,String jiluString)
@@ -233,7 +233,7 @@ public class AuctionYbService
 	}
 
 	/**
-	 * ÅÄÂôÔª±¦
+	 * æ‹å–å…ƒå®
 	 * @param roleInfo
 	 * @param paimaiYuanBao
 	 * @param money
@@ -242,62 +242,62 @@ public class AuctionYbService
 	public String auctionYuanBao(RoleEntity roleInfo, int paimaiYuanBao,
 			long money)
 	{
-		// ´ÓÍæ¼ÒÉíÉÏ¼õÈ¥ Ôª±¦
+		// ä»ç©å®¶èº«ä¸Šå‡å» å…ƒå®
 		EconomyService economyService = new EconomyService();
 		economyService.spendYuanbao(roleInfo.getBasicInfo().getUPk(),paimaiYuanBao );
 		
-		// Ôö¼Ó ÅÄÂôĞÅÏ¢µ½ Ôª±¦ÅÄÂô³¡
+		// å¢åŠ  æ‹å–ä¿¡æ¯åˆ° å…ƒå®æ‹å–åœº
 		AuctionYbDao ybdao  = new AuctionYbDao();
 		ybdao.insertYuanbao(roleInfo.getBasicInfo().getPPk(),paimaiYuanBao,money);
 		
-		// ½«´ËĞÅÏ¢¼ÇÂ¼ÏÂÀ´
-		//String infoString = roleInfo.getBasicInfo().getName()+"ÅÄÂôÁËÔª±¦*"+paimaiYuanBao+",¼Û¸ñÊÇ"+money+",Ê±¼äÊÇ"+new Date();
+		// å°†æ­¤ä¿¡æ¯è®°å½•ä¸‹æ¥
+		//String infoString = roleInfo.getBasicInfo().getName()+"æ‹å–äº†å…ƒå®*"+paimaiYuanBao+",ä»·æ ¼æ˜¯"+money+",æ—¶é—´æ˜¯"+new Date();
 		//this.recordYuanBaoAuction(roleInfo.getBasicInfo().getPPk(),roleInfo.getBasicInfo().getPPk(),infoString);
 		
-		// ·µ»Ø×Ö·û´®
-		String hint = "ÄúÒÑ¾­ÒÔ"+MoneyUtil.changeCopperToStr(money)+"µÄ¼Û¸ñÅÄÂôÁË"+GameConfig.getYuanbaoName()+"¡Á"+paimaiYuanBao+"!";
+		// è¿”å›å­—ç¬¦ä¸²
+		String hint = "æ‚¨å·²ç»ä»¥"+MoneyUtil.changeCopperToStr(money)+"çš„ä»·æ ¼æ‹å–äº†"+GameConfig.getYuanbaoName()+"Ã—"+paimaiYuanBao+"!";
 		return hint;
 	}
 
 	/**
-	 * ¸ù¾İÓÊ¼şÈ¡»Ø½ğÇ®
+	 * æ ¹æ®é‚®ä»¶å–å›é‡‘é’±
 	 * @param auctionYBVO
 	 * @param roleInfo
 	 */
 	public void getMoneyByUybId(AuctionYBVO auctionYBVO, RoleEntity roleInfo,String mailId)
 	{
-		// ½«ÓÊ¼şµÄ×´Ì¬ÖÃÎª4£¬
+		// å°†é‚®ä»¶çš„çŠ¶æ€ç½®ä¸º4ï¼Œ
 		AuctionYbDao ybdao  = new AuctionYbDao();
 		ybdao.updateYuanbaoState(auctionYBVO.getUybId(), AuctionNumber.BACKED);
 		
-		// ½« ½ğÇ® ·Åµ½ÅÄÂôÕßµÄÉíÉÏ
+		// å°† é‡‘é’± æ”¾åˆ°æ‹å–è€…çš„èº«ä¸Š
 		EconomyService economyService = new EconomyService();
 		economyService.addMoney(roleInfo.getBasicInfo().getPPk(), auctionYBVO.getYbPrice());
 		
-		// ½«´ËĞÅÏ¢¼ÇÂ¼ÏÂÀ´
-		String recordString = roleInfo.getBasicInfo().getName()+"È¡»ØÁËÔÚ"+auctionYBVO.getAuctionTime()+"ÅÄÂôÔª±¦*"+auctionYBVO.getYbNum()
-								+"»ñµÃµÄ½ğÇ®"+auctionYBVO.getYbPrice()+",Ê±¼äÎª"+new Date();
+		// å°†æ­¤ä¿¡æ¯è®°å½•ä¸‹æ¥
+		String recordString = roleInfo.getBasicInfo().getName()+"å–å›äº†åœ¨"+auctionYBVO.getAuctionTime()+"æ‹å–å…ƒå®*"+auctionYBVO.getYbNum()
+								+"è·å¾—çš„é‡‘é’±"+auctionYBVO.getYbPrice()+",æ—¶é—´ä¸º"+new Date();
 				
 		this.recordYuanBaoAuction(roleInfo.getBasicInfo().getPPk(),auctionYBVO,recordString);
 	}
 	/**
-	 * ¸ù¾İÓÊ¼şÈ¡»ØÔª±¦
+	 * æ ¹æ®é‚®ä»¶å–å›å…ƒå®
 	 * @param auctionYBVO
 	 * @param roleInfo
 	 */
 	public void getYuanBaoByUybId(AuctionYBVO auctionYBVO, RoleEntity roleInfo,String mailId)
 	{
-		// ½«ÓÊ¼şµÄ×´Ì¬ÖÃÎª4£¬
+		// å°†é‚®ä»¶çš„çŠ¶æ€ç½®ä¸º4ï¼Œ
 		AuctionYbDao ybdao  = new AuctionYbDao();
 		ybdao.updateYuanbaoState(auctionYBVO.getUybId(), AuctionNumber.BACKED);
 		
-		// ½« Ôª±¦ ·Åµ½ÅÄÂôÕßµÄÉíÉÏ
+		// å°† å…ƒå® æ”¾åˆ°æ‹å–è€…çš„èº«ä¸Š
 		EconomyService economyService = new EconomyService();
 		economyService.addYuanbao(roleInfo.getBasicInfo().getUPk(), auctionYBVO.getYbNum());
 		
-		// ½«´ËĞÅÏ¢¼ÇÂ¼ÏÂÀ´
-		String recordString = roleInfo.getBasicInfo().getName()+"È¡»ØÁËÔÚ"+auctionYBVO.getAuctionTime()+"ÅÄÂôµÄÔª±¦*"+auctionYBVO.getYbNum()
-								+",Ê±¼äÎª"+new Date();
+		// å°†æ­¤ä¿¡æ¯è®°å½•ä¸‹æ¥
+		String recordString = roleInfo.getBasicInfo().getName()+"å–å›äº†åœ¨"+auctionYBVO.getAuctionTime()+"æ‹å–çš„å…ƒå®*"+auctionYBVO.getYbNum()
+								+",æ—¶é—´ä¸º"+new Date();
 		this.recordYuanBaoAuction(roleInfo.getBasicInfo().getPPk(),auctionYBVO,recordString);
 		
 	}

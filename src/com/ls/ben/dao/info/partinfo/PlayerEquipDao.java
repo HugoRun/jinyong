@@ -14,8 +14,8 @@ import com.ls.pub.constant.Equip;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:u_part_equip²Ù×÷
- * @author ÁõË§ 9:18:56 AM
+ * åŠŸèƒ½:u_part_equipæ“ä½œ
+ * @author åˆ˜å¸… 9:18:56 AM
  */
 public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 {
@@ -26,7 +26,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 
 	
 	/**
-	 * ĞŞ¸Ä×°±¸ÊôĞÔÖµ
+	 * ä¿®æ”¹è£…å¤‡å±æ€§å€¼
 	 */
 	public void updateEquipAttri(PlayerEquipVO equip )
 	{
@@ -84,7 +84,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	
 	
 	/**
-	 * Ìí¼Ó×°±¸
+	 * æ·»åŠ è£…å¤‡
 	 * @param equip
 	 */
 	public int add(PlayerEquipVO equip)
@@ -95,7 +95,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 			return key;
 		}
 		StringBuffer sql = new StringBuffer();
-		sql.append("insert into u_part_equip values (null,?,?,?,?,?,?");
+		sql.append("INSERT INTO u_part_equip values (null,?,?,?,?,?,?");
 		sql.append(",?,?,?,?,?,?");
 		sql.append(",?,?");
 		sql.append(",?,?,?,?,now(),?,0,0,?");
@@ -161,7 +161,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 
 	/**
-	 * ĞŞ¸Ä×°±¸Ëù´©µÄÎ»ÖÃ
+	 * ä¿®æ”¹è£…å¤‡æ‰€ç©¿çš„ä½ç½®
 	 */
 	public int updatePosition(int pw_pk, int position)
 	{
@@ -189,9 +189,9 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	
 
 	/**
-	 * ĞŞ¸Ä×°±¸µÄ³ÖÓĞÈË
-	 * @param pw_pk 		×°±¸id
-	 * @param pPk           ĞÂµÄ³ÖÓĞÈË
+	 * ä¿®æ”¹è£…å¤‡çš„æŒæœ‰äºº
+	 * @param pw_pk 		è£…å¤‡id
+	 * @param pPk           æ–°çš„æŒæœ‰äºº
 	 * @return
 	 */
 	public int updateOwner(int pw_pk, int pPk )
@@ -219,7 +219,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * Çå¿Õ×°±¸
+	 * æ¸…ç©ºè£…å¤‡
 	 */
 	public void clear(int p_pk )
 	{
@@ -229,14 +229,14 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ¸Ã×°±¸
+	 * åˆ¤æ–­æ˜¯å¦æœ‰è¯¥è£…å¤‡
 	 * @param pw_pk        
 	 * @return
 	 */
 	public boolean isHaveById(int pw_pk)
 	{
 		boolean result = false;
-		String sql = "select pw_pk from u_part_equip where pw_pk='" + pw_pk + "' ";
+		String sql = "SELECT pw_pk from u_part_equip where pw_pk='" + pw_pk + "' ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -263,15 +263,15 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ÅĞ¶ÏÄ³ÈËÊÇ·ñÓĞ¸Ã×°±¸(ÎŞÆ·ÖÊµÄ)
-	 * @param p_pk			½ÇÉ«id
-	 * @param equip_id      ×°±¸id
+	 * åˆ¤æ–­æŸäººæ˜¯å¦æœ‰è¯¥è£…å¤‡(æ— å“è´¨çš„)
+	 * @param p_pk			è§’è‰²id
+	 * @param equip_id      è£…å¤‡id
 	 * @return
 	 */
 	public boolean isHaveByEquipId(int p_pk,int equip_id)
 	{
 		boolean result = false;
-		String sql = "select pw_pk from u_part_equip where p_pk='" + p_pk + "' and w_type=0 and w_quality=0";
+		String sql = "SELECT pw_pk from u_part_equip where p_pk='" + p_pk + "' and w_type=0 and w_quality=0";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -298,16 +298,16 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ¸ù¾İ×°±¸id»ñºÍ×°±¸ÀàĞÍµÃ×°±¸µÄÊıÁ¿
-	 * @param p_pk Íæ¼Òid
-	 * @param equip_id ×°±¸id
-	 * @param equip_type ×°±¸ÀàĞÍ
+	 * æ ¹æ®è£…å¤‡idè·å’Œè£…å¤‡ç±»å‹å¾—è£…å¤‡çš„æ•°é‡
+	 * @param p_pk ç©å®¶id
+	 * @param equip_id è£…å¤‡id
+	 * @param equip_type è£…å¤‡ç±»å‹
 	 */
 	public int getEquipNumByEquipId(int p_pk, int equip_id, int equip_type)
 	{
 		int equip_num = -1;
 
-		String sql = "select count(1) as equip_num from u_part_equip where p_pk='" + p_pk + "' and w_type=0 and w_quality=0 and equip_type="+equip_type;
+		String sql = "SELECT count(1) as equip_num from u_part_equip where p_pk='" + p_pk + "' and w_type=0 and w_quality=0 and equip_type="+equip_type;
 
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -334,7 +334,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * É¾³ıÖ¸¶¨×°±¸£¬Èç¹ûÓĞÍ¬ÑùµÄ×°±¸ÔòËæ»úÉ¾³ıÒ»¸ö(ÎŞÆ·ÖÊµÄ)
+	 * åˆ é™¤æŒ‡å®šè£…å¤‡ï¼Œå¦‚æœæœ‰åŒæ ·çš„è£…å¤‡åˆ™éšæœºåˆ é™¤ä¸€ä¸ª(æ— å“è´¨çš„)
 	 * @param p_pk
 	 * @param equip_id
 	 */
@@ -363,7 +363,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ¸ù¾İidÉ¾³ı×°±¸
+	 * æ ¹æ®idåˆ é™¤è£…å¤‡
 	 * @param wp_pk
 	 */
 	public int deleteByID(int p_pk, int pw_pk)
@@ -392,8 +392,8 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 
 	/**
-	 * ×°±¸ÅÅĞĞ
-	 * @param equip_type_list     ×°±¸ÀàĞÍ£¬¿É¶à¸ö
+	 * è£…å¤‡æ’è¡Œ
+	 * @param equip_type_list     è£…å¤‡ç±»å‹ï¼Œå¯å¤šä¸ª
 	 * @return
 	 */
 	public List<PlayerEquipVO> getRankList( int...equip_type_list )
@@ -404,12 +404,12 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 		{
 			sb.append(",").append(equip_type);
 		}
-		String sql = "select * from u_part_equip where equip_type in ("+sb.toString()+") and w_level!=100 order by rank_key desc,hole_num desc,create_time limit 10";
+		String sql = "SELECT * FROM u_part_equip where equip_type in ("+sb.toString()+") and w_level!=100 order by rank_key desc,hole_num desc,create_time limit 10";
 		return this.loadList(sql);
 	}
 	
 	/**
-	 * µÃµ½¿ÉÒÔÉı¼¶Æ·ÖÊµÄ×°±¸·ÖÒ³ÁĞ±í
+	 * å¾—åˆ°å¯ä»¥å‡çº§å“è´¨çš„è£…å¤‡åˆ†é¡µåˆ—è¡¨
 	 */
 	public QueryPage getPageQualityList(int p_pk,int page_no)
 	{
@@ -418,7 +418,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ·ÖÒ³µÃµ½¿ÉÒÔ±£»¤µÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°å¯ä»¥ä¿æŠ¤çš„è£…å¤‡
 	 */
 	public QueryPage getPageProtectList(int p_pk,int page_no)
 	{
@@ -426,7 +426,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 		return this.loadPageList(condition_sql, page_no);
 	}
 	/**
-	 * ·ÖÒ³µÃµ½¿ÉÒÔ½â³ı°ó¶¨µÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°å¯ä»¥è§£é™¤ç»‘å®šçš„è£…å¤‡
 	 */
 	public QueryPage getPageBindList(int p_pk,int page_no)
 	{
@@ -435,7 +435,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ·ÖÒ³µÃµ½Ëğ»µµÄ×°±¸£¨ÄÍ¾ÃÎªĞ¡ÓÚ10£©
+	 * åˆ†é¡µå¾—åˆ°æŸåçš„è£…å¤‡ï¼ˆè€ä¹…ä¸ºå°äº10ï¼‰
 	 */
 	public QueryPage getPageBadList(int p_pk,int page_no)
 	{
@@ -443,8 +443,8 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 		return this.loadPageList(condition_sql, page_no);
 	}
 	/**
-	 * ·ÖÒ³µÃµ½¿ÉÒÔÏâÇ¶µÄ×°±¸
-	 * ÔÚ°ü¹üÀïµÄÃ»ÓĞ´ò¹ı¿×µÄ£¬ÓĞÆ·ÖÊµÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°å¯ä»¥é•¶åµŒçš„è£…å¤‡
+	 * åœ¨åŒ…è£¹é‡Œçš„æ²¡æœ‰æ‰“è¿‡å­”çš„ï¼Œæœ‰å“è´¨çš„è£…å¤‡
 	 */
 	public QueryPage getPageInlayList(int p_pk,int page_no)
 	{
@@ -452,8 +452,8 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 		return this.loadPageList(condition_sql, page_no);
 	}
 	/**
-	 * ·ÖÒ³µÃµ½¿ÉÒÔ´ò¿×µÄ×°±¸
-	 * ÔÚ°ü¹üÀïµÄÃ»ÓĞ´ò¹ı¿×µÄ£¬ÓĞÆ·ÖÊµÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°å¯ä»¥æ‰“å­”çš„è£…å¤‡
+	 * åœ¨åŒ…è£¹é‡Œçš„æ²¡æœ‰æ‰“è¿‡å­”çš„ï¼Œæœ‰å“è´¨çš„è£…å¤‡
 	 */
 	public QueryPage getPagePunchList(int p_pk,int page_no)
 	{
@@ -461,8 +461,8 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 		return this.loadPageList(condition_sql, page_no);
 	}
 	/**
-	 * ·ÖÒ³µÃµ½¿ÉÒÔÉı¼¶µÄ×°±¸
-	 * ÔÚ°ü¹üÀïµÄÄÍ¾Ã´óÓÚ0£¬ÓĞÆ·ÖÊµÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°å¯ä»¥å‡çº§çš„è£…å¤‡
+	 * åœ¨åŒ…è£¹é‡Œçš„è€ä¹…å¤§äº0ï¼Œæœ‰å“è´¨çš„è£…å¤‡
 	 */
 	public QueryPage getPageUpgradeList(int p_pk,int page_no)
 	{
@@ -471,8 +471,8 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ·ÖÒ³µÃµ½¿ÉÒÔ×ª»»ÎåĞĞµÄ×°±¸
-	 * ÔÚ°ü¹üÀïµÄÄÍ¾Ã´óÓÚ0£¬ÓĞÆ·ÖÊµÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°å¯ä»¥è½¬æ¢äº”è¡Œçš„è£…å¤‡
+	 * åœ¨åŒ…è£¹é‡Œçš„è€ä¹…å¤§äº0ï¼Œæœ‰å“è´¨çš„è£…å¤‡
 	 */
 	public QueryPage getPageChangeWXList(int p_pk,int page_no)
 	{
@@ -481,7 +481,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ·ÖÒ³µÃµ½Ö¸¶¨ÀàĞÍµÄ¿ÉÒÔ´©µÄ×°±¸
+	 * åˆ†é¡µå¾—åˆ°æŒ‡å®šç±»å‹çš„å¯ä»¥ç©¿çš„è£…å¤‡
 	 */
 	public QueryPage getPageByTypeOnWrap(int p_pk,int equip_type,int page_no)
 	{
@@ -490,12 +490,12 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * µÃµ½°ü¹üÀï×°±¸µÄÊıÁ¿
+	 * å¾—åˆ°åŒ…è£¹é‡Œè£…å¤‡çš„æ•°é‡
 	 */
 	public int getNumOnWrap( int pPk )
 	{
 		int num_on_wrap = 0;
-		String sql = "select count(*) num from u_part_equip where p_pk = " + pPk+" and w_type="+Equip.ON_WRAP;
+		String sql = "SELECT count(*) num from u_part_equip where p_pk = " + pPk+" and w_type="+Equip.ON_WRAP;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -521,7 +521,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ·ÖÒ³µÃµÀÍæ¼Ò°ü¹üÀïµÄ×°±¸.·ÖÀàÎªÎäÆ÷£¬·À¾ß£¬·¨±¦ ÅÄÂô³¡ÓÃ
+	 * åˆ†é¡µå¾—é“ç©å®¶åŒ…è£¹é‡Œçš„è£…å¤‡.åˆ†ç±»ä¸ºæ­¦å™¨ï¼Œé˜²å…·ï¼Œæ³•å® æ‹å–åœºç”¨
 	 */
 	public QueryPage getPageEquipOnWrap(int p_pk,int equip_type,int page_no)
 	{
@@ -542,7 +542,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄ¿ÉÒÔ½»Ò×µÄ£¨·ÇÆÆËğµÄ£©×°±¸
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„å¯ä»¥äº¤æ˜“çš„ï¼ˆéç ´æŸçš„ï¼‰è£…å¤‡
 	 */
 	public QueryPage getPageSaleEquipOnWrap(int p_pk,int page_no,int postion)
 	{
@@ -551,7 +551,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * µÃµ½Ö¸¶¨×°±¸ËùÔÚÎ»ÖÃµÄ·ÖÒ³Àà±í
+	 * å¾—åˆ°æŒ‡å®šè£…å¤‡æ‰€åœ¨ä½ç½®çš„åˆ†é¡µç±»è¡¨
 	 */
 	public QueryPage getPageByPosition(int p_pk,int page_no,int postion)
 	{
@@ -560,13 +560,13 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒÉíÉÏµÄ×°±¸
+	 * å¾—åˆ°ç©å®¶èº«ä¸Šçš„è£…å¤‡
 	 * @param p_pk
 	 * @return
 	 */
 	public List<PlayerEquipVO> getEquipListOnBody(int p_pk)
 	{
-		String sql = "select * from u_part_equip where  p_pk = " + p_pk+ " and w_type>0";
+		String sql = "SELECT * FROM u_part_equip where  p_pk = " + p_pk+ " and w_type>0";
 		return this.loadList(sql);
 	}
 
@@ -574,7 +574,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 
 
 	/**
-	 * ĞŞ¸Ä×°±¸µÄÓĞĞ§¿×Êı
+	 * ä¿®æ”¹è£…å¤‡çš„æœ‰æ•ˆå­”æ•°
 	 */
 	public int addEffectHoleNum(int pw_pk)
 	{
@@ -601,12 +601,12 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * µÃµ½Íæ¼Ò×°±¸ÏêÏ¸ĞÅÏ¢
+	 * å¾—åˆ°ç©å®¶è£…å¤‡è¯¦ç»†ä¿¡æ¯
 	 */
 	public PlayerEquipVO getByID(int pw_pk)
 	{
 		PlayerEquipVO vo = null;
-		String sql = "select * from u_part_equip where pw_pk='" + pw_pk + "' ";
+		String sql = "SELECT * FROM u_part_equip where pw_pk='" + pw_pk + "' ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -633,12 +633,12 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 
 	/**
-	 * µÃµ½×°±¸µÄÃû×Ö
+	 * å¾—åˆ°è£…å¤‡çš„åå­—
 	 */
 	public String getNameById(int pw_pk)
 	{
 		String equip_name = "";
-		String sql = "select w_name from u_part_equip where pw_pk='" + pw_pk + "' ";
+		String sql = "SELECT w_name from u_part_equip where pw_pk='" + pw_pk + "' ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -666,21 +666,21 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 
 
 	/**
-	 * »ñµÃ¸öÈËÎ´±»±£»¤µÄ×°±¸ID
+	 * è·å¾—ä¸ªäººæœªè¢«ä¿æŠ¤çš„è£…å¤‡ID
 	 * @param pPk
 	 * @return
 	 */
 	public List<Integer> getNoProtectEquipId(int pPk)
 	{
-		String sql = "select pw_pk from u_part_equip where p_pk="+pPk+" and w_type>=0 and ( protectEndTime is null or protectEndTime<now())";
+		String sql = "SELECT pw_pk from u_part_equip where p_pk="+pPk+" and w_type>=0 and ( protectEndTime is null or protectEndTime<now())";
 		return super.getKeyListBySql(sql);
 	}
 
 
 	/**
-	 * ¸üĞÂ×°±¸µÄÄÍ¾Ã
+	 * æ›´æ–°è£…å¤‡çš„è€ä¹…
 	 * @param pw_pk			
-	 * @param cur_endure    µ±Ç°ÄÍ¾Ã
+	 * @param cur_endure    å½“å‰è€ä¹…
 	 */
 	public void updateCurEndure(int pw_pk,int cur_endure)
 	{
@@ -706,9 +706,9 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	}
 	
 	/**
-	 * ¸üĞÂ×°±¸µÄÄÍ¾Ã
+	 * æ›´æ–°è£…å¤‡çš„è€ä¹…
 	 * @param pw_pk			
-	 * @param cur_grade    µ±Ç°µÈ¼¶
+	 * @param cur_grade    å½“å‰ç­‰çº§
 	 */
 	public void updateEquipGrade(int pw_pk,int cur_grade)
 	{
@@ -735,13 +735,13 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 
 
 	/**
-	 * ¸ù¾İ×°±¸id»ñµÃ×°±¸µÄÊıÁ¿
+	 * æ ¹æ®è£…å¤‡idè·å¾—è£…å¤‡çš„æ•°é‡
 	 */
 	public int getEquipNum(int p_pk, int equip_id)
 	{
 		int equip_num = -1;
 
-		String sql = "select sum(1) as equip_num from u_part_equip where p_pk='"+ p_pk+ "' and w_type = 0 and equip_id='"+ equip_id+ "'";
+		String sql = "SELECT sum(1) as equip_num from u_part_equip where p_pk='"+ p_pk+ "' and w_type = 0 and equip_id='"+ equip_id+ "'";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -770,7 +770,7 @@ public class PlayerEquipDao extends BasicDaoSupport<PlayerEquipVO>
 	
 	
 	/**
-	 * ¸ù¾İsqlÓï¾äµÃµ½
+	 * æ ¹æ®sqlè¯­å¥å¾—åˆ°
 	 * @param sql
 	 * @return
 	 */

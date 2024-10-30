@@ -10,7 +10,7 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * ÈÕÖ¾´¦ÀíÏß³Ì
+ * æ—¥å¿—å¤„ç†çº¿ç¨‹
  */
 public class GameLogThread implements Runnable
 {
@@ -22,7 +22,7 @@ public class GameLogThread implements Runnable
 	}
 	
 	/**
-	 * Æô¶¯Ïß³Ì
+	 * å¯åŠ¨çº¿ç¨‹
 	 */
 	public void start()
 	{
@@ -32,7 +32,7 @@ public class GameLogThread implements Runnable
 	}
 	
 	/**
-	 * Ïß³ÌÖ´ĞĞÌå
+	 * çº¿ç¨‹æ‰§è¡Œä½“
 	 */
 	public void run()
 	{
@@ -43,12 +43,12 @@ public class GameLogThread implements Runnable
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			DataErrorLog.debugLogic("GameLogManager.runÒì³££ºÎÄ¼ş¶ÁÈ¡Òì³££¬ÎÄ¼şÃû£º"+fileName);
+			DataErrorLog.debugLogic("GameLogManager.runå¼‚å¸¸ï¼šæ–‡ä»¶è¯»å–å¼‚å¸¸ï¼Œæ–‡ä»¶åï¼š"+fileName);
 		}
 	}
 	
 	/**
-	 * ¶ÁÈ¡ÈÕÖ¾ÎÄ¼ş²¢±£´æÊı¾İ¿â
+	 * è¯»å–æ—¥å¿—æ–‡ä»¶å¹¶ä¿å­˜æ•°æ®åº“
 	 * @throws IOException 
 	 */
 	private void readLogFileAndIncertDB() throws IOException

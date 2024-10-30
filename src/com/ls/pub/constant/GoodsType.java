@@ -2,17 +2,17 @@ package com.ls.pub.constant;
 
 /**
  * 
- * 功能:物品相关常量
- * @author 刘帅
+ * 鍔熻兘:鐗╁搧鐩稿叧甯搁噺
+ * @author 鍒樺竻
  * 9:44:00 AM
  */
 public class GoodsType {
 	
 	 /**
-	  * 物品类型: 1 装备 4 道具 
+	  * 鐗╁搧绫诲瀷: 1 瑁呭 4 閬撳叿 
 	  */
-	public static final int EQUIP=1;//游戏装备
-	public static final int PROP=4;//游戏道具
-	public static final int U_EQUIP=5;//玩家装备
+	public static final int EQUIP=1;//娓告垙瑁呭
+	public static final int PROP=4;//娓告垙閬撳叿
+	public static final int U_EQUIP=5;//鐜╁瑁呭
 
 }

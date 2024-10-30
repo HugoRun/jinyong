@@ -2,7 +2,7 @@
 <%@page import="com.ben.vo.friend.FriendVO"%>
 <%@page import="java.util.List"%>
 <%@ page pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 请选择你要解除的玩家：
 <br />
 <% 

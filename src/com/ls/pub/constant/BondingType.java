@@ -1,13 +1,13 @@
 package com.ls.pub.constant;
 /**
- * ÎïÆ·µÄ°ó¶¨Àà±ğ
+ * ç‰©å“çš„ç»‘å®šç±»åˆ«
  * */
 public class BondingType
 { 
-	/**°ó¶¨	0ÊÇ²»°ó¶¨£¬1ÊÇÊ°È¡°ó¶¨£¬2ÊÇ×°±¸°ó¶¨,3½»Ò×°ó¶¨*/
-	public static final int NOBOND = 0;//Ã»ÓĞ°ó¶¨
-	public static final int PROTECTEDBOND=1;//°ó¶¨ÊÕ±£»¤µÄ²»¿É¶ªÆú
-    public static final int PICKBOUND=1;//Ê°È¡°ó¶¨
-    public static final int ARMBOND=2;//×°±¸°ó¶¨
-    public static final int EXCHANGEBOND=3;//½»Ò×°ó¶¨
+	/**ç»‘å®š	0æ˜¯ä¸ç»‘å®šï¼Œ1æ˜¯æ‹¾å–ç»‘å®šï¼Œ2æ˜¯è£…å¤‡ç»‘å®š,3äº¤æ˜“ç»‘å®š*/
+	public static final int NOBOND = 0;//æ²¡æœ‰ç»‘å®š
+	public static final int PROTECTEDBOND=1;//ç»‘å®šæ”¶ä¿æŠ¤çš„ä¸å¯ä¸¢å¼ƒ
+    public static final int PICKBOUND=1;//æ‹¾å–ç»‘å®š
+    public static final int ARMBOND=2;//è£…å¤‡ç»‘å®š
+    public static final int EXCHANGEBOND=3;//äº¤æ˜“ç»‘å®š
 }

@@ -9,7 +9,7 @@ import com.ls.ben.vo.info.partinfo.ShortcutVO;
 import com.ls.model.user.UserBase;
 
 /**
- * ´æ´¢Íæ¼ÒµÄ¿ì½İ¼üĞÅÏ¢
+ * å­˜å‚¨ç©å®¶çš„å¿«æ·é”®ä¿¡æ¯
  * @author Administrator
  *
  */
@@ -19,7 +19,7 @@ public class RoleShortCutInfo extends UserBase
 	private LinkedHashMap<Integer,ShortcutVO> shortCut;
 	
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 * @param p_pk
 	 */
 	public RoleShortCutInfo(int p_pk)
@@ -31,17 +31,17 @@ public class RoleShortCutInfo extends UserBase
 	
 	
 	/**
-	 * µÃµ½Íæ¼ÒµÄ ¿ì½İ¼ü ÁĞ±í
+	 * å¾—åˆ°ç©å®¶çš„ å¿«æ·é”® åˆ—è¡¨
 	 * @return
 	 */
 	public List<ShortcutVO> getShortList()
 	{
-		// ÒòÎª»ñµÃµÄ¿ì½İ¼üÖµÊÇ»ìÂÒµÄ.,ËùÒÔÓÃkeyÖµÇ¿ÖÆ ×ª³É°´Ë³ĞòÅÅÁĞµÄ ¼üÖµ
+		// å› ä¸ºè·å¾—çš„å¿«æ·é”®å€¼æ˜¯æ··ä¹±çš„.,æ‰€ä»¥ç”¨keyå€¼å¼ºåˆ¶ è½¬æˆæŒ‰é¡ºåºæ’åˆ—çš„ é”®å€¼
 		return new ArrayList<ShortcutVO>(shortCut.values());
 	}
 	
 	/**
-	 * ĞŞ¸Ä»º´æ¿ì½İ¼üÃû³Æ
+	 * ä¿®æ”¹ç¼“å­˜å¿«æ·é”®åç§°
 	 */
 	public void updateShortcutName(int sk_pk,String skillName){
 		List  list = getShortList();
@@ -55,7 +55,7 @@ public class RoleShortCutInfo extends UserBase
 		}
 	}
 	/**
-	 * Ê¹ÓÃ ¸öÈË¿ì½İ¼üÖ÷¼ü 
+	 * ä½¿ç”¨ ä¸ªäººå¿«æ·é”®ä¸»é”® 
 	 * @param s_pk
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public class RoleShortCutInfo extends UserBase
 
 
 	/**
-	 * ¸üĞÂ 
+	 * æ›´æ–° 
 	 * @param sc_pk
 	 * @param type
 	 * @param display
@@ -92,11 +92,11 @@ public class RoleShortCutInfo extends UserBase
 
 
 	/**
-	 * °ÑËùÓĞ¿ì½İ¼ü»Ö¸´µ½³õÊ¼Öµ
+	 * æŠŠæ‰€æœ‰å¿«æ·é”®æ¢å¤åˆ°åˆå§‹å€¼
 	 */
 	public void clearShortcut()
 	{
-		boolean is_init = false;//ÊÇ·ñÓĞ¿ì½İ¼ü»Ö¸´³õÊ¼Öµ
+		boolean is_init = false;//æ˜¯å¦æœ‰å¿«æ·é”®æ¢å¤åˆå§‹å€¼
 		List<ShortcutVO> list = getShortList();
 		for ( ShortcutVO shortcutVO :list) {
 			if( shortcutVO.init() )
@@ -112,9 +112,9 @@ public class RoleShortCutInfo extends UserBase
 	}
 	
 	/**
-	 * Èç¹û¿ì½İ¼üÉÏµÄ µÀ¾ßÒÑ¾­ÓÃÍê,ÄÇÃ´ÒÆ³ıÕâ¸öµÀ¾ß ,
+	 * å¦‚æœå¿«æ·é”®ä¸Šçš„ é“å…·å·²ç»ç”¨å®Œ,é‚£ä¹ˆç§»é™¤è¿™ä¸ªé“å…· ,
 	 * @param p_pk
-	 * @param operate_Id ²Ù×÷id
+	 * @param operate_Id æ“ä½œid
 	 */
 	public void clearShortcutByOperateId(int p_pk, int operate_Id)
 	{
@@ -129,7 +129,7 @@ public class RoleShortCutInfo extends UserBase
 	
 	
 	/**
-	 * Ê¹ÓÃ ¿ì½İ¼üidµÃµ½Íæ¼ÒµÄ ¾ßÌå¿ì½İ¼ü, 
+	 * ä½¿ç”¨ å¿«æ·é”®idå¾—åˆ°ç©å®¶çš„ å…·ä½“å¿«æ·é”®, 
 	 * @return
 	 */
 	

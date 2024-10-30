@@ -4,28 +4,28 @@ import com.ls.pub.util.MathUtil;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * ¹¦ÄÜ:×°±¸Éú³ÉÊ±£¬¸ù¾İ¹æÔòÉú³É¸½¼ÓÊôĞÔ
- * @author ÁõË§
+ * åŠŸèƒ½:è£…å¤‡ç”Ÿæˆæ—¶ï¼Œæ ¹æ®è§„åˆ™ç”Ÿæˆé™„åŠ å±æ€§
+ * @author åˆ˜å¸…
  * Oct 13, 2008  3:20:05 PM
  */
 public class EquipAppendAttributeVO
 {
 	/**id*/
 	private int id;
-	private int quality;//×°±¸Æ·ÖÊ
-	/**µÈ¼¶ÏÂÏŞ*/
+	private int quality;//è£…å¤‡å“è´¨
+	/**ç­‰çº§ä¸‹é™*/
 	private int    levelLower;
-	/**µÈ¼¶ÉÏÏŞ*/
+	/**ç­‰çº§ä¸Šé™*/
 	private int levelUpper;
-	/**¸½¼ÓÊôĞÔÀàĞÍ:Ñª=1£¬À¶=2£¬½ğ¹¥=3£¬Ä¾¹¥=4£¬Ë®¹¥=5£¬»ğ¹¥=6£¬ÍÁ¹¥=7£¬½ğ·À=8£¬Ä¾·À=9£¬Ë®·À=10£¬»ğ·À=11£¬ÍÁ·À=12*/
+	/**é™„åŠ å±æ€§ç±»å‹:è¡€=1ï¼Œè“=2ï¼Œé‡‘æ”»=3ï¼Œæœ¨æ”»=4ï¼Œæ°´æ”»=5ï¼Œç«æ”»=6ï¼ŒåœŸæ”»=7ï¼Œé‡‘é˜²=8ï¼Œæœ¨é˜²=9ï¼Œæ°´é˜²=10ï¼Œç«é˜²=11ï¼ŒåœŸé˜²=12*/
 	private int attributeType;  
-	 /**ÊôĞÔÖµ·¶Î§£¬ĞÎÊ½Èç:10,20-21,30-31,40*/
+	 /**å±æ€§å€¼èŒƒå›´ï¼Œå½¢å¼å¦‚:10,20-21,30-31,40*/
 	private String    valueArea;
-	 /**ÊôĞÔÖµµÄ¸ÅÂÊ¿ØÖÆ£¬£¬ĞÎÊ½Èç:50-35-15*/
+	 /**å±æ€§å€¼çš„æ¦‚ç‡æ§åˆ¶ï¼Œï¼Œå½¢å¼å¦‚:50-35-15*/
 	private String    valueProbability;
 	
 	/**
-	 * µÃµ½ÊôĞÔÖµ
+	 * å¾—åˆ°å±æ€§å€¼
 	 * @return
 	 */
 	public int getValue()
@@ -45,7 +45,7 @@ public class EquipAppendAttributeVO
 			}
 		}catch(Exception e)
 		{
-			DataErrorLog.debugData("equip_append_attribute±í,valueArea×Ö¶ÎÊı¾İ´íÎó£ºid="+id+"valueArea="+valueArea);
+			DataErrorLog.debugData("equip_append_attributeè¡¨,valueAreaå­—æ®µæ•°æ®é”™è¯¯ï¼šid="+id+"valueArea="+valueArea);
 		}
 		
 		return value;

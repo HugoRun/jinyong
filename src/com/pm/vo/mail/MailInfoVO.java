@@ -12,13 +12,13 @@ import com.pm.service.mail.MailInfoService;
 public class MailInfoVO
 {
 
-	/** ÓÊ¼şid **/
+	/** é‚®ä»¶id **/
 	private int mailId;
 	/** receive id **/
 	private int receivePk;
 	/** sender id **/
 	private int sendPk;
-	/** mail type ,1 ¸öÈËÓÊ¼ş, 2 ÏµÍ³ÓÊ¼ş,3ÁìÈ¡ÎïÆ·ÓÊ¼ş,4°ïÅÉÓÊ¼ş**/
+	/** mail type ,1 ä¸ªäººé‚®ä»¶, 2 ç³»ç»Ÿé‚®ä»¶,3é¢†å–ç‰©å“é‚®ä»¶,4å¸®æ´¾é‚®ä»¶**/
 	private int mailType;
 	/** title  **/
 	private String title;
@@ -33,17 +33,17 @@ public class MailInfoVO
 	private String createTime;
 	
 	/**
-	 * ÓÊ¼ş¸½¼ş×Ö·û´®
+	 * é‚®ä»¶é™„ä»¶å­—ç¬¦ä¸²
 	 */
 	private String attachmentStr;
 	/**
-	 * ÓÊ¼ş¸½¼ş
+	 * é‚®ä»¶é™„ä»¶
 	 */
 	private ItemContainer attachment;
 	
 	
 	/**
-	 * Ìí¼Ó¸½¼ş
+	 * æ·»åŠ é™„ä»¶
 	 */
 	public void addAttachment(ItemContainer attachment)
 	{
@@ -52,7 +52,7 @@ public class MailInfoVO
 	}
 	
 	/**
-	 * µÃµ½ÓÊ¼ş¸½¼ş
+	 * å¾—åˆ°é‚®ä»¶é™„ä»¶
 	 * @return
 	 */
 	public ItemContainer getAttachment()
@@ -64,7 +64,7 @@ public class MailInfoVO
 		return attachment;
 	}
 	/**
-	 * ´´½¨PKµôÂäÎïÆ·ÓÊ¼ş
+	 * åˆ›å»ºPKæ‰è½ç‰©å“é‚®ä»¶
 	 */
 	public void createPKDropItemMail( int receivePPk, String title,String content,ItemContainer attachment)
 	{
@@ -75,7 +75,7 @@ public class MailInfoVO
 	
 	
 	/**
-	 * ´´½¨Ò»¸öÓÊ¼ş
+	 * åˆ›å»ºä¸€ä¸ªé‚®ä»¶
 	 * @param receive_ppk
 	 * @param title
 	 */
@@ -85,7 +85,7 @@ public class MailInfoVO
 	}
 	
 	/**
-	 * ´´½¨Ò»¸öÓÊ¼ş
+	 * åˆ›å»ºä¸€ä¸ªé‚®ä»¶
 	 * @param receive_ppk
 	 * @param send_ppk
 	 * @param title
@@ -134,14 +134,14 @@ public class MailInfoVO
 				PartInfoDao partInfoDao = new PartInfoDao();
 				String senderName = partInfoDao.getNameByPpk(sendPk);
 				if(senderName == null || senderName.equals("")){
-					name = "Íæ¼ÒÓÊ¼ş";
+					name = "ç©å®¶é‚®ä»¶";
 				}else {
 					name = StringUtil.isoToGBK(senderName);
 				}
 				break;
-			case MailInfoService.SYSTEM_MAIL:name = "ÏµÍ³ÓÊ¼ş";break;
-			case MailInfoService.ITEM_MAIL:name = "ÆäËû";break;
-			case MailInfoService.F_INVITE_MAIL:name = "ÊÏ×åÓÊ¼ş";break;
+			case MailInfoService.SYSTEM_MAIL:name = "ç³»ç»Ÿé‚®ä»¶";break;
+			case MailInfoService.ITEM_MAIL:name = "å…¶ä»–";break;
+			case MailInfoService.F_INVITE_MAIL:name = "æ°æ—é‚®ä»¶";break;
 		}
 		return name;
 	}

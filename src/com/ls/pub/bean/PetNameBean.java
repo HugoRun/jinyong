@@ -9,7 +9,7 @@ package com.ls.pub.bean;
  */
 public class PetNameBean
 {
-	private String petName;//³èÎïÃû³Æ
+	private String petName;//å® ç‰©åç§°
 
 	public String getPetName()
 	{

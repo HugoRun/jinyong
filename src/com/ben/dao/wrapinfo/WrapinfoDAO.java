@@ -6,18 +6,18 @@ import com.ben.vo.info.partinfo.PartInfoVO;
 import com.pub.db.mysql.SqlData;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 6:45:36 PM
  */
 public class WrapinfoDAO {
 	SqlData con;
 
-	// Í¨¹ý½ÇÉ«ID ²éÕÒ³ö¸Ã½ÇÉ«µÄÒøÁ½ 
+	// é€šè¿‡è§’è‰²ID æŸ¥æ‰¾å‡ºè¯¥è§’è‰²çš„é“¶ä¸¤ 
 	public PartInfoVO geTsilver(String pPk) {
 		try {
 			con = new SqlData();
-			String sql = "select * from u_part_info where p_pk='" + pPk + "'";
+			String sql = "SELECT * FROM u_part_info where p_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PartInfoVO vo = new PartInfoVO();
 			while (rs.next()) {

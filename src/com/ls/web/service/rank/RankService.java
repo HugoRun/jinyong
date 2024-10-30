@@ -19,7 +19,7 @@ import com.ls.pub.util.MoneyUtil;
 import com.pm.dao.untangle.UntangLeDao;
 
 /**
- * ¹¦ÄÜ£º´¦ÀíÅÅÃûÏà¹ØÂß¼­
+ * åŠŸèƒ½ï¼šå¤„ç†æ’åç›¸å…³é€»è¾‘
  * 
  * @author ls Apr 7, 2009 2:03:47 PM
  */
@@ -28,7 +28,7 @@ public class RankService
 	private RankDao rankDao = new RankDao();
 
 	/**
-	 * µÃµ½½ÇÉ«½­ºşÅÅÃûĞÅÏ¢
+	 * å¾—åˆ°è§’è‰²æ±Ÿæ¹–æ’åä¿¡æ¯
 	 * 
 	 * @return
 	 */
@@ -47,35 +47,35 @@ public class RankService
 		long ddd = dt2.getTime() - dt.getTime();
 		if ((gradePaiMing + samePaiMIng) != 0)
 		{
-			result = "ÄúÏÖÔÚµÄ½­ºşÅÅÃûµÚ" + (gradePaiMing + samePaiMIng + 1)
-					+ "Ãû,ÓëÉÏÒ»ÃûÏà²î" + (preWanJia - myfenshu) + "»ı·Ö;";
+			result = "æ‚¨ç°åœ¨çš„æ±Ÿæ¹–æ’åç¬¬" + (gradePaiMing + samePaiMIng + 1)
+					+ "å,ä¸ä¸Šä¸€åç›¸å·®" + (preWanJia - myfenshu) + "ç§¯åˆ†;";
 		}
 		else
 		{
-			result = "ÄúÏÖÔÚµÄ½­ºşÅÅÃûµÚ1Ãû;";
+			result = "æ‚¨ç°åœ¨çš„æ±Ÿæ¹–æ’åç¬¬1å;";
 		}
 
 		// String result = null;
 		// UntangLeDao untangdao = new UntangLeDao();
-		// // gradePaiMing,Ò»ÊÇ×Ô¼ºÅÅÃû£¬2ÊÇ×Ô¼º·ÖÊı
+		// // gradePaiMing,ä¸€æ˜¯è‡ªå·±æ’åï¼Œ2æ˜¯è‡ªå·±åˆ†æ•°
 		// int[] gradePaiMing = untangdao.getGradePaiMimgQuan(pPk);
-		// // Ç°Ò»¸öÍæ¼ÒµÄ·ÖÊı
+		// // å‰ä¸€ä¸ªç©å®¶çš„åˆ†æ•°
 		// int preWanJia = untangdao.getJiangHuFenShu(gradePaiMing[0]);
 		// if(gradePaiMing[0] != 0)
 		// {
-		// result = "ÄúÏÖÔÚµÄ½­ºşÅÅÃûµÚ"+(gradePaiMing[0]+1)+"Ãû,ÓëÉÏÒ»ÃûÏà²î"+(preWanJia
-		// -gradePaiMing[1])+"»ı·Ö;";
+		// result = "æ‚¨ç°åœ¨çš„æ±Ÿæ¹–æ’åç¬¬"+(gradePaiMing[0]+1)+"å,ä¸ä¸Šä¸€åç›¸å·®"+(preWanJia
+		// -gradePaiMing[1])+"ç§¯åˆ†;";
 		// }
 		// else
 		// {
-		// result = "ÄúÏÖÔÚµÄ½­ºşÅÅÃûµÚ1Ãû;";
+		// result = "æ‚¨ç°åœ¨çš„æ±Ÿæ¹–æ’åç¬¬1å;";
 		// }
 		//				
 		return result;
 	}
 
 	/**
-	 * µÃµ½½ÇÉ«²Æ¸»ÅÅÃûĞÅÏ¢
+	 * å¾—åˆ°è§’è‰²è´¢å¯Œæ’åä¿¡æ¯
 	 * 
 	 * @return
 	 */
@@ -88,8 +88,8 @@ public class RankService
 		 * untangdao.getMoneyByPPk(pPk); int sameMoneyPaiMIng =
 		 * untangdao.getMoneySamePaiMing(pPk,mymoney); if(moneyPaiMing != 0) {
 		 * result =
-		 * "²Æ¸»ÅÅÃûµÚ"+(moneyPaiMing+sameMoneyPaiMIng+1)+"Ãû,ÓëÉÏÒ»ÃûÏà²î"+MoneyUtil.changeCopperToStr(bigmoneyPerson[1]-mymoney)+";"; }
-		 * else { result = "²Æ¸»ÅÅÃûµÚ1Ãû;"; }
+		 * "è´¢å¯Œæ’åç¬¬"+(moneyPaiMing+sameMoneyPaiMIng+1)+"å,ä¸ä¸Šä¸€åç›¸å·®"+MoneyUtil.changeCopperToStr(bigmoneyPerson[1]-mymoney)+";"; }
+		 * else { result = "è´¢å¯Œæ’åç¬¬1å;"; }
 		 */
 
 		String result = null;
@@ -98,39 +98,39 @@ public class RankService
 		int[] bigPerson = untangdao.getBigMoneyPerson(gradePaiMing[0]);
 		if (gradePaiMing[0] != 0)
 		{
-			result = "²Æ¸»ÅÅÃûµÚ"
+			result = "è´¢å¯Œæ’åç¬¬"
 					+ (gradePaiMing[0] + 1)
-					+ "Ãû,ÓëÉÏÒ»ÃûÏà²î"
+					+ "å,ä¸ä¸Šä¸€åç›¸å·®"
 					+ MoneyUtil.changeCopperToStr(bigPerson[1]
 							- gradePaiMing[1]) + ";";
 		}
 		else
 		{
-			result = "²Æ¸»ÅÅÃûµÚ1Ãû;";
+			result = "è´¢å¯Œæ’åç¬¬1å;";
 		}
 
 		return result;
 	}
 
-	// ÔÚÔ­ÓĞµÄ»ù´¡ÉÏÔö¼Ó»òÕß¼õÉÙ
+	// åœ¨åŸæœ‰çš„åŸºç¡€ä¸Šå¢åŠ æˆ–è€…å‡å°‘
 	public int updateAdd(Object p_pk, String field, Object value)
 	{
 		return rankDao.updateAdd(p_pk, field, value);
 	}
 
-	// µ±Íæ¼ÒÏû³ıÄ³Ğ©Êı¾İµÄÊ±ºò
+	// å½“ç©å®¶æ¶ˆé™¤æŸäº›æ•°æ®çš„æ—¶å€™
 	public int updatea(Object p_pk, String field, Object value)
 	{
 		return rankDao.update(p_pk, field, value);
 	}
 
-	// ´´½¨½ÇÉ«Ê±Ôö¼Ó¼ÇÂ¼
+	// åˆ›å»ºè§’è‰²æ—¶å¢åŠ è®°å½•
 	public int insert(Object p_pk, String name)
 	{
 		return rankDao.insert(p_pk, name);
 	}
 	
-	// Ôö¼ÓÓÃ»§
+	// å¢åŠ ç”¨æˆ·
 	public int insert(Object p_pk, String name,int grade)
 	{
 		return rankDao.insert(p_pk, name, grade);
@@ -140,50 +140,50 @@ public class RankService
 		return rankDao.isExist(p_pk);
 	}
 
-	// ¸ü¸ÄÃÅÅÉ
+	// æ›´æ”¹é—¨æ´¾
 	public int updateMenPai(Object p_pk, String menpai)
 	{
 		return rankDao.updateMenPai(p_pk, menpai);
 	}
 
-	// ¸ù¾İ×Ö¶Î²éÑ¯
+	// æ ¹æ®å­—æ®µæŸ¥è¯¢
 	public List<com.ben.rank.model.RankVo> findByField(String field, int i)
 	{
 		field = StringUtils.replace(field, "r_", "",1);
 		return rankDao.findByField(field, i);
 	}
 	
-	// ²é¿´×Ô¼ºµÄÅÅÃû
+	// æŸ¥çœ‹è‡ªå·±çš„æ’å
 	public int findOwnByField(Object p_pk, String field, int i)
 	{
 		field = StringUtils.replace(field, "r_", "",1);
 		return rankDao.findOwnByField(p_pk, field, i);
 	}
 	
-	// ¸ü¸ÄĞÖµÜÒåÆø
+	// æ›´æ”¹å…„å¼Ÿä¹‰æ°”
 	public int updateYiqi(Object p_pk, int yiqi, String with_who)
 	{
 		return rankDao.updateYiqi(p_pk, yiqi, with_who);
 	}
 	
-	// ¸ü¸Ä°®ÇéÌğÃÛ
+	// æ›´æ”¹çˆ±æƒ…ç”œèœœ
 	public int updateDear(Object p_pk, int dear, String with_who)
 	{
 		return rankDao.updateDear(p_pk, dear, with_who);
 	}
 	
-	// ¸ù¾İ×Ö¶ÎÇå0
+	// æ ¹æ®å­—æ®µæ¸…0
 	public int clear(String field)
 	{
 		return rankDao.clear(field);
 	}
 	
-	//¸ü¸ÄVIP
+	//æ›´æ”¹VIP
 	public int updateVIP(Object p_pk,int vip_type,int vip_time){
 		return rankDao.updateVIP(p_pk, vip_type, vip_time);
 	}
 	
-//	²é¿´×Ô¼ºµÄVIPÅÅÃû
+//	æŸ¥çœ‹è‡ªå·±çš„VIPæ’å
 	public int findOwnVIP(Object p_pk){
 		return rankDao.findOwnVIP(p_pk);
 	}
@@ -193,71 +193,71 @@ public class RankService
 		return rankDao.findVip();
 	}
 	
-	// ²éÑ¯°®ÇéÌğÃÛ
+	// æŸ¥è¯¢çˆ±æƒ…ç”œèœœ
 	public List<RankVo> findDear()
 	{
 		return rankDao.findDear();
 	}
 	
-	// ²éÑ¯ÒåÆø
+	// æŸ¥è¯¢ä¹‰æ°”
 	public List<RankVo> findYi()
 	{
 		return rankDao.findYi();
 	}
 	
-	// É¾³ıĞÖµÜÒåÆø
+	// åˆ é™¤å…„å¼Ÿä¹‰æ°”
 	public int updateYiqiToZero(Object p_pk)
 	{
 		return rankDao.updateYiqiToZero(p_pk);
 	}
 	
-	// É¾³ı°®ÇéÌğÃÛ
+	// åˆ é™¤çˆ±æƒ…ç”œèœœ
 	public int updateDearToZero(Object p_pk)
 	{
 		return rankDao.updateDearToZero(p_pk);
 	}
 	
-	//½«ÒÑ¾­Í³¼Æ¹ı¾­ÑéµÄ´òÉÏ±êÖ¾
+	//å°†å·²ç»ç»Ÿè®¡è¿‡ç»éªŒçš„æ‰“ä¸Šæ ‡å¿—
 	public int updatePpk(int id){
 		return rankDao.updatePpk(id);
 	}
 	
-	//²é¿´¾­ÑéÅÅÃûÇ°Ê®µÄ³èÎï
+	//æŸ¥çœ‹ç»éªŒæ’åå‰åçš„å® ç‰©
 	public List<PetInfoVO> fintbyExp(){
 		return new PetInfoDao().fintbyExp();
 	}
 	
-	//²é¿´¹¥»÷ÅÅÃûÇ°Ê®µÄ³èÎï
+	//æŸ¥çœ‹æ”»å‡»æ’åå‰åçš„å® ç‰©
 	public List<PetInfoVO> fintbyGONGji(){
 		return new PetInfoDao().fintbyGONGji();
 	}
 	
-	//²é¿´×Ô¼ºµÄ³èÎï¾­ÑéÅÅÃû
+	//æŸ¥çœ‹è‡ªå·±çš„å® ç‰©ç»éªŒæ’å
 	public int findOwnExp(Object p_pk){
 		return new PetInfoDao().findOwnExp(p_pk);
 	}
 	
-	//²é¿´×Ô¼ºµÄ³èÎï¹¥»÷ÅÅÃû
+	//æŸ¥çœ‹è‡ªå·±çš„å® ç‰©æ”»å‡»æ’å
 	public int findGjExp(Object p_pk){
 		return new PetInfoDao().findGjExp(p_pk);
 	}
 	
-	//É¾³ı½ÇÉ«
+	//åˆ é™¤è§’è‰²
 	public int remove(Object p_pk){
 		return rankDao.remove(p_pk);
 	}
 	
-	//½­ºşÊ¥°ñ
+	//æ±Ÿæ¹–åœ£æ¦œ
 	public List<RankVo> findSheng(){
 		return rankDao.findSheng();
 	}
 	
-	//½­ºşÊ¥°ñ
+	//æ±Ÿæ¹–åœ£æ¦œ
 	public List<Rank> findSheng1(){
 		return rankDao.findSheng1();
 	}
 	
-	//²é¿´×Ô¼ºµÄ½­ºşÊ¥°ñÅÅÃû
+	//æŸ¥çœ‹è‡ªå·±çš„æ±Ÿæ¹–åœ£æ¦œæ’å
 	public int findOwnSheng(Object p_pk){
 		return rankDao.findOwnSheng(p_pk);
 	}
@@ -275,7 +275,7 @@ public class RankService
 	{
 		return new FriendDAO().getOwn(p_pk, relation);
 	}
-	/**********Íæ¼ÒÉ¾³ı½ÇÉ«µÄÊ±ºòÉ¾³ıÅÅĞĞ°ñµÄÏà¹ØĞÅÏ¢***********/
+	/**********ç©å®¶åˆ é™¤è§’è‰²çš„æ—¶å€™åˆ é™¤æ’è¡Œæ¦œçš„ç›¸å…³ä¿¡æ¯***********/
 	public void removeRandInfo(int ppk)
 	{
 		rankDao.removeRandInfo(ppk);

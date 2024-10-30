@@ -11,7 +11,7 @@ public class GameOnlineSellDeleteJob implements Job{
 	
 	public void execute(JobExecutionContext context)  {
 		TimeShow timeShow = new TimeShow();
-		 //ÕâÀïÖ´ĞĞÉ¾³ı³¬¹ı5·ÖÖÓµÄÊı¾İ
+		 //è¿™é‡Œæ‰§è¡Œåˆ é™¤è¶…è¿‡5åˆ†é’Ÿçš„æ•°æ®
 		SellInfoDAO dao = new SellInfoDAO();
 		dao.deleteSellPetTime(timeShow.endTime(5));
 		dao.deleteSellPropTime(timeShow.endTime(5));

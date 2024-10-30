@@ -24,23 +24,23 @@ public interface MyService
 	EconomyService economyService = new EconomyService();
 	UMsgService uMsgService = new UMsgService();
 	/**
-	 * �����������ܶ�
+	 * 结义增加亲密度
 	 * @param p_pk 
-	 * @param relation��ϵ 1Ϊ���壬2Ϊ���
+	 * @param relation关系 1为结义，2为结婚
 	 */
 	public void addDear(int p_pk,String name);
 	
 	/**
-	 * ���������Ч�� 
+	 * 结义获得组队效果 
 	 * @param P_PK
-	 * @param relation  1Ϊ���壬2Ϊ���
-	 * @return �������Ч��
+	 * @param relation  1为结义，2为结婚
+	 * @return 返回组队效果
 	 */
 //	public int addTeamEffect(int P_PK);
 	
 	
 	/**
-	 * �����þ���
+	 * 结义获得经验
 	 * @param p_pk
 	 * @param fd_pk
 	 * @param relation
@@ -53,12 +53,12 @@ public interface MyService
 	
 	
 	/**
-	 * �鿴�Լ���Ϊͽ��ʱ,ʦ���Ƿ�Ҳ����
+	 * 查看自己作为徒弟时,师父是否也在线
 	 */
 	public boolean isTeaOnline(int p_pk);
 	
 	/**
-	 * �鿴�Լ��Ƿ�ӵ��ʦͽ��ϵ(�Լ���ͽ��)
+	 * 查看自己是否拥有师徒关系(自己是徒弟)
 	 * @param p_pk
 	 * @return
 	 */
@@ -66,12 +66,12 @@ public interface MyService
 	
 	
 	/**
-	 * ͽ��ÿ��5����ʦ���ɻ�������;���Ƚ���
-	 * ��þ��齱����ʽ��ʦ����ǰ�ȼ���������/20*(ͽ�ܵ�ǰ�ȼ�/ʦ����ǰ�ȼ�)
-     * �������������ʽ��5*ͽ�ܵȼ�
-	 * ͽ�ܵ�һ�μ������ɺͰ�ᣬʦ���ɻ�á�Ԫ��������500
-	 * ͽ�ܵȼ��ﵽʦ���ȼ����ɫ�ȼ��ﵽ40�������ɳ�ʦ������á���ʦ���������1
-	 * ͽ�ܳ�ʦʦ����ý�������100������ʦ���������1�;��飨ʦ����ǰ���������10%��
+	 * 徒弟每升5级，师傅可获得银两和经验等奖励
+	 * 获得经验奖励公式：师傅当前等级升级经验/20*(徒弟当前等级/师傅当前等级)
+     * 获得银两奖励公式：5*徒弟等级
+	 * 徒弟第一次加入门派和帮会，师傅可获得【元宝卷】×500
+	 * 徒弟等级达到师傅等级或角色等级达到40级，即可出师，并获得【出师大礼包】×1
+	 * 徒弟出师师傅获得江湖声望100，【出师大礼包】×1和经验（师傅当前升级经验的10%）
 	 */
 	
 	public void levelUp(int p_pk);

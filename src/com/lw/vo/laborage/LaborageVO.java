@@ -2,11 +2,11 @@ package com.lw.vo.laborage;
 
 public class LaborageVO
 {
-	/** Ê±¼ä×îĞ¡Öµ */
+	/** æ—¶é—´æœ€å°å€¼ */
 	private int minTime;
-	/** Ê±¼ä×î´óÖµ */
+	/** æ—¶é—´æœ€å¤§å€¼ */
 	private int maxTime;
-	/** ÎïÆ·µÄ¼¯ºÏ */
+	/** ç‰©å“çš„é›†åˆ */
 	private String laborageBonus;
 
 	public String getLaborageBonus()

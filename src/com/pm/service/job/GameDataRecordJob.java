@@ -11,17 +11,17 @@ public class GameDataRecordJob implements Job{
 	public void execute(JobExecutionContext context)  {
 		
 		GameDataRecordService gameDataRecordService = new GameDataRecordService();
-		//ÔËĞĞÊÕ¼¯Ã¿ÈÕÍæ¼ÒµÈ¼¶
+		//è¿è¡Œæ”¶é›†æ¯æ—¥ç©å®¶ç­‰çº§
 		gameDataRecordService.recordEveryDayPlayerGrade();
-		//ÔËĞĞÊÕ¼¯ÉÏÏßÍæ¼ÒµÈ¼¶
+		//è¿è¡Œæ”¶é›†ä¸Šçº¿ç©å®¶ç­‰çº§
 		gameDataRecordService.recordOnlinePlayerGrade();
-		//ÔËĞĞÊÕ¼¯³ÁÄ¬Íæ¼ÒµÈ¼¶
+		//è¿è¡Œæ”¶é›†æ²‰é»˜ç©å®¶ç­‰çº§
 		gameDataRecordService.recordSilverPlayerGrade();
-		//ÔËĞĞÊÕ¼¯Íæ¼ÒÉÏÏßÊ±¼ä.
+		//è¿è¡Œæ”¶é›†ç©å®¶ä¸Šçº¿æ—¶é—´.
 		gameDataRecordService.recordPlayerOnlineTime();
-		//ÔËĞĞÊÕ¼¯Íæ¼Ò×ÜÀÀĞÅÏ¢
+		//è¿è¡Œæ”¶é›†ç©å®¶æ€»è§ˆä¿¡æ¯
 		gameDataRecordService.recordPlayerInfoOverview();
-		//Æô¶¯ÏµÍ³ÏûÏ¢Ã¿ÈÕ¶¨Ê±·¢ËÍ¹¦ÄÜ
+		//å¯åŠ¨ç³»ç»Ÿæ¶ˆæ¯æ¯æ—¥å®šæ—¶å‘é€åŠŸèƒ½
 		gameDataRecordService.sendSystemInfoByTime();
 	}
 

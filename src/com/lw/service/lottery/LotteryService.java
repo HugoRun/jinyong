@@ -28,7 +28,7 @@ import com.pm.service.mail.MailInfoService;
 
 public class LotteryService
 {
-	/** µÃµ½Éú³ÉÖĞ½±²ÊÆ±ºÅÂë */
+	/** å¾—åˆ°ç”Ÿæˆä¸­å¥–å½©ç¥¨å·ç  */
 	public void getSysLotteryNum()
 	{
 		LotteryInfoDao dao = new LotteryInfoDao();
@@ -41,28 +41,28 @@ public class LotteryService
 		dao.updateLotteryNumber(StringUtil.gbToISO(num));
 	}
 
-	/** µÃµ½²ÊÆ±µÄ×Ö·û */
+	/** å¾—åˆ°å½©ç¥¨çš„å­—ç¬¦ */
 	public String Num1(int x)
 	{
 		String a = null;
 		if (x == 1)
 		{
-			a = "¶«·ç";
+			a = "ä¸œé£";
 		}
 		else
 			if (x == 2)
 			{
-				a = "ÄÏ·ç";
+				a = "å—é£";
 			}
 			else
 				if (x == 3)
 				{
-					a = "Î÷·ç";
+					a = "è¥¿é£";
 				}
 				else
 					if (x == 4)
 					{
-						a = "±±·ç";
+						a = "åŒ—é£";
 					}
 		return a;
 	}
@@ -72,22 +72,22 @@ public class LotteryService
 		String a = null;
 		if (x == 1)
 		{
-			a = "Ã·";
+			a = "æ¢…";
 		}
 		else
 			if (x == 2)
 			{
-				a = "À¼";
+				a = "å…°";
 			}
 			else
 				if (x == 3)
 				{
-					a = "Öñ";
+					a = "ç«¹";
 				}
 				else
 					if (x == 4)
 					{
-						a = "¾Õ";
+						a = "èŠ";
 					}
 		return a;
 	}
@@ -97,22 +97,22 @@ public class LotteryService
 		String a = null;
 		if (x == 1)
 		{
-			a = "´º";
+			a = "æ˜¥";
 		}
 		else
 			if (x == 2)
 			{
-				a = "ÏÄ";
+				a = "å¤";
 			}
 			else
 				if (x == 3)
 				{
-					a = "Çï";
+					a = "ç§‹";
 				}
 				else
 					if (x == 4)
 					{
-						a = "¶¬";
+						a = "å†¬";
 					}
 		return a;
 	}
@@ -122,22 +122,22 @@ public class LotteryService
 		String a = null;
 		if (x == 1)
 		{
-			a = "ºìÖĞ";
+			a = "çº¢ä¸­";
 		}
 		else
 			if (x == 2)
 			{
-				a = "°×°å";
+				a = "ç™½æ¿";
 			}
 			else
 				if (x == 3)
 				{
-					a = "·¢²Æ";
+					a = "å‘è´¢";
 				}
 		return a;
 	}
 
-	/** µÃµ½Éú³É´ÈÉÆÖĞ½±²ÊÆ±ºÅÂë */
+	/** å¾—åˆ°ç”Ÿæˆæ…ˆå–„ä¸­å¥–å½©ç¥¨å·ç  */
 	public void getSysLotteryCharityNum()
 	{
 		LotteryInfoDao dao = new LotteryInfoDao();
@@ -150,7 +150,7 @@ public class LotteryService
 		dao.updateLotteryCharityNumber(StringUtil.gbToISO(num));
 	}
 
-	/** ¸ù¾İÉú³ÉÍæ¼Ò²ÊÆ± */
+	/** æ ¹æ®ç”Ÿæˆç©å®¶å½©ç¥¨ */
 	public void playerLotteryNumber(int p_pk, String num_1, String num_2,
 			String num_3, String num_4, int lottery_type, int p_add_money)
 	{
@@ -165,12 +165,12 @@ public class LotteryService
 		infodao.addPlayerLotteryNum(p_pk);
 		if (lottery_type == 0)
 		{
-			//¼à¿Ø
+			//ç›‘æ§
 			LogService logService = new LogService();
-			logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -p_add_money+"", "Âò²ÊÆ±");
+			logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", -p_add_money+"", "ä¹°å½©ç¥¨");
 			
 			roleInfo.getBasicInfo().addCopper(-p_add_money);
-			// Ö´ĞĞÍ³¼Æ
+			// æ‰§è¡Œç»Ÿè®¡
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(6, StatisticsType.MONEY, p_add_money,
 					StatisticsType.USED, StatisticsType.BUY, p_pk);
@@ -178,14 +178,14 @@ public class LotteryService
 		}
 	}
 
-	/** ÖĞ½±ºó °´±ÈÀıÔö¼Ó´ÈÉÆ½±½ğ½ğ¶î */
+	/** ä¸­å¥–å æŒ‰æ¯”ä¾‹å¢åŠ æ…ˆå–„å¥–é‡‘é‡‘é¢ */
 	public void addSysCharityBonus(int num)
 	{
 		LotteryInfoDao infodao = new LotteryInfoDao();
 		infodao.updateCharityBonus(num);
 	}
 
-	/** °´ÖĞ½±±ÈÀıµÃµ½µ¥×¢µ¥±¶µÄÖĞ½±½ğ¶î */
+	/** æŒ‰ä¸­å¥–æ¯”ä¾‹å¾—åˆ°å•æ³¨å•å€çš„ä¸­å¥–é‡‘é¢ */
 
 	public int getLotteryPerBonus()
 	{
@@ -212,7 +212,7 @@ public class LotteryService
 		return 0;
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÍ¶×¢ */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦æŠ•æ³¨ */
 	public boolean ifPlayerGetLottery(int p_pk, int lottery_type)
 	{
 		LotteryNumberDao dao = new LotteryNumberDao();
@@ -224,9 +224,9 @@ public class LotteryService
 	}
 
 	/**
-	 * ¸ù¾İPPKÅĞ¶ÏÍæ¼ÒÊÇ·ñÖĞ½±
+	 * æ ¹æ®PPKåˆ¤æ–­ç©å®¶æ˜¯å¦ä¸­å¥–
 	 * 
-	 * @return 1ÎªÖĞ½± 2Îª²»ÖĞ½± 3ÎªÃ»ÓĞÍ¶×¢
+	 * @return 1ä¸ºä¸­å¥– 2ä¸ºä¸ä¸­å¥– 3ä¸ºæ²¡æœ‰æŠ•æ³¨
 	 */
 	public int ifPlayerCatch(int p_pk)
 	{
@@ -251,9 +251,9 @@ public class LotteryService
 	}
 
 	/**
-	 * ¸ù¾İPPKÅĞ¶ÏÍæ¼ÒÊÇ·ñÖĞ´ÈÉÆ½±
+	 * æ ¹æ®PPKåˆ¤æ–­ç©å®¶æ˜¯å¦ä¸­æ…ˆå–„å¥–
 	 * 
-	 * @return 1ÎªÖĞ½± 2Îª²»ÖĞ½± 3ÎªÃ»ÓĞÍ¶×¢
+	 * @return 1ä¸ºä¸­å¥– 2ä¸ºä¸ä¸­å¥– 3ä¸ºæ²¡æœ‰æŠ•æ³¨
 	 */
 	public int ifPlayerCatchCharity(int p_pk)
 	{
@@ -277,7 +277,7 @@ public class LotteryService
 		}
 	}
 
-	/** µÃµ½Íæ¼Ò»ñµÃµÄÒøÁ½ */
+	/** å¾—åˆ°ç©å®¶è·å¾—çš„é“¶ä¸¤ */
 	public int playerHaveMoney(int p_pk)
 	{
 		LotteryNumberDao numdao = new LotteryNumberDao();
@@ -289,7 +289,7 @@ public class LotteryService
 		return money;
 	}
 
-	/** Íæ¼Ò»ñÈ¡´ÈÉÆ½±½ğµÄ½ğ¶î */
+	/** ç©å®¶è·å–æ…ˆå–„å¥–é‡‘çš„é‡‘é¢ */
 	public int playerHaveCharityMoney(int p_pk)
 	{
 		LotteryInfoDao lotterydao = new LotteryInfoDao();
@@ -299,7 +299,7 @@ public class LotteryService
 				/ dao.getLotteryNumber(infovo.getLotteryCharityNum(), 1);
 	}
 
-	/** Íæ¼ÒÁìÈ¡´ÈÉÆ½±½ğ¹ı³Ì */
+	/** ç©å®¶é¢†å–æ…ˆå–„å¥–é‡‘è¿‡ç¨‹ */
 	public void playerCatchCharityMoney(int p_pk)
 	{
 		RoleService roleService = new RoleService();
@@ -307,16 +307,16 @@ public class LotteryService
 
 		LotteryInfoDao dao = new LotteryInfoDao();
 
-		//¼à¿Ø
+		//ç›‘æ§
 		LogService logService = new LogService();
-		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", playerHaveCharityMoney(p_pk)+"", "´ÈÉÆ»ñ½±");
+		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", playerHaveCharityMoney(p_pk)+"", "æ…ˆå–„è·å¥–");
 		
 		roleInfo.getBasicInfo().addCopper(playerHaveCharityMoney(p_pk));
 
 		dao.delCharityBonus(playerHaveCharityMoney(p_pk));
 	}
 
-	/** Íæ¼ÒÖĞ½±ÁìÈ¡½±½ğµÄÁ÷³Ì */
+	/** ç©å®¶ä¸­å¥–é¢†å–å¥–é‡‘çš„æµç¨‹ */
 	public void playerCatchMoney(int p_pk)
 	{
 		RoleService roleService = new RoleService();
@@ -328,77 +328,77 @@ public class LotteryService
 		PlayerLotteryInfoVO vo = playerdao.getLotteryInfoByPpk(p_pk);
 		LotteryInfoDao lotterydao = new LotteryInfoDao();
 		LotteryInfoVO infovo = lotterydao.getLotteryInfo();
-		int lotterymoney = vo.getLotteryPerBonus() * numvo.getPlayerAddMoney();// Íæ¼ÒÖĞ½±ºóµÄ×Ü½±Àø
-		int playgetmoney = lotterymoney * 85 / 100;// Íæ¼ÒµÃµ½µÄÇ®
-		int shuijin = lotterymoney - playgetmoney;// Ë°½ğ
-		int charitymoney = shuijin / 5;// ´ÈÉÆ½±Àø
+		int lotterymoney = vo.getLotteryPerBonus() * numvo.getPlayerAddMoney();// ç©å®¶ä¸­å¥–åçš„æ€»å¥–åŠ±
+		int playgetmoney = lotterymoney * 85 / 100;// ç©å®¶å¾—åˆ°çš„é’±
+		int shuijin = lotterymoney - playgetmoney;// ç¨é‡‘
+		int charitymoney = shuijin / 5;// æ…ˆå–„å¥–åŠ±
 
-		// Ö´ĞĞÍ³¼Æ
+		// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(6, StatisticsType.MONEY, shuijin, StatisticsType.USED,
 				StatisticsType.SHUISHOU, p_pk);
 
 		if (infovo.getSysBonusType() == 0)
 		{
-			addSysCharityBonus(charitymoney);// Íæ¼ÒÁì½± Ë°½ğµÄÒ»²¿·Ö¹öÈë´ÈÉÆ½±Àø
-			lotterydao.delLotteryBonus(lotterymoney);// ½±³Ø½±½ğµİ¼õ
+			addSysCharityBonus(charitymoney);// ç©å®¶é¢†å¥– ç¨é‡‘çš„ä¸€éƒ¨åˆ†æ»šå…¥æ…ˆå–„å¥–åŠ±
+			lotterydao.delLotteryBonus(lotterymoney);// å¥–æ± å¥–é‡‘é€’å‡
 			lotterydao.updateLotterySunjoin(lotterymoney
-					* (vo.getLotteryBonusMultiple() - 1));// Í³¼ÆÏµÍ³²¹ÌùµÄ½±½ğ
+					* (vo.getLotteryBonusMultiple() - 1));// ç»Ÿè®¡ç³»ç»Ÿè¡¥è´´çš„å¥–é‡‘
 
-			//¼à¿Ø
+			//ç›‘æ§
 			LogService logService = new LogService();
-			logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", lotterymoney * vo.getLotteryBonusMultiple()+"", "²ÊÆ±»ñ½±");
+			logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", lotterymoney * vo.getLotteryBonusMultiple()+"", "å½©ç¥¨è·å¥–");
 			
 			lotterymoney = lotterymoney + infovo.getSysBonusNum();
 			roleInfo.getBasicInfo().addCopper(
-					lotterymoney * vo.getLotteryBonusMultiple());// Íæ¼ÒÁìÈ¡½±½ğ
-			// Ö´ĞĞÍ³¼Æ
+					lotterymoney * vo.getLotteryBonusMultiple());// ç©å®¶é¢†å–å¥–é‡‘
+			// æ‰§è¡Œç»Ÿè®¡
 			gsss.addPropNum(6, StatisticsType.MONEY, lotterymoney
 					* vo.getLotteryBonusMultiple(), StatisticsType.DEDAO,
 					StatisticsType.BOCAI, p_pk);
 
-			playerdao.updatePlayerCatch(p_pk);// ±ê¼ÇÈËÎïÁìÈ¡¹ı½±½ğ
+			playerdao.updatePlayerCatch(p_pk);// æ ‡è®°äººç‰©é¢†å–è¿‡å¥–é‡‘
 			playerdao.updatePlayerAllBonus(lotterymoney
-					* vo.getLotteryBonusMultiple(), p_pk);// ¸øÍæ¼ÒÀÛ¼Ó½±½ğ
-			playerdao.addPlayerWinNum(p_pk);// ¸øÍæ¼ÒµÄ»ñ½±±¶ÊıºÍ»ñ½±´ÎÊı+1
+					* vo.getLotteryBonusMultiple(), p_pk);// ç»™ç©å®¶ç´¯åŠ å¥–é‡‘
+			playerdao.addPlayerWinNum(p_pk);// ç»™ç©å®¶çš„è·å¥–å€æ•°å’Œè·å¥–æ¬¡æ•°+1
 		}
 		else
 		{
-			addSysCharityBonus(charitymoney);// Íæ¼ÒÁì½± Ë°½ğµÄÒ»²¿·Ö¹öÈë´ÈÉÆ½±Àø
-			lotterydao.delLotteryBonus(lotterymoney);// ½±³Ø½±½ğµİ¼õ
+			addSysCharityBonus(charitymoney);// ç©å®¶é¢†å¥– ç¨é‡‘çš„ä¸€éƒ¨åˆ†æ»šå…¥æ…ˆå–„å¥–åŠ±
+			lotterydao.delLotteryBonus(lotterymoney);// å¥–æ± å¥–é‡‘é€’å‡
 			lotterydao.updateLotterySunjoin(lotterymoney
 					* (vo.getLotteryBonusMultiple() - 1)
-					* numvo.getPlayerAddMoney());// Í³¼ÆÏµÍ³²¹ÌùµÄ½±½ğ
+					* numvo.getPlayerAddMoney());// ç»Ÿè®¡ç³»ç»Ÿè¡¥è´´çš„å¥–é‡‘
 
-			//¼à¿Ø
+			//ç›‘æ§
 			LogService logService = new LogService();
-			logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", lotterymoney * vo.getLotteryBonusMultiple()+"", "²ÊÆ±»ñ½±");
+			logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", lotterymoney * vo.getLotteryBonusMultiple()+"", "å½©ç¥¨è·å¥–");
 			
 			roleInfo.getBasicInfo().addCopper(
-					lotterymoney * vo.getLotteryBonusMultiple());// Íæ¼ÒÁìÈ¡½±½ğ
+					lotterymoney * vo.getLotteryBonusMultiple());// ç©å®¶é¢†å–å¥–é‡‘
 
-			// Ö´ĞĞÍ³¼Æ
+			// æ‰§è¡Œç»Ÿè®¡
 			gsss.addPropNum(6, StatisticsType.MONEY, lotterymoney
 					* vo.getLotteryBonusMultiple(), StatisticsType.DEDAO,
 					StatisticsType.BOCAI, p_pk);
 
-			playerdao.updatePlayerCatch(p_pk);// ±ê¼ÇÈËÎïÁìÈ¡¹ı½±½ğ
+			playerdao.updatePlayerCatch(p_pk);// æ ‡è®°äººç‰©é¢†å–è¿‡å¥–é‡‘
 			playerdao.updatePlayerAllBonus(lotterymoney
-					* vo.getLotteryBonusMultiple(), p_pk);// ¸øÍæ¼ÒÀÛ¼Ó½±½ğ
+					* vo.getLotteryBonusMultiple(), p_pk);// ç»™ç©å®¶ç´¯åŠ å¥–é‡‘
 			GoodsService goodsService = new GoodsService();
 			goodsService.putGoodsToWrap(p_pk, infovo.getSysBonusId(), infovo
 					.getSysBonusType(), infovo.getSysBonusIntro(), infovo
-					.getSysBonusNum(),GameLogManager.G_SYSTEM);// Íæ¼Ò»ñµÃÏµÍ³·¢¸øµÄµÀ¾ß
-			// Ö´ĞĞÍ³¼Æ
+					.getSysBonusNum(),GameLogManager.G_SYSTEM);// ç©å®¶è·å¾—ç³»ç»Ÿå‘ç»™çš„é“å…·
+			// æ‰§è¡Œç»Ÿè®¡
 			gsss.addPropNum(infovo.getSysBonusId(), infovo.getSysBonusType(),
 					infovo.getSysBonusNum(), StatisticsType.DEDAO,
 					StatisticsType.BOCAI, p_pk);
 
-			playerdao.addPlayerWinNum(p_pk);// ¸øÍæ¼ÒµÄ»ñ½±±¶ÊıºÍ»ñ½±´ÎÊı+1
+			playerdao.addPlayerWinNum(p_pk);// ç»™ç©å®¶çš„è·å¥–å€æ•°å’Œè·å¥–æ¬¡æ•°+1
 		}
 	}
 
-	/** Íæ¼Òµã»÷¾º²ÂµÄÍ¬Ê±Éú³ÉÍæ¼ÒĞÅÏ¢ */
+	/** ç©å®¶ç‚¹å‡»ç«çŒœçš„åŒæ—¶ç”Ÿæˆç©å®¶ä¿¡æ¯ */
 	public void buildPlayerLottery(int p_pk)
 	{
 		PlayerLotteryInfoDao playerdao = new PlayerLotteryInfoDao();
@@ -406,7 +406,7 @@ public class LotteryService
 			playerdao.setPlayerLotteryMessage(p_pk);
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÎªµÚÒ»´Î¾º²Â ÊÇÉú³ÉÍæ¼Ò²ÊÆ±ĞÅÏ¢ */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦ä¸ºç¬¬ä¸€æ¬¡ç«çŒœ æ˜¯ç”Ÿæˆç©å®¶å½©ç¥¨ä¿¡æ¯ */
 	public boolean playerGuess(int p_pk)
 	{
 		PlayerLotteryInfoDao playerdao = new PlayerLotteryInfoDao();
@@ -417,7 +417,7 @@ public class LotteryService
 		return false;
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñ¾º²Â¹ı trueÎª¾º²Â¹ı falseÎªÃ»¾º²Â¹ı */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦ç«çŒœè¿‡ trueä¸ºç«çŒœè¿‡ falseä¸ºæ²¡ç«çŒœè¿‡ */
 	public boolean playerGuessLottery(int p_pk, int lottery_type)
 	{
 		LotteryNumberDao dao = new LotteryNumberDao();
@@ -428,7 +428,7 @@ public class LotteryService
 		return true;
 	}
 
-	/** ÏµÍ³×Ô¶¯Éú³É²ÊÆ± ¼ÆËãµ¥×¢½±½ğ ²¢¸øÍæ¼Ò²ÊÆ±ĞÅÏ¢±í Ìí¼Ó µ¥×¢½±½ğ½ğ¶î */
+	/** ç³»ç»Ÿè‡ªåŠ¨ç”Ÿæˆå½©ç¥¨ è®¡ç®—å•æ³¨å¥–é‡‘ å¹¶ç»™ç©å®¶å½©ç¥¨ä¿¡æ¯è¡¨ æ·»åŠ  å•æ³¨å¥–é‡‘é‡‘é¢ */
 	public void sysLottery()
 	{
 		Date date = new Date();
@@ -452,7 +452,7 @@ public class LotteryService
 
 	}
 
-	/** ÏµÍ³Ã¿ÈÕ3µã ¸üĞÂÍæ¼Ò²ÊÆ±ĞÅÏ¢±íÀïĞÅÏ¢ Í¬Ê±É¾³ı²ÊÆ±±í ²¢ÇÒÉ¾³ıÏµÍ³²ÊÆ±ºÅÂë É¾³ı´ÈÉÆ²ÊÆ±ºÅÂë */
+	/** ç³»ç»Ÿæ¯æ—¥3ç‚¹ æ›´æ–°ç©å®¶å½©ç¥¨ä¿¡æ¯è¡¨é‡Œä¿¡æ¯ åŒæ—¶åˆ é™¤å½©ç¥¨è¡¨ å¹¶ä¸”åˆ é™¤ç³»ç»Ÿå½©ç¥¨å·ç  åˆ é™¤æ…ˆå–„å½©ç¥¨å·ç  */
 	public void sysDel()
 	{
 		Date date = new Date();
@@ -473,7 +473,7 @@ public class LotteryService
 		}
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ²Î¼Ó´ÈÉÆ¾º²ÂµÄ×Ê¸ñ */
+	/** åˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰å‚åŠ æ…ˆå–„ç«çŒœçš„èµ„æ ¼ */
 	public boolean getPlayerCharityLottery(int p_pk)
 	{
 		PlayerLotteryInfoDao dao = new PlayerLotteryInfoDao();
@@ -485,7 +485,7 @@ public class LotteryService
 		return false;
 	}
 
-	/** ÏµÍ³ĞÅÏ¢ */
+	/** ç³»ç»Ÿä¿¡æ¯ */
 	public String sysLotteryMessage()
 	{
 		Date date = new Date();
@@ -496,28 +496,28 @@ public class LotteryService
 		if (date.getDate() == 1)
 		{
 
-			return "ÖĞ½±ºÅÂëÎª" + num + " ´ÈÉÆÖĞ½±ºÅÂëÎª" + num1;
+			return "ä¸­å¥–å·ç ä¸º" + num + " æ…ˆå–„ä¸­å¥–å·ç ä¸º" + num1;
 		}
 		else
 		{
-			return "ÖĞ½±ºÅÂëÎª" + num;
+			return "ä¸­å¥–å·ç ä¸º" + num;
 		}
 	}
 
-	/** ·¢ËÍÏµÍ³ÓÊ¼ş¸øÍæ¼Ò */
+	/** å‘é€ç³»ç»Ÿé‚®ä»¶ç»™ç©å®¶ */
 	public void setSysLotteryMail()
 	{
 		LotteryNumberDao ndao = new LotteryNumberDao();
 		LotteryInfoDao dao = new LotteryInfoDao();
 		MailInfoService ms = new MailInfoService();
 		LotteryInfoVO vo = dao.getLotteryInfo();
-		String num = vo.getLotteryNumberPerDay();// ÖĞ½±ºÅÂë
-		int x = ndao.getLotteryNumber(num, 0);// ÖĞ½±ÈËÊı
-		String today = DateUtil.getTodayStr().replaceAll("-", "");// ¿ª½±ÆÚÊı
-		List<Integer> winplayer = ndao.getWinPlayer(num, 0);// ÖĞ½±Õß
-		List<Integer> notwinplayer = ndao.getNotWinPlayer(num, 0);// Ã»ÖĞ½±Õß
-		List<Integer> allplayer = ndao.getAllPlayer(0);// Âò²ÊÆ±µÄÈË
-		String title = "µÚ" + today + "ÆÚ²©²Ê¿ª½±";
+		String num = vo.getLotteryNumberPerDay();// ä¸­å¥–å·ç 
+		int x = ndao.getLotteryNumber(num, 0);// ä¸­å¥–äººæ•°
+		String today = DateUtil.getTodayStr().replaceAll("-", "");// å¼€å¥–æœŸæ•°
+		List<Integer> winplayer = ndao.getWinPlayer(num, 0);// ä¸­å¥–è€…
+		List<Integer> notwinplayer = ndao.getNotWinPlayer(num, 0);// æ²¡ä¸­å¥–è€…
+		List<Integer> allplayer = ndao.getAllPlayer(0);// ä¹°å½©ç¥¨çš„äºº
+		String title = "ç¬¬" + today + "æœŸåšå½©å¼€å¥–";
 		if (allplayer != null && allplayer.size() != 0)
 		{
 			if (x == 0)
@@ -528,9 +528,9 @@ public class LotteryService
 					String playerlotterynum = ndao.getLotteryNumber(ppk, 0);
 					String allBonus = MoneyUtil.changeCopperToStr(vo
 							.getLotteryBonus());
-					String contentallnotwin = "µÚ" + today + "ÆÚ²©²Ê¿ª½±£¬ÖĞ½±ºÅÂëÎª" + num
-							+ "¡£ÄúÍ¶×¢µÄ" + playerlotterynum + "ºÅÂëÃ»ÓĞÖĞ½±£¡±¾ÂÖ¾º²ÂÎŞÈËÖĞ½±£¬½±½ğ"
-							+ allBonus + "Á½¹öÈëÏÂÒ»ÂÖ£¬Ï£ÍûÏÂÒ»ÂÖÖĞ½±µÄÈË¾ÍÊÇÄú£¡";
+					String contentallnotwin = "ç¬¬" + today + "æœŸåšå½©å¼€å¥–ï¼Œä¸­å¥–å·ç ä¸º" + num
+							+ "ã€‚æ‚¨æŠ•æ³¨çš„" + playerlotterynum + "å·ç æ²¡æœ‰ä¸­å¥–ï¼æœ¬è½®ç«çŒœæ— äººä¸­å¥–ï¼Œå¥–é‡‘"
+							+ allBonus + "ä¸¤æ»šå…¥ä¸‹ä¸€è½®ï¼Œå¸Œæœ›ä¸‹ä¸€è½®ä¸­å¥–çš„äººå°±æ˜¯æ‚¨ï¼";
 					ms.sendMailBySystem(ppk, title, contentallnotwin);
 				}
 			}
@@ -541,8 +541,8 @@ public class LotteryService
 					for (int i = 0; i < winplayer.size(); i++)
 					{
 						int ppk = winplayer.get(i);
-						String contentwin = "µÚ" + today + "ÆÚ²©²Ê¿ª½±£¬¹§Ï²ÄúÍ¶×¢µÄ" + num
-								+ "ºÅÂëÖĞ½±ÁË£¡ÇëÔÚµ±ÌìÇ°ÍùºÚÒÂ´óºº´¦Áì½±£¡";
+						String contentwin = "ç¬¬" + today + "æœŸåšå½©å¼€å¥–ï¼Œæ­å–œæ‚¨æŠ•æ³¨çš„" + num
+								+ "å·ç ä¸­å¥–äº†ï¼è¯·åœ¨å½“å¤©å‰å¾€é»‘è¡£å¤§æ±‰å¤„é¢†å¥–ï¼";
 						ms.sendMailBySystem(ppk, title, contentwin);
 					}
 				}
@@ -552,9 +552,9 @@ public class LotteryService
 					{
 						int ppk = notwinplayer.get(i);
 						String playerlotterynum = ndao.getLotteryNumber(ppk, 0);
-						String contentnotwin = "µÚ" + today + "ÆÚ²©²Ê¿ª½±£¬ÖĞ½±ºÅÂëÎª"
-								+ num + "¡£ÄúÍ¶×¢µÄ" + playerlotterynum
-								+ "ºÅÂëÃ»ÓĞÖĞ½±£¡Ï£ÍûÏÂÒ»ÂÖÖĞ½±µÄÈË¾ÍÊÇÄú£¡";
+						String contentnotwin = "ç¬¬" + today + "æœŸåšå½©å¼€å¥–ï¼Œä¸­å¥–å·ç ä¸º"
+								+ num + "ã€‚æ‚¨æŠ•æ³¨çš„" + playerlotterynum
+								+ "å·ç æ²¡æœ‰ä¸­å¥–ï¼å¸Œæœ›ä¸‹ä¸€è½®ä¸­å¥–çš„äººå°±æ˜¯æ‚¨ï¼";
 						ms.sendMailBySystem(ppk, title, contentnotwin);
 					}
 				}
@@ -562,7 +562,7 @@ public class LotteryService
 		}
 	}
 
-	/** ÏµÍ³×·¼Ó½±ÀøµÄÏÔÊ¾ */
+	/** ç³»ç»Ÿè¿½åŠ å¥–åŠ±çš„æ˜¾ç¤º */
 	public String sysOutLotteryBonus()
 	{
 		LotteryInfoDao ldao = new LotteryInfoDao();
@@ -575,30 +575,30 @@ public class LotteryService
 			String intro = "";
 			if (vo.getSysBonusIntro() == 1)
 			{
-				intro = "(ÓÅ)";
+				intro = "(ä¼˜)";
 			}
 			if (vo.getSysBonusIntro() == 2)
 			{
-				intro = "(¾«)";
+				intro = "(ç²¾)";
 			}
 			if (vo.getSysBonusIntro() == 3)
 			{
-				intro = "(¼«)";
+				intro = "(æ)";
 			}
-			String out = "ÏµÍ³×·¼Ó½±Àø:" + equip.getName()+ intro + "¡Á" + vo.getSysBonusNum();
+			String out = "ç³»ç»Ÿè¿½åŠ å¥–åŠ±:" + equip.getName()+ intro + "Ã—" + vo.getSysBonusNum();
 			return out;
 		}
 		if (vo.getSysBonusType() == 4)
 		{
 			PropVO pvo = PropCache.getPropById(vo.getSysBonusId());
-			String out = "ÏµÍ³×·¼Ó½±Àø:" + pvo.getPropName() + "¡Á"
+			String out = "ç³»ç»Ÿè¿½åŠ å¥–åŠ±:" + pvo.getPropName() + "Ã—"
 					+ vo.getSysBonusNum();
 			return out;
 		}
 		return "";
 	}
 
-	/** ÅĞ¶ÏÏµÍ³Ê±¼ä */
+	/** åˆ¤æ–­ç³»ç»Ÿæ—¶é—´ */
 	public boolean sysTimeAtEight()
 	{
 		Date now = new Date();
@@ -619,7 +619,7 @@ public class LotteryService
 		return false;
 	}
 
-	/** ÅĞ¶ÏÍæ¼ÒµÄ°ü¹ü */
+	/** åˆ¤æ–­ç©å®¶çš„åŒ…è£¹ */
 	public int getPlayerWrapSpare(int p_pk)
 	{
 		RoleEntity role_info = RoleService.getRoleInfoById(p_pk+"");

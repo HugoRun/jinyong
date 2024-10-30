@@ -19,7 +19,7 @@ import com.pm.service.systemInfo.SystemInfoService;
 public class UnchartedRoomAction extends DispatchAction
 {
 
-	// Íæ¼Òµã»÷ÁìÈ¡½±Àø È»ºóÅĞ¶ÏÍæ¼ÒÊÇ·ñÓĞ×Ê¸ñÀ´ÁìÈ¡¸Ä½±Àø
+	// ç©å®¶ç‚¹å‡»é¢†å–å¥–åŠ± ç„¶ååˆ¤æ–­ç©å®¶æ˜¯å¦æœ‰èµ„æ ¼æ¥é¢†å–æ”¹å¥–åŠ±
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -28,7 +28,7 @@ public class UnchartedRoomAction extends DispatchAction
 		OperateMenuVO vo = new OperateMenuVO();
 		if (menu_id == null || menu_id.equals("") || menu_id.equals("null"))
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM!");
+			request.setAttribute("display", "è¯·è”ç³»GM!");
 			return mapping.findForward("display");
 		}
 		else
@@ -43,26 +43,26 @@ public class UnchartedRoomAction extends DispatchAction
 		String prop_id = vo.getMenuOperate1();
 		if (prop_id == null || prop_id.equals("") || prop_id.equals("null"))
 		{
-			request.setAttribute("display", "ÇëÁªÏµGM»ñÈ¡½±ÀøĞÅÏ¢!");
+			request.setAttribute("display", "è¯·è”ç³»GMè·å–å¥–åŠ±ä¿¡æ¯!");
 			return mapping.findForward("display");
 		}
 		boolean have = rs.ifPlayerHaveGetPrize();
 		if (have == true)
 		{
-			// ÁìÈ¡½±ÀøÍË³ö
+			// é¢†å–å¥–åŠ±é€€å‡º
 			GoodsService gs = new GoodsService();
 			gs.putGoodsToWrap(roleInfo.getBasicInfo().getPPk(), Integer
 					.parseInt(prop_id), 4, 1);
 			rs.updateOfflinePlayerUnchartedRoomState(roleInfo);
 			SystemInfoService systemInfoService = new SystemInfoService();
-			systemInfoService.insertSystemInfoBySystem(roleInfo.getBasicInfo().getName()+"´óÏÀÁ¦Ñ¹ÈºĞÛ,×îÖÕ»ñµÃÁËÃØ¾³ÖĞµÄ±¦²Ø!");
-			request.setAttribute("display", "¹§Ï²Äú»ñµÃÁËÃØ¾³ÖĞµÄ±¦²Ø!");
+			systemInfoService.insertSystemInfoBySystem(roleInfo.getBasicInfo().getName()+"å¤§ä¾ åŠ›å‹ç¾¤é›„,æœ€ç»ˆè·å¾—äº†ç§˜å¢ƒä¸­çš„å®è—!");
+			request.setAttribute("display", "æ­å–œæ‚¨è·å¾—äº†ç§˜å¢ƒä¸­çš„å®è—!");
 			return mapping.findForward("display");
 		}
 		else
 		{
-			// ²»ÁìÈ¡½±Àø
-			request.setAttribute("display", "ÃØ¾³ÖĞ»¹ÓĞÆäËûÌ½ÏÕÕß,ÄúÎŞ·¨»ñµÃ±¦²Ø!");
+			// ä¸é¢†å–å¥–åŠ±
+			request.setAttribute("display", "ç§˜å¢ƒä¸­è¿˜æœ‰å…¶ä»–æ¢é™©è€…,æ‚¨æ— æ³•è·å¾—å®è—!");
 			return mapping.findForward("display");
 		}
 	}

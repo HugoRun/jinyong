@@ -1,75 +1,66 @@
 package com.ls.web.action.cooperate.tx;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.ls.ben.vo.cooperate.dangle.PassportVO;
 import com.ls.pub.constant.Channel;
 import com.ls.web.service.cooperate.dangle.PassportService;
-
 import org.apache.log4j.Logger;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-public class LoginAction extends Action
-{
-	Logger logger = Logger.getLogger("log.pay");
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-	/**
-	 * TXÍøÇşµÀµÇÂ¼
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return ActionForward
-	 * @throws IOException
-	 */
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
+public class LoginAction extends Action {
+    Logger logger = Logger.getLogger("log.pay");
 
-		String ownerId = request.getParameter("tx-owner");
-		String appId = request.getParameter("tx-app");
-		String sessionId = request.getParameter("tx-session");
-		String uid = request.getParameter("uid");
-		
-		logger.info("########ÌìÏÂµÇÂ½########");
-		logger.info("tx-owner:"+ownerId);
-		logger.info("tx-app:"+appId);
-		logger.info("tx-session:"+sessionId);
-		logger.info("uid:"+uid);
-		
-		if (ownerId != null)
-		{
-			String login_ip = request.getRemoteAddr();
-			PassportService passportService = new PassportService();
-			PassportVO passport = passportService.loginFromTxw(ownerId + "",
-					login_ip);
-			if (passport == null || passport.getUPk() == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
-			{
-				logger.info("ÓÃ»§µÇÂ½Ê§°ÜÇë´ÓÌìÏÂÍøÖØĞÂµÇÂ½");
-				return mapping.findForward("fail");
-			}
-			else
-			{
-				HttpSession session = request.getSession();
-				String params = request.getQueryString();
-				int uPk = passport.getUPk();
-				session.setAttribute("uPk", uPk + "");
-				session.setAttribute("userId", ownerId + "");
-				session.setAttribute("user_name", ownerId + "");
-				session.setAttribute("channel_id", Channel.TXW + "");
-				session.setAttribute("params", params);// µÇÂ½²ÎÊı
-				return mapping.findForward("success");
-			}
-		}
-		logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
-		return mapping.findForward("fail");
-	}
+    /**
+     * TXç½‘æ¸ é“ç™»å½•
+     *
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return ActionForward
+     * @throws IOException
+     */
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        String ownerId = request.getParameter("tx-owner");
+        String appId = request.getParameter("tx-app");
+        String sessionId = request.getParameter("tx-session");
+        String uid = request.getParameter("uid");
+
+        logger.info("########å¤©ä¸‹ç™»é™†########");
+        logger.info("tx-owner:" + ownerId);
+        logger.info("tx-app:" + appId);
+        logger.info("tx-session:" + sessionId);
+        logger.info("uid:" + uid);
+
+        if (ownerId != null) {
+            String login_ip = request.getRemoteAddr();
+            PassportService passportService = new PassportService();
+            PassportVO passport = passportService.loginFromTxw(ownerId, login_ip);
+            if (passport == null || passport.getUPk() == -1)// ç™»é™†éªŒè¯å¤±è´¥
+            {
+                logger.info("ç”¨æˆ·ç™»é™†å¤±è´¥è¯·ä»å¤©ä¸‹ç½‘é‡æ–°ç™»é™†");
+                return mapping.findForward("fail");
+            } else {
+                HttpSession session = request.getSession();
+                String params = request.getQueryString();
+                int uPk = passport.getUPk();
+                session.setAttribute("uPk", uPk + "");
+                session.setAttribute("userId", ownerId);
+                session.setAttribute("user_name", ownerId);
+                session.setAttribute("channel_id", Channel.TXW + "");
+                session.setAttribute("params", params);// ç™»é™†å‚æ•°
+                return mapping.findForward("success");
+            }
+        }
+        logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
+        return mapping.findForward("fail");
+    }
 }

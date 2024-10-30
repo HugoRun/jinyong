@@ -2,27 +2,27 @@ package com.lw.vo.lottery;
 
 public class LotteryInfoVO
 {
-	/** ½±Àø×Ü½ğ¶î */
+	/** å¥–åŠ±æ€»é‡‘é¢ */
 	private int lotteryBonus;
-	/** Ë°ÂÊ */
+	/** ç¨ç‡ */
 	private int lotteryTax;
-	/** ÏµÍ³×·¼Ó½±ÀøÀàĞÍ */
+	/** ç³»ç»Ÿè¿½åŠ å¥–åŠ±ç±»å‹ */
 	private int sysBonusType;
-	/** ÏµÍ³×·¼Ó½±ÀøID */
+	/** ç³»ç»Ÿè¿½åŠ å¥–åŠ±ID */
 	private int sysBonusId;
-	/** ÏµÍ³×·¼Ó½±ÀøÆ·ÖÊ */
+	/** ç³»ç»Ÿè¿½åŠ å¥–åŠ±å“è´¨ */
 	private int sysBonusIntro;
-	/** ÏµÍ³×·¼Ó½±ÀøÊıÁ¿ */
+	/** ç³»ç»Ÿè¿½åŠ å¥–åŠ±æ•°é‡ */
 	private int sysBonusNum;
-	/** ´ÈÉÆ½±½ğ¶î */
+	/** æ…ˆå–„å¥–é‡‘é¢ */
 	private int sysCharityBonus;
-	/** Ã¿ÌìÖĞ½±ºÅÂë */
+	/** æ¯å¤©ä¸­å¥–å·ç  */
 	private String lotteryNumberPerDay;
-	/** ÏµÍ³²¹Ìù¸øÍæ¼ÒµÄ½±½ğ */
+	/** ç³»ç»Ÿè¡¥è´´ç»™ç©å®¶çš„å¥–é‡‘ */
 	private int lotterySubjoin;
-	/** ´ÈÉÆÖĞ½±ºÅÂë */
+	/** æ…ˆå–„ä¸­å¥–å·ç  */
 	private String lotteryCharityNum;
-	/** ÖĞ½±×¢Êı */
+	/** ä¸­å¥–æ³¨æ•° */
 	private int lotteryWinNum;
 
 	public int getLotteryWinNum()

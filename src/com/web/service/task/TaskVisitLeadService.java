@@ -13,18 +13,18 @@ import com.web.service.TaskXieDaiService;
 import com.web.service.TaskXunWuService;
 
 /**
- * ¹¦ÄÜ:9¼¶ÈÎÎñÌø×ªÖ±½ÓÈÃÑ¡ÔñÃÅÅÉ
+ * åŠŸèƒ½:9çº§ä»»åŠ¡è·³è½¬ç›´æ¥è®©é€‰æ‹©é—¨æ´¾
  * 
- * @author ºîºÆ¾ü 11:13:44 AM 
+ * @author ä¾¯æµ©å†› 11:13:44 AM 
  */
 public class TaskVisitLeadService
 {
 
 	/**
-	 * ½ÓÊÜÒ»ÌõÈÎÎñ
+	 * æ¥å—ä¸€æ¡ä»»åŠ¡
 	 * @param roleEntity
-	 * @param t_zu			ÈÎÎñ×é
-	 * @return				ÈÎÎñÌáÊ¾
+	 * @param t_zu			ä»»åŠ¡ç»„
+	 * @return				ä»»åŠ¡æç¤º
 	 */
 	public String acceptTask(RoleEntity roleEntity,String t_zu)
 	{
@@ -36,7 +36,7 @@ public class TaskVisitLeadService
 		TaskXunWuService taskXunWuService = new TaskXunWuService();
 		TaskFuHeService taskFuHeService = new TaskFuHeService();
 		
-		//µÃµ½¸ÃÈÎÎñµÄµÚÒ»ÌõÈÎÎñ
+		//å¾—åˆ°è¯¥ä»»åŠ¡çš„ç¬¬ä¸€æ¡ä»»åŠ¡
 		int t_zuxl = 1;
 		TaskVO taskVO = taskDAO.getTaskByZuAndXulie(t_zu, t_zuxl);
 		
@@ -44,32 +44,32 @@ public class TaskVisitLeadService
 		{
 			switch(taskVO.getTType())
 			{
-				// ¶Ô»°ÈÎÎñ
+				// å¯¹è¯ä»»åŠ¡
 				case 1:hint = taskService.getDuiHuaService(roleEntity,taskVO);break;
-				// 2´ú±íÉ±¹ÖÈÎÎñ
+				// 2ä»£è¡¨æ€æ€ªä»»åŠ¡
 				case 2:hint = taskShaGuaiService.getShaGuaiService(roleEntity,taskVO);break;
-				// 3´ú±íĞ¯´øÀàÈÎÎñ
+				// 3ä»£è¡¨æºå¸¦ç±»ä»»åŠ¡
 				case 3:hint = taskXieDaiService.getXieDaiService(roleEntity,taskVO);break;
-				// 4 Ñ°ÎïÀà
+				// 4 å¯»ç‰©ç±»
 				case 4:hint = taskXunWuService.getXunWuService(roleEntity,taskVO);break;
-				// ¸´ºÏÀà
+				// å¤åˆç±»
 				case 5:hint = taskFuHeService.getFuHeService(roleEntity,taskVO);break;
 			}
 			
 			if( hint!=null )
 			{
-				//¿ÉÒÔ½ÓÊÜ¸ÃÈÎÎñ
+				//å¯ä»¥æ¥å—è¯¥ä»»åŠ¡
 				hint = taskVO.getTTishi();
 			}
 		}
 		else
 		{
-			DataErrorLog.debugData("TaskVisitLeadService.acceptTask:ÎŞ¸ÃÈÎÎñ£¬t_zu="+t_zu);
+			DataErrorLog.debugData("TaskVisitLeadService.acceptTask:æ— è¯¥ä»»åŠ¡ï¼Œt_zu="+t_zu);
 		}
 		return hint;
 	} 
 	/**
-	 * ·µ»ØÈÎÎñµÄID
+	 * è¿”å›ä»»åŠ¡çš„ID
 	 * */
 	public String getTaskPk(String title, int t_zuxl, int pPk,
 			String createTime, String pName, int uPk){ 
@@ -80,7 +80,7 @@ public class TaskVisitLeadService
 		return hint;
 	}
 	/**
-	 * ·µ»Ø½ÇÉ«ÈÎÎñµÄID
+	 * è¿”å›è§’è‰²ä»»åŠ¡çš„ID
 	 * */
 	public String getPartTaskPk(int pPk,int tid){ 
 		String hint = null;

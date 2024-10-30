@@ -11,7 +11,7 @@ import com.pm.vo.passsecond.SecondPassVO;
 
 public class SecondPassDao extends DaoBase {
 	/**
-	 * ²åÈëµ½¶ş¼¶ÃÜÂë±íÖĞ
+	 * æ’å…¥åˆ°äºŒçº§å¯†ç è¡¨ä¸­
 	 * @param u_pk
 	 * @param secondPass
 	 */
@@ -19,7 +19,7 @@ public class SecondPassDao extends DaoBase {
 	{
 		String sql = "update u_second_pass set second_pass = '"+pass_md5+"' where u_pk="+u_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("²åÈëµ½¶ş¼¶ÃÜÂë±íÖĞ="+sql);
+		logger.debug("æ’å…¥åˆ°äºŒçº§å¯†ç è¡¨ä¸­="+sql);
 		try{
 			conn = dbConn.getConn();
 			ps = conn.prepareStatement(sql);
@@ -33,13 +33,13 @@ public class SecondPassDao extends DaoBase {
 	}
 
 	/**
-	 * Í¨¹ıupk»ñÈ¡ÓÃ»§µÄ¶ş¼¶ÃÜÂë
+	 * é€šè¿‡upkè·å–ç”¨æˆ·çš„äºŒçº§å¯†ç 
 	 * @param pk
 	 * @return
 	 */
 	public String getUserLoginPawByUPk(int u_pk)
 	{
-		String sql = "select second_pass from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT second_pass from u_second_pass where u_pk="+u_pk;
 		String paw = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -58,11 +58,11 @@ public class SecondPassDao extends DaoBase {
 	}
 
 	/**
-	 * ÅĞ¶Ï´ËÕËºÅÊÇ·ñÒÑ¾­Éè¹ı¶ş¼¶ÃÜÂë
+	 * åˆ¤æ–­æ­¤è´¦å·æ˜¯å¦å·²ç»è®¾è¿‡äºŒçº§å¯†ç 
 	 */
 	public int hasAlreadySecondPass(int u_pk)
 	{
-		String sql = "select pass_mail_send from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT pass_mail_send from u_second_pass where u_pk="+u_pk;
 		int paw = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{	
@@ -81,11 +81,11 @@ public class SecondPassDao extends DaoBase {
 	}
 	
 	/**
-	 * ÅĞ¶Ï´ËÕËºÅÊÇ·ñÒÑ¾­Éè¹ı¶ş¼¶ÃÜÂë
+	 * åˆ¤æ–­æ­¤è´¦å·æ˜¯å¦å·²ç»è®¾è¿‡äºŒçº§å¯†ç 
 	 */
 	public boolean hasAlreadySecondPass(String u_pk)
 	{
-		String sql = "select u_pk from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT u_pk from u_second_pass where u_pk="+u_pk;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{	
@@ -104,14 +104,14 @@ public class SecondPassDao extends DaoBase {
 	}
 
 	/**
-	 * ½«Íæ¼ÒµÄÊÇ·ñ·¢ËÍ¹ı¶ş¼¶ÃÜÂëÉèÖÃÓÊ¼ş±êÖ¾ÖÃÎªi
+	 * å°†ç©å®¶çš„æ˜¯å¦å‘é€è¿‡äºŒçº§å¯†ç è®¾ç½®é‚®ä»¶æ ‡å¿—ç½®ä¸ºi
 	 * @param pk
 	 * @param i
 	 */
 	public void updateSendFlag(String u_pk,String pass_md5, int i)
 	{
-		String sql = "insert into u_second_pass values (null,"+u_pk+",'"+pass_md5+"',now(),now(),now(),0,1)";
-		logger.debug("½«Íæ¼ÒµÄÊÇ·ñ·¢ËÍ¹ı¶ş¼¶ÃÜÂëÉèÖÃÓÊ¼ş±êÖ¾ÖÃÎªi="+sql);
+		String sql = "INSERT INTO u_second_pass values (null,"+u_pk+",'"+pass_md5+"',now(),now(),now(),0,1)";
+		logger.debug("å°†ç©å®¶çš„æ˜¯å¦å‘é€è¿‡äºŒçº§å¯†ç è®¾ç½®é‚®ä»¶æ ‡å¿—ç½®ä¸ºi="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -126,13 +126,13 @@ public class SecondPassDao extends DaoBase {
 	}
 
 	/**
-	 * »ñÈ¡µÚ¶ş´Î¶ş¼¶ÃÜÂë´íÎóĞŞ¸ÄÊ±¼ä
+	 * è·å–ç¬¬äºŒæ¬¡äºŒçº§å¯†ç é”™è¯¯ä¿®æ”¹æ—¶é—´
 	 * @param u_pk
 	 * @return
 	 */
 	public SecondPassVO getSecondPassTime(int u_pk)
 	{
-		String sql = "select * from u_second_pass where u_pk="+u_pk;
+		String sql = "SELECT * FROM u_second_pass where u_pk="+u_pk;
 		SecondPassVO secondPassVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
@@ -158,7 +158,7 @@ public class SecondPassDao extends DaoBase {
 	}
 
 	/**
-	 * µ±ÊäÈë¶ş¼¶ÃÜÂë´íÎóÒ»´ÎÊ±, ¸üĞÂÒ»´Î
+	 * å½“è¾“å…¥äºŒçº§å¯†ç é”™è¯¯ä¸€æ¬¡æ—¶, æ›´æ–°ä¸€æ¬¡
 	 * @param u_pk
 	 * @param passSecondTime
 	 */
@@ -183,7 +183,7 @@ public class SecondPassDao extends DaoBase {
 		String sql = "update u_second_pass set pass_first_time='"+passSecondTime
 						+"',pass_second_time = '"+passThirdTime+"', pass_third_time = now(), pass_wrong_flag = pass_wrong_flag + 1 "
 						+" where u_pk = "+u_pk;
-		logger.debug("µ±ÊäÈë¶ş¼¶ÃÜÂë´íÎóÒ»´ÎÊ±="+sql);
+		logger.debug("å½“è¾“å…¥äºŒçº§å¯†ç é”™è¯¯ä¸€æ¬¡æ—¶="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -199,7 +199,7 @@ public class SecondPassDao extends DaoBase {
 	}
 
 	/**
-	 * ¸üĞÂ¶ş´ÎÃÜÂëµÄÊäÈë´ÎÊı
+	 * æ›´æ–°äºŒæ¬¡å¯†ç çš„è¾“å…¥æ¬¡æ•°
 	 * @param u_pk
 	 * @param i
 	 * @param j
@@ -207,7 +207,7 @@ public class SecondPassDao extends DaoBase {
 	public void updateSecondPass(int u_pk, int second_pass_flag)
 	{
 		String sql = "update u_second_pass set pass_wrong_flag="+second_pass_flag+" where u_pk="+u_pk;
-		logger.debug("¸üĞÂ¶ş´ÎÃÜÂëµÄÊäÈë´ÎÊı="+sql);
+		logger.debug("æ›´æ–°äºŒæ¬¡å¯†ç çš„è¾“å…¥æ¬¡æ•°="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();

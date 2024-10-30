@@ -1,5 +1,5 @@
 <%@page contentType="text/vnd.wap.wml"
-	import="com.ls.pub.constant.Channel,com.ls.pub.config.GameConfig,com.ls.pub.util.encrypt.MD5Util,java.util.Date"
+    import="com.ls.pub.constant.Channel,com.ls.pub.config.GameConfig,com.ls.pub.util.encrypt.MD5Util,java.util.Date"
 	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%>

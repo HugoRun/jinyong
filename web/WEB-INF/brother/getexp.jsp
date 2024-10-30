@@ -16,15 +16,15 @@ if(message!=null&&!"".equals(message.trim())){
 <%=message %><br/>
  <%} %>
 <anchor>
-	    <go method="post" href="/wrap.do">
-	    <postfield name="cmd" value="n1" />
-	    <postfield name="w_type" value="<%=w_type %>" />
-	    <postfield name="pg_pk" value="<%=pg_pk %>" />
-	    <postfield name="goods_id" value="<%=goods_id %>" />
-	    <postfield name="goods_type" value="<%=goods_type %>" />
-	    <postfield name="page_no" value="<%=page_no %>" />
-	    </go>
-	    返回
-	    </anchor><br/>
+        <go method="post" href="/wrap.do">
+        <postfield name="cmd" value="n1" />
+        <postfield name="w_type" value="<%=w_type %>" />
+        <postfield name="pg_pk" value="<%=pg_pk %>" />
+        <postfield name="goods_id" value="<%=goods_id %>" />
+        <postfield name="goods_type" value="<%=goods_type %>" />
+        <postfield name="page_no" value="<%=page_no %>" />
+        </go>
+        返回
+        </anchor><br/>
 <anchor><go href="<%=response.encodeURL(GameConfig.getContextPath()+"/pubbuckaction.do")%>" method="get"></go>返回游戏</anchor><br/>
 <%@ include file="/WEB-INF/inc/footer.jsp"%>

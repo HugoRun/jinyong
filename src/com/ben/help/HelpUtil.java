@@ -22,7 +22,7 @@ public class HelpUtil
 				+ "<postfield name=\"nowPage\" value=\""
 				+ nowPage
 				+ "\" /></go>"
-				+ "��һҳ</anchor>";
+				+ "上一页</anchor>";
 		String XIAYIYE = " <anchor><go href=\""+GameConfig.getContextPath()+"/help.do"+"\" method=\"post\">"
 				+ "<postfield name=\"cmd\" value=\"n3\" />"
 				+ "<postfield name=\"id\" value=\""
@@ -34,7 +34,7 @@ public class HelpUtil
 				+ "<postfield name=\"nowp\" value=\""
 				+ (Integer.parseInt(nowp.trim()) + 1)
 				+ "\" /></go>"
-				+ "��һҳ</anchor>";
+				+ "下一页</anchor>";
 
 		int i = (nowp == null || "".equals(nowp.trim()) ? 1 : Integer
 				.parseInt(nowp.trim()));

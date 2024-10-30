@@ -2,19 +2,19 @@ package com.pm.vo.forum;
 
 public class ForumClassBean {
 
-	/**ÂÛÌ³·ÖÀàID:Àà±ğÖ÷¼ü*/
+	/**è®ºå›åˆ†ç±»ID:ç±»åˆ«ä¸»é”®*/
 	private int classID;
-	/**ÂÛÌ³·ÖÀà¸¸ID£¬µ±Îª0Ê±±íÊ¾¶¥¼¶·ÖÀà*/
+	/**è®ºå›åˆ†ç±»çˆ¶IDï¼Œå½“ä¸º0æ—¶è¡¨ç¤ºé¡¶çº§åˆ†ç±»*/
 	private int fid	;
-	/**°æÖ÷ID*/
+	/**ç‰ˆä¸»ID*/
 	private int UserID	;
-	/**°æÖ÷Ãû³Æ*/
+	/**ç‰ˆä¸»åç§°*/
 	private String UserName;
-	/**ÂÛÌ³·ÖÀàÃû³Æ*/
+	/**è®ºå›åˆ†ç±»åç§°*/
 	private String className;
-	//ÂÛÌ³·ÖÀà¼ò³Æ
+	//è®ºå›åˆ†ç±»ç®€ç§°
 	private String smallName;
-	/**ÂÛÌ³·ÖÀà´´½¨Ê±¼ä*/
+	/**è®ºå›åˆ†ç±»åˆ›å»ºæ—¶é—´*/
 	private String addTime;
 	
 	

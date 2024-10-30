@@ -16,7 +16,7 @@ public class CallBackAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.pay");
 
-	// ĞÂÀËÃÎÍø³äÖµ»Øµ÷
+	// æ–°æµªæ¢¦ç½‘å……å€¼å›è°ƒ
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -57,7 +57,7 @@ public class CallBackAction extends DispatchAction
 			return mapping.findForward("success");
 		}
 		
-		logger.info("########ĞÂÀËÃÎÍø³äÖµ»Øµ÷########");
+		logger.info("########æ–°æµªæ¢¦ç½‘å……å€¼å›è°ƒ########");
 		logger.info("uid:" + uid);
 		logger.info("pid:" + pid);
 		logger.info("snum:" + snum);

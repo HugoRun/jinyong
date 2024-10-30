@@ -35,7 +35,7 @@ import com.ls.web.service.validate.ValidateService;
 import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 
 /**
- * ¹¦ÄÜ£ºÉÌ³ÇÂß¼­¹ÜÀí
+ * åŠŸèƒ½ï¼šå•†åŸé€»è¾‘ç®¡ç†
  * @author ls
  * May 12, 2009
  * 1:52:39 PM
@@ -44,11 +44,11 @@ public class MallService
 {
 	Logger logger = Logger.getLogger("log.pay");
 	/**
-	 * ¸ù¾İÍæ¼ÒvipµÈ¼¶µÄ
-	 * ÎŞ»áÔ±£ºÇ×°®µÄÍæ¼ÒÄúºÃ£¡
-	 * ÌúÑª»áÔ±£º×ğ¹óµÄ»áÔ±ÄúºÃ£¡
-	 * ¹ó±ö»áÔ±£ºÏÔºÕµÄ¹ó×åÄúºÃ£¡
-	 * µÛÍõ»áÔ±£ºÎŞÉÏµÄ±İÏÂÄúºÃ£¡
+	 * æ ¹æ®ç©å®¶vipç­‰çº§çš„
+	 * æ— ä¼šå‘˜ï¼šäº²çˆ±çš„ç©å®¶æ‚¨å¥½ï¼
+	 * é“è¡€ä¼šå‘˜ï¼šå°Šè´µçš„ä¼šå‘˜æ‚¨å¥½ï¼
+	 * è´µå®¾ä¼šå‘˜ï¼šæ˜¾èµ«çš„è´µæ—æ‚¨å¥½ï¼
+	 * å¸ç‹ä¼šå‘˜ï¼šæ— ä¸Šçš„é™›ä¸‹æ‚¨å¥½ï¼
 	 * @return
 	 */
 	public String getRoleTitleByVIPLevel(int vip_level)
@@ -57,22 +57,22 @@ public class MallService
 		
 		if( vip_level==1 )
 		{
-			return role_title = "×ğ¹óµÄ»áÔ±";
+			return role_title = "å°Šè´µçš„ä¼šå‘˜";
 		}
 		else if( vip_level==2 )
 		{
-			return role_title = "ÏÔºÕµÄ¹ó×å";
+			return role_title = "æ˜¾èµ«çš„è´µæ—";
 		}
 		else if( vip_level==3 )
 		{
-			return role_title = "ÎŞÉÏµÄ±İÏÂ";
+			return role_title = "æ— ä¸Šçš„é™›ä¸‹";
 		}
 
 		return role_title;
 	}
 	
 	/**
-	 * ¸ù¾İÉÌ³ÇÀ¸ÀàĞÍµÃµ½ÉÌ³ÇÀ¸±êÌâ
+	 * æ ¹æ®å•†åŸæ ç±»å‹å¾—åˆ°å•†åŸæ æ ‡é¢˜
 	 */
 	public String getShopTitleByType(String type)
 	{
@@ -80,57 +80,57 @@ public class MallService
 		
 		if( type.equals("1") )
 		{
-			title = "¡¾¹ºÂò»áÔ±¡¿";
+			title = "ã€è´­ä¹°ä¼šå‘˜ã€‘";
 		}
 		else if( type.equals("2") )
 		{
-			title = "¡¾´ÙÏúÀñ°ü¡¿";
+			title = "ã€ä¿ƒé”€ç¤¼åŒ…ã€‘";
 		}
 		else if( type.equals("3") )
 		{
-			title = "¡¾±¦ÏäÔ¿³×¡¿";
+			title = "ã€å®ç®±é’¥åŒ™ã€‘";
 		}
 		else if( type.equals("4") )
 		{
-			title = "¡¾ÔöÒæµÀ¾ß¡¿";
+			title = "ã€å¢ç›Šé“å…·ã€‘";
 		}
 		else if( type.equals("5") )
 		{
-			title = "¡¾Éı¼¶µô±¦¡¿";
+			title = "ã€å‡çº§æ‰å®ã€‘";
 		}
 		else if( type.equals("6") )
 		{
-			title = "¡¾¸¨ÖúµÀ¾ß¡¿";
+			title = "ã€è¾…åŠ©é“å…·ã€‘";
 		}
 		else if( type.equals("7") )
 		{
-			title = "¡¾×°±¸Éı¼¶¡¿";
+			title = "ã€è£…å¤‡å‡çº§ã€‘";
 		}
 		else if( type.equals("8") )
 		{
-			title = "¡¾×°±¸µã»¯¡¿";
+			title = "ã€è£…å¤‡ç‚¹åŒ–ã€‘";
 		}
 		else if( type.equals("9") )
 		{
-			title = "¡¾³èÎï¼¼ÄÜ¡¿";
+			title = "ã€å® ç‰©æŠ€èƒ½ã€‘";
 		}
 		else if( type.equals("10") )
 		{
-			title = "¡¾³èÎïÑø³É¡¿";
+			title = "ã€å® ç‰©å…»æˆã€‘";
 		}
 		else if( type.equals("11") )
 		{
-			title = "¡¾»î¶¯µÀ¾ß¡¿";
+			title = "ã€æ´»åŠ¨é“å…·ã€‘";
 		}
 		else if( type.equals("12") )
 		{
-			title = "¡¾°ï»á½¨Éè¡¿";
+			title = "ã€å¸®ä¼šå»ºè®¾ã€‘";
 		}
 		return title;
 	}
 	
 	/**
-	 * µÃµ½Ê×Ò³´òÕÛÉÌÆ·
+	 * å¾—åˆ°é¦–é¡µæ‰“æŠ˜å•†å“
 	 */
 	public List<CommodityVO> getDiscountCommodityListOfMainPage()
 	{
@@ -139,7 +139,7 @@ public class MallService
 	}
 	
 	/**
-	 * µÃµ½¸ü¶à´òÕÛÉÌÆ·
+	 * å¾—åˆ°æ›´å¤šæ‰“æŠ˜å•†å“
 	 */
 	public QueryPage getDiscountCommodityList(int page_no)
 	{
@@ -149,7 +149,7 @@ public class MallService
 	
 	
 	/**
-	 * ÉÌÆ·ÏêÇé
+	 * å•†å“è¯¦æƒ…
 	 */
 	public CommodityVO getCommodityInfo( String c_id )
 	{
@@ -157,7 +157,7 @@ public class MallService
 		return commodityDao.getCommodity(c_id);
 	}
 	/**
-	 * ´ÓÍÆ¼öÉÌÆ·ÖĞËæ»úµÃµ½Ò»¸öÍÆ¼öÉÌÆ·
+	 * ä»æ¨èå•†å“ä¸­éšæœºå¾—åˆ°ä¸€ä¸ªæ¨èå•†å“
 	 *//*
 	public CommodityVO getRandomHotCommodity()
 	{
@@ -166,7 +166,7 @@ public class MallService
 	}*/
 	
 	/**
-	 * Í¨¹ıµÀ¾ßIDµÃµ½ÉÌÆ·ÏêÇé
+	 * é€šè¿‡é“å…·IDå¾—åˆ°å•†å“è¯¦æƒ…
 	 */
 	public CommodityVO getPropCommodityInfo( String prop_id )
 	{
@@ -175,7 +175,7 @@ public class MallService
 	}
 	
 	/**
-	 * ÉÌÆ·µÀ¾ßÏêÇé
+	 * å•†å“é“å…·è¯¦æƒ…
 	 */
 	public PropVO getPropInfo( String c_id )
 	{
@@ -184,7 +184,7 @@ public class MallService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒµÄÉÌ³Ç¼ÇÂ¼
+	 * å¾—åˆ°ç©å®¶çš„å•†åŸè®°å½•
 	 */
 	public QueryPage getLogList(int u_pk,int page_no)
 	{
@@ -193,7 +193,7 @@ public class MallService
 	}
 	
 	/**
-	 * ¼ÇÂ¼ÉÌ³ÇÈÕÖ¾
+	 * è®°å½•å•†åŸæ—¥å¿—
 	 */
 	public void recordLog(RoleEntity role_info,String mall_log,String propName,int propNum,int propPrice,int buyType)
 	{
@@ -203,7 +203,7 @@ public class MallService
 		mallLogDao.insert(u_pk, role_name,mall_log,propName,propNum,propPrice,buyType);
 	}
 	/**
-	 * Ö±½Ó¹ºÂò
+	 * ç›´æ¥è´­ä¹°
 	 * @param role_info
 	 * @param commodity
 	 * @param sell_num_str
@@ -214,13 +214,13 @@ public class MallService
 		return this.buy(role_info, commodity, sell_num_str, 1);
 	}
 	/**
-	 * ¹ºÂòÉÌ³ÇµÀ¾ß
+	 * è´­ä¹°å•†åŸé“å…·
 	 * @param u_pk
 	 * @param commodity
 	 * @param sell_num
-	 * @param buy_type				1ÎªÕı³£¹ºÂò,2Îª¹ºÂòµ«²»¸øÍæ¼ÒÎïÆ·.
+	 * @param buy_type				1ä¸ºæ­£å¸¸è´­ä¹°,2ä¸ºè´­ä¹°ä½†ä¸ç»™ç©å®¶ç‰©å“.
 	 * 
-	 * @return                     ·µ»ØÎªnull±íÊ¾³É¹¦£¬·Ç¿ÕÎªÊ§°ÜÔ­Òò
+	 * @return                     è¿”å›ä¸ºnullè¡¨ç¤ºæˆåŠŸï¼Œéç©ºä¸ºå¤±è´¥åŸå› 
 	 */
 	public String buy(RoleEntity role_info,CommodityVO commodity,String sell_num_str,int buy_type)
 	{
@@ -235,7 +235,7 @@ public class MallService
 		EconomyService economyService = new EconomyService(); 
 		GoodsService goodService = new GoodsService();
 		
-		hint = validateBuy(role_info,commodity,sell_num_str);//ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄÇ®
+		hint = validateBuy(role_info,commodity,sell_num_str);//åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„é’±
 		
 		if( hint !=null )
 		{
@@ -245,14 +245,14 @@ public class MallService
 		int sell_num = Integer.parseInt(sell_num_str.trim());
 		
 		
-		if( buy_type == 1 && goodService.putPropToWrap(p_pk, commodity.getPropId(), sell_num,GameLogManager.G_MALL)==-1 )//°ÑÉÌÆ··ÅÈë°ü¹ü
+		if( buy_type == 1 && goodService.putPropToWrap(p_pk, commodity.getPropId(), sell_num,GameLogManager.G_MALL)==-1 )//æŠŠå•†å“æ”¾å…¥åŒ…è£¹
 		{
-			hint = "°ü¹ü¿Õ¼ä²»×ã";
+			hint = "åŒ…è£¹ç©ºé—´ä¸è¶³";
 			return hint;
 		}
 		
     		
-		int user_discount = 100;//vipÕÛ¿Û
+		int user_discount = 100;//vipæŠ˜æ‰£
 		
 		Vip role_vip = role_info.getTitleSet().getVIP();
 		if( role_vip!=null )
@@ -260,36 +260,36 @@ public class MallService
 			user_discount = role_vip.getDiscount();
 		}
 		
-		int need_num = commodity.getCurPrice(user_discount)*sell_num;//ĞèÒªÏûºÄµÄÊıÁ¿
+		int need_num = commodity.getCurPrice(user_discount)*sell_num;//éœ€è¦æ¶ˆè€—çš„æ•°é‡
 		
 		String buy_log = null;
 		
 		
-		if( commodity.getBuyMode()==1)//ÊÇÓÃÔª±¦À´¹ºÂòµÄ
+		if( commodity.getBuyMode()==1)//æ˜¯ç”¨å…ƒå®æ¥è´­ä¹°çš„
 		{
-			economyService.spendYuanbao(u_pk,need_num);//ÏûºÄÔª±¦
-			buy_log =DateUtil.getTodayStr()+","+role_name+""+GameConfig.getYuanbaoName()+""+need_num+"¹ºÂò"+commodity.getPropName()+"¡Á"+sell_num+"";
-			// Ö´ĞĞÍ³¼ÆµÀ¾ßÏúÊÛ
+			economyService.spendYuanbao(u_pk,need_num);//æ¶ˆè€—å…ƒå®
+			buy_log =DateUtil.getTodayStr()+","+role_name+""+GameConfig.getYuanbaoName()+""+need_num+"è´­ä¹°"+commodity.getPropName()+"Ã—"+sell_num+"";
+			// æ‰§è¡Œç»Ÿè®¡é“å…·é”€å”®
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(0, 9, need_num,StatisticsType.XIAOSHOU, StatisticsType.BUY, u_pk);
 		}
-		else if( commodity.getBuyMode()==2)//ÊÇÓÃ»ı·ÖÀ´¹ºÂòµÄ
+		else if( commodity.getBuyMode()==2)//æ˜¯ç”¨ç§¯åˆ†æ¥è´­ä¹°çš„
 		{
-			economyService.spendJifen(u_pk,need_num);//ÏûºÄ»ı·Ö
-			buy_log =DateUtil.getTodayStr()+","+role_name+"»ı·Ö¹ºÂò"+commodity.getPropName()+"¡Á"+sell_num+"";
+			economyService.spendJifen(u_pk,need_num);//æ¶ˆè€—ç§¯åˆ†
+			buy_log =DateUtil.getTodayStr()+","+role_name+"ç§¯åˆ†è´­ä¹°"+commodity.getPropName()+"Ã—"+sell_num+"";
 		}
 
-		commodityDao.addSellNum(commodity.getId(), sell_num);//Ôö¼ÓÉÌÆ·Âô³öÊıÁ¿
-		recordLog(role_info, buy_log,commodity.getPropName(),sell_num,need_num,commodity.getBuyMode());//¼ÇÂ¼¹ºÂòÈÕÖ¾
+		commodityDao.addSellNum(commodity.getId(), sell_num);//å¢åŠ å•†å“å–å‡ºæ•°é‡
+		recordLog(role_info, buy_log,commodity.getPropName(),sell_num,need_num,commodity.getBuyMode());//è®°å½•è´­ä¹°æ—¥å¿—
 		return hint;
 	}
 	
 	/**
-	 * ¹ºÂòÉÌ³ÇµÀ¾ß,µ«ÊÇÊ²Ã´¶¼²»¸øÍæ¼Ò,ÏÖÔÚ×¨ÓÃÓÚÍæ¼ÒËÀÍöºóÂò¾Å×ª,
+	 * è´­ä¹°å•†åŸé“å…·,ä½†æ˜¯ä»€ä¹ˆéƒ½ä¸ç»™ç©å®¶,ç°åœ¨ä¸“ç”¨äºç©å®¶æ­»äº¡åä¹°ä¹è½¬,
 	 * @param u_pk
 	 * @param commodity
 	 * @param sell_num
-	 * @return                     ĞèÒªÏûºÄµÄÊıÁ¿
+	 * @return                     éœ€è¦æ¶ˆè€—çš„æ•°é‡
 	 *
 	public int buyWithoutGiveGoods(RoleEntity role_info,CommodityVO commodity,int sell_num)
 	{
@@ -300,28 +300,28 @@ public class MallService
 		
 		int user_discount = 100;
 		
-		int need_num = commodity.getCurPrice(user_discount)*sell_num;//ĞèÒªÏûºÄµÄÊıÁ¿
+		int need_num = commodity.getCurPrice(user_discount)*sell_num;//éœ€è¦æ¶ˆè€—çš„æ•°é‡
 		
 		String buy_log = null;
 		
 		EconomyService economyService = new EconomyService(); 
-		if( commodity.getBuyMode()==1)//Ôª±¦ÉÌÆ·
+		if( commodity.getBuyMode()==1)//å…ƒå®å•†å“
 		{
-			economyService.spendYuanbao(u_pk,need_num);//ÏûºÄÔª±¦
-			buy_log =DateUtil.getTodayStr()+","+role_name+"Ôª±¦"+need_num+"¹ºÂò"+commodity.getPropName()+"¡Á"+sell_num+"";
-			// Ö´ĞĞÍ³¼ÆµÀ¾ßÏúÊÛ
+			economyService.spendYuanbao(u_pk,need_num);//æ¶ˆè€—å…ƒå®
+			buy_log =DateUtil.getTodayStr()+","+role_name+"å…ƒå®"+need_num+"è´­ä¹°"+commodity.getPropName()+"Ã—"+sell_num+"";
+			// æ‰§è¡Œç»Ÿè®¡é“å…·é”€å”®
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(0, 9, need_num,
 					StatisticsType.XIAOSHOU, StatisticsType.BUY, u_pk);
 		}
-		else if( commodity.getBuyMode()==2)//»ı·ÖÉÌÆ·
+		else if( commodity.getBuyMode()==2)//ç§¯åˆ†å•†å“
 		{
-			economyService.spendJifen(u_pk,need_num);//ÏûºÄ»ı·Ö
-			buy_log =DateUtil.getTodayStr()+","+role_name+"»ı·Ö¹ºÂò"+commodity.getPropName()+"¡Á"+sell_num+"";
+			economyService.spendJifen(u_pk,need_num);//æ¶ˆè€—ç§¯åˆ†
+			buy_log =DateUtil.getTodayStr()+","+role_name+"ç§¯åˆ†è´­ä¹°"+commodity.getPropName()+"Ã—"+sell_num+"";
 		}
 
-		commodityDao.addSellNum(commodity.getId(), sell_num);//Ôö¼ÓÉÌÆ·Âô³öÊıÁ¿
-		recordLog(role_info, buy_log);//¼ÇÂ¼¹ºÂòÈÕÖ¾
+		commodityDao.addSellNum(commodity.getId(), sell_num);//å¢åŠ å•†å“å–å‡ºæ•°é‡
+		recordLog(role_info, buy_log);//è®°å½•è´­ä¹°æ—¥å¿—
 		
 		return need_num;
 	}*/
@@ -330,7 +330,7 @@ public class MallService
 	
 	
 	/**
-	 * µÃµ½ÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°å•†å“åˆ—è¡¨
 	 */
 	public QueryPage getCommodityListByType(String type,int page_no )
 	{
@@ -340,7 +340,7 @@ public class MallService
 	
 	
 	/**
-	 * µÃµ½ÈÈÏúÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°çƒ­é”€å•†å“åˆ—è¡¨
 	 */
 	public QueryPage getHotSellCommodityList(int page_no )
 	{
@@ -348,7 +348,7 @@ public class MallService
 		return commodityDao.getHotSellCommodityList(page_no);
 	}
 	/**
-	 * µÃµ½»áÔ±ÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°ä¼šå‘˜å•†å“åˆ—è¡¨
 	 */
 	public QueryPage getVIPCommodityList(int page_no )
 	{
@@ -357,7 +357,7 @@ public class MallService
 	}
 	
 	/**
-	 * µÃµ½Ê×Ò³ÈÈÏúÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°é¦–é¡µçƒ­é”€å•†å“åˆ—è¡¨
 	 */
 	public List<CommodityVO> getNewSellCommodityListOfMainPage()
 	{
@@ -366,7 +366,7 @@ public class MallService
 	}
 	
 	/**
-	 * µÃµ½Ê×Ò³ÈÈÏúÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°é¦–é¡µçƒ­é”€å•†å“åˆ—è¡¨
 	 */
 	public List<CommodityVO> getHotSellCommodityListOfMainPage()
 	{
@@ -375,7 +375,7 @@ public class MallService
 	}
 	
 	/**
-	 * µÃµ½»ı·ÖÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°ç§¯åˆ†å•†å“åˆ—è¡¨
 	 */
 	public QueryPage getJifenCommodityList(int buy_mode,String type,int page_no)
 	{
@@ -384,7 +384,7 @@ public class MallService
 	}
 	
 	/**
-	 * µÃµ½Ê×Ò³»ı·ÖÉÌÆ·ÁĞ±í
+	 * å¾—åˆ°é¦–é¡µç§¯åˆ†å•†å“åˆ—è¡¨
 	 */
 	public List<CommodityVO> getJifenCommodityListOfMainPage()
 	{
@@ -393,7 +393,7 @@ public class MallService
 	}
 	
 	/**
-	 * ÑéÖ¤ÊÇ·ñ¿ÉÒÔ¹ºÂò,ÅĞ¶Ï»ı·Ö»òÔª±¦ÊÇ·ñ¹»
+	 * éªŒè¯æ˜¯å¦å¯ä»¥è´­ä¹°,åˆ¤æ–­ç§¯åˆ†æˆ–å…ƒå®æ˜¯å¦å¤Ÿ
 	 */
 	public String validateBuy(RoleEntity role_info,CommodityVO commodity,String sell_num)
 	{
@@ -411,7 +411,7 @@ public class MallService
 		}
 		
 		//todo
-		//ÑéÖ¤°ü¹ü¸öÊıÊÇ·ñ¹»
+		//éªŒè¯åŒ…è£¹ä¸ªæ•°æ˜¯å¦å¤Ÿ
 		
 		int user_discount = 100;
 		
@@ -421,28 +421,28 @@ public class MallService
 			user_discount = role_vip.getDiscount();
 		}
 		
-		int total_money = commodity.getCurPrice(user_discount)*Integer.parseInt(sell_num);//ĞèÒª»¨·ÑµÄÔª±¦»ò»ı·ÖµÄÊıÁ¿
+		int total_money = commodity.getCurPrice(user_discount)*Integer.parseInt(sell_num);//éœ€è¦èŠ±è´¹çš„å…ƒå®æˆ–ç§¯åˆ†çš„æ•°é‡
 		
-		long my_money = 0;//Íæ¼ÒÏÖÓĞµÄÔª±¦»ò»ı·ÖµÄÊıÁ¿
+		long my_money = 0;//ç©å®¶ç°æœ‰çš„å…ƒå®æˆ–ç§¯åˆ†çš„æ•°é‡
 		
-		if( commodity.getBuyMode()==1)//Ôª±¦ÉÌÆ·
+		if( commodity.getBuyMode()==1)//å…ƒå®å•†å“
 		{
 			my_money = economyService.getYuanbao(u_pk);
 		}
-		else if( commodity.getBuyMode()==2)//»ı·ÖÉÌÆ·
+		else if( commodity.getBuyMode()==2)//ç§¯åˆ†å•†å“
 		{
 			my_money = economyService.getJifen(u_pk);
 		}
 		
 		if( my_money<total_money)
 		{
-			return hint = "½ğ¶î²»×ã";
+			return hint = "é‡‘é¢ä¸è¶³";
 		}
 		
 		return hint;
 	}
 	/**
-	 * ¹ºÂòÉÌ³ÇµÀ¾ß  ×¨ÃÅÎªµçĞÅ
+	 * è´­ä¹°å•†åŸé“å…·  ä¸“é—¨ä¸ºç”µä¿¡
 	 * @param u_pk
 	 * @param commodity
 	 * @param sell_num
@@ -461,20 +461,20 @@ public class MallService
 		EconomyService economyService = new EconomyService(); 
 		GoodsService goodService = new GoodsService();
 		int sell_num = Integer.parseInt(sell_num_str.trim());
-		/*******ÅĞ¶Ï°ü¹ü¿Õ¼äÊÇ·ñ×ã¹»********/
+		/*******åˆ¤æ–­åŒ…è£¹ç©ºé—´æ˜¯å¦è¶³å¤Ÿ********/
 		if( buy_type == 1 && role_info.getBasicInfo().getWrapSpare()<=sell_num)
 		{
-			hint = "°ü¹ü¿Õ¼ä²»×ã";
+			hint = "åŒ…è£¹ç©ºé—´ä¸è¶³";
 			return hint;
 		}
-		/********È¥µçĞÅÆ½Ì¨¿Û·Ñ¹ºÂòµÀ¾ß********/
+		/********å»ç”µä¿¡å¹³å°æ‰£è´¹è´­ä¹°é“å…·********/
 		if(ConfigOfTele.getPropCode(c_id)==null)
 		{
-			hint="ÏÖÔÚ²»¿ÉÒÔ¹ºÂò¸ÃµÀ¾ß!";
+			hint="ç°åœ¨ä¸å¯ä»¥è´­ä¹°è¯¥é“å…·!";
 			return hint;
 		}
 		String status=buyPropPost(request,c_id,sell_num_str);
-		/*****0±íÊ¾¿Û·Ñ³É¹¦1±íÊ¾¿Û·ÑÊ§°Ü******/
+		/*****0è¡¨ç¤ºæ‰£è´¹æˆåŠŸ1è¡¨ç¤ºæ‰£è´¹å¤±è´¥******/
 		if(status!=null)
 		{
 			if("0".equals(status))
@@ -483,69 +483,69 @@ public class MallService
 			}
 			else
 			{
-				hint="¹ºÂòÊ§°Ü£¬Çë²éÑ¯ÄúµÄµãÊıÊÇ·ñ×ã¹»";
+				hint="è´­ä¹°å¤±è´¥ï¼Œè¯·æŸ¥è¯¢æ‚¨çš„ç‚¹æ•°æ˜¯å¦è¶³å¤Ÿ";
 				return hint;
 			}
 		}
 		else
 		{
-			hint="µçĞÅÆ½Ì¨¿Û·Ñ´íÎó!ÇëÁªÏµGM";
+			hint="ç”µä¿¡å¹³å°æ‰£è´¹é”™è¯¯!è¯·è”ç³»GM";
 			return hint;
 		}
-		int need_num = commodity.getCurPrice(100)*sell_num;//ĞèÒªÏûºÄµÄÊıÁ¿
+		int need_num = commodity.getCurPrice(100)*sell_num;//éœ€è¦æ¶ˆè€—çš„æ•°é‡
 		String buy_log = null;
-		if( commodity.getBuyMode()==1)//Ôª±¦ÉÌÆ·
+		if( commodity.getBuyMode()==1)//å…ƒå®å•†å“
 		{
-			economyService.spendYuanbao(u_pk,need_num);//ÏûºÄÔª±¦
-			buy_log =DateUtil.getTodayStr()+","+role_name+""+GameConfig.getYuanbaoName()+""+need_num+"¹ºÂò"+commodity.getPropName()+"¡Á"+sell_num+"";
-			// Ö´ĞĞÍ³¼ÆµÀ¾ßÏúÊÛ
+			economyService.spendYuanbao(u_pk,need_num);//æ¶ˆè€—å…ƒå®
+			buy_log =DateUtil.getTodayStr()+","+role_name+""+GameConfig.getYuanbaoName()+""+need_num+"è´­ä¹°"+commodity.getPropName()+"Ã—"+sell_num+"";
+			// æ‰§è¡Œç»Ÿè®¡é“å…·é”€å”®
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(0, 9, need_num,StatisticsType.XIAOSHOU, StatisticsType.BUY, u_pk);
 		}
 		if(commodity.getIsHot() > 0){
-			commodityDao.addSellNumByHot(commodity.getId(), sell_num);//Ôö¼ÓÉÌÆ·Âô³öÊıÁ¿
+			commodityDao.addSellNumByHot(commodity.getId(), sell_num);//å¢åŠ å•†å“å–å‡ºæ•°é‡
 		}else{
-			commodityDao.addSellNum(commodity.getId(), sell_num);//Ôö¼ÓÉÌÆ·Âô³öÊıÁ¿
+			commodityDao.addSellNum(commodity.getId(), sell_num);//å¢åŠ å•†å“å–å‡ºæ•°é‡
 		}
-		recordLog(role_info, buy_log,commodity.getPropName(),Integer.parseInt(sell_num_str),commodity.getOriginalPrice(),buy_type);//¼ÇÂ¼¹ºÂòÈÕÖ¾
+		recordLog(role_info, buy_log,commodity.getPropName(),Integer.parseInt(sell_num_str),commodity.getOriginalPrice(),buy_type);//è®°å½•è´­ä¹°æ—¥å¿—
 		return hint;
 	}
 	/**
-	 * µçĞÅ×¨ÓÃ ÆäËûÏû·Ñ
-	 * Ö±½Ó¿Û·Ñ²»¸øÍæ¼Ò¶«¶«
+	 * ç”µä¿¡ä¸“ç”¨ å…¶ä»–æ¶ˆè´¹
+	 * ç›´æ¥æ‰£è´¹ä¸ç»™ç©å®¶ä¸œä¸œ
 	 */
 	public String consumeForTele(HttpServletRequest request,RoleEntity role_info,String c_id,String sell_num_str)
 	{
 		String hint = null;
-		/********È¥µçĞÅÆ½Ì¨Ïû·Ñ********/
+		/********å»ç”µä¿¡å¹³å°æ¶ˆè´¹********/
 		if(ConfigOfTele.getPropCode(c_id)==null)
 		{
-			hint="Ã»ÓĞ´ËÏû·Ñ´úÂë£¡ÇëÁªÏµ£Ç£Í.";
+			hint="æ²¡æœ‰æ­¤æ¶ˆè´¹ä»£ç ï¼è¯·è”ç³»ï¼§ï¼­.";
 			return hint;
 		}
 		String status=buyPropPost(request,c_id,sell_num_str);
-		/*****0±íÊ¾¿Û·Ñ³É¹¦1±íÊ¾¿Û·ÑÊ§°Ü******/
+		/*****0è¡¨ç¤ºæ‰£è´¹æˆåŠŸ1è¡¨ç¤ºæ‰£è´¹å¤±è´¥******/
 		if(status!=null)
 		{
 			if("0".equals(status))
 			{
-				System.out.println("µçĞÅÆ½Ì¨Ïû·Ñ³É¹¦£¡");
+				System.out.println("ç”µä¿¡å¹³å°æ¶ˆè´¹æˆåŠŸï¼");
 			}
 			else
 			{
-				hint="¿Û·ÑÊ§°Ü£¬Çë²éÑ¯ÄúµÄµãÊıÊÇ·ñ×ã¹»";
+				hint="æ‰£è´¹å¤±è´¥ï¼Œè¯·æŸ¥è¯¢æ‚¨çš„ç‚¹æ•°æ˜¯å¦è¶³å¤Ÿ";
 				return hint;
 			}
 		}
 		else
 		{
-			hint="µçĞÅÆ½Ì¨¿Û·Ñ´íÎó!ÇëÁªÏµGM";
+			hint="ç”µä¿¡å¹³å°æ‰£è´¹é”™è¯¯!è¯·è”ç³»GM";
 			return hint;
 		}
 		return hint;
 	}
 	/**
-	 * ÏòµçĞÅ·¢ËÍpostÇëÇó¹ºÂòµÀ¾ß
+	 * å‘ç”µä¿¡å‘é€postè¯·æ±‚è´­ä¹°é“å…·
 	 */
 	public String buyPropPost(HttpServletRequest request,String c_id,String sell_num_str)
 	{
@@ -557,7 +557,7 @@ public class MallService
 		String versionId="1_1_2";
 		String consumeCode=ConfigOfTele.getPropCode(c_id);
 		String transID=cpId+getDateStr()+"827315";
-		/****·â×°Post²ÎÊı****/
+		/****å°è£…Postå‚æ•°****/
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("msgType", "OrderGamePropsReq");
 		params.put("netElementId",netElementId);
@@ -575,9 +575,9 @@ public class MallService
 		String status=null;
 		try
 		{
-			logger.info("·¢ËÍ¹ºÂòµÀ¾ßÇëÇó¿ªÊ¼.....");
+			logger.info("å‘é€è´­ä¹°é“å…·è¯·æ±‚å¼€å§‹.....");
 			responses=requester.sendPostTele("http://202.102.39.11:9088/gameinterface/OrderGameProps",params);
-			logger.info("·¢ËÍ¹ºÂòµÀ¾ßÇëÇó½áÊø.....");
+			logger.info("å‘é€è´­ä¹°é“å…·è¯·æ±‚ç»“æŸ.....");
 			try
 			{
 				Document document = DocumentHelper.parseText(responses.getContent());
@@ -591,17 +591,17 @@ public class MallService
 			}
 			catch (DocumentException e)
 			{
-				logger.info("ÎÄµµ½âÎö´íÎó....");
+				logger.info("æ–‡æ¡£è§£æé”™è¯¯....");
 			}
 		}
 		catch (IOException e)
 		{
-			logger.info("·¢ËÍ¹ºÂòµÀ¾ßÇëÇó´íÎó.....");
+			logger.info("å‘é€è´­ä¹°é“å…·è¯·æ±‚é”™è¯¯.....");
 		}
 		return respones_result;
 	}
 	/**
-	 * µçĞÅÍæ¼Ò²éÑ¯Ê£ÓàµãÊı
+	 * ç”µä¿¡ç©å®¶æŸ¥è¯¢å‰©ä½™ç‚¹æ•°
 	 */
 	public String serchPoint(String url,Map<String, String> params)
 	{
@@ -611,9 +611,9 @@ public class MallService
 		String point=null;
 		try
 		{
-			logger.info("·¢ËÍ²éÑ¯Ê£ÓàµãÊıÇëÇó¿ªÊ¼.....");
+			logger.info("å‘é€æŸ¥è¯¢å‰©ä½™ç‚¹æ•°è¯·æ±‚å¼€å§‹.....");
 			responses=requester.sendPostTele(url,params);
-			logger.info("·¢ËÍ²éÑ¯Ê£ÓàµãÊıÇëÇó¿ªÊ¼.....");
+			logger.info("å‘é€æŸ¥è¯¢å‰©ä½™ç‚¹æ•°è¯·æ±‚å¼€å§‹.....");
 			try
 			{
 				Document document = DocumentHelper.parseText(responses.getContent());
@@ -627,14 +627,14 @@ public class MallService
 			}
 			catch (DocumentException e)
 			{
-				logger.info("ÎÄµµ½âÎö´íÎó....");
+				logger.info("æ–‡æ¡£è§£æé”™è¯¯....");
 			}
 		}
 		catch (IOException e)
 		{
-			logger.info("·¢ËÍ²éÑ¯Ê£ÓàµãÊıÇëÇó´íÎó.....");
+			logger.info("å‘é€æŸ¥è¯¢å‰©ä½™ç‚¹æ•°è¯·æ±‚é”™è¯¯.....");
 		}
-		/*****·µ»Ø1±íÊ¾²éÑ¯Ê§°Ü³É¹¦Ôò·µ»ØÊ£ÓàµãÊı****/
+		/*****è¿”å›1è¡¨ç¤ºæŸ¥è¯¢å¤±è´¥æˆåŠŸåˆ™è¿”å›å‰©ä½™ç‚¹æ•°****/
 		if(hRet!=null&&"0".equals(hRet)&&point!=null)
 		{
 			return point;
@@ -644,7 +644,7 @@ public class MallService
 			return "1";
 		}
 	}
-	/****µÃµ½Ê±¼äµÄÁ÷Ë®×Ö·û´®***/
+	/****å¾—åˆ°æ—¶é—´çš„æµæ°´å­—ç¬¦ä¸²***/
 	public static String getDateStr()
 	{
 		String todayStr = null;

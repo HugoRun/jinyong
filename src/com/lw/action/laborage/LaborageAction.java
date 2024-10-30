@@ -15,7 +15,7 @@ import com.lw.service.laborage.LaborageService;
 
 public class LaborageAction extends DispatchAction
 {
-	/** ½øÈëÁìÈ¡½±½ğÒ³Ãæ */
+	/** è¿›å…¥é¢†å–å¥–é‡‘é¡µé¢ */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -28,13 +28,13 @@ public class LaborageAction extends DispatchAction
 		if (se.getPlayerLaborageTime(roleInfo.getBasicInfo().getPPk()) == 0)
 		{
 
-			request.setAttribute("display", "ÄúÉÏÖÜÔÚÏßÊ±¼äÎª"
+			request.setAttribute("display", "æ‚¨ä¸Šå‘¨åœ¨çº¿æ—¶é—´ä¸º"
 					+ dao.getPlayerOnlineTime(roleInfo.getBasicInfo().getPPk())
-					+ "·ÖÖÓ,Î´´ïµ½ÁìÈ¡¹¤×ÊµÄÊ±¼ä!");
+					+ "åˆ†é’Ÿ,æœªè¾¾åˆ°é¢†å–å·¥èµ„çš„æ—¶é—´!");
 		}
 		else
 		{
-			String display = "±¾ÖÜ¿ÉÁìÈ¡¹¤×Ê"
+			String display = "æœ¬å‘¨å¯é¢†å–å·¥èµ„"
 					+ se.getLaborageView(se.getPlayerLaborageTime(roleInfo
 							.getBasicInfo().getPPk())) + "!";
 			request.setAttribute("display", display);
@@ -46,7 +46,7 @@ public class LaborageAction extends DispatchAction
 		return mapping.findForward("laborage_menu");
 	}
 
-	/** »ñÈ¡½±½ğ */
+	/** è·å–å¥–é‡‘ */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -58,17 +58,17 @@ public class LaborageAction extends DispatchAction
 		PlayerLaborageDao dao = new PlayerLaborageDao();
 		if (se.getPlayerLaborageTime(roleInfo.getBasicInfo().getPPk()) == 0)
 		{
-			request.setAttribute("display", "ÄúÉÏÖÜÔÚÏßÊ±¼äÎª"
+			request.setAttribute("display", "æ‚¨ä¸Šå‘¨åœ¨çº¿æ—¶é—´ä¸º"
 					+ dao.getPlayerOnlineTime(roleInfo.getBasicInfo().getPPk())
-					+ "·ÖÖÓ<br/>Ö»ÓĞÒ»ÖÜÄÚÔÚÏßÊ±¼ä´ïµ½210·ÖÖÓÒÔÉÏµÄÍæ¼Ò²Å¿ÉÁìÈ¡¹¤×Ê!");
+					+ "åˆ†é’Ÿ<br/>åªæœ‰ä¸€å‘¨å†…åœ¨çº¿æ—¶é—´è¾¾åˆ°210åˆ†é’Ÿä»¥ä¸Šçš„ç©å®¶æ‰å¯é¢†å–å·¥èµ„!");
 			return mapping.findForward("display");
 		}
 		else
 		{
 			if (dao.getPlayerCatch(roleInfo.getBasicInfo().getPPk()) == 1)
 			{
-				request.setAttribute("display", "ÄúÒÑ¾­ÁìÈ¡ÁËÉÏÖÜ(" + se.getFirstDay()
-						+ "~" + se.getLastDay() + ")¹¤×Ê!");
+				request.setAttribute("display", "æ‚¨å·²ç»é¢†å–äº†ä¸Šå‘¨(" + se.getFirstDay()
+						+ "~" + se.getLastDay() + ")å·¥èµ„!");
 				return mapping.findForward("display");
 			}
 			String display = se.playerCatchMoney(roleInfo.getBasicInfo()

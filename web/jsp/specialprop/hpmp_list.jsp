@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
-      "http://www.wapforum.org/DTD/wml_1.1.xml">
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
 <%@page contentType="text/vnd.wap.wml" import="java.util.*,com.lw.vo.specialprop.SpecialPropVO,
 com.lw.dao.specialprop.SpecialPropDAO,com.ls.ben.dao.info.partinfo.PlayerPropGroupDao,
 com.ls.ben.vo.info.partinfo.PlayerPropGroupVO"
@@ -8,7 +7,8 @@ com.ls.ben.vo.info.partinfo.PlayerPropGroupVO"
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p>
 	<%

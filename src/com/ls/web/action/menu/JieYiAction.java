@@ -59,11 +59,11 @@ public class JieYiAction extends BaseAction
 
 		}
         if(bi.getGrade()<Constant.JIEYI_LEVEL_LIMIT){
-        	request.setAttribute("jieyihint", "µÈ¼¶ĞèÒªÔÚ"+Constant.JIEYI_LEVEL_LIMIT+"¼¶ÒÔÉÏ");
+        	request.setAttribute("jieyihint", "ç­‰çº§éœ€è¦åœ¨"+Constant.JIEYI_LEVEL_LIMIT+"çº§ä»¥ä¸Š");
 			return mapping.findForward(ERROR);
         }
 		List<PlayerPropGroupVO> list = ppgd.findByProp_IDs(bi.getPPk(), ids);
-		// Èç¹ûÃ»ÓĞÈ¡µ½ÓÃ»§ÎïÆ·
+		// å¦‚æœæ²¡æœ‰å–åˆ°ç”¨æˆ·ç‰©å“
 		if (list == null || list.size() <= 0)
 		{
 			request.setAttribute("jieyihint", HINT2);
@@ -100,7 +100,7 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(INDEX);
 		}catch (Exception e)
 			{
-				setMessage(request, "³ö´íÁË");
+				setMessage(request, "å‡ºé”™äº†");
 				return mapping.findForward("mess");
 			}
 	}
@@ -136,12 +136,12 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(GOODLIST);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
 
-	// Ìí¼Ó¡¢É¾³ıÎïÆ·
+	// æ·»åŠ ã€åˆ é™¤ç‰©å“
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -269,13 +269,13 @@ public class JieYiAction extends BaseAction
 		return n5(mapping, form, request, response);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
 
 	
-	//Ë¢ĞÂ½Ó¿Ú
+	//åˆ·æ–°æ¥å£
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -337,7 +337,7 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(INDEX);
     	}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -352,7 +352,7 @@ public class JieYiAction extends BaseAction
 			{
 				jieyiVo = Constant.JIEYI_MAP.get(p_pk);
 			}
-//		Èç¹ûÈ±ÉÙ½áÒåÎïÆ·
+//		å¦‚æœç¼ºå°‘ç»“ä¹‰ç‰©å“
 		if (jieyiVo.getPg_pk1() == null
 				|| "".equals(jieyiVo.getPg_pk1().trim())
 				|| jieyiVo.getPg_pk2() == null
@@ -370,7 +370,7 @@ public class JieYiAction extends BaseAction
 //			return n5(mapping, form, request, response);
 			return mapping.findForward(ERROR);
 		}
-//      Èç¹ûÅÅÁĞË³Ğò²»ÕıÈ·
+//      å¦‚æœæ’åˆ—é¡ºåºä¸æ­£ç¡®
 		StringBuffer sb = new StringBuffer();
 		sb.append(jieyiVo.getGood_id1().trim()).append(",").append(
 				jieyiVo.getGood_id2().trim()).append(",").append(
@@ -384,11 +384,11 @@ public class JieYiAction extends BaseAction
 			return mapping.findForward(ERROR);
 		}
 		
-//      Âú×ãÌõ¼ş£¬Ìø×ªµ½ºÃÓÑÁĞ±í
+//      æ»¡è¶³æ¡ä»¶ï¼Œè·³è½¬åˆ°å¥½å‹åˆ—è¡¨
 		return n7(mapping, form, request, response);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -411,7 +411,7 @@ public class JieYiAction extends BaseAction
 		int pageall = 0;
 		if(size!=0){
 		pageall = size / queryPage.getPageSize() + (size % queryPage.getPageSize() == 0 ? 0 : 1);
-		// ²éÑ¯ÔÚÏßÍæ¼Ò
+		// æŸ¥è¯¢åœ¨çº¿ç©å®¶
 		friendlist = friendService.listfriend1(p_pk, page * queryPage.getPageSize(), queryPage.getPageSize(),0);
 		}
 		request.setAttribute("pageall", pageall);
@@ -420,7 +420,7 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(FRIENDLIST);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -435,7 +435,7 @@ public class JieYiAction extends BaseAction
 		String pByName = request.getParameter("pByName");
 		RoleEntity friend = roleService.getRoleInfoById(pByPk);
 		if(friend == null || friend.isOnline()==false){
-//			ºÃÓÑ²»ÔÚÏß
+//			å¥½å‹ä¸åœ¨çº¿
 			request.setAttribute("message", HINT5);
 //			return n5(mapping, form, request, response);
 			return mapping.findForward(ERROR);
@@ -464,7 +464,7 @@ public class JieYiAction extends BaseAction
 		}
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -472,7 +472,7 @@ public class JieYiAction extends BaseAction
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		try{
-//	ÔİÊ±É¾³ı½áÒåËùĞèÎïÆ·
+//	æš‚æ—¶åˆ é™¤ç»“ä¹‰æ‰€éœ€ç‰©å“
 		BasicInfo bi = getBasicInfo(request);
 		int p_pk = bi.getPPk();
 		String pByPk = request.getParameter("pByPk");
@@ -515,19 +515,19 @@ public class JieYiAction extends BaseAction
 	uif.setMsgPriority(PopUpMsgType.JIEYI_FIRST);
 	uif.setMsgType(PopUpMsgType.JIEYI);
 	uif.setPPk(Integer.parseInt(pByPk.trim()));
-	uif.setResult(bi.getName()+"ÉêÇëÓëÄú½áÒå");
+	uif.setResult(bi.getName()+"ç”³è¯·ä¸æ‚¨ç»“ä¹‰");
 	uif.setMsgOperate2(p_pk+"");
 	uMsgService.sendPopUpMsg(uif);
-	request.setAttribute("jieyihint", jieYISuccessMes(pByName,"Òå"));
+	request.setAttribute("jieyihint", jieYISuccessMes(pByName,"ä¹‰"));
 	return mapping.findForward(ERROR);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
 	
-//	½áÒå±»ÑûÇë·½Í¬Òâ»ò¾Ü¾ø´¦Àí 
+//	ç»“ä¹‰è¢«é‚€è¯·æ–¹åŒæ„æˆ–æ‹’ç»å¤„ç† 
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -544,7 +544,7 @@ public class JieYiAction extends BaseAction
 		if(caozuo == 0){
 			if(operate!=null&&!"".equals(operate.trim())){
 				List<PlayerPropGroupVO> list = ppgd.findByProp_IDs(Integer.parseInt(send_id.trim()), operate.trim());
-				// Èç¹ûÃ»ÓĞÈ¡µ½ÓÃ»§ÎïÆ·
+				// å¦‚æœæ²¡æœ‰å–åˆ°ç”¨æˆ·ç‰©å“
 				if (list == null || list.size() <= 0)
 				{
 					request.setAttribute("jieyihint", HINT24);
@@ -589,36 +589,36 @@ public class JieYiAction extends BaseAction
 				}
 			}
 			
-//			Í¬Òâ´¦Àí
+//			åŒæ„å¤„ç†
 			friendService.jieyi(bi.getPPk()+"", send_id, 1);
 			friendService.jieyi( send_id,bi.getPPk()+"", 1);
-//			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id.trim()), jieYISuccMes(bi.getName(),"Òå"));
+//			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id.trim()), jieYISuccMes(bi.getName(),"ä¹‰"));
 			int id1 = 0;
 			int id2 = 0;
-			/*//»ñÈ¡³ÆºÅ
-			TitleVO hv = honourService.findByName("ĞÖµÜ");
-			TitleVO hv2 = honourService.findByName("½ãÃÃ");
+			/*//è·å–ç§°å·
+			TitleVO hv = honourService.findByName("å…„å¼Ÿ");
+			TitleVO hv2 = honourService.findByName("å§å¦¹");
 			if(hv == null){
-				id1 = honourService.addHonor("ĞÖµÜ");
+				id1 = honourService.addHonor("å…„å¼Ÿ");
 			}else{
 				id1 = hv.getHoId();
 			}
 			if(hv2==null){
-				id2 = honourService.addHonor("½ãÃÃ");
+				id2 = honourService.addHonor("å§å¦¹");
 			}else{
 				id2 = hv2.getHoId();
 			}
-			//1ÎªÄĞ£¬2ÎªÅ®
+			//1ä¸ºç”·ï¼Œ2ä¸ºå¥³
 			String[] ss = roleService.getName(send_id.trim());
 			if(bi.getSex()==1){
-				roleHonourDAO.addRoleHonout1(bi.getPPk(), id1, 16,ss[0]+"µÄ");
+				roleHonourDAO.addRoleHonout1(bi.getPPk(), id1, 16,ss[0]+"çš„");
 			}else{
-				roleHonourDAO.addRoleHonout1(bi.getPPk(), id2, 16,ss[0]+"µÄ");
+				roleHonourDAO.addRoleHonout1(bi.getPPk(), id2, 16,ss[0]+"çš„");
 			}
 			if(Integer.parseInt(ss[1].trim())==1){
-				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()), id1, 16,bi.getName()+"µÄ");
+				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()), id1, 16,bi.getName()+"çš„");
 			}else{
-				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()), id2, 16,bi.getName()+"µÄ");
+				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()), id2, 16,bi.getName()+"çš„");
 			}
 			RoleEntity re = getRoleEntity(request);
 			re.reloadRoleHonour(bi.getPPk());
@@ -631,7 +631,7 @@ public class JieYiAction extends BaseAction
 			request.setAttribute("jieyihint", jieYISuccMes(name));
 			
 			
-			//²âÊÔÓÃ
+			//æµ‹è¯•ç”¨
 //			Integer i = goodsService.findByName("xiongdi");
 //			if(i!=null){
 //		    goodsService.putPropToWrap(bi.getPPk(), i, 1);
@@ -639,8 +639,8 @@ public class JieYiAction extends BaseAction
 //			}
 			return mapping.findForward(ERROR);
 		}else{
-//			¾Ü¾ø´¦Àí
-//			½«¿Û³ıµÄ½áÒåÎïÆ··µ»Ø
+//			æ‹’ç»å¤„ç†
+//			å°†æ‰£é™¤çš„ç»“ä¹‰ç‰©å“è¿”å›
 			
 			
 			
@@ -658,18 +658,18 @@ public class JieYiAction extends BaseAction
 //					goodsService.putPropToWrap(Integer.parseInt(send_id.trim()), Integer.parseInt(s.trim()), map.get(s.trim()));
 //				}
 //			}
-			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id.trim()), jieYIFailMes(bi.getName(),"Òå"));
+			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id.trim()), jieYIFailMes(bi.getName(),"ä¹‰"));
 			return mapping.findForward("no_refurbish_scene");
 			
 		}	}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 		
 	}
 	
-	//½â³ı½áÒå¹ØÏµ
+	//è§£é™¤ç»“ä¹‰å…³ç³»
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -687,7 +687,7 @@ public class JieYiAction extends BaseAction
 		int pageall = 0;
 		if(size!=0){
 		pageall = size / queryPage.getPageSize() + (size % queryPage.getPageSize() == 0 ? 0 : 1);
-		// ²éÑ¯ÔÚÏßÍæ¼Ò
+		// æŸ¥è¯¢åœ¨çº¿ç©å®¶
 		friendlist = friendService.listfriend1(p_pk, page * queryPage.getPageSize(), queryPage.getPageSize(),1);
 		}
 		request.setAttribute("pageall", pageall);
@@ -696,12 +696,12 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(JIEYILIST);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
 	
-	//½â³ı½áÒå¹ØÏµ´¦Àí
+	//è§£é™¤ç»“ä¹‰å…³ç³»å¤„ç†
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -718,8 +718,8 @@ public class JieYiAction extends BaseAction
 		RankService rankService = new RankService();
 		rankService.updateYiqiToZero(bi.getPPk());
 		rankService.updateYiqiToZero(pByPk);
-		/*roleHonourDAO.delRoleHonour(pByPk, bi.getName()+"µÄ");
-		roleHonourDAO.delRoleHonour(bi.getPPk()+"", friend.getBasicInfo().getName()+"µÄ");
+		/*roleHonourDAO.delRoleHonour(pByPk, bi.getName()+"çš„");
+		roleHonourDAO.delRoleHonour(bi.getPPk()+"", friend.getBasicInfo().getName()+"çš„");
 		RoleEntity re = getRoleEntity(request);
 		re.reloadRoleHonour(bi.getPPk());
 		if(friend != null){
@@ -730,11 +730,11 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(ERROR);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
-	//È·ÈÏ½â³ı½áÒå
+	//ç¡®è®¤è§£é™¤ç»“ä¹‰
 	public ActionForward n13(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -746,7 +746,7 @@ public class JieYiAction extends BaseAction
 		return mapping.findForward(JIECHUJIEYI);
 		}catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}

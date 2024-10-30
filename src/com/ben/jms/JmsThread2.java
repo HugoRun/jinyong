@@ -19,7 +19,7 @@ public class JmsThread2 extends Thread
 		while (true)
 		{
 			JmsUtil.sendQudaoMessage(qm);
-			System.out.println("Í³¼Æ  :  " + i);
+			System.out.println("ç»Ÿè®¡  :  " + i);
 			i++;
 		}
 	}

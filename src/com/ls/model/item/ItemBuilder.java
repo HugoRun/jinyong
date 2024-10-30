@@ -7,7 +7,7 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * ÓÎÏ·ÎïÆ·¹¹ÔìÆ÷
+ * æ¸¸æˆç‰©å“æ„é€ å™¨
  */
 public class ItemBuilder
 {
@@ -19,7 +19,7 @@ public class ItemBuilder
 		mapping.put(Item.UEQUP_PREFIX_STR, "com.ls.model.item.impl.UEquip");
 	}
 	/**
-	 * ¸ù¾İ×Ö·û´®¹¹ÔìÒ»¸öÎïÆ·
+	 * æ ¹æ®å­—ç¬¦ä¸²æ„é€ ä¸€ä¸ªç‰©å“
 	 * @param itemStr
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class ItemBuilder
 		}
 		catch(Exception e)
 		{
-			DataErrorLog.debugData("ItemBuilder.build.²ÎÊı´íÎó:itemStr="+itemStr);
+			DataErrorLog.debugData("ItemBuilder.build.å‚æ•°é”™è¯¯:itemStr="+itemStr);
 		}
 		return item;
 	}

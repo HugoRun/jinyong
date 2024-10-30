@@ -1,34 +1,32 @@
 package com.lw.service.activities;
 
-import org.apache.log4j.Logger;
-
 import com.ben.lost.CompassService;
 import com.ben.pk.active.PKActiveStartJob;
 import com.pm.service.job.AuctionStartJob;
 import com.pm.service.job.MenpaiContestStartJob;
+import org.apache.log4j.Logger;
 
-public class ActivitiesService
-{
-	Logger logger = Logger.getLogger("log.service");
+public class ActivitiesService {
+    // æ—¥å¿—å¥æŸ„
+    Logger logger = Logger.getLogger("log.service");
 
-	/** **************ÊÇ·ñ¼ÓÔØ»î¶¯************************ */
-
-	public void runActivities()
-	{
-		
-		MenpaiContestStartJob menpaiContestStartJob = new MenpaiContestStartJob();
-		menpaiContestStartJob.runScheduler();
-		logger.info("ÃÅÅÉ´óµÜ×ÓÖ´ĞĞ11111111111111111111111111111111111111111111111111111111111111111");
-
-		new CompassService().loadToMemory();
-		
-		//Ö´ĞĞPK»î¶¯
-		PKActiveStartJob psj=new PKActiveStartJob();
-		psj.runScheduler();
-		logger.info("PK»î¶¯¶¨Ê±Æ÷¿ªÊ¼Ö´ĞĞ.............................................");
-		//Ö´ĞĞÅÄÂô³¡
-		AuctionStartJob asj=new AuctionStartJob();
-		asj.runScheduler();
-		logger.info("ÅÄÂô³¡¶¨Ê±¿ªÊ¼£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~");
-	}
+    /***
+     * åŠ è½½è·å¾—åˆ—è¡¨
+     */
+    public void runActivities() {
+        // é—¨æ´¾æ¯”æ­¦
+        MenpaiContestStartJob menpaiContestStartJob = new MenpaiContestStartJob();
+        menpaiContestStartJob.runScheduler();
+        logger.info("é—¨æ´¾å¤§å¼Ÿå­æ‰§è¡Œ11111111111111111111111111111111111111111111111111111111111111111");
+        // ç¥ç§˜è¿·å®«
+        new CompassService().loadToMemory();
+        // æ‰§è¡ŒPKæ´»åŠ¨
+        PKActiveStartJob psj = new PKActiveStartJob();
+        psj.runScheduler();
+        logger.info("PKæ´»åŠ¨å®šæ—¶å™¨å¼€å§‹æ‰§è¡Œ.............................................");
+        // æ‰§è¡Œæ‹å–åœº
+        AuctionStartJob asj = new AuctionStartJob();
+        asj.runScheduler();
+        logger.info("æ‹å–åœºå®šæ—¶å¼€å§‹ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~");
+    }
 }

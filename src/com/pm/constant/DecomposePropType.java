@@ -4,17 +4,17 @@ public class DecomposePropType
 {
 
 	
-	/** ËùÓĞÌúµÄid**/
+	/** æ‰€æœ‰é“çš„id**/
 	public static final String IRON = "401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416";
-	/** ËùÓĞÓñµÄid */
+	/** æ‰€æœ‰ç‰çš„id */
 	public static final String PURE = "417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432";
-	/** ËùÓĞÑª¾«ºÍÁé¾«µÄid */
+	/** æ‰€æœ‰è¡€ç²¾å’Œçµç²¾çš„id */
 	public static final String BLOODANDMP = "433,434,435,436,437,438,439,440";
-	/** ËùÓĞÌì¾§Ê¯µÄID  **/
+	/** æ‰€æœ‰å¤©æ™¶çŸ³çš„ID  **/
 	public static final String TIANJINGSHI = "989,990,991,992,993,994,995,996,997,998,999,1000,4149";
 	
 	/**
-	 * ¾«ÌúµÄµÀ¾ßid
+	 * ç²¾é“çš„é“å…·id
 	 * porp_id	
 	 */
 	public static final int ONEGOODIRON = 401;
@@ -26,7 +26,7 @@ public class DecomposePropType
 	public static final int FOURGOODIRON = 404;
 	
 	/**
-	 * º®ÌúµÄµÀ¾ßid
+	 * å¯’é“çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONECOOLIRON = 405;
@@ -38,7 +38,7 @@ public class DecomposePropType
 	public static final int FOURCOOLIRON = 408;
 	
 	/**
-	 * ÔÉÌúµÄµÀ¾ßid
+	 * é™¨é“çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEDROPIRON = 409;
@@ -50,7 +50,7 @@ public class DecomposePropType
 	public static final int FOURDROPIRON = 412;
 	
 	/**
-	 * ºÚÌúµÄµÀ¾ßid
+	 * é»‘é“çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEBLOCKIRON = 413;
@@ -62,7 +62,7 @@ public class DecomposePropType
 	public static final int FOURBLOCKIRON = 416;
 	
 	/**
-	 * °×ÓñµÄµÀ¾ßid
+	 * ç™½ç‰çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEWHITEPUAE = 417;
@@ -74,7 +74,7 @@ public class DecomposePropType
 	public static final int FOURWHITEPUAE = 420;
 	
 	/**
-	 * ±ÌÓñµÄµÀ¾ßid
+	 * ç¢§ç‰çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEGREENPUAE = 421;
@@ -86,7 +86,7 @@ public class DecomposePropType
 	public static final int FOURGREENPUAE = 424;
 	
 	/**
-	 * ÇàÓñµÄµÀ¾ßid
+	 * é’ç‰çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEBLUEPUAE = 425;
@@ -98,7 +98,7 @@ public class DecomposePropType
 	public static final int FOURBLUEPUAE = 428;
 	
 	/**
-	 * Ä«ÓñµÄµÀ¾ßid
+	 * å¢¨ç‰çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEBLACKPUAE = 429;
@@ -110,7 +110,7 @@ public class DecomposePropType
 	public static final int FOURBLACKPUAE = 432;
 	
 	/**
-	 * Ìì¾§Ê¯
+	 * å¤©æ™¶çŸ³
 	 * prop_id
 	 */
 	public static final int ONETIANSHI = 989;
@@ -120,7 +120,7 @@ public class DecomposePropType
 	
 	
 	/**
-	 * È¡´úÎåĞĞÖ®¾«µÄĞÒÔË±¦Ê¯
+	 * å–ä»£äº”è¡Œä¹‹ç²¾çš„å¹¸è¿å®çŸ³
 	 * prop_id
 	 */
 	public static final int ONEXINYUN = 958;
@@ -130,7 +130,7 @@ public class DecomposePropType
 	
 	
 	/**
-	 * ½ğ¾«µÄµÀ¾ßid
+	 * é‡‘ç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEGOLDEXTRACT = 441;
@@ -142,7 +142,7 @@ public class DecomposePropType
 	public static final int FOURGOLDEXTRACT = 444;
 	
 	/**
-	 * Ä¾¾«µÄµÀ¾ßid
+	 * æœ¨ç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONETREEEXTRACT = 445;
@@ -154,7 +154,7 @@ public class DecomposePropType
 	public static final int FOURTREEEXTRACT = 448;
 	
 	/**
-	 * Ë®¾«µÄµÀ¾ßid
+	 * æ°´ç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEWATEREXTRACT = 449;
@@ -166,7 +166,7 @@ public class DecomposePropType
 	public static final int FOURWATEREXTRACT = 452;
 	
 	/**
-	 * »ğ¾«µÄµÀ¾ßid
+	 * ç«ç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEFIREEXTRACT = 453;
@@ -178,7 +178,7 @@ public class DecomposePropType
 	public static final int FOURFIREEXTRACT = 456;
 	
 	/**
-	 * ÍÁ¾«µÄµÀ¾ßid
+	 * åœŸç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEEARTHEXTRACT = 457;
@@ -190,7 +190,7 @@ public class DecomposePropType
 	public static final int FOUREARTHEXTRACT = 460;
 	
 	/**
-	 * Ò»¼¶ÎåĞĞÖéµÄµÀ¾ßid
+	 * ä¸€çº§äº”è¡Œç çš„é“å…·id
 	 * prop_id
 	 * 
 	 */
@@ -205,7 +205,7 @@ public class DecomposePropType
 	public static final int EARTHONEWUXINGPEARL = 477;
 	
 	/**
-	 * ¶ş¼¶ÎåĞĞÖéµÄµÀ¾ßid
+	 * äºŒçº§äº”è¡Œç çš„é“å…·id
 	 * prop_id
 	 * 
 	 */
@@ -221,7 +221,7 @@ public class DecomposePropType
 	public static final int EARTHTWOWUXINGPEARL = 478;
 	
 	/**
-	 * Èı¼¶ÎåĞĞÖéµÄµÀ¾ßid
+	 * ä¸‰çº§äº”è¡Œç çš„é“å…·id
 	 * prop_id
 	 * 
 	 */
@@ -238,7 +238,7 @@ public class DecomposePropType
 	
 	
 	/**
-	 * ËÄ¼¶ÎåĞĞÖéµÄµÀ¾ßid
+	 * å››çº§äº”è¡Œç çš„é“å…·id
 	 * prop_id
 	 * 
 	 */
@@ -255,7 +255,7 @@ public class DecomposePropType
 	
 	
 	/**
-	 * ¸Ä°æºóµÄÎåĞĞÖéµÀ¾ßID
+	 * æ”¹ç‰ˆåçš„äº”è¡Œç é“å…·ID
 	 * prop_id
 	 * 
 	 */
@@ -270,7 +270,7 @@ public class DecomposePropType
 	
 	
 	/**
-	 * Ñª¾«µÄµÀ¾ßid
+	 * è¡€ç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEHPEXTRACT = 433;
@@ -282,7 +282,7 @@ public class DecomposePropType
 	public static final int FOURHPEXTRACT = 436;
 	
 	/**
-	 * Áé¾«µÄµÀ¾ßid
+	 * çµç²¾çš„é“å…·id
 	 * prop_id
 	 */
 	public static final int ONEMPEXTRACT = 437;
@@ -294,7 +294,7 @@ public class DecomposePropType
 	public static final int FOURMPEXTRACT = 440;
 
 	/**
-	 * ¸ù¾İºÏÊÊµÄÉı¼¶µÈ¼¶»ñµÃºÏÊÊµÄÌì¾§Ê¯ID
+	 * æ ¹æ®åˆé€‚çš„å‡çº§ç­‰çº§è·å¾—åˆé€‚çš„å¤©æ™¶çŸ³ID
 	 * @param requieGrade
 	 * @return
 	 */

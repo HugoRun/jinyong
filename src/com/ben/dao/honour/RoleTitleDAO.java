@@ -9,7 +9,7 @@ import com.ls.ben.dao.BasicDaoSupport;
 import com.ls.pub.db.DBConnection;
 
 /**
- * 玩家称号
+ * 鐜╁绉板彿
  */
 public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 {
@@ -31,7 +31,7 @@ public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 	}
 	
 	/**
-	 * 清空称号
+	 * 娓呯┖绉板彿
 	 */
 	public void clear( int p_pk)
 	{
@@ -40,7 +40,7 @@ public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 	}
 	
 	/**
-	 * 插入一种类型的称号
+	 * 鎻掑叆涓�绉嶇被鍨嬬殑绉板彿
 	 * @param p_pk
 	 * @param ho_id
 	 */
@@ -51,7 +51,7 @@ public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 		{
 			return -1;
 		}
-		String sql = "insert into u_title(p_pk,t_id,end_time,is_show) values (?,?,?,?)";
+		String sql = "INSERT INTO u_title(p_pk,t_id,end_time,is_show) values (?,?,?,?)";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -87,7 +87,7 @@ public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 	}
 
 	/**
-	 * 通过id删除称号
+	 * 閫氳繃id鍒犻櫎绉板彿
 	 */
 	public void delById( int pPk,int tId )
 	{
@@ -95,7 +95,7 @@ public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 	}
 	
 	/**
-	 * 得到称号列表
+	 * 寰楀埌绉板彿鍒楄〃
 	 */
 	public List<RoleTitleVO> getListByPPk( int pPk )
 	{
@@ -103,7 +103,7 @@ public class RoleTitleDAO extends BasicDaoSupport<RoleTitleVO>
 	}
 	
 	/**
-	 * 显示更新
+	 * 鏄剧ず鏇存柊
 	 */
 	public void updateIsShow( int pPk,int tId)
 	{

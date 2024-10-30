@@ -21,7 +21,7 @@ public class CreditAction extends DispatchAction
 {
 
 	/***************************************************************************
-	 * ²éÑ¯Íæ¼ÒµÄ½ÇÉ«Ëù¶ÔÓ¦µÄÉùÍû
+	 * æŸ¥è¯¢ç©å®¶çš„è§’è‰²æ‰€å¯¹åº”çš„å£°æœ›
 	 **************************************************************************/
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class CreditAction extends DispatchAction
 	}
 
 	/***************************************************************************
-	 * ¸ù¾İID²éÑ¯ÉùÍûÃèÊö
+	 * æ ¹æ®IDæŸ¥è¯¢å£°æœ›æè¿°
 	 **************************************************************************/
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

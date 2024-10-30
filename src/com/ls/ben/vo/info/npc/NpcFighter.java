@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 
 
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  * 10:28:39 AM
  */
 public class NpcFighter extends NpcAttackVO {
@@ -14,8 +14,8 @@ public class NpcFighter extends NpcAttackVO {
 	private int petInjure;
 	private boolean isDead;
 	private int expendMP;
-	private String skillName="ÆÕÍ¨";
-	/**ÉËº¦ÏÔÊ¾ÃèÊö*/
+	private String skillName="æ™®é€š";
+	/**ä¼¤å®³æ˜¾ç¤ºæè¿°*/
 	private String petInjureOut;
 	
 	private int dropExp;
@@ -43,13 +43,13 @@ public class NpcFighter extends NpcAttackVO {
 		if(getCurrentHP() < 0){
 			setCurrentHP(0);
 			isDead = true;
-			logger.debug("npcËÀÍö");
+			logger.debug("npcæ­»äº¡");
 		}
 		if( currentHP<= 0 )
 		{	
 			setCurrentHP(0);
 			isDead = true;
-			logger.debug("npcËÀÍö");
+			logger.debug("npcæ­»äº¡");
 		}
 //		else
 //		{
@@ -75,13 +75,13 @@ public class NpcFighter extends NpcAttackVO {
 		if(getCurrentHP() < 0){
 			setCurrentHP(0);
 			isDead = true;
-			logger.debug("npcËÀÍö");
+			logger.debug("npcæ­»äº¡");
 		}
 		if( currentHP<= 0 )
 		{
 			setCurrentHP(0);
 			isDead = true;
-			logger.debug("Íæ¼ÒËÀÍö");
+			logger.debug("ç©å®¶æ­»äº¡");
 		}
 //		else
 //		{

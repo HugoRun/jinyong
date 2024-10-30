@@ -25,7 +25,7 @@ import com.pm.dao.chuansong.SuiBianDao;
 import com.pm.vo.chuansong.SuiBianChuanVO;
 
 /**
- * Ëæ±ã´«ËÍµÀ¾ß
+ * éšä¾¿ä¼ é€é“å…·
  * @author zhangjj
  *
  */
@@ -54,7 +54,7 @@ public class SuiBianChuanService
 		logger.info("pg_pk=" + pg_pk);
 		propGroup = propGroupDao.getByPgPk(Integer.parseInt(pg_pk));
 		logger.info("propId=" + propGroup.getPropId());
-		prop = propCache.getPropById(propGroup.getPropId());// µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
+		prop = propCache.getPropById(propGroup.getPropId());// å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
 		
 		
 		SuiBianDao suiBianDao = new SuiBianDao();
@@ -70,7 +70,7 @@ public class SuiBianChuanService
 	
 	
 	/**
-	 * ¼ì²é´ËµÀ¾ßÄÜ·ñ¼ÌĞøÊ¹ÓÃ
+	 * æ£€æŸ¥æ­¤é“å…·èƒ½å¦ç»§ç»­ä½¿ç”¨
 	 * @param pg_pk
 	 * @param goods_id
 	 * @param goods_type
@@ -88,10 +88,10 @@ public class SuiBianChuanService
 		logger.info("pg_pk=" + pg_pk);
 		propGroup = propGroupDao.getByPgPk(Integer.parseInt(pg_pk));
 		logger.info("propId=" + propGroup.getPropId());
-		prop = propCache.getPropById(propGroup.getPropId());// µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
+		prop = propCache.getPropById(propGroup.getPropId());// å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
 		
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		PropUseService propUseService = new PropUseService();
 		String resutl = propUseService.isPropUseByBasicCondition(roleInfo, prop, 1);
 		
@@ -105,7 +105,7 @@ public class SuiBianChuanService
 
 
 	/**
-	 * ¸ù¾İÀàĞÍIDµÃµ½µØµãĞÅÏ¢
+	 * æ ¹æ®ç±»å‹IDå¾—åˆ°åœ°ç‚¹ä¿¡æ¯
 	 * @param roleInfo
 	 * @param pg_pk
 	 */
@@ -122,7 +122,7 @@ public class SuiBianChuanService
 
 
 	/**
-	 * Ê¹ÓÃËæ±ã´«
+	 * ä½¿ç”¨éšä¾¿ä¼ 
 	 * @param roleInfo
 	 * @param pg_pk
 	 */
@@ -131,7 +131,7 @@ public class SuiBianChuanService
 	{
 		String result = "";
 		if ( carryId == null || carryId.equals("")) {
-			return "µØµã´íÎó";			
+			return "åœ°ç‚¹é”™è¯¯";			
 		}
 		
 		
@@ -146,7 +146,7 @@ public class SuiBianChuanService
 		SuiBianChuanVO suiBianChuanVO = suiBianDao.getChuanSongById(carryId);
 		
 		if (suiBianChuanVO.getCarryGrade() > roleInfo.getBasicInfo().getGrade()) {
-			return "ÄúµÄµÈ¼¶²»¹»!";
+			return "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ!";
 		}
 		
 		
@@ -159,19 +159,19 @@ public class SuiBianChuanService
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, 1);
 		
-		//result = "ÄúÊ¹ÓÃÁË"+propGroup.getPropName()+",Æ½°²µ½´ïÁË"+suiBianChuanVO.getSceneName();
+		//result = "æ‚¨ä½¿ç”¨äº†"+propGroup.getPropName()+",å¹³å®‰åˆ°è¾¾äº†"+suiBianChuanVO.getSceneName();
 		roleInfo.getBasicInfo().updateSceneId(suiBianChuanVO.getSceneId()+"");
-		CompassService.removeMiJing(roleInfo.getBasicInfo().getPPk(), propGroup.getPropType());//É¾³ıÃØ¾³µØÍ¼
+		CompassService.removeMiJing(roleInfo.getBasicInfo().getPPk(), propGroup.getPropType());//åˆ é™¤ç§˜å¢ƒåœ°å›¾
 		return result;
 	}
 
 
 
 	/**
-	 * Ê¹ÓÃ¶ÓÔ±´«ËÍ·û
-	 * @param roleInfo      Íæ¼ÒĞÅÏ¢
-	 * @param pg_pk         °ü¹üÎïÆ·id
-	 * @param member_pk     ¶ÓÓÑid
+	 * ä½¿ç”¨é˜Ÿå‘˜ä¼ é€ç¬¦
+	 * @param roleInfo      ç©å®¶ä¿¡æ¯
+	 * @param pg_pk         åŒ…è£¹ç‰©å“id
+	 * @param member_pk     é˜Ÿå‹id
 	 * @return
 	 */
 	public String useGroupChuan(RoleEntity roleInfo, String pg_pk,
@@ -179,7 +179,7 @@ public class SuiBianChuanService
 	{
 		String result = "";
 		if ( member_pk == null || member_pk.equals("")) {
-			return "¶ÓÔ±´íÎó";			
+			return "é˜Ÿå‘˜é”™è¯¯";			
 		}
 		
 		PlayerPropGroupVO propGroup = null;
@@ -199,7 +199,7 @@ public class SuiBianChuanService
 		
 		if ( member_info==null ) 
 		{
-			result = "¶ÓÔ±´íÎó2!";
+			result = "é˜Ÿå‘˜é”™è¯¯2!";
 			return result;
 		}
 		else
@@ -215,7 +215,7 @@ public class SuiBianChuanService
 		goodsService.removeProps(propGroup, 1);
 				
 		roleInfo.getBasicInfo().updateSceneId(go_map+"");
-		CompassService.removeMiJing(roleInfo.getBasicInfo().getPPk(), propGroup.getPropType());//É¾³ıÃØ¾³µØÍ¼
+		CompassService.removeMiJing(roleInfo.getBasicInfo().getPPk(), propGroup.getPropType());//åˆ é™¤ç§˜å¢ƒåœ°å›¾
 		return result;
 	}
 	

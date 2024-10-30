@@ -6,413 +6,388 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class DateUtil
-{
-	private static SimpleDateFormat sdf = new SimpleDateFormat();
+public class DateUtil {
+    private static final SimpleDateFormat sdf = new SimpleDateFormat();
 
-	/**
-	 * @param date
-	 * @return String
-	 */
-	public static synchronized String getDateSecondFormat()
-	{
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		return getDateFormat(new Date(), pattern);
-	}
+    /**
+     *
+     * @return String
+     */
+    public static synchronized String getDateSecondFormat() {
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        return getDateFormat(new Date(), pattern);
+    }
 
-	public static synchronized String getDateFormat(Date date, String pattern)
-	{
-		synchronized (sdf)
-		{
-			String str = null;
-			sdf.applyPattern(pattern);
-			str = sdf.format(date);
-			return str;
-		}
-	}
-	
-	public static synchronized String getDate(Date date){
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		return getDateFormat(date, pattern);
-	}
+    public static synchronized String getDateFormat(Date date, String pattern) {
+        synchronized (sdf) {
+            String str = null;
+            sdf.applyPattern(pattern);
+            str = sdf.format(date);
+            return str;
+        }
+    }
 
-	public static synchronized Date getTimeFormat(String time, String pattern)
-	{
-		synchronized (sdf)
-		{
-			Date date = null;
-			sdf.applyPattern(pattern);
-			try
-			{
-				date = sdf.parse(time);
-			}
-			catch (ParseException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return date;
-		}
-	}
-	
-	public static synchronized Date getTimeFormat(String time){
-		Date date = null;
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		sdf.applyPattern(pattern);
-		try
-		{
-			date = sdf.parse(time);
-		}
-		catch (ParseException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return date;
-	}
+    public static synchronized String getDate(Date date) {
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        return getDateFormat(date, pattern);
+    }
+
+    public static synchronized Date getTimeFormat(String time, String pattern) {
+        synchronized (sdf) {
+            Date date = null;
+            sdf.applyPattern(pattern);
+            try {
+                date = sdf.parse(time);
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return date;
+        }
+    }
+
+    public static synchronized Date getTimeFormat(String time) {
+        Date date = null;
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        sdf.applyPattern(pattern);
+        try {
+            date = sdf.parse(time);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return date;
+    }
 
 
-	public static boolean checkTime(String time)
-	{
-		if(time==null||"".equals(time.trim())){
-			return true;
-		}
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		Date date = getTimeFormat(time, pattern);
-		if(date==null){
-			return true;
-		}
-		Date today = new Date();
-		int day1 = date.getDate();
-		int day2 = today.getDate();
-		int month1 = date.getMonth();
-		int month2 = today.getMonth();
-		System.out.println(day1+":"+day2+":"+month1+":"+month2);
-		return month1==month2?day1==day2?false:true:true;
-	}
-	
-	public static int delTime(String time){
-		if(time==null||"".equals(time.trim())){
-			return 0;
-		}
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		Date date = getTimeFormat(time, pattern);
-		if(date==null){
-			return 0;
-		}
-		Date today = new Date();
-		return Integer.parseInt((today.getTime()-date.getTime())/1000/60+"");
-	}
-	
-	public static boolean check(String time,int min){
-		try{
-		if(time==null||"".equals(time.trim())){   
-			return true;
-		}
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		Date date = getTimeFormat(time, pattern);
-		if(date==null){
-			return true;
-		}
-		Date today = new Date();
-		date.setMinutes(date.getMinutes()+min);
-		return today.after(date);
-		}catch(Exception e){
-			return true;
-		}
-	}
-	
-	@SuppressWarnings("deprecation")
-	public static boolean checkMin(Date date,int min){
-		try{
-		if(date==null){   
-			return true;
-		}
-		Date today = new Date();
-		date.setMinutes(date.getMinutes()+min);
-		return today.after(date);
-		}catch(Exception e){
-			return true;
-		}
-	}
-	
-	public static boolean checkSecond(String time,int second){
-		try{
-		if(time==null||"".equals(time.trim())){   
-			return true;
-		}
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		Date date = getTimeFormat(time, pattern);
-		if(date==null){
-			return true;
-		}
-		Date today = new Date();
-		date.setSeconds(date.getSeconds()+second);
-		return today.after(date);
-		}catch(Exception e){
-			return true;
-		}
-	}
-	
-	
-	
-	public static boolean check(Date date){
-		if(date==null){
-			return true;
-		}
-		else{
-			Date date1 = new Date();
-			date1.setDate(date1.getDate()-7);
-			String pattern = "yyyy-MM-dd HH:mm:ss";
-			System.out.println(getDateFormat(date, pattern));
-			System.out.println(getDateFormat(date1,pattern));
-			return date1.after(date);
-		}
-	}
-	
-	//´«ÈëµÄÊ±¼äÊÇ·ñÔÚµ±Ç°Ê±¼äÖ®Ç°
-	public static boolean checkNow(Date date){
-		if(date==null){
-			return true;
-		}
-		return date.before(new Date());
-	}
-	
-	
-	
-	public static int getWeek(){
-		Calendar c = Calendar.getInstance();
-		return c.get(c.DAY_OF_WEEK)-1;
-	}
-	
-	public static boolean isFreeGuaji(int weekDay,int beg,int end,Date now){
-		if(beg<end&&weekDay==getWeek()){
-//			µ±Ìì
-			return isBetween(beg, end,now,true);
-		}else if(beg>end&&weekDay+1==getWeek()){
-//			¸ôÌì
-			return isBetween(beg, end,now,false);
-		}
-		return false;
-	}
-	
-	
-	public static boolean isBetween(int beg,int end,Date now ,boolean isOneDay){
-		Date date1 = new Date();
-		Date date2 = new Date();
-		if(!isOneDay){
-			date1.setDate(date1.getDate()-1);
-		}
-		date1.setHours(beg);
-		date2.setHours(end);
-		return now.after(date1)?now.before(date2)?true:false:false;
-	}
+    public static boolean checkTime(String time) {
+        if (time == null || "".equals(time.trim())) {
+            return true;
+        }
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        Date date = getTimeFormat(time, pattern);
+        if (date == null) {
+            return true;
+        }
+        Date today = new Date();
+        int day1 = date.getDate();
+        int day2 = today.getDate();
+        int month1 = date.getMonth();
+        int month2 = today.getMonth();
+        System.out.println(day1 + ":" + day2 + ":" + month1 + ":" + month2);
+        return month1 != month2 || day1 != day2;
+    }
+
+    public static int delTime(String time) {
+        if (time == null || "".equals(time.trim())) {
+            return 0;
+        }
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        Date date = getTimeFormat(time, pattern);
+        if (date == null) {
+            return 0;
+        }
+        Date today = new Date();
+        return Integer.parseInt((today.getTime() - date.getTime()) / 1000 / 60 + "");
+    }
+
+    public static boolean check(String time, int min) {
+        try {
+            if (time == null || "".equals(time.trim())) {
+                return true;
+            }
+            String pattern = "yyyy-MM-dd HH:mm:ss";
+            Date date = getTimeFormat(time, pattern);
+            if (date == null) {
+                return true;
+            }
+            Date today = new Date();
+            date.setMinutes(date.getMinutes() + min);
+            return today.after(date);
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public static boolean checkMin(Date date, int min) {
+        try {
+            if (date == null) {
+                return true;
+            }
+            Date today = new Date();
+            date.setMinutes(date.getMinutes() + min);
+            return today.after(date);
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    public static boolean checkSecond(String time, int second) {
+        try {
+            if (time == null || "".equals(time.trim())) {
+                return true;
+            }
+            String pattern = "yyyy-MM-dd HH:mm:ss";
+            Date date = getTimeFormat(time, pattern);
+            if (date == null) {
+                return true;
+            }
+            Date today = new Date();
+            date.setSeconds(date.getSeconds() + second);
+            return today.after(date);
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+
+    public static boolean check(Date date) {
+        if (date == null) {
+            return true;
+        } else {
+            Date date1 = new Date();
+            date1.setDate(date1.getDate() - 7);
+            String pattern = "yyyy-MM-dd HH:mm:ss";
+            System.out.println(getDateFormat(date, pattern));
+            System.out.println(getDateFormat(date1, pattern));
+            return date1.after(date);
+        }
+    }
+
+    //ä¼ å…¥çš„æ—¶é—´æ˜¯å¦åœ¨å½“å‰æ—¶é—´ä¹‹å‰
+    public static boolean checkNow(Date date) {
+        if (date == null) {
+            return true;
+        }
+        return date.before(new Date());
+    }
+
+
+    public static int getWeek() {
+        Calendar c = Calendar.getInstance();
+        return c.get(Calendar.DAY_OF_WEEK) - 1;
+    }
+
+    public static boolean isFreeGuaji(int weekDay, int beg, int end, Date now) {
+        if (beg < end && weekDay == getWeek()) {
+//			å½“å¤©
+            return isBetween(beg, end, now, true);
+        } else if (beg > end && weekDay + 1 == getWeek()) {
+//			éš”å¤©
+            return isBetween(beg, end, now, false);
+        }
+        return false;
+    }
+
+
+    public static boolean isBetween(int beg, int end, Date now, boolean isOneDay) {
+        Date date1 = new Date();
+        Date date2 = new Date();
+        if (!isOneDay) {
+            date1.setDate(date1.getDate() - 1);
+        }
+        date1.setHours(beg);
+        date2.setHours(end);
+        return now.after(date1) && now.before(date2);
+    }
 	
 	/*public static String getDes(Active active){
 		String time = null;
-		String pattern = "MMÔÂddÈÕHH:mm";
+		String pattern = "MMæœˆddæ—¥HH:mm";
 		sdf.applyPattern(pattern);
 		if(!checkNow(active.getRound1_endtime())){
-			time = "±¾³¡ÀŞÌ¨Ê±¼äÎª"+sdf.format(active.getRound1_starttime())+"¡ª"+sdf.format(active.getRound1_endtime());
+			time = "æœ¬åœºæ“‚å°æ—¶é—´ä¸º"+sdf.format(active.getRound1_starttime())+"â€”"+sdf.format(active.getRound1_endtime());
 		}else if(!checkNow(active.getRound2_endtime())){
-			time = "±¾³¡ÀŞÌ¨Ê±¼äÎª"+sdf.format(active.getRound2_starttime())+"¡ª"+sdf.format(active.getRound2_endtime());
+			time = "æœ¬åœºæ“‚å°æ—¶é—´ä¸º"+sdf.format(active.getRound2_starttime())+"â€”"+sdf.format(active.getRound2_endtime());
 		}else if(!checkNow(active.getRound3_endtime())){
-			time = "±¾³¡ÀŞÌ¨Ê±¼äÎª"+sdf.format(active.getRound3_starttime())+"¡ª"+sdf.format(active.getRound3_endtime());
+			time = "æœ¬åœºæ“‚å°æ—¶é—´ä¸º"+sdf.format(active.getRound3_starttime())+"â€”"+sdf.format(active.getRound3_endtime());
 		}else{
-			time = "ÀŞÌ¨ÒÑ¾­½áÊø";
+			time = "æ“‚å°å·²ç»ç»“æŸ";
 		}
 		return time;
 	}*/
 	
-	/*//»ñÈ¡µ±Ç°ÀŞÌ¨ÎªµÚ¼¸ÂÖ
+	/*//è·å–å½“å‰æ“‚å°ä¸ºç¬¬å‡ è½®
 	public static int getRound(Active active){
 		if(active==null){
 			return -100;
 		}
 		int round = 0;
-		boolean round11 = checkNow(active.getRound1_starttime());//µÚÒ»ÂÖ¿ªÊ¼Ê±¼äÊÇ·ñÒÑµ½£¬T·ñFÊÇ
-		boolean round12 = checkNow(active.getRound1_endtime());//µÚÒ»ÂÖ½áÊøÊ±¼äÊÇ·ñÒÑµ½£¬T·ñFÊÇ
-		boolean round21 = checkNow(active.getRound2_starttime());//µÚ¶şÂÖ¿ªÊ¼Ê±¼äÊÇ·ñÒÑµ½£¬T·ñFÊÇ
-		boolean round22 = checkNow(active.getRound2_endtime());//µÚ¶şÂÖ½áÊøÊ±¼äÊÇ·ñÒÑµ½£¬T·ñFÊÇ
-		boolean round31 = checkNow(active.getRound3_starttime());//µÚÈıÂÖ¿ªÊ¼Ê±¼äÊÇ·ñÒÑµ½£¬T·ñFÊÇ
-		boolean round32 = checkNow(active.getRound3_endtime());//µÚÈıÂÖ½áÊøÊ±¼äÊÇ·ñÒÑµ½£¬T·ñFÊÇ
+		boolean round11 = checkNow(active.getRound1_starttime());//ç¬¬ä¸€è½®å¼€å§‹æ—¶é—´æ˜¯å¦å·²åˆ°ï¼ŒTå¦Fæ˜¯
+		boolean round12 = checkNow(active.getRound1_endtime());//ç¬¬ä¸€è½®ç»“æŸæ—¶é—´æ˜¯å¦å·²åˆ°ï¼ŒTå¦Fæ˜¯
+		boolean round21 = checkNow(active.getRound2_starttime());//ç¬¬äºŒè½®å¼€å§‹æ—¶é—´æ˜¯å¦å·²åˆ°ï¼ŒTå¦Fæ˜¯
+		boolean round22 = checkNow(active.getRound2_endtime());//ç¬¬äºŒè½®ç»“æŸæ—¶é—´æ˜¯å¦å·²åˆ°ï¼ŒTå¦Fæ˜¯
+		boolean round31 = checkNow(active.getRound3_starttime());//ç¬¬ä¸‰è½®å¼€å§‹æ—¶é—´æ˜¯å¦å·²åˆ°ï¼ŒTå¦Fæ˜¯
+		boolean round32 = checkNow(active.getRound3_endtime());//ç¬¬ä¸‰è½®ç»“æŸæ—¶é—´æ˜¯å¦å·²åˆ°ï¼ŒTå¦Fæ˜¯
 		if(!round11){
-			round = -1;//µÚÒ»ÂÖ»¹Ã»¿ªÊ¼
+			round = -1;//ç¬¬ä¸€è½®è¿˜æ²¡å¼€å§‹
 		}else if(!round12){
-			round = 1;//µÚÒ»ÂÖ½øĞĞÖĞ
+			round = 1;//ç¬¬ä¸€è½®è¿›è¡Œä¸­
 		}else if(round12&&!round21){
-			round = -2;//µÚÒ»ÂÖ½áÊø£¬µÚ¶şÂÖ»¹Ã»¿ªÊ¼
+			round = -2;//ç¬¬ä¸€è½®ç»“æŸï¼Œç¬¬äºŒè½®è¿˜æ²¡å¼€å§‹
 		}else if(round21&&!round22){
-			round = 2;//µÚ¶şÂÖ½øĞĞÖĞ
+			round = 2;//ç¬¬äºŒè½®è¿›è¡Œä¸­
 		}else if(round22&&!round31){
-			round = -3;//µÚ¶şÂÖ½áÊø£¬µÚÈıÂÖ»¹Ã»¿ªÊ¼
+			round = -3;//ç¬¬äºŒè½®ç»“æŸï¼Œç¬¬ä¸‰è½®è¿˜æ²¡å¼€å§‹
 		}else if(round31&&!round32){
-			round = 3;//µÚÈıÂÖ½øĞĞÖĞ
+			round = 3;//ç¬¬ä¸‰è½®è¿›è¡Œä¸­
 		}else {
-			round = -4;//µÚÈıÂÖÒÑ¾­½áÊø
+			round = -4;//ç¬¬ä¸‰è½®å·²ç»ç»“æŸ
 		}
 		return round;
 	}
 	*/
-	
-	//»ñÈ¡Ê±¼ä²î
-	public static String getTimeCha(String date,String detail){
-		Date date2 = new Date();
-		Date date1 = getDate(date);
-		if(date1==null){
-			return "³ö´íÁË£¬ÇëÁªÏµ¹ÜÀíÔ±";
-		}
-		if(date1.before(date2)){
-			return "ÒÑ¾­¿ªÊ¼";
-		}else{
-			long time1 = date1.getTime();
-			long time2 = date2.getTime();
-			long cha = time1 - time2;
-			int day = (int)(cha/1000/60/60/24);
-			int hour = (int)(cha/1000/60/60%24);
-			int min = (int)(cha/1000/60%60);
-			int sec = (int)(cha/1000%60);
-//			return MessageFormat.format("Àë±ÈÈü¿ªÊ¼»¹ÓĞ{0}Ìì{1}Ê±{2}·Ö{3}Ãë.",day,hour,min,sec);
-			return detail+(day>0?(day+"Ìì"):"")+(hour>0?(hour+"Ê±"):"")+(min>0?(min+"·Ö"):"")+(sec>0?(sec+"Ãë"):".");
-		}
-	}
-	
-	//»ñÈ¡Ê±¼ä²î
-	public static String getTimeCha(String date,String detail,int overtime){
-		Date date2 = new Date();
-		Date date1 = getDate(date);
-		if(date1==null){
-			return "³ö´íÁË£¬ÇëÁªÏµ¹ÜÀíÔ±";
-		}
-		if(date1.before(date2)){
-			return "ÒÑ¾­¿ªÊ¼";
-		}else{
-			long time1 = date1.getTime();
-			long time2 = date2.getTime();
-			long cha = time1 - time2-overtime*60*1000;
-			if(cha<0){
-				return "ÀŞÌ¨ÒÑ¾­¿ªÊ¼ÁË";
-			}else{
-			int day = (int)(cha/1000/60/60/24);
-			int hour = (int)(cha/1000/60/60%24);
-			int min = (int)(cha/1000/60%60);
-			int sec = (int)(cha/1000%60);
-//			return MessageFormat.format("Àë±ÈÈü¿ªÊ¼»¹ÓĞ{0}Ìì{1}Ê±{2}·Ö{3}Ãë.",day,hour,min,sec);
-			return detail+(day>0?(day+"Ìì"):"")+(hour>0?(hour+"Ê±"):"")+(min>0?(min+"·Ö"):"")+(sec>0?(sec+"Ãë."):".");
-			}
-		}
-	}
-	
-	//ÀŞÌ¨ÊÇ·ñÒÑ¾­¿ªÊ¼
-	public static boolean isstart(String baomingstarttime){
-		if(baomingstarttime==null||"".equals(baomingstarttime.trim())){
-			return true;
-		}else{
-			Date date2 = new Date();
-			Date date1 = getDate(baomingstarttime);
-			if(date1==null){
-				return true;
-			}
-			if(date1.before(date2)){
-				return true;
-			}else{
-				return false;
-			}
-		}
-	}
-	
-	
-	//ÀŞÌ¨ÊÇ·ñÒÑ¾­¿ªÊ¼
-	public static boolean isstart1(String baomingstarttime,int overtime){
-		if(baomingstarttime==null||"".equals(baomingstarttime.trim())){
-			return true;
-		}else{
-			Date date2 = new Date();
-			Date date1 = getDate(baomingstarttime);
-			if(date1==null){
-				return true;
-			}
-			date1.setMinutes(date1.getMinutes()-overtime);
-			if(date1.before(date2)){
-				return true;
-			}else{
-				return false;
-			}
-		}
-	}
-	
-	//»ñÈ¡Ê±¼ä
-	public static String getDelTIme(String time,int overtime){
-		if(time==null||"".equals(time.trim())){
-			return "³ö´íÁË";
-		}else{
-			Date date1 = getDate(time);
-			if(date1==null){
-				return "³ö´íÁË";
-			}else{
-				date1.setMinutes(date1.getMinutes()-overtime);
-				return "ÇëÓÚ"+getDate(date1)+"½øÈëÀŞÌ¨";
-			}
-		}
-	}
-	
-	//»ñÈ¡Ê±¼ä
-	public static boolean getDate(String time,int overtime){
-		if(time==null||"".equals(time.trim())){
-			return false;
-		}
-		Date date = null;
-		try{
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		String pattern1 = "yyyy-MM-dd";
-		sdf.applyPattern(pattern1);
-		String pat = sdf.format(new Date());
-		sdf.applyPattern(pattern);
-		date = sdf.parse(pat+" "+time);
-		date.setMinutes(date.getMinutes()-overtime);
-		}catch(Exception e){
-			System.out.println("Ê±¼ä¸ñÊ½´íÎó");
-			return false;
-		}
-		return new Date().after(date);
-	}
-	
-	public static Date getDate(String s) {
-		if(s==null||"".equals(s.trim())){
-			return null;
-		}
-		try{
-		String pattern = "yyyy-MM-dd HH:mm:ss";
-		String pattern1 = "yyyy-MM-dd";
-		sdf.applyPattern(pattern1);
-		String pat = sdf.format(new Date());
-		sdf.applyPattern(pattern);
-		return sdf.parse(pat+" "+s);
-		}catch(Exception e){
-			System.out.println("Ê±¼ä¸ñÊ½´íÎó");
-			return null;
-		}
-	}
-	
-	public static void main(String[] args)
-	{
-		addSecond(15);
-	}
-	
-	public static Date addSecond(int second){
-		Date date = new Date();
-		date.setSeconds(date.getSeconds()+second);
-		return date;
-	}
-	
-	public static int subMin(Date date){
-		if(date==null){
-			return 0;
-		}else{
-			long t1 = date.getTime();
-			long t2 = new Date().getTime();
-			long sub = t2-t1;
-			return (int)sub/1000/60;
-		}
-	}
+
+    //è·å–æ—¶é—´å·®
+    public static String getTimeCha(String date, String detail) {
+        Date date2 = new Date();
+        Date date1 = getDate(date);
+        if (date1 == null) {
+            return "å‡ºé”™äº†ï¼Œè¯·è”ç³»ç®¡ç†å‘˜";
+        }
+        if (date1.before(date2)) {
+            return "å·²ç»å¼€å§‹";
+        } else {
+            long time1 = date1.getTime();
+            long time2 = date2.getTime();
+            long cha = time1 - time2;
+            int day = (int) (cha / 1000 / 60 / 60 / 24);
+            int hour = (int) (cha / 1000 / 60 / 60 % 24);
+            int min = (int) (cha / 1000 / 60 % 60);
+            int sec = (int) (cha / 1000 % 60);
+//			return MessageFormat.format("ç¦»æ¯”èµ›å¼€å§‹è¿˜æœ‰{0}å¤©{1}æ—¶{2}åˆ†{3}ç§’.",day,hour,min,sec);
+            return detail + (day > 0 ? (day + "å¤©") : "") + (hour > 0 ? (hour + "æ—¶") : "") + (min > 0 ? (min + "åˆ†") : "") + (sec > 0 ? (sec + "ç§’") : ".");
+        }
+    }
+
+    //è·å–æ—¶é—´å·®
+    public static String getTimeCha(String date, String detail, int overtime) {
+        Date date2 = new Date();
+        Date date1 = getDate(date);
+        if (date1 == null) {
+            return "å‡ºé”™äº†ï¼Œè¯·è”ç³»ç®¡ç†å‘˜";
+        }
+        if (date1.before(date2)) {
+            return "å·²ç»å¼€å§‹";
+        } else {
+            long time1 = date1.getTime();
+            long time2 = date2.getTime();
+            long cha = time1 - time2 - (long) overtime * 60 * 1000;
+            if (cha < 0) {
+                return "æ“‚å°å·²ç»å¼€å§‹äº†";
+            } else {
+                int day = (int) (cha / 1000 / 60 / 60 / 24);
+                int hour = (int) (cha / 1000 / 60 / 60 % 24);
+                int min = (int) (cha / 1000 / 60 % 60);
+                int sec = (int) (cha / 1000 % 60);
+//			return MessageFormat.format("ç¦»æ¯”èµ›å¼€å§‹è¿˜æœ‰{0}å¤©{1}æ—¶{2}åˆ†{3}ç§’.",day,hour,min,sec);
+                return detail + (day > 0 ? (day + "å¤©") : "") + (hour > 0 ? (hour + "æ—¶") : "") + (min > 0 ? (min + "åˆ†") : "") + (sec > 0 ? (sec + "ç§’.") : ".");
+            }
+        }
+    }
+
+    //æ“‚å°æ˜¯å¦å·²ç»å¼€å§‹
+    public static boolean isstart(String baomingstarttime) {
+        if (baomingstarttime == null || "".equals(baomingstarttime.trim())) {
+            return true;
+        } else {
+            Date date2 = new Date();
+            Date date1 = getDate(baomingstarttime);
+            if (date1 == null) {
+                return true;
+            }
+            return date1.before(date2);
+        }
+    }
+
+
+    //æ“‚å°æ˜¯å¦å·²ç»å¼€å§‹
+    public static boolean isstart1(String baomingstarttime, int overtime) {
+        if (baomingstarttime == null || "".equals(baomingstarttime.trim())) {
+            return true;
+        } else {
+            Date date2 = new Date();
+            Date date1 = getDate(baomingstarttime);
+            if (date1 == null) {
+                return true;
+            }
+            date1.setMinutes(date1.getMinutes() - overtime);
+            return date1.before(date2);
+        }
+    }
+
+    //è·å–æ—¶é—´
+    public static String getDelTIme(String time, int overtime) {
+        if (time == null || "".equals(time.trim())) {
+            return "å‡ºé”™äº†";
+        } else {
+            Date date1 = getDate(time);
+            if (date1 == null) {
+                return "å‡ºé”™äº†";
+            } else {
+                date1.setMinutes(date1.getMinutes() - overtime);
+                return "è¯·äº" + getDate(date1) + "è¿›å…¥æ“‚å°";
+            }
+        }
+    }
+
+    //è·å–æ—¶é—´
+    public static boolean getDate(String time, int overtime) {
+        if (time == null || "".equals(time.trim())) {
+            return false;
+        }
+        Date date = null;
+        try {
+            String pattern = "yyyy-MM-dd HH:mm:ss";
+            String pattern1 = "yyyy-MM-dd";
+            sdf.applyPattern(pattern1);
+            String pat = sdf.format(new Date());
+            sdf.applyPattern(pattern);
+            date = sdf.parse(pat + " " + time);
+            date.setMinutes(date.getMinutes() - overtime);
+        } catch (Exception e) {
+            System.out.println("æ—¶é—´æ ¼å¼é”™è¯¯");
+            return false;
+        }
+        return new Date().after(date);
+    }
+
+    public static Date getDate(String s) {
+        if (s == null || "".equals(s.trim())) {
+            return null;
+        }
+        try {
+            String pattern = "yyyy-MM-dd HH:mm:ss";
+            String pattern1 = "yyyy-MM-dd";
+            sdf.applyPattern(pattern1);
+            String pat = sdf.format(new Date());
+            sdf.applyPattern(pattern);
+            return sdf.parse(pat + " " + s);
+        } catch (Exception e) {
+            System.out.println("æ—¶é—´æ ¼å¼é”™è¯¯");
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        addSecond(15);
+    }
+
+    public static Date addSecond(int second) {
+        Date date = new Date();
+        date.setSeconds(date.getSeconds() + second);
+        return date;
+    }
+
+    public static int subMin(Date date) {
+        if (date == null) {
+            return 0;
+        } else {
+            long t1 = date.getTime();
+            long t2 = new Date().getTime();
+            long sub = t2 - t1;
+            return (int) sub / 1000 / 60;
+        }
+    }
 }

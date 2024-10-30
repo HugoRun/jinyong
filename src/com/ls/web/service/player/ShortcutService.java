@@ -19,8 +19,8 @@ import com.ls.pub.constant.Shortcut;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:¿ì½İ¼ü¿ØÖÆ
- * @author ÁõË§
+ * åŠŸèƒ½:å¿«æ·é”®æ§åˆ¶
+ * @author åˆ˜å¸…
  * 9:40:49 AM
  */
 public class ShortcutService {
@@ -28,7 +28,7 @@ public class ShortcutService {
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * µÃµ½Ò»¸öÍæ¼ÒµÄ¿ì½İ¼ü
+	 * å¾—åˆ°ä¸€ä¸ªç©å®¶çš„å¿«æ·é”®
 	 * @param p_pk
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class ShortcutService {
 	}
 	
 	/**
-	 * µÃµ½Ò»¸öÍæ¼ÒµÄ¿ì½İ¼ü
+	 * å¾—åˆ°ä¸€ä¸ªç©å®¶çš„å¿«æ·é”®
 	 * @param p_pk
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class ShortcutService {
 					}
 					PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
 					int propNum = playerPropGroupDao.getPropNumByByPropID(p_pk, shortcutVO.getOperateId());
-					display = display + "¡Á"+propNum;
+					display = display + "Ã—"+propNum;
 					shortcutVO.setScDisplay(display);
 				}
 			} else {
@@ -77,7 +77,7 @@ public class ShortcutService {
 	
 
 	/**
-	 * ¸üĞÂÒ»¸ö¿ì½İ¼ü
+	 * æ›´æ–°ä¸€ä¸ªå¿«æ·é”®
 	 */
 	public int updateShortcut(int sc_pk,int type,int operate_id,String pPk)
 	{
@@ -86,17 +86,17 @@ public class ShortcutService {
 		String display = "";
 		if( type==Shortcut.ATTACK ) 
 		{
-			display = "¹¥»÷";
-			display = StringUtil.gbToISO("¹¥»÷");
+			display = "æ”»å‡»";
+			display = StringUtil.gbToISO("æ”»å‡»");
 		}
 		else if( type==Shortcut.LOOKINFO )
 		{
-			display = "²é¿´";
+			display = "æŸ¥çœ‹";
 			display = StringUtil.gbToISO(display);
 		}
 		else if( type==Shortcut.CURE )
 		{
-			display = "Ò©Æ·Ãû";
+			display = "è¯å“å";
 			String prop_name = PropCache.getPropById(operate_id).getPropName();
 			display = getReplaceName(prop_name);
 		}
@@ -107,11 +107,11 @@ public class ShortcutService {
 		}
 		else if( type==Shortcut.BOOK )
 		{
-			display = "¾íÖáÃû";
+			display = "å·è½´å";
 		}
 		else if( type==Shortcut.FLEE )
 		{
-			display = "ÌÓÅÜ";
+			display = "é€ƒè·‘";
 		}
 		else if( type==Shortcut.ATTACKPROP )
 		{
@@ -129,7 +129,7 @@ public class ShortcutService {
 
 	
 	/**
-	 * ¸ù¾İsc_pkµÃµ½Ò»¸ö¿ì½İ¼üµÄÏêÏ¸ĞÅÏ¢
+	 * æ ¹æ®sc_pkå¾—åˆ°ä¸€ä¸ªå¿«æ·é”®çš„è¯¦ç»†ä¿¡æ¯
 	 */
 	public ShortcutVO getByScPk(int sc_pk,String pPk)
 	{
@@ -153,7 +153,7 @@ public class ShortcutService {
 
 
 	/**
-	 * Èç¹û¿ì½İ¼üÉÏµÄ µÀ¾ßÒÑ¾­ÓÃÍê,ÄÇÃ´ÒÆ³ıÕâ¸öµÀ¾ß 
+	 * å¦‚æœå¿«æ·é”®ä¸Šçš„ é“å…·å·²ç»ç”¨å®Œ,é‚£ä¹ˆç§»é™¤è¿™ä¸ªé“å…· 
 	 * 
 	 */
 	public void clearShortcutoperate_id(int p_pk, int propID)
@@ -167,14 +167,14 @@ public class ShortcutService {
 		shortcutDao.clearShortcutoperate_id(p_pk, propID);
 		
 	}
-	/***********È¡³ö¿ì½İ¼üµÄÌØÊâ·ûºÅ************/
+	/***********å–å‡ºå¿«æ·é”®çš„ç‰¹æ®Šç¬¦å·************/
 	public String getReplaceName(String propName)
 	{
 		String temp="";
-		temp=propName.replace("¡¾","");
-		temp=temp.replace("¡¿","");
-		temp=temp.replace("¡¼","");
-		temp=temp.replace("¡½", "");
+		temp=propName.replace("ã€","");
+		temp=temp.replace("ã€‘","");
+		temp=temp.replace("ã€–","");
+		temp=temp.replace("ã€—", "");
 		temp=temp.replace("(", "");
 		temp=temp.replace(")", "");
 		String name=temp;

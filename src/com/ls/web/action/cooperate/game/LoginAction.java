@@ -4,15 +4,6 @@
  */
 package com.ls.web.action.cooperate.game;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.vo.logininfo.LoginInfoVO;
 import com.ls.pub.config.GameConfig;
 import com.ls.pub.constant.Channel;
@@ -20,100 +11,87 @@ import com.ls.web.service.cooperate.dangle.PassportService;
 import com.ls.web.service.login.LoginService;
 import com.lw.service.systemnotify.SystemNotifyService;
 import com.lw.vo.systemnotify.SystemNotifyVO;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * MyEclipse Struts Creation date: 06-18-2009
- * 
+ * <p>
  * XDoclet definition:
- * 
+ *
  * @struts.action validate="true"
  */
-public class LoginAction extends Action
-{
-	/**
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return ActionForward
-	 */
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
+public class LoginAction extends Action {
+    /**
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return ActionForward
+     */
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        // åˆ¤æ–­æ¸¸æˆçš„çŠ¶æ€
+        if (GameConfig.getGameState() == 2) {
+            // æ¸¸æˆçŠ¶æ€ä¸ºä¸Šçº¿å†…éƒ¨æµ‹è¯•çŠ¶æ€
+            // åŠ¨æ€å…¬å‘Š
+            SystemNotifyService systemNotifyService = new SystemNotifyService();
+            SystemNotifyVO first_notify_info = systemNotifyService.getFirstNotifyInfo();
+            request.setAttribute("first_notify_info", first_notify_info);
+            return mapping.findForward("game_test_state");
+        }
 
-		if (GameConfig.getGameState() == 2)// ÅĞ¶ÏÓÎÏ·µÄ×´Ì¬
-		{
-			// ÓÎÏ·×´Ì¬ÎªÉÏÏßÄÚ²¿²âÊÔ×´Ì¬
-			// ¶¯Ì¬¹«¸æ
-			SystemNotifyService systemNotifyService = new SystemNotifyService();
-			SystemNotifyVO first_notify_info = systemNotifyService
-					.getFirstNotifyInfo();
-			request.setAttribute("first_notify_info", first_notify_info);
-			return mapping.findForward("game_test_state");
-		}
+        LoginService loginService = new LoginService();
+        // åˆ¤æ–­åœ¨çº¿äººæ•°æ˜¯å¦è¾¾åˆ°ä¸Šçº¿
+        if (loginService.isFullOnlineRoleNum()) {
+            // åœ¨çº¿äººæ•°å·²è¾¾ç³»ç»Ÿè®¾ç½®ä¸Šçº¿
+            return mapping.findForward("user_num_limit_hint");
+        }
 
-		LoginService loginService = new LoginService();
-		// ÅĞ¶ÏÔÚÏßÈËÊıÊÇ·ñ´ïµ½ÉÏÏß
-		if (loginService.isFullOnlineRoleNum())
-		{
-			// ÔÚÏßÈËÊıÒÑ´ïÏµÍ³ÉèÖÃÉÏÏß
-			return mapping.findForward("user_num_limit_hint");
-		}
+        String login_ip = request.getRemoteAddr();
+        String login_params = request.getQueryString();
+        String qudao = request.getParameter("qudao");
+        String super_qudao = request.getParameter("super_qudao");
+        String user_name = request.getParameter("user_name");
+        String user_pwd = request.getParameter("user_pwd");
 
-		String login_ip = request.getRemoteAddr();
-		String login_params = request.getQueryString();
-		String qudao = request.getParameter("qudao");
-		String super_qudao = request.getParameter("super_qudao");
-		String user_name = request.getParameter("user_name");
-		String user_pwd = request.getParameter("user_pwd");
+        PassportService passportService = new PassportService();
+        int u_pk = passportService.loginFromGame(user_name, user_pwd, login_ip, qudao, super_qudao);
 
-		PassportService passportService = new PassportService();
-		int u_pk = passportService.loginFromGame(user_name, user_pwd, login_ip,
-				qudao, super_qudao);
-
-		if (u_pk == -1)
-		{
-			return mapping.findForward("fail");
-		}
-		HttpSession session = request.getSession();
-		if(GameConfig.jmsIsOn()){
-		LoginInfoVO liv = passportService.findByUpk(u_pk);
-		if (liv == null)
-		{
-			return mapping.findForward("fail");
-		}
-		else
-		{
-			if (liv.getQudao() == null || "".equals(liv.getQudao().trim())
-					|| liv.getSuper_qudao() == null
-					|| "".equals(liv.getSuper_qudao().trim())||"null".equals(liv.getQudao().trim())||"null".equals(liv.getSuper_qudao().trim()))
-			{
-				// Èç¹ûÃ»ÓĞÇşµÀ
-				if (qudao == null || super_qudao == null
-						|| "".equals(super_qudao.trim())
-						|| "".equals(qudao.trim())||"null".equals(qudao.trim())||"null".equals(super_qudao.trim()))
-				{
-					return mapping.findForward("error");
-				}
-				else
-				{
-					passportService.updateQudao(u_pk, super_qudao, qudao);
-					session.setAttribute("qudao", qudao);
-					session.setAttribute("super_qudao", super_qudao);
-				}
-			}
-			else
-			{
-				session.setAttribute("qudao", liv.getQudao());
-				session.setAttribute("super_qudao", liv.getSuper_qudao());
-			}
-		}
-		}
-		login_params = login_params.replaceAll("&", "&amp;");
-		session.setAttribute("uPk", u_pk + "");
-		session.setAttribute("user_name", user_name);
-		session.setAttribute("channel_id", Channel.WANXIANG + "");
-		session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
-		return mapping.findForward("success");
-	}
+        if (u_pk == -1) {
+            return mapping.findForward("fail");
+        }
+        HttpSession session = request.getSession();
+        if (GameConfig.jmsIsOn()) {
+            LoginInfoVO liv = passportService.findByUpk(u_pk);
+            if (liv == null) {
+                return mapping.findForward("fail");
+            } else {
+                if (liv.getQudao() == null || liv.getQudao().trim().isEmpty() || liv.getSuper_qudao() == null || liv.getSuper_qudao().trim().isEmpty() || "null".equals(liv.getQudao().trim()) || "null".equals(liv.getSuper_qudao().trim())) {
+                    // å¦‚æœæ²¡æœ‰æ¸ é“
+                    if (qudao == null || super_qudao == null || super_qudao.trim().isEmpty() || qudao.trim().isEmpty() || "null".equals(qudao.trim()) || "null".equals(super_qudao.trim())) {
+                        return mapping.findForward("error");
+                    } else {
+                        passportService.updateQudao(u_pk, super_qudao, qudao);
+                        session.setAttribute("qudao", qudao);
+                        session.setAttribute("super_qudao", super_qudao);
+                    }
+                } else {
+                    session.setAttribute("qudao", liv.getQudao());
+                    session.setAttribute("super_qudao", liv.getSuper_qudao());
+                }
+            }
+        }
+        login_params = login_params.replaceAll("&", "&amp;");
+        session.setAttribute("uPk", u_pk + "");
+        session.setAttribute("user_name", user_name);
+        session.setAttribute("channel_id", Channel.WANXIANG + "");
+        session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
+        return mapping.findForward("success");
+    }
 }

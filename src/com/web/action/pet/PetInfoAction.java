@@ -23,12 +23,12 @@ import com.lw.service.skill.PetSkillLevelUpService;
 import com.pub.ben.info.Expression;
 
 /**
- * @author ºîºÆ¾ü ³èÎï
+ * @author ä¾¯æµ©å†› å® ç‰©
  */
 public class PetInfoAction extends DispatchAction
 {
 	/**
-	 * ³èÎïÁĞ±í
+	 * å® ç‰©åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +37,7 @@ public class PetInfoAction extends DispatchAction
 	}
 
 	/**
-	 * ²é¿´³èÎïÏêÏ¸ĞÅÏ¢
+	 * æŸ¥çœ‹å® ç‰©è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -61,7 +61,7 @@ public class PetInfoAction extends DispatchAction
 	}
 
 	/**
-	 * ¸ü¸Ä³èÎïêÇ³Æ
+	 * æ›´æ”¹å® ç‰©æ˜µç§°
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -75,26 +75,26 @@ public class PetInfoAction extends DispatchAction
 
 		String pPk = (String) request.getSession().getAttribute("pPk");
 
-		// ÑéÖ¤pet_nickname
+		// éªŒè¯pet_nickname
 		// todo
-		String hint = null;// ÑéÖ¤Ê§°ÜÌáÊ¾
+		String hint = null;// éªŒè¯å¤±è´¥æç¤º
 		Pattern p = Pattern.compile(Expression.chinese_regexp);
 		Matcher m = p.matcher(pet_nickname);
 		boolean b = m.matches();
 		if (b == false)
 		{
-			hint = "³èÎïÃû³ÆÎªÊı×Ö,Ó¢ÎÄ»òÖĞÎÄ×Ö·û×éºÏ";
+			hint = "å® ç‰©åç§°ä¸ºæ•°å­—,è‹±æ–‡æˆ–ä¸­æ–‡å­—ç¬¦ç»„åˆ";
 		}
 
 		if (pet_nickname.equals(""))
 		{
-			hint = "²»ÄÜÎª¿Õ";
+			hint = "ä¸èƒ½ä¸ºç©º";
 		}
 		else
 		{
 			if (pet_nickname.length() > 4)
 			{
-				hint = "²»ÄÜ³¬¹ı4¸ö×Ö·û";
+				hint = "ä¸èƒ½è¶…è¿‡4ä¸ªå­—ç¬¦";
 			}
 		}
 
@@ -126,7 +126,7 @@ public class PetInfoAction extends DispatchAction
 	}
 
 	/**
-	 * ¸ü¸Ä³èÎïêÇ³ÆÒ³Ãæ
+	 * æ›´æ”¹å® ç‰©æ˜µç§°é¡µé¢
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -144,7 +144,7 @@ public class PetInfoAction extends DispatchAction
 	}
 
 	/**
-	 * ³èÎïÒÅÆúÒ³Ãæ
+	 * å® ç‰©é—å¼ƒé¡µé¢
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -160,11 +160,11 @@ public class PetInfoAction extends DispatchAction
 			String hint = null;
 			if (Integer.parseInt(petIsBring) == 1)
 			{
-				hint = "ÄúµÄ³èÎï" + petName + "»¹ÔÚÕ½¶·×´Ì¬²»ÄÜÒÅÆú!";
+				hint = "æ‚¨çš„å® ç‰©" + petName + "è¿˜åœ¨æˆ˜æ–—çŠ¶æ€ä¸èƒ½é—å¼ƒ!";
 			}
 			else
 			{
-				hint = "ÄúÊÇ·ñÒªÉ¾³ı³èÎï" + petName + "Âğ?";
+				hint = "æ‚¨æ˜¯å¦è¦åˆ é™¤å® ç‰©" + petName + "å—?";
 			}
 			request.setAttribute("petIsBring", petIsBring);
 			request.setAttribute("petGrade", petGrade);
@@ -180,7 +180,7 @@ public class PetInfoAction extends DispatchAction
 
 	}
 
-	/** ÏÔÊ¾³èÎïÄÜÑ§µ½µÄ¼¼ÄÜ */
+	/** æ˜¾ç¤ºå® ç‰©èƒ½å­¦åˆ°çš„æŠ€èƒ½ */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -196,14 +196,14 @@ public class PetInfoAction extends DispatchAction
 		String hint = "";
 		if (pet_id == 0)
 		{
-			hint = "Ã»ÓĞ¿ÉÒÔÑ§Ï°µÄ¼¼ÄÜ!";
+			hint = "æ²¡æœ‰å¯ä»¥å­¦ä¹ çš„æŠ€èƒ½!";
 		}
 		else
 		{
 			List<Integer> list = sk.getPetSkillControl(pet_id);
 			if (list == null || list.size() == 0)
 			{
-				hint = "Ã»ÓĞ¿ÉÒÔÑ§Ï°µÄ¼¼ÄÜ!";
+				hint = "æ²¡æœ‰å¯ä»¥å­¦ä¹ çš„æŠ€èƒ½!";
 			}
 			else
 			{
@@ -238,7 +238,7 @@ public class PetInfoAction extends DispatchAction
 		return mapping.findForward("pet_skill_list");
 	}
 
-	/** ÏÔÊ¾³èÎïÄÜÑ§µ½µÄ¼¼ÄÜ */
+	/** æ˜¾ç¤ºå® ç‰©èƒ½å­¦åˆ°çš„æŠ€èƒ½ */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

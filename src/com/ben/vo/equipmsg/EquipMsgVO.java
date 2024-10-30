@@ -9,11 +9,11 @@ package com.ben.vo.equipmsg;
  */
 public class EquipMsgVO
 {
-	/** 装备掉落消息提示ID */
+	/** 瑁呭鎺夎惤娑堟伅鎻愮ずID */
 	private int ePk;
-	/** 玩家id */
+	/** 鐜╁id */
 	private int pPk;
-	/** 消息内容 */
+	/** 娑堟伅鍐呭 */
 	private String eMsg;
 	public int getEPk()
 	{

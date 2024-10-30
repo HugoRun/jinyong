@@ -7,7 +7,7 @@ import com.ls.ben.dao.DaoBase;
 import com.ls.pub.db.DBConnection;
 
 /**
- * Íæ¼ÒÒÑ¾­Íê³ÉµÄÈÎÎñ
+ * ç©å®¶å·²ç»å®Œæˆçš„ä»»åŠ¡
  * @author hhj
  *
  */
@@ -15,7 +15,7 @@ public class TaskCompleteDao extends DaoBase
 {
 
 	/**
-	 * ·µ»Ø½ÇÉ«ÒÑ¾­Íê³ÉµÄÈÎÎñ
+	 * è¿”å›è§’è‰²å·²ç»å®Œæˆçš„ä»»åŠ¡
 	 * 
 	 * @param p_pk
 	 * @return List
@@ -23,7 +23,7 @@ public class TaskCompleteDao extends DaoBase
 	public HashMap getPlayerTaskComplete(int p_pk)
 	{
 		HashMap askComplete = new HashMap();
-		String sql = "select * from u_task_complete where p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_task_complete where p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

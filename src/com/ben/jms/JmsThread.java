@@ -7,7 +7,7 @@ public class JmsThread extends Thread
 		int i = 1;
          while(true){
         	JmsUtil.sendJmsRole("1102","222", "jy00004", "fdsa", 5);
-        	System.out.println("½ÇÉ«  :  "+i);
+        	System.out.println("è§’è‰²  :  "+i);
         	i++;
          }
 	}

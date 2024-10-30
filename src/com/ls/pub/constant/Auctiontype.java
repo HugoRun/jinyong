@@ -1,19 +1,19 @@
 package com.ls.pub.constant;
 
 /**
- * ÅÄÂô³¡³£Á¿
+ * æ‹å–åœºå¸¸é‡
  * @author thomas.lei
  * 10:38:46 AM
  */
 public class Auctiontype
 {
-	/***ÎäÆ÷***/
+	/***æ­¦å™¨***/
 	public static final int ARM=1;
-	/****·À¾ß****/
+	/****é˜²å…·****/
 	public static final int ARMOR=2;
-	/****·¨±¦*****/
+	/****æ³•å®*****/
 	public static final int JEWELRY=3;
-	/****µÀ¾ß*****/
+	/****é“å…·*****/
 	public static final int PROP=4;
 
 }

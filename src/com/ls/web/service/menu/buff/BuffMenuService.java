@@ -19,9 +19,9 @@ public class BuffMenuService
 
 	Logger logger =  Logger.getLogger("log.service");
 	/**
-	 * ¸øÍæ¼Ò¼ÓÉÏbuffĞ§¹û
+	 * ç»™ç©å®¶åŠ ä¸Šbuffæ•ˆæœ
 	 * @param pk
-	 * @param menuOperate1 ¾ÍÊÇbuff_id
+	 * @param menuOperate1 å°±æ˜¯buff_id
 	 */
 	public void setBuffStatus(int pPk, int buff_id)
 	{
@@ -38,7 +38,7 @@ public class BuffMenuService
 		BuffEffectDao buffEffectDao = new BuffEffectDao();
 		BuffEffectVO buffEffect = buffEffectDao.hasAlreadyBuff(pPk,BuffSystem.PLAYER, buffType+"");
 		logger.info("hasSameBuff="+buffEffect == null);
-		//Èç¹ûÓĞÒ»¸öÍ¬ÀàĞÍµÄbuffÔÚ,¾ÍÒª²é¿´ÆäÊÇ·ñ¿ÉÒÔ±»ÀÛ¼Ó, Èç¹û¿ÉÒÔ¾ÍÀÛ¼Ó,Èç¹û²»ĞĞ¾ÍÉ¾³ıÇ°ÃæµÄbuff£¬ÔÙÌí¼ÓÕâ¸öbuff
+		//å¦‚æœæœ‰ä¸€ä¸ªåŒç±»å‹çš„buffåœ¨,å°±è¦æŸ¥çœ‹å…¶æ˜¯å¦å¯ä»¥è¢«ç´¯åŠ , å¦‚æœå¯ä»¥å°±ç´¯åŠ ,å¦‚æœä¸è¡Œå°±åˆ é™¤å‰é¢çš„buffï¼Œå†æ·»åŠ è¿™ä¸ªbuff
 		if( buffEffect != null  ) {
 			logger.info("hasSameBuff="+buffEffect.getBfPk());
 			if(buffEffect.getBuffId() == buff_id) { 
@@ -61,7 +61,7 @@ public class BuffMenuService
 				buffEffectDao.deleteAlreadyBuff(pPk,BuffSystem.PLAYER, buffType);
 				bfeService.createBuffEffect(pPk, BuffSystem.PLAYER, buff_id);				
 			}
-		//Èç¹ûÃ»ÓĞÀàËÆµÄbuff,¾Í¸øÆäÒ»¸ö¼ÓÒ»¸ö×´Ì¬buff
+		//å¦‚æœæ²¡æœ‰ç±»ä¼¼çš„buff,å°±ç»™å…¶ä¸€ä¸ªåŠ ä¸€ä¸ªçŠ¶æ€buff
 		} else {
 			bfeService.createBuffEffect(pPk, BuffSystem.PLAYER, buff_id);
 			
@@ -70,20 +70,20 @@ public class BuffMenuService
 	
 	
 	/**
-	 * ¸øÍæ¼Ò¼ÓÉÏbuffĞ§¹û,vbuffÓĞ¶à¸öµÄÇé¿ö
+	 * ç»™ç©å®¶åŠ ä¸Šbuffæ•ˆæœ,vbuffæœ‰å¤šä¸ªçš„æƒ…å†µ
 	 * @param pk
-	 * @param menuOperate1 ¾ÍÊÇbuff_ids
+	 * @param menuOperate1 å°±æ˜¯buff_ids
 	 */
 	public String setBuffStatus(int pPk, String buff_ids)
 	{
 		if ( buff_ids == null || buff_ids.equals("")) {
-			logger.error("buffMenu·¢buffÊ±buffIdÎª¿Õ");
+			logger.error("buffMenuå‘buffæ—¶buffIdä¸ºç©º");
 			return null;
 		}
 		
 		StringBuffer sBuffer = new StringBuffer();
 		BuffDao buffDao = new BuffDao();
-		sBuffer.append("Äú»ñµÃÁË:");
+		sBuffer.append("æ‚¨è·å¾—äº†:");
 		String[] buffidStrings = buff_ids.split(",");
 		for ( int i=buffidStrings.length-1;i>=0;i--) {
 			setBuffStatus(pPk,Integer.parseInt(buffidStrings[i]));		
@@ -94,7 +94,7 @@ public class BuffMenuService
 	}
 	
 	/**
-	 * ´¦ÀíÔÚ Ê±¼ä¿ÉÓĞĞ§µş¼ÓÊ± Èç¹ûµş¼ÓÊ¹ÓÃbuffÊ±¿ÉÄÜÒª´¦ÀíµÄ
+	 * å¤„ç†åœ¨ æ—¶é—´å¯æœ‰æ•ˆå åŠ æ—¶ å¦‚æœå åŠ ä½¿ç”¨buffæ—¶å¯èƒ½è¦å¤„ç†çš„
 	 * @param buffEffect
 	 */
 	private void dealWithUpdateBuffEffect(BuffEffectVO buffEffect)

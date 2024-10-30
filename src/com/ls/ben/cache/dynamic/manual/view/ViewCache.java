@@ -1,90 +1,72 @@
 package com.ls.ben.cache.dynamic.manual.view;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-
 import com.ls.ben.cache.CacheBase;
 import com.ls.model.user.RoleEntity;
 
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+
 /**
- * ¹¦ÄÜ£ºÊÓÒ°»º´æ
+ * åŠŸèƒ½ï¼šè§†é‡ç¼“å­˜
+ *
  * @author ls
  * Apr 13, 2009
  * 5:04:30 PM
  */
-public class ViewCache extends CacheBase
-{
-	public static String VIEW_INFO_CACHE = "view_info_cache";
-	
-	
-	/**
-	 * Í¨¹ıÊÓÒ°µÃµ½¸ÃÊÓÒ°ÏÂµÄËùÓĞ½ÇÉ«
-	 * @param view
-	 * @return
-	 */
-	public LinkedHashSet<RoleEntity> getRolesByView( String view )
-	{
-		logger.debug("ÊÓÒ°:view="+view);
-		
-		LinkedHashSet<RoleEntity> role_list = null;
-		HashMap<String,LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, VIEW_INFO_CACHE);
-		role_list = result.get(view);
-		if( role_list==null )
-		{
-			role_list = new LinkedHashSet<RoleEntity>();
-			result.put(view, role_list);
-		}
-		return role_list;
-	}
-	
-	
-	/**
-	 * °ÑÍæ¼Ò½ÇÉ«ĞÅÏ¢·ÅÈë»º´æ
-	 * @param roleInfo
-	 * @return
-	 */
-	public void put( String view,RoleEntity roleInfo )
-	{
-		if( roleInfo==null || view==null || view.equals("") )
-		{
-			logger.debug("ÊÓÒ°="+view+";Íæ¼ÒĞÅÏ¢£º"+roleInfo+"£»»º´æÍæ¼ÒÊÓÒ°Ê±³ö´í£ºcharacterInfoÎªNULL");
-		}
-		
-		logger.debug("»º´æÍæ¼ÒĞÅÏ¢£¬½ÇÉ«id:"+roleInfo.getBasicInfo().getPPk()+";½ÇÉ«Ãû£º"+roleInfo.getBasicInfo().getName()+";ÊÓÒ°=view");
-		
-		HashMap<String,LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, VIEW_INFO_CACHE);
-		LinkedHashSet role_list = result.get(view);
-		
-		if( role_list==null )
-		{
-			role_list = new LinkedHashSet<RoleEntity>();
-			result.put(view, role_list);
-		}
-		
-		role_list.add(roleInfo);
-		
-	}
-	
+public class ViewCache extends CacheBase {
+    public static String VIEW_INFO_CACHE = "view_info_cache";
+
+
     /**
-	 * °ÑÍæ¼Ò½ÇÉ«ĞÅÏ¢ÒÆ³ı»º´æ
-	 * @param p_pk
-	 * @return
-	 */
-	public void remove( String view,RoleEntity roleInfo  )
-	{
-		logger.debug("»º´æÍæ¼ÒĞÅÏ¢£¬½ÇÉ«id:"+roleInfo.getBasicInfo().getPPk()+";½ÇÉ«Ãû£º"+roleInfo.getBasicInfo().getName()+";ÊÓÒ°="+view);
-		
-		HashMap<String,LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, VIEW_INFO_CACHE);
-		LinkedHashSet role_list = result.get(view);
-		
-		if( role_list==null )
-		{
-			role_list = new LinkedHashSet<RoleEntity>();
-			result.put(view, role_list);
-		}
-		
-		role_list.remove(roleInfo);
-		
-		logger.debug("°ÑÍæ¼Ò½ÇÉ«ĞÅÏ¢ÒÆ³ı»º´æ,½ÇÉ«id:"+roleInfo.getBasicInfo().getPPk()+";½ÇÉ«Ãû£º"+roleInfo.getBasicInfo().getName());
-	}
+     * é€šè¿‡è§†é‡å¾—åˆ°è¯¥è§†é‡ä¸‹çš„æ‰€æœ‰è§’è‰²
+     *
+     * @param view
+     * @return
+     */
+    public LinkedHashSet<RoleEntity> getRolesByView(String view) {
+        logger.debug("è§†é‡:view = " + view);
+        LinkedHashSet roleList;
+        HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, VIEW_INFO_CACHE);
+        roleList = result.computeIfAbsent(view, k -> new LinkedHashSet<RoleEntity>());
+        return roleList;
+    }
+
+
+    /**
+     * æŠŠç©å®¶è§’è‰²ä¿¡æ¯æ”¾å…¥ç¼“å­˜
+     *
+     * @param roleInfo
+     * @return
+     */
+    public void put(String view, RoleEntity roleInfo) {
+        if (roleInfo == null || view == null || view.isEmpty()) {
+            logger.debug("è§†é‡=" + view + ";ç©å®¶ä¿¡æ¯ï¼š" + roleInfo + "ï¼›ç¼“å­˜ç©å®¶è§†é‡æ—¶å‡ºé”™ï¼šcharacterInfoä¸ºNULL");
+        }
+        logger.debug("ç¼“å­˜ç©å®¶ä¿¡æ¯ï¼Œè§’è‰²id:" + roleInfo.getBasicInfo().getPPk() + ";è§’è‰²åï¼š" + roleInfo.getBasicInfo().getName() + ";è§†é‡=view");
+        HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, VIEW_INFO_CACHE);
+        LinkedHashSet role_list = result.computeIfAbsent(view, k -> new LinkedHashSet<RoleEntity>());
+        role_list.add(roleInfo);
+    }
+
+    /**
+     * æŠŠç©å®¶è§’è‰²ä¿¡æ¯ç§»é™¤ç¼“å­˜
+     *
+     * @param p_pk
+     * @return
+     */
+    public void remove(String view, RoleEntity roleInfo) {
+        logger.debug("ç¼“å­˜ç©å®¶ä¿¡æ¯ï¼Œè§’è‰²id:" + roleInfo.getBasicInfo().getPPk() + ";è§’è‰²åï¼š" + roleInfo.getBasicInfo().getName() + ";è§†é‡=" + view);
+
+        HashMap<String, LinkedHashSet> result = getElementValue(DYNAMIC_MANUAL_CACHE, VIEW_INFO_CACHE);
+        LinkedHashSet role_list = result.get(view);
+
+        if (role_list == null) {
+            role_list = new LinkedHashSet<RoleEntity>();
+            result.put(view, role_list);
+        }
+
+        role_list.remove(roleInfo);
+
+        logger.debug("æŠŠç©å®¶è§’è‰²ä¿¡æ¯ç§»é™¤ç¼“å­˜,è§’è‰²id:" + roleInfo.getBasicInfo().getPPk() + ";è§’è‰²åï¼š" + roleInfo.getBasicInfo().getName());
+    }
 }

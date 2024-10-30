@@ -3,17 +3,17 @@ package com.ls.ben.vo.mall;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ£ºÉÌ³Ç¼ÇÂ¼
+ * åŠŸèƒ½ï¼šå•†åŸè®°å½•
  * @author ls
  * May 12, 2009
  * 3:53:50 PM
  */
 public class MallLogVO
 {
-	/*1£©	Íæ¼Òid(u_pk)
-	2£©	½ÇÉ«Ãû×Ö
-	3£©	¼ÇÂ¼ÃèÊö
-	4£©	´´½¨Ê±¼ä*/
+	/*1ï¼‰	ç©å®¶id(u_pk)
+	2ï¼‰	è§’è‰²åå­—
+	3ï¼‰	è®°å½•æè¿°
+	4ï¼‰	åˆ›å»ºæ—¶é—´*/
 	private int uPk;
 	private String roleName;
 	private String log;

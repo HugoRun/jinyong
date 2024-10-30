@@ -24,7 +24,7 @@ public class SpeakerAction extends DispatchAction
 {
 	Logger logger = Logger.getLogger("log.action");
 	
-	// ×¼±¸·¢ÑÔ
+	// å‡†å¤‡å‘è¨€
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -37,7 +37,7 @@ public class SpeakerAction extends DispatchAction
 		return mapping.findForward("start_speak");
 	}
 	
-	// ×¼±¸·¢ÑÔ
+	// å‡†å¤‡å‘è¨€
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -51,7 +51,7 @@ public class SpeakerAction extends DispatchAction
 		String pg_pk = request.getParameter("pg_pk");
 		
 		if(content.length() >= 20) {
-			String hint = "ÄúÊäÈëµÄ×ÖÊıÌ«¶àÁË,ÇëÔÚ20¸ö×ÖÒÔÄÚ!";
+			String hint = "æ‚¨è¾“å…¥çš„å­—æ•°å¤ªå¤šäº†,è¯·åœ¨20ä¸ªå­—ä»¥å†…!";
 			request.setAttribute("hint", hint);
 			request.setAttribute("pg_pk", pg_pk);
 			
@@ -59,7 +59,7 @@ public class SpeakerAction extends DispatchAction
 		}else {
 			int i = Expression.hasPublish(content);
 			if(i == -1) {
-				String hint = "ÄúÊäÈëµÄ×ÖÖĞ»¹ÓĞ·Ç·¨×Ö·û,ÇëÖØĞÂÊäÈë!";
+				String hint = "æ‚¨è¾“å…¥çš„å­—ä¸­è¿˜æœ‰éæ³•å­—ç¬¦,è¯·é‡æ–°è¾“å…¥!";
 				request.setAttribute("hint", hint);
 				request.setAttribute("pg_pk", pg_pk);
 				
@@ -69,7 +69,7 @@ public class SpeakerAction extends DispatchAction
 				PlayerPropGroupVO ppgvo = ppdao.getByPgPk(Integer.valueOf(pg_pk));
 				
 				MessageResources resources = getResources(request);
-				//¹«¹²·¢ÑÔ¼ä¸ô
+				//å…¬å…±å‘è¨€é—´éš”
 				String speakerCommTime = resources.getMessage("speakerCommTime");
 				
 				logger.info("speakerCommTime="+speakerCommTime);
@@ -87,7 +87,7 @@ public class SpeakerAction extends DispatchAction
 					return mapping.findForward("walk");
 					
 				} else {
-					String hint = "¶Ô²»Æğ£¬Á¬ĞøÁ½´ÎÊ¹ÓÃ¸ÃÀàµÀ¾ß±ØĞë¼ä¸ô1·ÖÖÓ!";
+					String hint = "å¯¹ä¸èµ·ï¼Œè¿ç»­ä¸¤æ¬¡ä½¿ç”¨è¯¥ç±»é“å…·å¿…é¡»é—´éš”1åˆ†é’Ÿ!";
 					request.setAttribute("hint", hint);
 					request.setAttribute("pg_pk", pg_pk);
 					
@@ -95,7 +95,7 @@ public class SpeakerAction extends DispatchAction
 				}
 			}
 		}
-		//String hint = "ºÜÆæ¹Ö,ÎÒÒ²ºÜÆæ¹ÖÄúÎªÊ²Ã´ÄÜµ½Õâ¸öÒ³ÃæÀ´,Èç¹ûÄúÕæµÄ¿´µ½ÁË,Çë±¨¸æ¿Í·şÈËÔ±,Ğ»Ğ»!";
+		//String hint = "å¾ˆå¥‡æ€ª,æˆ‘ä¹Ÿå¾ˆå¥‡æ€ªæ‚¨ä¸ºä»€ä¹ˆèƒ½åˆ°è¿™ä¸ªé¡µé¢æ¥,å¦‚æœæ‚¨çœŸçš„çœ‹åˆ°äº†,è¯·æŠ¥å‘Šå®¢æœäººå‘˜,è°¢è°¢!";
 		//request.setAttribute("hint", hint);
 		//request.setAttribute("pg_pk", pg_pk);
 		//return mapping.findForward("sussenno"); 

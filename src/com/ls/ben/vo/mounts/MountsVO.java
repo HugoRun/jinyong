@@ -4,45 +4,45 @@ import com.ls.model.user.RoleEntity;
 import com.ls.pub.config.GameConfig;
 
 /**
- * ×øÆïÊµÌåÀà  ¶ÔÓ¦u_mounts_table±í
+ * åéª‘å®ä½“ç±»  å¯¹åº”u_mounts_tableè¡¨
  * @author Thomas.lei
  *
  */
 public class MountsVO
 {
-	/***×øÆïID***/
+	/***åéª‘ID***/
 	private int id;
-	/***×øÆïÃû³Æ***/
+	/***åéª‘åç§°***/
 	private String name;
-	/***×øÆïµÈ¼¶***/
+	/***åéª‘ç­‰çº§***/
 	private int level;
-	/***×øÆïÀàĞÍ1×ßÊŞ2·ÉÇİ3ÁÛ¼×***/
+	/***åéª‘ç±»å‹1èµ°å…½2é£ç¦½3é³ç”²***/
 	private int type;
-	/***¿É´«ËÍ´ÎÊı***/
+	/***å¯ä¼ é€æ¬¡æ•°***/
 	private int carryNum1;
-	/***³¬¹ı¿É´«ËÍ´ÎÊıĞèÒªµÄ¸¶·Ñ***/
+	/***è¶…è¿‡å¯ä¼ é€æ¬¡æ•°éœ€è¦çš„ä»˜è´¹***/
 	private int overPay1;
-	/***¿É´«ËÍ´ÎÊı***/
+	/***å¯ä¼ é€æ¬¡æ•°***/
 	private int carryNum2;
-	/***³¬¹ıÃâ·Ñ´«ËÍ´ÎÊıÃ¿´ÎµÄ¸¶·Ñ***/
+	/***è¶…è¿‡å…è´¹ä¼ é€æ¬¡æ•°æ¯æ¬¡çš„ä»˜è´¹***/
 	private int overPay2;
-	/***Éıµ½±¾¼¶ĞèÒªµÄÇ®Êı***/
+	/***å‡åˆ°æœ¬çº§éœ€è¦çš„é’±æ•°***/
 	private int uplevelPay;
-	/***Í¼Æ¬***/
+	/***å›¾ç‰‡***/
 	private String image;
-	/***×øÆïÃèÊö***/
+	/***åéª‘æè¿°***/
 	private String display;
-	/***×øÆïµÄ¹¦ÄÜÃèÊö£¬¾ÍÊÇ¿É´«ËÍµÄ³¡¾°´ÎÊıµÈ***/
+	/***åéª‘çš„åŠŸèƒ½æè¿°ï¼Œå°±æ˜¯å¯ä¼ é€çš„åœºæ™¯æ¬¡æ•°ç­‰***/
 	private String functionDisplay;
-	/***×øÆïµÄbuffĞ§¹û***/
+	/***åéª‘çš„buffæ•ˆæœ***/
 	private String buff;
-	/***×øÆïµÄÂô³ö¼Û¸ñ***/
+	/***åéª‘çš„å–å‡ºä»·æ ¼***/
 	private int sentPrice;
-	/***×øÆï¿ÉÉı¼¶µ½ÏÂÒ»¼¶µÄID£¬Ä¿Ç°Îª2¸ö£¬ÓÃ¶ººÅ¸ô¿ª£¬Ëæ»úÉú³É***/
+	/***åéª‘å¯å‡çº§åˆ°ä¸‹ä¸€çº§çš„IDï¼Œç›®å‰ä¸º2ä¸ªï¼Œç”¨é€—å·éš”å¼€ï¼Œéšæœºç”Ÿæˆ***/
 	private String nextLevelID;
-	/***×øÆï¿ÉÉıµ½×î¸ßµÄµÈ¼¶ÏŞÖÆ***/
+	/***åéª‘å¯å‡åˆ°æœ€é«˜çš„ç­‰çº§é™åˆ¶***/
 	private int hightLevel;
-	/**µÃµ½×øÆïÍ¼Æ¬**/
+	/**å¾—åˆ°åéª‘å›¾ç‰‡**/
 	public  String getPicStr(RoleEntity roleEntity)
 	{
 		if(roleEntity==null)

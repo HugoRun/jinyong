@@ -23,7 +23,7 @@ public class MyServiceImpl implements MyService
 {
 
 	/**
-	 * Ôö¼ÓÇ×ÃÜ¶È
+	 * å¢åŠ äº²å¯†åº¦
 	 */
 	public void addDear(int p_pk,String name)
 	{
@@ -39,7 +39,7 @@ public class MyServiceImpl implements MyService
 	}
 	
 	/**
-	 * »ñÈ¡×é¶ÓĞ§¹û
+	 * è·å–ç»„é˜Ÿæ•ˆæœ
 	 */
 	public int addTeamEffect(int P_PK)
 	{
@@ -63,7 +63,7 @@ public class MyServiceImpl implements MyService
 	}
 
 	/**
-	 * »ñµÃ´ò¹Ö¾­Ñé
+	 * è·å¾—æ‰“æ€ªç»éªŒ
 	 * 
 	 * @param p_pk
 	 * @param fd_pk
@@ -125,7 +125,7 @@ public class MyServiceImpl implements MyService
 	}
 
 	/**
-	 * ·òÆŞ×é¶Ó»ñµÃ5%ÆøÑªÉÏÏŞ
+	 * å¤«å¦»ç»„é˜Ÿè·å¾—5%æ°”è¡€ä¸Šé™
 	 */
 	public void addBloodMax(PartInfoVO player)
 	{
@@ -172,12 +172,12 @@ public class MyServiceImpl implements MyService
 	}
 
 	/**
-	 * Í½µÜÃ¿Éı5¼¶£¬Ê¦¸µ¿É»ñµÃÒøÁ½ºÍ¾­ÑéµÈ½±Àø
-	 * »ñµÃ¾­Ñé½±Àø¹«Ê½£ºÊ¦¸µµ±Ç°µÈ¼¶Éı¼¶¾­Ñé/20*(Í½µÜµ±Ç°µÈ¼¶/Ê¦¸µµ±Ç°µÈ¼¶)
-     * »ñµÃÒøÁ½½±Àø¹«Ê½£º500*Í½µÜµÈ¼¶
-	 * Í½µÜµÚÒ»´Î¼ÓÈëÃÅÅÉ£¬Ê¦¸µ¿É»ñµÃ¡¾Ôª±¦¾í¡¿¡Á500
-	 * Í½µÜµÈ¼¶´ïµ½Ê¦¸µµÈ¼¶»ò½ÇÉ«µÈ¼¶´ïµ½40¼¶£¬¼´¿É³öÊ¦£¬²¢»ñµÃ¡¾³öÊ¦´óÀñ°ü¡¿¡Á1
-	 * Í½µÜ³öÊ¦Ê¦¸µ»ñµÃ½­ºşÉùÍû100£¬¡¾³öÊ¦´óÀñ°ü¡¿¡Á1ºÍ¾­Ñé£¨Ê¦¸µµ±Ç°Éı¼¶¾­ÑéµÄ10%£©
+	 * å¾’å¼Ÿæ¯å‡5çº§ï¼Œå¸ˆå‚…å¯è·å¾—é“¶ä¸¤å’Œç»éªŒç­‰å¥–åŠ±
+	 * è·å¾—ç»éªŒå¥–åŠ±å…¬å¼ï¼šå¸ˆå‚…å½“å‰ç­‰çº§å‡çº§ç»éªŒ/20*(å¾’å¼Ÿå½“å‰ç­‰çº§/å¸ˆå‚…å½“å‰ç­‰çº§)
+     * è·å¾—é“¶ä¸¤å¥–åŠ±å…¬å¼ï¼š500*å¾’å¼Ÿç­‰çº§
+	 * å¾’å¼Ÿç¬¬ä¸€æ¬¡åŠ å…¥é—¨æ´¾ï¼Œå¸ˆå‚…å¯è·å¾—ã€å…ƒå®å·ã€‘Ã—500
+	 * å¾’å¼Ÿç­‰çº§è¾¾åˆ°å¸ˆå‚…ç­‰çº§æˆ–è§’è‰²ç­‰çº§è¾¾åˆ°40çº§ï¼Œå³å¯å‡ºå¸ˆï¼Œå¹¶è·å¾—ã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘Ã—1
+	 * å¾’å¼Ÿå‡ºå¸ˆå¸ˆå‚…è·å¾—æ±Ÿæ¹–å£°æœ›100ï¼Œã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘Ã—1å’Œç»éªŒï¼ˆå¸ˆå‚…å½“å‰å‡çº§ç»éªŒçš„10%ï¼‰
 	 */
 	public void levelUp(int p_pk)
 	{
@@ -189,46 +189,46 @@ public class MyServiceImpl implements MyService
 			com.ben.vo.info.partinfo.PartInfoVO pv = (com.ben.vo.info.partinfo.PartInfoVO) partInfoDAO.getPartView(tea_id+"");
 			if(bi!=null&&pv!=null){
 				if((bi.getGrade()-shitu.getStu_level())%5==0){
-//					»ñµÃ¾­Ñé½±Àø¹«Ê½£ºÊ¦¸µµ±Ç°µÈ¼¶Éı¼¶¾­Ñé/20*(Í½µÜµ±Ç°µÈ¼¶/Ê¦¸µµ±Ç°µÈ¼¶)
+//					è·å¾—ç»éªŒå¥–åŠ±å…¬å¼ï¼šå¸ˆå‚…å½“å‰ç­‰çº§å‡çº§ç»éªŒ/20*(å¾’å¼Ÿå½“å‰ç­‰çº§/å¸ˆå‚…å½“å‰ç­‰çº§)
 					long teaGetExp = ShituConstant.getTeaExpGet(bi.getGrade(), pv);
 					if(((pv.getPGrade()==59||pv.getPGrade()==69||pv.getPGrade()==79||pv.getPGrade()==GameConfig.getGradeUpperLimit()))&&((teaGetExp+Long.parseLong(pv.getPExperience().trim()))>Long.parseLong(pv.getPXiaExperience().trim()))){
 						teaGetExp =  Long.parseLong(pv.getPXiaExperience().trim())-Long.parseLong(pv.getPExperience().trim());
 					}
 					propertyService.updateAddExpProperty(pv.getPPk(), teaGetExp);
-//					»ñµÃÒøÁ½½±Àø¹«Ê½£º5*Í½µÜµÈ¼¶
+//					è·å¾—é“¶ä¸¤å¥–åŠ±å…¬å¼ï¼š5*å¾’å¼Ÿç­‰çº§
 					int teaGetMoney = ShituConstant.getTeaMoneyGet(bi.getGrade());
 					economyService.addMoney1(pv.getPPk(), teaGetMoney);
-					String message = "ÄúµÄÍ½µÜ"+bi.getName()+"ÉıÁË5¼¶£¬Äú»ñµÃÁË"+(teaGetExp==0?"":("¾­Ñé£º"+teaGetExp+"µã£¬"))+"Òø×Ó:"+MoneyUtil.changeCopperToStr(teaGetMoney);
-					mailInfoService.sendMailBySystem(pv.getPPk(), "ÄúµÄÍ½µÜ"+bi.getName()+"ÉıÁË5¼¶", message);
+					String message = "æ‚¨çš„å¾’å¼Ÿ"+bi.getName()+"å‡äº†5çº§ï¼Œæ‚¨è·å¾—äº†"+(teaGetExp==0?"":("ç»éªŒï¼š"+teaGetExp+"ç‚¹ï¼Œ"))+"é“¶å­:"+MoneyUtil.changeCopperToStr(teaGetMoney);
+					mailInfoService.sendMailBySystem(pv.getPPk(), "æ‚¨çš„å¾’å¼Ÿ"+bi.getName()+"å‡äº†5çº§", message);
 				}
-//				µÚÒ»´Î¼ÓÈëÃÅÅÉ,Ê¦¸µ¿É»ñµÃ¡¾Ôª±¦¾í¡¿¡Á500
+//				ç¬¬ä¸€æ¬¡åŠ å…¥é—¨æ´¾,å¸ˆå‚…å¯è·å¾—ã€å…ƒå®å·ã€‘Ã—500
 				if(bi.getGrade()==10){
 					String get = "";
 //					if(pv.getPWrapSpare()>0){
 //					goodsService.putPropToWrap(pv.getPPk(), ShituConstant.YUANBAOQUAN_ID, ShituConstant.YUANBAOQUAN_COUNT);
-					get = "Äã»ñµÃ½±Àø£º¡¾"+GameConfig.getYuanbaoQuanName()+"¡¿¡Á"+ShituConstant.YUANBAOQUAN_COUNT+".<br/>";
+					get = "ä½ è·å¾—å¥–åŠ±ï¼šã€"+GameConfig.getYuanbaoQuanName()+"ã€‘Ã—"+ShituConstant.YUANBAOQUAN_COUNT+".<br/>";
 //					}
 					String help = "<anchor><go method=\"post\" href=\""+GameConfig.getContextPath()+"/baishi.do"+"\">"
 						+ "<postfield name=\"cmd\" value=\"nn1\" />"
-						+ "</go>ÁìÈ¡</anchor><br/>";
-					String message = "ÄãµÄÍ½µÜ"+bi.getName()+"¼ÓÈëÁË"+bi.getFactionName()+".";
+						+ "</go>é¢†å–</anchor><br/>";
+					String message = "ä½ çš„å¾’å¼Ÿ"+bi.getName()+"åŠ å…¥äº†"+bi.getFactionName()+".";
 					int mailId = mailInfoService.insertMailReturnId(pv.getPPk(), message, "aa");
 					String help1 = "<anchor><go method=\"post\" href=\""+GameConfig.getContextPath()+"/baishi.do"+"\">"
 						+ "<postfield name=\"cmd\" value=\"nn1\" />"
 						+ "<postfield name=\"mailId\" value=\""+mailId+"\" />"
 						+ " </go>"
-						+ "ÁìÈ¡</anchor><br/>";
+						+ "é¢†å–</anchor><br/>";
 					mailInfoService.updateMail(mailId, message+get+help1);
 				}
-//				Í½µÜ³öÊ¦Ê¦¸µ»ñµÃ½­ºşÉùÍû100£¬¡¾³öÊ¦´óÀñ°ü¡¿¡Á1ºÍ¾­Ñé£¨Ê¦¸µµ±Ç°Éı¼¶¾­ÑéµÄ10%£©
+//				å¾’å¼Ÿå‡ºå¸ˆå¸ˆå‚…è·å¾—æ±Ÿæ¹–å£°æœ›100ï¼Œã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘Ã—1å’Œç»éªŒï¼ˆå¸ˆå‚…å½“å‰å‡çº§ç»éªŒçš„10%ï¼‰
 				if(bi.getGrade()>=40||bi.getGrade()>=pv.getPGrade()){
 					creditProce.addPlayerCredit(pv.getPPk(),ShituConstant.CHUSHI_CREDIT_ID,ShituConstant.CHUSHI_CREDIT_COUNT);
-					//Í³¼ÆĞèÒª
+					//ç»Ÿè®¡éœ€è¦
 					new RankService().updateAdd(pv.getPPk(), "credit", ShituConstant.CHUSHI_CREDIT_COUNT);
 //					String libao = "";
 //					if(pv.getPWrapSpare()>0){
 //					goodsService.putPropToWrap(bi.getPPk(), ShituConstant.STU_DALIBAO, 1);
-//					libao = "¡¾³öÊ¦´óÀñ°ü¡¿¡Á1£¬";
+//					libao = "ã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘Ã—1ï¼Œ";
 //					}
 //					if(bi.getWrapSpare()>0){
 //					goodsService.putPropToWrap(pv.getPPk(), ShituConstant.TEA_DALIBAO, 1);
@@ -243,32 +243,32 @@ public class MyServiceImpl implements MyService
 						chushiExp =  Long.parseLong(pv.getPXiaExperience().trim())-Long.parseLong(pv.getPExperience().trim());
 					}
 					propertyService.updateAddExpProperty(pv.getPPk(), chushiExp);
-					getExp = ",¾­Ñé"+chushiExp+"<br/>";
+					getExp = ",ç»éªŒ"+chushiExp+"<br/>";
 					}
 					}
-					String message = "ÄúµÄÍ½µÜ"+bi.getName()+"ÒÑ¾­Ë³Àû³öÊ¦ÁË.";
+					String message = "æ‚¨çš„å¾’å¼Ÿ"+bi.getName()+"å·²ç»é¡ºåˆ©å‡ºå¸ˆäº†.";
 					int mailId = mailInfoService.insertMailReturnId(pv.getPPk(), message, "aa");
 					String help1 = "<anchor><go method=\"post\" href=\""+GameConfig.getContextPath()+"/baishi.do"+"\">"
 						+ "<postfield name=\"cmd\" value=\"nn2\" />"
 						+ "<postfield name=\"mailId\" value=\""+mailId+"\" />"
 						+ " </go>"
-						+ "ÁìÈ¡¡¾³öÊ¦´óÀñ°ü¡¿</anchor><br/>";
-					mailInfoService.updateMail(mailId, message+"Äú»ñµÃ½±Àø£º¡¾³öÊ¦´óÀñ°ü¡¿¡Á1,½­ºşÉùÍû¡Á"+ShituConstant.CHUSHI_CREDIT_COUNT+getExp+help1);
+						+ "é¢†å–ã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘</anchor><br/>";
+					mailInfoService.updateMail(mailId, message+"æ‚¨è·å¾—å¥–åŠ±ï¼šã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘Ã—1,æ±Ÿæ¹–å£°æœ›Ã—"+ShituConstant.CHUSHI_CREDIT_COUNT+getExp+help1);
 					
-					int mailId1 = mailInfoService.insertMailReturnId(bi.getPPk(), "ÄúÒÑ¾­Ë³Àû³öÊ¦ÁË", "aa");
+					int mailId1 = mailInfoService.insertMailReturnId(bi.getPPk(), "æ‚¨å·²ç»é¡ºåˆ©å‡ºå¸ˆäº†", "aa");
 					String help2 = "<anchor><go method=\"post\" href=\""+GameConfig.getContextPath()+"/baishi.do"+"\">"
 						+ "<postfield name=\"cmd\" value=\"nn3\" />"
 						+ "<postfield name=\"mailId\" value=\""+mailId1+"\" />"
 						+ " </go>"
-						+ "ÁìÈ¡¡¾³öÊ¦´óÀñ°ü¡¿</anchor><br/>";
-					mailInfoService.updateMail(mailId1, "ÄúÒÑ¾­Ë³Àû³öÊ¦ÁË,»ñµÃ½±Àø£º¡¾³öÊ¦´óÀñ°ü¡¿¡Á1.Çë²é¿´ÓÊ¼şÁìÈ¡.<br/>"+help2);
+						+ "é¢†å–ã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘</anchor><br/>";
+					mailInfoService.updateMail(mailId1, "æ‚¨å·²ç»é¡ºåˆ©å‡ºå¸ˆäº†,è·å¾—å¥–åŠ±ï¼šã€å‡ºå¸ˆå¤§ç¤¼åŒ…ã€‘Ã—1.è¯·æŸ¥çœ‹é‚®ä»¶é¢†å–.<br/>"+help2);
 					
 					UMessageInfoVO uif = new UMessageInfoVO();
 					uif.setCreateTime(new Date());
 					uif.setMsgPriority(PopUpMsgType.CHUSHI_FIRST);
 					uif.setMsgType(PopUpMsgType.CHUSHI);
 					uif.setPPk(bi.getPPk());
-					uif.setResult("³öÊ¦");
+					uif.setResult("å‡ºå¸ˆ");
 					uif.setMsgOperate1(1+"");
 					uif.setMsgOperate2(bi.getPPk()+"");
 					uMsgService.sendPopUpMsg(uif);

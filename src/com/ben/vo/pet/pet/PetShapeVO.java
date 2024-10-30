@@ -1,30 +1,30 @@
 package com.ben.vo.pet.pet;
 
 /**
- * ¹¦ÄÜ: ³èÎï³É³¤±í
+ * åŠŸèƒ½: å® ç‰©æˆé•¿è¡¨
  * 
- * @author ºîºÆ¾ü 3:26:49 PM
+ * @author ä¾¯æµ©å†› 3:26:49 PM
  */
 public class PetShapeVO {
-	/** ³èÎï³É³¤id */
+	/** å® ç‰©æˆé•¿id */
 	private int shapeId;
-	/** ³èÎïid */
+	/** å® ç‰©id */
 	private int petId;
-	/** ³èÎïÀàĞÍ1ÆÕÍ¨ĞÍ 2ÒìÊŞĞÍ 3ÈğÊŞĞÍ */
+	/** å® ç‰©ç±»å‹1æ™®é€šå‹ 2å¼‚å…½å‹ 3ç‘å…½å‹ */
 	private int petType;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int shapeRating;
-	/** Âô³ö¼Û¸ñ */
+	/** å–å‡ºä»·æ ¼ */
 	private int shapeSale;
-	/** ±¾¼¶¾­Ñé ´ïµ½¸ÄµÈ¼¶ĞèÒª¾­Ñé */
+	/** æœ¬çº§ç»éªŒ è¾¾åˆ°æ”¹ç­‰çº§éœ€è¦ç»éªŒ */
 	private String shapeBenExperience;
-	/** ÏÂ¼¶¾­Ñé ´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé */
+	/** ä¸‹çº§ç»éªŒ è¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ */
 	private String shapeXiaExperience;
-	/** ×îĞ¡¹¥»÷ */
+	/** æœ€å°æ”»å‡» */
 	private String shapeAttackXiao;
-	/** ×î´ó¹¥»÷ */
+	/** æœ€å¤§æ”»å‡» */
 	private String shapeAttackDa;
-	/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ */
+	/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ */
 	private int shapeType;
 
 	public int getShapeId() {

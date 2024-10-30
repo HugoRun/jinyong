@@ -4,7 +4,8 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="hint" title="<s:message key = "gamename"/>">
 <p>
 您的点击过于频繁,请稍候!<br/>

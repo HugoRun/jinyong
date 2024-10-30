@@ -2,11 +2,11 @@ package com.ls.model.organize.faction;
 
 /**
  * @author ls
- * °ïÅÉ¹ØÏµ
+ * å¸®æ´¾å…³ç³»
  */
 public class FRelation
 {
-	private int fIdA;//°ïÅÉA
-	private int fIdB;//°ïÅÉB
-	private int hatred;//³ğºŞÖµ
+	private int fIdA;//å¸®æ´¾A
+	private int fIdB;//å¸®æ´¾B
+	private int hatred;//ä»‡æ¨å€¼
 }

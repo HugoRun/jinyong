@@ -8,32 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ben.vo.intimatehint.IntimateHintVO;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 10:44:00 AM
  */
 
 public class IntimateHintDAO
 {
-	Jygamedb con;
+	JyGameDB con;
 	/**
-	 * µÃµ½ËùÓĞÎäÁÖĞ¡ÌùÊ¿
+	 * å¾—åˆ°æ‰€æœ‰æ­¦æ—å°è´´å£«
 	 */
 	public List<IntimateHintVO> getAllIntimateHint()
 	{
 		List<IntimateHintVO> hint_list = null;
 		int total_num = 0;
 		
-		String total_num_sql = "select count(*) from u_intimate_hint";
-		String sql = "select * from u_intimate_hint";
+		String total_num_sql = "SELECT count(*) FROM `u_intimate_hint`";
+		String sql = "SELECT * FROM `u_intimate_hint`";
 		
 		IntimateHintVO vo = null;
 		try
 		{
-			con = new Jygamedb();
+			con = new JyGameDB();
 			
 			ResultSet rs = con.query(total_num_sql);
 			if( rs.next() )

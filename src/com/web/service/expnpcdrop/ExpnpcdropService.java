@@ -14,31 +14,31 @@ import com.pm.dao.systemInfo.SysInfoDao;
 import com.pm.service.systemInfo.SystemInfoService;
 
 /**
- * »ñÈ¡Ö´ĞĞ¾­Ñé±¶ÊıµÄÊı¾İ
+ * è·å–æ‰§è¡Œç»éªŒå€æ•°çš„æ•°æ®
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class ExpnpcdropService
 {
 	Logger logger = Logger.getLogger("log.service");
 	
-	public final static int ACQUIT_FORMATONE = 1;//±íÏÖ¸ñÊ½ 1(16:00:00ÕâÖÖ¸ñÊ½)
-	public final static int ACQUIT_FORMATWO = 2;//2(2009-01-16 16:37:45ÕâÖÖ¸ñÊ½)
+	public final static int ACQUIT_FORMATONE = 1;//è¡¨ç°æ ¼å¼ 1(16:00:00è¿™ç§æ ¼å¼)
+	public final static int ACQUIT_FORMATWO = 2;//2(2009-01-16 16:37:45è¿™ç§æ ¼å¼)
 	/**
-	 * »ñÈ¡Ö´ĞĞ¾­Ñé±¶ÊıµÄÊı¾İ
+	 * è·å–æ‰§è¡Œç»éªŒå€æ•°çš„æ•°æ®
 	 */
 	public int getExpNpcdrop()
 	{  
 		GameConfig.reloadSysExpMultiple();
 		int exp = 1;
-		int exp_cimelia = 1;//1ÊÇ¾­ÑéµôÂÊ 2ÊÇµô±¦µôÂÊ  
+		int exp_cimelia = 1;//1æ˜¯ç»éªŒæ‰ç‡ 2æ˜¯æ‰å®æ‰ç‡  
 		ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
 		ExpNpcdropVO expNpcdropVO = expNpcDropCache.getExpNpcdrop(exp_cimelia);
 		
 		if(expNpcdropVO == null){
 			exp = 1;
 		}else{ 
-		if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATONE){//±íÏÖ¸ñÊ½ 1(16:00:00ÕâÖÖ¸ñÊ½)
+		if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATONE){//è¡¨ç°æ ¼å¼ 1(16:00:00è¿™ç§æ ¼å¼)
 			Date nowTime = new Date();
 			Date begin = DateUtil.strToTime(expNpcdropVO.getBeginTime()); 
 			Date end = DateUtil.strToTime(expNpcdropVO.getEndTime());
@@ -46,7 +46,7 @@ public class ExpnpcdropService
 			{
 				exp = expNpcdropVO.getEnMultiple();
 			}
-		}else if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATWO){//2(2009-01-16 16:37:45ÕâÖÖ¸ñÊ½)
+		}else if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATWO){//2(2009-01-16 16:37:45è¿™ç§æ ¼å¼)
 			Date nowTime = new Date();
 			Date begin = DateUtil.strToDate(expNpcdropVO.getBeginTime());
 			Date end = DateUtil.strToDate(expNpcdropVO.getEndTime()); 
@@ -60,20 +60,20 @@ public class ExpnpcdropService
 	}
 	
 	/**
-	 * »ñÈ¡Ö´ĞĞµô±¦±¶ÊıµÄÊı¾İ
+	 * è·å–æ‰§è¡Œæ‰å®å€æ•°çš„æ•°æ®
 	 */
 	public int getCimeliaNpcdrop()
 	{ 
 		GameConfig.reloadSysDropMultiple();
 		int exp = 1;
-		int exp_cimelia = 2;//1ÊÇ¾­ÑéµôÂÊ 2ÊÇµô±¦µôÂÊ  
+		int exp_cimelia = 2;//1æ˜¯ç»éªŒæ‰ç‡ 2æ˜¯æ‰å®æ‰ç‡  
 		ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
 		ExpNpcdropVO expNpcdropVO = expNpcDropCache.getExpNpcdrop(exp_cimelia);
 		
 		if(expNpcdropVO == null){
 			exp = 1;
 		}else{
-		if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATONE){//±íÏÖ¸ñÊ½ 1(16:00:00ÕâÖÖ¸ñÊ½)
+		if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATONE){//è¡¨ç°æ ¼å¼ 1(16:00:00è¿™ç§æ ¼å¼)
 			Date nowTime = new Date();
 			Date begin = DateUtil.strToTime(expNpcdropVO.getBeginTime()); 
 			Date end = DateUtil.strToTime(expNpcdropVO.getEndTime());
@@ -81,7 +81,7 @@ public class ExpnpcdropService
 			{
 				exp = expNpcdropVO.getEnCimelia();
 			}
-		}else if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATWO){//2(2009-01-16 16:37:45ÕâÖÖ¸ñÊ½)
+		}else if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATWO){//2(2009-01-16 16:37:45è¿™ç§æ ¼å¼)
 			Date nowTime = new Date();
 			Date begin = DateUtil.strToDate(expNpcdropVO.getBeginTime());
 			Date end = DateUtil.strToDate(expNpcdropVO.getEndTime()); 
@@ -95,13 +95,13 @@ public class ExpnpcdropService
 	} 
 	
 	
-	/**»î¶¯¿ªÊ¼µÄÊ±ºò ·¢ËÍ¸øÍæ¼ÒÏµÍ³ÏûÏ¢**/
+	/**æ´»åŠ¨å¼€å§‹çš„æ—¶å€™ å‘é€ç»™ç©å®¶ç³»ç»Ÿæ¶ˆæ¯**/
 	public void sendSystemMessageByExp(){
-		int exp_cimelia = 2;//1ÊÇ¾­ÑéµôÂÊ 2ÊÇµô±¦µôÂÊ 	
+		int exp_cimelia = 2;//1æ˜¯ç»éªŒæ‰ç‡ 2æ˜¯æ‰å®æ‰ç‡ 	
 		ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
 		ExpNpcdropVO expNpcdropVO = expNpcDropCache.getExpNpcdrop(exp_cimelia);
 		if(expNpcdropVO != null){
-			if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATONE){//±íÏÖ¸ñÊ½ 1(16:00:00ÕâÖÖ¸ñÊ½)
+			if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATONE){//è¡¨ç°æ ¼å¼ 1(16:00:00è¿™ç§æ ¼å¼)
 					Date dt = new Date();
 					DateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); 
 					String dtstr = sf.format(dt);
@@ -114,10 +114,10 @@ public class ExpnpcdropService
 						long endtime = end.getTime() + 60000*i;
 						String begintime_str = sd.format(time);
 						String endtime_str = sd.format(endtime);
-						systemInfoService.insertSystemInfoBySystem("ÏµÍ³Ë«±¶¾­Ñé(µô±¦)×£¸£ÒÑ¾­¿ªÊ¼ÁË,"+expNpcdropVO.getEndTime()+"½áÊø!",begintime_str);
-						systemInfoService.insertSystemInfoBySystem("ÏµÍ³Ë«±¶¾­Ñé(µô±¦)×£¸£ÒÑ¾­½áÊø!", endtime_str);
+						systemInfoService.insertSystemInfoBySystem("ç³»ç»ŸåŒå€ç»éªŒ(æ‰å®)ç¥ç¦å·²ç»å¼€å§‹äº†,"+expNpcdropVO.getEndTime()+"ç»“æŸ!",begintime_str);
+						systemInfoService.insertSystemInfoBySystem("ç³»ç»ŸåŒå€ç»éªŒ(æ‰å®)ç¥ç¦å·²ç»ç»“æŸ!", endtime_str);
 					}
-			}else if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATWO){//2(2009-01-16 16:37:45ÕâÖÖ¸ñÊ½)
+			}else if(expNpcdropVO.getAcquitFormat() == ExpnpcdropService.ACQUIT_FORMATWO){//2(2009-01-16 16:37:45è¿™ç§æ ¼å¼)
 				Date nowTime = new Date();
 				Date beginq = DateUtil.strToDate(expNpcdropVO.getBeginTime()); 
 				Date endq = DateUtil.strToDate(expNpcdropVO.getEndTime());
@@ -133,9 +133,9 @@ public class ExpnpcdropService
 						long etime = end.getTime() + 60000*i;
 						String begintime_str = sd.format(stime);
 						String endtime_str = sd1.format(etime);
-						systemInfoService.insertSystemInfoBySystem("ÏµÍ³Ë«±¶¾­Ñé(µô±¦)×£¸£ÒÑ¾­¿ªÊ¼ÁË,"+expNpcdropVO.getEndTime()+"½áÊø!", begintime_str);
+						systemInfoService.insertSystemInfoBySystem("ç³»ç»ŸåŒå€ç»éªŒ(æ‰å®)ç¥ç¦å·²ç»å¼€å§‹äº†,"+expNpcdropVO.getEndTime()+"ç»“æŸ!", begintime_str);
 						SysInfoDao sysInfoDao = new SysInfoDao();
-						sysInfoDao.insertSysInfo(0,2,"ÏµÍ³Ë«±¶¾­Ñé(µô±¦)×£¸£ÒÑ¾­½áÊø!",endtime_str);
+						sysInfoDao.insertSysInfo(0,2,"ç³»ç»ŸåŒå€ç»éªŒ(æ‰å®)ç¥ç¦å·²ç»ç»“æŸ!",endtime_str);
 					}
 				}
 			}

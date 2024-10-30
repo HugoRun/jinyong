@@ -4,13 +4,13 @@ public class MenpaiNpcVO
 {
 	// id
 	private int id;
-	// √≈≈…
+	// Èó®Ê¥æ
 	private int p_type;
 	// npcid
 	private int npc_id;
 	// npc lv
 	private int npc_lv;
-	// µÿµ„
+	// Âú∞ÁÇπ
 	private int scence_id;
 
 	public int getId()

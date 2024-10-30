@@ -1,9 +1,9 @@
 <%@page contentType="text/vnd.wap.wml"
-	import="java.util.*,com.dp.vo.store.newgood.*,com.dp.vo.store.player.*,com.ls.pub.util.*"
-	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
+    import="java.util.*,com.dp.vo.store.newgood.*,com.dp.vo.store.player.*,com.ls.pub.util.*"
+    pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig"%>
 <%List<NewGoodVO> nglist2=(List<NewGoodVO>)request.getAttribute("jifeng");
-   			if(nglist2!=null&&nglist2.size()!=0){
-   			 %>公告:<%Iterator iter2=nglist2.iterator();
+               if(nglist2!=null&&nglist2.size()!=0){
+       		 %>公告:<%Iterator iter2=nglist2.iterator();
     		  while(iter2.hasNext()){
     			NewGoodVO ngv=(NewGoodVO)iter2.next();
     			%>

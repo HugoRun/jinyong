@@ -31,7 +31,7 @@ public class LaborageService
 
 		if (wrapSpare == 0 || wrapSpare < 0 || wrapSpare < bonusNum)
 		{
-			return "Äú°ü¹ü²»×ã,ÇëÇåÀí°ü¹ü!";
+			return "æ‚¨åŒ…è£¹ä¸è¶³,è¯·æ¸…ç†åŒ…è£¹!";
 		}
 		else
 		{
@@ -46,15 +46,15 @@ public class LaborageService
 				{
 					int laboragemoney = Integer.parseInt(prop[2]);
 
-					// ¼à¿Ø
+					// ç›‘æŽ§
 					LogService logService = new LogService();
 					logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(),
 							roleInfo.getBasicInfo().getName(), roleInfo
 									.getBasicInfo().getCopper()
-									+ "", laboragemoney + "", "¹¤×Ê");
+									+ "", laboragemoney + "", "å·¥èµ„");
 
-					roleInfo.getBasicInfo().addCopper(laboragemoney);// Íæ¼ÒÁìÈ¡½±½ð
-					// Ö´ÐÐÍ³¼Æ
+					roleInfo.getBasicInfo().addCopper(laboragemoney);// çŽ©å®¶é¢†å–å¥–é‡‘
+					// æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(6, StatisticsType.MONEY, laboragemoney,
 							StatisticsType.DEDAO, StatisticsType.XITONG, p_pk);
@@ -64,20 +64,20 @@ public class LaborageService
 					{
 						int experience = Integer.parseInt(prop[2]);
 
-						// ¼à¿Ø
+						// ç›‘æŽ§
 						LogService logService = new LogService();
 						logService.recordExpLog(roleInfo.getBasicInfo()
 								.getPPk(), roleInfo.getBasicInfo().getName(),
 								roleInfo.getBasicInfo().getCurExp(), experience
-										+ "", "¹¤×ÊµÃµ½");
+										+ "", "å·¥èµ„å¾—åˆ°");
 
 						roleInfo.getBasicInfo().updateAddCurExp(experience);
 					}
 					else
 					{
 						GoodsService goodsService = new GoodsService();
-						goodsService.putGoodsToWrap(p_pk, Integer.parseInt(prop[1]), Integer.parseInt(prop[0]),0, Integer.parseInt(prop[2]),GameLogManager.G_SYSTEM);// Íæ¼Ò»ñµÃÏµÍ³·¢¸øµÄµÀ¾ß
-						// Ö´ÐÐÍ³¼Æ
+						goodsService.putGoodsToWrap(p_pk, Integer.parseInt(prop[1]), Integer.parseInt(prop[0]),0, Integer.parseInt(prop[2]),GameLogManager.G_SYSTEM);// çŽ©å®¶èŽ·å¾—ç³»ç»Ÿå‘ç»™çš„é“å…·
+						// æ‰§è¡Œç»Ÿè®¡
 						GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 						gsss.addPropNum(Integer.parseInt(prop[1]), Integer
 								.parseInt(prop[0]), Integer.parseInt(prop[2]),
@@ -86,12 +86,12 @@ public class LaborageService
 					}
 			}
 			PlayerLaborageDao playerdao = new PlayerLaborageDao();
-			playerdao.updatePlayerCatchMoney(p_pk);// ±ê¼ÇÈËÎïÁìÈ¡¹ý½±
-			return "Äú»ñµÃÁË" + getLaborageView(time);
+			playerdao.updatePlayerCatchMoney(p_pk);// æ ‡è®°äººç‰©é¢†å–è¿‡å¥–
+			return "æ‚¨èŽ·å¾—äº†" + getLaborageView(time);
 		}
 	}
 
-	/** ÅÐ¶ÏÍæ¼ÒÊÇ·ñ¾ßÓÐÁì½±×Ê¸ñ Æ½·µ»ØÁì½±×îÐ¡Ê±¼ä */
+	/** åˆ¤æ–­çŽ©å®¶æ˜¯å¦å…·æœ‰é¢†å¥–èµ„æ ¼ å¹³è¿”å›žé¢†å¥–æœ€å°æ—¶é—´ */
 	public int getPlayerLaborageTime(int p_pk)
 	{
 		LaborageDao dao = new LaborageDao();
@@ -111,7 +111,7 @@ public class LaborageService
 		return 0;
 	}
 
-	/** ÏµÍ³Ã¿ÖÜ¸üÐÂÍæ¼ÒÐÅÏ¢ Áè³¿3µã */
+	/** ç³»ç»Ÿæ¯å‘¨æ›´æ–°çŽ©å®¶ä¿¡æ¯ å‡Œæ™¨3ç‚¹ */
 	public void sysUpdatePlayerOnlineTime()
 	{
 		Date date = new Date();
@@ -124,7 +124,7 @@ public class LaborageService
 		}
 	}
 
-	/** Ê±¼äÈ·¶¨ */
+	/** æ—¶é—´ç¡®å®š */
 	public String getFirstDay()
 	{
 		Date date = new Date();
@@ -211,7 +211,7 @@ public class LaborageService
 		dao.buildPlayerLaborage(p_pk);
 	}
 
-	// µÃµ½½±ÀøÎïÆ·µÄÏÔÊ¾
+	// å¾—åˆ°å¥–åŠ±ç‰©å“çš„æ˜¾ç¤º
 	public String getLaborageView(int time)
 	{
 		LaborageDao dao = new LaborageDao();
@@ -226,17 +226,17 @@ public class LaborageService
 			{
 				int equip_id = Integer.parseInt(prop[1]);
 				GameEquip equip = EquipCache.getById(equip_id);
-				sb.append(equip.getName() + "¡Á" + prop[2]);
+				sb.append(equip.getName() + "Ã—" + prop[2]);
 			}
 			else if (prop[0].equals("4"))
 			{
 				int prop_id = Integer.parseInt(prop[1]);
 				PropVO pvo =  PropCache.getPropById(prop_id);
-				sb.append(pvo.getPropName() + "¡Á" + prop[2]);
+				sb.append(pvo.getPropName() + "Ã—" + prop[2]);
 			}
 			else if (prop[0].equals("5"))
 			{
-				sb.append("¾­Ñé  " + prop[2]);
+				sb.append("ç»éªŒ  " + prop[2]);
 			}
 			else
 			{
@@ -250,7 +250,7 @@ public class LaborageService
 		return sb.toString();
 	}
 
-	/** Ëã³ö½±ÀøÓÐ¶àÉÙÎïÆ· */
+	/** ç®—å‡ºå¥–åŠ±æœ‰å¤šå°‘ç‰©å“ */
 	public int getLaborageBonusNum(int time)
 	{
 		int num = 0;

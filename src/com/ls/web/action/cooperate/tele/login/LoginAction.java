@@ -27,7 +27,7 @@ public class LoginAction extends Action
 {
 	Logger logger = Logger.getLogger("log.service");
 	/**
-	 * µçĞÅÇşµÀµÇÂ½
+	 * ç”µä¿¡æ¸ é“ç™»é™†
 	 */
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -52,47 +52,47 @@ public class LoginAction extends Action
 		session.setAttribute("versionId", "1_1_2");
 		System.out.println("cpId******************************************"+cpId);
 		System.out.println("**********************************************"+key);
-		/******Ã»ÓĞkey²ÎÊıËµÃ÷ÊÇµÚÒ»´ÎÇëÇó******/
+		/******æ²¡æœ‰keyå‚æ•°è¯´æ˜æ˜¯ç¬¬ä¸€æ¬¡è¯·æ±‚******/
 		if(key==null || "".equals(key))
 		{
 			try
 			{
-				logger.debug("¿ªÊ¼·¢ËÍÇëÇó¡£¡£¡£¡£¡£¡£¡£¡£");
+				logger.debug("å¼€å§‹å‘é€è¯·æ±‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 				response.sendRedirect("http://202.102.39.11:9088/gameinterface/LoginWapGame?netElementId=888999&cpId="+cpId+"&cpProductId="+cpProductId+"&channelId="+channelId+"&packageID="+packageID+"");
-				logger.debug("·¢ËÍÇëÇó½áÊø¡£¡£¡£¡£¡£¡£¡£¡£");
+				logger.debug("å‘é€è¯·æ±‚ç»“æŸã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 			}
 			catch (IOException e)
 			{
-				logger.debug("µçĞÅÊ×´ÎÇëÇóÒì³£...");
+				logger.debug("ç”µä¿¡é¦–æ¬¡è¯·æ±‚å¼‚å¸¸...");
 			}
 		}
-		/******ÅĞ¶ÏÈç¹ûkeyºÍÍ¬²½¹ıÀ´µÄkeyÒ»ÑùÔòµÇÂ½³É¹¦*****/
+		/******åˆ¤æ–­å¦‚æœkeyå’ŒåŒæ­¥è¿‡æ¥çš„keyä¸€æ ·åˆ™ç™»é™†æˆåŠŸ*****/
 		else
 		{
 			String md5code=(String)request.getSession().getAttribute("md5code");
 			PassportService ps=new PassportService();
 			PassportVO pv= ps.loginFromTele(custId, login_ip);
-			/**µÇÂ½ÑéÖ¤**/
+			/**ç™»é™†éªŒè¯**/
 			logger.debug("md5code********************************"+md5code);
 			if(key.equals(md5code))
 			{
-				if( pv ==null || pv.getUPk()==-1 )//µÇÂ½ÑéÖ¤Ê§°Ü
+				if( pv ==null || pv.getUPk()==-1 )//ç™»é™†éªŒè¯å¤±è´¥
 				{
-					logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+					logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 					return mapping.findForward("fail");
 				} 
 			}
 			else
 			{
-				logger.debug("ÓÃ»§ÑéÖ¤³É¹¦");
+				logger.debug("ç”¨æˆ·éªŒè¯æˆåŠŸ");
 				System.out.println("************************************************************"+pv.getUPk());
-				int uPk = pv.getUPk();//µÇÂ½ÑéÖ¤³É¹¦
+				int uPk = pv.getUPk();//ç™»é™†éªŒè¯æˆåŠŸ
 				session.setAttribute("uPk", uPk+"");
 				session.setAttribute("user_name",pv.getUserName() );
 				session.setAttribute("backUrl",backUrl);
 				session.setAttribute("backNetUrl",backNetUrl);
 				
-				/************»ñµÃÆ½Ì¨µÄ¾«²ÊÍÆ¼öÄÚÈİ*************/
+				/************è·å¾—å¹³å°çš„ç²¾å½©æ¨èå†…å®¹*************/
 				Map<String,String> recomm=getRecomm(netElementId,cpId,cpProductId,channelId,packageID);
 				session.setAttribute("recomm",recomm);
 				return mapping.findForward("success");
@@ -102,7 +102,7 @@ public class LoginAction extends Action
 	}
 	
 	/**
-	 * »ñµÃµçĞÅÆ½Ì¨Ìá¹©µÄ¾«²ÊÍÆ¼öÄÚÈİ
+	 * è·å¾—ç”µä¿¡å¹³å°æä¾›çš„ç²¾å½©æ¨èå†…å®¹
 	 * @param netElementId
 	 * @param cpId
 	 * @param cpProductId
@@ -130,16 +130,16 @@ public class LoginAction extends Action
 					Element resultElm = element.element("caption");
 					Element resultElm1 = element.element("url");
 					String caption=resultElm.getText();
-					logger.info("¾«²ÊÍÆ¼öÒµÎñÃû³Æ************"+caption);
+					logger.info("ç²¾å½©æ¨èä¸šåŠ¡åç§°************"+caption);
 					String captionUrl=resultElm1.getText();
-					logger.info("¾«²ÊÍÆ¼öµÄURL*******************"+captionUrl);
+					logger.info("ç²¾å½©æ¨èçš„URL*******************"+captionUrl);
 					recomm.put(caption, captionUrl);
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			System.out.println("....................·¢ËÍ¾«²ÊÍÆ¼öÇëÇóÊ§°Ü!");
+			System.out.println("....................å‘é€ç²¾å½©æ¨èè¯·æ±‚å¤±è´¥!");
 		}
 		return recomm;
 	}

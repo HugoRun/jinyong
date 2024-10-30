@@ -1,61 +1,52 @@
 /**
- * 
+ *
  */
 package com.ben.vo.avoidpkprop;
 
 /**
  * @author Administrator
- * 
+ *
  */
-public class AvoidPkPropVO
-{
-	/** ÃâPKµÀ¾ßID */
-	private int aPk;
-	/** Íæ¼Òid */
-	private int pPk;
-	/** µÀ¾ß¿ªÊ¼Ê±¼ä */
-	private String beginTime;
-	/** µÀ¾ß½áÊøÊ±¼ä */
-	private String endTime;
+public class AvoidPkPropVO {
+    /** å…PKé“å…·ID */
+    private int aPk;
+    /** ç©å®¶id */
+    private int pPk;
+    /** é“å…·å¼€å§‹æ—¶é—´ */
+    private String beginTime;
+    /** é“å…·ç»“æŸæ—¶é—´ */
+    private String endTime;
 
-	public int getAPk()
-	{
-		return aPk;
-	}
+    public int getAPk() {
+        return aPk;
+    }
 
-	public void setAPk(int pk)
-	{
-		aPk = pk;
-	}
+    public void setAPk(int pk) {
+        aPk = pk;
+    }
 
-	public int getPPk()
-	{
-		return pPk;
-	}
+    public int getPPk() {
+        return pPk;
+    }
 
-	public void setPPk(int pk)
-	{
-		pPk = pk;
-	}
+    public void setPPk(int pk) {
+        pPk = pk;
+    }
 
-	public String getBeginTime()
-	{
-		return beginTime;
-	}
+    public String getBeginTime() {
+        return beginTime;
+    }
 
-	public void setBeginTime(String beginTime)
-	{
-		this.beginTime = beginTime;
-	}
+    public void setBeginTime(String beginTime) {
+        this.beginTime = beginTime;
+    }
 
-	public String getEndTime()
-	{
-		return endTime;
-	}
+    public String getEndTime() {
+        return endTime;
+    }
 
-	public void setEndTime(String endTime)
-	{
-		this.endTime = endTime;
-	}
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 
 }

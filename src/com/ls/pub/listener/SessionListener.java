@@ -1,23 +1,22 @@
 package com.ls.pub.listener;
 
+import com.pm.service.outLine.OutLineService;
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import com.pm.service.outLine.OutLineService;
+public class SessionListener implements HttpSessionListener {
+    public void sessionCreated(HttpSessionEvent hse) {
 
-public class SessionListener implements HttpSessionListener
-{
-	public void sessionCreated(HttpSessionEvent hse)
-	{	
+    }
 
-	}
+    public void sessionDestroyed(HttpSessionEvent hse) {
 
-	public void sessionDestroyed(HttpSessionEvent hse) {
-		
-		HttpSession session = hse.getSession();
-		OutLineService outLineService = new OutLineService();
-		
-		outLineService.destorySessionClear(session);//sessionÏú»Ù´¦Àí
-	}
+        HttpSession session = hse.getSession();
+        OutLineService outLineService = new OutLineService();
+
+        // sessioné”€æ¯å¤„ç†
+        outLineService.destorySessionClear(session);
+    }
 }

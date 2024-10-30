@@ -6,21 +6,21 @@ public class PlayerLotteryVO
 	private long id;
 	// ppk
 	private int p_pk;
-	// ²ÊÆ±ÆÚºÅ
+	// å½©ç¥¨æœŸå·
 	private String lottery_date;
-	// ²ÊÆ±ÄÚÈİ
+	// å½©ç¥¨å†…å®¹
 	private String lottery_content;
-	// ¹ºÂò²ÊÆ±µÄ×¢Êı
+	// è´­ä¹°å½©ç¥¨çš„æ³¨æ•°
 	private int lottery_zhu;
-	// ²ÊÆ±ÖĞ½±µÈ¼¶
+	// å½©ç¥¨ä¸­å¥–ç­‰çº§
 	private int lottery_bonus_lv;
-	// Âò²ÊÆ±Ê±¼ä
+	// ä¹°å½©ç¥¨æ—¶é—´
 	private String lottery_time;
-	// ÁìÈ¡½±ÀøÄÚÈİ
+	// é¢†å–å¥–åŠ±å†…å®¹
 	private long lottery_bonus;
-	// Íæ¼ÒÊÇ·ñÁìÈ¡½±Àø
+	// ç©å®¶æ˜¯å¦é¢†å–å¥–åŠ±
 	private int is_have;
-	// ÁìÈ¡½±ÀøµÄÊ±¼ä
+	// é¢†å–å¥–åŠ±çš„æ—¶é—´
 	private String have_time;
 
 	public long getId()

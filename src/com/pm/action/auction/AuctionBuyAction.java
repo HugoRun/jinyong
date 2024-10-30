@@ -23,7 +23,7 @@ public class AuctionBuyAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 
-	// ÅÄÂô³¡Ò³Ãæ
+	// æ‹å–åœºé¡µé¢
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -35,20 +35,20 @@ public class AuctionBuyAction extends DispatchAction
 		return mapping.findForward("auctionDisPlay");
 	}
 
-	// ÅÄÂô³¡ÎïÆ·ÁĞ±í
+	// æ‹å–åœºç‰©å“åˆ—è¡¨
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		
-		/*****1ÁéÊ¯ÅÄÂô2ÏÉ¾§ÅÄÂô********************/
+		/*****1çµçŸ³æ‹å–2ä»™æ™¶æ‹å–********************/
 		String pay_type=(String)request.getSession().getAttribute("pay_type");
 		/*****************************************/
 		String auctionType = request.getParameter("auctionType");
 		String page_no_str = request.getParameter("page_no");
 		String sortType = request.getParameter("sortType");
-		logger.info("ÅÅĞò·ÖÀà : " + sortType + ",page_no : " + page_no_str
+		logger.info("æ’åºåˆ†ç±» : " + sortType + ",page_no : " + page_no_str
 				+ ",auctionType : " + auctionType);
 		int auctionTypes = 0;
 		int page_no;
@@ -82,7 +82,7 @@ public class AuctionBuyAction extends DispatchAction
 		
 		AuctionService auctionSerivce = new AuctionService();
 
-		/*ÎäÆ÷*/
+		/*æ­¦å™¨*/
 		if (auctionTypes == AuctionType.ARM)
 		{
 
@@ -93,7 +93,7 @@ public class AuctionBuyAction extends DispatchAction
 			request.setAttribute("mtype", "n2");
 			return mapping.findForward("auctionDisPlay");
 		}
-		/*·À¾ß*/
+		/*é˜²å…·*/
 		else
 			if (auctionTypes == AuctionType.ACCOUTE)
 			{
@@ -104,7 +104,7 @@ public class AuctionBuyAction extends DispatchAction
 				request.setAttribute("mtype", "n2");
 				return mapping.findForward("auctionDisPlay");
 			}
-		/*Ê×ÊÎ*/
+		/*é¦–é¥°*/
 			else
 				if (auctionTypes == AuctionType.JEWELRY)
 				{
@@ -115,7 +115,7 @@ public class AuctionBuyAction extends DispatchAction
 					request.setAttribute("mtype", "n2");
 					return mapping.findForward("auctionDisPlay");
 				}
-		/*µÀ¾ß*/
+		/*é“å…·*/
 				else
 					if (auctionTypes == AuctionType.SHOP)
 					{
@@ -130,11 +130,11 @@ public class AuctionBuyAction extends DispatchAction
 		return mapping.findForward("auctionDisPlay");
 	}
 
-	// ÌØ¶¨ÎïÆ·ÁĞ±í
+	// ç‰¹å®šç‰©å“åˆ—è¡¨
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		/*****1ÁéÊ¯ÅÄÂô2ÏÉ¾§ÅÄÂô********************/
+		/*****1çµçŸ³æ‹å–2ä»™æ™¶æ‹å–********************/
 		String pay_type=(String)request.getSession().getAttribute("pay_type");
 		/*****************************************/
 		RoleService roleService = new RoleService();
@@ -145,7 +145,7 @@ public class AuctionBuyAction extends DispatchAction
 		String auctionType = request.getParameter("auctionType");
 		String page_no_str = request.getParameter("page_no");
 		String sortType = request.getParameter("sortType");
-		logger.info("ÅÅĞò·ÖÀà : " + sortType);
+		logger.info("æ’åºåˆ†ç±» : " + sortType);
 
 		String propName = request.getParameter("prop_name");
 
@@ -161,8 +161,8 @@ public class AuctionBuyAction extends DispatchAction
 		}
 		if (propName == null)
 		{
-			logger.info("auctionBuyActionÖĞpropName : " + propName);
-			String resultWml = "ÇëÄúÊäÈëÕıÈ·µÄÎïÆ·Ãû";
+			logger.info("auctionBuyActionä¸­propName : " + propName);
+			String resultWml = "è¯·æ‚¨è¾“å…¥æ­£ç¡®çš„ç‰©å“å";
 			request.setAttribute("resultWml", resultWml);
 
 		}
@@ -190,7 +190,7 @@ public class AuctionBuyAction extends DispatchAction
 	}
 
 	/**
-	 * ²é¿´ÎïÆ·ÏêÇé
+	 * æŸ¥çœ‹ç‰©å“è¯¦æƒ…
 	 * 
 	 * @param mapping
 	 * @param form
@@ -234,7 +234,7 @@ public class AuctionBuyAction extends DispatchAction
 		}
 		else
 		{
-			// ²é¿´µÀ¾ß
+			// æŸ¥çœ‹é“å…·
 			GoodsService goodsService = new GoodsService();
 			String prop_display = goodsService.getPropInfoWml(roleInfo
 					.getBasicInfo().getPPk(), Integer.parseInt(prop_id));

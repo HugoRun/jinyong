@@ -20,7 +20,7 @@ import com.ls.web.service.player.RoleService;
 import com.web.service.friend.BlacklistService;
 
 /**
- * ½»Ò×ÎïÆ·Ïà¹Ø²Ù×÷
+ * äº¤æ˜“ç‰©å“ç›¸å…³æ“ä½œ
  */
 public class SellInfoAddAction extends ActionBase
 {
@@ -34,23 +34,23 @@ public class SellInfoAddAction extends ActionBase
 		
 		RoleEntity me = this.getRoleEntity(request);
 		
-		//Èç¹ûÊÇĞÂÊÖ
+		//å¦‚æœæ˜¯æ–°æ‰‹
 		if( me.getBasicInfo().getPlayer_state_by_new()==1)
 		{
-			this.setHint(request, "ÄãÏÖÔÚ´¦ÔÚĞÂÊÖÒıµ¼×´Ì¬,ÎŞ·¨½»Ò×");
+			this.setHint(request, "ä½ ç°åœ¨å¤„åœ¨æ–°æ‰‹å¼•å¯¼çŠ¶æ€,æ— æ³•äº¤æ˜“");
 			return mapping.findForward("return_hint");
 		}
 		
 		int p_pk = me.getPPk();
 		
-		String pByPk = request.getParameter("pByPk");// ±»ÇëÇóÈËID
+		String pByPk = request.getParameter("pByPk");// è¢«è¯·æ±‚äººID
 		String pSilverno = request.getParameter("pSilverno");
 		
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÔÚÏß
+		//åˆ¤æ–­ç©å®¶æ˜¯å¦åœ¨çº¿
 		RoleEntity other = RoleService.getRoleInfoById(pByPk);
 		
 		if(other.isOnline()==false){
-			String hint = "¸ÃÍæ¼ÒÒÑÏÂÏß!";
+			String hint = "è¯¥ç©å®¶å·²ä¸‹çº¿!";
 			return this.dispath(request, response, "/pubbuckaction.do?hint="+hint);
 		}
 		
@@ -59,24 +59,24 @@ public class SellInfoAddAction extends ActionBase
 			request.setAttribute("pSilverno", pSilverno);
 		}
 		request.setAttribute("pByPk", pByPk);
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÊÇÔÚ×Ô¼ºµÄºÚÃûµ¥
+		//åˆ¤æ–­ç©å®¶æ˜¯å¦æ˜¯åœ¨è‡ªå·±çš„é»‘åå•
 		int res = blacklistService.isBlacklist(me.getBasicInfo().getPPk(), Integer.parseInt(pByPk));
 		if(res == 1){
-			String hints = "¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞ½»Ò×.";
+			String hints = "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œäº¤æ˜“.";
 			request.setAttribute("hints", hints);
 			return mapping.findForward("blacklisthint");
 		}else if(res == 2){
-			String hints = "ÄúÔÚ¸ÃÍæ¼ÒµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞ½»Ò×.";
+			String hints = "æ‚¨åœ¨è¯¥ç©å®¶çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œäº¤æ˜“.";
 			request.setAttribute("hints", hints);
 			return mapping.findForward("blacklisthint");
 		}
-		//ÅĞ¶ÏÍæ¼ÒBµÄ×´Ì¬ÊÇ·ñ¿ÉÒÔ½øĞĞ½»Ò×
+		//åˆ¤æ–­ç©å®¶Bçš„çŠ¶æ€æ˜¯å¦å¯ä»¥è¿›è¡Œäº¤æ˜“
 		String hint = playerService.checkRoleState( Integer.parseInt(pByPk), PlayerState.TRADE);
 		if(hint != null ){
 			return this.dispath(request, response, "/pubbuckaction.do?hint="+hint+"&chair="+request.getParameter("chair"));
 		}
 		
-		//ÅĞ¶Ï¶Ô·½Íæ¼ÒÊÇ·ñ¿ª½»Ò×¿ª¹Ø
+		//åˆ¤æ–­å¯¹æ–¹ç©å®¶æ˜¯å¦å¼€äº¤æ˜“å¼€å…³
 		hint = playerService.isRoleState( Integer.parseInt(pByPk), 1);
 		if(hint != null ){
 			return this.dispath(request, response, "/pubbuckaction.do?hint="+hint+"&chair="+request.getParameter("chair"));
@@ -117,7 +117,7 @@ public class SellInfoAddAction extends ActionBase
 
 		WrapinfoDAO dao = new WrapinfoDAO();
 
-		// µÃµ½°ü¹üºÍÇ®ÊıĞÅÏ¢
+		// å¾—åˆ°åŒ…è£¹å’Œé’±æ•°ä¿¡æ¯
 		PartInfoVO vo = dao.geTsilver(me.getBasicInfo().getPPk() + "");
 		request.setAttribute("partInfo", vo);
 

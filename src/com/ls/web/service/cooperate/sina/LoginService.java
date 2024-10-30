@@ -12,7 +12,7 @@ public class LoginService
 {
 	Logger logger = Logger.getLogger("log.service");
 
-	// µÇÂ½ÓÎ¿ÍÕÊºÅ
+	// ç™»é™†æ¸¸å®¢å¸å·
 	public String loginByVisitorSina(String passport)
 	{
 		String passport_bak = "";
@@ -60,11 +60,11 @@ public class LoginService
 		passportvo = ps.getPassportInfoByUserID(passport_visitor, Channel.SINA);
 		if (passportvo == null)
 		{
-			return "¸ÃÓÎ¿ÍºÅ²»´æÔÚÇëÖØĞÂÊäÈë";
+			return "è¯¥æ¸¸å®¢å·ä¸å­˜åœ¨è¯·é‡æ–°è¾“å…¥";
 		}
 		else
 		{
-			// ¹ØÁªÓÎ¿ÍÕÊºÅ
+			// å…³è”æ¸¸å®¢å¸å·
 			RegisterDao registerDao = new RegisterDao();
 			registerDao.relationPassportSina(sina_uid, passport_visitor);
 			return "";
@@ -72,7 +72,7 @@ public class LoginService
 
 	}
 
-	// Éú³ÉÓÎ¿ÍÕÊºÅ
+	// ç”Ÿæˆæ¸¸å®¢å¸å·
 	private String bulidVisitorPassport()
 	{
 		String passport = "";
@@ -85,7 +85,7 @@ public class LoginService
 		return passport;
 	}
 
-	// Ê¹ÓÃÒÑÓĞµÄÓÎ¿ÍÕÊºÅ½øÈëÓÎÏ·
+	// ä½¿ç”¨å·²æœ‰çš„æ¸¸å®¢å¸å·è¿›å…¥æ¸¸æˆ
 	private boolean isHaveThisVisitorPassport(String passport)
 	{
 		PassportService ps = new PassportService();

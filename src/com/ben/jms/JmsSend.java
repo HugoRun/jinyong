@@ -39,7 +39,7 @@
 //			.createObjectMessage();
 //			message.setObject((Serializable) clazz);
 //			queueSender.send(message);
-//			System.out.println("·¢ËÍ³É¹¦");
+//			System.out.println("å‘é€æˆåŠŸ");
 //		} catch (JMSException e) {
 //			e.printStackTrace();
 //		}
@@ -62,7 +62,7 @@
 //		rj.setQudao("2");
 //		rj.setFenqu("1");
 //		rj.setLevel(10);
-//		rj.setUserid("º«");
+//		rj.setUserid("éŸ©");
 //		rj.setCaozuo(1);
 //		log(rj);
 //		}

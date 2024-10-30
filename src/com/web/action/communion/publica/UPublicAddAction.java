@@ -24,7 +24,7 @@ import com.ls.web.service.player.RoleService;
 import com.pub.ben.info.Expression;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 9:40:46 AM
  */
@@ -34,9 +34,9 @@ public class UPublicAddAction extends Action
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		String puTitle = request.getParameter("puTitle");
@@ -45,70 +45,70 @@ public class UPublicAddAction extends Action
 		boolean b = m.matches();
 		if (b == false)
 		{
-			String hint1 = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			String hint1 = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("successno");
 		}*/
 		int flag = Expression.hasPublish(puTitle);
 		if (flag == -1)
 		{
-			String hint1 = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			String hint1 = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("successno");
 		}
 		if(puTitle.indexOf("GM") != -1){
-			String hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if(puTitle.indexOf("Gm") != -1){
-			String hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if(puTitle.indexOf("gm") != -1){
-			String hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if (puTitle.length() > 30)
 		{
-			String hint1 = "ÄúÖ»ÄÜÊäÈë30¸ö×Ö·û";
+			String hint1 = "æ‚¨åªèƒ½è¾“å…¥30ä¸ªå­—ç¬¦";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("successno");
 		}
-		// ÅĞ¶ÏÊÇ·ñÖØ¸´·¢ÑÔ
+		// åˆ¤æ–­æ˜¯å¦é‡å¤å‘è¨€
 		EmbargoDAO embargoDAO = new EmbargoDAO();
 		String s = embargoDAO.isEmbargo(roleInfo.getBasicInfo().getPPk(), Time);
 		if (s != null)
 		{
-			String hint = "Äú±»ÔÚ¹«¹²ÁÄÌìÆµµÀ½ûÑÔ" + s + "·ÖÖÓ£¡";
+			String hint = "æ‚¨è¢«åœ¨å…¬å…±èŠå¤©é¢‘é“ç¦è¨€" + s + "åˆ†é’Ÿï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		
-		//¹«ÁÄµÄµÈ¼¶ÏŞÖÆ
+		//å…¬èŠçš„ç­‰çº§é™åˆ¶
 		int public_chat_grade_limit = GameConfig.getPublicChatGradeLimit();
 		if (roleInfo.getBasicInfo().getGrade() < public_chat_grade_limit )
 		{
-			String hint = "¶Ô²»Æğ£¬Ö»ÓĞ"+public_chat_grade_limit+"¼¶ÒÔÉÏµÄÍæ¼Ò²Å¿ÉÒÔÔÚ¹«¹²ÆµµÀ·¢ÑÔ£¡";
+			String hint = "å¯¹ä¸èµ·ï¼Œåªæœ‰"+public_chat_grade_limit+"çº§ä»¥ä¸Šçš„ç©å®¶æ‰å¯ä»¥åœ¨å…¬å…±é¢‘é“å‘è¨€ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		
 		if (Expression.hasForbidChar(puTitle,ForBidCache.FORBIDCOMM))
 		{
-			String hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
 		if(puTitle.trim().equals("")){
-			String hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
-		if(puTitle.indexOf("¡¡") != -1){
-			String hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(puTitle.indexOf("ã€€") != -1){
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("successno");
 		}
@@ -120,7 +120,7 @@ public class UPublicAddAction extends Action
 			return mapping.findForward("successno");
 		}
 		
-		// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼
+		// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½•
 		CommunionVO communionVO = new CommunionVO();
 		communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 		communionVO.setPName(roleInfo.getBasicInfo().getName());

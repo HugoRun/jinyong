@@ -7,11 +7,11 @@ import com.lw.dao.player.PlayerEnvelopPpkDao;
 public class PlayerEnvelopService
 {
 	/**
-	 * ²éÑ¯Íæ¼ÒÊÇ·ñ´¦ÔÚ·âºÅ×´Ì¬ Èç¹ûÓĞ·µ»ØÊ±¼ä Èç¹ûÃ»ÓĞ ·µ»Ønull
+	 * æŸ¥è¯¢ç©å®¶æ˜¯å¦å¤„åœ¨å°å·çŠ¶æ€ å¦‚æœæœ‰è¿”å›æ—¶é—´ å¦‚æœæ²¡æœ‰ è¿”å›null
 	 * 
 	 * @param p_pk
-	 *            Íæ¼ÒID
-	 * @return time nullÎªÃ»ÓĞ ·µ»Ø Ê±¼äµÄSTRINGÀàĞÍ
+	 *            ç©å®¶ID
+	 * @return time nullä¸ºæ²¡æœ‰ è¿”å› æ—¶é—´çš„STRINGç±»å‹
 	 */
 	public String getPlayerEnvelop(int p_pk)
 	{
@@ -48,7 +48,7 @@ public class PlayerEnvelopService
 	}
 
 	/**
-	 * µÃµ½Íæ¼ÒÊÇ·ñ±»ÓÀ¾Ã·âºÅ ·µ»Øtrue ÎªÓÀ¾Ã·âºÅ falseÎªÃ»ÓĞ
+	 * å¾—åˆ°ç©å®¶æ˜¯å¦è¢«æ°¸ä¹…å°å· è¿”å›true ä¸ºæ°¸ä¹…å°å· falseä¸ºæ²¡æœ‰
 	 */
 	public boolean getPlayerEnvelopForever(int p_pk)
 	{

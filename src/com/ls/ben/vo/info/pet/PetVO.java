@@ -4,36 +4,36 @@
 package com.ls.ben.vo.info.pet;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 10:31:57 AM
  */
 public class PetVO {
-	/** ³èÎïid */
+	/** å® ç‰©id */
 	private int petId;
-	/** ³èÎïÃû³Æ */
+	/** å® ç‰©åç§° */
 	private String petName;
-	/**³èÎïÊÙÃü*/
+	/**å® ç‰©å¯¿å‘½*/
 	private int petLife;
-	/** ³èÎïÍ¼Æ¬ */
+	/** å® ç‰©å›¾ç‰‡ */
 	private String petImg;
-	/** ³èÎï×î´ó³É³¤ÂÊ Èç¡°min=1&max=1.2¡± */
+	/** å® ç‰©æœ€å¤§æˆé•¿ç‡ å¦‚â€œmin=1&max=1.2â€ */
 	private int petDropDa;
-	/** ³èÎï×îĞ¡³É³¤ÂÊ */
+	/** å® ç‰©æœ€å°æˆé•¿ç‡ */
 	private int petDropXiao;
-	/** ÎåĞĞÊôĞÔ ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
+	/** äº”è¡Œå±æ€§ é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
 	private String petWx;
-	/** ÎåĞĞÊôĞÔÖµ */
+	/** äº”è¡Œå±æ€§å€¼ */
 	private String petWxValue;
-	/** ¼¼ÄÜ1 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½1 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillOne;
-	/** ¼¼ÄÜ2 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½2 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillTwo;
-	/** ¼¼ÄÜ3 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½3 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillThree;
-	/** ¼¼ÄÜ4 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½4 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillFour;
-	/** ¼¼ÄÜ5 ¿ÉÑ§Ï°µÄ¼¼ÄÜid */
+	/** æŠ€èƒ½5 å¯å­¦ä¹ çš„æŠ€èƒ½id */
 	private int petSkillFive;
 
 

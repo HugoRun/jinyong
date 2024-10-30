@@ -1,5 +1,5 @@
 <%@page contentType="text/vnd.wap.wml" pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 商城道具:
 <br />
 <anchor>

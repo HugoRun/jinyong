@@ -17,13 +17,13 @@ public class SecondPassService
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ½«¶ş¼¶ÃÜÂë²åÈëµ½Êı¾İ¿âÖĞ
+	 * å°†äºŒçº§å¯†ç æ’å…¥åˆ°æ•°æ®åº“ä¸­
 	 * @param pk
 	 * @param secondPass
 	 */
 	public void insertSecondPass(int u_pk, String secondPass)
 	{
-		// ÒÔÇ°ÊÇÒòÎªÔÚ·¢ÓÊ¼şÊ±Ö±½Ó½øĞĞÁË³õÊ¼»¯£¬ËùÓĞÏÖÔÚÖ»ĞèÒªupdate¼´¿É£¬ÏÖÔÚÃ»ÓĞ³õÊ¼»¯ÁË£¬Ö»ÄÜÔÚ´Ë½øĞĞinsert²Ù×÷
+		// ä»¥å‰æ˜¯å› ä¸ºåœ¨å‘é‚®ä»¶æ—¶ç›´æ¥è¿›è¡Œäº†åˆå§‹åŒ–ï¼Œæ‰€æœ‰ç°åœ¨åªéœ€è¦updateå³å¯ï¼Œç°åœ¨æ²¡æœ‰åˆå§‹åŒ–äº†ï¼Œåªèƒ½åœ¨æ­¤è¿›è¡Œinsertæ“ä½œ
 		MD5 md5 = MD5.getInstance();
 		String pass_md5 = md5.getMD5ofStr(secondPass);
 		SecondPassDao seconddao = new SecondPassDao();
@@ -32,7 +32,7 @@ public class SecondPassService
 	}
 
 	/**
-	 * ĞŞ¸ÄµÇÂ¼ÃÜÂë
+	 * ä¿®æ”¹ç™»å½•å¯†ç 
 	 * @param pk
 	 * @param newPass
 	 */
@@ -43,7 +43,7 @@ public class SecondPassService
 	}
 	
 	/**
-	 * »ñµÃµÇÂ¼ÃÜÂë
+	 * è·å¾—ç™»å½•å¯†ç 
 	 * @param pk
 	 * @param newPass
 	 */
@@ -55,7 +55,7 @@ public class SecondPassService
 	
 	
 	/**
-	 * ÊäÈë¶ş¼¶ÃÜÂë´íÎóÒ»´Î
+	 * è¾“å…¥äºŒçº§å¯†ç é”™è¯¯ä¸€æ¬¡
 	 * @param u_pk
 	 */
 	public void insertErrorSecondPsw(int u_pk) {
@@ -65,32 +65,32 @@ public class SecondPassService
 	}	
 
 	/**
-	 * ¼ì²â´ËÕËºÅÊÇ·ñ¿ÉÒÔºË¶Ô¶ş¼¶ÃÜÂë
-	 * ·µ»Øfalse,ÈÃ¸ÃÍæ¼Ò¼ÌĞøºË¶Ô,·µ»Øtrue,Ôò²»ÔÊĞí¼ÌĞøºË¶Ô
+	 * æ£€æµ‹æ­¤è´¦å·æ˜¯å¦å¯ä»¥æ ¸å¯¹äºŒçº§å¯†ç 
+	 * è¿”å›false,è®©è¯¥ç©å®¶ç»§ç»­æ ¸å¯¹,è¿”å›true,åˆ™ä¸å…è®¸ç»§ç»­æ ¸å¯¹
 	 * @param pk
 	 * @param passWrongFlag
 	 * @return
 	 */
 	public boolean checkSeconePass(int u_pk, SecondPassVO secondPassVO)
 	{
-		if(secondPassVO.getPassWrongFlag() < 3) {	//Èç¹ûÊäÈë´íÎó´ÎÊıĞ¡ÓÚ3, ¿Ï¶¨ÄÜÈÃ¸ÃÍæ¼Ò¼ÌĞøºË¶ÔÃÜÂë
+		if(secondPassVO.getPassWrongFlag() < 3) {	//å¦‚æœè¾“å…¥é”™è¯¯æ¬¡æ•°å°äº3, è‚¯å®šèƒ½è®©è¯¥ç©å®¶ç»§ç»­æ ¸å¯¹å¯†ç 
 			return false;
 		}
 		SecondPassDao seconddao = new SecondPassDao();
 		int onedayTime = 1000*60*60*24;
-		//Èç¹ûµÚÈı´ÎĞŞ¸ÄÊ±¼äÀëÏÖÔÚÒÑ¾­ÓĞ24¸öĞ¡Ê±,¿ÉÒÔÈÃÆäÔÙÊäÈëÈı´Î.
+		//å¦‚æœç¬¬ä¸‰æ¬¡ä¿®æ”¹æ—¶é—´ç¦»ç°åœ¨å·²ç»æœ‰24ä¸ªå°æ—¶,å¯ä»¥è®©å…¶å†è¾“å…¥ä¸‰æ¬¡.
 		Date thirdtime = DateUtil.strToDate(secondPassVO.getPassThirdTime()) ;
 		if(DateUtil.isOverdue(thirdtime, onedayTime)) {
 			seconddao.updateSecondPass(u_pk, 0);
 			return false;
 		}	
-		//Èç¹ûµÚ¶ş´ÎĞŞ¸ÄÊ±¼äÀëÏÖÔÚÒÑ¾­ÓĞ24¸öĞ¡Ê±,¿ÉÒÔÈÃÆäÔÙÊäÈë¶ş´Î.
+		//å¦‚æœç¬¬äºŒæ¬¡ä¿®æ”¹æ—¶é—´ç¦»ç°åœ¨å·²ç»æœ‰24ä¸ªå°æ—¶,å¯ä»¥è®©å…¶å†è¾“å…¥äºŒæ¬¡.
 		Date secondtime = DateUtil.strToDate(secondPassVO.getPassSecondTime()) ;
 		if(DateUtil.isOverdue(secondtime, onedayTime)) {
 			seconddao.updateSecondPass(u_pk, 1);
 			return false;
 		}
-		//Èç¹ûµÚÒ»´ÎĞŞ¸ÄÊ±¼äÀëÏÖÔÚÒÑ¾­ÓĞ24¸öĞ¡Ê±,¿ÉÒÔÈÃÆäÔÙÊäÈëÒ»´Î.
+		//å¦‚æœç¬¬ä¸€æ¬¡ä¿®æ”¹æ—¶é—´ç¦»ç°åœ¨å·²ç»æœ‰24ä¸ªå°æ—¶,å¯ä»¥è®©å…¶å†è¾“å…¥ä¸€æ¬¡.
 		Date firsttime = DateUtil.strToDate(secondPassVO.getPassFirstTime());
 		if(DateUtil.isOverdue(firsttime, onedayTime)) {
 			seconddao.updateSecondPass(u_pk, 2);
@@ -101,7 +101,7 @@ public class SecondPassService
 	}
 
 	/**
-	 * È·¶¨ÊÇ·ñÒÑ¾­Éè¹ı¶ş¼¶ÃÜÂë
+	 * ç¡®å®šæ˜¯å¦å·²ç»è®¾è¿‡äºŒçº§å¯†ç 
 	 * @param uPk
 	 * @return
 	 */
@@ -113,9 +113,9 @@ public class SecondPassService
 		boolean flag = seconddao.hasAlreadySecondPass(uPk);
 		String hint = "";
 		if (flag ) {
-			hint = " ÄúÒÑ¾­ÉèÖÃ¹ı¶ş¼¶ÃÜÂëÁË!";
+			hint = " æ‚¨å·²ç»è®¾ç½®è¿‡äºŒçº§å¯†ç äº†!";
 		} else {
-			hint = " Äú»¹Ã»ÓĞÉèÖÃ¶ş¼¶ÃÜÂëÁË! ";
+			hint = " æ‚¨è¿˜æ²¡æœ‰è®¾ç½®äºŒçº§å¯†ç äº†! ";
 		}
 		return hint;
 	}

@@ -13,11 +13,11 @@ import com.lw.vo.menpaicontest.MenpaiNpcVO;
 public class MenpaiContestDAO extends DaoBase
 {
 
-	// µÃµ½ºóÌ¨Êı¾İ
+	// å¾—åˆ°åå°æ•°æ®
 	public MenpaiContestVO selectMenpaiContestData()
 	{
 		MenpaiContestVO vo = null;
-		String sql = "select * from menpaicontest ";
+		String sql = "SELECT * FROM menpaicontest ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -52,12 +52,12 @@ public class MenpaiContestDAO extends DaoBase
 		return vo;
 	}
 
-	// Íæ¼Ò×îÖÕ½±Àø
+	// ç©å®¶æœ€ç»ˆå¥–åŠ±
 	public List<MenpaiContestPlayerVO> selectMenpaiOverDataList(int p_type)
 	{
 		List<MenpaiContestPlayerVO> list = new ArrayList<MenpaiContestPlayerVO>();
 		MenpaiContestPlayerVO vo = null;
-		String sql = "select * from p_menpaicontest where into_state = 1 and p_type = "
+		String sql = "SELECT * FROM p_menpaicontest where into_state = 1 and p_type = "
 				+ p_type;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -89,7 +89,7 @@ public class MenpaiContestDAO extends DaoBase
 
 	}
 
-	// µÃµ½Íæ¼ÒÅÅÃûÊı¾İ
+	// å¾—åˆ°ç©å®¶æ’åæ•°æ®
 	public List<MenpaiContestPlayerVO> selectPlayerRankDataList(int pageNo,
 			String p_type)
 	{
@@ -113,7 +113,7 @@ public class MenpaiContestDAO extends DaoBase
 				pageNum = 0;
 			}
 
-			page_sql = "select * from p_menpaicontest where win_num != 0 and p_type = "
+			page_sql = "SELECT * FROM p_menpaicontest where win_num != 0 and p_type = "
 					+ p_type
 					+ " order by win_num desc,win_num_time limit "
 					+ pageNum + " , 10";
@@ -142,11 +142,11 @@ public class MenpaiContestDAO extends DaoBase
 
 	}
 
-	// µÃµ½Íæ¼ÒÊı¾İ
+	// å¾—åˆ°ç©å®¶æ•°æ®
 	public MenpaiContestPlayerVO selectPlayerData(int p_pk)
 	{
 		MenpaiContestPlayerVO vo = null;
-		String sql = "select * from p_menpaicontest where p_pk = " + p_pk;
+		String sql = "SELECT * FROM p_menpaicontest where p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -176,10 +176,10 @@ public class MenpaiContestDAO extends DaoBase
 		return vo;
 	}
 
-	// Íæ¼Ò²åÈëÊı¾İ
+	// ç©å®¶æ’å…¥æ•°æ®
 	public void insertPlayerData(int p_pk, String p_name, int p_type)
 	{
-		String sql = "insert into p_menpaicontest (id,p_pk,p_name,p_type,into_state,into_time) values (null,"
+		String sql = "INSERT INTO p_menpaicontest (id,p_pk,p_name,p_type,into_state,into_time) values (null,"
 				+ p_pk + ",'" + p_name + "'," + p_type + ",1,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -200,7 +200,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// Íæ¼Ò¸üĞÂ½øÈëÊ±¼ä
+	// ç©å®¶æ›´æ–°è¿›å…¥æ—¶é—´
 	public void updatePlayerInData(int p_pk)
 	{
 		String sql = "update p_menpaicontest set into_state = 1,into_time = now(),kill_num = 0 where p_pk = "
@@ -224,7 +224,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// Íæ¼Ò¸üĞÂ³öÈ¥Ê±¼ä
+	// ç©å®¶æ›´æ–°å‡ºå»æ—¶é—´
 	public void updatePlayerOutData(int p_pk)
 	{
 		String sql = "update p_menpaicontest set into_state = 0,out_time = now(),old_kill_num = kill_num where p_pk = "
@@ -248,7 +248,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// Íæ¼ÒÉ±ÈËÊıÁ¿µÄ¸üĞÂ
+	// ç©å®¶æ€äººæ•°é‡çš„æ›´æ–°
 	public void updatePlayerKillData(int p_pk)
 	{
 		String sql = "update p_menpaicontest set kill_num = kill_num + 1,kill_time = now() where p_pk = "
@@ -272,7 +272,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// Íæ¼ÒÉ±ÈËÊıÁ¿µÄ¸üĞÂ
+	// ç©å®¶æ€äººæ•°é‡çš„æ›´æ–°
 	public void updatePlayerBeiKillData(int p_pk, int kill_p_pk)
 	{
 		String sql = "update p_menpaicontest set kill_p_pk = " + kill_p_pk
@@ -296,7 +296,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// ¸üĞÂÍæ¼ÒÅÅÃûÍæ¼ÒÅÅÃû
+	// æ›´æ–°ç©å®¶æ’åç©å®¶æ’å
 	public void updatePlayerRankData(int p_pk)
 	{
 		String sql = "update p_menpaicontest set win_num = win_num + 1,win_num_time = now() where p_pk = "
@@ -320,7 +320,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// ¸üĞÂÍæ¼ÒÁìÈ¡ºÍÊ¤ÀûµÄ×´Ì¬
+	// æ›´æ–°ç©å®¶é¢†å–å’Œèƒœåˆ©çš„çŠ¶æ€
 	public void updatePlayerRankState(int p_pk, int win_state)
 	{
 		String sql = "update p_menpaicontest set win_state = " + win_state
@@ -344,7 +344,7 @@ public class MenpaiContestDAO extends DaoBase
 		}
 	}
 
-	// µÃµ½Íæ¼ÒÅÅÃûÊı¾İ
+	// å¾—åˆ°ç©å®¶æ’åæ•°æ®
 	public int selectPlayerRankDataNum(String p_type)
 	{
 		int pageNum = 0;
@@ -355,7 +355,7 @@ public class MenpaiContestDAO extends DaoBase
 		try
 		{
 			stmt = conn.createStatement();
-			page_sql = "select count(*) as num from p_menpaicontest where win_num != 0 and p_type = "
+			page_sql = "SELECT count(*) as num from p_menpaicontest where win_num != 0 and p_type = "
 					+ p_type;
 
 			rs = stmt.executeQuery(page_sql);
@@ -377,12 +377,12 @@ public class MenpaiContestDAO extends DaoBase
 		return pageNum;
 	}
 
-	// µÃµ½Íæ¼ÒÊı¾İ
+	// å¾—åˆ°ç©å®¶æ•°æ®
 	public List<MenpaiContestPlayerVO> selectPlayerIn()
 	{
 		List<MenpaiContestPlayerVO> list = new ArrayList<MenpaiContestPlayerVO>();
 		MenpaiContestPlayerVO vo = null;
-		String sql = "select * from p_menpaicontest where into_state = 1 ";
+		String sql = "SELECT * FROM p_menpaicontest where into_state = 1 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -411,11 +411,11 @@ public class MenpaiContestDAO extends DaoBase
 		return list;
 	}
 
-	/** *******************ÃÅÅÉNPC*********************** */
+	/** *******************é—¨æ´¾NPC*********************** */
 	public MenpaiNpcVO getPlayerMenpaiNpc(int p_type, int p_lv)
 	{
 		MenpaiNpcVO vo = null;
-		String sql = "select * from menpainpc where p_type = " + p_type
+		String sql = "SELECT * FROM menpainpc where p_type = " + p_type
 				+ " and npc_lv = " + p_lv;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

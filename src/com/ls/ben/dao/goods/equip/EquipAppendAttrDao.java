@@ -5,20 +5,20 @@ import com.ls.model.equip.EquipAppendAttri;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:equip_append_attri±í,×°±¸Éıµ½×î¸ßµÈ¼¶Ê±¸½¼ÓµÄÊôĞÔ±í
+ * åŠŸèƒ½:equip_append_attriè¡¨,è£…å¤‡å‡åˆ°æœ€é«˜ç­‰çº§æ—¶é™„åŠ çš„å±æ€§è¡¨
  * @author ls
  */
 public class EquipAppendAttrDao extends DaoBase
 {
 	/**
-	 * Í¨¹ıidµÃµ½ĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	public EquipAppendAttri getById( String id )
 	{
 		EquipAppendAttri appendAttribute = null;
-		String sql = "select * from equip_append_attri where id="+id;
+		String sql = "SELECT * FROM equip_append_attri where id="+id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

@@ -44,7 +44,7 @@ public class JUUGameOnlinePlayerJob implements Job
 
 			try
 			{
-				// ·¢ÆğÇëÇó
+				// å‘èµ·è¯·æ±‚
 				result = HttpUtils.URLGet("http://interface.juu.cn/new/online_total.php",reqParams);
 			}
 			catch (Exception e)

@@ -1,173 +1,153 @@
 /**
- * 
+ *
  */
-package com.ben.dao.deletepart; 
+package com.ben.dao.deletepart;
+
+import com.pub.db.mysql.SqlData;
+import org.apache.log4j.Logger;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
-import com.pub.db.mysql.SqlData;
-
 /**
- * @author ºîºÆ¾ü
- *  
+ * @author ä¾¯æµ©å†›
+ * <p>
  * 2:47:38 PM
  */
 public class DeletePartDAO {
-	SqlData dbc;  
-	Logger logger =  Logger.getLogger(DeletePartDAO.class);
-	public int DeletePart(int pPk){
-		
-		try{  
-			dbc = new SqlData(); 
-			dbc.begin();
-			dbc.update("delete from u_part_info where p_pk=" + pPk);
-			logger.info("Íæ¼ÒÊÓÒ°ÊÇÔÚÕâÀïÉ¾³ýµÄ ************  ");
-			dbc.update("delete from u_part_equip where p_pk=" + pPk);
-			dbc.update("delete from u_warehouse_info where p_pk=" + pPk);
-			
-			dbc.update("delete from p_pet_info where p_pk=" + pPk);
-			dbc.update("delete from u_pet_sell where p_pk=" + pPk);
-			dbc.update("delete from u_sell_info where p_pk=" + pPk);
-			
-			dbc.update("delete from n_dropgoods_info where p_pk=" + pPk);
-			dbc.update("delete from n_dropExpMoney_info where p_pk=" + pPk);   
-			
-			dbc.update("delete from u_shortcut_info where p_pk=" + pPk);
-			dbc.update("delete from u_propgroup_info where p_pk=" + pPk);
-			dbc.update("delete from u_coordinate_info where p_pk=" + pPk);
-			dbc.update("delete from u_group_info where p_pk=" + pPk);
-			dbc.update("delete from u_skill_info where p_pk=" + pPk);
-			 
-			dbc.update("delete from u_time_control where p_pk=" + pPk);
-			dbc.update("delete from u_task where p_pk=" + pPk);
-			dbc.update("delete from u_task_complete where p_pk=" + pPk);
-			 
-			dbc.update("delete from u_auction where p_pk=" + pPk);
-			dbc.update("delete from u_auction_info where p_pk=" + pPk);
-			
-			dbc.update("delete from u_friend where p_pk=" + pPk);
-			dbc.update("delete from u_blacklist where p_pk=" + pPk);
-			dbc.update("delete from s_system_info where p_pk=" + pPk); 
-			
-			dbc.update("delete from u_auction_pet where p_pk=" + pPk);
-			dbc.update("delete from u_auctionpet_info where p_pk=" + pPk);
-			dbc.update("delete from s_setting_info where p_pk=" + pPk);
-			dbc.update("delete from u_warehouse_equip where p_pk=" + pPk); 
-			
-			dbc.update("delete from u_quiz_info where p_pk=" + pPk);
-			dbc.update("delete from u_special_prop where p_pk=" + pPk);
-			dbc.commit();// Ìá½»JDBCÊÂÎñ  
-			dbc.close();
-			return 1; 
-		}catch (Exception exc) {
-			dbc.rollback(); 
-			exc.printStackTrace();
-			dbc.close();
-			return -1;
-		}
-	}
+    SqlData dbc;
+    Logger logger = Logger.getLogger(DeletePartDAO.class);
 
-	/**
-	 * È·¶¨Ä³½ÇÉ«µÄÉ¾³ýÊ±¼ä£¬²¢½«É¾³ý±êÖ¾ÖÃÎª1£¬¼´ÓÐÐ§Î».
-	 * @param pk
-	 * @param u_pk
-	 * @param isRookie
-	 * return ·µ»Ø1±íÊ¾É¾³ý³É¹¦£¬0±íÊ¾Ê§°Ü
-	 */
-	public int delete(String pk, String u_pk,boolean isRookie)
-	{
-		
-		int result = 0;
-		String dateStr="|"+new Date().getSeconds()+"";
-		String sql="";
-		if(!isRookie)
-		{
-			sql = "update u_part_info set delete_flag = 1 ,delete_time = now(),p_name=CONCAT(p_name,'"+dateStr+"') where p_pk="+pk+" and u_pk="+u_pk;
-		}
-		else
-		{
-			sql ="delete from u_part_info where p_pk="+pk+" and u_pk="+u_pk;
-		}
-		try
-		{
-			dbc = new SqlData();
-			result = dbc.update(sql);
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		} finally {
-			dbc.close();
-		} 
-		return result;
-	}
+    public int DeletePart(int pPk) {
 
-	/**
-	 * »Ö¸´Ä³½ÇÉ«µÄÉ¾³ýÊ±¼ä£¬²¢½«É¾³ý±êÖ¾ÖÃÎª0£¬¼´ÎÞÐ§Î».
-	 * @param pk
-	 * @param pk2
-	 */
-	public void sureResumeTime(String pk, String u_pk)
-	{
-		String sql = "update u_part_info set delete_flag = 0 where p_pk="+pk+" and u_pk="+u_pk;
-		try
-		{
-			dbc = new SqlData();
-			dbc.update(sql);
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		} finally {
-			dbc.close();
-		} 
-		
-	}
-	
-	/**
-	 * »Ö¸´Ä³½ÇÉ«µÄÉ¾³ýÊ±¼ä£¬²¢½«É¾³ý±êÖ¾ÖÃÎª0£¬¼´ÎÞÐ§Î».
-	 * @param pk
-	 * @param pk2
-	 */
-	public void deleteByTime() {
-		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select p_pk from u_part_info where delete_flag = 1 and now() > (delete_time + INTERVAL 1 DAY)";
-		try
-		{
-			dbc = new SqlData();
-			ResultSet rs = dbc.query(sql);
-			while(rs.next()) {
-				list.add(rs.getInt("p_pk"));
-			}
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		} finally {
-			dbc.close();
-		} 
-		
-		if(list.size() != 0) {
-			for(int i=0; i < list.size();i++ ) {
-				DeletePart(list.get(i));
-			}
-		}
-	}
+        try {
+            dbc = new SqlData();
+            dbc.begin();
+            dbc.update("DELETE FROM `u_part_info` WHERE p_pk = " + pPk);
+            logger.info("çŽ©å®¶è§†é‡Žæ˜¯åœ¨è¿™é‡Œåˆ é™¤çš„ ************  ");
+            dbc.update("DELETE FROM `u_part_equip` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_warehouse_info` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `p_pet_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_pet_sell` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_sell_info` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `n_dropgoods_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `n_dropExpMoney_info` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `u_shortcut_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_propgroup_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_coordinate_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_group_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_skill_info` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `u_time_control` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_task` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_task_complete` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `u_auction` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_auction_info` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `u_friend` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_blacklist` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `s_system_info` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `u_auction_pet` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_auctionpet_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `s_setting_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_warehouse_equip` WHERE p_pk = " + pPk);
+
+            dbc.update("DELETE FROM `u_quiz_info` WHERE p_pk = " + pPk);
+            dbc.update("DELETE FROM `u_special_prop` WHERE p_pk = " + pPk);
+            dbc.commit();// æäº¤JDBCäº‹åŠ¡
+            dbc.close();
+            return 1;
+        } catch (Exception exc) {
+            dbc.rollback();
+            exc.printStackTrace();
+            dbc.close();
+            return -1;
+        }
+    }
+
+    /**
+     * ç¡®å®šæŸè§’è‰²çš„åˆ é™¤æ—¶é—´ï¼Œå¹¶å°†åˆ é™¤æ ‡å¿—ç½®ä¸º1ï¼Œå³æœ‰æ•ˆä½.
+     *
+     * @param pk       pk
+     * @param u_pk     u_pk
+     * @param isRookie isRookie
+     *                 return è¿”å›ž1è¡¨ç¤ºåˆ é™¤æˆåŠŸï¼Œ0è¡¨ç¤ºå¤±è´¥
+     */
+    public int delete(String pk, String u_pk, boolean isRookie) {
+        int result = 0;
+        String dateStr = "|" + new Date().getSeconds();
+        String sql = "";
+        if (!isRookie) {
+            sql = "update u_part_info set delete_flag = 1 ,delete_time = now(),p_name=CONCAT(p_name,'" + dateStr + "') WHERE p_pk = " + pk + " and u_pk = " + u_pk;
+        } else {
+            sql = "delete from u_part_info WHERE p_pk = " + pk + " and u_pk = " + u_pk;
+        }
+        try {
+            dbc = new SqlData();
+            result = dbc.update(sql);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbc.close();
+        }
+        return result;
+    }
+
+    /**
+     * æ¢å¤æŸè§’è‰²çš„åˆ é™¤æ—¶é—´ï¼Œå¹¶å°†åˆ é™¤æ ‡å¿—ç½®ä¸º0ï¼Œå³æ— æ•ˆä½.
+     *
+     * @param pk   pk
+     * @param u_pk u_pk
+     */
+    public void sureResumeTime(String pk, String u_pk) {
+        String sql = "UPDATE `u_part_info` SET `delete_flag` = 0 WHERE p_pk = " + pk + " and u_pk = " + u_pk;
+        try {
+            dbc = new SqlData();
+            dbc.update(sql);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbc.close();
+        }
+
+    }
+
+    /**
+     * æ¢å¤æŸè§’è‰²çš„åˆ é™¤æ—¶é—´ï¼Œå¹¶å°†åˆ é™¤æ ‡å¿—ç½®ä¸º0ï¼Œå³æ— æ•ˆä½.
+     */
+    public void deleteByTime() {
+        List<Integer> list = new ArrayList<Integer>();
+        String sql = "SELECT p_pk from u_part_info WHERE delete_flag = 1 and now() > (delete_time + INTERVAL 1 DAY)";
+        try {
+            dbc = new SqlData();
+            ResultSet rs = dbc.query(sql);
+            while (rs.next()) {
+                list.add(rs.getInt("p_pk"));
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbc.close();
+        }
+
+        if (list.size() != 0) {
+            for (int i = 0; i < list.size(); i++) {
+                DeletePart(list.get(i));
+            }
+        }
+    }
 }

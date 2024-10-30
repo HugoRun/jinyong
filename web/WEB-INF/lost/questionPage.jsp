@@ -2,7 +2,7 @@
 <%@ page pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
 <%@page import="com.ls.ben.vo.info.quiz.QuizVO"%>
 <%
-	QuizVO quiz = (QuizVO)request.getAttribute("quiz");
+    QuizVO quiz = (QuizVO)request.getAttribute("quiz");
 	String menu_id = (String)request.getAttribute("menu_id");
 	if(menu_id == null || menu_id.equals("")){
 		menu_id = request.getParameter("menu_id");

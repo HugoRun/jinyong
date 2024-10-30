@@ -4,22 +4,22 @@
 package com.ben.vo.communion.group;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 6:01:12 PM
  */
 public class UGroupVO {
-	/** ¹«¹²ÆµµÀid */
+	/** å…¬å…±é¢‘é“id */
 	private int ugPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ½ÇÉ«Ãû³Æ */
+	/** è§’è‰²åç§° */
 	private String pName;
-	/** ¹«¹²ÁÄÌìÀàÈİ */
+	/** å…¬å…±èŠå¤©ç±»å®¹ */
 	private String ugTitle;
-	/** ËùÊô×é¶Ó */
+	/** æ‰€å±ç»„é˜Ÿ */
 	private int ugBelong;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getUgBelong() {

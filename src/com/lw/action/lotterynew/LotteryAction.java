@@ -22,7 +22,7 @@ public class LotteryAction extends DispatchAction
 {
 	Logger logger = Logger.getLogger(LotteryAction.class);
 
-	/** ½øÈëÖ÷½çÃæ* */
+	/** è¿›å…¥ä¸»ç•Œé¢* */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -32,7 +32,7 @@ public class LotteryAction extends DispatchAction
 		return mapping.findForward("menu");
 	}
 
-	/** Éú³É²ÊÆ±* */
+	/** ç”Ÿæˆå½©ç¥¨* */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -44,7 +44,7 @@ public class LotteryAction extends DispatchAction
 		String lottery_num = num1 + "," + num2 + "," + num3 + "," + num4;
 		if (lottery_zhu == null)
 		{
-			request.setAttribute("display", "ÇëÖØĞÂÍ¶×¢!");
+			request.setAttribute("display", "è¯·é‡æ–°æŠ•æ³¨!");
 			return mapping.findForward("display");
 		}
 		RoleService roleService = new RoleService();
@@ -65,7 +65,7 @@ public class LotteryAction extends DispatchAction
 				.getSession());
 		if (role_info.getBasicInfo().getGrade() < 5)
 		{
-			request.setAttribute("display", "ÄúµÄµÈ¼¶Ğ¡ÓÚ5¼¶²»ÄÜ²Î¼Ó¾º²Â!");
+			request.setAttribute("display", "æ‚¨çš„ç­‰çº§å°äº5çº§ä¸èƒ½å‚åŠ ç«çŒœ!");
 			return mapping.findForward("display");
 		}
 		PlayerLotteryService playerLotteryService = new PlayerLotteryService();
@@ -73,7 +73,7 @@ public class LotteryAction extends DispatchAction
 				.getBasicInfo().getPPk());
 		if (can == false)
 		{
-			request.setAttribute("display", "ÄúÒÑ¾­²Î¼Ó¹ı±¾ÆÚ¾º²Â,ÇëÄÍĞÄµÈ´ı¿ª½±!");
+			request.setAttribute("display", "æ‚¨å·²ç»å‚åŠ è¿‡æœ¬æœŸç«çŒœ,è¯·è€å¿ƒç­‰å¾…å¼€å¥–!");
 			return mapping.findForward("display");
 		}
 		Date date = new Date();
@@ -94,23 +94,23 @@ public class LotteryAction extends DispatchAction
 				.getBasicInfo().getPPk(), lottery_date);
 		int time = 60 - date.getMinutes();
 		StringBuffer sb = new StringBuffer();
-		sb.append(role_info.getBasicInfo().getName() + "»¶Ó­Äú²Î¼Ó¾º²Â»î¶¯!<br/>");
-		sb.append("½ñÌìÄúÍ¶×¢" + zhu + "´Î,ÖĞ½±" + zhong + "´Î!<br/>");
+		sb.append(role_info.getBasicInfo().getName() + "æ¬¢è¿æ‚¨å‚åŠ ç«çŒœæ´»åŠ¨!<br/>");
+		sb.append("ä»Šå¤©æ‚¨æŠ•æ³¨" + zhu + "æ¬¡,ä¸­å¥–" + zhong + "æ¬¡!<br/>");
 		int min = 60 - date.getMinutes();
 		if (min == 1)
 		{
-			sb.append("±¾ÆÚÏÂ×¢Ê±¼äÒÑ¾­½áÊø,ÇëµÈ´ı±¾ÆÚ¿ª½±.±¾ÆÚ¿ª½±Ê±¼äÎª" + hours + "µã!");
+			sb.append("æœ¬æœŸä¸‹æ³¨æ—¶é—´å·²ç»ç»“æŸ,è¯·ç­‰å¾…æœ¬æœŸå¼€å¥–.æœ¬æœŸå¼€å¥–æ—¶é—´ä¸º" + hours + "ç‚¹!");
 			request.setAttribute("display", sb.toString());
 			return mapping.findForward("display");
 		}
-		sb.append("±¾ÆÚÊ£ÓàÏÂ×¢Ê±¼ä" + time + "·ÖÖÓ!<br/>");
-		sb.append("Ã¿×¢½ğ¶î50"+GameConfig.getYuanbaoName()+"<br/>");
-		sb.append("¹ºÂò×¢Êı:<br/>");
+		sb.append("æœ¬æœŸå‰©ä½™ä¸‹æ³¨æ—¶é—´" + time + "åˆ†é’Ÿ!<br/>");
+		sb.append("æ¯æ³¨é‡‘é¢50"+GameConfig.getYuanbaoName()+"<br/>");
+		sb.append("è´­ä¹°æ³¨æ•°:<br/>");
 		request.setAttribute("display", sb.toString());
 		return mapping.findForward("yb");
 	}
 
-	/** ÁìÈ¡½±ÀøÁĞ±í(·ÖÒ³) */
+	/** é¢†å–å¥–åŠ±åˆ—è¡¨(åˆ†é¡µ) */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -131,7 +131,7 @@ public class LotteryAction extends DispatchAction
 		return mapping.findForward("display");
 	}
 
-	/** Íæ¼ÒÁìÈ¡½±Àø* */
+	/** ç©å®¶é¢†å–å¥–åŠ±* */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -141,14 +141,14 @@ public class LotteryAction extends DispatchAction
 		String lottery_date = request.getParameter("lottery_date");
 		if (lottery_date.length() != 8)
 		{
-			request.setAttribute("display", "Ô¶Àë²ÊÆ±£¬ÕäÏ§ÉúÃü!");
+			request.setAttribute("display", "è¿œç¦»å½©ç¥¨ï¼Œçæƒœç”Ÿå‘½!");
 			return mapping.findForward("display");
 		}
 		LotteryService ls = new LotteryService();
 		String date_bak = ls.getSysLotteryDate();
 		if (lottery_date.equals(date_bak))
 		{
-			request.setAttribute("display", "Ô¶Àë²ÊÆ±£¬ÕäÏ§ÉúÃü!");
+			request.setAttribute("display", "è¿œç¦»å½©ç¥¨ï¼Œçæƒœç”Ÿå‘½!");
 			return mapping.findForward("display");
 		}
 		LotteryOutInfoService lotteryOutInfoService = new LotteryOutInfoService();
@@ -158,14 +158,14 @@ public class LotteryAction extends DispatchAction
 		return mapping.findForward("display");
 	}
 
-	/** ¾º²Â¹æÔò* */
+	/** ç«çŒœè§„åˆ™* */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		return mapping.findForward("rule");
 	}
 
-	/** ÀúÊ·¼ÇÂ¼(ÏµÍ³ºÅÂë)(·ÖÒ³)* */
+	/** å†å²è®°å½•(ç³»ç»Ÿå·ç )(åˆ†é¡µ)* */
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -185,7 +185,7 @@ public class LotteryAction extends DispatchAction
 		return mapping.findForward("display");
 	}
 
-	/** ÀúÊ·¼ÇÂ¼(¹ºÂòºÅÂë)(·ÖÒ³)* */
+	/** å†å²è®°å½•(è´­ä¹°å·ç )(åˆ†é¡µ)* */
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

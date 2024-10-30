@@ -19,7 +19,7 @@ if(message!=null&&!"".equals(message.trim())){
 for(Shitu st : list){
 %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/baishi.do") %>"> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/baishi.do") %>">
 	<postfield name="cmd" value="n3" />
 	<postfield name="te_id" value="<%=st.getTe_id() %>" />
 	<postfield name="id" value="<%=st.getId() %>" />

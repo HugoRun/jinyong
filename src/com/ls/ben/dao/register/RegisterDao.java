@@ -7,12 +7,12 @@ import com.ls.ben.dao.DaoBase;
 import com.ls.pub.db.DBConnection;
 
 /**
- * @author ls 功能:注册dao Jan 10, 2009
+ * @author ls 鍔熻兘:娉ㄥ唽dao Jan 10, 2009
  */
 public class RegisterDao extends DaoBase
 {
 	/**
-	 * 添加用户
+	 * 娣诲姞鐢ㄦ埛
 	 */
 	public int addUser(String user_name, String ip)
 	{
@@ -23,7 +23,7 @@ public class RegisterDao extends DaoBase
 		try
 		{
 
-			String sql = "insert into u_login_info values(null,?,'',1,now(),?,now(),0,0)";
+			String sql = "INSERT INTO u_login_info values(null,?,'',1,now(),?,now(),0,0)";
 			logger.debug(sql);
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, user_name);
@@ -50,7 +50,7 @@ public class RegisterDao extends DaoBase
 	}
 
 	/**
-	 * 添加用户
+	 * 娣诲姞鐢ㄦ埛
 	 */
 	public int addUser(String user_name,String pwass, String ip,String super_qudao,String qudao)
 	{
@@ -61,7 +61,7 @@ public class RegisterDao extends DaoBase
 		try
 		{
 
-			String sql = "insert into u_login_info(u_pk,u_name,u_paw,login_state,create_time,last_login_ip,last_login_time,yuanbao,jifen,super_qudao,qudao) values(null,'" + user_name+ "','"+pwass+"',1,now(),'" + ip + "',now(),0,0,'"+(super_qudao==null?"":super_qudao.trim())+"','"+(qudao==null?"":qudao.trim())+"')";
+			String sql = "INSERT INTO u_login_info(u_pk,u_name,u_paw,login_state,create_time,last_login_ip,last_login_time,yuanbao,jifen,super_qudao,qudao) values(null,'" + user_name+ "','"+pwass+"',1,now(),'" + ip + "',now(),0,0,'"+(super_qudao==null?"":super_qudao.trim())+"','"+(qudao==null?"":qudao.trim())+"')";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			stmt.execute(sql);
@@ -85,7 +85,7 @@ public class RegisterDao extends DaoBase
 		}
 		return u_pk;
 	}
-	/** 更新登陆用户IP */
+	/** 鏇存柊鐧婚檰鐢ㄦ埛IP */
 	public void updateIp(int u_pk, String ip)
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -113,7 +113,7 @@ public class RegisterDao extends DaoBase
 	@SuppressWarnings("finally")
 	public LoginInfoVO findByUpk(int uPk){
 		LoginInfoVO li = null;
-		String sql = "select * from u_login_info u where u.u_pk = "+uPk;
+		String sql = "SELECT * FROM u_login_info u where u.u_pk = "+uPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try

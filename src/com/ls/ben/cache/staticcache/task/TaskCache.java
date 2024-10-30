@@ -12,7 +12,7 @@ public class TaskCache extends CacheBase
 	public static String TASK_BY_ID = "task_by_id";
 	
 	/**
-	 * Í¨¹ıidµÃµ½taskĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°taskä¿¡æ¯
 	 * @param task_id
 	 * @return
 	 */
@@ -31,14 +31,14 @@ public class TaskCache extends CacheBase
 			}
 			else
 			{
-				DataErrorLog.debugData("ÎŞ¸ÃÈÎÎñ£ºÈÎÎñid="+task_id);
+				DataErrorLog.debugData("æ— è¯¥ä»»åŠ¡ï¼šä»»åŠ¡id="+task_id);
 			}
 		}
 		
 		return task;
 	}
 	/**
-	 * ÖØĞÂ¼ÓÔÚÒ»ÌõÈÎÎñ
+	 * é‡æ–°åŠ åœ¨ä¸€æ¡ä»»åŠ¡
 	 */
 	public void reloadOneTask(TaskVO taskVO){
 		if(taskVO != null){

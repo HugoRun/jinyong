@@ -13,10 +13,10 @@ import com.pm.vo.mail.MailInfoVO;
 public class MailInfoDao extends DaoBase {
 	
 	/**
-	 * »ñµÃ¸öÈËËùÓĞÓÊ¼ş
-	 * @param p_pk ¸öÈË½ÇÉ«id
+	 * è·å¾—ä¸ªäººæ‰€æœ‰é‚®ä»¶
+	 * @param p_pk ä¸ªäººè§’è‰²id
 	 * @param 
-	 * @return list ÓÊ¼şÁĞ±í
+	 * @return list é‚®ä»¶åˆ—è¡¨
 	 */
 	public QueryPage getPersonMailList(String pPk,int page_no){
 		QueryPage queryPage = null;
@@ -31,7 +31,7 @@ public class MailInfoDao extends DaoBase {
 		try{
 			conn = dbConn.getConn();
 			stmt = conn.createStatement();
-			count_sql = "select count(1) as mail_count from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY)";
+			count_sql = "SELECT count(1) as mail_count from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY)";
 							
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
@@ -43,7 +43,7 @@ public class MailInfoDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			String sql = "select * from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY) order by unread asc, improtant desc, create_time desc"
+			String sql = "SELECT * FROM u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY) order by unread asc, improtant desc, create_time desc"
 							+" limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 			logger.debug(sql);
 			rs = stmt.executeQuery(sql);
@@ -75,14 +75,14 @@ public class MailInfoDao extends DaoBase {
 	
 	
 	/**
-	 * ¸ù¾İmailId»ñµÃ¸öÈËÓÊ¼ş
-	 * @param p_pk ¸öÈË½ÇÉ«id
+	 * æ ¹æ®mailIdè·å¾—ä¸ªäººé‚®ä»¶
+	 * @param p_pk ä¸ªäººè§’è‰²id
 	 * @param 
-	 * @return list ÓÊ¼şÁĞ±í
+	 * @return list é‚®ä»¶åˆ—è¡¨
 	 */
 	public MailInfoVO getPersonMailView(String mailId){
 		
-		String sql = "select * from u_mail_info where mail_id="+mailId;
+		String sql = "SELECT * FROM u_mail_info where mail_id="+mailId;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		MailInfoVO mvo = null;
@@ -114,14 +114,14 @@ public class MailInfoDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İmailId»ñµÃ¸öÈËÓÊ¼şµÄÀàĞÍ
-	 * @param p_pk ¸öÈË½ÇÉ«id
+	 * æ ¹æ®mailIdè·å¾—ä¸ªäººé‚®ä»¶çš„ç±»å‹
+	 * @param p_pk ä¸ªäººè§’è‰²id
 	 * @param 
-	 * @return list ÓÊ¼şÁĞ±í
+	 * @return list é‚®ä»¶åˆ—è¡¨
 	 */
 	public int getMailTypeById(String mailId){
 		
-		String sql = "select mail_type from u_mail_info where mail_id="+mailId;
+		String sql = "SELECT mail_type from u_mail_info where mail_id="+mailId;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int mail_type = 2;
@@ -145,15 +145,15 @@ public class MailInfoDao extends DaoBase {
 	
 	
 	/**
-	 * ¸ù¾İ°ïÅÉidÈº·¢°ïÅÉÓÊ¼şĞÅÏ¢(Î´Íê³É)
-	 * @prarm tong_id		°ïÅÉid
-	 * @prarm title 		±êÌâ
-	 * @param context 		ÄÚÈİ
+	 * æ ¹æ®å¸®æ´¾idç¾¤å‘å¸®æ´¾é‚®ä»¶ä¿¡æ¯(æœªå®Œæˆ)
+	 * @prarm tong_id		å¸®æ´¾id
+	 * @prarm title 		æ ‡é¢˜
+	 * @param context 		å†…å®¹
 	 * @return if sussend return 1,else return -1;
 	 
 	public int insertTongMail(int receive_pk,int send_pk,String title,String content,int improtant){
 		int result = -1;
-		String sql = "insert into u_mail_info values(null,"+receive_pk+" ,"+send_pk+" ,'"+title+"','"+content+"',1,"+improtant+" ,now())";
+		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+" ,"+send_pk+" ,'"+title+"','"+content+"',1,"+improtant+" ,now())";
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -173,13 +173,13 @@ public class MailInfoDao extends DaoBase {
 	}*/
 	
 	/**
-	 * ²é¿´ÊÇ·ñÓĞĞÂÓÊ¼ş
-	 * @prarm pPk ¸öÈË½ÇÉ«id
+	 * æŸ¥çœ‹æ˜¯å¦æœ‰æ–°é‚®ä»¶
+	 * @prarm pPk ä¸ªäººè§’è‰²id
 	 * @return if have new mail,it will return the number of new mail,else return -1;
 	 */
 	public int havingNewMail(String pPk){
 		int i = -1;
-		String sql = "select count(*) from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY) and unread = 1 limit 1";
+		String sql = "SELECT count(*) from u_mail_info where receive_pk="+pPk+" and now() < (create_time + INTERVAL 7 DAY) and unread = 1 limit 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		
 		try{
@@ -201,8 +201,8 @@ public class MailInfoDao extends DaoBase {
 		}
 	
 	/**
-	 * 	¸ù¾İmailIdÀ´É¾³ıÖ¸¶¨µÄÓÊ¼ş
-	 * @param mailId ÓÊ¼şid
+	 * 	æ ¹æ®mailIdæ¥åˆ é™¤æŒ‡å®šçš„é‚®ä»¶
+	 * @param mailId é‚®ä»¶id
 	 */
 	public int deleteMailByid(String mailId,int pPk){
 		int i = -1;
@@ -226,8 +226,8 @@ public class MailInfoDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İpPkÉ¾³ı¸öÈËÈ«²¿ÓÊ¼ş
-	 * @param pk ¸öÈË½ÇÉ«id
+	 * æ ¹æ®pPkåˆ é™¤ä¸ªäººå…¨éƒ¨é‚®ä»¶
+	 * @param pk ä¸ªäººè§’è‰²id
 	 * @return if delete sussens return 1,else return -1;
 	 */ 
 	public int deletePersonMailBypPk(String pk){
@@ -249,7 +249,7 @@ public class MailInfoDao extends DaoBase {
 	}
 	
 	/**
-	 * ¸ù¾İmailId½«ÓÊ¼şÔÄ¶Á×´Ì¬ÖÃÎªÒÑ¶Á
+	 * æ ¹æ®mailIdå°†é‚®ä»¶é˜…è¯»çŠ¶æ€ç½®ä¸ºå·²è¯»
 	 */
 	public void updateMailRead(String mailId){
 		String sql = "update u_mail_info set unread = 2 where mail_id="+mailId;
@@ -268,13 +268,13 @@ public class MailInfoDao extends DaoBase {
 		
 		
 	/**
-	 * É¾³ıËùÓĞ³¬¹ıÆßÈÕµÄÓÊ¼ş
-	 * @param name ¸öÈË½ÇÉ«Ãû
-	 * @return p_pk ¸öÈË½ÇÉ«id£¬Èç¹ûÃ»ÓĞ´Ë½ÇÉ«£¬Ôò·µ»Ø-1.
+	 * åˆ é™¤æ‰€æœ‰è¶…è¿‡ä¸ƒæ—¥çš„é‚®ä»¶
+	 * @param name ä¸ªäººè§’è‰²å
+	 * @return p_pk ä¸ªäººè§’è‰²idï¼Œå¦‚æœæ²¡æœ‰æ­¤è§’è‰²ï¼Œåˆ™è¿”å›-1.
 	 */
 	public void deleteMailIfOutSeven(){
 		String sql = "delete from u_mail_info where now() > (create_time + INTERVAL 7 DAY)";
-		logger.debug("É¾³ıËùÓĞ³¬¹ıÆßÌìµÄÓÊ¼şµÄsql="+sql);
+		logger.debug("åˆ é™¤æ‰€æœ‰è¶…è¿‡ä¸ƒå¤©çš„é‚®ä»¶çš„sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -291,7 +291,7 @@ public class MailInfoDao extends DaoBase {
 
 
 	/**
-	 * É¾³ı¶ş¼¶ÃÜÂëÉèÖÃÓÊ¼ş
+	 * åˆ é™¤äºŒçº§å¯†ç è®¾ç½®é‚®ä»¶
 	 * @param pk
 	 */
 	public void deleteSecondPassMail(int u_pk)
@@ -299,7 +299,7 @@ public class MailInfoDao extends DaoBase {
 		String sql = "delete from u_mail_info where mail_type = 4 and receive_pk = " +
 						"(select p_pk from u_part_info where u_pk = "+u_pk+" group by create_time " +
 						"asc limit 1)";
-		logger.debug("É¾³ı¶ş¼¶ÃÜÂëÉèÖÃÓÊ¼şsql="+sql);
+		logger.debug("åˆ é™¤äºŒçº§å¯†ç è®¾ç½®é‚®ä»¶sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -316,14 +316,14 @@ public class MailInfoDao extends DaoBase {
 
 
 	/**
-	 * ·µ»Ø¸öÈËÊÇ·ñÓĞÓÊ¼şÀàĞÍÎª4µÄÓÊ¼ş
+	 * è¿”å›ä¸ªäººæ˜¯å¦æœ‰é‚®ä»¶ç±»å‹ä¸º4çš„é‚®ä»¶
 	 * @param pk
 	 * @return
 	 */
 	public MailInfoVO getPersonMailTypeList(String pPk,int mail_type)
 	{
 		
-		String sql = "select * from u_mail_info where receive_pk = "+pPk+" and mail_type="+mail_type;
+		String sql = "SELECT * FROM u_mail_info where receive_pk = "+pPk+" and mail_type="+mail_type;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		MailInfoVO mvo = null;
@@ -355,14 +355,14 @@ public class MailInfoDao extends DaoBase {
 
 
 	/**
-	 * ¸üĞÂÓÊ¼şµÄÄÚÈİ
+	 * æ›´æ–°é‚®ä»¶çš„å†…å®¹
 	 * @param mailId
 	 * @param string
 	 */
 	public void updateMail(int mailId, String content)
 	{
 		String sql = "update u_mail_info set content = '"+content+"' where mail_id = "+mailId+"";
-		logger.debug("¸üĞÂÓÊ¼şµÄÄÚÈİsql="+sql);
+		logger.debug("æ›´æ–°é‚®ä»¶çš„å†…å®¹sql="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -379,8 +379,8 @@ public class MailInfoDao extends DaoBase {
 	
 	/*public int insertMailReturnId(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int result = -1;
-		String sql = "insert into u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
-		logger.debug("²åÈëmail="+sql);
+		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
+		logger.debug("æ’å…¥mail="+sql);
 		String sql1 = "SELECT LAST_INSERT_ID() ";
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
@@ -401,11 +401,11 @@ public class MailInfoDao extends DaoBase {
 			}
 		return result;
 	}
-	//·µ»ØÓÊ¼şÖ÷¼ü
+	//è¿”å›é‚®ä»¶ä¸»é”®
 	public int insertBonusMail(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int mail_id = -1;
-		String sql = "insert into u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
-		logger.debug("²åÈëmail="+sql);
+		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
+		logger.debug("æ’å…¥mail="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -426,19 +426,19 @@ public class MailInfoDao extends DaoBase {
 		return mail_id;
 	}
 	*//**
-	 * ²åÈëÓÊ¼şĞÅÏ¢
-	 * @prarm receive_pk 	ÊÕĞÅÈËid 
-	 * @prarm send_pk		·¢ĞÅÈËid
-	 * @param mail_type		ÓÊ¼şÀàĞÍ£¬1ÎªÆÕÍ¨ÓÊ¼ş£¬2ÎªÏµÍ³¡£
-	 * @prarm title 		±êÌâ
-	 * @param context 		ÄÚÈİ
-	 * @param improtant  	ÖØÒªĞÔ£¬Ä¬ÈÏÎª1£¬Êı×ÖÔ½´óÔ½ÖØÒª
+	 * æ’å…¥é‚®ä»¶ä¿¡æ¯
+	 * @prarm receive_pk 	æ”¶ä¿¡äººid 
+	 * @prarm send_pk		å‘ä¿¡äººid
+	 * @param mail_type		é‚®ä»¶ç±»å‹ï¼Œ1ä¸ºæ™®é€šé‚®ä»¶ï¼Œ2ä¸ºç³»ç»Ÿã€‚
+	 * @prarm title 		æ ‡é¢˜
+	 * @param context 		å†…å®¹
+	 * @param improtant  	é‡è¦æ€§ï¼Œé»˜è®¤ä¸º1ï¼Œæ•°å­—è¶Šå¤§è¶Šé‡è¦
 	 * @return if sussend return 1,else return -1;
 	 *//*
 	public int insertMail(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int result = -1;
-		String sql = "insert into u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
-		logger.debug("²åÈëmail="+sql);
+		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now())";
+		logger.debug("æ’å…¥mail="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -458,19 +458,19 @@ public class MailInfoDao extends DaoBase {
 	}*/
 	
 	/**
-	 * ²åÈëÓÊ¼şĞÅÏ¢
-	 * @prarm receive_pk 	ÊÕĞÅÈËid 
-	 * @prarm send_pk		·¢ĞÅÈËid
-	 * @param mail_type		ÓÊ¼şÀàĞÍ£¬1ÎªÆÕÍ¨ÓÊ¼ş£¬2ÎªÏµÍ³¡£
-	 * @prarm title 		±êÌâ
-	 * @param context 		ÄÚÈİ
-	 * @param improtant  	ÖØÒªĞÔ£¬Ä¬ÈÏÎª1£¬Êı×ÖÔ½´óÔ½ÖØÒª
+	 * æ’å…¥é‚®ä»¶ä¿¡æ¯
+	 * @prarm receive_pk 	æ”¶ä¿¡äººid 
+	 * @prarm send_pk		å‘ä¿¡äººid
+	 * @param mail_type		é‚®ä»¶ç±»å‹ï¼Œ1ä¸ºæ™®é€šé‚®ä»¶ï¼Œ2ä¸ºç³»ç»Ÿã€‚
+	 * @prarm title 		æ ‡é¢˜
+	 * @param context 		å†…å®¹
+	 * @param improtant  	é‡è¦æ€§ï¼Œé»˜è®¤ä¸º1ï¼Œæ•°å­—è¶Šå¤§è¶Šé‡è¦
 	 * @return if sussend return 1,else return -1;
 	 */
 	public int addAndReturnKey(int receive_pk,int send_pk,int mail_type,String title,String content,int improtant){
 		int result = -1;
-		String sql = "insert into u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now(),'')";
-		logger.debug("²åÈëmail="+sql);
+		String sql = "INSERT INTO u_mail_info values(null,"+receive_pk+","+send_pk+","+mail_type+",'"+StringUtil.gbToISO(title)+"','"+StringUtil.gbToISO(content)+"',1,"+improtant+",now(),'')";
+		logger.debug("æ’å…¥mail="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -493,13 +493,13 @@ public class MailInfoDao extends DaoBase {
 	}
 	
 	/**
-	 * ²åÈëÓÊ¼şĞÅÏ¢
-	 * @prarm receive_pk 	ÊÕĞÅÈËid 
-	 * @prarm send_pk		·¢ĞÅÈËid
-	 * @param mail_type		ÓÊ¼şÀàĞÍ£¬1ÎªÆÕÍ¨ÓÊ¼ş£¬2ÎªÏµÍ³¡£
-	 * @prarm title 		±êÌâ
-	 * @param context 		ÄÚÈİ
-	 * @param improtant  	ÖØÒªĞÔ£¬Ä¬ÈÏÎª1£¬Êı×ÖÔ½´óÔ½ÖØÒª
+	 * æ’å…¥é‚®ä»¶ä¿¡æ¯
+	 * @prarm receive_pk 	æ”¶ä¿¡äººid 
+	 * @prarm send_pk		å‘ä¿¡äººid
+	 * @param mail_type		é‚®ä»¶ç±»å‹ï¼Œ1ä¸ºæ™®é€šé‚®ä»¶ï¼Œ2ä¸ºç³»ç»Ÿã€‚
+	 * @prarm title 		æ ‡é¢˜
+	 * @param context 		å†…å®¹
+	 * @param improtant  	é‡è¦æ€§ï¼Œé»˜è®¤ä¸º1ï¼Œæ•°å­—è¶Šå¤§è¶Šé‡è¦
 	 * @return if sussend return 1,else return -1;
 	 */
 	public int addAndReturnKey(MailInfoVO mail){
@@ -510,7 +510,7 @@ public class MailInfoDao extends DaoBase {
 		int result = -1;
 		StringBuffer sql = new StringBuffer();
 			
-		sql.append("insert into u_mail_info values(null");
+		sql.append("INSERT INTO u_mail_info values(null");
 		sql.append(",").append(mail.getReceivePk());
 		sql.append(",").append(mail.getSendPk());
 		sql.append(",").append(mail.getMailType());
@@ -522,7 +522,7 @@ public class MailInfoDao extends DaoBase {
 		sql.append(",'").append(mail.getAttachmentStr()).append("'");
 		sql.append(")");
 		
-		logger.debug("²åÈëmail="+sql.toString());
+		logger.debug("æ’å…¥mail="+sql.toString());
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();

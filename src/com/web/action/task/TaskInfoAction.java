@@ -30,14 +30,14 @@ import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 import com.web.service.taskpage.TaskPageService;
 
 /**
- * @author ºîºÆ¾ü ÈÎÎñĞÅÏ¢
+ * @author ä¾¯æµ©å†› ä»»åŠ¡ä¿¡æ¯
  */
 public class TaskInfoAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
 	
 	/**
-	 * ÈÎÎñÁĞ±í
+	 * ä»»åŠ¡åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +51,7 @@ public class TaskInfoAction extends ActionBase
 	}	
 
 	/**
-	 * ²é¿´ÈÎÎñÏêÏ¸ĞÅÏ¢
+	 * æŸ¥çœ‹ä»»åŠ¡è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +64,7 @@ public class TaskInfoAction extends ActionBase
 	}
 
 	/**
-	 * ÒÆ½»ÈÎÎñ
+	 * ç§»äº¤ä»»åŠ¡
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -73,12 +73,12 @@ public class TaskInfoAction extends ActionBase
 		
 		try
 		{
-		// »ñÈ¡ÈÎÎñID
+		// è·å–ä»»åŠ¡ID
 		String npcID = request.getParameter("npcID");
 		MenuService menuService = new MenuService();
 		OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(npcID));
 		String hint = null;
-		//·µ»ØÈÎÎñµÄµÈ¼¶
+		//è¿”å›ä»»åŠ¡çš„ç­‰çº§
 		MountsService ms=new MountsService();
 		hint=ms.useMountsByTask(roleEntity, menu.getMenuMap()+"");
 		roleEntity.getBasicInfo().updateSceneId(menu.getMenuMap()+"");
@@ -94,7 +94,7 @@ public class TaskInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ÒÆ½»ÈÎÎñ
+	 * ç§»äº¤ä»»åŠ¡
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -104,30 +104,30 @@ public class TaskInfoAction extends ActionBase
 		{
 	    String hint = null;
 		String sceneid1 = roleEntity.getBasicInfo().getSceneId()+"";  
-		//È¡µÃ¾àµ±Ç°Ê±¼ä×î¶ÌµÄÈÎÎñ
+		//å–å¾—è·å½“å‰æ—¶é—´æœ€çŸ­çš„ä»»åŠ¡
 		UTaskDAO dao = new UTaskDAO();
 		UTaskVO uTaskVO =(UTaskVO) dao.getUTaskPklimit(roleEntity.getBasicInfo().getPPk() + "");
 		if(uTaskVO==null){
-			hint = "ÄúÃ»ÓĞÈÎÎñ£¬ÔİÊ±²»ÄÜ´«ËÍ"; 
+			hint = "æ‚¨æ²¡æœ‰ä»»åŠ¡ï¼Œæš‚æ—¶ä¸èƒ½ä¼ é€"; 
 			request.getRequestDispatcher("/pubaction.do?mapid="+sceneid1+"&hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response); 
 			return null;
 		} else{
-		// »ñÈ¡ÈÎÎñID
+		// è·å–ä»»åŠ¡ID
 		String npcID = uTaskVO.getTXrwnpcId()+"";
 		MenuService menuService = new MenuService();
 		OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(npcID));
 		RoomService roomService = new RoomService();
 		int map_type = roomService.getMapType(Integer.valueOf(sceneid1));
 		
-		//Èç¹ûÈÎÎñÔÚ¼àÓü, 
+		//å¦‚æœä»»åŠ¡åœ¨ç›‘ç‹±, 
 		if(map_type == MapType.PRISON) {
-			hint = "¶Ô²»Æğ,ÈÔÔÚ¼àÓü,ºÃºÃ¸ÄÔì!";
+			hint = "å¯¹ä¸èµ·,ä»åœ¨ç›‘ç‹±,å¥½å¥½æ”¹é€ !";
 			request.getRequestDispatcher("/pubaction.do?mapid="+sceneid1+"&hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response); 
 			return null;
 		}
 		MountsService ms=new MountsService();
 		hint=ms.useMountsByTask(roleEntity, menu.getMenuMap()+"");
-		//TODO Ò³Ãæ·µ»Ø×ª·¢
+		//TODO é¡µé¢è¿”å›è½¬å‘
 		request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response); 
 		
 		}
@@ -139,7 +139,7 @@ public class TaskInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ²éÕÒµ±Ç°µÈ¼¶ÈÎÎñ
+	 * æŸ¥æ‰¾å½“å‰ç­‰çº§ä»»åŠ¡
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -152,7 +152,7 @@ public class TaskInfoAction extends ActionBase
 		}else {
 			page_no = Integer.parseInt(page_no_str);
 		}
-		logger.info("ÇëÇóµÄÊÇµÚ"+page_no_str+"Ò³");
+		logger.info("è¯·æ±‚çš„æ˜¯ç¬¬"+page_no_str+"é¡µ");
 		request.setAttribute("page_no", page_no);
 		
 		TaskPageService taskService = new TaskPageService();
@@ -164,7 +164,7 @@ public class TaskInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ²éÕÒµ±Ç°µÈ¼¶ÈÎÎñ,²¢´«ËÍ
+	 * æŸ¥æ‰¾å½“å‰ç­‰çº§ä»»åŠ¡,å¹¶ä¼ é€
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -172,7 +172,7 @@ public class TaskInfoAction extends ActionBase
 		RoleEntity roleEntity = this.getRoleEntity(request);
 				
 		String hint = "";
-		// »ñÈ¡ÈÎÎñID
+		// è·å–ä»»åŠ¡ID
 		String taskid = request.getParameter("t_id"); 
 		if(taskid == null || taskid.equals("") || taskid.equals("null")){
 			taskid = (String)request.getAttribute("t_id");
@@ -184,8 +184,8 @@ public class TaskInfoAction extends ActionBase
 		
 		UTaskDAO uTaskDAO = new UTaskDAO();
 		
-		// Èç¹ûÕâÌõÈÎÎñÔÚÉíÉÏ£¬ÇÒÊÇÒÑ±»·ÅÆúµÄ£¬¾ÍÈ¡ÈÎÎñµÄÏÂÒ»²½npcËùÔÚµØ£¬
-		// ·ñÔò¾ÍÈ¡ ÈÎÎñµÄ¿ªÊ¼npcËùÔÚµØ
+		// å¦‚æœè¿™æ¡ä»»åŠ¡åœ¨èº«ä¸Šï¼Œä¸”æ˜¯å·²è¢«æ”¾å¼ƒçš„ï¼Œå°±å–ä»»åŠ¡çš„ä¸‹ä¸€æ­¥npcæ‰€åœ¨åœ°ï¼Œ
+		// å¦åˆ™å°±å– ä»»åŠ¡çš„å¼€å§‹npcæ‰€åœ¨åœ°
 		String t_zu = taskVOCache.getTZu();
 		OperateMenuVO menuvo = null;
 		if ( uTaskDAO.getUserHasTask(roleEntity.getBasicInfo().getPPk(),t_zu)) {
@@ -201,13 +201,13 @@ public class TaskInfoAction extends ActionBase
 		
 		try{
 			if(menuvo == null || menuvo.getMenuMap() == 0){
-				hint = "´ËÈÎÎñÎŞ·¨½ÓÊÜ£¡";
+				hint = "æ­¤ä»»åŠ¡æ— æ³•æ¥å—ï¼";
 				request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response); 
 				return null;
 			}
 			MountsService ms =new MountsService();
 			hint=ms.useMountsByTask(roleEntity, menuvo.getMenuMap()+"");
-			logger.info("ĞÂµÄmapid="+roleEntity.getBasicInfo().getSceneId());
+			logger.info("æ–°çš„mapid="+roleEntity.getBasicInfo().getSceneId());
 			request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response); 
 		}catch( Exception e){
 			e.printStackTrace();
@@ -215,7 +215,7 @@ public class TaskInfoAction extends ActionBase
 		return null;
 	}
 	/**
-	 * ²éÕÒµ±Ç°µÈ¼¶ÈÎÎñ,²¢´«ËÍ
+	 * æŸ¥æ‰¾å½“å‰ç­‰çº§ä»»åŠ¡,å¹¶ä¼ é€
 	 */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -227,24 +227,24 @@ public class TaskInfoAction extends ActionBase
 		String hint = null;
 		RoomService roomService = new RoomService();
 		int map_type = roomService.getMapType(Integer.valueOf(old_scene_id));
-		//Èç¹ûÈÎÎñÔÚ¼àÓü, 
+		//å¦‚æœä»»åŠ¡åœ¨ç›‘ç‹±, 
 		if(map_type == MapType.PRISON) {
-			hint = "¶Ô²»Æğ,ÈÔÔÚ¼àÓü,ºÃºÃ¸ÄÔì!"; 
+			hint = "å¯¹ä¸èµ·,ä»åœ¨ç›‘ç‹±,å¥½å¥½æ”¹é€ !"; 
 			request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response);
 			return null;
 		}
 		if(map_type== MapType.COMPASS){
-			hint = "¶Ô²»Æğ£¬ÃÔ¹¬ÖĞ²»ÄÜÊ¹ÓÃ¸Ã¹¦ÄÜ£¡";
+			hint = "å¯¹ä¸èµ·ï¼Œè¿·å®«ä¸­ä¸èƒ½ä½¿ç”¨è¯¥åŠŸèƒ½ï¼";
 			request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response);
 			return null;
 		}
-		//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ´«³ö
+		//åˆ¤æ–­æ˜¯å¦å¯ä»¥ä¼ å‡º
 		hint  = roomService.isCarryedOut(Integer.parseInt(old_scene_id));
 		if(hint != null){
 			request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response);
 			return null;
 		}
-		//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ´«Èë
+		//åˆ¤æ–­æ˜¯å¦å¯ä»¥ä¼ å…¥
 		hint  = roomService.isCarryedIn(Integer.parseInt(mapid));
 		if(hint != null){
 			request.getRequestDispatcher("/pubaction.do?hint="+hint+"&chair="+request.getParameter("chair")).forward(request, response);
@@ -262,7 +262,7 @@ public class TaskInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ÈÎÎñ·ÅÆú£¨ÎŞ¸Ã¹¦ÄÜ£©
+	 * ä»»åŠ¡æ”¾å¼ƒï¼ˆæ— è¯¥åŠŸèƒ½ï¼‰
 	 *//*
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -275,13 +275,13 @@ public class TaskInfoAction extends ActionBase
 		TaskVO task =(TaskVO) taskCache.getById(upTaskId); 
 		CurTaskInfo curTaskInfo = (CurTaskInfo)roleInfo.getTaskInfo().getCurTaskList().getById(tPk);
 		TaskVO taskVO =(TaskVO) taskCache.getById(curTaskInfo.getTId()+""); 
-		//Ê×ÏÈÈ¡µÃ¸ÄÈÎÎñÊÇ·ñ¿ÉÒÔ·ÅÆú
+		//é¦–å…ˆå–å¾—æ”¹ä»»åŠ¡æ˜¯å¦å¯ä»¥æ”¾å¼ƒ
 		String hint = null;
 		if(taskVO.getTAbandon() == 0){ 
-		//·ÅÆúÈÎÎñµÄµÚÒ»ÌõµÄÊ±ºò
+		//æ”¾å¼ƒä»»åŠ¡çš„ç¬¬ä¸€æ¡çš„æ—¶å€™
 		if(Integer.parseInt(curTaskInfo.getTPx()) == 1 && Integer.parseInt(upTaskId) == task.getTId()){
 			roleInfo.getTaskInfo().dropTask(curTaskInfo);
-			//É¾³ıÈÎÎñËù¸øµÄÎïÆ·
+			//åˆ é™¤ä»»åŠ¡æ‰€ç»™çš„ç‰©å“
 			TaskService taskService = new TaskService();
 			taskService.removeTaskStartBestowGoods(roleInfo.getBasicInfo().getPPk(), curTaskInfo.getTId()); 
 		}else{ 
@@ -310,12 +310,12 @@ public class TaskInfoAction extends ActionBase
 				break;
 			}
 		}
-		hint = "Äú·ÅÆúÁË¸ÃÌõÈÎÎñ";
+		hint = "æ‚¨æ”¾å¼ƒäº†è¯¥æ¡ä»»åŠ¡";
 		}else{
-		hint = "¸ÃÌõÈÎÎñ²»ÄÜ·ÅÆú";	
+		hint = "è¯¥æ¡ä»»åŠ¡ä¸èƒ½æ”¾å¼ƒ";	
 		}
 		//CurTaskInfo curTaskInfo = (CurTaskInfo)roleInfo.getTaskInfo().getCurTaskList().getById(giveUp);
-		//È¡³öÉÏÒ»ÌõÈÎÎñµÄID
+		//å–å‡ºä¸Šä¸€æ¡ä»»åŠ¡çš„ID
 		//int GiveUp = curTaskInfo.getTGiveUp();
 		//curTaskInfo.updateGiveUp();
 		request.setAttribute("hint", hint);
@@ -323,7 +323,7 @@ public class TaskInfoAction extends ActionBase
 	}
 	*/
 	/**
-	 * ²é¿´ÈÎÎñÏêÏ¸ĞÅÏ¢
+	 * æŸ¥çœ‹ä»»åŠ¡è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -331,11 +331,11 @@ public class TaskInfoAction extends ActionBase
 		RoleEntity roleInfo = this.getRoleEntity(request);
 		int mapType = roleInfo.getBasicInfo().getSceneInfo().getMap().getMapType();
 		if(mapType== MapType.COMPASS){
-			request.setAttribute("message", "¶Ô²»Æğ£¬ÃÔ¹¬ÖĞ²»ÄÜÊ¹ÓÃ¸Ã¹¦ÄÜ£¡");
+			request.setAttribute("message", "å¯¹ä¸èµ·ï¼Œè¿·å®«ä¸­ä¸èƒ½ä½¿ç”¨è¯¥åŠŸèƒ½ï¼");
 			return mapping.findForward("langjun");
 		}
 		if(mapType==MapType.ACTIVE_LEITAI||mapType==MapType.LEITAI_CHALLENGE){
-			request.setAttribute("message", "¶Ô²»Æğ£¬ÀŞÌ¨ÖĞ²»ÄÜÊ¹ÓÃ¸Ã¹¦ÄÜ£¡");
+			request.setAttribute("message", "å¯¹ä¸èµ·ï¼Œæ“‚å°ä¸­ä¸èƒ½ä½¿ç”¨è¯¥åŠŸèƒ½ï¼");
 			return mapping.findForward("langjun");
 		}
 		String tId = request.getParameter("tId");
@@ -350,7 +350,7 @@ public class TaskInfoAction extends ActionBase
 	}
 	
 	/**
-	 * ÏÂÒ»²½ÈÎÎñ´«ËÍ
+	 * ä¸‹ä¸€æ­¥ä»»åŠ¡ä¼ é€
 	 */
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

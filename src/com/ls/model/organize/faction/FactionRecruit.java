@@ -7,15 +7,15 @@ import com.ls.web.service.faction.FactionService;
 
 /**
  * @author ls
- * °ïÅÉÕĞÄ¼ĞÅÏ¢
+ * å¸®æ´¾æ‹›å‹Ÿä¿¡æ¯
  */
 public class FactionRecruit
 {
 	private static FactionRecruit fRecruit = null;
 	
-	private String content;//ÄÚÈİ
-	private int fId;//°ïÅÉid
-	private Date createTime;//´´½¨Ê±¼ä
+	private String content;//å†…å®¹
+	private int fId;//å¸®æ´¾id
+	private Date createTime;//åˆ›å»ºæ—¶é—´
 	
 	private FactionRecruit()
 	{
@@ -32,23 +32,23 @@ public class FactionRecruit
 	}
 	
 	/**
-	 * ÕĞÄ¼
-	 * @param fId		°ïÅÉid
-	 * @param rContent		ÕĞÄ¼ÄÚÈİ
+	 * æ‹›å‹Ÿ
+	 * @param fId		å¸®æ´¾id
+	 * @param rContent		æ‹›å‹Ÿå†…å®¹
 	 */
 	public void recruit(int fId,String rContent)
 	{
 		Faction faciton = FactionService.getById(fId);
 		if( faciton!=null )
 		{
-			this.content = faciton.getGrade()+"¼¶ÊÏ×å"+faciton.getFullName()+"ÕĞÄ¼£º"+rContent;
+			this.content = faciton.getGrade()+"çº§æ°æ—"+faciton.getFullName()+"æ‹›å‹Ÿï¼š"+rContent;
 			this.fId = fId;
 			this.createTime = new Date();
 		}
 	}
 
 	/**
-	 * ÊÇ·ñÓĞ°ïÅÉÕĞÄ¼ÄÚÈİ
+	 * æ˜¯å¦æœ‰å¸®æ´¾æ‹›å‹Ÿå†…å®¹
 	 */
 	public boolean getIsRecruit()
 	{

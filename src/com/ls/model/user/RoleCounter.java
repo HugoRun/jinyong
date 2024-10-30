@@ -2,14 +2,14 @@ package com.ls.model.user;
 
 /**
  * @author ls
- * ½ÇÉ«Ïà¹Ø¼ÆÊıÆ÷(¸÷ÖÖ²»ĞèÒª±£´æÊı¾İ¿âµÄ¼ÆÊıÆ÷)
+ * è§’è‰²ç›¸å…³è®¡æ•°å™¨(å„ç§ä¸éœ€è¦ä¿å­˜æ•°æ®åº“çš„è®¡æ•°å™¨)
  */
 public class RoleCounter
 {
-	private int killNpcNum = 0;//É±ËÀÖÁÉÙ±È×Ô¼ºµÈ¼¶´óµÄÆÕÍ¨npcµÄÊıÁ¿
+	private int killNpcNum = 0;//æ€æ­»è‡³å°‘æ¯”è‡ªå·±ç­‰çº§å¤§çš„æ™®é€šnpcçš„æ•°é‡
 	
 	/**
-	 * Ôö¼ÓÉ±ËÀnpcµÄÊıÁ¿
+	 * å¢åŠ æ€æ­»npcçš„æ•°é‡
 	 * @param addNum
 	 */
 	public void addKillNpcNum()

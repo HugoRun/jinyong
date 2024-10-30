@@ -17,7 +17,7 @@ public class RoleBeOffBuffDAO
 	SqlData con;
 
 	/**
-	 * 查询玩家离线BUFF
+	 * 鏌ヨ鐜╁绂荤嚎BUFF
 	 * 
 	 * @param p_pk
 	 * @return
@@ -27,7 +27,7 @@ public class RoleBeOffBuffDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from role_be_off_buff where p_pk='" + p_pk
+			String sql = "SELECT * FROM role_be_off_buff where p_pk='" + p_pk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			RoleBeOffBuffVO vo = null;
@@ -53,14 +53,14 @@ public class RoleBeOffBuffDAO
 	}
 
 	/**
-	 * 增加时间
+	 * 澧炲姞鏃堕棿
 	 */
 	public void addRoleBeOffBuffTime(String be_off_time, int p_pk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "insert into role_be_off_buff(b_id,p_pk,be_off_time) values(null,'"
+			String sql = "INSERT INTO role_be_off_buff(b_id,p_pk,be_off_time) values(null,'"
 					+ p_pk + "','" + be_off_time + "')";
 			con.update(sql);
 		}
@@ -75,7 +75,7 @@ public class RoleBeOffBuffDAO
 	}
 
 	/**
-	 * 修改离线时间
+	 * 淇敼绂荤嚎鏃堕棿
 	 * 
 	 * @param be_off_time
 	 * @param p_pk
@@ -100,7 +100,7 @@ public class RoleBeOffBuffDAO
 	}
 	
 	/**
-	 * 修改经验
+	 * 淇敼缁忛獙
 	 * @param be_off_exp
 	 * @param p_pk
 	 */
@@ -124,14 +124,14 @@ public class RoleBeOffBuffDAO
 	}
 	
 	/**
-	 * 增加经验
+	 * 澧炲姞缁忛獙
 	 */
 	public void addRoleBeOffBuffExp(String be_off_exp, int p_pk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "insert into role_be_off_buff(b_id,p_pk,be_off_exp) values(null,'" + p_pk + "','" + be_off_exp + "')";
+			String sql = "INSERT INTO role_be_off_buff(b_id,p_pk,be_off_exp) values(null,'" + p_pk + "','" + be_off_exp + "')";
 			con.update(sql);
 		}
 		catch (Exception e)

@@ -20,7 +20,7 @@ import com.pm.vo.mail.MailInfoVO;
 
 public class MailInfoAction extends ActionBase {
 	/**
-	 *  »ñµÃÓÊ¼şÁĞ±í
+	 *  è·å¾—é‚®ä»¶åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -48,7 +48,7 @@ public class MailInfoAction extends ActionBase {
 	}
 	
 	/**
-	 *  Ñ¡Ôñ²é¿´Ö¸¶¨ÓÊ¼ş
+	 *  é€‰æ‹©æŸ¥çœ‹æŒ‡å®šé‚®ä»¶
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -61,9 +61,9 @@ public class MailInfoAction extends ActionBase {
 		MailInfoService mailService = new MailInfoService();
 		MailInfoVO mailInfoVO = mailService.getPersonMailView(mailId);
 		
-		//½«ÔÄ¶Á¹ıµÄÓÊ¼şÖÃÎªÒÑ¶Á
+		//å°†é˜…è¯»è¿‡çš„é‚®ä»¶ç½®ä¸ºå·²è¯»
 		mailService.updateMailRead(mailId);
-		//ÅĞ¶ÏÎª¼°Ê±É¾³ıÓÊ¼ş½«¸ÃÓÊ¼şÉ¾³ı
+		//åˆ¤æ–­ä¸ºåŠæ—¶åˆ é™¤é‚®ä»¶å°†è¯¥é‚®ä»¶åˆ é™¤
 		if(mailInfoVO.getMailType() == 5){
 			mailService.deleteMailByid(mailId,u_pk,roleInfo.getBasicInfo().getPPk());
 		}
@@ -73,7 +73,7 @@ public class MailInfoAction extends ActionBase {
 	}
 	
 	/**
-	 *  É¾³ıÖ¸¶¨ÓÊ¼ş
+	 *  åˆ é™¤æŒ‡å®šé‚®ä»¶
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -93,7 +93,7 @@ public class MailInfoAction extends ActionBase {
 	}
 	
 	/**
-	 *  É¾³ı¸öÈËÈ«²¿Ö¸¶¨ÓÊ¼ş
+	 *  åˆ é™¤ä¸ªäººå…¨éƒ¨æŒ‡å®šé‚®ä»¶
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -110,14 +110,14 @@ public class MailInfoAction extends ActionBase {
 			SecondPassDao secondPass = new SecondPassDao();
 			String hasSetting = secondPass.getUserLoginPawByUPk(u_pk);
 			if(hasSetting == null || hasSetting.equals("")) {
-				this.setHint(request, "Äú»¹Ã»ÓĞÉèÖÃ¹ı¶ş¼¶ÃÜÂë,ÇëÉèÖÃÃÜÂëºóÔÙÈ«²¿É¾³ı!");
+				this.setHint(request, "æ‚¨è¿˜æ²¡æœ‰è®¾ç½®è¿‡äºŒçº§å¯†ç ,è¯·è®¾ç½®å¯†ç åå†å…¨éƒ¨åˆ é™¤!");
 				return mapping.findForward("send_hint");
 			}
 		}
 		
 		mailInfoVO = mailService.getPersonMailTypeList(p_pk+"",6);
 		if(mailInfoVO != null) {
-			this.setHint(request, "ÓÊ¼şÖĞÓĞÌØÊâÓÊ¼ş("+GameConfig.getYuanbaoName()+"ÅÄÂôÓÊ¼ş),Çë´ò¿ª´ËÓÊ¼ş,µã»÷È·¶¨,È¡»Ø½ğÇ®»òÔª±¦ºóÓÊ¼ş×Ô¶¯É¾³ı,È»ºóÔÙÈ¥È«²¿É¾³ı!");
+			this.setHint(request, "é‚®ä»¶ä¸­æœ‰ç‰¹æ®Šé‚®ä»¶("+GameConfig.getYuanbaoName()+"æ‹å–é‚®ä»¶),è¯·æ‰“å¼€æ­¤é‚®ä»¶,ç‚¹å‡»ç¡®å®š,å–å›é‡‘é’±æˆ–å…ƒå®åé‚®ä»¶è‡ªåŠ¨åˆ é™¤,ç„¶åå†å»å…¨éƒ¨åˆ é™¤!");
 			return mapping.findForward("send_hint");
 		}
 		
@@ -133,7 +133,7 @@ public class MailInfoAction extends ActionBase {
 		}
 	}
 	
-	//ÓÊ¼şÁìÈ¡½±Àø
+	//é‚®ä»¶é¢†å–å¥–åŠ±
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String mailId = request.getParameter("mail_id");
@@ -144,19 +144,19 @@ public class MailInfoAction extends ActionBase {
 			MailBonusVO vo = dao.getMailBonus(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(mailId.trim()));
 			String display = ds.playerCatchMoney(roleInfo.getBasicInfo().getPPk(), vo.getBonus(), Integer.parseInt(mailId.trim()));
 			if(display == null||display.equals("")||display.equals("null")){
-				request.setAttribute("resultWml","ÇëÄúÔ¤Áô°ü¹ü¸ñÊıºóÔÙÀ´ÁìÈ¡!");
+				request.setAttribute("resultWml","è¯·æ‚¨é¢„ç•™åŒ…è£¹æ ¼æ•°åå†æ¥é¢†å–!");
 				return mapping.findForward("deleteMail");
 			}else{
 				request.setAttribute("resultWml",display);
 				return mapping.findForward("deleteMail");
 			}
 		}else{
-			request.setAttribute("resultWml","ÓÊ¼ş´íÎó");
+			request.setAttribute("resultWml","é‚®ä»¶é”™è¯¯");
 			return mapping.findForward("deleteMail");
 		}
 	}
 	/**
-	 * ÁìÈ¡PKµôÂÊ¸½¼şÎïÆ·
+	 * é¢†å–PKæ‰ç‡é™„ä»¶ç‰©å“
 	 */
 	public ActionForward receiveAttachment(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -174,7 +174,7 @@ public class MailInfoAction extends ActionBase {
 			if( hint==null )
 			{
 				mailService.deleteMailByid(mailId, role_info.getPPk());
-				this.setHint(request, "³É¹¦ÁìÈ¡¸½¼ş");
+				this.setHint(request, "æˆåŠŸé¢†å–é™„ä»¶");
 				return mapping.findForward("send_hint");
 			}
 			else

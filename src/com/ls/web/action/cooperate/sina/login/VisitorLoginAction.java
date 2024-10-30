@@ -19,21 +19,21 @@ public class VisitorLoginAction extends DispatchAction
 {
 	Logger logger = Logger.getLogger("log.action");
 
-	/** ÓÎ¿ÍµÇÂ½Ò³Ãæ* */
+	/** æ¸¸å®¢ç™»é™†é¡µé¢* */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		return mapping.findForward("visitor_choose");
 	}
 
-	/** ¸øÍæ¼ÒÌø×ªµ½´´½¨½ÇÉ«Ò³Ãæ* */
+	/** ç»™ç©å®¶è·³è½¬åˆ°åˆ›å»ºè§’è‰²é¡µé¢* */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		return mapping.findForward("role_choose");
 	}
 
-	/** Ê¹ÓÃÓÎ¿ÍºÅµÇÂ½ */
+	/** ä½¿ç”¨æ¸¸å®¢å·ç™»é™† */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -52,7 +52,7 @@ public class VisitorLoginAction extends DispatchAction
 			{
 				request.setAttribute("passport_visitor", passport_visitor_bak);
 				String outview = passport_visitor_bak.replace("visitor", "");
-				request.setAttribute("display", "ÄúµÄÓÎ¿ÍºÅÎª" + outview + ",ÇëÀÎ¼ÇÄúµÄÓÎ¿ÍºÅ!");
+				request.setAttribute("display", "æ‚¨çš„æ¸¸å®¢å·ä¸º" + outview + ",è¯·ç‰¢è®°æ‚¨çš„æ¸¸å®¢å·!");
 				return mapping.findForward("relation_sucess");
 			}
 		}
@@ -67,13 +67,13 @@ public class VisitorLoginAction extends DispatchAction
 			{
 				request.setAttribute("passport_visitor", passport_visitor_bak);
 				String outview = passport_visitor_bak.replace("visitor", "");
-				request.setAttribute("display", "ÄúµÄÓÎ¿ÍºÅÎª" + outview + ",ÇëÀÎ¼ÇÄúµÄÓÎ¿ÍºÅ!");
+				request.setAttribute("display", "æ‚¨çš„æ¸¸å®¢å·ä¸º" + outview + ",è¯·ç‰¢è®°æ‚¨çš„æ¸¸å®¢å·!");
 				return mapping.findForward("relation_sucess");
 			}
 		}
 	}
 
-	/** Íæ¼ÒÌø×ªµ½¹ØÁªÕÊºÅµÄµØ·½ */
+	/** ç©å®¶è·³è½¬åˆ°å…³è”å¸å·çš„åœ°æ–¹ */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -88,7 +88,7 @@ public class VisitorLoginAction extends DispatchAction
 			else
 			{
 				request.setAttribute("sina_uid_bak", sina_uid);
-				request.setAttribute("display", "ÇëÖØĞÂÊäÈë");
+				request.setAttribute("display", "è¯·é‡æ–°è¾“å…¥");
 				return mapping.findForward("passport_relation");
 			}
 		}
@@ -99,7 +99,7 @@ public class VisitorLoginAction extends DispatchAction
 					.relationPassportSina(sina_uid, passport_visitor);
 			if (display.equals(""))
 			{
-				request.setAttribute("display", "ÕÊºÅ¹ØÁª³É¹¦!");
+				request.setAttribute("display", "å¸å·å…³è”æˆåŠŸ!");
 				request.setAttribute("passport_visitor", sina_uid);
 				request.setAttribute("sina_uid", sina_uid);
 				return mapping.findForward("relation_sucess");
@@ -113,7 +113,7 @@ public class VisitorLoginAction extends DispatchAction
 		}
 	}
 
-	// ½øÈëÓÎÏ·
+	// è¿›å…¥æ¸¸æˆ
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -126,9 +126,9 @@ public class VisitorLoginAction extends DispatchAction
 		PassportVO passport = passportService.loginFromSina(passport_visitor,
 				login_ip,wm);
 
-		if (passport == null || passport.getUPk() == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
+		if (passport == null || passport.getUPk() == -1)// ç™»é™†éªŒè¯å¤±è´¥
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		}
 
@@ -139,7 +139,7 @@ public class VisitorLoginAction extends DispatchAction
 		session.setAttribute("skyid", skyid);
 		session.setAttribute("user_name", skyid);
 		session.setAttribute("channel_id", Channel.SINA + "");
-		session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
+		session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
 		session.setAttribute("ssid", passport_visitor);
 		return mapping.findForward("login_game");
 	}

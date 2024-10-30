@@ -1,38 +1,31 @@
 package com.ben.pk.active;
 
-import java.util.Calendar;
-
 import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class PKActiveOutOfPk implements Job
-{
+import java.util.Calendar;
 
-	Logger logger = Logger.getLogger("log.quartz");
+public class PKActiveOutOfPk implements Job {
 
-	public void execute(JobExecutionContext arg0) throws JobExecutionException
-	{
-		Calendar cal = Calendar.getInstance();
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int month=cal.get(Calendar.MONTH)+1;
-		if(month!=5)
-		{
-			if(day<=3)
-			{
-				return;
-			}
-		}
-		else
-		{
-			if(day>=12&&day<=14)
-			{
-				return;
-			}
-		}
-		PKActiveService ps=new PKActiveService();
-		ps.outOfTime();
-	}
+    Logger logger = Logger.getLogger("log.quartz");
+
+    public void execute(JobExecutionContext arg0) throws JobExecutionException {
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+        if (month != 5) {
+            if (day <= 3) {
+                return;
+            }
+        } else {
+            if (day >= 12 && day <= 14) {
+                return;
+            }
+        }
+        PKActiveService ps = new PKActiveService();
+        ps.outOfTime();
+    }
 
 }

@@ -8,7 +8,7 @@ import com.ls.ben.vo.goods.prop.PropVO;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * Í¨¹ı¸ÃÀàÀ´»ñµÃµÀ¾ß
+ * é€šè¿‡è¯¥ç±»æ¥è·å¾—é“å…·
  * @author Administrator
  *
  */
@@ -18,7 +18,7 @@ public class PropCache  extends CacheBase
 	public static String PROP_BY_ID = "prop_by_id";
 	
     /**
-     * Í¨¹ıidµÃµ½ µÀ¾ßĞÅÏ¢
+     * é€šè¿‡idå¾—åˆ° é“å…·ä¿¡æ¯
      */
     public static PropVO getPropById(int prop_id)
     {
@@ -38,21 +38,21 @@ public class PropCache  extends CacheBase
     		}
     		else
     		{
-    			DataErrorLog.debugData("PropCache.getPropById£ºÎŞ¸ÃµÀ¾ß,prop_id="+prop_id);
+    			DataErrorLog.debugData("PropCache.getPropByIdï¼šæ— è¯¥é“å…·,prop_id="+prop_id);
     		}
     	}
     	return prop;
     }
     
     /**
-     * Í¨¹ıidµÃµ½ µÀ¾ßÃû³Æ
+     * é€šè¿‡idå¾—åˆ° é“å…·åç§°
      */
     public static String getPropNameById(int prop_id)
     {
     	if (prop_id == 0) {
     		return null;
     	}
-    	logger.debug("µÃµ½Ò»¸öµÀ¾ßĞÅÏ¢");
+    	logger.debug("å¾—åˆ°ä¸€ä¸ªé“å…·ä¿¡æ¯");
     	PropVO propVO = null;
     	HashMap<Integer,PropVO> prop_skill = (HashMap<Integer,PropVO>)getElementValue(STATIC_CACHE_NAME, PROP_BY_ID);
     	
@@ -65,14 +65,14 @@ public class PropCache  extends CacheBase
     }
     
     /**
-     * Í¨¹ıidµÃµ½ µÀ¾ß´¢´æÎ»ÖÃ
+     * é€šè¿‡idå¾—åˆ° é“å…·å‚¨å­˜ä½ç½®
      */
     public int getPropPositionById(int prop_id)
     {
     	if (prop_id == 0) {
     		return 0;
     	}
-    	logger.debug("µÃµ½Ò»¸öµÀ¾ßĞÅÏ¢");
+    	logger.debug("å¾—åˆ°ä¸€ä¸ªé“å…·ä¿¡æ¯");
     	PropVO propVO = null;
     	HashMap<Integer,PropVO> prop_skill = (HashMap<Integer,PropVO>)getElementValue(STATIC_CACHE_NAME, PROP_BY_ID);
     	
@@ -85,14 +85,14 @@ public class PropCache  extends CacheBase
     }
     
     /**
-     * Í¨¹ıidµÃµ½ µÀ¾ßÖØµşÊıÁ¿
+     * é€šè¿‡idå¾—åˆ° é“å…·é‡å æ•°é‡
      */
     public int getPropAccumulate(int prop_id)
     {
     	if (prop_id == 0) {
     		return 0;
     	}
-    	logger.debug("µÃµ½Ò»¸öµÀ¾ßĞÅÏ¢");
+    	logger.debug("å¾—åˆ°ä¸€ä¸ªé“å…·ä¿¡æ¯");
     	PropVO propVO = null;
     	HashMap<Integer,PropVO> prop_skill = (HashMap<Integer,PropVO>)getElementValue(STATIC_CACHE_NAME, PROP_BY_ID);
     	
@@ -105,14 +105,14 @@ public class PropCache  extends CacheBase
     }
     
     /**
-     * Í¨¹ıidµÃµ½ µÀ¾ßÅÄÂô³¡Î»ÖÃ
+     * é€šè¿‡idå¾—åˆ° é“å…·æ‹å–åœºä½ç½®
      */
     public int getPropAuctionPositionById(int prop_id)
     {
     	if (prop_id == 0) {
     		return 0;
     	}
-    	logger.debug("µÃµ½Ò»¸öµÀ¾ßĞÅÏ¢");
+    	logger.debug("å¾—åˆ°ä¸€ä¸ªé“å…·ä¿¡æ¯");
     	PropVO propVO = null;
     	HashMap<Integer,PropVO> prop_skill = (HashMap<Integer,PropVO>)getElementValue(STATIC_CACHE_NAME, PROP_BY_ID);
     	
@@ -125,7 +125,7 @@ public class PropCache  extends CacheBase
     }
     
     /**
-	 * ÖØĞÂ¼ÓÔÚÒ»ÌõµÀ¾ßÊı¾İ
+	 * é‡æ–°åŠ åœ¨ä¸€æ¡é“å…·æ•°æ®
 	 */
 	public void reloadOneProp(PropVO propVO)
 	{

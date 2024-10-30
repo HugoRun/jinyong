@@ -1,7 +1,7 @@
 
 <%@page contentType="text/vnd.wap.wml"
-	import="java.util.*,java.text.SimpleDateFormat" pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="java.util.*,java.text.SimpleDateFormat" pageEncoding="UTF-8"%><%@page
+    import="com.ls.pub.config.GameConfig"%>
 <%
 	//废弃的文件
 	

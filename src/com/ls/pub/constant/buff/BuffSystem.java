@@ -1,19 +1,19 @@
 package com.ls.pub.constant.buff;
 
 /**
- * ¹¦ÄÜ:buffÏµÍ³ ³£Á¿
- * @author ÁõË§
+ * åŠŸèƒ½:buffç³»ç»Ÿ å¸¸é‡
+ * @author åˆ˜å¸…
  * 9:25:02 PM
  */
 public class BuffSystem
 {
-	public static final int BUFF = 1;   //buffÀàĞÍÎªÔöÒæ
-	public static final int DEBUFF = 2; //buffÀàĞÍÎª¼õÒæ
+	public static final int BUFF = 1;   //buffç±»å‹ä¸ºå¢ç›Š
+	public static final int DEBUFF = 2; //buffç±»å‹ä¸ºå‡ç›Š
 	
-	public static final int PLAYER = 11; //buff×÷ÓÃ¶ÔÏóÊÇÍæ¼Ò
-	public static final int NPC = 12; //buff×÷ÓÃ¶ÔÏóÊÇnpc
+	public static final int PLAYER = 11; //buffä½œç”¨å¯¹è±¡æ˜¯ç©å®¶
+	public static final int NPC = 12; //buffä½œç”¨å¯¹è±¡æ˜¯npc
 	
-	public static final int HAMAJHP=10; //Ê¹ÓÃ¸òó¡¹¦£¬ÊÜ»÷·½Ã¿»ØºÏ¼õÑªÂÊ
-	public static final int HAMAHH=3;//¸òó¡¹¦£¬Ğ§¹û³ÖĞø»ØºÏ
+	public static final int HAMAJHP=10; //ä½¿ç”¨è›¤èŸ†åŠŸï¼Œå—å‡»æ–¹æ¯å›åˆå‡è¡€ç‡
+	public static final int HAMAHH=3;//è›¤èŸ†åŠŸï¼Œæ•ˆæœæŒç»­å›åˆ
 	
 }

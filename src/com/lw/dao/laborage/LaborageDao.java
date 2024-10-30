@@ -15,7 +15,7 @@ public class LaborageDao extends DaoBase
 	public LaborageVO getLaborage()
 	{
 		LaborageVO vo = null;
-		String sql = "select * from laborage ";
+		String sql = "SELECT * FROM laborage ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -44,11 +44,11 @@ public class LaborageDao extends DaoBase
 		return vo;
 	}
 
-	/** ¸ù¾İÊ±¼ä×î´óÖµ»ñµÃ¸Ã½±ÀøµÄÎïÆ· */
+	/** æ ¹æ®æ—¶é—´æœ€å¤§å€¼è·å¾—è¯¥å¥–åŠ±çš„ç‰©å“ */
 	public LaborageVO getLaborageByTime(int min_time)
 	{
 		LaborageVO vo = null;
-		String sql = "select * from laborage where min_time = " + min_time;
+		String sql = "SELECT * FROM laborage where min_time = " + min_time;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -77,11 +77,11 @@ public class LaborageDao extends DaoBase
 		return vo;
 	}
 
-	/** µÃµ½×îĞ¡Ê±¼ä */
+	/** å¾—åˆ°æœ€å°æ—¶é—´ */
 	public List getMinTime()
 	{
 		List list = new ArrayList();
-		String sql = "select min_time from laborage order by max_time desc";
+		String sql = "SELECT min_time from laborage order by max_time desc";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -110,7 +110,7 @@ public class LaborageDao extends DaoBase
 
 	public String getFirstDay(int x)
 	{
-		String sql = "select adddate(sysdate(),-" + x + ")";
+		String sql = "SELECT adddate(sysdate(),-" + x + ")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -121,7 +121,7 @@ public class LaborageDao extends DaoBase
 			if (rs.next())
 			{
 				Date date = rs.getDate(1);
-				return date.getMonth() + 1 + "ÔÂ" + date.getDate() + "ÈÕ";
+				return date.getMonth() + 1 + "æœˆ" + date.getDate() + "æ—¥";
 			}
 			rs.close();
 			stmt.close();
@@ -139,7 +139,7 @@ public class LaborageDao extends DaoBase
 
 	public String getLastDay(int x)
 	{
-		String sql = "select adddate(sysdate(),-" + x + ")";
+		String sql = "SELECT adddate(sysdate(),-" + x + ")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -150,7 +150,7 @@ public class LaborageDao extends DaoBase
 			if (rs.next())
 			{
 				Date date = rs.getDate(1);
-				return date.getMonth() + 1 + "ÔÂ" + date.getDate() + "ÈÕ";
+				return date.getMonth() + 1 + "æœˆ" + date.getDate() + "æ—¥";
 			}
 			rs.close();
 			stmt.close();

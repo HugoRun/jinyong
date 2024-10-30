@@ -9,19 +9,19 @@ public class Guai
 	private int dropImprot;
 	
 	/**
-	 * µÃµ½ÃèÊö
+	 * å¾—åˆ°æè¿°
 	 * @return
 	 */
 	public String getDes()
 	{
 		StringBuffer sb = new StringBuffer();
-		if( dropImprot==3 || dropImprot==5 )//±íÊ¾±¦ÏäµôÂä
+		if( dropImprot==3 || dropImprot==5 )//è¡¨ç¤ºå®ç®±æ‰è½
 		{
 			sb.append(this.name);
 		}
 		else
 		{
-			sb.append(this.name).append("(").append(level).append("¼¶,").append(scene_name).append(")");
+			sb.append(this.name).append("(").append(level).append("çº§,").append(scene_name).append(")");
 		}
 		
 		return sb.toString();

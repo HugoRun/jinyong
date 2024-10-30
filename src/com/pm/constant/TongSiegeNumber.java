@@ -4,7 +4,7 @@
 package com.pm.constant;
 
 /**
- * ·ÅÖÃ¸÷ÖÖ°ïÅÉ¹¥³ÇÕ½ÖĞµÄ¸÷ÖÖ³£Á¿
+ * æ”¾ç½®å„ç§å¸®æ´¾æ”»åŸæˆ˜ä¸­çš„å„ç§å¸¸é‡
  * 
  * @author zhangjj
  *
@@ -13,27 +13,27 @@ public final class TongSiegeNumber
 {
 
 	/**
-	 * ,0ÎªµÈ´ıÏÂ´Î¿ªÊ¼
+	 * ,0ä¸ºç­‰å¾…ä¸‹æ¬¡å¼€å§‹
 	 */
 	public static final int WITAYNEXT = 0;
 	
 	/**
-	 * 1Îª¹¥³ÇµÚÒ»½×¶Î
+	 * 1ä¸ºæ”»åŸç¬¬ä¸€é˜¶æ®µ
 	 */
 	public static final int FIRSTJIE = 1;
 	
 	/**
-	 * 2Îª³ÇÃÅ±»ÈË¿ªÊ¼¹¥´ò
+	 * 2ä¸ºåŸé—¨è¢«äººå¼€å§‹æ”»æ‰“
 	 */
 	public static final int STARTATTACK = 2;
 	
 	/**
-	 * 3Îª¹¥³Ç½øÈëµÚ¶ş½×¶Î
+	 * 3ä¸ºæ”»åŸè¿›å…¥ç¬¬äºŒé˜¶æ®µ
 	 */
 	public static final int SECONDJIE  = 3;
 	
 	/**
-	 * 4Îª¹¥³Ç½áÊø
+	 * 4ä¸ºæ”»åŸç»“æŸ
 	 */
 	public static final int STACKEND  = 4;
 	

@@ -13,8 +13,8 @@ import com.ls.model.user.RoleEntity;
 import com.ls.web.service.player.RoleService;
 
 /**
- * ¹¦ÄÜ:×é¶Ó¹ÜÀí
- * @author ÁõË§ 9:49:09 AM
+ * åŠŸèƒ½:ç»„é˜Ÿç®¡ç†
+ * @author åˆ˜å¸… 9:49:09 AM
  */
 
 public class GroupService
@@ -24,20 +24,20 @@ public class GroupService
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * µÃµ½ÓÎÏ·µ±Ç°ËùÓĞ¶ÓÎé
+	 * å¾—åˆ°æ¸¸æˆå½“å‰æ‰€æœ‰é˜Ÿä¼
 	 */
 	public static List<GroupModel> getGroupList()
 	{
 		return new ArrayList<GroupModel>(all_groups.values());
 	}
 	
-	/**¶ÓÎéµÄLIST·ÖÒ³**/
+	/**é˜Ÿä¼çš„LISTåˆ†é¡µ**/
 	public static List<GroupModel> getGroupListByPage(int page)
 	{
 		int perpage = 7;
 		List<GroupModel> list = getGroupList();
 		List<GroupModel> grouplist = new ArrayList<GroupModel>();
-		int pagenum = (page+1)*perpage;//ÅĞ¶ÏÊÇ·ñÎª×îºóÒ»Ò³
+		int pagenum = (page+1)*perpage;//åˆ¤æ–­æ˜¯å¦ä¸ºæœ€åä¸€é¡µ
 		if(list.size()<pagenum)
 		{
 			for(int i = page*perpage;i<list.size();i++)
@@ -57,7 +57,7 @@ public class GroupService
 	}
 	
 	/**
-	 * µ±Ç°¶ÓÎéÊıÁ¿
+	 * å½“å‰é˜Ÿä¼æ•°é‡
 	 */
 	public static int getGroupNum()
 	{
@@ -66,7 +66,7 @@ public class GroupService
 	
 	
 	/**
-	 * ´ÓËùÓĞ¶ÓÎéÖĞÒÆ³ıÖ¸¶¨¶ÓÎé
+	 * ä»æ‰€æœ‰é˜Ÿä¼ä¸­ç§»é™¤æŒ‡å®šé˜Ÿä¼
 	 */
 	public static void removeGroupFromAllGroups( String caption_id )
 	{
@@ -77,7 +77,7 @@ public class GroupService
 	}
 	
 	/**
-	 * ´ÓËùÓĞ¶ÓÎéÖĞÒÆ³ıÖ¸¶¨¶ÓÎé
+	 * ä»æ‰€æœ‰é˜Ÿä¼ä¸­ç§»é™¤æŒ‡å®šé˜Ÿä¼
 	 */
 	public static void cancelGroupInfo(GroupModel group_info )
 	{
@@ -89,7 +89,7 @@ public class GroupService
 	}
 	
 	/**
-	 * µÇ¼Ç×é¶ÓĞÅÏ¢
+	 * ç™»è®°ç»„é˜Ÿä¿¡æ¯
 	 */
 	public static void registerGroupInfo( GroupModel group_info )
 	{
@@ -101,7 +101,7 @@ public class GroupService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼Ò×é¶ÓĞÅÏ¢
+	 * å¾—åˆ°ç©å®¶ç»„é˜Ÿä¿¡æ¯
 	 */
 	public GroupModel getGroupInfo( int p_pk )
 	{
@@ -122,7 +122,7 @@ public class GroupService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒËùÔÚ×éµÄ³ÉÔ±ÊıÁ¿
+	 * å¾—åˆ°ç©å®¶æ‰€åœ¨ç»„çš„æˆå‘˜æ•°é‡
 	 */
 	public int getGroupNumByMember(int member_pk)
 	{
@@ -135,7 +135,7 @@ public class GroupService
 	}
 
 	/**
-	 * Í¨¹ı¶Ó³¤idµÃµ½³ÉÔ±ÊıÁ¿
+	 * é€šè¿‡é˜Ÿé•¿idå¾—åˆ°æˆå‘˜æ•°é‡
 	 * 
 	 * @param captain_pk
 	 * @return
@@ -146,7 +146,7 @@ public class GroupService
 	}
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒËùÔÚ¶ÓÎéµÄ¶Ó³¤id Èç¹û¶Ó³¤idÎª-1±íÊ¾Íæ¼Ò»¹Ã»ÓĞ×é¶Ó
+	 * åˆ¤æ–­ç©å®¶æ‰€åœ¨é˜Ÿä¼çš„é˜Ÿé•¿id å¦‚æœé˜Ÿé•¿idä¸º-1è¡¨ç¤ºç©å®¶è¿˜æ²¡æœ‰ç»„é˜Ÿ
 	 */
 	public int getCaptionPk(int p_pk)
 	{
@@ -159,13 +159,13 @@ public class GroupService
 	}
 
 	/**
-	 * Íæ¼ÒA¼ÓÈëÍæ¼ÒBµÄ¶ÓÎé
+	 * ç©å®¶AåŠ å…¥ç©å®¶Bçš„é˜Ÿä¼
 	 * 
 	 * @param a_p_pk
-	 *            Íæ¼ÒA
+	 *            ç©å®¶A
 	 * @param b_p_pk
-	 *            Íæ¼ÒB
-	 * @return ·µ»Ø¶ÓÎéÁĞ±íÊ±±íÊ¾³É¹¦£¬²»Îª¿ÕÊ±±íÊ¾ÌáÊ¾´íÎóĞÅÏ¢
+	 *            ç©å®¶B
+	 * @return è¿”å›é˜Ÿä¼åˆ—è¡¨æ—¶è¡¨ç¤ºæˆåŠŸï¼Œä¸ä¸ºç©ºæ—¶è¡¨ç¤ºæç¤ºé”™è¯¯ä¿¡æ¯
 	 */
 	public GroupModel joinGroup(int a_p_pk, int b_p_pk)
 	{
@@ -173,21 +173,21 @@ public class GroupService
 
 		if (group_info==null)
 		{
-			group_info = createNewGroup(b_p_pk, a_p_pk);// ´´½¨ĞÂ¶ÓÎé
+			group_info = createNewGroup(b_p_pk, a_p_pk);// åˆ›å»ºæ–°é˜Ÿä¼
 		}
 		else
 		{  
 			RoleService roleService = new RoleService();
 			RoleEntity roleInfo = roleService.getRoleInfoById(a_p_pk+"");
-			group_info.addMember(roleInfo);// ¼ÓÈë¶ÓÎé
+			group_info.addMember(roleInfo);// åŠ å…¥é˜Ÿä¼
 		}
 		return group_info;
 	}
 
 	/**
-	 * ´´½¨ĞÂµÄ¶ÓÎé
-	 * @param captain_pk                       ¶Ó³¤id
-	 * @param member_pk						   ¶ÓÔ±id
+	 * åˆ›å»ºæ–°çš„é˜Ÿä¼
+	 * @param captain_pk                       é˜Ÿé•¿id
+	 * @param member_pk						   é˜Ÿå‘˜id
 	 * @return
 	 */
 	private GroupModel createNewGroup(int captain_pk, int member_pk)
@@ -207,7 +207,7 @@ public class GroupService
 	}
 
 	/**
-	 * ¶Ó³¤É¾³ı³ÉÔ±
+	 * é˜Ÿé•¿åˆ é™¤æˆå‘˜
 	 */
 	public void kickMember(int member_pk)
 	{
@@ -232,7 +232,7 @@ public class GroupService
 	}
 
 	/**
-	 * ½âÉ¢¶ÓÎé
+	 * è§£æ•£é˜Ÿä¼
 	 * @param g_caption_pk
 	 */
 	public void disband(int g_caption_pk)
@@ -242,7 +242,7 @@ public class GroupService
 	}
 
 	/**
-	 * µÃµ½¶ÓÎé³ÉÔ±ÁĞ±í
+	 * å¾—åˆ°é˜Ÿä¼æˆå‘˜åˆ—è¡¨
 	 */
 	public List<RoleEntity> getMembersList(int p_pk)
 	{
@@ -255,7 +255,7 @@ public class GroupService
 	}
 
 	/**
-	 * Àë¿ª¶ÓÎé
+	 * ç¦»å¼€é˜Ÿä¼
 	 */
 	public void leaveGroup(int pPk)
 	{
@@ -263,7 +263,7 @@ public class GroupService
 		leaveGroup(roleEntity);
 	}
 	/**
-	 * Àë¿ª¶ÓÎé
+	 * ç¦»å¼€é˜Ÿä¼
 	 */
 	public void leaveGroup(RoleEntity roleEntity)
 	{
@@ -276,17 +276,17 @@ public class GroupService
 
 
 	/**
-	 * Õ½¶·Ê±£¬¸øÍæ¼Ò¼ÓÔØ×é¶ÓĞ§¹û
+	 * æˆ˜æ–—æ—¶ï¼Œç»™ç©å®¶åŠ è½½ç»„é˜Ÿæ•ˆæœ
 	 * @param player
 	 */
 	public void loadGroupEffect(PartInfoVO player)
 	{
 		if (player == null)
 		{
-			logger.info("²ÎÊıÎª¿Õ");
+			logger.info("å‚æ•°ä¸ºç©º");
 			return;
 		}
-		logger.debug("²é¿´ÓÃ»§ËùÔÚµØÍ¼ÊÇ·ñÓĞĞ§! "+player.getPMap());
+		logger.debug("æŸ¥çœ‹ç”¨æˆ·æ‰€åœ¨åœ°å›¾æ˜¯å¦æœ‰æ•ˆ! "+player.getPMap());
 		
 		GroupModel group_info = getGroupInfo(player.getPPk());
 		
@@ -298,7 +298,7 @@ public class GroupService
 	
 
 	/**
-	 * ¸ù¾İ¶ÓÎéÈËÊıµÃµ½×é¶ÓĞ§¹ûÖµ
+	 * æ ¹æ®é˜Ÿä¼äººæ•°å¾—åˆ°ç»„é˜Ÿæ•ˆæœå€¼
 	 * 
 	 * @param group_num
 	 * @return
@@ -324,7 +324,7 @@ public class GroupService
 
 	
 	/**
-	 * ·şÎñÆ÷ÖØÆôÊ±£¬Çå¿ÕËùÓĞ×é¶ÓÁÙÊ±ĞÅÏ¢
+	 * æœåŠ¡å™¨é‡å¯æ—¶ï¼Œæ¸…ç©ºæ‰€æœ‰ç»„é˜Ÿä¸´æ—¶ä¿¡æ¯
 	 */
 	public void initTempGroupInfo()
 	{
@@ -333,7 +333,7 @@ public class GroupService
 	}
 	
 	
-	/**µÃµ½Íæ¼Ò×é¶ÓĞÅÏ¢µÄÏÔÊ¾*/
+	/**å¾—åˆ°ç©å®¶ç»„é˜Ÿä¿¡æ¯çš„æ˜¾ç¤º*/
 	public String getGroupEffectPercentDisplay(RoleEntity role_info)
 	{
 		return role_info.getStateInfo().getGroupInfo().getGroupEffectDisplay(role_info);

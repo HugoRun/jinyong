@@ -6,40 +6,40 @@ package com.ben.vo.sellinfo;
 import com.ls.ben.dao.info.partinfo.PlayerEquipDao;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 2:21:45 PM
  */
 public class SellInfoVO
 {
-	public static int SELLMONEY = 1;// 1½ğÇ®½»Ò×
-	public static int SELLPROP = 2;// 2 µÀ¾ß½»Ò×
-	public static int SELLARM = 3;// 3 ×°±¸½»Ò×
-	public static int ZENGSONGPROP = 4;//4ÔùËÍµÀ¾ß
-	public static int ZENGSONGARM = 5;//5ÔùËÍ×°±¸
+	public static int SELLMONEY = 1;// 1é‡‘é’±äº¤æ˜“
+	public static int SELLPROP = 2;// 2 é“å…·äº¤æ˜“
+	public static int SELLARM = 3;// 3 è£…å¤‡äº¤æ˜“
+	public static int ZENGSONGPROP = 4;//4èµ é€é“å…·
+	public static int ZENGSONGARM = 5;//5èµ é€è£…å¤‡
 	/** id */
 	private int sPk;
-	/** ·¢³öÇëÇó½ÇÉ«id */
+	/** å‘å‡ºè¯·æ±‚è§’è‰²id */
 	private int pPk;
-	/** ±»ÇëÇó½ÇÉ«id */
+	/** è¢«è¯·æ±‚è§’è‰²id */
 	private int pByPk;
-	/** ·¢³öÇëÇóÒª½»Ò×µÄÎïÆ· */
+	/** å‘å‡ºè¯·æ±‚è¦äº¤æ˜“çš„ç‰©å“ */
 	private int sWuping;
-	/** ·¢³öÇëÇóÒªÎïÆ·ÀàĞÍ */
+	/** å‘å‡ºè¯·æ±‚è¦ç‰©å“ç±»å‹ */
 	private int sWpType;
-	/** ·¢³öÇëÇóÒªÎïÆ·µÄÊıÁ¿ */
+	/** å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„æ•°é‡ */
 	private int sWpNumber;
-	/** ·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÒø×Ó */
+	/** å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“¶å­ */
 	private long sWpSilverMoney;
-	/** ·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÍ­Ç® */
+	/** å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“œé’± */
 	private int sWpCopperMoney;
-	/** ½»Ò×·½Ê½ 1½ğÇ®½»Ò× 2 µÀ¾ß½»Ò× 3 ×°±¸½»Ò× */
+	/** äº¤æ˜“æ–¹å¼ 1é‡‘é’±äº¤æ˜“ 2 é“å…·äº¤æ˜“ 3 è£…å¤‡äº¤æ˜“ */
 	private int sellMode;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	/**
-	 * µÃµ½ÎïÆ·Ãû³Æ
+	 * å¾—åˆ°ç‰©å“åç§°
 	 * @return
 	 */
 	public String getWupingName()

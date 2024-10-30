@@ -1,11 +1,10 @@
 <?xml version="1.0" ?>
-<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
-      "http://www.wapforum.org/DTD/wml_1.1.xml">
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
 <%@page contentType="text/vnd.wap.wml" pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 <%@page import="com.ls.ben.vo.info.partinfo.*"%>
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
 <wml>
 <p>
@@ -21,11 +20,11 @@
 4.每场比赛的获胜者可以领取奖励，失败者则没有奖励 <br/>
 </p>
  <anchor>
-	<go method="post"
-		href="/pkactive.do?cmd=n5">
-	<postfield name="cmd" value="n5" />
-	</go>
-	返回
+    <go method="post"
+        href="/pkactive.do?cmd=n5">
+    <postfield name="cmd" value="n5" />
+    </go>
+    返回
 </anchor>
 <%@ include file="/init/init_time.jsp"%>
 </wml>

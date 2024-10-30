@@ -5,12 +5,12 @@
 <wml>
 <card id="fail" title="<s:message key = "gamename"/>">
 <p>
-	用户验证失败!请从新登陆!
-	<br />
-	<anchor>
-	<go href="" method="get" ></go>
-	返回专区
-	</anchor>
+    用户验证失败!请从新登陆!
+    <br />
+    <anchor>
+    <go href="" method="get" ></go>
+    返回专区
+    </anchor>
 </p>
 </card>
 </wml>

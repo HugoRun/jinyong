@@ -17,17 +17,17 @@ import com.pm.vo.sysInfo.SystemInfoVO;
 
 /**
  * @author ls
- * PK×´Ì¬
+ * PKçŠ¶æ€
  */
 public class PKState extends UserBase
 {
-	//×Ô¼ºÖ÷¶¯¹¥»÷µÄÍæ¼Òid
+	//è‡ªå·±ä¸»åŠ¨æ”»å‡»çš„ç©å®¶id
 	private int start_fight_ppk = -1;
 	
-	//ÆäËû¹¥»÷×Ô¼ºµÄÍæ¼Ò,×î¶à5¸öÈË´òÒ»¸öÈË
+	//å…¶ä»–æ”»å‡»è‡ªå·±çš„ç©å®¶,æœ€å¤š5ä¸ªäººæ‰“ä¸€ä¸ªäºº
 	private Queue<Integer> other_list = new LinkedList<Integer>();
 	
-	//PKÊ±¿´µ½µÄÏµÍ³ÏûÏ¢
+	//PKæ—¶çœ‹åˆ°çš„ç³»ç»Ÿæ¶ˆæ¯
 	private List<SystemInfoVO> sys_info_list = new ArrayList<SystemInfoVO>(10);
 	
 	public PKState(int pk)
@@ -36,14 +36,14 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * ÀëÏßÍ¨ÖªÆäËûÈË
+	 * ç¦»çº¿é€šçŸ¥å…¶ä»–äºº
 	 */
 	public void outlineNotify()
 	{
 		start_fight_ppk = -1;
 		sys_info_list.clear();
 		
-		//Í¨ÖªÆäËûÈË
+		//é€šçŸ¥å…¶ä»–äºº
 		do
 		{
 			Integer other_ppk = other_list.poll();
@@ -57,7 +57,7 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * ¹¥»÷×Ô¼ºµÄÆäËûÍæ¼ÒÊıÁ¿
+	 * æ”»å‡»è‡ªå·±çš„å…¶ä»–ç©å®¶æ•°é‡
 	 * @return
 	 */
 	public int getOtherNum()
@@ -66,7 +66,7 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * µÃµ½¹¥»÷×Ô¼ºÈËµÄÃèÊö
+	 * å¾—åˆ°æ”»å‡»è‡ªå·±äººçš„æè¿°
 	 * @return
 	 */
 	public String getWarningDes()
@@ -88,36 +88,36 @@ public class PKState extends UserBase
 				sb.append(",");
 			}
 		}
-		sb.append("ÔÚ¹¥»÷Äú!<br/>");
+		sb.append("åœ¨æ”»å‡»æ‚¨!<br/>");
 		return sb.toString();
 	}
 	
 	/**
-	 * ·¢¶¯¹¥»÷
+	 * å‘åŠ¨æ”»å‡»
 	 */
 	public String startAttack( RoleEntity other )
 	{
 		if( other==null || other.isOnline()==false )
 		{
-			return "¶Ô·½²»ÔÚÏß";
+			return "å¯¹æ–¹ä¸åœ¨çº¿";
 		}
 		
 		if( other.getStateInfo().getCurState()!=PlayerState.GENERAL && other.getStateInfo().getCurState()!=PlayerState.PKFIGHT  )
 		{
-			return "¶Ô·½·±Ã¦";
+			return "å¯¹æ–¹ç¹å¿™";
 		}
 		
-		//¹¥»÷Ò»¸öÈËµÄÊıÁ¿×î¶à5¸öÈË
+		//æ”»å‡»ä¸€ä¸ªäººçš„æ•°é‡æœ€å¤š5ä¸ªäºº
 		if( other.getPKState().getOtherNum()>=5 )
 		{
-			return "²»ÄÜ¹¥»÷¶Ô·½";
+			return "ä¸èƒ½æ”»å‡»å¯¹æ–¹";
 		}
 		
 		RoleEntity me = this.getRoleEntity();
 		
 		if( !other.getBasicInfo().getSceneInfo().getSceneKen().equals(me.getBasicInfo().getSceneInfo().getSceneKen()))
 		{
-			return other.getName()+"ÒÑÀë¿ªÄãµÄÊÓÒ°";
+			return other.getName()+"å·²ç¦»å¼€ä½ çš„è§†é‡";
 		}
 		
 		put(other.getPPk());
@@ -129,7 +129,7 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * ÊÇ·ñÊÇÖ÷¶¯¹¥»÷Íæ¼Òother_ppk
+	 * æ˜¯å¦æ˜¯ä¸»åŠ¨æ”»å‡»ç©å®¶other_ppk
 	 * @return
 	 */
 	public boolean isZhudongAttackOther( int other_ppk )
@@ -153,13 +153,13 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * other¹¥»÷×Ô¼º
+	 * otheræ”»å‡»è‡ªå·±
 	 */
 	public String attackSelf(RoleEntity other)
 	{
 		if( getOtherNum()==0 )
 		{
-			//Èç¹û±»¹¥»÷µÄÍæ¼Ò²»ÔÚÕ½¶·×´Ì¬Ôò³õÊ¼»¯start_fight_ppk
+			//å¦‚æœè¢«æ”»å‡»çš„ç©å®¶ä¸åœ¨æˆ˜æ–—çŠ¶æ€åˆ™åˆå§‹åŒ–start_fight_ppk
 			this.start_fight_ppk=-1;
 		}
 		put(other.getPPk());
@@ -168,22 +168,22 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÕıÔÚÕ½¶·µÄ¶ÔÊÖ
+	 * å¾—åˆ°æ­£åœ¨æˆ˜æ–—çš„å¯¹æ‰‹
 	 */
 	public RoleEntity getOtherOnFight()
 	{
 		RoleEntity other = null;
-		//ÅĞ¶ÏÊÇ·ñ»¹ÓĞÈË¹¥»÷×Ô¼º
+		//åˆ¤æ–­æ˜¯å¦è¿˜æœ‰äººæ”»å‡»è‡ªå·±
 		if( other_list.size()>0 )
 		{
-			//Èç¹û»¹ÓĞÈË¹¥»÷×Ô¼º
+			//å¦‚æœè¿˜æœ‰äººæ”»å‡»è‡ªå·±
 			do
 			{
 				int other_ppk = other_list.peek();
 				other = RoleService.getRoleInfoById(other_ppk);
 				if( other!=null )
 				{
-					//ÅĞ¶ÏotherµÄ×´Ì¬ÊÇ·ñ¿ÉÒÔ¹¥»÷
+					//åˆ¤æ–­otherçš„çŠ¶æ€æ˜¯å¦å¯ä»¥æ”»å‡»
 					if( true )
 					{
 						break;
@@ -197,7 +197,7 @@ public class PKState extends UserBase
 	
 	
 	/**
-	 * ÒÆ³ıÆäËû¹¥»÷×Ô¼ºµÄÍæ¼Ò
+	 * ç§»é™¤å…¶ä»–æ”»å‡»è‡ªå·±çš„ç©å®¶
 	 */
 	private void removeOther(int other_ppk)
 	{
@@ -206,27 +206,27 @@ public class PKState extends UserBase
 	
 	
 	/**
-	 * Í¨ÖªÆäËûÈË×Ô¼ºÀëÏß
+	 * é€šçŸ¥å…¶ä»–äººè‡ªå·±ç¦»çº¿
 	 */
 	private void notifySelfOutline(RoleEntity other)
 	{
 		RoleEntity me = this.getRoleEntity();
-		me.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
+		me.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
 		
-		//***********************Í¨ÖªÉ±ÈËÕß
+		//***********************é€šçŸ¥æ€äººè€…
 		StringBuffer hint = new StringBuffer();
 		
-		hint.append(me.getName()).append("ÒÑÀëÏß").append("<br/>");
+		hint.append(me.getName()).append("å·²ç¦»çº¿").append("<br/>");
 		
 		if( other.getPKState().getOtherNum()>0 )
 		{
-			//·¢ËÍÏµÍ³ÏûÏ¢Í¨Öª
+			//å‘é€ç³»ç»Ÿæ¶ˆæ¯é€šçŸ¥
 			other.getPKState().addSysInfo(hint.toString());
 		}
 		else
 		{
-			other.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
-			//·¢ËÍµ¯³öÊ½ÏûÏ¢Í¨Öª
+			other.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
+			//å‘é€å¼¹å‡ºå¼æ¶ˆæ¯é€šçŸ¥
 			SystemInfoService systemInfoService = new SystemInfoService();
 			systemInfoService.insertSystemInfoBySystem(other.getPPk(),hint.toString());
 		}
@@ -234,30 +234,30 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * Í¨ÖªÆäËûÈË×Ô¼ºËÀÍö
-	 * @param murderer      É±ËÀ×Ô¼ºµÄÍæ¼Ò£¨Ğ×ÊÖ£©
-	 * @param winerDes      Ôö¼ÓÊ¤ÀûÃèÊö
+	 * é€šçŸ¥å…¶ä»–äººè‡ªå·±æ­»äº¡
+	 * @param murderer      æ€æ­»è‡ªå·±çš„ç©å®¶ï¼ˆå‡¶æ‰‹ï¼‰
+	 * @param winerDes      å¢åŠ èƒœåˆ©æè¿°
 	 */
 	public void notifySelfDead(RoleEntity murderer,String winerDes)
 	{
 		RoleEntity me = this.getRoleEntity();
-		me.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
+		me.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
 		
-		//***********************Í¨ÖªÉ±ÈËÕß
+		//***********************é€šçŸ¥æ€äººè€…
 		murderer.getPKState().removeOther(me.getPPk());
 		StringBuffer hint = new StringBuffer();
 		
-		hint.append("ÄãÉ±ËÀÁË").append(me.getName()).append("<br/>").append(winerDes);
+		hint.append("ä½ æ€æ­»äº†").append(me.getName()).append("<br/>").append(winerDes);
 		
 		if( murderer.getPKState().getOtherNum()>0 )
 		{
-			//·¢ËÍÏµÍ³ÏûÏ¢Í¨Öª
+			//å‘é€ç³»ç»Ÿæ¶ˆæ¯é€šçŸ¥
 			murderer.getPKState().addSysInfo(hint.toString());
 		}
 		else
 		{
-			murderer.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
-			//·¢ËÍµ¯³öÊ½ÏûÏ¢Í¨Öª
+			murderer.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
+			//å‘é€å¼¹å‡ºå¼æ¶ˆæ¯é€šçŸ¥
 			UMsgService uMsgService = new UMsgService();
 			UMessageInfoVO msgInfo = new UMessageInfoVO();
 
@@ -271,19 +271,19 @@ public class PKState extends UserBase
 		}
 		this.removeOther(murderer.getPPk());
 		
-		//Í¨ÖªÆäËûÈË
+		//é€šçŸ¥å…¶ä»–äºº
 		notifyOtherSelfDead(murderer);
 	}
 	
 	/**
-	 * Í¨ÖªÆäËûÈË×Ô¼ºËÀÍö(³ıÁËĞ×ÊÖ)
-	 * @param murderer      É±ËÀ×Ô¼ºµÄÍæ¼Ò£¨Ğ×ÊÖ£©
+	 * é€šçŸ¥å…¶ä»–äººè‡ªå·±æ­»äº¡(é™¤äº†å‡¶æ‰‹)
+	 * @param murderer      æ€æ­»è‡ªå·±çš„ç©å®¶ï¼ˆå‡¶æ‰‹ï¼‰
 	 */
 	private void notifyOtherSelfDead(RoleEntity murderer)
 	{
 		RoleEntity me = this.getRoleEntity();
 		
-		//Í¨ÖªÆäËûÈË
+		//é€šçŸ¥å…¶ä»–äºº
 		do
 		{
 			Integer other_ppk = other_list.poll();
@@ -299,7 +299,7 @@ public class PKState extends UserBase
 	
 	
 	/**
-	 * Í¨ÖªÆäËûÈË×Ô¼ºËÀÍö
+	 * é€šçŸ¥å…¶ä»–äººè‡ªå·±æ­»äº¡
 	 * @param dead
 	 */
 	private void notifyOneOtherDead(RoleEntity dead,RoleEntity murderer)
@@ -308,18 +308,18 @@ public class PKState extends UserBase
 		this.removeOther(dead.getPPk());
 		
 		StringBuffer hint = new StringBuffer();
-		hint.append(dead.getName()).append("±»").append(murderer.getName()).append("É±ËÀÁË<br/>");
+		hint.append(dead.getName()).append("è¢«").append(murderer.getName()).append("æ€æ­»äº†<br/>");
 		
 		
 		if( me.getPKState().getOtherNum()>0 )
 		{
-			//·¢ËÍÏµÍ³ÏûÏ¢Í¨Öª
+			//å‘é€ç³»ç»Ÿæ¶ˆæ¯é€šçŸ¥
 			this.addSysInfo(hint.toString());
 		}
 		else
 		{
-			me.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
-			//·¢ËÍµ¯³öÊ½ÏûÏ¢Í¨Öª
+			me.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
+			//å‘é€å¼¹å‡ºå¼æ¶ˆæ¯é€šçŸ¥
 			UMsgService uMsgService = new UMsgService();
 			UMessageInfoVO msgInfo = new UMessageInfoVO();
 			msgInfo.setMsgType(PopUpMsgType.NOTIFY_OTHER_DEAD);
@@ -331,23 +331,23 @@ public class PKState extends UserBase
 	}
 	
 	/**
-	 * Í¨ÖªÆäËûÈË×Ô¼ºÉ±ÈË
-	 * @param dead      É±ËÀ×Ô¼ºµÄÍæ¼Ò£¨Ğ×ÊÖ£©
-	 * @param deadDes      ËÀÍöÃèÊö
+	 * é€šçŸ¥å…¶ä»–äººè‡ªå·±æ€äºº
+	 * @param dead      æ€æ­»è‡ªå·±çš„ç©å®¶ï¼ˆå‡¶æ‰‹ï¼‰
+	 * @param deadDes      æ­»äº¡æè¿°
 	 */
 	public void notifySelfKill(RoleEntity dead,String deadDes)
 	{
 		RoleEntity me = this.getRoleEntity();
 		
-		me.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
-		dead.getStateInfo().setCurState(PlayerState.GENERAL);//³õÊ¼»¯×´Ì¬
+		me.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
+		dead.getStateInfo().setCurState(PlayerState.GENERAL);//åˆå§‹åŒ–çŠ¶æ€
 		
 		UMsgService uMsgService = new UMsgService();
 		UMessageInfoVO msgInfo = new UMessageInfoVO();
 		
 		StringBuffer hint = new StringBuffer();
-		//Èç¹û±»É±
-		hint.append(me.getName()).append("°ÑÄãÉ±ËÀÁË").append("<br/>").append(deadDes);
+		//å¦‚æœè¢«æ€
+		hint.append(me.getName()).append("æŠŠä½ æ€æ­»äº†").append("<br/>").append(deadDes);
 		msgInfo.setMsgOperate2(me.getPPk()+"");
 		msgInfo.setMsgType(PopUpMsgType.NOTIFY_SELF_DEAD);
 		msgInfo.setPPk(dead.getPPk());
@@ -357,12 +357,12 @@ public class PKState extends UserBase
 		
 		this.removeOther(dead.getPPk());
 		
-		dead.getPKState().notifyOtherSelfDead(me);//Í¨ÖªÆäËû¹¥»÷ËÀÕßµÄÈË
+		dead.getPKState().notifyOtherSelfDead(me);//é€šçŸ¥å…¶ä»–æ”»å‡»æ­»è€…çš„äºº
 	}
 	
 
 	/**
-	 * µÃµ½PKÊ±ÏÔÊ¾µÄÏµÍ³ÏûÏ¢,ÏûÏ¢¿´¹ıÒ»´Î¾ÍÇå¿Õ
+	 * å¾—åˆ°PKæ—¶æ˜¾ç¤ºçš„ç³»ç»Ÿæ¶ˆæ¯,æ¶ˆæ¯çœ‹è¿‡ä¸€æ¬¡å°±æ¸…ç©º
 	 * @return
 	 */
 	public List<SystemInfoVO> getSysInfoList()
@@ -373,7 +373,7 @@ public class PKState extends UserBase
 	}
 
 	/**
-	 * Ôö¼ÓÏµÍ³ÏûÏ¢
+	 * å¢åŠ ç³»ç»Ÿæ¶ˆæ¯
 	 * @param content
 	 */
 	private void addSysInfo(String content)

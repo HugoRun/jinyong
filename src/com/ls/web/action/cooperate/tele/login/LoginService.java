@@ -19,7 +19,7 @@ import com.ls.pub.util.http.HttpRespons;
 public class LoginService
 {
 	Logger logger = Logger.getLogger("log.pay");
-	/*******µçĞÅÏÂÏßÍ¬²½ĞÅÏ¢******/
+	/*******ç”µä¿¡ä¸‹çº¿åŒæ­¥ä¿¡æ¯******/
 	public void loginOut(HttpSession session)
 	{
 		if(session==null)
@@ -46,28 +46,28 @@ public class LoginService
 		HttpRespons responses = null;
 		try
 		{
-			logger.info("¿ªÊ¼·¢ËÍÇëÇó...");
+			logger.info("å¼€å§‹å‘é€è¯·æ±‚...");
 			responses=requester.sendPostTele("http://202.102.39.11:9088/gameinterface/LogoutOnlineGame",params);
-			logger.info("½áÊø·¢ËÍÇëÇó...");
+			logger.info("ç»“æŸå‘é€è¯·æ±‚...");
 			Document document = DocumentHelper.parseText(responses.getContent());
 			Element root = document.getRootElement();
 			Element resultElm = root.element("hRet");
 			String hint=resultElm.getText();
 			if("0".equals(hint))
 			{
-				System.out.println("..........µçĞÅÏÂÏßÍ¬²½³É¹¦...........");
+				System.out.println("..........ç”µä¿¡ä¸‹çº¿åŒæ­¥æˆåŠŸ...........");
 			}
 			else
 			{
-				System.out.println("..........µçĞÅÏÂÏßÍ¬²½Ê§°Ü...........");
+				System.out.println("..........ç”µä¿¡ä¸‹çº¿åŒæ­¥å¤±è´¥...........");
 			}
 		}
 		catch (Exception e)
 		{
-			System.out.println(".........µçĞÅÍæ¼ÒÏÂÏßÍ¬²½Òì³£.......");
+			System.out.println(".........ç”µä¿¡ç©å®¶ä¸‹çº¿åŒæ­¥å¼‚å¸¸.......");
 		}
 	}
-	/****µÃµ½Ê±¼äµÄÁ÷Ë®×Ö·û´®***/
+	/****å¾—åˆ°æ—¶é—´çš„æµæ°´å­—ç¬¦ä¸²***/
 	public static String getDateStr()
 	{
 		String todayStr = null;

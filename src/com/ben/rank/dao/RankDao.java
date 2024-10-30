@@ -12,7 +12,7 @@ import com.ls.pub.db.DBConnection;
 
 public class RankDao extends DaoBase
 {
-	// ĞŞ¸Ä×Ö¶Î
+	// ä¿®æ”¹å­—æ®µ
 	public int updateAdd(Object p_pk, String field, Object value)
 	{
 		if (p_pk != null&&field!=null&&value!=null)
@@ -75,7 +75,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ĞŞ¸Ä×Ö¶Î
+	// ä¿®æ”¹å­—æ®µ
 	public int update(Object p_pk, String field, Object value)
 	{
 		if (p_pk != null)
@@ -120,11 +120,11 @@ public class RankDao extends DaoBase
 		}
 	}
 	
-	//²é¿´ÓÃ»§ÊÇ·ñ´æÔÚ
+	//æŸ¥çœ‹ç”¨æˆ·æ˜¯å¦å­˜åœ¨
 	public int isExist(Object p_pk){
 		if(p_pk!=null){
 			int i = 0;
-			String sql = "select * from rank r where r.p_pk = "+p_pk;
+			String sql = "SELECT * FROM rank r where r.p_pk = "+p_pk;
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
 			try
@@ -152,13 +152,13 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// Ôö¼ÓÓÃ»§
+	// å¢åŠ ç”¨æˆ·
 	public int insert(Object p_pk, String name)
 	{
 		if (p_pk != null)
 		{
 			int i = 0;
-			String sql = "insert into rank(p_pk,p_name) values (" + p_pk + ",'"
+			String sql = "INSERT INTO rank(p_pk,p_name) values (" + p_pk + ",'"
 					+ name + "' )";
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
@@ -197,13 +197,13 @@ public class RankDao extends DaoBase
 	}
 	
 	
-	// Ôö¼ÓÓÃ»§
+	// å¢åŠ ç”¨æˆ·
 	public int insert(Object p_pk, String name,int grade)
 	{
 		if (p_pk != null)
 		{
 			int i = 0;
-			String sql = "insert into rank(p_pk,p_name,p_level) values (" + p_pk + ",'"
+			String sql = "INSERT INTO rank(p_pk,p_name,p_level) values (" + p_pk + ",'"
 					+ name + "',"+grade+" )";
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
@@ -241,7 +241,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ¸ü¸ÄĞÖµÜÒåÆø
+	// æ›´æ”¹å…„å¼Ÿä¹‰æ°”
 	public int updateYiqi(Object p_pk, int yiqi, String with_who)
 	{
 		if (p_pk != null)
@@ -285,7 +285,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// É¾³ıĞÖµÜÒåÆø
+	// åˆ é™¤å…„å¼Ÿä¹‰æ°”
 	public int updateYiqiToZero(Object p_pk)
 	{
 		if (p_pk != null)
@@ -328,7 +328,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ¸ü¸Ä°®ÇéÌğÃÛ
+	// æ›´æ”¹çˆ±æƒ…ç”œèœœ
 	public int updateDear(Object p_pk, int dear, String with_who)
 	{
 		if (p_pk != null)
@@ -372,7 +372,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// É¾³ı°®ÇéÌğÃÛ
+	// åˆ é™¤çˆ±æƒ…ç”œèœœ
 	public int updateDearToZero(Object p_pk)
 	{
 		if (p_pk != null)
@@ -415,7 +415,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ¸ü¸ÄÃÅÅÉ
+	// æ›´æ”¹é—¨æ´¾
 	public int updateMenPai(Object p_pk, String menpai)
 	{
 		if (p_pk != null)
@@ -459,11 +459,11 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ¸ù¾İ×Ö¶Î²éÑ¯
+	// æ ¹æ®å­—æ®µæŸ¥è¯¢
 	public List<RankVo> findByField(String field, int i)
 	{
 		List<RankVo> list = new ArrayList<RankVo>();
-		String sql = "select r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r."+field+" from rank r where r." + field + " !=0 "
+		String sql = "SELECT r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r."+field+" from rank r where r." + field + " !=0 "
 				+ (i == 1 ? " and r.exp_tong = 0 " : "") + "  order by r."
 				+ field + " desc,r." + field + "_time asc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -488,11 +488,11 @@ public class RankDao extends DaoBase
 		}
 	}
 	
-	// ¸ù¾İ×Ö¶Î²éÑ¯
+	// æ ¹æ®å­—æ®µæŸ¥è¯¢
 	public List<Rank> findByFieldaLL(String field, int i)
 	{
 		List<Rank> list = new ArrayList<Rank>();
-		String sql = "select * from rank r where r." + field + " !=0 "
+		String sql = "SELECT * FROM rank r where r." + field + " !=0 "
 				+ (i == 1 ? " and r.exp_tong = 0 " : "") + "  order by r."
 				+ field + " desc,r." + field + "_time asc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -517,7 +517,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ²é¿´×Ô¼ºµÄÅÅÃû
+	// æŸ¥çœ‹è‡ªå·±çš„æ’å
 	public int findOwnByField(Object p_pk, String field, int i)
 	{
 		int paimin = 0;
@@ -528,7 +528,7 @@ public class RankDao extends DaoBase
 		else
 		{
 			String sq = "select r."+field +" from rank r where r.p_pk = "+p_pk;
-			String sql = "select count(*) from rank r where "
+			String sql = "SELECT count(*) from rank r where "
 					+ (i == 1 ? " r.exp_tong = 0 and " : "") + " r." + field
 					+ " > (select w." + field + " from rank w where w.p_pk = "
 					+ p_pk + (i == 1 ? " and  r.exp_tong = 0 " : "")
@@ -675,7 +675,7 @@ public class RankDao extends DaoBase
 		return list;
 	}
 
-	// ¸ù¾İ×Ö¶ÎÇå0
+	// æ ¹æ®å­—æ®µæ¸…0
 	public int clear(String field)
 	{
 		int i = 0;
@@ -711,7 +711,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ĞŞ¸Ävip
+	// ä¿®æ”¹vip
 	public int updateVIP(Object p_pk, int vip_type, int vip_time)
 	{
 		if (p_pk != null)
@@ -756,11 +756,11 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ²éÑ¯VIP
+	// æŸ¥è¯¢VIP
 	public List<RankVo> findVip()
 	{
 		List<RankVo> list = new ArrayList<RankVo>();
-		String sql = "select r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.vip,r.vip_eff from rank r where r.vip!=0 and r.vip_eff !=0 order by r.vip  desc,r.vip_eff desc ,r.vip_time asc limit 10";
+		String sql = "SELECT r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.vip,r.vip_eff from rank r where r.vip!=0 and r.vip_eff !=0 order by r.vip  desc,r.vip_eff desc ,r.vip_time asc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -783,7 +783,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ²é¿´×Ô¼ºµÄVIPÅÅÃû
+	// æŸ¥çœ‹è‡ªå·±çš„VIPæ’å
 	public int findOwnVIP(Object p_pk)
 	{
 		int paimin = 1;
@@ -794,7 +794,7 @@ public class RankDao extends DaoBase
 		else
 		{
 			String sq = "select r.vip from rank r where r.p_pk = "+p_pk;
-			String sql = "select count(*) from rank r where r.vip > (select vip from rank where p_pk = "
+			String sql = "SELECT count(*) from rank r where r.vip > (select vip from rank where p_pk = "
 					+ p_pk + " ) order by r.vip_time asc";
 			String sql1 = "select count(*) from rank r where r.vip = (select vip from rank where p_pk = "
 					+ p_pk
@@ -850,11 +850,11 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ²éÑ¯°®ÇéÌğÃÛ
+	// æŸ¥è¯¢çˆ±æƒ…ç”œèœœ
 	public List<RankVo> findDear()
 	{
 		List<RankVo> list = new ArrayList<RankVo>();
-		String sql = "select r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.dear,r.who from rank r where r.dear !=0 and r.who is not null order by r.dear desc,r.dear_time asc limit 20";
+		String sql = "SELECT r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.dear,r.who from rank r where r.dear !=0 and r.who is not null order by r.dear desc,r.dear_time asc limit 20";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -877,11 +877,11 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ²éÑ¯ÒåÆø
+	// æŸ¥è¯¢ä¹‰æ°”
 	public List<RankVo> findYi()
 	{
 		List<RankVo> list = new ArrayList<RankVo>();
-		String sql = "select r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.yi,r.yi_who from rank r where r.yi!=0 and r.yi_who is not null order by r.yi desc,r.yi_time asc limit 20";
+		String sql = "SELECT r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.yi,r.yi_who from rank r where r.yi!=0 and r.yi_who is not null order by r.yi desc,r.yi_time asc limit 20";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -904,7 +904,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ½«ÒÑ¾­Í³¼Æ¹ı¾­ÑéµÄ´òÉÏ±êÖ¾
+	// å°†å·²ç»ç»Ÿè®¡è¿‡ç»éªŒçš„æ‰“ä¸Šæ ‡å¿—
 	public int updatePpk(int id)
 	{
 		int i = 0;
@@ -940,7 +940,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// É¾³ı½ÇÉ«
+	// åˆ é™¤è§’è‰²
 	public int remove(Object p_pk)
 	{
 		int i = 0;
@@ -980,11 +980,11 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ½­ºşÊ¥°ñ
+	// æ±Ÿæ¹–åœ£æ¦œ
 	public List<RankVo> findSheng()
 	{
 		List<RankVo> list = new ArrayList<RankVo>();
-		String sql = "select r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.p_exp from rank r order by r.p_exp+r.zhong+r.credit desc limit 10";
+		String sql = "SELECT r.id, r.p_pk,r.p_name,r.p_level,r.p_menpai,r.p_exp from rank r order by r.p_exp+r.zhong+r.credit desc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -1007,11 +1007,11 @@ public class RankDao extends DaoBase
 		}
 	}
 	
-	// ½­ºşÊ¥°ñ
+	// æ±Ÿæ¹–åœ£æ¦œ
 	public List<Rank> findSheng1()
 	{
 		List<Rank> list = new ArrayList<Rank>();
-		String sql = "select * from rank r order by r.p_exp+r.zhong+r.credit desc limit 10";
+		String sql = "SELECT * FROM rank r order by r.p_exp+r.zhong+r.credit desc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -1034,7 +1034,7 @@ public class RankDao extends DaoBase
 		}
 	}
 
-	// ²é¿´×Ô¼ºµÄ½­ºşÊ¥°ñÅÅÃû
+	// æŸ¥çœ‹è‡ªå·±çš„æ±Ÿæ¹–åœ£æ¦œæ’å
 	public int findOwnSheng(Object p_pk)
 	{
 		int paimin = 0;
@@ -1044,7 +1044,7 @@ public class RankDao extends DaoBase
 		}
 		else
 		{
-			String sql = "select count(*) from rank r where (r.p_exp+r.zhong+r.credit) >= (select k.p_exp+k.zhong+k.credit from rank k  where k.p_pk = "
+			String sql = "SELECT count(*) from rank r where (r.p_exp+r.zhong+r.credit) >= (select k.p_exp+k.zhong+k.credit from rank k  where k.p_pk = "
 					+ p_pk + ")";
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
@@ -1070,7 +1070,7 @@ public class RankDao extends DaoBase
 			}
 		}
 	}
-	/**********Íæ¼ÒÉ¾³ı½ÇÉ«µÄÊ±ºòÉ¾³ıÅÅĞĞ°ñµÄÏà¹ØĞÅÏ¢***********/
+	/**********ç©å®¶åˆ é™¤è§’è‰²çš„æ—¶å€™åˆ é™¤æ’è¡Œæ¦œçš„ç›¸å…³ä¿¡æ¯***********/
 	public void removeRandInfo(int ppk)
 	{
 		String sql = "delete from rank where p_pk="+ppk+"";

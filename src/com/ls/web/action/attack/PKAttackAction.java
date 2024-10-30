@@ -36,7 +36,7 @@ import com.pm.service.systemInfo.SystemInfoService;
 
 public class PKAttackAction extends ActionBase
 {
-	// µÃµ½µ±Ç°µØµãÓöµ½µÄËùÓĞÍæ¼ÒÁĞ±í
+	// å¾—åˆ°å½“å‰åœ°ç‚¹é‡åˆ°çš„æ‰€æœ‰ç©å®¶åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -88,31 +88,31 @@ public class PKAttackAction extends ActionBase
 		{
 			RoleEntity failre = new RoleService().getRoleInfoById(fail.getPPk()
 					+ "");
-			new SystemInfoService().insertSystemInfoBySystem("Ä³Î»´óÏÀÓÚ"
-					+ scene.getMap().getMapName() + "µÄ" + scene.getSceneName()
-					+ "½«¡¾Ç§ÃæÀÉ¾ı¡¿ÔİÊ±»÷ÍË£¬¡¾Ç§ÃæÀÉ¾ı¡¿ÒÑ¾­´Ó"
-					+ failre.getBasicInfo().getRealName() + "µÄÉíÉÏÀë¿ª£¬ÔÙ´Î²ØÄäµ½ÈËÈºÖ®ÖĞ£¡");
+			new SystemInfoService().insertSystemInfoBySystem("æŸä½å¤§ä¾ äº"
+					+ scene.getMap().getMapName() + "çš„" + scene.getSceneName()
+					+ "å°†ã€åƒé¢éƒå›ã€‘æš‚æ—¶å‡»é€€ï¼Œã€åƒé¢éƒå›ã€‘å·²ç»ä»"
+					+ failre.getBasicInfo().getRealName() + "çš„èº«ä¸Šç¦»å¼€ï¼Œå†æ¬¡è—åŒ¿åˆ°äººç¾¤ä¹‹ä¸­ï¼");
 			MailInfoService mailInfoService = new MailInfoService();
 			UMsgService uMsgService = new UMsgService();
-			// Èç¹ûÊ§°ÜµÄÊÇÇ§ÃæÀÉ¾ı
-			// Ê¤ÀûµÄÈË³ÉÎªÇ§ÃæÀÉ¾ı
+			// å¦‚æœå¤±è´¥çš„æ˜¯åƒé¢éƒå›
+			// èƒœåˆ©çš„äººæˆä¸ºåƒé¢éƒå›
 			new LangjunUtil().becameLangjun(request, win.getPPk(), false);
 			int mailId1 = mailInfoService.insertMailReturnId(win.getPPk(),
-					"Ç§ÃæÀÉ¾ı½±Àø", "aa");
+					"åƒé¢éƒå›å¥–åŠ±", "aa");
 			String help2 = "<anchor><go method=\"post\" href=\""
 					+ response.encodeURL(GameConfig.getContextPath()
 							+ "/langjun.do") + "\">"
 					+ "<postfield name=\"cmd\" value=\"n33\" />"
 					+ "<postfield name=\"mailId\" value=\"" + mailId1 + "\" />"
-					+ " </go>" + "ÁìÈ¡¡¾Ç§ÃæÀÉ¾ı½±Àø¡¿</anchor><br/>";
+					+ " </go>" + "é¢†å–ã€åƒé¢éƒå›å¥–åŠ±ã€‘</anchor><br/>";
 			mailInfoService.updateMail(mailId1,
-					"¹§Ï²Äú´ò°ÜÁË¡¾Ç§ÃæÀÉ¾ı¡¿,»ñµÃ»î¶¯½±ÀøÀñ°üÒ»¸ö,Çë²éÊÕ.<br/>" + help2);
+					"æ­å–œæ‚¨æ‰“è´¥äº†ã€åƒé¢éƒå›ã€‘,è·å¾—æ´»åŠ¨å¥–åŠ±ç¤¼åŒ…ä¸€ä¸ª,è¯·æŸ¥æ”¶.<br/>" + help2);
 			UMessageInfoVO uif = new UMessageInfoVO();
 			uif.setCreateTime(new Date());
 			uif.setMsgPriority(PopUpMsgType.LANGJUN_FIRST);
 			uif.setMsgType(PopUpMsgType.LANGJUN);
 			uif.setPPk(fail.getPPk());
-			uif.setMsgOperate1("¡¾Ç§ÃæÀÉ¾ı¡¿´ÓÄãÉíÉÏÌÓÍÑÁË£¡");
+			uif.setMsgOperate1("ã€åƒé¢éƒå›ã€‘ä»ä½ èº«ä¸Šé€ƒè„±äº†ï¼");
 			uMsgService.sendPopUpMsg(uif);
 			new RankService().updateAdd(win.getPPk(), "killlang", 1);
 		}
@@ -133,12 +133,12 @@ public class PKAttackAction extends ActionBase
 			uif.setMsgPriority(PopUpMsgType.LANGJUN_FIRST);
 			uif.setMsgType(PopUpMsgType.LANGJUN);
 			uif.setPPk(win.getPPk());
-			uif.setMsgOperate1("ºÜÒÅº¶£¬ÄúÉ±ËÀµÄÊÇ¡¾Ç§ÃæÀÉ¾ı¡¿µÄÌæÉí£¬Òò´ËÎŞ·¨»ñµÃ½±Àø¡­¡­");
+			uif.setMsgOperate1("å¾ˆé—æ†¾ï¼Œæ‚¨æ€æ­»çš„æ˜¯ã€åƒé¢éƒå›ã€‘çš„æ›¿èº«ï¼Œå› æ­¤æ— æ³•è·å¾—å¥–åŠ±â€¦â€¦");
 			uMsgService.sendPopUpMsg(uif);
 		}
 	}*/
 
-	// ÃÔ¹¬ÖĞµôÂäÃØ¾³µØÍ¼
+	// è¿·å®«ä¸­æ‰è½ç§˜å¢ƒåœ°å›¾
 	private boolean dropMiJing(RoleEntity re, Fighter win, Fighter fail)
 	{
 		if (re.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.COMPASS)
@@ -152,35 +152,35 @@ public class PKAttackAction extends ActionBase
 				uif.setMsgPriority(PopUpMsgType.LANGJUN_FIRST);
 				uif.setMsgType(PopUpMsgType.LANGJUN);
 				uif.setPPk(fail.getPPk());
-				uif.setMsgOperate1("ÄãµÄÃØ¾³µØÍ¼±»" + win.getPName() + "ÇÀ×ßÁË¡­¡­£¡");
+				uif.setMsgOperate1("ä½ çš„ç§˜å¢ƒåœ°å›¾è¢«" + win.getPName() + "æŠ¢èµ°äº†â€¦â€¦ï¼");
 				UMsgService uMsgService = new UMsgService();
 				uMsgService.sendPopUpMsg(uif);
 				new SystemInfoService().insertSystemInfoBySystem(fail
 						.getPName()
-						+ "±»"
+						+ "è¢«"
 						+ win.getPName()
-						+ "ÓÚ"
+						+ "äº"
 						+ re.getBasicInfo().getSceneInfo().getSceneName()
-						+ "É±ËÀ£¬ÃØ¾³µØÍ¼Âäµ½ÁË" + win.getPName() + "µÄÊÖÖĞ£¡");
+						+ "æ€æ­»ï¼Œç§˜å¢ƒåœ°å›¾è½åˆ°äº†" + win.getPName() + "çš„æ‰‹ä¸­ï¼");
 			}
 			return result > 0 ? true : false;
 		}
 		return false;
 	}
 
-	// ¹¥»÷ÆäËûÍæ¼Ò
+	// æ”»å‡»å…¶ä»–ç©å®¶
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		RoleEntity me = this.getRoleEntity(request);
 		RoleEntity other = me.getPKState().getOtherOnFight();
 		
-		if( other==null )//ÈçÎŞ¹¥»÷¶ÔÊÖÔò·µ»ØÓÎÏ·³¡¾°
+		if( other==null )//å¦‚æ— æ”»å‡»å¯¹æ‰‹åˆ™è¿”å›æ¸¸æˆåœºæ™¯
 		{
 			return this.returnScene(request, response);
 		}
 		
-		//ÉèÖÃÏà¹ØÏûÏ¢
+		//è®¾ç½®ç›¸å…³æ¶ˆæ¯
 		this.setSysInfo(request, me);
 		
 		String sPk = (String) request.getAttribute("sPk");
@@ -188,12 +188,12 @@ public class PKAttackAction extends ActionBase
 		PlayerService playerService = new PlayerService();
 		SkillService skillService = new SkillService();
 		
-		Fighter playerA = playerService.getFighterByPpk(me.getPPk());// Ö÷¶¯¹¥»÷
-		Fighter playerB = playerService.getFighterByPpk(other.getPPk());// ±»¶¯¹¥»÷
+		Fighter playerA = playerService.getFighterByPpk(me.getPPk());// ä¸»åŠ¨æ”»å‡»
+		Fighter playerB = playerService.getFighterByPpk(other.getPPk());// è¢«åŠ¨æ”»å‡»
 		
-		String contentdisplay_bak = playerA.getContentdisplay().replace(me.getName(), "Äú");
+		String contentdisplay_bak = playerA.getContentdisplay().replace(me.getName(), "æ‚¨");
 		playerA.setContentdisplay(contentdisplay_bak);
-		//Èç¹ûÊÇ¼¼ÄÜ¹¥»÷¾ÍÅĞ¶ÏÊÇ·ñ¿ÉÓÃ£¬Èç¹û¿ÉÓÃ¾ÍÖ±½Ó¿Û³ıMP
+		//å¦‚æœæ˜¯æŠ€èƒ½æ”»å‡»å°±åˆ¤æ–­æ˜¯å¦å¯ç”¨ï¼Œå¦‚æœå¯ç”¨å°±ç›´æ¥æ‰£é™¤MP
 		if (sPk != null)
 		{
 			playerService.loadPlayerSkill(playerA, Integer.parseInt(sPk));
@@ -207,14 +207,14 @@ public class PKAttackAction extends ActionBase
 		
 		AttackService attackService = new AttackService();
 		String unAttack = (String) request.getAttribute("unAttack");
-		// ¹¥»÷¶Ô·½
+		// æ”»å‡»å¯¹æ–¹
 		attackService.attackPlayer(playerA, playerB, unAttack);
 		
-		/************PKÍêÒ»¸ö»ØºÏºóĞèÒª×öµÄ´¦Àí*************/
+		/************PKå®Œä¸€ä¸ªå›åˆåéœ€è¦åšçš„å¤„ç†*************/
 		
 		if(playerA.isDead()||playerB.isDead())
 		{
-			AttackService.processPKOver(playerA, playerB,request);//´¦ÀíPKËÀÍöºóµÄ½á¹û
+			AttackService.processPKOver(playerA, playerB,request);//å¤„ç†PKæ­»äº¡åçš„ç»“æœ
 			if (playerA.isDead())
 			{
 				me.getPKState().notifySelfDead(other,playerB.getKillDisplay());
@@ -235,7 +235,7 @@ public class PKAttackAction extends ActionBase
 		return null;
 	}
 	
-	// ½øÈëÕ½¶·µÄÒ³Ãæ
+	// è¿›å…¥æˆ˜æ–—çš„é¡µé¢
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -244,7 +244,7 @@ public class PKAttackAction extends ActionBase
 		RoleEntity me = this.getRoleEntity(request);
 		RoleEntity other = RoleService.getRoleInfoById(other_ppk);
 		
-		String hint = me.getPKState().startAttack(other);//ÉèÖÃPK¹¥»÷×´Ì¬
+		String hint = me.getPKState().startAttack(other);//è®¾ç½®PKæ”»å‡»çŠ¶æ€
 		
 		if( hint!=null )
 		{
@@ -255,11 +255,11 @@ public class PKAttackAction extends ActionBase
 		return this.n7(mapping, form, request, response);
 	}
 
-	//Í¨Öª±ğÈË±»´òËÀ
+	//é€šçŸ¥åˆ«äººè¢«æ‰“æ­»
 	public ActionForward notifyOtherDead(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		UMessageInfoVO u_msg_info = (UMessageInfoVO) request.getAttribute("uMsgInfo");//µ¯³öÊ½ÏûÏ¢
+		UMessageInfoVO u_msg_info = (UMessageInfoVO) request.getAttribute("uMsgInfo");//å¼¹å‡ºå¼æ¶ˆæ¯
 		if( u_msg_info==null )
 		{
 			return super.returnScene(request, response);
@@ -272,11 +272,11 @@ public class PKAttackAction extends ActionBase
 		request.setAttribute("over_display", over_display.toString());
 		return mapping.findForward("over");
 	}
-	//Í¨Öª×Ô¼º±»´òËÀ
+	//é€šçŸ¥è‡ªå·±è¢«æ‰“æ­»
 	public ActionForward notifySelfDead(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		UMessageInfoVO u_msg_info = (UMessageInfoVO) request.getAttribute("uMsgInfo");//µ¯³öÊ½ÏûÏ¢
+		UMessageInfoVO u_msg_info = (UMessageInfoVO) request.getAttribute("uMsgInfo");//å¼¹å‡ºå¼æ¶ˆæ¯
 		if( u_msg_info==null )
 		{
 			return super.returnScene(request, response);
@@ -293,11 +293,11 @@ public class PKAttackAction extends ActionBase
 		return mapping.findForward("dead_prop");
 	}
 	
-	//Í¨ÖªÉ±ËÀ¶Ô·½
+	//é€šçŸ¥æ€æ­»å¯¹æ–¹
 	public ActionForward notifyKillOther(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		UMessageInfoVO u_msg_info = (UMessageInfoVO) request.getAttribute("uMsgInfo");//µ¯³öÊ½ÏûÏ¢
+		UMessageInfoVO u_msg_info = (UMessageInfoVO) request.getAttribute("uMsgInfo");//å¼¹å‡ºå¼æ¶ˆæ¯
 		if( u_msg_info==null )
 		{
 			return super.returnScene(request, response);
@@ -307,8 +307,8 @@ public class PKAttackAction extends ActionBase
 		
 		me.getStateInfo().setCurState(PlayerState.EXTRA);
 		
-		String dead_ppk = u_msg_info.getMsgOperate2();// ËÀÕß
-		String me_ppk = me.getPPk()+"";// Ğ×ÊÖ
+		String dead_ppk = u_msg_info.getMsgOperate2();// æ­»è€…
+		String me_ppk = me.getPPk()+"";// å‡¶æ‰‹
 
 		StringBuffer over_display = new StringBuffer();
 		
@@ -317,11 +317,11 @@ public class PKAttackAction extends ActionBase
 		request.setAttribute("over_display", over_display.toString());
 		request.setAttribute("a_p_pk", dead_ppk);
 		request.setAttribute("b_p_pk", me_ppk);
-		request.setAttribute("type", 2);//2ÎªÊ¤ÀûÕß
+		request.setAttribute("type", 2);//2ä¸ºèƒœåˆ©è€…
 		return mapping.findForward("over");
 	}
 
-	// ÏÔÊ¾¶Ô·½ÏêÇé
+	// æ˜¾ç¤ºå¯¹æ–¹è¯¦æƒ…
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -335,7 +335,7 @@ public class PKAttackAction extends ActionBase
 		return mapping.findForward("other_display");
 	}
 
-	// ¿ì½İ¼ü²Ù×÷
+	// å¿«æ·é”®æ“ä½œ
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -343,36 +343,36 @@ public class PKAttackAction extends ActionBase
 		String sc_pk = request.getParameter("sc_pk");
 		ShortcutVO shortcut = me.getRoleShortCutInfo().getShortByScPk(Integer.parseInt(sc_pk));
 
-		if (shortcut.getScType() == Shortcut.ATTACK)// ÆÕÍ¨¹¥»÷
+		if (shortcut.getScType() == Shortcut.ATTACK)// æ™®é€šæ”»å‡»
 		{
 			return n2(mapping, form, request, response);
 		}
-		else if (shortcut.getScType() == Shortcut.SKILL)// ¼¼ÄÜ¹¥»÷
+		else if (shortcut.getScType() == Shortcut.SKILL)// æŠ€èƒ½æ”»å‡»
 		{
 			request.setAttribute("sPk", shortcut.getOperateId() + "");
 			return n2(mapping, form, request, response);
 		}
-		else if (shortcut.getScType() == Shortcut.LOOKINFO)// ²é¿´¶Ô·½ÏêÇé
+		else if (shortcut.getScType() == Shortcut.LOOKINFO)// æŸ¥çœ‹å¯¹æ–¹è¯¦æƒ…
 		{
 			return this.n5(mapping, form, request, response);
 		}
-		else if (shortcut.getScType() == Shortcut.DEFAULT || shortcut.getScType() == Shortcut.ATTACKPROP)// ÉèÖÃ¿ì½İ¼ü
+		else if (shortcut.getScType() == Shortcut.DEFAULT || shortcut.getScType() == Shortcut.ATTACKPROP)// è®¾ç½®å¿«æ·é”®
 		{
 			request.getSession().setAttribute("retrun_url","/pk.do?cmd=n7");
 			request.setAttribute("pk", "pk");
 			return new AttackShortcutAction().n3(mapping, form, request,response);
 		}
-		else if (shortcut.getScType() == Shortcut.CURE)// Ò©Æ·¿ì½İ¼ü
+		else if (shortcut.getScType() == Shortcut.CURE)// è¯å“å¿«æ·é”®
 		{
-			// ÅĞ¶ÏpkÊÇÊÇ·ñ¿ÉÒÔÊ¹ÓÃÒ©Æ·
+			// åˆ¤æ–­pkæ˜¯æ˜¯å¦å¯ä»¥ä½¿ç”¨è¯å“
 			if (me.getBasicInfo().getXuanyunhuihe() > 0)
 			{
-				this.setHint(request, "Äú³öÏÖÑ£ÔÎ»ØºÏ!»¹ÓĞ"+ me.getBasicInfo().getXuanyunhuihe()+ "¸ö»ØºÏ²»ÄÜ·şÓÃÒ©Îï");
+				this.setHint(request, "æ‚¨å‡ºç°çœ©æ™•å›åˆ!è¿˜æœ‰"+ me.getBasicInfo().getXuanyunhuihe()+ "ä¸ªå›åˆä¸èƒ½æœç”¨è¯ç‰©");
 				me.getBasicInfo().setXuanyunhuihe(me.getBasicInfo().getXuanyunhuihe() - 1);
 				return mapping.findForward("skillhint");
 			}
 			PropUseService propService = new PropUseService();
-			PropUseEffect propUseEffect = propService.usePropByPropID(me, shortcut.getOperateId(), 1, request,response);// Ê¹ÓÃÒ©Æ·
+			PropUseEffect propUseEffect = propService.usePropByPropID(me, shortcut.getOperateId(), 1, request,response);// ä½¿ç”¨è¯å“
 			request.setAttribute("propUseEffect",propUseEffect);
 			request.setAttribute("unAttack", "unAttack");
 			return n11(mapping, form, request, response);
@@ -381,13 +381,13 @@ public class PKAttackAction extends ActionBase
 		return null;
 	}
 
-	// ÏÔÊ¾Í¨Öª¹¥»÷Ò³Ãæ
+	// æ˜¾ç¤ºé€šçŸ¥æ”»å‡»é¡µé¢
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		RoleEntity me = this.getRoleEntity(request);
 		
-		//ÉèÖÃÏà¹ØÏûÏ¢
+		//è®¾ç½®ç›¸å…³æ¶ˆæ¯
 		this.setSysInfo(request, me);
 		
 		me.getStateInfo().setCurState(PlayerState.PKFIGHT);
@@ -396,8 +396,8 @@ public class PKAttackAction extends ActionBase
 		
 		PlayerService playerService = new PlayerService();
 
-		Fighter playerA = playerService.getFighterByPpk(me.getPPk());// Ö÷¶¯¹¥»÷
-		Fighter playerB = playerService.getFighterByPpk(other.getPPk());// ±»¶¯¹¥»÷
+		Fighter playerA = playerService.getFighterByPpk(me.getPPk());// ä¸»åŠ¨æ”»å‡»
+		Fighter playerB = playerService.getFighterByPpk(other.getPPk());// è¢«åŠ¨æ”»å‡»
 
 		request.setAttribute("playerA", playerA);
 		request.setAttribute("playerB", playerB);
@@ -405,7 +405,7 @@ public class PKAttackAction extends ActionBase
 		return mapping.findForward("display");
 	}
 
-	/*// PK¼ñÈ¡×°±¸
+	/*// PKæ¡å–è£…å¤‡
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -427,32 +427,32 @@ public class PKAttackAction extends ActionBase
 		String hint = null;
 		if (Integer.parseInt(p_pk) == roleInfo.getPPk())
 		{
-			hint = "Äú²»ÄÜ¼ñÈ¡Äú×Ô¼ºµôµÄÎïÆ·";
+			hint = "æ‚¨ä¸èƒ½æ¡å–æ‚¨è‡ªå·±æ‰çš„ç‰©å“";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("pickup");
 		}
 		
-		List list = null;//µôÂäÎïÆ·ÁĞ±í
-		// Èç¹ûµôÂäÊÇ×°±¸µÄ»° ÄÇÃ´Ö´ĞĞÕâ¸ö·½·¨
+		List list = null;//æ‰è½ç‰©å“åˆ—è¡¨
+		// å¦‚æœæ‰è½æ˜¯è£…å¤‡çš„è¯ é‚£ä¹ˆæ‰§è¡Œè¿™ä¸ªæ–¹æ³•
 		if (dropgoodsPkVO.getGoodsType() != GoodsType.PROP)
 		{
-			//ÅĞ¶Ï°ü¹ü¸ñÊı
+			//åˆ¤æ–­åŒ…è£¹æ ¼æ•°
 			if (goodsService.isEnoughWrapSpace( roleInfo.getPPk(), 1))
 			{
-				//¸ü¸ÄËùÓĞÈË
+				//æ›´æ”¹æ‰€æœ‰äºº
 				EquipService equipService = new EquipService();
 				equipService.updateOwner( roleInfo,dropgoodsPkVO.getGoodsId());
 				
-				// Çå³ı¸Õ²Å¼ñÈ¡µÄÎïÆ·
+				// æ¸…é™¤åˆšæ‰æ¡å–çš„ç‰©å“
 				dropgoodsPkDAO.getgetDropGoodsPKDelete(Integer.parseInt(dp_pk));
-				hint = "Äú¼ñÈ¡ÁË" + goods_name;
+				hint = "æ‚¨æ¡å–äº†" + goods_name;
 				list = dropgoodsPkDAO.getDropGoodsPKList(Integer.parseInt(p_pk), roleInfo.getPPk());
 				
 			}
 			else
 			{
 				list = dropgoodsPkDAO.getDropGoodsPKList(Integer.parseInt(p_pk), roleInfo.getPPk());
-				hint = "ÄúµÄ°ü¹ü¸ñÊı²»¹»";
+				hint = "æ‚¨çš„åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
 			}
 
 		}
@@ -463,13 +463,13 @@ public class PKAttackAction extends ActionBase
 			if (d == -1)
 			{
 				list = dropgoodsPkDAO.getDropGoodsPKList(Integer.parseInt(p_pk), roleInfo.getPPk());
-				hint = "ÄúµÄ°ü¹ü¸ñÊı²»¹»";
+				hint = "æ‚¨çš„åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
 			}
 			else
 			{
-				// Çå³ı¸Õ²Å¼ñÈ¡µÄÎïÆ·
+				// æ¸…é™¤åˆšæ‰æ¡å–çš„ç‰©å“
 				dropgoodsPkDAO.getgetDropGoodsPKDelete(Integer.parseInt(dp_pk));
-				hint = "Äú¼ñÈ¡ÁË" + goods_name;
+				hint = "æ‚¨æ¡å–äº†" + goods_name;
 				list = dropgoodsPkDAO.getDropGoodsPKList(Integer.parseInt(p_pk), roleInfo.getPPk());
 			}
 		}
@@ -480,32 +480,32 @@ public class PKAttackAction extends ActionBase
 		return mapping.findForward("pickup");
 	}*/
 
-	// PKÊ¤Àû
+	// PKèƒœåˆ©
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 			RoleEntity me = this.getRoleEntity(request);
 
-			String type = request.getParameter("type");	// 3ÊÇÊ§°ÜÕß£¬2ÊÇÊ¤ÀûÕß
+			String type = request.getParameter("type");	// 3æ˜¯å¤±è´¥è€…ï¼Œ2æ˜¯èƒœåˆ©è€…
 
 			if( StringUtils.isEmpty(type)==false )
 			{
-				// Èç¹ûÎªÊ§°ÜÕß£¬¾ÍÓ¦¸Ã»Ø³Ç
+				// å¦‚æœä¸ºå¤±è´¥è€…ï¼Œå°±åº”è¯¥å›åŸ
 				if (Integer.parseInt(type) == 3)
 				{
-					// µÃµ½ËÀÍö¸´»îµã
+					// å¾—åˆ°æ­»äº¡å¤æ´»ç‚¹
 					RoomService roomService = new RoomService();
 					int resurrection_point = roomService.getResurrectionPoint(me);
 					me.getBasicInfo().updateSceneId(resurrection_point + "");
 				}
 
 			}
-			me.getStateInfo().setCurState(PlayerState.GENERAL);// ¸´Î»Íæ¼Ò×´Ì¬
+			me.getStateInfo().setCurState(PlayerState.GENERAL);// å¤ä½ç©å®¶çŠ¶æ€
 			return super.dispath(request, response, "/pubbuckaction.do?type=1");
 	}
 
 
-	// ÏÔÊ¾Í¨Öª¹¥»÷Ò³Ãæ,²»½øÈë¹¥»÷×´Ì¬.
+	// æ˜¾ç¤ºé€šçŸ¥æ”»å‡»é¡µé¢,ä¸è¿›å…¥æ”»å‡»çŠ¶æ€.
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -519,8 +519,8 @@ public class PKAttackAction extends ActionBase
 		{
 			return n2(mapping, form, request, response);
 		}
-		Fighter playerA = playerService.getFighterByPpk(me.getPPk());// Ö÷¶¯¹¥»÷
-		Fighter playerB = playerService.getFighterByPpk(Integer.parseInt(bPpk));// ±»¶¯¹¥»÷
+		Fighter playerA = playerService.getFighterByPpk(me.getPPk());// ä¸»åŠ¨æ”»å‡»
+		Fighter playerB = playerService.getFighterByPpk(Integer.parseInt(bPpk));// è¢«åŠ¨æ”»å‡»
 
 		request.setAttribute("playerA", playerA);
 		request.setAttribute("playerB", playerB);
@@ -529,7 +529,7 @@ public class PKAttackAction extends ActionBase
 	}
 	
 	/**
-	 * ÉèÖÃÏµÍ³ÏûÏ¢
+	 * è®¾ç½®ç³»ç»Ÿæ¶ˆæ¯
 	 * @param request
 	 * @param roleInfo
 	 */

@@ -9,7 +9,7 @@ public class Digest
     public static final String ENCODE = "UTF-8";  //UTF-8
     
     /**
-     * Ö±½ÓÓÃMD5Ç©Ãû¶ÔÊı¾İÇ©Ãû£¬²»ĞèÒªÃÜÔ¿
+     * ç›´æ¥ç”¨MD5ç­¾åå¯¹æ•°æ®ç­¾åï¼Œä¸éœ€è¦å¯†é’¥
      * @param aValue
      * @return
      */
@@ -27,7 +27,7 @@ public class Digest
 		}
     }
     /**
-     * Ö±½ÓÓÃMD5Ç©Ãû¶ÔÊı¾İÇ©Ãû£¬²»ĞèÒªÃÜÔ¿
+     * ç›´æ¥ç”¨MD5ç­¾åå¯¹æ•°æ®ç­¾åï¼Œä¸éœ€è¦å¯†é’¥
      * @param aValue
      * @return
      */
@@ -42,10 +42,10 @@ public class Digest
 		}
     }
     /**
-     * ¶Ô±¨ÎÄ½øĞĞhmacÇ©Ãû£¬×Ö·û´®°´ÕÕUTF-8±àÂë
-     * @param aValue - ×Ö·û´®
-     * @param aKey - ÃÜÔ¿
-     * @return - Ç©Ãû½á¹û£¬hex×Ö·û´®
+     * å¯¹æŠ¥æ–‡è¿›è¡Œhmacç­¾åï¼Œå­—ç¬¦ä¸²æŒ‰ç…§UTF-8ç¼–ç 
+     * @param aValue - å­—ç¬¦ä¸²
+     * @param aKey - å¯†é’¥
+     * @return - ç­¾åç»“æœï¼Œhexå­—ç¬¦ä¸²
      */
     public static String hmacSign(String aValue, String aKey)
     {
@@ -53,11 +53,11 @@ public class Digest
     }
     
     /**
-     * ¶Ô±¨ÎÄ½øĞĞ²ÉÓÃMD5½øĞĞhmacÇ©Ãû
-     * @param aValue - ×Ö·û´®
-     * @param aKey - ÃÜÔ¿
-     * @param encoding - ×Ö·û´®±àÂë·½Ê½
-     * @return - Ç©Ãû½á¹û£¬hex×Ö·û´®
+     * å¯¹æŠ¥æ–‡è¿›è¡Œé‡‡ç”¨MD5è¿›è¡Œhmacç­¾å
+     * @param aValue - å­—ç¬¦ä¸²
+     * @param aKey - å¯†é’¥
+     * @param encoding - å­—ç¬¦ä¸²ç¼–ç æ–¹å¼
+     * @return - ç­¾åç»“æœï¼Œhexå­—ç¬¦ä¸²
      */
     public static String hmacSign(String aValue, String aKey,String encoding)
     {
@@ -104,11 +104,11 @@ public class Digest
     }
     
     /**
-     * ¶Ô±¨ÎÄ½øĞĞ²ÉÓÃSHA½øĞĞhmacÇ©Ãû
-     * @param aValue - ×Ö·û´®
-     * @param aKey - ÃÜÔ¿
-     * @param encoding - ×Ö·û´®±àÂë·½Ê½
-     * @return - Ç©Ãû½á¹û£¬hex×Ö·û´®
+     * å¯¹æŠ¥æ–‡è¿›è¡Œé‡‡ç”¨SHAè¿›è¡Œhmacç­¾å
+     * @param aValue - å­—ç¬¦ä¸²
+     * @param aKey - å¯†é’¥
+     * @param encoding - å­—ç¬¦ä¸²ç¼–ç æ–¹å¼
+     * @return - ç­¾åç»“æœï¼Œhexå­—ç¬¦ä¸²
      */
    public static String hmacSHASign(String aValue, String aKey,String encoding)
     {
@@ -155,9 +155,9 @@ public class Digest
     }
 
    /**
-    * ¶Ô±¨ÎÄ½øĞĞSHAÇ©Ãû
-    * @param aValue - ´ıÇ©ÃûµÄ×Ö·û´®£¨±àÂë:UTF-8£©
-    * @return - Ç©Ãû½á¹û£¬hex×Ö·û´®
+    * å¯¹æŠ¥æ–‡è¿›è¡ŒSHAç­¾å
+    * @param aValue - å¾…ç­¾åçš„å­—ç¬¦ä¸²ï¼ˆç¼–ç :UTF-8ï¼‰
+    * @return - ç­¾åç»“æœï¼Œhexå­—ç¬¦ä¸²
     */
     public static String digest(String aValue)
     {
@@ -166,10 +166,10 @@ public class Digest
     }
     
     /**
-     * ¶Ô±¨ÎÄ½øĞĞSHAÇ©Ãû
-     * @param aValue - ´ıÇ©ÃûµÄ×Ö·û´®
-     * @param encoding - ×Ö·û´®±àÂë·½Ê½
-     * @return - Ç©Ãû½á¹û£¬hex×Ö·û´®
+     * å¯¹æŠ¥æ–‡è¿›è¡ŒSHAç­¾å
+     * @param aValue - å¾…ç­¾åçš„å­—ç¬¦ä¸²
+     * @param encoding - å­—ç¬¦ä¸²ç¼–ç æ–¹å¼
+     * @return - ç­¾åç»“æœï¼Œhexå­—ç¬¦ä¸²
      */
     public static String digest(String aValue,String encoding)
     {
@@ -197,11 +197,11 @@ public class Digest
     }
     
     /**
-     * ¶Ô×Ö·û´®½øĞĞÇ©Ãû
-     * @param aValue - ´ıÇ©Ãû×Ö·û´®
-     * @param alg - Ç©ÃûËã·¨Ãû³Æ£¨ÈçSHA, MD5µÈ£©
-     * @param encoding - ×Ö·û´®±àÂë·½Ê½
-     * @return - Ç©Ãû½á¹û£¬hex×Ö·û´®
+     * å¯¹å­—ç¬¦ä¸²è¿›è¡Œç­¾å
+     * @param aValue - å¾…ç­¾åå­—ç¬¦ä¸²
+     * @param alg - ç­¾åç®—æ³•åç§°ï¼ˆå¦‚SHA, MD5ç­‰ï¼‰
+     * @param encoding - å­—ç¬¦ä¸²ç¼–ç æ–¹å¼
+     * @return - ç­¾åç»“æœï¼Œhexå­—ç¬¦ä¸²
      */
     public static String digest(String aValue,String alg, String encoding)
     {

@@ -4,31 +4,31 @@
 package com.pm.vo.tongsiege;
 
 /**
- * °ïÅÉ¹¥³ÇÕ½¸öÈËĞÅÏ¢±í
+ * å¸®æ´¾æ”»åŸæˆ˜ä¸ªäººä¿¡æ¯è¡¨
  * @author zhangjj
  *
  */
 public class TongSiegeInfoVO
 {
 
-	/** ¹¥³ÇÕ½¸öÈËĞÅÏ¢¼ÇÂ¼ID  */
+	/** æ”»åŸæˆ˜ä¸ªäººä¿¡æ¯è®°å½•ID  */
 	public int infoId;
-	/***  ¸öÈËpPk   ****/
+	/***  ä¸ªäººpPk   ****/
 	public int pPk ;
-	/**    ÔÚµÚ¶ş½×¶ÎËÀµÄ´ÎÊı   **/
+	/**    åœ¨ç¬¬äºŒé˜¶æ®µæ­»çš„æ¬¡æ•°   **/
 	public int deadNum;
-	/**    ËÀÍö¼«ÏŞ´ÎÊı ***/
+	/**    æ­»äº¡æé™æ¬¡æ•° ***/
 	public int deadIimit;
 	
-	/*** ²Î¼ÓÀàĞÍ,1Îª¸öÈË²ÎÕ½,2Îª°ïÅÉ²ÎÕ½  ****/	
+	/*** å‚åŠ ç±»å‹,1ä¸ºä¸ªäººå‚æˆ˜,2ä¸ºå¸®æ´¾å‚æˆ˜  ****/	
 	public int attackType;
-	/**   Õ½¶·ÀàĞÍ,1Îª¹¥³Ç,2ÎªÊØ³Ç   ****/	
+	/**   æˆ˜æ–—ç±»å‹,1ä¸ºæ”»åŸ,2ä¸ºå®ˆåŸ   ****/	
 	public int 	joinType;
-	/**    °ïÅÉID  */
+	/**    å¸®æ´¾ID  */
 	public int 	tongId;
-	/**    Õ½³¡id  **/	
+	/**    æˆ˜åœºid  **/	
 	public int 	siegeId	;
-	/***  Õ½³¡´ÎĞòÊı  **/		
+	/***  æˆ˜åœºæ¬¡åºæ•°  **/		
 	public int 	siegeNumber;
 		
 		

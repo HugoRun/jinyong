@@ -10,26 +10,26 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:quiz_repository±í²Ù×÷
- * @author ÁõË§ 11:26:09 AM
+ * åŠŸèƒ½:quiz_repositoryè¡¨æ“ä½œ
+ * @author åˆ˜å¸… 11:26:09 AM
  */
 public class QuizDao extends DaoBase {
 	/**
-	 * ¸ù¾İÌâÄ¿·¶Î§È¡µ½ÌâÄ¿µÄ³öÌâ¸ÅÂÊ
+	 * æ ¹æ®é¢˜ç›®èŒƒå›´å–åˆ°é¢˜ç›®çš„å‡ºé¢˜æ¦‚ç‡
 	 * @param confine
 	 */
 	public List<Probability> getQuizIdByConfine(String confine)
 	{
 		if( confine==null )
 		{
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 			return null;
 		}
 		String condition[] = confine.split(",");
-		logger.debug("Ìâ¿âÌâÄ¿·¶Î§:" + confine);
+		logger.debug("é¢˜åº“é¢˜ç›®èŒƒå›´:" + confine);
 		List<Probability> quizs = new ArrayList<Probability>();
 		Probability quiz = null;
-		String sql = "select quiz_id,quiz_probability from quiz_repository where quiz_id >= "+ condition[0]+" and quiz_id<="+ condition[1]+" order by quiz_id";
+		String sql = "SELECT quiz_id,quiz_probability from quiz_repository where quiz_id >= "+ condition[0]+" and quiz_id<="+ condition[1]+" order by quiz_id";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -57,14 +57,14 @@ public class QuizDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½ÌâÄ¿ÄÚÈİ
+	 * å¾—åˆ°é¢˜ç›®å†…å®¹
 	 * @param confine
 	 */
 	public QuizVO getContentById( int quiz_id )
 	{
-		logger.debug("Ìâ¿âÌâÄ¿id:" + quiz_id);
+		logger.debug("é¢˜åº“é¢˜ç›®id:" + quiz_id);
 		QuizVO quiz = null;
-		String sql = "select * from quiz_repository where quiz_id="+quiz_id;
+		String sql = "SELECT * FROM quiz_repository where quiz_id="+quiz_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -97,18 +97,18 @@ public class QuizDao extends DaoBase {
 	}
 	
 	/**
-	 * ¼ÓÔØÌâÄ¿ÄÚÈİ
+	 * åŠ è½½é¢˜ç›®å†…å®¹
 	 * @param confine
 	 */
 	public void loadContent( QuizVO quiz )
 	{
 		if( quiz==null )
 		{
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 			return;
 		}
-		logger.debug("Ìâ¿âÌâÄ¿id:" + quiz.getId());
-		String sql = "select quiz_content,quiz_answers from quiz_repository where quiz_id="+quiz.getId();
+		logger.debug("é¢˜åº“é¢˜ç›®id:" + quiz.getId());
+		String sql = "SELECT quiz_content,quiz_answers from quiz_repository where quiz_id="+quiz.getId();
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -135,15 +135,15 @@ public class QuizDao extends DaoBase {
 	
 	
 	/**
-	 * ¸ù¾İÌâÄ¿ÕıÈ·´ğ°¸
+	 * æ ¹æ®é¢˜ç›®æ­£ç¡®ç­”æ¡ˆ
 	 * @param confine
 	 */
 	public int getRightAnswerById( int quiz_id ,int answer)
 	{
 		
-		logger.debug("Ìâ¿âÌâÄ¿id:" + quiz_id);
+		logger.debug("é¢˜åº“é¢˜ç›®id:" + quiz_id);
 		int  quiz_right_answer = -1;
-		String sql = "select quiz_right_answer from quiz_repository where quiz_id="+quiz_id;
+		String sql = "SELECT quiz_right_answer from quiz_repository where quiz_id="+quiz_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -166,15 +166,15 @@ public class QuizDao extends DaoBase {
 		return quiz_right_answer;
 	}
 	/**
-	 * ¸ù¾İÌâÄ¿µÃµ½ÌâÄ¿½±Àø
+	 * æ ¹æ®é¢˜ç›®å¾—åˆ°é¢˜ç›®å¥–åŠ±
 	 * @param confine
 	 */
 	public QuizVO getAwardById( int quiz_id )
 	{
 		
-		logger.debug("Ìâ¿âÌâÄ¿id:" + quiz_id);
+		logger.debug("é¢˜åº“é¢˜ç›®id:" + quiz_id);
 		QuizVO quiz = null;
-		String sql = "select * from quiz_repository where quiz_id="+quiz_id;
+		String sql = "SELECT * FROM quiz_repository where quiz_id="+quiz_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -207,13 +207,13 @@ public class QuizDao extends DaoBase {
 	}
 
 	/**
-	 * µÃµ½ËùÓĞÌâÄ¿µÄ×ÜÊı
+	 * å¾—åˆ°æ‰€æœ‰é¢˜ç›®çš„æ€»æ•°
 	 * @return
 	 */
 	public int getQuizAllNumber()
 	{
 		int  quiz_size = -1;
-		String sql = "select count(1) as quiz_size from quiz_repository";
+		String sql = "SELECT count(1) as quiz_size from quiz_repository";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();

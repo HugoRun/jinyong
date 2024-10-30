@@ -41,7 +41,7 @@ public class WrapAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
 
-	// ÎïÆ·ÁĞ±í
+	// ç‰©å“åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -96,7 +96,7 @@ public class WrapAction extends ActionBase
 		return mapping.findForward("wrap_list");
 	}
 
-	// ÎïÆ·ÏêÇé
+	// ç‰©å“è¯¦æƒ…
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -166,7 +166,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * °ü¹üÀïÊ¹ÓÃÎïÆ·
+	 * åŒ…è£¹é‡Œä½¿ç”¨ç‰©å“
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -182,12 +182,12 @@ public class WrapAction extends ActionBase
 		RoleEntity roleInfo = this.getRoleEntity(request);
 		if (roleInfo.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.COMPASS)
 		{
-			// Èç¹ûÔÚÃÔ¹¬ÖĞÊ¹ÓÃ´«ËÍµÀ¾ß
+			// å¦‚æœåœ¨è¿·å®«ä¸­ä½¿ç”¨ä¼ é€é“å…·
 			if ((com == null || "".equals(com.trim()))
 					&& new GoodsService().haveMiJing(roleInfo.getBasicInfo()
 							.getPPk()))
 			{
-				// Ã»ÓĞÈ·ÈÏ
+				// æ²¡æœ‰ç¡®è®¤
 				int goodsType = Integer.parseInt(goods_type.trim());
 				if (goodsType == PropType.GOBACKCITY
 						|| goodsType == PropType.MARKUP
@@ -196,7 +196,7 @@ public class WrapAction extends ActionBase
 						|| goodsType == PropType.FRIENDCHUAN
 						|| goodsType == PropType.XINYINDU)
 				{
-					// Ê¹ÓÃµÄÊÇ´«ËÍµÀ¾ß
+					// ä½¿ç”¨çš„æ˜¯ä¼ é€é“å…·
 					return mapping.findForward("inlost");
 				}
 			}
@@ -205,7 +205,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ÉÌ³ÇÀïÊ¹ÓÃÎïÆ·
+	 * å•†åŸé‡Œä½¿ç”¨ç‰©å“
 	 * 
 	 * @param mapping
 	 * @param form
@@ -230,7 +230,7 @@ public class WrapAction extends ActionBase
 		return n21(mapping, form, request, response);
 	}
 
-	// Ê¹ÓÃÎïÆ·¿ØÖÆ
+	// ä½¿ç”¨ç‰©å“æ§åˆ¶
 	public ActionForward n21(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -246,7 +246,7 @@ public class WrapAction extends ActionBase
 		request.setAttribute("goods_type", goods_type);
 
 		PropUseService propUseService = new PropUseService();
-		// ÅĞ¶ÏÊ¹ÓÃµÀ¾ßµÄ»ù±¾Ìõ¼ş
+		// åˆ¤æ–­ä½¿ç”¨é“å…·çš„åŸºæœ¬æ¡ä»¶
 		String hint = propUseService.isPropUseByBasicCondition(roleInfo,
 				PropCache.getPropById(Integer.parseInt(prop_id)), 1);
 		if (hint != null)
@@ -257,63 +257,63 @@ public class WrapAction extends ActionBase
 
 		if (pg_pk == null || prop_id == null)
 		{
-			logger.info("pg_pk»ògoods_id»òw_typeÎª¿Õ");
+			logger.info("pg_pkæˆ–goods_idæˆ–w_typeä¸ºç©º");
 		}
 		switch (Integer.parseInt(goods_type))
 		{
-			case PropType.EQUIP_UNBIND:// ½â³ı×°±¸°ó¶¨µÀ¾ß
+			case PropType.EQUIP_UNBIND:// è§£é™¤è£…å¤‡ç»‘å®šé“å…·
 			{
 				return super.dispath(request, response,
 						"/equip.do?cmd=bindEquipList&pg_pk=" + pg_pk);
 			}
-			case PropType.MIANTAIN_BAD_EQUIP:// ĞŞÀíËğ»µµÄ×°±¸
+			case PropType.MIANTAIN_BAD_EQUIP:// ä¿®ç†æŸåçš„è£…å¤‡
 			{
 				return super.dispath(request, response,
 						"/equip.do?cmd=badEquipList&pg_pk=" + pg_pk);
 			}
-			case PropType.EQUIP_PUNCH:// ´ò¿×µÀ¾ß
+			case PropType.EQUIP_PUNCH:// æ‰“å­”é“å…·
 			{
 				return super.dispath(request, response,
 						"/equip.do?cmd=punchEquipList");
 			}
-			case PropType.MARKUP:// ±ê¼ÇµÀ¾ß
+			case PropType.MARKUP:// æ ‡è®°é“å…·
 			{
 				return mapping.findForward("markup");
 			}
-				// ³èÎïÎ¹ÑøµÄµÀ¾ßÊ¹ÓÃ
-			case PropType.PETSINEW: // ³èÎï»Ø¸´ÌåÁ¦
+				// å® ç‰©å–‚å…»çš„é“å…·ä½¿ç”¨
+			case PropType.PETSINEW: // å® ç‰©å›å¤ä½“åŠ›
 			{
 				return mapping.findForward("havingpetpetsinew");
 			}
-			case PropType.PETLONGE:// ³èÎï»Ø¸´ÊÙÃü
+			case PropType.PETLONGE:// å® ç‰©å›å¤å¯¿å‘½
 			{
 				return mapping.findForward("havingpetpetsinew");
 			}
-			case PropType.PETEXP:// ³èÎï¾­ÑéµÀ¾ß
+			case PropType.PETEXP:// å® ç‰©ç»éªŒé“å…·
 			{
 				return mapping.findForward("petfeedsubmit");
 			}
-			case PropType.PETSKILLBOOK:// ³èÎï¼¼ÄÜÊé
+			case PropType.PETSKILLBOOK:// å® ç‰©æŠ€èƒ½ä¹¦
 			{
 				return mapping.findForward("pet_skillbook_use");
 			}
-			case PropType.SPEAKER:// Ğ¡À®°ÈµÀ¾ß
+			case PropType.SPEAKER:// å°å–‡å­é“å…·
 			{
 				return mapping.findForward("speaker");
 			}
-			case PropType.FIX_ARM_PROP:// ĞŞÀí×°±¸µÀ¾ß
+			case PropType.FIX_ARM_PROP:// ä¿®ç†è£…å¤‡é“å…·
 			{
 				return mapping.findForward("propmaintain");
 			}
-			case PropType.EQUIP_PROTECT:// ±£»¤×°±¸µÀ¾ß
+			case PropType.EQUIP_PROTECT:// ä¿æŠ¤è£…å¤‡é“å…·
 			{
 				return mapping.findForward("equip_protect");
 			}
-			case PropType.FRIENDCHUAN:// ºÃÓÑ´«ËÍ
+			case PropType.FRIENDCHUAN:// å¥½å‹ä¼ é€
 			{
 				return mapping.findForward("friendchuan");
 			}
-			case PropType.BUFF: // buffµÀ¾ß
+			case PropType.BUFF: // buffé“å…·
 			{
 				BuffEffectService buffService = new BuffEffectService();
 				BuffEffectVO buffEffectVO = buffService.checkHasSameBuffType(
@@ -331,36 +331,36 @@ public class WrapAction extends ActionBase
 				break;
 			}
 
-			case PropType.TIANYANFU:// ÌìÑÛ·û
+			case PropType.TIANYANFU:// å¤©çœ¼ç¬¦
 			{
 				return mapping.findForward("gold_box");
 			}
-			case PropType.GOLD_BOX:// »Æ½ğ±¦Ïä
+			case PropType.GOLD_BOX:// é»„é‡‘å®ç®±
 			{
 				return mapping.findForward("gold_key");
 			}
-			case PropType.OTHER_GOLD_BOX:// ½ğµ°
+			case PropType.OTHER_GOLD_BOX:// é‡‘è›‹
 			{
 				return mapping.findForward("gold_key");
 			}
-			case PropType.SUIBIANCHUAN:// ´«ËÍ·ûµÀ¾ß
+			case PropType.SUIBIANCHUAN:// ä¼ é€ç¬¦é“å…·
 			{
 				return mapping.findForward("suibianchuan");
 			}
-			case PropType.GROUPCHUAN:// ¶ÓÔ±´«ËÍ·ûµÀ¾ß
+			case PropType.GROUPCHUAN:// é˜Ÿå‘˜ä¼ é€ç¬¦é“å…·
 			{
 				return mapping.findForward("groupchuan");
 			}
 
-			case PropType.SCRTCHTICKET:// ¹Î¹ÎÀÖ
+			case PropType.SCRTCHTICKET:// åˆ®åˆ®ä¹
 			{
 				request.setAttribute("prop_id", prop_id);
 				return mapping.findForward("scratchticket");
 			}
 
-			case PropType.BUFFRODAM:// Ëæ»úBUFFµÀ¾ß
+			case PropType.BUFFRODAM:// éšæœºBUFFé“å…·
 			{
-				logger.info("ÊÇ·ñ½øÈëBUFFµÀ¾ßÊ¹ÓÃ»­Ãæ");
+				logger.info("æ˜¯å¦è¿›å…¥BUFFé“å…·ä½¿ç”¨ç”»é¢");
 				request.setAttribute("pg_pk", pg_pk);
 				return mapping.findForward("buff_use");
 			}
@@ -370,18 +370,18 @@ public class WrapAction extends ActionBase
 				request.setAttribute("prop_id", prop_id);
 				return mapping.findForward("ttbox");
 			}
-			case PropType.LABABOX: // À­°Ô±¦Ïä
+			case PropType.LABABOX: // æ‹‰éœ¸å®ç®±
 			{
 				HttpSession propSession = request.getSession();
-				propSession.setAttribute("prop_id", prop_id);// ±¦ÏäID
+				propSession.setAttribute("prop_id", prop_id);// å®ç®±ID
 				return mapping.findForward("toLabaBox");
 			}
-				// case PropType.PROPOFLABABOX: // À­°Ô±¦ÏäË¢ĞÂµÀ¾ß
+				// case PropType.PROPOFLABABOX: // æ‹‰éœ¸å®ç®±åˆ·æ–°é“å…·
 				// {
 				// request.setAttribute("prop_id", prop_id);
 				// return mapping.findForward("toLabaBox");
 				// }
-			case PropType.EQUIP_UPGRADE_QUALITY: // Éı¼¶×°±¸Æ·ÖÊ
+			case PropType.EQUIP_UPGRADE_QUALITY: // å‡çº§è£…å¤‡å“è´¨
 			{
 				return mapping.findForward("equip_upgrade_quality");
 			}
@@ -390,11 +390,11 @@ public class WrapAction extends ActionBase
 		PropUseEffect propUseEffect = propUseService.usePropByPropGroupID(
 				roleInfo, Integer.parseInt(pg_pk), 1);
 
-		// Ê¹ÓÃºóĞèÒªÌø×ªÒ³Ãæ
-		// ÌØÊâµÀ¾ß´¦Àí£¬Èç:»Ø³Ç¾íÖ±½Ó´«ËÍµ½³ÇÊĞÖĞĞÄÓÎÏ·³¡¾°
+		// ä½¿ç”¨åéœ€è¦è·³è½¬é¡µé¢
+		// ç‰¹æ®Šé“å…·å¤„ç†ï¼Œå¦‚:å›åŸå·ç›´æ¥ä¼ é€åˆ°åŸå¸‚ä¸­å¿ƒæ¸¸æˆåœºæ™¯
 		switch (propUseEffect.getPropType())
 		{
-			case PropType.GOBACKCITY:// »Ø³Ç¾í
+			case PropType.GOBACKCITY:// å›åŸå·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -402,7 +402,7 @@ public class WrapAction extends ActionBase
 				}
 				break;
 			}
-			case PropType.Carry:// ´«ËÍ·û
+			case PropType.Carry:// ä¼ é€ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -410,7 +410,7 @@ public class WrapAction extends ActionBase
 				}
 				break;
 			}
-			case PropType.XINYINDU:// ĞÄÓ¡·û
+			case PropType.XINYINDU:// å¿ƒå°ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -424,7 +424,7 @@ public class WrapAction extends ActionBase
 				}
 				break;
 			}
-			case PropType.BROTHERFU:// ĞÖµÜÇéÉî·û
+			case PropType.BROTHERFU:// å…„å¼Ÿæƒ…æ·±ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -436,7 +436,7 @@ public class WrapAction extends ActionBase
 				}
 				break;
 			}
-			case PropType.MERRYFU: // ·òÆŞÇéÉî·û
+			case PropType.MERRYFU: // å¤«å¦»æƒ…æ·±ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -447,7 +447,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("merry");
 				}
 			}
-			case PropType.ADD_LOVE_DEAR: // Ôö¼Ó·òÆŞÌğÃÛÖµµÀ¾ß
+			case PropType.ADD_LOVE_DEAR: // å¢åŠ å¤«å¦»ç”œèœœå€¼é“å…·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -458,7 +458,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("addlovedear");
 				}
 			}
-			case PropType.ADD_DEAR:// Ôö¼ÓÇ×ÃÜ¶ÈµÀ¾ß
+			case PropType.ADD_DEAR:// å¢åŠ äº²å¯†åº¦é“å…·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -469,7 +469,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("adddear");
 				}
 			}
-			case PropType.YINSHEN:// Ê¹ÓÃÒşÉí·û
+			case PropType.YINSHEN:// ä½¿ç”¨éšèº«ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -478,7 +478,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("langjun");
 				}
 			}
-			case PropType.FAN_YINSHEN:// Ê¹ÓÃ·´ÒşÉí·û
+			case PropType.FAN_YINSHEN:// ä½¿ç”¨åéšèº«ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -487,7 +487,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("langjun");
 				}
 			}
-			case PropType.QIANLIYAN:// Ê¹ÓÃÇ§ÀïÑÛ·û
+			case PropType.QIANLIYAN:// ä½¿ç”¨åƒé‡Œçœ¼ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -496,7 +496,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("langjun");
 				}
 			}
-			case PropType.XIANHAI:// Ïİº¦·û
+			case PropType.XIANHAI:// é™·å®³ç¬¦
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -504,7 +504,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("xianhai");
 				}
 			}
-			case PropType.COMPASS:// Ö¸ÄÏÕë
+			case PropType.COMPASS:// æŒ‡å—é’ˆ
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -513,7 +513,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("message");
 				}
 			}
-			case PropType.MIJING_MAP:// ÃØ¾³µØÍ¼
+			case PropType.MIJING_MAP:// ç§˜å¢ƒåœ°å›¾
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -522,7 +522,7 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("refurbish_scene");
 				}
 			}
-			case PropType.TIAOZHAN:// ÌôÕ½
+			case PropType.TIAOZHAN:// æŒ‘æˆ˜
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -530,20 +530,20 @@ public class WrapAction extends ActionBase
 					return mapping.findForward("tiaozhan");
 				}
 			}
-			case PropType.QUIZ:// ´ğÌâµÀ¾ß
+			case PropType.QUIZ:// ç­”é¢˜é“å…·
 			{
 				request.setAttribute("propUseEffect", propUseEffect);
 				return mapping.findForward("quiz_content");
 			}
-			case PropType.CONJURE:// ÕÙ»½µÀ¾ß
+			case PropType.CONJURE:// å¬å”¤é“å…·
 			{
 				return mapping.findForward("walk");
 			}
-			case PropType.ZHUANZHI:// ×ªÖ°µÀ¾ß
+			case PropType.ZHUANZHI:// è½¬èŒé“å…·
 			{
 				break;
 			}
-			case PropType.PET_EGG:// ³èÎïµ°µÀ¾ß
+			case PropType.PET_EGG:// å® ç‰©è›‹é“å…·
 			{
 				/*
 				 * if( propUseEffect.isEffected() ) {
@@ -553,7 +553,7 @@ public class WrapAction extends ActionBase
 				 */
 				break;
 			}
-			case PropType.INIT_PET:// Ï´³èÎïµÀ¾ß
+			case PropType.INIT_PET:// æ´—å® ç‰©é“å…·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -562,7 +562,7 @@ public class WrapAction extends ActionBase
 				}
 				break;
 			}
-			case PropType.RARE_BOX:// ±¦ÏäµÀ¾ß
+			case PropType.RARE_BOX:// å®ç®±é“å…·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -570,7 +570,7 @@ public class WrapAction extends ActionBase
 				}
 				break;
 			}
-			case PropType.GEI_RARE_BOX:// ·¢½±±¦ÏäµÀ¾ß
+			case PropType.GEI_RARE_BOX:// å‘å¥–å®ç®±é“å…·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -584,7 +584,7 @@ public class WrapAction extends ActionBase
 				break;
 			}
 
-			case PropType.ARMBOX:// ·¢½±±¦ÏäµÀ¾ß
+			case PropType.ARMBOX:// å‘å¥–å®ç®±é“å…·
 			{
 				if (propUseEffect.getIsEffected())
 				{
@@ -598,13 +598,13 @@ public class WrapAction extends ActionBase
 				break;
 			}
 
-			case PropType.SKILLBOOK:// ¼¼ÄÜÑ§Ï°µÀ¾ß
+			case PropType.SKILLBOOK:// æŠ€èƒ½å­¦ä¹ é“å…·
 			{
-				logger.info("ÊÇ·ñ½øÈë¼¼ÄÜÑ§Ï°µÀ¾ß£¬propUseEffect.isEffected()="
+				logger.info("æ˜¯å¦è¿›å…¥æŠ€èƒ½å­¦ä¹ é“å…·ï¼ŒpropUseEffect.isEffected()="
 						+ propUseEffect.getIsEffected());
 				if (propUseEffect.getIsEffected())
 				{
-					logger.info("ÊÇ·ñ½øÈë¼¼ÄÜÑ§Ï°µÀ¾ß");
+					logger.info("æ˜¯å¦è¿›å…¥æŠ€èƒ½å­¦ä¹ é“å…·");
 					request.setAttribute("pPk", p_pk + "");
 					request.setAttribute("propUseEffect", propUseEffect);
 					request.setAttribute("pg_pk", pg_pk);
@@ -615,12 +615,12 @@ public class WrapAction extends ActionBase
 				break;
 			}
 
-			case PropType.EQUIPPROP:// Ê¹ÓÃ×°±¸ÀàµÀ¾ß
+			case PropType.EQUIPPROP:// ä½¿ç”¨è£…å¤‡ç±»é“å…·
 			{
 				request.setAttribute("pg_pk", pg_pk);
 				return mapping.findForward("equip_prop_submit");
 			}
-			case PropType.VIP:// »áÔ±¿¨µÀ¾ß
+			case PropType.VIP:// ä¼šå‘˜å¡é“å…·
 			{
 				if (propUseEffect.getIsEffected() == false)
 				{
@@ -639,7 +639,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´°ü¹üÀïµÄ×°±¸µÄ×°±¸ÏêÏ¸ĞÅÏ¢
+	 * æŸ¥çœ‹åŒ…è£¹é‡Œçš„è£…å¤‡çš„è£…å¤‡è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -667,7 +667,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«´©×°±¸
+	 * è§’è‰²ç©¿è£…å¤‡
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -697,7 +697,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¶ªÆú°ü¹ü×°±¸
+	 * è§’è‰²ä¸¢å¼ƒåŒ…è£¹è£…å¤‡
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -709,12 +709,12 @@ public class WrapAction extends ActionBase
 		PlayerEquipVO equip = goodsService.getEquipByID(Integer.parseInt(pwPk));
 		if(equip.getGameEquip().getIsBind()!=0)
 		{
-			request.setAttribute("resultWml", equip.getFullName()+"²»¿É¶ªÆú");
+			request.setAttribute("resultWml", equip.getFullName()+"ä¸å¯ä¸¢å¼ƒ");
 			return mapping.findForward("delete_goods_page_ok");
 		}
 		if( equip.isReconfirm()==false)
 		{
-			//²»ĞèÒª¶ş´ÎÈ·ÈÏ
+			//ä¸éœ€è¦äºŒæ¬¡ç¡®è®¤
 			return n13(mapping, form, request, response);
 		}
 		request.setAttribute("wName", equip.getFullName());
@@ -723,7 +723,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¶ªÆú°ü¹üÎïÆ·
+	 * è§’è‰²ä¸¢å¼ƒåŒ…è£¹ç‰©å“
 	 */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -737,15 +737,15 @@ public class WrapAction extends ActionBase
 		
 		PlayerPropGroupVO prop = goodsService.getPropByPgPk(Integer.parseInt(pg_pk));;
 		
-		//ÅĞ¶Ï¸ÃµÀ¾ßÊÇ·ñ¿É¶ªÆú
+		//åˆ¤æ–­è¯¥é“å…·æ˜¯å¦å¯ä¸¢å¼ƒ
 		if (prop.isThrowed()==false)
 		{
-			request.setAttribute("resultWml", prop.getPropName()+"²»¿É¶ªÆú");
+			request.setAttribute("resultWml", prop.getPropName()+"ä¸å¯ä¸¢å¼ƒ");
 			return mapping.findForward("delete_goods_page_ok");
 		}
 		if( prop.getPropNum()==1 )
 		{
-			//Èç¹ûÖ»ÓĞÒ»¸öÖ±½Ó¶ªÆú
+			//å¦‚æœåªæœ‰ä¸€ä¸ªç›´æ¥ä¸¢å¼ƒ
 			request.setAttribute("goodsNumber", "1");
 			return this.n8(mapping, form, request, response);
 		}
@@ -758,7 +758,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¶ªÆú°ü¹üÎïÆ·
+	 * è§’è‰²ä¸¢å¼ƒåŒ…è£¹ç‰©å“
 	 */
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -828,7 +828,7 @@ public class WrapAction extends ActionBase
 			if (goodsService.getPropNum(p_pk, Integer.parseInt(goods_id)) < Integer
 					.parseInt(goodsNumber))
 			{
-				hint = "ÄúÃ»ÓĞÕâÃ´¶àµÄ"
+				hint = "æ‚¨æ²¡æœ‰è¿™ä¹ˆå¤šçš„"
 						+ goodsService.getGoodsName(Integer.parseInt(goods_id),
 								4) + "";
 			}
@@ -838,7 +838,7 @@ public class WrapAction extends ActionBase
 				{
 					goodsService.removeSpecialProp(p_pk, Integer
 							.parseInt(pg_pk), Integer.parseInt(goods_id));
-					hint = "Äú¶ªÆúÁË1¸ö"
+					hint = "æ‚¨ä¸¢å¼ƒäº†1ä¸ª"
 							+ goodsService.getGoodsName(Integer
 									.parseInt(goods_id), 4) + "";
 				}
@@ -846,9 +846,9 @@ public class WrapAction extends ActionBase
 				{
 
 					goodsService.removeProps(p_pk, Integer.parseInt(goods_id),Integer.parseInt(goodsNumber),GameLogManager.R_DROP);
-					hint = "Äú¶ªÆúÁË"
+					hint = "æ‚¨ä¸¢å¼ƒäº†"
 							+ goodsNumber
-							+ "¸ö"
+							+ "ä¸ª"
 							+ goodsService.getGoodsName(Integer
 									.parseInt(goods_id), 4) + "";
 				}
@@ -862,7 +862,7 @@ public class WrapAction extends ActionBase
 		return mapping.findForward("delete_goods_page_ok");
 	}
 
-	// Ê¹ÓÃÎïÆ·
+	// ä½¿ç”¨ç‰©å“
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -879,7 +879,7 @@ public class WrapAction extends ActionBase
 		}
 		if (pg_pk == null || prop_id == null || w_type == null)
 		{
-			logger.info("pg_pk»ògoods_id»òw_typeÎª¿Õ");
+			logger.info("pg_pkæˆ–goods_idæˆ–w_typeä¸ºç©º");
 		}
 
 		RoleService roleService = new RoleService();
@@ -901,7 +901,7 @@ public class WrapAction extends ActionBase
 		return mapping.findForward("use_hint");
 	}
 
-	// ÎïÆ·ÁĞ±í
+	// ç‰©å“åˆ—è¡¨
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -959,7 +959,7 @@ public class WrapAction extends ActionBase
 		return mapping.findForward("wrap_list_pet");
 	}
 
-	// Ê¹ÓÃÎïÆ·
+	// ä½¿ç”¨ç‰©å“
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -976,7 +976,7 @@ public class WrapAction extends ActionBase
 		}
 		if (pg_pk == null || prop_id == null || w_type == null)
 		{
-			logger.info("pg_pk»ògoods_id»òw_typeÎª¿Õ");
+			logger.info("pg_pkæˆ–goods_idæˆ–w_typeä¸ºç©º");
 		}
 
 		RoleService roleService = new RoleService();
@@ -999,7 +999,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¶ªÆú°ü¹üÎïÆ·
+	 * è§’è‰²ä¸¢å¼ƒåŒ…è£¹ç‰©å“
 	 */
 	public ActionForward n12(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1031,7 +1031,7 @@ public class WrapAction extends ActionBase
 
 		String hint = ValidateService
 				.validateNonZeroNegativeIntegers(goodsNumber);
-		// ÑéÖ¤ÊäÈëµÄÊıÁ¿ÊÇ·ñºÏ·¨
+		// éªŒè¯è¾“å…¥çš„æ•°é‡æ˜¯å¦åˆæ³•
 		if (hint != null)
 		{
 			request.setAttribute("hint", hint);
@@ -1048,7 +1048,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«¶ªÆú°ü¹ü×°±¸
+	 * è§’è‰²ä¸¢å¼ƒåŒ…è£¹è£…å¤‡
 	 */
 	public ActionForward n13(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1063,7 +1063,7 @@ public class WrapAction extends ActionBase
 	}
 
 	/**
-	 * ½ÇÉ«´©×°±¸
+	 * è§’è‰²ç©¿è£…å¤‡
 	 */
 	public ActionForward n14(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1088,7 +1088,7 @@ public class WrapAction extends ActionBase
 		return n1(mapping, form, request, response);
 	}
 
-	/** ³èÎï¼¼ÄÜÊéµÄÊ¹ÓÃ½á¹û */
+	/** å® ç‰©æŠ€èƒ½ä¹¦çš„ä½¿ç”¨ç»“æœ */
 	public ActionForward n15(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -1098,7 +1098,7 @@ public class WrapAction extends ActionBase
 		String pet_pk = request.getParameter("pet_pk");
 		if (pg_pk == null || prop_id == null)
 		{
-			logger.info("pg_pk»ògoods_id»òw_typeÎª¿Õ");
+			logger.info("pg_pkæˆ–goods_idæˆ–w_typeä¸ºç©º");
 		}
 
 		RoleService roleService = new RoleService();
@@ -1118,7 +1118,7 @@ public class WrapAction extends ActionBase
 		return mapping.findForward("pet_skillbook_use_result");
 	}
 
-	/** Íæ¼ÒÔª±¦Âò°ü¹ü¸ñÊı */
+	/** ç©å®¶å…ƒå®ä¹°åŒ…è£¹æ ¼æ•° */
 	public ActionForward n19(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -1130,7 +1130,7 @@ public class WrapAction extends ActionBase
 				.getPlayerPropGroupInfo(roleInfo);
 		if (display == null)
 		{
-			request.setAttribute("display", "ÄúµÄÎïÆ·À¸Î»ÒÑ¾­Îª×î´óÁË!<br/>");
+			request.setAttribute("display", "æ‚¨çš„ç‰©å“æ ä½å·²ç»ä¸ºæœ€å¤§äº†!<br/>");
 			return mapping.findForward("display");
 		}
 		else
@@ -1140,7 +1140,7 @@ public class WrapAction extends ActionBase
 		}
 	}
 
-	/** Íæ¼ÒÔª±¦Âò°ü¹ü¸ñÊı */
+	/** ç©å®¶å…ƒå®ä¹°åŒ…è£¹æ ¼æ•° */
 	public ActionForward n20(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -1159,15 +1159,15 @@ public class WrapAction extends ActionBase
 		}
 		if (display == null)
 		{
-			request.setAttribute("display", "ÄúµÄ" + GameConfig.getYuanbaoName()
-					+ "ÊıÁ¿²»¹»!<br/>");
+			request.setAttribute("display", "æ‚¨çš„" + GameConfig.getYuanbaoName()
+					+ "æ•°é‡ä¸å¤Ÿ!<br/>");
 			return mapping.findForward("display");
 		}
 		request.setAttribute("display", display);
 		return mapping.findForward("display");
 	}
 
-	/** ³èÎïÊ¹ÓÃ¾­ÑéµÀ¾ßµÄÌø×ª */
+	/** å® ç‰©ä½¿ç”¨ç»éªŒé“å…·çš„è·³è½¬ */
 	public ActionForward n23(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

@@ -2,7 +2,7 @@ package com.ls.model.organize.faction;
 
 /**
  * @author ls
- * °ïÅÉÐ§¹û
+ * å¸®æ´¾æ•ˆæžœ
  */
 public class FEffect
 {

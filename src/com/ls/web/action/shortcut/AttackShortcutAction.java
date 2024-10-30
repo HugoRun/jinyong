@@ -41,7 +41,7 @@ public class AttackShortcutAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.action");
 
 	/**
-	 * ¿ì½İ¼üÁĞ±í
+	 * å¿«æ·é”®åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -63,7 +63,7 @@ public class AttackShortcutAction extends DispatchAction
 	}
 
 	/**
-	 * ¸ü¸Ä¿ì½İ¼ü
+	 * æ›´æ”¹å¿«æ·é”®
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -120,13 +120,13 @@ public class AttackShortcutAction extends DispatchAction
 	}
 
 	/**
-	 * ÏÔÊ¾¿ì½İ¼üÖÖÀà
+	 * æ˜¾ç¤ºå¿«æ·é”®ç§ç±»
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String p_pk = (String) request.getSession().getAttribute("pPk");
-		String sc_pk = request.getParameter("sc_pk");// ¿ì½İ¼üpk
+		String sc_pk = request.getParameter("sc_pk");// å¿«æ·é”®pk
 		String pk = (String) request.getAttribute("pk");
 		if (pk == null)
 		{
@@ -149,7 +149,7 @@ public class AttackShortcutAction extends DispatchAction
 	}
 
 	/**
-	 * Çå¿Õ¿ì½İ¼ü
+	 * æ¸…ç©ºå¿«æ·é”®
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -178,7 +178,7 @@ public class AttackShortcutAction extends DispatchAction
 	}
 
 	/**
-	 * ¼¼ÄÜÁĞ±í
+	 * æŠ€èƒ½åˆ—è¡¨
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -224,7 +224,7 @@ public class AttackShortcutAction extends DispatchAction
 		String isCatchPet = null;
 		if (flag)
 		{
-			isCatchPet = "ÓĞ²¶×½³èÎï¼¼ÄÜ";
+			isCatchPet = "æœ‰æ•æ‰å® ç‰©æŠ€èƒ½";
 		}
 		request.setAttribute("isCatchPet", isCatchPet);
 
@@ -235,7 +235,7 @@ public class AttackShortcutAction extends DispatchAction
 	}
 
 	/**
-	 * Ò©Æ·ÁĞ±í
+	 * è¯å“åˆ—è¡¨
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

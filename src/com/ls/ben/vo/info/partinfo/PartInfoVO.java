@@ -11,152 +11,152 @@ import com.ls.pub.util.MathUtil;
 
 public class PartInfoVO
 {
-	public static final int P_GRADE = 1;// µÈ¼¶
-	public static final int P_HP = 230;// ÉúÃüÖµ
-	public static final int P_MP = 70;// ·¨Á¦Öµ
-	public static final int P_FORCE = 12;// Á¦
-	public static final int P_AGILE = 10;// Ãô
-	public static final int P_PHYSIQUE = 15;// ÌåÆÇ
-	public static final int P_SAVVY = 10;// ÎòĞÔ
-	public static final int P_GJ = 37;// ¹¥»÷
-	public static final int P_FY = 28;// ·ÀÓù
+	public static final int P_GRADE = 1;// ç­‰çº§
+	public static final int P_HP = 230;// ç”Ÿå‘½å€¼
+	public static final int P_MP = 70;// æ³•åŠ›å€¼
+	public static final int P_FORCE = 12;// åŠ›
+	public static final int P_AGILE = 10;// æ•
+	public static final int P_PHYSIQUE = 15;// ä½“é­„
+	public static final int P_SAVVY = 10;// æ‚Ÿæ€§
+	public static final int P_GJ = 37;// æ”»å‡»
+	public static final int P_FY = 28;// é˜²å¾¡
 
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ´´½¨ÈËÔ±ĞÅÏ¢id */
+	/** åˆ›å»ºäººå‘˜ä¿¡æ¯id */
 	private int uPk;
-	/** ½ÇÉ«Ãû */
+	/** è§’è‰²å */
 	private String pName;
-	/** ĞÔ±ğ */
+	/** æ€§åˆ« */
 	private int pSex;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int pGrade;
-	/** ÉúÃüÖµ */
+	/** ç”Ÿå‘½å€¼ */
 	private int pHp;
-	/** ·¨Á¦Öµ */
+	/** æ³•åŠ›å€¼ */
 	private int pMp;
 
-	/** ******************¹¥»÷¸½¼ÓÖµ*********************** */
+	/** ******************æ”»å‡»é™„åŠ å€¼*********************** */
 	private int gjSubjoin = 0;
-	/** ******************·ÀÓù¸½¼ÓÖµ*********************** */
+	/** ******************é˜²å¾¡é™„åŠ å€¼*********************** */
 	private int fySubjoin = 0;
 
-	/** ½ÇÉ«±¾Éí¹¥»÷ */
+	/** è§’è‰²æœ¬èº«æ”»å‡» */
 	private int pGj;
-	/** ½ÇÉ«±¾Éí·ÀÓù */
+	/** è§’è‰²æœ¬èº«é˜²å¾¡ */
 	private int pFy;
 
-	/** ×°±¸×î´ó¹¥»÷ */
+	/** è£…å¤‡æœ€å¤§æ”»å‡» */
 	private int pZbgjDa = 0;
-	/** ×°±¸×î´ó·ÀÓù */
+	/** è£…å¤‡æœ€å¤§é˜²å¾¡ */
 	private int pZbfyDa = 0;
-	/** ×°±¸×îĞ¡¹¥»÷ */
+	/** è£…å¤‡æœ€å°æ”»å‡» */
 	private int pZbgjXiao = 0;
-	/** ×°±¸×îĞ¡·ÀÓù */
+	/** è£…å¤‡æœ€å°é˜²å¾¡ */
 	private int pZbfyXiao = 0;
 
-	/** Ê¦Í½1Ê¦¸µ2Í½µÜ */
+	/** å¸ˆå¾’1å¸ˆå‚…2å¾’å¼Ÿ */
 	private int pTeacherType;
-	/** Ê¦¸µµÄÃû³Æid */
+	/** å¸ˆå‚…çš„åç§°id */
 	private int pTeacher;
-	/** ÊÇ·ñÒÑ»é 1Ã»½á»é 2 ½á»é */
+	/** æ˜¯å¦å·²å©š 1æ²¡ç»“å©š 2 ç»“å©š */
 	private int pHarness;
-	/** °éÂÂID */
+	/** ä¼´ä¾£ID */
 	private int pFere;
 
-	/**ÖÖ×å1Ñı2Î×**/
+	/**ç§æ—1å¦–2å·«**/
 	private int pRace;
 
-	/** ¾­Ñé */
+	/** ç»éªŒ */
 	private String pExperience;
-	/** ±¾¼¶¾­Ñé */
+	/** æœ¬çº§ç»éªŒ */
 	private String pBjExperience;
-	/** ÏÂ¾­Ñé */
+	/** ä¸‹ç»éªŒ */
 	private String pXiaExperience;
-	/** Í­Ç® */
+	/** é“œé’± */
 	private String pCopper;
-	/** pkÖµ */
+	/** pkå€¼ */
 	private int pPkValue;
-	/** ¿ª¹Ø1¹Ø2¿ª */
+	/** å¼€å…³1å…³2å¼€ */
 	private int pPks;
 	/**
-	 * pk¸ü¸ÄÊ±¼ä
+	 * pkæ›´æ”¹æ—¶é—´
 	 */
 	private Date pkChangeTime;
 
-	/** ±êÊ¶ÊÇ·ñ´¦ÔÚÖ÷¶¯¹¥»÷×´Ì¬£¬0·ñ£»1ÊÇ */
+	/** æ ‡è¯†æ˜¯å¦å¤„åœ¨ä¸»åŠ¨æ”»å‡»çŠ¶æ€ï¼Œ0å¦ï¼›1æ˜¯ */
 	private int pIsInitiative;
-	/** ±êÊ¶ÊÇ·ñ´¦ÔÚ±»¶¯¹¥»÷×´Ì¬£¬0·ñ£»1ÊÇ */
+	/** æ ‡è¯†æ˜¯å¦å¤„åœ¨è¢«åŠ¨æ”»å‡»çŠ¶æ€ï¼Œ0å¦ï¼›1æ˜¯ */
 	private int pIsPassivity;
 
-	/** ËùÔÚµØÍ¼×ø±ê */
+	/** æ‰€åœ¨åœ°å›¾åæ ‡ */
 	private String pMap;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
-	/** ÑªÁ¿±¾¼¶ÉÏÏŞ */
+	/** è¡€é‡æœ¬çº§ä¸Šé™ */
 	private int pUpHp;
-	/** mp±¾¼¶ÉÏÏŞ */
+	/** mpæœ¬çº§ä¸Šé™ */
 	private int pUpMp;
 
-	/** °ü¹üÈİÁ¿ */
+	/** åŒ…è£¹å®¹é‡ */
 	private int pWrapContent;
 
-	/** Íæ¼ÒÎåĞĞ */
+	/** ç©å®¶äº”è¡Œ */
 	private PlayerWXVO wx = null;
 	
-	/** °ï»á */
-	private int fId;//°ïÅÉid
-	private int fJob;//°ïÅÉÖ°Î»
-	private int fContribute;//°ïÅÉ¹±Ï×
-	private Date fJoinTime;//¼ÓÈë°ïÅÉµÄÊ±¼ä
-	private String fTitle;//°ïÅÉ³ÆºÅ
+	/** å¸®ä¼š */
+	private int fId;//å¸®æ´¾id
+	private int fJob;//å¸®æ´¾èŒä½
+	private int fContribute;//å¸®æ´¾è´¡çŒ®
+	private Date fJoinTime;//åŠ å…¥å¸®æ´¾çš„æ—¶é—´
+	private String fTitle;//å¸®æ´¾ç§°å·
 	
-	/** ¸½¼ÓµôÂä¸ÅÂÊ */
+	/** é™„åŠ æ‰è½æ¦‚ç‡ */
 	private int appendDropProbability = 0;
-	/** ¸½¼Ó²¶»ñ¸ÅÂÊ */
+	/** é™„åŠ æ•è·æ¦‚ç‡ */
 	private int appendCatchProbability = 0;
-	/** ¾­Ñé¼Ó³É */
+	/** ç»éªŒåŠ æˆ */
 	private int appendExp = 0;
-	/** ¼«Æ·×°±¸µôÂäÂÊ */
+	/** æå“è£…å¤‡æ‰è½ç‡ */
 	private int appendNonsuchProbability = 0;
 
-	/** ÊÇ·ñÃâÒßÖĞ¶¾ */
+	/** æ˜¯å¦å…ç–«ä¸­æ¯’ */
 	private boolean isImmunityPoison;
-	/** ÊÇ·ñÃâÒß»÷ÔÎ */
+	/** æ˜¯å¦å…ç–«å‡»æ™• */
 	private boolean isImmunityDizzy;
 
-	/** ¸½¼Ó³èÎï¾­Ñé¼Ó³É */
+	/** é™„åŠ å® ç‰©ç»éªŒåŠ æˆ */
 	private int appendPetExp;
-	/** *****ÈËÎï±©»÷ÂÊ********** */
+	/** *****äººç‰©æš´å‡»ç‡********** */
 	private double dropMultiple;
 
-	/** ÎªsceneId£¬ÊÇÈËÎïËÀÁË£¬¶øÉíÉÏÓĞÃâËÀµÀ¾ß,ÆäÈç¹ûÊ¹ÓÃÁËÃâËÀµÀ¾ßºóËùÓ¦¸Ã»Øµ½µÄµØµã */
+	/** ä¸ºsceneIdï¼Œæ˜¯äººç‰©æ­»äº†ï¼Œè€Œèº«ä¸Šæœ‰å…æ­»é“å…·,å…¶å¦‚æœä½¿ç”¨äº†å…æ­»é“å…·åæ‰€åº”è¯¥å›åˆ°çš„åœ°ç‚¹ */
 	// private int shouldScene;
-	/** É¾³ı±êÖ¾ */
+	/** åˆ é™¤æ ‡å¿— */
 	private int deleteFlag;
-	/** É¾³ıÊ±¼ä */
+	/** åˆ é™¤æ—¶é—´ */
 	private Date deleteTime;
 
-	/** ×÷ÎªÊ¦¸¸µÄµÈ¼¶ */
+	/** ä½œä¸ºå¸ˆçˆ¶çš„ç­‰çº§ */
 	private int te_level;
 
-	/** ×îºóÒ»´Î´«¹¦Ê±¼ä */
+	/** æœ€åä¸€æ¬¡ä¼ åŠŸæ—¶é—´ */
 	private String chuangong;
 
-	// ×îºóÒ»´ÎÕĞÍ½»òÕß°İÊ¦µÄÊ±¼ä
+	// æœ€åä¸€æ¬¡æ‹›å¾’æˆ–è€…æ‹œå¸ˆçš„æ—¶é—´
 	private Date last_shoutu_time;
 
-	// Íæ¼ÒÊÇ·ñÎªĞÂÊÖ
+	// ç©å®¶æ˜¯å¦ä¸ºæ–°æ‰‹
 	private int player_state_by_new;
 
-	/***×´Ì¬ÃèÊö**/
+	/***çŠ¶æ€æè¿°**/
 	private String contentdisplay ="";
 	
-	private int loginState;//µÇÂ½×´Ì¬£º0²»ÔÚÏß£¬1ÔÚÏß
+	private int loginState;//ç™»é™†çŠ¶æ€ï¼š0ä¸åœ¨çº¿ï¼Œ1åœ¨çº¿
 	
 	/**
-	 * µÃµ½ĞÔ±ğÃû
+	 * å¾—åˆ°æ€§åˆ«å
 	 */
 	public String getSexName()
 	{
@@ -164,7 +164,7 @@ public class PartInfoVO
 	}
 	
 	/**
-	 * °ïÅÉÏà¹ØµÄ¼òµ¥ÃèÊö:(³¤ÀÏ,80¼¶, 100ÈÙÓş,Î×³Ç) 
+	 * å¸®æ´¾ç›¸å…³çš„ç®€å•æè¿°:(é•¿è€,80çº§, 100è£èª‰,å·«åŸ) 
 	 * @return
 	 */
 	public String getFDes()
@@ -178,21 +178,21 @@ public class PartInfoVO
 		{
 			sb.append(this.fTitle).append(",");
 		}
-		sb.append(this.pGrade).append("¼¶").append(",");
-		sb.append(this.fContribute).append("ÈÙÓş").append(",");
-		if( this.loginState==1 )//ÔÚÏß
+		sb.append(this.pGrade).append("çº§").append(",");
+		sb.append(this.fContribute).append("è£èª‰").append(",");
+		if( this.loginState==1 )//åœ¨çº¿
 		{
 			sb.append(SceneCache.getById(this.pMap).getSceneName());
 		}
 		else
 		{
-			sb.append("²»ÔÚÏß");
+			sb.append("ä¸åœ¨çº¿");
 		}
 		sb.append(")");
 		return sb.toString();
 	}
 	/**
-	 * ÊÏ×å³ÉÔ±µÄÃèÊö£¬ÔÚ×øÆï´«ËÍµÄÊ±ºòÓÃµ½
+	 * æ°æ—æˆå‘˜çš„æè¿°ï¼Œåœ¨åéª‘ä¼ é€çš„æ—¶å€™ç”¨åˆ°
 	 * @return String
 	 */
 	public String getDisplay()
@@ -200,8 +200,8 @@ public class PartInfoVO
 		if( fId<=0 )
 			return "";
 		StringBuffer sb = new StringBuffer();
-		sb.append("¡¾");
-		sb.append(ExchangeUtil.getFJobName(this.fJob)).append("¡¿");
+		sb.append("ã€");
+		sb.append(ExchangeUtil.getFJobName(this.fJob)).append("ã€‘");
 		sb.append(this.getPName());
 		sb.append("(");
 		SceneVO sv= SceneCache.getById(this.getPMap());
@@ -257,7 +257,7 @@ public class PartInfoVO
 
 
 	/**
-	 * ÔÚ×î´ó×îĞ¡¹¥»÷Ö®¼äËæ»ú²úÉú¹¥»÷Öµ°üÀ¨×°±¸¹¥»÷
+	 * åœ¨æœ€å¤§æœ€å°æ”»å‡»ä¹‹é—´éšæœºäº§ç”Ÿæ”»å‡»å€¼åŒ…æ‹¬è£…å¤‡æ”»å‡»
 	 * @return
 	 */
 	public int getGj()
@@ -271,7 +271,7 @@ public class PartInfoVO
 	}
 
 	/**
-	 * ÔÚ×î´ó·ÀÓù×îĞ¡·ÀÓùÖ®¼äËæ»ú²úÉú¹¥»÷Öµ,°üÀ¨×°±¸·ÀÓù
+	 * åœ¨æœ€å¤§é˜²å¾¡æœ€å°é˜²å¾¡ä¹‹é—´éšæœºäº§ç”Ÿæ”»å‡»å€¼,åŒ…æ‹¬è£…å¤‡é˜²å¾¡
 	 * @return
 	 */
 	public int getFy()
@@ -284,7 +284,7 @@ public class PartInfoVO
 
 	
 	/**
-	 * ×ÜµÄ»ù´¡·ÀÓù
+	 * æ€»çš„åŸºç¡€é˜²å¾¡
 	 * @return
 	 */
 	public int getBasicFy()
@@ -294,7 +294,7 @@ public class PartInfoVO
 	}
 	
 	/**
-	 * ÔÚ×î´ó×°±¸·ÀÓù×îĞ¡×°±¸·ÀÓùÖ®¼äËæ»ú²úÉú¹¥»÷Öµ(×ÜµÄ×°±¸·ÀÓù)
+	 * åœ¨æœ€å¤§è£…å¤‡é˜²å¾¡æœ€å°è£…å¤‡é˜²å¾¡ä¹‹é—´éšæœºäº§ç”Ÿæ”»å‡»å€¼(æ€»çš„è£…å¤‡é˜²å¾¡)
 	 * @return
 	 */
 	public int getZbFy()
@@ -303,7 +303,7 @@ public class PartInfoVO
 		return MathUtil.getIntegetValueByAddRate(zb_fy, fySubjoin);
 	}
 	/**
-	 * ÔÚ×î´ó×°±¸¹¥»÷×îĞ¡×°±¸¹¥»÷Ö®¼äËæ»ú²úÉú¹¥»÷Öµ(×ÜµÄ×°±¸¹¥»÷)
+	 * åœ¨æœ€å¤§è£…å¤‡æ”»å‡»æœ€å°è£…å¤‡æ”»å‡»ä¹‹é—´éšæœºäº§ç”Ÿæ”»å‡»å€¼(æ€»çš„è£…å¤‡æ”»å‡»)
 	 * @return
 	 */
 	public int getZbGj()
@@ -313,7 +313,7 @@ public class PartInfoVO
 	}
 
 	/**
-	 * ×ÜµÄ·ÀÓùĞ¡
+	 * æ€»çš„é˜²å¾¡å°
 	 * @return
 	 */
 	public int getFyXiao()
@@ -323,7 +323,7 @@ public class PartInfoVO
 	}
 	
 	/**
-	 * ×ÜµÄ·ÀÓù´ó
+	 * æ€»çš„é˜²å¾¡å¤§
 	 * @return
 	 */
 	public int getFyDa()
@@ -332,7 +332,7 @@ public class PartInfoVO
 		return MathUtil.getIntegetValueByAddRate(fy_xiao, fySubjoin);
 	}
 	/**
-	 * ×ÜµÄ·À¹¥»÷Ğ¡
+	 * æ€»çš„é˜²æ”»å‡»å°
 	 * @return
 	 */
 	public int getGjXiao()
@@ -342,7 +342,7 @@ public class PartInfoVO
 	}
 	
 	/**
-	 * ×ÜµÄ¹¥»÷´ó
+	 * æ€»çš„æ”»å‡»å¤§
 	 * @return
 	 */
 	public int getGjDa()
@@ -413,7 +413,7 @@ public class PartInfoVO
 	}
 
 	/**
-	 * µÃµ½Êı¾İ¿âÀïÈ¡µÄÕæÊµhp,³õÊ¼»¯basicInfoÓÃ
+	 * å¾—åˆ°æ•°æ®åº“é‡Œå–çš„çœŸå®hp,åˆå§‹åŒ–basicInfoç”¨
 	 * 
 	 * @return
 	 */
@@ -824,27 +824,27 @@ public class PartInfoVO
 	}
 
 	/***************************************************************************
-	 * **¹¥»÷Á¦¼Ó³É public int gjJoin() { Passskill sk = new Passskill();
+	 * **æ”»å‡»åŠ›åŠ æˆ public int gjJoin() { Passskill sk = new Passskill();
 	 * EquipService se = new EquipService(); int gjJoin = (int) (getPGj() *
 	 * sk.getGjMultiple(pPk) + sk.getGjAdd(pPk) + se
 	 * .getPlayerEquipAttributeGj(pPk)); return gjJoin; }
 	 * 
-	 * /** **·ÀÓùÁ¦¼Ó³É**** public int fyJoin() { Passskill sk = new Passskill();
+	 * /** **é˜²å¾¡åŠ›åŠ æˆ**** public int fyJoin() { Passskill sk = new Passskill();
 	 * EquipService se = new EquipService(); int fyJoin = (int) (getPFy() *
 	 * sk.getFyMultiple(pPk) + sk.getFyAdd(pPk) + se
 	 * .getPlayerEquipAttributeFy(pPk)); return fyJoin; }
 	 * 
-	 * /** **HP¼Ó³É**** public int hpJoin() { Passskill sk = new Passskill();
+	 * /** **HPåŠ æˆ**** public int hpJoin() { Passskill sk = new Passskill();
 	 * EquipService se = new EquipService(); int hpJoin = (int) (getPUpHp() *
 	 * sk.getHpMultiple(pPk) + sk.getHpAdd(pPk) +
 	 * se.getPlayerEquipAttributeHp(pPk)); return hpJoin; }
 	 * 
-	 * /** **MP¼Ó³É**** public int mpJoin() { Passskill sk = new Passskill();
+	 * /** **MPåŠ æˆ**** public int mpJoin() { Passskill sk = new Passskill();
 	 * EquipService se = new EquipService(); int mpJoin = (int) (getPUpMp() *
 	 * sk.getMpMultiple(pPk) + sk.getMpAdd(pPk) +
 	 * se.getPlayerEquipAttributeMp(pPk)); return mpJoin; }
 	 * 
-	 * /** **±©»÷ÂÊ¼Ó³É**** public double bjJoin() { Passskill sk = new Passskill();
+	 * /** **æš´å‡»ç‡åŠ æˆ**** public double bjJoin() { Passskill sk = new Passskill();
 	 * EquipService se = new EquipService(); double bjJoin =
 	 * sk.getBjMultiple(pPk) + se.getPlayerEquipAttributeBj(pPk); return bjJoin; }
 	 */

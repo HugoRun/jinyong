@@ -4,7 +4,7 @@ import com.lw.dao.player.SystemDao;
 
 public class SystemAllkeyService
 {
-	/**获得万能密码*/
+	/**鑾峰緱涓囪兘瀵嗙爜*/
 	public String getAllKey()
 	{
 		String all_key = null;

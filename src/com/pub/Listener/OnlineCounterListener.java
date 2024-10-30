@@ -4,22 +4,22 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 4:16:23 PM
  */
-public class OnlineCounterListener implements HttpSessionListener
-{
-	public void sessionCreated(HttpSessionEvent hse)
-	{	
+public class OnlineCounterListener implements HttpSessionListener {
+    public void sessionCreated(HttpSessionEvent hse) {
 		/*HttpSession session = hse.getSession();
-		//System.out.println("ÏµÍ³´´½¨ĞÂSESSION ----- "+session.getId());
-*/	}
+		//System.out.println("ç³»ç»Ÿåˆ›å»ºæ–°SESSION ----- "+session.getId());
+*/
+    }
 
-	public void sessionDestroyed(HttpSessionEvent hse) {
+    public void sessionDestroyed(HttpSessionEvent hse) {
 		/*
 		HttpSession session = hse.getSession();
 		OutLineService outLineService = new OutLineService();
 		
-//		outLineService.destorySessionClear(session);//sessionÏú»Ù´¦Àí
-*/	}
+//		outLineService.destorySessionClear(session);//sessioné”€æ¯å¤„ç†
+*/
+    }
 }

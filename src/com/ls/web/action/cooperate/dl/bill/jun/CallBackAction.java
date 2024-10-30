@@ -21,7 +21,7 @@ public class CallBackAction extends DispatchAction
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * ³äÖµÈ·ÈÏ
+	 * å……å€¼ç¡®è®¤
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -41,7 +41,7 @@ public class CallBackAction extends DispatchAction
 		String ext = request.getParameter("ext");
 		String hmac = request.getParameter("hmac");
 		
-		logger.info("########¿¥Íø»Øµ÷########");
+		logger.info("########éªç½‘å›è°ƒ########");
 		logger.info("cmd:"+cmd);
 		logger.info("pay_result:"+pay_result);
 		logger.info("pay_sq:"+pay_sq);
@@ -68,18 +68,18 @@ public class CallBackAction extends DispatchAction
 
 		if( account_record==null )
 		{
-			logger.info("#####ÎŞ³äIDÎª£º"+ext+"µÄÖµ¼ÇÂ¼#####");
+			logger.info("#####æ— å……IDä¸ºï¼š"+ext+"çš„å€¼è®°å½•#####");
 		}
 
 		PassportVO passport = passportService.getPassportInfoByUPk(account_record.getUPk());
 
-		// ÓÃ»§ÔÚµ±ÀÖ×¢²áµÄÓÃ»§Ãû
+		// ç”¨æˆ·åœ¨å½“ä¹æ³¨å†Œçš„ç”¨æˆ·å
 		String userName = "devil1";
-		// ÓÃ»§Ö§¸¶µÄÊµ¼Ê½ğ¶î£¬µ¥Î»ÎªÔª
+		// ç”¨æˆ·æ”¯ä»˜çš„å®é™…é‡‘é¢ï¼Œå•ä½ä¸ºå…ƒ
 		// String amount = amount;
-		// ÓÃ»§Ö§¸¶Ê¹ÓÃµÄÍ¨µÀID£¬Ö§¸¶Í¨µÀ¶ÔÕÕ±íÓÉµ±ÀÖÌá¹©¸øÉÌ»§,Ïê¼û:±í¸ñ 3 pc-id£¨¸¶¿îÇşµÀ£©¶ÔÕÕ±í
+		// ç”¨æˆ·æ”¯ä»˜ä½¿ç”¨çš„é€šé“IDï¼Œæ”¯ä»˜é€šé“å¯¹ç…§è¡¨ç”±å½“ä¹æä¾›ç»™å•†æˆ·,è¯¦è§:è¡¨æ ¼ 3 pc-idï¼ˆä»˜æ¬¾æ¸ é“ï¼‰å¯¹ç…§è¡¨
 		String pc_id = "6";
-		// Î¨Ò»±àºÅ,¶©µ¥ºÅ»òÏµÍ³Éú³ÉµÄÎ¨Ò»ĞòÁĞºÅ£¬ÓÉÓÎÏ·³§ÉÌÉú³É(·ÀÖ¹ÖØ¸´Ìá½»)ÏµÍ³ÖĞ»á¸ù¾İmerchant-idgame-idserver-idseq-strÎ¨Ò»Æ¥ÅäÊı¾İ
+		// å”¯ä¸€ç¼–å·,è®¢å•å·æˆ–ç³»ç»Ÿç”Ÿæˆçš„å”¯ä¸€åºåˆ—å·ï¼Œç”±æ¸¸æˆå‚å•†ç”Ÿæˆ(é˜²æ­¢é‡å¤æäº¤)ç³»ç»Ÿä¸­ä¼šæ ¹æ®merchant-idgame-idserver-idseq-strå”¯ä¸€åŒ¹é…æ•°æ®
 		String unique_str = order_id;
 
 		if (passport != null)
@@ -88,8 +88,8 @@ public class CallBackAction extends DispatchAction
 		}
 
 		if (!pay_result.equals("1"))
-		{// Ê§°Ü¶©µ¥
-			logger.info("¶©µ¥Ö§¸¶Ê§°Ü!¶©µ¥ºÅ:"+order_id+";½ğ¶î£º"+amount+";´íÎó´úÂë£º"+pay_result);
+		{// å¤±è´¥è®¢å•
+			logger.info("è®¢å•æ”¯ä»˜å¤±è´¥!è®¢å•å·:"+order_id+";é‡‘é¢ï¼š"+amount+";é”™è¯¯ä»£ç ï¼š"+pay_result);
 			billService.accountFailNotify(account_record, pay_result);
 		}
 		else
@@ -100,18 +100,18 @@ public class CallBackAction extends DispatchAction
 //			String newHmac = DigestUtil.getHmac(hmacArgs, merchant_key);
 //			logger.info("newHmac:"+newHmac);
 			/*if (!newHmac.equals(hmac))
-			{// hmacÑéÖ¤Ê§°Ü
-				resultWml = "hmacÑéÖ¤Ê§°Ü!";
-				logger.info("¿¥Íø»Øµ÷,³äÖµÊ§°Ü:"+resultWml+"£»¶©µ¥ºÅ£º"+order_id);
+			{// hmacéªŒè¯å¤±è´¥
+				resultWml = "hmacéªŒè¯å¤±è´¥!";
+				logger.info("éªç½‘å›è°ƒ,å……å€¼å¤±è´¥:"+resultWml+"ï¼›è®¢å•å·ï¼š"+order_id);
 			}
 			else*/
 			{
-				// ÉÌ»§ÏàÓ¦Âß¼­²Ù×÷
-				// ×¢Òâ:ĞèÒª¶Ô¸ù¾İ¶©µ¥ºÅÅÅÖØ£¬ÏàÍ¬¶©µ¥²»×ö´¦Àí
+				// å•†æˆ·ç›¸åº”é€»è¾‘æ“ä½œ
+				// æ³¨æ„:éœ€è¦å¯¹æ ¹æ®è®¢å•å·æ’é‡ï¼Œç›¸åŒè®¢å•ä¸åšå¤„ç†
 				if( billService.accountSuccessNotify(account_record) )
 				{
 					String plant_notify = SendPostXml.sendPostToDangle(userName, amount, pc_id,unique_str);
-					logger.info("¿¥Íø»Øµ÷,³äÖµ³É¹¦;Æ½Ì¨Í¨Öª·µ»ØÖµ£º"+plant_notify+"£»¶©µ¥ºÅ£º"+order_id);
+					logger.info("éªç½‘å›è°ƒ,å……å€¼æˆåŠŸ;å¹³å°é€šçŸ¥è¿”å›å€¼ï¼š"+plant_notify+"ï¼›è®¢å•å·ï¼š"+order_id);
 				}
 			}
 		}

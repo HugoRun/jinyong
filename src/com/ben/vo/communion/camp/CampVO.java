@@ -4,22 +4,22 @@
 package com.ben.vo.communion.camp;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 7:33:53 PM
  */
 public class CampVO {
-	/** ¹«¹²ÆµµÀid */
+	/** å…¬å…±é¢‘é“id */
 	private int cPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ½ÇÉ«Ãû³Æ */
+	/** è§’è‰²åç§° */
 	private String pNname;
-	/** ¹«¹²ÁÄÌìÀàÈİ */
+	/** å…¬å…±èŠå¤©ç±»å®¹ */
 	private String cTitle;
-	/** ËùÊôÕóÓª */
+	/** æ‰€å±é˜µè¥ */
 	private int cBelong;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getCPk() {

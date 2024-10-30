@@ -26,7 +26,7 @@ import com.ls.web.service.storage.StorageService;
 public class GetStorageAction extends ActionBase{
 	Logger logger =  Logger.getLogger("log.action");
 	
-	// ²Ö¿âÎïÆ·ÁĞ±í
+	// ä»“åº“ç‰©å“åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -51,7 +51,7 @@ public class GetStorageAction extends ActionBase{
 		int p_pk = roleInfo.getBasicInfo().getPPk();
 		
 
-		/** ²éÑ¯Êı¾İ¿âÖĞ¸Ã½ÇÉ«ÓĞÃ»ÓĞ¸ÃÀàĞÍ²Ö¿â */
+		/** æŸ¥è¯¢æ•°æ®åº“ä¸­è¯¥è§’è‰²æœ‰æ²¡æœ‰è¯¥ç±»å‹ä»“åº“ */
 		WareHouseVO warevo = storageService.getWareHouseByPPk(p_pk);
 		
 		QueryPage item_page = null;
@@ -74,7 +74,7 @@ public class GetStorageAction extends ActionBase{
 	}
 	
 	
-	// È¡³ö²Ù×÷
+	// å–å‡ºæ“ä½œ
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -82,10 +82,10 @@ public class GetStorageAction extends ActionBase{
 		
 		String warehouseID = request.getParameter("warehouseID");
 
-		//×°±¸ÀàĞÍ£¬1ÊÇÒ©Æ·£¬2ÊÇÊé£¬3ÊÇ×°±¸£¬4ÊÇÈÎÎñ£¬5ÊÇÆäËû 6ÊÇÉÌ³ÇÀàµÀ¾ß
+		//è£…å¤‡ç±»å‹ï¼Œ1æ˜¯è¯å“ï¼Œ2æ˜¯ä¹¦ï¼Œ3æ˜¯è£…å¤‡ï¼Œ4æ˜¯ä»»åŠ¡ï¼Œ5æ˜¯å…¶ä»– 6æ˜¯å•†åŸç±»é“å…·
 		String w_type = request.getParameter("w_type");
 
-		//´æ´¢Ò³Êı
+		//å­˜å‚¨é¡µæ•°
 		request.setAttribute("page_no", request.getParameter("page_no")+"");
 		
 		String resultWml = null;
@@ -95,18 +95,18 @@ public class GetStorageAction extends ActionBase{
 		WareHouseVO wareHouseVO = wareHouse.getWareHouseVOByWareHouseId(warehouseID,roleInfo.getPPk());
 		
 		
-		/* ²éÑ¯¸Ã½ÇÉ«µÄ°ü¹üÓĞ¶àÉÙ¿ÕÓà */
+		/* æŸ¥è¯¢è¯¥è§’è‰²çš„åŒ…è£¹æœ‰å¤šå°‘ç©ºä½™ */
 		int pWrapSpare = roleInfo.getBasicInfo().getWrapSpare();
 		
 		String prop_Id = request.getParameter("prop_id");
-		// È¡³ö×°±¸
+		// å–å‡ºè£…å¤‡
 		if (Integer.parseInt(w_type) == Wrap.EQUIP)
 		{
 			String WPk = request.getParameter("WPk");
 			if(pWrapSpare >=1 ){
 				resultWml = storageSerivce.takeoutEquip(roleInfo.getPPk(),Integer.parseInt(WPk));
 			}else {
-				resultWml = "¶Ô²»Æğ£¬ÄúµÄ°ü¹üÒÑÂú£¡";
+				resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„åŒ…è£¹å·²æ»¡ï¼";
 			}
 		} else
 		{
@@ -115,17 +115,17 @@ public class GetStorageAction extends ActionBase{
 			int prop_num;
 			if (prop_num_str == null)
 			{
-				// µÀ¾ß
-				if (wareHouseVO.getUwPropNumber() == 1)// Ö»ÓĞÒ»¸ö
+				// é“å…·
+				if (wareHouseVO.getUwPropNumber() == 1)// åªæœ‰ä¸€ä¸ª
 				{
 						if(pWrapSpare >=1 ){
 							resultWml = storageSerivce.getStorageProps(Integer.valueOf(prop_Id),1,roleInfo,wareHouseVO);
 						}else {
-							resultWml = "¶Ô²»Æğ£¬ÄúµÄ°ü¹üÒÑÂú£¡";
+							resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„åŒ…è£¹å·²æ»¡ï¼";
 						}
 					 
 				} else
-				// ÓĞ¶à¸ö£¬ÈÃÓÃ»§Ìí¼ÓÊıÁ¿
+				// æœ‰å¤šä¸ªï¼Œè®©ç”¨æˆ·æ·»åŠ æ•°é‡
 				{
 					request.setAttribute("warehouseID", warehouseID);
 					request.setAttribute("w_type", w_type);
@@ -141,7 +141,7 @@ public class GetStorageAction extends ActionBase{
 					}
 					prop_num = Integer.parseInt(prop_num_str);
 					if(prop_num < 0){
-						resultWml = "ĞÂ½ğ¾¯¸æÄú, Ë¢×°±¸ÊÇÒ»¼şÎ¥·¨ĞĞÎª!";
+						resultWml = "æ–°é‡‘è­¦å‘Šæ‚¨, åˆ·è£…å¤‡æ˜¯ä¸€ä»¶è¿æ³•è¡Œä¸º!";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("resultWml", resultWml);
 						request.setAttribute("warehouseID", warehouseID);
@@ -149,7 +149,7 @@ public class GetStorageAction extends ActionBase{
 						return mapping.findForward("input_num");
 					}
 					else if(prop_num == 0){
-						resultWml = "ÎïÆ·È¡³öÊıÁ¿²»ÄÜÊÇÁã¸ö!";
+						resultWml = "ç‰©å“å–å‡ºæ•°é‡ä¸èƒ½æ˜¯é›¶ä¸ª!";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("resultWml", resultWml);
 						request.setAttribute("warehouseID", warehouseID);
@@ -158,17 +158,17 @@ public class GetStorageAction extends ActionBase{
 					}
 					else if (wareHouseVO.getUwPropNumber() >= prop_num)
 					{
-						//µÃµ½prop_num¸öµÀ¾ßĞèÒª¶àÉÙ¿Õ¼ä
+						//å¾—åˆ°prop_numä¸ªé“å…·éœ€è¦å¤šå°‘ç©ºé—´
 						int need_space = PropCache.getPropById(wareHouseVO.getUwPropId()).getNeedSpace(prop_num);
 						if(pWrapSpare >= need_space){
 							resultWml = storageSerivce.getStorageProps(Integer.valueOf(prop_Id),prop_num,roleInfo,wareHouseVO);
 						}else{
-							resultWml = "¶Ô²»Æğ£¬ÄúµÄ°ü¹üÒÑÂú£¡";
+							resultWml = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„åŒ…è£¹å·²æ»¡ï¼";
 						}
 					} else
 					{
-						// ÊıÁ¿²»¹»
-						resultWml = "¶Ô²»Æğ£¬¸ÃÎïÆ·ÊıÁ¿²»¹»£¡";
+						// æ•°é‡ä¸å¤Ÿ
+						resultWml = "å¯¹ä¸èµ·ï¼Œè¯¥ç‰©å“æ•°é‡ä¸å¤Ÿï¼";
 						request.setAttribute("w_type", w_type);
 						request.setAttribute("resultWml", resultWml);
 						request.setAttribute("warehouseID", warehouseID);
@@ -177,8 +177,8 @@ public class GetStorageAction extends ActionBase{
 					}
 				} catch (NumberFormatException e)
 				{
-					// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-					resultWml = "ÕıÈ·ÊäÈëÎïÆ·ÊıÁ¿";
+					// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+					resultWml = "æ­£ç¡®è¾“å…¥ç‰©å“æ•°é‡";
 					request.setAttribute("w_type", w_type);
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("warehouseID", warehouseID);
@@ -196,12 +196,12 @@ public class GetStorageAction extends ActionBase{
 		}
 		catch (Exception e)
 		{
-			System.out.println("×ª·¢³ö´í......");
+			System.out.println("è½¬å‘å‡ºé”™......");
 		}
 		return null;
 	}
 	
-	// ½ÇÉ«°ü¹üµÀ¾ß²é¿´ÏêÏ¸ĞÅÏ¢
+	// è§’è‰²åŒ…è£¹é“å…·æŸ¥çœ‹è¯¦ç»†ä¿¡æ¯
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -223,7 +223,7 @@ public class GetStorageAction extends ActionBase{
 	
 	
 	/**
-	 * ½ÇÉ«°ü¹ü×°±¸²é¿´ÏêÏ¸ĞÅÏ¢
+	 * è§’è‰²åŒ…è£¹è£…å¤‡æŸ¥çœ‹è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

@@ -33,14 +33,14 @@ import com.web.service.friend.BlacklistService;
 
 /**
  * @author ls
- * ×é¶ÓÂß¼­
+ * ç»„é˜Ÿé€»è¾‘
  */
 public class GroupAction extends ActionBase
 {
 	Logger logger = Logger.getLogger("log.action");
 
 
-	// Ìá½»×é¶ÓÉêÇë
+	// æäº¤ç»„é˜Ÿç”³è¯·
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -56,26 +56,26 @@ public class GroupAction extends ActionBase
 			String bRaceName=b_ppk_roleInfo.getBasicInfo().getRaceName();
 			if(!aRaceName.equals(bRaceName))
 			{
-				request.getRequestDispatcher("/pubbuckaction.do?hint=" + "ÄúºÍ¸ÃÍæ¼Ò²»ÊôÓÚÍ¬ÖÖ×å,Äú²»ÄÜÓëËû(Ëı)½øĞĞ×é¶Ó.").forward(request, response);
+				request.getRequestDispatcher("/pubbuckaction.do?hint=" + "æ‚¨å’Œè¯¥ç©å®¶ä¸å±äºåŒç§æ—,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œç»„é˜Ÿ.").forward(request, response);
 				return null;
 			}
 			BlacklistService blacklistService = new BlacklistService();
 			int res = blacklistService.isBlacklist(Integer.parseInt(b_ppk), roleInfo.getPPk());
 			if(res == 2){
-				request.getRequestDispatcher("/pubbuckaction.do?hint=" + "¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞ×é¶Ó.").forward(request, response);
+				request.getRequestDispatcher("/pubbuckaction.do?hint=" + "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œç»„é˜Ÿ.").forward(request, response);
 				return null;
 			}else if(res == 1){
-				request.getRequestDispatcher("/pubbuckaction.do?hint=" + "ÄúÔÚ¸ÃÍæ¼ÒµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞ×é¶Ó.").forward(request, response);
+				request.getRequestDispatcher("/pubbuckaction.do?hint=" + "æ‚¨åœ¨è¯¥ç©å®¶çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œç»„é˜Ÿ.").forward(request, response);
 				return null;
 			}
 			SceneVO sceneVO = roleInfo.getBasicInfo().getSceneInfo();
 			MapVO mapVO = sceneVO.getMap();
 			if(mapVO.getMapType() == MapType.TIANGUAN){
-				String hint = "ÄúÕıÔÚÌôÕ½Ìì¹Ø,²»¿ÉÉêÇë×é¶Ó!";
+				String hint = "æ‚¨æ­£åœ¨æŒ‘æˆ˜å¤©å…³,ä¸å¯ç”³è¯·ç»„é˜Ÿ!";
 				request.getRequestDispatcher("/pubbuckaction.do?hint=" + hint ).forward(request, response);
 				return null;
 			}else{
-				// ÅĞ¶ÏÍæ¼ÒBµÄ×´Ì¬ÊÇ·ñ¿ÉÒÔ½øĞĞ½»Ò×
+				// åˆ¤æ–­ç©å®¶Bçš„çŠ¶æ€æ˜¯å¦å¯ä»¥è¿›è¡Œäº¤æ˜“
 				String hint = playerService.checkRoleState(Integer.parseInt(b_ppk),PlayerState.GROUP);
 				if (hint != null)
 				{
@@ -91,10 +91,10 @@ public class GroupAction extends ActionBase
 
 		
 		GroupNotifyService groupNotifyService = new GroupNotifyService();
-		// Ìí¼Ó×é¶ÓÉêÇë
+		// æ·»åŠ ç»„é˜Ÿç”³è¯·
 		String apply_hint = groupNotifyService.applyGroup(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(b_ppk));
 
-		// Èç¹ûÌá½»×é¶ÓÉêÇë³É¹¦£¬ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+		// å¦‚æœæäº¤ç»„é˜Ÿç”³è¯·æˆåŠŸï¼Œåœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 		if (apply_hint == null)
 		{
 			UMsgService uMsgService = new UMsgService();
@@ -109,7 +109,7 @@ public class GroupAction extends ActionBase
 			{
 				msgInfo.setPPk(Integer.parseInt(b_ppk));
 			}
-			apply_hint = "ÄúÒÑÏò¶Ô·½Ìá½»¹ı×é¶ÓÉêÇë";
+			apply_hint = "æ‚¨å·²å‘å¯¹æ–¹æäº¤è¿‡ç»„é˜Ÿç”³è¯·";
 			msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_GROUP_FIRST);
 			uMsgService.sendPopUpMsg(msgInfo);
 		}
@@ -118,7 +118,7 @@ public class GroupAction extends ActionBase
 		return this.dispath(request, response,"/swapaction.do?cmd=n13&pPks="+b_ppk);
 	}
 
-	// ×é¶Ó¹ÜÀíÁĞ±í
+	// ç»„é˜Ÿç®¡ç†åˆ—è¡¨
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -152,7 +152,7 @@ public class GroupAction extends ActionBase
 
 	}
 
-	// ¶Ô×é¶ÓÍ¨Öª´¦Àí
+	// å¯¹ç»„é˜Ÿé€šçŸ¥å¤„ç†
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -169,7 +169,7 @@ public class GroupAction extends ActionBase
 			groupNotifyService.deleteNotify(groupNotify.getNPk());
 			if (groupNotify.getNotifyType() == GroupNotifyService.CREATE
 					|| groupNotify.getNotifyType() == GroupNotifyService.JOIN
-					|| groupNotify.getNotifyType() == GroupNotifyService.INVITE)// ×é¶ÓÍ¨Öª
+					|| groupNotify.getNotifyType() == GroupNotifyService.INVITE)// ç»„é˜Ÿé€šçŸ¥
 			{
 				request.setAttribute("notify_type", groupNotify.getNotifyType()
 						+ "");
@@ -185,12 +185,12 @@ public class GroupAction extends ActionBase
 		return this.n2(mapping, form, request, response);
 	}
 
-	// Í¬Òâ×é¶Ó
+	// åŒæ„ç»„é˜Ÿ
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		String a_pk = request.getParameter("a_pk");// ±»Í¨ÖªÍæ¼Ò
-		String b_pk = request.getParameter("b_pk");// ´´½¨Í¨ÖªÍæ¼Ò
+		String a_pk = request.getParameter("a_pk");// è¢«é€šçŸ¥ç©å®¶
+		String b_pk = request.getParameter("b_pk");// åˆ›å»ºé€šçŸ¥ç©å®¶
 		String notify_type = request.getParameter("notify_type");
 		logger.info("a_pk=" + a_pk + " ");
 		RoleService roleService = new RoleService();
@@ -200,12 +200,12 @@ public class GroupAction extends ActionBase
 		
 		GroupModel group_info = groupService.getGroupInfo(Integer.parseInt(b_pk));
 
-		// Ê×ÏÈÅĞ¶Ï×é¶ÓÈËÊıÊÇ·ñ´ïµ½
+		// é¦–å…ˆåˆ¤æ–­ç»„é˜Ÿäººæ•°æ˜¯å¦è¾¾åˆ°
 		if (group_info!=null)
 		{
 			if (group_info.isFull())
 			{
-				String hint = "¶ÓÎéÈËÊıÒÑÂú";
+				String hint = "é˜Ÿä¼äººæ•°å·²æ»¡";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("group_add_hint");
 			}
@@ -215,7 +215,7 @@ public class GroupAction extends ActionBase
 			case GroupNotifyService.CREATE:
 			{
 				group_info = groupService.joinGroup(Integer.parseInt(a_pk),
-						Integer.parseInt(b_pk));// ´´½¨ĞÂ¶ÓÎé
+						Integer.parseInt(b_pk));// åˆ›å»ºæ–°é˜Ÿä¼
 				groupNotifyService.clareNotify(Integer.parseInt(a_pk));
 				groupNotifyService.clareNotify(Integer.parseInt(b_pk));
 				break;
@@ -257,7 +257,7 @@ public class GroupAction extends ActionBase
 
 	}
 
-	// ¾Ü¾ø×é¶Ó
+	// æ‹’ç»ç»„é˜Ÿ
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -265,7 +265,7 @@ public class GroupAction extends ActionBase
 		return mapping.findForward("accept_hint");
 	}
 
-	// Ìß³ö¶ÓÔ±
+	// è¸¢å‡ºé˜Ÿå‘˜
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -276,7 +276,7 @@ public class GroupAction extends ActionBase
 		
 		if (member_pk == null)
 		{
-			logger.info("member_pk²ÎÊıÎª¿Õ");
+			logger.info("member_pkå‚æ•°ä¸ºç©º");
 		}
 		else
 		{
@@ -298,7 +298,7 @@ public class GroupAction extends ActionBase
 		}
 	}
 
-	// ½âÉ¢¶ÓÎé
+	// è§£æ•£é˜Ÿä¼
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -310,7 +310,7 @@ public class GroupAction extends ActionBase
 		return mapping.findForward("disband_hint");
 	}
 
-	// ¶ÓÔ±Àë¿ª¶ÓÎé
+	// é˜Ÿå‘˜ç¦»å¼€é˜Ÿä¼
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -323,7 +323,7 @@ public class GroupAction extends ActionBase
 	}
 
 	/*
-	 * // ¼ÓÈëÒÑÓĞ¶ÓÎé public ActionForward n9(ActionMapping mapping, ActionForm form,
+	 * // åŠ å…¥å·²æœ‰é˜Ÿä¼ public ActionForward n9(ActionMapping mapping, ActionForm form,
 	 * HttpServletRequest request, HttpServletResponse response) { String
 	 * notify_type = request.getParameter("notify_type"); switch
 	 * (Integer.parseInt(notify_type)) { case GroupNotifyService.JOIN: {
@@ -334,7 +334,7 @@ public class GroupAction extends ActionBase
 	 * mapping.findForward("accept_hint"); }
 	 */
 
-	// ²é¿´ÆäËûÍæ¼ÒµÄĞÅÏ¢
+	// æŸ¥çœ‹å…¶ä»–ç©å®¶çš„ä¿¡æ¯
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -349,7 +349,7 @@ public class GroupAction extends ActionBase
 		request.setAttribute("a_pk", a_pk);
 		request.setAttribute("b_pk", bPpk);
 
-		// »ñÈ¡¶Ô·½µÄĞÎÏóÍ¼Æ¬
+		// è·å–å¯¹æ–¹çš„å½¢è±¡å›¾ç‰‡
 		PicService picService = new PicService();
 		String playerPic = picService.getPlayerPicStr(roleInfo, bPpk);
 		request.setAttribute("playerPicB", playerPic);
@@ -367,7 +367,7 @@ public class GroupAction extends ActionBase
 		return mapping.findForward("player_display");
 	}
 
-	// Ò³ÃæÌø×ª
+	// é¡µé¢è·³è½¬
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -375,7 +375,7 @@ public class GroupAction extends ActionBase
 	}
 
 	/**
-	 * ĞèÕÒµ±Ç°ËùÓĞ¶ÓÎéĞÅÏ¢
+	 * éœ€æ‰¾å½“å‰æ‰€æœ‰é˜Ÿä¼ä¿¡æ¯
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -399,7 +399,7 @@ public class GroupAction extends ActionBase
 		List<GroupModel> groups = GroupService.getGroupListByPage(page);
 		if (groups == null || groups.size() == 0)
 		{
-			request.setAttribute("display", "Ã»ÓĞÑ°ÕÒµ½¶ÓÎé!");
+			request.setAttribute("display", "æ²¡æœ‰å¯»æ‰¾åˆ°é˜Ÿä¼!");
 			return mapping.findForward("hint");
 		}
 		else
@@ -413,7 +413,7 @@ public class GroupAction extends ActionBase
 	}
 
 	/**
-	 * Ñ°ÕÒ×é¶ÓÊ±£¬²é¿´¶ÓÎéËùÓĞ³ÉÔ±
+	 * å¯»æ‰¾ç»„é˜Ÿæ—¶ï¼ŒæŸ¥çœ‹é˜Ÿä¼æ‰€æœ‰æˆå‘˜
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -438,14 +438,14 @@ public class GroupAction extends ActionBase
 		}
 		else
 		{
-			GroupService.removeGroupFromAllGroups(p_pk);//´ÓËùÓĞ¶ÓÎéÖĞÒÆ³ı¶ÓÎé
-			request.setAttribute("display", "¸Ã¶ÓÎéÒÑ½âÉ¢!");
+			GroupService.removeGroupFromAllGroups(p_pk);//ä»æ‰€æœ‰é˜Ÿä¼ä¸­ç§»é™¤é˜Ÿä¼
+			request.setAttribute("display", "è¯¥é˜Ÿä¼å·²è§£æ•£!");
 			return mapping.findForward("display");
 		}
 
 	}
 
-	// ¼ÓÈë¶ÓÎé ·µ»Ø
+	// åŠ å…¥é˜Ÿä¼ è¿”å›
 	public ActionForward n14(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -456,12 +456,12 @@ public class GroupAction extends ActionBase
 		
 		if (group_info== null)
 		{
-			request.setAttribute("display", "¸Ã¶ÓÎé²»´æÔÚ»òÒÑ½âÉ¢!");
+			request.setAttribute("display", "è¯¥é˜Ÿä¼ä¸å­˜åœ¨æˆ–å·²è§£æ•£!");
 			return mapping.findForward("display");
 		}
 		if (group_info.isFull())
 		{
-			request.setAttribute("display", "¸Ã¶ÓÎéÈËÊıÒÑÂú!");
+			request.setAttribute("display", "è¯¥é˜Ÿä¼äººæ•°å·²æ»¡!");
 			return mapping.findForward("display");
 		}
 		RoleService roleService = new RoleService();
@@ -472,7 +472,7 @@ public class GroupAction extends ActionBase
 		SceneVO sceneVO = sc.getById(scene_id);
 		MapVO mapVO = sceneVO.getMap();
 		if(mapVO.getMapType() == MapType.TIANGUAN){
-			String hint = "ÄúÕıÔÚÌôÕ½Ìì¹Ø,²»¿ÉÉêÇë×é¶Ó!";
+			String hint = "æ‚¨æ­£åœ¨æŒ‘æˆ˜å¤©å…³,ä¸å¯ç”³è¯·ç»„é˜Ÿ!";
 			request.setAttribute("display", hint);
 			return mapping.findForward("display");
 		}
@@ -481,11 +481,11 @@ public class GroupAction extends ActionBase
 		String name = roleInfo.getBasicInfo().getName();
 		GroupNotifyService groupNotifyService = new GroupNotifyService();
 		
-		// Ìí¼Ó×é¶ÓÉêÇë
+		// æ·»åŠ ç»„é˜Ÿç”³è¯·
 		String apply_hint = groupNotifyService.applyGroupBySearch(role_Info
 				.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getPPk());
 
-		// Èç¹ûÌá½»×é¶ÓÉêÇë³É¹¦£¬ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+		// å¦‚æœæäº¤ç»„é˜Ÿç”³è¯·æˆåŠŸï¼Œåœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 		if (apply_hint == null)
 		{
 			UMsgService uMsgService = new UMsgService();
@@ -494,7 +494,7 @@ public class GroupAction extends ActionBase
 			msgInfo.setPPk(roleInfo.getBasicInfo().getPPk());
 			msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_GROUP_FIRST);
 			uMsgService.sendPopUpMsg(msgInfo);
-			request.setAttribute("display", "ÄãÒÑÉêÇë¼ÓÈë" + name + "µÄ¶ÓÎé,ÇëÄÍĞÄµÈ´ı¶Ô·½·´Ó¦!");
+			request.setAttribute("display", "ä½ å·²ç”³è¯·åŠ å…¥" + name + "çš„é˜Ÿä¼,è¯·è€å¿ƒç­‰å¾…å¯¹æ–¹ååº”!");
 			return mapping.findForward("display");
 		}
 		request.setAttribute("display", apply_hint);

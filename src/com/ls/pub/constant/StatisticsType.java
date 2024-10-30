@@ -2,72 +2,72 @@ package com.ls.pub.constant;
 
 public class StatisticsType
 {
-	/** Í³¼ÆÎïÆ·ÀàĞÍ */
-	/** ÎïÆ·ÀàĞÍ³äÖµÈËÊı */
+	/** ç»Ÿè®¡ç‰©å“ç±»å‹ */
+	/** ç‰©å“ç±»å‹å……å€¼äººæ•° */
 	public static final int PLAYER = 0;
-	/** ÎïÆ·ÀàĞÍ×°±¸ */
+	/** ç‰©å“ç±»å‹è£…å¤‡ */
 	public static final int ACCOUTE = 1;
-	/** ÎïÆ·ÀàĞÍÎäÆ÷ */
+	/** ç‰©å“ç±»å‹æ­¦å™¨ */
 	public static final int ARM = 2;
-	/** ÎïÆ·ÀàĞÍÊ×ÊÎ */
+	/** ç‰©å“ç±»å‹é¦–é¥° */
 	public static final int JEWELRY = 3;
-	/** ÎïÆ·ÀàĞÍÎïÆ· */
+	/** ç‰©å“ç±»å‹ç‰©å“ */
 	public static final int PROP = 4;
 	// public static final int daguai = 5;
-	/** ÎïÆ·ÀàĞÍÒøÁ½ */
+	/** ç‰©å“ç±»å‹é“¶ä¸¤ */
 	public static final int MONEY = 6;
-	/** ÎïÆ·ÀàĞÍÔª±¦ */
+	/** ç‰©å“ç±»å‹å…ƒå® */
 	public static final int YUANBAO = 7;
-	/** ÎïÆ·ÀàĞÍµÀ¾ßÔª±¦ÏûºÄ */
+	/** ç‰©å“ç±»å‹é“å…·å…ƒå®æ¶ˆè€— */
 	public static final int YUANBAOUSED = 8;
-	/** ÎïÆ·ÀàĞÍµÀ¾ßÏúÊÛ */
+	/** ç‰©å“ç±»å‹é“å…·é”€å”® */
 	public static final int PROPYUANBAO = 9;
-	/** RMBÍ³¼Æ */
+	/** RMBç»Ÿè®¡ */
 	public static final int RMB = 10;
 
-	/** Í³¼Æ¸¸ÀàĞÍ */
-	/** ¸¸ÀàĞÍÏûºÄ */
+	/** ç»Ÿè®¡çˆ¶ç±»å‹ */
+	/** çˆ¶ç±»å‹æ¶ˆè€— */
 	public static final String USED = "used";
-	/** ¸¸ÀàĞÍ»ñµÃÍ¾¾¶ */
+	/** çˆ¶ç±»å‹è·å¾—é€”å¾„ */
 	public static final String DEDAO = "dedao";
-	/** ¸¸ÀàĞÍ¿â´æ */
+	/** çˆ¶ç±»å‹åº“å­˜ */
 	public static final String KUCUN = "kucun";
-	/** ¸¸ÀàĞÍÏúÊÛ */
+	/** çˆ¶ç±»å‹é”€å”® */
 	public static final String XIAOSHOU = "xiaoshou";
 
-	/** Í³¼Æ×ÓÀàĞÍ */
-	/** ×ÓÀàĞÍ´ò¹ÖµôÂä */
+	/** ç»Ÿè®¡å­ç±»å‹ */
+	/** å­ç±»å‹æ‰“æ€ªæ‰è½ */
 	public static final String DAGUAI = "daguai";
-	/** ×ÓÀàĞÍÈÎÎñ */
+	/** å­ç±»å‹ä»»åŠ¡ */
 	public static final String RENWU = "renwu";
-	/** ×ÓÀàĞÍ¶Ò»» */
+	/** å­ç±»å‹å…‘æ¢ */
 	public static final String DUIHUAN = "duihuan";
-	/** ×ÓÀàĞÍ±¦Ïä */
+	/** å­ç±»å‹å®ç®± */
 	public static final String BAOXIANG = "baoxiang";
-	/** ×ÓÀàĞÍÂò */
+	/** å­ç±»å‹ä¹° */
 	public static final String BUY = "buy";
-	/** ×ÓÀàĞÍ²©²Ê */
+	/** å­ç±»å‹åšå½© */
 	public static final String BOCAI = "bocai";
-	/** ×ÓÀàĞÍ·Ö½â */
+	/** å­ç±»å‹åˆ†è§£ */
 	public static final String FENJIE = "fenjie";
-	/** ×ÓÀàĞÍÏµÍ³ */
+	/** å­ç±»å‹ç³»ç»Ÿ */
 	public static final String XITONG = "xitong";
-	/** ×ÓÀàĞÍÉú²ú */
+	/** å­ç±»å‹ç”Ÿäº§ */
 	public static final String SHENGCHAN = "shengchan";
-	/** ×ÓÀàĞÍ¶ªÆú */
+	/** å­ç±»å‹ä¸¢å¼ƒ */
 	public static final String DIUQI = "diuqi";
-	/** ×ÓÀàĞÍÊ¹ÓÃ */
+	/** å­ç±»å‹ä½¿ç”¨ */
 	public static final String SHIYONG = "shiyong";
-	/** ×ÓÀàĞÍÂô */
+	/** å­ç±»å‹å– */
 	public static final String SELL = "sell";
-	/** ×ÓÀàĞÍÎ¬ĞŞ */
+	/** å­ç±»å‹ç»´ä¿® */
 	public static final String WEIXIU = "weixiu";
-	/** ×ÓÀàĞÍ´«ËÍ */
+	/** å­ç±»å‹ä¼ é€ */
 	public static final String CHUANSONG = "chuansong";
-	/** ×ÓÀàĞÍË°ÊÕ */
+	/** å­ç±»å‹ç¨æ”¶ */
 	public static final String SHUISHOU = "shuishou";
-	/** ×ÓÀàĞÍÉÌ³Ç */
+	/** å­ç±»å‹å•†åŸ */
 	public static final String SHANGCHENG = "shangcheng";
-	/** ×ÓÀàĞÍ½±Àø */
+	/** å­ç±»å‹å¥–åŠ± */
 	public static final String JIANGLI = "jiangli";
 }

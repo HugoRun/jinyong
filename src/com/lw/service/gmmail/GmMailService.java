@@ -14,17 +14,17 @@ public class GmMailService
 		int x = Expression.hasPublish(content);
 		if (x == -1)
 		{
-			hint = "ÄÚÈİ²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë!";
+			hint = "å†…å®¹ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥!";
 			return hint;
 		}
 		if (content.length() > 500)
 		{
-			hint = "×ÖÊı³¬¹ı500×Ö,ÇëÖØĞÂÊäÈë!";
+			hint = "å­—æ•°è¶…è¿‡500å­—,è¯·é‡æ–°è¾“å…¥!";
 			return hint;
 		}
 		if (content == null || content.equals(""))
 		{
-			hint = "Çë²»Òª·¢¿ÕÓÊ¼ş!";
+			hint = "è¯·ä¸è¦å‘ç©ºé‚®ä»¶!";
 			return hint;
 		}
 		GmMailDao dao = new GmMailDao();
@@ -34,16 +34,16 @@ public class GmMailService
 			return null;
 		}
 		MailInfoService ms = new MailInfoService();
-		String title = p_name + "µÄ·´À¡";
+		String title = p_name + "çš„åé¦ˆ";
 		int i = ms.sendMailReply(GM_pk, p_pk, 1, title, content, 1);
 		if (i == -1)
 		{
-			hint = "ÓÊ¼şÎ´·¢³ö!";
+			hint = "é‚®ä»¶æœªå‘å‡º!";
 			return hint;
 		}
 		else
 		{
-			hint = "ÓÊ¼ş·¢³ö!";
+			hint = "é‚®ä»¶å‘å‡º!";
 			return hint;
 		}
 

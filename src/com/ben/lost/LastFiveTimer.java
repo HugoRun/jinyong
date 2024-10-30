@@ -8,6 +8,6 @@ public class LastFiveTimer extends TimerTask
 {
 	public void run()
 	{
-		new SystemInfoService().insertSystemInfoBySystem("ÉñÃØÃÔ¹¬µÄ´óÃÅ»¹ÓĞ5·ÖÖÓ¾ÍÒª¹Ø±ÕÁË£¬»¹ÔÚÃÔ¹¬Ì½ÏÕµÄÍæ¼Ò×¥½ôÊ±¼äÅ¶£¡");
+		new SystemInfoService().insertSystemInfoBySystem("ç¥ç§˜è¿·å®«çš„å¤§é—¨è¿˜æœ‰5åˆ†é’Ÿå°±è¦å…³é—­äº†ï¼Œè¿˜åœ¨è¿·å®«æ¢é™©çš„ç©å®¶æŠ“ç´§æ—¶é—´å“¦ï¼");
 	}
 }

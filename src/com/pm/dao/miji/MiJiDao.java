@@ -20,9 +20,9 @@ public class MiJiDao extends DaoBase {
 	 * 
 	 */
 	public MiJiVO getMiJiById ( int mijiId) {
-		String sql = "select * from miji_info where mj_id = "+mijiId;
+		String sql = "SELECT * FROM miji_info where mj_id = "+mijiId;
 		MiJiVO miJiVO = null;
-		logger.debug("Õ½³¡ÖĞµÄÆì¸ËÕóÓªÊôĞÔ»¹Ô­="+sql);
+		logger.debug("æˆ˜åœºä¸­çš„æ——æ†é˜µè¥å±æ€§è¿˜åŸ="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try

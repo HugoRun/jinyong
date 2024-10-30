@@ -6,41 +6,41 @@ package com.ls.ben.vo.info.npc;
 import com.ls.iface.function.Probability;
 
 /**
- * ¹¦ÄÜ:¶ÔÓ¦npcskill±í
- * @author ÁõË§
+ * åŠŸèƒ½:å¯¹åº”npcskillè¡¨
+ * @author åˆ˜å¸…
  *
  * 7:18:18 PM
  */
 public class NpcskillVO implements Probability {
 	 
-	/**npc¼¼ÄÜid*/
+	/**npcæŠ€èƒ½id*/
 	private int id;
 	
-	/**¼¼ÄÜÃû³Æ*/
+	/**æŠ€èƒ½åç§°*/
 	private String npcskiName;
 	
-	/**ÀàĞÍ 1Îªbasic¹¥»÷£¬2Îªpower¹¥»÷£¬3Îªsupper¹¥»÷*/
+	/**ç±»å‹ 1ä¸ºbasicæ”»å‡»ï¼Œ2ä¸ºpoweræ”»å‡»ï¼Œ3ä¸ºsupperæ”»å‡»*/
 	private int npcskiType;
 	
-	/**npcµÄid*/
+	/**npcçš„id*/
 	private int npcId;
 	
-	/**¼¼ÄÜÎåĞĞ:½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5¡£*/
+	/**æŠ€èƒ½äº”è¡Œ:é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5ã€‚*/
 	private int npcskiWx;
 	
-	/**ÎåĞĞÉËº¦*/
+	/**äº”è¡Œä¼¤å®³*/
 	private int npcskiWxInjure;
 	
-	/**Êµ¼Ê¼¼ÄÜÉËº¦£¬ÔÚ×îµÍºÍ×î¸ßÉËº¦Ö®¼äÈ¡Öµ*/
+	/**å®é™…æŠ€èƒ½ä¼¤å®³ï¼Œåœ¨æœ€ä½å’Œæœ€é«˜ä¼¤å®³ä¹‹é—´å–å€¼*/
 	private int npcskiInjure;
 	
-	/**×îµÍÉËº¦*/
+	/**æœ€ä½ä¼¤å®³*/
 	private int npcskiInjureXiao;
 	
-	/**×î¸ßÉËº¦*/
+	/**æœ€é«˜ä¼¤å®³*/
 	private int npcskiInjureDa;
 	
-	/**³öÕĞ¼¸ÂÊ*/
+	/**å‡ºæ‹›å‡ ç‡*/
 	private int probability;
 
 	
@@ -52,8 +52,8 @@ public class NpcskillVO implements Probability {
 	}
 	
 	/**
-	 * @param skiInjure    ÔÚ×îµÍºÍ×î¸ßÉËº¦Ö®¼äÈ¡Öµ
-	 * @param supperInjureMultiple   ±©»÷±¶Êı
+	 * @param skiInjure    åœ¨æœ€ä½å’Œæœ€é«˜ä¼¤å®³ä¹‹é—´å–å€¼
+	 * @param supperInjureMultiple   æš´å‡»å€æ•°
 	 */
 	public void setNpcskiInjure( int skiInjure,double supperInjureMultiple )
 	{

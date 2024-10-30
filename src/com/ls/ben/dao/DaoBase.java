@@ -11,8 +11,8 @@ import com.ls.pub.db.DBConnection;
 
 
 /**
- * ¹¦ÄÜ:daoµÄ¸¸Àà
- * @author  ÁõË§
+ * åŠŸèƒ½:daoçš„çˆ¶ç±»
+ * @author  åˆ˜å¸…
  * 5:30:10 PM
  */
 public class DaoBase {
@@ -23,7 +23,7 @@ public class DaoBase {
 	protected ResultSet rs = null;
 
 	/**
-	 * Ö´ÐÐupdateSql
+	 * æ‰§è¡ŒupdateSql
 	 * @param update_sql
 	 */
 	public int executeUpdateSql( String update_sql )

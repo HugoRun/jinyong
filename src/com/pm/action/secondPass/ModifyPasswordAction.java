@@ -21,7 +21,7 @@ public class ModifyPasswordAction extends DispatchAction
 {
 
 	Logger logger = Logger.getLogger("log.action");
-	//×ªÏò¶þ¼¶ÃÜÂëÒ³Ãæ
+	//è½¬å‘äºŒçº§å¯†ç é¡µé¢
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -34,18 +34,18 @@ public class ModifyPasswordAction extends DispatchAction
 		String second_pass = request.getParameter("second_pass");
 		SecondPassService secondPassService = new SecondPassService();
 		
-		if(second_pass != null && !second_pass.equals("")) {	//¼ì²éÆäÊÇ·ñÎª¿Õ
-			if(StringUtil.isNumber(second_pass)) {				//¼ì²âÆäÊÇ²»ÊÇ¶¼ÊÇÓÉÊý×Ö×é³É.
-				if(second_pass.length() == 6) {					//¼ì²éÆäÊÇ²»ÊÇÁùÎ»
+		if(second_pass != null && !second_pass.equals("")) {	//æ£€æŸ¥å…¶æ˜¯å¦ä¸ºç©º
+			if(StringUtil.isNumber(second_pass)) {				//æ£€æµ‹å…¶æ˜¯ä¸æ˜¯éƒ½æ˜¯ç”±æ•°å­—ç»„æˆ.
+				if(second_pass.length() == 6) {					//æ£€æŸ¥å…¶æ˜¯ä¸æ˜¯å…­ä½
 					SecondPassDao seconddao = new SecondPassDao();
-					//ËÑË÷³öÊý¾Ý¿âÖÐµÄ¶þ¼¶ÃÜÂë
+					//æœç´¢å‡ºæ•°æ®åº“ä¸­çš„äºŒçº§å¯†ç 
 					SecondPassVO secondPassVO = seconddao.getSecondPassTime(uPk);
 					if(secondPassVO.getSecondPass() == null || secondPassVO.getSecondPass().equals("")) {
-						String hint = "Äú»¹Ã»ÓÐÉèÖÃ¶þ¼¶ÃÜÂë, ²»ÄÜÐÞ¸ÄµÇÂ¼ÃÜÂë£¡";
+						String hint = "æ‚¨è¿˜æ²¡æœ‰è®¾ç½®äºŒçº§å¯†ç , ä¸èƒ½ä¿®æ”¹ç™»å½•å¯†ç ï¼";
 						request.setAttribute("hint", hint);
 						return mapping.findForward("failedPass");
 					}
-					//Èç¹û¶þ¼¶ÃÜÂë´íÎó´ÎÊýÐ¡ÓÚ3,ÔòÈÃÆä¼ÌÐøºË¶Ô.
+					//å¦‚æžœäºŒçº§å¯†ç é”™è¯¯æ¬¡æ•°å°äºŽ3,åˆ™è®©å…¶ç»§ç»­æ ¸å¯¹.
 					if(!secondPassService.checkSeconePass(uPk,secondPassVO)) {
 						if(secondPassVO.getSecondPass().equals(MD5.getMD5Str(second_pass))) {
 							request.setAttribute("authenPass", "erjipasswordistrue");
@@ -53,35 +53,35 @@ public class ModifyPasswordAction extends DispatchAction
 						} else {
 							secondPassService.insertErrorSecondPsw(uPk); 
 							String hint = "";
-							//Èç¹ûÒÑ¾­´íÁ½´Î,ÄÇÃ´¸øÍæ¼Ò¿´µÄÌáÊ¾Ò²»á²»Ò»Ñù.
+							//å¦‚æžœå·²ç»é”™ä¸¤æ¬¡,é‚£ä¹ˆç»™çŽ©å®¶çœ‹çš„æç¤ºä¹Ÿä¼šä¸ä¸€æ ·.
 							if(secondPassVO.getPassWrongFlag() == 2) {
-								hint = "ÄúÒÑ¾­ÔÚ24Ð¡Ê±ÄÚÈý´ÎÊäÈë´íÎóµÄÕÊºÅ¶þ¼¶ÃÜÂë£¬ÎªÁË±£»¤¸ÃÕÊºÅµÄ°²È«£¬24Ð¡Ê±ÄÚ¸ÃÕÊºÅ²»¿ÉÔÙÊ¹ÓÃÐÞ¸ÄÓÎÏ·µÇÂ¼ÃÜÂë¹¦ÄÜ£¡£¡";
+								hint = "æ‚¨å·²ç»åœ¨24å°æ—¶å†…ä¸‰æ¬¡è¾“å…¥é”™è¯¯çš„å¸å·äºŒçº§å¯†ç ï¼Œä¸ºäº†ä¿æŠ¤è¯¥å¸å·çš„å®‰å…¨ï¼Œ24å°æ—¶å†…è¯¥å¸å·ä¸å¯å†ä½¿ç”¨ä¿®æ”¹æ¸¸æˆç™»å½•å¯†ç åŠŸèƒ½ï¼ï¼";
 								
 							} else {
-								hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄ¶þ¼¶ÃÜÂëÓÐÎó£¬24Ð¡Ê±ÄÚÈý´ÎÊäÈë´íÎóµÄ¶þ¼¶ÃÜÂë½«±»¶³½áÐÞ¸ÄÃÜÂë¹¦ÄÜÒ»Ìì£¡";
+								hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„äºŒçº§å¯†ç æœ‰è¯¯ï¼Œ24å°æ—¶å†…ä¸‰æ¬¡è¾“å…¥é”™è¯¯çš„äºŒçº§å¯†ç å°†è¢«å†»ç»“ä¿®æ”¹å¯†ç åŠŸèƒ½ä¸€å¤©ï¼";
 							}
 							request.setAttribute("hint", hint);
 							return mapping.findForward("failedPass");
 						}
-					//Èç¹ûÒÑ¾­´óÓÚ3,¾Í¸æËßÍæ¼Ò²»ÄÜÔÙºË¶ÔÁË.	
+					//å¦‚æžœå·²ç»å¤§äºŽ3,å°±å‘Šè¯‰çŽ©å®¶ä¸èƒ½å†æ ¸å¯¹äº†.	
 					} else {
 						secondPassService.insertErrorSecondPsw(uPk); 
-						String hint = "ÄúÒÑ¾­ÔÚ24Ð¡Ê±ÄÚÈý´ÎÊäÈë´íÎóµÄÕÊºÅ¶þ¼¶ÃÜÂë£¬ÎªÁË±£»¤¸ÃÕÊºÅµÄ°²È«£¬24Ð¡Ê±ÄÚ¸ÃÕÊºÅ²»¿ÉÔÙÊ¹ÓÃÐÞ¸ÄÓÎÏ·µÇÂ¼ÃÜÂë¹¦ÄÜ£¡£¡";
+						String hint = "æ‚¨å·²ç»åœ¨24å°æ—¶å†…ä¸‰æ¬¡è¾“å…¥é”™è¯¯çš„å¸å·äºŒçº§å¯†ç ï¼Œä¸ºäº†ä¿æŠ¤è¯¥å¸å·çš„å®‰å…¨ï¼Œ24å°æ—¶å†…è¯¥å¸å·ä¸å¯å†ä½¿ç”¨ä¿®æ”¹æ¸¸æˆç™»å½•å¯†ç åŠŸèƒ½ï¼ï¼";
 						request.setAttribute("hint", hint);
 						return mapping.findForward("failedPass");
 					}
 				}
 			}
-			String hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄ¶þ¼¶ÃÜÂë¸ñÊ½²»ÕýÈ·,¶þ¼¶ÃÜÂëÎªÁùÎ»Êý×Ö×é³É£¡";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„äºŒçº§å¯†ç æ ¼å¼ä¸æ­£ç¡®,äºŒçº§å¯†ç ä¸ºå…­ä½æ•°å­—ç»„æˆï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("failedPass");
 		}
-		String hint = "¶Ô²»Æð£¬Çë²»ÒªÊäÈë¿ÕÃÜÂë£¡";
+		String hint = "å¯¹ä¸èµ·ï¼Œè¯·ä¸è¦è¾“å…¥ç©ºå¯†ç ï¼";
 		request.setAttribute("hint", hint);
 		return mapping.findForward("failedPass");
 	}
 	
-	//ÐÞ¸ÄµÇÂ¼ÃÜÂë
+	//ä¿®æ”¹ç™»å½•å¯†ç 
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -89,39 +89,39 @@ public class ModifyPasswordAction extends DispatchAction
 		String pass_word = request.getParameter("pass_word");
 		
 		if(pass_word != null && !pass_word.equals("")) {		
-			if(StringUtil.isNumberAndChar(pass_word)) {			//µÇÂ¼ÃÜÂëÎªÊý×ÖºÍ×ÖÄ¸µÄ»ìºÏ
-				if(pass_word.length() >=5 && pass_word.length() <= 11) {	//µÇÂ¼ÃÜÂëµÄ³¤¶ÈÔÚ5µ½11Ö®¼ä	
+			if(StringUtil.isNumberAndChar(pass_word)) {			//ç™»å½•å¯†ç ä¸ºæ•°å­—å’Œå­—æ¯çš„æ··åˆ
+				if(pass_word.length() >=5 && pass_word.length() <= 11) {	//ç™»å½•å¯†ç çš„é•¿åº¦åœ¨5åˆ°11ä¹‹é—´	
 					request.setAttribute("firstPassword", pass_word);
 					request.setAttribute("authenPass", "reputpassword");
 					return mapping.findForward("firstpassword_true");
 				}
 			}
-			String hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄÃÜÂë×éºÏ²»·ûºÏ¹æ¶¨£¡ÓÎÏ·ÕÊºÅÃÜÂëÎª5-11Î»,0-9,a-z×éºÏ!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„å¯†ç ç»„åˆä¸ç¬¦åˆè§„å®šï¼æ¸¸æˆå¸å·å¯†ç ä¸º5-11ä½,0-9,a-zç»„åˆ!";
 			request.setAttribute("hint", hint);
 			request.setAttribute("authenPass", "erjipasswordistrue");
 			return mapping.findForward("sussendPass");
 		}
-		String hint = "¶Ô²»Æð£¬ÃÜÂë²»ÄÜÎª¿Õ!";
+		String hint = "å¯¹ä¸èµ·ï¼Œå¯†ç ä¸èƒ½ä¸ºç©º!";
 		request.setAttribute("authenPass", "erjipasswordistrue");
 		request.setAttribute("hint", hint);
 		return mapping.findForward("sussendPass");
 	}
 	
-	//ÐÞ¸ÄµÇÂ¼ÃÜÂë
+	//ä¿®æ”¹ç™»å½•å¯†ç 
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		String firstPassword = request.getParameter("firstPassword");
 		String re_pass_word = request.getParameter("re_pass_word");
 		
-		// ¿ÉÄÜ»áÔÚ´Ë´¦³öÏÖ¿ÕÖ¸Õë´íÎó£¬ÒòÎªÈ¡²»µ½uPkÖ®ÀàµÄÔ­Òò£¬ µÈ²âÊÔºóÔÙ¸Ä¡£
+		// å¯èƒ½ä¼šåœ¨æ­¤å¤„å‡ºçŽ°ç©ºæŒ‡é’ˆé”™è¯¯ï¼Œå› ä¸ºå–ä¸åˆ°uPkä¹‹ç±»çš„åŽŸå› ï¼Œ ç­‰æµ‹è¯•åŽå†æ”¹ã€‚
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		int uPk = roleInfo.getBasicInfo().getUPk();
 				
 		//logger.info("re_pass_word="+re_pass_word+",equals="+re_pass_word.equals(firstPassword));
 		if(re_pass_word == null || re_pass_word.equals("")) {		
-			String hint = "¶Ô²»Æð£¬ÃÜÂë²»ÄÜÎª¿Õ!";
+			String hint = "å¯¹ä¸èµ·ï¼Œå¯†ç ä¸èƒ½ä¸ºç©º!";
 			request.setAttribute("hint", hint);
 			request.setAttribute("firstPassword", firstPassword);
 			request.setAttribute("authenPass", "reputpassword");
@@ -129,11 +129,11 @@ public class ModifyPasswordAction extends DispatchAction
 		}
 		
 		if(re_pass_word != null && !re_pass_word.equals("")) {		
-			if(StringUtil.isNumberAndChar(re_pass_word)) {			//µÇÂ¼ÃÜÂëÎªÊý×ÖºÍ×ÖÄ¸µÄ»ìºÏ
-				if(re_pass_word.length() >=5 && re_pass_word.length() <= 11) {	//µÇÂ¼ÃÜÂëµÄ³¤¶ÈÔÚ5µ½11Ö®¼ä	
+			if(StringUtil.isNumberAndChar(re_pass_word)) {			//ç™»å½•å¯†ç ä¸ºæ•°å­—å’Œå­—æ¯çš„æ··åˆ
+				if(re_pass_word.length() >=5 && re_pass_word.length() <= 11) {	//ç™»å½•å¯†ç çš„é•¿åº¦åœ¨5åˆ°11ä¹‹é—´	
 					
 					if (!firstPassword.equals(re_pass_word)) {
-						String hint = "¶Ô²»Æð£¬ÄúÇ°ºóÊäÈëÐÂµÄÕÊºÅµÇÂ¼ÃÜÂë²»Í¬£¡ÇëÖØÐÂÊäÈëÄúÐÂµÄÕÊºÅµÇÂ¼ÃÜÂë:!";
+						String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨å‰åŽè¾“å…¥æ–°çš„å¸å·ç™»å½•å¯†ç ä¸åŒï¼è¯·é‡æ–°è¾“å…¥æ‚¨æ–°çš„å¸å·ç™»å½•å¯†ç :!";
 						request.setAttribute("hint", hint);
 						request.setAttribute("firstPassword", firstPassword);
 						request.setAttribute("authenPass", "reputpassword");
@@ -148,14 +148,14 @@ public class ModifyPasswordAction extends DispatchAction
 					}
 				}
 			
-			String hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄÃÜÂë×éºÏ²»·ûºÏ¹æ¶¨£¡ÓÎÏ·ÕÊºÅÃÜÂëÎª5-11Î»,0-9,a-z×éºÏ!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„å¯†ç ç»„åˆä¸ç¬¦åˆè§„å®šï¼æ¸¸æˆå¸å·å¯†ç ä¸º5-11ä½,0-9,a-zç»„åˆ!";
 			request.setAttribute("hint", hint);
 			request.setAttribute("firstPassword", firstPassword);
 			request.setAttribute("authenPass", "reputpassword");
 			return mapping.findForward("firstpassword_true");
 			}
 		}
-		String hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄÃÜÂë²»ÄÜÎª¿Õ!";
+		String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„å¯†ç ä¸èƒ½ä¸ºç©º!";
 		request.setAttribute("hint", hint);
 		request.setAttribute("firstPassword", firstPassword);
 		request.setAttribute("authenPass", "reputpassword");

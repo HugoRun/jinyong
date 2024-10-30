@@ -11,7 +11,7 @@ import com.ben.dao.task.UTaskDAO;
 import com.ben.vo.task.UTaskVO;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«ÉíÉÏµÄËùÓĞÎªÍê³ÉÈÎÎñ
+ * åŠŸèƒ½ï¼šè§’è‰²èº«ä¸Šçš„æ‰€æœ‰ä¸ºå®Œæˆä»»åŠ¡
  * 
  * @author hhj
  */
@@ -32,7 +32,7 @@ public class CurTaskList
 	}
 
 	/**
-	 * Çå³ıËù½ÓµÄËùÓĞÈÎÎñ
+	 * æ¸…é™¤æ‰€æ¥çš„æ‰€æœ‰ä»»åŠ¡
 	 */
 	public void clear()
 	{
@@ -41,7 +41,7 @@ public class CurTaskList
 	}
 	
 	/**
-	 * ½«HASHMAP½á¹û¼¯×ª»¯ÎªLIST
+	 * å°†HASHMAPç»“æœé›†è½¬åŒ–ä¸ºLIST
 	 * 
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class CurTaskList
 	}
 
 	/**
-	 * ½«HASHMAP½á¹û¼¯×ª»¯ÎªLIST
+	 * å°†HASHMAPç»“æœé›†è½¬åŒ–ä¸ºLIST
 	 * 
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class CurTaskList
 	}
 	
 	/**
-	 * Í¨¹ıÈÎÎñID µÃµ½ÈÎÎñĞÅÏ¢
+	 * é€šè¿‡ä»»åŠ¡ID å¾—åˆ°ä»»åŠ¡ä¿¡æ¯
 	 * 
 	 * @param task_pk
 	 * @return
@@ -82,7 +82,7 @@ public class CurTaskList
 	}
 
 	/**
-	 * Í¨¹ıÈÎÎñ×éµÃµ½ÈÎÎñĞÅÏ¢
+	 * é€šè¿‡ä»»åŠ¡ç»„å¾—åˆ°ä»»åŠ¡ä¿¡æ¯
 	 * 
 	 * @param task_zu
 	 * @return
@@ -93,7 +93,7 @@ public class CurTaskList
 	}
 
 	/**
-	 * ÔÚ»º´æÖĞÔö¼ÓÒ»¸öĞÂÈÎÎñ
+	 * åœ¨ç¼“å­˜ä¸­å¢åŠ ä¸€ä¸ªæ–°ä»»åŠ¡
 	 */
 	public void putNewTask(CurTaskInfo new_task)
 	{
@@ -102,7 +102,7 @@ public class CurTaskList
 	}
 	
 	/**
-	 * ÔÚ»º´æÖĞÒÆ³ıÒ»¸öĞÂÈÎÎñ
+	 * åœ¨ç¼“å­˜ä¸­ç§»é™¤ä¸€ä¸ªæ–°ä»»åŠ¡
 	 */
 	public void removeTask(UTaskVO uTaskVO)
 	{
@@ -111,7 +111,7 @@ public class CurTaskList
 	}
 	
 	/**
-	 * ÔÚ»º´æÖĞÒÆ³ıÒ»¸öĞÂÈÎÎñ KEY Îª×é
+	 * åœ¨ç¼“å­˜ä¸­ç§»é™¤ä¸€ä¸ªæ–°ä»»åŠ¡ KEY ä¸ºç»„
 	 */
 	public void removeTaskZu(CurTaskInfo curTaskInfo)
 	{ 

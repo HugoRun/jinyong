@@ -30,11 +30,11 @@ import com.web.service.task.TaskPageService;
 
 /**
  * @author ls
- * ²Ëµ¥²Ù×÷¹ÜÀí
+ * èœå•æ“ä½œç®¡ç†
  */
 public class MenuAction extends ActionBase {
 	Logger logger = Logger.getLogger("log.action");
-	//ÏÔÊ¾µ¥¸ö²Ëµ¥ÏêÇé
+	//æ˜¾ç¤ºå•ä¸ªèœå•è¯¦æƒ…
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String menu_id = request.getParameter("menu_id");
@@ -55,9 +55,9 @@ public class MenuAction extends ActionBase {
 		
 		MenuService menuService = new MenuService();
 		OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(menu_id));
-		//Íæ¼Ò´¥·¢²Ëµ¥npc
+		//ç©å®¶è§¦å‘èœå•npc
 		UTaskDAO uTaskDAO = new UTaskDAO(); 
-		//²éÑ¯ÈÎÎñÀàĞÍÊÇ¸´ºÏÀàĞÍ
+		//æŸ¥è¯¢ä»»åŠ¡ç±»å‹æ˜¯å¤åˆç±»å‹
 		int taskType = 5;
 		List<UTaskVO> list = uTaskDAO.getMenuId(p_pk+"",taskType);
 		String resultWml = null; 
@@ -66,7 +66,7 @@ public class MenuAction extends ActionBase {
 		String t_point = null;
 		String duihua = null;
 		String sss = null;
-		if( menu.getMenuTaskFlag() == 1 )	//ÈÎÎñ²Ëµ¥ 
+		if( menu.getMenuTaskFlag() == 1 )	//ä»»åŠ¡èœå• 
 		{	
 			TaskFuHeService taskFuHeService = new TaskFuHeService();
 			List<UTaskVO> tMidstGs = new ArrayList<UTaskVO>(); 
@@ -88,8 +88,8 @@ public class MenuAction extends ActionBase {
 							if(Integer.parseInt(tPoint[i])==menu.getId()){
 								GoodsService  goodsService = new GoodsService();
 								if(goodsService.isEnoughWrapSpace(p_pk, number) == false){
-									duihua = "°ü¹ü¸ñÊı²»¹»";
-									sss = "°ü¹ü¸ñÊı²»¹»";
+									duihua = "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
+									sss = "åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ";
 								}else{
 								String	guozhongjiadanjiaowupin = taskFuHeService.guozhongjiadanjiaowupin(p_pk, vo);
 								if(guozhongjiadanjiaowupin != null){
@@ -101,7 +101,7 @@ public class MenuAction extends ActionBase {
 									uTaskVO.setTMidstZb(vo.getTMidstZb()); 
 									duihua = taskDAO.t_zjms(vo.getTId()+"");
 									task_title = taskPageService.Complex(p_pk, Integer.parseInt(vo.getTMidstGs()), vo.getTId());
-									//ÕâÀïÒªÅĞ¶ÏÒÑ¾­µÖÏûµÄÄÇ¸öÖµ 9ÔÂ27ÈÕ Òò½¨¹ú´óÒµÈÎÎñĞèÒª È¥µô´ËÏÂÒ»²½¹¦ÄÜ
+									//è¿™é‡Œè¦åˆ¤æ–­å·²ç»æŠµæ¶ˆçš„é‚£ä¸ªå€¼ 9æœˆ27æ—¥ å› å»ºå›½å¤§ä¸šä»»åŠ¡éœ€è¦ å»æ‰æ­¤ä¸‹ä¸€æ­¥åŠŸèƒ½
 									taskXiaYiBu = taskPageService.taskZhongJianDianXiaYiBu(roleInfo, menu_id, vo.getTPk()+"",request,response,Integer.parseInt(tPoint[i]));
 									tMidstGs.add(uTaskVO);
 									if(menu.getMenuType() == 11){ 
@@ -136,15 +136,15 @@ public class MenuAction extends ActionBase {
 		}
 		
 		
-		if( menu.getMenuType() == MenuType.STONE_UPGRADE )	//±¦Ê¯ºÏ³É²Ëµ¥
+		if( menu.getMenuType() == MenuType.STONE_UPGRADE )	//å®çŸ³åˆæˆèœå•
 		{   
 			return super.dispath(request, response, "/prop.do?cmd=upgradeIndex");
 		}	
-		else if( menu.getMenuType() == MenuType.EQUIP_INLAY_STONE )	//ÏâÇ¶±¦Ê¯²Ëµ¥
+		else if( menu.getMenuType() == MenuType.EQUIP_INLAY_STONE )	//é•¶åµŒå®çŸ³èœå•
 		{   
 			return super.dispath(request, response, "/equip.do?cmd=inlayEquipList");
 		}	
-		else if( menu.getMenuType() == MenuType.DIALOG )	//¶Ô»°²Ëµ¥
+		else if( menu.getMenuType() == MenuType.DIALOG )	//å¯¹è¯èœå•
 		{   
 			resultWml = menuService.dialog(menu);
 			request.setAttribute("task_id", task_id);
@@ -154,39 +154,39 @@ public class MenuAction extends ActionBase {
 			
 			return mapping.findForward("display");
 		}	
-		else if( menu.getMenuType() == MenuType.TASKCARRY )	//ÈÎÎñ´«ËÍ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.TASKCARRY )	//ä»»åŠ¡ä¼ é€èœå•
 		{
 			resultWml = menuService.taskCarry(menu,p_pk,request,response);
-			if( resultWml==null )//Ö±½Ó´«ËÍ
+			if( resultWml==null )//ç›´æ¥ä¼ é€
 			{
 				return n3(mapping, form, request, response);
 			}
 		}
-		else if( menu.getMenuType() == MenuType.INSTANCE_DOOR )	//¸±±¾´«ËÍ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.INSTANCE_DOOR )	//å‰¯æœ¬ä¼ é€èœå•
 		{
 			resultWml = menuService.instanceDoor(menu, roleInfo);
-			if( resultWml==null )//Ö±½Ó´«ËÍ
+			if( resultWml==null )//ç›´æ¥ä¼ é€
 			{
 				return super.returnScene(request, response);
 			}
 		}
-		else if( menu.getMenuType() == MenuType.NORMALCARRY )	//ÆÕÍ¨´«ËÍ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.NORMALCARRY )	//æ™®é€šä¼ é€èœå•
 		{
 			resultWml = menuService.normalCarry(menu, roleInfo,request,response);
-			if( resultWml==null )//Ö±½Ó´«ËÍ
+			if( resultWml==null )//ç›´æ¥ä¼ é€
 			{
 				return n3(mapping, form, request,response);
 			}
 		}
-		else if( menu.getMenuType() == MenuType.CHUANSONG )	// ¹¥³ÇÕ½³¡ÆÕÍ¨´«ËÍ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.CHUANSONG )	// æ”»åŸæˆ˜åœºæ™®é€šä¼ é€èœå•
 		{
 			resultWml = menuService.tongSiegeCarry(menu, roleInfo,response);
-			if( resultWml==null )//Ö±½Ó´«ËÍ
+			if( resultWml==null )//ç›´æ¥ä¼ é€
 			{
 				return n3(mapping, form, request, response);
 			}
 		}
-		else if( menu.getMenuType() == MenuType.REST )//ĞİÏ¢²Ëµ¥
+		else if( menu.getMenuType() == MenuType.REST )//ä¼‘æ¯èœå•
 		{
 			resultWml = menuService.rest(menu, roleInfo);
 			request.setAttribute("task_id", task_id);
@@ -195,11 +195,11 @@ public class MenuAction extends ActionBase {
 			request.setAttribute("resultWml", resultWml); 
 			return mapping.findForward("display");
 		}
-		else if( menu.getMenuType() == MenuType.FATHER )//¸¸²Ëµ¥
+		else if( menu.getMenuType() == MenuType.FATHER )//çˆ¶èœå•
 		{
 			resultWml = menuService.fatherList(roleInfo,menu,request, response);
 		}
-		else if( menu.getMenuType() == MenuType.DEADNPC )//¿ÉÒÔ±»´òËÀµÄNPC²Ëµ¥
+		else if( menu.getMenuType() == MenuType.DEADNPC )//å¯ä»¥è¢«æ‰“æ­»çš„NPCèœå•
 		{
 			if (duihua != null) {
 				request.setAttribute("task_id", task_id);
@@ -212,88 +212,88 @@ public class MenuAction extends ActionBase {
 				return super.dispath(request, response, "/attackNPC.do?cmd=n4&pPk="+roleInfo.getBasicInfo().getPPk());
 			}
 		}
-		else if( menu.getMenuType() == MenuType.FAILNPC )//¿ÉÒÔ´ò°ÜµÄNPC²Ëµ¥
+		else if( menu.getMenuType() == MenuType.FAILNPC )//å¯ä»¥æ‰“è´¥çš„NPCèœå•
 		{
 			menuService.createLoseNPCMenu(menu, roleInfo);
 			return super.dispath(request, response, "/attackNPC.do?cmd=n4&pPk="+p_pk);
 		}
-		else if( menu.getMenuType() == MenuType.SAlE )//Âô²Ëµ¥
+		else if( menu.getMenuType() == MenuType.SAlE )//å–èœå•
 		{
 			return super.dispath(request, response, "/menu/sale.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.BUY )//Âò²Ëµ¥
+		else if( menu.getMenuType() == MenuType.BUY )//ä¹°èœå•
 		{
 			return super.dispath(request, response, "/buy.do?cmd=n1&menu_id="+menu_id);
 		}
-		else if( menu.getMenuType() == MenuType.EXCHANGE )//¶Ò»»²Ëµ¥
+		else if( menu.getMenuType() == MenuType.EXCHANGE )//å…‘æ¢èœå•
 		{
 			return super.dispath(request, response,"/menu/exchange.do?chair="+request.getParameter("chair"));
 		}
-		else if( menu.getMenuType() == MenuType.PETSALE )//Âô³èÎï²Ëµ¥
+		else if( menu.getMenuType() == MenuType.PETSALE )//å–å® ç‰©èœå•
 		{
 			return super.dispath(request, response,"/menu/petsale.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.AVOIDPKPROP )//ÃâPKµÀ¾ß
+		else if( menu.getMenuType() == MenuType.AVOIDPKPROP )//å…PKé“å…·
 		{
 			return super.dispath(request, response,"/avoidpkprop.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.AVOIDPKPROP )//ÃâPKµÀ¾ß
+		else if( menu.getMenuType() == MenuType.AVOIDPKPROP )//å…PKé“å…·
 		{
 			return super.dispath(request, response,"/avoidpkprop.do?cmd=n1"+"&chair="+request.getParameter("chair"));
 		} 
 		
-		else if( menu.getMenuType() == MenuType.TONG )//°ï»áÉêÇëNPC²Ëµ¥
+		else if( menu.getMenuType() == MenuType.TONG )//å¸®ä¼šç”³è¯·NPCèœå•
 		{
 			resultWml = menuService.tongjump(menu,request,response); 
 		} 
 		
-		else if( menu.getMenuType() == MenuType.GOODSCCSTORAGE )//ÎïÆ·²Ö¿â´¢´æ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.GOODSCCSTORAGE )//ç‰©å“ä»“åº“å‚¨å­˜èœå•
 		{
 			request.setAttribute("menu_id", menu_id);
 			request.setAttribute("task_id", task_id);
 			request.setAttribute("menu_type", menu_type); 
 			return super.dispath(request, response,"/menu/storage.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.GOODSQCSTORAGE )//ÎïÆ·²Ö¿âÈ¡³ö²Ëµ¥
+		else if( menu.getMenuType() == MenuType.GOODSQCSTORAGE )//ç‰©å“ä»“åº“å–å‡ºèœå•
 		{
 			request.setAttribute("menu_id", menu_id);
 			request.setAttribute("task_id", task_id);
 			request.setAttribute("menu_type", menu_type); 
 			return super.dispath(request, response,"/menu/getStorage.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.PETCCSTORAGE )//³èÎï²Ö¿â´¢´æ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.PETCCSTORAGE )//å® ç‰©ä»“åº“å‚¨å­˜èœå•
 		{
 			return super.dispath(request, response,"/menu/addPetStorage.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.PETQCSTORAGE )//³èÎï²Ö¿âÈ¡³ö²Ëµ¥
+		else if( menu.getMenuType() == MenuType.PETQCSTORAGE )//å® ç‰©ä»“åº“å–å‡ºèœå•
 		{
 			return super.dispath(request, response,"/menu/getPetStorage.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.MONEYCCSTORAGE )//½ğÇ®²Ö¿â´¢´æ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.MONEYCCSTORAGE )//é‡‘é’±ä»“åº“å‚¨å­˜èœå•
 		{
 			return super.dispath(request, response,"/menu/addMoneyStorage.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.MONEYQCSTORAGE )//½ğÇ®²Ö¿âÈ¡³ö²Ëµ¥
+		else if( menu.getMenuType() == MenuType.MONEYQCSTORAGE )//é‡‘é’±ä»“åº“å–å‡ºèœå•
 		{
 			return super.dispath(request, response,"/menu/getMoneyStorage.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.AUCTIONSELL )//ÅÄÂô³¡ÅÄÂô²Ëµ¥
+		else if( menu.getMenuType() == MenuType.AUCTIONSELL )//æ‹å–åœºæ‹å–èœå•
 		{
 			return super.dispath(request, response,"/menu/auction.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.AUCTIONBUY )//ÅÄÂô³¡ÂòÎïÆ·²Ëµ¥
+		else if( menu.getMenuType() == MenuType.AUCTIONBUY )//æ‹å–åœºä¹°ç‰©å“èœå•
 		{
 			return super.dispath(request, response,"/menu/auctionBuy.do?cmd=n1");
 		}
-		else if( menu.getMenuType() == MenuType.CLOSEPK )//¹ØPK¿ª¹Ø²Ëµ¥
+		else if( menu.getMenuType() == MenuType.CLOSEPK )//å…³PKå¼€å…³èœå•
 		{
 			resultWml = menuService.closePK(menu, roleInfo);
 		}
-		else if( menu.getMenuType() == MenuType.OPENPK )//¿ªPK¿ª¹Ø²Ëµ¥
+		else if( menu.getMenuType() == MenuType.OPENPK )//å¼€PKå¼€å…³èœå•
 		{
 			resultWml = menuService.openPK(menu, roleInfo);
 		}
-		else if( menu.getMenuType() == MenuType.AUCTIONHELP )//ÅÄÂôÖúÊÖ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.AUCTIONHELP )//æ‹å–åŠ©æ‰‹èœå•
 		{
 			try {
 				request.getRequestDispatcher("/menu/auctionGet.do?cmd=n4&moreOrNot=putong").forward(request, response);
@@ -301,7 +301,7 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.AUCTIONHOUSE )//ÅÄÂô²Ö¿â²Ëµ¥
+		else if( menu.getMenuType() == MenuType.AUCTIONHOUSE )//æ‹å–ä»“åº“èœå•
 		{
 			try {
 				request.getRequestDispatcher("/menu/auctionGet.do?cmd=n2").forward(request, response);
@@ -309,7 +309,7 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}	
-		else if( menu.getMenuType() == MenuType.PETSELL )//³èÎïÅÄÂô³¡Âô³èÎï
+		else if( menu.getMenuType() == MenuType.PETSELL )//å® ç‰©æ‹å–åœºå–å® ç‰©
 		{
 			try {	
 				request.getRequestDispatcher("/menu/auctionPetSell.do?cmd=n1").forward(request, response);
@@ -317,7 +317,7 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.PETBUY )//³èÎïÅÄÂô³¡Âò³èÎï
+		else if( menu.getMenuType() == MenuType.PETBUY )//å® ç‰©æ‹å–åœºä¹°å® ç‰©
 		{
 			try {
 				request.getRequestDispatcher("/menu/auctionPetBuy.do?cmd=n1").forward(request, response);
@@ -325,7 +325,7 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.AUCTIONPETHELP )//³èÎïÅÄÂô³¡ÖúÊÖ²Ëµ¥
+		else if( menu.getMenuType() == MenuType.AUCTIONPETHELP )//å® ç‰©æ‹å–åœºåŠ©æ‰‹èœå•
 		{
 			try {
 				request.getRequestDispatcher("/menu/auctionPetHelp.do?cmd=n1&moreOrNot=not").forward(request, response);
@@ -333,7 +333,7 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.AUCTIONPETHOUSE )//³èÎïÅÄÂô³¡²Ö¿â²Ëµ¥
+		else if( menu.getMenuType() == MenuType.AUCTIONPETHOUSE )//å® ç‰©æ‹å–åœºä»“åº“èœå•
 		{
 			try {
 				request.getRequestDispatcher("/menu/auctionPetHouse.do?cmd=n2").forward(request, response);
@@ -341,15 +341,15 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.EQUIP_MAINTAIN )//ĞŞÀí×°±¸²Ëµ¥
+		else if( menu.getMenuType() == MenuType.EQUIP_MAINTAIN )//ä¿®ç†è£…å¤‡èœå•
 		{	
 			return super.dispath(request, response, "/equip.do?cmd=maintainIndex");
 		}
-		else if( menu.getMenuType() == MenuType.RECRUIT )//°ï»áÕĞÄ¼
+		else if( menu.getMenuType() == MenuType.RECRUIT )//å¸®ä¼šæ‹›å‹Ÿ
 		{	
 			resultWml = menuService.recruit(menu, roleInfo,request,response); 
 		} 
-		else if( menu.getMenuType() == MenuType.RELATION )//°ï»á¹ØÏµ
+		else if( menu.getMenuType() == MenuType.RELATION )//å¸®ä¼šå…³ç³»
 		{
 			try {
 				//response.sendRedirect(GameConfig.getContextPath()+"/relationaction.do?cmd=n1"+"&chair="+request.getParameter("chair")); 
@@ -360,18 +360,18 @@ public class MenuAction extends ActionBase {
 			}
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.QUESTION )//´ğÌâÏµÍ³
+		else if( menu.getMenuType() == MenuType.QUESTION )//ç­”é¢˜ç³»ç»Ÿ
 		{
 			return this.dispath(request, response, "/question.do?cmd=n1"+"&menu_id="+menu_id);
 		}
-		//else if( menu.getMenuType() == MenuType.DISPLAYOPERATE )//ÃèÊöĞÔ²Ëµ¥
+		//else if( menu.getMenuType() == MenuType.DISPLAYOPERATE )//æè¿°æ€§èœå•
 		//{
 		//	resultWml = menuService.displayFatherList(menu, userTempBean);
 		//}
-		else if( menu.getMenuType() == MenuType.BUFF )//buff²Ëµ¥
+		else if( menu.getMenuType() == MenuType.BUFF )//buffèœå•
 		{
 			return super.dispath(request, response, "/buffMenu.do?cmd=n1"+"&menu_id="+menu_id);
-		}else if(menu.getMenuType()==MenuType.BOOK){//book²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.BOOK){//bookèœå•
 			try {
 				//response.sendRedirect(GameConfig.getContextPath()+"/relationaction.do?cmd=n1"+"&chair="+request.getParameter("chair")); 
 				request.getRequestDispatcher("/bookMenu.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response); 
@@ -379,7 +379,7 @@ public class MenuAction extends ActionBase {
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.EQUIP_CHANGE_WX){//×°±¸ÎåĞĞ×°»»
+		}else if(menu.getMenuType()==MenuType.EQUIP_CHANGE_WX){//è£…å¤‡äº”è¡Œè£…æ¢
 			try {
 				roleInfo.createEquipProduct(EquipProduct.change_wx);
 				request.getRequestDispatcher("/equip.do?cmd=productIndex").forward(request, response); 
@@ -387,7 +387,7 @@ public class MenuAction extends ActionBase {
 				e.printStackTrace();
 			}
 			return null;
-		}else if(menu.getMenuType()==MenuType.EQUIP_UPGRADE){//×°±¸Éı¼¶
+		}else if(menu.getMenuType()==MenuType.EQUIP_UPGRADE){//è£…å¤‡å‡çº§
 			try {
 				roleInfo.createEquipProduct(EquipProduct.upgrade);
 				request.getRequestDispatcher("/equip.do?cmd=productIndex").forward(request, response); 
@@ -395,7 +395,7 @@ public class MenuAction extends ActionBase {
 				e.printStackTrace();
 			}
 			return null;
-		}else if(menu.getMenuType()==MenuType.DECOMPOSE){//×°±¸·Ö½â
+		}else if(menu.getMenuType()==MenuType.DECOMPOSE){//è£…å¤‡åˆ†è§£
 			try {
 				//response.sendRedirect(GameConfig.getContextPath()+"/relationaction.do?cmd=n1"+"&chair="+request.getParameter("chair")); 
 				request.getRequestDispatcher("/updecompose.do?cmd=n10"+"&menu_id="+menu_id).forward(request, response); 
@@ -404,7 +404,7 @@ public class MenuAction extends ActionBase {
 				e.printStackTrace();
 			}
 			return null;
-		}else if(menu.getMenuType()==MenuType.EQUIPTRANSLATE){//×°±¸×ª»¯
+		}else if(menu.getMenuType()==MenuType.EQUIPTRANSLATE){//è£…å¤‡è½¬åŒ–
 			try {
 				//response.sendRedirect(GameConfig.getContextPath()+"/relationaction.do?cmd=n1"+"&chair="+request.getParameter("chair")); 
 				request.getRequestDispatcher("/wxc.do?cmd=open"+"&menu_id="+menu_id).forward(request, response); 
@@ -412,14 +412,14 @@ public class MenuAction extends ActionBase {
 			} catch (Exception e) {
 				
 			}
-		}else if( menu.getMenuType() == MenuType.TONGMAP )	//°ïÅÉµØÍ¼´«ËÍ
+		}else if( menu.getMenuType() == MenuType.TONGMAP )	//å¸®æ´¾åœ°å›¾ä¼ é€
 		{
 			resultWml = menuService.TongMapCarry(menu, roleInfo);
-			if( resultWml==null )//Ö±½Ó´«ËÍ
+			if( resultWml==null )//ç›´æ¥ä¼ é€
 			{
 				return n3(mapping, form, request, response);
 			}
-		}else if(menu.getMenuType()==MenuType.LOTTERY){//¾º²Â
+		}else if(menu.getMenuType()==MenuType.LOTTERY){//ç«çŒœ
 			try {
 				//response.sendRedirect(GameConfig.getContextPath()+"/relationaction.do?cmd=n1"+"&chair="+request.getParameter("chair")); 
 				request.getRequestDispatcher("/lottery.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response); 
@@ -427,7 +427,7 @@ public class MenuAction extends ActionBase {
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.LABORAGE){//Áì¹¤×Ê
+		}else if(menu.getMenuType()==MenuType.LABORAGE){//é¢†å·¥èµ„
 			try {
 				//response.sendRedirect(GameConfig.getContextPath()+"/relationaction.do?cmd=n1"+"&chair="+request.getParameter("chair")); 
 				request.getRequestDispatcher("/laborage.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response); 
@@ -435,152 +435,152 @@ public class MenuAction extends ActionBase {
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.TONGBUILD){//°ï»á½¨Öş
+		}else if(menu.getMenuType()==MenuType.TONGBUILD){//å¸®ä¼šå»ºç­‘
 			try { 
 				request.getRequestDispatcher("/build.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.TONGRES){//°ï»á×ÊÔ´
+		}else if(menu.getMenuType()==MenuType.TONGRES){//å¸®ä¼šèµ„æº
 			try { 
 				request.getRequestDispatcher("/res.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.TONGCONTRIBUTEMONEY){//°ï»á×ÊÔ´¾èÏ×½ğÇ®
+		}else if(menu.getMenuType()==MenuType.TONGCONTRIBUTEMONEY){//å¸®ä¼šèµ„æºæçŒ®é‡‘é’±
 			try { 
 				request.getRequestDispatcher("/contribute.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.TONGCONTRIBUTEGOODS){//°ï»á×ÊÔ´¾èÏ×ÎïÆ·
+		}else if(menu.getMenuType()==MenuType.TONGCONTRIBUTEGOODS){//å¸®ä¼šèµ„æºæçŒ®ç‰©å“
 			try { 
 				request.getRequestDispatcher("/contribute.do?cmd=n3"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.DISPENSERES){//·Ö·¢°ï»á×ÊÔ´
+		}else if(menu.getMenuType()==MenuType.DISPENSERES){//åˆ†å‘å¸®ä¼šèµ„æº
 			try { 
 				request.getRequestDispatcher("/dispense.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 					
 			}
-		}else if(menu.getMenuType()==MenuType.INFORMATION){//·â²â×ÊÁÏÌá½»
+		}else if(menu.getMenuType()==MenuType.INFORMATION){//å°æµ‹èµ„æ–™æäº¤
 			try { 
 				request.getRequestDispatcher("/information.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.FIELDMANAGER){// ÑİÎä¹ÜÀíÔ±
+		}else if(menu.getMenuType()==MenuType.FIELDMANAGER){// æ¼”æ­¦ç®¡ç†å‘˜
 			try { 
 				request.getRequestDispatcher("/fieldmanager.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.FIGHERFIELD){// ÑİÎäÅÅĞĞ°ñ
+		}else if(menu.getMenuType()==MenuType.FIGHERFIELD){// æ¼”æ­¦æ’è¡Œæ¦œ
 			try { 
 				request.getRequestDispatcher("/fielduntangle.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.MAST){// Æì¸Ë
+		}else if(menu.getMenuType()==MenuType.MAST){// æ——æ†
 			try { 
 				request.getRequestDispatcher("/fieldmast.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
 			return null;
-		}else if(menu.getMenuType()==MenuType.TONGMAPCARRYMENU){// °ïÅÉµØÍ¼´«ËÍ²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.TONGMAPCARRYMENU){// å¸®æ´¾åœ°å›¾ä¼ é€èœå•
 			try { 
 				request.getRequestDispatcher("/tongmapcarrymenuaction.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.LIVESKILLMENU){// Éú»î¼¼ÄÜ²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.LIVESKILLMENU){// ç”Ÿæ´»æŠ€èƒ½èœå•
 			try { 
 				request.getRequestDispatcher("/liveskill.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.COOKMENU){// Åëâ¿²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.COOKMENU){// çƒ¹é¥ªèœå•
 			try { 
 				request.getRequestDispatcher("/synthesize.do?cmd=n1"+"&menu_id="+menu_id+"&s_type=1&chair="+request.getParameter("chair")).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.LIANYAOMENU){// Á¶Ò©²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.LIANYAOMENU){// ç‚¼è¯èœå•
 			try { 
 				request.getRequestDispatcher("/synthesize.do?cmd=n1"+"&menu_id="+menu_id+"&s_type=2&chair="+request.getParameter("chair")).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.DUANZAOMENU){// ¶ÍÔì²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.DUANZAOMENU){// é”»é€ èœå•
 			try { 
 				request.getRequestDispatcher("/synthesize.do?cmd=n1"+"&menu_id="+menu_id+"&s_type=3&chair="+request.getParameter("chair")).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.ZHIZAOMENU){// Ö¯Ôì²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.ZHIZAOMENU){// ç»‡é€ èœå•
 			try { 
 				request.getRequestDispatcher("/synthesize.do?cmd=n1"+"&menu_id="+menu_id+"&s_type=4&chair="+request.getParameter("chair")).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.ZHUBAOMENU){// Öé±¦²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.ZHUBAOMENU){// ç å®èœå•
 			try { 
 				request.getRequestDispatcher("/synthesize.do?cmd=n1"+"&menu_id="+menu_id+"&s_type=5&chair="+request.getParameter("chair")).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.NUJIANGMENU){// Ä¾½³²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.NUJIANGMENU){// æœ¨åŒ èœå•
 			try { 
 				request.getRequestDispatcher("/synthesize.do?cmd=n1"+"&menu_id="+menu_id+"&s_type=6&chair="+request.getParameter("chair")).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.MENUTOUCHTASK){// Ä¾½³²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.MENUTOUCHTASK){// æœ¨åŒ èœå•
 			try { 
 				request.getRequestDispatcher("/menutouchtask.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.VIPLABORAGE){//VIPÁìÈ¡¹¤×Ê
+		}else if(menu.getMenuType()==MenuType.VIPLABORAGE){//VIPé¢†å–å·¥èµ„
 			try { 
 				request.getRequestDispatcher("/vip.do?cmd=n3"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.SYSPRIZE){// ÁìÈ¡ÏµÍ³½±Àø²Ëµ¥
+		}else if(menu.getMenuType()==MenuType.SYSPRIZE){// é¢†å–ç³»ç»Ÿå¥–åŠ±èœå•
 			try { 
 				request.getRequestDispatcher("/sysprize.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.GMKICK){// GMÌßÈËÏÂÏß¹¦ÄÜ
+		}else if(menu.getMenuType()==MenuType.GMKICK){// GMè¸¢äººä¸‹çº¿åŠŸèƒ½
 			try { 
 				request.getRequestDispatcher("/gmkick.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.TIJIAO){// Ìá½»°ïÅÉÎïÆ·
+		}else if(menu.getMenuType()==MenuType.TIJIAO){// æäº¤å¸®æ´¾ç‰©å“
 			try { 
 				request.getRequestDispatcher("/tijiao.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.SIGNUP){// ¹¥³ÇÕ½±¨Ãû
+		}else if(menu.getMenuType()==MenuType.SIGNUP){// æ”»åŸæˆ˜æŠ¥å
 			try { 
 				request.getRequestDispatcher("/signup.do?cmd=n1"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.JOINUP){// ½øÈë¹¥³ÇÕ½ÇøÓò
+		}else if(menu.getMenuType()==MenuType.JOINUP){// è¿›å…¥æ”»åŸæˆ˜åŒºåŸŸ
 			try { 
 				request.getRequestDispatcher("/signup.do?cmd=n3"+"&menu_id="+menu_id).forward(request, response);
 			} catch (Exception e) {
 				
 			}
-		}else if(menu.getMenuType()==MenuType.CITYDOOR){// ¹¥³ÇÕ½´óÃÅ
+		}else if(menu.getMenuType()==MenuType.CITYDOOR){// æ”»åŸæˆ˜å¤§é—¨
 		/*	TongSiegeBattleService tongSiegeBattleService = new TongSiegeBattleService();
 			resultWml = tongSiegeBattleService.dialog(menu,roleInfo);
 			request.setAttribute("task_id", task_id);
@@ -589,7 +589,7 @@ public class MenuAction extends ActionBase {
 			request.setAttribute("resultWml", resultWml);*/
 			
 			return mapping.findForward("display");
-		}else if(menu.getMenuType()==MenuType.DIAOXIANG){// ¹¥³ÇÕ½µñÏñ
+		}else if(menu.getMenuType()==MenuType.DIAOXIANG){// æ”»åŸæˆ˜é›•åƒ
 			
 			resultWml = menuService.dialog(menu);
 			request.setAttribute("task_id", task_id);
@@ -599,7 +599,7 @@ public class MenuAction extends ActionBase {
 			
 			return mapping.findForward("citydoordisplay");
 			
-		}else if(menu.getMenuType()==MenuType.ZHAOHUN){// ¹¥³ÇÇøÓòµÄÕĞ»êá¦
+		}else if(menu.getMenuType()==MenuType.ZHAOHUN){// æ”»åŸåŒºåŸŸçš„æ‹›é­‚å¹¡
 			resultWml = menuService.createZhaoAttackNPCMenu(menu, roleInfo,request,response);
 			if ( resultWml == null) {
     			try { 
@@ -613,7 +613,7 @@ public class MenuAction extends ActionBase {
 			} 
 		}
 		else if(menu.getMenuType()== MenuType.JIEYI)
-			//½áÒå¹¦ÄÜ
+			//ç»“ä¹‰åŠŸèƒ½
 		{
 			synchronized (Constant.JIEYI_IDS)
 			{
@@ -625,12 +625,12 @@ public class MenuAction extends ActionBase {
 		}
 		
 		else if(menu.getMenuType() == MenuType.JIECHUJIEYI){
-			//½â³ı½áÒå 
+			//è§£é™¤ç»“ä¹‰ 
 			return mapping.findForward("jiechujieyi");
 		}
 		
 		else if(menu.getMenuType() == MenuType.JIEHUN){
-//			½á»é
+//			ç»“å©š
 			synchronized (Constant.JIEHUN_IDS){
 				if(null==Constant.JIEHUN_IDS||"".equals(Constant.JIEHUN_IDS.trim())){
 					Constant.JIEHUN_IDS = menu.getMenuOperate1();
@@ -639,35 +639,35 @@ public class MenuAction extends ActionBase {
 			return mapping.findForward("jiehun");
 		}
 		else if(menu.getMenuType() == MenuType.LIHUN){
-//			Àë»é
+//			ç¦»å©š
 			return mapping.findForward("lihun");
 		}else if(menu.getMenuType() == MenuType.ZHAOTU){
-//			ÕĞÍ½
+//			æ‹›å¾’
 			return mapping.findForward("zhaotu");
 		}else if(menu.getMenuType() == MenuType.BAISHI){
-			//°İÊ¦
+			//æ‹œå¸ˆ
 			return mapping.findForward("baishi");
 		}
 		else if(menu.getMenuType() == MenuType.LEITAI){
-			//´òÀŞ
+			//æ‰“æ“‚
 			request.setAttribute("menu_id", menu.getId());
 			return mapping.findForward("leitai");
 		}
 		else if(menu.getMenuType() == MenuType.INTO_LEITAI){
-			//½øÈëÀŞÌ¨
+			//è¿›å…¥æ“‚å°
 			request.setAttribute("menu_id", menu.getId());
 			return mapping.findForward("intoleitai");
 		}
 		else if(menu.getMenuType() == MenuType.VIEW_COM_RESULT){
-			//²é¿´±ÈÈü³É¼¨
+			//æŸ¥çœ‹æ¯”èµ›æˆç»©
 			request.setAttribute("menu_id", menu.getId());
 			return mapping.findForward("view_com_result");
 		}
 		else if(menu.getMenuType() == MenuType.ACTIVE_LEITAI){
-			//ÀŞÌ¨¶ÔÕó±í
+			//æ“‚å°å¯¹é˜µè¡¨
 			return mapping.findForward("active_leitai");
 		}else if(menu.getMenuType()== MenuType.SHEARE){
-			//¹²Ïí²Ëµ¥
+			//å…±äº«èœå•
 			if(CompassService.useSheareMenu(menu.getId(), p_pk)){
 				try {
 					request.getRequestDispatcher("/menu/exchange.do?chair="+request.getParameter("chair")).forward(request, response);
@@ -676,11 +676,11 @@ public class MenuAction extends ActionBase {
 
 				} 
 			}else{
-				request.setAttribute("message", "ºÜÒÅº¶£¬ÒÑ¾­ÓĞÈËÁìÈ¡ÁË½±Àø¡­¡­");
+				request.setAttribute("message", "å¾ˆé—æ†¾ï¼Œå·²ç»æœ‰äººé¢†å–äº†å¥–åŠ±â€¦â€¦");
 				return mapping.findForward("mess");
 			}
 		}else if(menu.getMenuType()==MenuType.OLD_XIANG){
-			//ÆÆ¾ÉÏä×Ó
+			//ç ´æ—§ç®±å­
 			if(CompassService.useOld_Xiang(menu, p_pk)){
 				try {
 					request.getRequestDispatcher("/menu/exchange.do?chair="+request.getParameter("chair")).forward(request, response);
@@ -689,37 +689,37 @@ public class MenuAction extends ActionBase {
 
 				} 
 			}else{
-				request.setAttribute("message", "ºÜÒÅº¶£¬ÒÑ¾­ÓĞÈËÁìÈ¡ÁË½±Àø¡­¡­");
+				request.setAttribute("message", "å¾ˆé—æ†¾ï¼Œå·²ç»æœ‰äººé¢†å–äº†å¥–åŠ±â€¦â€¦");
 				return mapping.findForward("mess");
 			}
 		}else if(menu.getMenuType() == MenuType.LIYONG){
-			//´ğÌâÀÏÈË
+			//ç­”é¢˜è€äºº
 			request.setAttribute("menu", menu);
 			return mapping.findForward("liyong");
 		}else if(menu.getMenuType() == MenuType.LEITAI_ACTIVE){
-			//ÀŞÌ¨±¨Ãû
+			//æ“‚å°æŠ¥å
 			if(menu.getMenuOperate2()!=null&&!"".equals(menu.getMenuOperate2().trim())){
 				try{
 					if(roleInfo.getBasicInfo().getGrade()<Integer.valueOf(menu.getMenuOperate2().trim())){
-						request.setAttribute("message", "¸ÃÀŞÌ¨×îµÍµÈ¼¶ÏŞÖÆÎª"+menu.getMenuOperate2());
+						request.setAttribute("message", "è¯¥æ“‚å°æœ€ä½ç­‰çº§é™åˆ¶ä¸º"+menu.getMenuOperate2());
 						return mapping.findForward("mess");
 					}
-					//½øÈëÀŞÌ¨
+					//è¿›å…¥æ“‚å°
 					return mapping.findForward("leitaibaoming");
 				}catch(Exception e){
 					logger.info(e.getMessage());
-					//½øÈëÀŞÌ¨
+					//è¿›å…¥æ“‚å°
 					return mapping.findForward("leitaibaoming");
 				}
 			}
 		}else if(menu.getMenuType()==MenuType.LEITAI_CHALLENGE_MAGAGER){
-			//ÌôÕ½ÀŞÌ¨¹ÜÀíÔ±
+			//æŒ‘æˆ˜æ“‚å°ç®¡ç†å‘˜
 			return mapping.findForward("challengeleitai");
 		}else if(menu.getMenuType()==MenuType.BATTLE){
-			//¶ÔÕ½ÀŞÌ¨
+			//å¯¹æˆ˜æ“‚å°
 			return mapping.findForward("battle");
 		}
-		else if( menu.getMenuType() == MenuType.UNCHARTEDROOMSERVICE )//ÃØ¾³
+		else if( menu.getMenuType() == MenuType.UNCHARTEDROOMSERVICE )//ç§˜å¢ƒ
 		{
 			try { 
 				request.getRequestDispatcher("/urs.do?cmd=n1"+"&menu_id="+menu_id).forward(request,response);
@@ -728,7 +728,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.WISHINGTREE )//ĞíÔ¸Ê÷
+		else if( menu.getMenuType() == MenuType.WISHINGTREE )//è®¸æ„¿æ ‘
 		{
 			try { 
 				request.getRequestDispatcher("/wishingtree.do?cmd=index").forward(request,response);
@@ -737,7 +737,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.WISHINGTREEGM )//ĞíÔ¸Ê÷
+		else if( menu.getMenuType() == MenuType.WISHINGTREEGM )//è®¸æ„¿æ ‘
 		{
 			try { 
 				request.getRequestDispatcher("/wishingtree.do?cmd=indexGM").forward(request,response);
@@ -746,7 +746,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.MENPAICONTESTRANK )//ÃÅÅÉ´óµÜ×ÓÅÅÃû
+		else if( menu.getMenuType() == MenuType.MENPAICONTESTRANK )//é—¨æ´¾å¤§å¼Ÿå­æ’å
 		{
 			try { 
 				request.getRequestDispatcher("/menpai.do?cmd=rank"+"&menu_id="+menu_id).forward(request,response);
@@ -755,7 +755,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.MENPAICONTESTBONUS )//ÃÅÅÉ´óµÜ×ÓÁì½±
+		else if( menu.getMenuType() == MenuType.MENPAICONTESTBONUS )//é—¨æ´¾å¤§å¼Ÿå­é¢†å¥–
 		{
 			try { 
 				request.getRequestDispatcher("/menpai.do?cmd=get"+"&menu_id="+menu_id).forward(request,response);
@@ -764,7 +764,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.TIANGUANINNOMAL)//Ìì¹Ø
+		else if( menu.getMenuType() == MenuType.TIANGUANINNOMAL)//å¤©å…³
 		{
 			try { 
 				request.getRequestDispatcher("/tianguan.do?cmd=in"+"&menu_id="+menu_id).forward(request,response);
@@ -773,7 +773,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.MENPAINPC)//ÃÅÅÉNPC
+		else if( menu.getMenuType() == MenuType.MENPAINPC)//é—¨æ´¾NPC
 		{
 			try { 
 				request.getRequestDispatcher("/menpainpc.do?cmd=attack"+"&menu_id="+menu_id).forward(request,response);
@@ -782,7 +782,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if( menu.getMenuType() == MenuType.MENPAINPCRANK)//ÃÅÅÉNPC
+		else if( menu.getMenuType() == MenuType.MENPAINPCRANK)//é—¨æ´¾NPC
 		{
 			try { 
 				request.getRequestDispatcher("/menpainpc.do?cmd=rank"+"&menu_id="+menu_id).forward(request,response);
@@ -791,7 +791,7 @@ public class MenuAction extends ActionBase {
 			
 			return null;
 		}
-		else if(menu.getMenuType()==MenuType.PKREGIST)//PK»î¶¯±¨Ãû
+		else if(menu.getMenuType()==MenuType.PKREGIST)//PKæ´»åŠ¨æŠ¥å
 		{
 			try
 			{
@@ -801,7 +801,7 @@ public class MenuAction extends ActionBase {
 			{
 			}
 		}
-		else if(menu.getMenuType()==MenuType.ENTERPKVIEW)//PK»î¶¯½øÈë±ÈÈü³¡µØ
+		else if(menu.getMenuType()==MenuType.ENTERPKVIEW)//PKæ´»åŠ¨è¿›å…¥æ¯”èµ›åœºåœ°
 		{
 			try
 			{
@@ -811,7 +811,7 @@ public class MenuAction extends ActionBase {
 			{
 			}
 		}
-		else if(menu.getMenuType()==MenuType.SHOWVSTABLE)//PK»î¶¯²é¿´¶ÔÕó±í
+		else if(menu.getMenuType()==MenuType.SHOWVSTABLE)//PKæ´»åŠ¨æŸ¥çœ‹å¯¹é˜µè¡¨
 		{
 			try
 			{
@@ -821,7 +821,7 @@ public class MenuAction extends ActionBase {
 			{
 			}
 		}
-		else if(menu.getMenuType()==MenuType.SHOWPKRESULT)//PK»î¶¯²é¿´±ÈÈü½á¹û
+		else if(menu.getMenuType()==MenuType.SHOWPKRESULT)//PKæ´»åŠ¨æŸ¥çœ‹æ¯”èµ›ç»“æœ
 		{
 			try
 			{
@@ -831,7 +831,7 @@ public class MenuAction extends ActionBase {
 			{
 			}
 		}
-		else if(menu.getMenuType()==MenuType.PKRULE)//PK»î¶¯²é¿´±ÈÈü¹æÔò
+		else if(menu.getMenuType()==MenuType.PKRULE)//PKæ´»åŠ¨æŸ¥çœ‹æ¯”èµ›è§„åˆ™
 		{
 			try
 			{
@@ -841,7 +841,7 @@ public class MenuAction extends ActionBase {
 			{
 			}
 		}
-		else if(menu.getMenuType()==MenuType.PKPRICE)//PK»î¶¯Ê¤ÀûÍæ¼ÒÁìÈ¡½±Æ·
+		else if(menu.getMenuType()==MenuType.PKPRICE)//PKæ´»åŠ¨èƒœåˆ©ç©å®¶é¢†å–å¥–å“
 		{
 			try
 			{
@@ -861,13 +861,13 @@ public class MenuAction extends ActionBase {
 	
 	
 	
-	//ÏÔÊ¾ËùÓĞ²Ëµ¥
+	//æ˜¾ç¤ºæ‰€æœ‰èœå•
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String map_id = request.getParameter("map_id");
 		if( map_id==null )
 		{
-			logger.info("map_idÎª¿Õ!");
+			logger.info("map_idä¸ºç©º!");
 		}
         //UserTempBean  userTempBean = (UserTempBean)request.getSession().getAttribute("userTempBean");
 		
@@ -883,7 +883,7 @@ public class MenuAction extends ActionBase {
 	}
 	
 	
-	//´«ËÍ²Ëµ¥´¦Àí
+	//ä¼ é€èœå•å¤„ç†
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -893,7 +893,7 @@ public class MenuAction extends ActionBase {
 		String menu_id = request.getParameter("menu_id");
 		if( menu_id==null )
 		{
-			logger.info("***********************************menu_idÎª¿Õ!");
+			logger.info("***********************************menu_idä¸ºç©º!");
 		}
 		
 		
@@ -901,7 +901,7 @@ public class MenuAction extends ActionBase {
 		OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(menu_id));
 		menuService.carrayExpend(menu, roleInfo);
 		
-		//ÉèÖÃĞÂµÄsceneId	
+		//è®¾ç½®æ–°çš„sceneId	
 		String sceneIds = menu.getMenuOperate1();
 		String sceneId = sceneIds.split(";")[0];
 		

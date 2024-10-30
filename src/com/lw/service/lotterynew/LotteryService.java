@@ -16,12 +16,12 @@ public class LotteryService
 {
 	Logger logger = Logger.getLogger(LotteryService.class);
 
-	// ¸ù¾İÊı×ÖÉú³É²ÊÆ±£¨ÏÔÊ¾ÓÃ£©
+	// æ ¹æ®æ•°å­—ç”Ÿæˆå½©ç¥¨ï¼ˆæ˜¾ç¤ºç”¨ï¼‰
 	public String getLotteryPerInfo(String lottery_num)
 	{
 		if (lottery_num == null || lottery_num.equals(""))
 		{
-			return "ÔİÎŞºÅÂë";
+			return "æš‚æ— å·ç ";
 		}
 		else
 		{
@@ -29,153 +29,153 @@ public class LotteryService
 			String[] lottery_player = lottery_num.split(",");
 			if (lottery_player.length < 4)
 			{
-				return "ÔİÎŞºÅÂë";
+				return "æš‚æ— å·ç ";
 			}
 			if (lottery_player[0].equals("1"))
 			{
-				lottery = lottery + "Ò»Í²,";
+				lottery = lottery + "ä¸€ç­’,";
 			}
 			if (lottery_player[0].equals("2"))
 			{
-				lottery = lottery + "¶şÍ²,";
+				lottery = lottery + "äºŒç­’,";
 			}
 			if (lottery_player[0].equals("3"))
 			{
-				lottery = lottery + "ÈıÍ²,";
+				lottery = lottery + "ä¸‰ç­’,";
 			}
 			if (lottery_player[0].equals("4"))
 			{
-				lottery = lottery + "ËÄÍ²,";
+				lottery = lottery + "å››ç­’,";
 			}
 			if (lottery_player[0].equals("5"))
 			{
-				lottery = lottery + "ÎåÍ²,";
+				lottery = lottery + "äº”ç­’,";
 			}
 			if (lottery_player[0].equals("6"))
 			{
-				lottery = lottery + "ÁùÍ²,";
+				lottery = lottery + "å…­ç­’,";
 			}
 			if (lottery_player[0].equals("7"))
 			{
-				lottery = lottery + "ÆßÍ²,";
+				lottery = lottery + "ä¸ƒç­’,";
 			}
 			if (lottery_player[0].equals("8"))
 			{
-				lottery = lottery + "°ËÍ²,";
+				lottery = lottery + "å…«ç­’,";
 			}
 			if (lottery_player[0].equals("9"))
 			{
-				lottery = lottery + "¾ÅÍ²,";
+				lottery = lottery + "ä¹ç­’,";
 
 			}
 			if (lottery_player[1].equals("1"))
 			{
-				lottery = lottery + "Ò»Ìõ,";
+				lottery = lottery + "ä¸€æ¡,";
 			}
 			if (lottery_player[1].equals("2"))
 			{
-				lottery = lottery + "¶şÌõ,";
+				lottery = lottery + "äºŒæ¡,";
 			}
 			if (lottery_player[1].equals("3"))
 			{
-				lottery = lottery + "ÈıÌõ,";
+				lottery = lottery + "ä¸‰æ¡,";
 			}
 			if (lottery_player[1].equals("4"))
 			{
-				lottery = lottery + "ËÄÌõ,";
+				lottery = lottery + "å››æ¡,";
 			}
 			if (lottery_player[1].equals("5"))
 			{
-				lottery = lottery + "ÎåÌõ,";
+				lottery = lottery + "äº”æ¡,";
 			}
 			if (lottery_player[1].equals("6"))
 			{
-				lottery = lottery + "ÁùÌõ,";
+				lottery = lottery + "å…­æ¡,";
 			}
 			if (lottery_player[1].equals("7"))
 			{
-				lottery = lottery + "ÆßÌõ,";
+				lottery = lottery + "ä¸ƒæ¡,";
 			}
 			if (lottery_player[1].equals("8"))
 			{
-				lottery = lottery + "°ËÌõ,";
+				lottery = lottery + "å…«æ¡,";
 			}
 			if (lottery_player[1].equals("9"))
 			{
-				lottery = lottery + "¾ÅÌõ,";
+				lottery = lottery + "ä¹æ¡,";
 
 			}
 			if (lottery_player[2].equals("1"))
 			{
-				lottery = lottery + "Ò»Èf,";
+				lottery = lottery + "ä¸€è¬,";
 			}
 			if (lottery_player[2].equals("2"))
 			{
-				lottery = lottery + "¶şÈf,";
+				lottery = lottery + "äºŒè¬,";
 			}
 			if (lottery_player[2].equals("3"))
 			{
-				lottery = lottery + "ÈıÈf,";
+				lottery = lottery + "ä¸‰è¬,";
 			}
 			if (lottery_player[2].equals("4"))
 			{
-				lottery = lottery + "ËÄÈf,";
+				lottery = lottery + "å››è¬,";
 			}
 			if (lottery_player[2].equals("5"))
 			{
-				lottery = lottery + "ÎåÈf,";
+				lottery = lottery + "äº”è¬,";
 			}
 			if (lottery_player[2].equals("6"))
 			{
-				lottery = lottery + "ÁùÈf,";
+				lottery = lottery + "å…­è¬,";
 			}
 			if (lottery_player[2].equals("7"))
 			{
-				lottery = lottery + "ÆßÈf,";
+				lottery = lottery + "ä¸ƒè¬,";
 			}
 			if (lottery_player[2].equals("8"))
 			{
-				lottery = lottery + "°ËÈf,";
+				lottery = lottery + "å…«è¬,";
 			}
 			if (lottery_player[2].equals("9"))
 			{
-				lottery = lottery + "¾ÅÈf,";
+				lottery = lottery + "ä¹è¬,";
 
 			}
 			if (lottery_player[3].equals("1"))
 			{
-				lottery = lottery + "¶«·ç";
+				lottery = lottery + "ä¸œé£";
 			}
 			if (lottery_player[3].equals("2"))
 			{
-				lottery = lottery + "ÄÏ·ç";
+				lottery = lottery + "å—é£";
 			}
 			if (lottery_player[3].equals("3"))
 			{
-				lottery = lottery + "Î÷·ç";
+				lottery = lottery + "è¥¿é£";
 			}
 			if (lottery_player[3].equals("4"))
 			{
-				lottery = lottery + "±±·ç";
+				lottery = lottery + "åŒ—é£";
 			}
 			if (lottery_player[3].equals("5"))
 			{
-				lottery = lottery + "ºìÖĞ";
+				lottery = lottery + "çº¢ä¸­";
 			}
 			if (lottery_player[3].equals("6"))
 			{
-				lottery = lottery + "°×°å";
+				lottery = lottery + "ç™½æ¿";
 			}
 			if (lottery_player[3].equals("7"))
 			{
-				lottery = lottery + "·¢²Æ";
+				lottery = lottery + "å‘è´¢";
 			}
 			return lottery;
 		}
 
 	}
 
-	/** µÃµ½Éú³ÉÖĞ½±²ÊÆ±ºÅÂë */
+	/** å¾—åˆ°ç”Ÿæˆä¸­å¥–å½©ç¥¨å·ç  */
 	private String getSysLotteryNum()
 	{
 		int lotteryNum1 = MathUtil.getRandomBetweenXY(1, 9);
@@ -187,7 +187,7 @@ public class LotteryService
 		return num;
 	}
 
-	/** Éú³É²ÊÆ±ÆÚÊı */
+	/** ç”Ÿæˆå½©ç¥¨æœŸæ•° */
 	public String getSysLotteryDate()
 	{
 		Date date = new Date();
@@ -226,7 +226,7 @@ public class LotteryService
 		}
 	}
 
-	/** Éú³É²ÊÉÏÆÚÆ±ÆÚÊı */
+	/** ç”Ÿæˆå½©ä¸ŠæœŸç¥¨æœŸæ•° */
 	public String getSysLotteryYesdate()
 	{
 		Date date = new Date();
@@ -272,7 +272,7 @@ public class LotteryService
 		}
 	}
 
-	/** Éú³É²ÊÉÏÆÚÆ±ÆÚÊı */
+	/** ç”Ÿæˆå½©ä¸ŠæœŸç¥¨æœŸæ•° */
 	private String getSysLotterYestodaydate()
 	{
 		Date date = new Date();
@@ -304,7 +304,7 @@ public class LotteryService
 		}
 	}
 
-	// ÖĞ½±µÄ¸üĞÂ
+	// ä¸­å¥–çš„æ›´æ–°
 	public String changePlayer(int lv, String catch_player, int zhu)
 	{
 		if (catch_player == null)
@@ -331,7 +331,7 @@ public class LotteryService
 				+ catch_player_temp[2];
 	}
 
-	// µÃµ½¸ÃÆÚ²ÊÆ±µÄÄÚÈİ
+	// å¾—åˆ°è¯¥æœŸå½©ç¥¨çš„å†…å®¹
 	public LotteryVO selectLotteryInfoByDate(String lottery_date)
 	{
 		LotteryDAO dao = new LotteryDAO();
@@ -339,7 +339,7 @@ public class LotteryService
 		return vo;
 	}
 
-	/** Éú³É²ÊÆ±* */
+	/** ç”Ÿæˆå½©ç¥¨* */
 	private void sysLotteryBuildNum()
 	{
 		LotteryDAO dao = new LotteryDAO();
@@ -357,8 +357,8 @@ public class LotteryService
 		vo.setLottery_content(getSysLotteryNum());
 		dao.insertLotteryInfo(vo);
 
-		String info_one = "µÚ" + date + "ÆÚ¾º²Â¿ªÊ¼Í¶×¢ÁË!";
-		String info_two = "µÚ" + date + "ÆÚ¾º²ÂÒÑ¾­¿ª½±,Çë¼°Ê±²éÑ¯ÖĞ½±ĞÅÏ¢.";
+		String info_one = "ç¬¬" + date + "æœŸç«çŒœå¼€å§‹æŠ•æ³¨äº†!";
+		String info_two = "ç¬¬" + date + "æœŸç«çŒœå·²ç»å¼€å¥–,è¯·åŠæ—¶æŸ¥è¯¢ä¸­å¥–ä¿¡æ¯.";
 		String[] time = getTime();
 		SystemInfoService ss = new SystemInfoService();
 		ss.insertSystemInfoBySystem(info_one, time[0]);
@@ -412,7 +412,7 @@ public class LotteryService
 		return time;
 	}
 
-	// µÃµ½½±³ØµÄĞÅÏ¢
+	// å¾—åˆ°å¥–æ± çš„ä¿¡æ¯
 	public LotteryVO getSysLotteryInfo()
 	{
 		LotteryDAO dao = new LotteryDAO();
@@ -420,14 +420,14 @@ public class LotteryService
 		return sys_vo;
 	}
 
-	/** ¼ÆËã½±³ØºÍÒ»Ğ©½±Àø* */
+	/** è®¡ç®—å¥–æ± å’Œä¸€äº›å¥–åŠ±* */
 	private void planningLotteryBonus()
 	{
 		LotteryDAO dao = new LotteryDAO();
 		String lottery_date = getSysLotteryYesdate();
 		LotteryVO vo = selectLotteryInfoByDate(lottery_date);
 		LotteryVO sys_vo = getSysLotteryInfo();
-		// µÃµ½¹ö¶¯½±Àø
+		// å¾—åˆ°æ»šåŠ¨å¥–åŠ±
 		long bonus_temp = MathUtil.getRandomBetweenXY(GameConfig
 				.getlotteryMinYB(), GameConfig.getlotteryMaxYB());
 		String[] num = { "0", "0", "0" };
@@ -436,13 +436,13 @@ public class LotteryService
 			num = vo.getLottery_catch_player().split(",");
 		}
 		int first_player_num = Integer.parseInt(num[0]);
-		// Í·½±½±½ğ
+		// å¤´å¥–å¥–é‡‘
 		long frist_bonus = getFristBonus(vo, sys_vo.getSys_lottery_yb(),
 				bonus_temp)
 				* first_player_num;
-		// ÆäËû½±½ğ
+		// å…¶ä»–å¥–é‡‘
 		long other_bonus = getOtherBonus(vo);
-		// ×Ü½±½ğ
+		// æ€»å¥–é‡‘
 		long x = bonus_temp + sys_vo.getSys_lottery_yb()
 				+ vo.getLottery_all_yb();
 
@@ -451,11 +451,11 @@ public class LotteryService
 		{
 			bonus_all = 0;
 		}
-		// ½±³Ø¹ö¶¯
+		// å¥–æ± æ»šåŠ¨
 		dao.updateLotteryBonus(bonus_all);
 	}
 
-	// ¼ÆËã¹Ì¶¨½±½ğ
+	// è®¡ç®—å›ºå®šå¥–é‡‘
 	private long getOtherBonus(LotteryVO vo)
 	{
 		String[] num = { "0", "0", "0" };
@@ -473,7 +473,7 @@ public class LotteryService
 		return second_bonus + third_bonus;
 	}
 
-	// ¼ÆËã³öÍ·½±½±ÀøÄÚÈİ
+	// è®¡ç®—å‡ºå¤´å¥–å¥–åŠ±å†…å®¹
 	public long getFristBonus(LotteryVO vo, long jiangchi_bonus,
 			long sys_other_bonus)
 	{
@@ -491,7 +491,7 @@ public class LotteryService
 		}
 		else
 		{
-			// ×Ü¶î¶È
+			// æ€»é¢åº¦
 			long x = jiangchi_bonus + sys_other_bonus + vo.getLottery_all_yb();
 			long frist_bonus_temp = (x - other_bonus) / frist_player_num;
 			if (frist_bonus_temp > 500000)
@@ -510,13 +510,13 @@ public class LotteryService
 				}
 			}
 		}
-		// ¸üĞÂÍæ¼ÒµÄÍ·½±½±½ğ
+		// æ›´æ–°ç©å®¶çš„å¤´å¥–å¥–é‡‘
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
 		dao.updateFristBonus(4, frist_bonus, vo.getLottery_date());
 		return frist_bonus;
 	}
 
-	// µÃµ½×ÜµÄÖĞ½±×¢Êı
+	// å¾—åˆ°æ€»çš„ä¸­å¥–æ³¨æ•°
 	public long getAllZhu(String lottery_date)
 	{
 		LotteryVO vo = selectLotteryInfoByDate(lottery_date);
@@ -529,7 +529,7 @@ public class LotteryService
 		return x;
 	}
 
-	// ÏµÍ³Ö´ĞĞÉú³É²ÊÆ±
+	// ç³»ç»Ÿæ‰§è¡Œç”Ÿæˆå½©ç¥¨
 	public String newLotteryBuild()
 	{
 		planningLotteryBonus();

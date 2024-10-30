@@ -7,19 +7,19 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * ¹¦ÄÜ:u_sky_pay_record
+ * åŠŸèƒ½:u_sky_pay_record
  * Mar 13, 2009
  */
 public class UPayRecordDao extends DaoBase
 {
 	/**
-	 * ²åÈëÒ»Ìõ³äÖµ¼ÇÂ¼
-	 * @return  ·µ»Ø¼üÖµ
+	 * æ’å…¥ä¸€æ¡å……å€¼è®°å½•
+	 * @return  è¿”å›é”®å€¼
 	 */
 	public int insert(String skyid,String kbamt,int p_pk)
 	{
 		int id = -1;
-		String sql = "insert into u_sky_pay_record (skyid,kbamt,pay_time,p_pk) values ('"
+		String sql = "INSERT INTO u_sky_pay_record (skyid,kbamt,pay_time,p_pk) values ('"
 				+skyid+"',"
 				+kbamt+",now(),"+p_pk+")";
 		logger.debug(sql);
@@ -47,7 +47,7 @@ public class UPayRecordDao extends DaoBase
 	
 	
 	/**
-	 * ¸üĞÂ³äÖµ×´Ì¬
+	 * æ›´æ–°å……å€¼çŠ¶æ€
 	 */
 	public void update( int id,String billid,String skybillid1,String skybillid2,String balance,String respones_result )
 	{
@@ -71,7 +71,7 @@ public class UPayRecordDao extends DaoBase
 	public int getMoney(int p_id)
 	{
 		int id = 0;
-		String sql = "select kbamt from u_sky_pay_record where id = "+p_id;
+		String sql = "SELECT kbamt from u_sky_pay_record where id = "+p_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

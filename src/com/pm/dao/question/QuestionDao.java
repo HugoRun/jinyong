@@ -11,7 +11,7 @@ import com.pm.vo.question.QuestionVO;
 public class QuestionDao extends DaoBase {
 	
 	/**
-	 * ¸üĞÂÓÃ»§»ı·Ö
+	 * æ›´æ–°ç”¨æˆ·ç§¯åˆ†
 	 * @param pk
 	 * @param mouth
 	 */
@@ -35,14 +35,14 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * »ñµÃÁ¬Ğø´ğ¶Ô´ÎÊı
+	 * è·å¾—è¿ç»­ç­”å¯¹æ¬¡æ•°
 	 * @param pk
 	 * @param nowMouth
 	 * @return
 	 */
 	public int getConuniteWinNum(int pk, String nowMouth)
 	{
-		String sql = "select * from u_quiz_info where p_pk="+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "SELECT * FROM u_quiz_info where p_pk="+pk+" and mouth = '"+nowMouth+"'";
 		int win_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
@@ -67,14 +67,14 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * »ñµÃ¸öÈËµÄ»ı·Ö
+	 * è·å¾—ä¸ªäººçš„ç§¯åˆ†
 	 * @param pk
 	 * @param nowMouth
 	 * @return
 	 */
 	public int getIntegral(int pk, String nowMouth)
 	{
-		String sql = "select * from u_quiz_info where p_pk="+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "SELECT * FROM u_quiz_info where p_pk="+pk+" and mouth = '"+nowMouth+"'";
 		int win_num = 0;
 		logger.debug("sql"+sql);
 		
@@ -138,13 +138,13 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * ²åÈë¸öÈË´ğÌâĞÅÏ¢±í
+	 * æ’å…¥ä¸ªäººç­”é¢˜ä¿¡æ¯è¡¨
 	 * @param pk
 	 * @param nowMouth
 	 */
 	public void insertQiueInfo(int pk, String nowMouth)
 	{
-		String sql = "insert into u_quiz_info values( null,"+pk+",0,0,'"+nowMouth+"',0,now(),0)";
+		String sql = "INSERT INTO u_quiz_info values( null,"+pk+",0,0,'"+nowMouth+"',0,now(),0)";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
 		
@@ -162,7 +162,7 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * ²é¿´ÊÇ·ñÒÑ¾­ÓĞ±¾ÔÂµÄ¼ÇÂ¼
+	 * æŸ¥çœ‹æ˜¯å¦å·²ç»æœ‰æœ¬æœˆçš„è®°å½•
 	 * @param pk
 	 * @param nowMouth
 	 * @return
@@ -170,7 +170,7 @@ public class QuestionDao extends DaoBase {
 	public int getHasThisMouth(int pk, String nowMouth)
 	{
 		int flag = 0;
-		String sql = "select count(1) as num from u_quiz_info where p_pk = "+pk+" and mouth = '"+nowMouth+"'";
+		String sql = "SELECT count(1) as num from u_quiz_info where p_pk = "+pk+" and mouth = '"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -191,14 +191,14 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * »ñµÃ´ğÌâµÄÅÅÃû
+	 * è·å¾—ç­”é¢˜çš„æ’å
 	 * @return
 	 */
 	public List<QuestionVO> getQuestionRanking(String nowMouth)
 	{
 		List<QuestionVO> ranklist = new ArrayList<QuestionVO>();
 		QuestionVO questionvo = null;
-		String sql = "select id,up.p_pk,integral,mouth,p_name from u_quiz_info uq,u_part_info up where mouth = '"+nowMouth+"' and uq.p_pk = up.p_pk order by integral desc,last_time asc limit 10";
+		String sql = "SELECT id,up.p_pk,integral,mouth,p_name from u_quiz_info uq,u_part_info up where mouth = '"+nowMouth+"' and uq.p_pk = up.p_pk order by integral desc,last_time asc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -226,7 +226,7 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * ½«Á¬Ğø´ğÌâÕıÈ·ÊıÖÃÎª0.
+	 * å°†è¿ç»­ç­”é¢˜æ­£ç¡®æ•°ç½®ä¸º0.
 	 * @param pk
 	 */
 	public void updateupdateConutiuteWinToZero(int pk, String nowMouth)
@@ -250,7 +250,7 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * ½«Ã¿ÔÂÁ¬ĞøÃ¿ÈÕ¶¼´ğÍêÊ®µÀÌâµÄÌìÊı¼ÆËãÏÂÀ´.
+	 * å°†æ¯æœˆè¿ç»­æ¯æ—¥éƒ½ç­”å®Œåé“é¢˜çš„å¤©æ•°è®¡ç®—ä¸‹æ¥.
 	 * @param pk
 	 */
 	public void updateupdateTenAll(int pk, String nowMouth)
@@ -274,15 +274,15 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * ½«µ±Ç°Ê±¼ä´æÈëÊı¾İ¿â²¢½«´ğÌâ±êÖ¾ÖÃÎª1 
+	 * å°†å½“å‰æ—¶é—´å­˜å…¥æ•°æ®åº“å¹¶å°†ç­”é¢˜æ ‡å¿—ç½®ä¸º1 
 	 * @param pk
-	 * @param nowMouth µ±Ç°ÔÂ·İ
+	 * @param nowMouth å½“å‰æœˆä»½
 	 */
 	public void updateQuestionTimeAndFlag(int pk, String nowMouth)
 	{
 		String sql = "update u_quiz_info set last_time = now(), answer_flag = 1 where p_pk="+pk+" and mouth='"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("½«µ±Ç°Ê±¼ä´æÈëÊı¾İ¿â²¢½«´ğÌâ±êÖ¾ÖÃÎª1="+sql);
+		logger.debug("å°†å½“å‰æ—¶é—´å­˜å…¥æ•°æ®åº“å¹¶å°†ç­”é¢˜æ ‡å¿—ç½®ä¸º1="+sql);
 		
 		try{
 			conn = dbConn.getConn();
@@ -298,7 +298,7 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * ½«µ±Ç°Íæ¼ÒµÄ´ğÌâ±êÖ¾ÖÃÎªflag.
+	 * å°†å½“å‰ç©å®¶çš„ç­”é¢˜æ ‡å¿—ç½®ä¸ºflag.
 	 * @param pk
 	 * @param nowMouth
 	 * @param i
@@ -307,7 +307,7 @@ public class QuestionDao extends DaoBase {
 	{
 		String sql = "update u_quiz_info set answer_flag = 0  where p_pk = "+pk+" and mouth='"+nowMouth+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("½«µ±Ç°Íæ¼ÒµÄ´ğÌâ±êÖ¾ÖÃÎªflag.="+sql);
+		logger.debug("å°†å½“å‰ç©å®¶çš„ç­”é¢˜æ ‡å¿—ç½®ä¸ºflag.="+sql);
 		
 		try{
 			conn = dbConn.getConn();
@@ -323,16 +323,16 @@ public class QuestionDao extends DaoBase {
 
 
 	/**
-	 * µÃµ½Íæ¼ÒµÄ´ğÌâ±êÖ¾
+	 * å¾—åˆ°ç©å®¶çš„ç­”é¢˜æ ‡å¿—
 	 * @param pk
 	 * @param nowMouth
 	 * @return
 	 */
 	public int getQuestionFlag(int pk, String nowMouth)
 	{
-		String sql = "select answer_flag from u_quiz_info where p_pk="+pk+" and mouth='"
+		String sql = "SELECT answer_flag from u_quiz_info where p_pk="+pk+" and mouth='"
 						+nowMouth+"' ";
-		logger.debug("µÃµ½Íæ¼ÒµÄ´ğÌâ±êÖ¾="+sql);
+		logger.debug("å¾—åˆ°ç©å®¶çš„ç­”é¢˜æ ‡å¿—="+sql);
 		int flag = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{

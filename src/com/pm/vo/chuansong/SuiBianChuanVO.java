@@ -4,26 +4,26 @@
 package com.pm.vo.chuansong;
 
 /**
- * ÆÕÍ¨´«ËÍ·ûµÄ
+ * æ™®é€šä¼ é€ç¬¦çš„
  * @author zhangjj
  *
  */
 public class SuiBianChuanVO
 {
 
-	/** ´«ËÍ±íID  */
+	/** ä¼ é€è¡¨ID  */
 	public int carryId	;
-	/***  µØµãÀàĞÍ   ****/	
+	/***  åœ°ç‚¹ç±»å‹   ****/	
 	public int 	typeId	;
-	/***  µØµãÀàĞÍÃû³Æ **/	
+	/***  åœ°ç‚¹ç±»å‹åç§° **/	
 	public String	typeName;
-	/**   µØµãid    **/
+	/**   åœ°ç‚¹id    **/
 	public int 	sceneId;
-	/***  µØµãÃû³Æ  ****/
+	/***  åœ°ç‚¹åç§°  ****/
 	public String	sceneName ;
-	/**   µØµã´«ËÍµÈ¼¶  **/
+	/**   åœ°ç‚¹ä¼ é€ç­‰çº§  **/
 	public int 	carryGrade;
-	/****ÊÊºÏÍæ¼ÒµÄµÈ¼¶****/
+	/****é€‚åˆç©å®¶çš„ç­‰çº§****/
 	public String partGrade;
 	public int getCarryId()
 	{

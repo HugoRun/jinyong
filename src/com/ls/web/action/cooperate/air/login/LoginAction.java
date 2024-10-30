@@ -24,7 +24,7 @@ public class LoginAction extends Action
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ¿ÕÖĞÍøÇşµÀµÇÂ¼
+	 * ç©ºä¸­ç½‘æ¸ é“ç™»å½•
 	 * 
 	 * @param mapping
 	 * @param form
@@ -49,9 +49,9 @@ public class LoginAction extends Action
     			String login_ip=request.getRemoteAddr();
     			PassportService passportService = new PassportService();
     			PassportVO passport = passportService.loginFromAir(userId+"",login_ip);
-    			if (passport == null || passport.getUPk() == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
+    			if (passport == null || passport.getUPk() == -1)// ç™»é™†éªŒè¯å¤±è´¥
     			{
-    				logger.info("ÓÃ»§µÇÂ½Ê§°ÜÇë´Ó¿ÕÖĞÍøÖØĞÂµÇÂ½");
+    				logger.info("ç”¨æˆ·ç™»é™†å¤±è´¥è¯·ä»ç©ºä¸­ç½‘é‡æ–°ç™»é™†");
     				return mapping.findForward("fail");
     			}
     			else
@@ -64,7 +64,7 @@ public class LoginAction extends Action
     				session.setAttribute("userId", userId+"");
     				session.setAttribute("user_name", userId+"");
     				session.setAttribute("channel_id", Channel.AIR + "");
-    				session.setAttribute("params", params);// µÇÂ½²ÎÊı
+    				session.setAttribute("params", params);// ç™»é™†å‚æ•°
     				return mapping.findForward("success");
     			}
 			}
@@ -74,7 +74,7 @@ public class LoginAction extends Action
 			}
 			
 		}
-		logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+		logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 		return mapping.findForward("fail");
 	}
 }

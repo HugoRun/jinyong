@@ -2,12 +2,12 @@ package com.dp.vo.credit;
 
 public class PlayerCreditVO
 {
-	public static final int TONG_CREDIT = 100;//帮派声望类型
-	private Integer pcid;// 角色对声望ID(主键)
-	private Integer ppk;// 玩家角色ID
-	private Integer pcount;// 声望数量
-	private String creditname;// 声望名称
-	private String creditdisplay;// 声望描述
+	public static final int TONG_CREDIT = 100;//甯淳澹版湜绫诲瀷
+	private Integer pcid;// 瑙掕壊瀵瑰０鏈汭D(涓婚敭)
+	private Integer ppk;// 鐜╁瑙掕壊ID
+	private Integer pcount;// 澹版湜鏁伴噺
+	private String creditname;// 澹版湜鍚嶇О
+	private String creditdisplay;// 澹版湜鎻忚堪
 
 	public Integer getPcid()
 	{

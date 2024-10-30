@@ -4,17 +4,17 @@
 package com.ben.vo.task;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 10:05:51 AM
  */
 public class UtaskCompleteVO
 {
-	/** Íæ¼ÒÒÑ¾­Íê³É¹ıµÄÈÎÎñid */
+	/** ç©å®¶å·²ç»å®Œæˆè¿‡çš„ä»»åŠ¡id */
 	private int cPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ÒÑ¾­Íê³ÉµÄÈÎÎñ×é */
+	/** å·²ç»å®Œæˆçš„ä»»åŠ¡ç»„ */
 	private String taskZu;
 
 	public int getCPk()

@@ -1,7 +1,7 @@
 package com.ls.pub.util.http;
 
 /**
- * 功能：响应包
+ * 鍔熻兘锛氬搷搴斿寘
  * @author ls
  * Jun 19, 2009
  * 9:07:45 AM
@@ -9,7 +9,7 @@ package com.ls.pub.util.http;
 import java.util.Vector;   
 
 /**  
- * 响应对象  
+ * 鍝嶅簲瀵硅薄  
  */  
 public class HttpRespons {   
     

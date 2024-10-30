@@ -39,7 +39,7 @@ public class PlayerService
 
 
 	/**
-	 * µÃµ½ÓÃ»§µÄ½ÇÉ«ÁĞ±í
+	 * å¾—åˆ°ç”¨æˆ·çš„è§’è‰²åˆ—è¡¨
 	 */
 	public List<PartInfoVO> getRoleList(String u_pk)
 	{
@@ -49,7 +49,7 @@ public class PlayerService
 	}
 
 	/**
-	 * µÃµ½±¾ÖÜÔÚÏßÊ±¼ä
+	 * å¾—åˆ°æœ¬å‘¨åœ¨çº¿æ—¶é—´
 	 */
 	public int getOnlineTimeInThisWeek(String pPk)
 	{
@@ -58,8 +58,8 @@ public class PlayerService
 	}
 
 	/**
-	 * ¼ì²é´¦ÓÚÉ¾³ı»º³åµÄ½ÇÉ«ÊÇ·ñ³¬¹ı»º³åÆÚ£¬Èç¹û³¬¹ıÔò°Ñ½ÇÉ«É¾³ı Ô­ÏÈ1ÎªÕı³££¬0ÎªÕıÔÚÉ¾³ı£¬-1 ÎªÒÑ¾­É¾³ı
-	 * ÏÖÔÚ¸ÄÎª0ÎªÕı³££¬1ÎªÕıÔÚÉ¾³ı£¬-1ÎªÒÑ¾­É¾³ı
+	 * æ£€æŸ¥å¤„äºåˆ é™¤ç¼“å†²çš„è§’è‰²æ˜¯å¦è¶…è¿‡ç¼“å†²æœŸï¼Œå¦‚æœè¶…è¿‡åˆ™æŠŠè§’è‰²åˆ é™¤ åŸå…ˆ1ä¸ºæ­£å¸¸ï¼Œ0ä¸ºæ­£åœ¨åˆ é™¤ï¼Œ-1 ä¸ºå·²ç»åˆ é™¤
+	 * ç°åœ¨æ”¹ä¸º0ä¸ºæ­£å¸¸ï¼Œ1ä¸ºæ­£åœ¨åˆ é™¤ï¼Œ-1ä¸ºå·²ç»åˆ é™¤
 	 * 
 	 * @param p_pk
 	 * @param delete_flag
@@ -74,15 +74,15 @@ public class PlayerService
 			for (PartInfoVO role : role_list)
 			{
 				{
-					if (DateUtil.isOverdue(role.getDeleteTime(), DateUtil.DAY))// ÅĞ¶ÏÊÇ·ñ³¬¹ıÉ¾³ı»º³åÊ±¼ä£¨µ±Ç°»º³åÊ±¼äÎª1Ìì£©
-						updateDeleteFlag(role.getPPk(), -1);// Èç¹û³¬Ê±ÔòÉ¾³ı
+					if (DateUtil.isOverdue(role.getDeleteTime(), DateUtil.DAY))// åˆ¤æ–­æ˜¯å¦è¶…è¿‡åˆ é™¤ç¼“å†²æ—¶é—´ï¼ˆå½“å‰ç¼“å†²æ—¶é—´ä¸º1å¤©ï¼‰
+						updateDeleteFlag(role.getPPk(), -1);// å¦‚æœè¶…æ—¶åˆ™åˆ é™¤
 				}
 			}
 		}
 	}
 
 	/**
-	 * ÉèÖÃ½ÇÉ«µÄÉ¾³ı×´Ì¬
+	 * è®¾ç½®è§’è‰²çš„åˆ é™¤çŠ¶æ€
 	 * 
 	 * @param p_pk
 	 * @param delete_flag
@@ -96,7 +96,7 @@ public class PlayerService
 
 
 	/**
-	 * Íæ¼ÒËÀÍö³õÊ¼»¯¸´»îµØµã,µ«ÊÇ½«ÊÓÒ°¸üĞÂÎªÎŞ
+	 * ç©å®¶æ­»äº¡åˆå§‹åŒ–å¤æ´»åœ°ç‚¹,ä½†æ˜¯å°†è§†é‡æ›´æ–°ä¸ºæ— 
 	 * 
 	 * @param player
 	 * @return
@@ -105,17 +105,17 @@ public class PlayerService
 	{
 		if (player == null)
 		{
-			logger.info("³õÊ¼»¯Íæ¼ÒµØµã:Íæ¼ÒÎª¿ÕÎŞĞ§£¡");
+			logger.info("åˆå§‹åŒ–ç©å®¶åœ°ç‚¹:ç©å®¶ä¸ºç©ºæ— æ•ˆï¼");
 		}
 		RoleEntity roleEntity = RoleCache.getByPpk(player.getPPk());
 		
-		// ¶ÔÈËÎïËÀÍöºóµÄÄ³Ğ©ÊÂ½øĞĞ´¦Àí, ²¢ÇÒ²»Ì«ÈİÒ×ÄÃµ½ÆäËûµØ·½È¥µÄ
+		// å¯¹äººç‰©æ­»äº¡åçš„æŸäº›äº‹è¿›è¡Œå¤„ç†, å¹¶ä¸”ä¸å¤ªå®¹æ˜“æ‹¿åˆ°å…¶ä»–åœ°æ–¹å»çš„
 		dealWithDead(player);
 
 		RoomService roomService = new RoomService();
-		// µÃµ½ËÀÍö¸´»îµã
+		// å¾—åˆ°æ­»äº¡å¤æ´»ç‚¹
 		int resurrection_point = roomService.getResurrectionPoint(roleEntity);
-		// ¸üĞÂmap_id
+		// æ›´æ–°map_id
 		player.setPMap(resurrection_point + "");
 
 		updateSceneAndView(player.getPPk(), resurrection_point);
@@ -128,7 +128,7 @@ public class PlayerService
 	}
 
 	/**
-	 * ¶ÔÈËÎïËÀÍöºóµÄÄ³Ğ©ÊÂ½øĞĞ´¦Àí, ²¢ÇÒ²»Ì«ÈİÒ×ÄÃµ½ÆäËûµØ·½È¥µÄ
+	 * å¯¹äººç‰©æ­»äº¡åçš„æŸäº›äº‹è¿›è¡Œå¤„ç†, å¹¶ä¸”ä¸å¤ªå®¹æ˜“æ‹¿åˆ°å…¶ä»–åœ°æ–¹å»çš„
 	 */
 	private void dealWithDead(PartInfoVO player)
 	{
@@ -142,7 +142,7 @@ public class PlayerService
 	}
 
 	/**
-	 * ¸øÍæ¼Ò×°ÔØ¼¼ÄÜÏêÏ¸ĞÅÏ¢
+	 * ç»™ç©å®¶è£…è½½æŠ€èƒ½è¯¦ç»†ä¿¡æ¯
 	 * @param sk_id
 	 * @return
 	 */
@@ -167,10 +167,10 @@ public class PlayerService
 		
 		playerSkill = skillService.getSkillInfo(player.getPPk(), s_pk);
 
-		// µÃµ½¼¼ÄÜÏêÏ¸ĞÅÏ¢
+		// å¾—åˆ°æŠ€èƒ½è¯¦ç»†ä¿¡æ¯
 		SkillDao skillDao = new SkillDao();
 		skillDao.loadPlayerSkillDetailByInside(playerSkill);
-		// ¸øÍæ¼Ò×°ÔØ¼¼ÄÜÏêÏ¸ĞÅÏ¢
+		// ç»™ç©å®¶è£…è½½æŠ€èƒ½è¯¦ç»†ä¿¡æ¯
 		player.setSkill(playerSkill);
 		return playerSkill;
 	}
@@ -178,7 +178,7 @@ public class PlayerService
 
 	
 	/**
-	 * Í¨¹ı»º´æ¼ÓÔØÍæ¼ÒÏà¹ØÊôĞÔ£¨¸÷ÖÖ¸½¼ÓĞ§¹û£©
+	 * é€šè¿‡ç¼“å­˜åŠ è½½ç©å®¶ç›¸å…³å±æ€§ï¼ˆå„ç§é™„åŠ æ•ˆæœï¼‰
 	 */
 	private String loadPlayerPropertyByCache(PartInfoVO player,RoleEntity role_info)
 	{
@@ -188,31 +188,31 @@ public class PlayerService
 		SkillService skillService = new SkillService();
 		MyService myService = new MyServiceImpl();
 		
-		//¼ÓÔØ×°±¸Ğ§¹û
+		//åŠ è½½è£…å¤‡æ•ˆæœ
 		role_info.getEquipOnBody().loadEquipProterty(player);
 		
-		//¼ÓÔØ×øÆïĞ§¹û
+		//åŠ è½½åéª‘æ•ˆæœ
 		role_info.getMountSet().loadPropertys(player);
 		
-		// ¼ÓÔØ×é¶ÓĞ§¹û
+		// åŠ è½½ç»„é˜Ÿæ•ˆæœ
 		groupService.loadGroupEffect(player);
 		
-		// ¼ÓÔØÍæ¼ÒbuffĞ§¹û
+		// åŠ è½½ç©å®¶buffæ•ˆæœ
 		effect_describe.append(buffEffectService.loadBuffEffectOfPlayer(player));
 		
-		// ¼ÓÔØ±»¶¯¼¼ÄÜĞ§¹û
+		// åŠ è½½è¢«åŠ¨æŠ€èƒ½æ•ˆæœ
 		skillService.loadPassiveSkillEffectByCache(player,role_info);
 		
-		// ¼ÓÔØ·òÆŞ×é¶ÓÆøÑªÔö¼Ó
+		// åŠ è½½å¤«å¦»ç»„é˜Ÿæ°”è¡€å¢åŠ 
 		myService.addBloodMax(player);
 		
-		//¼ÓÔØ³ÆºÅĞ§¹û ÒÔºóÓĞÒª¼ÓÔØµÄÍùÉÏÌí¼Ó
+		//åŠ è½½ç§°å·æ•ˆæœ ä»¥åæœ‰è¦åŠ è½½çš„å¾€ä¸Šæ·»åŠ 
 		role_info.getTitleSet().loadProperty(player);
 		return effect_describe.toString();
 	}
 
 	/**
-	 * Í¨¹ıid µÃµ½Íæ¼ÒĞÅÏ¢
+	 * é€šè¿‡id å¾—åˆ°ç©å®¶ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
@@ -224,13 +224,13 @@ public class PlayerService
 	}
 	
 	/**
-	 * Í¨¹ıid ¼ÓÔØÍæ¼ÒĞÅÏ¢
+	 * é€šè¿‡id åŠ è½½ç©å®¶ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
 	public String loadFighterByPpk(PartInfoVO player, int p_pk)
 	{
-		logger.info("¼ÓÔØÍæ¼Ò»ù±¾ĞÅÏ¢.............");
+		logger.info("åŠ è½½ç©å®¶åŸºæœ¬ä¿¡æ¯.............");
 		RoleEntity role_info = RoleService.getRoleInfoById(p_pk+"");
 		
 		if( role_info!=null)
@@ -240,7 +240,7 @@ public class PlayerService
 	}
 	
 	/**
-	 * Í¨¹ıÄÚ´æ¼ÓÔØÍæ¼ÒĞÅÏ¢
+	 * é€šè¿‡å†…å­˜åŠ è½½ç©å®¶ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
@@ -251,13 +251,13 @@ public class PlayerService
 			player = new PartInfoVO();
 		}
 		BasicInfo basic_info = role_info.getBasicInfo();
-		logger.info("´ÓÄÚ´æÖĞ¼ÓÔØÍæ¼Ò»ù±¾ĞÅÏ¢.............");
+		logger.info("ä»å†…å­˜ä¸­åŠ è½½ç©å®¶åŸºæœ¬ä¿¡æ¯.............");
 		loadPartInfoByBasicInfo(player,basic_info);
-		logger.info("´ÓÄÚ´æ¼ÓÔØÍæ¼Ò¸½¼ÓĞÅÏ¢.............");
+		logger.info("ä»å†…å­˜åŠ è½½ç©å®¶é™„åŠ ä¿¡æ¯.............");
 	}
 
 	/**
-	 * Í¨¹ıidµÃµ½½ÇÉ«ĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°è§’è‰²ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
@@ -268,7 +268,7 @@ public class PlayerService
 	}
 	
 	/**
-	 * Í¨¹ıidµÃµ½½ÇÉ«ĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°è§’è‰²ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
@@ -280,7 +280,7 @@ public class PlayerService
 	}
 
 	/**
-	 * Í¨¹ıidµÃµ½½ÇÉ«»ù±¾ĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°è§’è‰²åŸºæœ¬ä¿¡æ¯
 	 * @param p_pk
 	 * @return
 	 */
@@ -292,7 +292,7 @@ public class PlayerService
 	
 	
 	/**
-	 * Í¨¹ıÄÚ´æµÃµ½Íæ¼ÒµÄ»ù±¾ĞÅÏ¢
+	 * é€šè¿‡å†…å­˜å¾—åˆ°ç©å®¶çš„åŸºæœ¬ä¿¡æ¯
 	 * @param role_info
 	 * @return
 	 */
@@ -311,7 +311,7 @@ public class PlayerService
 	}
 	
 	/**
-	 * Í¨¹ıBasicInfo¼ÓÔØpartInfoĞÅÏ¢
+	 * é€šè¿‡BasicInfoåŠ è½½partInfoä¿¡æ¯
 	 */
 	private void loadPartInfoByBasicInfo(PartInfoVO player,BasicInfo basic_info)
 	{
@@ -363,18 +363,18 @@ public class PlayerService
 
 	
 	/**
-	 * ¸ù¾İ¸½¼ÓĞ§¹ûÀàĞÍ£¬¸üĞÂÍæ¼Ò¶ÔÓ¦µÄÊôĞÔÖµ
+	 * æ ¹æ®é™„åŠ æ•ˆæœç±»å‹ï¼Œæ›´æ–°ç©å®¶å¯¹åº”çš„å±æ€§å€¼
 	 * @param player
-	 * @param append_attribute_type   ¸½¼ÓÊôĞÔÀàĞÍ
-	 * @param append_value ¸½¼ÓÊôĞÔÖµ
-	 * @param append_mode  ¸½¼Ó·½Ê½£¬1±íÊ¾Ôö¼Ó£¬2±íÊ¾¼õÉÙ
+	 * @param append_attribute_type   é™„åŠ å±æ€§ç±»å‹
+	 * @param append_value é™„åŠ å±æ€§å€¼
+	 * @param append_mode  é™„åŠ æ–¹å¼ï¼Œ1è¡¨ç¤ºå¢åŠ ï¼Œ2è¡¨ç¤ºå‡å°‘
 	 */
 	public void updateAttribteOfPlayer(PartInfoVO player,
 			int append_attribute_type, int append_value, int append_mode)
 	{
 		if (player == null)
 		{
-			logger.info("²ÎÊı´íÎó");
+			logger.info("å‚æ•°é”™è¯¯");
 			return;
 		}
 
@@ -421,7 +421,7 @@ public class PlayerService
 				player.setPUpMp(player.getPUpMp() + change_value);
 				break;
 			}
-				// *********************ÎåĞĞ¹¥»÷µÄbuff
+				// *********************äº”è¡Œæ”»å‡»çš„buff
 			case BuffType.JIN_ATTACK:
 			{
 				int change_value = append_value;
@@ -455,7 +455,7 @@ public class PlayerService
 				player.getWx().setTuGj(player.getWx().getTuGj() + change_value);
 				break;
 			}
-				// ************************************ÎåĞĞ·ÀÓùµÄbuff
+				// ************************************äº”è¡Œé˜²å¾¡çš„buff
 			case BuffType.JIN_DEFENCE:
 			{
 				int change_value = append_value;
@@ -490,7 +490,7 @@ public class PlayerService
 				break;
 			}
 
-			case BuffType.ADD_CATCH_PROBABILITY:// Ôö¼Ó²¶»ñ¸ÅÂÊ
+			case BuffType.ADD_CATCH_PROBABILITY:// å¢åŠ æ•è·æ¦‚ç‡
 			{
 				int change_value = (append_value);
 				player.setAppendCatchProbability(player
@@ -498,7 +498,7 @@ public class PlayerService
 						+ change_value);
 				break;
 			}
-			case BuffType.ADD_DROP_PROBABILITY:// Ôö¼ÓµôÂä¸ÅÂÊ
+			case BuffType.ADD_DROP_PROBABILITY:// å¢åŠ æ‰è½æ¦‚ç‡
 			{
 				int change_value = (append_value);
 				player.setAppendDropProbability(player
@@ -506,13 +506,13 @@ public class PlayerService
 						+ change_value);
 				break;
 			}
-			case BuffType.ADD_EXP:// ¾­Ñé¼Ó³É
+			case BuffType.ADD_EXP:// ç»éªŒåŠ æˆ
 			{
 				int change_value = (append_value);
 				player.setAppendExp(player.getAppendExp() + change_value);
 				break;
 			}
-			case BuffType.ADD_NONSUCH_PROBABILITY:// Ôö¼Ó¼«Æ·×°±¸µôÂä¸ÅÂÊ
+			case BuffType.ADD_NONSUCH_PROBABILITY:// å¢åŠ æå“è£…å¤‡æ‰è½æ¦‚ç‡
 			{
 				int change_value = (append_value);
 				player.setAppendNonsuchProbability(player
@@ -521,7 +521,7 @@ public class PlayerService
 				break;
 			}
 
-			case BuffType.IMMUNITY_POISON:// **ÊÇ·ñÃâÒßÖĞ¶¾
+			case BuffType.IMMUNITY_POISON:// **æ˜¯å¦å…ç–«ä¸­æ¯’
 			{
 				if (append_value == 1)
 				{
@@ -529,7 +529,7 @@ public class PlayerService
 				}
 				break;
 			}
-			case BuffType.IMMUNITY__DIZZY:// **ÊÇ·ñÃâÒß»÷ÔÎ
+			case BuffType.IMMUNITY__DIZZY:// **æ˜¯å¦å…ç–«å‡»æ™•
 			{
 				if (append_value == 1)
 				{
@@ -537,7 +537,7 @@ public class PlayerService
 				}
 				break;
 			}
-			case BuffType.CHANGER_BJ:// ±©»÷ÂÊ¼Ó³É
+			case BuffType.CHANGER_BJ:// æš´å‡»ç‡åŠ æˆ
 			{
 				int change_value = append_value;
 				player.setDropMultiple(player.getDropMultiple() + change_value);
@@ -547,7 +547,7 @@ public class PlayerService
 	}
 
 	/**
-	 * Íæ¼ÒÀëÏß´¦Àí
+	 * ç©å®¶ç¦»çº¿å¤„ç†
 	 * 
 	 * @param p_pk
 	 */
@@ -559,19 +559,19 @@ public class PlayerService
 	 * roleEntity.getBasicInfo().getPPk();
 	 * 
 	 * 
-	 * npcService.clearJobs(pPk);//Çå³ıµôÂäÁÙÊ±±íÊı¾İ
-	 * groupService.leaveGroup(roleEntity); // ¶ÓÎé½âÉ¢
-	 * groupNotifyService.clareNotify(pPk);// Çå³ı×é¶ÓÍ¨Öª
+	 * npcService.clearJobs(pPk);//æ¸…é™¤æ‰è½ä¸´æ—¶è¡¨æ•°æ®
+	 * groupService.leaveGroup(roleEntity); // é˜Ÿä¼è§£æ•£
+	 * groupNotifyService.clareNotify(pPk);// æ¸…é™¤ç»„é˜Ÿé€šçŸ¥
 	 * fieldService.leaveField(pPk,roleEntity.getBasicInfo().getUPk()+"");
-	 * //Èç¹ûÍæ¼ÒÔÚÕ½³¡£¬ÍË³ö }
+	 * //å¦‚æœç©å®¶åœ¨æˆ˜åœºï¼Œé€€å‡º }
 	 */
 	/**
-	 * ¼ì²é½ÇÉ«×´Ì¬
+	 * æ£€æŸ¥è§’è‰²çŠ¶æ€
 	 * 
 	 * @param p_pk
-	 *            ±»¼ì²éµÄÍæ¼Òid
+	 *            è¢«æ£€æŸ¥çš„ç©å®¶id
 	 * @param action
-	 *            µ±Ç°½«ÒªÖ´ĞĞµÄĞĞÎª
+	 *            å½“å‰å°†è¦æ‰§è¡Œçš„è¡Œä¸º
 	 * @return
 	 */
 	public String checkRoleState(int p_pk, int action)
@@ -583,36 +583,36 @@ public class PlayerService
 		String hint = null;
 		if (roleInfo == null || roleInfo.isOnline()==false )
 		{
-			return hint = "Íæ¼Ò²»ÔÚÏß";
+			return hint = "ç©å®¶ä¸åœ¨çº¿";
 		}
-		int cur_state = roleInfo.getStateInfo().getCurState();// Íæ¼Òµ±Ç°×´Ì¬
+		int cur_state = roleInfo.getStateInfo().getCurState();// ç©å®¶å½“å‰çŠ¶æ€
 
-		// ÏÖÔÚÖ´ĞĞµÄÊÇ½»Ò××´Ì¬ ¾ÍÊÇAÇëÇó½»Ò×B
+		// ç°åœ¨æ‰§è¡Œçš„æ˜¯äº¤æ˜“çŠ¶æ€ å°±æ˜¯Aè¯·æ±‚äº¤æ˜“B
 		if (action == PlayerState.TRADE)
 		{
-			// »ñÈ¡BµÄµ±Ç°×´Ì¬
+			// è·å–Bçš„å½“å‰çŠ¶æ€
 			if (cur_state != PlayerState.GENERAL)
-			{// Ö»ÄÜÔÚÆ½³£×´Ì¬ÏÂ½øĞĞ½»Ò×
-				hint = "¶Ô·½ÕıÔÚ" + playerState.returnStateName(cur_state)
-						+ ",ÇëÉÔºòÔÙ½øĞĞ" + playerState.returnStateName(action);
+			{// åªèƒ½åœ¨å¹³å¸¸çŠ¶æ€ä¸‹è¿›è¡Œäº¤æ˜“
+				hint = "å¯¹æ–¹æ­£åœ¨" + playerState.returnStateName(cur_state)
+						+ ",è¯·ç¨å€™å†è¿›è¡Œ" + playerState.returnStateName(action);
 				return hint;
 			}
 		}
-		// ÏÖÔÚÖ´ĞĞ×é¶Ó×´Ì¬ ¾ÍÊÇAÇëÇóB
+		// ç°åœ¨æ‰§è¡Œç»„é˜ŸçŠ¶æ€ å°±æ˜¯Aè¯·æ±‚B
 		if (action == PlayerState.GROUP)
 		{
-			// »ñÈ¡BµÄµ±Ç°×´Ì¬
+			// è·å–Bçš„å½“å‰çŠ¶æ€
 			if (cur_state != PlayerState.GENERAL)
-			{// Ö»ÄÜÔÚÆ½³£×´Ì¬ÏÂ½øĞĞ×é¶Ó
-				hint = "¶Ô·½ÕıÔÚ" + playerState.returnStateName(cur_state)
-						+ ",ÇëÉÔºòÔÙ½øĞĞ" + playerState.returnStateName(action);
+			{// åªèƒ½åœ¨å¹³å¸¸çŠ¶æ€ä¸‹è¿›è¡Œç»„é˜Ÿ
+				hint = "å¯¹æ–¹æ­£åœ¨" + playerState.returnStateName(cur_state)
+						+ ",è¯·ç¨å€™å†è¿›è¡Œ" + playerState.returnStateName(action);
 				return hint;
 			}
 		}
-		// ÏÖÔÚÖ´ĞĞPK×´Ì¬ ¾ÍÊÇAÇëÇóB
+		// ç°åœ¨æ‰§è¡ŒPKçŠ¶æ€ å°±æ˜¯Aè¯·æ±‚B
 		if (action == PlayerState.PKFIGHT)
 		{
-			// »ñÈ¡BµÄµ±Ç°×´Ì¬ //²»ÔÚÂÛÌ³£¬²»ÔÚ½»Ò×£¬²»ÔÚ×é¶Ó£¬²»ÔÚÀëÏß,²»ÔÚ¼ñÈ¡ÎïÆ·±£»¤µÄ×´Ì¬ÏÂ²Å¿ÉÒÔ½øĞĞÇëÇóPK
+			// è·å–Bçš„å½“å‰çŠ¶æ€ //ä¸åœ¨è®ºå›ï¼Œä¸åœ¨äº¤æ˜“ï¼Œä¸åœ¨ç»„é˜Ÿï¼Œä¸åœ¨ç¦»çº¿,ä¸åœ¨æ¡å–ç‰©å“ä¿æŠ¤çš„çŠ¶æ€ä¸‹æ‰å¯ä»¥è¿›è¡Œè¯·æ±‚PK
 			if (cur_state == PlayerState.TRADE
 					|| cur_state == PlayerState.GROUP
 					|| cur_state == PlayerState.OUTLINE
@@ -620,27 +620,27 @@ public class PlayerService
 					|| cur_state == PlayerState.FORUM
 					|| cur_state == PlayerState.EXTRA)
 			{
-				hint = "¶Ô·½ÕıÔÚ" + playerState.returnStateName(cur_state)
-						+ ",ÇëÉÔºòÔÙ½øĞĞ" + playerState.returnStateName(action);
+				hint = "å¯¹æ–¹æ­£åœ¨" + playerState.returnStateName(cur_state)
+						+ ",è¯·ç¨å€™å†è¿›è¡Œ" + playerState.returnStateName(action);
 				return hint;
 			}
 		}
 
-		// ÏÖÔÚÖ´ĞĞPK×´Ì¬ ¾ÍÊÇAÇëÇóB
+		// ç°åœ¨æ‰§è¡ŒPKçŠ¶æ€ å°±æ˜¯Aè¯·æ±‚B
 		if (action == PlayerState.PKFIGHT)
 		{
-			return "¶Ô·½ÕıÔÚÕ½¶·,ÇëÉÔºòÔÙ½øĞĞ" + playerState.returnStateName(action);
+			return "å¯¹æ–¹æ­£åœ¨æˆ˜æ–—,è¯·ç¨å€™å†è¿›è¡Œ" + playerState.returnStateName(action);
 		}
 
-		// ÏÖÔÚË½ÁÄ×´Ì¬ ¾ÍÊÇAÇëÇóB
+		// ç°åœ¨ç§èŠçŠ¶æ€ å°±æ˜¯Aè¯·æ±‚B
 		if (action == PlayerState.TALK)
 		{
-			// »ñÈ¡BµÄµ±Ç°×´Ì¬ //²»ÔÚ½»Ò×£¬²»ÔÚ×é¶Ó£¬²»ÔÚÀëÏßµÄ×´Ì¬ÏÂ²Å¿ÉÒÔ½øĞĞÇëÇóPK
+			// è·å–Bçš„å½“å‰çŠ¶æ€ //ä¸åœ¨äº¤æ˜“ï¼Œä¸åœ¨ç»„é˜Ÿï¼Œä¸åœ¨ç¦»çº¿çš„çŠ¶æ€ä¸‹æ‰å¯ä»¥è¿›è¡Œè¯·æ±‚PK
 			if (cur_state != PlayerState.GENERAL)
 			{
 				// hint =
-				// "¶Ô·½ÕıÔÚ"+playerState.returnStateName(cur_state)+",ÇëÉÔºòÔÙ½øĞĞ"+playerState.returnStateName(nonceState);
-				hint = "¶Ô·½ÕıÔÚ" + playerState.returnStateName(cur_state);
+				// "å¯¹æ–¹æ­£åœ¨"+playerState.returnStateName(cur_state)+",è¯·ç¨å€™å†è¿›è¡Œ"+playerState.returnStateName(nonceState);
+				hint = "å¯¹æ–¹æ­£åœ¨" + playerState.returnStateName(cur_state);
 				return hint;
 			}
 		}
@@ -649,7 +649,7 @@ public class PlayerService
 		SceneVO sceneVO = SceneCache.getById(scene_id);
 		MapVO mapVO = sceneVO.getMap();
 		if(mapVO.getMapType() == MapType.TIANGUAN){
-			hint = "ÄúÕıÔÚÌôÕ½Ìì¹Ø,²»¿ÉÉêÇë×é¶Ó!";
+			hint = "æ‚¨æ­£åœ¨æŒ‘æˆ˜å¤©å…³,ä¸å¯ç”³è¯·ç»„é˜Ÿ!";
 			return hint;
 		}
 
@@ -657,12 +657,12 @@ public class PlayerService
 	}
 
 	/**
-	 * ¼ì²é½ÇÉ«×´Ì¬
+	 * æ£€æŸ¥è§’è‰²çŠ¶æ€
 	 * 
 	 * @param p_pk
-	 *            ±»¼ì²éµÄÍæ¼Òid
+	 *            è¢«æ£€æŸ¥çš„ç©å®¶id
 	 * @param action
-	 *            µ±Ç°½«ÒªÖ´ĞĞµÄĞĞÎª
+	 *            å½“å‰å°†è¦æ‰§è¡Œçš„è¡Œä¸º
 	 * @return
 	 */
 	public String isRoleState(int p_pk, int type)
@@ -672,27 +672,27 @@ public class PlayerService
 		if (roleInfo == null)
 		{
 			if (type == 1)
-			{// ½»Ò×
-				return hint = "½»Ò×³¬Ê±£¬½»Ò×±»È¡Ïû¡£";
+			{// äº¤æ˜“
+				return hint = "äº¤æ˜“è¶…æ—¶ï¼Œäº¤æ˜“è¢«å–æ¶ˆã€‚";
 			}
 			if (type == 2)
-			{// ÉêÇë×é¶Ó
-				return hint = "¶Ô·½²»ÔÚÏß¡£";
+			{// ç”³è¯·ç»„é˜Ÿ
+				return hint = "å¯¹æ–¹ä¸åœ¨çº¿ã€‚";
 			}
 		}
 		else
-		{// Ö÷ÒªÊÇ×ö¿´¶Ô·½Íæ¼ÒÄ³Ğ©»¥¶¯¿ª¹Ø×´Ì¬
+		{// ä¸»è¦æ˜¯åšçœ‹å¯¹æ–¹ç©å®¶æŸäº›äº’åŠ¨å¼€å…³çŠ¶æ€
 			if (type == 1)
-			{// ½»Ò×
+			{// äº¤æ˜“
 				if (roleInfo.getSettingInfo().getDealControl() == -1)
 				{
-					return hint = "¶Ô·½Íæ¼ÒµÄ½»Ò×¿ª¹ØÊÇ¹Ø±ÕµÄ£¡";
+					return hint = "å¯¹æ–¹ç©å®¶çš„äº¤æ˜“å¼€å…³æ˜¯å…³é—­çš„ï¼";
 				}
 			}
 			SceneVO sceneVO = roleInfo.getBasicInfo().getSceneInfo();
 			MapVO mapVO = sceneVO.getMap();
 			if(mapVO.getMapType() == MapType.TIANGUAN){
-				hint = "ÄúÕıÔÚÌôÕ½Ìì¹Ø,²»¿ÉÉêÇë×é¶Ó!";
+				hint = "æ‚¨æ­£åœ¨æŒ‘æˆ˜å¤©å…³,ä¸å¯ç”³è¯·ç»„é˜Ÿ!";
 				return hint;
 			}
 		}
@@ -700,18 +700,18 @@ public class PlayerService
 	}
 
 	/**
-	 * Çå³ıÁÙÊ±±íÊı¾İ
+	 * æ¸…é™¤ä¸´æ—¶è¡¨æ•°æ®
 	 * 
 	 * @param p_pk
 	 * @param attack_state
-	 *            all:±íÊ¾Çå³ıËùÓĞÁÙÊ±±ínpc;zd:±íÊ¾Ö»Çå³ıÖ÷¶¯npc
+	 *            all:è¡¨ç¤ºæ¸…é™¤æ‰€æœ‰ä¸´æ—¶è¡¨npc;zd:è¡¨ç¤ºåªæ¸…é™¤ä¸»åŠ¨npc
 	 */
 	public void clearTempData(int p_pk, String attack_state)
 	{
 		RoleEntity role_info = RoleService.getRoleInfoById(p_pk+"");
-		// Çå³ıÖ®Ç°µÄ¾­ÑéºÍÇ®
+		// æ¸…é™¤ä¹‹å‰çš„ç»éªŒå’Œé’±
 		role_info.getDropSet().clearExpAndMoney();
-		// Çå³ıÖ®Ç°µÄµôÂäÎï
+		// æ¸…é™¤ä¹‹å‰çš„æ‰è½ç‰©
 		role_info.getDropSet().clearDropItem();
 
 		AttacckCache attacckCache = new AttacckCache();
@@ -720,8 +720,8 @@ public class PlayerService
 				AttacckCache.ZDATTACKNPC);
 		if (zd_npcs != null)
 		{
-			// logger.debug("Çå³ı" + zd_npcs.size() + "¸öÖ÷¶¯NPC");
-			zd_npcs.clear();// Çå³ıÖ÷¶¯npc
+			// logger.debug("æ¸…é™¤" + zd_npcs.size() + "ä¸ªä¸»åŠ¨NPC");
+			zd_npcs.clear();// æ¸…é™¤ä¸»åŠ¨npc
 		}
 
 		if (attack_state.equals("all"))
@@ -730,14 +730,14 @@ public class PlayerService
 					AttacckCache.BDATTACKNPC);
 			if (bd_npcs != null)
 			{
-				// logger.debug("Çå³ı" + bd_npcs.size() + "¸ö±»¶¯NPC");
-				bd_npcs.clear();// Çå³ı±»¶¯npc
+				// logger.debug("æ¸…é™¤" + bd_npcs.size() + "ä¸ªè¢«åŠ¨NPC");
+				bd_npcs.clear();// æ¸…é™¤è¢«åŠ¨npc
 			}
 		}
 	}
 
 	/**
-	 * ¸üĞÂÍæ¼Ò³¡¾°ºÍÊÓÒ°
+	 * æ›´æ–°ç©å®¶åœºæ™¯å’Œè§†é‡
 	 */
 	public void updateSceneAndView(int p_pk, int new_scene_id)
 	{
@@ -749,28 +749,28 @@ public class PlayerService
 		{
 			SceneVO new_scene = SceneCache.getById(new_scene_id+"");
 			String hint = new_scene.isEntered(roleInfo);
-			//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ½øÈë¸ÃÇøÓò
+			//åˆ¤æ–­æ˜¯å¦å¯ä»¥è¿›å…¥è¯¥åŒºåŸŸ
 			if( hint!=null)
 			{
 				return;
 			}
 			
-			roleInfo.getBasicInfo().updateSceneId(new_scene_id + "");// ¸üĞÂÍæ¼Òscene_id
+			roleInfo.getBasicInfo().updateSceneId(new_scene_id + "");// æ›´æ–°ç©å®¶scene_id
 
 			String old_view = roleInfo.getStateInfo().getView();
 			String new_view = null;
 
 			new_view = getCurrentView(roleInfo.getBasicInfo().getPPk(),new_scene_id);
 
-			viewCahce.remove(old_view, roleInfo);// ÒÆ³ıÍæ¼ÒÖ®Ç°µÄÊÓÒ°
-			roleInfo.getStateInfo().setView(new_view);// ¸üĞÂÍæ¼ÒÊÓÒ°
-			viewCahce.put(new_view, roleInfo);// ¸üĞÂÍæ¼ÒÊÓÒ°
+			viewCahce.remove(old_view, roleInfo);// ç§»é™¤ç©å®¶ä¹‹å‰çš„è§†é‡
+			roleInfo.getStateInfo().setView(new_view);// æ›´æ–°ç©å®¶è§†é‡
+			viewCahce.put(new_view, roleInfo);// æ›´æ–°ç©å®¶è§†é‡
 		}
 	}
 
 
 	/**
-	 * µÃµ½ÊÓÒ°ÄÚµÄÍæ¼ÒÁĞ±í×Ö·û´® ´óÓÚ15¸ö×Ö£¬ÔòÖ»ÏÔÊ¾15×Ö¼Ó¡£¡£¡£¡£¡£
+	 * å¾—åˆ°è§†é‡å†…çš„ç©å®¶åˆ—è¡¨å­—ç¬¦ä¸² å¤§äº15ä¸ªå­—ï¼Œåˆ™åªæ˜¾ç¤º15å­—åŠ ã€‚ã€‚ã€‚ã€‚ã€‚
 	 */
 	public String getPlayerListStrByScene(RoleEntity roleInfo)
 	{
@@ -796,12 +796,12 @@ public class PlayerService
 			{
 				otherRoleInfo = (RoleEntity) list.next();
 				PartInfoVO partInfo=ps.getPlayerByRoleInfo(otherRoleInfo);
-				/***************²»ÏÔÊ¾×Ô¼º*******/
+				/***************ä¸æ˜¾ç¤ºè‡ªå·±*******/
 				if (otherRoleInfo.equals(roleInfo))
 				{
 					continue;
 				}
-				/*******ÅĞ¶Ï²»ÔÚÏßÍæ¼Ò²»ÏÔÊ¾******/
+				/*******åˆ¤æ–­ä¸åœ¨çº¿ç©å®¶ä¸æ˜¾ç¤º******/
 				if (i == 1)
 				{
 					player_list_str.append(otherRoleInfo.getBasicInfo().getName());
@@ -826,7 +826,7 @@ public class PlayerService
 	}
 
 	/**
-	 * µÃµ½µ±Ç°ÊÓÒ°
+	 * å¾—åˆ°å½“å‰è§†é‡
 	 * 
 	 * @param scene_id
 	 * @return
@@ -860,7 +860,7 @@ public class PlayerService
 	}
 
 	/**
-	 * µÃµ½Íæ¼ÒËùÓĞÍ¬Ò»ÊÓÒ°µÄÍæ¼Ò
+	 * å¾—åˆ°ç©å®¶æ‰€æœ‰åŒä¸€è§†é‡çš„ç©å®¶
 	 * 
 	 * @param p_pk
 	 * @param map_id
@@ -889,7 +889,7 @@ public class PlayerService
 	}
 
 	/**
-	 * ¸øÍæ¼ÒµÄ²»Í¬×´Ì¬ÏÂÔö¼Ó²»Í¬µÄ±ê¼Ç
+	 * ç»™ç©å®¶çš„ä¸åŒçŠ¶æ€ä¸‹å¢åŠ ä¸åŒçš„æ ‡è®°
 	 * @param players
 	 */
 	public void addUserStateFlag(List<RoleEntity> players)
@@ -901,7 +901,7 @@ public class PlayerService
 			{
 				roleEntity.getBasicInfo().setDisplayName(roleEntity.getBasicInfo().getName()+"*");
 			} else 	if ( roleEntity.getStateInfo().getCurState() == PlayerState.PKFIGHT) {
-				roleEntity.getBasicInfo().setDisplayName("¡Á"+roleEntity.getBasicInfo().getName());
+				roleEntity.getBasicInfo().setDisplayName("Ã—"+roleEntity.getBasicInfo().getName());
 			} else {
 				roleEntity.getBasicInfo().setDisplayName(roleEntity.getBasicInfo().getName());				
 			}

@@ -21,7 +21,7 @@ import com.pub.ben.info.Expression;
 import com.web.service.checkpcrequest.CheckPcRequestService;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  */
 public class TomLoginAction extends DispatchAction
@@ -32,7 +32,7 @@ public class TomLoginAction extends DispatchAction
 	Logger logger = Logger.getLogger(TomLoginAction.class);
 
 	/**
-	 * TOMÓÃ»§µÇÂ½µ½Ê×Ò³Ãæ
+	 * TOMç”¨æˆ·ç™»é™†åˆ°é¦–é¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -46,14 +46,14 @@ public class TomLoginAction extends DispatchAction
 		request.setAttribute("lid", lid);
 		/*CheckPcRequestService checkPcRequestService = new CheckPcRequestService();
 		if(checkPcRequestService.CheckPcRequest(request) == false){
-			String qq = "¾­¼ì²â,ÄãÊ¹ÓÃ·ÇÕı³£·½·¨µÇÂ¼ÓÎÏ·,Çë·µ»ØÊ¹ÓÃÊÖ»úµÇÂ¼ÓÎÏ·";
+			String qq = "ç»æ£€æµ‹,ä½ ä½¿ç”¨éæ­£å¸¸æ–¹æ³•ç™»å½•æ¸¸æˆ,è¯·è¿”å›ä½¿ç”¨æ‰‹æœºç™»å½•æ¸¸æˆ";
 			request.setAttribute("hint", qq);
 			return mapping.findForward("ischeckpc");
 		} */
 		return mapping.findForward("tomindexpage");
 	}
 	/**
-	 * TOMÓÃ»§µÇÂ½µ½ÊäÈëÓÃ»§ÃûÃÜÂëÒ³Ãæ
+	 * TOMç”¨æˆ·ç™»é™†åˆ°è¾“å…¥ç”¨æˆ·åå¯†ç é¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -72,7 +72,7 @@ public class TomLoginAction extends DispatchAction
 	}
 	
 	/**
-	 * TOMÓÃ»§µÇÂ½µ½Ñ¡ÔñÇøÓòÒ³Ãæ
+	 * TOMç”¨æˆ·ç™»é™†åˆ°é€‰æ‹©åŒºåŸŸé¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -83,7 +83,7 @@ public class TomLoginAction extends DispatchAction
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String ip = (String) request.getRemoteAddr();
-		logger.info("############TOMÓÃ»§µÇÂ½##############");
+		logger.info("############TOMç”¨æˆ·ç™»é™†##############");
 		String name = request.getParameter("name");
 		String paw = request.getParameter("paw");
 		String lid = request.getParameter("lid");
@@ -93,8 +93,8 @@ public class TomLoginAction extends DispatchAction
 		logger.info("lid:" + lid);
 		logger.info("user_name:" + name);
 		logger.info("IP:" + ip);
-		//Ê×ÏÈÑéÖ¤ÓÃ»§ÃûºÍÃÜÂëÊÇ·ñÕıÈ·
-		//ÓÃ»§ÃûÆ¥ÅäÎª×Ö·ûĞÍ
+		//é¦–å…ˆéªŒè¯ç”¨æˆ·åå’Œå¯†ç æ˜¯å¦æ­£ç¡®
+		//ç”¨æˆ·ååŒ¹é…ä¸ºå­—ç¬¦å‹
 		 String hint = null;
 		 Pattern p = Pattern.compile(Expression.letter_number_regexp);
 		 Matcher m = p.matcher(name);
@@ -102,34 +102,34 @@ public class TomLoginAction extends DispatchAction
 		 boolean b = m.matches();
 		 boolean pp = pw.matches();
 		 if(b==false){
-			 hint = "ÕËºÅÇëÊäÈë´óĞ¡Ğ´Ó¢ÎÄ×Ö·ûºÍÊı×Ö×Ö·û";
+			 hint = "è´¦å·è¯·è¾“å…¥å¤§å°å†™è‹±æ–‡å­—ç¬¦å’Œæ•°å­—å­—ç¬¦";
 			 request.setAttribute("hint", hint);
 			 request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		 }
 		 if(pp==false){
-			 hint = "ÃÜÂëÇëÊäÈë´óĞ¡Ğ´Ó¢ÎÄ×Ö·ûºÍÊı×Ö×Ö·û";
+			 hint = "å¯†ç è¯·è¾“å…¥å¤§å°å†™è‹±æ–‡å­—ç¬¦å’Œæ•°å­—å­—ç¬¦";
 			 request.setAttribute("hint", hint);
 			 request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		 }
 		if( name.indexOf(" ") != -1 )
 		{
-			hint = "ÕËºÅ²»ÄÜÓĞ¿Õ¸ñ³öÏÖ";
+			hint = "è´¦å·ä¸èƒ½æœ‰ç©ºæ ¼å‡ºç°";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		}
 		if( name == null || name.equals("") )
 		{
-			hint = "ÕËºÅ²»ÄÜÎª¿Õ";
+			hint = "è´¦å·ä¸èƒ½ä¸ºç©º";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		}
 		if( name.length() < 5 )
 		{
-			hint = "ÕËºÅÎ»Êı²»ÄÜĞ¡ÓÚ5Î»";
+			hint = "è´¦å·ä½æ•°ä¸èƒ½å°äº5ä½";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
@@ -137,7 +137,7 @@ public class TomLoginAction extends DispatchAction
 		else if( name.length() > 11 )
 		{
 			
-			hint = "ÕËºÅÎ»Êı²»ÄÜ´óÓÚ11Î»"; 
+			hint = "è´¦å·ä½æ•°ä¸èƒ½å¤§äº11ä½"; 
 			request.setAttribute("hint", hint); 
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
@@ -145,14 +145,14 @@ public class TomLoginAction extends DispatchAction
 		
 		if( paw.length() < 5 )
 		{
-			hint = "ÃÜÂëÎ»Êı²»ÄÜĞ¡ÓÚ5Î»";
+			hint = "å¯†ç ä½æ•°ä¸èƒ½å°äº5ä½";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		}else if( paw.length() > 11 )
 		{
 			
-			hint = "ÃÜÂëÎ»Êı²»ÄÜ´óÓÚ11Î»"; 
+			hint = "å¯†ç ä½æ•°ä¸èƒ½å¤§äº11ä½"; 
 			request.setAttribute("hint", hint); 
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
@@ -161,20 +161,20 @@ public class TomLoginAction extends DispatchAction
 		 
 		if( paw.indexOf(" ") != -1 )
 		{
-			hint = "ÃÜÂë²»ÄÜÓĞ¿Õ¸ñ³öÏÖ";
+			hint = "å¯†ç ä¸èƒ½æœ‰ç©ºæ ¼å‡ºç°";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		}
 		if( paw == null || paw.equals("") )
 		{
-			hint = "ÃÜÂë²»ÄÜÎª¿Õ";
+			hint = "å¯†ç ä¸èƒ½ä¸ºç©º";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage");
 		}
 		if ( Expression.hasWeiFaChar(name)) {
-			hint = "Ãû×ÖÖĞÇë²»ÒªÓĞgm¡¢¿Í·şµÈ×ÖÑù!";
+			hint = "åå­—ä¸­è¯·ä¸è¦æœ‰gmã€å®¢æœç­‰å­—æ ·!";
 			request.setAttribute("hint", hint);
 			request.setAttribute("lid", lid);
 			 return mapping.findForward("tomvalidatepage"); 
@@ -185,9 +185,9 @@ public class TomLoginAction extends DispatchAction
 		u_pk = passportService.loginFromTOM(lid, name, paw, ip);
 		request.getSession().setAttribute("channel_id", Channel.TOM + "");
 
-		if (u_pk == -1)// µÇÂ½ÑéÖ¤Ê§°Ü
+		if (u_pk == -1)// ç™»é™†éªŒè¯å¤±è´¥
 		{	
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		}
 
@@ -196,7 +196,7 @@ public class TomLoginAction extends DispatchAction
 	}
 	
 	/**
-	 * TOMÓÃ»§µÇÂ½µ½ÊäÈëÓÃ»§ÃûÃÜÂëÒ³Ãæ
+	 * TOMç”¨æˆ·ç™»é™†åˆ°è¾“å…¥ç”¨æˆ·åå¯†ç é¡µé¢
 	 * @param mapping
 	 * @param form
 	 * @param request

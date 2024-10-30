@@ -1,23 +1,23 @@
 package com.pm.constant;
 
 /**
- * ÅÄÂô·ÑÏµÊı
+ * æ‹å–è´¹ç³»æ•°
  * @author Administrator
  *
  */
 public class AuctionNumber
 {
 
-	/** ÅÄÂô·ÑÂÊÏÖÔÚÎª0.95 */
+	/** æ‹å–è´¹ç‡ç°åœ¨ä¸º0.95 */
 	public final static double AUCTIONNUMBER = 0.95;
 	
-	/*** Ôª±¦ÅÄÂô----ÕıÔÚÂô×´Ì¬ */
+	/*** å…ƒå®æ‹å–----æ­£åœ¨å–çŠ¶æ€ */
 	public final static int YUANSELLING = 1; 
 	
-	/*** Ôª±¦ÅÄÂô----ÒÑ¾­×´Ì¬ */
+	/*** å…ƒå®æ‹å–----å·²ç»çŠ¶æ€ */
 	public final static int YUANSELLED = 2;
 	
-	/*** Ôª±¦ÅÄÂô----ÏÂ¼Ü×´Ì¬ */
+	/*** å…ƒå®æ‹å–----ä¸‹æ¶çŠ¶æ€ */
 	public final static int YUANNOTSELL = 3;
 
 	public static final int BACKED = 4;

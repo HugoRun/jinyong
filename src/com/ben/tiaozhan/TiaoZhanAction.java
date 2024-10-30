@@ -1,16 +1,5 @@
 package com.ben.tiaozhan;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.shitu.model.DateUtil;
 import com.ls.ben.dao.info.partinfo.PlayerPropGroupDao;
 import com.ls.ben.vo.info.partinfo.Fighter;
@@ -24,233 +13,213 @@ import com.ls.pub.constant.player.PlayerState;
 import com.ls.pub.constant.system.PopUpMsgType;
 import com.ls.web.action.menu.BaseAction;
 import com.ls.web.service.player.PlayerService;
+import com.ls.web.service.player.RoleService;
 import com.ls.web.service.player.ShortcutService;
 import com.ls.web.service.system.UMsgService;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
-public class TiaoZhanAction extends BaseAction
-{
-	private PlayerService ps = new PlayerService();
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		BasicInfo bi = getBasicInfo(request);
-		request.setAttribute("pg_pk",
-				request.getParameter("pg_pk") == null ? request
-						.getAttribute("pg_pk") : request.getParameter("pg_pk"));
-		String name = request.getParameter("name");
-		if (name == null || "".equals(name.trim()))
-		{
-			setMessage(request, "ÇëÊäÈëÃû³Æ");
-			return mapping.findForward("tiaozhan");
-		}
-		int ppk = roleService.getByName(name.trim());
-		if (ppk == -1 || ppk == 0)
-		{
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		RoleEntity re = roleService.getRoleInfoById(ppk + "");
-		if (re == null)
-		{
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		if(re.getBasicInfo().getName().equalsIgnoreCase("gm")){
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		int re_ppk = re.getBasicInfo().getPPk();
-		if (!(re.getStateInfo().getCurState() == PlayerState.GENERAL
-				|| re.getStateInfo().getCurState() == PlayerState.TRADE
-				|| re.getStateInfo().getCurState() == PlayerState.GROUP || re
-				.getStateInfo().getCurState() == PlayerState.TALK))
-		{
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		if (!(re.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.SAFE || re
-				.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.DANGER))
-		{
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		if(TiaozhanConstant.TIAOZHAN.containsKey(bi.getPPk())){
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		if (re_ppk == bi.getPPk())
-		{
-			setMessage(request, "Äú²»¿ÉÒÔ¶Ô×Ô¼º·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		if (TiaozhanConstant.TIAOZHAN.containsKey(re_ppk)
-				|| TiaozhanConstant.TIAOZHAN.containsValue(re_ppk))
-		{
-			setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-			return mapping.findForward("tiaozhan");
-		}
-		String pg_pk = request.getParameter("pg_pk");
-		if (pg_pk != null && !"".equals(pg_pk.trim()))
-		{
-			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-			PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(Integer
-					.parseInt(pg_pk.trim()));
-			if (propGroup != null)
-			{
-				if (TiaozhanConstant.TIAOZHAN.containsKey(re_ppk)
-						|| TiaozhanConstant.TIAOZHAN.containsValue(re_ppk))
-				{
-					setMessage(request, "ÄúÄ¿Ç°ÎŞ·¨¶Ô¸ÃÍæ¼Ò·¢ÆğÌôÕ½¡£");
-					return mapping.findForward("tiaozhan");
-				}
-				TiaozhanConstant.TIAOZHAN_TIME.put(re_ppk, new Date());
-				TiaozhanConstant.TIAOZHAN.put(bi.getPPk(), re_ppk);
-				TiaozhanConstant.TIAOZHAN.put(re_ppk, bi.getPPk());
-				goodsService.removeProps(propGroup, 1);
-				setMessage(request, "ÄúÒÑ¾­³É¹¦Ïò" + name.trim() + "·¢ÆğÁËÌôÕ½£¡");
-				UMsgService uMsgService = new UMsgService();
-				UMessageInfoVO uif = new UMessageInfoVO();
-				uif.setCreateTime(new Date());
-				uif.setMsgPriority(PopUpMsgType.TIAOZHAN_FIRST);
-				uif.setMsgType(PopUpMsgType.TIAOZHAN);
-				uif.setPPk(re_ppk);
-				uif.setResult(bi.getName());
-				uif.setMsgOperate1(bi.getPPk() + "");
-				uMsgService.sendPopUpMsg(uif);
-				systemInfoService.insertSystemInfoBySystem(bi.getRealName() + "Ïò"
-						+ name.trim() + "ÏÂÁËÕ½Êé£¡²»Öª" + name.trim() + "»á×öºÎÓ¦¶Ô£¡");
-				
-				return mapping.findForward(ERROR);
-			}
-			else
-			{
-				setMessage(request, "¸ÃµÀ¾ß²»ÄÜÊ¹ÓÃ");
-				return mapping.findForward(ERROR);
-			}
-		}
-		else
-		{
-			setMessage(request, "¸ÃµÀ¾ß²»ÄÜÊ¹ÓÃ");
-			return mapping.findForward(ERROR);
-		}
-	}
-	
-	private String getSystemMessage(String name1,String name2){
-		Random r = new Random();
-		int numm = r.nextInt(5);
-		String mess = name1 + "±»"+ name2 + "µÄ°ÔÆøËùÕğ£¬¾¹È»Ã»ÓĞµ¨Á¿½ÓÊÜÕ½Êé£¡";
-		switch(numm){
-			case 0:break;
-			case 1: mess = name1+"±»"+name2+"µÄÆøÊÆËùÑ¹µ¹,¾ÓÈ»ÇÄÇÄµÄÁï×ßÁË,ÁôÏÂµÄÖ»ÓĞ"+name2+"±ÉÊÓµÄÄ¿¹â¡£";break;
-			case 2: mess = name2+"°ÑĞØ¸¬ÅÄµÃàèÅ¾Ïì£¬¶Ô"+name1+"ÅØÏøµÀ£º¡°·ÉÃ«ÍÈÁË²»Æğ°¡,ÌÓµÄ»¹Õæ¿ì,ÓĞÖÖµÄÄã¹ıÀ´°¡!¡±";break;
-			case 3: mess = name2+"¶Ô"+name1+"ÌÓÈ¥µÄÉíÓ°ÅØÏøµÀ:\"µ¨Ğ¡¹í,²»ÒªÅÜ,ÎÒÃÇ´óÕ½Èı°Ù»ØºÏ\"¡£";break;
-			case 4: mess = name2+"¶Ô"+name1+"°Ú¿ª¼ÜÊ½×¼±¸¶ÔÕ½,"+name1+"Í»È»ÏûÊ§ÁË,"+name2+"¸ĞÌ¾µ½\""+name1+"ÄãÅÂËÀ¾Í²»ÒªÀ´Âï,ÀË·ÑÊ±¼ä\"¡£";break;
-			default : break;
-		}
-		return mess;
-	}
+public class TiaoZhanAction extends BaseAction {
+    private final PlayerService ps = new PlayerService();
 
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String caozuo = request.getParameter("caozuo");
-		String tiao_ppk = request.getParameter("tiao_ppk");
-		if (tiao_ppk == null || "".equals(tiao_ppk.trim()))
-		{
-			setMessage(request, "³ö´íÁË");
-			return mapping.findForward(ERROR);
-		}
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        BasicInfo bi = getBasicInfo(request);
+        request.setAttribute("pg_pk", request.getParameter("pg_pk") == null ? request.getAttribute("pg_pk") : request.getParameter("pg_pk"));
+        String name = request.getParameter("name");
+        if (name == null || "".equals(name.trim())) {
+            setMessage(request, "è¯·è¾“å…¥åç§°");
+            return mapping.findForward("tiaozhan");
+        }
+        int ppk = roleService.getByName(name.trim());
+        if (ppk == -1 || ppk == 0) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        RoleEntity re = RoleService.getRoleInfoById(ppk + "");
+        if (re == null) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        if (re.getBasicInfo().getName().equalsIgnoreCase("gm")) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        int re_ppk = re.getBasicInfo().getPPk();
+        if (!(re.getStateInfo().getCurState() == PlayerState.GENERAL || re.getStateInfo().getCurState() == PlayerState.TRADE || re.getStateInfo().getCurState() == PlayerState.GROUP || re.getStateInfo().getCurState() == PlayerState.TALK)) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        if (!(re.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.SAFE || re.getBasicInfo().getSceneInfo().getMap().getMapType() == MapType.DANGER)) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        if (TiaozhanConstant.TIAOZHAN.containsKey(bi.getPPk())) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        if (re_ppk == bi.getPPk()) {
+            setMessage(request, "æ‚¨ä¸å¯ä»¥å¯¹è‡ªå·±å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        if (TiaozhanConstant.TIAOZHAN.containsKey(re_ppk) || TiaozhanConstant.TIAOZHAN.containsValue(re_ppk)) {
+            setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+            return mapping.findForward("tiaozhan");
+        }
+        String pg_pk = request.getParameter("pg_pk");
+        if (pg_pk != null && !"".equals(pg_pk.trim())) {
+            PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
+            PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(Integer.parseInt(pg_pk.trim()));
+            if (propGroup != null) {
+                if (TiaozhanConstant.TIAOZHAN.containsKey(re_ppk) || TiaozhanConstant.TIAOZHAN.containsValue(re_ppk)) {
+                    setMessage(request, "æ‚¨ç›®å‰æ— æ³•å¯¹è¯¥ç©å®¶å‘èµ·æŒ‘æˆ˜ã€‚");
+                    return mapping.findForward("tiaozhan");
+                }
+                TiaozhanConstant.TIAOZHAN_TIME.put(re_ppk, new Date());
+                TiaozhanConstant.TIAOZHAN.put(bi.getPPk(), re_ppk);
+                TiaozhanConstant.TIAOZHAN.put(re_ppk, bi.getPPk());
+                goodsService.removeProps(propGroup, 1);
+                setMessage(request, "æ‚¨å·²ç»æˆåŠŸå‘" + name.trim() + "å‘èµ·äº†æŒ‘æˆ˜ï¼");
+                UMsgService uMsgService = new UMsgService();
+                UMessageInfoVO uif = new UMessageInfoVO();
+                uif.setCreateTime(new Date());
+                uif.setMsgPriority(PopUpMsgType.TIAOZHAN_FIRST);
+                uif.setMsgType(PopUpMsgType.TIAOZHAN);
+                uif.setPPk(re_ppk);
+                uif.setResult(bi.getName());
+                uif.setMsgOperate1(bi.getPPk() + "");
+                uMsgService.sendPopUpMsg(uif);
+                systemInfoService.insertSystemInfoBySystem(bi.getRealName() + "å‘" + name.trim() + "ä¸‹äº†æˆ˜ä¹¦ï¼ä¸çŸ¥" + name.trim() + "ä¼šåšä½•åº”å¯¹ï¼");
 
-		RoleEntity reown = getRoleEntity(request);
-		BasicInfo bi = reown.getBasicInfo();
-		RoleEntity re = roleService.getRoleInfoById(tiao_ppk + "");
-		String tiao_name = roleService.getName(tiao_ppk)[0];
-		if (re == null)
-		{
-			TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
-			if (TiaozhanConstant.TIAOZHAN.containsKey(bi.getPPk()))
-			{
-				int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
-				TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
-				TiaozhanConstant.TIAOZHAN.remove(pk);
-			}
-			systemInfoService.insertSystemInfoBySystem(getSystemMessage(tiao_name, bi.getRealName()));
-			setMessage(request, tiao_name + "±»ÄúµÄ°ÔÆøËùÕğ£¬¾¹È»Ã»ÓĞµ¨Á¿½ÓÊÜÕ½Êé£¡");
-			return mapping.findForward(ERROR);
-		}
-		if (caozuo == null || "".equals(caozuo.trim()))
-		{
-			TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
-			int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(pk);
-			systemInfoService.insertSystemInfoBySystem(getSystemMessage(bi.getRealName(),tiao_name));
-			return mapping.findForward("refurbish_scene");
-		}
-		Date date = TiaozhanConstant.TIAOZHAN_TIME.get(bi.getPPk());
-		if (DateUtil.checkMin(date, TiaozhanConstant.OVER_TIME))
-		{
-			setMessage(request, "ÓÉÓÚÄúÔÚ1·ÖÖÓÄÚÃ»ÓĞ½øĞĞÑ¡Ôñ£¬Òò´Ë±»ÊÓÎª¾Ü¾øÌôÕ½");
-			TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
-			int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(pk);
-			systemInfoService.insertSystemInfoBySystem(getSystemMessage(bi.getRealName(),tiao_name));
-			return mapping.findForward(ERROR);
-		}
-		int maptype = re.getBasicInfo().getSceneInfo().getMap().getMapType();
-		if (maptype != MapType.SAFE && maptype != MapType.DANGER)
-		{
-			TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
-			int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(pk);
-			systemInfoService.insertSystemInfoBySystem(getSystemMessage(tiao_name, bi.getRealName()));
-			setMessage(request, tiao_name + "±»ÄúµÄ°ÔÆøËùÕğ£¬¾¹È»Ã»ÓĞµ¨Á¿½ÓÊÜÕ½Êé£¡");
-			return mapping.findForward(ERROR);
-		}
-		int state = re.getStateInfo().getCurState();
-		if (!(state == PlayerState.GENERAL || state == PlayerState.TRADE
-				|| state == PlayerState.GROUP || state == PlayerState.TALK))
-		{
-			TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
-			int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
-			TiaozhanConstant.TIAOZHAN.remove(pk);
-			systemInfoService.insertSystemInfoBySystem(getSystemMessage(tiao_name, bi.getRealName()));
-			setMessage(request, tiao_name + "±»ÄúµÄ°ÔÆøËùÕğ£¬¾¹È»Ã»ÓĞµ¨Á¿½ÓÊÜÕ½Êé£¡");
-			return mapping.findForward(ERROR);
-		}
-		else
-		{
-			int bppk = re.getBasicInfo().getPPk();
-			// ½øÈëÀŞÌ¨
-			systemInfoService.insertSystemInfoBySystem(bi.getRealName() + "½ÓÊÜÁË"
-					+ tiao_name + "µÄÌôÕ½£¡Ë«·½Õ¾µ½ÁËÉúËÀÀŞÌ¨ÉÏ£¡");
-			ps.updateSceneAndView(bppk, TiaozhanConstant.TIAOZHAN_SCENE);
-			ps.updateSceneAndView(bi.getPPk(), TiaozhanConstant.TIAOZHAN_SCENE);
-			ShortcutService shortcutService = new ShortcutService();
-			
-			reown.getPKState().startAttack(re);//¹¥»÷re
-			
-			Fighter playerA = new Fighter();// Ö÷¶¯¹¥»÷
-			Fighter playerB = new Fighter();// ±»¶¯¹¥»÷
-			ps.loadFighterByPpk(playerA, bi.getPPk());
-			ps.loadFighterByPpk(playerB, bppk);
+                return mapping.findForward(ERROR);
+            } else {
+                setMessage(request, "è¯¥é“å…·ä¸èƒ½ä½¿ç”¨");
+                return mapping.findForward(ERROR);
+            }
+        } else {
+            setMessage(request, "è¯¥é“å…·ä¸èƒ½ä½¿ç”¨");
+            return mapping.findForward(ERROR);
+        }
+    }
 
-			List<ShortcutVO> shortcuts = shortcutService.getByPpk(bi.getPPk());
+    private String getSystemMessage(String name1, String name2) {
+        Random r = new Random();
+        int numm = r.nextInt(5);
+        String mess = name1 + "è¢«" + name2 + "çš„éœ¸æ°”æ‰€éœ‡ï¼Œç«Ÿç„¶æ²¡æœ‰èƒ†é‡æ¥å—æˆ˜ä¹¦ï¼";
+        switch (numm) {
+            case 0:
+                break;
+            case 1:
+                mess = name1 + "è¢«" + name2 + "çš„æ°”åŠ¿æ‰€å‹å€’,å±…ç„¶æ‚„æ‚„çš„æºœèµ°äº†,ç•™ä¸‹çš„åªæœ‰" + name2 + "é„™è§†çš„ç›®å…‰ã€‚";
+                break;
+            case 2:
+                mess = name2 + "æŠŠèƒ¸è„¯æ‹å¾—å™¼å•ªå“ï¼Œå¯¹" + name1 + "å’†å“®é“ï¼šâ€œé£æ¯›è…¿äº†ä¸èµ·å•Š,é€ƒçš„è¿˜çœŸå¿«,æœ‰ç§çš„ä½ è¿‡æ¥å•Š!â€";
+                break;
+            case 3:
+                mess = name2 + "å¯¹" + name1 + "é€ƒå»çš„èº«å½±å’†å“®é“:\"èƒ†å°é¬¼,ä¸è¦è·‘,æˆ‘ä»¬å¤§æˆ˜ä¸‰ç™¾å›åˆ\"ã€‚";
+                break;
+            case 4:
+                mess = name2 + "å¯¹" + name1 + "æ‘†å¼€æ¶å¼å‡†å¤‡å¯¹æˆ˜," + name1 + "çªç„¶æ¶ˆå¤±äº†," + name2 + "æ„Ÿå¹åˆ°\"" + name1 + "ä½ æ€•æ­»å°±ä¸è¦æ¥å˜›,æµªè´¹æ—¶é—´\"ã€‚";
+                break;
+            default:
+                break;
+        }
+        return mess;
+    }
 
-			request.setAttribute("playerA", playerA);
-			request.setAttribute("playerB", playerB);
-			request.setAttribute("shortcuts", shortcuts);
-			request.setAttribute("tong", "0");
-			// //System.out.println("Action N7 = -----
-			// "+request.getParameter("chair"));
-			String unAttack = (String) request.getAttribute("unAttack");
-			request.setAttribute("unAttack", unAttack);
-			request.setAttribute("reqchair", request.getParameter("chair"));
-			return mapping.findForward("display");
-		}
-	}
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String caozuo = request.getParameter("caozuo");
+        String tiao_ppk = request.getParameter("tiao_ppk");
+        if (tiao_ppk == null || "".equals(tiao_ppk.trim())) {
+            setMessage(request, "å‡ºé”™äº†");
+            return mapping.findForward(ERROR);
+        }
+
+        RoleEntity reown = getRoleEntity(request);
+        BasicInfo bi = reown.getBasicInfo();
+        RoleEntity re = RoleService.getRoleInfoById(tiao_ppk);
+        String tiao_name = roleService.getName(tiao_ppk)[0];
+        if (re == null) {
+            TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
+            if (TiaozhanConstant.TIAOZHAN.containsKey(bi.getPPk())) {
+                int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
+                TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
+                TiaozhanConstant.TIAOZHAN.remove(pk);
+            }
+            systemInfoService.insertSystemInfoBySystem(getSystemMessage(tiao_name, bi.getRealName()));
+            setMessage(request, tiao_name + "è¢«æ‚¨çš„éœ¸æ°”æ‰€éœ‡ï¼Œç«Ÿç„¶æ²¡æœ‰èƒ†é‡æ¥å—æˆ˜ä¹¦ï¼");
+            return mapping.findForward(ERROR);
+        }
+        if (caozuo == null || "".equals(caozuo.trim())) {
+            TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
+            int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(pk);
+            systemInfoService.insertSystemInfoBySystem(getSystemMessage(bi.getRealName(), tiao_name));
+            return mapping.findForward("refurbish_scene");
+        }
+        Date date = TiaozhanConstant.TIAOZHAN_TIME.get(bi.getPPk());
+        if (DateUtil.checkMin(date, TiaozhanConstant.OVER_TIME)) {
+            setMessage(request, "ç”±äºæ‚¨åœ¨1åˆ†é’Ÿå†…æ²¡æœ‰è¿›è¡Œé€‰æ‹©ï¼Œå› æ­¤è¢«è§†ä¸ºæ‹’ç»æŒ‘æˆ˜");
+            TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
+            int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(pk);
+            systemInfoService.insertSystemInfoBySystem(getSystemMessage(bi.getRealName(), tiao_name));
+            return mapping.findForward(ERROR);
+        }
+        int maptype = re.getBasicInfo().getSceneInfo().getMap().getMapType();
+        if (maptype != MapType.SAFE && maptype != MapType.DANGER) {
+            TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
+            int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(pk);
+            systemInfoService.insertSystemInfoBySystem(getSystemMessage(tiao_name, bi.getRealName()));
+            setMessage(request, tiao_name + "è¢«æ‚¨çš„éœ¸æ°”æ‰€éœ‡ï¼Œç«Ÿç„¶æ²¡æœ‰èƒ†é‡æ¥å—æˆ˜ä¹¦ï¼");
+            return mapping.findForward(ERROR);
+        }
+        int state = re.getStateInfo().getCurState();
+        if (!(state == PlayerState.GENERAL || state == PlayerState.TRADE || state == PlayerState.GROUP || state == PlayerState.TALK)) {
+            TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
+            int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
+            TiaozhanConstant.TIAOZHAN.remove(pk);
+            systemInfoService.insertSystemInfoBySystem(getSystemMessage(tiao_name, bi.getRealName()));
+            setMessage(request, tiao_name + "è¢«æ‚¨çš„éœ¸æ°”æ‰€éœ‡ï¼Œç«Ÿç„¶æ²¡æœ‰èƒ†é‡æ¥å—æˆ˜ä¹¦ï¼");
+            return mapping.findForward(ERROR);
+        } else {
+            int bppk = re.getBasicInfo().getPPk();
+            // è¿›å…¥æ“‚å°
+            systemInfoService.insertSystemInfoBySystem(bi.getRealName() + "æ¥å—äº†" + tiao_name + "çš„æŒ‘æˆ˜ï¼åŒæ–¹ç«™åˆ°äº†ç”Ÿæ­»æ“‚å°ä¸Šï¼");
+            ps.updateSceneAndView(bppk, TiaozhanConstant.TIAOZHAN_SCENE);
+            ps.updateSceneAndView(bi.getPPk(), TiaozhanConstant.TIAOZHAN_SCENE);
+            ShortcutService shortcutService = new ShortcutService();
+
+            reown.getPKState().startAttack(re);//æ”»å‡»re
+
+            Fighter playerA = new Fighter();// ä¸»åŠ¨æ”»å‡»
+            Fighter playerB = new Fighter();// è¢«åŠ¨æ”»å‡»
+            ps.loadFighterByPpk(playerA, bi.getPPk());
+            ps.loadFighterByPpk(playerB, bppk);
+
+            List<ShortcutVO> shortcuts = shortcutService.getByPpk(bi.getPPk());
+
+            request.setAttribute("playerA", playerA);
+            request.setAttribute("playerB", playerB);
+            request.setAttribute("shortcuts", shortcuts);
+            request.setAttribute("tong", "0");
+            // //System.out.println("Action N7 = -----
+            // "+request.getParameter("chair"));
+            String unAttack = (String) request.getAttribute("unAttack");
+            request.setAttribute("unAttack", unAttack);
+            request.setAttribute("reqchair", request.getParameter("chair"));
+            return mapping.findForward("display");
+        }
+    }
 }

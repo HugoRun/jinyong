@@ -23,7 +23,7 @@ import com.pm.service.systemInfo.SystemInfoService;
 
 /**
  * @author ls
- * ¹¦ÄÜ:¸±±¾¹ÜÀí³ÌĞò
+ * åŠŸèƒ½:å‰¯æœ¬ç®¡ç†ç¨‹åº
  * Feb 3, 2009
  */
 public class InstanceService
@@ -31,13 +31,13 @@ public class InstanceService
 	private Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * ÅĞ¶Ï¸±±¾ÊÇ·ñÍê³É
+	 * åˆ¤æ–­å‰¯æœ¬æ˜¯å¦å®Œæˆ
 	 */
 	public boolean isFinshed( int p_pk,InstanceInfoVO instanceInfo )
 	{
 		if( instanceInfo==null )
 		{
-			logger.info("instanceInfoÎª¿Õ");
+			logger.info("instanceInfoä¸ºç©º");
 			return false;
 		}
 			
@@ -46,7 +46,7 @@ public class InstanceService
 		
 		InstanceArchiveVO instanceArchive = getArchiveByMapId(p_pk, instanceInfo.getMapId());
 		
-		if( instanceArchive==null )//Èç¹ûÃ»ÓĞ´æµµ
+		if( instanceArchive==null )//å¦‚æœæ²¡æœ‰å­˜æ¡£
 		{
 			return false;
 		}
@@ -70,8 +70,8 @@ public class InstanceService
 	}
 	
 	/**
-	 * ÅĞ¶Ï¸±±¾ÊÇ·ñÖØÖÃ
-	 * @param instanceInfo    ¸±±¾ĞÅÏ¢
+	 * åˆ¤æ–­å‰¯æœ¬æ˜¯å¦é‡ç½®
+	 * @param instanceInfo    å‰¯æœ¬ä¿¡æ¯
 	 * @return	
 	 */
 	public boolean isReset( InstanceInfoVO instanceInfo )
@@ -80,7 +80,7 @@ public class InstanceService
 		
 		if( instanceInfo==null )
 		{
-			logger.info("²ÎÊıinstanceInfo¿Õ");
+			logger.info("å‚æ•°instanceInfoç©º");
 			return false;
 		}
 		
@@ -92,32 +92,32 @@ public class InstanceService
 		return result;
 	}
 	/**
-	 * ¸±±¾ÖØÖÃ
-	 * @param p_pk            ½ÇÉ«id
-	 * @param map_id     ¸±±¾id(map_id)
+	 * å‰¯æœ¬é‡ç½®
+	 * @param p_pk            è§’è‰²id
+	 * @param map_id     å‰¯æœ¬id(map_id)
 	 */
 	public void reset( int p_pk,int map_id )
 	{
 		InstanceArchiveDao instanceArchiveDao = new InstanceArchiveDao();
 		InstanceInfoDao  instanceInfoDao = new InstanceInfoDao();
 		
-		instanceInfoDao.updateResetTime(map_id);//¸üĞÂÖØÖÃÊ±¼ä
-		instanceArchiveDao.clearAllArchive(map_id);//³õÊ¼»¯ËùÓĞÍæ¼Ò¸Ã¸±±¾½ø¶È
+		instanceInfoDao.updateResetTime(map_id);//æ›´æ–°é‡ç½®æ—¶é—´
+		instanceArchiveDao.clearAllArchive(map_id);//åˆå§‹åŒ–æ‰€æœ‰ç©å®¶è¯¥å‰¯æœ¬è¿›åº¦
 	}
 	
 	/**
-	 * ÅĞ¶Ï½ÇÉ«ÊÇ·ñ¿ÉÒÔ½øÈë¸±±¾
+	 * åˆ¤æ–­è§’è‰²æ˜¯å¦å¯ä»¥è¿›å…¥å‰¯æœ¬
 	 * @param p_pk
-	 * @param instance_id          ¸±±¾id
-	 * @return     ·µ»Ønull±íÊ¾¿ÉÒÔ
+	 * @param instance_id          å‰¯æœ¬id
+	 * @return     è¿”å›nullè¡¨ç¤ºå¯ä»¥
 	 */
 	public String isEntered( int p_pk,int level,int instance_id )
 	{
 		String hint = null;
 		
 		InstanceInfoVO instanceInfo = null;
-		int player_level = 0;//Íæ¼ÒµÈ¼¶
-		int group_member_num = 0;//Íæ¼ÒËùÔÚ¶ÓÎéÈËÊı
+		int player_level = 0;//ç©å®¶ç­‰çº§
+		int group_member_num = 0;//ç©å®¶æ‰€åœ¨é˜Ÿä¼äººæ•°
 		
 		GroupService  groupService = new GroupService();
 		
@@ -129,21 +129,21 @@ public class InstanceService
 		
 		if( instanceInfo==null )
 		{
-			hint = "ÎŞĞ§instance_id:"+instance_id;
+			hint = "æ— æ•ˆinstance_id:"+instance_id;
 			logger.info(hint);
 			return hint;
 		}
 		
 		if( group_member_num<instanceInfo.getGroupLimit() )
 		{
-			hint = "¶ÓÎéÈËÊı²»¹»,ÖÁÉÙĞèÒª"+instanceInfo.getGroupLimit()+"ÈË²ÅÄÜ½øÈë¸±±¾";
+			hint = "é˜Ÿä¼äººæ•°ä¸å¤Ÿ,è‡³å°‘éœ€è¦"+instanceInfo.getGroupLimit()+"äººæ‰èƒ½è¿›å…¥å‰¯æœ¬";
 			logger.info(hint);
 			return hint;
 		}
 		
 		if( player_level<instanceInfo.getLevelLimit() )
 		{
-			hint = "µÈ¼¶²»¹»,ÖÁÉÙĞèÒª"+instanceInfo.getLevelLimit()+"¼¶²Å¿ÉÒÔ½øÈë¸±±¾";
+			hint = "ç­‰çº§ä¸å¤Ÿ,è‡³å°‘éœ€è¦"+instanceInfo.getLevelLimit()+"çº§æ‰å¯ä»¥è¿›å…¥å‰¯æœ¬";
 			logger.info(hint);
 			return hint;
 		}
@@ -153,9 +153,9 @@ public class InstanceService
 	}
 	
 	/**
-	 * ¼ÇÂ¼bossËÀÍö
+	 * è®°å½•bossæ­»äº¡
 	 * @param p_pk
-	 * @param scene_id                ËÀÍöbossËùÔÚµØ
+	 * @param scene_id                æ­»äº¡bossæ‰€åœ¨åœ°
 	 */
 	public void archive( int p_pk,int scene_id )
 	{
@@ -165,16 +165,16 @@ public class InstanceService
 		InstanceArchiveDao instanceArchiveDao = new InstanceArchiveDao();
 		int map_type = roomService.getMapType(scene_id);
 		
-		if( map_type==MapType.INSTANCE )//ÅĞ¶ÏÊÇ·ñÊÇÔÚ¸±±¾ÇøÓò
+		if( map_type==MapType.INSTANCE )//åˆ¤æ–­æ˜¯å¦æ˜¯åœ¨å‰¯æœ¬åŒºåŸŸ
 		{
-    		//**ÅĞ¶Ï¸ÃµØµãÊÇ·ñÓĞboss
+    		//**åˆ¤æ–­è¯¥åœ°ç‚¹æ˜¯å¦æœ‰boss
     		if( roomService.isHaveBoss(scene_id)==true )
     		{
     			map_id = roomService.getMapId(scene_id);
     			instanceArchiveDao.updateArchive(p_pk, map_id, scene_id);
     			InstanceInfoVO vo = this.getInfoByMapId(map_id);
     			if(this.isFinshed(p_pk, vo)){
-    				//Í³¼ÆĞèÒª
+    				//ç»Ÿè®¡éœ€è¦
     				new RankService().updateAdd(p_pk, "meng", vo.getLevelLimit());
         		}
     		}
@@ -182,7 +182,7 @@ public class InstanceService
 	}
 	
 	/**
-	 * ´´½¨¸±±¾´æµµ
+	 * åˆ›å»ºå‰¯æœ¬å­˜æ¡£
 	 */
 	public void createArchive( int p_pk,int map_id )
 	{
@@ -191,7 +191,7 @@ public class InstanceService
 	}
 	
 	/**
-	 * ¶ÁÈ¡¸±±¾½ø¶È
+	 * è¯»å–å‰¯æœ¬è¿›åº¦
 	 */
 	public InstanceArchiveVO getArchiveBySceneId( int p_pk ,int scene_id )
 	{
@@ -204,7 +204,7 @@ public class InstanceService
 		return getArchiveByMapId(p_pk,map_id);
 	}
 	/**
-	 * ¶ÁÈ¡¸±±¾½ø¶È
+	 * è¯»å–å‰¯æœ¬è¿›åº¦
 	 */
 	public InstanceArchiveVO getArchiveByMapId( int p_pk ,int map_id )
 	{
@@ -212,7 +212,7 @@ public class InstanceService
 		
 		InstanceArchiveDao instanceArchiveDao = new InstanceArchiveDao();
 		
-		if( instanceArchiveDao.isHaveArchive(p_pk, map_id)==false )//Èç¹ûÃ»ÓĞµ±Ç°¸±±¾½ø¶ÈÔò´´½¨ĞÂµÄ½ø¶È
+		if( instanceArchiveDao.isHaveArchive(p_pk, map_id)==false )//å¦‚æœæ²¡æœ‰å½“å‰å‰¯æœ¬è¿›åº¦åˆ™åˆ›å»ºæ–°çš„è¿›åº¦
 		{
 			createArchive(p_pk, map_id);
 		}
@@ -222,7 +222,7 @@ public class InstanceService
 	}
 
 	/**
-	 *  ÅĞ¶ÏÍæ¼ÒÊÇ·ñÒÔÓĞ¸±±¾½ø¶È´æµµ
+	 *  åˆ¤æ–­ç©å®¶æ˜¯å¦ä»¥æœ‰å‰¯æœ¬è¿›åº¦å­˜æ¡£
 	 */
 	public boolean isHaveArchive( int p_pk,int scene_id )
 	{
@@ -238,7 +238,7 @@ public class InstanceService
 	}
 	
 	/**
-	 * ¸ù¾İinstance_idµÃµ½¸±±¾ĞÅÏ¢£¬Èç:½øÈë¸±±¾µÄµØµã£¬ËÀÍö¸´»îµÄµØµã£¬½øÈë×é¶ÓÈËÊıµÄÏŞÖÆ£¬½øÈë¸±±¾µÄµÈ¼¶ÏŞÖÆ
+	 * æ ¹æ®instance_idå¾—åˆ°å‰¯æœ¬ä¿¡æ¯ï¼Œå¦‚:è¿›å…¥å‰¯æœ¬çš„åœ°ç‚¹ï¼Œæ­»äº¡å¤æ´»çš„åœ°ç‚¹ï¼Œè¿›å…¥ç»„é˜Ÿäººæ•°çš„é™åˆ¶ï¼Œè¿›å…¥å‰¯æœ¬çš„ç­‰çº§é™åˆ¶
 	 */
 	public InstanceInfoVO getInfoById( int instance_id )
 	{
@@ -246,7 +246,7 @@ public class InstanceService
 		return instanceInfoDao.getByID(instance_id);
 	}
 	/**
-	 * ¸ù¾İmap_idµÃµ½¸±±¾ĞÅÏ¢£¬Èç:½øÈë¸±±¾µÄµØµã£¬ËÀÍö¸´»îµÄµØµã£¬½øÈë×é¶ÓÈËÊıµÄÏŞÖÆ£¬½øÈë¸±±¾µÄµÈ¼¶ÏŞÖÆ
+	 * æ ¹æ®map_idå¾—åˆ°å‰¯æœ¬ä¿¡æ¯ï¼Œå¦‚:è¿›å…¥å‰¯æœ¬çš„åœ°ç‚¹ï¼Œæ­»äº¡å¤æ´»çš„åœ°ç‚¹ï¼Œè¿›å…¥ç»„é˜Ÿäººæ•°çš„é™åˆ¶ï¼Œè¿›å…¥å‰¯æœ¬çš„ç­‰çº§é™åˆ¶
 	 */
 	public InstanceInfoVO getInfoByMapId( int map_id )
 	{
@@ -254,7 +254,7 @@ public class InstanceService
 		return instanceInfoDao.getByMapID(map_id);
 	}
 	/**
-	 * ¸ù¾İscene_idµÃµ½¸±±¾ĞÅÏ¢£¬Èç:½øÈë¸±±¾µÄµØµã£¬ËÀÍö¸´»îµÄµØµã£¬½øÈë×é¶ÓÈËÊıµÄÏŞÖÆ£¬½øÈë¸±±¾µÄµÈ¼¶ÏŞÖÆ
+	 * æ ¹æ®scene_idå¾—åˆ°å‰¯æœ¬ä¿¡æ¯ï¼Œå¦‚:è¿›å…¥å‰¯æœ¬çš„åœ°ç‚¹ï¼Œæ­»äº¡å¤æ´»çš„åœ°ç‚¹ï¼Œè¿›å…¥ç»„é˜Ÿäººæ•°çš„é™åˆ¶ï¼Œè¿›å…¥å‰¯æœ¬çš„ç­‰çº§é™åˆ¶
 	 */
 	public InstanceInfoVO getInfoBySceneId( int scene_id )
 	{
@@ -266,7 +266,7 @@ public class InstanceService
 	
 	
 	/**
-	 * ¼ÇÂ¼¸±±¾Ğ¡¹ÖµÄËÀÍöÊ±¼ä
+	 * è®°å½•å‰¯æœ¬å°æ€ªçš„æ­»äº¡æ—¶é—´
 	 */
 	public void recordNpcDeadTime(int caption_pk,int scene_id,int npc_id)
 	{
@@ -294,7 +294,7 @@ public class InstanceService
 	}
 	
 	/**
-	 * Çå³ı¸±±¾Ğ¡¹ÖµÄËÀÍö¼ÇÂ¼
+	 * æ¸…é™¤å‰¯æœ¬å°æ€ªçš„æ­»äº¡è®°å½•
 	 */
 	public void clearDeadRecord( int caption_pk,int map_id )
 	{
@@ -303,7 +303,7 @@ public class InstanceService
 		npcDeadRecordDao.clearByMapID(caption_pk, map_id);
 	}
 	/**
-	 * Çå³ı¶ÓÎéµÄ¸±±¾Ğ¡¹ÖµÄËÀÍöËùÓĞ¼ÇÂ¼
+	 * æ¸…é™¤é˜Ÿä¼çš„å‰¯æœ¬å°æ€ªçš„æ­»äº¡æ‰€æœ‰è®°å½•
 	 */
 	public void clearAllDeadRecord( int caption_pk)
 	{
@@ -312,7 +312,7 @@ public class InstanceService
 		npcDeadRecordDao.clear(caption_pk);
 	}
 	
-	/********Íæ¼ÒÉ±¹ÖÊıÁ¿ºÍÊ±¼äµÄÏÔÊ¾********/
+	/********ç©å®¶æ€æ€ªæ•°é‡å’Œæ—¶é—´çš„æ˜¾ç¤º********/
 	public String getTianGuanDisplay(RoleEntity roleInfo){
 		String scene_id = roleInfo.getBasicInfo().getSceneId();
 		SceneVO sceneVO = SceneCache.getById(scene_id);
@@ -320,7 +320,7 @@ public class InstanceService
 		if(mapVO.getMapType() == MapType.TIANGUAN){
 			if(roleInfo.getBasicInfo().getTianguan_time() != 0){
 				String[] condition = mapVO.getMapSkill().split(",");
-				//Ìõ¼ş  µÚÒ»Î» ÊÇ ¸ÃMAPµÄÀàĞÍ µÚ¶ş¸öÎª ¹ÖÎïNPCID  µÚÈı¸öÎªÊıÁ¿  µÚËÄ¸öÎª¸ÃµØÍ¼µÄÊ±¼ä
+				//æ¡ä»¶  ç¬¬ä¸€ä½ æ˜¯ è¯¥MAPçš„ç±»å‹ ç¬¬äºŒä¸ªä¸º æ€ªç‰©NPCID  ç¬¬ä¸‰ä¸ªä¸ºæ•°é‡  ç¬¬å››ä¸ªä¸ºè¯¥åœ°å›¾çš„æ—¶é—´
 				int num = 0;
 				num = Integer.parseInt(condition[2]) - roleInfo.getBasicInfo().getTianguan_kill_num();
 				if(num < 0){
@@ -328,15 +328,15 @@ public class InstanceService
 				}
 				int time = Integer.parseInt(condition[3]);
 				long now = new Date().getTime();
-				long time_now = (now - roleInfo.getBasicInfo().getTianguan_time())/1000;//Ãë
+				long time_now = (now - roleInfo.getBasicInfo().getTianguan_time())/1000;//ç§’
 				long time_out = time*60 - time_now;
 				if(time_out == 0){
-					return "Ê£ÓàÌôÕ½Ê±¼ä:60·ÖÖÓ!<br/>Ê£ÓàÉ±¹ÖÊıÁ¿:"+num+"<br/>";
+					return "å‰©ä½™æŒ‘æˆ˜æ—¶é—´:60åˆ†é’Ÿ!<br/>å‰©ä½™æ€æ€ªæ•°é‡:"+num+"<br/>";
 				}else{
 					if(time_out < 1){
-						return "Ê£ÓàÌôÕ½Ê±¼ä:"+time_now+"Ãë!<br/>Ê£ÓàÉ±¹ÖÊıÁ¿:"+num+"<br/>";
+						return "å‰©ä½™æŒ‘æˆ˜æ—¶é—´:"+time_now+"ç§’!<br/>å‰©ä½™æ€æ€ªæ•°é‡:"+num+"<br/>";
 					}else{
-						return "Ê£ÓàÌôÕ½Ê±¼ä:"+time_out/60+"·ÖÖÓ!<br/>Ê£ÓàÉ±¹ÖÊıÁ¿:"+num+"<br/>";
+						return "å‰©ä½™æŒ‘æˆ˜æ—¶é—´:"+time_out/60+"åˆ†é’Ÿ!<br/>å‰©ä½™æ€æ€ªæ•°é‡:"+num+"<br/>";
 					}
 				}
 			}else{
@@ -347,7 +347,7 @@ public class InstanceService
 		}
 	}
 	
-	//·µ»ØFALSE ËµÃ÷Íæ¼Ò²»ÓÃÌø×ª  ·µ»ØTRUE ËµÃ÷Íæ¼ÒÒª·µ»Ø
+	//è¿”å›FALSE è¯´æ˜ç©å®¶ä¸ç”¨è·³è½¬  è¿”å›TRUE è¯´æ˜ç©å®¶è¦è¿”å›
 	public boolean ifPlayerOut(RoleEntity roleInfo){
 		if(roleInfo != null){
 			String scene_id = roleInfo.getBasicInfo().getSceneId();
@@ -357,17 +357,17 @@ public class InstanceService
 				if(mapVO.getMapType() == MapType.TIANGUAN){
 					if(roleInfo.getBasicInfo().getTianguan_time() != 0){
 						String[] condition = mapVO.getMapSkill().split(",");
-						//Ìõ¼ş  µÚÒ»Î» ÊÇ ¸ÃMAPµÄÀàĞÍ µÚ¶ş¸öÎª ¹ÖÎïNPCID  µÚÈı¸öÎªÊıÁ¿  µÚËÄ¸öÎª¸ÃµØÍ¼µÄÊ±¼ä
+						//æ¡ä»¶  ç¬¬ä¸€ä½ æ˜¯ è¯¥MAPçš„ç±»å‹ ç¬¬äºŒä¸ªä¸º æ€ªç‰©NPCID  ç¬¬ä¸‰ä¸ªä¸ºæ•°é‡  ç¬¬å››ä¸ªä¸ºè¯¥åœ°å›¾çš„æ—¶é—´
 						int time = Integer.parseInt(condition[3]);
 						long now = new Date().getTime();
-						long time_now = (now - roleInfo.getBasicInfo().getTianguan_time())/1000;//Ãë
+						long time_now = (now - roleInfo.getBasicInfo().getTianguan_time())/1000;//ç§’
 						long time_out = time*60 - time_now;
 						if(time_out !=0 && time_out < 1){
 							RoomService rs = new RoomService();
 							int resurrection_point = rs.getResurrectionPoint(roleInfo);
 							roleInfo.getBasicInfo().updateSceneId(resurrection_point + "");
 							SystemInfoService infoService = new SystemInfoService();
-							infoService.insertSystemInfoBySystem(roleInfo.getBasicInfo().getPPk(),"ÒÔÄãµÄÊµÁ¦¶øÑÔ,ÄÜµ½ÕâÀïÒÑ¾­ÊÇÆæ¼£ÁË,»ØÈ¥ºÃºÃÄ¥Á·ÏÂÔÙÀ´°É!");
+							infoService.insertSystemInfoBySystem(roleInfo.getBasicInfo().getPPk(),"ä»¥ä½ çš„å®åŠ›è€Œè¨€,èƒ½åˆ°è¿™é‡Œå·²ç»æ˜¯å¥‡è¿¹äº†,å›å»å¥½å¥½ç£¨ç»ƒä¸‹å†æ¥å§!");
 							return true;
 						}
 					}

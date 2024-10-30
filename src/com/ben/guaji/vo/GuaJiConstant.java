@@ -7,26 +7,26 @@ import com.ls.ben.vo.goods.prop.PropVO;
 
 public class GuaJiConstant
 {
-	// 1221ĞŞ¸Ä¹Ò»úµ÷Õû
-	// ÆÕÍ¨ÀëÏß¹Ò»ú
+	// 1221ä¿®æ”¹æŒ‚æœºè°ƒæ•´
+	// æ™®é€šç¦»çº¿æŒ‚æœº
 	public final static int COMMON = 0;
 	public final static int COMMON_YUANBAO = 1;
-	// Ë«±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú
+	// åŒå€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœº
 	public final static int DOUBLE_G = 1;
 	public final static int DOUBLE_G_YUANBAO = 2;
-	// Îå±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú
+	// äº”å€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœº
 	public final static int FIVE_G = 2;
 	public final static int FIVE_G_YUANBAO = 4;
-	// °Ë±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú
+	// å…«å€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœº
 	public final static int EIGHT_G = 3;
 	public final static int EIGHT_G_YUANBAO = 6;
-	// Ê®±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú
+	// åå€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœº
 	public final static int TEN_G = 4;
 	public final static int TEN_G_YUANBAO = 10;
-	// Ë«±¶ÒøÁ½ÀëÏß¹Ò»ú
+	// åŒå€é“¶ä¸¤ç¦»çº¿æŒ‚æœº
 	// public final static int DOUBLE_MONEY = 5;
 	// public final static int DOUBLE_MONEY_YUANBAO = 6;
-	// ³¬¼¶ÎŞµĞÀëÏß¹Ò»ú
+	// è¶…çº§æ— æ•Œç¦»çº¿æŒ‚æœº
 	// public final static int FULL = 6;
 	// public final static int FULL_YUANBAO = 25;
 	public static Map<Integer, Integer> DUIYING = new HashMap<Integer, Integer>();
@@ -40,30 +40,30 @@ public class GuaJiConstant
 		DUIYING.put(TEN_G, TEN_G_YUANBAO);
 	}
 
-	// ×î¶à¹Ò»úÊ±¼ä(·ÖÖÓ)
+	// æœ€å¤šæŒ‚æœºæ—¶é—´(åˆ†é’Ÿ)
 	public final static int MAX_GUAJI_TIME = 360;
 
-	// ¹Ò»úÀàĞÍ´¢´æ
+	// æŒ‚æœºç±»å‹å‚¨å­˜
 	public static Map<Integer, GuajiVo> GUAJIVO = new HashMap<Integer, GuajiVo>();
 
-	// Ê°È¡È«²¿×°±¸
+	// æ‹¾å–å…¨éƒ¨è£…å¤‡
 	public final static int ALL = 1;
-	// ½öÊ°È¡¡°ÓÅ¡±ÒÔÉÏ
+	// ä»…æ‹¾å–â€œä¼˜â€ä»¥ä¸Š
 	public final static int YOU = 2;
-	// ½öÊ°È¡¡°¾«¡±ÒÔÉÏ
+	// ä»…æ‹¾å–â€œç²¾â€ä»¥ä¸Š
 	public final static int JING = 3;
-	// ½öÊ°È¡¡°¼«¡±ÒÔÉÏ
+	// ä»…æ‹¾å–â€œæâ€ä»¥ä¸Š
 	public final static int JI = 4;
-	// ¸ÅÂÊ±ÈÂÊ
+	// æ¦‚ç‡æ¯”ç‡
 	public final static int BILV = 1000000;
-	// ¼«Æ·±ÈÂÊ
+	// æå“æ¯”ç‡
 	public final static int JI_BILV = 6;
-	// ¾«Æ·±ÈÂÊ
+	// ç²¾å“æ¯”ç‡
 	public final static int JING_BILV = 200000;
-	// ²»ÄÜ¹Ò»úµØµã
+	// ä¸èƒ½æŒ‚æœºåœ°ç‚¹
 	public final static String CAN_NOT_GUAJI = "22,364,332,391,184,493,608,89,981,1025";
 
-	/*// ×°±¸¼¯ºÏ(id)
+	/*// è£…å¤‡é›†åˆ(id)
 	public static Map<Integer, AccouteVO> EQUIP = new HashMap<Integer, AccouteVO>(
 			1500);
 	public static Map<Integer, ArmVO> ARM = new HashMap<Integer, ArmVO>(1500);
@@ -76,13 +76,13 @@ public class GuaJiConstant
 			1500);*/
 	public static Map<String, PropVO> PROP_NAME = new HashMap<String, PropVO>(
 			1500);
-	// Ãâ·Ñ¹Ò»ú¿ª¹Ø,0Îª¿ª£¬1Îª¹Ø
+	// å…è´¹æŒ‚æœºå¼€å…³,0ä¸ºå¼€ï¼Œ1ä¸ºå…³
 	public static final String GUAJI_CONTROL = "guaji_control";
-	// #Ãâ·Ñ¹Ò»úÊÇĞÇÆÚ¼¸1,2,3,4,5,6,7
+	// #å…è´¹æŒ‚æœºæ˜¯æ˜ŸæœŸå‡ 1,2,3,4,5,6,7
 	public static final String GUAJI_WEEK = "guaji_week";
-	// #Ãâ·Ñ¹Ò»ú¿ªÊ¼Ê±¼ä,µ¥Î»ÎªĞ¡Ê±
+	// #å…è´¹æŒ‚æœºå¼€å§‹æ—¶é—´,å•ä½ä¸ºå°æ—¶
 	public static final String GUAJI_BEGIN_TIME = "guaji_begin_time";
-	// #Ãâ·Ñ¹Ò»ú½áÊøÊ±¼ä£¬µ¥Î»ÎªĞ¡Ê±
+	// #å…è´¹æŒ‚æœºç»“æŸæ—¶é—´ï¼Œå•ä½ä¸ºå°æ—¶
 	public static final String GUAJI_END_TIME = "guaji_end_time";
 
 }

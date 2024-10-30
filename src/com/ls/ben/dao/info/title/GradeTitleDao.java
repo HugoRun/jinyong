@@ -6,9 +6,9 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:µÈ¼¶³ÆºÅ±í²Ù×÷
+ * åŠŸèƒ½:ç­‰çº§ç§°å·è¡¨æ“ä½œ
  * 
- * @author ÁõË§ 11:26:09 AM
+ * @author åˆ˜å¸… 11:26:09 AM
  */
 public class GradeTitleDao extends DaoBase
 {
@@ -19,7 +19,7 @@ public class GradeTitleDao extends DaoBase
 	public GradeTitleVO getByTilteId(String title_id)
 	{
 		GradeTitleVO titleInfo = null;
-		String sql = "select * from  grade_title_info where title_id='"
+		String sql = "SELECT * FROM  grade_title_info where title_id='"
 			+ title_id + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -52,14 +52,14 @@ public class GradeTitleDao extends DaoBase
 	
 	
 	/**
-	 * ¸ù¾İ¶à³ÆÎ½id£¬µÃµ½³ÆÎ½Ãû³Æ×Ö·û´®
+	 * æ ¹æ®å¤šç§°è°“idï¼Œå¾—åˆ°ç§°è°“åç§°å­—ç¬¦ä¸²
 	 * @param title_ids
 	 * @return
 	 */
 	public String getTitleNamesByTitleIDs(String title_ids)
 	{
 		StringBuffer title_names = new StringBuffer();
-		String sql = "select title_name from  grade_title_info where title_id in ("
+		String sql = "SELECT title_name from  grade_title_info where title_id in ("
 			+ title_ids + ")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

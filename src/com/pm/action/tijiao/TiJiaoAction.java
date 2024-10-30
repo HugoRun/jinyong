@@ -30,7 +30,7 @@ public class TiJiaoAction extends DispatchAction
 	 * @param response
 	 * @return ActionForward
 	 */
-	// ²é¿´ÉíÉÏÓĞ¶àÉÙÌ×
+	// æŸ¥çœ‹èº«ä¸Šæœ‰å¤šå°‘å¥—
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -47,9 +47,9 @@ public class TiJiaoAction extends DispatchAction
 		String[] props = propOperate1.split(",");
 		
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
-		int di =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[0]));	// µÚ
-		int yi =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[1]));	// Ò»	
-		int bang =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[2]));	// Ì×
+		int di =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[0]));	// ç¬¬
+		int yi =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[1]));	// ä¸€	
+		int bang =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[2]));	// å¥—
 		
 		di = di > yi ? yi : di;
 		di = di > bang ? bang : di;
@@ -62,7 +62,7 @@ public class TiJiaoAction extends DispatchAction
 	
 	
 	
-	// ÎïÆ·ÁĞ±í
+	// ç‰©å“åˆ—è¡¨
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -80,9 +80,9 @@ public class TiJiaoAction extends DispatchAction
 		String[] props = propOperate1.split(",");
 		
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
-		int di =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[0]));	// µÚ
-		int yi =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[1]));	// Ò»	
-		int bang =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[2]));	// Ì×
+		int di =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[0]));	// ç¬¬
+		int yi =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[1]));	// ä¸€	
+		int bang =  playerPropGroupDao.getPropNumByByPropID(p_pk, Integer.parseInt(props[2]));	// å¥—
 		
 		di = di > yi ? yi : di;
 		di = di > bang ? bang : di;
@@ -92,20 +92,20 @@ public class TiJiaoAction extends DispatchAction
 		{
 			number = Integer.parseInt(numberString);
 			if ( number <= 0) {
-				request.setAttribute("hint", "Ìá½»µÄÌ×ÊıÓ¦´óÓÚÁã!");
+				request.setAttribute("hint", "æäº¤çš„å¥—æ•°åº”å¤§äºé›¶!");
 				request.setAttribute("props", props);
 				request.setAttribute("di", di);
 				request.setAttribute("menu_id", menu_id);
 				return mapping.findForward("start_tijiao");
 			} else  if (number > di){
-				request.setAttribute("hint", "ÄúÉíÉÏÃ»ÓĞÄÇÃ´¶àÌ×!");
+				request.setAttribute("hint", "æ‚¨èº«ä¸Šæ²¡æœ‰é‚£ä¹ˆå¤šå¥—!");
 				request.setAttribute("props", props);
 				request.setAttribute("di", di);
 				request.setAttribute("menu_id", menu_id);
 				return mapping.findForward("start_tijiao");
 			} else {
 				if (roleInfo.getBasicInfo().getFaction() == null) {
-					request.setAttribute("hint", "¶Ô²»Æğ,Äú»¹Ã»ÓĞÈë°ï,ÎŞ·¨Ìá½»ÎïÆ·!");
+					request.setAttribute("hint", "å¯¹ä¸èµ·,æ‚¨è¿˜æ²¡æœ‰å…¥å¸®,æ— æ³•æäº¤ç‰©å“!");
 					request.setAttribute("props", props);
 					request.setAttribute("di", di);
 					request.setAttribute("menu_id", menu_id);
@@ -118,7 +118,7 @@ public class TiJiaoAction extends DispatchAction
 					BattleService battleService = new BattleService();
 					
 					battleService.addUserTongManslaughter(tong_pk, p_pk,number*10);
-					String hint = "ÄúÌá½»ÁË"+number+"Ì×µÚÒ»°ï´ó×Ö£¬Ôö¼Ó°ï»á\"Ñª°ñ\"»ı·Ö"+(number*10)+"·Ö!";
+					String hint = "æ‚¨æäº¤äº†"+number+"å¥—ç¬¬ä¸€å¸®å¤§å­—ï¼Œå¢åŠ å¸®ä¼š\"è¡€æ¦œ\"ç§¯åˆ†"+(number*10)+"åˆ†!";
 					request.setAttribute("hint", hint);*/
 					return mapping.findForward("hint");
 				}				
@@ -126,7 +126,7 @@ public class TiJiaoAction extends DispatchAction
 		}
 		catch (Exception e)
 		{
-			request.setAttribute("hint", "ÇëÕıÈ·ÊäÈëÌá½»Ì×Êı!");
+			request.setAttribute("hint", "è¯·æ­£ç¡®è¾“å…¥æäº¤å¥—æ•°!");
 			request.setAttribute("props", props);
 			request.setAttribute("di", di);
 			request.setAttribute("menu_id", menu_id);

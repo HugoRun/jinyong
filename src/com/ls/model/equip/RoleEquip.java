@@ -4,19 +4,19 @@ import java.util.Date;
 
 /**
  * @author ls
- * ½ÇÉ«ÓµÓĞµÄ×°±¸
+ * è§’è‰²æ‹¥æœ‰çš„è£…å¤‡
  */
 public class RoleEquip
 {
 	private int id;
 	
 	private int equipId;
-	private int quality;//×°±¸Æ·ÖÊ
-	private int appendGrade=0;//×·¼ÓÉı¼¶µÈ¼¶
-	private boolean isBind;//ÊÇ·ñ°ó¶¨
+	private int quality;//è£…å¤‡å“è´¨
+	private int appendGrade=0;//è¿½åŠ å‡çº§ç­‰çº§
+	private boolean isBind;//æ˜¯å¦ç»‘å®š
 	
-	private int position;//×°±¸ËùÔÚÎ»ÖÃ
-	private int curEndure;//µ±Ç°ÄÍ¾Ã¶È
+	private int position;//è£…å¤‡æ‰€åœ¨ä½ç½®
+	private int curEndure;//å½“å‰è€ä¹…åº¦
 	
-	private Date createTime;//´´½¨Ê±¼ä
+	private Date createTime;//åˆ›å»ºæ—¶é—´
 }

@@ -3,28 +3,28 @@ package com.ls.ben.vo.application;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ:¼ÇÂ¼Íæ¼ÒpkÊ±µÄ×´Ì¬
- * @author ÁõË§
+ * åŠŸèƒ½:è®°å½•ç©å®¶pkæ—¶çš„çŠ¶æ€
+ * @author åˆ˜å¸…
  * 8:58:05 AM
  */
 public class PkInfoVO
 {
-	/**pk×´Ì¬  0:±íÊ¾²»ÔÚÕ½¶·×´Ì¬£»1:±íÊ¾Ö÷¶¯¹¥»÷×´Ì¬£»2:±íÊ¾±»¶¯¹¥»÷×´Ì¬**/
+	/**pkçŠ¶æ€  0:è¡¨ç¤ºä¸åœ¨æˆ˜æ–—çŠ¶æ€ï¼›1:è¡¨ç¤ºä¸»åŠ¨æ”»å‡»çŠ¶æ€ï¼›2:è¡¨ç¤ºè¢«åŠ¨æ”»å‡»çŠ¶æ€**/
 	private int   pkStat;
-	/**±¾·½ËÀÍö±êÖ¾*/
+	/**æœ¬æ–¹æ­»äº¡æ ‡å¿—*/
 	private boolean isDead;
 	
-	/**±¾·½ËÀÍöÍ¨Öª*/
+	/**æœ¬æ–¹æ­»äº¡é€šçŸ¥*/
 	private boolean  fightOverNotify;
 	
 	
-	/**¶Ô·½pk*/
+	/**å¯¹æ–¹pk*/
 	private String enemyPk;
 	private boolean enemyIsDead;
 
 	private int dropExp;
 	private int attackMap;
-	/**Õ½¶·¿ªÊ¼Ê±¼ä*/
+	/**æˆ˜æ–—å¼€å§‹æ—¶é—´*/
 	private Date createTime;
 	public int getPkStat()
 	{

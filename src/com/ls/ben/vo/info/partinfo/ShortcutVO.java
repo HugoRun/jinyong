@@ -1,30 +1,30 @@
 package com.ls.ben.vo.info.partinfo;
 
 /**
- * ¹¦ÄÜ:Íæ¼Ò¿ì½İ¼ü±í
+ * åŠŸèƒ½:ç©å®¶å¿«æ·é”®è¡¨
  * 
- * @author ÁõË§ 5:55:50 PM
+ * @author åˆ˜å¸… 5:55:50 PM
  */
 public class ShortcutVO {
 	/** id */
 	private int scPk;
 	  
-	/** ¿ì½İ¼üÏÔÊ¾µÄÃû×Ö£¬ÀıÈç£»¼¼ÄÜÃû³Æ,Ò©Æ·Ãû³Æ */
+	/** å¿«æ·é”®æ˜¾ç¤ºçš„åå­—ï¼Œä¾‹å¦‚ï¼›æŠ€èƒ½åç§°,è¯å“åç§° */
 	private int pPk;
 	
-	/**¿ì½İ¼üÃû×Ö£¬±êºÅ*/
+	/**å¿«æ·é”®åå­—ï¼Œæ ‡å·*/
 	private String scName;
 	
-	/**ÉèÖÃºóÏÔÊ¾µÄÃû×Ö£¬ÀıÈç£»¼¼ÄÜÃû³Æ,Ò©Æ·Ãû³Æ*/
+	/**è®¾ç½®åæ˜¾ç¤ºçš„åå­—ï¼Œä¾‹å¦‚ï¼›æŠ€èƒ½åç§°,è¯å“åç§°*/
 	private String scDisplay;
 	
-	/**¿ì½İ¼ü,¹¦ÄÜÀàĞÍ*/
+	/**å¿«æ·é”®,åŠŸèƒ½ç±»å‹*/
 	private int scType;
 	
-	/**²Ù×÷id*/
+	/**æ“ä½œid*/
 	private int operateId;
 	
-	/**×÷ÓÃ¶ÔÏó*/  
+	/**ä½œç”¨å¯¹è±¡*/  
 	private int objectId;
 
 	public String getSimpleDisplay()
@@ -40,8 +40,8 @@ public class ShortcutVO {
 	}
 	
 	/**
-	 * ¿ì½İ¼ü»Ö¸´Ä¬ÈÏ
-	 * @return  true±íÊ¾ÖØÖÃ£¬false±íÊ¾²»ĞèÒªÖØÖÃ
+	 * å¿«æ·é”®æ¢å¤é»˜è®¤
+	 * @return  trueè¡¨ç¤ºé‡ç½®ï¼Œfalseè¡¨ç¤ºä¸éœ€è¦é‡ç½®
 	 */
 	public boolean init()
 	{

@@ -20,7 +20,7 @@ import com.lw.service.player.JueXueService;
 
 public class JiayiAction extends DispatchAction
 {
-	// Ê¹ÓÃ¼ŞÒÂÉñ¹¦ Éú³ÉµÀ¾ß
+	// ä½¿ç”¨å«è¡£ç¥åŠŸ ç”Ÿæˆé“å…·
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -28,7 +28,7 @@ public class JiayiAction extends DispatchAction
 		if (sk_id_str == null && sk_id_str.equals("")
 				&& sk_id_str.equals("null"))
 		{
-			request.setAttribute("display", "¼¼ÄÜ´íÎó");
+			request.setAttribute("display", "æŠ€èƒ½é”™è¯¯");
 			return mapping.findForward("display");
 		}
 		else
@@ -42,7 +42,7 @@ public class JiayiAction extends DispatchAction
 					Integer.parseInt(sk_id_str));
 			if (trem == 1)
 			{
-				request.setAttribute("display", "Äú½ñÌìÒÑ¾­Ê¹ÓÃ¹ı¸Ã¾øÑ§!");
+				request.setAttribute("display", "æ‚¨ä»Šå¤©å·²ç»ä½¿ç”¨è¿‡è¯¥ç»å­¦!");
 				return mapping.findForward("display");
 			}
 			else
@@ -50,7 +50,7 @@ public class JiayiAction extends DispatchAction
 				{
 					request
 							.setAttribute("display",
-									"¶Ô²»Æğ,Äúµ±Ç°Éı¼¶¾­Ñé²»×ãµ±Ç°µÈ¼¶Éı¼¶¾­ÑéµÄ5%!");
+									"å¯¹ä¸èµ·,æ‚¨å½“å‰å‡çº§ç»éªŒä¸è¶³å½“å‰ç­‰çº§å‡çº§ç»éªŒçš„5%!");
 					return mapping.findForward("display");
 				}
 				else
@@ -58,8 +58,8 @@ public class JiayiAction extends DispatchAction
 					{
 						String name = pc.getPropNameById(GameConfig
 								.getJuexuePropID());
-						request.setAttribute("display", "¶Ô²»Æğ,ÄúÃ»ÓĞ" + name + "!");
-						request.setAttribute("goumai", "¹ºÂò" + name);
+						request.setAttribute("display", "å¯¹ä¸èµ·,æ‚¨æ²¡æœ‰" + name + "!");
+						request.setAttribute("goumai", "è´­ä¹°" + name);
 						request.setAttribute("sk_id", sk_id_str);
 						return mapping.findForward("buy");
 					}
@@ -68,25 +68,25 @@ public class JiayiAction extends DispatchAction
 						if (roleInfo.getBasicInfo().getWrapSpare() == 0)
 						{
 							request.setAttribute("display",
-									"¶Ô²»Æğ,ÄúµÄ°ü¹üÒÑÂúÇëÔ¤ÁôÒ»¸ö¿Õ¸ñ!");
+									"å¯¹ä¸èµ·,æ‚¨çš„åŒ…è£¹å·²æ»¡è¯·é¢„ç•™ä¸€ä¸ªç©ºæ ¼!");
 							return mapping.findForward("display");
 						}
 						else
 						{
-							// É¾³ıµÀ¾ß
+							// åˆ é™¤é“å…·
 							GoodsService gs = new GoodsService();
 							gs.removeProps(roleInfo.getPPk(), GameConfig.getJuexuePropID(), 1,GameLogManager.R_USE);
-							// µÃµ½µÀ¾ß
+							// å¾—åˆ°é“å…·
 							int prop_id = juexue
 									.getJiayiProducePropID(roleInfo);
 							if (prop_id == 0)
 							{
-								request.setAttribute("display", "¶Ô²»Æğ,ÎïÆ·´íÎó!");
+								request.setAttribute("display", "å¯¹ä¸èµ·,ç‰©å“é”™è¯¯!");
 								return mapping.findForward("display");
 							}
 							gs.putGoodsToWrap(roleInfo.getBasicInfo().getPPk(),
 									prop_id, 4, 1);
-							// Ê¹ÓÃ´ÎÊıµÄÔö¼Ó
+							// ä½¿ç”¨æ¬¡æ•°çš„å¢åŠ 
 							TimeControlService timeControlService = new TimeControlService();
 							timeControlService.updateControlInfo(roleInfo
 									.getBasicInfo().getPPk(), Integer
@@ -101,15 +101,15 @@ public class JiayiAction extends DispatchAction
 							String name1 = pc.getPropNameById(GameConfig
 									.getJuexuePropID());
 							String name2 = pc.getPropNameById(prop_id);
-							request.setAttribute("display", "ÄúÏûºÄÁË" + name1
-									+ "¡Á1ºÍµ±Ç°µÈ¼¶¾­ÑéÈô¸É,»ñµÃÁË" + name2 + "!");
+							request.setAttribute("display", "æ‚¨æ¶ˆè€—äº†" + name1
+									+ "Ã—1å’Œå½“å‰ç­‰çº§ç»éªŒè‹¥å¹²,è·å¾—äº†" + name2 + "!");
 							return mapping.findForward("display");
 						}
 					}
 		}
 	}
 
-	// µÀ¾ß²»×ã¸øÌáÊ¾ ²¢ÇÒÌø×ªµ½¸ÃÒ³Ãæ
+	// é“å…·ä¸è¶³ç»™æç¤º å¹¶ä¸”è·³è½¬åˆ°è¯¥é¡µé¢
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -122,7 +122,7 @@ public class JiayiAction extends DispatchAction
 		int useryuanbao = 250;
 		if (yuanbao < useryuanbao)
 		{
-			request.setAttribute("display", "ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ãÇë³äÖµ!");
+			request.setAttribute("display", "æ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³è¯·å……å€¼!");
 			return mapping.findForward("display");
 		}
 		else
@@ -131,7 +131,7 @@ public class JiayiAction extends DispatchAction
 			if (sk_id_str == null || sk_id_str.equals("")
 					|| sk_id_str.equals("null"))
 			{
-				request.setAttribute("display", "¼¼ÄÜ´íÎó");
+				request.setAttribute("display", "æŠ€èƒ½é”™è¯¯");
 				return mapping.findForward("display");
 			}
 			PropCache pc = new PropCache();
@@ -140,14 +140,14 @@ public class JiayiAction extends DispatchAction
 			gs.putGoodsToWrap(roleInfo.getBasicInfo().getPPk(), GameConfig
 					.getJuexuePropID(), 4, 1);
 			economyService.spendYuanbao(u_pk, useryuanbao);
-			request.setAttribute("display", "Äã»¨·Ñ"+GameConfig.getYuanbaoName()+"¡Á" + useryuanbao + " ¹ºÂò"
-					+ name + "¡Á1!");
+			request.setAttribute("display", "ä½ èŠ±è´¹"+GameConfig.getYuanbaoName()+"Ã—" + useryuanbao + " è´­ä¹°"
+					+ name + "Ã—1!");
 			request.setAttribute("sk_id", sk_id_str);
 			return mapping.findForward("hint");
 		}
 	}
 
-	// ×îºóµÄ½áÎ²
+	// æœ€åçš„ç»“å°¾
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{

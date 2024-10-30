@@ -4,27 +4,27 @@
 package com.ben.vo.expnpcdrop;
 
 /**
- * @author ºîºÆ¾ü npcµôÂä¾­Ñé±¶Êı 6:04:19 PM
+ * @author ä¾¯æµ©å†› npcæ‰è½ç»éªŒå€æ•° 6:04:19 PM
  */
 public class ExpNpcdropVO
 {
 	/** id */
 	private int enPk;
-	/** Ä¬ÈÏ¾­Ñé±¶Êı */
+	/** é»˜è®¤ç»éªŒå€æ•° */
 	private int defaultExp;
-	/** ¿ªÊ¼Ê±¼ä */
+	/** å¼€å§‹æ—¶é—´ */
 	private String beginTime;
-	/** ½áÊøÊ±¼äÊ±¼ä */
+	/** ç»“æŸæ—¶é—´æ—¶é—´ */
 	private String endTime;
-	/** ¾­Ñé±¶Êı */
+	/** ç»éªŒå€æ•° */
 	private int enMultiple;
-	/** µô±¦±¶Êı */
+	/** æ‰å®å€æ•° */
 	private int enCimelia;
-	/** Ö´ĞĞ 0 ²»Ö´ĞĞ 1Ö´ĞĞ */
+	/** æ‰§è¡Œ 0 ä¸æ‰§è¡Œ 1æ‰§è¡Œ */
 	private int enforce;
-	/** 1ÊÇ¾­ÑéµôÂÊ 2ÊÇµô±¦µôÂÊ */
+	/** 1æ˜¯ç»éªŒæ‰ç‡ 2æ˜¯æ‰å®æ‰ç‡ */
 	private int expCimelia;
-	/** ±íÏÖ¸ñÊ½ 1(16:00:00ÕâÖÖ¸ñÊ½) 2(2009-01-16 16:37:45ÕâÖÖ¸ñÊ½) */
+	/** è¡¨ç°æ ¼å¼ 1(16:00:00è¿™ç§æ ¼å¼) 2(2009-01-16 16:37:45è¿™ç§æ ¼å¼) */
 	private int acquitFormat;
 
 	public int getAcquitFormat()

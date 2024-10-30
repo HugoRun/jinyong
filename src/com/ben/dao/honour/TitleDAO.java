@@ -9,7 +9,7 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ÏµÍ³³ÆºÅ
+ * ç³»ç»Ÿç§°å·
  */
 public class TitleDAO extends BasicDaoSupport<TitleVO>
 {
@@ -20,14 +20,14 @@ public class TitleDAO extends BasicDaoSupport<TitleVO>
 	}
 
 	/**
-	 * ¸ù¾İ¶à³ÆÎ½id£¬µÃµ½³ÆÎ½Ãû³Æ×Ö·û´®
+	 * æ ¹æ®å¤šç§°è°“idï¼Œå¾—åˆ°ç§°è°“åç§°å­—ç¬¦ä¸²
 	 * @param title_ids
 	 * @return
 	 */
 	public String getTitleNamesByTitleIDs(String title_ids)
 	{
 		StringBuffer title_names = new StringBuffer();
-		String sql = "select name from  title_info where id in ("+ title_ids + ")";
+		String sql = "SELECT name from  title_info where id in ("+ title_ids + ")";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -59,7 +59,7 @@ public class TitleDAO extends BasicDaoSupport<TitleVO>
 	}
 	
 	/**
-	 * Í¨¹ıidµÃµ½³ÆºÅĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°ç§°å·ä¿¡æ¯
 	 * @return
 	 */
 	public TitleVO getById( String id )
@@ -68,7 +68,7 @@ public class TitleDAO extends BasicDaoSupport<TitleVO>
 	}
 	
 	/**
-	 * Í¨¹ıÃû×ÖµÃµ½³ÆºÅĞÅÏ¢
+	 * é€šè¿‡åå­—å¾—åˆ°ç§°å·ä¿¡æ¯
 	 * @param name
 	 * @return
 	 */
@@ -78,7 +78,7 @@ public class TitleDAO extends BasicDaoSupport<TitleVO>
 	}
 	
 	/**
-	 * Í¨¹ıÃû×ÖºÍÀàĞÍµÃµ½³ÆºÅĞÅÏ¢
+	 * é€šè¿‡åå­—å’Œç±»å‹å¾—åˆ°ç§°å·ä¿¡æ¯
 	 * @param name
 	 * @param type
 	 * @return

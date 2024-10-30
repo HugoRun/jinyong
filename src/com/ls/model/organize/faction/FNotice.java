@@ -6,7 +6,7 @@ import com.ls.pub.util.DateUtil;
 
 /**
  * @author ls
- * 帮派公告(一个帮派有多个公告)
+ * 甯淳鍏憡(涓�涓府娲炬湁澶氫釜鍏憡)
  */
 public class FNotice
 {
@@ -24,7 +24,7 @@ public class FNotice
 	}
 	
 	/**
-	 * 得到时间描述
+	 * 寰楀埌鏃堕棿鎻忚堪
 	 * @return
 	 */
 	public String getTimeDes()

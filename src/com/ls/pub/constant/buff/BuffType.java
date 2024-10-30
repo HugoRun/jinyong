@@ -1,39 +1,39 @@
 package com.ls.pub.constant.buff;
 
 /**
- * ¹¦ÄÜ:buffÀàÐÍ
- * @author ÁõË§
+ * åŠŸèƒ½:buffç±»åž‹
+ * @author åˆ˜å¸…
  * 10:43:44 AM
  */
 public class BuffType {
 	/*
-	 * ÔöÒæBuff:
-	¾­Ñé¼Ó³É	    1	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ»ñµÃX±¶Êý¾­Ñé¼Ó³É
-	µôÂäÂÊÌá¸ß	2	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ»ñµÃX±¶Êýµô±¦¼Ó³É
-	²¶×½ÂÊÌá¸ß	3	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ²¶×½³èÎï¼¸ÂÊÌá¸ßXµã
-	¼«Æ·×°±¸µôÂÊ	4	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ¼«Æ·×°±¸¸½×ÅÌá¸ßXµã
-	»Ø¸´HP	    5	µÀ¾ß	»ØºÏ	£¨Õ½¶·ÖÐ£©YÊ±¼ä¶ÎÄÚÃ¿»ØºÏ»Ø¸´XµãHP
-	»Ø¸´MP	    6	µÀ¾ß	»ØºÏ	£¨Õ½¶·ÖÐ£©YÊ±¼ä¶ÎÄÚÃ¿»ØºÏ»Ø¸´XµãMP
-	ÃâÒßÖÐ¶¾	    7	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÍæ¼ÒÖÐ¶¾ÃâÒß£»
-	ÃâÒß»÷ÔÎ   	8	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÍæ¼Ò»÷ÔÎÃâÒß£»
-	¹¥»÷Á¦ÔöÇ¿	9	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ»ñµÃXµã¹¥»÷Á¦¼Ó³É
-	·ÀÓùÁ¦ÔöÇ¿	10	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ»ñµÃXµã·ÀÓùÁ¦¼Ó³É
-	HPÉÏÏÞÔöÇ¿	11	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ»ñµÃXµãHpÉÏÏÞ¼Ó³É
-	MPÉÏÏÞÔöÇ¿	12	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚ»ñµÃXµãMpÉÏÏÞ¼Ó³É
-	½ðÊôÐÔÉËº¦Ìá¸ß	13	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼Ò½ðÊôÐÔÉËº¦Xµã
-	Ä¾ÊôÐÔÉËº¦Ìá¸ß	14	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼ÒÄ¾ÊôÐÔÉËº¦Xµã
-	Ë®ÊôÐÔÉËº¦Ìá¸ß	15	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼ÒË®ÊôÐÔÉËº¦Xµã
-	»ðÊôÐÔÉËº¦Ìá¸ß	16	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼Ò»ðÊôÐÔÉËº¦Xµã
-	ÍÁÊôÐÔÉËº¦Ìá¸ß	17	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼ÒÍÁÊôÐÔÉËº¦Xµã
-	½ðÊôÐÔ·ÀÓùÌá¸ß	18	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼Ò½ðÊôÐÔ·ÀÓùXµã
-	Ä¾ÊôÐÔ·ÀÓùÌá¸ß	19	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼ÒÄ¾ÊôÐÔ·ÀÓùXµã
-	Ë®ÊôÐÔ·ÀÓùÌá¸ß	20	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼ÒË®ÊôÐÔ·ÀÓùXµã
-	»ðÊôÐÔ·ÀÓùÌá¸ß	21	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼Ò»ðÊôÐÔ·ÀÓùXµã
-	ÍÁÊôÐÔ·ÀÓùÌá¸ß	22	µÀ¾ß	Ê±¼ä	YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼ÒÍÁÊôÐÔ·ÀÓùXµã
-	³èÎï¾­ÑéÌá¸ß	23  µÀ¾ß Ê±¼ä YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼Ò³èÎï¾­ÑéXµã
-	¼õ×ï¶ñÖµËÙ¶ÈÌá¸ß 25 µÀ¾ß Ê±¼ä YÊ±¼ä¶ÎÄÚÌá¸ßÍæ¼Ò×ï¶ñÖµ¼õÉÙËÙ¶È
-	ÃâËÀ·û		26	µÀ¾ß	Ê±¼ä	 YÊ±¼ä¶ÎÄÚÍæ¼ÒËÀÍö¿ÉÒÔ²»µô¾­ÑéÖµ	
-	²»¿É´«ËÍ		28  µÀ¾ß Ê±¼ä	 YÊ±¼ä¶ÎÄÚÍæ¼Ò²»¿ÉÒÔ´«ËÍ
+	 * å¢žç›ŠBuff:
+	ç»éªŒåŠ æˆ	    1	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…èŽ·å¾—Xå€æ•°ç»éªŒåŠ æˆ
+	æŽ‰è½çŽ‡æé«˜	2	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…èŽ·å¾—Xå€æ•°æŽ‰å®åŠ æˆ
+	æ•æ‰çŽ‡æé«˜	3	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æ•æ‰å® ç‰©å‡ çŽ‡æé«˜Xç‚¹
+	æžå“è£…å¤‡æŽ‰çŽ‡	4	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æžå“è£…å¤‡é™„ç€æé«˜Xç‚¹
+	å›žå¤HP	    5	é“å…·	å›žåˆ	ï¼ˆæˆ˜æ–—ä¸­ï¼‰Yæ—¶é—´æ®µå†…æ¯å›žåˆå›žå¤Xç‚¹HP
+	å›žå¤MP	    6	é“å…·	å›žåˆ	ï¼ˆæˆ˜æ–—ä¸­ï¼‰Yæ—¶é—´æ®µå†…æ¯å›žåˆå›žå¤Xç‚¹MP
+	å…ç–«ä¸­æ¯’	    7	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…çŽ©å®¶ä¸­æ¯’å…ç–«ï¼›
+	å…ç–«å‡»æ™•   	8	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…çŽ©å®¶å‡»æ™•å…ç–«ï¼›
+	æ”»å‡»åŠ›å¢žå¼º	9	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…èŽ·å¾—Xç‚¹æ”»å‡»åŠ›åŠ æˆ
+	é˜²å¾¡åŠ›å¢žå¼º	10	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…èŽ·å¾—Xç‚¹é˜²å¾¡åŠ›åŠ æˆ
+	HPä¸Šé™å¢žå¼º	11	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…èŽ·å¾—Xç‚¹Hpä¸Šé™åŠ æˆ
+	MPä¸Šé™å¢žå¼º	12	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…èŽ·å¾—Xç‚¹Mpä¸Šé™åŠ æˆ
+	é‡‘å±žæ€§ä¼¤å®³æé«˜	13	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶é‡‘å±žæ€§ä¼¤å®³Xç‚¹
+	æœ¨å±žæ€§ä¼¤å®³æé«˜	14	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶æœ¨å±žæ€§ä¼¤å®³Xç‚¹
+	æ°´å±žæ€§ä¼¤å®³æé«˜	15	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶æ°´å±žæ€§ä¼¤å®³Xç‚¹
+	ç«å±žæ€§ä¼¤å®³æé«˜	16	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶ç«å±žæ€§ä¼¤å®³Xç‚¹
+	åœŸå±žæ€§ä¼¤å®³æé«˜	17	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶åœŸå±žæ€§ä¼¤å®³Xç‚¹
+	é‡‘å±žæ€§é˜²å¾¡æé«˜	18	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶é‡‘å±žæ€§é˜²å¾¡Xç‚¹
+	æœ¨å±žæ€§é˜²å¾¡æé«˜	19	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶æœ¨å±žæ€§é˜²å¾¡Xç‚¹
+	æ°´å±žæ€§é˜²å¾¡æé«˜	20	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶æ°´å±žæ€§é˜²å¾¡Xç‚¹
+	ç«å±žæ€§é˜²å¾¡æé«˜	21	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶ç«å±žæ€§é˜²å¾¡Xç‚¹
+	åœŸå±žæ€§é˜²å¾¡æé«˜	22	é“å…·	æ—¶é—´	Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶åœŸå±žæ€§é˜²å¾¡Xç‚¹
+	å® ç‰©ç»éªŒæé«˜	23  é“å…· æ—¶é—´ Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶å® ç‰©ç»éªŒXç‚¹
+	å‡ç½ªæ¶å€¼é€Ÿåº¦æé«˜ 25 é“å…· æ—¶é—´ Yæ—¶é—´æ®µå†…æé«˜çŽ©å®¶ç½ªæ¶å€¼å‡å°‘é€Ÿåº¦
+	å…æ­»ç¬¦		26	é“å…·	æ—¶é—´	 Yæ—¶é—´æ®µå†…çŽ©å®¶æ­»äº¡å¯ä»¥ä¸æŽ‰ç»éªŒå€¼	
+	ä¸å¯ä¼ é€		28  é“å…· æ—¶é—´	 Yæ—¶é—´æ®µå†…çŽ©å®¶ä¸å¯ä»¥ä¼ é€
     */
 	
 	public static final int ADD_EXP = 1;
@@ -52,7 +52,7 @@ public class BuffType {
 	public static final int HP_UP = 11;
 	public static final int MP_UP = 12;
 	
-	//ÎåÐÐµÄbuffÐ§¹û
+	//äº”è¡Œçš„buffæ•ˆæžœ
 	public static final int JIN_ATTACK = 13;
 	public static final int MU_ATTACK = 14;
 	public static final int SHUI_ATTACK = 15;
@@ -65,19 +65,19 @@ public class BuffType {
 	public static final int HUO_DEFENCE = 21;
 	public static final int TU_DEFENCE = 22;
 	
-	//³èÎï¾­ÑéÌõ
+	//å® ç‰©ç»éªŒæ¡
 	public static final int PET_EXP = 23;
 	
-	//ÈËÎï±©»÷ÂÊ
+	//äººç‰©æš´å‡»çŽ‡
 	public static final int CHANGER_BJ = 24;
 	
-	// ¼õÉÙ×ï¶ñÖµµÄËÙ¶È
+	// å‡å°‘ç½ªæ¶å€¼çš„é€Ÿåº¦
 	public static final int REDUCEPKVALUE = 25;
 	public static final int OUTOFDEADPUBLISH = 26;
-	//±Ü¹ÖµÀ¾ßBUFF
+	//é¿æ€ªé“å…·BUFF
 	public static final int BIGUAIDAOJUBUFF = 27;
 	//VIPBUFF
 	public static final int VIPBUFF = 28;
-	/** ´«ËÍ²Ëµ¥²»¿É´«ËÍ */
+	/** ä¼ é€èœå•ä¸å¯ä¼ é€ */
 	public static final int NOPERMISSCHUANSONG = 29;
 }

@@ -4,17 +4,17 @@ import com.ls.ben.vo.info.partinfo.PartInfoVO;
 
 /**
  * @author ls
- * »áÔ±ĞÅÏ¢
+ * ä¼šå‘˜ä¿¡æ¯
  */
 public class Vip
 {
 	private int level = 1;
-	private String name="ÆÕÍ¨³ÉÔ±";
+	private String name="æ™®é€šæˆå‘˜";
 	private String des="";
 	private int discount = 100;
-	private int salary=0;//¹¤×Ê
+	private int salary=0;//å·¥èµ„
 	private String hint = "";
-	private int appendRate=0;//ÊôĞÔ×·¼Ó°Ù·Ö±È
+	private int appendRate=0;//å±æ€§è¿½åŠ ç™¾åˆ†æ¯”
 	
 	public Vip(int level) throws Exception
 	{
@@ -22,26 +22,26 @@ public class Vip
 		switch(level)
 		{
 			case VipManager.LEVEL_1:
-				name = "ºé»Ä»áÔ±";
+				name = "æ´ªè’ä¼šå‘˜";
 				discount = 90;
 				salary = 188;
-				hint = "¹§Ï²³ÉÎª"+name;
+				hint = "æ­å–œæˆä¸º"+name;
 				appendRate = 5;
 				break;
 			case VipManager.LEVEL_2:
-				name = "ºèÃÉ»áÔ±";
+				name = "é¸¿è’™ä¼šå‘˜";
 				discount = 80;
 				salary = 888;
-				hint = "¹§Ï²³ÉÎª"+name;
+				hint = "æ­å–œæˆä¸º"+name;
 				appendRate = 15;
 				break;
 			default:
-				throw new Exception("·Ç·¨µÈ¼¶");
+				throw new Exception("éæ³•ç­‰çº§");
 		}
 	}
 
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØ»áÔ±¸½¼ÓÊôĞÔ
+	 * ç»™ç©å®¶åŠ è½½ä¼šå‘˜é™„åŠ å±æ€§
 	 * @param player
 	 */
 	public void loadPropertys( PartInfoVO player )

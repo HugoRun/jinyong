@@ -29,7 +29,7 @@ public class AuctionBuyAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 	
-	//ÁĞ³ö³èÎïÅÄÂô³¡µÄ³èÎïÁĞ±í
+	//åˆ—å‡ºå® ç‰©æ‹å–åœºçš„å® ç‰©åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -65,7 +65,7 @@ public class AuctionBuyAction extends DispatchAction
 		return mapping.findForward("auction_pet_list");
 	}
 	
-	// ²é¿´³èÎïÏêÏ¸ĞÅÏ¢
+	// æŸ¥çœ‹å® ç‰©è¯¦ç»†ä¿¡æ¯
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{    
@@ -78,7 +78,7 @@ public class AuctionBuyAction extends DispatchAction
 		return mapping.findForward("petinfoview");
 	}
 	
-	// Ö´ĞĞÅÄÂò¹¦ÄÜ
+	// æ‰§è¡Œæ‹ä¹°åŠŸèƒ½
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{    
@@ -101,21 +101,21 @@ public class AuctionBuyAction extends DispatchAction
 		if(hasMoney.equals("1")){
 			String hasWareSpace = auctionPetService.auctionhasEnoughSpace(pPk+"");
 			if(hasWareSpace.equals("1")){
-				//Ö´ĞĞ²Ù×÷
+				//æ‰§è¡Œæ“ä½œ
 				String resultWml = auctionPetService.auctionBuyPet(Integer.valueOf(pPk),petPk,auctionPetVO);
 				request.setAttribute("resultWml", resultWml);
 				return mapping.findForward("display");
-			}else {												//ÈËÎïÉíÉÏÃ»ÓĞ×ã¹»µÄ³èÎï¿Õ¼ä.
+			}else {												//äººç‰©èº«ä¸Šæ²¡æœ‰è¶³å¤Ÿçš„å® ç‰©ç©ºé—´.
 				request.setAttribute("resultWml", hasWareSpace);
 				return mapping.findForward("display");
 			}
-		}else {													//ÈËÎïÉíÉÏÃ»ÓĞ×ã¹»µÄ½ğÇ®.	
+		}else {													//äººç‰©èº«ä¸Šæ²¡æœ‰è¶³å¤Ÿçš„é‡‘é’±.	
 			request.setAttribute("resultWml", hasMoney);
 			return mapping.findForward("display");
 		}
 	}
 	
-	// ÌØ¶¨ÎïÆ·ÁĞ±í
+	// ç‰¹å®šç‰©å“åˆ—è¡¨
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{	
@@ -126,7 +126,7 @@ public class AuctionBuyAction extends DispatchAction
 		
 		String page_no_str = request.getParameter("page_no");
 		String sortType = request.getParameter("sortType");
-		logger.info("ÅÅĞò·ÖÀà : "+sortType);
+		logger.info("æ’åºåˆ†ç±» : "+sortType);
 		
 		String pet_name = request.getParameter("pet_name");
 		
@@ -139,8 +139,8 @@ public class AuctionBuyAction extends DispatchAction
 				page_no = Integer.parseInt(page_no_str);
 			}
 			if(pet_name == null || pet_name.equals("")){
-				logger.info("auctionBuyActionÖĞpetName : "+pet_name);
-				String resultWml = "ÇëÄúÊäÈëÕıÈ·µÄÎïÆ·Ãû";
+				logger.info("auctionBuyActionä¸­petName : "+pet_name);
+				String resultWml = "è¯·æ‚¨è¾“å…¥æ­£ç¡®çš„ç‰©å“å";
 				request.setAttribute("resultWml", resultWml);
 			
 			}else {
@@ -158,7 +158,7 @@ public class AuctionBuyAction extends DispatchAction
 		
 		}
 	
-	// ËÑË÷²é¿´³èÎïÏêÏ¸ĞÅÏ¢
+	// æœç´¢æŸ¥çœ‹å® ç‰©è¯¦ç»†ä¿¡æ¯
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{    

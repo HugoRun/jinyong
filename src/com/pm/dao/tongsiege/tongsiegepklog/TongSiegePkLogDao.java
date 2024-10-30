@@ -15,14 +15,14 @@ import com.ls.pub.db.DBConnection;
 import com.pm.vo.tongsiege.TongSiegePkLogVO;
 
 /**
- * ¸ºÔğ´¦Àí¹¥³ÇÕ½³¡ÉÏµÄpklog
+ * è´Ÿè´£å¤„ç†æ”»åŸæˆ˜åœºä¸Šçš„pklog
  * @author zhangjj
  *
  */
 public class TongSiegePkLogDao extends DaoBase {
 
 	/**
-	 * ¸øÍæ¼Ò¼ÓÉÏÉ±ÈËÊı,ÔÚ¹¥³ÇÕ½³¡ÉÏ
+	 * ç»™ç©å®¶åŠ ä¸Šæ€äººæ•°,åœ¨æ”»åŸæˆ˜åœºä¸Š
 	 * @param p_pk
 	 * @param tongId
 	 * @param siegeId
@@ -52,7 +52,7 @@ public class TongSiegePkLogDao extends DaoBase {
 		
 		if ( result == 0) {
 			DBConnection dbConn2 = new DBConnection(DBConnection.GAME_USER_DB);
-			String sql1 = "insert into tong_siege_pklog values (null,"+siegeId+","+siegeFightNumber+","+tongId+","
+			String sql1 = "INSERT INTO tong_siege_pklog values (null,"+siegeId+","+siegeFightNumber+","+tongId+","
 								+p_pk+",1,"+addUserGlory+")";
 			conn = dbConn2.getConn();
 			try
@@ -72,7 +72,7 @@ public class TongSiegePkLogDao extends DaoBase {
 
 	
 	/**
-	 * ¸øÍæ¼Ò¼ÓÉÏÉ±ÈËÊı,ÔÚ¹¥³ÇÕ½³¡ÉÏ
+	 * ç»™ç©å®¶åŠ ä¸Šæ€äººæ•°,åœ¨æ”»åŸæˆ˜åœºä¸Š
 	 * @param p_pk
 	 * @param tongId
 	 * @param siegeId
@@ -83,7 +83,7 @@ public class TongSiegePkLogDao extends DaoBase {
 			int siegeFightNumber, int addUserGlory)
 	{
 		DBConnection dbConn2 = new DBConnection(DBConnection.GAME_USER_DB);
-		String sql1 = "insert into tong_siege_pklog values (null,"+siegeId+","+siegeFightNumber+","+tongId+","
+		String sql1 = "INSERT INTO tong_siege_pklog values (null,"+siegeId+","+siegeFightNumber+","+tongId+","
 							+p_pk+"0,"+addUserGlory+")";
 		conn = dbConn2.getConn();
 		try
@@ -108,7 +108,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	 */
 	public TongSiegePkLogVO getPkLogVO(int pk)
 	{
-		String sql = "select * from tong_siege_pklog where p_pk="+pk+" order by pklog_id desc limit 1";
+		String sql = "SELECT * FROM tong_siege_pklog where p_pk="+pk+" order by pklog_id desc limit 1";
 		TongSiegePkLogVO tongSiegePkLogVO = new TongSiegePkLogVO();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -139,13 +139,13 @@ public class TongSiegePkLogDao extends DaoBase {
 	
 	
 	/**
-	 * »ñµÃpklog
+	 * è·å¾—pklog
 	 * @param pk
 	 * @return
 	 */
 	public TongSiegePkLogVO getPkLogVO(int pPk,String siegeId,String siegeFighterNumber)
 	{
-		String sql = "select * from tong_siege_pklog where siege_id = "+siegeId+" and siege_number="+ siegeFighterNumber+" and  p_pk="+pPk+" limit 1";
+		String sql = "SELECT * FROM tong_siege_pklog where siege_id = "+siegeId+" and siege_number="+ siegeFighterNumber+" and  p_pk="+pPk+" limit 1";
 		TongSiegePkLogVO tongSiegePkLogVO = new TongSiegePkLogVO();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -175,7 +175,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	}
 
 	/**
-	 * »ñµÃ´ËÈËÔÚ´Ë´Î¹¥³ÇÕ½µÄÅÅÃû
+	 * è·å¾—æ­¤äººåœ¨æ­¤æ¬¡æ”»åŸæˆ˜çš„æ’å
 	 * @param pk
 	 * @param siegeId
 	 * @param siegeNumber
@@ -184,7 +184,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	 */
 	public int getGradeByPPk(int pk, int siegeId, int siegeNumber,int pk_number)
 	{
-		String sql = "select count(1) as numb from tong_siege_pklog tsp,u_part_info upi where tsp.p_pk = upi.p_pk and pk_number > "+pk_number+" and  siege_id="
+		String sql = "SELECT count(1) as numb from tong_siege_pklog tsp,u_part_info upi where tsp.p_pk = upi.p_pk and pk_number > "+pk_number+" and  siege_id="
 					+ siegeId+" and siege_number = "+siegeNumber;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -212,7 +212,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	
 	
 	/**
-	 * »ñµÃ´ËÈËÔÚ´Ë´Î¹¥³ÇÕ½µÄÅÅÃû
+	 * è·å¾—æ­¤äººåœ¨æ­¤æ¬¡æ”»åŸæˆ˜çš„æ’å
 	 * @param pk
 	 * @param siegeId
 	 * @param siegeNumber
@@ -221,7 +221,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	 */
 	public int getJifenByPPk(int pk, int siegeId, int siegeNumber,int pk_number,String exp)
 	{
-		String sql = "select count(1) as numb from tong_siege_pklog tsp,u_part_info upi where tsp.p_pk = upi.p_pk and pk_number = "+pk_number+" and  siege_id="
+		String sql = "SELECT count(1) as numb from tong_siege_pklog tsp,u_part_info upi where tsp.p_pk = upi.p_pk and pk_number = "+pk_number+" and  siege_id="
 					+ siegeId+" and siege_number = "+siegeNumber+" and p_experience > "+exp;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -248,7 +248,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	}
 
 	/**
-	 * »ñµÃÉ±ÈË×î¶àµÄ300ÈË
+	 * è·å¾—æ€äººæœ€å¤šçš„300äºº
 	 * @param siegeId
 	 * @param siegeNumber
 	 * @return
@@ -258,7 +258,7 @@ public class TongSiegePkLogDao extends DaoBase {
 		String sqlString = "select sum(pk_number) as numbe from tong_siege_pklog where siege_id="+siegeId+" and siege_number="+siegeNumber
 					+" order by pk_number limit 300";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("»ñµÃÉ±ÈË×î¶àµÄ300ÈË="+sqlString);
+		logger.debug("è·å¾—æ€äººæœ€å¤šçš„300äºº="+sqlString);
 		conn = dbConn.getConn();
 		int count = 0;
 		try
@@ -281,8 +281,8 @@ public class TongSiegePkLogDao extends DaoBase {
 	}
 
 	/**
-	 * »ñµÃ É±ÈËÊı¸ü¶àµÄ °ïÅÉ
-	 * @param list °ïÅÉID
+	 * è·å¾— æ€äººæ•°æ›´å¤šçš„ å¸®æ´¾
+	 * @param list å¸®æ´¾ID
 	 * @param siegeId
 	 * @param siegeFightNumber
 	 * @return
@@ -290,7 +290,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	public int getKillMoreTongId(List<int[]> list, int siegeId,
 			int siegeFightNumber)
 	{
-		// // ½«°ïÅÉID×éºÏ³É×Ö·û´®
+		// // å°†å¸®æ´¾IDç»„åˆæˆå­—ç¬¦ä¸²
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append("(");
 		for(int i=0;i < list.size();i++) {
@@ -302,14 +302,14 @@ public class TongSiegePkLogDao extends DaoBase {
 		sBuffer.append(")");
 		String sql = "";
 		if(list.size() !=0){
-			 sql = "select tong_id,sum(pk_number) as pk_num from tong_siege_pklog where tong_id in "+sBuffer.toString()+" and siege_id="
+			 sql = "SELECT tong_id,sum(pk_number) as pk_num from tong_siege_pklog where tong_id in "+sBuffer.toString()+" and siege_id="
 			+siegeId+" and siege_number="+siegeFightNumber+" group by tong_id order by pk_num desc limit 1";
 		}else{
-			 sql = "select tong_id,sum(pk_number) as pk_num from tong_siege_pklog where  siege_id="
+			 sql = "SELECT tong_id,sum(pk_number) as pk_num from tong_siege_pklog where  siege_id="
 			+siegeId+" and siege_number="+siegeFightNumber+" group by tong_id order by pk_num desc limit 1";
 		}
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("»ñµÃ É±ÈËÊı¸ü¶àµÄ °ïÅÉ="+sql);
+		logger.debug("è·å¾— æ€äººæ•°æ›´å¤šçš„ å¸®æ´¾="+sql);
 		conn = dbConn.getConn();
 		int count = 0;
 		try
@@ -332,8 +332,8 @@ public class TongSiegePkLogDao extends DaoBase {
 	
 	
 	/**
-	 * »ñµÃ É±ÈËÊı¸ü¶àµÄ °ïÅÉ
-	 * @param list °ïÅÉID
+	 * è·å¾— æ€äººæ•°æ›´å¤šçš„ å¸®æ´¾
+	 * @param list å¸®æ´¾ID
 	 * @param siegeId
 	 * @param siegeFightNumber
 	 * @return
@@ -341,7 +341,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	public int getKillMoreTongIdByWin(List<Integer> list, int siegeId,
 			int siegeFightNumber)
 	{
-		// // ½«°ïÅÉID×éºÏ³É×Ö·û´®
+		// // å°†å¸®æ´¾IDç»„åˆæˆå­—ç¬¦ä¸²
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append("(");
 		for(int i=0;i < list.size();i++) {
@@ -352,10 +352,10 @@ public class TongSiegePkLogDao extends DaoBase {
 		}
 		sBuffer.append(")");
 		
-		String sql = "select * from ( select tong_id,sum(pk_number) as pk_num from tong_siege_pklog where tong_id in "+sBuffer.toString()+" and siege_id="
+		String sql = "SELECT * FROM ( select tong_id,sum(pk_number) as pk_num from tong_siege_pklog where tong_id in "+sBuffer.toString()+" and siege_id="
 						+siegeId+" and siege_number="+siegeFightNumber+") aaa order by pk_num desc";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("»ñµÃ É±ÈËÊı¸ü¶àµÄ °ïÅÉ="+sql);
+		logger.debug("è·å¾— æ€äººæ•°æ›´å¤šçš„ å¸®æ´¾="+sql);
 		conn = dbConn.getConn();
 		int count = 0;
 		try
@@ -377,7 +377,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	}
 
 	/**
-	 * µÃµ½×î´óµÄÎå¸ö°ïÅÉID
+	 * å¾—åˆ°æœ€å¤§çš„äº”ä¸ªå¸®æ´¾ID
 	 * @param siegeId
 	 * @param siegeFightNumber
 	 * @return
@@ -385,11 +385,11 @@ public class TongSiegePkLogDao extends DaoBase {
 	public List<Integer> getKillNumMaxFiveTongId(int siegeId,
 			int siegeFightNumber)
 	{
-		String sql = "select * from (select tong_id,sum(pk_number) as numb from tong_siege_pklog where siege_id="
+		String sql = "SELECT * FROM (select tong_id,sum(pk_number) as numb from tong_siege_pklog where siege_id="
 				+siegeId+" and siege_number="+siegeFightNumber+	" group by tong_id ) ase order by numb desc limit 5";
 		List<Integer> list = new ArrayList<Integer>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("µÃµ½×î´óµÄÎå¸ö°ïÅÉID="+sql);
+		logger.debug("å¾—åˆ°æœ€å¤§çš„äº”ä¸ªå¸®æ´¾ID="+sql);
 		conn = dbConn.getConn();
 		int count = 0;
 		try
@@ -413,7 +413,7 @@ public class TongSiegePkLogDao extends DaoBase {
 	}
 
 	/**
-	 * µÃµ½×î´óµÄÎå¸ö°ïÅÉID
+	 * å¾—åˆ°æœ€å¤§çš„äº”ä¸ªå¸®æ´¾ID
 	 * @param siegeId
 	 * @param siegeFightNumber
 	 * @return
@@ -421,12 +421,12 @@ public class TongSiegePkLogDao extends DaoBase {
 	public List<int[]> getKillNumMaxFiveTongIdWithArray(int siegeId,
 			int siegeFightNumber)
 	{
-		String sql = "select * from (select tong_id,sum(pk_number) as numb from tong_siege_pklog where siege_id="
+		String sql = "SELECT * FROM (select tong_id,sum(pk_number) as numb from tong_siege_pklog where siege_id="
 			+siegeId+" and siege_number="+siegeFightNumber+	" and tong_id != 0 group by tong_id ) ase order by numb desc limit 5";
 		List<int[]> list = new ArrayList<int[]>();
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
         conn = dbConn.getConn();
-        logger.debug("µÃµ½É±ÈËÊı×î´óµÄÎå¸ö°ïÅÉID="+sql);
+        logger.debug("å¾—åˆ°æ€äººæ•°æœ€å¤§çš„äº”ä¸ªå¸®æ´¾ID="+sql);
         int[] array1= null;
         try
         {
@@ -452,13 +452,13 @@ public class TongSiegePkLogDao extends DaoBase {
 	}
 
 	/**
-	 *  »ñµÃËùÓĞÔÚ¹¥³ÇÕ½³¡µÄ
-	 * @param list sceneIdµÄ¼¯ºÏ
+	 *  è·å¾—æ‰€æœ‰åœ¨æ”»åŸæˆ˜åœºçš„
+	 * @param list sceneIdçš„é›†åˆ
 	 * @return
 	 */
 	public Map<Integer, Integer> getTongSiegeMap(List<Integer> list)
 	{
-		// // ½«°ïÅÉID×éºÏ³É×Ö·û´®
+		// // å°†å¸®æ´¾IDç»„åˆæˆå­—ç¬¦ä¸²
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append("(");
 		for(int i=0;i < list.size();i++) {
@@ -469,7 +469,7 @@ public class TongSiegePkLogDao extends DaoBase {
 		}
 		sBuffer.append(")");
 		Map<Integer, Integer> map = new HashMap<Integer,Integer>();
-		String sql = "select up.p_pk,join_type from u_part_info up,tong_siege_info te where up.p_pk = te.p_pk and up.p_map in "+sBuffer.toString()
+		String sql = "SELECT up.p_pk,join_type from u_part_info up,tong_siege_info te where up.p_pk = te.p_pk and up.p_map in "+sBuffer.toString()
 						+"";
 		
 		 DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -495,7 +495,7 @@ public class TongSiegePkLogDao extends DaoBase {
 
 
 	/**
-	 * Çå³şÉ±ÈËÊı
+	 * æ¸…æ¥šæ€äººæ•°
 	 * @param pk
 	 */
 	public void clearPkLog(int siegeId,int siegeFightNumber)
@@ -503,7 +503,7 @@ public class TongSiegePkLogDao extends DaoBase {
 		String sql = "update tong_siege_pklog  set pk_number = 0 where siege_id="
 			+siegeId+" and siege_number="+siegeFightNumber+"";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-        logger.debug("Çå³şÉ±ÈËÊı="+sql);
+        logger.debug("æ¸…æ¥šæ€äººæ•°="+sql);
         conn = dbConn.getConn();
        
         try
@@ -523,20 +523,20 @@ public class TongSiegePkLogDao extends DaoBase {
 
 
 	/**
-	 * ½«µÚÒ»½×¶ÎµÄĞÎÊ½ĞÅÏ¢²åÈëµ½Êı¾İ¿âÖĞ
+	 * å°†ç¬¬ä¸€é˜¶æ®µçš„å½¢å¼ä¿¡æ¯æ’å…¥åˆ°æ•°æ®åº“ä¸­
 	 * @param roleEntity
 	 * @param siegeId
 	 * @param siegeNumber
-	 * @param displayInfoString ¹«¹²°ïÅÉĞÅÏ¢
-	 * @param personDisplay	¸öÈË¹¥³ÇÕ½ĞÅÏ¢
+	 * @param displayInfoString å…¬å…±å¸®æ´¾ä¿¡æ¯
+	 * @param personDisplay	ä¸ªäººæ”»åŸæˆ˜ä¿¡æ¯
 	 */
 	public void addFirstEndDisplayInfo(RoleEntity roleEntity, int siegeId,
 			int siegeNumber, String displayInfoString, String personDisplay)
 	{
-		String sql = "insert into tong_siegebattle_info values (null,"+roleEntity.getBasicInfo().getPPk()
+		String sql = "INSERT INTO tong_siegebattle_info values (null,"+roleEntity.getBasicInfo().getPPk()
 							+","+siegeId+","+siegeNumber+",'"+displayInfoString+"','"+personDisplay+"')";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-        logger.debug("Çå³şÉ±ÈËÊı="+sql);
+        logger.debug("æ¸…æ¥šæ€äººæ•°="+sql);
         conn = dbConn.getConn();
         try
         {
@@ -554,16 +554,16 @@ public class TongSiegePkLogDao extends DaoBase {
 
 
 	/**
-	 * »ñµÃµÚÒ»½×¶Î½áÊø°ïÅÉÏÔÊ¾ĞÅÏ¢
+	 * è·å¾—ç¬¬ä¸€é˜¶æ®µç»“æŸå¸®æ´¾æ˜¾ç¤ºä¿¡æ¯
 	 * @param pk
 	 * @return
 	 */
 	public String getBangPaiInfo(int pPk,String siegeId,String siegeNumber)
 	{
-		String sql = "select infoone from tong_siegebattle_info where p_pk="+pPk+" and siege_id="+siegeId+" and siege_number="+siegeNumber;
+		String sql = "SELECT infoone from tong_siegebattle_info where p_pk="+pPk+" and siege_id="+siegeId+" and siege_number="+siegeNumber;
 		String infoone = "";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-        logger.debug("Çå³şÉ±ÈËÊı="+sql);
+        logger.debug("æ¸…æ¥šæ€äººæ•°="+sql);
         conn = dbConn.getConn();
         try
         {
@@ -585,7 +585,7 @@ public class TongSiegePkLogDao extends DaoBase {
 
 
 	/**
-	 * »ñµÃ¸öÈËÏÔÊ¾ĞÅÏ¢
+	 * è·å¾—ä¸ªäººæ˜¾ç¤ºä¿¡æ¯
 	 * @param pk
 	 * @param siegeId
 	 * @param siegeNumber
@@ -594,10 +594,10 @@ public class TongSiegePkLogDao extends DaoBase {
 	public String getPersonDisplayInfo(int pPk, String siegeId,
 			String siegeNumber)
 	{
-		String sql = "select infotwo from tong_siegebattle_info where p_pk="+pPk+" and siege_id="+siegeId+" and siege_number="+siegeNumber;
+		String sql = "SELECT infotwo from tong_siegebattle_info where p_pk="+pPk+" and siege_id="+siegeId+" and siege_number="+siegeNumber;
 		String infotwo = "";
         DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-        logger.debug("Çå³şÉ±ÈËÊı="+sql);
+        logger.debug("æ¸…æ¥šæ€äººæ•°="+sql);
         conn = dbConn.getConn();
         try
         {

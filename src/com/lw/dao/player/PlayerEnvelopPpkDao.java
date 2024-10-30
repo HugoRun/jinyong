@@ -8,13 +8,13 @@ import com.ls.pub.db.DBConnection;
 public class PlayerEnvelopPpkDao extends DaoBase
 {
 
-	/** ²éÑ¯ÊÇ·ñ±»·âºÅ */
+	/** æŸ¥è¯¢æ˜¯å¦è¢«å°å· */
 	public boolean getPlayerFromEnvelop(int p_pk)
 	{
 		boolean x = false;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select p_pk from u_envelop where e_state = 1 and e_type = 0 and p_pk = " + p_pk;
+		String sql = "SELECT p_pk from u_envelop where e_state = 1 and e_type = 0 and p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -38,13 +38,13 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		return x;
 	}
 
-	/** ²éÑ¯Íæ¼Ò·âºÅÊ±¼ä */
+	/** æŸ¥è¯¢ç©å®¶å°å·æ—¶é—´ */
 	public Date getPlayerEnvelop(int p_pk)
 	{
 		Date x = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select end_time from u_envelop where p_pk = " + p_pk;
+		String sql = "SELECT end_time from u_envelop where p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{
@@ -68,7 +68,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		return x;
 	}
 
-	/** É¾³ıÍæ¼Ò·âºÅ±íÀïÊı¾İ */
+	/** åˆ é™¤ç©å®¶å°å·è¡¨é‡Œæ•°æ® */
 	public void delPlayerEnvelop(int p_pk)
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -91,7 +91,7 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		}
 	}
 	
-	/** ¸üĞÂÍæ¼Ò·âºÅ±íÀïÊı¾İ */
+	/** æ›´æ–°ç©å®¶å°å·è¡¨é‡Œæ•°æ® */
 	public void updatePlayerEnvelop(int p_pk)
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -114,13 +114,13 @@ public class PlayerEnvelopPpkDao extends DaoBase
 		}
 	}
 
-	/** ²éÑ¯ÊÇ·ñ±»·âºÅ */
+	/** æŸ¥è¯¢æ˜¯å¦è¢«å°å· */
 	public boolean getPlayerEnvelopForever(int p_pk)
 	{
 		boolean x = false;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select p_pk from u_envelop where e_type = 1 and p_pk = " + p_pk;
+		String sql = "SELECT p_pk from u_envelop where e_type = 1 and p_pk = " + p_pk;
 		logger.debug(sql);
 		try
 		{

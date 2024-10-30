@@ -28,37 +28,37 @@ public class UnTangleAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 
-	// ²é¿´µ±Ç°Íæ¼Ò½­ºşÅÅÃû
+	// æŸ¥çœ‹å½“å‰ç©å®¶æ±Ÿæ¹–æ’å
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 
 		UntangLeDao untangdao = new UntangLeDao();
-		// ·µ»Ø¸Ã½çÃæ
+		// è¿”å›è¯¥ç•Œé¢
 		request.getSession().setAttribute("backtype", "n1");
 		List<PartInfoVO> list = untangdao.getPaiMingList();
 		request.setAttribute("paiminglist", list);
-		request.setAttribute("unType", "½­ºşÅÅÃû<br/>Íæ¼ÒËù»ñµÃ¾­ÑéºÍÈÙÓşµÄÅÅĞĞ");
+		request.setAttribute("unType", "æ±Ÿæ¹–æ’å<br/>ç©å®¶æ‰€è·å¾—ç»éªŒå’Œè£èª‰çš„æ’è¡Œ");
 		request.setAttribute("number", "n1");
 		return mapping.findForward("paiminglist");
 	}
 
-	// ²é¿´µ±Ç°Íæ¼ÒµÄ²Æ¸»ÅÅÃû
+	// æŸ¥çœ‹å½“å‰ç©å®¶çš„è´¢å¯Œæ’å
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 
 		UntangLeDao untangdao = new UntangLeDao();
-		// ·µ»Ø¸Ã½çÃæ
+		// è¿”å›è¯¥ç•Œé¢
 		request.getSession().setAttribute("backtype", "n2");
 		List<PartInfoVO> list = untangdao.getMoneyPaiMingList();
 		request.setAttribute("paiminglist", list);
-		request.setAttribute("unType", "²Æ¸»ÅÅÃû");
+		request.setAttribute("unType", "è´¢å¯Œæ’å");
 		request.setAttribute("number", "n2");
 		return mapping.findForward("paiminglist");
 	}
 
-	// ²é¿´µ±Ç°Íæ¼ÒµÄ²Æ¸»ÅÅÃû
+	// æŸ¥çœ‹å½“å‰ç©å®¶çš„è´¢å¯Œæ’å
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -66,7 +66,7 @@ public class UnTangleAction extends DispatchAction
 		return mapping.findForward("paimingview");
 	}
 
-	// ²é¿´Éñ±ø°ñÅÅÃû
+	// æŸ¥çœ‹ç¥å…µæ¦œæ’å
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -98,7 +98,7 @@ public class UnTangleAction extends DispatchAction
 		return mapping.findForward("arm_view");
 	}
 
-	/** ¸±±¾ĞÅÏ¢ */
+	/** å‰¯æœ¬ä¿¡æ¯ */
 
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -109,16 +109,16 @@ public class UnTangleAction extends DispatchAction
 		return mapping.findForward("instance_view");
 	}
 
-	/** É±ÈËÅÅÃû* */
+	/** æ€äººæ’å* */
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		UntangLeDao untangdao = new UntangLeDao();
-		// ·µ»Ø¸Ã½çÃæ
+		// è¿”å›è¯¥ç•Œé¢
 		request.getSession().setAttribute("backtype", "n7");
 		List<PartInfoVO> list = untangdao.getKillRank();
 		request.setAttribute("paiminglist", list);
-		request.setAttribute("unType", "É±ÈË°ñ<br/>Ê®²½É±Ò»ÈË,Ç§Àï²»ÁôĞĞ!´Ë°ñ¼ÇÂ¼É±ËÀÍæ¼ÒÊıÁ¿µÄ¶àÉÙ.");
+		request.setAttribute("unType", "æ€äººæ¦œ<br/>åæ­¥æ€ä¸€äºº,åƒé‡Œä¸ç•™è¡Œ!æ­¤æ¦œè®°å½•æ€æ­»ç©å®¶æ•°é‡çš„å¤šå°‘.");
 		request.setAttribute("number", "n7");
 		return mapping.findForward("paiminglist");
 	}

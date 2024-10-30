@@ -4,14 +4,14 @@ import org.apache.log4j.Logger;
 
 
 /**
- * ¹¦ÄÜ:ÉÙÁÖÃÅÅÉµÄÏà¹Ø¹¤¾ß
- * @author ÁõË§
+ * åŠŸèƒ½:å°‘æ—é—¨æ´¾çš„ç›¸å…³å·¥å…·
+ * @author åˆ˜å¸…
  * 7:18:37 AM
  */
 public class ShaolinUtil
 {
 	/**
-	 * ÉÙÁÖ³É³¤ÏµÊı
+	 * å°‘æ—æˆé•¿ç³»æ•°
 	 */
 	public static final double COEFFICIENT=1.2;
 	
@@ -19,64 +19,64 @@ public class ShaolinUtil
 
 	
 	/**
-	 * Í¨¹ı¹«Ê½µÃµ½¹¥»÷  ¹¥»÷Á¦=Power(Á¦Á¿,0.4)*50-(60/µÈ¼¶)*16-£¨£¨µÈ¼¶-30£©*£¨µÈ¼¶-30£©*ÏµÊı/100£©+µÈ¼¶*ÏµÊı£»
+	 * é€šè¿‡å…¬å¼å¾—åˆ°æ”»å‡»  æ”»å‡»åŠ›=Power(åŠ›é‡,0.4)*50-(60/ç­‰çº§)*16-ï¼ˆï¼ˆç­‰çº§-30ï¼‰*ï¼ˆç­‰çº§-30ï¼‰*ç³»æ•°/100ï¼‰+ç­‰çº§*ç³»æ•°ï¼›
 	 * @return
 	 */
 	public int getGJByExpressions(int force,int level)
 	{
-		logger.info( "Á¦Á¿ÊÇ"+ force + "£»µÈ¼¶ÊÇ:"+ level);
+		logger.info( "åŠ›é‡æ˜¯"+ force + "ï¼›ç­‰çº§æ˜¯:"+ level);
 		
 		double gj = 0;
 		
 		gj = Math.pow(force, 0.4)*50 - (60/level)*16 - ( (level-30)* (level-30)*COEFFICIENT/100 ) + level*COEFFICIENT;
 		
-		logger.info("Í¨¹ı¹«Ê½µÃµ½µÄ¹¥»÷Á¦ÊÇ:"+ (int)gj);
+		logger.info("é€šè¿‡å…¬å¼å¾—åˆ°çš„æ”»å‡»åŠ›æ˜¯:"+ (int)gj);
 		
 		return (int)gj;
 	}
 	
 	/**
-	 *  ·ÀÓù = Power(Ãô½İ,0.4)*50-(60*ÏµÊı/µÈ¼¶)*16-£¨£¨µÈ¼¶-30£©*£¨µÈ¼¶-30£©*ÏµÊı/100£©£»
+	 *  é˜²å¾¡ = Power(æ•æ·,0.4)*50-(60*ç³»æ•°/ç­‰çº§)*16-ï¼ˆï¼ˆç­‰çº§-30ï¼‰*ï¼ˆç­‰çº§-30ï¼‰*ç³»æ•°/100ï¼‰ï¼›
 	 */
 	public int getFYByExpressions(int agile,int level)
 	{
-		logger.info( "Ãô½İÊÇ"+ agile + "£»µÈ¼¶ÊÇ:"+ level);
+		logger.info( "æ•æ·æ˜¯"+ agile + "ï¼›ç­‰çº§æ˜¯:"+ level);
 		
 		double fy = 0;
 		
 		fy = Math.pow(agile, 0.4)*50 - (60/level)*16 - ( (level-30)* (level-30)*COEFFICIENT/100 );
 		
-		logger.info("Í¨¹ı¹«Ê½µÃµ½µÄ·ÀÓùÊÇ:"+ (int)fy);
+		logger.info("é€šè¿‡å…¬å¼å¾—åˆ°çš„é˜²å¾¡æ˜¯:"+ (int)fy);
 		
 		return (int)fy;
 	}
 	
 	/**
-	 * ÑªÆø = 180+£¨10*£¨µ±Ç°¼¶±ğ-11£©£©+£¨30+£¨2*£¨µ±Ç°¼¶±ğ-11£©£©£©*6*£¨(1-µÈ¼¶/60)+ÏµÊı£©
+	 * è¡€æ°” = 180+ï¼ˆ10*ï¼ˆå½“å‰çº§åˆ«-11ï¼‰ï¼‰+ï¼ˆ30+ï¼ˆ2*ï¼ˆå½“å‰çº§åˆ«-11ï¼‰ï¼‰ï¼‰*6*ï¼ˆ(1-ç­‰çº§/60)+ç³»æ•°ï¼‰
 	 */
 	public int getHPByExpressions( int level)
 	{
-		logger.info( "µÈ¼¶ÊÇ:"+ level);
+		logger.info( "ç­‰çº§æ˜¯:"+ level);
 		double hp = 0;
 		
 		hp = 180+(10*(level-11)) +(30+(2*(level-11)))*6*((1-level/60)+COEFFICIENT);
 		
-		logger.info("Í¨¹ı¹«Ê½µÃµ½µÄhpÊÇ:"+ (int)hp);
+		logger.info("é€šè¿‡å…¬å¼å¾—åˆ°çš„hpæ˜¯:"+ (int)hp);
 		
 		return (int)hp;
 	}
 	
 	/**
-	 * ÄÚÁ¦ = ³õÊ¼ÄÚÁ¦+£¨Ã¿¼¶Ôö¼ÓÄÚÁ¦*£¨µ±Ç°¼¶±ğ-11£©£©+£¨Ã¿¼¶Ôö¼ÓÎòĞÔ*µ±Ç°µÈ¼¶*ÏµÊı£©
+	 * å†…åŠ› = åˆå§‹å†…åŠ›+ï¼ˆæ¯çº§å¢åŠ å†…åŠ›*ï¼ˆå½“å‰çº§åˆ«-11ï¼‰ï¼‰+ï¼ˆæ¯çº§å¢åŠ æ‚Ÿæ€§*å½“å‰ç­‰çº§*ç³»æ•°ï¼‰
 	 */
 	public int getMPByExpressions( int savvy ,int level)
 	{
-		logger.info( "ÎòĞÔÊÇ"+ savvy + "£»µÈ¼¶ÊÇ:"+ level);
+		logger.info( "æ‚Ÿæ€§æ˜¯"+ savvy + "ï¼›ç­‰çº§æ˜¯:"+ level);
 		double mp = 0;
 		
 		//mp = 
 		
-		logger.info("Í¨¹ı¹«Ê½µÃµ½µÄmpÊÇ:"+ (int)mp);
+		logger.info("é€šè¿‡å…¬å¼å¾—åˆ°çš„mpæ˜¯:"+ (int)mp);
 		
 		return (int)mp;
 	}

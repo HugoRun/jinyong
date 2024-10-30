@@ -4,13 +4,14 @@
 <%
 	response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p>
 <%
 	String hint = (String) request.getAttribute("hint");
 	String lid = (String) request.getAttribute("lid");
-	if( lid==null || lid.equals("") )//渠道为空时,设置默认值为99
+	if( lid==null || lid.isEmpty())//渠道为空时,设置默认值为99
 	{
 		lid = "99";
 	}

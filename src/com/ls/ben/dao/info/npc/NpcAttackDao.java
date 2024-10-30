@@ -13,10 +13,10 @@ import com.ls.pub.db.DBConnection;
 public class NpcAttackDao extends DaoBase {
 	
 	/**
-	 * ¸ù¾İnpc±í½¨Á¢ÁÙÊ±±ínpc
+	 * æ ¹æ®npcè¡¨å»ºç«‹ä¸´æ—¶è¡¨npc
 	 * @param npc
 	 * @param p_pk
-	 * @param insidePk ÄÚ´æÖĞµÄÖ÷¼ü
+	 * @param insidePk å†…å­˜ä¸­çš„ä¸»é”®
 	 * @return
 	 */
 	public NpcFighter createByNpc(NpcVO npc,int p_pk,int isAttacked,int npc_type,int mapId,int insidePk)
@@ -24,11 +24,11 @@ public class NpcAttackDao extends DaoBase {
 		NpcFighter temp_npc = null;
 		if( npc==null  )
 		{
-			logger.debug("²ÎÊı´íÎó:npcÎª¿Õ");
+			logger.debug("å‚æ•°é”™è¯¯:npcä¸ºç©º");
 			return null;
 		}
 		temp_npc = new NpcFighter();
-		//ÉèÖÃÖ÷¶¯¹¥»÷¿ª¹Ø
+		//è®¾ç½®ä¸»åŠ¨æ”»å‡»å¼€å…³
 		temp_npc.setID(insidePk);
 		temp_npc.setPPk(p_pk);
 		temp_npc.setNpcID(npc.getNpcID());
@@ -37,7 +37,7 @@ public class NpcAttackDao extends DaoBase {
 		temp_npc.setNpcHP(npc.getNpcHP());
 		temp_npc.setDefenceDa(npc.getDefenceDa());
 		temp_npc.setDefenceXiao(npc.getDefenceXiao());
-		temp_npc.setNpcIsAttack(isAttacked);//ÉèÖÃ¹¥»÷×´Ì¬
+		temp_npc.setNpcIsAttack(isAttacked);//è®¾ç½®æ”»å‡»çŠ¶æ€
 		
 		temp_npc.setJinFy(npc.getJinFy());
 		temp_npc.setMuFy(npc.getMuFy());
@@ -67,7 +67,7 @@ public class NpcAttackDao extends DaoBase {
 		}
 	
 	/**
-	 * ¸ù¾İnpc±í½¨Á¢ÁÙÊ±±ínpc
+	 * æ ¹æ®npcè¡¨å»ºç«‹ä¸´æ—¶è¡¨npc
 	 * @param npc
 	 * @param p_pk
 	 * @return
@@ -77,11 +77,11 @@ public class NpcAttackDao extends DaoBase {
 	{
 		if( npcs==null )
 		{
-			logger.debug("³Ö¾Ã»¯npcsÎª¿Õ");
+			logger.debug("æŒä¹…åŒ–npcsä¸ºç©º");
 			return ;
 		}
 		NpcAttackVO temp_npc = null;
-		String sql = "insert into n_attack_info (p_pk,n_current_HP,n_attackswitch,npc_ID,npc_Name,npc_HP," +
+		String sql = "INSERT INTO n_attack_info (p_pk,n_current_HP,n_attackswitch,npc_ID,npc_Name,npc_HP," +
 		"npc_defence_da,npc_defence_xiao,npc_jin_fy," +
 		"npc_mu_fy,npc_shui_fy,npc_huo_fy,npc_tu_fy,npc_drop,npc_Level,npc_EXP,npc_money,npc_take,npc_refurbish_time,scene_id,npc_isAttack,create_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
@@ -122,7 +122,7 @@ public class NpcAttackDao extends DaoBase {
 			}
 //			ps.executeBatch();
 			ps.close();	
-			logger.debug("Ë¢³ö"+npcs.size()+"¸öNPC");
+			logger.debug("åˆ·å‡º"+npcs.size()+"ä¸ªNPC");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +142,7 @@ public class NpcAttackDao extends DaoBase {
 //		try
 //		{
 //		
-//			String sql = "insert into n_attack_info (p_pk,n_current_HP,n_attackswitch,npc_ID,npc_Name,npc_HP," +
+//			String sql = "INSERT INTO n_attack_info (p_pk,n_current_HP,n_attackswitch,npc_ID,npc_Name,npc_HP," +
 //					"npc_defence_da,npc_defence_xiao,npc_jin_fy," +
 //					"npc_mu_fy,npc_shui_fy,npc_huo_fy,npc_tu_fy,npc_drop,npc_Level,npc_EXP,npc_money,npc_take,scene_id,npc_key,npc_isAttack,npc_type,create_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
 //			logger.debug(sql);
@@ -194,9 +194,9 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select n_pk from n_attack_info where npc_key="+key;
+			String sql = "SELECT n_pk from n_attack_info where npc_key="+key;
 			logger.debug(sql);
-			stmt = conn.createStatement(); // Éú³ÉprepareStatement ¶ÔÏó
+			stmt = conn.createStatement(); // ç”ŸæˆprepareStatement å¯¹è±¡
 			rs = stmt.executeQuery(sql); 
 			if( rs.next() )
 			{
@@ -220,7 +220,7 @@ public class NpcAttackDao extends DaoBase {
 	}*/
 	
 	/**
-	 * ¸ù¾İidµÃµ½Ò»Ö»npc
+	 * æ ¹æ®idå¾—åˆ°ä¸€åªnpc
 	 * @param id
 	 * @return
 	 *//*
@@ -231,9 +231,9 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select * from n_attack_info where n_pk="+id;
+			String sql = "SELECT * FROM n_attack_info where n_pk="+id;
 			logger.debug(sql);
-			stmt = conn.createStatement(); // Éú³ÉprepareStatement ¶ÔÏó
+			stmt = conn.createStatement(); // ç”ŸæˆprepareStatement å¯¹è±¡
 			rs = stmt.executeQuery(sql); 
 			if( rs.next())
 			{
@@ -290,7 +290,7 @@ public class NpcAttackDao extends DaoBase {
 	
 	
 	/**
-	 * ¸üĞÂµ±Ç°ÑªÁ¿£¬Ã¿»ØºÏ½ÇÉ«¸ønpc Ôì³ÉµÄÉËº¦ºÍ³èÎï¸ønpcÔì³ÉµÄÉËº¦
+	 * æ›´æ–°å½“å‰è¡€é‡ï¼Œæ¯å›åˆè§’è‰²ç»™npc é€ æˆçš„ä¼¤å®³å’Œå® ç‰©ç»™npcé€ æˆçš„ä¼¤å®³
 	 * @param id
 	 * @param hp
 	 * @return
@@ -304,7 +304,7 @@ public class NpcAttackDao extends DaoBase {
 		{
 			String sql = "update n_attack_info set n_current_HP = n_current_HP -" + characterInjure + "-"+petInjure+"  where n_pk=" + id;
 			logger.debug(sql);
-			stmt = conn.createStatement(); // Éú³ÉprepareStatement ¶ÔÏó
+			stmt = conn.createStatement(); // ç”ŸæˆprepareStatement å¯¹è±¡
 			result = stmt.executeUpdate(sql); 
 			stmt.close();
 		}
@@ -321,7 +321,7 @@ public class NpcAttackDao extends DaoBase {
 		return result;
 	}
 	*//**
-	 * ¸üĞÂµ±Ç°ÑªÁ¿
+	 * æ›´æ–°å½“å‰è¡€é‡
 	 * @param id
 	 * @param hp
 	 * @return
@@ -335,7 +335,7 @@ public class NpcAttackDao extends DaoBase {
 		{
 			String sql = "update n_attack_info set n_current_HP = n_current_HP -" + injure+"  where n_pk=" + id;
 			logger.debug(sql);
-			stmt = conn.createStatement(); // Éú³ÉprepareStatement ¶ÔÏó
+			stmt = conn.createStatement(); // ç”ŸæˆprepareStatement å¯¹è±¡
 			result = stmt.executeUpdate(sql); 
 			stmt.close();
 		}
@@ -355,7 +355,7 @@ public class NpcAttackDao extends DaoBase {
 	
 	
 	*//**
-	 * µÃµ½µ±Ç°Õ½¶·µÄnpc
+	 * å¾—åˆ°å½“å‰æˆ˜æ–—çš„npc
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -365,7 +365,7 @@ public class NpcAttackDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select * from n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + "  and scene_id = "+scene_id+"  order by n_pk limit 1";
+			String sql = "SELECT * FROM n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + "  and scene_id = "+scene_id+"  order by n_pk limit 1";
 
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
@@ -418,7 +418,7 @@ public class NpcAttackDao extends DaoBase {
 	}*/
 	
 	/**
-	 * Çå³ıµ±Ç°½ÇÉ«Ë¢ĞÂ³öµÄnpcs
+	 * æ¸…é™¤å½“å‰è§’è‰²åˆ·æ–°å‡ºçš„npcs
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -447,7 +447,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * Çå³ıµ±Ç°½ÇÉ«Ë¢ĞÂ³öµÄnpcs
+	 * æ¸…é™¤å½“å‰è§’è‰²åˆ·æ–°å‡ºçš„npcs
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -476,7 +476,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * npcËÀÍö£¬ÔÚ±íÀïÇå³ı
+	 * npcæ­»äº¡ï¼Œåœ¨è¡¨é‡Œæ¸…é™¤
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -506,7 +506,7 @@ public class NpcAttackDao extends DaoBase {
 	}*/
 	
 	/**
-	 * °ÑÒ»Ö»npc´¦ÓÚ¹¥»÷×´Ì¬
+	 * æŠŠä¸€åªnpcå¤„äºæ”»å‡»çŠ¶æ€
 	 * @param n_pk
 	 * @return
 	 *//*
@@ -534,7 +534,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * °ÑËùÓĞÖ÷¶¯¹¥»÷µÄnpc´¦ÓÚ¹¥»÷×´Ì¬
+	 * æŠŠæ‰€æœ‰ä¸»åŠ¨æ”»å‡»çš„npcå¤„äºæ”»å‡»çŠ¶æ€
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -562,7 +562,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * ³õÊ¼»¯´¦ÓÚ¹¥»÷×´Ì¬npcsµÄÃ¿»ØºÏÉËº¦Öµ
+	 * åˆå§‹åŒ–å¤„äºæ”»å‡»çŠ¶æ€npcsçš„æ¯å›åˆä¼¤å®³å€¼
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -591,7 +591,7 @@ public class NpcAttackDao extends DaoBase {
 	}*/
 	
 	/**
-	 * µÃµ½½ÇÉ«¶ÔÓ¦µÄ£¬´¦ÓÚ¹¥»÷×´Ì¬µÄËùÓĞnpc
+	 * å¾—åˆ°è§’è‰²å¯¹åº”çš„ï¼Œå¤„äºæ”»å‡»çŠ¶æ€çš„æ‰€æœ‰npc
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -599,7 +599,7 @@ public class NpcAttackDao extends DaoBase {
 	{
 		List<NpcFighter> list = new ArrayList<NpcFighter>();
 		NpcFighter vo = null;
-		String sql = "select * from n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + " and scene_id = "+scene_id+" order by n_pk";
+		String sql = "SELECT * FROM n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + " and scene_id = "+scene_id+" order by n_pk";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
@@ -653,7 +653,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * ÅĞ¶ÏÊÇ·ñÓĞ´¦ÓÚ¹¥»÷×´Ì¬µÄnpc
+	 * åˆ¤æ–­æ˜¯å¦æœ‰å¤„äºæ”»å‡»çŠ¶æ€çš„npc
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -661,7 +661,7 @@ public class NpcAttackDao extends DaoBase {
 	{
 		boolean isHave = false;
 		String sql = "";
-		sql = "select count(*) as sum from n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + " and scene_id = "+scene_id+"  order by n_pk";
+		sql = "SELECT count(*) as sum from n_attack_info where npc_isAttack=1 and p_pk=" + p_pk + " and scene_id = "+scene_id+"  order by n_pk";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
@@ -687,7 +687,7 @@ public class NpcAttackDao extends DaoBase {
 	
 	
 	*//**
-	 * µÃµ½ÓÃ»§µÄËùÓĞÓöµ½µÄnpc
+	 * å¾—åˆ°ç”¨æˆ·çš„æ‰€æœ‰é‡åˆ°çš„npc
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -698,9 +698,9 @@ public class NpcAttackDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select * from n_attack_info where p_pk=" + p_pk + " and scene_id = "+scene_id+"  order by n_pk";
+			String sql = "SELECT * FROM n_attack_info where p_pk=" + p_pk + " and scene_id = "+scene_id+"  order by n_pk";
 			logger.debug(sql);
-			stmt = conn.createStatement(); // Éú³ÉprepareStatement ¶ÔÏó
+			stmt = conn.createStatement(); // ç”ŸæˆprepareStatement å¯¹è±¡
 			rs = stmt.executeQuery(sql); 
 			while (rs.next()) {
 				vo = new NpcAttackVO();
@@ -750,7 +750,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * ÅĞ¶ÏÊÇ·ñÓĞÖ÷¶¯¹¥»÷µÄnpc
+	 * åˆ¤æ–­æ˜¯å¦æœ‰ä¸»åŠ¨æ”»å‡»çš„npc
 	 * @param p_pk
 	 * @return
 	 *//*
@@ -760,7 +760,7 @@ public class NpcAttackDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select  * from n_attack_info where p_pk=" + p_pk + " and n_attackswitch=1  limit 1";
+			String sql = "SELECT  * from n_attack_info where p_pk=" + p_pk + " and n_attackswitch=1  limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -807,7 +807,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	*//**
-	 * ÅĞ¶ÏÊÇ·ñ»¹ÓĞnpc
+	 * åˆ¤æ–­æ˜¯å¦è¿˜æœ‰npc
 	 * @param args
 	 *//*
 	public boolean isHaveNpcByPpk(int p_pk)
@@ -817,7 +817,7 @@ public class NpcAttackDao extends DaoBase {
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select n_pk from n_attack_info where p_pk=" + p_pk + " limit 1";
+			String sql = "SELECT n_pk from n_attack_info where p_pk=" + p_pk + " limit 1";
 			logger.debug(sql);
 			stmt = conn.createStatement(); 
 			rs = stmt.executeQuery(sql); 
@@ -840,7 +840,7 @@ public class NpcAttackDao extends DaoBase {
 	}*/
 	
 /*	*//**
-	 * ¸üĞÂ»÷ÔÎ×´Ì¬Ê£Óà»ØºÏÊı
+	 * æ›´æ–°å‡»æ™•çŠ¶æ€å‰©ä½™å›åˆæ•°
 	 *//*
 	public int updateDizzyBoutNumOfNPC( int n_pk ,int change_bout)
 	{
@@ -868,7 +868,7 @@ public class NpcAttackDao extends DaoBase {
 	
 
 	*//**
-	 * Ôö¼ÓÍæ¼ÒÕ½¶·µÄnpcsµÄ»÷ÔÎ×´Ì¬µÄ»ØºÏÊı
+	 * å¢åŠ ç©å®¶æˆ˜æ–—çš„npcsçš„å‡»æ™•çŠ¶æ€çš„å›åˆæ•°
 	 * @param p_pk
 	 * @param change_bout
 	 *//*
@@ -897,7 +897,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 */
 	/*
-	 * ¸üĞÂÖĞ¶¾×´Ì¬Ê£Óà»ØºÏÊı
+	 * æ›´æ–°ä¸­æ¯’çŠ¶æ€å‰©ä½™å›åˆæ•°
 	 */
 	public int updatePoisonBoutNumOfNPC( int n_pk ,int change_bout)
 	{
@@ -924,7 +924,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	/*
-	 * Ôö¼ÓÍæ¼ÒÕ½¶·µÄnpcsµÄÖĞ¶¾×´Ì¬»ØºÏÊı
+	 * å¢åŠ ç©å®¶æˆ˜æ–—çš„npcsçš„ä¸­æ¯’çŠ¶æ€å›åˆæ•°
 	 * @param p_pk
 	 * @param poison_round_num
 	 */
@@ -953,7 +953,7 @@ public class NpcAttackDao extends DaoBase {
 	}
 	
 	/*
-	 * ¸üĞÂµ±Ç°npcµÄÑªÁ¿
+	 * æ›´æ–°å½“å‰npcçš„è¡€é‡
 	 */
 	public int updateCurrentHP(int id,int injure )
 	{
@@ -964,7 +964,7 @@ public class NpcAttackDao extends DaoBase {
 		{
 			String sql = "update n_attack_info set n_current_HP = n_current_HP -" + injure+"  where n_pk=" + id;
 			logger.debug(sql);
-			stmt = conn.createStatement(); // Éú³ÉprepareStatement ¶ÔÏó
+			stmt = conn.createStatement(); // ç”ŸæˆprepareStatement å¯¹è±¡
 			result = stmt.executeUpdate(sql); 
 			stmt.close();
 		}
@@ -983,8 +983,8 @@ public class NpcAttackDao extends DaoBase {
 
 
 	/**
-	 * ¸ù¾İ¸öÈË½ÇÉ«id, npcid,ºÍmapidÀ´É¾³ıÒ»¸önpc,
-	 * Èç¹û¶àÓÚÒ»¸ö, ÄÇ¾ÍÑ¡Ôñn_pk×îĞ¡µÄ
+	 * æ ¹æ®ä¸ªäººè§’è‰²id, npcid,å’Œmapidæ¥åˆ é™¤ä¸€ä¸ªnpc,
+	 * å¦‚æœå¤šäºä¸€ä¸ª, é‚£å°±é€‰æ‹©n_pkæœ€å°çš„
 	 * @param p_pk
 	 * @param npc_id
 	 * @param mapid
@@ -1015,8 +1015,8 @@ public class NpcAttackDao extends DaoBase {
 	}
 
 	*//**
-	 * ¸ù¾İ¸öÈË½ÇÉ«id, npcid,ºÍmapidÀ´É¾³ıÒ»¸öÕıÔÚ¹¥»÷µÄnpc,
-	 * Èç¹û¶àÓÚÒ»¸ö, ÄÇ¾ÍÑ¡Ôñn_pk×îĞ¡µÄ
+	 * æ ¹æ®ä¸ªäººè§’è‰²id, npcid,å’Œmapidæ¥åˆ é™¤ä¸€ä¸ªæ­£åœ¨æ”»å‡»çš„npc,
+	 * å¦‚æœå¤šäºä¸€ä¸ª, é‚£å°±é€‰æ‹©n_pkæœ€å°çš„
 	 * @param p_pk
 	 * @param npc_id
 	 * @param mapid
@@ -1048,8 +1048,8 @@ public class NpcAttackDao extends DaoBase {
 
 
 	/**
-	 * ÅĞ¶Ï´ËµØÊÇ·ñ»¹ÓĞÆäËûµÄÍ¬ÀàĞÍÖ÷¶¯¹¥»÷ĞÍ¹Ö, Èç¹ûÓĞ·µ»Ø
-	 * ¸öÊı, Èç¹ûÃ»ÓĞ·µ»Ø-1
+	 * åˆ¤æ–­æ­¤åœ°æ˜¯å¦è¿˜æœ‰å…¶ä»–çš„åŒç±»å‹ä¸»åŠ¨æ”»å‡»å‹æ€ª, å¦‚æœæœ‰è¿”å›
+	 * ä¸ªæ•°, å¦‚æœæ²¡æœ‰è¿”å›-1
 	 * @param pk
 	 * @param map
 	 * @param npcID
@@ -1058,10 +1058,10 @@ public class NpcAttackDao extends DaoBase {
 	public int getNpcIsDropGoods(int pk, String map, int npcID)
 	{
 		int i = -1;
-		String sql = "select count(1) as all_num from n_attack_info where n_attackswitch=1 and p_pk="+pk+" and npc_ID="+npcID+" and scene_id="+map;
+		String sql = "SELECT count(1) as all_num from n_attack_info where n_attackswitch=1 and p_pk="+pk+" and npc_ID="+npcID+" and scene_id="+map;
 		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
 		conn = dbConn.getConn();
-		logger.debug(" ÅĞ¶Ï´ËµØÊÇ·ñ»¹ÓĞÆäËûµÄÍ¬ÀàĞÍÖ÷¶¯¹¥»÷ĞÍ¹Ö="+sql);
+		logger.debug(" åˆ¤æ–­æ­¤åœ°æ˜¯å¦è¿˜æœ‰å…¶ä»–çš„åŒç±»å‹ä¸»åŠ¨æ”»å‡»å‹æ€ª="+sql);
 		try
 		{
 			logger.debug(sql);

@@ -38,13 +38,13 @@ public class ForumAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 	
-	// ÂÛÌ³ÁĞ±í
+	// è®ºå›åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		RoleService roleService = new RoleService();
 		RoleEntity  roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		ForumClassService fs=new ForumClassService();
-		//¸üĞÂÍæ¼Ò×´Ì¬
+		//æ›´æ–°ç©å®¶çŠ¶æ€
 		roleInfo.getStateInfo().setCurState(PlayerState.FORUM);
 		List<ForumClassBean> forumclassList =fs.getAllForumClass();
 		request.setAttribute("forumclassList", forumclassList);
@@ -52,7 +52,7 @@ public class ForumAction extends DispatchAction
 		return mapping.findForward("forumclassList");
 	}
 	
-	// ÂÛÌ³Ìû×ÓÁĞ±í
+	// è®ºå›å¸–å­åˆ—è¡¨
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		RoleService roleService = new RoleService();
@@ -100,10 +100,10 @@ public class ForumAction extends DispatchAction
 		return mapping.findForward("indexList");
 	}
 	
-	// ¸öÈË·¢ÑÔ´¦Àí
+	// ä¸ªäººå‘è¨€å¤„ç†
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		//ÕâÊÇ»Øµ½°å¿éÊ±µÄÒ³Êı
+		//è¿™æ˜¯å›åˆ°æ¿å—æ—¶çš„é¡µæ•°
 		//request.setAttribute("classPageNo", request.getParameter("classPageNo")+"");
 		
 		//DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -121,24 +121,24 @@ public class ForumAction extends DispatchAction
 	 	String hint = null;
 	 	if(content == null || content.trim().equals(""))
 	 	{
-	 		hint = "ÄÚÈİ²»ÄÜÎª¿Õ!<br/>";
+	 		hint = "å†…å®¹ä¸èƒ½ä¸ºç©º!<br/>";
 	 	} else {
 	 		hint = fas.haveSameContent(roleInfo.getBasicInfo().getPPk(),content);
 	 	}
 	 	int lengt = content.trim().length();
 	 	if(content.trim().length() > 500 || title.length() > 15) {
-	 		hint = "ÄúµÄ±êÌâ»òÄÚÈİ³¬¹ıÔÊĞí³¤¶ÈÁË!";
+	 		hint = "æ‚¨çš„æ ‡é¢˜æˆ–å†…å®¹è¶…è¿‡å…è®¸é•¿åº¦äº†!";
 	 	}
 	 	if(title == null || title.trim().equals("")) {
-	 		hint = "±êÌâ²»ÄÜÎª¿Õ!<br/>";
+	 		hint = "æ ‡é¢˜ä¸èƒ½ä¸ºç©º!<br/>";
 	 	} else {
 	 		hint = fas.haveSameContent(roleInfo.getBasicInfo().getPPk(),title);
 	 	}
 	 	if(fas.isInTenMinute(roleInfo.getBasicInfo().getPPk())) {
-	 		hint = "Á½´Î·¢ÌûÊ±¼ä¼ä¸ôÎ´µ½Ê®·ÖÖÓ!";
+	 		hint = "ä¸¤æ¬¡å‘å¸–æ—¶é—´é—´éš”æœªåˆ°ååˆ†é’Ÿ!";
 	 	}
 	 	if (fas.checkForbid(roleInfo.getBasicInfo().getPPk())) {
-	 		hint = "¶Ô²»Æğ,ÄúÏÖÔÚÔÚ±»½ûÖ¹·¢Ìû×´Ì¬!ÇëÉÔºòÔÙ·¢!";
+	 		hint = "å¯¹ä¸èµ·,æ‚¨ç°åœ¨åœ¨è¢«ç¦æ­¢å‘å¸–çŠ¶æ€!è¯·ç¨å€™å†å‘!";
 	 	}
 	 	
 	 	
@@ -161,16 +161,16 @@ public class ForumAction extends DispatchAction
 			int flag = Expression.hasPublish(content);
 			if(flag == -1) {
 				request.setAttribute("title", title);
-				String hint1 = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+				String hint1 = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 				request.setAttribute("hint", hint1);
 				return mapping.findForward("reput_content");
 			}
 			
-			// ¼ì²âÊÇ·ñ»¹ÓĞ½ûÖ¹¹Ø¼ü´Ê
+			// æ£€æµ‹æ˜¯å¦è¿˜æœ‰ç¦æ­¢å…³é”®è¯
 			if (Expression.hasForbidChar(title,ForBidCache.FORBIDCOMM))
 			{
 				request.setAttribute("title", title);
-				String hint1 = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+				String hint1 = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 				request.setAttribute("hint", hint1);
 				return mapping.findForward("reput_content");
 			}
@@ -206,16 +206,16 @@ public class ForumAction extends DispatchAction
 		
 	}
 	
-	// ²é¿´ÎÄÕÂ
+	// æŸ¥çœ‹æ–‡ç« 
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		//ÕâÊÇ»Øµ½°å¿éÊ±µÄÒ³Êı
+		//è¿™æ˜¯å›åˆ°æ¿å—æ—¶çš„é¡µæ•°
 		request.setAttribute("classPageNo", request.getParameter("classPageNo")+"");
 		
 		String page_id = request.getParameter("page_id");
 		String classId = request.getParameter("classId");
 		
-		// page_no_str ÊÇÖ¸ÔÚ´ËÎÄÕÂÖĞ»ØÌûµÄÒ³Êı
+		// page_no_str æ˜¯æŒ‡åœ¨æ­¤æ–‡ç« ä¸­å›å¸–çš„é¡µæ•°
 		String page_no_str = request.getParameter("pageNo");
 		request.setAttribute("pageNo", page_no_str);
 		request.setAttribute("classId",classId );
@@ -232,7 +232,7 @@ public class ForumAction extends DispatchAction
 		}catch (Exception e) {
 			page_no = 1;
 		}	
-		// Èç¹ûĞ¡ÓÚµÈÓÚÁã,ÈÔÈ»Îª1
+		// å¦‚æœå°äºç­‰äºé›¶,ä»ç„¶ä¸º1
 		if ( page_no <= 0) {
 			page_no = 1;
 		}
@@ -248,11 +248,11 @@ public class ForumAction extends DispatchAction
          	fb=fs.getByID(Integer.parseInt(page_id)); 
          	if(fb!=null)
       		{
-      			fs.updateNum(fb.getId(),"readNum");//¸üĞÂÔÄ¶Á´ÎÊı
+      			fs.updateNum(fb.getId(),"readNum");//æ›´æ–°é˜…è¯»æ¬¡æ•°
       		}
 			request.setAttribute("forumBean", fb);
       	}else {
-      		logger.info("ÎÄÕÂidÎª¿Õ£¡");
+      		logger.info("æ–‡ç« idä¸ºç©ºï¼");
       	}
 		
 		request.setAttribute("revert_page",revert_page );
@@ -260,15 +260,15 @@ public class ForumAction extends DispatchAction
 	}
 	
 	
-	// ÂÛÌ³Ìû×Ó»Ø¸´ÁĞ±í
+	// è®ºå›å¸–å­å›å¤åˆ—è¡¨
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
-		//ÕâÊÇ»Øµ½°å¿éÊ±µÄÒ³Êı
+		//è¿™æ˜¯å›åˆ°æ¿å—æ—¶çš„é¡µæ•°
 		request.setAttribute("classPageNo", request.getParameter("classPageNo")+"");
 				
 		String pageId = request.getParameter("pageId");
-		// page_no ÊÇÖ¸ÔÚ´ËÎÄÕÂÖĞ»ØÌûµÄÒ³Êı
+		// page_no æ˜¯æŒ‡åœ¨æ­¤æ–‡ç« ä¸­å›å¸–çš„é¡µæ•°
 		String page_no_str = request.getParameter("pageNo");
 		int page_no = 1;
 		String classId = request.getParameter("classId");
@@ -300,10 +300,10 @@ public class ForumAction extends DispatchAction
 		return mapping.findForward("revert_view");
 	}
 	
-	// ÂÛÌ³Ìû×Ó»Ø¸´
+	// è®ºå›å¸–å­å›å¤
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		//ÕâÊÇ»Øµ½°å¿éÊ±µÄÒ³Êı
+		//è¿™æ˜¯å›åˆ°æ¿å—æ—¶çš„é¡µæ•°
 		request.setAttribute("classPageNo", request.getParameter("classPageNo")+"");
 		
 		RoleService roleService = new RoleService();
@@ -321,12 +321,12 @@ public class ForumAction extends DispatchAction
 		ForumRevertService frService = new ForumRevertService();
 		
 		if(recontent == null || recontent.trim().equals("")) {
-			String hint = "Äú²»ÄÜ·¢¿ÕÌù£¡";
+			String hint = "æ‚¨ä¸èƒ½å‘ç©ºè´´ï¼";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("return_revert");
 		}
 		if(recontent.trim().length() > 100 ) {
-			String hint = "ÄúµÄ»ØÌûÄÚÈİ³¬¹ıÔÊĞí³¤¶ÈÁË!";
+			String hint = "æ‚¨çš„å›å¸–å†…å®¹è¶…è¿‡å…è®¸é•¿åº¦äº†!";
 	 		request.setAttribute("hint", hint);
 			return mapping.findForward("return_revert");
 	 	}
@@ -337,32 +337,32 @@ public class ForumAction extends DispatchAction
 		
 		int flag = Expression.hasPublish(recontent);
 		if(flag == -1) {			
-			String hint1 = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			String hint1 = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("return_revert");
 		}
 		if(frService.isInTwoMinute(roleInfo.getBasicInfo().getPPk())) {
-			String hint1 = "»ØÌûÊ±¼äĞè¼ä¸ôÒ»·ÖÖÓ.";
+			String hint1 = "å›å¸–æ—¶é—´éœ€é—´éš”ä¸€åˆ†é’Ÿ.";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("return_revert");
 		}
 		
 		
 		if(forumBean.getVouch() > 0 ) {
-			String hint1 = "´ËÌùÒÑ¾­ËøÌû!";
+			String hint1 = "æ­¤è´´å·²ç»é”å¸–!";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("return_revert");
 		}
 		
 		if (forumService.checkForbid(roleInfo.getBasicInfo().getPPk())) {
-			String hint1 = "¶Ô²»Æğ,ÄúÏÖÔÚÔÚ±»½ûÖ¹·¢Ìû×´Ì¬!ÇëÉÔºòÔÙ·¢!";
+			String hint1 = "å¯¹ä¸èµ·,æ‚¨ç°åœ¨åœ¨è¢«ç¦æ­¢å‘å¸–çŠ¶æ€!è¯·ç¨å€™å†å‘!";
 	 		request.setAttribute("hint", hint1);
 			return mapping.findForward("return_revert");
 	 	}
-		// ¼ì²âÊÇ·ñ»¹ÓĞ½ûÖ¹¹Ø¼ü´Ê
+		// æ£€æµ‹æ˜¯å¦è¿˜æœ‰ç¦æ­¢å…³é”®è¯
 		if (Expression.hasForbidChar(recontent,ForBidCache.FORBIDCOMM))
 		{
-			String hint1 = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			String hint1 = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			request.setAttribute("hint", hint1);
 			return mapping.findForward("return_revert");
 		}
@@ -379,14 +379,14 @@ public class ForumAction extends DispatchAction
 		return mapping.findForward("sussendRevert");
 	}
 	
-	// ÂÛÌ³Ìû×Ó»Ø¸´
+	// è®ºå›å¸–å­å›å¤
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		RoleService roleService = new RoleService();
 		RoleEntity  roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
 		request.setAttribute("classPageNo", request.getParameter("classPageNo"));
 		request.setAttribute("classId", request.getParameter("classId"));
@@ -399,7 +399,7 @@ public class ForumAction extends DispatchAction
 		FriendService friendService = new FriendService();
 		
 		if(roleInfo.getBasicInfo().getPPk() == Integer.parseInt(pByPk)){
-			String apply_hint = "×Ô¼º²»ÄÜ¼Ó×Ô¼ºÎªºÃÓÑ";
+			String apply_hint = "è‡ªå·±ä¸èƒ½åŠ è‡ªå·±ä¸ºå¥½å‹";
 			request.setAttribute("pPks", pPks);
 			request.setAttribute("apply_hint", apply_hint);
 			return mapping.findForward("sussendAddFriend");
@@ -407,20 +407,20 @@ public class ForumAction extends DispatchAction
 		
 		if (friendService.whetherfriend(roleInfo.getBasicInfo().getPPk(), pByPk) == false)
 		{
-			String apply_hint = "¸ÃÍæ¼ÒÒÑ¾­ÊÇÄúµÄºÃÓÑÁË²»ĞèÒªÔÚÌí¼ÓÁË£¡";
+			String apply_hint = "è¯¥ç©å®¶å·²ç»æ˜¯æ‚¨çš„å¥½å‹äº†ä¸éœ€è¦åœ¨æ·»åŠ äº†ï¼";
 			request.setAttribute("pPks", pPks);
 			request.setAttribute("apply_hint", apply_hint);
 			return mapping.findForward("sussendAddFriend");
 		}
 		if (friendService.friendupperlimit(roleInfo.getBasicInfo().getPPk()) == false)
 		{
-			String apply_hint = "ÄúµÄºÃÓÑÊıÁ¿ÒÑ¾­´ïµ½ÉÏÏŞ£¡";
+			String apply_hint = "æ‚¨çš„å¥½å‹æ•°é‡å·²ç»è¾¾åˆ°ä¸Šé™ï¼";
 			request.setAttribute("pPks", pPks);
 			request.setAttribute("apply_hint", apply_hint);
 			return mapping.findForward("sussendAddFriend");
 		}
 		
-		// Èç¹û¸ÃÍæ¼ÒÔÚºÚÃûµ¥ÖĞ É¾³ıºÚÃûµ¥È»ºóÔÚ¼ÓÈëºÃÓÑ
+		// å¦‚æœè¯¥ç©å®¶åœ¨é»‘åå•ä¸­ åˆ é™¤é»‘åå•ç„¶ååœ¨åŠ å…¥å¥½å‹
 		BlacklistService blacklistService = new BlacklistService();
 		if (blacklistService.whetherblacklist(roleInfo.getBasicInfo().getPPk(), pByPk) == false)
 		{
@@ -428,7 +428,7 @@ public class ForumAction extends DispatchAction
 		}
 
 		friendService.addfriend(roleInfo.getBasicInfo().getPPk(), pByPk, pByName, Time);
-		String apply_hint = "ÄúÒÑ½«" + pByName + "¼ÓÈëÄúµÄºÃÓÑÁĞ±íÀï£¡";
+		String apply_hint = "æ‚¨å·²å°†" + pByName + "åŠ å…¥æ‚¨çš„å¥½å‹åˆ—è¡¨é‡Œï¼";
 		request.setAttribute("apply_hint", apply_hint);
 		request.setAttribute("pPks", pPks);
 		return mapping.findForward("sussendAddFriend");

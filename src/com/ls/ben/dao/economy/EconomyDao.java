@@ -6,12 +6,12 @@ import com.ls.pub.db.DBConnection;
 public class EconomyDao extends DaoBase
 {
 	/**
-	 * 得到元宝数量
+	 * 寰楀埌鍏冨疂鏁伴噺
 	 */
 	public long getYuanbao(int u_pk)
 	{
 		long yuanbao = 0;
-		String sql = "select yuanbao from u_login_info where u_pk=" + u_pk;
+		String sql = "SELECT yuanbao from u_login_info where u_pk=" + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -40,9 +40,9 @@ public class EconomyDao extends DaoBase
 
 
 	/**
-	 * 更新元宝数量
+	 * 鏇存柊鍏冨疂鏁伴噺
 	 * @param u_pk
-	 * @param updat_yuanbao_num                   可正可负
+	 * @param updat_yuanbao_num                   鍙鍙礋
 	 */
 	public void updateYuanbao(int u_pk, long updat_yuanbao_num)
 	{
@@ -66,12 +66,12 @@ public class EconomyDao extends DaoBase
 		}
 	}
 	/**
-	 * 得到积分数量
+	 * 寰楀埌绉垎鏁伴噺
 	 */
 	public int getJifen(int u_pk)
 	{
 		int jifen = 0;
-		String sql = "select jifen from u_login_info where u_pk=" + u_pk;
+		String sql = "SELECT jifen from u_login_info where u_pk=" + u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -100,9 +100,9 @@ public class EconomyDao extends DaoBase
 	
 	
 	/**
-	 * 更新积分数量
+	 * 鏇存柊绉垎鏁伴噺
 	 * @param u_pk
-	 * @param updat_yuanbao_num                   可正可负
+	 * @param updat_yuanbao_num                   鍙鍙礋
 	 */
 	public void updateJifen(int u_pk, int updat_jifen_num)
 	{

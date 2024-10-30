@@ -20,13 +20,13 @@ public class CallBackAction extends DispatchAction
 	{
 		String resultWml = "";
 
-		// ÓÃ»§Î¨Ò»±êÊ¾
+		// ç”¨æˆ·å”¯ä¸€æ ‡ç¤º
 		String okid = formatString(request.getParameter("okid"));
-		// Ïû·Ñ½»Ò×ºÅ1
+		// æ¶ˆè´¹äº¤æ˜“å·1
 		String okbillid1 = formatString(request.getParameter("okbillid1"));
-		// Ïû·Ñ½»Ò×ºÅ2
+		// æ¶ˆè´¹äº¤æ˜“å·2
 		String okbillid2 = formatString(request.getParameter("okbillid2"));
-		// ³äÖµºó¶Ò»»µÄok±ÒµÄÊıÁ¿
+		// å……å€¼åå…‘æ¢çš„okå¸çš„æ•°é‡
 		String oknum = formatString(request.getParameter("oknum"));
 
 		if (okid == null || okid.equals("") || okid.equals("null")

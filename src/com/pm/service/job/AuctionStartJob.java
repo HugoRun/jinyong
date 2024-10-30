@@ -33,29 +33,29 @@ public class AuctionStartJob implements Job
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
 			scheduler.start();
 			logger.info("Scheduler was started at " + new Date());
-			//Í³¼Æ¾ºÅÄÊÇ·ñ³É¹¦
+			//ç»Ÿè®¡ç«æ‹æ˜¯å¦æˆåŠŸ
 			JobDetail jobDetail_auctionSuccess = new JobDetail("auction_success", Scheduler.DEFAULT_GROUP,AuctionSuccess.class);
 			try
 			{
-				CronTrigger trigger_auctionSuccess = new CronTrigger("MyTrigger_success", null, "0 0/5 * * * ?");//Ã¿Îå·ÖÖÓÖ´ĞĞÒ»´Î
+				CronTrigger trigger_auctionSuccess = new CronTrigger("MyTrigger_success", null, "0 0/5 * * * ?");//æ¯äº”åˆ†é’Ÿæ‰§è¡Œä¸€æ¬¡
 				Date date = new Date();
 				trigger_auctionSuccess.setStartTime(date);
 				scheduler.scheduleJob(jobDetail_auctionSuccess, trigger_auctionSuccess);
-				logger.info("ÅÄÂô³¡¶¨Ê±¿ªÊ¼£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~");
+				logger.info("æ‹å–åœºå®šæ—¶å¼€å§‹ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~");
 			}
 			catch (ParseException e)
 			{
 				logger.error(e);
 			}
-			//Í³¼ÆÅÄÂô³¡¹ıÆÚĞèÒª´¦ÀíµÄÂß¼­
+			//ç»Ÿè®¡æ‹å–åœºè¿‡æœŸéœ€è¦å¤„ç†çš„é€»è¾‘
 			JobDetail jobDetail_AuctionFalse=new JobDetail("auction_false",Scheduler.DEFAULT_GROUP,AuctionFalse.class);
 			try
 			{
-				CronTrigger trigger_auctionFalse=new CronTrigger("MyTrigger_auctionFalse",null,"0 00 00 ? * *");//Ã¿Íí0Ê±Ö´ĞĞÒ»´Î
+				CronTrigger trigger_auctionFalse=new CronTrigger("MyTrigger_auctionFalse",null,"0 00 00 ? * *");//æ¯æ™š0æ—¶æ‰§è¡Œä¸€æ¬¡
 				Date date = new Date();
 				trigger_auctionFalse.setStartTime(date);
 				scheduler.scheduleJob(jobDetail_AuctionFalse,trigger_auctionFalse);//trigger_outOFEnter
-				logger.info("ÅÄÂô³¡¶¨Ê±¿ªÊ¼£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~£¡~");
+				logger.info("æ‹å–åœºå®šæ—¶å¼€å§‹ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~ï¼~");
 			}
 			catch (ParseException e)
 			{

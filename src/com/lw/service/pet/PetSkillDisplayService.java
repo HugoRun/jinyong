@@ -4,15 +4,15 @@ import com.lw.dao.pet.skill.PetSkillDisplayDao;
 
 public class PetSkillDisplayService
 {
-	// Æ´½Ó³èÎï¼¼ÄÜÏÔÊ¾
+	// æ‹¼æ¥å® ç‰©æŠ€èƒ½æ˜¾ç¤º
 	public String getPetSkillDisplay(int skill_id)
 	{
 		PetSkillDisplayDao dao = new PetSkillDisplayDao();
 		String name = dao.getPlayerPetSkillName(skill_id);
 		String display = dao.getPlayerPetSkillDisplay(skill_id);
 		StringBuffer sb = new StringBuffer();
-		sb.append("¼¼ÄÜÃû³Æ:" + name + "<br/>");
-		sb.append("¼¼ÄÜÃèÊö:" + display + "<br/>");
+		sb.append("æŠ€èƒ½åç§°:" + name + "<br/>");
+		sb.append("æŠ€èƒ½æè¿°:" + display + "<br/>");
 		return sb.toString();
 	}
 }

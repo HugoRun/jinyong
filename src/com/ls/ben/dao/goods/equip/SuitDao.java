@@ -6,14 +6,14 @@ import com.ls.pub.db.DBConnection;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * 功能:套装suit_info
+ * 鍔熻兘:濂楄suit_info
  * 
- * @author 刘帅 10:36:34 PM
+ * @author 鍒樺竻 10:36:34 PM
  */
 public class SuitDao extends DaoBase
 {
 	/**
-	 * 根据id获得suit
+	 * 鏍规嵁id鑾峰緱suit
 	 * 
 	 * @param id
 	 * @return
@@ -21,7 +21,7 @@ public class SuitDao extends DaoBase
 	public SuitVO getById(int suit_id)
 	{
 		SuitVO vo = null;
-		String sql = "select * from suit_info where suit_id=" + suit_id;
+		String sql = "SELECT * FROM suit_info where suit_id=" + suit_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -57,7 +57,7 @@ public class SuitDao extends DaoBase
 		}
 		if( vo==null )
 		{
-			DataErrorLog.debugData("无该套装，suit_id="+suit_id);
+			DataErrorLog.debugData("鏃犺濂楄锛宻uit_id="+suit_id);
 		}
 		
 		return vo;

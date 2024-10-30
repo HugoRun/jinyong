@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/inc/header.jsp"%>
 <%@ page pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
-	<%   
+    <%
 		String pet_pk = (String) request.getAttribute("pet_pk");
 		String pg_pk = (String)request.getAttribute("pg_pk");
 		String resultWml = (String) request.getAttribute("resultWml");

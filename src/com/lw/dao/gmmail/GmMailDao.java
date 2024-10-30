@@ -7,11 +7,11 @@ import com.ls.pub.db.DBConnection;
 
 public class GmMailDao extends DaoBase
 {
-	// µÃµ½GMµÄPPK
+	// å¾—åˆ°GMçš„PPK
 	public int getGmPpk()
 	{
 		int p_pk = 0;
-		String sql = "select p_pk from u_part_info where p_name = 'GM'";
+		String sql = "SELECT p_pk from u_part_info where p_name = 'GM'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

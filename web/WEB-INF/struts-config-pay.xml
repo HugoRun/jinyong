@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
-	<action-mappings>
-	<!-- 易宝充值接口 -->
-	
-    <!-- 充值流程控制 -->
-    <action
-      parameter="cmd"
-      path="/yeepay/bill"
-      type="com.ls.web.action.cooperate.yeepay.bill.BillAction">
-      <forward name="index" path="/cooperate/yeepay/bill/index.jsp" />
-      <forward name="success" path="/cooperate/yeepay/bill/success.jsp" />
-      <forward name="pay_comfirm" path="/cooperate/yeepay/bill/comfirm.jsp" />
-      <forward name="szf_pay_comfirm" path="/cooperate/szf/szf_comfirm.jsp" />
-      <!-- 神州行 -->
-      <forward name="szx_index" path="/cooperate/yeepay/bill/szx/index.jsp" />
-      <forward name="szx_input" path="/cooperate/yeepay/bill/szx/input.jsp" />
-      <!-- 骏网一卡通 -->
-      <forward name="jun_index" path="/cooperate/yeepay/bill/jun/index.jsp" />
-      <forward name="jun_input" path="/cooperate/yeepay/bill/jun/input.jsp" />
-      <!-- 盛大卡 -->
-      <forward name="sd_index" path="/cooperate/yeepay/bill/sd/index.jsp" />
-      <forward name="sd_input" path="/cooperate/yeepay/bill/sd/input.jsp" />
-      <!-- 神州付神州行 -->
-      <forward name="szfszx_index" path="/cooperate/szf/szx/index.jsp" />
-      <forward name="szfszx_input" path="/cooperate/szf/szx/input.jsp" />
-      <!-- 神州付电信卡 -->
-      <forward name="szftelecom_index" path="/cooperate/szf/telecom/index.jsp" />
-      <forward name="szftelecom_input" path="/cooperate/szf/telecom/input.jsp" />
-      <!-- 神州付联通卡 -->
-      <forward name="szfunicom_index" path="/cooperate/szf/unicom/index.jsp" />
-      <forward name="szfunicom_input" path="/cooperate/szf/unicom/input.jsp" />
-      
-    </action>
-    
-     <!-- 回调应答 -->
-    <action
-      parameter="cmd"
-      path="/game/yeepay/callback"
-      type="com.ls.web.action.cooperate.yeepay.bill.CallBackAction">
-      <forward name="success" path="/cooperate/yeepay/bill/callback.jsp" />
-    </action>
-    <!-- ***易宝充值接口结束*** -->
-    
-    <!-- 空中网对接 -->
-    <action path="/air/login" type="com.ls.web.action.cooperate.air.login.LoginAction">
-    	 <forward name="success" path="/login.do?cmd=n3" />
-			<forward name="fail" path="/cooperate/sky/login/fail.jsp" />
-			<forward name="user_num_limit_hint"
-				path="/comm/user_num_limit_hint.jsp" />
-    </action>
-    <action path="/air/bill" type="com.ls.web.action.cooperate.air.bill.BillAction">
-    	 <forward name="submit"	path="/cooperate/air/bill/submit.jsp" />
-    	 <forward name="success" path="/cooperate/air/bill/index.jsp" />
-    	 <forward name="result" path="/cooperate/air/bill/result.jsp" />
-    </action>
-    <!-- 空中网对接结束 -->
-    
-	</action-mappings>
+    <action-mappings>
+        <!-- 易宝充值接口 -->
+
+        <!-- 充值流程控制 -->
+        <action parameter="cmd" path="/yeepay/bill" type="com.ls.web.action.cooperate.yeepay.bill.BillAction">
+            <forward name="index" path="/cooperate/yeepay/bill/index.jsp"/>
+            <forward name="success" path="/cooperate/yeepay/bill/success.jsp"/>
+            <forward name="pay_comfirm" path="/cooperate/yeepay/bill/comfirm.jsp"/>
+            <forward name="szf_pay_comfirm" path="/cooperate/szf/szf_comfirm.jsp"/>
+            <!-- 神州行 -->
+            <forward name="szx_index" path="/cooperate/yeepay/bill/szx/index.jsp"/>
+            <forward name="szx_input" path="/cooperate/yeepay/bill/szx/input.jsp"/>
+            <!-- 骏网一卡通 -->
+            <forward name="jun_index" path="/cooperate/yeepay/bill/jun/index.jsp"/>
+            <forward name="jun_input" path="/cooperate/yeepay/bill/jun/input.jsp"/>
+            <!-- 盛大卡 -->
+            <forward name="sd_index" path="/cooperate/yeepay/bill/sd/index.jsp"/>
+            <forward name="sd_input" path="/cooperate/yeepay/bill/sd/input.jsp"/>
+            <!-- 神州付神州行 -->
+            <forward name="szfszx_index" path="/cooperate/szf/szx/index.jsp"/>
+            <forward name="szfszx_input" path="/cooperate/szf/szx/input.jsp"/>
+            <!-- 神州付电信卡 -->
+            <forward name="szftelecom_index" path="/cooperate/szf/telecom/index.jsp"/>
+            <forward name="szftelecom_input" path="/cooperate/szf/telecom/input.jsp"/>
+            <!-- 神州付联通卡 -->
+            <forward name="szfunicom_index" path="/cooperate/szf/unicom/index.jsp"/>
+            <forward name="szfunicom_input" path="/cooperate/szf/unicom/input.jsp"/>
+
+        </action>
+
+        <!-- 回调应答 -->
+        <action parameter="cmd" path="/game/yeepay/callback" type="com.ls.web.action.cooperate.yeepay.bill.CallBackAction">
+            <forward name="success" path="/cooperate/yeepay/bill/callback.jsp"/>
+        </action>
+        <!-- ***易宝充值接口结束*** -->
+
+        <!-- 空中网对接 -->
+        <action path="/air/login" type="com.ls.web.action.cooperate.air.login.LoginAction">
+            <forward name="success" path="/login.do?cmd=n3"/>
+            <forward name="fail" path="/cooperate/sky/login/fail.jsp"/>
+            <forward name="user_num_limit_hint" path="/comm/user_num_limit_hint.jsp"/>
+        </action>
+        <action path="/air/bill" type="com.ls.web.action.cooperate.air.bill.BillAction">
+            <forward name="submit" path="/cooperate/air/bill/submit.jsp"/>
+            <forward name="success" path="/cooperate/air/bill/index.jsp"/>
+            <forward name="result" path="/cooperate/air/bill/result.jsp"/>
+        </action>
+        <!-- 空中网对接结束 -->
+
+    </action-mappings>
 </struts-config>
 

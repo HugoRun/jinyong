@@ -21,15 +21,15 @@ import com.ls.web.service.player.EconomyService;
 
 /**
  * @author ls
- * Íæ¼ÒÓµÓĞµÄ×øÆï¼¯ºÏ
+ * ç©å®¶æ‹¥æœ‰çš„åéª‘é›†åˆ
  */
 public class MountSet extends UserBase
 {
-	//µ±Ç°³Ë×øµÄ×øÆï
+	//å½“å‰ä¹˜åçš„åéª‘
 	private int curMId=-1;
-	//µ±Ç°×øÆïµÄĞ§¹û
+	//å½“å‰åéª‘çš„æ•ˆæœ
 	private PropertyModel propertyModel = new PropertyModel();
-	//ÓµÓĞµÄ×øÆï<×øÆïid,×øÆïĞÅÏ¢>
+	//æ‹¥æœ‰çš„åéª‘<åéª‘id,åéª‘ä¿¡æ¯>
 	public Map<Integer,UserMountsVO> mounts = null;
 	private MountsDao md=null;
 	
@@ -53,7 +53,7 @@ public class MountSet extends UserBase
 	}
 
 	/**
-	 * Îª½ÇÉ«Ôö¼Ó×øÆï
+	 * ä¸ºè§’è‰²å¢åŠ åéª‘
 	 * @param uv
 	 * @return
 	 */
@@ -77,7 +77,7 @@ public class MountSet extends UserBase
 	}
 	
 	/**
-	 * ²éÑ¯½ÇÉ«ÏÖÔÚÓµÓĞµÄËùÓĞ×øÆïĞÅÏ¢
+	 * æŸ¥è¯¢è§’è‰²ç°åœ¨æ‹¥æœ‰çš„æ‰€æœ‰åéª‘ä¿¡æ¯
 	 * @return
 	 */
 	public List<UserMountsVO> getUserMountsList()
@@ -86,7 +86,7 @@ public class MountSet extends UserBase
 	}
 	
 	/**
-	 * ×øÆïÉı¼¶·µ»Ø1Éı¼¶³É¹¦2¾§Ê¯²»×ã0Éı¼¶Ê§°Ü
+	 * åéª‘å‡çº§è¿”å›1å‡çº§æˆåŠŸ2æ™¶çŸ³ä¸è¶³0å‡çº§å¤±è´¥
 	 * @param ppk
 	 * @param mountsID
 	 * @param nextLevelMountsID
@@ -106,14 +106,14 @@ public class MountSet extends UserBase
 			num=2;
 			return num;
 		}
-		//É¾³ıÔ­À´µÄ×øÆï
+		//åˆ é™¤åŸæ¥çš„åéª‘
 		this.deleteMount(mountsID);
-		//Ìí¼ÓÉı¼¶ºóµÄ×øÆï
+		//æ·»åŠ å‡çº§åçš„åéª‘
 		UserMountsVO uv=new UserMountsVO();
 		uv.setPpk(this.p_pk);
 		uv.setMountsID(mv.getId());
 		uv=addMounts(uv);
-		//¿Û³ıÉı¼¶»¨·ÑµÄÇ®
+		//æ‰£é™¤å‡çº§èŠ±è´¹çš„é’±
 		if(uv!=null)
 		{
 			es.spendYuanbao(roleEntity.getUPk(), needCopper);
@@ -122,8 +122,8 @@ public class MountSet extends UserBase
 		return num;
 	}
 	/**
-	 * ×øÆïÉı¼¶ µçĞÅÏû·Ñ×¨ÓÃ
-	 * ×øÆïÉı¼¶·µ»Ø1Éı¼¶³É¹¦2¾§Ê¯²»×ã0Éı¼¶Ê§°Ü
+	 * åéª‘å‡çº§ ç”µä¿¡æ¶ˆè´¹ä¸“ç”¨
+	 * åéª‘å‡çº§è¿”å›1å‡çº§æˆåŠŸ2æ™¶çŸ³ä¸è¶³0å‡çº§å¤±è´¥
 	 */
 	public int upgrade(HttpServletRequest request,int mountsID,int nextLevelMountsID)
 	{
@@ -138,9 +138,9 @@ public class MountSet extends UserBase
 			num=2;
 			return num;
 		}
-		//É¾³ıÔ­À´µÄ×øÆï
+		//åˆ é™¤åŸæ¥çš„åéª‘
 		this.deleteMount(mountsID);
-		//Ìí¼ÓÉı¼¶ºóµÄ×øÆï
+		//æ·»åŠ å‡çº§åçš„åéª‘
 		UserMountsVO uv=new UserMountsVO();
 		uv.setPpk(this.p_pk);
 		uv.setMountsID(mv.getId());
@@ -149,7 +149,7 @@ public class MountSet extends UserBase
 	}
 
 	/**
-	 * ¹ºÂò×øÆï·µ»Ø0¹ºÂòÊ§°Ü1¹ºÂò³É¹¦2ÒÑ¾­ÓĞ´Ë×øÆï3Ç®²»¹»
+	 * è´­ä¹°åéª‘è¿”å›0è´­ä¹°å¤±è´¥1è´­ä¹°æˆåŠŸ2å·²ç»æœ‰æ­¤åéª‘3é’±ä¸å¤Ÿ
 	 * @param mountsID
 	 * @return
 	 */
@@ -157,7 +157,7 @@ public class MountSet extends UserBase
 	{
 		int num=0;
 		RoleEntity roleEntity = this.getRoleEntity();
-		//ÅĞ¶ÏÊÇ·ñÒÑ¾­ÓĞ´Ë×øÆï
+		//åˆ¤æ–­æ˜¯å¦å·²ç»æœ‰æ­¤åéª‘
 		UserMountsVO u_mount=this.getById(mountsID);
 		if(u_mount!=null)
 		{
@@ -169,13 +169,13 @@ public class MountSet extends UserBase
 		MountsVO mv=mountsService.getMountsInfo(mountsID);
 		int needCopper=mv.getSentPrice();
 		long haveCopper=es.getYuanbao(roleEntity.getUPk());
-		//ÅĞ¶ÏÇ®ÊÇ·ñ¹»
+		//åˆ¤æ–­é’±æ˜¯å¦å¤Ÿ
 		if(needCopper>haveCopper)
 		{
 			num=3;
 			return num;
 		}
-		//Ìí¼ÓĞÂÂòµÄµÄ×øÆï
+		//æ·»åŠ æ–°ä¹°çš„çš„åéª‘
 		UserMountsVO uv=new UserMountsVO();
 		uv.setPpk(roleEntity.getPPk());
 		uv.setMountsID(mv.getId());
@@ -188,14 +188,14 @@ public class MountSet extends UserBase
 		return num;
 	}
 	/**
-	 * ¹ºÂò×øÆïµçĞÅ×¨ÓÃ 
-	 * ·µ»Ø0¹ºÂòÊ§°Ü1¹ºÂò³É¹¦2ÒÑ¾­ÓĞ´Ë×øÆï3Ç®²»¹»
+	 * è´­ä¹°åéª‘ç”µä¿¡ä¸“ç”¨ 
+	 * è¿”å›0è´­ä¹°å¤±è´¥1è´­ä¹°æˆåŠŸ2å·²ç»æœ‰æ­¤åéª‘3é’±ä¸å¤Ÿ
 	 */
 	public int buyMounts(HttpServletRequest request,int mountsID)
 	{
 		int num=0;
 		RoleEntity roleEntity = this.getRoleEntity();
-		//ÅĞ¶ÏÊÇ·ñÒÑ¾­ÓĞ´Ë×øÆï
+		//åˆ¤æ–­æ˜¯å¦å·²ç»æœ‰æ­¤åéª‘
 		UserMountsVO u_mount=this.getById(mountsID);
 		if(u_mount!=null)
 		{
@@ -204,7 +204,7 @@ public class MountSet extends UserBase
 		}
 		MountsService mountsService = new MountsService();
 		MountsVO mv=mountsService.getMountsInfo(mountsID);
-		//ÅĞ¶ÏÇ®ÊÇ·ñ¹»
+		//åˆ¤æ–­é’±æ˜¯å¦å¤Ÿ
 		MallService ms=new MallService();
 		String hint=ms.consumeForTele(request, roleEntity, mountsID+"", "1");
 		if(hint!=null)
@@ -212,7 +212,7 @@ public class MountSet extends UserBase
 			num=3;
 			return num;
 		}
-		//Ìí¼ÓĞÂÂòµÄµÄ×øÆï
+		//æ·»åŠ æ–°ä¹°çš„çš„åéª‘
 		UserMountsVO uv=new UserMountsVO();
 		uv.setPpk(roleEntity.getPPk());
 		uv.setMountsID(mv.getId());
@@ -220,7 +220,7 @@ public class MountSet extends UserBase
 		return num;
 	}
 	
-	/*************È¡Ïû³ËÆï****************/
+	/*************å–æ¶ˆä¹˜éª‘****************/
 	public void cancelCurMount()
 	{
 		if( this.curMId==-1 )
@@ -237,7 +237,7 @@ public class MountSet extends UserBase
 		md.updateMountState1(this.p_pk);
 	}
 	/**
-	 * Í¨¹ı×øÆïidµÃµ½×øÆïĞÅÏ¢
+	 * é€šè¿‡åéª‘idå¾—åˆ°åéª‘ä¿¡æ¯
 	 * @return
 	 */
 	private UserMountsVO getById( int mId )
@@ -246,7 +246,7 @@ public class MountSet extends UserBase
 	}
 	
 	/**
-	 * Íæ¼Òµã»÷»»³Ë
+	 * ç©å®¶ç‚¹å‡»æ¢ä¹˜
 	 * @param mountID
 	 */
 	public void changeCurMount(int mountID)
@@ -266,7 +266,7 @@ public class MountSet extends UserBase
 	}
 	
 	/**
-	 * ¼ÓÔØ×øÆïĞ§¹û
+	 * åŠ è½½åéª‘æ•ˆæœ
 	 */
 	public void loadPropertys(PartInfoVO player)
 	{
@@ -279,7 +279,7 @@ public class MountSet extends UserBase
 		}
 	}
 	/**
-	 * µÃµ½×øÆïµÄhash
+	 * å¾—åˆ°åéª‘çš„hash
 	 */
 	public UserMountsVO getMounts(int uMontsId)
 	{
@@ -287,7 +287,7 @@ public class MountSet extends UserBase
 	}
 	
 	/**
-	 * Íæ¼Òµã»÷ÒÅÆú×øÆï
+	 * ç©å®¶ç‚¹å‡»é—å¼ƒåéª‘
 	 * @param mountsID
 	 */
 	public void deleteMount(int mountsID)
@@ -301,7 +301,7 @@ public class MountSet extends UserBase
 	}
 	
 	/**
-	 * ¸ù¾İPPKµÃµ½Íæ¼Òµ±Ç°ÔÚ³ËÆï×´Ì¬µÄ×øÆï
+	 * æ ¹æ®PPKå¾—åˆ°ç©å®¶å½“å‰åœ¨ä¹˜éª‘çŠ¶æ€çš„åéª‘
 	 * @param ppk
 	 * @return
 	 */

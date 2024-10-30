@@ -4,32 +4,32 @@ import com.ls.model.user.RoleEntity;
 
 /**
  * @author ls
- * ÓÎÏ·Àï¿ÉÒÔÁ÷Í¨µÄµÄÎïÆ·£¨µÀ¾ß£¬×°±¸£¬½ğÇ®£¬ÉùÍû£¬¾­Ñé£¬°ïÅÉ¹±Ï×¶È£©
+ * æ¸¸æˆé‡Œå¯ä»¥æµé€šçš„çš„ç‰©å“ï¼ˆé“å…·ï¼Œè£…å¤‡ï¼Œé‡‘é’±ï¼Œå£°æœ›ï¼Œç»éªŒï¼Œå¸®æ´¾è´¡çŒ®åº¦ï¼‰
  */
 abstract public class Item
 {
-	//**********************ÎïÆ·Ç°×º×Ö·û´®
-	public static String PROP_PREFIX_STR = "d";//µÀ¾ßÇ°×º×Ö·û´®
-	public static String UEQUP_PREFIX_STR = "uzb";//Íæ¼Ò×°±¸Ç°×º×Ö·û´®
+	//**********************ç‰©å“å‰ç¼€å­—ç¬¦ä¸²
+	public static String PROP_PREFIX_STR = "d";//é“å…·å‰ç¼€å­—ç¬¦ä¸²
+	public static String UEQUP_PREFIX_STR = "uzb";//ç©å®¶è£…å¤‡å‰ç¼€å­—ç¬¦ä¸²
 	
-	//ÎïÆ··Ö¸î·û
-	public static String FIRST_SPLIT = ",";//ÎïÆ·Ò»¼¶·Ö¸î·û
-	public static String SECOND_SPLIT = "-";//ÎïÆ·¶ş¼¶·Ö¸î·û
+	//ç‰©å“åˆ†å‰²ç¬¦
+	public static String FIRST_SPLIT = ",";//ç‰©å“ä¸€çº§åˆ†å‰²ç¬¦
+	public static String SECOND_SPLIT = "-";//ç‰©å“äºŒçº§åˆ†å‰²ç¬¦
 	
-	protected String name;//Ãû×Ö
-	protected int num;//ÊıÁ¿
+	protected String name;//åå­—
+	protected int num;//æ•°é‡
 	
-	abstract public void init(String itemStr) throws Exception;//³õÊ¼»¯
-	abstract public String toString();//µÃµ½×Ö·û´®ÎïÆ·µÄ±í´ïÊ½
-	abstract public int getNeedWrapSpace();//ĞèÒªµÄ°ü¹ü¿Õ¼ä
-	abstract public void gain(RoleEntity roleInfo,int gain_type);//Íæ¼Ò»ñµÃ¸ÃÎïÆ·
+	abstract public void init(String itemStr) throws Exception;//åˆå§‹åŒ–
+	abstract public String toString();//å¾—åˆ°å­—ç¬¦ä¸²ç‰©å“çš„è¡¨è¾¾å¼
+	abstract public int getNeedWrapSpace();//éœ€è¦çš„åŒ…è£¹ç©ºé—´
+	abstract public void gain(RoleEntity roleInfo,int gain_type);//ç©å®¶è·å¾—è¯¥ç‰©å“
 	
 	protected void init(String name,int num)
 	{
 		this.name = name;
 		this.num = num;
 	}
-	//ÎïÆ·µÄÊıÁ¿ÊÇ·ñ×ã¹»
+	//ç‰©å“çš„æ•°é‡æ˜¯å¦è¶³å¤Ÿ
 	public boolean isEnough( int needNum)
 	{
 		if( num>=needNum)
@@ -38,7 +38,7 @@ abstract public class Item
 		}
 		return false;
 	}
-	//¸ü¸ÄÎïÆ·ÊıÁ¿
+	//æ›´æ”¹ç‰©å“æ•°é‡
 	public void update( int updateNum )
 	{
 		if( updateNum<0 &&  num<-updateNum )
@@ -48,10 +48,10 @@ abstract public class Item
 		num+=updateNum;
 	}
 	
-	//ÎïÆ·ÃèÊö
+	//ç‰©å“æè¿°
 	public String getDes()
 	{
-		return name+"¡Á"+num;
+		return name+"Ã—"+num;
 	}
 	
 	public boolean equals(Object item)

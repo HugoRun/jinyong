@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  *
  * 11:15:15 AM
  */
@@ -34,28 +34,28 @@ public class WuXing {
 	{
 		if( wx==JIN )
 		{
-			return "½ğ";
+			return "é‡‘";
 		}
 		else if( wx==MU )
 		{
-			return "Ä¾";
+			return "æœ¨";
 		}
 		else if( wx==SHUI )
 		{
-			return "Ë®";
+			return "æ°´";
 		}
 		else if( wx==HUO )
 		{
-			return "»ğ";
+			return "ç«";
 		}
 		else if( wx==TU )
 		{
-			return "ÍÁ";
+			return "åœŸ";
 		}
 		else if( wx==SHEN )
 		{
-			return "Éñ";
+			return "ç¥";
 		}
-		return "ÎŞ";
+		return "æ— ";
 	}
 }

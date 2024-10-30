@@ -16,14 +16,14 @@ Object id1 = request.getAttribute("id1");
   <%=help.getName() %>
   <%if(help.getLink_name()!=null&&!"".equals(help.getLink_name().trim())){ %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do") %>"> 
-	<postfield name="cmd" value="n4" />
-	<postfield name="id" value="<%=help.getId() %>" />
-	<postfield name="nowPa" value="<%=nowPa%>" />
-	<postfield name="id1" value="<%=id1 %>" />
-	</go>
-	<%=help.getLink_name() %>
-	</anchor> <br/>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/help.do") %>">
+    <postfield name="cmd" value="n4" />
+    <postfield name="id" value="<%=help.getId() %>" />
+    <postfield name="nowPa" value="<%=nowPa%>" />
+    <postfield name="id1" value="<%=id1 %>" />
+    </go>
+    <%=help.getLink_name() %>
+    </anchor> <br/>
 	<%}else{ %>
  <br/>
 <%} %>

@@ -12,12 +12,12 @@ import com.ls.web.service.system.IntimateHintService;
 import com.pm.service.mail.MailInfoService;
 /**
  * @author ls
- * ¹¹½¨ÓÎÏ·Ö÷Ò³Ãæ¶¯Ì¬²¿·ÖµÄwml½Å±¾
+ * æ„å»ºæ¸¸æˆä¸»é¡µé¢åŠ¨æ€éƒ¨åˆ†çš„wmlè„šæœ¬
  */
 public class MainPageWmlService
 {
 	/**
-	 * µÃµ½½ÇÉ«ÓÊ¼şÌáÊ¾
+	 * å¾—åˆ°è§’è‰²é‚®ä»¶æç¤º
 	 */
 	public String getMailHint( RoleEntity roleInfo )
 	{
@@ -27,14 +27,14 @@ public class MainPageWmlService
 		
 		if(newMail>0)
 		{
-			mail_hint = "(ĞÂ)";
+			mail_hint = "(æ–°)";
 		}
 		
 		return mail_hint;
 	}
 	
 	/**
-	 * µÃµ½Ö÷Ò³ÃæµÄÎäÁÖĞ¡ÌùÊ¿
+	 * å¾—åˆ°ä¸»é¡µé¢çš„æ­¦æ—å°è´´å£«
 	 */
 	public String getIntimateHintWml( RoleEntity roleInfo )
 	{
@@ -43,7 +43,7 @@ public class MainPageWmlService
 			return null;
 		}
 		
-		if( roleInfo.getBasicInfo().getGrade()>=10 )//Íæ¼ÒµÈ¼¶´óÓÚµÈÓÚ10Ê±£¬²»ÏÔÊ¾ÎäÁÖĞ¡ÌùÊ¿
+		if( roleInfo.getBasicInfo().getGrade()>=10 )//ç©å®¶ç­‰çº§å¤§äºç­‰äº10æ—¶ï¼Œä¸æ˜¾ç¤ºæ­¦æ—å°è´´å£«
 		{
 			return null;
 		}
@@ -54,7 +54,7 @@ public class MainPageWmlService
 	
 	
 	/**
-	 * µÃµ½Ö÷Ò³ÃæµÄ£¬×ßµØÍ¼µÄwml½Å±¾
+	 * å¾—åˆ°ä¸»é¡µé¢çš„ï¼Œèµ°åœ°å›¾çš„wmlè„šæœ¬
 	 */
 	public String getWalkWml( RoleEntity roleInfo ,HttpServletRequest request,HttpServletResponse response)
 	{
@@ -69,7 +69,7 @@ public class MainPageWmlService
 		
 		if( current_scene_info.getSceneJumpterm()>0 )
 		{
-			result.append("½øÈë:");
+			result.append("è¿›å…¥:");
 			result.append("<anchor>");
 			result.append("<go method=\"get\" href=\"").append(response.encodeURL(GameConfig.getContextPath()+"/walk.do?way=5")).append("\"></go>");
 			result.append(current_scene_info.getJumpSceneInfo().getSceneName());
@@ -80,7 +80,7 @@ public class MainPageWmlService
 		if( current_scene_info.getSceneShang()>0 )
 		{
 			SceneVO shang_scene_info = roomService.getById(current_scene_info.getSceneShang()+"");
-			result.append("ÉÏ:");
+			result.append("ä¸Š:");
 			result.append("<anchor>");
 			result.append("<go method=\"get\" href=\"").append(response.encodeURL(GameConfig.getContextPath()+"/walk.do?way=1")).append("\"></go>");
 			result.append(shang_scene_info.getSceneName());
@@ -90,7 +90,7 @@ public class MainPageWmlService
 		if( current_scene_info.getSceneXia()>0 )
 		{
 			SceneVO xia_scene_info = roomService.getById(current_scene_info.getSceneXia()+"");
-			result.append("ÏÂ:");
+			result.append("ä¸‹:");
 			result.append("<anchor>");
 			result.append("<go method=\"get\" href=\"").append(response.encodeURL(GameConfig.getContextPath()+"/walk.do?way=2")).append("\"></go>");
 			result.append(xia_scene_info.getSceneName());
@@ -100,7 +100,7 @@ public class MainPageWmlService
 		if( current_scene_info.getSceneZuo()>0 )
 		{
 			SceneVO zuo_scene_info = roomService.getById(current_scene_info.getSceneZuo()+"");
-			result.append("×ó:");
+			result.append("å·¦:");
 			result.append("<anchor>");
 			result.append("<go method=\"get\" href=\"").append(response.encodeURL(GameConfig.getContextPath()+"/walk.do?way=3")).append("\"></go>");
 			result.append(zuo_scene_info.getSceneName());
@@ -110,7 +110,7 @@ public class MainPageWmlService
 		if( current_scene_info.getSceneYou()>0 )
 		{
 			SceneVO you_scene_info = roomService.getById(current_scene_info.getSceneYou()+"");
-			result.append("ÓÒ:");
+			result.append("å³:");
 			result.append("<anchor>");
 			result.append("<go method=\"get\" href=\"").append(response.encodeURL(GameConfig.getContextPath()+"/walk.do?way=4")).append("\"></go>");
 			result.append(you_scene_info.getSceneName());

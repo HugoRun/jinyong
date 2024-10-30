@@ -30,16 +30,16 @@ import com.pm.service.systemInfo.SystemInfoService;
 import com.web.service.popupmsg.PopUpMsgService;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«³ÆºÅ¼¯ºÏ
+ * åŠŸèƒ½ï¼šè§’è‰²ç§°å·é›†åˆ
  */
 public class RoleTitleSet extends UserBase
 {
 	private RoleTitleDAO dao = null;
-	private Map<Integer, RoleTitleVO> titleCacheByType = null;//keyÊÇ<³ÆºÅµÄÀàĞÍ>
-	private Map<Integer, RoleTitleVO> titleCacheByTId = null;//keyÊÇ<³ÆºÅµÄid>
+	private Map<Integer, RoleTitleVO> titleCacheByType = null;//keyæ˜¯<ç§°å·çš„ç±»å‹>
+	private Map<Integer, RoleTitleVO> titleCacheByTId = null;//keyæ˜¯<ç§°å·çš„id>
 
-	private int showTitleId=-1;//µ±Ç°ÏÔÊ¾µÄ³ÆºÅid
-	private PropertyModel titlePropertys = new PropertyModel();// ³ÆºÅĞ§¹û¼¯
+	private int showTitleId=-1;//å½“å‰æ˜¾ç¤ºçš„ç§°å·id
+	private PropertyModel titlePropertys = new PropertyModel();// ç§°å·æ•ˆæœé›†
 
 	
 	public RoleTitleSet( int p_pk )
@@ -61,7 +61,7 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * ³õÊ¼»¯³ÆºÅ
+	 * åˆå§‹åŒ–ç§°å·
 	 */
 	public void init()
 	{
@@ -71,20 +71,20 @@ public class RoleTitleSet extends UserBase
 		titlePropertys.init();
 		dao.clear(p_pk);
 		
-		//¸øÍæ¼ÒÔö¼Ó³õÊ¼³ÆºÅ
+		//ç»™ç©å®¶å¢åŠ åˆå§‹ç§°å·
 		int race = this.getRoleEntity().getBasicInfo().getPRace();
-		TitleVO race_title = null;//ÖÖ×å³ÆºÅ
+		TitleVO race_title = null;//ç§æ—ç§°å·
 		switch(race)
 		{
-			case 1:race_title = TitleCache.getById(3);break;//Ñı
-			case 2:race_title = TitleCache.getById(11);break;//Î×
+			case 1:race_title = TitleCache.getById(3);break;//å¦–
+			case 2:race_title = TitleCache.getById(11);break;//å·«
 		}
 		gainTitle(race_title);
 	}
 	
 	/**
-	 * ¸øÍæ¼Ò¸½¼Ó³ÆºÅÊôĞÔ
-	 * ÏÈ¼ÓÔØ»áÔ±µÄ¸½¼ÓÊôĞÔĞ§¹û£¬ÔÙ¼ÓÔØ³ÆºÅµÄ¸½¼ÓĞ§¹û
+	 * ç»™ç©å®¶é™„åŠ ç§°å·å±æ€§
+	 * å…ˆåŠ è½½ä¼šå‘˜çš„é™„åŠ å±æ€§æ•ˆæœï¼Œå†åŠ è½½ç§°å·çš„é™„åŠ æ•ˆæœ
 	 */
 	public void loadProperty(PartInfoVO player)
 	{
@@ -135,7 +135,7 @@ public class RoleTitleSet extends UserBase
 	}
 
 	/**
-	 * É¾³ıÒ»¸ö³ÆºÅ
+	 * åˆ é™¤ä¸€ä¸ªç§°å·
 	 */
 	public void delTitle(int tId)
 	{
@@ -143,7 +143,7 @@ public class RoleTitleSet extends UserBase
 		
 		switch( role_title.getType())
 		{
-			case TitleVO.VIP://»áÔ±³ÆºÅÉ¾³ı´¦Àí
+			case TitleVO.VIP://ä¼šå‘˜ç§°å·åˆ é™¤å¤„ç†
 				this.delVipTitle(role_title);
 				break;
 		}
@@ -152,7 +152,7 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * É¾³ı»áÔ±³ÆºÅ
+	 * åˆ é™¤ä¼šå‘˜ç§°å·
 	 */
 	private void delVipTitle(RoleTitleVO role_title)
 	{
@@ -163,12 +163,12 @@ public class RoleTitleSet extends UserBase
 		Vip vip =VipManager.getByTId(role_title.getTId());
 		if( vip!=null )
 		{
-			// ·¢ËÍÓÊ¼ş¸æËßÍæ¼Òµ½ÆÚÁË
+			// å‘é€é‚®ä»¶å‘Šè¯‰ç©å®¶åˆ°æœŸäº†
 			StringBuffer sb = new StringBuffer(800);
 			MailInfoService mailInfoService = new MailInfoService();
-			String title = "ÏµÍ³ÓÊ¼ş";
-			sb.append("ÄãµÄ").append(vip.getName()).append("×Ê¸ñÒÑ¾­µ½ÆÚ,ÏÖÔÚÂíÉÏÔÙ´Î¹ºÂò»áÔ±×Ê¸ñ¿ÉÏíÊÜ8ÕÛÓÅ»İ!<br/>");
-			// Ê×ÏÈµÃµ½ËùÓĞ»áÔ±ÀàĞÍµÄµÀ¾ß
+			String title = "ç³»ç»Ÿé‚®ä»¶";
+			sb.append("ä½ çš„").append(vip.getName()).append("èµ„æ ¼å·²ç»åˆ°æœŸ,ç°åœ¨é©¬ä¸Šå†æ¬¡è´­ä¹°ä¼šå‘˜èµ„æ ¼å¯äº«å—8æŠ˜ä¼˜æƒ !<br/>");
+			// é¦–å…ˆå¾—åˆ°æ‰€æœ‰ä¼šå‘˜ç±»å‹çš„é“å…·
 			PropDao propDao = new PropDao();
 			List<PropVO> list = propDao.getListByType(PropType.VIP);
 			for (PropVO prop:list)
@@ -179,21 +179,21 @@ public class RoleTitleSet extends UserBase
 				sb.append("<postfield name=\"cmd\" value=\"n2\" />");
 				sb.append("<postfield name=\"prop_id\" value=\"").append(prop.getPropID()).append("\" />");
 				sb.append("</go>");
-				sb.append("¹ºÂò");
+				sb.append("è´­ä¹°");
 				sb.append("</anchor><br/>");
 			}
 			mailInfoService.sendMailBySystem(this.p_pk, title, sb.toString());
 			
-			//Í³¼ÆĞèÒª
+			//ç»Ÿè®¡éœ€è¦
 			new RankService().updateVIP(p_pk, 0, 0);
-			//VIPµ½ÆÚ¸øµ¯³öÊ½ÏûÏ¢
+			//VIPåˆ°æœŸç»™å¼¹å‡ºå¼æ¶ˆæ¯
 			new PopUpMsgService().addSysSpecialMsg(p_pk,0,0, PopUpMsgType.VIP_ENDTIME);
 		}
 	}
 	
 	
 	/**
-	 * ³ÆºÅÁĞ±í
+	 * ç§°å·åˆ—è¡¨
 	 * @return
 	 */
 	public List<RoleTitleVO> getRoleTitleList()
@@ -202,14 +202,14 @@ public class RoleTitleSet extends UserBase
 	}
 
 	/**
-	 * ¸ü¸Ä³ÆºÅÏÔÊ¾×´Ì¬
-	 * @param id	Òª¸ü¸ÄµÄ³ÆºÅ
+	 * æ›´æ”¹ç§°å·æ˜¾ç¤ºçŠ¶æ€
+	 * @param id	è¦æ›´æ”¹çš„ç§°å·
 	 */
 	public void updateShowStatus( int tId )
 	{
 		RoleTitleVO cur_title = this.getByTId(tId);
 		
-		if( cur_title.getIsShow()==1 )//Èç¹ûµ±Ç°ÏÔÊ¾µÄ¾ÍÊÇ¸Ã³ÆºÅ
+		if( cur_title.getIsShow()==1 )//å¦‚æœå½“å‰æ˜¾ç¤ºçš„å°±æ˜¯è¯¥ç§°å·
 		{
 			this.showTitleId = -1;
 		}
@@ -227,7 +227,7 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÕıÔÚÊ¹ÓÃ³ÆºÅµÄÃû×Ö
+	 * å¾—åˆ°æ­£åœ¨ä½¿ç”¨ç§°å·çš„åå­—
 	 * @return
 	 */
 	public String getShowTitleName()
@@ -239,19 +239,19 @@ public class RoleTitleSet extends UserBase
 		}
 		else
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 	}
 	
 	/**
-	 * »ñµÃÒ»¸ö³ÆºÅ
+	 * è·å¾—ä¸€ä¸ªç§°å·
 	 * @return
 	 */
 	public String gainTitle( TitleVO newTitle)
 	{
 		if( newTitle==null )
 		{
-			return "³ÆºÅĞÅÏ¢´íÎó";
+			return "ç§°å·ä¿¡æ¯é”™è¯¯";
 		}
 		
 		RoleTitleVO roleTitle = new RoleTitleVO(p_pk,newTitle);
@@ -269,7 +269,7 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * »ñµÃvip³ÆºÅ
+	 * è·å¾—vipç§°å·
 	 * @param roleTitle
 	 */
 	private void gainVipTitle(RoleTitleVO roleTitle)
@@ -278,14 +278,14 @@ public class RoleTitleSet extends UserBase
 		if( vip!=null )
 		{
 			SystemInfoService systemInfoService = new SystemInfoService();
-			String info = "Íæ¼Ò"+ this.getRoleEntity().getName()+ "³ÉÎªÁËÈÙÓşµÄ" + vip.getName() + "";
+			String info = "ç©å®¶"+ this.getRoleEntity().getName()+ "æˆä¸ºäº†è£èª‰çš„" + vip.getName() + "";
 			systemInfoService.insertSystemInfoBySystem(info);
 		}
 	}
 	
 	/**
-	 * ÊÇ·ñÓĞ¸ÃÀàĞÍµÄ³ÆºÅ
-	 * @param titleType		³ÆºÅÀàĞÍ
+	 * æ˜¯å¦æœ‰è¯¥ç±»å‹çš„ç§°å·
+	 * @param titleType		ç§°å·ç±»å‹
 	 * @return
 	 */
 	public boolean isHaveByType(int titleType)
@@ -299,14 +299,14 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * ÊÇ·ñÓĞVIP³ÆºÅ
+	 * æ˜¯å¦æœ‰VIPç§°å·
 	 * @return
 	 */
 	public String isGainNewVipTitle( TitleVO newVipTitle)
 	{
 		if( newVipTitle==null )
 		{
-			return "»áÔ±³ÆºÅ´íÎó";
+			return "ä¼šå‘˜ç§°å·é”™è¯¯";
 		}
 		RoleTitleVO role_title = this.titleCacheByType.get(TitleVO.VIP);
 		
@@ -314,11 +314,11 @@ public class RoleTitleSet extends UserBase
 		{
 			Vip vip = getVIP();
 			StringBuffer sb = new StringBuffer();
-			sb.append("ÄãÏÖÔÚÒÑ¾­ÊÇ").append(vip.getName()).append(",");
-			sb.append( role_title.getSimpleLeftTimeDes()).append( "ºó½áÊø£¡Ê¹ÓÃ¸ÃµÀ¾ßºóÄã½«»ñµÃ");
-			sb.append( DateUtil.returnTimeStr(newVipTitle.getUseTime() * 60) ).append( "µÄ¡°");
-			sb.append( newVipTitle.getName() ).append( "¡±µÄÖÁ×ğ³ÆºÅ£¬µ«¡°");
-			sb.append(vip.getName()).append("¡±µÄ³ÆºÅ¼°ÆäËùµÃÊôĞÔ½«ÏûÊ§£¡ÄãÈ·¶¨ÒªÊ¹ÓÃ¸ÃµÀ¾ßÂğ£¿<br/>");
+			sb.append("ä½ ç°åœ¨å·²ç»æ˜¯").append(vip.getName()).append(",");
+			sb.append( role_title.getSimpleLeftTimeDes()).append( "åç»“æŸï¼ä½¿ç”¨è¯¥é“å…·åä½ å°†è·å¾—");
+			sb.append( DateUtil.returnTimeStr(newVipTitle.getUseTime() * 60) ).append( "çš„â€œ");
+			sb.append( newVipTitle.getName() ).append( "â€çš„è‡³å°Šç§°å·ï¼Œä½†â€œ");
+			sb.append(vip.getName()).append("â€çš„ç§°å·åŠå…¶æ‰€å¾—å±æ€§å°†æ¶ˆå¤±ï¼ä½ ç¡®å®šè¦ä½¿ç”¨è¯¥é“å…·å—ï¼Ÿ<br/>");
 			return sb.toString();
 		}
 		
@@ -326,7 +326,7 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * µÃµ½vip ĞÅÏ¢
+	 * å¾—åˆ°vip ä¿¡æ¯
 	 * @return
 	 */
 	public Vip getVIP()
@@ -340,8 +340,8 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * ¸ù¾İ³ÆºÅÅĞ¶ÏÊÇ·ñÂú×ã³ÆºÅÒªÇó
-	 * @param tId		³ÆºÅid
+	 * æ ¹æ®ç§°å·åˆ¤æ–­æ˜¯å¦æ»¡è¶³ç§°å·è¦æ±‚
+	 * @param tId		ç§°å·id
 	 * @return
 	 */
 	public boolean isHaveByTitleStr( String titleStr )
@@ -364,8 +364,8 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * ÊÇ·ñÓĞ¸Ã³ÆºÅ
-	 * @param tId		³ÆºÅid
+	 * æ˜¯å¦æœ‰è¯¥ç§°å·
+	 * @param tId		ç§°å·id
 	 * @return
 	 */
 	public boolean isHaveByTId( TitleVO newTitle )
@@ -379,7 +379,7 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ÏÖÔÚÊ¹ÓÃµÄ³ÆºÅ
+	 * å¾—åˆ°ç°åœ¨ä½¿ç”¨çš„ç§°å·
 	 * @return
 	 */
 	public RoleTitleVO getShowTitle()
@@ -388,8 +388,8 @@ public class RoleTitleSet extends UserBase
 	}
 
 	/**
-	 * Í¨¹ıidµÃµ½ÏêÏ¸ĞÅÏ¢
-	 * @param 			³ÆºÅid
+	 * é€šè¿‡idå¾—åˆ°è¯¦ç»†ä¿¡æ¯
+	 * @param 			ç§°å·id
 	 * @return
 	 */
 	public RoleTitleVO getByTId(String tId)
@@ -398,8 +398,8 @@ public class RoleTitleSet extends UserBase
 	}
 	
 	/**
-	 * Í¨¹ıidµÃµ½ÏêÏ¸ĞÅÏ¢
-	 * @param 			³ÆºÅid
+	 * é€šè¿‡idå¾—åˆ°è¯¦ç»†ä¿¡æ¯
+	 * @param 			ç§°å·id
 	 * @return
 	 */
 	public RoleTitleVO getByTId(int tId)
@@ -409,37 +409,37 @@ public class RoleTitleSet extends UserBase
 
 
 	
-	//Íæ¼ÒµÇÂ½Ê±·¢ËÍ³ÆºÅÏµÍ³ÏûÏ¢
+	//ç©å®¶ç™»é™†æ—¶å‘é€ç§°å·ç³»ç»Ÿæ¶ˆæ¯
 	public void sendTitleSysInfo(RoleEntity role_info){
 		List<RoleTitleVO> list = getRoleTitleList();
 		for(int i = 0;i<list.size();i++){
 			RoleTitleVO vo = list.get(i);
 			if(vo.getTId() == 39){
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem("ÌìÏÂµÚÒ»µÄ"+role_info.getBasicInfo().getName()+"À´ÁË,´ó¼Ò¼ĞµÀ»¶Ó­!");
+				systemInfoService.insertSystemInfoBySystem("å¤©ä¸‹ç¬¬ä¸€çš„"+role_info.getBasicInfo().getName()+"æ¥äº†,å¤§å®¶å¤¹é“æ¬¢è¿!");
 			}
 			if(vo.getTId() == 42){
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem("Ğ¡²ÆÉñ"+role_info.getBasicInfo().getName()+"ÉÏÏßÁË!");
+				systemInfoService.insertSystemInfoBySystem("å°è´¢ç¥"+role_info.getBasicInfo().getName()+"ä¸Šçº¿äº†!");
 			}
 			if(vo.getTId() == 43){
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem("´ó²ÆÉñ"+role_info.getBasicInfo().getName()+"ÉÏÏßÁË!");
+				systemInfoService.insertSystemInfoBySystem("å¤§è´¢ç¥"+role_info.getBasicInfo().getName()+"ä¸Šçº¿äº†!");
 			}
 			if(vo.getTId() == 44){
 	    		SceneVO sceneVO = SceneCache.getById(role_info.getBasicInfo().getSceneId());
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem("Ã÷½ÌµÄÊ×Ï¯µÜ×Ó"+role_info.getBasicInfo().getName()+"ÔÚ"+sceneVO.getSceneName()+"ÉÏÏßÁË!");
+				systemInfoService.insertSystemInfoBySystem("æ˜æ•™çš„é¦–å¸­å¼Ÿå­"+role_info.getBasicInfo().getName()+"åœ¨"+sceneVO.getSceneName()+"ä¸Šçº¿äº†!");
 			}
 			if(vo.getTId() == 45){
 	    		SceneVO sceneVO = SceneCache.getById(role_info.getBasicInfo().getSceneId());
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem("ÉÙÁÖµÄÊ×Ï¯µÜ×Ó"+role_info.getBasicInfo().getName()+"ÔÚ"+sceneVO.getSceneName()+"ÉÏÏßÁË!");
+				systemInfoService.insertSystemInfoBySystem("å°‘æ—çš„é¦–å¸­å¼Ÿå­"+role_info.getBasicInfo().getName()+"åœ¨"+sceneVO.getSceneName()+"ä¸Šçº¿äº†!");
 			}
 			if(vo.getTId() == 46){
 	    		SceneVO sceneVO = SceneCache.getById(role_info.getBasicInfo().getSceneId());
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem("Ø¤°ïµÄÊ×Ï¯µÜ×Ó"+role_info.getBasicInfo().getName()+"ÔÚ"+sceneVO.getSceneName()+"ÉÏÏßÁË!");
+				systemInfoService.insertSystemInfoBySystem("ä¸å¸®çš„é¦–å¸­å¼Ÿå­"+role_info.getBasicInfo().getName()+"åœ¨"+sceneVO.getSceneName()+"ä¸Šçº¿äº†!");
 			}
 		}
 	}

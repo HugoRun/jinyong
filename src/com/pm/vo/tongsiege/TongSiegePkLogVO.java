@@ -4,27 +4,27 @@
 package com.pm.vo.tongsiege;
 
 /**
- * °ïÅÉ¹¥³Çpk¼ÇÂ¼±í
+ * å¸®æ´¾æ”»åŸpkè®°å½•è¡¨
  * @author zhangjj
  *
  */
 public class TongSiegePkLogVO
 {
 	
-	/** °ïÅÉ¹¥³ÇÕ½É±ÈË¼ÇÂ¼±íID  */
+	/** å¸®æ´¾æ”»åŸæˆ˜æ€äººè®°å½•è¡¨ID  */
 	public int pklogId;
-	/*** ¹¥³ÇÕ½ID,´ú±í×ÅÄ³¸ö³ÇÊĞµÄ¹¥³Ç  **/
+	/*** æ”»åŸæˆ˜ID,ä»£è¡¨ç€æŸä¸ªåŸå¸‚çš„æ”»åŸ  **/
 	public int siegeId	;
-	/**   siege_idËù´ú±íµÄ¹¥³ÇÕ½µÚ¼¸´ÎÕ½¶·   ***/
+	/**   siege_idæ‰€ä»£è¡¨çš„æ”»åŸæˆ˜ç¬¬å‡ æ¬¡æˆ˜æ–—   ***/
 	public int 	siegeNumber ;
-		/**   °ïÅÉID  */
+		/**   å¸®æ´¾ID  */
 	public int 	tongId	;
-		/**   ½ÇÉ«id */
+		/**   è§’è‰²id */
 	public int 	pPk;
-		/**   ÔÚ´Ë´Î¹¥³ÇÕ½ÉËËùÉ±ÈËÊı  **/
+		/**   åœ¨æ­¤æ¬¡æ”»åŸæˆ˜ä¼¤æ‰€æ€äººæ•°  **/
 	public int 	pkNumber	;
 	
-	/** ÔÚ´Ë´Î¹¥³ÇÕ½ÖĞ»ñµÃµÄÈÙÓş  */
+	/** åœ¨æ­¤æ¬¡æ”»åŸæˆ˜ä¸­è·å¾—çš„è£èª‰  */
 	public int pkGlory;
 	
 		

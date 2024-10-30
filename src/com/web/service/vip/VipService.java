@@ -17,39 +17,39 @@ public class VipService
 {
 
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒÊÇ·ñÒÑ¾­ÊÇVIPÁË Èç¹ûÊÇµÄ»°·µ»Ø
+	 * åˆ¤æ–­ç©å®¶æ˜¯å¦å·²ç»æ˜¯VIPäº† å¦‚æœæ˜¯çš„è¯è¿”å›
 	 * @param p_pk
 	 * @param v_id
 	 * @return
 	 *//*
 	public String isVip(int p_pk, String v_id, int prop_id, int buff_id,HttpServletRequest request, HttpServletResponse response)
 	{
-		// »ñÈ¡µ±Ç°Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// è·å–å½“å‰æ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
 		StringBuffer hint = new StringBuffer();
-		// Ê×ÏÈÅĞ¶Ï¸ÃÍæ¼ÒÊÇ·ñÒÑ¾­ÓĞVIP×éµÄ³ÆºÅÁË
+		// é¦–å…ˆåˆ¤æ–­è¯¥ç©å®¶æ˜¯å¦å·²ç»æœ‰VIPç»„çš„ç§°å·äº†
 		HonourService honourService = new HonourService();
 		if (honourService.isRoleHonourType(p_pk, TitleVO.VIP))
-		{// ÓĞÕâ¸ö³ÆºÅ
+		{// æœ‰è¿™ä¸ªç§°å·
 			VipCach vipCach = new VipCach();
-			VipVO vo = vipCach.getById(v_id);// »ñÈ¡VIPÏà¹ØĞÅÏ¢
+			VipVO vo = vipCach.getById(v_id);// è·å–VIPç›¸å…³ä¿¡æ¯
 			if (vo != null)
 			{
-				TitleVO titleVO = TitleCache.getById(vo.getHoId() + "");// µÃµ½³ÆºÅÏà¹ØĞÅÏ¢
+				TitleVO titleVO = TitleCache.getById(vo.getHoId() + "");// å¾—åˆ°ç§°å·ç›¸å…³ä¿¡æ¯
 				RoleEntity roleEntity = RoleService.getRoleInfoById(p_pk+"");
 				RoleVipVO roleVipVO = roleEntity.getRoleVip().getRoleVipView();
 				if (roleVipVO != null)
 				{
 					int time = DateUtil.getDifferTimes(Time, roleVipVO
 							.getRvEndTime());
-					hint.append("ÄãÏÖÔÚÒÑ¾­ÊÇ" + roleVipVO.getVName() + "£¬"
-							+ DateUtil.returnDay(time) + "Ğ¡Ê±ºó½áÊø£¡Ê¹ÓÃ¸ÃµÀ¾ßºóÄã½«»ñµÃ"
-							+ DateUtil.returnDay(vo.getUseTime() * 60) + "µÄ¡°"
-							+ titleVO.getName() + "¡±µÄÖÁ×ğ³ÆºÅ£¬µ«¡°"
+					hint.append("ä½ ç°åœ¨å·²ç»æ˜¯" + roleVipVO.getVName() + "ï¼Œ"
+							+ DateUtil.returnDay(time) + "å°æ—¶åç»“æŸï¼ä½¿ç”¨è¯¥é“å…·åä½ å°†è·å¾—"
+							+ DateUtil.returnDay(vo.getUseTime() * 60) + "çš„â€œ"
+							+ titleVO.getName() + "â€çš„è‡³å°Šç§°å·ï¼Œä½†â€œ"
 							+ roleVipVO.getVName()
-							+ "¡±µÄ³ÆºÅ¼°ÆäËùµÃÊôĞÔ½«ÏûÊ§£¡ÄãÈ·¶¨ÒªÊ¹ÓÃ¸ÃµÀ¾ßÂğ£¿<br/>");
+							+ "â€çš„ç§°å·åŠå…¶æ‰€å¾—å±æ€§å°†æ¶ˆå¤±ï¼ä½ ç¡®å®šè¦ä½¿ç”¨è¯¥é“å…·å—ï¼Ÿ<br/>");
 					hint.append("<anchor> ");
 					hint.append("<go method=\"post\" href=\""+response.encodeURL(GameConfig.getContextPath()+"/vip.do?cmd=n1")+"\">");
 					hint.append("<postfield name=\"v_id\" value=\"" + v_id
@@ -59,7 +59,7 @@ public class VipService
 					hint.append("<postfield name=\"buff_id\" value=\""
 							+ buff_id + "\" /> ");
 					hint.append("</go>");
-					hint.append("È·¶¨");
+					hint.append("ç¡®å®š");
 					hint.append("</anchor>");
 				}
 			}
@@ -68,7 +68,7 @@ public class VipService
 	}
 
 	*//**
-	 * Íæ¼ÒÔö¼ÓÒ»¸öVIP
+	 * ç©å®¶å¢åŠ ä¸€ä¸ªVIP
 	 * @param p_pk
 	 * @param v_id
 	 * @param honourVO
@@ -76,22 +76,22 @@ public class VipService
 	 *//*
 	public String addVip(RoleEntity role_info, String v_id, int buff_id)
 	{
-		// »ñÈ¡µ±Ç°Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// è·å–å½“å‰æ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
-		// Ê×ÏÈ»ñÈ¡VIPºóÌ¨Ïà¶ÔÓ¦µÄÊı¾İ
+		// é¦–å…ˆè·å–VIPåå°ç›¸å¯¹åº”çš„æ•°æ®
 		VipCach vipCach = new VipCach();
-		VipVO vipVO = vipCach.getById(v_id);// »ñÈ¡VIPÏà¹ØĞÅÏ¢
+		VipVO vipVO = vipCach.getById(v_id);// è·å–VIPç›¸å…³ä¿¡æ¯
 
-		// »ñµÃÏà¶ÔÓ¦µÄ³ÆºÅ
-		TitleVO titleVO = TitleCache.getById(vipVO.getHoId() + "");// µÃµ½³ÆºÅÏà¹ØĞÅÏ¢
+		// è·å¾—ç›¸å¯¹åº”çš„ç§°å·
+		TitleVO titleVO = TitleCache.getById(vipVO.getHoId() + "");// å¾—åˆ°ç§°å·ç›¸å…³ä¿¡æ¯
 
-		// ¸øÍæ¼ÒÔö¼ÓÒ»¸ö³ÆºÅ
+		// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªç§°å·
 		HonourService honourService = new HonourService();
-		honourService.addRoleHonour(role_info.getBasicInfo().getPPk(), titleVO.getId(), titleVO.getType());// ¸øÍæ¼ÒÔö¼ÓÒ»¸ö³ÆºÅ
+		honourService.addRoleHonour(role_info.getBasicInfo().getPPk(), titleVO.getId(), titleVO.getType());// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªç§°å·
 
-		// ¸øÍæ¼ÒÔö¼ÓÒ»¸öVIPÕËºÅ
+		// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªVIPè´¦å·
 		RoleVipVO roleVipVO = new RoleVipVO();
 		roleVipVO.setPPk(role_info.getBasicInfo().getPPk());
 		roleVipVO.setHoId(vipVO.getHoId());
@@ -103,38 +103,38 @@ public class VipService
 		roleVipVO.setRvBeginTime(Time);
 		roleVipVO.setRvEndTime(rv_end_time);
 		roleVipVO.setIsDieDropExp(vipVO.getIsDieDropExp());
-		role_info.getRoleVip().addRoleVip(roleVipVO);// ¸øÍæ¼ÒÔö¼ÓÒ»¸öVIPÊı¾İ
+		role_info.getRoleVip().addRoleVip(roleVipVO);// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªVIPæ•°æ®
 
 		
 		SystemInfoService systemInfoService = new SystemInfoService();
 		
-		String info = "Íæ¼Ò"+ role_info.getName()+ "³ÉÎªÁËÈÙÓşµÄ" + vipVO.getVName() + "";
+		String info = "ç©å®¶"+ role_info.getName()+ "æˆä¸ºäº†è£èª‰çš„" + vipVO.getVName() + "";
 		
 		systemInfoService.insertSystemInfoBySystem(info);
 		
 		return vipVO.getVipHint();
 	}
 
-	// ĞŞ¸ÄÒ»¸öÍæ¼ÒVIP
+	// ä¿®æ”¹ä¸€ä¸ªç©å®¶VIP
 	public String updateVip(RoleEntity roleInfo, String v_id, int buff_id)
 	{
-		// »ñÈ¡µ±Ç°Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// è·å–å½“å‰æ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
-		// Ê×ÏÈ»ñÈ¡VIPºóÌ¨Ïà¶ÔÓ¦µÄÊı¾İ
+		// é¦–å…ˆè·å–VIPåå°ç›¸å¯¹åº”çš„æ•°æ®
 		VipCach vipCach = new VipCach();
-		VipVO vipVO = vipCach.getById(v_id);// »ñÈ¡VIPÏà¹ØĞÅÏ¢
+		VipVO vipVO = vipCach.getById(v_id);// è·å–VIPç›¸å…³ä¿¡æ¯
 
-		// »ñµÃÏà¶ÔÓ¦µÄ³ÆºÅ
-		TitleVO titleVO = TitleCache.getById(vipVO.getHoId() + "");// µÃµ½³ÆºÅÏà¹ØĞÅÏ¢
+		// è·å¾—ç›¸å¯¹åº”çš„ç§°å·
+		TitleVO titleVO = TitleCache.getById(vipVO.getHoId() + "");// å¾—åˆ°ç§°å·ç›¸å…³ä¿¡æ¯
 
-		// ¸øÍæ¼ÒÔö¼ÓÒ»¸ö³ÆºÅ
+		// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªç§°å·
 		HonourService honourService = new HonourService();
-		honourService.addRoleHonour(roleInfo.getBasicInfo().getPPk(), titleVO.getId(), titleVO.getType());// ¸øÍæ¼ÒÔö¼ÓÒ»¸ö³ÆºÅ
+		honourService.addRoleHonour(roleInfo.getBasicInfo().getPPk(), titleVO.getId(), titleVO.getType());// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªç§°å·
 
-		// ¸øÍæ¼ÒÔö¼ÓÒ»¸öVIPÕËºÅ
-		// RoleVip roleVip = new RoleVip(p_pk);//µÃµ½Íæ¼ÒµÄVIPÊı¾İ
+		// ç»™ç©å®¶å¢åŠ ä¸€ä¸ªVIPè´¦å·
+		// RoleVip roleVip = new RoleVip(p_pk);//å¾—åˆ°ç©å®¶çš„VIPæ•°æ®
 		RoleVipVO roleVipVO = new RoleVipVO();
 		roleVipVO.setPPk(roleInfo.getBasicInfo().getPPk());
 		roleVipVO.setHoId(vipVO.getHoId());
@@ -149,12 +149,12 @@ public class VipService
 		roleInfo.getRoleVip().updateRoleVip(roleVipVO);
 
 		// String hint =
-		// "¹§Ï²Äã³ÉÎªÓÎÏ·µÄ"+vipVO.getVName()+"£¡»áÔ±ÓĞĞ§Ê±¼äÎª"+DateUtil.returnDay(vipVO.getUseTime()*60)+"£¬ÔÚ´ËÆÚ¼ä"+vipVO.getVName()+"×Ê¸ñ¿ÉÎªÄã´øÀ´ÒÔÏÂºÃ´¦£º<br/>1.¿ÉÒÔ½øÈëÉÌ³¡µÄ»áÔ±×¨Çø¹ºÂò»áÔ±×¨ÊôÓÃÆ·<br/>2.¹ºÂòÆÕÍ¨ÉÌ³¡ÎïÆ·ÏíÊÜ"+vipVO.getVipDiscount()+"ÓÅ»İ<br/>3.ÓµÓĞ¡°"+vipVO.getVName()+"¡±µÄÖÁ×ğ³ÆºÅ<br/>4.ÏÔÊ¾¡°"+vipVO.getVName()+"¡±¸øÄãÔö¼Ó×¿Ô½ÊôĞÔ";
+		// "æ­å–œä½ æˆä¸ºæ¸¸æˆçš„"+vipVO.getVName()+"ï¼ä¼šå‘˜æœ‰æ•ˆæ—¶é—´ä¸º"+DateUtil.returnDay(vipVO.getUseTime()*60)+"ï¼Œåœ¨æ­¤æœŸé—´"+vipVO.getVName()+"èµ„æ ¼å¯ä¸ºä½ å¸¦æ¥ä»¥ä¸‹å¥½å¤„ï¼š<br/>1.å¯ä»¥è¿›å…¥å•†åœºçš„ä¼šå‘˜ä¸“åŒºè´­ä¹°ä¼šå‘˜ä¸“å±ç”¨å“<br/>2.è´­ä¹°æ™®é€šå•†åœºç‰©å“äº«å—"+vipVO.getVipDiscount()+"ä¼˜æƒ <br/>3.æ‹¥æœ‰â€œ"+vipVO.getVName()+"â€çš„è‡³å°Šç§°å·<br/>4.æ˜¾ç¤ºâ€œ"+vipVO.getVName()+"â€ç»™ä½ å¢åŠ å“è¶Šå±æ€§";
 		SystemInfoService systemInfoService = new SystemInfoService();
 		PartInfoDao partInfoDao = new PartInfoDao();
-		String info = "Íæ¼Ò"
+		String info = "ç©å®¶"
 				+ partInfoDao.getNameByPpk(roleInfo.getBasicInfo().getPPk())
-				+ "³ÉÎªÁËÈÙÓşµÄ" + vipVO.getVName() + "»áÔ±";
+				+ "æˆä¸ºäº†è£èª‰çš„" + vipVO.getVName() + "ä¼šå‘˜";
 		systemInfoService.insertSystemInfoBySystem(info);
 		return vipVO.getVipHint();
 	}
@@ -162,18 +162,18 @@ public class VipService
 
 
 	*//**
-	 * vipµ½ÆÚ£¬¸øÍæ¼Ò·¢ËÍ¹ºÂòvipµÄĞÅÏ¢
+	 * vipåˆ°æœŸï¼Œç»™ç©å®¶å‘é€è´­ä¹°vipçš„ä¿¡æ¯
 	 * @param p_pk
 	 * @param vipName
 	 *//*
 	public void sendVipEndMail(int p_pk, String vipName)
 	{
-		// ·¢ËÍÓÊ¼ş¸æËßÍæ¼Òµ½ÆÚÁË
+		// å‘é€é‚®ä»¶å‘Šè¯‰ç©å®¶åˆ°æœŸäº†
 		StringBuffer sb = new StringBuffer(800);
 		MailInfoService mailInfoService = new MailInfoService();
-		String title = "ÏµÍ³ÓÊ¼ş";
-		sb.append("ÄãµÄ").append(vipName).append("×Ê¸ñÒÑ¾­µ½ÆÚ,ÏÖÔÚÂíÉÏÔÙ´Î¹ºÂò»áÔ±×Ê¸ñ¿ÉÏíÊÜ8ÕÛÓÅ»İ!<br/>");
-		// Ê×ÏÈµÃµ½ËùÓĞ»áÔ±ÀàĞÍµÄµÀ¾ß
+		String title = "ç³»ç»Ÿé‚®ä»¶";
+		sb.append("ä½ çš„").append(vipName).append("èµ„æ ¼å·²ç»åˆ°æœŸ,ç°åœ¨é©¬ä¸Šå†æ¬¡è´­ä¹°ä¼šå‘˜èµ„æ ¼å¯äº«å—8æŠ˜ä¼˜æƒ !<br/>");
+		// é¦–å…ˆå¾—åˆ°æ‰€æœ‰ä¼šå‘˜ç±»å‹çš„é“å…·
 		PropDAO propDAO = new PropDAO();
 		List<PropVO> list = propDAO.getPropType(PropType.VIP);
 		for (PropVO vo:list)
@@ -184,7 +184,7 @@ public class VipService
 			sb.append("<postfield name=\"cmd\" value=\"n2\" />");
 			sb.append("<postfield name=\"prop_id\" value=\"").append(vo.getPropID()).append("\" />");
 			sb.append("</go>");
-			sb.append("¹ºÂò");
+			sb.append("è´­ä¹°");
 			sb.append("</anchor><br/>");
 		}
 		mailInfoService.sendMailBySystem(p_pk, title, sb.toString());
@@ -192,10 +192,10 @@ public class VipService
 
 	/***************************************************************************
 	 * 
-	 * ÒÔÏÂƒÈÈİéLWŒ‘ ¹¦ÄÜ£ºVIPîIÈ¡¹¤ÙYµÄÁ÷³Ì
+	 * ä»¥ä¸‹å…§å®¹ç‚ºLWå¯« åŠŸèƒ½ï¼šVIPé ˜å–å·¥è³‡çš„æµç¨‹
 	 * 
 	 **************************************************************************/
-	// µÃµ½Ô“Íæ¼ÒµÄVIPÄÜîIŒ§µÄ½ğåX ·µ»Ø-1é²»ÄÜîIÈ¡
+	// å¾—åˆ°è©²ç©å®¶çš„VIPèƒ½é ˜å°çš„é‡‘éŒ¢ è¿”å›-1ç‚ºä¸èƒ½é ˜å–
 	private int getPlayerVipMoney(RoleEntity roleInfo)
 	{
 		int result = -1;
@@ -210,7 +210,7 @@ public class VipService
 		return result;
 	}
 
-	/** îIÈ¡VIP¹¤ÙYµÄÁ÷³Ì */
+	/** é ˜å–VIPå·¥è³‡çš„æµç¨‹ */
 	public String playerGetVipMoney(RoleEntity roleInfo)
 	{
 		int money = getPlayerVipMoney(roleInfo);
@@ -226,13 +226,13 @@ public class VipService
 					TimeControlService.VIPLABORAGE, 1);
 			if (can_get)
 			{
-				Vip vip = roleInfo.getTitleSet().getVIP();// µÃµ½Íæ¼ÒµÄVIPÊı¾İ
+				Vip vip = roleInfo.getTitleSet().getVIP();// å¾—åˆ°ç©å®¶çš„VIPæ•°æ®
 				roleInfo.getBasicInfo().addCopper(money);
-				// ¸üĞÂ´Î”µ
+				// æ›´æ–°æ¬¡æ•¸
 				timeControlService.updateControlInfo(roleInfo.getBasicInfo()
 						.getPPk(), 1, TimeControlService.VIPLABORAGE);
-				return "ÄúÊÇ×ğ¹óµÄ" + vip.getName() + ",ÁìÈ¡ÁË"
-						+ money / 100 + "Á½!";
+				return "æ‚¨æ˜¯å°Šè´µçš„" + vip.getName() + ",é¢†å–äº†"
+						+ money / 100 + "ä¸¤!";
 			}
 			else
 			{
@@ -242,8 +242,8 @@ public class VipService
 	}
 
 	/***************************************************************************
-	 * ÁìÈ¡¹¤×ÊÇ°µÄ¹¤×ÊÏÔÊ¾
-	 * ·µ»Ønull ±íÊ¾Ã»ÓĞÊı¾İ
+	 * é¢†å–å·¥èµ„å‰çš„å·¥èµ„æ˜¾ç¤º
+	 * è¿”å›null è¡¨ç¤ºæ²¡æœ‰æ•°æ®
 	 */
 	public String getPlayerGetVipMoneyPrint()
 	{
@@ -254,7 +254,7 @@ public class VipService
 			for (int i = 0; i < list.size(); i++)
 			{
 				Vip vo = list.get(i);
-				sb.append(vo.getName()).append("Ã¿Ìì").append(vo.getSalary() / 100).append("Á½!<br/>");
+				sb.append(vo.getName()).append("æ¯å¤©").append(vo.getSalary() / 100).append("ä¸¤!<br/>");
 			}
 			return sb.toString();
 		}
@@ -264,14 +264,14 @@ public class VipService
 		}
 	}
 
-	/** *Áã¹¤×ÊÊ±ºò¹ºÂòVIPµÄÆ´½Ó** */
+	/** *é›¶å·¥èµ„æ—¶å€™è´­ä¹°VIPçš„æ‹¼æ¥** */
 	public String getPlayerGetVipMoneyByBuyVip(HttpServletResponse response,
 			HttpServletRequest request)
 	{
 		CommodityDao commodityDao = new CommodityDao();
 		
 		
-		List<CommodityVO> list = commodityDao.getListByType(1);//µÃµ½»áÔ±¿¨ÉÌÆ·ÁĞ±í
+		List<CommodityVO> list = commodityDao.getListByType(1);//å¾—åˆ°ä¼šå‘˜å¡å•†å“åˆ—è¡¨
 		
 		
 		if (list != null && list.size() != 0)
@@ -284,7 +284,7 @@ public class VipService
 				sb.append("<go method=\"post\" href=\"").append(response.encodeURL(GameConfig.getContextPath()+"/vip.do?cmd=n4")).append("\">");
 				sb.append("<postfield name=\"prop_id\" value=\"").append( vo.getPropId()).append("\" />");
 				sb.append("</go>");
-				sb.append("¹ºÂò").append(vo.getPropName());
+				sb.append("è´­ä¹°").append(vo.getPropName());
 				sb.append("</anchor><br/>");
 			}
 			return sb.toString();

@@ -10,7 +10,7 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * °ïÅÉ½¨Öş
+ * å¸®æ´¾å»ºç­‘
  */
 public class FBuildDao extends BasicDaoSupport<FBuild>
 {
@@ -20,14 +20,14 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	}
 
 	/**
-	 * µÃµ½°ïÅÉ½¨ÖşÊıÁ¿
+	 * å¾—åˆ°å¸®æ´¾å»ºç­‘æ•°é‡
 	 * @param fId
 	 * @return
 	 */
 	public int getNumByFId( int fId )
 	{
 		int num = 0;
-		String sql = "select count(*) from f_build where f_id="+fId;
+		String sql = "SELECT count(*) from f_build where f_id="+fId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -54,7 +54,7 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	}
 	
 	/**
-	 * Éı¼¶
+	 * å‡çº§
 	 * @param fBuild
 	 */
 	public void upgrade( FBuild fBuild,int newBId )
@@ -86,16 +86,16 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	}
 	
 	/**
-	 * Ìí¼Ó
-	 * @param fId		°ïÅÉid
-	 * @param bId		½¨Öşid
+	 * æ·»åŠ 
+	 * @param fId		å¸®æ´¾id
+	 * @param bId		å»ºç­‘id
 	 * @return
 	 */
 	public int add( int fId,int bId)
 	{
 		int key = 0;
 		
-		String sql = "insert into f_build(f_id,b_id,b_1_grade_id) values (?,?,?)";
+		String sql = "INSERT INTO f_build(f_id,b_id,b_1_grade_id) values (?,?,?)";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -124,12 +124,12 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉÒÑ½¨ºÃµÄÒ»¼¶½¨ÖşµÄid×Ö·û´®
+	 * å¾—åˆ°å¸®æ´¾å·²å»ºå¥½çš„ä¸€çº§å»ºç­‘çš„idå­—ç¬¦ä¸²
 	 */
 	public String get1GradeBuildIdList( int fId )
 	{
 		StringBuffer sb = new StringBuffer();
-		String sql = "select b_1_grade_id from f_build where f_id="+fId;
+		String sql = "SELECT b_1_grade_id from f_build where f_id="+fId;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -157,9 +157,9 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉµÄ½¨ÖşĞÅÏ¢
-	 * @param fId		°ïÅÉid
-	 * @param bId		½¨Öşid
+	 * å¾—åˆ°å¸®æ´¾çš„å»ºç­‘ä¿¡æ¯
+	 * @param fId		å¸®æ´¾id
+	 * @param bId		å»ºç­‘id
 	 * @return
 	 */
 	public FBuild getBuild(int fId,int bId)
@@ -168,7 +168,7 @@ public class FBuildDao extends BasicDaoSupport<FBuild>
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉ½¨ÖşÁĞ±í
+	 * å¾—åˆ°å¸®æ´¾å»ºç­‘åˆ—è¡¨
 	 */
 	public QueryPage getBuildPageList(int fId,int page_no)
 	{

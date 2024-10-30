@@ -22,9 +22,9 @@ public class MenpaiContestService
 {
 	public static Logger logger = Logger.getLogger("log.service");
 
-	/** *****Íæ¼Ò½øÈëÃÅÅÉ±ÈÎäµÄ´¦Àí******* */
+	/** *****ç©å®¶è¿›å…¥é—¨æ´¾æ¯”æ­¦çš„å¤„ç†******* */
 
-	// ÃÅÅÉ
+	// é—¨æ´¾
 	public void updatePlayerMenpaiContestState(RoleEntity roleinfo,String new_scene_id)
 	{
 		String scene_id = roleinfo.getBasicInfo().getSceneId();
@@ -48,7 +48,7 @@ public class MenpaiContestService
 		}
 	}
 
-	// ´¦ÀíÍæ¼ÒÉÏÏßºóµÄÃØ¾³µØÍ¼ĞÅÏ¢
+	// å¤„ç†ç©å®¶ä¸Šçº¿åçš„ç§˜å¢ƒåœ°å›¾ä¿¡æ¯
 	public void updateOfflinePlayerMenpaiContestState(RoleEntity roleinfo)
 	{
 		String scene_id = roleinfo.getBasicInfo().getSceneId();
@@ -69,10 +69,10 @@ public class MenpaiContestService
 		}
 	}
 
-	// ´¦ÀíÍæ¼Ò³ö³¡
+	// å¤„ç†ç©å®¶å‡ºåœº
 	private void outMenpaiContestMap(RoleEntity roleinfo)
 	{
-		// ÅĞ¶ÏÍæ¼ÒÊÇ·ñ´æÔÚ
+		// åˆ¤æ–­ç©å®¶æ˜¯å¦å­˜åœ¨
 		boolean have = isHavePlayerData(roleinfo.getBasicInfo().getPPk());
 		if (have == true)
 		{
@@ -80,10 +80,10 @@ public class MenpaiContestService
 		}
 	}
 
-	// ´¦ÀíÍæ¼Ò½ø³¡
+	// å¤„ç†ç©å®¶è¿›åœº
 	private void inMenpaiContestMap(RoleEntity roleinfo)
 	{
-		// ÅĞ¶ÏÍæ¼ÒÊÇ·ñ´æÔÚ
+		// åˆ¤æ–­ç©å®¶æ˜¯å¦å­˜åœ¨
 		boolean have = isHavePlayerData(roleinfo.getPPk());
 		if (have == true)
 		{
@@ -96,7 +96,7 @@ public class MenpaiContestService
 		}
 	}
 
-	// É±ÈËÊı
+	// æ€äººæ•°
 	public void updatePlayerKillNum(int win_p_pk, int p_pk_kill)
 	{
 		RoleEntity roleinfo = RoleCache.getByPpk(win_p_pk);
@@ -111,7 +111,7 @@ public class MenpaiContestService
 		}
 	}
 
-	// Íæ¼ÒÊÇ·ñÓĞ¸ÃÊı¾İ
+	// ç©å®¶æ˜¯å¦æœ‰è¯¥æ•°æ®
 	private boolean isHavePlayerData(int p_pk)
 	{
 		MenpaiContestDAO dao = new MenpaiContestDAO();
@@ -126,28 +126,28 @@ public class MenpaiContestService
 		}
 	}
 
-	// ²åÈëÍæ¼ÒÊı¾İ
+	// æ’å…¥ç©å®¶æ•°æ®
 	private void insertPlayerData(int p_pk, String p_name, int p_type)
 	{
 		MenpaiContestDAO dao = new MenpaiContestDAO();
 		dao.insertPlayerData(p_pk, p_name, p_type);
 	}
 
-	// ¸üĞÂÍæ¼Ò³öÈ¥µÄÊı¾İ
+	// æ›´æ–°ç©å®¶å‡ºå»çš„æ•°æ®
 	private void updatePlayerOutData(int p_pk)
 	{
 		MenpaiContestDAO dao = new MenpaiContestDAO();
 		dao.updatePlayerOutData(p_pk);
 	}
 
-	// ¸üĞÂÍæ¼Ò½øÈëÊı¾İ
+	// æ›´æ–°ç©å®¶è¿›å…¥æ•°æ®
 	private void updatePlayerInData(int p_pk, int type)
 	{
 		MenpaiContestDAO dao = new MenpaiContestDAO();
 		dao.updatePlayerInData(p_pk);
 	}
 
-	/*// ÅĞ¶ÏÍæ¼ÒµÄ³ÆÎ½
+	/*// åˆ¤æ–­ç©å®¶çš„ç§°è°“
 	public int getPlayerTitleType(RoleEntity roleinfo)
 	{
 		if (roleinfo.getBasicInfo().getTitle().equals("xunshandizi")
@@ -180,18 +180,18 @@ public class MenpaiContestService
 		return 0;
 	}*/
 
-	/** *****¶¨Ê±Æ÷´¦ÀíÍæ¼ÒÃÅÅÉ±ÈÎä****** */
+	/** *****å®šæ—¶å™¨å¤„ç†ç©å®¶é—¨æ´¾æ¯”æ­¦****** */
 	public void menpaiContestReady()
 	{
 		SystemInfoService systemInfoService = new SystemInfoService();
 		systemInfoService
-				.insertSystemInfoBySystem("ÃÅÅÉ±ÈÎä´ó»á½«ÔÚ30·ÖÖÓºó¿ªÊ¼,¸÷ÃÅÅÉµÄµÜ×Ó¿ÉÒÔÇ°Íù×Ô¼ºµÄÃÅÅÉ½øÈë±ÈÎäÈü³¡ÁË!");
+				.insertSystemInfoBySystem("é—¨æ´¾æ¯”æ­¦å¤§ä¼šå°†åœ¨30åˆ†é’Ÿåå¼€å§‹,å„é—¨æ´¾çš„å¼Ÿå­å¯ä»¥å‰å¾€è‡ªå·±çš„é—¨æ´¾è¿›å…¥æ¯”æ­¦èµ›åœºäº†!");
 	}
 
 	public void menpaiContestRun()
 	{
 		SystemInfoService systemInfoService = new SystemInfoService();
-		systemInfoService.insertSystemInfoBySystem("ÃÅÅÉ±ÈÎä´ó»á¿ªÊ¼ÁË£¬×£¸÷Î»´óÏÀºÃÔË!");
+		systemInfoService.insertSystemInfoBySystem("é—¨æ´¾æ¯”æ­¦å¤§ä¼šå¼€å§‹äº†ï¼Œç¥å„ä½å¤§ä¾ å¥½è¿!");
 	}
 
 	public void menpaiContestOver(int p_type)
@@ -204,37 +204,37 @@ public class MenpaiContestService
 		String p_lenger = "";
 		if (p_type == 1)
 		{
-			p_title = "Ãû½Ì";
-			p_lenger = "½ÌÖ÷";
+			p_title = "åæ•™";
+			p_lenger = "æ•™ä¸»";
 		}
 		if (p_type == 2)
 		{
-			p_title = "Ø¤°ï";
-			p_lenger = "°ïÖ÷";
+			p_title = "ä¸å¸®";
+			p_lenger = "å¸®ä¸»";
 		}
 		if (p_type == 3)
 		{
-			p_title = "ÉÙÁÖ";
-			p_lenger = "·½ÕÉ";
+			p_title = "å°‘æ—";
+			p_lenger = "æ–¹ä¸ˆ";
 		}
 		if (list != null && list.size() != 0)
 		{
 
 			if (list.size() == 1)
 			{
-				// ´¦ÀíÍæ¼ÒµÄ
+				// å¤„ç†ç©å®¶çš„
 				MenpaiContestPlayerVO one_bak = list.get(0);
 				RoleEntity roleinfo = RoleCache.getByPpk(one_bak.getP_pk());
-				// WIN_TYPE 3ÎªÃ»ÓĞÁìÈ¡½±Àø
+				// WIN_TYPE 3ä¸ºæ²¡æœ‰é¢†å–å¥–åŠ±
 				dao.updatePlayerRankState(roleinfo.getBasicInfo().getPPk(), 3);
 				systemInfoService
 						.insertSystemInfoBySystem(roleinfo.getBasicInfo()
 								.getName()
-								+ "ÔÚ"
+								+ "åœ¨"
 								+ p_title
-								+ "µÄÃÅÅÉ±ÈÎäÖĞÍÑÓ±¶ø³ö,³ÉÎªÁË"
+								+ "çš„é—¨æ´¾æ¯”æ­¦ä¸­è„±é¢–è€Œå‡º,æˆä¸ºäº†"
 								+ p_title
-								+ "µÄÊ×Ï¯µÜ×Ó!");
+								+ "çš„é¦–å¸­å¼Ÿå­!");
 				String scene_id = roleinfo.getBasicInfo().getSceneId();
 				if (scene_id == null || scene_id.equals("")
 						|| scene_id.equals("null"))
@@ -281,10 +281,10 @@ public class MenpaiContestService
 									systemInfoService
 											.insertSystemInfoBySystem(roleinfo_bak
 													.getBasicInfo().getName()
-													+ "ÔÚ"
+													+ "åœ¨"
 													+ p_title
-													+ "µÄÃÅÅÉ±ÈÎäÖĞÍÑÓ±¶ø³ö,³ÉÎªÁË"
-													+ p_title + "µÄÊ×Ï¯µÜ×Ó!");
+													+ "çš„é—¨æ´¾æ¯”æ­¦ä¸­è„±é¢–è€Œå‡º,æˆä¸ºäº†"
+													+ p_title + "çš„é¦–å¸­å¼Ÿå­!");
 									return;
 								}
 							}
@@ -294,7 +294,7 @@ public class MenpaiContestService
 						{
 							RoleEntity roleinfo_one = RoleCache.getByPpk(one_bak_1.getP_pk());
 							RoleEntity roleinfo_two = RoleCache.getByPpk(two_bak_2.getP_pk());
-							// WIN_TYPE 2ÎªÃ»ÓĞ·Ö³öÊ¤¸º
+							// WIN_TYPE 2ä¸ºæ²¡æœ‰åˆ†å‡ºèƒœè´Ÿ
 							dao.updatePlayerRankState(roleinfo_one
 									.getBasicInfo().getPPk(), 2);
 							dao.updatePlayerRankState(roleinfo_two
@@ -325,27 +325,27 @@ public class MenpaiContestService
 					}
 				}
 				systemInfoService.insertSystemInfoBySystem(p_title
-						+ "µÄÊ×Ï¯µÜ×ÓÖ®Õù¾¹È»Î´µÃ³ö×îºóµÄÊ¤Õß," + p_lenger + "¾ö¶¨ÈÃ" + name
-						+ "ÔñÈÕÔÙÕ½");
+						+ "çš„é¦–å¸­å¼Ÿå­ä¹‹äº‰ç«Ÿç„¶æœªå¾—å‡ºæœ€åçš„èƒœè€…," + p_lenger + "å†³å®šè®©" + name
+						+ "æ‹©æ—¥å†æˆ˜");
 			}
 		}
 		else
 		{
-			systemInfoService.insertSystemInfoBySystem(p_title + "±ÈÎä½áÊøÁË");
+			systemInfoService.insertSystemInfoBySystem(p_title + "æ¯”æ­¦ç»“æŸäº†");
 		}
 	}
 
-	// Íæ¼Ò·¢½±
+	// ç©å®¶å‘å¥–
 	public int updatePlayerGetPrizeData(RoleEntity roleinfo, int type)
 	{
 		String prop = GameConfig.getPlayerGetMenpaiContestProp(type).trim();
 		GoodsService gs = new GoodsService();
 		MenpaiContestDAO dao = new MenpaiContestDAO();
-		// ¸üĞÂÍæ¼ÒµñÏñ
+		// æ›´æ–°ç©å®¶é›•åƒ
 		String build = GameConfig.getPlayerGetMenpaiContestbulid(type).trim();
 		MenuService menuService = new MenuService();
 		OperateMenuVO menu = menuService.getMenuById(Integer.parseInt(build));
-		String name = roleinfo.getBasicInfo().getName() + "µÄµñÏñ";
+		String name = roleinfo.getBasicInfo().getName() + "çš„é›•åƒ";
 		menu.setMenuName(name);
 		MenuCache menuCache = new MenuCache();
 		menuCache.reloadOneMenu(menu);
@@ -354,7 +354,7 @@ public class MenpaiContestService
 				.parseInt(prop), 4, 1);
 	}
 
-	/** *****Íæ¼Ò±ÈÎäÅÅÃûµÄ´¦Àí****** */
+	/** *****ç©å®¶æ¯”æ­¦æ’åçš„å¤„ç†****** */
 	public List<MenpaiContestPlayerVO> getPlayerRankList(int pageNo,
 			String p_type)
 	{

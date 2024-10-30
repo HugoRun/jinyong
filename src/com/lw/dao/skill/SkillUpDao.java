@@ -9,13 +9,13 @@ import com.ls.pub.db.DBConnection;
 public class SkillUpDao extends SkillDao
 {
 
-	/** ******¸ù¾İ¼¼ÄÜIDµÃµ½¼¼ÄÜ×éID******* */
+	/** ******æ ¹æ®æŠ€èƒ½IDå¾—åˆ°æŠ€èƒ½ç»„ID******* */
 	public int getSkGroup(int sk_id, int p_pk)
 	{
 		int sk_group = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select sk_group from u_skill_info where sk_id =" + sk_id
+		String sql = "SELECT sk_group from u_skill_info where sk_id =" + sk_id
 				+ " and p_pk = " + p_pk;
 		logger.debug(sql);
 		try
@@ -41,13 +41,13 @@ public class SkillUpDao extends SkillDao
 
 	}
 
-	/** *******¸ù¾İÍæ¼ÒIDµÃµ½Íæ¼Ò¼¼ÄÜÊìÁ·¶È*********** */
+	/** *******æ ¹æ®ç©å®¶IDå¾—åˆ°ç©å®¶æŠ€èƒ½ç†Ÿç»ƒåº¦*********** */
 	public int getPlayerSleight(int sk_id, int p_pk)
 	{
 		int sk_sleight = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select sk_sleight from u_skill_info where sk_id ="
+		String sql = "SELECT sk_sleight from u_skill_info where sk_id ="
 				+ sk_id + " and p_pk = " + p_pk;
 		logger.debug(sql);
 		try
@@ -72,13 +72,13 @@ public class SkillUpDao extends SkillDao
 		return sk_sleight;
 	}
 
-	/** *******¸ù¾İ¼¼ÄÜIDµÃµ½¼¼ÄÜÏÂÒ»¼¶Éı¼¶ĞèÒªµÄÊìÁ·¶È*********** */
+	/** *******æ ¹æ®æŠ€èƒ½IDå¾—åˆ°æŠ€èƒ½ä¸‹ä¸€çº§å‡çº§éœ€è¦çš„ç†Ÿç»ƒåº¦*********** */
 	public int getLevelSleight(int sk_id)
 	{
 		int sk_next_sleight = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select sk_next_sleight from skill where sk_id =" + sk_id;
+		String sql = "SELECT sk_next_sleight from skill where sk_id =" + sk_id;
 		logger.debug(sql);
 		try
 		{
@@ -102,13 +102,13 @@ public class SkillUpDao extends SkillDao
 		return sk_next_sleight;
 	}
 
-	/** *******¸ù¾İ¼¼ÄÜ×éIDºÍÊìÁ·¶ÈµÃµ½ÏÂÒ»¼¶¼¼ÄÜID********** */
+	/** *******æ ¹æ®æŠ€èƒ½ç»„IDå’Œç†Ÿç»ƒåº¦å¾—åˆ°ä¸‹ä¸€çº§æŠ€èƒ½ID********** */
 	public int getNextSkill(int sk_sleight, int sk_group)
 	{
 		int sk_next_id = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		String sql = "select sk_id from skill where sk_sleight <= "+sk_sleight+" and sk_group = "+sk_group+" order by sk_id desc limit 1";
+		String sql = "SELECT sk_id from skill where sk_sleight <= "+sk_sleight+" and sk_group = "+sk_group+" order by sk_id desc limit 1";
 		logger.debug(sql);
 		try
 		{
@@ -133,7 +133,7 @@ public class SkillUpDao extends SkillDao
 
 	}
 
-	/** **¸üĞÂ¼¼ÄÜÃû³Æ******* */
+	/** **æ›´æ–°æŠ€èƒ½åç§°******* */
 	public void updateSkillName(int sk_next_id, int sk_group, int p_pk)
 	{
 
@@ -161,7 +161,7 @@ public class SkillUpDao extends SkillDao
 		}
 	}
 
-	/** *****¸üĞÂ¼¼ÄÜID************ */
+	/** *****æ›´æ–°æŠ€èƒ½ID************ */
 	public void updateSkillID1(int sk_next_id, int sk_group, int p_pk)
 	{
 
@@ -186,14 +186,14 @@ public class SkillUpDao extends SkillDao
 		}
 	}
 
-	/** *********µÃµ½¸üĞÂµÄs_pk*********** */
+	/** *********å¾—åˆ°æ›´æ–°çš„s_pk*********** */
 
 	public int getSpk(int p_pk, int sk_id)
 	{
 		int s_pk = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select s_pk from u_skill_info where p_pk  =" + p_pk
+		String sql = "SELECT s_pk from u_skill_info where p_pk  =" + p_pk
 				+ " and sk_id = " + sk_id;
 		logger.debug(sql);
 		try
@@ -218,7 +218,7 @@ public class SkillUpDao extends SkillDao
 		return s_pk;
 	}
 
-	/** ********¸ü»»µô¿ì½İ¼üÉÏµÄ¼¼ÄÜÃû³Æ**************** */
+	/** ********æ›´æ¢æ‰å¿«æ·é”®ä¸Šçš„æŠ€èƒ½åç§°**************** */
 	public void changeName(int s_pk, int sk_next_id)
 	{
 		SkillCache skillCaChe = new SkillCache();		

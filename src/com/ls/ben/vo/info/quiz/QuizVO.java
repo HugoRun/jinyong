@@ -3,31 +3,31 @@ package com.ls.ben.vo.info.quiz;
 import com.ls.iface.function.Probability;
 
 /**
- * ¹¦ÄÜ:quiz_respobily Ìâ¿â
- * @author ºîºÆ¾ü
+ * åŠŸèƒ½:quiz_respobily é¢˜åº“
+ * @author ä¾¯æµ©å†›
  * 5:43:30 PM
  */
 public class QuizVO implements Probability {
 	
 	/**id*/
 	private int id;
-	/**³öÌâ¸ÅÂÊ*/
+	/**å‡ºé¢˜æ¦‚ç‡*/
 	private int probability;
 	
-	/**ÌâÄ¿ÄÚÈİ*/
+	/**é¢˜ç›®å†…å®¹*/
 	private String     quizContent;
-	/**ÌâÄ¿±¸Ñ¡´ğ°¸,´æ´¢ĞÎÊ½Èç:1.´ğ°¸Ò»,2.´ğ°¸¶ş,3.´ğ°¸Èı    ¿ÉÓĞ¶à¸ö*/
+	/**é¢˜ç›®å¤‡é€‰ç­”æ¡ˆ,å­˜å‚¨å½¢å¼å¦‚:1.ç­”æ¡ˆä¸€,2.ç­”æ¡ˆäºŒ,3.ç­”æ¡ˆä¸‰    å¯æœ‰å¤šä¸ª*/
 	private String      quizAnswers;
-	/**ÌâÄ¿ÕıÈ·´ğ°¸,´æ´¢¶ÔÓ¦ÉÏÃæµÄĞòºÅ£¬ÈçÕıÈ·´ğ°¸Îª2.´ğ°¸¶ş£¬Ôò´æ´¢:2*/
+	/**é¢˜ç›®æ­£ç¡®ç­”æ¡ˆ,å­˜å‚¨å¯¹åº”ä¸Šé¢çš„åºå·ï¼Œå¦‚æ­£ç¡®ç­”æ¡ˆä¸º2.ç­”æ¡ˆäºŒï¼Œåˆ™å­˜å‚¨:2*/
 	private int     quziRightAnswer;
 	
-	/**½±ÀøµÄ¾­Ñé*/
+	/**å¥–åŠ±çš„ç»éªŒ*/
 	private long awardExperience;
-	 /**½±ÀøµÄ½ğÇ®*/
+	 /**å¥–åŠ±çš„é‡‘é’±*/
 	private long      awardMoney;
-	/**½±ÀøµÄÉùÍû*/
+	/**å¥–åŠ±çš„å£°æœ›*/
 	private String      awardPrestige;
-	/**½±ÀøµÄÎïÆ·£¬´æ´¢ĞÎÊ½Èç:ÎïÆ·ÀàĞÍ,ÎïÆ·id,ÎïÆ·ÊıÁ¿- */
+	/**å¥–åŠ±çš„ç‰©å“ï¼Œå­˜å‚¨å½¢å¼å¦‚:ç‰©å“ç±»å‹,ç‰©å“id,ç‰©å“æ•°é‡- */
 	private String      awardGoods;
 	
 	public String getQuizContent() {

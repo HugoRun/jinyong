@@ -29,12 +29,12 @@ public class TTBOXService
 		if (result == -1)
 		{
 			npcService.deleteByPpk(roleInfo.getPPk());
-			hint = "您的包裹不足以放下该物品!";
+			hint = "鎮ㄧ殑鍖呰９涓嶈冻浠ユ斁涓嬭鐗╁搧!";
 		}
 		else
 		{
 			npcService.deleteByPpk(roleInfo.getPPk());
-			hint = "您获得了" + vo.getGoodname();
+			hint = "鎮ㄨ幏寰椾簡" + vo.getGoodname();
 		}
 		return hint;
 	}

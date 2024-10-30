@@ -11,12 +11,12 @@ import com.lw.vo.lottery.PlayerLotteryInfoVO;
 public class PlayerLotteryInfoDao extends DaoBase
 {
 
-	/** µÃµ½Íæ¼ÒµÄ²©²ÊĞÅÏ¢ */
+	/** å¾—åˆ°ç©å®¶çš„åšå½©ä¿¡æ¯ */
 	public PlayerLotteryInfoVO getLotteryInfoByPpk(int p_pk)// synchronized
 	{
 
 		PlayerLotteryInfoVO lotteryInfo = null;
-		String sql = "select * from  u_lottery_info where p_pk =" + p_pk;
+		String sql = "SELECT * FROM  u_lottery_info where p_pk =" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -53,12 +53,12 @@ public class PlayerLotteryInfoDao extends DaoBase
 		return lotteryInfo;
 	}
 
-	/** ¸ù¾İÖĞ½±×Ü½ğ¶îµÃµ½Íæ¼ÒµÄÅÅÃû */
+	/** æ ¹æ®ä¸­å¥–æ€»é‡‘é¢å¾—åˆ°ç©å®¶çš„æ’å */
 	public List<Integer> getLotteryRank()
 	{
 		int p_pk = 0;
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select p_pk from  u_lottery_info order by lottery_all_bonus desc limit 10";
+		String sql = "SELECT p_pk from  u_lottery_info order by lottery_all_bonus desc limit 10";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -85,10 +85,10 @@ public class PlayerLotteryInfoDao extends DaoBase
 		return list;
 	}
 
-	/** ²åÈëÍæ¼Ò²ÊÆ±ĞÅÏ¢ */
+	/** æ’å…¥ç©å®¶å½©ç¥¨ä¿¡æ¯ */
 	public void setPlayerLotteryMessage(int p_pk)
 	{
-		String sql = "insert into u_lottery_info values  (null,?,0,0,0,0,1,0,0)";
+		String sql = "INSERT INTO u_lottery_info values  (null,?,0,0,0,0,1,0,0)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -111,13 +111,13 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒµÄÍ¶×¢´ÎÊı */
+	/** å¾—åˆ°ç©å®¶çš„æŠ•æ³¨æ¬¡æ•° */
 	public int getPlayerLotteryNum(int p_pk)
 	{
 		int lottery_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select lottery_num from u_lottery_info where p_pk ="
+		String sql = "SELECT lottery_num from u_lottery_info where p_pk ="
 				+ p_pk;
 		logger.debug(sql);
 		try
@@ -142,7 +142,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		return lottery_num;
 	}
 
-	/** ²åÈëÖĞ½±µ¥×¢½±½ğ½ğ¶î */
+	/** æ’å…¥ä¸­å¥–å•æ³¨å¥–é‡‘é‡‘é¢ */
 	public void setPerMoney(int lottery_per_bonus)
 	{
 		String sql = "update u_lottery_info set lottery_per_bonus = "
@@ -166,7 +166,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** Íæ¼ÒĞÅÏ¢ÇëÁã */
+	/** ç©å®¶ä¿¡æ¯è¯·é›¶ */
 	public void delPlayerMessage()
 	{
 		String sql = "update u_lottery_info set lottery_per_bonus = 0 ";
@@ -189,7 +189,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** °´ÔÂ¸øÍæ¼ÒÇåÁã²ÊÆ±ĞÅÏ¢ */
+	/** æŒ‰æœˆç»™ç©å®¶æ¸…é›¶å½©ç¥¨ä¿¡æ¯ */
 	public void delPlayerMessageByMonth()
 	{
 		String sql = "update u_lottery_info set lottery_num = 0,lottery_win_num = 0";
@@ -213,7 +213,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	}
 
 	/**
-	 * ¸øÍæ¼Ò±ê¼ÇÊÇ·ñÁì¹ı½±½ğ
+	 * ç»™ç©å®¶æ ‡è®°æ˜¯å¦é¢†è¿‡å¥–é‡‘
 	 */
 
 	public void updatePlayerCatch(int p_pk)
@@ -240,7 +240,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 	}
 	
 	/**
-	 * ¸øÍæ¼Ò±ê¼ÇÊÇ·ñÁì¹ı½±½ğ
+	 * ç»™ç©å®¶æ ‡è®°æ˜¯å¦é¢†è¿‡å¥–é‡‘
 	 */
 
 	public void updatePlayerCatchBySys()
@@ -265,7 +265,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** Íæ¼ÒÔÚÁìÈ¡½±½ğµÄÍ¬Ê±¸øÍæ¼ÒµÄ×Ü½±½ğ¶îÔö¼Ó */
+	/** ç©å®¶åœ¨é¢†å–å¥–é‡‘çš„åŒæ—¶ç»™ç©å®¶çš„æ€»å¥–é‡‘é¢å¢åŠ  */
 	public void updatePlayerAllBonus(int lottery_bonus, int p_pk)
 	{
 		String sql = "update u_lottery_info set lottery_all_bonus = lottery_all_bonus + "
@@ -289,7 +289,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** ¸øÍæ¼ÒÍ¶×¢Êı+1 */
+	/** ç»™ç©å®¶æŠ•æ³¨æ•°+1 */
 	public void addPlayerLotteryNum(int p_pk)
 	{
 		String sql = "update u_lottery_info set lottery_num = lottery_num + 1 where p_pk = "
@@ -313,7 +313,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** Íæ¼ÒÓ®È¡²ÊÆ±Ê±ºò ¸øÍæ¼Ò ±¶Êı+1 Ó®È¡´ÎÊı+1 */
+	/** ç©å®¶èµ¢å–å½©ç¥¨æ—¶å€™ ç»™ç©å®¶ å€æ•°+1 èµ¢å–æ¬¡æ•°+1 */
 	public void addPlayerWinNum(int p_pk)
 	{
 		String sql = "update u_lottery_info set lottery_win_num = lottery_win_num + 1 , lottery_bonus_multiple = lottery_bonus_multiple + 1 where p_pk = "
@@ -337,7 +337,7 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** ¸øÍæ¼ÒµÄ±¶ÊıÇå¿Õ */
+	/** ç»™ç©å®¶çš„å€æ•°æ¸…ç©º */
 	public void delPlayerLotteryMultiple(int p_pk)
 	{
 		String sql = "update u_lottery_info set  lottery_bonus_multiple = 1 where p_pk = "
@@ -361,11 +361,11 @@ public class PlayerLotteryInfoDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½Íæ¼Ò×Ü½±½ğ */
+	/** å¾—åˆ°ç©å®¶æ€»å¥–é‡‘ */
 	public int getPlayerAllBonus(int p_pk)
 	{
 		int lottery_all_bonus = 0;
-		String sql = "select lottery_all_bonus from u_lottery_info where p_pk = "
+		String sql = "SELECT lottery_all_bonus from u_lottery_info where p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -392,11 +392,11 @@ public class PlayerLotteryInfoDao extends DaoBase
 		return lottery_all_bonus;
 	}
 
-	/** µÃµ½Íæ¼Òµ±Ç°ÅÅÃû ¸úÍæ¼ÒÒ»ÑùµÄ ±ÈÍæ¼ÒµÄ´óµÄ */
+	/** å¾—åˆ°ç©å®¶å½“å‰æ’å è·Ÿç©å®¶ä¸€æ ·çš„ æ¯”ç©å®¶çš„å¤§çš„ */
 	public int playerRank(int lottery_all_bonus)
 	{
 		int rank = 0;
-		String sql = "select count(distinct lottery_all_bonus) allc from u_lottery_info where lottery_all_bonus >= "
+		String sql = "SELECT count(distinct lottery_all_bonus) allc from u_lottery_info where lottery_all_bonus >= "
 				+ lottery_all_bonus;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -423,13 +423,13 @@ public class PlayerLotteryInfoDao extends DaoBase
 		return rank;
 	}
 
-	/** µÃµ½µ¥×¢½±½ğ½ğ¶î */
+	/** å¾—åˆ°å•æ³¨å¥–é‡‘é‡‘é¢ */
 	public int oneLotteryMoney()
 	{
 		int lottery_num = 0;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select lottery_per_bonus from u_lottery_info ";
+		String sql = "SELECT lottery_per_bonus from u_lottery_info ";
 		try
 		{
 			stmt = conn.createStatement();

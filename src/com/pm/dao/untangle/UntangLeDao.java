@@ -12,15 +12,15 @@ public class UntangLeDao extends DaoBase
 {
 
 	/**
-	 * ²âÊÔ£¬»ñµÃÍæ¼ÒµÄ¸öÈËÅÅÃû£¬µÚÒ»Îª½­ºşÅÅÃû£¬µÚ¶şÎª½­ºş¾­Ñé¶àÉÙ
+	 * æµ‹è¯•ï¼Œè·å¾—ç©å®¶çš„ä¸ªäººæ’åï¼Œç¬¬ä¸€ä¸ºæ±Ÿæ¹–æ’åï¼Œç¬¬äºŒä¸ºæ±Ÿæ¹–ç»éªŒå¤šå°‘
 	 * 
 	 * @param pPk
-	 *            Íæ¼ÒµÄ¸öÈËid
+	 *            ç©å®¶çš„ä¸ªäººid
 	 * @return
 	 */
 	public int[] getGradePaiMimgQuan(String pPk)
 	{
-		String sql = "select count(1) as num,(select glory_value+up.p_experience as fen from u_part_info up "
+		String sql = "SELECT count(1) as num,(select glory_value+up.p_experience as fen from u_part_info up "
 				+ "join u_tong_glory ut on ut.p_pk = up.p_pk where up.p_pk = "
 				+ pPk
 				+ " limit 1 ) as zijifen"
@@ -35,7 +35,7 @@ public class UntangLeDao extends DaoBase
 				+ " limit 1 ) and "
 				+ "up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
 				+ pPk + "))";
-		logger.debug("»ñµÃÓĞ¶àÉÙÈË±È´ËÈËµÄ½­ºşÅÅÃû¸ü¸ßµÄsql=" + sql);
+		logger.debug("è·å¾—æœ‰å¤šå°‘äººæ¯”æ­¤äººçš„æ±Ÿæ¹–æ’åæ›´é«˜çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int[] paiming = new int[2];
 
@@ -64,20 +64,20 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÓĞ¶àÉÙÈË±È´ËÈËµÄ½­ºşÅÅÃû¸ü¸ß
+	 * è·å¾—æœ‰å¤šå°‘äººæ¯”æ­¤äººçš„æ±Ÿæ¹–æ’åæ›´é«˜
 	 * 
 	 * @param pPk
-	 *            Íæ¼ÒµÄ¸öÈËid
+	 *            ç©å®¶çš„ä¸ªäººid
 	 * @return
 	 */
 	public int getGradePaiMimg(String pPk)
 	{
-		String sql = "select up.p_pk  from u_part_info up  join u_tong_glory ut "
+		String sql = "SELECT up.p_pk  from u_part_info up  join u_tong_glory ut "
 				+ "on ut.p_pk = up.p_pk where (glory_value+up.p_experience) > "
 				+ "(select glory_value+up.p_experience as fen from u_part_info up "
 				+ " join u_tong_glory ut on ut.p_pk = up.p_pk where up.p_pk = "
 				+ pPk + " limit 1 ) ";
-		logger.debug("»ñµÃÓĞ¶àÉÙÈË±È´ËÈËµÄ½­ºşÅÅÃû¸ü¸ßµÄsql=" + sql);
+		logger.debug("è·å¾—æœ‰å¤šå°‘äººæ¯”æ­¤äººçš„æ±Ÿæ¹–æ’åæ›´é«˜çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int paiming = 0;
 		try
@@ -104,22 +104,22 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÔÚµÈ¼¶ÅÅÃûÏàÍ¬Ê±´ËÈËËùÅÅµÄÃû´Î
+	 * è·å¾—åœ¨ç­‰çº§æ’åç›¸åŒæ—¶æ­¤äººæ‰€æ’çš„åæ¬¡
 	 * 
 	 * @param pPk
-	 *            Íæ¼ÒµÄ¸öÈËid
+	 *            ç©å®¶çš„ä¸ªäººid
 	 * @param fen
-	 *            Íæ¼ÒµÄµÈ¼¶»ı·Ö
+	 *            ç©å®¶çš„ç­‰çº§ç§¯åˆ†
 	 * @return
 	 */
 	public int getSamePaiMing(String pPk, int fen)
 	{
-		String sql = "select up.p_pk from u_part_info up  join u_tong_glory ut "
+		String sql = "SELECT up.p_pk from u_part_info up  join u_tong_glory ut "
 				+ "on ut.p_pk = up.p_pk where (glory_value+up.p_experience) = "
 				+ fen
 				+ " and up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
 				+ pPk + ")";
-		logger.debug("»ñµÃÔÚµÈ¼¶ÅÅÃûÏàÍ¬Ê±´ËÈËËùÅÅµÄÃû´Îsql=" + sql);
+		logger.debug("è·å¾—åœ¨ç­‰çº§æ’åç›¸åŒæ—¶æ­¤äººæ‰€æ’çš„åæ¬¡sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int paiming = 0;
 		try
@@ -146,7 +146,7 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃ´Ë½­ºşÅÅÃûµÄÍæ¼ÒµÄp_pkºÍ»ı·ÖÖµ, ·µ»ØÖµÊÇÒ»¸öÊı×é,µÚÒ»¸öÔªËØÊÇp_pk, µÚ¶ş¸öÔªËØÊÇglory_vlaue, ¼´½­ºş·ÖÖµ.
+	 * è·å¾—æ­¤æ±Ÿæ¹–æ’åçš„ç©å®¶çš„p_pkå’Œç§¯åˆ†å€¼, è¿”å›å€¼æ˜¯ä¸€ä¸ªæ•°ç»„,ç¬¬ä¸€ä¸ªå…ƒç´ æ˜¯p_pk, ç¬¬äºŒä¸ªå…ƒç´ æ˜¯glory_vlaue, å³æ±Ÿæ¹–åˆ†å€¼.
 	 * 
 	 * @param paiming
 	 * @return
@@ -157,12 +157,12 @@ public class UntangLeDao extends DaoBase
 		{
 			paiming = 1;
 		}
-		String sql = "select up.p_pk,glory_value+up.p_experience as fen "
+		String sql = "SELECT up.p_pk,glory_value+up.p_experience as fen "
 				+ "from u_part_info up  join u_tong_glory ut "
 				+ "on ut.p_pk = up.p_pk order by fen desc limit "
 				+ (paiming - 1) + ",1";
 		int[] bigPerson = new int[2];
-		logger.debug("»ñµÃ´Ë½­ºşÅÅÃûµÄÍæ¼ÒµÄp_pkºÍ»ı·ÖÖµµÄsql=" + sql);
+		logger.debug("è·å¾—æ­¤æ±Ÿæ¹–æ’åçš„ç©å®¶çš„p_pkå’Œç§¯åˆ†å€¼çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -191,7 +191,7 @@ public class UntangLeDao extends DaoBase
 	
 	
 	/**
-	 * »ñµÃ´Ë½­ºşÅÅÃûµÄÍæ¼ÒµÄ»ı·ÖÖµ, ÊÇglory_vlaue, ¼´½­ºş·ÖÖµ.
+	 * è·å¾—æ­¤æ±Ÿæ¹–æ’åçš„ç©å®¶çš„ç§¯åˆ†å€¼, æ˜¯glory_vlaue, å³æ±Ÿæ¹–åˆ†å€¼.
 	 * 
 	 * @param paiming
 	 * @return
@@ -202,12 +202,12 @@ public class UntangLeDao extends DaoBase
 		{
 			paiming = 1;
 		}
-		String sql = "select glory_value+up.p_experience as fen "
+		String sql = "SELECT glory_value+up.p_experience as fen "
 				+ "from u_part_info up  join u_tong_glory ut "
 				+ "on ut.p_pk = up.p_pk order by fen desc limit "
 				+ (paiming - 1) + ",1";
 		int bigPerson = 0;
-		logger.debug("»ñµÃ´Ë½­ºşÅÅÃûµÄÍæ¼ÒµÄp_pkºÍ»ı·ÖÖµµÄsql=" + sql);
+		logger.debug("è·å¾—æ­¤æ±Ÿæ¹–æ’åçš„ç©å®¶çš„p_pkå’Œç§¯åˆ†å€¼çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -233,18 +233,18 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İpPkÀ´»ñµÃ×ÛºÏ½­ºş·ÖÊı
+	 * æ ¹æ®pPkæ¥è·å¾—ç»¼åˆæ±Ÿæ¹–åˆ†æ•°
 	 * 
 	 * @param pPk
 	 * @return
 	 */
 	public int getFenShuByPPk(String pPk)
 	{
-		String sql = "select IFNULL(glory_value,0)+up.p_experience as fen "
+		String sql = "SELECT IFNULL(glory_value,0)+up.p_experience as fen "
 				+ "from u_part_info up  join u_tong_glory ut "
 				+ "on ut.p_pk = up.p_pk where up.p_pk = " + pPk;
 		int fenshu = 0;
-		logger.debug("¸ù¾İpPkÀ´»ñµÃ×ÛºÏ½­ºş·ÖÊıµÄsql=" + sql);
+		logger.debug("æ ¹æ®pPkæ¥è·å¾—ç»¼åˆæ±Ÿæ¹–åˆ†æ•°çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -272,15 +272,15 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * ²âÊÔ£¬»ñµÃÍæ¼ÒµÄ¸öÈËÅÅÃû£¬µÚÒ»Îª½ğÇ®ÅÅÃû£¬µÚ¶şÎª½ğÇ®¶àÉÙ
+	 * æµ‹è¯•ï¼Œè·å¾—ç©å®¶çš„ä¸ªäººæ’åï¼Œç¬¬ä¸€ä¸ºé‡‘é’±æ’åï¼Œç¬¬äºŒä¸ºé‡‘é’±å¤šå°‘
 	 * 
 	 * @param pPk
-	 *            Íæ¼ÒµÄ¸öÈËid
+	 *            ç©å®¶çš„ä¸ªäººid
 	 * @return
 	 */
 	public int[] getMoneyPaiMimgQuan(String pPk)
 	{
-		String sql = "select count(1) as num , (select uw_money_number+up.p_copper as fen from u_part_info up "
+		String sql = "SELECT count(1) as num , (select uw_money_number+up.p_copper as fen from u_part_info up "
 				+ "join u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 where up.p_pk = "
 				+ pPk
 				+ ") as money from "
@@ -295,7 +295,7 @@ public class UntangLeDao extends DaoBase
 				+ ") and "
 				+ "up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
 				+ pPk + "))";
-		logger.debug("»ñµÃÓĞ¶àÉÙÈË±È´ËÈËµÄ½­ºşÅÅÃû¸ü¸ßµÄsql=" + sql);
+		logger.debug("è·å¾—æœ‰å¤šå°‘äººæ¯”æ­¤äººçš„æ±Ÿæ¹–æ’åæ›´é«˜çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int[] paiming = new int[2];
 
@@ -324,16 +324,16 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÓĞ¶àÉÙÈË±È´ËpPkµÄ½ğÇ®¸ü¶à
+	 * è·å¾—æœ‰å¤šå°‘äººæ¯”æ­¤pPkçš„é‡‘é’±æ›´å¤š
 	 */
 	public int getMoneyPaiMing(String pPk)
 	{
-		String sql = "select count(1) as num from u_part_info up  join u_warehouse_info uw "
+		String sql = "SELECT count(1) as num from u_part_info up  join u_warehouse_info uw "
 				+ "on uw.p_pk = up.p_pk and uw.uw_type=8 where (uw_money_number+up.p_copper) > "
 				+ "(select uw_money_number+up.p_copper as fen from u_part_info up  join "
 				+ "u_warehouse_info uw on uw.p_pk = up.p_pk and uw.uw_type=8 where up.p_pk = "
 				+ pPk + ")";
-		logger.debug("»ñµÃ´ËpPkµÄ½ğÇ®ÅÅÃûsql=" + sql);
+		logger.debug("è·å¾—æ­¤pPkçš„é‡‘é’±æ’åsql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int paiming = 0;
 		try
@@ -360,22 +360,22 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃÔÚ²Æ¸»µÈ¼¶ÅÅÃûÏàÍ¬Ê±´ËÈËËùÅÅµÄÃû´Î
+	 * è·å¾—åœ¨è´¢å¯Œç­‰çº§æ’åç›¸åŒæ—¶æ­¤äººæ‰€æ’çš„åæ¬¡
 	 * 
 	 * @param pPk
-	 *            Íæ¼ÒµÄ¸öÈËid
+	 *            ç©å®¶çš„ä¸ªäººid
 	 * @param fen
-	 *            Íæ¼ÒµÄµÈ¼¶»ı·Ö
+	 *            ç©å®¶çš„ç­‰çº§ç§¯åˆ†
 	 * @return
 	 */
 	public int getMoneySamePaiMing(String pPk, int fen)
 	{
-		String sql = "select count(1) as num from u_part_info up  join u_warehouse_info uw "
+		String sql = "SELECT count(1) as num from u_part_info up  join u_warehouse_info uw "
 				+ "on uw.p_pk = up.p_pk and uw.uw_type=8 where (uw_money_number+up.p_copper) ="
 				+ fen
 				+ " and up.create_time < (select up.create_time from u_part_info up where up.p_pk = "
 				+ pPk + ")";
-		logger.debug("»ñµÃÔÚ²Æ¸»µÈ¼¶ÅÅÃûÏàÍ¬Ê±´ËÈËËùÅÅµÄÃû´Îsql=" + sql);
+		logger.debug("è·å¾—åœ¨è´¢å¯Œç­‰çº§æ’åç›¸åŒæ—¶æ­¤äººæ‰€æ’çš„åæ¬¡sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		int paiming = 0;
 		try
@@ -402,7 +402,7 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃ´Ë²Æ¸»ÅÅÃûµÄÍæ¼ÒµÄp_pkºÍ»ı·ÖÖµ, ·µ»ØÖµÊÇÒ»¸öÊı×é,µÚÒ»¸öÔªËØÊÇp_pk, µÚ¶ş¸öÔªËØÊÇglory_vlaue, ¼´½­ºş·ÖÖµ.
+	 * è·å¾—æ­¤è´¢å¯Œæ’åçš„ç©å®¶çš„p_pkå’Œç§¯åˆ†å€¼, è¿”å›å€¼æ˜¯ä¸€ä¸ªæ•°ç»„,ç¬¬ä¸€ä¸ªå…ƒç´ æ˜¯p_pk, ç¬¬äºŒä¸ªå…ƒç´ æ˜¯glory_vlaue, å³æ±Ÿæ¹–åˆ†å€¼.
 	 * 
 	 * @param paiming
 	 * @return
@@ -413,12 +413,12 @@ public class UntangLeDao extends DaoBase
 		{
 			paiming = 1;
 		}
-		String sql = "select up.p_pk,uw_money_number+p_copper as money"
+		String sql = "SELECT up.p_pk,uw_money_number+p_copper as money"
 				+ " from u_warehouse_info uw  join u_part_info up  on uw.p_pk = up.p_pk "
 				+ "and uw_type = 8 order by money desc limit " + (paiming - 1)
 				+ ",1";
 		int[] bigPerson = new int[2];
-		logger.debug(" »ñµÃ´Ë²Æ¸»ÅÅÃûµÄÍæ¼ÒµÄp_pkºÍ»ı·ÖÖµ,=" + sql);
+		logger.debug(" è·å¾—æ­¤è´¢å¯Œæ’åçš„ç©å®¶çš„p_pkå’Œç§¯åˆ†å€¼,=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -447,19 +447,19 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * ¸ù¾İpPkÀ´»ñµÃ×ÛºÏ½ğÇ®·ÖÊı
+	 * æ ¹æ®pPkæ¥è·å¾—ç»¼åˆé‡‘é’±åˆ†æ•°
 	 * 
 	 * @param pPk
 	 * @return
 	 */
 	public int getMoneyByPPk(String pPk)
 	{
-		String sql = "select IFNULL(uw_money_number,0)+p_copper as money"
+		String sql = "SELECT IFNULL(uw_money_number,0)+p_copper as money"
 				+ " from u_warehouse_info uw  join u_part_info up "
 				+ " on uw.p_pk = up.p_pk and uw_type = 8 where up.p_pk = "
 				+ pPk;
 		int money = 0;
-		logger.debug("¸ù¾İpPkÀ´»ñµÃ×ÛºÏ½ğÇ®·ÖÊıµÄsql=" + sql);
+		logger.debug("æ ¹æ®pPkæ¥è·å¾—ç»¼åˆé‡‘é’±åˆ†æ•°çš„sql=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -486,18 +486,18 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃµ±Ç°·şÎñÆ÷µÄ½­ºşÅÅÃûÇ°Ê®Ãû
+	 * è·å¾—å½“å‰æœåŠ¡å™¨çš„æ±Ÿæ¹–æ’åå‰åå
 	 * 
 	 * @return
 	 */
 	public List<PartInfoVO> getPaiMingList()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "select up.p_pk,up.p_name,up.p_camp,IFNULL(glory_value,0)+up.p_experience as fen "
+		String sql = "SELECT up.p_pk,up.p_name,up.p_camp,IFNULL(glory_value,0)+up.p_experience as fen "
 				+ "from u_part_info up join u_tong_glory ut "
 				+ "on ut.p_pk = up.p_pk order by fen desc,up.create_time limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("»ñµÃµ±Ç°·şÎñÆ÷µÄ½­ºşÅÅÃûÇ°Ê®Ãûsql=" + sql);
+		logger.debug("è·å¾—å½“å‰æœåŠ¡å™¨çš„æ±Ÿæ¹–æ’åå‰ååsql=" + sql);
 		try
 		{
 			conn = dbConn.getConn();
@@ -526,12 +526,12 @@ public class UntangLeDao extends DaoBase
 	}
 
 	/**
-	 * »ñµÃµ±Ç°·şÎñÆ÷µÄ²Æ¸»ÅÅÃûÇ°Ê®Ãû
+	 * è·å¾—å½“å‰æœåŠ¡å™¨çš„è´¢å¯Œæ’åå‰åå
 	 */
 	private List<PartInfoVO> getMoneyPaiMingList1()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "select IFNULL(uw_money_number,0)+p_copper as money, up.p_pk,up.p_name,up.p_camp"
+		String sql = "SELECT IFNULL(uw_money_number,0)+p_copper as money, up.p_pk,up.p_name,up.p_camp"
 				+ " from u_warehouse_info uw "
 				+ " join u_part_info up on uw.p_pk = up.p_pk and uw_type = 8 "
 				+ "order by money desc,up.create_time limit 10";
@@ -564,11 +564,11 @@ public class UntangLeDao extends DaoBase
 		return list;
 	}
 
-	// ¸ù¾İ¿ª±¦ÏäµÄ¸öÊıÅĞ¶Ï²Æ¸»ÅÅÃû
+	// æ ¹æ®å¼€å®ç®±çš„ä¸ªæ•°åˆ¤æ–­è´¢å¯Œæ’å
 	public List<PartInfoVO> getMoneyPaiMingList()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "select b.p_pk,b.p_name,b.p_tong_name,a.goldbox_num from u_goldbox_num_info as a ,u_part_info as b where a.p_pk = b.p_pk order by a.goldbox_num desc limit 10";
+		String sql = "SELECT b.p_pk,b.p_name,b.p_tong_name,a.goldbox_num from u_goldbox_num_info as a ,u_part_info as b where a.p_pk = b.p_pk order by a.goldbox_num desc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -597,11 +597,11 @@ public class UntangLeDao extends DaoBase
 		return list;
 	}
 
-	/** »Æ½ğ±¦ÏäµÄ²Ù×÷ */
+	/** é»„é‡‘å®ç®±çš„æ“ä½œ */
 	public int getPlayerGoldBoxRecord(int u_pk, int p_pk)
 	{
 		int num = -1;
-		String sql = "select p_pk from u_goldbox_num_info where u_pk = " + u_pk
+		String sql = "SELECT p_pk from u_goldbox_num_info where u_pk = " + u_pk
 				+ " and p_pk = " + p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -627,10 +627,10 @@ public class UntangLeDao extends DaoBase
 		return num;
 	}
 
-	/** Íæ¼ÒÌí¼Ó»Æ½ğ±¦Ïä¼ÇÂ¼ */
+	/** ç©å®¶æ·»åŠ é»„é‡‘å®ç®±è®°å½• */
 	public void insertPlayerGoldBoxRecord(int u_pk, int p_pk)
 	{
-		String sql = "insert into u_goldbox_num_info values (null," + u_pk
+		String sql = "INSERT INTO u_goldbox_num_info values (null," + u_pk
 				+ "," + p_pk + ",0,now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -650,7 +650,7 @@ public class UntangLeDao extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂÍæ¼Ò»Æ½ğ±¦ÏäµÄ¼ÇÂ¼ */
+	/** æ›´æ–°ç©å®¶é»„é‡‘å®ç®±çš„è®°å½• */
 	public void updatePlayerGoldBoxRecord(int u_pk, int p_pk)
 	{
 		String sql = "update u_goldbox_num_info set goldbox_num = goldbox_num + 1 where u_pk = "
@@ -673,11 +673,11 @@ public class UntangLeDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½É±ÈËÅÅÃû* */
+	/** å¾—åˆ°æ€äººæ’å* */
 	public List<PartInfoVO> getKillRank()
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
-		String sql = "select p_pk,p_name,p_camp,u_kill_num from u_part_info where u_kill_num !=0 order by u_kill_num desc limit 10";
+		String sql = "SELECT p_pk,p_name,p_camp,u_kill_num from u_part_info where u_kill_num !=0 order by u_kill_num desc limit 10";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 
 		try
@@ -708,7 +708,7 @@ public class UntangLeDao extends DaoBase
 		return list;
 	}
 	
-	/**Ôö¼ÓÉ±ÈËÊıÁ¿**/
+	/**å¢åŠ æ€äººæ•°é‡**/
 	public void updatePlayerKillNum(int p_pk){
 		String sql = "update u_part_info set u_kill_num = u_kill_num + 1 where p_pk = "+p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

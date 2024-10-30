@@ -19,21 +19,21 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 
 	/**
-	 * ´´½¨½ÇÉ«
-	 * @param uPk		ÕËºÅ
+	 * åˆ›å»ºè§’è‰²
+	 * @param uPk		è´¦å·
 	 * @param pName	
 	 * @param pSex
-	 * @param pUpHp		ÑªÁ¿ÉÏÏŞ
-	 * @param pUpMp		·¨Á¦ÉÏÏŞ
+	 * @param pUpHp		è¡€é‡ä¸Šé™
+	 * @param pUpMp		æ³•åŠ›ä¸Šé™
 	 * @param pGj
 	 * @param pFy
 	 * @param pXiaExperience
 	 * @param pCopper
-	 * @param pPks		PK¿ª¹Ø
-	 * @param pDropMultiple		±©»÷ÂÊ
-	 * @param pMap				³õÊ¼»¯³¡¾°µØÖ·
-	 * @param pWrapContent		°ü¹üÉÏÏŞ
-	 * @param race				ÖÖ×å
+	 * @param pPks		PKå¼€å…³
+	 * @param pDropMultiple		æš´å‡»ç‡
+	 * @param pMap				åˆå§‹åŒ–åœºæ™¯åœ°å€
+	 * @param pWrapContent		åŒ…è£¹ä¸Šé™
+	 * @param race				ç§æ—
 	 * @return
 	 */
 	public int add(String uPk, String pName, String pSex,
@@ -48,7 +48,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "insert into u_part_info(u_pk,p_name,p_sex,p_up_hp,p_hp,p_up_mp,p_mp,p_gj,p_fy" +
+			String sql = "INSERT INTO u_part_info(u_pk,p_name,p_sex,p_up_hp,p_hp,p_up_mp,p_mp,p_gj,p_fy" +
 					",p_copper,p_pks,p_drop_multiple,p_map,p_wrap_content,p_race,create_time) " +
 					"values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			logger.debug(sql);
@@ -98,7 +98,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	
 	
 	/**
-	 * Ö¸¶¨°ïÅÉ³ÉÔ±Ö°Î»µÄÊıÁ¿
+	 * æŒ‡å®šå¸®æ´¾æˆå‘˜èŒä½çš„æ•°é‡
 	 */
 	public int getCurFJobNum( int fId ,int fJob)
 	{
@@ -106,7 +106,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 	
 	/**
-	 * °ïÅÉ³ÉÔ±ÁĞ±í
+	 * å¸®æ´¾æˆå‘˜åˆ—è¡¨
 	 * @param pName
 	 * @return
 	 */
@@ -118,13 +118,13 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉ¶Ó³¤id
+	 * å¾—åˆ°å¸®æ´¾é˜Ÿé•¿id
 	 * @return
 	 */
 	public int getFactinLeader(int f_id)
 	{
 		int p_pk = -1;
-		String sql = "select p_pk from u_part_info where f_id = "+f_id+" and f_job="+Faction.ZUZHANG;
+		String sql = "SELECT p_pk from u_part_info where f_id = "+f_id+" and f_job="+Faction.ZUZHANG;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -150,14 +150,14 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 	
 	/**
-	 * °ïÅÉ³¤ÀÏ¼¶±ğÒÔÉÏµÄ³ÉÔ±ÁĞ±í
+	 * å¸®æ´¾é•¿è€çº§åˆ«ä»¥ä¸Šçš„æˆå‘˜åˆ—è¡¨
 	 * @param pName
 	 * @return
 	 */
 	public List<Integer> getUpZhanglaoListByFId( int f_id )
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select p_pk from u_part_info where f_id = "+f_id+" and f_job>="+Faction.ZHANGLAO;
+		String sql = "SELECT p_pk from u_part_info where f_id = "+f_id+" and f_job>="+Faction.ZHANGLAO;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -183,7 +183,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 	
 	/**
-	 * °ïÅÉ³¤ÀÏÁĞ±í
+	 * å¸®æ´¾é•¿è€åˆ—è¡¨
 	 * @param pName
 	 * @return
 	 */
@@ -194,7 +194,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		return super.loadPageList(condition_sql,order_sql, page_no);
 	}
 	
-	// Í¨¹ı×¢²áID È¥ÕÒ½ÇÉ« Ò»¸ö×¢²áIDÖ»ÓÃ´´½¨5¸ö½ÇÉ«
+	// é€šè¿‡æ³¨å†ŒID å»æ‰¾è§’è‰² ä¸€ä¸ªæ³¨å†ŒIDåªç”¨åˆ›å»º5ä¸ªè§’è‰²
 	public int getByName(String pName)
 	{
 		int p_pk = -1;
@@ -203,7 +203,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		try
 		{
 
-			String sql = "select p_pk from u_part_info where p_name='" + pName
+			String sql = "SELECT p_pk from u_part_info where p_name='" + pName
 					+ "'";
 			logger.debug(sql);
 			stmt = conn.createStatement();
@@ -229,7 +229,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 
 
 
-	// Í¨¹ı×¢²áID È¥ÕÒ½ÇÉ« Ò»¸ö×¢²áIDÖ»ÓÃ´´½¨5¸ö½ÇÉ«
+	// é€šè¿‡æ³¨å†ŒID å»æ‰¾è§’è‰² ä¸€ä¸ªæ³¨å†ŒIDåªç”¨åˆ›å»º5ä¸ªè§’è‰²
 	public List<PartInfoVO> getPartTypeList(String uPk)
 	{
 		List<PartInfoVO> list = new ArrayList<PartInfoVO>();
@@ -237,7 +237,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select * from u_part_info where u_pk=" + uPk + " and delete_flag=0";
+			String sql = "SELECT * FROM u_part_info where u_pk=" + uPk + " and delete_flag=0";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -272,8 +272,8 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 	
 	/**
-	 * 	»ñµÃÕËºÅÏÂ ÕıÔÚ±»É¾³ıµÄ½ÇÉ«ÁĞ±í
-	 *	ĞŞ¸Ä È·¶¨É¾³ıµÄ½ÇÉ« É¾³ı±ê¼Ç´Ó0¸ÄÎª1
+	 * 	è·å¾—è´¦å·ä¸‹ æ­£åœ¨è¢«åˆ é™¤çš„è§’è‰²åˆ—è¡¨
+	 *	ä¿®æ”¹ ç¡®å®šåˆ é™¤çš„è§’è‰² åˆ é™¤æ ‡è®°ä»0æ”¹ä¸º1
 	 */	
 	public List<PartInfoVO> getDeleteStateRoles(String uPk)
 	{
@@ -282,7 +282,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select p_pk,delete_time from u_part_info where u_pk=" + uPk + " and delete_flag=1";
+			String sql = "SELECT p_pk,delete_time from u_part_info where u_pk=" + uPk + " and delete_flag=1";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -311,7 +311,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 
 	/**
-	 * Í¨¹ıid µÃµ½Íæ¼ÒĞÅÏ¢
+	 * é€šè¿‡id å¾—åˆ°ç©å®¶ä¿¡æ¯
 	 * 
 	 * @param p_pk
 	 * @return
@@ -324,7 +324,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		try
 		{
 
-			String sql = "select * from u_part_info where p_pk=" + p_pk;
+			String sql = "SELECT * FROM u_part_info where p_pk=" + p_pk;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -389,7 +389,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	
 
     /**
-     * ÉèÖÃ½ÇÉ«µÄÉ¾³ı×´Ì¬
+     * è®¾ç½®è§’è‰²çš„åˆ é™¤çŠ¶æ€
      * @param p_pk
      * @param delete_flag
      * @return
@@ -402,7 +402,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		try
 		{
 			String set_delete_time = "";
-			if( delete_flag==0 )//Èç¹ûÊ±É¾³ı»º³åÔò£¬ÒªÉèÖÃdelete_timeÎªµ±Ç°Ê±¼ä
+			if( delete_flag==0 )//å¦‚æœæ—¶åˆ é™¤ç¼“å†²åˆ™ï¼Œè¦è®¾ç½®delete_timeä¸ºå½“å‰æ—¶é—´
 			{
 				set_delete_time = ",delete_time=now() ";
 			}
@@ -428,7 +428,7 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 
 
 	/**
-	 * µÃµ½½ÇÉ«Ãû×Ö
+	 * å¾—åˆ°è§’è‰²åå­—
 	 * 
 	 * @param p_pk
 	 */
@@ -439,8 +439,8 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select p_name from u_part_info where p_pk=" + p_pk;
-			logger.debug("µÃµ½½ÇÉ«Ãû×Ö="+sql);
+			String sql = "SELECT p_name from u_part_info where p_pk=" + p_pk;
+			logger.debug("å¾—åˆ°è§’è‰²åå­—="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next())
@@ -462,21 +462,21 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		return p_name;
 	}
 	/**
-	 * * sceneStrÊÇĞÎÈç(111,112,113,115)ÀàµÄscene_name¼¯ºÏ
-	 * µÃµ½ÔÚsceneStrÖĞµÄËùÓĞp_pk¼¯ºÏ
+	 * * sceneStræ˜¯å½¢å¦‚(111,112,113,115)ç±»çš„scene_nameé›†åˆ
+	 * å¾—åˆ°åœ¨sceneSträ¸­çš„æ‰€æœ‰p_pké›†åˆ
 	 * @param sceneStr
 	 * @return
 	 */
 	public List<Integer> getPPkListBySceneStr(String sceneStr)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select p_pk from u_part_info where p_map in "+sceneStr;
+		String sql = "SELECT p_pk from u_part_info where p_map in "+sceneStr;
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("µÃµ½ÔÚsceneStrÖĞµÄËùÓĞp_pk¼¯ºÏ="+sql);
+			logger.debug("å¾—åˆ°åœ¨sceneSträ¸­çš„æ‰€æœ‰p_pké›†åˆ="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next())
@@ -500,15 +500,15 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 
 	/**
-	 * »ñµÃ ÔÚµ±Ç°ÇøÓòÄÚ °ïÅÉÊıÁ¿×î¶àµÄÒ»¸ö»ò¼¸¸ö
-	 * @param list ÊÇ°ïÅÉIDµÄ×éºÏ
-	 * @param sceneStr ÊÇsceneIDµÄ×éºÏ,
+	 * è·å¾— åœ¨å½“å‰åŒºåŸŸå†… å¸®æ´¾æ•°é‡æœ€å¤šçš„ä¸€ä¸ªæˆ–å‡ ä¸ª
+	 * @param list æ˜¯å¸®æ´¾IDçš„ç»„åˆ
+	 * @param sceneStr æ˜¯sceneIDçš„ç»„åˆ,
 	 * @return
 	 */
 	public List<int[]> getMostTongPersonInMap(List<Integer> list,
 			String sceneStr)
 	{
-		// ½«°ïÅÉID×éºÏ³É×Ö·û´®
+		// å°†å¸®æ´¾IDç»„åˆæˆå­—ç¬¦ä¸²
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append("(");
 		for(int i=0;i < list.size();i++) {
@@ -520,14 +520,14 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		sBuffer.append(")");
 		
 		int mostPerson = 0;
-		// Ê×ÏÈÕÒ³öÔÚµ±Ç°ÇøÓòÄÚ°ïÅÉÊıÁ¿×î¶àµÄÒ»¸ö
-		String sql = "select * from (select p_tong,count(1) as numb from u_part_info where  p_map in "+sceneStr+" and p_tong in "
+		// é¦–å…ˆæ‰¾å‡ºåœ¨å½“å‰åŒºåŸŸå†…å¸®æ´¾æ•°é‡æœ€å¤šçš„ä¸€ä¸ª
+		String sql = "SELECT * FROM (select p_tong,count(1) as numb from u_part_info where  p_map in "+sceneStr+" and p_tong in "
 					+sBuffer.toString()+" group by p_tong order by numb desc) asd limit 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("µÃµ½ÔÚsceneStrÖĞµÄËùÓĞp_pk¼¯ºÏ="+sql);
+			logger.debug("å¾—åˆ°åœ¨sceneSträ¸­çš„æ‰€æœ‰p_pké›†åˆ="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next())
@@ -543,13 +543,13 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 		}
 		
 		List<int[]> list2 = new ArrayList<int[]>();
-		// È»ºóÕÒ³öËùÓĞ ÈËÊıµÈÓÚ´Ë ÈËÊıµÄ°ïÅÉ
-		String sql2 = "select * from (select p_tong,count(1) as numb from u_part_info where  p_map in "+sceneStr+" and p_tong in "
+		// ç„¶åæ‰¾å‡ºæ‰€æœ‰ äººæ•°ç­‰äºæ­¤ äººæ•°çš„å¸®æ´¾
+		String sql2 = "SELECT * FROM (select p_tong,count(1) as numb from u_part_info where  p_map in "+sceneStr+" and p_tong in "
 						+sBuffer.toString()+"group by p_tong order by numb desc) asd where numb >= "+mostPerson;
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("µÃµ½ÔÚsceneStrÖĞµÄËùÓĞp_pk¼¯ºÏ="+sql);
+			logger.debug("å¾—åˆ°åœ¨sceneSträ¸­çš„æ‰€æœ‰p_pké›†åˆ="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql2);
 			while (rs.next())
@@ -576,21 +576,21 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	
 	
 	/**
-	 * »ñµÃ ÔÚµ±Ç°ÇøÓòÄÚ °ïÅÉÊıÁ¿×î¶àµÄÒ»¸ö»ò¼¸¸ö
-	 * @param list ÊÇ°ïÅÉIDµÄ×éºÏ
-	 * @param sceneStr ÊÇsceneIDµÄ×éºÏ,
+	 * è·å¾— åœ¨å½“å‰åŒºåŸŸå†… å¸®æ´¾æ•°é‡æœ€å¤šçš„ä¸€ä¸ªæˆ–å‡ ä¸ª
+	 * @param list æ˜¯å¸®æ´¾IDçš„ç»„åˆ
+	 * @param sceneStr æ˜¯sceneIDçš„ç»„åˆ,
 	 * @return
 	 */
 	public List<Integer> getAllPersonInMap(String sceneStr)
 	{		
-		// Ê×ÏÈÕÒ³öÔÚµ±Ç°ÇøÓòÄÚ°ïÅÉÊıÁ¿×î¶àµÄÒ»¸ö
-		String sql = "select p_pk from u_part_info where  p_map in "+sceneStr+" ";
+		// é¦–å…ˆæ‰¾å‡ºåœ¨å½“å‰åŒºåŸŸå†…å¸®æ´¾æ•°é‡æœ€å¤šçš„ä¸€ä¸ª
+		String sql = "SELECT p_pk from u_part_info where  p_map in "+sceneStr+" ";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		List<Integer> list = new ArrayList<Integer>();
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("µÃµ½ÔÚsceneStrÖĞµÄËùÓĞp_pk¼¯ºÏ="+sql);
+			logger.debug("å¾—åˆ°åœ¨sceneSträ¸­çš„æ‰€æœ‰p_pké›†åˆ="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next())
@@ -614,19 +614,19 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 
 	/**
-	 * »ñµÃ´ËPPkµÄÉ¾³ı±êÖ¾
+	 * è·å¾—æ­¤PPkçš„åˆ é™¤æ ‡å¿—
 	 * @param pk
 	 * @return
 	 */
 	public int getDeleteState(String pPk)
 	{
-		String sql = "select delete_flag from u_part_info where p_pk = "+pPk;
+		String sql = "SELECT delete_flag from u_part_info where p_pk = "+pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);	
 		int delete_flag = 0;
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("µÃµ½ÔÚsceneStrÖĞµÄËùÓĞp_pk¼¯ºÏ="+sql);
+			logger.debug("å¾—åˆ°åœ¨sceneSträ¸­çš„æ‰€æœ‰p_pké›†åˆ="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next())
@@ -709,19 +709,19 @@ public class PartInfoDao extends BasicDaoSupport<PartInfoVO>
 	}
 	
 	/**
-	 * »ñµÃËùÓĞp_pkµÄ¼¯ºÏ
+	 * è·å¾—æ‰€æœ‰p_pkçš„é›†åˆ
 	 * @return
 	 */
 	public List<Integer> getAllPPkList()
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select p_pk from u_part_info ";
+		String sql = "SELECT p_pk from u_part_info ";
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("»ñµÃËùÓĞp_pkµÄ¼¯ºÏ="+sql);
+			logger.debug("è·å¾—æ‰€æœ‰p_pkçš„é›†åˆ="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next())

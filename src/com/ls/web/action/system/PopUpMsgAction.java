@@ -30,13 +30,13 @@ import com.pm.service.systemInfo.SystemInfoService;
 import com.web.service.friend.FriendService;
 
 /**
- * µ¯³öÊ½ÏûÏ¢
+ * å¼¹å‡ºå¼æ¶ˆæ¯
  */
 public class PopUpMsgAction extends ActionBase
 {
 
 	/**
-	 * ÏûÏ¢´¦Àí
+	 * æ¶ˆæ¯å¤„ç†
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -93,7 +93,7 @@ public class PopUpMsgAction extends ActionBase
 		}
 		else if (result.getMsgType() == PopUpMsgType.MERRY_AGREE)
 		{
-			// Í¬Òâ½á»é
+			// åŒæ„ç»“å©š
 			request.setAttribute("result", uMsgInfo);
 			request.setAttribute("name", roleService.getName(uMsgInfo
 					.getMsgOperate2())[0]);
@@ -140,10 +140,10 @@ public class PopUpMsgAction extends ActionBase
 					.getPPk());
 			if (DateUtil.checkMin(date, TiaozhanConstant.OVER_TIME))
 			{
-				request.setAttribute("message", "ÓÉÓÚÄúÔÚ1·ÖÖÓÄÚÃ»ÓĞ½øĞĞÑ¡Ôñ£¬Òò´Ë±»ÊÓÎª¾Ü¾øÌôÕ½");
+				request.setAttribute("message", "ç”±äºæ‚¨åœ¨1åˆ†é’Ÿå†…æ²¡æœ‰è¿›è¡Œé€‰æ‹©ï¼Œå› æ­¤è¢«è§†ä¸ºæ‹’ç»æŒ‘æˆ˜");
 				new SystemInfoService().insertSystemInfoBySystem(roleInfo
 						.getBasicInfo().getName()
-						+ "±»" + result.getResult() + "µÄ°ÔÆøËùÕğ£¬¾¹È»Ã»ÓĞµ¨Á¿½ÓÊÜÕ½Êé£¡");
+						+ "è¢«" + result.getResult() + "çš„éœ¸æ°”æ‰€éœ‡ï¼Œç«Ÿç„¶æ²¡æœ‰èƒ†é‡æ¥å—æˆ˜ä¹¦ï¼");
 				return mapping.findForward("langjun");
 			}
 			else
@@ -165,7 +165,7 @@ public class PopUpMsgAction extends ActionBase
 	}
 
 	/**
-	 * PKÏûÏ¢ÌØÊâ´¦Àí
+	 * PKæ¶ˆæ¯ç‰¹æ®Šå¤„ç†
 	 *//*
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -183,11 +183,11 @@ public class PopUpMsgAction extends ActionBase
 
 			//PKNotifyService pkNotifyService = new PKNotifyService();
 			//PKNotifyVO pkNotify = pkNotifyService.getNotfiy(me.getPPk());
-			//if (pkNotify != null && pkNotify.getNotifyedPk() == me.getPPk())// ÓĞÍ¨ÖªÇÒÍ¨Öª´´ÔìÕß²»ÊÇ×Ô¼º
+			//if (pkNotify != null && pkNotify.getNotifyedPk() == me.getPPk())// æœ‰é€šçŸ¥ä¸”é€šçŸ¥åˆ›é€ è€…ä¸æ˜¯è‡ªå·±
 			{
 				switch (pkState.getState())
 				{
-					case PKNotifyService.ATTACKED://Í¨ÖªÍæ¼ÒÊÜµ½¹¥»÷
+					case PKNotifyService.ATTACKED://é€šçŸ¥ç©å®¶å—åˆ°æ”»å‡»
 					{
 						pkNotifyService.deleteNotify(pkNotify.getNPk());
 						request.getRequestDispatcher("/pk.do?chair=" + request.getParameter("chair")
@@ -197,13 +197,13 @@ public class PopUpMsgAction extends ActionBase
 										+ "&tong=" + result.getMsgOperate2()).forward(request, response);
 						return null;
 					}
-					case PKState.S_NOTIFY_SELF_DEAD://×Ô¼ºËÀÍöÍ¨ÖªÆäËûÈË
+					case PKState.S_NOTIFY_SELF_DEAD://è‡ªå·±æ­»äº¡é€šçŸ¥å…¶ä»–äºº
 					{
 						//pkNotifyService.deleteNotifyByPlayer(pkNotify.getNotifyedPk(), pkNotify.getCreateNotifyPk());
 						return super.dispath(request, response, "/pk.do?cmd=notifySelfDead");
 					}
 
-					case PKState.S_NOTIFY_KILL_OTHER://Í¨Öª¶Ô·½±»×Ô¼ºÉ±ËÀÁË
+					case PKState.S_NOTIFY_KILL_OTHER://é€šçŸ¥å¯¹æ–¹è¢«è‡ªå·±æ€æ­»äº†
 					{
 						return super.dispath(request, response, "/pk.do?cmd=notifyKillOther");
 					}
@@ -218,30 +218,30 @@ public class PopUpMsgAction extends ActionBase
 	}*/
 
 	/**
-	 * µ¯³öÊ½ÏûÏ¢¹ºÂòÎïÆ·
+	 * å¼¹å‡ºå¼æ¶ˆæ¯è´­ä¹°ç‰©å“
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		RoleEntity roleInfo = this.getRoleEntity(request);
-		String c_id = request.getParameter("c_id");// »ñÈ¡ÉÌ³ÇID
-		String discount = request.getParameter("discount");// È¡µÃÏûÏ¢ÀàĞÍ
+		String c_id = request.getParameter("c_id");// è·å–å•†åŸID
+		String discount = request.getParameter("discount");// å–å¾—æ¶ˆæ¯ç±»å‹
 		MallService mallService = new MallService();
-		CommodityVO commodityVO = mallService.getCommodityInfo(c_id);// È¡µÃÎïÆ·ÔÚÉÌ³ÇµÄĞÅÏ¢
-		// È¡µÃ¸ÃÎïÆ·ÔÚÉÌ³ÇµÄÕÛ¿Û
+		CommodityVO commodityVO = mallService.getCommodityInfo(c_id);// å–å¾—ç‰©å“åœ¨å•†åŸçš„ä¿¡æ¯
+		// å–å¾—è¯¥ç‰©å“åœ¨å•†åŸçš„æŠ˜æ‰£
 		commodityVO.setDiscount(Integer.parseInt(discount));
-		String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// ¹ºÂò
+		String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// è´­ä¹°
 		if (hint != null)
 		{
-			if (hint.indexOf("½ğ¶î²»×ã") != -1)
+			if (hint.indexOf("é‡‘é¢ä¸è¶³") != -1)
 			{
 				StringBuffer sb = new StringBuffer();
-				sb.append(hint + ",ÇëÇ°ÍùÉÌ³Ç½øĞĞ"+GameConfig.getYuanbaoName()+"³äÖµ¡£<br/>");
+				sb.append(hint + ",è¯·å‰å¾€å•†åŸè¿›è¡Œ"+GameConfig.getYuanbaoName()+"å……å€¼ã€‚<br/>");
 				sb.append("<anchor> ");
 				sb.append("<go method=\"get\" href=\""
 						+ response.encodeURL(GameConfig.getContextPath()
 								+ "/sky/bill.do?cmd=n0") + "\"></go>");
-				sb.append("¿ìËÙ³äÖµ");
+				sb.append("å¿«é€Ÿå……å€¼");
 				sb.append("</anchor>");
 				request.setAttribute("result", sb.toString());
 				return mapping.findForward("msghint");
@@ -253,24 +253,24 @@ public class PopUpMsgAction extends ActionBase
 		{
 			Vip vip = roleInfo.getTitleSet().getVIP();
 			if (vip != null)
-			{// ÊÇVIP»áÔ±
+			{// æ˜¯VIPä¼šå‘˜
 				if(Integer.parseInt(discount) == -1){
-					hint = "ÄãÊÇ"
+					hint = "ä½ æ˜¯"
 						+ vip.getName()
-						+ ",ÔÚ"
+						+ ",åœ¨"
 						+ (Integer.parseInt(discount) / 10)
-						+ "ÕÛÓÅ»İµÄ»ù´¡ÉÏÔÙ´ò"
+						+ "æŠ˜ä¼˜æƒ çš„åŸºç¡€ä¸Šå†æ‰“"
 						+ (vip.getDiscount() / 10)
-						+ "ÕÛÎª"
+						+ "æŠ˜ä¸º"
 						+ ((commodityVO.getOriginalPrice()
 								* Integer.parseInt(discount) / 100)
 								* vip.getDiscount() / 100);
 				}else{
-					hint = "ÄãÊÇ"
+					hint = "ä½ æ˜¯"
 						+ vip.getName()
-						+ ",´ò"
+						+ ",æ‰“"
 						+ (vip.getDiscount() / 10)
-						+ "ÕÛºó¼ÛÇ®Îª"
+						+ "æŠ˜åä»·é’±ä¸º"
 						+ ((commodityVO.getOriginalPrice())
 								* vip.getDiscount() / 100);
 				}
@@ -280,20 +280,20 @@ public class PopUpMsgAction extends ActionBase
 				hint = "";
 			}
 			if(Integer.parseInt(discount) == -1){
-				hint = "Äã¹ºÂò"
+				hint = "ä½ è´­ä¹°"
 					+ commodityVO.getPropName()
-					+ "¡Á1,»¨·Ñ"
-					+ (commodityVO.getOriginalPrice()) + ""+GameConfig.getYuanbaoName()+"£¡" + hint;
+					+ "Ã—1,èŠ±è´¹"
+					+ (commodityVO.getOriginalPrice()) + ""+GameConfig.getYuanbaoName()+"ï¼" + hint;
 			}else{
-				hint = "Äã¹ºÂò"
+				hint = "ä½ è´­ä¹°"
 					+ commodityVO.getPropName()
-					+ "¡Á1£¬Ô­¼Û"
+					+ "Ã—1ï¼ŒåŸä»·"
 					+ commodityVO.getOriginalPrice()
-					+ "Ôª±¦£¬"
+					+ "å…ƒå®ï¼Œ"
 					+ (Integer.parseInt(discount) / 10)
-					+ "ÕÛÓÅ»İºó"
+					+ "æŠ˜ä¼˜æƒ å"
 					+ (commodityVO.getOriginalPrice()
-							* Integer.parseInt(discount) / 100) + ""+GameConfig.getYuanbaoName()+"£¡" + hint;
+							* Integer.parseInt(discount) / 100) + ""+GameConfig.getYuanbaoName()+"ï¼" + hint;
 			}
 			
 			request.setAttribute("result", hint);
@@ -302,7 +302,7 @@ public class PopUpMsgAction extends ActionBase
 	}
 
 	/**
-	 * µ¯³öÊ½ÏûÏ¢¹ºÂòÎïÆ·
+	 * å¼¹å‡ºå¼æ¶ˆæ¯è´­ä¹°ç‰©å“
 	 */
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -310,27 +310,27 @@ public class PopUpMsgAction extends ActionBase
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
-		String c_id = request.getParameter("c_id");// »ñÈ¡ÉÌ³ÇID
-		String discount = request.getParameter("discount");// È¡µÃÏûÏ¢ÀàĞÍ
+		String c_id = request.getParameter("c_id");// è·å–å•†åŸID
+		String discount = request.getParameter("discount");// å–å¾—æ¶ˆæ¯ç±»å‹
 		MallService mallService = new MallService();
-		CommodityVO commodityVO = mallService.getCommodityInfo(c_id);// È¡µÃÎïÆ·ÔÚÉÌ³ÇµÄĞÅÏ¢
-		// È¡µÃ¸ÃÎïÆ·ÔÚÉÌ³ÇµÄÕÛ¿Û
+		CommodityVO commodityVO = mallService.getCommodityInfo(c_id);// å–å¾—ç‰©å“åœ¨å•†åŸçš„ä¿¡æ¯
+		// å–å¾—è¯¥ç‰©å“åœ¨å•†åŸçš„æŠ˜æ‰£
 		commodityVO.setDiscount(Integer.parseInt(discount));
-		String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// ¹ºÂò
+		String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// è´­ä¹°
 		if (hint != null)
 		{
-			if (hint.indexOf("½ğ¶î²»×ã") != -1)
+			if (hint.indexOf("é‡‘é¢ä¸è¶³") != -1)
 			{
 				StringBuffer sb = new StringBuffer();
-				sb.append(hint + ",ÇëÇ°ÍùÉÌ³Ç½øĞĞ"+GameConfig.getYuanbaoName()+"³äÖµ¡£<br/>");
+				sb.append(hint + ",è¯·å‰å¾€å•†åŸè¿›è¡Œ"+GameConfig.getYuanbaoName()+"å……å€¼ã€‚<br/>");
 				sb
-						.append("¡ï±¾´Î³äÖµÍê³Éºó£¬ÇëÁ¢¼´·µ»Ø½ÇÉ«Ñ¡ÔñÒ³Ãæ£¬ÖØĞÂÑ¡Ôñ½ÇÉ«½øÈëÓÎÏ·½øĞĞÒ»ÕÛ»áÔ±¹ºÂò¡££¨Èç×öÆäËûÏà¹Ø²Ù×÷Ôò¿ÉÄÜµ¼ÖÂÎŞ·¨¹ºÂò£©¡ï<br/>");
-				sb.append("¡î²Ù×÷Á÷³Ì£º³äÖµÍê³Éºó£¬µã»÷²Ëµ¥ÖĞµÄ¡°ÏµÍ³¡±£¬Ñ¡Ôñ·µ»ØÊ×Ò³¼´¿É¡î<br/>");
+						.append("â˜…æœ¬æ¬¡å……å€¼å®Œæˆåï¼Œè¯·ç«‹å³è¿”å›è§’è‰²é€‰æ‹©é¡µé¢ï¼Œé‡æ–°é€‰æ‹©è§’è‰²è¿›å…¥æ¸¸æˆè¿›è¡Œä¸€æŠ˜ä¼šå‘˜è´­ä¹°ã€‚ï¼ˆå¦‚åšå…¶ä»–ç›¸å…³æ“ä½œåˆ™å¯èƒ½å¯¼è‡´æ— æ³•è´­ä¹°ï¼‰â˜…<br/>");
+				sb.append("â˜†æ“ä½œæµç¨‹ï¼šå……å€¼å®Œæˆåï¼Œç‚¹å‡»èœå•ä¸­çš„â€œç³»ç»Ÿâ€ï¼Œé€‰æ‹©è¿”å›é¦–é¡µå³å¯â˜†<br/>");
 				sb.append("<anchor> ");
 				sb.append("<go method=\"get\" href=\""
 						+ response.encodeURL(GameConfig.getContextPath()
 								+ "/sky/bill.do?cmd=n0") + "\"></go>");
-				sb.append("¿ìËÙ³äÖµ");
+				sb.append("å¿«é€Ÿå……å€¼");
 				sb.append("</anchor>");
 				request.setAttribute("result", sb.toString());
 				return mapping.findForward("msghint");
@@ -342,14 +342,14 @@ public class PopUpMsgAction extends ActionBase
 		{
 			Vip vip = roleInfo.getTitleSet().getVIP();
 			if (vip != null)
-			{// ÊÇVIP»áÔ±
-				hint = "ÄãÊÇ"
+			{// æ˜¯VIPä¼šå‘˜
+				hint = "ä½ æ˜¯"
 						+ vip.getName()
-						+ ",ÔÚ"
+						+ ",åœ¨"
 						+ (Integer.parseInt(discount) / 10)
-						+ "ÕÛÓÅ»İµÄ»ù´¡ÉÏÔÚ´ò"
+						+ "æŠ˜ä¼˜æƒ çš„åŸºç¡€ä¸Šåœ¨æ‰“"
 						+ (vip.getDiscount() / 10)
-						+ "ÕÛÎª"
+						+ "æŠ˜ä¸º"
 						+ ((commodityVO.getOriginalPrice()
 								* Integer.parseInt(discount) / 100)
 								* vip.getDiscount() / 100);
@@ -358,22 +358,22 @@ public class PopUpMsgAction extends ActionBase
 			{
 				hint = "";
 			}
-			hint = "Äã¹ºÂò"
+			hint = "ä½ è´­ä¹°"
 					+ commodityVO.getPropName()
-					+ "¡Á1£¬Ô­¼Û"
+					+ "Ã—1ï¼ŒåŸä»·"
 					+ commodityVO.getOriginalPrice()
-					+ ""+GameConfig.getYuanbaoName()+"£¬"
+					+ ""+GameConfig.getYuanbaoName()+"ï¼Œ"
 					+ (Integer.parseInt(discount) / 10)
-					+ "ÕÛÓÅ»İºó"
+					+ "æŠ˜ä¼˜æƒ å"
 					+ (commodityVO.getOriginalPrice()
-							* Integer.parseInt(discount) / 100) + ""+GameConfig.getYuanbaoName()+"£¡" + hint;
+							* Integer.parseInt(discount) / 100) + ""+GameConfig.getYuanbaoName()+"ï¼" + hint;
 			request.setAttribute("result", hint);
 			return mapping.findForward("msghint");
 		}
 	}
 
 	/**
-	 * µ¯³öÊ½ÏûÏ¢¹ºÂò°ü¹ü¸ñ×Ó
+	 * å¼¹å‡ºå¼æ¶ˆæ¯è´­ä¹°åŒ…è£¹æ ¼å­
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -391,7 +391,7 @@ public class PopUpMsgAction extends ActionBase
 		}
 		if (display == null)
 		{
-			request.setAttribute("result", "ÄúµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»¹»!<br/>");
+			request.setAttribute("result", "æ‚¨çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸å¤Ÿ!<br/>");
 			return mapping.findForward("msghint");
 		}
 		request.setAttribute("result", display);
@@ -399,7 +399,7 @@ public class PopUpMsgAction extends ActionBase
 	}
 
 	/**
-	 * ¹ºÂò»áÔ±
+	 * è´­ä¹°ä¼šå‘˜
 	 */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -407,13 +407,13 @@ public class PopUpMsgAction extends ActionBase
 		RoleEntity roleInfo = this.getRoleEntity(request);
 		String prop_id = request.getParameter("prop_id").trim();
 		String discount = request.getParameter("discount").trim();
-		// Ê×ÏÈÍ¨¹ıµÀ¾ßID µÃµ½ÉÌ³ÇµÄĞÅÏ¢
+		// é¦–å…ˆé€šè¿‡é“å…·ID å¾—åˆ°å•†åŸçš„ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(prop_id);
 		if (commodityVO != null)
 		{
 			commodityVO.setDiscount(Integer.parseInt(discount));
-			String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// ¹ºÂò
+			String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// è´­ä¹°
 			if (hint != null)
 			{
 				request.setAttribute("result", hint);
@@ -423,14 +423,14 @@ public class PopUpMsgAction extends ActionBase
 			{
 				Vip vip = roleInfo.getTitleSet().getVIP();
 				if (vip != null)
-				{// ÊÇVIP»áÔ±
-					hint = "ÄãÊÇ"
+				{// æ˜¯VIPä¼šå‘˜
+					hint = "ä½ æ˜¯"
 							+ vip.getName()
-							+ ",ÔÚ"
+							+ ",åœ¨"
 							+ (Integer.parseInt(discount) / 10)
-							+ "ÕÛÓÅ»İµÄ»ù´¡ÉÏÔÚ´ò"
+							+ "æŠ˜ä¼˜æƒ çš„åŸºç¡€ä¸Šåœ¨æ‰“"
 							+ (vip.getDiscount() / 10)
-							+ "ÕÛÎª"
+							+ "æŠ˜ä¸º"
 							+ ((commodityVO.getOriginalPrice()
 									* Integer.parseInt(discount) / 100)
 									* vip.getDiscount() / 100);
@@ -439,15 +439,15 @@ public class PopUpMsgAction extends ActionBase
 				{
 					hint = "";
 				}
-				hint = "Äã¹ºÂò"
+				hint = "ä½ è´­ä¹°"
 						+ commodityVO.getPropName()
-						+ "¡Á1£¬Ô­¼Û"
+						+ "Ã—1ï¼ŒåŸä»·"
 						+ commodityVO.getOriginalPrice()
-						+ ""+GameConfig.getYuanbaoName()+"£¬"
+						+ ""+GameConfig.getYuanbaoName()+"ï¼Œ"
 						+ (Integer.parseInt(discount) / 10)
-						+ "ÕÛÓÅ»İºó"
+						+ "æŠ˜ä¼˜æƒ å"
 						+ (commodityVO.getOriginalPrice()
-								* Integer.parseInt(discount) / 100) + ""+GameConfig.getYuanbaoName()+"£¡"
+								* Integer.parseInt(discount) / 100) + ""+GameConfig.getYuanbaoName()+"ï¼"
 						+ hint;
 				roleInfo.getBasicInfo().updateAddCurExp(1);
 				request.setAttribute("result", hint);
@@ -456,7 +456,7 @@ public class PopUpMsgAction extends ActionBase
 		}
 		else
 		{
-			String result = "Êı¾İ´íÎóÇëÁªÏµ¹ÜÀíÔ±";
+			String result = "æ•°æ®é”™è¯¯è¯·è”ç³»ç®¡ç†å‘˜";
 			request.setAttribute("result", result);
 			return mapping.findForward("msghint");
 		}

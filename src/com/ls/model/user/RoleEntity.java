@@ -45,33 +45,33 @@ import com.pub.GameArgs;
 import com.web.service.avoidpkprop.AvoidPkPropService;
 
 /**
- * @author ls ¹¦ÄÜ:Íæ¼Ò½ÇÉ«µÄĞÅÏ¢µÄÈİÆ÷
+ * @author ls åŠŸèƒ½:ç©å®¶è§’è‰²çš„ä¿¡æ¯çš„å®¹å™¨
  */
 public class RoleEntity implements Serializable
 {
-	private StateInfo stateInfo;//×´Ì¬
+	private StateInfo stateInfo;//çŠ¶æ€
 	private BasicInfo basicInfo;
-	private RoleSkillInfo roleSkillInfo;//¼¼ÄÜ
-	private SettingInfo settingInfo;//ÉèÖÃĞÅÏ¢
-	private RoleShortCutInfo roleShortCutInfo;//¿ì½İ¼ü
+	private RoleSkillInfo roleSkillInfo;//æŠ€èƒ½
+	private SettingInfo settingInfo;//è®¾ç½®ä¿¡æ¯
+	private RoleShortCutInfo roleShortCutInfo;//å¿«æ·é”®
 	private RolePetInfo rolePetInfo;
-	private RoleTaskInfo taskInfo; //ÈÎÎñ
+	private RoleTaskInfo taskInfo; //ä»»åŠ¡
 	private RoleSystemInfo roleSystemInfo;
-	private RoleTitleSet roleTitle;//³ÆºÅ
-	private EquipOnBody equipOnBody;//ÉíÉÏµÄ×°±¸
-	private MountSet mountSet;//×øÆï
+	private RoleTitleSet roleTitle;//ç§°å·
+	private EquipOnBody equipOnBody;//èº«ä¸Šçš„è£…å¤‡
+	private MountSet mountSet;//åéª‘
 	private EquipProduct equipProduct;
 	private StoneProduct stoneProduct;
 	
-	private PKState pKState;//PK×´Ì¬
-	private DropSet dropSet;//µôÂä¼¯ºÏ
+	private PKState pKState;//PKçŠ¶æ€
+	private DropSet dropSet;//æ‰è½é›†åˆ
 	
-	private EventManager eventManager;//·ÇË²Ê±Ê±¼ä¹ÜÀíÆ÷
+	private EventManager eventManager;//éç¬æ—¶æ—¶é—´ç®¡ç†å™¨
 	
-	private RoleCounter counter;//¼ÆÊıÆ÷
+	private RoleCounter counter;//è®¡æ•°å™¨
 	
 	/**
-	 * ³õÊ¼»¯¹¹ÔìÓÃ»§ĞÅÏ¢
+	 * åˆå§‹åŒ–æ„é€ ç”¨æˆ·ä¿¡æ¯
 	 * @param p_pk
 	 * @throws Exception 
 	 */
@@ -82,33 +82,33 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * ½ÇÉ«ÖØÖÃ
+	 * è§’è‰²é‡ç½®
 	 */
 	public void reset()
 	{
-		//Èç¹ûÊÇ100¼¶µÄĞÂÊÖµÇÂ½
+		//å¦‚æœæ˜¯100çº§çš„æ–°æ‰‹ç™»é™†
 		if( this.getBasicInfo().getPlayer_state_by_new()==1 && this.getGrade()==GameConfig.getGradeUpperHighLimit() )
 		{
-			basicInfo.reset();//ÊôĞÔÖØÖÃ
-			this.getRoleShortCutInfo().clearShortcut();//Çå¿Õ¿ì½İ¼ü
-			this.getRoleSkillInfo().clear();//Çå¿Õ¼¼ÄÜ
-			this.getTitleSet().init();//³õÊ¼»¯³ÆºÅ
-			this.getEquipOnBody().clear();//Çå¿ÕÉíÉÏËù´©×°±¸
-			this.getTaskInfo().clear();//Çå³ıËù½ÓµÄËùÓĞÈÎÎñ
+			basicInfo.reset();//å±æ€§é‡ç½®
+			this.getRoleShortCutInfo().clearShortcut();//æ¸…ç©ºå¿«æ·é”®
+			this.getRoleSkillInfo().clear();//æ¸…ç©ºæŠ€èƒ½
+			this.getTitleSet().init();//åˆå§‹åŒ–ç§°å·
+			this.getEquipOnBody().clear();//æ¸…ç©ºèº«ä¸Šæ‰€ç©¿è£…å¤‡
+			this.getTaskInfo().clear();//æ¸…é™¤æ‰€æ¥çš„æ‰€æœ‰ä»»åŠ¡
 			
-			//Çå¿ÕµÀ¾ßºÍ×°±¸
+			//æ¸…ç©ºé“å…·å’Œè£…å¤‡
 			PlayerEquipDao playerEquipDao = new PlayerEquipDao();
 			PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
 			playerEquipDao.clear(this.getPPk());
 			playerPropGroupDao.clear(this.getPPk());
 			
 			RankService rankService = new RankService();
-			//ÅĞ¶ÏÊÇ·ñÓĞ½ÇÉ«Ïà¹ØÅÅĞĞĞÅÏ¢
+			//åˆ¤æ–­æ˜¯å¦æœ‰è§’è‰²ç›¸å…³æ’è¡Œä¿¡æ¯
 			if(rankService.isExist(this.getPPk())<1)
 			{
 				rankService.insert(this.getPPk(), this.getName(),getGrade());
 			}
-			//ÏµÍ³ÔùËÍ¸ø½ÇÉ«Ãâ·ÑµÄÒ»¼¶×øÆï
+			//ç³»ç»Ÿèµ é€ç»™è§’è‰²å…è´¹çš„ä¸€çº§åéª‘
 			RoleService roleService = new RoleService();
 			roleService.addMountsForPart(this);
 		}
@@ -116,14 +116,14 @@ public class RoleEntity implements Serializable
 	
 	
 	/**
-	 * µÃµ½»ù±¾ÃèÊöĞÅÏ¢
+	 * å¾—åˆ°åŸºæœ¬æè¿°ä¿¡æ¯
 	 */
 	public String getBasicDes()
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append("(");
 		sb.append(this.getBasicInfo().getRaceName());
-		sb.append(",").append(this.getBasicInfo().getGrade()).append("¼¶");
+		sb.append(",").append(this.getBasicInfo().getGrade()).append("çº§");
 		if( this.getBasicInfo().getFaction()!=null )
 		{
 			sb.append(",").append(this.getBasicInfo().getFactionName());
@@ -134,39 +134,39 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * µÃµ½ÏêÏ¸ÃèÊöĞÅÏ¢
+	 * å¾—åˆ°è¯¦ç»†æè¿°ä¿¡æ¯
 	 */
 	public String getDisplay()
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(this.getFullName()).append("<br/>");
-		sb.append("³ÆºÅ:").append(getTitleSet().getShowTitleName()).append("<br/>");
-		sb.append("ĞÔ±ğ:").append(this.getBasicInfo().getSexName()).append("<br/>");
-		sb.append("µÈ¼¶:").append(this.getBasicInfo().getGrade()).append("¼¶<br/>");
-		sb.append("°ïÅÉ:").append(this.getBasicInfo().getFactionName()).append("<br/>");
-		sb.append("ÊÇ·ñ¿ÉPK:").append(this.getBasicInfo().getPkSwitchDes()).append("<br/>");
-		sb.append("PKµãÊı:").append(this.getBasicInfo().getEvilValue()).append("<br/>");
+		sb.append("ç§°å·:").append(getTitleSet().getShowTitleName()).append("<br/>");
+		sb.append("æ€§åˆ«:").append(this.getBasicInfo().getSexName()).append("<br/>");
+		sb.append("ç­‰çº§:").append(this.getBasicInfo().getGrade()).append("çº§<br/>");
+		sb.append("å¸®æ´¾:").append(this.getBasicInfo().getFactionName()).append("<br/>");
+		sb.append("æ˜¯å¦å¯PK:").append(this.getBasicInfo().getPkSwitchDes()).append("<br/>");
+		sb.append("PKç‚¹æ•°:").append(this.getBasicInfo().getEvilValue()).append("<br/>");
 		return sb.toString();
 	}
 	
 	/**
-	 * µÃµ½ÃèÊöĞÅÏ¢
+	 * å¾—åˆ°æè¿°ä¿¡æ¯
 	 */
 	public String getDes()
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append(this.getFullName()).append("<br/>");
-		sb.append("³ÆºÅ:").append(getTitleSet().getShowTitleName()).append("<br/>");
-		sb.append("ĞÔ±ğ:").append(this.getBasicInfo().getSexName()).append("<br/>");
-		sb.append("µÈ¼¶:").append(this.getBasicInfo().getGrade()).append("¼¶<br/>");
-		sb.append("°ïÅÉ:").append(this.getBasicInfo().getFactionName()).append("<br/>");
-		sb.append("ÊÇ·ñ¿ÉPK:").append(this.getBasicInfo().getPkSwitchDes()).append("<br/>");
-		sb.append("PKµãÊı:").append(this.getBasicInfo().getEvilValue()).append("<br/>");
+		sb.append("ç§°å·:").append(getTitleSet().getShowTitleName()).append("<br/>");
+		sb.append("æ€§åˆ«:").append(this.getBasicInfo().getSexName()).append("<br/>");
+		sb.append("ç­‰çº§:").append(this.getBasicInfo().getGrade()).append("çº§<br/>");
+		sb.append("å¸®æ´¾:").append(this.getBasicInfo().getFactionName()).append("<br/>");
+		sb.append("æ˜¯å¦å¯PK:").append(this.getBasicInfo().getPkSwitchDes()).append("<br/>");
+		sb.append("PKç‚¹æ•°:").append(this.getBasicInfo().getEvilValue()).append("<br/>");
 		return sb.toString();
 	}
 	
 	/**
-	 * µÃµ½½ÇÉ«È«Ãû
+	 * å¾—åˆ°è§’è‰²å…¨å
 	 * @return
 	 */
 	public String getFullName()
@@ -176,18 +176,18 @@ public class RoleEntity implements Serializable
 		sb.append(ShituConstant.getTeLevel1(this.getBasicInfo().getTe_level()));
 		if (this.getBasicInfo().getEvilValue() > GameArgs.YELLOW_NAME_VALUE && this.getBasicInfo().getEvilValue() < GameArgs.RED_NAME_VALUE) 
 		{
-			sb.append("(»Æ)");
+			sb.append("(é»„)");
 		}
 		else if (this.getBasicInfo().getEvilValue() >= GameArgs.RED_NAME_VALUE) 
 		{
-			sb.append("(ºì)");
+			sb.append("(çº¢)");
 		}
 		
 		return sb.toString();
 	}
 	
 	/**
-	 * ÊÇ·ñÔÚÏß
+	 * æ˜¯å¦åœ¨çº¿
 	 * @return
 	 */
 	public boolean isOnline()
@@ -202,16 +202,16 @@ public class RoleEntity implements Serializable
 	
 	
 	/**
-	 * ½ÇÉ«Õı³£µÇÂ½
+	 * è§’è‰²æ­£å¸¸ç™»é™†
 	 */
 	public void login(HttpServletRequest request )
 	{
 		loginDoSomethings(request);
-		this.reset();// ½ÇÉ«ĞÅÏ¢ÖØÖÃ
+		this.reset();// è§’è‰²ä¿¡æ¯é‡ç½®
 	}
 	
 	/**
-	 * ĞÂÊÖµÇÂ½
+	 * æ–°æ‰‹ç™»é™†
 	 */
 	public void rookieLogin(HttpServletRequest request )
 	{
@@ -219,7 +219,7 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * ÊÇ·ñÊÇĞÂÊÖ
+	 * æ˜¯å¦æ˜¯æ–°æ‰‹
 	 * @return
 	 */
 	public boolean getIsRookie()
@@ -235,7 +235,7 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * µÇÂ½Ê±Ğè×öµÄÒ»Ğ©´¦Àí
+	 * ç™»é™†æ—¶éœ€åšçš„ä¸€äº›å¤„ç†
 	 */
 	private void loginDoSomethings(HttpServletRequest request)
 	{
@@ -244,46 +244,46 @@ public class RoleEntity implements Serializable
 		
 		this.getStateInfo().login(request.getSession());
 	
-		//±ê¼ÇÕËºÅµÇÂ½
+		//æ ‡è®°è´¦å·ç™»é™†
 		LoginDao loginDao = new LoginDao();
 		loginDao.updateState(this.getUPk()+"", request.getRemoteHost());
 		
-		//³õÊ¼»¯ÊÓÒ°
+		//åˆå§‹åŒ–è§†é‡
 		initView(this);
-		//³õÊ¼»¯½ÇÉ«µ¯³öÊ½ÏûÏ¢
+		//åˆå§‹åŒ–è§’è‰²å¼¹å‡ºå¼æ¶ˆæ¯
 		new UMessageInfoDao().initPopMsg(p_pk);
-		// ¸øÍæ¼ÒºÃÓÑ±íµÇÂ½×ö±ê¼Ç
+		// ç»™ç©å®¶å¥½å‹è¡¨ç™»é™†åšæ ‡è®°
 		FriendDAO friendDAO = new FriendDAO();
 		friendDAO.updateFriendOnline(p_pk, 1);
-		//Íæ¼ÒµÇÂ½¸øÍæ¼Ò·¢ËÍ³ÆºÅÏûÏ¢
+		//ç©å®¶ç™»é™†ç»™ç©å®¶å‘é€ç§°å·æ¶ˆæ¯
 		getTitleSet().sendTitleSysInfo(this);
-		// ³õÊ¼»¯npc
+		// åˆå§‹åŒ–npc
 		AttacckCache attacckCache = new AttacckCache();
 		attacckCache.initNpc(p_pk);
 		
-		// ½«µÇÂ½ĞÅÏ¢¼ÓÈëµ½µÇÂ½ĞÅÏ¢Í³¼Æ±íÖĞ
+		// å°†ç™»é™†ä¿¡æ¯åŠ å…¥åˆ°ç™»é™†ä¿¡æ¯ç»Ÿè®¡è¡¨ä¸­
 		StatisticsService statisticsService = new StatisticsService();
 		statisticsService.recordPersonLoginInfo(p_pk+ "", getBasicInfo().getGrade());
 
-		// ¸üĞÂµÇÂ½×´Ì¬
+		// æ›´æ–°ç™»é™†çŠ¶æ€
 		PartInfoDao partInfoDao = new PartInfoDao();
 		partInfoDao.updateLoginState(p_pk + "", 1);
 
-		//É¾³ıÍæ¼ÒµÄÃØ¾³ĞÅÏ¢
+		//åˆ é™¤ç©å®¶çš„ç§˜å¢ƒä¿¡æ¯
 		UnchartedRoomService us = new UnchartedRoomService();
 		us.updateOfflinePlayerUnchartedRoomState(this);
-		//´¦ÀíÍæ¼ÒÉÏÏßºóµÄÃØ¾³µØÍ¼ĞÅÏ¢
+		//å¤„ç†ç©å®¶ä¸Šçº¿åçš„ç§˜å¢ƒåœ°å›¾ä¿¡æ¯
 		us.updateOfflinePlayerTianguanState(this);
 		
-		//É¾³ıÍæ¼ÒÃÅÅÉµØÍ¼ĞÅÏ¢
+		//åˆ é™¤ç©å®¶é—¨æ´¾åœ°å›¾ä¿¡æ¯
 		MenpaiContestService ms = new MenpaiContestService();
 		ms.updateOfflinePlayerMenpaiContestState(this);
 		
-		// µÇÂ¼´¦Àí
+		// ç™»å½•å¤„ç†
 		PlayerStatisticsService playerStatisticsService = new PlayerStatisticsService();
 		playerStatisticsService.playerStatisticsFlow(this);
 		
-		//¸øÍæ¼Ò·¢·Å½±Àø
+		//ç»™ç©å®¶å‘æ”¾å¥–åŠ±
 		//PlayerGetGamePrizeService ps = new PlayerGetGamePrizeService();
 		//ps.getNewYearPrize(this);
 		
@@ -291,13 +291,13 @@ public class RoleEntity implements Serializable
 		int map_type = cur_scene.getMap().getMapType();
 		if( map_type==MapType.INSTANCE )
 		{
-			//Èç¹ûÔÚ¸±±¾ÇøÓòÔò´«ËÍµÄÖĞĞÄµã
+			//å¦‚æœåœ¨å‰¯æœ¬åŒºåŸŸåˆ™ä¼ é€çš„ä¸­å¿ƒç‚¹
 			this.getBasicInfo().updateSceneId(cur_scene.getMap().getBarea().getBareaPoint()+"");
 		}
 	}
 	
 	/**
-	 * ³õÊ¼»¯Íæ¼ÒÊÓÒ°
+	 * åˆå§‹åŒ–ç©å®¶è§†é‡
 	 */
 	private void initView(RoleEntity roleInfo)
 	{
@@ -306,52 +306,52 @@ public class RoleEntity implements Serializable
 		String scene_id = roleInfo.getBasicInfo().getSceneId();
 		cur_view = playerService.getCurrentView(roleInfo.getPPk(), Integer.parseInt(scene_id));
 
-		roleInfo.getStateInfo().setView(cur_view);// ¸üĞÂÍæ¼ÒÊÓÒ°
+		roleInfo.getStateInfo().setView(cur_view);// æ›´æ–°ç©å®¶è§†é‡
 
 		ViewCache viewCache = new ViewCache();
-		viewCache.remove(cur_view, roleInfo);// ÒÆ³ıÍæ¼ÒÖ®Ç°µÄÊÓÒ°
+		viewCache.remove(cur_view, roleInfo);// ç§»é™¤ç©å®¶ä¹‹å‰çš„è§†é‡
 	}
 	
 	/**
-	 * ½ÇÉ«ÍË³ö
+	 * è§’è‰²é€€å‡º
 	 */
 	public void logout()
 	{
 		LoginService.online_role.remove(getUPk());
 		this.getStateInfo().setCurState(PlayerState.OUTLINE);
-		if( this.pKState!=null )//³õÊ¼»¯PK×´Ì¬
+		if( this.pKState!=null )//åˆå§‹åŒ–PKçŠ¶æ€
 		{
 			this.pKState.outlineNotify();
 		}
-		if( this.dropSet!=null )//³õÊ¼»¯µôÂä±í
+		if( this.dropSet!=null )//åˆå§‹åŒ–æ‰è½è¡¨
 		{
 			this.dropSet.clearExpAndMoney();
 		}
 		GroupModel group_info = getStateInfo().getGroupInfo();
-		if( group_info!=null )//Èç¹ûÔÚ×é¶Ó×´Ì¬ÔòÀë¿ª¶ÓÎé
+		if( group_info!=null )//å¦‚æœåœ¨ç»„é˜ŸçŠ¶æ€åˆ™ç¦»å¼€é˜Ÿä¼
 		{
 			group_info.leaveGroup(this);
 		}
 		
-		getBasicInfo().consumeEvilValueByTime();//Ïû³ı×ï¶ñÖµ
+		getBasicInfo().consumeEvilValueByTime();//æ¶ˆé™¤ç½ªæ¶å€¼
 	}
 	
 	/**
-	 * µÃµ½½ÇÉ«µÈ¼¶
+	 * å¾—åˆ°è§’è‰²ç­‰çº§
 	 */
 	public int getGrade()
 	{
 		return this.basicInfo.getGrade();
 	}
 	/**
-	 * µÃµ½½ÇÉ«Ãû×Ö
+	 * å¾—åˆ°è§’è‰²åå­—
 	 */
 	public String getName()
 	{
 		return this.basicInfo.getName();
 	}
 	/**
-	 * µÃµ½½ÇÉ«id
+	 * å¾—åˆ°è§’è‰²id
 	 * @param p_pk
 	 */
 	public int getPPk()
@@ -359,7 +359,7 @@ public class RoleEntity implements Serializable
 		return this.basicInfo.getPPk();
 	}
 	/**
-	 * µÃµ½ÕËºÅid
+	 * å¾—åˆ°è´¦å·id
 	 * @param p_pk
 	 */
 	public int getUPk()
@@ -496,7 +496,7 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * ³Ö¾Ã»¯Êı¾İ
+	 * æŒä¹…åŒ–æ•°æ®
 	 */
 	public void save()
 	{
@@ -526,7 +526,7 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * ÊÇ·ñ¿ÉÒÔ¸úotherPK
+	 * æ˜¯å¦å¯ä»¥è·ŸotherPK
 	 * @return
 	 */
 	public boolean isPKToOther(RoleEntity other)
@@ -538,14 +538,14 @@ public class RoleEntity implements Serializable
 		int me_grade = this.getGrade();
 		int other_grade = other.getGrade();
 
-		/*Í¨ÓÃ£º
-		1.	µÈ¼¶Ïà²î10¼¶ÒÔÉÏ²»ÄÜPK£»Ïà²î10¼¶¿ÉÒÔPK
-		2.	30¼¶ÒÔÏÂ½ÇÉ«²»ÄÜPK£»´óÓÚµÈÓÚ30¼¶½ÇÉ«²Å¿ÉÒÔPK*/
+		/*é€šç”¨ï¼š
+		1.	ç­‰çº§ç›¸å·®10çº§ä»¥ä¸Šä¸èƒ½PKï¼›ç›¸å·®10çº§å¯ä»¥PK
+		2.	30çº§ä»¥ä¸‹è§’è‰²ä¸èƒ½PKï¼›å¤§äºç­‰äº30çº§è§’è‰²æ‰å¯ä»¥PK*/
 		if( me_grade>=30 && Math.abs(me_grade-other_grade)<=10 )
 		{
-			boolean me_is_redname = this.isRedname();//meÊÇ·ñÊÇºìÃû
-			boolean other_is_redname = other.isRedname();//otherÊÇ·ñÊÇºìÃû
-			//×Ô¼º»ò¶Ô·½ÓĞÒ»¸öÊÇºìÃû¶¼¿É¹¥»÷
+			boolean me_is_redname = this.isRedname();//meæ˜¯å¦æ˜¯çº¢å
+			boolean other_is_redname = other.isRedname();//otheræ˜¯å¦æ˜¯çº¢å
+			//è‡ªå·±æˆ–å¯¹æ–¹æœ‰ä¸€ä¸ªæ˜¯çº¢åéƒ½å¯æ”»å‡»
 			if( me_is_redname || other_is_redname )
 			{
 				return true;
@@ -554,17 +554,17 @@ public class RoleEntity implements Serializable
 			{
 				SceneVO cur_scene = this.getBasicInfo().getSceneInfo();
 				
-				boolean me_is_pk_protected = avoidPkPropService.isAvoidPkPropTime(this.getPPk());//×Ô¼ºÊÇ·ñÓĞPKµÀ¾ß±£»¤
-				if( me_is_pk_protected==false )//×Ô¼º²»ÊÜPKµÀ¾ß±£»¤
+				boolean me_is_pk_protected = avoidPkPropService.isAvoidPkPropTime(this.getPPk());//è‡ªå·±æ˜¯å¦æœ‰PKé“å…·ä¿æŠ¤
+				if( me_is_pk_protected==false )//è‡ªå·±ä¸å—PKé“å…·ä¿æŠ¤
 				{
-					boolean other_is_pk_protected = avoidPkPropService.isAvoidPkPropTime(other.getPPk());//otherÊÇ·ñÓĞPKµÀ¾ß±£»¤
-					boolean is_same_race = this.getBasicInfo().getPRace()==other.getBasicInfo().getPRace()?true:false;//ÊÇ·ñÊÇÏàÍ¬ÖÖ×å
-					//Í¬ÖÖ×åPK
+					boolean other_is_pk_protected = avoidPkPropService.isAvoidPkPropTime(other.getPPk());//otheræ˜¯å¦æœ‰PKé“å…·ä¿æŠ¤
+					boolean is_same_race = this.getBasicInfo().getPRace()==other.getBasicInfo().getPRace()?true:false;//æ˜¯å¦æ˜¯ç›¸åŒç§æ—
+					//åŒç§æ—PK
 					if(  is_same_race && cur_scene.isAllowPK() && other_is_pk_protected==false && this.getBasicInfo().getPkSwitch()==2 && other.getBasicInfo().getPkSwitch()==2)
 					{
 						return true;
 					}
-					//²»Í¬ÖÖ×åPK
+					//ä¸åŒç§æ—PK
 					else if( is_same_race==false && other_is_pk_protected==false )
 					{
 						return true;
@@ -577,7 +577,7 @@ public class RoleEntity implements Serializable
 	}
 	
 	/**
-	 * ÊÇ·ñÊÇºìÃû
+	 * æ˜¯å¦æ˜¯çº¢å
 	 * @return
 	 */
 	public boolean isRedname()

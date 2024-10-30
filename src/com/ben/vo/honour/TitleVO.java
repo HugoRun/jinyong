@@ -1,30 +1,30 @@
 package com.ben.vo.honour;
 
 /**
- * ³ÆºÅ
+ * ç§°å·
  */
 public class TitleVO
 {
-	/** ³ÆºÅÀàĞÍ */
-	public static final int GRADE = 1;// µÈ¼¶³ÆºÅ£¨×ªÖ°£©
-	public static final int MARRIAGE = 2;// ½á»é
-	public static final int SWORN_BROTHER = 3;// ½áÒå
-	public static final int VIP = 4;// VIP³ÆºÅÀàĞÍ
+	/** ç§°å·ç±»å‹ */
+	public static final int GRADE = 1;// ç­‰çº§ç§°å·ï¼ˆè½¬èŒï¼‰
+	public static final int MARRIAGE = 2;// ç»“å©š
+	public static final int SWORN_BROTHER = 3;// ç»“ä¹‰
+	public static final int VIP = 4;// VIPç§°å·ç±»å‹
 	
-	/** Ö÷¼üid */
+	/** ä¸»é”®id */
 	private int id;
-	/** ³ÆºÅÃû³Æ */
+	/** ç§°å·åç§° */
 	private String name;
-	/** ³ÆºÅÃèÊö */
+	/** ç§°å·æè¿° */
 	private String des;
-	/** ³ÆºÅÀàĞÍ */
+	/** ç§°å·ç±»å‹ */
 	private int type;
-	/** ³ÆºÅÀàĞÍÃû³Æ */
+	/** ç§°å·ç±»å‹åç§° */
 	private String typeName;
 	
-	/** ¸½¼ÓÊôĞÔ×Ö·û´® */
+	/** é™„åŠ å±æ€§å­—ç¬¦ä¸² */
 	private String attriStr;
-	/** Ê¹ÓÃÊ±¼äÏŞÖÆ£º0ÎªÎŞÏŞÖÆ£¬µ¥Î»Ğ¡Ê±*/
+	/** ä½¿ç”¨æ—¶é—´é™åˆ¶ï¼š0ä¸ºæ— é™åˆ¶ï¼Œå•ä½å°æ—¶*/
 	private int useTime;
 	public int getId()
 	{

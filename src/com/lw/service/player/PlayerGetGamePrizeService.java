@@ -20,7 +20,7 @@ import com.pm.service.systemInfo.SystemInfoService;
 
 public class PlayerGetGamePrizeService
 {
-	/** Íæ¼ÒÁìÈ¡½±ÀøµÄÁ÷³Ì */
+	/** ç©å®¶é¢†å–å¥–åŠ±çš„æµç¨‹ */
 	public String playerGetSystemPrize(RoleEntity role_info, String u_passprot,
 			int id)
 	{
@@ -28,20 +28,20 @@ public class PlayerGetGamePrizeService
 		PlayerGetGamePrizeVO vo = dao.getPrizeByID(id, u_passprot);
 		if (vo == null)
 		{
-			return "ÄúÃ»ÓĞ¸Ã½±ÀøµÀ¾ß";
+			return "æ‚¨æ²¡æœ‰è¯¥å¥–åŠ±é“å…·";
 		}
 		else
 		{
 			if (vo.getState() == 1)
 			{
-				return "ÄúÒÑ¾­ÁìÈ¡¸Ã½±Àø";
+				return "æ‚¨å·²ç»é¢†å–è¯¥å¥–åŠ±";
 			}
 			else
 			{
 				if (vo.getP_pk() != 0
 						&& vo.getP_pk() != role_info.getBasicInfo().getPPk())
 				{
-					return "¸Ã½ÇÉ«²»ÄÜÁìÈ¡½±Àø";
+					return "è¯¥è§’è‰²ä¸èƒ½é¢†å–å¥–åŠ±";
 				}
 				String wrapdis = getWrap(role_info.getBasicInfo().getWrapSpare(), vo.getProp());
 				if (wrapdis != null)
@@ -60,19 +60,19 @@ public class PlayerGetGamePrizeService
 								.getPPk(), Integer.parseInt(result[0]),
 								GoodsType.PROP, Integer.parseInt(result[1]));
 						String content = role_info.getBasicInfo().getName()
-								+ "ÁìÈ¡" + propvo.getPropName() + result[1] + "¸ö";
+								+ "é¢†å–" + propvo.getPropName() + result[1] + "ä¸ª";
 						dao.insertPlayerPrizeInfo(role_info.getBasicInfo()
 								.getUPk(), role_info.getBasicInfo().getPPk(),
 								content);
 					}
 					dao.updatePlayerPrizeState(u_passprot, id);
-					return "ÁìÈ¡³É¹¦";
+					return "é¢†å–æˆåŠŸ";
 				}
 			}
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒµÀ¾ßÁĞ±í */
+	/** å¾—åˆ°ç©å®¶é“å…·åˆ—è¡¨ */
 	public PlayerGetGamePrizeVO getPlayerPrizeList(int id, String u_passprot)
 	{
 		PlayerGetGamePrizeDao dao = new PlayerGetGamePrizeDao();
@@ -80,7 +80,7 @@ public class PlayerGetGamePrizeService
 		return vo;
 	}
 
-	/** µÃµ½Íæ¼Ò½±ÀøµÄÏÔÊ¾ */
+	/** å¾—åˆ°ç©å®¶å¥–åŠ±çš„æ˜¾ç¤º */
 	public List<PlayerGetGamePrizeVO> getPrizeType(String u_passprot)
 	{
 		PlayerGetGamePrizeDao dao = new PlayerGetGamePrizeDao();
@@ -89,7 +89,7 @@ public class PlayerGetGamePrizeService
 		return list;
 	}
 
-	/** µÃµ½Íæ¼Ò½±ÀøµÄÏÔÊ¾ */
+	/** å¾—åˆ°ç©å®¶å¥–åŠ±çš„æ˜¾ç¤º */
 	public String getPlayerPrizeOut(int id, String u_passprot,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -122,7 +122,7 @@ public class PlayerGetGamePrizeService
 		return resultWml.toString();
 	}
 
-	// »ñµÃÍæ¼ÒµÄÁì½±ID
+	// è·å¾—ç©å®¶çš„é¢†å¥–ID
 	public String getUserID(int u_pk)
 	{
 		PlayerGetGamePrizeDao dao = new PlayerGetGamePrizeDao();
@@ -143,7 +143,7 @@ public class PlayerGetGamePrizeService
 		}
 		if (wrap < 0)
 		{
-			return "°ü¹ü¿Õ¼ä²»×ã!";
+			return "åŒ…è£¹ç©ºé—´ä¸è¶³!";
 		}
 		else
 		{
@@ -151,8 +151,8 @@ public class PlayerGetGamePrizeService
 		}
 	}
 
-	// ¸ù¾İÇşµÀ²»Í¬ ÅĞ¶ÏÌõ¼ş²»Ò»Ñù Ò»ÏÂ·½·¨ÎªUPKÎªÅĞ¶ÏÌõ¼ş
-	/** Íæ¼ÒÁìÈ¡½±ÀøµÄÁ÷³Ì */
+	// æ ¹æ®æ¸ é“ä¸åŒ åˆ¤æ–­æ¡ä»¶ä¸ä¸€æ · ä¸€ä¸‹æ–¹æ³•ä¸ºUPKä¸ºåˆ¤æ–­æ¡ä»¶
+	/** ç©å®¶é¢†å–å¥–åŠ±çš„æµç¨‹ */
 	public String playerGetSystemPrizeByUpk(RoleEntity role_info, String u_pk,
 			int id)
 	{
@@ -160,20 +160,20 @@ public class PlayerGetGamePrizeService
 		PlayerGetGamePrizeVO vo = dao.getPrizeByIDByUpk(id, u_pk);
 		if (vo == null)
 		{
-			return "ÄúÃ»ÓĞ¸Ã½±ÀøµÀ¾ß";
+			return "æ‚¨æ²¡æœ‰è¯¥å¥–åŠ±é“å…·";
 		}
 		else
 		{
 			if (vo.getState() == 1)
 			{
-				return "ÄúÒÑ¾­ÁìÈ¡¸Ã½±Àø";
+				return "æ‚¨å·²ç»é¢†å–è¯¥å¥–åŠ±";
 			}
 			else
 			{
 				if (vo.getP_pk() != 0
 						&& vo.getP_pk() != role_info.getBasicInfo().getPPk())
 				{
-					return "¸Ã½ÇÉ«²»ÄÜÁìÈ¡½±Àø";
+					return "è¯¥è§’è‰²ä¸èƒ½é¢†å–å¥–åŠ±";
 				}
 				String wrapdis = getWrap(role_info.getBasicInfo()
 						.getWrapSpare(), vo.getProp());
@@ -193,19 +193,19 @@ public class PlayerGetGamePrizeService
 								.getPPk(), Integer.parseInt(result[0]),
 								GoodsType.PROP, Integer.parseInt(result[1]));
 						String content = role_info.getBasicInfo().getName()
-								+ "ÁìÈ¡" + propvo.getPropName() + result[1] + "¸ö";
+								+ "é¢†å–" + propvo.getPropName() + result[1] + "ä¸ª";
 						dao.insertPlayerPrizeInfo(role_info.getBasicInfo()
 								.getUPk(), role_info.getBasicInfo().getPPk(),
 								content);
 					}
 					dao.updatePlayerPrizeStateByUpk(u_pk, id);
-					return "ÁìÈ¡³É¹¦";
+					return "é¢†å–æˆåŠŸ";
 				}
 			}
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒµÀ¾ßÁĞ±í */
+	/** å¾—åˆ°ç©å®¶é“å…·åˆ—è¡¨ */
 	public PlayerGetGamePrizeVO getPlayerPrizeListByUpk(int id, String u_pk)
 	{
 		PlayerGetGamePrizeDao dao = new PlayerGetGamePrizeDao();
@@ -213,7 +213,7 @@ public class PlayerGetGamePrizeService
 		return vo;
 	}
 
-	/** µÃµ½Íæ¼Ò½±ÀøµÄÏÔÊ¾ */
+	/** å¾—åˆ°ç©å®¶å¥–åŠ±çš„æ˜¾ç¤º */
 	public List<PlayerGetGamePrizeVO> getPrizeTypeByUpk(String u_pk)
 	{
 		PlayerGetGamePrizeDao dao = new PlayerGetGamePrizeDao();
@@ -222,7 +222,7 @@ public class PlayerGetGamePrizeService
 		return list;
 	}
 
-	/** µÃµ½Íæ¼Ò½±ÀøµÄÏÔÊ¾ */
+	/** å¾—åˆ°ç©å®¶å¥–åŠ±çš„æ˜¾ç¤º */
 	public String getPlayerPrizeOutByUpk(int id, String u_pk,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -255,13 +255,13 @@ public class PlayerGetGamePrizeService
 		return resultWml.toString();
 	}
 
-	/** µ±ÁËÓÃ»§ÔÚÏß½±ÀøµÄËµÃ÷ */
+	/** å½“äº†ç”¨æˆ·åœ¨çº¿å¥–åŠ±çš„è¯´æ˜ */
 	public void getPlayerOnlineTimePrize(RoleEntity roleInfo, int state,
 			String u_name)
 	{
 		PlayerStatisticsService ps = new PlayerStatisticsService();
 		PlayerGetGamePrizeDao pggpdao = new PlayerGetGamePrizeDao();
-		String name = "´ó»¹µ¤ÇãÇé´ó·î";
+		String name = "å¤§è¿˜ä¸¹å€¾æƒ…å¤§å¥‰";
 		String prize_content = prize_content(roleInfo.getBasicInfo().getGrade());
 		PlayerGetGamePrizeVO pggpvo = pggpdao.getPlayerIsHaveOnlineTimePrize(
 				name, roleInfo.getBasicInfo().getUPk(), roleInfo.getBasicInfo()
@@ -314,7 +314,7 @@ public class PlayerGetGamePrizeService
 		return prize;
 	}
 
-	/** *************Íæ¼ÒÁìÈ¥ĞÂÊÖ½±Àø****************** */
+	/** *************ç©å®¶é¢†å»æ–°æ‰‹å¥–åŠ±****************** */
 	public void getNewYearPrize(RoleEntity roleInfo)
 	{
 		if (GameConfig.getPlayerGetOnlinePrizeSwitch() == 0)
@@ -331,13 +331,13 @@ public class PlayerGetGamePrizeService
 		TimeControlService timeControlService = new TimeControlService();
 		boolean get = timeControlService.isUseableByAll(roleInfo.getBasicInfo()
 				.getPPk(), prop_id, TimeControlService.GETNEWYEARPRIZE, 1);
-		if (get == true)// ¿ÉÒÔÁìÈ¡
+		if (get == true)// å¯ä»¥é¢†å–
 		{
-			// ÁìÈ¡½±ÀøÍË³ö
+			// é¢†å–å¥–åŠ±é€€å‡º
 			GoodsService gs = new GoodsService();
 			int have = gs.putGoodsToWrap(roleInfo.getBasicInfo().getPPk(),
 					prop_id, 4, 1);
-			if (have == -1)// °ü¹ü²»×ã
+			if (have == -1)// åŒ…è£¹ä¸è¶³
 			{
 				return;
 			}
@@ -349,8 +349,8 @@ public class PlayerGetGamePrizeService
 				PropVO vo = PropCache.getPropById(prop_id);
 				SystemInfoService systemInfoService = new SystemInfoService();
 				systemInfoService.insertSystemInfoBySystem(roleInfo
-						.getBasicInfo().getPPk(), "ÄúÒÑ¾­»ñµÃÁËÒ»·İ" + vo.getPropName()
-						+ ",¸ĞĞ»Äú¶ÔÎÒÃÇÓÎÏ·µÄÖ§³Ö!");
+						.getBasicInfo().getPPk(), "æ‚¨å·²ç»è·å¾—äº†ä¸€ä»½" + vo.getPropName()
+						+ ",æ„Ÿè°¢æ‚¨å¯¹æˆ‘ä»¬æ¸¸æˆçš„æ”¯æŒ!");
 			}
 		}
 		else

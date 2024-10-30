@@ -15,7 +15,7 @@ public class Passskill extends SkillDao
 
 
 	/**
-	 * µÃµ½Íæ¼ÒµÄ±»¶¯¼¼ÄÜÊôÐÔ
+	 * å¾—åˆ°çŽ©å®¶çš„è¢«åŠ¨æŠ€èƒ½å±žæ€§
 	 * @param pk
 	 * @return
 	 */
@@ -24,11 +24,11 @@ public class Passskill extends SkillDao
 		PassSkillVO passSkillVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select max(sk_bj_multiple) as sk_bj_multiple,max(sk_mp_multiple) as sk_mp_multiple,max(sk_hp_multiple) as sk_hp_multiple," +
+		String sql = "SELECT max(sk_bj_multiple) as sk_bj_multiple,max(sk_mp_multiple) as sk_mp_multiple,max(sk_hp_multiple) as sk_hp_multiple," +
 				"max(sk_gj_multiple) as sk_gj_multiple,max(sk_fy_multiple) as sk_fy_multiple,sum(sk_gj_add) as gjadd," +
 				"sum(sk_fy_add) as fyadd,sum(sk_hp_add) as hpadd,sum(sk_mp_add) as mpadd from u_skill_info where sk_type = 0 and p_pk = " + p_pk;
 		
-		logger.debug("µÃµ½Íæ¼ÒµÄ±»¶¯¼¼ÄÜÊôÐÔ="+sql);
+		logger.debug("å¾—åˆ°çŽ©å®¶çš„è¢«åŠ¨æŠ€èƒ½å±žæ€§="+sql);
 		try
 		{
 			stmt = conn.createStatement();
@@ -63,9 +63,9 @@ public class Passskill extends SkillDao
 		return passSkillVO;		
 	}
 	
-	/**Íæ¼ÒÎåÐÐÊôÐÔ¼¼ÄÜ**/
+	/**çŽ©å®¶äº”è¡Œå±žæ€§æŠ€èƒ½**/
 	/**
-	 * µÃµ½Íæ¼ÒµÄ±»¶¯¼¼ÄÜÊôÐÔ
+	 * å¾—åˆ°çŽ©å®¶çš„è¢«åŠ¨æŠ€èƒ½å±žæ€§
 	 * @param pk
 	 * @return
 	 */
@@ -74,10 +74,10 @@ public class Passskill extends SkillDao
 		PassSkillVO passSkillVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select max(sk_gj_multiple) as sk_gj_multiple,max(sk_bj_multiple) as sk_bj_multiple,max(sk_hp_multiple) as sk_hp_multiple" +
+		String sql = "SELECT max(sk_gj_multiple) as sk_gj_multiple,max(sk_bj_multiple) as sk_bj_multiple,max(sk_hp_multiple) as sk_hp_multiple" +
 				",max(sk_mp_multiple) as sk_mp_multiple,max(sk_fy_multiple) as sk_fy_multiple from u_skill_info where sk_type = 2 and p_pk = " + p_pk;
 		
-		logger.debug("µÃµ½Íæ¼ÒµÄ±»¶¯¼¼ÄÜÊôÐÔ="+sql);
+		logger.debug("å¾—åˆ°çŽ©å®¶çš„è¢«åŠ¨æŠ€èƒ½å±žæ€§="+sql);
 		try
 		{
 			stmt = conn.createStatement();

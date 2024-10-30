@@ -29,13 +29,13 @@ import com.ls.web.service.goods.prop.PropUseService;
 
 /**
  * @author ls
- * ×°±¸Éı¼¶
+ * è£…å¤‡å‡çº§
  */
 public class EquipAction extends ActionBase
 {
-	//********************************±£»¤×°±¸pkÊ±²»µôÂä
+	//********************************ä¿æŠ¤è£…å¤‡pkæ—¶ä¸æ‰è½
 	/**
-	 * ¿ÉÒÔ±£»¤µÄ×°±¸ÁĞ±í
+	 * å¯ä»¥ä¿æŠ¤çš„è£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward protectEquipList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -56,7 +56,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("protect_equip_list");
 	}
 	/**
-	 * ±£»¤×°±¸ÌáÊ¾
+	 * ä¿æŠ¤è£…å¤‡æç¤º
 	 */
 	public ActionForward protectHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -67,7 +67,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("protect_hint");
 	}
 	/**
-	 * ±£»¤×°±¸
+	 * ä¿æŠ¤è£…å¤‡
 	 */
 	public ActionForward protect(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -86,9 +86,9 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("protect_end");
 	}
 	
-	//********************************ÌáÉı×°±¸Æ·ÖÊ
+	//********************************æå‡è£…å¤‡å“è´¨
 	/**
-	 * ¿ÉÒÔÌáÉı×°±¸Æ·ÖÊµÄ×°±¸ÁĞ±í
+	 * å¯ä»¥æå‡è£…å¤‡å“è´¨çš„è£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward qualityEquipList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -112,7 +112,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("quality_equip_list");
 	}
 	/**
-	 * ÌáÉı×°±¸Æ·ÖÊÌáÊ¾
+	 * æå‡è£…å¤‡å“è´¨æç¤º
 	 */
 	public ActionForward upgradeQualityHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -123,7 +123,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("upgrade_quality_hint");
 	}
 	/**
-	 * ÌáÉı×°±¸Æ·ÖÊ
+	 * æå‡è£…å¤‡å“è´¨
 	 */
 	public ActionForward upgradeQuality(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -144,9 +144,9 @@ public class EquipAction extends ActionBase
 	
 	
 	
-	//********************************½â³ı°ó¶¨
+	//********************************è§£é™¤ç»‘å®š
 	/**
-	 * °ó¶¨µÄ×°±¸ÁĞ±í
+	 * ç»‘å®šçš„è£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward bindEquipList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -169,7 +169,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("bind_equip_list");
 	}
 	/**
-	 * ½â³ı°ó¶¨ÌáÊ¾
+	 * è§£é™¤ç»‘å®šæç¤º
 	 */
 	public ActionForward unbindHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -180,7 +180,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("unbind_hint");
 	}
 	/**
-	 * ½â³ı°ó¶¨
+	 * è§£é™¤ç»‘å®š
 	 */
 	public ActionForward unbind(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -199,9 +199,9 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("return_wrap_hint");
 	}
 	
-	//********************************ĞŞ²¹ÆÆËğ×°±¸
+	//********************************ä¿®è¡¥ç ´æŸè£…å¤‡
 	/**
-	 * ÆÆËğ×°±¸ÁĞ±í
+	 * ç ´æŸè£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward badEquipList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -222,7 +222,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("bad_equip_list");
 	}
 	/**
-	 * ĞŞ¸´ÆÆËğ×°±¸ÌáÊ¾
+	 * ä¿®å¤ç ´æŸè£…å¤‡æç¤º
 	 */
 	public ActionForward maintainBadHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -233,7 +233,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("maintain_bad_hint");
 	}
 	/**
-	 * ĞŞ¸´ÆÆËğ×°±¸
+	 * ä¿®å¤ç ´æŸè£…å¤‡
 	 */
 	public ActionForward maintainBad(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -252,7 +252,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("return_wrap_hint");
 	}
 	
-	//********************************(Í¨¹ıµÀ¾ß)ĞŞÀíÉíÉÏÈ«²¿×°±¸
+	//********************************(é€šè¿‡é“å…·)ä¿®ç†èº«ä¸Šå…¨éƒ¨è£…å¤‡
 	public ActionForward propMaintainIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -284,7 +284,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("return_wrap_hint");
 	}
 	
-	//********************************(Í¨¹ı²Ëµ¥)ĞŞÀíÉíÉÏÈ«²¿×°±¸
+	//********************************(é€šè¿‡èœå•)ä¿®ç†èº«ä¸Šå…¨éƒ¨è£…å¤‡
 	public ActionForward maintainIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -293,12 +293,12 @@ public class EquipAction extends ActionBase
 		int maintain_fee = roleEntity.getEquipOnBody().getMaintainAllFee();
 		if( maintain_fee==0 )
 		{
-			super.setHint(request, "ÄãµÄ×°±¸ÄÍ¾ÃÃ»ÓĞÏûºÄ,²»ĞèÒªĞŞÀí");
+			super.setHint(request, "ä½ çš„è£…å¤‡è€ä¹…æ²¡æœ‰æ¶ˆè€—,ä¸éœ€è¦ä¿®ç†");
 		}
 		else 
 		{
 			if( roleEntity.getBasicInfo().getCopper()<maintain_fee )
-				super.setHint(request, "ÄãµÄ½ğÇ®²»×ã,ÎŞ·¨ĞŞ¸´");
+				super.setHint(request, "ä½ çš„é‡‘é’±ä¸è¶³,æ— æ³•ä¿®å¤");
 		}
 		request.setAttribute("feeDes", ExchangeUtil.getMoneyDes(maintain_fee));
 		return mapping.findForward("maintain_index");
@@ -309,13 +309,13 @@ public class EquipAction extends ActionBase
 	{
 		RoleEntity roleEntity = this.getRoleEntity(request);
 		roleEntity.getEquipOnBody().maintainAll();
-		request.setAttribute("hint", "ÄúÉíÉÏµÄ×°±¸ÒÑ¾­ĞŞÀíÍê±Ï£¡");
+		request.setAttribute("hint", "æ‚¨èº«ä¸Šçš„è£…å¤‡å·²ç»ä¿®ç†å®Œæ¯•ï¼");
 		return mapping.findForward("return_hint");
 	}
 	
-	//********************************×°±¸´ò¿×
+	//********************************è£…å¤‡æ‰“å­”
 	/**
-	 * ¿ÉÒÔ´ò¿×µÄ×°±¸ÁĞ±í
+	 * å¯ä»¥æ‰“å­”çš„è£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward punchEquipList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -335,7 +335,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * ´ò¿×ÌáÊ¾
+	 * æ‰“å­”æç¤º
 	 */
 	public ActionForward punchHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -345,7 +345,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * ´ò¿×
+	 * æ‰“å­”
 	 */
 	public ActionForward punch(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -359,12 +359,12 @@ public class EquipAction extends ActionBase
 		
 		String hint= equip.punch(roleEntity);
 		request.setAttribute("hint", hint);
-		return mapping.findForward("punch_end");//·µ»Ø´ò¿×½áÊøÒ³Ãæ
+		return mapping.findForward("punch_end");//è¿”å›æ‰“å­”ç»“æŸé¡µé¢
 	}
 	
-	//********************************×°±¸ÏâÇ¶
+	//********************************è£…å¤‡é•¶åµŒ
 	/**
-	 * ¿ÉÒÔÏâÇ¶µÄ×°±¸ÁĞ±í
+	 * å¯ä»¥é•¶åµŒçš„è£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward inlayEquipList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -384,7 +384,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("inlay_equip_list");
 	}
 	/**
-	 * ÏâÇ¶±¦Ê¯ÁĞ±í
+	 * é•¶åµŒå®çŸ³åˆ—è¡¨
 	 */
 	public ActionForward inlayStoneList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -406,7 +406,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("inlay_stone_list");
 	}
 	/**
-	 * ÏâÇ¶ÌáÊ¾
+	 * é•¶åµŒæç¤º
 	 */
 	public ActionForward inlayHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -417,7 +417,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * ÏâÇ¶
+	 * é•¶åµŒ
 	 */
 	public ActionForward inlay(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -433,12 +433,12 @@ public class EquipAction extends ActionBase
 		
 		String hint= equip.inlay(stone);
 		request.setAttribute("hint", hint);
-		return mapping.findForward("inlay_end");//·µ»Ø´ò¿×½áÊøÒ³Ãæ
+		return mapping.findForward("inlay_end");//è¿”å›æ‰“å­”ç»“æŸé¡µé¢
 	}
 	
-	//********************************×°±¸Éı¼¶,ÎåĞĞ×ª»»
+	//********************************è£…å¤‡å‡çº§,äº”è¡Œè½¬æ¢
 	/**
-	 * Éı¼¶,ÎåĞĞ×ª»»Ê×Ò³Ãæ
+	 * å‡çº§,äº”è¡Œè½¬æ¢é¦–é¡µé¢
 	 */
 	public ActionForward productIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -450,7 +450,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * ¿ÉÒÔÉı¼¶,ÎåĞĞ×ª»»µÄ×°±¸ÁĞ±í
+	 * å¯ä»¥å‡çº§,äº”è¡Œè½¬æ¢çš„è£…å¤‡åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -485,7 +485,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * Ñ¡ÔñÒªÉı¼¶,ÎåĞĞ×ª»»µÄ×°±¸
+	 * é€‰æ‹©è¦å‡çº§,äº”è¡Œè½¬æ¢çš„è£…å¤‡
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -501,7 +501,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * Éı¼¶,ÎåĞĞ×ª»»
+	 * å‡çº§,äº”è¡Œè½¬æ¢
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -511,7 +511,7 @@ public class EquipAction extends ActionBase
 		String hint="";
 		if(equipProduct.getEquip()==null)
 		{
-			hint="ÄúÃ»ÓĞÎåĞĞÊôĞÔµÄ×°±¸£¡";
+			hint="æ‚¨æ²¡æœ‰äº”è¡Œå±æ€§çš„è£…å¤‡ï¼";
 			request.setAttribute("hint",hint);
 			return mapping.findForward("upgrade_hint");
 		}
@@ -523,7 +523,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 *  Ôö¼Ó³É¹¦ÂÊµÄ±¦Ê¯ÁĞ±í
+	 *  å¢åŠ æˆåŠŸç‡çš„å®çŸ³åˆ—è¡¨
 	 */
 	public ActionForward stoneList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -538,7 +538,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * ÊäÈë³É¹¦ÂÊ±¦Ê¯ÊıÁ¿
+	 * è¾“å…¥æˆåŠŸç‡å®çŸ³æ•°é‡
 	 */
 	public ActionForward inputStoneNum(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -550,7 +550,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * ÊäÈë±£µ×±¦Ê¯ÊıÁ¿
+	 * è¾“å…¥ä¿åº•å®çŸ³æ•°é‡
 	 */
 	public ActionForward useProtStoneHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -569,7 +569,7 @@ public class EquipAction extends ActionBase
 		return mapping.findForward("protect_stone");
 	}
 	/**
-	 * Ê¹ÓÃ±£µ×±¦Ê¯
+	 * ä½¿ç”¨ä¿åº•å®çŸ³
 	 */
 	public ActionForward useProtStone(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -589,7 +589,7 @@ public class EquipAction extends ActionBase
 	}
 	
 	/**
-	 * Ê¹ÓÃ³É¹¦ÂÊ±¦Ê¯
+	 * ä½¿ç”¨æˆåŠŸç‡å®çŸ³
 	 */
 	public ActionForward useRateStone(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -612,9 +612,9 @@ public class EquipAction extends ActionBase
 	}
 	
 	
-	//***********************************Í¨ÓÃ·½·¨
+	//***********************************é€šç”¨æ–¹æ³•
 	/**
-	 * ²é¿´×°±¸ÏêÇé
+	 * æŸ¥çœ‹è£…å¤‡è¯¦æƒ…
 	 */
 	public ActionForward des(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

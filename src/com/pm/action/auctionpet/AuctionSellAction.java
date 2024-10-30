@@ -32,7 +32,7 @@ public class AuctionSellAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 	
-	//ÁĞ³ö½ÇÉ«ÉíÉÏµÄ³èÎïÁĞ±í
+	//åˆ—å‡ºè§’è‰²èº«ä¸Šçš„å® ç‰©åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -47,17 +47,17 @@ public class AuctionSellAction extends DispatchAction
 		//int menuId = Integer.valueOf((String) request.getAttribute("menu_id"));
 
 		
-		//´Ó½ÇÉ«ÉíÉÏÈ¡µÃ³èÎïÁĞ±í
+		//ä»è§’è‰²èº«ä¸Šå–å¾—å® ç‰©åˆ—è¡¨
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> pet_list = petInfoDAO.getPetInfoList(pPk+"");
 		
-		logger.info("ÉíÉÏ³èÎïÊıÁ¿"+pet_list.size());
+		logger.info("èº«ä¸Šå® ç‰©æ•°é‡"+pet_list.size());
 		request.setAttribute("pet_list",pet_list);
 
 		return mapping.findForward("pet_list");
 	}
 	
-	// ²é¿´³èÎïÏêÏ¸ĞÅÏ¢
+	// æŸ¥çœ‹å® ç‰©è¯¦ç»†ä¿¡æ¯
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{    
@@ -69,7 +69,7 @@ public class AuctionSellAction extends DispatchAction
 
 	}
 	
-	//Ö´ĞĞÅÄÂô²Ù×÷
+	//æ‰§è¡Œæ‹å–æ“ä½œ
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{	
@@ -89,35 +89,35 @@ public class AuctionSellAction extends DispatchAction
 		
 		
 		String resultWml = "";
-		// ¼ì²âÒøÁ½ÊäÈëÊÇ·ñÕıÈ·
+		// æ£€æµ‹é“¶ä¸¤è¾“å…¥æ˜¯å¦æ­£ç¡®
 		String pet_silver = request.getParameter("pet_silver");
 		if(pet_silver == null || pet_silver.equals("")){
 			pet_silver = "0";
 		} else {
 			boolean flag = StringUtil.isNumber(pet_silver);
 			if (!flag) {
-				// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-				resultWml = "ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·!";
+				// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+				resultWml = "æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®!";
 				request.setAttribute("resultWml", resultWml);
 				return mapping.findForward("pet_display");	
 			}
 		}
-		// ¼ì²âÍ­Ç®ÊäÈëÊÇ·ñÕıÈ·
+		// æ£€æµ‹é“œé’±è¾“å…¥æ˜¯å¦æ­£ç¡®
 		String pet_copper = request.getParameter("pet_copper");
 		if(pet_copper == null || pet_copper.equals("")){
 			pet_copper = "0";
 		} else {
 			boolean flag = StringUtil.isNumber(pet_copper);
 			if (!flag) {
-				// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-				resultWml = "ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·!";
+				// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+				resultWml = "æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®!";
 				request.setAttribute("resultWml", resultWml);
 				return mapping.findForward("pet_display");	
 			}
 		}
 
 		
-		logger.info("Íæ¼ÒÊäÈëµÄÒø:"+pet_silver+", Íæ¼ÒÊäÈëµÄÎÄ:"+pet_copper+", petPk="+petPk);
+		logger.info("ç©å®¶è¾“å…¥çš„é“¶:"+pet_silver+", ç©å®¶è¾“å…¥çš„æ–‡:"+pet_copper+", petPk="+petPk);
 				
 		
 		int input_money = 0;	
@@ -126,16 +126,16 @@ public class AuctionSellAction extends DispatchAction
 			int taxNum  = (int) (input_money*(1 - AuctionNumber.AUCTIONNUMBER));
 			long nowMoneyNum = roleInfo.getBasicInfo().getCopper();
 			if ( nowMoneyNum < taxNum) {	
-				// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-				resultWml = "ÄúÉíÉÏµÄ½ğÇ®²»¹»´Ë´ÎµÄË°¸º!";
+				// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+				resultWml = "æ‚¨èº«ä¸Šçš„é‡‘é’±ä¸å¤Ÿæ­¤æ¬¡çš„ç¨è´Ÿ!";
 				request.setAttribute("resultWml", resultWml);
 				return mapping.findForward("pet_display");					
 			}
 		
 		
 		}catch (NumberFormatException e){
-			// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-			resultWml = "ÕıÈ·ÊäÈëÎïÆ·ÅÄÂô¼Û¸ñ";
+			// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+			resultWml = "æ­£ç¡®è¾“å…¥ç‰©å“æ‹å–ä»·æ ¼";
 			request.setAttribute("resultWml", resultWml);
 			return mapping.findForward("pet_display");
 		}

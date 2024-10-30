@@ -30,7 +30,7 @@ public class Hortation extends DispatchAction
 	
 	Logger logger = Logger.getLogger("log.action");
 	
-	// ÏÔÊ¾ËùÓÐµÄ½±ÀøÀàÐÍ
+	// æ˜¾ç¤ºæ‰€æœ‰çš„å¥–åŠ±ç±»åž‹
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -48,7 +48,7 @@ public class Hortation extends DispatchAction
 	}
 	
 	
-	// ÏÔÊ¾Ò»¸ö½±ÀøÀàÐÍËùÓÐµÄ½±ÀøÄÚÈÝ
+	// æ˜¾ç¤ºä¸€ä¸ªå¥–åŠ±ç±»åž‹æ‰€æœ‰çš„å¥–åŠ±å†…å®¹
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -77,7 +77,7 @@ public class Hortation extends DispatchAction
 	}
 	
 	
-	// ÁìÈ¡½±Àø
+	// é¢†å–å¥–åŠ±
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -101,7 +101,7 @@ public class Hortation extends DispatchAction
 		return mapping.findForward("jieguoString");
 	}
 	
-	// ÏÔÊ¾Ò»¸ö½±ÀøÀàÐÍµÄËµÃ÷
+	// æ˜¾ç¤ºä¸€ä¸ªå¥–åŠ±ç±»åž‹çš„è¯´æ˜Ž
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		String hor_id = request.getParameter("hor_id");

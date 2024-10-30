@@ -10,7 +10,7 @@ import com.ls.ben.cache.CacheBase;
 import com.ls.web.service.cache.CacheService;
 
 /**
- * ´¦ÀíÓĞ¹ØnpcµôÂä¾­Ñé¡¢µôÂä½ğÇ®±¶Êı±í
+ * å¤„ç†æœ‰å…³npcæ‰è½ç»éªŒã€æ‰è½é‡‘é’±å€æ•°è¡¨
  * @author Administrator
  *
  */
@@ -18,9 +18,9 @@ public class ExpNpcDropCache extends CacheBase
 {
 	public static String NPC_DROPEXP_BY_ID = "npc_dropExp_by_id";
 	/**
-	 * »ñÈ¡Ö´ĞĞ¾­Ñé±¶ÊıµÄÊı¾İ
-	 * @param enforce  Ö´ĞĞ 0 ²»Ö´ĞĞ 1Ö´ĞĞ
-	 * @param exp_cimelia 1ÊÇ¾­ÑéµôÂÊ 2ÊÇµô±¦µôÂÊ
+	 * è·å–æ‰§è¡Œç»éªŒå€æ•°çš„æ•°æ®
+	 * @param enforce  æ‰§è¡Œ 0 ä¸æ‰§è¡Œ 1æ‰§è¡Œ
+	 * @param exp_cimelia 1æ˜¯ç»éªŒæ‰ç‡ 2æ˜¯æ‰å®æ‰ç‡
 	 * @return
 	 */
 	public ExpNpcdropVO getExpNpcdrop (int exp_cimelia) {
@@ -38,7 +38,7 @@ public class ExpNpcDropCache extends CacheBase
 	}
 	
 	/**
-	 * ÖØĞÂ¼ÓÔØµôÂä±í
+	 * é‡æ–°åŠ è½½æ‰è½è¡¨
 	 */
 	public void reloadDrop(){
 		CacheManager manager = CacheManager.create();

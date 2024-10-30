@@ -13,15 +13,15 @@ public class DrawALotteryJob implements Job
 
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{
-		// µÃµ½Ö÷¼ü
+		// å¾—åˆ°ä¸»é”®
 		String name = arg0.getJobDetail().getFullName();
 		String[] id_str = name.split("_");
 		int id = Integer.parseInt(id_str[1]);
-		// ¸ù¾İÖ÷¼üµÃµ½³é½±ÄÚÈİ
+		// æ ¹æ®ä¸»é”®å¾—åˆ°æŠ½å¥–å†…å®¹
 		DrawALotteryService ds = new DrawALotteryService();
-		logger.debug("¿ªÊ¼³é½±");
-		logger.info("³é½±id"+id);
+		logger.debug("å¼€å§‹æŠ½å¥–");
+		logger.info("æŠ½å¥–id"+id);
 		ds.getSystemInfo(id);
-		logger.debug("³é½±½áÊø");
+		logger.debug("æŠ½å¥–ç»“æŸ");
 	}
 }

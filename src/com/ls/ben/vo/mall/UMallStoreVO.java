@@ -1,16 +1,16 @@
 package com.ls.ben.vo.mall;
 
 /**
- * ¹¦ÄÜ£º°Ù±¦ÄÒ
+ * åŠŸèƒ½ï¼šç™¾å®å›Š
  * @author ls
  * May 12, 2009
  * 3:57:47 PM
  */
 public class UMallStoreVO
 {
-	/*1£©	Íæ¼Òid(u_pk)
-	2£©	ÉÌÆ·id
-	3£©	ÉÌÆ·ÊıÁ¿*/
+	/*1ï¼‰	ç©å®¶id(u_pk)
+	2ï¼‰	å•†å“id
+	3ï¼‰	å•†å“æ•°é‡*/
 	
 	private int uPk;
 	private int propId;

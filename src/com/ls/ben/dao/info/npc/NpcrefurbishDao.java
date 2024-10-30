@@ -8,15 +8,15 @@ import com.ls.ben.vo.info.npc.NpcrefurbishVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:npcË¢ĞÂ¿ØÖÆ
+ * åŠŸèƒ½:npcåˆ·æ–°æ§åˆ¶
  * 
- * @author ÁõË§ 12:40:14 AM
+ * @author åˆ˜å¸… 12:40:14 AM
  */
 public class NpcrefurbishDao extends DaoBase
 {
 
 	/**
-	 * ÅĞ¶Ï¸ÃµØµãÊÇ·ñÓĞboss
+	 * åˆ¤æ–­è¯¥åœ°ç‚¹æ˜¯å¦æœ‰boss
 	 * 
 	 * @param scene_id
 	 * @return
@@ -24,7 +24,7 @@ public class NpcrefurbishDao extends DaoBase
 	public boolean isHaveBoss(int scene_id)
 	{
 		boolean result = false;
-		String sql = "select npcrefurbish_id from npcrefurbish where scene_id="
+		String sql = "SELECT npcrefurbish_id from npcrefurbish where scene_id="
 				+ scene_id + " and isBoss=1 limit 1";
 		logger.debug(sql);
 
@@ -53,7 +53,7 @@ public class NpcrefurbishDao extends DaoBase
 	}
 
 	/**
-	 * µ±Ç°µØµãNCPÊÇ·ñBOSS
+	 * å½“å‰åœ°ç‚¹NCPæ˜¯å¦BOSS
 	 * 
 	 * @param scene_id
 	 * @param npc_id
@@ -62,7 +62,7 @@ public class NpcrefurbishDao extends DaoBase
 	public boolean isBoss(int scene_id, int npc_id)
 	{
 		boolean result = false;
-		String sql = "select npcrefurbish_id from npcrefurbish where npc_id = '"
+		String sql = "SELECT npcrefurbish_id from npcrefurbish where npc_id = '"
 				+ npc_id
 				+ "' and  scene_id="
 				+ scene_id
@@ -94,7 +94,7 @@ public class NpcrefurbishDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½µ±Ç°µØµãµÄnpcË¢ĞÂĞÅÏ¢
+	 * å¾—åˆ°å½“å‰åœ°ç‚¹çš„npcåˆ·æ–°ä¿¡æ¯
 	 * 
 	 * @param scene_id
 	 * @return
@@ -103,12 +103,12 @@ public class NpcrefurbishDao extends DaoBase
 	{
 		List<NpcrefurbishVO> list = new ArrayList<NpcrefurbishVO>();
 		NpcrefurbishVO vo = null;
-		String sql = "select * from npcrefurbish where scene_id=" + scene_id
+		String sql = "SELECT * FROM npcrefurbish where scene_id=" + scene_id
 				+ " and ( (refurbish_time_ks='' and day_time_ks='') "
-				+ // ÎŞË¢ĞÂÊ±¼äÏŞÖÆ
+				+ // æ— åˆ·æ–°æ—¶é—´é™åˆ¶
 				"or (curtime()>TIME(day_time_ks) and curtime()<TIME(day_time_js)) "
-				+ // ÅĞ¶ÏÏà¶ÔÊ±¼äÏŞÖÆ
-				"or (now()>TIMESTAMP(refurbish_time_ks) and now()<TIMESTAMP(refurbish_time_js)) )";// ÅĞ¶Ï¾ø¶ÔÊ±¼äÏŞÖÆ
+				+ // åˆ¤æ–­ç›¸å¯¹æ—¶é—´é™åˆ¶
+				"or (now()>TIMESTAMP(refurbish_time_ks) and now()<TIMESTAMP(refurbish_time_js)) )";// åˆ¤æ–­ç»å¯¹æ—¶é—´é™åˆ¶
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -148,13 +148,13 @@ public class NpcrefurbishDao extends DaoBase
 		return list;
 	}
 
-	/** ***µÃµ½Ò»¸öÇøÓò¿ÉË¢ĞÂµÄNPCĞÅÏ¢ ***** */
+	/** ***å¾—åˆ°ä¸€ä¸ªåŒºåŸŸå¯åˆ·æ–°çš„NPCä¿¡æ¯ ***** */
 
 	public List<NpcrefurbishVO> getNPCsBySenceId(int scene_id)
 	{
 		List<NpcrefurbishVO> list = new ArrayList<NpcrefurbishVO>();
 		NpcrefurbishVO vo = null;
-		String sql = "select * from npcrefurbish where scene_id in (select scene_id from scene where scene_mapqy=(select scene_mapqy from scene where scene_id="+scene_id+")) and refurbish_probability>=10 group by npc_id";
+		String sql = "SELECT * FROM npcrefurbish where scene_id in (select scene_id from scene where scene_mapqy=(select scene_mapqy from scene where scene_id="+scene_id+")) and refurbish_probability>=10 group by npc_id";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -195,7 +195,7 @@ public class NpcrefurbishDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½µ±Ç°µØµãnpcÒÑËÀµÄËùÓĞnpcĞÅÏ¢
+	 * å¾—åˆ°å½“å‰åœ°ç‚¹npcå·²æ­»çš„æ‰€æœ‰npcä¿¡æ¯
 	 * 
 	 * @param scene_id
 	 * @return
@@ -204,7 +204,7 @@ public class NpcrefurbishDao extends DaoBase
 	{
 		List<NpcrefurbishVO> list = new ArrayList<NpcrefurbishVO>();
 		NpcrefurbishVO vo = null;
-		String sql = "select distinct npc_id,dead_time ,isBoss from npcrefurbish where scene_id="
+		String sql = "SELECT distinct npc_id,dead_time ,isBoss from npcrefurbish where scene_id="
 				+ scene_id + " and isDead=1";
 		logger.debug(sql);
 
@@ -239,7 +239,7 @@ public class NpcrefurbishDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂËÀÍöÊ±¼ä
+	 * æ›´æ–°æ­»äº¡æ—¶é—´
 	 * 
 	 * @param npc_id
 	 * @param scene_id
@@ -268,12 +268,12 @@ public class NpcrefurbishDao extends DaoBase
 	}
 
 	/**
-	 * ÅĞ¶ÏÓĞÀäÈ´Ê±¼äµÄnpcÊÇ·ñÒÑËÀ
+	 * åˆ¤æ–­æœ‰å†·å´æ—¶é—´çš„npcæ˜¯å¦å·²æ­»
 	 */
 	public boolean isDead(int npc_id, int scene_id)
 	{
 		boolean isDead = false;
-		String sql = "select isDead from npcrefurbish where scene_id="
+		String sql = "SELECT isDead from npcrefurbish where scene_id="
 				+ scene_id + " and npc_id=" + npc_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -304,7 +304,7 @@ public class NpcrefurbishDao extends DaoBase
 	}
 
 	/**
-	 * ¸´»îÀäÈ´µÄnpc
+	 * å¤æ´»å†·å´çš„npc
 	 */
 	public void reviveNPC(int npc_id, int scene_id)
 	{

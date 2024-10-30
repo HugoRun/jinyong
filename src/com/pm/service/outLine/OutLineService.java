@@ -26,12 +26,12 @@ import com.web.jieyi.util.Constant;
 import com.web.service.communion.CommunionService;
 
 /**
- * ´¦ÀíÍæ¼ÒÀëÏßÊ±µÄÂß¼­
+ * å¤„ç†ç©å®¶ç¦»çº¿æ—¶çš„é€»è¾‘
  */
 public class OutLineService
 {
 	/**
-	 * ½ÇÉ«ÀëÏßÍË³öÊ±µÄÇåÀí¹¤×÷
+	 * è§’è‰²ç¦»çº¿é€€å‡ºæ—¶çš„æ¸…ç†å·¥ä½œ
 	 * @param roleInfo
 	 */
 	public void outLineClear(RoleEntity roleInfo)
@@ -54,39 +54,39 @@ public class OutLineService
 		CommunionService communionService = new CommunionService();
 		PlayerStatisticsService playerStatisticsService = new PlayerStatisticsService();
 		try{
-			roleInfo.logout();//ÍË³ö´¦Àí
+			roleInfo.logout();//é€€å‡ºå¤„ç†
 			
-			rs.updateOfflinePlayerUnchartedRoomState(roleInfo);//Çå³şÍæ¼ÒµÄÃØ¾³ĞÅÏ¢
-			rs.updateOfflinePlayerTianguanState(roleInfo);//Çå³şÍæ¼ÒµÄÌì¹ØĞÅÏ¢
-			ms.updateOfflinePlayerMenpaiContestState(roleInfo);//É¾³ıÍæ¼ÒÃÅÅÉµØÍ¼ĞÅÏ¢
+			rs.updateOfflinePlayerUnchartedRoomState(roleInfo);//æ¸…æ¥šç©å®¶çš„ç§˜å¢ƒä¿¡æ¯
+			rs.updateOfflinePlayerTianguanState(roleInfo);//æ¸…æ¥šç©å®¶çš„å¤©å…³ä¿¡æ¯
+			ms.updateOfflinePlayerMenpaiContestState(roleInfo);//åˆ é™¤ç©å®¶é—¨æ´¾åœ°å›¾ä¿¡æ¯
 			
-			clearView(roleInfo);//Çå³ıÊÓÒ°ĞÅÏ¢
-			clearMsg(roleInfo);//Çå³ıµ¯³öÊ½ÏûÏ¢
-			attacckCache.clearNpcTempData(p_pk + "");// Çå³ı½ÇÉ« µÄnpcÕ½¶·ĞÅÏ¢
-			groupNotifyService.clareNotify(p_pk);// Çå³ı×é¶ÓÍ¨Öª
-			communionService.clearChatInfos(p_pk);//Çå³ıÁÄÌìĞÅÏ¢
+			clearView(roleInfo);//æ¸…é™¤è§†é‡ä¿¡æ¯
+			clearMsg(roleInfo);//æ¸…é™¤å¼¹å‡ºå¼æ¶ˆæ¯
+			attacckCache.clearNpcTempData(p_pk + "");// æ¸…é™¤è§’è‰² çš„npcæˆ˜æ–—ä¿¡æ¯
+			groupNotifyService.clareNotify(p_pk);// æ¸…é™¤ç»„é˜Ÿé€šçŸ¥
+			communionService.clearChatInfos(p_pk);//æ¸…é™¤èŠå¤©ä¿¡æ¯
 
-			updatePlayerOnlineTimeByLaborage(roleInfo);//¸øÍæ¼ÒµÄÔÚÏßÊ±¼ä±íÀï¼ÓÈëÊ±¼ä
-			playerStatisticsService.updatePlayerOnlineTime(roleInfo);//¸üĞÂÍæ¼ÒÔÚÏßÊ±¼ä
-			friendDAO.updateFriendOnline(p_pk, 0);// ÀëÏßºÃÓÑ´¦Àí
+			updatePlayerOnlineTimeByLaborage(roleInfo);//ç»™ç©å®¶çš„åœ¨çº¿æ—¶é—´è¡¨é‡ŒåŠ å…¥æ—¶é—´
+			playerStatisticsService.updatePlayerOnlineTime(roleInfo);//æ›´æ–°ç©å®¶åœ¨çº¿æ—¶é—´
+			friendDAO.updateFriendOnline(p_pk, 0);// ç¦»çº¿å¥½å‹å¤„ç†
 		}catch(Exception e)
 		{
 			
 		}
 		finally
 		{
-			//´¦ÀíÍæ¼ÒÃÅÅÉNPCµÄÇé¿ö
+			//å¤„ç†ç©å®¶é—¨æ´¾NPCçš„æƒ…å†µ
 			int ppk = Constant.MENPAINPC.get(1);  
 			if(roleInfo.getPPk()==ppk){
 				Constant.MENPAINPC.put(1, 0);
 				roleInfo.getBasicInfo().updateSceneId(210+"");
 			}
-			partInfoDao.updateLoginState(p_pk + "", 0);// ¸üĞÂµÇÂ½×´Ì¬
+			partInfoDao.updateLoginState(p_pk + "", 0);// æ›´æ–°ç™»é™†çŠ¶æ€
 		}
 	}
 
 	/**
-	 * sessionÏú»ÙÊ±µÄÇåÀí
+	 * sessioné”€æ¯æ—¶çš„æ¸…ç†
 	 */
 	public void destorySessionClear(HttpSession cur_session)
 	{
@@ -105,9 +105,9 @@ public class OutLineService
 		try
 		{
 			/**
-			 * ½ÇÉ«ÍË³ö´¦Àí,	ÅĞ¶ÏsessionµÄÖµºÍroleEntityÖĞµÄsessionÊÇ²»ÊÇÍ¬Ò»¸ö,
-			 * Èç¹ûÊÇÄÇÃ´Ïú»Ù
-			 * Èç¹û²»ÊÇ,ÅĞ¶ÏroleEntityÖĞµÄsessionËù¶ÔÓ¦µÄpPkÊÇ·ñ»¹´æÔÚ,Èç¹û²»´æÔÚ,ÄÇÃ´Ïú»Ù,·ñÔò²»Ïú»Ù.
+			 * è§’è‰²é€€å‡ºå¤„ç†,	åˆ¤æ–­sessionçš„å€¼å’ŒroleEntityä¸­çš„sessionæ˜¯ä¸æ˜¯åŒä¸€ä¸ª,
+			 * å¦‚æœæ˜¯é‚£ä¹ˆé”€æ¯
+			 * å¦‚æœä¸æ˜¯,åˆ¤æ–­roleEntityä¸­çš„sessionæ‰€å¯¹åº”çš„pPkæ˜¯å¦è¿˜å­˜åœ¨,å¦‚æœä¸å­˜åœ¨,é‚£ä¹ˆé”€æ¯,å¦åˆ™ä¸é”€æ¯.
 			 */
 			RoleEntity roleInfo = RoleCache.getByPpk(pPk);
 			
@@ -130,8 +130,8 @@ public class OutLineService
 			StatisticsService statService = new StatisticsService();
 			LoginService loginService = new LoginService();
 
-			loginService.loginoutRole(pPk);// ½ÇÉ«ÍË³ö´¦Àí
-			/*****ÓÎÀÖÇşµÀÏÂÏßÍ¬²½****/
+			loginService.loginoutRole(pPk);// è§’è‰²é€€å‡ºå¤„ç†
+			/*****æ¸¸ä¹æ¸ é“ä¸‹çº¿åŒæ­¥****/
 			if(GameConfig.getChannelId()==Channel.WANXIANG)
 			{
 				com.ls.web.action.cooperate.youle.login.LoginService ls=new com.ls.web.action.cooperate.youle.login.LoginService();
@@ -140,15 +140,15 @@ public class OutLineService
 				ls.synchronousLoginState((String)cur_session.getAttribute("UserAccount"),"0",(String)cur_session.getAttribute("GameNO"));
 				ls.synchronousGradeInfo(cur_session, roleInfo.getBasicInfo().getGrade()+"");
 			}
-			/***µçĞÅÇşµÀÏÂÏßÍ¬²½**/
+			/***ç”µä¿¡æ¸ é“ä¸‹çº¿åŒæ­¥**/
 			if(GameConfig.getChannelId()==Channel.TELE)
 			{
 				com.ls.web.action.cooperate.tele.login.LoginService ls=new com.ls.web.action.cooperate.tele.login.LoginService();
 				ls.loginOut(cur_session);
 			}
-			//ÕËºÅÍË³ö´¦Àí
-			statService.recordOnLineTime(cur_session.getCreationTime(), cur_session.getLastAccessedTime(), uPk, pPk);// ¼ÇÂ¼Íæ¼ÒÕËºÅµÄÔÚÏßÊ±¼ä,½«Æä´æÈëÊı¾İ¿âÖĞ.
-			daoa.getloginStateTC("0", uPk);//ÕËºÅÍË³öÊ±±ê¼ÇÎª0
+			//è´¦å·é€€å‡ºå¤„ç†
+			statService.recordOnLineTime(cur_session.getCreationTime(), cur_session.getLastAccessedTime(), uPk, pPk);// è®°å½•ç©å®¶è´¦å·çš„åœ¨çº¿æ—¶é—´,å°†å…¶å­˜å…¥æ•°æ®åº“ä¸­.
+			daoa.getloginStateTC("0", uPk);//è´¦å·é€€å‡ºæ—¶æ ‡è®°ä¸º0
 		}
 		catch (Exception e)
 		{
@@ -156,7 +156,7 @@ public class OutLineService
 	}
 	
 	/**
-	 * Çå³ı½ÇÉ«ÊÓÒ°
+	 * æ¸…é™¤è§’è‰²è§†é‡
 	 * 
 	 * @param roleInfo
 	 */
@@ -168,7 +168,7 @@ public class OutLineService
 		role_list.remove(roleInfo);
 	}
 
-	/** ¸øÍæ¼ÒµÄÔÚÏßÊ±¼ä±íÀï¼ÓÈëÊ±¼ä */
+	/** ç»™ç©å®¶çš„åœ¨çº¿æ—¶é—´è¡¨é‡ŒåŠ å…¥æ—¶é—´ */
 	private void updatePlayerOnlineTimeByLaborage(RoleEntity roleInfo)
 	{
 		PlayerLaborageDao pldao = new PlayerLaborageDao();
@@ -183,14 +183,14 @@ public class OutLineService
 	}
 
 	/**
-	 * Çå³ı½ÇÉ«Ïà¹ØÏûÏ¢
+	 * æ¸…é™¤è§’è‰²ç›¸å…³æ¶ˆæ¯
 	 */
 	private void clearMsg(RoleEntity roleInfo)
 	{
 		int p_pk = roleInfo.getBasicInfo().getPPk();
 		UMsgService uMsgService = new UMsgService();
 
-		uMsgService.clear(p_pk);// Çå³ıÍæ¼Òµ¯³öÊ½ÏûÏ¢
+		uMsgService.clear(p_pk);// æ¸…é™¤ç©å®¶å¼¹å‡ºå¼æ¶ˆæ¯
 	}
 
 }

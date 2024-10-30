@@ -39,23 +39,23 @@ import com.web.service.friend.FriendService;
 import com.web.service.task.TaskVisitLeadService;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«¹ÜÀí
+ * åŠŸèƒ½ï¼šè§’è‰²ç®¡ç†
  */
 public class RoleService
 {
 
 	/**
-	 * ´´½¨½ÇÉ«
+	 * åˆ›å»ºè§’è‰²
 	 * @param uPk
 	 * @param role_name
 	 * @param sex
 	 * @param race
-	 * @return ·µ»Ønull±íÊ¾´´½¨Ê§°Ü
+	 * @return è¿”å›nullè¡¨ç¤ºåˆ›å»ºå¤±è´¥
 	 */
 	public RoleEntity createRole(String uPk, String role_name, String sex,
 			String race)
 	{
-		//³õÊ¼»¯½ÇÉ«Ïà¹ØÊı¾İ±í
+		//åˆå§‹åŒ–è§’è‰²ç›¸å…³æ•°æ®è¡¨
 		int p_pk = this.initDataTable(uPk, role_name, sex, Integer.parseInt(race));
 
 		if (p_pk == -1)
@@ -69,54 +69,54 @@ public class RoleService
 			return null;
 		}
 
-		//³õÊ¼»¯½ÇÉ«Âß¼­Ïà¹Ø²Ù×÷
+		//åˆå§‹åŒ–è§’è‰²é€»è¾‘ç›¸å…³æ“ä½œ
 		//initRoleLogic(roleInfo);
 		
 		return roleInfo;
 	}
 	
 	/**
-	 * É¾³ı½ÇÉ«´¦Àí
+	 * åˆ é™¤è§’è‰²å¤„ç†
 	 */
 	public boolean delRole( String uPk,String pPk )
 	{
 		RoleEntity role_info = getRoleInfoById(pPk);
 		if( role_info==null || StringUtils.isEmpty(uPk)==true || role_info.getUPk()!=Integer.parseInt(uPk) )
 		{
-			//½ÇÉ«ÒÑÉ¾³ı
+			//è§’è‰²å·²åˆ é™¤
 			return false;
 		}
 		
-		//************½ÇÉ«É¾³ı´¦Àí
-		//Èç¹ûÔÚÏß£¬Ôò×öÀëÏß´¦Àí
+		//************è§’è‰²åˆ é™¤å¤„ç†
+		//å¦‚æœåœ¨çº¿ï¼Œåˆ™åšç¦»çº¿å¤„ç†
 		if( role_info.isOnline()==true )
 		{
 			LoginService loginService = new LoginService();
 			loginService.loginoutRole(pPk);
 		}
 		
-		//ÍË³ö°ïÅÉ´¦Àí
+		//é€€å‡ºå¸®æ´¾å¤„ç†
 		Faction faction = role_info.getBasicInfo().getFaction();
 		if( faction!=null )
 		{
 			faction.delMember(role_info);
 		}
-		//É¾³ıºÃÓÑ
+		//åˆ é™¤å¥½å‹
 		FriendService fs=new FriendService();
 		fs.removeFriendInfo(Integer.parseInt(pPk));
-		//É¾³ı³ğµĞ
+		//åˆ é™¤ä»‡æ•Œ
 		PKHiteService ps=new PKHiteService();
 		ps.removeHiteInfo(Integer.parseInt(pPk));
-		//É¾³ıÅÅĞĞ°ñ
+		//åˆ é™¤æ’è¡Œæ¦œ
 		RankService rs=new RankService();
 		rs.removeRandInfo(Integer.parseInt(pPk));
-		//É¾³ı×°±¸
+		//åˆ é™¤è£…å¤‡
 		PlayerEquipDao ped=new PlayerEquipDao();
 		ped.clear(Integer.parseInt(pPk));
-		//É¾³ı×øÆï
+		//åˆ é™¤åéª‘
 		MountsService ms=new MountsService();
 		ms.removeMountsInfo(Integer.parseInt(pPk));
-		//±êÊ¶Êı¾İ
+		//æ ‡è¯†æ•°æ®
 		DeletePartDAO deletePartDAO = new DeletePartDAO();
 		int result = deletePartDAO.delete(pPk,uPk,role_info.getIsRookie());
 		if( result!=1 )
@@ -127,29 +127,29 @@ public class RoleService
 	}
 	
 	/**
-	 * ÉèÖÃ½ÇÉ«ÎªÉ¾³ı×´Ì¬,½«É¾³ı±ê¼ÇÖÃ1
+	 * è®¾ç½®è§’è‰²ä¸ºåˆ é™¤çŠ¶æ€,å°†åˆ é™¤æ ‡è®°ç½®1
 	 * @param p_pk
 	 */
 	public void setRoleDeleteState(int p_pk)
 	{
-		// ÉèÖÃ½ÇÉ«ÎªÉ¾³ı×´Ì¬
+		// è®¾ç½®è§’è‰²ä¸ºåˆ é™¤çŠ¶æ€
 		PlayerService playerService = new PlayerService();
 		playerService.updateDeleteFlag(p_pk, 1);
 	}
 
 	/**
-	 * »Ö¸´½ÇÉ«,½«É¾³ı±ê¼ÇÖÃÁã
+	 * æ¢å¤è§’è‰²,å°†åˆ é™¤æ ‡è®°ç½®é›¶
 	 * @param p_pk
 	 */
 	public void resumeRole(int p_pk)
 	{
-		// »Ö¸´½ÇÉ«
+		// æ¢å¤è§’è‰²
 		PlayerService playerService = new PlayerService();
 		playerService.updateDeleteFlag(p_pk, 0);
 	}
 
 	/**
-	 * Í¨¹ısessionµÃµ½½ÇÉ«ĞÅÏ¢
+	 * é€šè¿‡sessionå¾—åˆ°è§’è‰²ä¿¡æ¯
 	 */
 	public RoleEntity getRoleInfoBySession(HttpSession session)
 	{
@@ -162,14 +162,14 @@ public class RoleService
 	}
 
 	/**
-	 * Í¨¹ıp_pkµÃµ½½ÇÉ«
+	 * é€šè¿‡p_pkå¾—åˆ°è§’è‰²
 	 */
 	public static RoleEntity getRoleInfoById(String pPk)
 	{
 		return RoleCache.getByPpk(pPk);
 	}
 	/**
-	 * Í¨¹ıp_pkµÃµ½½ÇÉ«
+	 * é€šè¿‡p_pkå¾—åˆ°è§’è‰²
 	 */
 	public static RoleEntity getRoleInfoById(int pPk)
 	{
@@ -177,7 +177,7 @@ public class RoleService
 	}
 	
 	/**
-	 * Í¨¹ı½ÇÉ«½ÇÉ«Ãû×ÖµÄµ½½ÇÉ«ĞÅÏ¢
+	 * é€šè¿‡è§’è‰²è§’è‰²åå­—çš„åˆ°è§’è‰²ä¿¡æ¯
 	 */
 	public RoleEntity getRoleInfoByName(String role_name)
 	{
@@ -186,7 +186,7 @@ public class RoleService
 	}
 
 	/**
-	 * ĞÂÊÖµÇÂ½Ê±¸øÍæ¼Ò³õÊ¼»¯µÄ´¦Àí
+	 * æ–°æ‰‹ç™»é™†æ—¶ç»™ç©å®¶åˆå§‹åŒ–çš„å¤„ç†
 	 */
 	public void initRoleLogic(RoleEntity roleInfo)
 	{
@@ -198,57 +198,57 @@ public class RoleService
 		TaskVisitLeadService taskVisitLeadService = new TaskVisitLeadService();
 		GoodsService goodsService = new GoodsService();
 		
-		//Ñ§Ï°Ò»¸ö¼¼ÄÜ
-		int skill_id = 45;//¼¼ÄÜid
+		//å­¦ä¹ ä¸€ä¸ªæŠ€èƒ½
+		int skill_id = 45;//æŠ€èƒ½id
 		PlayerSkillVO skill = roleInfo.getRoleSkillInfo().study(skill_id);
 		
-		// ¸øÍæ¼Ò·¢·Å³õÊ¼µÀ¾ß
-		int prop_id = 390;//µÀ¾ßid
+		// ç»™ç©å®¶å‘æ”¾åˆå§‹é“å…·
+		int prop_id = 390;//é“å…·id
 		goodsService.putPropToWrap(roleInfo.getPPk(), prop_id, 5,GameLogManager.G_SYSTEM);
-		prop_id = 391;//µÀ¾ßid
+		prop_id = 391;//é“å…·id
 		goodsService.putPropToWrap(roleInfo.getPPk(), prop_id, 5,GameLogManager.G_SYSTEM);
-		prop_id = 148;//µÀ¾ßid,»ÆÖÒÀï
+		prop_id = 148;//é“å…·id,é»„å¿ é‡Œ
 		goodsService.putPropToWrap(roleInfo.getPPk(), prop_id, 20,GameLogManager.G_SYSTEM);
 		
-		//ÉèÖÃ¿ì½İ¼ü
+		//è®¾ç½®å¿«æ·é”®
 		ShortcutService shortcutService = new ShortcutService();
 		List<ShortcutVO> shortcut_list = roleInfo.getRoleShortCutInfo().getShortList();
-		//ÉèÖÃµÚ1¸ö¿ì½İ¼üÎª¹¥»÷
+		//è®¾ç½®ç¬¬1ä¸ªå¿«æ·é”®ä¸ºæ”»å‡»
 		shortcutService.updateShortcut(shortcut_list.get(0).getScPk(), Shortcut.ATTACK,0, roleInfo.getPPk()+"");
-		//ÉèÖÃµÚ2¸ö¿ì½İ¼üÎªÒ©Æ·
+		//è®¾ç½®ç¬¬2ä¸ªå¿«æ·é”®ä¸ºè¯å“
 		shortcutService.updateShortcut(shortcut_list.get(1).getScPk(), Shortcut.CURE,prop_id, roleInfo.getPPk()+"");
-		//ÉèÖÃµÚ3¸ö¿ì½İ¼üÎª¼¼ÄÜ
+		//è®¾ç½®ç¬¬3ä¸ªå¿«æ·é”®ä¸ºæŠ€èƒ½
 		shortcutService.updateShortcut(shortcut_list.get(2).getScPk(), Shortcut.SKILL,skill.getSPk(), roleInfo.getPPk()+"");
 		
-		//·¢×°±¸
+		//å‘è£…å¤‡
 		for( int equip_id=127;equip_id<=134;equip_id++)
 		{
-			//·¢×°±¸²¢´©ÔÚÉíÉÏ
+			//å‘è£…å¤‡å¹¶ç©¿åœ¨èº«ä¸Š
 			goodsService.giveEquipOnBody(roleInfo, equip_id, Equip.Q_ORANGE);
 		}
 		
 		
-		//¸øÍæ¼ÒÔö¼Ó³õÊ¼³ÆºÅºÍÈÎÎñ
-		String t_zu = null;//ÈÎÎñ×é
+		//ç»™ç©å®¶å¢åŠ åˆå§‹ç§°å·å’Œä»»åŠ¡
+		String t_zu = null;//ä»»åŠ¡ç»„
 		int race = roleInfo.getBasicInfo().getPRace();
-		TitleVO race_title = null;//ÖÖ×å³ÆºÅ
+		TitleVO race_title = null;//ç§æ—ç§°å·
 		switch(race)
 		{
-			case 1://Ñı
+			case 1://å¦–
 				race_title = TitleCache.getById(10);
-				t_zu = "ty_juezhanbuzhoushan01";// ÈÎÎñ×é
+				t_zu = "ty_juezhanbuzhoushan01";// ä»»åŠ¡ç»„
 				break;
-			case 2://Î×
+			case 2://å·«
 				race_title = TitleCache.getById(18);
-				t_zu = "ty_juezhanbuzhoushan02";// ÈÎÎñ×é
+				t_zu = "ty_juezhanbuzhoushan02";// ä»»åŠ¡ç»„
 				break;
 		}
-		// ³õÊ¼»¯Ò»ÌõÈÎÎñ·ÅÔÚÉíÉÏ
+		// åˆå§‹åŒ–ä¸€æ¡ä»»åŠ¡æ”¾åœ¨èº«ä¸Š
 		taskVisitLeadService.acceptTask(roleInfo, t_zu);
-		//»ñµÃÒ»¸ö³ÆºÅ
+		//è·å¾—ä¸€ä¸ªç§°å·
 		roleInfo.getTitleSet().gainTitle(race_title);
 		
-		//³õÊ¼»¯ÑªÁ¿ºÍ·¨Á¦
+		//åˆå§‹åŒ–è¡€é‡å’Œæ³•åŠ›
 		PlayerService playerService = new PlayerService();
 		PartInfoVO player = playerService.getPlayerByRoleInfo(roleInfo);
 		PropertyService propertyService = new PropertyService();
@@ -258,7 +258,7 @@ public class RoleService
 
 
 	/**
-	 * ³õÊ¼»¯½ÇÉ«Ïà¹Ø±í
+	 * åˆå§‹åŒ–è§’è‰²ç›¸å…³è¡¨
 	 * @param uPk
 	 * @param role_name
 	 * @param sex
@@ -268,44 +268,44 @@ public class RoleService
 	private int initDataTable(String uPk, String role_name, String sex,int race)
 	{
 		UGrowDao u_grow_dao = new UGrowDao();
-		UGrowVO init_info = u_grow_dao.getMaxGradeInfo(race);//µÃµ½½ÇÉ«³õÊ¼»¯ĞÅÏ¢
+		UGrowVO init_info = u_grow_dao.getMaxGradeInfo(race);//å¾—åˆ°è§’è‰²åˆå§‹åŒ–ä¿¡æ¯
 		
 		if( init_info==null )
 		{
 			return -1;
 		}
 		
-		/** ÉúÃüÖµÉÏÏŞ */
+		/** ç”Ÿå‘½å€¼ä¸Šé™ */
 		String pUpHp = init_info.getGHP()+"";
-		/** ÉúÃüÖµÉÏÏŞ */
+		/** ç”Ÿå‘½å€¼ä¸Šé™ */
 		String pUpMp = init_info.getGMP()+"";
-		/** ¹¥»÷ */
+		/** æ”»å‡» */
 		String pGj = init_info.getGGj()+"";
-		/** ·ÀÓù */
+		/** é˜²å¾¡ */
 		String pFy = init_info.getGFy()+"";
-		/** ±©»÷ÂÊ */
+		/** æš´å‡»ç‡ */
 		String pDropMultiple = init_info.getGDropMultiple()+"";
 		
-		/** ³õÊ¼½ğÇ® */
+		/** åˆå§‹é‡‘é’± */
 		String pCopper = "1000";
-		/** ¿ª¹Ø1¹Ø2¿ª */
+		/** å¼€å…³1å…³2å¼€ */
 		String pPks = "1";
-		/** °ü¹üÈİÁ¿ */
+		/** åŒ…è£¹å®¹é‡ */
 		String pWrapContent = "50";
 
-		/** ³öÉúµØ×ø±ê */
+		/** å‡ºç”Ÿåœ°åæ ‡ */
 		String pMap = "1";
 		switch(race)
 		{
-			case 1://Ñı
+			case 1://å¦–
 				pMap = "328";
 				break;
-			case 2://Î×
+			case 2://å·«
 				pMap = "329";
 				break;
 		}
 		
-		//³õÊ¼»¯½ÇÉ«»ù±¾ĞÅÏ¢±í
+		//åˆå§‹åŒ–è§’è‰²åŸºæœ¬ä¿¡æ¯è¡¨
 		PartInfoDao partInfoDAO = new PartInfoDao();
 		int p_pk = partInfoDAO.add(uPk, role_name, sex, pUpHp, pUpMp, pGj, pFy,
 				 pCopper, pPks,pDropMultiple,pMap, pWrapContent,race);
@@ -315,16 +315,16 @@ public class RoleService
 			return p_pk;
 		}
 		
-		//³õÊ¼»¯¿ì½İ¼ü
+		//åˆå§‹åŒ–å¿«æ·é”®
 		PartInfoDAO dao = new PartInfoDAO();
 		dao.initShortcut(p_pk+"");
-		//³õÊ¼»¯²Ö¿âÊı¾İ
+		//åˆå§‹åŒ–ä»“åº“æ•°æ®
 		WareHouseDao wareHouseDao = new WareHouseDao();
 		wareHouseDao.insertWareHouse(Integer.parseInt(uPk), p_pk, Wrap.COPPER);
-		//³õÊ¼»¯ÉèÖÃÊı¾İ
+		//åˆå§‹åŒ–è®¾ç½®æ•°æ®
 		SettingDao settingDao = new SettingDao();
 		settingDao.createSysSetting(p_pk);
-		//³õÊ¼»¯½ÇÉ«¹¤×Ê±í
+		//åˆå§‹åŒ–è§’è‰²å·¥èµ„è¡¨
 		LaborageService ls = new LaborageService();
 		ls.insertPlayLaborageMessage(p_pk);
 		return p_pk;
@@ -341,7 +341,7 @@ public class RoleService
 		return new PartInfoDao().getByName(pName);
 	}
 
-	/*******************ÏµÍ³Ëæ»úÔùËÍ¸ø½ÇÉ«Ãâ·ÑµÄÒ»¼¶×øÆï**********************/
+	/*******************ç³»ç»Ÿéšæœºèµ é€ç»™è§’è‰²å…è´¹çš„ä¸€çº§åéª‘**********************/
 	public void addMountsForPart( RoleEntity roleInfo)
 	{
 		int[] types=new int[]{1,2,3};
@@ -362,7 +362,7 @@ public class RoleService
 	}
 	
 	/**
-	 * // ¹¥³ÇÕ½²âÊÔÊ±×¨ÓÃ·½·¨.
+	 * // æ”»åŸæˆ˜æµ‹è¯•æ—¶ä¸“ç”¨æ–¹æ³•.
 	 * 
 	 * @param p_pk
 	 * @param parseInt
@@ -380,31 +380,31 @@ public class RoleService
 		int menpai = random.nextInt(list.size());
 
 		List<String> menpailist = new ArrayList<String>(16);
-		// Èç¹ûÊÇ0ÊÇ£¬
+		// å¦‚æœæ˜¯0æ˜¯ï¼Œ
 		if (menpai == 0)
 		{
 			menpailist.add("mingjiao");
-			menpailist.add("Ã÷½Ì");
+			menpailist.add("æ˜æ•™");
 			menpailist.add("wuxingqijingrui");
-			menpailist.add("ÎåĞĞÆì¾«Èñ");
+			menpailist.add("äº”è¡Œæ——ç²¾é”");
 			dao.getMenPaiInfo(menpailist, 0);
 		}
 		else
 			if (menpai == 1)
 			{
 				menpailist.add("gaibang");
-				menpailist.add("Ø¤°ï");
+				menpailist.add("ä¸å¸®");
 				menpailist.add("sandaidizi");
-				menpailist.add("Èı´üµÜ×Ó");
+				menpailist.add("ä¸‰è¢‹å¼Ÿå­");
 				dao.getMenPaiInfo(menpailist, 1);
 			}
 			else
 				if (menpai == 2)
 				{
 					menpailist.add("shaolin");
-					menpailist.add("ÉÙÁÖ");
+					menpailist.add("å°‘æ—");
 					menpailist.add("wuseng");
-					menpailist.add("ÎäÉ®");
+					menpailist.add("æ­¦åƒ§");
 					dao.getMenPaiInfo(menpailist, 2);
 				}
 

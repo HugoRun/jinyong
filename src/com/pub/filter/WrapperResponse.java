@@ -1,84 +1,70 @@
 package com.pub.filter;
 
-import java.io.ByteArrayOutputStream; 
-import java.io.IOException; 
-import java.io.PrintWriter; 
-import javax.servlet.http.HttpServletResponse; 
-import javax.servlet.http.HttpServletResponseWrapper ;
-
 import org.apache.log4j.Logger;
 
-/** 
-* @see http://bianbian.sunshow.net/ 
-* @author dannyzhu, bianbian 
-* @version 1.0 
-*/ 
-public class WrapperResponse extends HttpServletResponseWrapper 
-{ 
-	Logger logger = Logger.getLogger("log.service");
-	
-    private MyPrintWriter	 tmpWriter;
-    private ByteArrayOutputStream output;
-    
-    public WrapperResponse(HttpServletResponse httpServletResponse)
-    {
-	super(httpServletResponse);
-	output = new ByteArrayOutputStream();
-	tmpWriter = new MyPrintWriter(output);
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ * @author dannyzhu, bianbian
+ * @version 1.0
+ * @see http://bianbian.sunshow.net/
+ */
+public class WrapperResponse extends HttpServletResponseWrapper {
+    private final MyPrintWriter tmpWriter;
+    private final ByteArrayOutputStream output;
+    Logger logger = Logger.getLogger("log.service");
+
+    public WrapperResponse(HttpServletResponse httpServletResponse) {
+        super(httpServletResponse);
+        output = new ByteArrayOutputStream();
+        tmpWriter = new MyPrintWriter(output);
     }
 
     @Override
-	public void finalize() throws Throwable
-    {
-	super.finalize();
-	output.close();
-	tmpWriter.close();
+    protected void finalize() throws Throwable {
+        super.finalize();
+        output.close();
+        tmpWriter.close();
     }
 
-    public String getContent()
-    {
-	try
-	{
-	    tmpWriter.flush(); // Ë¢ĞÂ¸ÃÁ÷µÄ»º³å£¬Ïê¿´java.io.Writer.flush()
-
-	   
-	    String s = tmpWriter.getByteArrayOutputStream().toString("GBK");
-
-	    // ´Ë´¦¿É¸ù¾İĞèÒª½øĞĞ¶ÔÊä³öÁ÷ÒÔ¼°WriterµÄÖØÖÃ²Ù×÷
-	    // ±ÈÈçtmpWriter.getByteArrayOutputStream().reset()
-	    return s;
-	}
-	catch (Exception e)
-	{
-	    return "UnsupportedEncoding";
-	}
+    public String getContent() {
+        try {
+            // åˆ·æ–°è¯¥æµçš„ç¼“å†²ï¼Œè¯¦çœ‹java.io.Writer.flush()
+            tmpWriter.flush();
+            // æ­¤å¤„å¯æ ¹æ®éœ€è¦è¿›è¡Œå¯¹è¾“å‡ºæµä»¥åŠWriterçš„é‡ç½®æ“ä½œ
+            // æ¯”å¦‚tmpWriter.getByteArrayOutputStream().reset()
+            return tmpWriter.getByteArrayOutputStream().toString("GBK");
+        } catch (Exception e) {
+            return "UnsupportedEncoding";
+        }
     }
 
-    // ¸²¸ÇgetWriter()·½·¨£¬Ê¹ÓÃÎÒÃÇ×Ô¼º¶¨ÒåµÄWriter
+    // è¦†ç›–getWriter()æ–¹æ³•ï¼Œä½¿ç”¨æˆ‘ä»¬è‡ªå·±å®šä¹‰çš„Writer
     @Override
-	public PrintWriter getWriter() throws IOException
-    {
-	return tmpWriter;
+    public PrintWriter getWriter() throws IOException {
+        return tmpWriter;
     }
 
-    public void close() throws IOException
-    {
-	tmpWriter.close();
+    public void close() throws IOException {
+        tmpWriter.close();
     }
 
-    private static class MyPrintWriter extends PrintWriter
-    {
-	ByteArrayOutputStream myOutput; //´Ë¼´Îª´æ·ÅresponseÊäÈëÁ÷µÄ¶ÔÏó
+    private static class MyPrintWriter extends PrintWriter {
+        // æ­¤å³ä¸ºå­˜æ”¾responseè¾“å…¥æµçš„å¯¹è±¡
+        ByteArrayOutputStream myOutput;
 
-	public MyPrintWriter(ByteArrayOutputStream output)
-	{
-	    super(output);
-	    myOutput = output;
-	}
-	public ByteArrayOutputStream getByteArrayOutputStream()
-	{
-	    return myOutput;
-	}
+        public MyPrintWriter(ByteArrayOutputStream output) {
+            super(output);
+            myOutput = output;
+        }
+
+        public ByteArrayOutputStream getByteArrayOutputStream() {
+            return myOutput;
+        }
     }
-  
+
 }

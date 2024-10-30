@@ -1,49 +1,42 @@
 /**
- * 
+ *
  */
 package com.ben.vo.checkpcrequest;
 
 /**
- * @author ºîºÆ¾ü ÆÁ±ÎPCµçÄÔÓÃ»§·ÃÎÊ
- * 
+ * @author ä¾¯æµ©å†› å±è”½PCç”µè„‘ç”¨æˆ·è®¿é—®
+ *
  */
-public class CheckPcRequestVO
-{
-	/** ºÚÃûµ¥ID */
-	private int ipPk;
-	/** IP¿ªÊ¼ */
-	private String ipBegin;
-	/** IP½áÊø */
-	private String ipEnd;
+public class CheckPcRequestVO {
+    /** é»‘åå•ID */
+    private int ipPk;
+    /** IPå¼€å§‹ */
+    private String ipBegin;
+    /** IPç»“æŸ */
+    private String ipEnd;
 
-	public int getIpPk()
-	{
-		return ipPk;
-	}
+    public int getIpPk() {
+        return ipPk;
+    }
 
-	public void setIpPk(int ipPk)
-	{
-		this.ipPk = ipPk;
-	}
+    public void setIpPk(int ipPk) {
+        this.ipPk = ipPk;
+    }
 
-	public String getIpBegin()
-	{
-		return ipBegin;
-	}
+    public String getIpBegin() {
+        return ipBegin;
+    }
 
-	public void setIpBegin(String ipBegin)
-	{
-		this.ipBegin = ipBegin;
-	}
+    public void setIpBegin(String ipBegin) {
+        this.ipBegin = ipBegin;
+    }
 
-	public String getIpEnd()
-	{
-		return ipEnd;
-	}
+    public String getIpEnd() {
+        return ipEnd;
+    }
 
-	public void setIpEnd(String ipEnd)
-	{
-		this.ipEnd = ipEnd;
-	}
+    public void setIpEnd(String ipEnd) {
+        this.ipEnd = ipEnd;
+    }
 
 }

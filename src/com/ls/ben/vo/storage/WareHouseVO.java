@@ -2,54 +2,54 @@ package com.ls.ben.vo.storage;
 
 /**
  * 
- * ¹¦ÄÜ:²Ö¿âVO
- * @author ÕÅ¿¡¿¡
+ * åŠŸèƒ½:ä»“åº“VO
+ * @author å¼ ä¿Šä¿Š
  * 10:26:18 AM
  */
 public class WareHouseVO {
 
-	/** ²Ö¿âid */
+	/** ä»“åº“id */
 	private int uwId;
-	/** ´´½¨ÈËÔ±Id */
+	/** åˆ›å»ºäººå‘˜Id */
 	private int uPk;
-	/** ½ÇÉ«Id */
+	/** è§’è‰²Id */
 	private int pPk;
-	/** µÀ¾ßµÄid */
+	/** é“å…·çš„id */
 	private int uwPropId;
-	/** ²Ö¿âµÄ·ÖÀà£¬ºÍ°ü¹üÖĞµÄÎïÆ··ÖÀàÒ»Ñù£¬ÁíÍâ6ÊÇ½ğÇ®£¬7ÊÇ³èÎï¡£ */
+	/** ä»“åº“çš„åˆ†ç±»ï¼Œå’ŒåŒ…è£¹ä¸­çš„ç‰©å“åˆ†ç±»ä¸€æ ·ï¼Œå¦å¤–6æ˜¯é‡‘é’±ï¼Œ7æ˜¯å® ç‰©ã€‚ */
 	private int uwType;
-	/** µÀ¾ßµÄ·ÖÀà£¬ÊÇËüÃÇÔÚ¸÷×Ô±íÖĞµÄ·ÖÀà  */
+	/** é“å…·çš„åˆ†ç±»ï¼Œæ˜¯å®ƒä»¬åœ¨å„è‡ªè¡¨ä¸­çš„åˆ†ç±»  */
 	private int uwPropType;
-	/**²Ö¿â¸ñÊı*/
+	/**ä»“åº“æ ¼æ•°*/
 	private int uwNumber;	
-	/** ²Ö¿âÎïÆ·*/
+	/** ä»“åº“ç‰©å“*/
 	private String uwArticle;
-	/** µÀ¾ßµÄÊıÁ¿ */
+	/** é“å…·çš„æ•°é‡ */
 	private int uwPropNumber;
-	/** ½ğÇ®²Ö¿âÉÏÏŞ*/
+	/** é‡‘é’±ä»“åº“ä¸Šé™*/
 	private String uwMoney;	
-	/** ³èÎï²Ö¿âÊıÁ¿ */
+	/** å® ç‰©ä»“åº“æ•°é‡ */
 	private String uwPet;
-	/** ½ğÇ®²Ö¿â*/
+	/** é‡‘é’±ä»“åº“*/
 	private String uwMoneyNumber;
-	/** ³èÎï²Ö¿â*/
+	/** å® ç‰©ä»“åº“*/
 	private int uwPetNumber; 		
-	/** ²Ö¿âÊ£ÓàÈİÁ¿ */
+	/** ä»“åº“å‰©ä½™å®¹é‡ */
 	private int uwWareHouseSpare;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String create_time;
 	
 	
-	/** µÀ¾ß°ó¶¨ */
+	/** é“å…·ç»‘å®š */
 	private int uw_bonding;
-	/** µÀ¾ß±£»¤ */
+	/** é“å…·ä¿æŠ¤ */
 	private int uw_protect;
-	/** ¶ş´ÎÈ·¶¨ */
+	/** äºŒæ¬¡ç¡®å®š */
 	private int uwIsReconfirm;
-	/** µÀ¾ßÊÇ·ñ¿ÉÓÃ */
+	/** é“å…·æ˜¯å¦å¯ç”¨ */
 	private int propUseControl;
 	
-	/** µÀ¾ßÌØÊâ¹¦ÄÜ×Ö¶Î1 ,½öÎª²Ö¿âËùÓÃ, Óëjygame¿âÖĞµÄ²»Í¬*/
+	/** é“å…·ç‰¹æ®ŠåŠŸèƒ½å­—æ®µ1 ,ä»…ä¸ºä»“åº“æ‰€ç”¨, ä¸jygameåº“ä¸­çš„ä¸åŒ*/
 	private String propOperate1;
 	
 	

@@ -6,23 +6,23 @@ public class PlayerGetGamePrizeVO
 {
 	// id
 	private int id;
-	// ½±ÀøÀàĞÍ
+	// å¥–åŠ±ç±»å‹
 	private String prizetype;
-	// ½±ÀøÃèÊö
+	// å¥–åŠ±æè¿°
 	private String prizedisplay;
-	// ÕËºÅ
+	// è´¦å·
 	private String passprot;
 	// u_pk
 	private int u_pk;
-	// Íæ¼ÒĞÕÃû
+	// ç©å®¶å§“å
 	private String p_name;
 	// ppk
 	private int p_pk;
-	// ½±ÀøÄÚÈİ
+	// å¥–åŠ±å†…å®¹
 	private String prop;
 	// type
 	private int state;
-	// Ê±¼ä
+	// æ—¶é—´
 	private Date createtime;
 
 	public int getId()

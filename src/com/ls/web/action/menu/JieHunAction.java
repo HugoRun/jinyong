@@ -68,7 +68,7 @@ public class JieHunAction extends BaseAction
 			{
 				pageall = size / queryPage.getPageSize()
 						+ (size % queryPage.getPageSize() == 0 ? 0 : 1);
-				// ²éÑ¯ÔÚÏßÍæ¼Ò
+				// æŸ¥è¯¢åœ¨çº¿ç©å®¶
 				friendlist = friendService.getCanMerry(bi.getPPk(),
 						bi.getSex(), page * queryPage.getPageSize(), queryPage
 								.getPageSize());
@@ -80,7 +80,7 @@ public class JieHunAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -98,8 +98,8 @@ public class JieHunAction extends BaseAction
 			RoleEntity friend = roleService.getRoleInfoById(pByPk);
 			if (friend == null || friend.isOnline()==false )
 			{
-				// ºÃÓÑ²»ÔÚÏß
-				request.setAttribute("message", "¶Ô·½²»ÔÚÏßÎŞ·¨½á»é£¡");
+				// å¥½å‹ä¸åœ¨çº¿
+				request.setAttribute("message", "å¯¹æ–¹ä¸åœ¨çº¿æ— æ³•ç»“å©šï¼");
 				// return nn1(mapping, form, request, response);
 				return mapping.findForward(ERROR);
 			}
@@ -108,11 +108,11 @@ public class JieHunAction extends BaseAction
 			{
 				if (bi.getGrade() < Constant.JIEHUN_LEVEL_LIMIT)
 				{
-					request.setAttribute("message", "ÄúµÄµÈ¼¶²»¹»");
+					request.setAttribute("message", "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ");
 				}
 				else
 				{
-					request.setAttribute("message", "¶Ô·½µÈ¼¶²»¹»");
+					request.setAttribute("message", "å¯¹æ–¹ç­‰çº§ä¸å¤Ÿ");
 				}
 				// return nn1(mapping, form, request, response);
 				return mapping.findForward(ERROR);
@@ -151,7 +151,7 @@ public class JieHunAction extends BaseAction
 			uif.setMsgPriority(PopUpMsgType.JIEHUN_FIRST);
 			uif.setMsgType(PopUpMsgType.JIEHUN);
 			uif.setPPk(Integer.parseInt(pByPk.trim()));
-			uif.setResult(bi.getName() + "ÉêÇëÓëÄú½á»é");
+			uif.setResult(bi.getName() + "ç”³è¯·ä¸æ‚¨ç»“å©š");
 			uif.setMsgOperate2(p_pk + "");
 			uMsgService.sendPopUpMsg(uif);
 			request.setAttribute("name", pByName);
@@ -159,7 +159,7 @@ public class JieHunAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -179,24 +179,24 @@ public class JieHunAction extends BaseAction
 			uif.setMsgPriority(PopUpMsgType.MERRY_AGREE_FIRST);
 			uif.setMsgType(PopUpMsgType.MERRY_AGREE);
 			uif.setPPk(Integer.parseInt(send_id.trim()));
-			uif.setResult(bi.getName() + "Í¬ÒâÓëÄú½á»é");
+			uif.setResult(bi.getName() + "åŒæ„ä¸æ‚¨ç»“å©š");
 			uif.setMsgOperate1(caozuo + "");
 			uif.setMsgOperate2(bi.getPPk() + "");
 			uMsgService.sendPopUpMsg(uif);
 			if (caozuo == 0)
 			{
-				// Í¬Òâ
+				// åŒæ„
 				return mapping.findForward(TONGYIJIEHUN);
 			}
 			else
 			{
-				// ¾Ü¾ø
+				// æ‹’ç»
 				return mapping.findForward("no_refurbish_scene");
 			}
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -212,13 +212,13 @@ public class JieHunAction extends BaseAction
 			RoleEntity friend = roleService.getRoleInfoById(send_id);
 			if (friend == null || friend.isOnline()==false)
 			{
-				request.setAttribute("jiehunle", "ºìÄï£º¶Ô·½²»ÔÚÏß£¬²»ÄÜ½á»éÁË£¡");
+				request.setAttribute("jiehunle", "çº¢å¨˜ï¼šå¯¹æ–¹ä¸åœ¨çº¿ï¼Œä¸èƒ½ç»“å©šäº†ï¼");
 				return mapping.findForward(GOOD_NOT_ENOUGH);
 			}
 			if (bi.getWrapSpare() < 1
 					|| friend.getBasicInfo().getWrapSpare() < 1)
 			{
-				request.setAttribute("jiehunle", "ÄãÃÇÆäÖĞÒ»¸öµÄ°ü¹üÈİÁ¿²»¹»ÁË£¡");
+				request.setAttribute("jiehunle", "ä½ ä»¬å…¶ä¸­ä¸€ä¸ªçš„åŒ…è£¹å®¹é‡ä¸å¤Ÿäº†ï¼");
 				return mapping.findForward(GOOD_NOT_ENOUGH);
 			}
 			int caozuo = Integer
@@ -230,7 +230,7 @@ public class JieHunAction extends BaseAction
 				uif.setMsgPriority(PopUpMsgType.CAN_NOT_MERRY_FIRST);
 				uif.setMsgType(PopUpMsgType.CAN_NOT_MERRY);
 				uif.setPPk(Integer.parseInt(send_id.trim()));
-				uif.setResult(bi.getName() + "Ã»Ç®ÓëÄú½á»é");
+				uif.setResult(bi.getName() + "æ²¡é’±ä¸æ‚¨ç»“å©š");
 				uif.setMsgOperate1(1 + "");
 				uif.setMsgOperate2(bi.getPPk() + "");
 				uMsgService.sendPopUpMsg(uif);
@@ -247,13 +247,13 @@ public class JieHunAction extends BaseAction
 				uif.setMsgPriority(PopUpMsgType.CAN_NOT_MERRY_FIRST);
 				uif.setMsgType(PopUpMsgType.CAN_NOT_MERRY);
 				uif.setPPk(Integer.parseInt(send_id.trim()));
-				uif.setResult(bi.getName() + "Ã»Ç®ÓëÄú½á»é");
+				uif.setResult(bi.getName() + "æ²¡é’±ä¸æ‚¨ç»“å©š");
 				uif.setMsgOperate1(1 + "");
 				uif.setMsgOperate2(bi.getPPk() + "");
 				uMsgService.sendPopUpMsg(uif);
 				return mapping.findForward(GOOD_NOT_ENOUGH);
 			}
-			// Èç¹ûÃ»ÓĞÈ¡µ½ÓÃ»§ÎïÆ·
+			// å¦‚æœæ²¡æœ‰å–åˆ°ç”¨æˆ·ç‰©å“
 			if (list == null || list.size() <= 0)
 			{
 				UMessageInfoVO uif = new UMessageInfoVO();
@@ -261,7 +261,7 @@ public class JieHunAction extends BaseAction
 				uif.setMsgPriority(PopUpMsgType.CAN_NOT_MERRY_FIRST);
 				uif.setMsgType(PopUpMsgType.CAN_NOT_MERRY);
 				uif.setPPk(Integer.parseInt(send_id.trim()));
-				uif.setResult(bi.getName() + "Ã»Ç®ÓëÄú½á»é");
+				uif.setResult(bi.getName() + "æ²¡é’±ä¸æ‚¨ç»“å©š");
 				uif.setMsgOperate1(1 + "");
 				uif.setMsgOperate2(bi.getPPk() + "");
 				uMsgService.sendPopUpMsg(uif);
@@ -295,7 +295,7 @@ public class JieHunAction extends BaseAction
 				uif.setMsgPriority(PopUpMsgType.CAN_NOT_MERRY_FIRST);
 				uif.setMsgType(PopUpMsgType.CAN_NOT_MERRY);
 				uif.setPPk(Integer.parseInt(send_id.trim()));
-				uif.setResult(bi.getName() + "Ã»Ç®ÓëÄú½á»é");
+				uif.setResult(bi.getName() + "æ²¡é’±ä¸æ‚¨ç»“å©š");
 				uif.setMsgOperate1(1 + "");
 				uif.setMsgOperate2(bi.getPPk() + "");
 				uMsgService.sendPopUpMsg(uif);
@@ -311,11 +311,11 @@ public class JieHunAction extends BaseAction
 				uif.setMsgPriority(PopUpMsgType.CAN_NOT_MERRY_FIRST);
 				uif.setMsgType(PopUpMsgType.CAN_NOT_MERRY);
 				uif.setPPk(Integer.parseInt(send_id.trim()));
-				uif.setResult(bi.getName() + "Ã»Ç®ÓëÄú½á»é");
+				uif.setResult(bi.getName() + "æ²¡é’±ä¸æ‚¨ç»“å©š");
 				uif.setMsgOperate1(1 + "");
 				uif.setMsgOperate2(bi.getPPk() + "");
 				uMsgService.sendPopUpMsg(uif);
-				request.setAttribute("jiehunle", "ÔÎ£¬ÄãÃÇÖĞµÄÒ»¸öÒÑ¾­½á»éÁË£¡");
+				request.setAttribute("jiehunle", "æ™•ï¼Œä½ ä»¬ä¸­çš„ä¸€ä¸ªå·²ç»ç»“å©šäº†ï¼");
 				return mapping.findForward(GOOD_NOT_ENOUGH);
 			}
 			Map<String, Integer> map = new HashMap<String, Integer>();
@@ -330,54 +330,54 @@ public class JieHunAction extends BaseAction
 					map.put(s.trim(), 1);
 				}
 			}
-			// ¿Û³ıÎïÆ·
+			// æ‰£é™¤ç‰©å“
 			for (String s : map.keySet())
 			{
 				goodsService.removeProps(bi.getPPk(), Integer
 						.parseInt(s.trim()), map.get(s.trim()),GameLogManager.R_MATERIAL_CONSUME);
 			}
 
-			// ¼à¿Ø
+			// ç›‘æ§
 			LogService logService = new LogService();
 			logService.recordMoneyLog(bi.getPPk(), bi.getName(), bi.getCopper()
-					+ "", -Constant.JIEHUN_MONEY_NEED + "", "½á»é");
+					+ "", -Constant.JIEHUN_MONEY_NEED + "", "ç»“å©š");
 
-			// ¿Û³ıÒø±Ò
+			// æ‰£é™¤é“¶å¸
 			bi.addCopper(-Constant.JIEHUN_MONEY_NEED);
-			// //»ñÈ¡³ÆºÅ
-			// HonourVO hv = honourService.findByName("ÀÏÆÅ");
-			// HonourVO hv2 = honourService.findByName("ÀÏ¹«");
+			// //è·å–ç§°å·
+			// HonourVO hv = honourService.findByName("è€å©†");
+			// HonourVO hv2 = honourService.findByName("è€å…¬");
 			// if(hv == null){
-			// id1 = honourService.addHonor("ÀÏÆÅ");
+			// id1 = honourService.addHonor("è€å©†");
 			// }else{
 			// id1 = hv.getHoId();
 			// }
 			// if(hv2==null){
-			// id2 = honourService.addHonor("ÀÏ¹«");
+			// id2 = honourService.addHonor("è€å…¬");
 			// }else{
 			// id2 = hv2.getHoId();
 			// }
-			// 1ÎªÄĞ£¬2ÎªÅ®
+			// 1ä¸ºç”·ï¼Œ2ä¸ºå¥³
 			String name = roleService.getName(send_id)[0];
 			/*if (bi.getSex() == 1)
 			{
 				roleHonourDAO.addRoleHonout1(bi.getPPk(), Constant.MAN_HONOR,
-						16, name + "µÄ");
+						16, name + "çš„");
 				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()),
-						Constant.WOMAN_HONOR, 16, bi.getName() + "µÄ");
+						Constant.WOMAN_HONOR, 16, bi.getName() + "çš„");
 			}
 			else
 			{
 				roleHonourDAO.addRoleHonout1(bi.getPPk(), Constant.WOMAN_HONOR,
-						16, name + "µÄ");
+						16, name + "çš„");
 				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()),
-						Constant.MAN_HONOR, 16, bi.getName() + "µÄ");
+						Constant.MAN_HONOR, 16, bi.getName() + "çš„");
 			}
 			re.reloadRoleHonour(bi.getPPk());
 			if(friend != null){
 				friend.reloadRoleHonour(Integer.parseInt(send_id.trim()));
 			}*/
-			request.setAttribute("honor", name + "µÄÀÏ¹«");
+			request.setAttribute("honor", name + "çš„è€å…¬");
 			request.setAttribute("name", name);
 			// Integer i = goodsService.findByName(Constant.MERRY_GIFT);
 			// if(i!=null){
@@ -402,19 +402,19 @@ public class JieHunAction extends BaseAction
 			uif.setMsgPriority(PopUpMsgType.CAN_NOT_MERRY_FIRST);
 			uif.setMsgType(PopUpMsgType.CAN_NOT_MERRY);
 			uif.setPPk(Integer.parseInt(send_id.trim()));
-			uif.setResult(bi.getName() + "³É¹¦ÓëÄú½á»é");
-			uif.setMsgOperate1(bi.getName() + "µÄÀÏÆÅ");
+			uif.setResult(bi.getName() + "æˆåŠŸä¸æ‚¨ç»“å©š");
+			uif.setMsgOperate1(bi.getName() + "çš„è€å©†");
 			uif.setMsgOperate2(bi.getPPk() + "");
 			uMsgService.sendPopUpMsg(uif);
 
-			// ²âÊÔÔö¼Ó
-			// Integer i1 = goodsService.findByName("·òÆŞÇéÉî·û");
+			// æµ‹è¯•å¢åŠ 
+			// Integer i1 = goodsService.findByName("å¤«å¦»æƒ…æ·±ç¬¦");
 			// if(i1!=null){
 			// goodsService.putPropToWrap(bi.getPPk(), i1, 1);
 			// goodsService.putPropToWrap(Integer.parseInt(send_id.trim()), i1,
 			// 1);
 			// }
-			// Integer i2 = goodsService.findByName("ĞÄÓ¡·û");
+			// Integer i2 = goodsService.findByName("å¿ƒå°ç¬¦");
 			// if(i2!=null){
 			// goodsService.putPropToWrap(bi.getPPk(), i2, 1);
 			// goodsService.putPropToWrap(Integer.parseInt(send_id.trim()), i2,
@@ -425,7 +425,7 @@ public class JieHunAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward("mess");
 		}
 	}
@@ -450,7 +450,7 @@ public class JieHunAction extends BaseAction
 		}
 
 		List<PlayerPropGroupVO> list = ppgd.findByProp_IDs(p_pk, ids);
-		// Èç¹ûÃ»ÓĞÈ¡µ½ÓÃ»§ÎïÆ·
+		// å¦‚æœæ²¡æœ‰å–åˆ°ç”¨æˆ·ç‰©å“
 		if (list == null || list.size() <= 0)
 		{
 			request.setAttribute("jieyihint", HINT12);
@@ -518,7 +518,7 @@ public class JieHunAction extends BaseAction
 		return mapping.findForward(GOODLIST);
 	}
 
-	// Ìí¼Ó¡¢É¾³ıÎïÆ·
+	// æ·»åŠ ã€åˆ é™¤ç‰©å“
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -645,7 +645,7 @@ public class JieHunAction extends BaseAction
 		return n5(mapping, form, request, response);
 	}
 
-	// Ë¢ĞÂ½Ó¿Ú
+	// åˆ·æ–°æ¥å£
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -713,7 +713,7 @@ public class JieHunAction extends BaseAction
 		{
 			jieyiVo = Constant.JIEYI_MAP.get(p_pk);
 		}
-		// Èç¹ûÈ±ÉÙ½áÒåÎïÆ·
+		// å¦‚æœç¼ºå°‘ç»“ä¹‰ç‰©å“
 		if (jieyiVo.getPg_pk1() == null
 				|| "".equals(jieyiVo.getPg_pk1().trim())
 				|| jieyiVo.getPg_pk2() == null
@@ -730,7 +730,7 @@ public class JieHunAction extends BaseAction
 			request.setAttribute("message", HINT13);
 			return n5(mapping, form, request, response);
 		}
-		// Èç¹ûÅÅÁĞË³Ğò²»ÕıÈ·
+		// å¦‚æœæ’åˆ—é¡ºåºä¸æ­£ç¡®
 		StringBuffer sb = new StringBuffer();
 		sb.append(jieyiVo.getGood_id1().trim()).append(",").append(
 				jieyiVo.getGood_id2().trim()).append(",").append(
@@ -744,7 +744,7 @@ public class JieHunAction extends BaseAction
 			return n5(mapping, form, request, response);
 		}
 
-		// Âú×ãÌõ¼ş£¬Ìø×ªµ½ºÃÓÑÁĞ±í
+		// æ»¡è¶³æ¡ä»¶ï¼Œè·³è½¬åˆ°å¥½å‹åˆ—è¡¨
 		return n7(mapping, form, request, response);
 
 	}
@@ -767,7 +767,7 @@ public class JieHunAction extends BaseAction
 		{
 			pageall = size / queryPage.getPageSize()
 					+ (size % queryPage.getPageSize() == 0 ? 0 : 1);
-			// ²éÑ¯ÔÚÏßÍæ¼Ò
+			// æŸ¥è¯¢åœ¨çº¿ç©å®¶
 			friendlist = friendService.getCanMerry(bi.getPPk(), bi.getSex(),
 					page * queryPage.getPageSize(), queryPage.getPageSize());
 		}
@@ -787,7 +787,7 @@ public class JieHunAction extends BaseAction
 		RoleEntity friend = roleService.getRoleInfoById(pByPk);
 		if (friend == null  || friend.isOnline()==false)
 		{
-			// ºÃÓÑ²»ÔÚÏß
+			// å¥½å‹ä¸åœ¨çº¿
 			request.setAttribute("message", HINT15);
 			return n5(mapping, form, request, response);
 		}
@@ -829,7 +829,7 @@ public class JieHunAction extends BaseAction
 		}
 		else
 		{
-			// ÔİÊ±É¾³ı½áÒåËùĞèÎïÆ·
+			// æš‚æ—¶åˆ é™¤ç»“ä¹‰æ‰€éœ€ç‰©å“
 			JieyiVo jieyiVo = new JieyiVo();
 			if (Constant.JIEYI_MAP.containsKey(p_pk))
 			{
@@ -872,17 +872,17 @@ public class JieHunAction extends BaseAction
 			uif.setMsgPriority(PopUpMsgType.JIEHUN_FIRST);
 			uif.setMsgType(PopUpMsgType.JIEHUN);
 			uif.setPPk(Integer.parseInt(pByPk.trim()));
-			uif.setResult(bi.getName() + "ÉêÇëÓëÄú½á»é");
+			uif.setResult(bi.getName() + "ç”³è¯·ä¸æ‚¨ç»“å©š");
 			uif.setMsgOperate2(p_pk + "");
 			uMsgService.sendPopUpMsg(uif);
 			friendService.jieyi(bi.getPPk() + "", pByPk, 3);
 			friendService.jieyi(pByPk, bi.getPPk() + "", 3);
-			request.setAttribute("jieyihint", jieYISuccessMes(pByName, "»é"));
+			request.setAttribute("jieyihint", jieYISuccessMes(pByName, "å©š"));
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ½áÒå±»ÑûÇë·½Í¬Òâ»ò¾Ü¾ø´¦Àí
+	// ç»“ä¹‰è¢«é‚€è¯·æ–¹åŒæ„æˆ–æ‹’ç»å¤„ç†
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -893,19 +893,19 @@ public class JieHunAction extends BaseAction
 		String send_id = request.getParameter("send_id");
 		if (caozuo == 0)
 		{
-			// Í¬Òâ´¦Àí
+			// åŒæ„å¤„ç†
 			friendService.jieyi(bi.getPPk() + "", send_id, 2);
 			friendService.jieyi(send_id, bi.getPPk() + "", 2);
 			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id
-					.trim()), jieYISuccMes(bi.getName(), "»é"));
+					.trim()), jieYISuccMes(bi.getName(), "å©š"));
 			int id1 = 0;
 			int id2 = 0;
-			/*// »ñÈ¡³ÆºÅ
-			TitleVO hv = honourService.findByName("ÀÏÆÅ");
-			TitleVO hv2 = honourService.findByName("ÀÏ¹«");
+			/*// è·å–ç§°å·
+			TitleVO hv = honourService.findByName("è€å©†");
+			TitleVO hv2 = honourService.findByName("è€å…¬");
 			if (hv == null)
 			{
-				id1 = honourService.addHonor("ÀÏÆÅ");
+				id1 = honourService.addHonor("è€å©†");
 			}
 			else
 			{
@@ -913,25 +913,25 @@ public class JieHunAction extends BaseAction
 			}
 			if (hv2 == null)
 			{
-				id2 = honourService.addHonor("ÀÏ¹«");
+				id2 = honourService.addHonor("è€å…¬");
 			}
 			else
 			{
 				id2 = hv2.getId();
 			}*/
-			// 1ÎªÄĞ£¬2ÎªÅ®
+			// 1ä¸ºç”·ï¼Œ2ä¸ºå¥³
 			String name = roleService.getName(send_id)[0];
 			/*if (bi.getSex() == 1)
 			{
-				roleHonourDAO.addRoleHonout1(bi.getPPk(), id2, 16, name + "µÄ");
+				roleHonourDAO.addRoleHonout1(bi.getPPk(), id2, 16, name + "çš„");
 				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()),
-						id1, 16, bi.getName() + "µÄ");
+						id1, 16, bi.getName() + "çš„");
 			}
 			else
 			{
-				roleHonourDAO.addRoleHonout1(bi.getPPk(), id1, 16, name + "µÄ");
+				roleHonourDAO.addRoleHonout1(bi.getPPk(), id1, 16, name + "çš„");
 				roleHonourDAO.addRoleHonout1(Integer.parseInt(send_id.trim()),
-						id2, 16, bi.getName() + "µÄ");
+						id2, 16, bi.getName() + "çš„");
 			}
 			re.reloadRoleHonour(bi.getPPk());
 			RoleEntity friend = roleService.getRoleInfoById(send_id.trim());
@@ -939,13 +939,13 @@ public class JieHunAction extends BaseAction
 				friend.reloadRoleHonour(Integer.parseInt(send_id.trim()));
 			}*/
 			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id
-					.trim()), jieYISuccMes(bi.getName(), "»é"));
+					.trim()), jieYISuccMes(bi.getName(), "å©š"));
 
 		}
 		else
 		{
-			// ¾Ü¾ø´¦Àí
-			// ½«¿Û³ıµÄ½áÒåÎïÆ··µ»Ø
+			// æ‹’ç»å¤„ç†
+			// å°†æ‰£é™¤çš„ç»“ä¹‰ç‰©å“è¿”å›
 			if (operate != null && !"".equals(operate.trim()))
 			{
 				String[] ss = operate.trim().split(",");
@@ -972,12 +972,12 @@ public class JieHunAction extends BaseAction
 			friendService.jieyi(send_id, bi.getPPk() + "", 0);
 
 			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(send_id
-					.trim()), jieYIFailMes(bi.getName(), "»é"));
+					.trim()), jieYIFailMes(bi.getName(), "å©š"));
 		}
 		return mapping.findForward(ERROR);
 	}
 
-	// Àë»é
+	// ç¦»å©š
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -993,12 +993,12 @@ public class JieHunAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Àë»é´¦Àí
+	// ç¦»å©šå¤„ç†
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -1030,10 +1030,10 @@ public class JieHunAction extends BaseAction
 					Constant.MERRY_GIFT);
 			bi.updateMarried(1);
 			friend.getBasicInfo().updateMarried(1);
-			/*roleHonourDAO.delRoleHonour(pByPk, bi.getName() + "µÄ");
+			/*roleHonourDAO.delRoleHonour(pByPk, bi.getName() + "çš„");
 			roleHonourDAO.delRoleHonour(bi.getPPk() + "", friend.getBasicInfo()
 					.getName()
-					+ "µÄ");
+					+ "çš„");
 			re.reloadRoleHonour(bi.getPPk());
 			friend.reloadRoleHonour(Integer.parseInt(pByPk.trim()));*/
 			systemInfoService.insertSystemInfoBySystem(Integer.parseInt(pByPk
@@ -1044,7 +1044,7 @@ public class JieHunAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -1070,10 +1070,10 @@ public class JieHunAction extends BaseAction
 			}
 			if (friendVO == null)
 			{
-				setMessage(request, "ÄúÃ»ÓĞ½á»é");
+				setMessage(request, "æ‚¨æ²¡æœ‰ç»“å©š");
 				return mapping.findForward(ERROR);
 			}
-			String message = "Àë»éÒªÇó";
+			String message = "ç¦»å©šè¦æ±‚";
 			int mailId = mailInfoService.insertMailReturnId(friendVO.getFdPk(),
 					message, "aa");
 			String help1 = "<anchor><go method=\"post\" href=\""+ response.encodeURL(GameConfig.getContextPath()+"/jiehun.do") + "\">"
@@ -1082,11 +1082,11 @@ public class JieHunAction extends BaseAction
 					+ mailId
 					+ "\" />"
 					+ " </go>"
-					+ "Í¬Òâ</anchor><anchor><go method=\"post\" href=\""+ response.encodeURL(GameConfig.getContextPath()+"/jiehun.do") + "\">"
+					+ "åŒæ„</anchor><anchor><go method=\"post\" href=\""+ response.encodeURL(GameConfig.getContextPath()+"/jiehun.do") + "\">"
 					+ "<postfield name=\"cmd\" value=\"n15\" />"
 					+ "<postfield name=\"mailId\" value=\"" + mailId + "\" />"
-					+ " </go>" + "¾Ü¾ø</anchor><br/>";
-			message = "Íæ¼Ò" + bi.getName() + "ÒªÇóÓëÄã½â³ı»éÒö¹ØÏµ!<br/>";
+					+ " </go>" + "æ‹’ç»</anchor><br/>";
+			message = "ç©å®¶" + bi.getName() + "è¦æ±‚ä¸ä½ è§£é™¤å©šå§»å…³ç³»!<br/>";
 			mailInfoService.updateMail(mailId, message + help1);
 
 			// UMessageInfoVO uif = new UMessageInfoVO();
@@ -1094,16 +1094,16 @@ public class JieHunAction extends BaseAction
 			// uif.setMsgPriority(PopUpMsgType.LIHUN_FIRST);
 			// uif.setMsgType(PopUpMsgType.LIHUN);
 			// uif.setPPk(Integer.parseInt(pByPk.trim()));
-			// uif.setResult(bi.getName()+"ÉêÇëÓëÄúÀë»é");
+			// uif.setResult(bi.getName()+"ç”³è¯·ä¸æ‚¨ç¦»å©š");
 			// uif.setMsgOperate2(bi.getPPk()+"");
 			// uMsgService.sendPopUpMsg(uif);
-			request.setAttribute("message", "ÒÑ¾­Ïò" + pByName
-					+ "·¢ËÍÀë»éÇëÇó£¬¶Ô·½È·¶¨ºó¼´¿É½â³ıË«·½»éÒö¹ØÏµ£¡");
+			request.setAttribute("message", "å·²ç»å‘" + pByName
+					+ "å‘é€ç¦»å©šè¯·æ±‚ï¼Œå¯¹æ–¹ç¡®å®šåå³å¯è§£é™¤åŒæ–¹å©šå§»å…³ç³»ï¼");
 			return mapping.findForward(ERROR);
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -1121,12 +1121,12 @@ public class JieHunAction extends BaseAction
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ¾Ü¾øÀë»é
+	// æ‹’ç»ç¦»å©š
 	public ActionForward n15(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -1147,25 +1147,25 @@ public class JieHunAction extends BaseAction
 			}
 			if (friendVO == null)
 			{
-				setMessage(request, "ÄúÃ»ÓĞ½á»é");
+				setMessage(request, "æ‚¨æ²¡æœ‰ç»“å©š");
 			}
 			else
 			{
-				setMessage(request, "Äã¾Ü¾øÁËÓëÍæ¼Ò" + friendVO.getFdName()
-						+ "½â³ı»éÒö¹ØÏµ£¡");
-				mailInfoService.insertMailReturnId(friendVO.getFdPk(), "¾Ü¾øÀë»é",
-						"Íæ¼Ò" + bi.getName() + "¾Ü¾øÓëÄã½â³ı»éÒö¹ØÏµ!");
+				setMessage(request, "ä½ æ‹’ç»äº†ä¸ç©å®¶" + friendVO.getFdName()
+						+ "è§£é™¤å©šå§»å…³ç³»ï¼");
+				mailInfoService.insertMailReturnId(friendVO.getFdPk(), "æ‹’ç»ç¦»å©š",
+						"ç©å®¶" + bi.getName() + "æ‹’ç»ä¸ä½ è§£é™¤å©šå§»å…³ç³»!");
 			}
 			return mapping.findForward(ERROR);
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Í¬ÒâÀë»é
+	// åŒæ„ç¦»å©š
 	public ActionForward n16(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -1187,7 +1187,7 @@ public class JieHunAction extends BaseAction
 			}
 			if (friendVO == null)
 			{
-				setMessage(request, "ÄúÃ»ÓĞ½á»é");
+				setMessage(request, "æ‚¨æ²¡æœ‰ç»“å©š");
 			}
 			else
 			{
@@ -1208,41 +1208,41 @@ public class JieHunAction extends BaseAction
 				new PartInfoDao().updateP_harness(friendVO.getFdPk(), 1);
 				/*roleHonourDAO.delRoleHonour(friendVO.getFdPk() + "", bi
 						.getName()
-						+ "µÄ");
+						+ "çš„");
 				roleHonourDAO.delRoleHonour(bi.getPPk() + "", friendVO
 						.getFdName()
-						+ "µÄ");
+						+ "çš„");
 				re.reloadRoleHonour(bi.getPPk());
 				RoleEntity re1 = roleService.getRoleInfoById(friendVO.getFdPk() + "");
 				if(re1!=null){
 					re1.reloadRoleHonour(friendVO.getFdPk());
 				}*/
-				setMessage(request, "ÄãÍ¬ÒâÓëÍæ¼Ò" + friendVO.getFdName() + "½â³ı»éÒö¹ØÏµ£¡");
-				mailInfoService.insertMailReturnId(friendVO.getFdPk(), "Í¬ÒâÀë»é",
-						"Íæ¼Ò" + bi.getName() + "Í¬ÒâÓëÄã½â³ıÁË»éÒö¹ØÏµ!");
+				setMessage(request, "ä½ åŒæ„ä¸ç©å®¶" + friendVO.getFdName() + "è§£é™¤å©šå§»å…³ç³»ï¼");
+				mailInfoService.insertMailReturnId(friendVO.getFdPk(), "åŒæ„ç¦»å©š",
+						"ç©å®¶" + bi.getName() + "åŒæ„ä¸ä½ è§£é™¤äº†å©šå§»å…³ç³»!");
 			}
 			return mapping.findForward(ERROR);
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Ç¿ÖÆ½á»é
+	// å¼ºåˆ¶ç»“å©š
 	public ActionForward n17(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		try
 		{
-			setMessage(request, "Ç¿ÖÆÀë»éÏû·Ñ"+GameConfig.getYuanbaoName()+"¡Á" + Constant.LIHUN_YUANBAO_COST
-					+ "¼´¿ÉÁ¢¼´Óë¶Ô·½½â³ı»éÒö¹ØÏµ£¡ÄãÈ·¶¨ÒªÓë¶Ô·½Ç¿ÖÆÀë»éÂğ£¿");
+			setMessage(request, "å¼ºåˆ¶ç¦»å©šæ¶ˆè´¹"+GameConfig.getYuanbaoName()+"Ã—" + Constant.LIHUN_YUANBAO_COST
+					+ "å³å¯ç«‹å³ä¸å¯¹æ–¹è§£é™¤å©šå§»å…³ç³»ï¼ä½ ç¡®å®šè¦ä¸å¯¹æ–¹å¼ºåˆ¶ç¦»å©šå—ï¼Ÿ");
 			return mapping.findForward("qiangzhi");
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -1259,7 +1259,7 @@ public class JieHunAction extends BaseAction
 			{
 				setMessage(
 						request,
-						"ÄãÃ»ÓĞ×ã¹»µÄ"+GameConfig.getYuanbaoName()+"Ç¿ÖÆÓë¶Ô·½Àë»é£¡<br/><anchor><go href=\""+response.encodeURL(GameConfig.getContextPath()+"//sky/bill.do?cmd=n0")+"\" method=\"get\"></go>ÎÒÒª³äÖµ</anchor>");
+						"ä½ æ²¡æœ‰è¶³å¤Ÿçš„"+GameConfig.getYuanbaoName()+"å¼ºåˆ¶ä¸å¯¹æ–¹ç¦»å©šï¼<br/><anchor><go href=\""+response.encodeURL(GameConfig.getContextPath()+"//sky/bill.do?cmd=n0")+"\" method=\"get\"></go>æˆ‘è¦å……å€¼</anchor>");
 				return mapping.findForward(ERROR);
 			}
 			FriendVO friendVO = null;
@@ -1270,7 +1270,7 @@ public class JieHunAction extends BaseAction
 			}
 			if (friendVO == null)
 			{
-				setMessage(request, "ÄúÃ»ÓĞ½á»é");
+				setMessage(request, "æ‚¨æ²¡æœ‰ç»“å©š");
 				return mapping.findForward(ERROR);
 			}
 			else
@@ -1294,25 +1294,25 @@ public class JieHunAction extends BaseAction
 				new PartInfoDao().updateP_harness(friendVO.getFdPk(), 1);
 				/*roleHonourDAO.delRoleHonour(friendVO.getFdPk() + "", bi
 						.getName()
-						+ "µÄ");
+						+ "çš„");
 				roleHonourDAO.delRoleHonour(bi.getPPk() + "", friendVO
 						.getFdName()
-						+ "µÄ");
+						+ "çš„");
 				re.reloadRoleHonour(bi.getPPk());
 				RoleEntity re1 = roleService.getRoleInfoById(friendVO.getFdPk() + "");
 				if(re1!=null){
 					re1.reloadRoleHonour(friendVO.getFdPk());
 				}*/
-				setMessage(request, "ÄãÒÑ¾­ÓëÍæ¼Ò" + friendVO.getFdName()
-						+ "Ç¿ÖÆ½â³ı»éÒö¹ØÏµÁË£¡");
-				mailInfoService.insertMailReturnId(friendVO.getFdPk(), "Ç¿ÖÆÀë»é",
-						"Íæ¼Ò" + bi.getName() + "Ç¿ÖÆ½â³ıÁËÓëÄãµÄ»éÒö¹ØÏµ!");
+				setMessage(request, "ä½ å·²ç»ä¸ç©å®¶" + friendVO.getFdName()
+						+ "å¼ºåˆ¶è§£é™¤å©šå§»å…³ç³»äº†ï¼");
+				mailInfoService.insertMailReturnId(friendVO.getFdPk(), "å¼ºåˆ¶ç¦»å©š",
+						"ç©å®¶" + bi.getName() + "å¼ºåˆ¶è§£é™¤äº†ä¸ä½ çš„å©šå§»å…³ç³»!");
 			}
 			return mapping.findForward(ERROR);
 		}
 		catch (Exception e)
 		{
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}

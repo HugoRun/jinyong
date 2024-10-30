@@ -7,13 +7,13 @@ import com.ls.ben.vo.info.partinfo.CoordinateVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:u_coordinate_info±í
- * @author ÁõË§ 4:25:53 PM
+ * åŠŸèƒ½:u_coordinate_infoè¡¨
+ * @author åˆ˜å¸… 4:25:53 PM
  */
 public class CoordinateDao extends DaoBase
 {
 	/**
-	 * Ìí¼Ó±ê¼ÇĞÅÏ¢
+	 * æ·»åŠ æ ‡è®°ä¿¡æ¯
 	 * 
 	 * @param coordinate
 	 */
@@ -21,9 +21,9 @@ public class CoordinateDao extends DaoBase
 	{
 		if (coordinate == null)
 		{
-			logger.debug("coordinateÎª¿Õ");
+			logger.debug("coordinateä¸ºç©º");
 		}
-		String sql = "insert into u_coordinate_info(p_pk,coordinate_prop_id,coordinate) values ("
+		String sql = "INSERT INTO u_coordinate_info(p_pk,coordinate_prop_id,coordinate) values ("
 				+ coordinate.getPPk()
 				+ ","
 				+ coordinate.getCoordinatePropId()
@@ -49,7 +49,7 @@ public class CoordinateDao extends DaoBase
 	}
 
 	/**
-	 * É¾³ıµÀ¾ßcoordinate_prop_idµÄ±ê¼Ç
+	 * åˆ é™¤é“å…·coordinate_prop_idçš„æ ‡è®°
 	 * 
 	 * @param p_pk
 	 * @param coordinate_prop_id
@@ -79,7 +79,7 @@ public class CoordinateDao extends DaoBase
 	}
 
 	/**
-	 * É¾³ıµÀ¾ßcoordinate_prop_idµÄ±ê¼Ç
+	 * åˆ é™¤é“å…·coordinate_prop_idçš„æ ‡è®°
 	 * 
 	 * @param p_pk
 	 * @param coordinate_prop_id
@@ -88,7 +88,7 @@ public class CoordinateDao extends DaoBase
 	public int getCoordinate(int p_pk, int coordinate_prop_id)
 	{
 		int coordinate = -1;
-		String sql = "select coordinate from u_coordinate_info where p_pk="
+		String sql = "SELECT coordinate from u_coordinate_info where p_pk="
 				+ p_pk + " and coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -114,7 +114,7 @@ public class CoordinateDao extends DaoBase
 	}
 
 	/**
-	 * ¸üĞÂµÀ¾ßcoordinate_prop_idµÄ±ê¼Ç
+	 * æ›´æ–°é“å…·coordinate_prop_idçš„æ ‡è®°
 	 * 
 	 * @param p_pk
 	 * @param coordinate_prop_id
@@ -145,7 +145,7 @@ public class CoordinateDao extends DaoBase
 	}
 
 	/**
-	 * µ±Ç°±ê¼ÇµÀ¾ßÊÇ·ñÊ¹ÓÃ
+	 * å½“å‰æ ‡è®°é“å…·æ˜¯å¦ä½¿ç”¨
 	 * 
 	 * @param p_pk
 	 * @param coordinate_prop_id
@@ -154,7 +154,7 @@ public class CoordinateDao extends DaoBase
 	public int isUse(int p_pk, int coordinate_prop_id)
 	{
 		int isUse = 0;
-		String sql = "select prop_isUse from u_coordinate_info where p_pk="
+		String sql = "SELECT prop_isUse from u_coordinate_info where p_pk="
 				+ p_pk + " and coordinate_prop_id=" + coordinate_prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -180,7 +180,7 @@ public class CoordinateDao extends DaoBase
 	}
 
 	/**
-	 * ±ê¼ÇµÀ¾ßÒÔÊ¹ÓÃ
+	 * æ ‡è®°é“å…·ä»¥ä½¿ç”¨
 	 * @param p_pk
 	 * @param coordinate_prop_id
 	 * @return
@@ -210,7 +210,7 @@ public class CoordinateDao extends DaoBase
 	}
 	
 	/**
-	 * ±ê¼ÇµÀ¾ßÒÔ·ÇÊ¹ÓÃ×´Ì¬
+	 * æ ‡è®°é“å…·ä»¥éä½¿ç”¨çŠ¶æ€
 	 * @param p_pk
 	 * @param coordinate_prop_id
 	 * @return

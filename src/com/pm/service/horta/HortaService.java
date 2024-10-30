@@ -32,7 +32,7 @@ public class HortaService
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * »ñµÃËùÓĞÀàĞÍµÄ½±ÀøÀàĞÍ
+	 * è·å¾—æ‰€æœ‰ç±»å‹çš„å¥–åŠ±ç±»å‹
 	 * @return
 	 */
 	public List<HortaVO> getMainList()
@@ -43,7 +43,7 @@ public class HortaService
 	}
 
 	/**
-	 * »ñÈ¡Ä³Ò»½±ÀøÀàĞÍÏÂËùÓĞµÄ½±ÀøÄÚÈİ
+	 * è·å–æŸä¸€å¥–åŠ±ç±»å‹ä¸‹æ‰€æœ‰çš„å¥–åŠ±å†…å®¹
 	 * 
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class HortaService
 	}
 
 	/**
-	 * ¼ì²â½±ÀøÌõ¼şÖĞÄÇĞ©¿ÉÒÔ±»Íê³É
+	 * æ£€æµ‹å¥–åŠ±æ¡ä»¶ä¸­é‚£äº›å¯ä»¥è¢«å®Œæˆ
 	 * @param horList
 	 * @param ableList
 	 * @param unAbleList
@@ -65,7 +65,7 @@ public class HortaService
 	{
 		String hint = null;
 		if ( horList == null || horList.size() == 0) {
-			hint = "Ã»ÓĞ½±ÀøÑ¡Ïî!";
+			hint = "æ²¡æœ‰å¥–åŠ±é€‰é¡¹!";
 			return hint;
 		}
 		
@@ -73,10 +73,10 @@ public class HortaService
 		for ( int i = horList.size() - 1;i>= 0;i--) {
 			hortaVO = horList.get(i);
 			if ( isUseAble(roleEntity,hortaVO)) {
-				// Èç¹ûÄÜÁìÈ¡
+				// å¦‚æœèƒ½é¢†å–
 				ableList.add(hortaVO);
 			} else {
-//				// Èç¹û²»ÄÜÁìÈ¡
+//				// å¦‚æœä¸èƒ½é¢†å–
 				String hint1 = onlyCheckEnoughNumber(hortaVO,roleEntity);
 		        if ( hint1 == null || hint1.equals("") || hint1.equals("null") ) {
 		        	unAbleList.add(hortaVO);
@@ -87,7 +87,7 @@ public class HortaService
 	}
 
 	/**
-	 * ÊÇ·ñ¿ÉÒÔÁìÈ¡,Èç¹û¿ÉÒÔÁìÈ¡¾Í·µ»Øtrue,·ñÔò·µ»Øfalse
+	 * æ˜¯å¦å¯ä»¥é¢†å–,å¦‚æœå¯ä»¥é¢†å–å°±è¿”å›true,å¦åˆ™è¿”å›false
 	 * @param roleEntity
 	 * @param hortaVO
 	 * @return
@@ -95,7 +95,7 @@ public class HortaService
 	private boolean isUseAble(RoleEntity roleEntity, HortaVO hortaVO)
 	{
 		/**
-		 * »áÔ±µÈ¼¶ÅĞ¶Ï
+		 * ä¼šå‘˜ç­‰çº§åˆ¤æ–­
 		 */
 		if ( !hortaVO.getVipGrade().equals("0")) {
 			boolean flag = false;
@@ -113,34 +113,34 @@ public class HortaService
 			if (!flag) {
 				String vip_level = hortaVO.getVipGrade();
 				Vip vip_info = VipManager.getByLevel(Integer.parseInt(vip_level));
-				hortaVO.setDisplay("ĞèÒª³ÉÎª"+vip_info.getName());
+				hortaVO.setDisplay("éœ€è¦æˆä¸º"+vip_info.getName());
 				return false;
 			}
 		}
 		
 		
-		// µÈ¼¶ÅĞ¶Ï
+		// ç­‰çº§åˆ¤æ–­
 		if ( !hortaVO.getWjGrade().equals("0")) {
 			String[] wjGrade =  hortaVO.getWjGrade().split(",");  
 			int grade  =  roleEntity.getBasicInfo().getGrade();
-			// Èç¹û²»ÔÚĞ´¶¨µÄ¼¶ÓòÄÚ,Ôò·µ»Øfalse
+			// å¦‚æœä¸åœ¨å†™å®šçš„çº§åŸŸå†…,åˆ™è¿”å›false
 			if ( grade < Integer.parseInt(wjGrade[0]) || grade > Integer.parseInt(wjGrade[1])) {
-				hortaVO.setDisplay("»¹²î"+(Integer.parseInt(wjGrade[0]) - grade) +"¼¶");
-				//hortaVO.setDisplay("ĞèÒªµÈ¼¶ÔÚ"+wjGrade[0]+"-"+wjGrade[1]+"Ö®¼ä!");
+				hortaVO.setDisplay("è¿˜å·®"+(Integer.parseInt(wjGrade[0]) - grade) +"çº§");
+				//hortaVO.setDisplay("éœ€è¦ç­‰çº§åœ¨"+wjGrade[0]+"-"+wjGrade[1]+"ä¹‹é—´!");
 				return false;			
 			}
 		}
 	
         
         /**
-         * Íæ¼ÒÔÚÏßÊ±¼ä
+         * ç©å®¶åœ¨çº¿æ—¶é—´
          */
         if ( hortaVO.getOnlineTime() != 0) {
-        	int priz_online_time = roleEntity.getStateInfo().getPrizeOnlineTime();//¿ÉÓÃÁì½±µÄÔÚÏßÊ±¼ä
+        	int priz_online_time = roleEntity.getStateInfo().getPrizeOnlineTime();//å¯ç”¨é¢†å¥–çš„åœ¨çº¿æ—¶é—´
         	
         	if ( hortaVO.getOnlineTime() > priz_online_time ) {
         		double chazhi = hortaVO.getOnlineTime() - priz_online_time;
-        		hortaVO.setDisplay("»¹²î"+DateUtil.returnStr(chazhi));
+        		hortaVO.setDisplay("è¿˜å·®"+DateUtil.returnStr(chazhi));
         		return false;
         	} 
         }
@@ -155,7 +155,7 @@ public class HortaService
 	
 	
 	/**
-	 * ÖØÔØµÄ·½·¨
+	 * é‡è½½çš„æ–¹æ³•
 	 * 
 	 */
 	public String checkAbleHorta(HortaVO hortaVO, RoleEntity roleEntity)
@@ -163,7 +163,7 @@ public class HortaService
 		
 		String hint = null;		
 		/**
-		 * »áÔ±µÈ¼¶ÅĞ¶Ï
+		 * ä¼šå‘˜ç­‰çº§åˆ¤æ–­
 		 */
 		if ( !hortaVO.getVipGrade().equals("0")) {
 			boolean flag = true;
@@ -176,29 +176,29 @@ public class HortaService
 			}
 			
 			if ( !flag) {
-				hint = "ÄúµÄ»áÔ±µÈ¼¶²»¹»!";
+				hint = "æ‚¨çš„ä¼šå‘˜ç­‰çº§ä¸å¤Ÿ!";
 				return hint;
 			}
 		}
 		
-		// µÈ¼¶ÅĞ¶Ï
+		// ç­‰çº§åˆ¤æ–­
 		if ( !hortaVO.getWjGrade().equals("0")) {
 			String[] wjGrade =  hortaVO.getWjGrade().split(",");  
 			int grade  =  roleEntity.getBasicInfo().getGrade();
-			// Èç¹û²»ÔÚĞ´¶¨µÄ¼¶ÓòÄÚ,Ôò·µ»Øfalse
+			// å¦‚æœä¸åœ¨å†™å®šçš„çº§åŸŸå†…,åˆ™è¿”å›false
 			if ( grade < Integer.parseInt(wjGrade[0]) || grade > Integer.parseInt(wjGrade[1])) {
-				hint = "ÄúµÈ¼¶²»¹»!ÁìÈ¡´Ë½±ÀøĞèÒªµÈ¼¶ÔÚ"+wjGrade[0]+"-"+wjGrade[1]+"Ö®¼ä!";
+				hint = "æ‚¨ç­‰çº§ä¸å¤Ÿ!é¢†å–æ­¤å¥–åŠ±éœ€è¦ç­‰çº§åœ¨"+wjGrade[0]+"-"+wjGrade[1]+"ä¹‹é—´!";
 				
 				return hint;
 			}
 		}
         /**
-         * Íæ¼ÒÔÚÏßÊ±¼ä
+         * ç©å®¶åœ¨çº¿æ—¶é—´
          */
         if ( hortaVO.getOnlineTime() != 0) {
-        	int priz_online_time = roleEntity.getStateInfo().getPrizeOnlineTime();//¿ÉÓÃÁì½±µÄÔÚÏßÊ±¼ä
+        	int priz_online_time = roleEntity.getStateInfo().getPrizeOnlineTime();//å¯ç”¨é¢†å¥–çš„åœ¨çº¿æ—¶é—´
         	if ( hortaVO.getOnlineTime() > priz_online_time ) {
-        		hint = "ÄúµÄÔÚÏßÊ±¼äÎŞ·¨ÁìÈ¡´Ë½±Àø!";
+        		hint = "æ‚¨çš„åœ¨çº¿æ—¶é—´æ— æ³•é¢†å–æ­¤å¥–åŠ±!";
 				return hint;
         	}
         }
@@ -213,7 +213,7 @@ public class HortaService
 	
 
 	/**
-	 * ·µ»ØÊÇ·ñÄÜÁìÈ¡ÎïÆ·,Èç¹û²»ĞĞ,·µ»ØÔ­Òò,Èç¹û¿ÉÒÔ,·µ»Ønull
+	 * è¿”å›æ˜¯å¦èƒ½é¢†å–ç‰©å“,å¦‚æœä¸è¡Œ,è¿”å›åŸå› ,å¦‚æœå¯ä»¥,è¿”å›null
 	 * @param hor_id
 	 * @param roleEntity
 	 * @return
@@ -227,7 +227,7 @@ public class HortaService
 	}
 
 	/**
-	 * ÊÇ·ñÓĞ×ã¹»µÄÁìÈ¡´ÎÊı
+	 * æ˜¯å¦æœ‰è¶³å¤Ÿçš„é¢†å–æ¬¡æ•°
 	 * @param hortaVO
 	 * @param roleEntity
 	 * @return
@@ -243,7 +243,7 @@ public class HortaService
 				timeControlService.updateControlInfo(roleEntity.getBasicInfo().getPPk(), hortaVO.getHortaId(), TimeControlService.JIANGLI);
 				return null;
 			} else {
-				return "´Ë½±ÀøÄú×î¶àÖ»ÄÜÁìÈ¡"+isonlyone+"´Î!";				
+				return "æ­¤å¥–åŠ±æ‚¨æœ€å¤šåªèƒ½é¢†å–"+isonlyone+"æ¬¡!";				
 			}
 			
 		} else if ( isonlyone == 0) {
@@ -251,15 +251,15 @@ public class HortaService
 				timeControlService.updateControlInfo(roleEntity.getBasicInfo().getPPk(), hortaVO.getHortaId(), TimeControlService.JIANGLI);
 				return null;
 			} else {
-				return "´Ë½±ÀøÄúÃ¿Ìì×î¶àÖ»ÄÜÁìÈ¡"+isonlyone+"´Î!";				
+				return "æ­¤å¥–åŠ±æ‚¨æ¯å¤©æœ€å¤šåªèƒ½é¢†å–"+isonlyone+"æ¬¡!";				
 			}
 		}		
-		return "Äú²»ÄÜÁìÈ¡!";
+		return "æ‚¨ä¸èƒ½é¢†å–!";
 	}
 	
 	
 	/**
-	 * ÊÇ·ñÓĞ×ã¹»µÄÁìÈ¡´ÎÊı
+	 * æ˜¯å¦æœ‰è¶³å¤Ÿçš„é¢†å–æ¬¡æ•°
 	 * @param hortaVO
 	 * @param roleEntity
 	 * @return
@@ -274,21 +274,21 @@ public class HortaService
 			if ( numb < isonlyone) {
 				return null;
 			} else {
-				return "´Ë½±ÀøÄú×î¶àÖ»ÄÜÁìÈ¡"+isonlyone+"´Î!";				
+				return "æ­¤å¥–åŠ±æ‚¨æœ€å¤šåªèƒ½é¢†å–"+isonlyone+"æ¬¡!";				
 			}
 			
 		} else if ( isonlyone == 0) {
 			if ( timeControlService.isUseable(roleEntity.getBasicInfo().getPPk(), hortaVO.getHortaId(), TimeControlService.JIANGLI,onces)) {
 				return null;
 			} else {
-				return "´Ë½±ÀøÄúÃ¿Ìì×î¶àÖ»ÄÜÁìÈ¡"+isonlyone+"´Î!";				
+				return "æ­¤å¥–åŠ±æ‚¨æ¯å¤©æœ€å¤šåªèƒ½é¢†å–"+isonlyone+"æ¬¡!";				
 			}
 		}		
-		return "Äú²»ÄÜÁìÈ¡!";
+		return "æ‚¨ä¸èƒ½é¢†å–!";
 	}
 
 	/**
-	 * ¼ì²éÍæ¼ÒÊÇ·ñÓĞ×ã¹»µÄ°ü¹ü
+	 * æ£€æŸ¥ç©å®¶æ˜¯å¦æœ‰è¶³å¤Ÿçš„åŒ…è£¹
 	 * @param hortaVO
 	 * @param roleEntity
 	 * @return
@@ -311,11 +311,11 @@ public class HortaService
 			for ( int i=0;i<giveGoods_week.length;i++) {
 				String[] recourse = giveGoods_week[i].split("-");
 				if(recourse[0].equals("z")){
-					//ÉíÉÏ°ü¹ü¿Õ¼äĞ¡ÓÚËùÄÜ·ÅÈëµÄ¿Õ¼äÊ±
+					//èº«ä¸ŠåŒ…è£¹ç©ºé—´å°äºæ‰€èƒ½æ”¾å…¥çš„ç©ºé—´æ—¶
 					warespare = warespare -1;
 					if(warespare < 0 ){
 						i = -1;
-						result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+						result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 						return result;
 					}
 				} else if(recourse[0].equals("d")){
@@ -325,16 +325,16 @@ public class HortaService
 					warespare = warespare -num;
 					if(warespare <0){
 						i = -1;
-						result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+						result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 						return result;
 					}
 				} else if(recourse[0].equals("j")){
 				 	long partCopper = roleEntity.getBasicInfo().getCopper();
-				 	logger.info("ÉíÉÏµÄÇ®:"+partCopper+",¶Ò»»¸øµÄÇ®:"+Long.valueOf(recourse[1]));
+				 	logger.info("èº«ä¸Šçš„é’±:"+partCopper+",å…‘æ¢ç»™çš„é’±:"+Long.valueOf(recourse[1]));
 				 	
 				 	if(partCopper + Long.valueOf(recourse[1]) > 1000000000){
 				 		i = -1;
-				 		result = "ÄúÒÑ¾­²»ÄÜĞ¯´ø¸ü¶àµÄÒøÁË£¡";
+				 		result = "æ‚¨å·²ç»ä¸èƒ½æºå¸¦æ›´å¤šçš„é“¶äº†ï¼";
 				 		return result;
 				 	}
 				}
@@ -346,11 +346,11 @@ public class HortaService
 				String goodsString = giveGoods[i];
 				String[] recourse = goodsString.split("-");
 				if(recourse[0].equals("z")){
-					//ÉíÉÏ°ü¹ü¿Õ¼äĞ¡ÓÚËùÄÜ·ÅÈëµÄ¿Õ¼äÊ±
+					//èº«ä¸ŠåŒ…è£¹ç©ºé—´å°äºæ‰€èƒ½æ”¾å…¥çš„ç©ºé—´æ—¶
 					warespare = warespare -1;
 					if(warespare < 0 ){
 						i = -1;
-						result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+						result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 						return result;
 					}
 				} else if(recourse[0].equals("d")){
@@ -360,16 +360,16 @@ public class HortaService
 					warespare = warespare -num;
 					if(warespare <0){
 						i = -1;
-						result = "ÄúÉíÉÏµÄ°ü¹ü¿Õ¼ä²»×ã£¡ÇëÏÈÕûÀí¿Õ¼ä£¡";
+						result = "æ‚¨èº«ä¸Šçš„åŒ…è£¹ç©ºé—´ä¸è¶³ï¼è¯·å…ˆæ•´ç†ç©ºé—´ï¼";
 						return result;
 					}
 				} else if(recourse[0].equals("j")){
 				 	long partCopper = roleEntity.getBasicInfo().getCopper();
-				 	logger.info("ÉíÉÏµÄÇ®:"+partCopper+",¶Ò»»¸øµÄÇ®:"+Long.valueOf(recourse[1]));
+				 	logger.info("èº«ä¸Šçš„é’±:"+partCopper+",å…‘æ¢ç»™çš„é’±:"+Long.valueOf(recourse[1]));
 				 	
 				 	if(partCopper + Long.valueOf(recourse[1]) > 1000000000){
 				 		i = -1;
-				 		result = "ÄúÒÑ¾­²»ÄÜĞ¯´ø¸ü¶àµÄÒøÁË£¡";
+				 		result = "æ‚¨å·²ç»ä¸èƒ½æºå¸¦æ›´å¤šçš„é“¶äº†ï¼";
 				 		return result;
 				 	}
 				}
@@ -379,7 +379,7 @@ public class HortaService
 	}
 
 	/**
-	 * ¸øÍæ¼Ò½±ÀøÎïÆ·
+	 * ç»™ç©å®¶å¥–åŠ±ç‰©å“
 	 * @param hor_id
 	 * @param roleEntity
 	 * @return
@@ -391,7 +391,7 @@ public class HortaService
 		int pPk = roleInfo.getBasicInfo().getPPk();
 		
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("Äú»ñµÃÁË");
+		resultWml.append("æ‚¨è·å¾—äº†");
 		String giveGoodStrings = hortaVO.getGiveGoods();
 		if ( giveGoodStrings == null || giveGoodStrings.equals("") || giveGoodStrings.equals("null")) {
 			return null;
@@ -403,26 +403,26 @@ public class HortaService
 			String [] giveGoods_week = giveGoods[week].split(",");
 			for(int t=0;t<giveGoods_week.length;t++){
 				String[] unit = giveGoods_week[t].split("-");
-				if(unit[0].equals("d")){							//¸øÍæ¼ÒÉíÉÏÔö¼ÓµÀ¾ß
+				if(unit[0].equals("d")){							//ç»™ç©å®¶èº«ä¸Šå¢åŠ é“å…·
 					GoodsService goodsService = new GoodsService();
 					goodsService.putGoodsToWrap(pPk,Integer.valueOf(unit[2]),Integer.valueOf(unit[1]),Integer.valueOf(unit[3]));
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(Integer.valueOf(unit[2]), StatisticsType.PROP, Integer.valueOf(unit[3]), StatisticsType.DEDAO, StatisticsType.JIANGLI,pPk);
 					
 					resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-					resultWml.append("¡Á").append(Integer.valueOf(unit[3]));
-				}else if(unit[0].equals("j")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó½ğÇ®				
-					//¼à¿Ø
+					resultWml.append("Ã—").append(Integer.valueOf(unit[3]));
+				}else if(unit[0].equals("j")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ é‡‘é’±				
+					//ç›‘æ§
 					LogService logService = new LogService();
-					logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", Integer.valueOf(unit[1])+"", "¶Ò»»µÃµ½");
+					logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", Integer.valueOf(unit[1])+"", "å…‘æ¢å¾—åˆ°");
 					
 					roleInfo.getBasicInfo().addCopper(Integer.valueOf(unit[1]));
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(6, StatisticsType.MONEY,Integer.valueOf(unit[1]), StatisticsType.DEDAO, StatisticsType.JIANGLI,pPk);
 					
-					resultWml.append("½ğÇ®").append(MoneyUtil.changeCopperToStr(Integer.valueOf(unit[1])));
+					resultWml.append("é‡‘é’±").append(MoneyUtil.changeCopperToStr(Integer.valueOf(unit[1])));
 				}
 				if (t < giveGoods.length-1 ){
 					resultWml.append(",");
@@ -432,64 +432,64 @@ public class HortaService
 			String[] giveGoods = giveGoodStrings.split(",");
 			for(int t=0;t<giveGoods.length;t++){
 				String[] unit = giveGoods[t].split("-");
-				if(unit[0].equals("d")){							//¸øÍæ¼ÒÉíÉÏÔö¼ÓµÀ¾ß
+				if(unit[0].equals("d")){							//ç»™ç©å®¶èº«ä¸Šå¢åŠ é“å…·
 					GoodsService goodsService = new GoodsService();
 					goodsService.putGoodsToWrap(pPk,Integer.valueOf(unit[2]),Integer.valueOf(unit[1]),Integer.valueOf(unit[3]));
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(Integer.valueOf(unit[2]), StatisticsType.PROP, Integer.valueOf(unit[3]), StatisticsType.DEDAO, StatisticsType.JIANGLI,pPk);
 					
 					resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-					resultWml.append("¡Á").append(Integer.valueOf(unit[3]));
-				}else if(unit[0].equals("z")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó×°±¸
+					resultWml.append("Ã—").append(Integer.valueOf(unit[3]));
+				}else if(unit[0].equals("z")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ è£…å¤‡
 					GoodsService goodsService = new GoodsService();
-					for(int i = 0;i<Integer.valueOf(unit[3]);i++){	//Òª¸ø¼¸¸ö×°±¸¾Í¸ø¼¸´Î
+					for(int i = 0;i<Integer.valueOf(unit[3]);i++){	//è¦ç»™å‡ ä¸ªè£…å¤‡å°±ç»™å‡ æ¬¡
 						goodsService.putGoodsToWrap(Integer.valueOf(pPk),Integer.valueOf(unit[2]),Integer.valueOf(unit[1]),Integer.valueOf(unit[3]));
-						//Ö´ĞĞÍ³¼Æ
+						//æ‰§è¡Œç»Ÿè®¡
 						GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 						gsss.addPropNum(Integer.valueOf(unit[2]), Integer.valueOf(unit[1]), Integer.valueOf(unit[3]), StatisticsType.DEDAO, StatisticsType.JIANGLI,pPk);
 						
 					}
 					resultWml.append(goodsService.getGoodsName(Integer.valueOf(unit[2]), Integer.valueOf(unit[1])));
-					resultWml.append("¡Á").append(Integer.valueOf(unit[3]));
-				}else if(unit[0].equals("j")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó½ğÇ®				
-					//¼à¿Ø
+					resultWml.append("Ã—").append(Integer.valueOf(unit[3]));
+				}else if(unit[0].equals("j")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ é‡‘é’±				
+					//ç›‘æ§
 					LogService logService = new LogService();
-					logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", Integer.valueOf(unit[1])+"", "¶Ò»»µÃµ½");
+					logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", Integer.valueOf(unit[1])+"", "å…‘æ¢å¾—åˆ°");
 					
 					roleInfo.getBasicInfo().addCopper(Integer.valueOf(unit[1]));
-					//Ö´ĞĞÍ³¼Æ
+					//æ‰§è¡Œç»Ÿè®¡
 					GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 					gsss.addPropNum(6, StatisticsType.MONEY,Integer.valueOf(unit[1]), StatisticsType.DEDAO, StatisticsType.JIANGLI,pPk);
 					
-					resultWml.append("½ğÇ®").append(MoneyUtil.changeCopperToStr(Integer.valueOf(unit[1])));
-				}else if(unit[0].equals("y")){						//¸øÍæ¼ÒÉíÉÏÔö¼Ó¾­Ñé
-					//¼à¿Ø
+					resultWml.append("é‡‘é’±").append(MoneyUtil.changeCopperToStr(Integer.valueOf(unit[1])));
+				}else if(unit[0].equals("y")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ ç»éªŒ
+					//ç›‘æ§
 					LogService logService = new LogService();
-					logService.recordExpLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCurExp(), Integer.parseInt(unit[1])+"", "¶Ò»»µÃµ½");
+					logService.recordExpLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCurExp(), Integer.parseInt(unit[1])+"", "å…‘æ¢å¾—åˆ°");
 					
 					roleInfo.getBasicInfo().updateAddCurExp(Integer.parseInt(unit[1]));
-					resultWml.append(Integer.valueOf(unit[1])+"¾­Ñé");
-				}else if(unit[0].equals("s")){						//¸øÍæ¼ÒÉíÉÏÔö¼ÓÉùÍû
+					resultWml.append(Integer.valueOf(unit[1])+"ç»éªŒ");
+				}else if(unit[0].equals("s")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ å£°æœ›
 					Integer cid=Integer.parseInt(unit[1]);
 					Integer ncount=Integer.parseInt(unit[2]);
 					CreaditService service=new CreditProce();
 					service.addPlayerCredit(pPk, cid, ncount);
 					PlayerCreditVO pcv=service.getPcvDisplay(cid);
-					resultWml.append(pcv.getCreditname()).append("¡Á").append(ncount);
-				}else if(unit[0].equals("r")){						//¸øÍæ¼ÒÉíÉÏÔö¼ÓÈÙÓş
+					resultWml.append(pcv.getCreditname()).append("Ã—").append(ncount);
+				}else if(unit[0].equals("r")){						//ç»™ç©å®¶èº«ä¸Šå¢åŠ è£èª‰
 					Integer ncount=Integer.parseInt(unit[1]);
 					CreaditService service=new CreditProce();
 					service.addPlayerHonor(pPk,ncount);
-					resultWml.append("ÈÙÓşÖµ").append("¡Á").append(ncount);											
-				}else if(unit[0].equals("yb")) {					//¸øÍæ¼ÒÉíÉÏÔö¼ÓÔª±¦
-					logger.info("¸øÍæ¼ÒÉíÉÏÔö¼Ó"+GameConfig.getYuanbaoName()+"="+unit[1]);
+					resultWml.append("è£èª‰å€¼").append("Ã—").append(ncount);											
+				}else if(unit[0].equals("yb")) {					//ç»™ç©å®¶èº«ä¸Šå¢åŠ å…ƒå®
+					logger.info("ç»™ç©å®¶èº«ä¸Šå¢åŠ "+GameConfig.getYuanbaoName()+"="+unit[1]);
 					PartInfoDAO partInfoDAO = new PartInfoDAO();
 					int uPk = partInfoDAO.getPartuPk(pPk);
-					resultWml.append(GameConfig.getYuanbaoName()).append("¡Á").append(Integer.parseInt(unit[1]));					
+					resultWml.append(GameConfig.getYuanbaoName()).append("Ã—").append(Integer.parseInt(unit[1]));					
 					
 					EconomyService economyService = new EconomyService();
-					//¸øÍæ¼ÒÔö¼ÓÔª±¦ 
+					//ç»™ç©å®¶å¢åŠ å…ƒå® 
 					economyService.addYuanbao(pPk, uPk, Integer.parseInt(unit[1]),StatisticsType.JIANGLI);
 				}
 				
@@ -498,7 +498,7 @@ public class HortaService
 				}
 			}	
 		}
-		if( hortaVO.getHortaType()==3 )//Èç¹ûÊÇÔÚÏßÁì½±£¬ÔòÔö¼ÓËùÁì½±µÄÔÚÏßÊ±¼ä
+		if( hortaVO.getHortaType()==3 )//å¦‚æœæ˜¯åœ¨çº¿é¢†å¥–ï¼Œåˆ™å¢åŠ æ‰€é¢†å¥–çš„åœ¨çº¿æ—¶é—´
 		{
 			long now_time = Calendar.getInstance().getTimeInMillis();
 			roleInfo.getStateInfo().setPrizeConsumeTime((int)(now_time - roleInfo.getStateInfo().getLoginTime()) / 1000);
@@ -508,7 +508,7 @@ public class HortaService
 	}
 
 	/**
-	 * È·¶¨Ñ¡ÏîÖĞÊÇ·ñÓĞ¿ÉÒÔÁìÈ¡µÄ
+	 * ç¡®å®šé€‰é¡¹ä¸­æ˜¯å¦æœ‰å¯ä»¥é¢†å–çš„
 	 * @param horList
 	 * @param roleEntity
 	 */
@@ -525,8 +525,8 @@ public class HortaService
 				hortaVO = list.get(t);
 				boolean flag = this.isUseAble(roleEntity,hortaVO);
 				if ( flag) {
-					hortatypevo.setDisplay("(ĞÂ)");
-					hortHint="(ĞÂ)";
+					hortatypevo.setDisplay("(æ–°)");
+					hortHint="(æ–°)";
 				}
 			}
 		}

@@ -16,10 +16,10 @@ public class LoginService
 {
 
 	/**
-	 * ÓÆÀÖÇşµÀĞèÒªµÇÂ½ºÍÏÂÏßµÄÊ±ºò Í¬²½¸øËûÃÇÍæ¼ÒµÄ×´Ì¬ºÍÔÚÏßÊ±¼ä Ïû·ÑµÄÊ±ºòÍ¬²½¸øËûÃÇÏû·ÑÊı¾İ
+	 * æ‚ ä¹æ¸ é“éœ€è¦ç™»é™†å’Œä¸‹çº¿çš„æ—¶å€™ åŒæ­¥ç»™ä»–ä»¬ç©å®¶çš„çŠ¶æ€å’Œåœ¨çº¿æ—¶é—´ æ¶ˆè´¹çš„æ—¶å€™åŒæ­¥ç»™ä»–ä»¬æ¶ˆè´¹æ•°æ®
 	 */
 
-	/** ****µÇÂ½µÄÊ±ºò¸øÇşµÀÍ¬²½µÄÊı¾İ**** */
+	/** ****ç™»é™†çš„æ—¶å€™ç»™æ¸ é“åŒæ­¥çš„æ•°æ®**** */
 	public void synchronousLoginState(String UserAccount, String OnlineStatus,
 			String GameNO)
 	{
@@ -34,15 +34,15 @@ public class LoginService
 							+OnlineStatus
 							+"&GameNO="+GameNO+"");
 			String code = responses.getContent();
-			System.out.println("µÇÂ½×´Ì¬Í¬²½·µ»ØÂëÎª£º" + code);
+			System.out.println("ç™»é™†çŠ¶æ€åŒæ­¥è¿”å›ç ä¸ºï¼š" + code);
 		}
 		catch (IOException e)
 		{
-			System.out.println("µÇÂ½×´Ì¬Í¬²½Òì³£........");
+			System.out.println("ç™»é™†çŠ¶æ€åŒæ­¥å¼‚å¸¸........");
 		}
 	}
 
-	/** ******ÏÂÏßµÄÊ±ºò¸øÇşµÀÍ¬²½µÄÊı¾İ***** */
+	/** ******ä¸‹çº¿çš„æ—¶å€™ç»™æ¸ é“åŒæ­¥çš„æ•°æ®***** */
 	public void synchronousDownLine(HttpSession session, String onlineNo)
 	{
 		HttpRequester requester = new HttpRequester();
@@ -72,16 +72,16 @@ public class LoginService
 							+onlineNo
 							+"&OfflineTime=0");
 			String code = responses.getContent();
-			System.out.println("Íæ¼ÒÏÂÏßÍ¬²½·µ»ØÂëÎª£º" + code);
+			System.out.println("ç©å®¶ä¸‹çº¿åŒæ­¥è¿”å›ç ä¸ºï¼š" + code);
 		}
 		catch (IOException e)
 		{
-			System.out.println("Íæ¼ÒÏÂÏßÍ¬²½Òì³£......");
+			System.out.println("ç©å®¶ä¸‹çº¿åŒæ­¥å¼‚å¸¸......");
 		}
 
 	}
 
-	/** *****Íæ¼ÒÏû·ÑµÄÊ±ºòÍ¬²½¸øÇşµÀµÄÊı¾İ***** */
+	/** *****ç©å®¶æ¶ˆè´¹çš„æ—¶å€™åŒæ­¥ç»™æ¸ é“çš„æ•°æ®***** */
 	public void synchronousConsume(HttpServletRequest request,
 			String consumerCode, int consumerAmount, int ConsumerType)
 	{
@@ -121,16 +121,16 @@ public class LoginService
 							+ConsumerType
 							+"&ConsumerTime="+ConsumerTime+"");
 			String code = responses.getContent();
-			System.out.println("Íæ¼ÒÏû·ÑÍ¬²½·µ»ØÂëÎª£º" + code);
+			System.out.println("ç©å®¶æ¶ˆè´¹åŒæ­¥è¿”å›ç ä¸ºï¼š" + code);
 		}
 		catch (IOException e)
 		{
-			System.out.println("Ïû·ÑÍ¬²½Òì³£......");
+			System.out.println("æ¶ˆè´¹åŒæ­¥å¼‚å¸¸......");
 		}
 
 	}
 
-	/*********Íæ¼Ò³äÖµÍ¬²½ĞÅÏ¢******* */
+	/*********ç©å®¶å……å€¼åŒæ­¥ä¿¡æ¯******* */
 	public void synchronousRecharge(HttpServletRequest request,
 			String RechargeCode, String RechargeAmount,
 			String RechargeVirtuaAmount, String RechargeType,
@@ -173,16 +173,16 @@ public class LoginService
 							+RechargeStatus
 							+"&RechargeTime="+RechargeTime+"");
 			String code = responses.getContent();
-			System.out.println("Íæ¼Ò³äÖµÍ¬²½·µ»ØÂëÎª£º" + code);
+			System.out.println("ç©å®¶å……å€¼åŒæ­¥è¿”å›ç ä¸ºï¼š" + code);
 		}
 		catch (IOException e)
 		{
-			System.out.println("Íæ¼Ò³äÖµÍ¬²½Òì³£......");
+			System.out.println("ç©å®¶å……å€¼åŒæ­¥å¼‚å¸¸......");
 		}
 
 	}
 
-	/** *****¸øÇşµÀÍ¬²½Íæ¼ÒµÈ¼¶ĞÅÏ¢******* */
+	/** *****ç»™æ¸ é“åŒæ­¥ç©å®¶ç­‰çº§ä¿¡æ¯******* */
 	public void synchronousGradeInfo(HttpSession session, String GameLeval)
 	{
 		HttpRequester requester = new HttpRequester();
@@ -202,12 +202,12 @@ public class LoginService
 							+"&GameLeval="
 							+GameLeval+"");
 			String code = responses.getContent();
-			System.out.println("Íæ¼ÒµÈ¼¶Í¬²½·µ»ØÂëÎª£º" + code);
+			System.out.println("ç©å®¶ç­‰çº§åŒæ­¥è¿”å›ç ä¸ºï¼š" + code);
 			
 		}
 		catch (IOException e)
 		{
-			System.out.println("Í¬²½Íæ¼ÒµÈ¼¶Òì³£.....");
+			System.out.println("åŒæ­¥ç©å®¶ç­‰çº§å¼‚å¸¸.....");
 		}
 	}
 }

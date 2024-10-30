@@ -21,48 +21,48 @@ import com.ls.pub.db.DBConnection;
 
 
 /**
- * @author ÍõÏ²³É
- * 
+ * @author ç‹å–œæˆ
+ *
  * TODO To change the template for this generated type comment go to Window -
  * Preferences - Java - Code Style - Code Templates
  */
 public class Database {
 	/**
-	 * Êı¾İ¿â·ÃÎÊURL
+	 * æ•°æ®åº“è®¿é—®URL
 	 */
 	private static String url;
 
 	/**
-	 * Êı¾İ¿âÇı¶¯
+	 * æ•°æ®åº“é©±åŠ¨
 	 */
 	private static String driver;
 
 	/**
-	 * Êı¾İ¿â·ÃÎÊÓÃ»§Ãû
+	 * æ•°æ®åº“è®¿é—®ç”¨æˆ·å
 	 */
 	private static String username;
 
 	/**
-	 * Êı¾İ¿â·ÃÎÊ¿ÚÁî
+	 * æ•°æ®åº“è®¿é—®å£ä»¤
 	 */
 	private static String password;
 
 	/**
-	 * ·ÃÎÊÀàĞÍ
+	 * è®¿é—®ç±»å‹
 	 */
 	private static String type;
 
 	/**
-	 * Êı¾İÔ´Ãû³Æ
+	 * æ•°æ®æºåç§°
 	 */
 	private static String datasource;
 
 	/**
-	 * ÅäÖÃÎÄ¼şÃû³Æ
+	 * é…ç½®æ–‡ä»¶åç§°
 	 */
 	private final static String fileName = "database";
 	/**
-	 * ³õÊ¼»¯ÈÕÖ¾
+	 * åˆå§‹åŒ–æ—¥å¿—
 	 */
 	private static Logger logger = Logger.getLogger(Database.class);
 
@@ -73,10 +73,10 @@ public class Database {
 	}
 
 	private static void config() {
-		//¶ÁÈ¡ÏµÍ³ÅäÖÃ
+		//è¯»å–ç³»ç»Ÿé…ç½®
 		PropertyResourceBundle resourceBundle = (PropertyResourceBundle) ResourceBundle
 				.getBundle(fileName);
-		//½«ÏµÍ³ÉèÖÃ¸³Öµ¸øÀà±äÁ¿
+		//å°†ç³»ç»Ÿè®¾ç½®èµ‹å€¼ç»™ç±»å˜é‡
 		Enumeration enu = resourceBundle.getKeys();
 		while (enu.hasMoreElements()) {
 			String propertyName = enu.nextElement().toString();
@@ -97,30 +97,30 @@ public class Database {
 	}
 	/**public  synchronized static Connection getConnection()throws SQLException
 	{
-	//Èç¹û±¾µØÒÑÓĞÁ¬½ÓÖ±½Ó»¹»ØÁ¬½Ó
+	//å¦‚æœæœ¬åœ°å·²æœ‰è¿æ¥ç›´æ¥è¿˜å›è¿æ¥
 		Connection con = (Connection) connection.get();
 		if (con != null && !con.isClosed()) {
-												//logger.info("Ö±½Ó»¹»ØÁ¬½Ó");
+												//logger.info("ç›´æ¥è¿˜å›è¿æ¥");
 			return con;
 		}
 		else{
-			      //´ÓJNDIÖĞÈ¡µÃÊı¾İÔ´
+			      //ä»JNDIä¸­å–å¾—æ•°æ®æº
 			try {
-				////System.out.println("Á¬½Ó³ØÁ¬½Ó1£¡");
+				////System.out.println("è¿æ¥æ± è¿æ¥1ï¼");
 				Context initCtx = new InitialContext();
 				Context envCtx = (Context)initCtx.lookup( "java:comp/env");
 				DataSource ds = (DataSource)envCtx.lookup( "jdbc/park");
 				con= ds.getConnection();
 				connection.set(con);
-				//logger.info("Á¬½Ó³ØÁ¬½Ó£¡");
+				//logger.info("è¿æ¥æ± è¿æ¥ï¼");
 				con.setAutoCommit(false);
 				return con;
-				
+
 			}catch (Exception e)
 			{
-				try {//¸ù¾İÅäÖÃÎÄ¼şÁ¬½Ó
-					//logger.info("´íÎóÔ­Òò:"+e.getMessage());
-					logger.info("¸ù¾İÅäÖÃÎÄ¼şÁ¬½Ó£¡"+url);
+				try {//æ ¹æ®é…ç½®æ–‡ä»¶è¿æ¥
+					//logger.info("é”™è¯¯åŸå› :"+e.getMessage());
+					logger.info("æ ¹æ®é…ç½®æ–‡ä»¶è¿æ¥ï¼"+url);
 					Class.forName(driver);
 					con = DriverManager.getConnection(url, username,password);
 					con.setAutoCommit(false);
@@ -129,40 +129,40 @@ public class Database {
 
 				} catch (ClassNotFoundException ee) {
 					ee.printStackTrace();
-					//logger.info("´íÎóÔ­Òò:"+e.getMessage());
-					// ¶¨ÒåÇı¶¯³ÌĞò
+					//logger.info("é”™è¯¯åŸå› :"+e.getMessage());
+					// å®šä¹‰é©±åŠ¨ç¨‹åº
 					String DBDRIVER = "net.sourceforge.jtds.jdbc.Driver";
-					// // ¶¨ÒåÁ¬½Ó×Ö·û´®
+					// // å®šä¹‰è¿æ¥å­—ç¬¦ä¸²
 					String CONNSTR = "jdbc:jtds:sqlserver://61.168.44.8:1433/jingcai";
 					try
 					{
-						logger.info("ÆÕÍ¨Á¬½Ó£¡");
+						logger.info("æ™®é€šè¿æ¥ï¼");
 						Class.forName( DBDRIVER );
 						con=DriverManager.getConnection( CONNSTR,"sa","(!wanxiang*)");
 						//return DriverManager.getConnection("jdbc:jtds:sqlserver://localhost:1433/3gpark","sa","");
 						con.setAutoCommit(false);
 						return con;
-						
+
 					}
 					catch ( ClassNotFoundException ex )
 					{
-						//logger.info("»ñµÃÁ¬½Ó³ö´í£¡"+ex.getMessage());
+						//logger.info("è·å¾—è¿æ¥å‡ºé”™ï¼"+ex.getMessage());
 						ex.printStackTrace( System.err );
 						return null;
 					}
 				}
-				
+
 			}
-		} 		
+		}
 	} */
 	/*
-	 * »ñµÃÒ»¸öÁ¬½Ó
-	 */  
-	public static Connection getConnections() 
+	 * è·å¾—ä¸€ä¸ªè¿æ¥
+	 */
+	public static Connection getConnections()
 	{
 		 try {
-			// //System.out.println("»ñµÃÁ¬½Ó");
-		        Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();	 
+			// //System.out.println("è·å¾—è¿æ¥");
+		        Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
 		        //return DriverManager.getConnection("jdbc:jtds:sqlserver://localhost:1433/jingcai","sa","");
 		       Connection con =DriverManager.getConnection("jdbc:jtds:sqlserver://61.168.44.8:1433/jingcai","sa","(!wanxiang*)");
 		       //Connection con =DriverManager.getConnection("jdbc:jtds:sqlserver://localhost:1433/jingcai","sa","");
@@ -173,7 +173,7 @@ public class Database {
 		      e.printStackTrace();
 		    }
 		    return null;
-	} 	
+	}
 	public static void commit() {
 		Connection con = connection.get();
 		try {
@@ -187,7 +187,7 @@ public class Database {
 		Connection con = connection.get();
 		try {
 			con.rollback();
-			//logger.info("»Ø¹öÊı¾İ£¡");
+			//logger.info("å›æ»šæ•°æ®ï¼");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -198,7 +198,7 @@ public class Database {
 		try {
 			if (connection != null && !connection.isClosed())
 				connection.close();
-			logger.info("¹Ø±ÕÊı¾İ¿âÁ¬½Ó£¡");
+			logger.info("å…³é—­æ•°æ®åº“è¿æ¥ï¼");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -206,24 +206,24 @@ public class Database {
 		connection = null;
 	}
 public static void main(String[] args) {
-	
+
 	Connection con=null;
 	PreparedStatement ps=null;
 	ResultSet rs=null;
 	DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 	try {
 		 con= dbConn.getConn();
-		 ps = con.prepareStatement("select * from g_user");	
+		 ps = con.prepareStatement("SELECT * FROM g_user");
 		 rs = ps.executeQuery();
 		while(rs.next())
 		{
 			////System.out.println(rs.getObject(1));
 		}
-	
+
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
-		//logger.info("´íÎóÔ­Òò:"+e.getMessage());
-		
+		//logger.info("é”™è¯¯åŸå› :"+e.getMessage());
+
 	}finally {
 		try{
 		rs.close();

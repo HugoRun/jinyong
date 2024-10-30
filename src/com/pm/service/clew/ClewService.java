@@ -12,9 +12,9 @@ import com.pm.service.systemInfo.SystemInfoService;
 import com.web.service.friend.FriendService;
 
 /**
- * ×¨ÃÅ¸ºÔğµÇÂ½ÌáÊ¾µÄÀà,ÏÖÔÚÊÇÓĞ µÇÂ½ºÃÓÑÌáÊ¾,
- * »¹ÓĞ°ïÅÉ °ïÖÚµÇÂ½ÌáÊ¾¡£
- * @author ÕÅ¿¡¿¡
+ * ä¸“é—¨è´Ÿè´£ç™»é™†æç¤ºçš„ç±»,ç°åœ¨æ˜¯æœ‰ ç™»é™†å¥½å‹æç¤º,
+ * è¿˜æœ‰å¸®æ´¾ å¸®ä¼—ç™»é™†æç¤ºã€‚
+ * @author å¼ ä¿Šä¿Š
  * @version 1.0
  */
 public class ClewService
@@ -22,7 +22,7 @@ public class ClewService
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * ºÃÓÑµÇÂ½ÌáÊ¾£¬µ±Ä³Íæ¼ÒµÇÂ½ºó£¬ËûµÄºÃÓÑ»áÊÕµ½Ò»ÌõÏµÍ³ÏûÏ¢,ÌáÊ¾ËûÒÑ¾­µÇÂ½ 
+	 * å¥½å‹ç™»é™†æç¤ºï¼Œå½“æŸç©å®¶ç™»é™†åï¼Œä»–çš„å¥½å‹ä¼šæ”¶åˆ°ä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯,æç¤ºä»–å·²ç»ç™»é™† 
 	 */
 	public void friendClew( String p_pk ) {
 		
@@ -41,19 +41,19 @@ public class ClewService
     		
     		for ( int i=0;i <list.size();i++) {
     			friendVO = list.get(i);
-    			StringBuffer infoString = new StringBuffer("ÄúµÄºÃÓÑ");
-    			infoString.append(roleEntity.getBasicInfo().getName()).append("ÒÑ¾­ÔÚ").append(sceneVO.getSceneName()).append("ÉÏÏßÁË!");
+    			StringBuffer infoString = new StringBuffer("æ‚¨çš„å¥½å‹");
+    			infoString.append(roleEntity.getBasicInfo().getName()).append("å·²ç»åœ¨").append(sceneVO.getSceneName()).append("ä¸Šçº¿äº†!");
     			infoService.insertSystemInfoBySystem(friendVO.getPPk(), infoString.toString());
     		}
 		}
 	}
 	
 	/**
-	 * µÇÂ½ÌáÊ¾
+	 * ç™»é™†æç¤º
 	 */
 	public void loginClew( String p_pk) {
 		if (p_pk == null || p_pk.equals("")) {
-			logger.info("p_pkÎª¿ÕÖµ!");
+			logger.info("p_pkä¸ºç©ºå€¼!");
 			return ;
 		}
 		friendClew(p_pk);

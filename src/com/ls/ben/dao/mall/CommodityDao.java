@@ -11,7 +11,7 @@ import com.ls.pub.bean.QueryPage;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ£ºÉÌÆ·dao
+ * åŠŸèƒ½ï¼šå•†å“dao
  */
 public class CommodityDao extends BasicDaoSupport<CommodityVO>
 {
@@ -21,7 +21,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 
 	/**
-	 * µÃµ½Ê×Ò³´òÕÛÉÌÆ·,Ôª±¦ÉÌÆ·,»¹ÓĞ¿â´æµÄÉÌÆ·
+	 * å¾—åˆ°é¦–é¡µæ‰“æŠ˜å•†å“,å…ƒå®å•†å“,è¿˜æœ‰åº“å­˜çš„å•†å“
 	 * @return
 	 */
 	public List<CommodityVO> getDiscountCommodityListOfMainPage()
@@ -30,7 +30,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * µÃµ½´òÕÛÉÌÆ·,Ôª±¦ÉÌÆ·,»¹ÓĞ¿â´æµÄÉÌÆ·
+	 * å¾—åˆ°æ‰“æŠ˜å•†å“,å…ƒå®å•†å“,è¿˜æœ‰åº“å­˜çš„å•†å“
 	 * @return
 	 */
 	public QueryPage getDiscountCommodityList(int page_no)
@@ -41,7 +41,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * ¸üĞÂ¹ºÂòÊıÁ¿
+	 * æ›´æ–°è´­ä¹°æ•°é‡
 	 * @return
 	 */
 	public void addSellNum(int c_id,int sell_num )
@@ -51,7 +51,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * ¸üĞÂ¹ºÂòÊıÁ¿
+	 * æ›´æ–°è´­ä¹°æ•°é‡
 	 * @return
 	 */
 	public void addSellNumByHot(int c_id,int sell_num )
@@ -61,7 +61,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * µÃµ½ÉÌÆ·ÏêÇé
+	 * å¾—åˆ°å•†å“è¯¦æƒ…
 	 * @return
 	 */
 	public CommodityVO getCommodity(String c_id )
@@ -71,7 +71,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	
 	
 	/**
-	 * µÃµ½ÉÌÆ·ÏêÇé
+	 * å¾—åˆ°å•†å“è¯¦æƒ…
 	 * @return
 	 */
 	public CommodityVO getPropCommodity(String prop_id )
@@ -80,14 +80,14 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * µÃµ½ÉÌÆ·µÀ¾ßÏêÇé
+	 * å¾—åˆ°å•†å“é“å…·è¯¦æƒ…
 	 * @return
 	 */
 	public PropVO getProp(String c_id )
 	{
 		PropVO prop = null;
 		
-		String sql = "select b.* from commodity_info as a,prop as b  where a.prop_id=b.prop_id and a.id="+c_id+"";
+		String sql = "SELECT b.* from commodity_info as a,prop as b  where a.prop_id=b.prop_id and a.id="+c_id+"";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -119,7 +119,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	
 	
 	/**
-	 * µÃµ½Ê×Ò³ÈÈÏúÉÌÆ·,Ê×Ò³ÏÔÊ¾5ÌõÈÈÏúÉÌÆ·
+	 * å¾—åˆ°é¦–é¡µçƒ­é”€å•†å“,é¦–é¡µæ˜¾ç¤º5æ¡çƒ­é”€å•†å“
 	 * @return
 	 */
 	public List<CommodityVO> getHotSellCommodityListOfMainPage()
@@ -129,7 +129,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * µÃµ½Ê×Ò³ÍÆ¼öÉÌÆ·,Ê×Ò³ÏÔÊ¾5ÌõÍÆ¼öÉÌÆ·
+	 * å¾—åˆ°é¦–é¡µæ¨èå•†å“,é¦–é¡µæ˜¾ç¤º5æ¡æ¨èå•†å“
 	 * @return
 	 */
 	public List<CommodityVO> getNewSellCommodityListOfMainPage()
@@ -139,7 +139,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * µÃµ½·ÖÒ³ÈÈÏúÉÌÆ·
+	 * å¾—åˆ°åˆ†é¡µçƒ­é”€å•†å“
 	 * @return
 	 */
 	public QueryPage getHotSellCommodityList( int page_no )
@@ -151,18 +151,18 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	
 	
 	/**
-	 * µÃµ½·ÖÒ³Ôª±¦ÉÌÆ·
+	 * å¾—åˆ°åˆ†é¡µå…ƒå®å•†å“
 	 * @return
 	 */
 	public QueryPage getYuanBaoCommodityList( String type,int page_no )
 	{
-		String condition_sql = "select count(*) from commodity_info where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1)  and discount=-1 and  buy_mode=1 and type="+type;
+		String condition_sql = "SELECT count(*) from commodity_info where ((commodity_total<>-1 and commodity_total-sell_num>0) or commodity_total=-1)  and discount=-1 and  buy_mode=1 and type="+type;
 		String order_sql = "order by create_time desc";
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	
 	/**
-	 * µÃµ½·ÖÒ³»ı·ÖÉÌÆ·
+	 * å¾—åˆ°åˆ†é¡µç§¯åˆ†å•†å“
 	 * @return
 	 */
 	public QueryPage getJiFenCommodityList(int buy_mode,String type, int page_no )
@@ -173,7 +173,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * µÃµ½Ê×Ò³»ı·ÖÉÌÆ·
+	 * å¾—åˆ°é¦–é¡µç§¯åˆ†å•†å“
 	 * @return
 	 */
 	public List<CommodityVO> getJiFenCommodityListOfMainPage()
@@ -183,7 +183,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 	}
 	
 	/**
-	 * »áÔ±ÉÌÆ·
+	 * ä¼šå‘˜å•†å“
 	 * @return
 	 */
 	public QueryPage getVIPCommodityList(int page_no)
@@ -193,7 +193,7 @@ public class CommodityDao extends BasicDaoSupport<CommodityVO>
 		return super.loadPageList(condition_sql, order_sql, page_no);
 	}
 	/**
-	 * »ñÈ¡ÀàĞÍµÄÒ³Ãæ
+	 * è·å–ç±»å‹çš„é¡µé¢
 	 * @return
 	 */
 	public List<CommodityVO> getListByType(int type)

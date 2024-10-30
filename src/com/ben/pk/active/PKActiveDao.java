@@ -1,702 +1,556 @@
 package com.ben.pk.active;
 
-import java.sql.SQLException;
+import com.ls.ben.dao.DaoBase;
+import com.ls.pub.db.DBConnection;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ls.ben.dao.DaoBase;
-import com.ls.pub.db.DBConnection;
-
 /**
- * 
- * @author thomas.lei π¶ƒ‹£∫PKªÓ∂Øµƒ ˝æ›¥¶¿Ì 27/04/10 PM
- * 
+ * @author thomas.lei ÂäüËÉΩÔºöPKÊ¥ªÂä®ÁöÑÊï∞ÊçÆÂ§ÑÁêÜ 27/04/10 PM
  */
-public class PKActiveDao extends DaoBase
-{
-	
-	// PKÕÊº“±®√˚
-	public int pkActiveRegist(PKActiveRegist role)
-	{
-		String sql = "insert into pk_active_regist (roleID,roleLevel,roleName,registTime,isWin,isEnter) values ("
-				+ role.getRoleID()
-				+ ","
-				+ role.getRoleLevel()
-				+ ",'"+ role.getRoleName() + "',now()," + role.getIsWin() + ",0)";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count = 0;// ≈–∂œ «∑Ò‘ˆº”≥…π¶
-		try
-		{
-			stmt = conn.createStatement();
-			count = stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return count;
-	}
+public class PKActiveDao extends DaoBase {
 
-	// ≤È—ØÕÊº“ «∑Ò”–¿˙ ∑±®√˚º«¬º
-	public PKActiveRegist checkRoleRegist(int roleID)
-	{
-		String sql = "select*from pk_active_regist where roleID=" + roleID + "";
-		PKActiveRegist pr =null;
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				pr=new PKActiveRegist();
-				pr.setId(rs.getInt("ID"));
-				pr.setRoleID(rs.getInt("roleID"));
-				pr.setRoleLevel(rs.getInt("roleLevel"));
-				pr.setRoleName(rs.getString("roleName"));
-				pr.setRoleTime(rs.getDate("registTime"));
-				pr.setIsWin(rs.getInt("isWin"));
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return pr;
-		}
-	}
+    // PKÁé©ÂÆ∂Êä•Âêç
+    public int pkActiveRegist(PKActiveRegist role) {
+        String sql = "INSERT INTO pk_active_regist (roleID,roleLevel,roleName,registTime,isWin,isEnter) values (" + role.getRoleID() + "," + role.getRoleLevel() + ",'" + role.getRoleName() + "',now()," + role.getIsWin() + ",0)";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;// Âà§Êñ≠ÊòØÂê¶Â¢ûÂä†ÊàêÂäü
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return count;
+    }
 
-	// »Áπ˚ÕÊº““—æ≠”–¿˙ ∑±®√˚º«¬º‘Ú∏¸–¬±®√˚º«¬º
-	public int refreshRegist(PKActiveRegist role)
-	{
-		String sql = "update pk_active_regist set roleLevel="
-				+ role.getRoleLevel() + ",roleName='" + role.getRoleName()
-				+ "',registTime=now(),isWin=" + role.getIsWin()
-				+ ",isEnter=0 where roleId=" + role.getRoleID() + "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			count = stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
+    // Êü•ËØ¢Áé©ÂÆ∂ÊòØÂê¶ÊúâÂéÜÂè≤Êä•ÂêçËÆ∞ÂΩï
+    public PKActiveRegist checkRoleRegist(int roleID) {
+        String sql = "SELECT * FROM `pk_active_regist` WHERE roleID = " + roleID;
+        PKActiveRegist pr = null;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                pr = new PKActiveRegist();
+                pr.setId(rs.getInt("ID"));
+                pr.setRoleID(rs.getInt("roleID"));
+                pr.setRoleLevel(rs.getInt("roleLevel"));
+                pr.setRoleName(rs.getString("roleName"));
+                pr.setRoleTime(rs.getDate("registTime"));
+                pr.setIsWin(rs.getInt("isWin"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return pr;
+        }
+    }
 
-	// …˙≥…PK∂‘’Û±Ì ±…æ≥˝…œ¥Œ…˙≥…µƒ∂‘’Û–≈œ¢
-	public int deleteVsInfo()
-	{
-		String sql = "delete from pk_vs";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			count = stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
+    // Â¶ÇÊûúÁé©ÂÆ∂Â∑≤ÁªèÊúâÂéÜÂè≤Êä•ÂêçËÆ∞ÂΩïÂàôÊõ¥Êñ∞Êä•ÂêçËÆ∞ÂΩï
+    public int refreshRegist(PKActiveRegist role) {
+        String sql = "update pk_active_regist set roleLevel=" + role.getRoleLevel() + ",roleName='" + role.getRoleName() + "',registTime=now(),isWin=" + role.getIsWin() + ",isEnter=0 WHERE roleId=" + role.getRoleID();
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
 
-	// ≤Â»Î–¬µƒ∂‘’Û–≈œ¢
-	public int addVsInfo(PKVs vs)
-	{
-		String sql = "insert into pk_vs (roleAID,roleBID,roleAName,roleBName,winRoleID)values("+ vs.getRoleAID()+","+ vs.getRoleBID()+",'"+ vs.getRoleAName()+"','"+ vs.getRoleBName()+"',"+ vs.getWinRoleID() + ")";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count = 0;
-		try
-		{
-			stmt = conn.createStatement();
-			count = stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
+    // ÁîüÊàêPKÂØπÈòµË°®Êó∂Âà†Èô§‰∏äÊ¨°ÁîüÊàêÁöÑÂØπÈòµ‰ø°ÊÅØ
+    public int deleteVsInfo() {
+        String sql = "delete FROM pk_vs";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
 
-	// ≤È—Ø∂‘’Û–≈œ¢
-	public List<PKVs> getVsInfo(int index,int limit)
-	{
-		String sql = "select*from pk_vs limit "+index*limit+","+limit+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		List<PKVs> list = new ArrayList<PKVs>();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				PKVs vs = new PKVs();
-				vs.setId(rs.getInt("ID"));
-				vs.setRoleAID(rs.getInt("roleAID"));
-				vs.setRoleBID(rs.getInt("roleBID"));
-				vs.setRoleAName(rs.getString("roleAName"));
-				vs.setRoleBName(rs.getString("roleBName"));
-				vs.setWinRoleID(rs.getInt("winRoleID"));
-				list.add(vs);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return list;
-		}
-	}
+    // ÊèíÂÖ•Êñ∞ÁöÑÂØπÈòµ‰ø°ÊÅØ
+    public int addVsInfo(PKVs vs) {
+        String sql = "INSERT INTO pk_vs (roleAID,roleBID,roleAName,roleBName,winRoleID)values(" + vs.getRoleAID() + "," + vs.getRoleBID() + ",'" + vs.getRoleAName() + "','" + vs.getRoleBName() + "'," + vs.getWinRoleID() + ")";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
 
-	// ªÒ»°”–◊ ∏Ò≤Œº”œ¬“ª¬÷PKµƒÕÊº“id ˝◊È
+    // Êü•ËØ¢ÂØπÈòµ‰ø°ÊÅØ
+    public List<PKVs> getVsInfo(int index, int limit) {
+        String sql = "SELECT * FROM pk_vs limit " + index * limit + "," + limit;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        List<PKVs> list = new ArrayList<PKVs>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                PKVs vs = new PKVs();
+                vs.setId(rs.getInt("ID"));
+                vs.setRoleAID(rs.getInt("roleAID"));
+                vs.setRoleBID(rs.getInt("roleBID"));
+                vs.setRoleAName(rs.getString("roleAName"));
+                vs.setRoleBName(rs.getString("roleBName"));
+                vs.setWinRoleID(rs.getInt("winRoleID"));
+                list.add(vs);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return list;
+        }
+    }
 
-	public int[] getRoleIDs()
-	{
-		String sql = "select*from pk_active_regist where isWin=0  order by roleLevel ";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		List list=new ArrayList();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				list.add(rs.getInt("roleID"));
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		int ids[]=new int[list.size()];
-		for (int i = 0; i <list.size(); i++)
-		{
-			Integer id=(Integer)list.get(i);
-			ids[i]=id;
-		}
-		
-		return ids;
-	}
+    // Ëé∑ÂèñÊúâËµÑÊ†ºÂèÇÂä†‰∏ã‰∏ÄËΩÆPKÁöÑÁé©ÂÆ∂idÊï∞ÁªÑ
 
-	// ªÒµ√”–◊ ∏Ò≤Œº”œ¬“ª¬÷PKµƒÕÊº“ID∫ÕName”≥…‰–≈œ¢
-	public Map<Integer, String> getRoleInfo()
-	{
-		String sql = "select*from pk_active_regist where isWin=0";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		Map<Integer, String> map = new HashMap<Integer, String>();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				int id = rs.getInt("roleID");
-				String name = rs.getString("roleName");
-				map.put(new Integer(id), name);
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return map;
-		}
-	}
-	//∏¸–¬pk_active_regist±Ì÷–isWin◊÷∂Œ
-	public int  updateIsWin(int roleID,int iswin)
-	{
-		String sql="update pk_active_regist set isWin="+iswin+" where roleID="+roleID+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count=0;
-		try
-		{
-			stmt = conn.createStatement();
-			count=stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
-	//∏¸–¬pk_vs±Ì÷–µƒwinroleID◊÷∂Œ
-	public int  updateWinRoleID(int winRoleId)
-	{
-		String sql="update pk_vs set winRoleID="+winRoleId+" where roleAID="+winRoleId+" or roleBID="+winRoleId+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn = dbConn.getConn();
-		logger.debug(sql);
-		int count=0;
-		try
-		{
-			stmt = conn.createStatement();
-			count=stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
-	//µ√µΩ∂‘’Û–≈œ¢µƒ◊‹Ãı ˝
-	public int getTotalNum()
-	{
-		String sql="select count(*) as total from pk_vs";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int count=0;
-		try
-		{
-			stmt=conn.createStatement();
-			ResultSet rs= stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				count=rs.getInt("total");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
-	//µ√µΩ∂‘∑ΩµƒPPK
-	public int getAppk(int ppk)
-	{
-		String sql="select roleAID from pk_vs where roleBID="+ppk+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int appk=0;
-		try
-		{
-			stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				appk=rs.getInt("roleAID");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return appk;
-		}
-		
-	}
-	public int getBppk(int ppk)
-	{
-		String sql="select roleBID from pk_vs where roleAID="+ppk+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int bppk=0;
-		try
-		{
-			stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				bppk=rs.getInt("roleBID");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return bppk;
-		}
-	}
-	//≈–∂œ≤Œ»¸ÕÊº“ «∑Ò“—æ≠ ß∞‹
-	public boolean checkIsFail(int roleId)
-	{
-		String sql="select isWin from pk_active_regist where roleID="+roleId+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int isWin=0;
-		boolean isEnter=true;
-		try
-		{
-			stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				isWin=rs.getInt("isWin");
-			}
-			if(isWin==1)
-			{
-				isEnter=false;
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return isEnter;
-			
-		}
-	}
-	//∏¸–¬ÕÊº“Ω¯»Î≥°æ∞µƒ◊¥Ã¨
-	public int updateEnterState(int roleId,int state)
-	{
-		String sql="update pk_active_regist set isEnter="+state+" where roleId="+roleId+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int count=0;
-		try
-		{
-			stmt=conn.createStatement();
-			count=stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
-	//ª÷∏¥ÕÊº“Ω¯»Î≥°æ∞µƒ≥ı º◊¥Ã¨
-	public int updateEnterState()
-	{
-		String sql="update pk_active_regist set isEnter=0";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int count=0;
-		try
-		{
-			stmt=conn.createStatement();
-			count=stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
-	//µΩ ±º‰√ª”–Ω¯»Î±»»¸≥°µÿµƒÕÊº“µƒ∏¸–¬ ∏¸–¬∆‰Œ™∞‹
-	public int updateOutofTime()
-	{
-		String sql="update pk_active_regist set isWin=1 where isWin=0 and isEnter=0";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int count=0;
-		try
-		{
-			stmt=conn.createStatement();
-			count=stmt.executeUpdate(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return count;
-		}
-	}
-	//µ√µΩµΩ ±º˚√ª”–Ω¯»Î≥°µÿµƒΩ«…´ID
-	public List getOutofEnterIDs()
-	{
-		String sql="select roleID from pk_active_regist where iswin=0 and isEnter=0";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		List list=new ArrayList();
-		try
-		{
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while(rs.next())
-			{
-				list.add(rs.getInt("roleID"));
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-	//≤È—Ø∂‘’Û√ª”–Ω·π˚µƒID MAP
-	public Map<Integer,Integer> getNoresultVs()
-	{
-		String sql="select*from pk_vs where winRoleID =0";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		Map<Integer,Integer> map=new HashMap<Integer, Integer>();
-		try
-		{
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while(rs.next())
-			{
-				map.put(rs.getInt("roleAID"),rs.getInt("roleBID"));
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return map;
-		}
-	}
-	//≤È—Ø∂‘∑Ωµƒ√˚≥∆
-	public String getOherName(int roleId)
-	{
-		String sql="select roleName from pk_active_regist where roleID="+roleId+" ";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		String name="";
-		try
-		{
-			stmt=conn.createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				name=rs.getString("roleName");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return name;
-		}
-	}
-	//≈–∂œ «∑Ò”–◊ ∏Ò¡Ï»°Ω±∆∑
-	public boolean isGetPrice(int roleID)
-	{
-		String sql="select*from pk_active_regist where isGetprice=1 and roleID="+roleID+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		boolean flag=false;
-		try
-		{
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				flag=true;
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		
-		return flag;
-	}
-	//–ﬁ∏ƒ¡Ï»°Ω±∆∑µƒ◊¥Ã¨
-	public void updatePriceState(int roleID,int isPrice)
-	{
-		String sql="update pk_active_regist set isGetPrice="+isPrice+" where roleID="+roleID+"";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		try
-		{
-			stmt=conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	//≈–∂œ≤Œ»¸»À ˝ «∑ÒΩ¯¡À∞À«ø Àƒ«ø ªÚ’ﬂ∞Îæˆ»¸
-	public int getPlayerNum()
-	{
-		String sql="select count(*) as num from pk_active_regist where isGetPrice=1";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int num=0;
-		try
-		{
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			if(rs.next())
-			{
-				num=rs.getInt("num");
-			}
-			stmt.close();
-			rs.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return num;
-	}
-	//≤È—ØÀ˘”–µƒ±®√˚ÕÊº“–≈œ¢
-	public List getAllRole()
-	{
-		String sql="select*From pk_active_regist where iswin=0";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		conn=dbConn.getConn();
-		logger.debug(sql);
-		int num=0;
-		List list=new ArrayList();
-		try
-		{
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while(rs.next())
-			{
-				PKActiveRegist pr=new PKActiveRegist();
-				pr.setId(rs.getInt("ID"));
-				pr.setRoleID(rs.getInt("roleID"));
-				pr.setRoleLevel(rs.getInt("roleLevel"));
-				pr.setRoleName(rs.getString("roleName"));
-				pr.setRoleTime(rs.getDate("registTime"));
-				pr.setIsWin(rs.getInt("isWin"));
-				list.add(pr);
-			}
-			stmt.close();
-			rs.close();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
+    public int[] getRoleIDs() {
+        String sql = "SELECT * FROM pk_active_regist WHERE isWin=0  order by roleLevel ";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        List list = new ArrayList();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                list.add(rs.getInt("roleID"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        int[] ids = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            Integer id = (Integer) list.get(i);
+            ids[i] = id;
+        }
+
+        return ids;
+    }
+
+    // Ëé∑ÂæóÊúâËµÑÊ†ºÂèÇÂä†‰∏ã‰∏ÄËΩÆPKÁöÑÁé©ÂÆ∂IDÂíåNameÊò†Â∞Ñ‰ø°ÊÅØ
+    public Map<Integer, String> getRoleInfo() {
+        String sql = "SELECT * FROM pk_active_regist WHERE isWin=0";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("roleID");
+                String name = rs.getString("roleName");
+                map.put(new Integer(id), name);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return map;
+        }
+    }
+
+    //Êõ¥Êñ∞pk_active_registË°®‰∏≠isWinÂ≠óÊÆµ
+    public int updateIsWin(int roleID, int iswin) {
+        String sql = "update pk_active_regist set isWin=" + iswin + " WHERE roleID=" + roleID;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
+
+    //Êõ¥Êñ∞pk_vsË°®‰∏≠ÁöÑwinroleIDÂ≠óÊÆµ
+    public int updateWinRoleID(int winRoleId) {
+        String sql = "update pk_vs set winRoleID=" + winRoleId + " WHERE roleAID=" + winRoleId + " or roleBID=" + winRoleId;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
+
+    //ÂæóÂà∞ÂØπÈòµ‰ø°ÊÅØÁöÑÊÄªÊù°Êï∞
+    public int getTotalNum() {
+        String sql = "SELECT count(*) as total FROM pk_vs";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
+
+    //ÂæóÂà∞ÂØπÊñπÁöÑPPK
+    public int getAppk(int ppk) {
+        String sql = "SELECT roleAID FROM pk_vs WHERE roleBID=" + ppk;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int appk = 0;
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                appk = rs.getInt("roleAID");
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return appk;
+        }
+
+    }
+
+    public int getBppk(int ppk) {
+        String sql = "SELECT roleBID FROM pk_vs WHERE roleAID=" + ppk;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int bppk = 0;
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                bppk = rs.getInt("roleBID");
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return bppk;
+        }
+    }
+
+    //Âà§Êñ≠ÂèÇËµõÁé©ÂÆ∂ÊòØÂê¶Â∑≤ÁªèÂ§±Ë¥•
+    public boolean checkIsFail(int roleId) {
+        String sql = "SELECT isWin FROM pk_active_regist WHERE roleID=" + roleId;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int isWin = 0;
+        boolean isEnter = true;
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                isWin = rs.getInt("isWin");
+            }
+            if (isWin == 1) {
+                isEnter = false;
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return isEnter;
+
+        }
+    }
+
+    //Êõ¥Êñ∞Áé©ÂÆ∂ËøõÂÖ•Âú∫ÊôØÁöÑÁä∂ÊÄÅ
+    public int updateEnterState(int roleId, int state) {
+        String sql = "update pk_active_regist set isEnter=" + state + " WHERE roleId=" + roleId;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
+
+    //ÊÅ¢Â§çÁé©ÂÆ∂ËøõÂÖ•Âú∫ÊôØÁöÑÂàùÂßãÁä∂ÊÄÅ
+    public int updateEnterState() {
+        String sql = "update pk_active_regist set isEnter=0";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
+
+    // Âà∞Êó∂Èó¥Ê≤°ÊúâËøõÂÖ•ÊØîËµõÂú∫Âú∞ÁöÑÁé©ÂÆ∂ÁöÑÊõ¥Êñ∞ Êõ¥Êñ∞ÂÖ∂‰∏∫Ë¥•
+    public int updateOutofTime() {
+        String sql = "UPDATE `pk_active_regist` SET isWin=1 WHERE isWin=0 and isEnter=0";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int count = 0;
+        try {
+            stmt = conn.createStatement();
+            count = stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return count;
+        }
+    }
+
+    // ÂæóÂà∞Âà∞Êó∂ËßÅÊ≤°ÊúâËøõÂÖ•Âú∫Âú∞ÁöÑËßíËâ≤ID
+    public List<Integer> getOutofEnterIDs() {
+        String sql = "SELECT roleID FROM `pk_active_regist` WHERE iswin = 0 and isEnter = 0";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        List<Integer> list = new ArrayList();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                list.add(rs.getInt("roleID"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    // Êü•ËØ¢ÂØπÈòµÊ≤°ÊúâÁªìÊûúÁöÑID MAP
+    public Map<Integer, Integer> getNoresultVs() {
+        String sql = "SELECT * FROM `pk_vs` WHERE winRoleID = 0";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                map.put(rs.getInt("roleAID"), rs.getInt("roleBID"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return map;
+        }
+    }
+
+    // Êü•ËØ¢ÂØπÊñπÁöÑÂêçÁß∞
+    public String getOherName(int roleId) {
+        String sql = "SELECT roleName FROM `pk_active_regist` WHERE roleID = " + roleId + " ";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        String name = "";
+        try {
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                name = rs.getString("roleName");
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return name;
+        }
+    }
+
+    // Âà§Êñ≠ÊòØÂê¶ÊúâËµÑÊ†ºÈ¢ÜÂèñÂ•ñÂìÅ
+    public boolean isGetPrice(int roleID) {
+        String sql = "SELECT * FROM `pk_active_regist` WHERE isGetprice = 1 and roleID = " + roleID;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        boolean flag = false;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                flag = true;
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return flag;
+    }
+
+    //‰øÆÊîπÈ¢ÜÂèñÂ•ñÂìÅÁöÑÁä∂ÊÄÅ
+    public void updatePriceState(int roleID, int isPrice) {
+        String sql = "UPDATE `pk_active_regist` SET isGetPrice = " + isPrice + " WHERE roleID = " + roleID;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Âà§Êñ≠ÂèÇËµõ‰∫∫Êï∞ÊòØÂê¶Ëøõ‰∫ÜÂÖ´Âº∫ ÂõõÂº∫ ÊàñËÄÖÂçäÂÜ≥Ëµõ
+    public int getPlayerNum() {
+        String sql = "SELECT count(*) AS num FROM `pk_active_regist` WHERE isGetPrice = 1";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int num = 0;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                num = rs.getInt("num");
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return num;
+    }
+
+    // Êü•ËØ¢ÊâÄÊúâÁöÑÊä•ÂêçÁé©ÂÆ∂‰ø°ÊÅØ
+    public List<PKActiveRegist> getAllRole() {
+        String sql = "SELECT * FROM `pk_active_regist` WHERE iswin = 0";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        conn = dbConn.getConn();
+        logger.debug(sql);
+        int num = 0;
+        List<PKActiveRegist> list = new ArrayList<>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                PKActiveRegist pr = new PKActiveRegist();
+                pr.setId(rs.getInt("ID"));
+                pr.setRoleID(rs.getInt("roleID"));
+                pr.setRoleLevel(rs.getInt("roleLevel"));
+                pr.setRoleName(rs.getString("roleName"));
+                pr.setRoleTime(rs.getDate("registTime"));
+                pr.setIsWin(rs.getInt("isWin"));
+                list.add(pr);
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

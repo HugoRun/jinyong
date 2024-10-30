@@ -8,28 +8,28 @@ import com.lw.vo.wishingtree.WishingTreeVO;
 
 public class WishingTreeService
 {
-	// µÃµ½×£¸£
+	// å¾—åˆ°ç¥ç¦
 	public QueryPage getAllWishing(int page_no)
 	{
 		WishingTreeDAO dao = new WishingTreeDAO();
 		return dao.getAllWishing(page_no);
 	}
 
-	// µÃµ½×£¸£
+	// å¾—åˆ°ç¥ç¦
 	public List<WishingTreeVO> getTopWishing()
 	{
 		WishingTreeDAO dao = new WishingTreeDAO();
 		return dao.getTopWishing();
 	}
 
-	// ²åÈë×£¸£
+	// æ’å…¥ç¥ç¦
 	public void insertWishing(int p_pk, String p_name, String wishing)
 	{
 		WishingTreeDAO dao = new WishingTreeDAO();
 		dao.insertWishing(p_pk, p_name, wishing);
 	}
 
-	// ¸üĞÂ×£¸£ÎªÖÃ¶¥
+	// æ›´æ–°ç¥ç¦ä¸ºç½®é¡¶
 	public void setTopWishing(int id)
 	{
 		WishingTreeDAO dao = new WishingTreeDAO();
@@ -37,7 +37,7 @@ public class WishingTreeService
 		setNomarlWishing();
 	}
 
-	// ¸üĞÂ×£¸£ÎªÆÕÍ¨×´Ì¬
+	// æ›´æ–°ç¥ç¦ä¸ºæ™®é€šçŠ¶æ€
 	private void setNomarlWishing()
 	{
 		if (getTopWishingNum() > 3)

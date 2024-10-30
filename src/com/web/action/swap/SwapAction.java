@@ -1,19 +1,5 @@
 package com.web.action.swap;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.dao.info.partinfo.PartInfoDAO;
 import com.ben.dao.petinfo.PetInfoDAO;
 import com.ben.dao.sellinfo.SellInfoDAO;
@@ -36,540 +22,530 @@ import com.ls.web.service.system.UMsgService;
 import com.pm.service.mail.MailInfoService;
 import com.pub.ben.info.Expression;
 import com.web.service.friend.BlacklistService;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * @author Administrator ½»Ò×
+ * äº¤æ˜“
+ * @author Administrator
  */
-public class SwapAction extends ActionBase
-{
-	Logger logger = Logger.getLogger("log.action");
+public class SwapAction extends ActionBase {
+    Logger logger = Logger.getLogger("log.action");
 
-	/**
-	 * ½ğÇ®½»Ò×
-	 */
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String pByPk = request.getParameter("pByPk");
-		String pSilver = request.getParameter("pSilver");// Òø
-		if(pSilver.length() > 8){
-			this.setHint(request, "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½");
-			request.setAttribute("pByPk", pByPk);
-			return mapping.findForward("moneyswapno");
-		}
-		 Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
-		 Matcher m = p.matcher(pSilver);
-		 boolean b = m.matches();
-		 if(b==false){
-				this.setHint(request, "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½");
-				request.setAttribute("pByPk", pByPk);
-				return mapping.findForward("moneyswapno");
-		 }
-		 
-		if(pSilver == null || pSilver.equals("") || Integer.parseInt(pSilver) == 0){
-			pSilver = "0";
-		}
-		PartInfoDAO partInfoDAO = new PartInfoDAO();
-		String name =  partInfoDAO.getPartName(pByPk);
-		request.setAttribute("name", name);
-		request.setAttribute("pByPk", pByPk);
-		request.setAttribute("pSilver", pSilver);
-		return mapping.findForward("moneyswappage");
-	}
+    /**
+     * é‡‘é’±äº¤æ˜“
+     */
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String pByPk = request.getParameter("pByPk");
+        String pSilver = request.getParameter("pSilver");// é“¶
+        if (pSilver.length() > 8) {
+            this.setHint(request, "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼");
+            request.setAttribute("pByPk", pByPk);
+            return mapping.findForward("moneyswapno");
+        }
+        Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
+        Matcher m = p.matcher(pSilver);
+        boolean b = m.matches();
+        if (!b) {
+            this.setHint(request, "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼");
+            request.setAttribute("pByPk", pByPk);
+            return mapping.findForward("moneyswapno");
+        }
 
-	/**
-	 * ½ğÇ®½»Ò×
-	 */
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		String pByPk = request.getParameter("pByPk");
-		String pSilver = request.getParameter("pSilver");// Òø
+        if (pSilver.isEmpty() || Integer.parseInt(pSilver) == 0) {
+            pSilver = "0";
+        }
+        PartInfoDAO partInfoDAO = new PartInfoDAO();
+        String name = partInfoDAO.getPartName(pByPk);
+        request.setAttribute("name", name);
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("pSilver", pSilver);
+        return mapping.findForward("moneyswappage");
+    }
 
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÔÚÏß
-		RoleEntity roleInfo1pByuPk = roleService.getRoleInfoById(pByPk);
-		if(roleInfo1pByuPk == null || roleInfo1pByuPk.isOnline()==false ){
-			try{
-				String hint = "¸ÃÍæ¼ÒÒÑÏÂÏß!";
-				if(hint != null ){
-					request.getRequestDispatcher("/pubbuckaction.do?hint="+hint).forward(request, response);
-					return null;
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		String hint = null;
-		if(pSilver.length() > 8){
-			hint = "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½";
-			request.setAttribute("hint", hint);
-			request.setAttribute("pByPk", pByPk);
-			return mapping.findForward("moneyswapno");
-		}
-		
-		// Èç¹ûÒø×ÓºÍÍ­Ç®¶¼Îª¿Õ ÔòÄ¬ÈÏÎª0
-		
-		String yingzi = null;
-		
-		 Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
-		 Matcher m = p.matcher(pSilver);
-		 boolean b = m.matches();
-		 if(b==false){
-			    hint = "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½";
-				request.setAttribute("hint", hint);
-				request.setAttribute("pByPk", pByPk);
-				return mapping.findForward("moneyswapno");
-		 }
-		 
-		if (pSilver.indexOf(" ") != -1 || pSilver == null || pSilver.equals(""))
-		{
-			yingzi = "0";
-		}
-		else
-		{
-			yingzi = request.getParameter("pSilver");
-		}
-		// ÅĞ¶Ï½ğÇ®ÊÇ·ñ¹»
-		String money = roleInfo.getBasicInfo().getCopper()+"";
-		if (Long.parseLong(money) < (Long.parseLong(yingzi)))
-		{
-			hint = "ÄúÃ»ÓĞ×ã¹»µÄÇ®£¡";
-			request.setAttribute("hint", hint);
-			request.setAttribute("pByPk", pByPk);
-			return mapping.findForward("moneyswapno");
-		}
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+    /**
+     * é‡‘é’±äº¤æ˜“
+     */
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+        String pByPk = request.getParameter("pByPk");
+        String pSilver = request.getParameter("pSilver");// é“¶
 
-		SellInfoDAO sellInfoDAO = new SellInfoDAO();
-		
-		sellInfoDAO.addSelleInfo(roleInfo.getBasicInfo().getPPk() + "", pByPk, yingzi,"0", SellInfoVO.SELLMONEY, Time);
-		
-		//ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
-		UMsgService uMsgService = new UMsgService();
-		UMessageInfoVO msgInfo = new UMessageInfoVO();
-		msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
-		msgInfo.setPPk(Integer.parseInt(pByPk));
-		msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_SWAP_FIRST);
-		uMsgService.sendPopUpMsg(msgInfo);
-		
-		request.setAttribute("pByPk", pByPk);
-		request.setAttribute("pSilver", pSilver);
-		return mapping.findForward("moneyswap");
-	}
+        //åˆ¤æ–­ç©å®¶æ˜¯å¦åœ¨çº¿
+        RoleEntity roleInfo1pByuPk = RoleService.getRoleInfoById(pByPk);
+        if (roleInfo1pByuPk == null || !roleInfo1pByuPk.isOnline()) {
+            try {
+                String hint = "è¯¥ç©å®¶å·²ä¸‹çº¿!";
+                request.getRequestDispatcher("/pubbuckaction.do?hint=" + hint).forward(request, response);
+                return null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        String hint = null;
+        if (pSilver.length() > 8) {
+            hint = "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼";
+            request.setAttribute("hint", hint);
+            request.setAttribute("pByPk", pByPk);
+            return mapping.findForward("moneyswapno");
+        }
 
-	/**
-	 * ²é¿´Òª½»Ò×µÄ×°±¸ÏêÇé
-	 */
-	public ActionForward n3(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		
-		EquipDisplayService equipDisplayService = new EquipDisplayService();
-		GoodsService goodsService = new GoodsService();
-		 
-		String pwPk = request.getParameter("pwPk");
-		
-		PlayerEquipVO equip = goodsService.getEquipByID(Integer.parseInt(pwPk));
-		
-		String equip_display = equipDisplayService.getEquipDisplay(roleInfo,equip,true);
-		
-		request.setAttribute("equip_display", equip_display);
-		request.setAttribute("equip", equip);
-		request.setAttribute("pByPk", request.getParameter("pByPk"));
-		return mapping.findForward("goodspage");
-	}
+        // å¦‚æœé“¶å­å’Œé“œé’±éƒ½ä¸ºç©º åˆ™é»˜è®¤ä¸º0
 
-	/**
-	 * ÎïÆ·½»Ò×
-	 */
-	public ActionForward n4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		
-		String pByPk = request.getParameter("pByPk");
-		String pwPk = request.getParameter("pwPk");
-		String wName = request.getParameter("wName");
-		String wProtect = request.getParameter("wProtect");
-		String bangding = request.getParameter("bangding");
+        String yingzi = null;
 
-		request.setAttribute("wProtect", wProtect);
-		request.setAttribute("bangding", bangding);
-		request.setAttribute("pByPk", pByPk);
-		request.setAttribute("pwPk", pwPk);
-		request.setAttribute("wName", wName);
-		return mapping.findForward("goodsmoney");
-	}
+        Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
+        Matcher m = p.matcher(pSilver);
+        boolean b = m.matches();
+        if (!b) {
+            hint = "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼";
+            request.setAttribute("hint", hint);
+            request.setAttribute("pByPk", pByPk);
+            return mapping.findForward("moneyswapno");
+        }
 
-	/**
-	 * ÎïÆ·½»Ò×
-	 */
-	public ActionForward n5(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
-		String pByPk = request.getParameter("pByPk");
-		String pwPk = request.getParameter("pwPk");
-		String wName = request.getParameter("wName");
-		String pSilver = request.getParameter("pSilver");
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
-		
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÔÚÏß
-		RoleEntity roleInfo1pByuPk = roleService.getRoleInfoById(pByPk);
-		if(roleInfo1pByuPk == null || roleInfo1pByuPk.isOnline()==false ){
-			try{
-				String hint = "¸ÃÍæ¼ÒÒÑÏÂÏß!";
-				if(hint != null ){
-					request.getRequestDispatcher("/pubbuckaction.do?hint="+hint).forward(request, response);
-					return null;
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		
-		String hint = null;
-		
-		if(pSilver.length() > 8){
-			 hint = "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½";
-			    request.setAttribute("hint", hint);
-				return mapping.findForward("goodsmoneyok");
-		}
-		
-		 Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
-		 Matcher m = p.matcher(pSilver);
-		 boolean b = m.matches();
-		 if(b==false){
-			    hint = "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½";
-			    request.setAttribute("hint", hint);
-				return mapping.findForward("goodsmoneyok");
-		 }
-		 
-		if(pSilver == null || pSilver.equals("") || Integer.parseInt(pSilver) == 0){
-			pSilver = "0";
-		}
-		/*
-		 * Ò©Æ·-----1 Êé¾í-----2 ×°±¸-----3 ÈÎÎñ-----4 ÆäËû-----5
-		 */
-		
-		//ÅĞ¶ÏÊÇ·ñÖØ¸´½»Ò×
-		SellInfoDAO dao = new SellInfoDAO();
-		String ss = dao.getSellExistByPPkAndGoodsId(roleInfo.getBasicInfo().getPPk()+"", pwPk, Wrap.EQUIP);
-		if(ss != null && !ss.equals("")){
-			hint = ss;
-			request.setAttribute("hint", hint);
-			return mapping.findForward("goodsmoneyok");
-		}
-		
-		int number = 1;
-		GoodsService goodsService = new GoodsService();
-		PartInfoDAO partInfoDAO = new PartInfoDAO();
-		if(goodsService.isEnoughWrapSpace(Integer.parseInt(pByPk),number)){//¹»ÁË
-			
-			dao.getSellArmAdd(roleInfo.getBasicInfo().getPPk(), pByPk, pwPk, Wrap.EQUIP, number, pSilver, "0", SellInfoVO.SELLARM, Time);
-			//dao.getSellWuPingAdd(pwPk, Wrap.ACCOUTER, number, pSilver, pCopper, SfOk, userTempBean.getPPk(), pByPk);
-			hint = "ÄúÒÑ¾­Óë"+partInfoDAO.getPartName(pByPk)+"½»Ò×ÁË×°±¸"+wName+",ÇëµÈ´ı¶Ô·½½ÓÊÕ£¡";
-			//ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
-			UMsgService uMsgService = new UMsgService();
-			UMessageInfoVO msgInfo = new UMessageInfoVO();
-			msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
-			msgInfo.setPPk(Integer.parseInt(pByPk));
-			msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_SWAP_FIRST);
-			uMsgService.sendPopUpMsg(msgInfo);
-			
-		}else{
-			hint = partInfoDAO.getPartName(pByPk)+"Ã»ÓĞ×ã¹»µÄ°ü¹ü¸ñÊı!";
-		} 
-		request.setAttribute("hint", hint);
-		return mapping.findForward("goodsmoneyok");
-	}
+        if (pSilver.contains(" ") || pSilver.isEmpty()) {
+            yingzi = "0";
+        } else {
+            yingzi = request.getParameter("pSilver");
+        }
+        // åˆ¤æ–­é‡‘é’±æ˜¯å¦å¤Ÿ
+        String money = roleInfo.getBasicInfo().getCopper() + "";
+        if (Long.parseLong(money) < (Long.parseLong(yingzi))) {
+            hint = "æ‚¨æ²¡æœ‰è¶³å¤Ÿçš„é’±ï¼";
+            request.setAttribute("hint", hint);
+            request.setAttribute("pByPk", pByPk);
+            return mapping.findForward("moneyswapno");
+        }
+        // åˆ›å»ºæ—¶é—´
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+        String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
-	/**
-	 * ²é¿´Íæ¼ÒĞÅÏ¢
-	 */
-	public ActionForward n6(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String pPks = request.getParameter("pPks");
-		//·µ»ØµØÍ¼Ö÷½çÃæ
-		request.getSession().setAttribute("backtype", "1");
-		request.setAttribute("pPks", pPks);
-		return mapping.findForward("partinfoview");
-	}
+        SellInfoDAO sellInfoDAO = new SellInfoDAO();
 
-	/**
-	 * Íæ¼ÒĞÅÏ¢ÃÜÓï
-	 */
-	public ActionForward n7(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		
-		String pByPk = request.getParameter("pByPk");
-		String pByName = request.getParameter("pByName");
+        sellInfoDAO.addSelleInfo(roleInfo.getBasicInfo().getPPk() + "", pByPk, yingzi, "0", SellInfoVO.SELLMONEY, Time);
 
-		request.setAttribute("pByPk", pByPk);
-		request.setAttribute("pByName", pByName);
-		return mapping.findForward("privately");
-	}
+        //åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
+        UMsgService uMsgService = new UMsgService();
+        UMessageInfoVO msgInfo = new UMessageInfoVO();
+        msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
+        msgInfo.setPPk(Integer.parseInt(pByPk));
+        msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_SWAP_FIRST);
+        uMsgService.sendPopUpMsg(msgInfo);
 
-	/**
-	 * Íæ¼ÒĞÅÏ¢ÃÜÓï
-	 */
-	public ActionForward n8(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleEntity roleInfo = this.getRoleEntity(request);
-		String pByPk = request.getParameter("pByPk");
-		
-		String pNameBy = request.getParameter("pByName"); 
-		String upTitle = request.getParameter("upTitle");
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
-		PartInfoDAO dao = new PartInfoDAO(); 
-		PlayerService playerService = new PlayerService();
-		String type = "5";
-		BlacklistService blacklistService = new BlacklistService();
-		int res = blacklistService.isBlacklist(Integer.parseInt(pByPk), roleInfo.getPPk());
-		if(res == 2){
-			this.setHint(request,"¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞÃÜÁÄ.");
-			return mapping.findForward("privatelyok");
-		}else if(res == 1){
-			this.setHint(request, "ÄúÔÚ¸ÃÍæ¼ÒµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞÃÜÁÄ.");
-			return mapping.findForward("privatelyok");
-		}
-		RoleEntity pByPk_b_role_info = RoleService.getRoleInfoById(pByPk+"");
-		
-		if(pByPk_b_role_info != null){
-		String hint = playerService.checkRoleState(Integer.parseInt(pByPk), PlayerState.TALK);
-		if(hint != null){
-			MailInfoService mailInfoService = new MailInfoService();
-			String mailtitle = "À´×ÔºÃÓÑ"+roleInfo.getBasicInfo().getName() +"µÄÃÜÓï";//7ÔÂ27ÈÕĞŞ¸Ä
-			mailInfoService.sendPersonMail(Integer.parseInt(pByPk), roleInfo.getBasicInfo().getPPk(), mailtitle, upTitle);
-			this.setHint(request,hint+",ÏµÍ³ÒÑ¾­°ïÄú×ª·¢ÖÁËû(Ëı)µÄÓÊÏäÖĞ!");
-		request.setAttribute("pByPk", pByPk);
-		return mapping.findForward("privatelyok");
-		}
-		} 
-		 /** TODO:Èç¹ûÓĞ¸ÃÍæ¼Ò Èç¹ûÃ»ÓĞÔÚÏßÔòÖ±½Ó·¢ËÍÍæ¼ÒÓÊÏä */ 
-		    int bypPk=dao.getPartPk(pNameBy); 
-			// µÃµ½µ±Ç°Íæ¼ÒĞÅÏ¢
-			if(pByPk_b_role_info!=null && pByPk_b_role_info.isOnline()==true){
-				// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼ c_pk,p_pk,p_name,p_pk_by,p_name_by,c_title,c_type,create_time
-				CommunionVO communionVO = new CommunionVO();
-				communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
-				communionVO.setPName(roleInfo.getBasicInfo().getName());
-				communionVO.setPPkBy(Integer.parseInt(pByPk));
-				communionVO.setPNameBy(pNameBy);
-				communionVO.setCTitle(upTitle);
-				communionVO.setCType(Integer.parseInt(type));
-				communionVO.setCreateTime(Time);
-				ChatInfoCahe publicChatInfoCahe = new ChatInfoCahe();
-				publicChatInfoCahe.put(communionVO);
-				
-				this.setHint(request, "ĞÅÏ¢ÒÑ¾­·¢³ö£¡");
-				request.setAttribute("pByPk", pByPk);
-				return mapping.findForward("privatelyok");
-			}else { 
-				this.setHint(request, "¶Ô·½²»ÔÚÏß½«Í¨¹ıÓÊ¼ş·¢ËÍ¸ø¶Ô·½");
-				request.setAttribute("pByPk", pByPk);
-				MailInfoService mailInfoService = new MailInfoService();
-				String mailtitle = "À´×ÔºÃÓÑ"+roleInfo.getBasicInfo().getName() +"µÄÃÜÓï";//7ÔÂ27ÈÕĞŞ¸Ä
-				mailInfoService.sendPersonMail(bypPk, roleInfo.getBasicInfo().getPPk(), mailtitle, upTitle);
-				return mapping.findForward("privatelyok"); 
-			}   
-	}
-	
-	/**
-	 * ³èÎï½»Ò× 
-	 */
-	public ActionForward n9(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession()); 
-		
-		String pByPk = request.getParameter("pByPk"); 
-		PetInfoDAO dao = new PetInfoDAO();
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÊÇÔÚ×Ô¼ºµÄºÚÃûµ¥  
-		BlacklistService blacklistService = new BlacklistService();
-		int res = blacklistService.isBlacklist(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(pByPk));
-		if(res == 1){
-			String hints = "¸ÃÍæ¼ÒÔÚÄúµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞ½»Ò×.";
-			request.setAttribute("hints", hints);
-			return mapping.findForward("petblacklisthint");
-		}else if(res == 2){
-			String hints = "ÄúÔÚ¸ÃÍæ¼ÒµÄºÚÃûµ¥ÖĞ,Äú²»ÄÜÓëËû(Ëı)½øĞĞ½»Ò×."; 
-			request.setAttribute("hints", hints);
-			return mapping.findForward("petblacklisthint");
-		}
-		//ÅĞ¶Ï¶Ô·½Íæ¼ÒÊÇ·ñ¿ª½»Ò×¿ª¹Ø 
-		PlayerService playerService = new PlayerService();
-		String hint = playerService.isRoleState( Integer.parseInt(pByPk), 1);
-		if(hint != null ){ 
-			request.setAttribute("hints", hint);
-			return mapping.findForward("petblacklisthint");
-		} 
-		
-		int petIsBring = 0;
-	    List list = dao.getpetIsBringList(roleInfo.getBasicInfo().getPPk(),petIsBring); 
-	    request.setAttribute("list", list);
-		request.setAttribute("pByPk", pByPk); 
-		return mapping.findForward("petsells");
-	}
-	
-	/**
-	 * ³èÎï½»Ò×
-	 */
-	public ActionForward n10(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{  
-		
-		String pByPk = request.getParameter("pByPk");
-		String petPk = request.getParameter("petPk"); 
-		String petId = request.getParameter("petId");
-		PetService petService = new PetService(); 
-		String resultWml = petService.getPetDisplayWml(Integer.parseInt(petPk));
-		request.setAttribute("resultWml", resultWml);
-		request.setAttribute("pByPk", pByPk); 
-		request.setAttribute("petPk", petPk); 
-		request.setAttribute("petId", petId); 
-		return mapping.findForward("petsellsview");
-	}
-	
-	/**
-	 * ³èÎï½»Ò×
-	 */
-	public ActionForward n11(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{ 
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession()); 
-		
-		String pByPk = request.getParameter("pByPk");
-		String petPk = request.getParameter("petPk");
-		//²éÕÒ³èÎïµÄÊÙÃüÊÇ·ñÎªÁãÁË
-		String hint = null;
-		PetInfoDAO dao = new PetInfoDAO();
-		int pet_longe = dao.pet_longe(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(petPk));
-		if(pet_longe == 0){
-			hint = "ÄúµÄ³èÎïÊÙÃü²»×ã£¬²»ÄÜ½øĞĞ½»Ò×¡£";
-		}
-		request.setAttribute("pByPk", pByPk); 
-		request.setAttribute("petPk", petPk);
-		request.setAttribute("hint", hint);  
-		return mapping.findForward("petsellsok");
-	}
-	/**
-	 * ³èÎï½»Ò×
-	 */
-	public ActionForward n12(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{ 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
-		RoleService roleService = new RoleService();
-		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession()); 
-		
-		String pByPk = request.getParameter("pByPk");
-		String petPk = request.getParameter("petPk");  
-		String pSilver = request.getParameter("pSilver");  
-		
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÔÚÏß
-		RoleEntity roleInfo1pByuPk = RoleService.getRoleInfoById(pByPk);
-		if(roleInfo1pByuPk == null || roleInfo1pByuPk.isOnline()==false ){
-			try{
-				String hint = "¸ÃÍæ¼ÒÒÑÏÂÏß!";
-				if(hint != null ){
-					request.getRequestDispatcher("/pubbuckaction.do?hint="+hint).forward(request, response);
-					return null;
-				}
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		
-		String hint = null;
-		if(pSilver.length() > 8){
-			hint = "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½";
-		    request.setAttribute("hint", hint);
-		    return mapping.findForward("petsellsokyew");
-		}
-				
-		 Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
-		 Matcher m = p.matcher(pSilver);
-		 boolean b = m.matches();
-		 if(b==false){
-			    hint = "ÇëÊäÈëÕıÈ·½ğÇ®¸ñÊ½";
-			    request.setAttribute("hint", hint);
-			    return mapping.findForward("petsellsokyew");
-		 }
-		 
-		  
-		if(pSilver == null || pSilver.equals("") || Integer.parseInt(pSilver) == 0){
-			pSilver = "0";
-		}
-		PetInfoDAO dao = new PetInfoDAO();
-		dao.getPetSellAdd(roleInfo.getBasicInfo().getPPk()+"",pByPk,petPk,pSilver,"0",Time);
-		PetInfoDAO daoss = new PetInfoDAO();
-		String pet_name = daoss.pet_name(Integer.parseInt(petPk));
-		PartInfoDAO daoq = new PartInfoDAO(); 
-		hint = "ÄúÒÑ¾­½«³èÎï"+pet_name+"½»Ò×¸ø"+daoq.getPartName(pByPk)+"";
-		
-		//ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
-		UMsgService uMsgService = new UMsgService();
-		UMessageInfoVO msgInfo = new UMessageInfoVO();
-		msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
-		msgInfo.setPPk(Integer.parseInt(pByPk));
-		msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_SWAP_FIRST);
-		uMsgService.sendPopUpMsg(msgInfo);
-		
-		request.setAttribute("hint", hint);
-		return mapping.findForward("petsellsokyew");
-	}
-	
-	
-	/**
-	 * ²é¿´Íæ¼ÒĞÅÏ¢
-	 */
-	public ActionForward n13(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String pPks = request.getParameter("pPks");
-		RoleEntity other = RoleService.getRoleInfoById(pPks);
-		RoleEntity me = this.getRoleEntity(request);
-		
-		String backtype = request.getParameter("backtype");
-		if( backtype!=null )
-		{
-			request.getSession().setAttribute("backtype", backtype);
-		}
-		
-		request.setAttribute("other", other);
-		request.setAttribute("me", me);
-		return mapping.findForward("partinfoview");
-	}
-	
-	
-	/**
-	 * ²é¿´Íæ¼ÒĞÅÏ¢
-	 */
-	public ActionForward n14(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
-		String uPks = request.getParameter("uPks");
-		String pPks = request.getParameter("pPks");
-		//·µ»ØÁÄÌì½çÃæ
-		request.getSession().setAttribute("backtype", "3");
-		request.setAttribute("uPks", uPks);
-		request.setAttribute("pPks", pPks);
-		return mapping.findForward("partinfoview");
-	}
-	
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("pSilver", pSilver);
+        return mapping.findForward("moneyswap");
+    }
+
+    /**
+     * æŸ¥çœ‹è¦äº¤æ˜“çš„è£…å¤‡è¯¦æƒ…
+     */
+    public ActionForward n3(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+
+        EquipDisplayService equipDisplayService = new EquipDisplayService();
+        GoodsService goodsService = new GoodsService();
+
+        String pwPk = request.getParameter("pwPk");
+
+        PlayerEquipVO equip = goodsService.getEquipByID(Integer.parseInt(pwPk));
+
+        String equip_display = equipDisplayService.getEquipDisplay(roleInfo, equip, true);
+
+        request.setAttribute("equip_display", equip_display);
+        request.setAttribute("equip", equip);
+        request.setAttribute("pByPk", request.getParameter("pByPk"));
+        return mapping.findForward("goodspage");
+    }
+
+    /**
+     * ç‰©å“äº¤æ˜“
+     */
+    public ActionForward n4(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+
+        String pByPk = request.getParameter("pByPk");
+        String pwPk = request.getParameter("pwPk");
+        String wName = request.getParameter("wName");
+        String wProtect = request.getParameter("wProtect");
+        String bangding = request.getParameter("bangding");
+
+        request.setAttribute("wProtect", wProtect);
+        request.setAttribute("bangding", bangding);
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("pwPk", pwPk);
+        request.setAttribute("wName", wName);
+        return mapping.findForward("goodsmoney");
+    }
+
+    /**
+     * ç‰©å“äº¤æ˜“
+     */
+    public ActionForward n5(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+        String pByPk = request.getParameter("pByPk");
+        String pwPk = request.getParameter("pwPk");
+        String wName = request.getParameter("wName");
+        String pSilver = request.getParameter("pSilver");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+        String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
+
+        //åˆ¤æ–­ç©å®¶æ˜¯å¦åœ¨çº¿
+        RoleEntity roleInfo1pByuPk = RoleService.getRoleInfoById(pByPk);
+        if (roleInfo1pByuPk == null || !roleInfo1pByuPk.isOnline()) {
+            try {
+                String hint = "è¯¥ç©å®¶å·²ä¸‹çº¿!";
+                if (hint != null) {
+                    request.getRequestDispatcher("/pubbuckaction.do?hint=" + hint).forward(request, response);
+                    return null;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        String hint = null;
+
+        if (pSilver.length() > 8) {
+            hint = "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼";
+            request.setAttribute("hint", hint);
+            return mapping.findForward("goodsmoneyok");
+        }
+
+        Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
+        Matcher m = p.matcher(pSilver);
+        boolean b = m.matches();
+        if (!b) {
+            hint = "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼";
+            request.setAttribute("hint", hint);
+            return mapping.findForward("goodsmoneyok");
+        }
+
+        if (pSilver == null || pSilver.equals("") || Integer.parseInt(pSilver) == 0) {
+            pSilver = "0";
+        }
+        /*
+         * è¯å“-----1 ä¹¦å·-----2 è£…å¤‡-----3 ä»»åŠ¡-----4 å…¶ä»–-----5
+         */
+
+        //åˆ¤æ–­æ˜¯å¦é‡å¤äº¤æ˜“
+        SellInfoDAO dao = new SellInfoDAO();
+        String ss = dao.getSellExistByPPkAndGoodsId(roleInfo.getBasicInfo().getPPk() + "", pwPk, Wrap.EQUIP);
+        if (ss != null && !ss.equals("")) {
+            hint = ss;
+            request.setAttribute("hint", hint);
+            return mapping.findForward("goodsmoneyok");
+        }
+
+        int number = 1;
+        GoodsService goodsService = new GoodsService();
+        PartInfoDAO partInfoDAO = new PartInfoDAO();
+        if (goodsService.isEnoughWrapSpace(Integer.parseInt(pByPk), number)) {//å¤Ÿäº†
+
+            dao.getSellArmAdd(roleInfo.getBasicInfo().getPPk(), pByPk, pwPk, Wrap.EQUIP, number, pSilver, "0", SellInfoVO.SELLARM, Time);
+            //dao.getSellWuPingAdd(pwPk, Wrap.ACCOUTER, number, pSilver, pCopper, SfOk, userTempBean.getPPk(), pByPk);
+            hint = "æ‚¨å·²ç»ä¸" + partInfoDAO.getPartName(pByPk) + "äº¤æ˜“äº†è£…å¤‡" + wName + ",è¯·ç­‰å¾…å¯¹æ–¹æ¥æ”¶ï¼";
+            //åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
+            UMsgService uMsgService = new UMsgService();
+            UMessageInfoVO msgInfo = new UMessageInfoVO();
+            msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
+            msgInfo.setPPk(Integer.parseInt(pByPk));
+            msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_SWAP_FIRST);
+            uMsgService.sendPopUpMsg(msgInfo);
+
+        } else {
+            hint = partInfoDAO.getPartName(pByPk) + "æ²¡æœ‰è¶³å¤Ÿçš„åŒ…è£¹æ ¼æ•°!";
+        }
+        request.setAttribute("hint", hint);
+        return mapping.findForward("goodsmoneyok");
+    }
+
+    /**
+     * æŸ¥çœ‹ç©å®¶ä¿¡æ¯
+     */
+    public ActionForward n6(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        String pPks = request.getParameter("pPks");
+        //è¿”å›åœ°å›¾ä¸»ç•Œé¢
+        request.getSession().setAttribute("backtype", "1");
+        request.setAttribute("pPks", pPks);
+        return mapping.findForward("partinfoview");
+    }
+
+    /**
+     * ç©å®¶ä¿¡æ¯å¯†è¯­
+     */
+    public ActionForward n7(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+
+        String pByPk = request.getParameter("pByPk");
+        String pByName = request.getParameter("pByName");
+
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("pByName", pByName);
+        return mapping.findForward("privately");
+    }
+
+    /**
+     * ç©å®¶ä¿¡æ¯å¯†è¯­
+     */
+    public ActionForward n8(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        RoleEntity roleInfo = this.getRoleEntity(request);
+        String pByPk = request.getParameter("pByPk");
+
+        String pNameBy = request.getParameter("pByName");
+        String upTitle = request.getParameter("upTitle");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+        String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
+        PartInfoDAO dao = new PartInfoDAO();
+        PlayerService playerService = new PlayerService();
+        String type = "5";
+        BlacklistService blacklistService = new BlacklistService();
+        int res = blacklistService.isBlacklist(Integer.parseInt(pByPk), roleInfo.getPPk());
+        if (res == 2) {
+            this.setHint(request, "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œå¯†èŠ.");
+            return mapping.findForward("privatelyok");
+        } else if (res == 1) {
+            this.setHint(request, "æ‚¨åœ¨è¯¥ç©å®¶çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œå¯†èŠ.");
+            return mapping.findForward("privatelyok");
+        }
+        RoleEntity pByPk_b_role_info = RoleService.getRoleInfoById(pByPk);
+
+        if (pByPk_b_role_info != null) {
+            String hint = playerService.checkRoleState(Integer.parseInt(pByPk), PlayerState.TALK);
+            if (hint != null) {
+                MailInfoService mailInfoService = new MailInfoService();
+                String mailtitle = "æ¥è‡ªå¥½å‹" + roleInfo.getBasicInfo().getName() + "çš„å¯†è¯­";//7æœˆ27æ—¥ä¿®æ”¹
+                mailInfoService.sendPersonMail(Integer.parseInt(pByPk), roleInfo.getBasicInfo().getPPk(), mailtitle, upTitle);
+                this.setHint(request, hint + ",ç³»ç»Ÿå·²ç»å¸®æ‚¨è½¬å‘è‡³ä»–(å¥¹)çš„é‚®ç®±ä¸­!");
+                request.setAttribute("pByPk", pByPk);
+                return mapping.findForward("privatelyok");
+            }
+        }
+        /** TODO:å¦‚æœæœ‰è¯¥ç©å®¶ å¦‚æœæ²¡æœ‰åœ¨çº¿åˆ™ç›´æ¥å‘é€ç©å®¶é‚®ç®± */
+        int bypPk = dao.getPartPk(pNameBy);
+        // å¾—åˆ°å½“å‰ç©å®¶ä¿¡æ¯
+        if (pByPk_b_role_info != null && pByPk_b_role_info.isOnline()) {
+            // æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½• c_pk,p_pk,p_name,p_pk_by,p_name_by,c_title,c_type,create_time
+            CommunionVO communionVO = new CommunionVO();
+            communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
+            communionVO.setPName(roleInfo.getBasicInfo().getName());
+            communionVO.setPPkBy(Integer.parseInt(pByPk));
+            communionVO.setPNameBy(pNameBy);
+            communionVO.setCTitle(upTitle);
+            communionVO.setCType(Integer.parseInt(type));
+            communionVO.setCreateTime(Time);
+            ChatInfoCahe publicChatInfoCahe = new ChatInfoCahe();
+            publicChatInfoCahe.put(communionVO);
+
+            this.setHint(request, "ä¿¡æ¯å·²ç»å‘å‡ºï¼");
+            request.setAttribute("pByPk", pByPk);
+            return mapping.findForward("privatelyok");
+        } else {
+            this.setHint(request, "å¯¹æ–¹ä¸åœ¨çº¿å°†é€šè¿‡é‚®ä»¶å‘é€ç»™å¯¹æ–¹");
+            request.setAttribute("pByPk", pByPk);
+            MailInfoService mailInfoService = new MailInfoService();
+            String mailtitle = "æ¥è‡ªå¥½å‹" + roleInfo.getBasicInfo().getName() + "çš„å¯†è¯­";//7æœˆ27æ—¥ä¿®æ”¹
+            mailInfoService.sendPersonMail(bypPk, roleInfo.getBasicInfo().getPPk(), mailtitle, upTitle);
+            return mapping.findForward("privatelyok");
+        }
+    }
+
+    /**
+     * å® ç‰©äº¤æ˜“
+     */
+    public ActionForward n9(ActionMapping mapping, ActionForm form,
+                            HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+
+        String pByPk = request.getParameter("pByPk");
+        PetInfoDAO dao = new PetInfoDAO();
+        //åˆ¤æ–­ç©å®¶æ˜¯å¦æ˜¯åœ¨è‡ªå·±çš„é»‘åå•
+        BlacklistService blacklistService = new BlacklistService();
+        int res = blacklistService.isBlacklist(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(pByPk));
+        if (res == 1) {
+            String hints = "è¯¥ç©å®¶åœ¨æ‚¨çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œäº¤æ˜“.";
+            request.setAttribute("hints", hints);
+            return mapping.findForward("petblacklisthint");
+        } else if (res == 2) {
+            String hints = "æ‚¨åœ¨è¯¥ç©å®¶çš„é»‘åå•ä¸­,æ‚¨ä¸èƒ½ä¸ä»–(å¥¹)è¿›è¡Œäº¤æ˜“.";
+            request.setAttribute("hints", hints);
+            return mapping.findForward("petblacklisthint");
+        }
+        //åˆ¤æ–­å¯¹æ–¹ç©å®¶æ˜¯å¦å¼€äº¤æ˜“å¼€å…³
+        PlayerService playerService = new PlayerService();
+        String hint = playerService.isRoleState(Integer.parseInt(pByPk), 1);
+        if (hint != null) {
+            request.setAttribute("hints", hint);
+            return mapping.findForward("petblacklisthint");
+        }
+
+        int petIsBring = 0;
+        List list = dao.getpetIsBringList(roleInfo.getBasicInfo().getPPk(), petIsBring);
+        request.setAttribute("list", list);
+        request.setAttribute("pByPk", pByPk);
+        return mapping.findForward("petsells");
+    }
+
+    /**
+     * å® ç‰©äº¤æ˜“
+     */
+    public ActionForward n10(ActionMapping mapping, ActionForm form,
+                             HttpServletRequest request, HttpServletResponse response) {
+
+        String pByPk = request.getParameter("pByPk");
+        String petPk = request.getParameter("petPk");
+        String petId = request.getParameter("petId");
+        PetService petService = new PetService();
+        String resultWml = petService.getPetDisplayWml(Integer.parseInt(petPk));
+        request.setAttribute("resultWml", resultWml);
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("petPk", petPk);
+        request.setAttribute("petId", petId);
+        return mapping.findForward("petsellsview");
+    }
+
+    /**
+     * å® ç‰©äº¤æ˜“
+     */
+    public ActionForward n11(ActionMapping mapping, ActionForm form,
+                             HttpServletRequest request, HttpServletResponse response) {
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+
+        String pByPk = request.getParameter("pByPk");
+        String petPk = request.getParameter("petPk");
+        //æŸ¥æ‰¾å® ç‰©çš„å¯¿å‘½æ˜¯å¦ä¸ºé›¶äº†
+        String hint = null;
+        PetInfoDAO dao = new PetInfoDAO();
+        int pet_longe = dao.pet_longe(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(petPk));
+        if (pet_longe == 0) {
+            hint = "æ‚¨çš„å® ç‰©å¯¿å‘½ä¸è¶³ï¼Œä¸èƒ½è¿›è¡Œäº¤æ˜“ã€‚";
+        }
+        request.setAttribute("pByPk", pByPk);
+        request.setAttribute("petPk", petPk);
+        request.setAttribute("hint", hint);
+        return mapping.findForward("petsellsok");
+    }
+
+    /**
+     * å® ç‰©äº¤æ˜“
+     */
+    public ActionForward n12(ActionMapping mapping, ActionForm form,
+                             HttpServletRequest request, HttpServletResponse response) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+        String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
+        RoleService roleService = new RoleService();
+        RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
+
+        String pByPk = request.getParameter("pByPk");
+        String petPk = request.getParameter("petPk");
+        String pSilver = request.getParameter("pSilver");
+
+        //åˆ¤æ–­ç©å®¶æ˜¯å¦åœ¨çº¿
+        RoleEntity roleInfo1pByuPk = RoleService.getRoleInfoById(pByPk);
+        if (roleInfo1pByuPk == null || !roleInfo1pByuPk.isOnline()) {
+            try {
+                String hint = "è¯¥ç©å®¶å·²ä¸‹çº¿!";
+                if (hint != null) {
+                    request.getRequestDispatcher("/pubbuckaction.do?hint=" + hint).forward(request, response);
+                    return null;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        String hint = null;
+        if (pSilver.length() > 8) {
+            hint = "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼";
+            request.setAttribute("hint", hint);
+            return mapping.findForward("petsellsokyew");
+        }
+
+        Pattern p = Pattern.compile(Expression.positive_integer_contain0_regexp);
+        Matcher m = p.matcher(pSilver);
+        boolean b = m.matches();
+        if (!b) {
+            hint = "è¯·è¾“å…¥æ­£ç¡®é‡‘é’±æ ¼å¼";
+            request.setAttribute("hint", hint);
+            return mapping.findForward("petsellsokyew");
+        }
+
+
+        if (pSilver == null || pSilver.equals("") || Integer.parseInt(pSilver) == 0) {
+            pSilver = "0";
+        }
+        PetInfoDAO dao = new PetInfoDAO();
+        dao.getPetSellAdd(roleInfo.getBasicInfo().getPPk() + "", pByPk, petPk, pSilver, "0", Time);
+        PetInfoDAO daoss = new PetInfoDAO();
+        String pet_name = daoss.pet_name(Integer.parseInt(petPk));
+        PartInfoDAO daoq = new PartInfoDAO();
+        hint = "æ‚¨å·²ç»å°†å® ç‰©" + pet_name + "äº¤æ˜“ç»™" + daoq.getPartName(pByPk);
+
+        //åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
+        UMsgService uMsgService = new UMsgService();
+        UMessageInfoVO msgInfo = new UMessageInfoVO();
+        msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
+        msgInfo.setPPk(Integer.parseInt(pByPk));
+        msgInfo.setMsgPriority(PopUpMsgType.MESSAGE_SWAP_FIRST);
+        uMsgService.sendPopUpMsg(msgInfo);
+
+        request.setAttribute("hint", hint);
+        return mapping.findForward("petsellsokyew");
+    }
+
+
+    /**
+     * æŸ¥çœ‹ç©å®¶ä¿¡æ¯
+     */
+    public ActionForward n13(ActionMapping mapping, ActionForm form,
+                             HttpServletRequest request, HttpServletResponse response) {
+        String pPks = request.getParameter("pPks");
+        RoleEntity other = RoleService.getRoleInfoById(pPks);
+        RoleEntity me = this.getRoleEntity(request);
+
+        String backtype = request.getParameter("backtype");
+        if (backtype != null) {
+            request.getSession().setAttribute("backtype", backtype);
+        }
+
+        request.setAttribute("other", other);
+        request.setAttribute("me", me);
+        return mapping.findForward("partinfoview");
+    }
+
+
+    /**
+     * æŸ¥çœ‹ç©å®¶ä¿¡æ¯
+     */
+    public ActionForward n14(ActionMapping mapping, ActionForm form,
+                             HttpServletRequest request, HttpServletResponse response) {
+        String uPks = request.getParameter("uPks");
+        String pPks = request.getParameter("pPks");
+        //è¿”å›èŠå¤©ç•Œé¢
+        request.getSession().setAttribute("backtype", "3");
+        request.setAttribute("uPks", uPks);
+        request.setAttribute("pPks", pPks);
+        return mapping.findForward("partinfoview");
+    }
+
 }

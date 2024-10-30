@@ -22,14 +22,14 @@ public class SecondPassAction extends DispatchAction
 
 	Logger logger = Logger.getLogger("log.action");
 	
-	//×ªÏò¶þ¼¶ÃÜÂëÒ³Ãæ
+	//è½¬å‘äºŒçº§å¯†ç é¡µé¢
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
-		//String pPk = request.getParameter("pPk");	//¶ÔÓÚpPkµ½µ×ÈçºÎµÃµ½,»¹Òª½øÐÐÏÂÒ»²½·ÖÎö
+		//String pPk = request.getParameter("pPk");	//å¯¹äºŽpPkåˆ°åº•å¦‚ä½•å¾—åˆ°,è¿˜è¦è¿›è¡Œä¸‹ä¸€æ­¥åˆ†æž
 		String secondPass = request.getParameter("secondPass");
 		String uPk = (String)request.getSession().getAttribute("uPk");
-		logger.info("ÐÞ¸Ä¶þ¼¶ÃÜÂëÊ±µÄupk="+uPk);
+		logger.info("ä¿®æ”¹äºŒçº§å¯†ç æ—¶çš„upk="+uPk);
 		
 		if(secondPass != null && !secondPass.equals("")) {
 			boolean flag = StringUtil.isNumber(secondPass);
@@ -39,28 +39,28 @@ public class SecondPassAction extends DispatchAction
 					LoginInfoDAO infoDao = new LoginInfoDAO();
 					String nowpaw = infoDao.getUserLoginPawByUPk( Integer.parseInt(uPk));
 					if(nowpaw.equals(MD5.getMD5Str(secondPass))) {
-						String hint = "¶Ô²»Æð£¬¶þ¼¶ÃÜÂë²»ÄÜÓëµÇÂ¼ÃÜÂëÏàÍ¬!";
+						String hint = "å¯¹ä¸èµ·ï¼ŒäºŒçº§å¯†ç ä¸èƒ½ä¸Žç™»å½•å¯†ç ç›¸åŒ!";
 						request.setAttribute("hint", hint);
 						return mapping.findForward("failedPass");
 					}					
 					
 					SecondPassService secondPassService = new SecondPassService();
-					// ÒÔÇ°ÊÇÒòÎªÔÚ·¢ÓÊ¼þÊ±Ö±½Ó½øÐÐÁË³õÊ¼»¯£¬ËùÓÐÏÖÔÚÖ»ÐèÒªupdate¼´¿É£¬ÏÖÔÚÃ»ÓÐ³õÊ¼»¯ÁË£¬Ö»ÄÜÔÚ´Ë½øÐÐinsert²Ù×÷
+					// ä»¥å‰æ˜¯å› ä¸ºåœ¨å‘é‚®ä»¶æ—¶ç›´æŽ¥è¿›è¡Œäº†åˆå§‹åŒ–ï¼Œæ‰€æœ‰çŽ°åœ¨åªéœ€è¦updateå³å¯ï¼ŒçŽ°åœ¨æ²¡æœ‰åˆå§‹åŒ–äº†ï¼Œåªèƒ½åœ¨æ­¤è¿›è¡Œinsertæ“ä½œ
 					secondPassService.insertSecondPass(Integer.parseInt(uPk),secondPass);
 					request.setAttribute("secondPass",secondPass);
 					request.setAttribute("authenPass", "shizhen");
 					
-					//µ±È·¶¨ÐÞ¸Ä¶þ¼¶ÃÜÂëºó, É¾³ýÐÞ¸Ä¶þ¼¶ÃÜÂëÓÊ¼þ
+					//å½“ç¡®å®šä¿®æ”¹äºŒçº§å¯†ç åŽ, åˆ é™¤ä¿®æ”¹äºŒçº§å¯†ç é‚®ä»¶
 					MailInfoService mailInfoService = new MailInfoService();
 					mailInfoService.deleteSecondPassMail(Integer.parseInt(uPk));
 					return mapping.findForward("sussendPass");
 				}	
 			}		
-			String hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄ¶þ¼¶ÃÜÂë×éºÏ²»·ûºÏ¹æ¶¨£¡ÓÎÏ·ÕÊºÅµÄ¶þ¼¶ÃÜÂëÎª6Î»0¡«9ÊýÖµ×éºÏ!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„äºŒçº§å¯†ç ç»„åˆä¸ç¬¦åˆè§„å®šï¼æ¸¸æˆå¸å·çš„äºŒçº§å¯†ç ä¸º6ä½0ï½ž9æ•°å€¼ç»„åˆ!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("failedPass");
 		}		
-		//String hint = "¶þ¼¶ÃÜÂë²»ÄÜÎª¿Õ!";
+		//String hint = "äºŒçº§å¯†ç ä¸èƒ½ä¸ºç©º!";
 		
 		SecondPassService secondPassService = new SecondPassService();
 		
@@ -70,38 +70,38 @@ public class SecondPassAction extends DispatchAction
 	}	
 		
 	
-	// ÉèÖÃ¶þ¼¶ÃÜÂë
+	// è®¾ç½®äºŒçº§å¯†ç 
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		String pass_word = request.getParameter("pass_word");
 		
 		if(pass_word != null && !pass_word.equals("")) {		
-			if(StringUtil.isNumberAndChar(pass_word)) {			//µÇÂ¼ÃÜÂëÎªÊý×ÖºÍ×ÖÄ¸µÄ»ìºÏ
-				if(pass_word.length() >=5 && pass_word.length() <= 11) {	//µÇÂ¼ÃÜÂëµÄ³¤¶ÈÔÚ5µ½11Ö®¼ä	
+			if(StringUtil.isNumberAndChar(pass_word)) {			//ç™»å½•å¯†ç ä¸ºæ•°å­—å’Œå­—æ¯çš„æ··åˆ
+				if(pass_word.length() >=5 && pass_word.length() <= 11) {	//ç™»å½•å¯†ç çš„é•¿åº¦åœ¨5åˆ°11ä¹‹é—´	
 					SecondPassDao seconddao = new SecondPassDao();
 					String uPk = (String)request.getSession().getAttribute("uPk");
-					logger.info("ÐÞ¸ÄÃÜÂëÊ±µÄupk="+uPk);
+					logger.info("ä¿®æ”¹å¯†ç æ—¶çš„upk="+uPk);
 					
 					String oldPass = seconddao.getUserLoginPawByUPk(Integer.parseInt(uPk));
 					String newPass = MD5.getMD5Str(pass_word);
-					if(!newPass.equals(oldPass)) {				//Èç¹ûµÇÂ¼ÃÜÂëºÍ¶þ¼¶ÃÜÂëÏàÍ¬¾Í²»ÈÃÆäÍ¨¹ý,²¢¾¯¸æÍæ¼Ò.
+					if(!newPass.equals(oldPass)) {				//å¦‚æžœç™»å½•å¯†ç å’ŒäºŒçº§å¯†ç ç›¸åŒå°±ä¸è®©å…¶é€šè¿‡,å¹¶è­¦å‘ŠçŽ©å®¶.
 						SecondPassService secondPassService = new SecondPassService();
 						secondPassService.updateLoginPaw(Integer.parseInt(uPk),newPass);
 						request.setAttribute("pass_word", pass_word);
 						return mapping.findForward("sussendupdateLoginPsw");
 					}else {
-						String hint = "ÄúµÄ¶þ¼¶ÃÜÂë²»ÄÜºÍµÇÂ¼ÃÜÂëÏàÍ¬!";
+						String hint = "æ‚¨çš„äºŒçº§å¯†ç ä¸èƒ½å’Œç™»å½•å¯†ç ç›¸åŒ!";
 						request.setAttribute("hint", hint);
 						return mapping.findForward("password_wrong");
 					}
 				}
 			}
-			String hint = "¶Ô²»Æð£¬ÄúÊäÈëµÄÃÜÂë×éºÏ²»·ûºÏ¹æ¶¨£¡ÓÎÏ·ÕÊºÅÃÜÂëÎª5-11Î»,0-9,a-z×éºÏ!";
+			String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„å¯†ç ç»„åˆä¸ç¬¦åˆè§„å®šï¼æ¸¸æˆå¸å·å¯†ç ä¸º5-11ä½,0-9,a-zç»„åˆ!";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("password_wrong");
 		}
-		String hint = "¶Ô²»Æð, Äú²»ÄÜÊäÈë¿ÕÃÜÂë×÷Îª¶þ¼¶ÃÜÂë!";
+		String hint = "å¯¹ä¸èµ·, æ‚¨ä¸èƒ½è¾“å…¥ç©ºå¯†ç ä½œä¸ºäºŒçº§å¯†ç !";
 		request.setAttribute("hint", hint);
 		return mapping.findForward("password_wrong");
 	}

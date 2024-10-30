@@ -22,7 +22,7 @@ public class BillAction extends DispatchAction {
 	
 
 	/**
-	 * ÌøÍø¸¶·ÑÍ¨µÀ
+	 * è·³ç½‘ä»˜è´¹é€šé“
 	 */
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -33,7 +33,7 @@ public class BillAction extends DispatchAction {
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
 		
-		String kbamt_str = request.getParameter("kbamt");//ÓÃ»§Ìá½»¿Û·Ñ½ğ¶î
+		String kbamt_str = request.getParameter("kbamt");//ç”¨æˆ·æäº¤æ‰£è´¹é‡‘é¢
 		
 		ValidateService validateService = new ValidateService();
 		String hint = validateService.validateNonZeroNegativeIntegers(kbamt_str);
@@ -48,7 +48,7 @@ public class BillAction extends DispatchAction {
 		
 		if( kbamt>50000 )
 		{
-			hint = "Ã¿´Î¶Ò»»½ğ¶¹µÄÊıÁ¿²»µÃ³¬¹ı50000½ğ¶¹,¿É½øĞĞ¶à´Î¶Ò»»";
+			hint = "æ¯æ¬¡å…‘æ¢é‡‘è±†çš„æ•°é‡ä¸å¾—è¶…è¿‡50000é‡‘è±†,å¯è¿›è¡Œå¤šæ¬¡å…‘æ¢";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("index");
 		}

@@ -1,32 +1,32 @@
 package com.pm.vo.field;
 
 /**
- * É±ÈË¼ÇÂ¼±í,Ö÷ÒªÊÇÓÃÓÚ±¾³¡¼ÇÂ¼
+ * æ€äººè®°å½•è¡¨,ä¸»è¦æ˜¯ç”¨äºæœ¬åœºè®°å½•
  * @author Administrator
  *
  */
 public class FieldKillVO
 {
-	 /**  É±ÈË¼ÇÂ¼±íid **/
+	 /**  æ€äººè®°å½•è¡¨id **/
 	public int sfId ;
-	/** Ğ×ÊÖµÄid  */
+	/** å‡¶æ‰‹çš„id  */
 	public int pPk ;
-		/** ±»º¦ÕßµÄid  **/
+		/** è¢«å®³è€…çš„id  **/
 	public int bpPk	;
-		/** Õ½³¡Õ½´Î   */
+		/** æˆ˜åœºæˆ˜æ¬¡   */
 	public int fieldSequence  ;
-		/** Õ½³¡ĞòºÅ£¬Õ½³¡µÄ²»Í¬±àºÅ£¬ÏÖÔÚÒÔÕ½³¡ËùÔÚµÄµØÍ¼idÎªÇø±ğµÄ    */
+		/** æˆ˜åœºåºå·ï¼Œæˆ˜åœºçš„ä¸åŒç¼–å·ï¼Œç°åœ¨ä»¥æˆ˜åœºæ‰€åœ¨çš„åœ°å›¾idä¸ºåŒºåˆ«çš„    */
 	public int fieldType;
-		/** É±ÈËÊ±¼ä  */
+		/** æ€äººæ—¶é—´  */
 	public String sfCreateTime;
 	
-	/** É±ÈËÕßĞÕÃû */
+	/** æ€äººè€…å§“å */
 	public String killerName;
-	/** É±ËÀÈËÊı  **/
+	/** æ€æ­»äººæ•°  **/
 	public int killedNum;
-	/** É±ÈËÕßµÈ¼¶ */
+	/** æ€äººè€…ç­‰çº§ */
 	public int killerGrade;
-	/** É±ÈËÕßÕóÓª  */
+	/** æ€äººè€…é˜µè¥  */
 	public int killerCamp;
 	
 	

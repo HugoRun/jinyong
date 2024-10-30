@@ -35,7 +35,7 @@ public class BillAction extends DispatchAction
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
 
-		String amt_str = request.getParameter("kbamt");// ÓÃ»§Ìá½»¿Û·Ñ½ğ¶î
+		String amt_str = request.getParameter("kbamt");// ç”¨æˆ·æäº¤æ‰£è´¹é‡‘é¢
 
 		ValidateService validateService = new ValidateService();
 		String hint = validateService.validateNonZeroNegativeIntegers(amt_str);
@@ -73,10 +73,10 @@ public class BillAction extends DispatchAction
 		{
 			EconomyService economyService = new EconomyService();
 			long yuanbao = economyService.getYuanbao(Integer.parseInt(uPk));
-			// ¶Ò»»³É¹¦,Äú»ñµÃÁË50¸ö¡¾Ôª±¦¡¿£¬Ä¿Ç°Äú¹²ÓĞ¡¾Ôª±¦¡¿¡Á120£¡
+			// å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†50ä¸ªã€å…ƒå®ã€‘ï¼Œç›®å‰æ‚¨å…±æœ‰ã€å…ƒå®ã€‘Ã—120ï¼
 			String sd = billService.chongZhiJiangLi(roleInfo.getBasicInfo()
 					.getPPk(), amt);
-			hint = "¶Ò»»³É¹¦,Äú»ñµÃÁË" + amt*112 + "¸ö¡¾Ôª±¦¡¿,Ä¿Ç°Äú¹²ÓĞ¡¾Ôª±¦¡¿¡Á" + yuanbao + "!" + sd;
+			hint = "å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†" + amt*112 + "ä¸ªã€å…ƒå®ã€‘,ç›®å‰æ‚¨å…±æœ‰ã€å…ƒå®ã€‘Ã—" + yuanbao + "!" + sd;
 			request.setAttribute("hint", hint);
 			return mapping.findForward("success");
 		}
@@ -84,15 +84,15 @@ public class BillAction extends DispatchAction
 		{
 			if (result.equals("11"))
 			{
-				hint = "ÈÏÖ¤Ê§°Ü,ÇëÖØĞÂ¶Ò»»!";
+				hint = "è®¤è¯å¤±è´¥,è¯·é‡æ–°å…‘æ¢!";
 			}
 			if (result.equals("13"))
 			{
-				hint = "Óà¶î²»×ã,ÇëÖØĞÂ¶Ò»»!";
+				hint = "ä½™é¢ä¸è¶³,è¯·é‡æ–°å…‘æ¢!";
 			}
 			else
 			{
-				hint = "Î´Öª´íÎó,ÇëÖØĞÂ¶Ò»»!";
+				hint = "æœªçŸ¥é”™è¯¯,è¯·é‡æ–°å…‘æ¢!";
 			}
 			request.setAttribute("hint", hint);
 			return mapping.findForward("fail");

@@ -2,9 +2,9 @@ package com.lw.vo.UnchartedRoom;
 
 public class UnchartedRoomVO
 {
-	// Íæ¼ÒÖ÷¼ü
+	// ç©å®¶ä¸»é”®
 	private int p_pk;
-	// Íæ¼ÒÔÚÃØ¾³µÄ×´Ì¬
+	// ç©å®¶åœ¨ç§˜å¢ƒçš„çŠ¶æ€
 	private int state;
 
 	public int getP_pk()

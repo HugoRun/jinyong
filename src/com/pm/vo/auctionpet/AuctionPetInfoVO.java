@@ -3,13 +3,13 @@ package com.pm.vo.auctionpet;
 public class AuctionPetInfoVO
 {
 
-	/** ³èÎïÅÄÂôĞÅÏ¢±í */
+	/** å® ç‰©æ‹å–ä¿¡æ¯è¡¨ */
 	private int auctionPetInfoId;
-	/** ¸öÈË½ÇÉ«id */
+	/** ä¸ªäººè§’è‰²id */
 	private int pPk;
-	/** ³èÎïÅÄÂôĞÅÏ¢ */
+	/** å® ç‰©æ‹å–ä¿¡æ¯ */
 	private String auctionPetInfo;
-	/** ĞÅÏ¢¼ÓÈëÊ±¼ä */
+	/** ä¿¡æ¯åŠ å…¥æ—¶é—´ */
 	private String addInfoTime;
 	public int getAuctionPetInfoId()
 	{

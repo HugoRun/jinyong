@@ -4,16 +4,16 @@
 package com.ls.ben.vo.info.skill;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 11:09:20 AM
  */
 public class WeaponTypeVO {
-	/** ±øÆ÷ÀàĞÍID */
+	/** å…µå™¨ç±»å‹ID */
 	private int wtPk;
-	/** ±øÆ÷ÀàĞÍÃû */
+	/** å…µå™¨ç±»å‹å */
 	private String wtName;
-	/** ±øÆ÷ÀàĞÍËµÃ÷ */
+	/** å…µå™¨ç±»å‹è¯´æ˜ */
 	private String wtPkTitl;
 
 	public int getWtPk() {

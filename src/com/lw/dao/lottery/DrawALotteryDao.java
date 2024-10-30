@@ -11,11 +11,11 @@ import com.lw.vo.lottery.DrawALotteryVO;
 public class DrawALotteryDao extends DaoBase
 {
 
-	/** µÃµ½³é½±ĞÅÏ¢ */
+	/** å¾—åˆ°æŠ½å¥–ä¿¡æ¯ */
 	public DrawALotteryVO getDrawALotteryInfo(int id)
 	{
 		DrawALotteryVO drawALotteryVO = null;
-		String sql = "select * from lottery_draw where id = " + id;
+		String sql = "SELECT * FROM lottery_draw where id = " + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -47,12 +47,12 @@ public class DrawALotteryDao extends DaoBase
 		return drawALotteryVO;
 	}
 
-	/** µÃµ½³é½±ĞÅÏ¢ */
+	/** å¾—åˆ°æŠ½å¥–ä¿¡æ¯ */
 	public List<DrawALotteryVO> getDrawALotteryInfoByTimeType(int timetype)
 	{
 		List<DrawALotteryVO> list = new ArrayList<DrawALotteryVO>();
 		DrawALotteryVO drawALotteryVO = null;
-		String sql = "select * from lottery_draw where is_run = 0 and time_type = "
+		String sql = "SELECT * FROM lottery_draw where is_run = 0 and time_type = "
 				+ timetype;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -91,7 +91,7 @@ public class DrawALotteryDao extends DaoBase
 		return list;
 	}
 
-	// ¸üÏ¸¼ÓÔØ¹ı³Ì
+	// æ›´ç»†åŠ è½½è¿‡ç¨‹
 	public void updateIsRun(int timetype, int isrun)
 	{
 		String sql = "update lottery_draw set is_run = " + isrun
@@ -115,13 +115,13 @@ public class DrawALotteryDao extends DaoBase
 		}
 	}
 
-	/** µÃµ½½ñÈÕ×¢²áÍæ¼ÒµÄÈË */
+	/** å¾—åˆ°ä»Šæ—¥æ³¨å†Œç©å®¶çš„äºº */
 	public List<Integer> getTodayRegPlayer(String date, int num,
 			String level_min, String level_max)
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
-		String sql = "select p_pk from u_part_info where create_time like '%"
+		String sql = "SELECT p_pk from u_part_info where create_time like '%"
 				+ date + "%' and  p_grade >= '" + level_min
 				+ "' and p_grade <= '" + level_max
 				+ "'  order by rand() limit " + num;
@@ -151,12 +151,12 @@ public class DrawALotteryDao extends DaoBase
 		return list;
 	}
 
-	/** µÃµ½³äÖµÍæ¼ÒµÄÈË */
+	/** å¾—åˆ°å……å€¼ç©å®¶çš„äºº */
 	public List<Integer> getPayPlayer(String date, int num, String level_min,
 			String level_max)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select a.p_pk from u_sky_pay_record as a ,u_part_info as b where a.respones_result = 0 and a.pay_time like '%"
+		String sql = "SELECT a.p_pk from u_sky_pay_record as a ,u_part_info as b where a.respones_result = 0 and a.pay_time like '%"
 				+ date
 				+ "%' and a.p_pk = b.p_pk and  b.p_grade >= '"
 				+ level_min
@@ -190,13 +190,13 @@ public class DrawALotteryDao extends DaoBase
 		return list;
 	}
 
-	/** µÃµ½½ñÈÕÔÚÏßÍæ¼ÒµÄÈË */
+	/** å¾—åˆ°ä»Šæ—¥åœ¨çº¿ç©å®¶çš„äºº */
 	public List<Integer> getOnlinePlayer(int num, String level_min,
 			String level_max)
 	{
 		List<Integer> list = new ArrayList<Integer>();
 		int p_pk = 0;
-		String sql = "select p_pk from u_part_info where login_state = 1 and  p_grade >= '"
+		String sql = "SELECT p_pk from u_part_info where login_state = 1 and  p_grade >= '"
 				+ level_min
 				+ "' and p_grade <= '"
 				+ level_max
@@ -227,11 +227,11 @@ public class DrawALotteryDao extends DaoBase
 		return list;
 	}
 
-	/** µÃµ½Íæ¼ÒµÄ³äÖµ½ğ¶î */
+	/** å¾—åˆ°ç©å®¶çš„å……å€¼é‡‘é¢ */
 	public int getChongzhiYb(int p_pk, String date)
 	{
 		int yuanbao = 0;
-		String sql = "select sum(kbamt) as yuanbao from u_sky_pay_record where pay_time like '%"
+		String sql = "SELECT sum(kbamt) as yuanbao from u_sky_pay_record where pay_time like '%"
 				+ date + "%' and respones_result = '0' and p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

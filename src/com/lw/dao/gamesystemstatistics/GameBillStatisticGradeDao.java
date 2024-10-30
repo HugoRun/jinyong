@@ -7,7 +7,7 @@ import com.ls.pub.db.DBConnection;
 
 public class GameBillStatisticGradeDao extends DaoBase
 {
-	// µÃµ½³äÖµÍæ¼ÒµÈ¼¶µÄÈË´Î
+	// å¾—åˆ°å……å€¼ç©å®¶ç­‰çº§çš„äººæ¬¡
 	public int getChongzhiGrade(int min_grade, int max_grade, String time)
 	{
 		int num = 0;
@@ -37,7 +37,7 @@ public class GameBillStatisticGradeDao extends DaoBase
 		return num;
 	}
 
-	// ²åÈëÍ³¼Æ±í
+	// æ’å…¥ç»Ÿè®¡è¡¨
 	public void insertChongzhiGrade(int one, int two, int three, int four,
 			int five, int six, int seven)
 	{

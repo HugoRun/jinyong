@@ -9,105 +9,105 @@ package com.ls.ben.vo.storage;
  */
 public class WareHouseEquipVO
 {
-	/** ½ÇÉ«×°±¸²Ö¿â±í */
+	/** è§’è‰²è£…å¤‡ä»“åº“è¡¨ */
 	private int wPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ÎïÆ·Ïà¹Ø±íÀàĞÍ */
+	/** ç‰©å“ç›¸å…³è¡¨ç±»å‹ */
 	private int tableType;
-	/** ÎïÆ·ÀàĞÍ */
+	/** ç‰©å“ç±»å‹ */
 	private int goodsType;
-	/** ÎïÆ·ID */
+	/** ç‰©å“ID */
 	private int wId;
-	/** ÎïÆ·Ãû³Æ */
+	/** ç‰©å“åç§° */
 	private String wName;
-	/** ÄÍ¾Ã */
+	/** è€ä¹… */
 	private int wDurability;
-	/** ÄÍ¾ÃÏûºÄ */
+	/** è€ä¹…æ¶ˆè€— */
 	private int wDuraConsume;
-	/** °ó¶¨ */
+	/** ç»‘å®š */
 	private int wBonding;
-	/** ¸½¼ÓÊôĞÔ×îĞ¡·ÀÓù */
+	/** é™„åŠ å±æ€§æœ€å°é˜²å¾¡ */
 	private int wFyXiao;
-	/** ¸½¼ÓÊôĞÔ×î´ó·ÀÓù */
+	/** é™„åŠ å±æ€§æœ€å¤§é˜²å¾¡ */
 	private int wFyDa;
-	/** ¸½¼ÓÊôĞÔ×îĞ¡¹¥»÷ */
+	/** é™„åŠ å±æ€§æœ€å°æ”»å‡» */
 	private int wGjXiao;
-	/** ¸½¼ÓÊôĞÔ×î´ó¹¥»÷ */
+	/** é™„åŠ å±æ€§æœ€å¤§æ”»å‡» */
 	private int wGjDa;
-	/** ¸½¼ÓÊôĞÔÆøÑª */
+	/** é™„åŠ å±æ€§æ°”è¡€ */
 	private int wHp;
-	/** ¸½¼ÓÊôĞÔ·¨Á¦ */
+	/** é™„åŠ å±æ€§æ³•åŠ› */
 	private int wMp;
-	/** ¸½¼ÓÊôĞÔ½ğ·ÀÓùÁ¦ */
+	/** é™„åŠ å±æ€§é‡‘é˜²å¾¡åŠ› */
 	private int wJinFy;
-	/** ¸½¼ÓÊôĞÔÄ¾·ÀÓùÁ¦ */
+	/** é™„åŠ å±æ€§æœ¨é˜²å¾¡åŠ› */
 	private int wMuFy;
-	/** ¸½¼ÓÊôĞÔË®·ÀÓùÁ¦ */
+	/** é™„åŠ å±æ€§æ°´é˜²å¾¡åŠ› */
 	private int wShuiFy;
-	/** ¸½¼ÓÊôĞÔ»ğ·ÀÓùÁ¦ */
+	/** é™„åŠ å±æ€§ç«é˜²å¾¡åŠ› */
 	private int wHuoFy;
-	/** ¸½¼ÓÊôĞÔÍÁ·ÀÓùÁ¦ */
+	/** é™„åŠ å±æ€§åœŸé˜²å¾¡åŠ› */
 	private int wTuFy;
-	/** ¸½¼ÓÊôĞÔ½ğ¹¥»÷Á¦ */
+	/** é™„åŠ å±æ€§é‡‘æ”»å‡»åŠ› */
 	private int wJinGj;
-	/** ¸½¼ÓÊôĞÔÄ¾¹¥»÷Á¦ */
+	/** é™„åŠ å±æ€§æœ¨æ”»å‡»åŠ› */
 	private int wMuGj;
-	/** ¸½¼ÓÊôĞÔË®¹¥»÷Á¦ */
+	/** é™„åŠ å±æ€§æ°´æ”»å‡»åŠ› */
 	private int wShuiGj;
-	/** ¸½¼ÓÊôĞÔ»ğ¹¥»÷Á¦ */
+	/** é™„åŠ å±æ€§ç«æ”»å‡»åŠ› */
 	private int wHuoGj;
-	/** ¸½¼ÓÊôĞÔÍÁ¹¥»÷Á¦ */
+	/** é™„åŠ å±æ€§åœŸæ”»å‡»åŠ› */
 	private int wTuGj;
-	/** ÊÇ·ñ±»×°±¸ 0 Ã»ÓĞ 1±»×°±¸ÁË */
+	/** æ˜¯å¦è¢«è£…å¤‡ 0 æ²¡æœ‰ 1è¢«è£…å¤‡äº† */
 	private int wType;
 	
-	/**Æ·ÖÊ*/
+	/**å“è´¨*/
 	private int wQuality;
 	
-	/** Ì××°id */
+	/** å¥—è£…id */
 	private int suitId;
-	/**×°±¸ÎåĞĞÀàĞÍ*/
+	/**è£…å¤‡äº”è¡Œç±»å‹*/
 	private int wWxType;
-	/**¸½¼ÓbuffÊÇ·ñÓĞĞ§£¬0±íÊ¾ÎŞĞ§£¬1±íÊ¾ÓĞĞ§*/
+	/**é™„åŠ buffæ˜¯å¦æœ‰æ•ˆï¼Œ0è¡¨ç¤ºæ— æ•ˆï¼Œ1è¡¨ç¤ºæœ‰æ•ˆ*/
 	private int   wBuffIsEffected;
 	
 	
-	/**±£»¤*/
+	/**ä¿æŠ¤*/
 	private int wProtect;
-	/**¶ş´ÎÈ·ÈÏ*/
+	/**äºŒæ¬¡ç¡®è®¤*/
 	private int wIsreconfirm;
 
-	/**Âô³ö¼ÛÇ®*/
+	/**å–å‡ºä»·é’±*/
 	private int wPrice;
 	
-	/** ×°±¸µã»¯¸½¼ÓÊôĞÔÀàĞÍ  **/
+	/** è£…å¤‡ç‚¹åŒ–é™„åŠ å±æ€§ç±»å‹  **/
 	private String enchantType;
 	
 	
-	/** ×°±¸µã»¯¸½¼ÓÊôĞÔÀàĞÍ  **/
+	/** è£…å¤‡ç‚¹åŒ–é™„åŠ å±æ€§ç±»å‹  **/
 	private int enchantValue;
 	
-	/** ×·¼ÓµÄÑªÁ¿ */
+	/** è¿½åŠ çš„è¡€é‡ */
 	private int wZjHp;
-	/** ×·¼ÓµÄÄÚÁ¦ */
+	/** è¿½åŠ çš„å†…åŠ› */
 	private int wZjMp;
-	/** ×·¼ÓµÄ¹¥»÷ **/
+	/** è¿½åŠ çš„æ”»å‡» **/
 	private int wZjWxGj;
-	/**  ×·¼ÓµÄ·ÀÓù **/
+	/**  è¿½åŠ çš„é˜²å¾¡ **/
 	private int wZjWxFy;
 	
-	/** ×°±¸µÄµÈ¼¶ */
+	/** è£…å¤‡çš„ç­‰çº§ */
 	private int wZbGrade;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 	
-	/** ×°±¸³õ´ÎÊ¹ÓÃ */
+	/** è£…å¤‡åˆæ¬¡ä½¿ç”¨ */
 	private int pPoss;
-	/**½â³ı°ó¶¨´ÎÊı*/
+	/**è§£é™¤ç»‘å®šæ¬¡æ•°*/
 	private int wBondingNum;
 	
-	/**ÌØÊâÊôĞÔ**/
+	/**ç‰¹æ®Šå±æ€§**/
 	private int specialcontent;
 	
 	public int getWBondingNum()

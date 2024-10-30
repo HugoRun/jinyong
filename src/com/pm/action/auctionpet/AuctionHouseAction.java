@@ -24,7 +24,7 @@ public class AuctionHouseAction extends DispatchAction{
 	
 	Logger logger =  Logger.getLogger("log.action");
 	
-	// ÅÄÂô³¡ÏûÏ¢ÖúÊÖ
+	// æ‹å–åœºæ¶ˆæ¯åŠ©æ‰‹
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -46,7 +46,7 @@ public class AuctionHouseAction extends DispatchAction{
 		return mapping.findForward("auction_pet_info");
 	}
 	
-	// ÅÄÂô³¡²Ö¿â
+	// æ‹å–åœºä»“åº“
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -70,7 +70,7 @@ public class AuctionHouseAction extends DispatchAction{
 		return mapping.findForward("auction_pet_house");
 	}		
 		
-	// È¡»ØÅÄÂô³¡²Ö¿âÀïµÄÎïÆ·
+	// å–å›æ‹å–åœºä»“åº“é‡Œçš„ç‰©å“
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -86,7 +86,7 @@ public class AuctionHouseAction extends DispatchAction{
 		AuctionPetService auctionPetService = new AuctionPetService();
 		
 		String petPk = request.getParameter("petPk");
-		String flag = request.getParameter("flag");			//´ËÈ·¶¨È¡»ØµÄÊÇÎïÆ·»¹ÊÇÒøÁ½
+		String flag = request.getParameter("flag");			//æ­¤ç¡®å®šå–å›çš„æ˜¯ç‰©å“è¿˜æ˜¯é“¶ä¸¤
 		logger.info("petPk="+petPk+", flag="+flag);
 		
 		if(flag.equals("money")){
@@ -94,13 +94,13 @@ public class AuctionHouseAction extends DispatchAction{
 			PartInfoVO partvo = auctionSerivce.getPartInfo(Integer.valueOf(pPk));
 			Long copper = Long.valueOf(partvo.getPCopper());
 			int petPrice = auctionPetService.getPetInfoPrice(petPk);
-			//×î¶àÖ»ÄÜĞ¯´ø1000ÍòÒø
+			//æœ€å¤šåªèƒ½æºå¸¦1000ä¸‡é“¶
 			if(copper + petPrice < 1000000000){
 				String resultWml = auctionPetService.getPetMoneyBack(Integer.valueOf(pPk),petPk,petPrice);
 				request.setAttribute("resultWml",resultWml);
 				return mapping.findForward("pet_display");
 			}else {
-				String resultWml = "Äú²»ÄÜÔÙĞ¯´ø¸ü¶àµÄÒøÁË£¡";
+				String resultWml = "æ‚¨ä¸èƒ½å†æºå¸¦æ›´å¤šçš„é“¶äº†ï¼";
 				request.setAttribute("resultWml",resultWml);
 				return mapping.findForward("pet_display");
 			}
@@ -113,13 +113,13 @@ public class AuctionHouseAction extends DispatchAction{
 				return mapping.findForward("pet_display");
 				
 			}else {
-				String resultWml = "ÄúÃ»ÓĞ×ã¹»µÄ³èÎï¿Õ¼äÁË£¡";
+				String resultWml = "æ‚¨æ²¡æœ‰è¶³å¤Ÿçš„å® ç‰©ç©ºé—´äº†ï¼";
 				request.setAttribute("resultWml",resultWml);
 				return mapping.findForward("pet_display");
 			}
 			
 		}else {
-			String resultWml = "ÄúÖ´ĞĞÁË´íÎó²Ù×÷£¬ÇëÉÔºóÖØÊÔ£¡";
+			String resultWml = "æ‚¨æ‰§è¡Œäº†é”™è¯¯æ“ä½œï¼Œè¯·ç¨åé‡è¯•ï¼";
 			request.setAttribute("resultWml",resultWml);
 			return mapping.findForward("pet_display");
 		}

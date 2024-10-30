@@ -25,8 +25,8 @@ import com.web.service.TaskXieDaiService;
 import com.web.service.TaskXunWuService;
 
 /**
- * ¹¦ÄÜ:Íæ¼ÒµÄÈÎÎñ¹ÜÀí
- * @author ÁõË§
+ * åŠŸèƒ½:ç©å®¶çš„ä»»åŠ¡ç®¡ç†
+ * @author åˆ˜å¸…
  * Sep 19, 2008 9:06:33 AM
  */
 public class TaskSubService
@@ -35,16 +35,16 @@ public class TaskSubService
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * ¸ù¾İidµÃµ½taskĞÅÏ¢
+	 * æ ¹æ®idå¾—åˆ°taskä¿¡æ¯
 	 */
 	public TaskVO getById( String task_id )
 	{
 		return TaskCache.getById(task_id);
 	}
 	/**
-	 * ÊÇ·ñÍê³É¶à¸öÈÎÎñ×éÖĞµÄÈÎÒâÒ»¸öÈÎÎñ×é
+	 * æ˜¯å¦å®Œæˆå¤šä¸ªä»»åŠ¡ç»„ä¸­çš„ä»»æ„ä¸€ä¸ªä»»åŠ¡ç»„
 	 * @param p_pk
-	 * @param task_zu_str    ¶à¸öÈÎÎñ×é×Ö·û´® ĞÎÊ½Èç:'zhuxian','yindao'
+	 * @param task_zu_str    å¤šä¸ªä»»åŠ¡ç»„å­—ç¬¦ä¸² å½¢å¼å¦‚:'zhuxian','yindao'
 	 * @return
 	 */
 	public boolean isCompletedOneOfMany( int p_pk,String task_zu_str)
@@ -62,7 +62,7 @@ public class TaskSubService
 	}
 	
 	/**
-	 * µôÂäÊ±µÄ£¬µ±Ç°ÓĞÄÄĞ©ÈÎÎñ
+	 * æ‰è½æ—¶çš„ï¼Œå½“å‰æœ‰å“ªäº›ä»»åŠ¡
 	 * @param p_pk
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class TaskSubService
 	
 	
 	/**
-	 * ¸ù¾İÈÎÎñid½ÓÊÜÈÎÎñ
+	 * æ ¹æ®ä»»åŠ¡idæ¥å—ä»»åŠ¡
 	 * @param p_pk
 	 * @param task_id
 	 */
@@ -85,7 +85,7 @@ public class TaskSubService
 	}
 	
 	/**
-	 * ¸ù¾İÈÎÎñid½ÓÊÜÈÎÎñ
+	 * æ ¹æ®ä»»åŠ¡idæ¥å—ä»»åŠ¡
 	 * @param p_pk
 	 * @param task_id
 	 */
@@ -93,7 +93,7 @@ public class TaskSubService
 	{
 		if( task==null )
 		{
-			logger.info("ÈÎÎñÁìÈ¡Ê§°Ü");
+			logger.info("ä»»åŠ¡é¢†å–å¤±è´¥");
 			return;
 		} 
 		switch (task.getTType())
@@ -126,7 +126,7 @@ public class TaskSubService
 	
 	
 	/**
-	 * ´ÓÈÎÎñÁĞ±íÖĞ½ÓÊÜÈÎÎñ
+	 * ä»ä»»åŠ¡åˆ—è¡¨ä¸­æ¥å—ä»»åŠ¡
 	 * @param p_pk
 	 * @param prop_id
 	 */
@@ -139,7 +139,7 @@ public class TaskSubService
 		TaskDAO taskDAO = new TaskDAO();
 		//int task_type = 1;
 		List<AcceptTaskListVO> task_list = acceptTaskListDao.getTaskList(prop_id,task_type);
-		//»ñÈ¡ÈÎÈÎÎñµÄ¼¸ÂÊÊÇ°ÙÍò·Ö¼¶±ğ
+		//è·å–ä»»ä»»åŠ¡çš„å‡ ç‡æ˜¯ç™¾ä¸‡åˆ†çº§åˆ«
 		AcceptTaskListVO acceptTaskList = (AcceptTaskListVO)MathUtil.getRandomEntityFromList(task_list,1000000);
 		
 		if( acceptTaskList!=null ) 
@@ -150,27 +150,27 @@ public class TaskSubService
 				TaskVO task = taskDAO.getTaskBySpacifyArea(task_area[0], task_area[1]);
 				acceptTask(roleEntity, task);
 				propUseEffect.setEffectDisplay(task.getTName()+"<br/>"+task.getTTishi());
-				//hint = "½ÓÊÜÈÎÎñ³É¹¦";
+				//hint = "æ¥å—ä»»åŠ¡æˆåŠŸ";
 			}
 			else if(isHaveTaskInTaskIDArea(p_pk,task_list) == 1)
 			{
-				hint = "Äú»¹ÓĞÃ»Íê³ÉµÄÒı·¢µÄÈÎÎñ";
+				hint = "æ‚¨è¿˜æœ‰æ²¡å®Œæˆçš„å¼•å‘çš„ä»»åŠ¡";
 			}else
 			{
 				
-				hint = "Äú²»ÄÜ½Ó¸ü¶àÈÎÎñ, ÇëÏÈÍê³ÉÉíÉÏµÄÈÎÎñ°É!";
+				hint = "æ‚¨ä¸èƒ½æ¥æ›´å¤šä»»åŠ¡, è¯·å…ˆå®Œæˆèº«ä¸Šçš„ä»»åŠ¡å§!";
 			} 
 		}
 		else
 		{
-			logger.info("½ÓÊÕÈÎÎñÊ§°Ü");
+			logger.info("æ¥æ”¶ä»»åŠ¡å¤±è´¥");
 		}
 		logger.info("hint="+hint);
 		return hint;
 	}
 
 	/**
-	 * ´ÓÈÎÎñÁĞ±íÖĞ½ÓÊÜÈÎÎñ
+	 * ä»ä»»åŠ¡åˆ—è¡¨ä¸­æ¥å—ä»»åŠ¡
 	 * @param p_pk
 	 * @param prop_id
 	 */
@@ -182,7 +182,7 @@ public class TaskSubService
 		TaskDAO taskDAO = new TaskDAO();
 		//int task_type = 1;
 		List<AcceptTaskListVO> task_list = acceptTaskListDao.getTaskList(prop_id,task_type);
-		//»ñÈ¡ÈÎÈÎÎñµÄ¼¸ÂÊÊÇ°ÙÍò·Ö¼¶±ğ
+		//è·å–ä»»ä»»åŠ¡çš„å‡ ç‡æ˜¯ç™¾ä¸‡åˆ†çº§åˆ«
 		AcceptTaskListVO acceptTaskList = (AcceptTaskListVO)MathUtil.getRandomEntityFromList(task_list,1000000);
 		
 
@@ -191,16 +191,16 @@ public class TaskSubService
 		if( acceptTaskList!=null ) 
 		{
 			String[] task_area = acceptTaskList.getTaskArea().split(",");
-			//Ê×ÏÈÅĞ¶ÏÊÇ·ñ×ö¹»´ÎÊıÁË
+			//é¦–å…ˆåˆ¤æ–­æ˜¯å¦åšå¤Ÿæ¬¡æ•°äº†
 			if(menu != null && menu.getMenuOperate2()!=null && !menu.getMenuOperate2().equals("")){
 		    if(timeControlService.isUseable(p_pk, menu.getId(), TimeControlService.MENUTOUCHTASK, Integer.parseInt(menu.getMenuOperate2())) == false){
-		    	hint = "Ã¿ÌìÖ»ÄÜÁìÈ¡"+menu.getMenuOperate2()+"´Î";
+		    	hint = "æ¯å¤©åªèƒ½é¢†å–"+menu.getMenuOperate2()+"æ¬¡";
 		    	return hint;
 		    }
 			}
 			if(isHaveTaskInTaskIDArea(p_pk,task_list) == -1)
 			{
-				//Ê×ÏÈÈ¡µÃÊ±¼ä´ÎÊı¿ØÖÆ 
+				//é¦–å…ˆå–å¾—æ—¶é—´æ¬¡æ•°æ§åˆ¶ 
 				/*TimeControlDao timeControlDao = new TimeControlDao();
 				TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, menu.getId(), TimeControlService.MENUTOUCHTASK);
 				if( timeControl!=null && DateUtil.isSameDay(timeControl.getUseDatetime()) && (timeControl.getUseTimes()+1) == Integer.parseInt(menu.getMenuOperate2()))
@@ -212,28 +212,28 @@ public class TaskSubService
 				acceptTask(roleEntity, task);
 				propUseEffect.setEffectDisplay(task.getTName()+"<br/>"+task.getTTishi());
 				timeControlService.updateControlInfo(roleEntity.getBasicInfo().getPPk(), menu.getId(), TimeControlService.MENUTOUCHTASK);
-				//hint = "½ÓÊÜÈÎÎñ³É¹¦";
+				//hint = "æ¥å—ä»»åŠ¡æˆåŠŸ";
 			}
 			else if(isHaveTaskInTaskIDArea(p_pk,task_list) == 1)
 			{
-				hint = "ÄúÃ»ÓĞÍê³ÉÒÑÒı·¢µÄÈÎÎñ"; 
+				hint = "æ‚¨æ²¡æœ‰å®Œæˆå·²å¼•å‘çš„ä»»åŠ¡"; 
 			}else
 			{
 				
-				hint = "Äú²»ÄÜ½Ó¸ü¶àÈÎÎñ, ÇëÏÈÍê³ÉÉíÉÏµÄÈÎÎñ°É!";
+				hint = "æ‚¨ä¸èƒ½æ¥æ›´å¤šä»»åŠ¡, è¯·å…ˆå®Œæˆèº«ä¸Šçš„ä»»åŠ¡å§!";
 			} 
 		}
 		else
 		{
-			logger.info("½ÓÊÕÈÎÎñÊ§°Ü");
+			logger.info("æ¥æ”¶ä»»åŠ¡å¤±è´¥");
 		}
 		logger.info("hint="+hint);
 		return hint;
 	}
 	
 	/**
-	 * ÅĞ¶ÏÍæ¼ÒÊÇ·ñÒÑ¾­Íê³É ½ÓÊÕÈÎÎñµÀ¾ß µÄÈÎÎñ.
-	 * Èç¹ûÒÑ¾­Íê³É,·µ»Ø-1,Èç¹ûÎ´Íê³É,·µ»Ø1 .Èç¹ûÉíÉÏÈÎÎñÊıÁ¿ÒÑ¾­³¬¹ı10Ìõ, Ôò·µ»Ø2.
+	 * åˆ¤æ–­ç©å®¶æ˜¯å¦å·²ç»å®Œæˆ æ¥æ”¶ä»»åŠ¡é“å…· çš„ä»»åŠ¡.
+	 * å¦‚æœå·²ç»å®Œæˆ,è¿”å›-1,å¦‚æœæœªå®Œæˆ,è¿”å›1 .å¦‚æœèº«ä¸Šä»»åŠ¡æ•°é‡å·²ç»è¶…è¿‡10æ¡, åˆ™è¿”å›2.
 	 * @param p_pk
 	 * @param prop_id
 	 * @return
@@ -242,7 +242,7 @@ public class TaskSubService
 	{
 		int flag = -1;
 		RoleEntity roleEntity = RoleService.getRoleInfoById(p_pk+"");
-		//»ñÈ¡Íæ¼ÒÉíÉÏÉĞÎ´Íê³ÉµÄÈÎÎñid
+		//è·å–ç©å®¶èº«ä¸Šå°šæœªå®Œæˆçš„ä»»åŠ¡id
 		//List<Integer> list = utaskdao.getUTaskByPk(p_pk);
 		List list = roleEntity.getTaskInfo().getCurTaskList().getCurTaskList();
 		

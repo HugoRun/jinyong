@@ -17,7 +17,7 @@ public class ComfirmAction extends DispatchAction {
 	Logger logger = Logger.getLogger("log.pay");
 
 	/**
-	 * ȷ�ϳ�ֵ
+	 * 确认充值
 	 */
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,

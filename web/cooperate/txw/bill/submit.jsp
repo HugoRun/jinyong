@@ -4,9 +4,10 @@
 <%@page import="com.ls.web.service.validate.*"%>
 <%@page import="com.ls.model.user.*,com.ls.web.service.player.*"%>
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="bill" title="充值">
 <p>
 <%

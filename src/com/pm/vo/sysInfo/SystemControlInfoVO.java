@@ -3,32 +3,32 @@ package com.pm.vo.sysInfo;
 public class SystemControlInfoVO
 {
 
-	/**  ÏµÍ³¿ØÖÆÏûÏ¢±íid*/
+	/**  ç³»ç»Ÿæ§åˆ¶æ¶ˆæ¯è¡¨id*/
 	private int controlId;
 	
-	/** ¸öÈË½ÇÉ«id */
+	/** ä¸ªäººè§’è‰²id */
 	//private int pPk;
 	
-	/**  ¿ØÖÆÌõ¼şÀàĞÍ,1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.  */
+	/**  æ§åˆ¶æ¡ä»¶ç±»å‹,1ä¸ºç©å®¶ç­‰çº§,2ä¸ºä»»åŠ¡,3ä¸ºå£°æœ›,4ä¸ºç§°è°“,5ä¸ºå‘é€æ—¶é—´.  */
 	 private int condition;
 	
-	/**  Íæ¼ÒµÈ¼¶  */
+	/**  ç©å®¶ç­‰çº§  */
 	 private String playerGrade;
-	/**  ÈÎÎñid */
+	/**  ä»»åŠ¡id */
 	 private int taskId;			
-	 /**  ÉùÍû */
+	 /**  å£°æœ› */
 	 private int popularity;
 	 
-	 /**  ³ÆÎ½ */
+	 /**  ç§°è°“ */
 	 private String title;
 	 
-	 /**  ·¢ËÍÊ±¼ä */
+	 /**  å‘é€æ—¶é—´ */
 	 private String sendTime;
 
-	 /**  ·¢ËÍÄÚÈİ */
+	 /**  å‘é€å†…å®¹ */
 	 private String sendContent;
 	 
-	 /***  ·¢ËÍÀàĞÍ,1Îª·¢ÏµÍ³ÏûÏ¢,2Îª·¢ÓÊ¼ş,3ÎªÏµÍ³ÏûÏ¢ºÍÓÊ¼ş¶¼·¢, 4Îª¶¼²»·¢ **/
+	 /***  å‘é€ç±»å‹,1ä¸ºå‘ç³»ç»Ÿæ¶ˆæ¯,2ä¸ºå‘é‚®ä»¶,3ä¸ºç³»ç»Ÿæ¶ˆæ¯å’Œé‚®ä»¶éƒ½å‘, 4ä¸ºéƒ½ä¸å‘ **/
 	 private int sendType;
 	 
 	 

@@ -1,1183 +1,911 @@
 package com.pm.dao.statistics;
 
-import java.sql.SQLException;
-
 import com.ls.ben.dao.DaoBase;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ´ËÀàÓÃÓÚºóÌ¨Êı¾İÍ³¼Æ, ×¨ÃÅÓÃÀ´Êı¾İÊäÈë
- * 
+ * æ­¤ç±»ç”¨äºåå°æ•°æ®ç»Ÿè®¡, ä¸“é—¨ç”¨æ¥æ•°æ®è¾“å…¥
+ *
  * @author Administrator
- * 
  */
 
-public class StatisticsDao extends DaoBase
-{
-
-	/**
-	 * »ñµÃÔÚÏßÊ±¼ä±íÖĞÊÇ·ñÓĞ´ËuPkµÄ¼ÇÂ¼
-	 * 
-	 * @param pk
-	 * @return
-	 */
-	public int hasOnlineTimeRecord(String uPk, String today)
-	{
-		int flag = 0;
-		String sql = "select id from user_online_time where u_pk=" + uPk
-				+ " and recordTime = '" + today + "'";
-		logger.debug("²éÑ¯ÊÇ·ñÓĞÍ³¼Æ¼ÇÂ¼:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				flag = rs.getInt("id");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-		return flag;
-	}
-
-	/**
-	 * ¸üĞÂÍæ¼ÒµÄÔÚÏßÊ±¼ä
-	 * 
-	 * @param uPk
-	 */
-	public void updateOnLineTime(String uPk, long onlinetime, String today)
-	{
-
-		String sql = "update user_online_time set onlinetime = onlinetime + "
-				+ onlinetime + " where u_pk=" + uPk + " and recordTime = '"
-				+ today + "'";
-		logger.debug("¸üĞÂÍæ¼ÒµÄÔÚÏßÊ±¼ä:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * °ÑµÇÂ½ÏûÏ¢²åÈëµ½Êı¾İ¿âÖĞ
-	 * 
-	 * @param uPk
-	 */
-	public void insertToLoginInfo(int uPk)
-	{
-		String sql = "insert into p_record_login values (null,'" + uPk
-				+ "',1,now())";
-		logger.debug("´´½¨½ÇÉ«Ê±´´½¨ÏµÍ³ÉèÖÃ:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ²éÑ¯Íæ¼ÒµÇÂ½Ê±¼ä±íÊÇ·ñÓĞ´ËuPk¼ÇÂ¼
-	 * 
-	 * @param uPk
-	 * @return
-	 */
-	public int hasRecord(int uPk)
-	{
-		int flag = 0;
-		String sql = "select id from p_record_login where u_pk=" + uPk;
-		logger.debug("²éÑ¯ÊÇ·ñÓĞÍ³¼Æ¼ÇÂ¼:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				flag = rs.getInt("id");
-			}
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-		return flag;
-	}
-
-	/**
-	 * ¸üĞÂÍæ¼ÒµÄµÇÂ½Ê±¼ä
-	 * 
-	 * @param uPk
-	 */
-	public void updateLoginInfo(int uPk)
-	{
-
-		String sql = "update p_record_login set loginTime = now(), loginStatus = 1 where u_pk="
-				+ uPk;
-		logger.debug("´´½¨½ÇÉ«Ê±´´½¨ÏµÍ³ÉèÖÃ:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ²é¿´½ÇÉ«µÇÂ½±íÊÇ·ñÓĞÏà¹Ø½ÇÉ«ĞÅÏ¢
-	 * 
-	 * @param pPk
-	 * @return
-	 */
-	public int hasRecordPPk(String pPk)
-	{
-		int flag = 0;
-		String sql = "select id from user_record_login where p_pk=" + pPk;
-		logger.debug("²éÑ¯ÊÇ·ñÓĞÍ³¼Æ¼ÇÂ¼:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				flag = rs.getInt("id");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-		return flag;
-	}
-
-	/**
-	 * ²åÈë½ÇÉ«ĞÅÏ¢¼ÇÂ¼±í
-	 * 
-	 * @param pk
-	 * @param p_grade
-	 */
-	public void insertToPersonLoginInfo(String pPk, int p_grade)
-	{
-		String sql = "insert into user_record_login values (null,'" + pPk
-				+ "','" + p_grade + "',1,now())";
-		logger.debug("²åÈë½ÇÉ«ĞÅÏ¢¼ÇÂ¼±í:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-	}
-
-	/**
-	 * ¸üĞÂ½ÇÉ«µÇÂ½ĞÅÏ¢Í³¼Æ±í
-	 * 
-	 * @param pk
-	 * @param p_grade
-	 */
-	public void updatePersonLoginInfo(String pPk, int p_grade)
-	{
-		String sql = "update user_record_login set loginTime = now(), loginStatus = 1, p_grade = "
-				+ p_grade + " where p_pk=" + pPk;
-		logger.debug("¸üĞÂ½ÇÉ«µÇÂ½ĞÅÏ¢Í³¼Æ±í:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-	}
-
-	/**
-	 * ²åÈë½ÇÉ«ÔÚÏßÊ±¼ä
-	 * 
-	 * @param pk
-	 * @param pk2
-	 * @param onlineTime
-	 */
-	public void insertOnLineTime(String uPk, String pPk, long onlineTime,
-			String today)
-	{
-		String sql = "insert into user_online_time values (null," + uPk + ","
-				+ pPk + "," + onlineTime + ",'" + today + "',now())";
-		logger.debug(" ²åÈëÔÚÏßÊ±¼ä:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/***************************************************************************
-	 * »ñµÃÔÚ¿ªÊ¼µÈ¼¶ºÍ½áÊøµÈ¼¶Ö®¼äµÄÍæ¼Ò½ÇÉ«Êı,ÈÕ³£µÈ¼¶¼à¿Ø.
-	 * 
-	 * @param startGrade
-	 *            ¿ªÊ¼µÈ¼¶
-	 * @param endGrade
-	 *            ½áÊøµÈ¼¶
-	 * @return
-	 */
-	public int getAllUserGradeInfo(int startGrade, int endGrade)
-	{
-		int person_num = 0;
-		String sql = "select sum(1) as person_num from u_part_info where p_grade >"
-				+ startGrade + " and p_grade < " + endGrade;
-		logger.debug("Ñ¡Ôñ¿ªÊ¼µÈ¼¶ºÍ½áÊøµÈ¼¶µÄÈËÊıÁ¿=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				person_num = rs.getInt("person_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return person_num;
-	}
-
-	/**
-	 * ²åÈëµ½Ã¿ÈÕÍæ¼ÒµÈ¼¶ĞÅÏ¢±íÖĞ
-	 * 
-	 * @param grade1
-	 * @param grade2to9
-	 * @param grade10to19
-	 * @param grade20to29
-	 * @param grade30to39
-	 * @param grade40to49
-	 * @param grade50to59
-	 * @param grade60
-	 * @param today
-	 */
-	public void insertEveryDayPlayerGrade(int grade1, int grade2to9,
-			int grade10to19, int grade20to29, int grade30to39, int grade40to49,
-			int grade50to59, int grade60, int avg_grade, String today)
-	{
-		String sql = "insert into user_everyday_grade values (null," + grade1
-				+ "," + grade2to9 + "," + grade10to19 + "," + grade20to29 + ","
-				+ grade30to39 + "," + grade40to49 + "," + grade50to59 + ","
-				+ grade60 + "," + avg_grade + ",'" + today + "',now())";
-		logger.debug("²åÈëµ½Ã¿ÈÕÍæ¼ÒµÈ¼¶ĞÅÏ¢±íÖĞ:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * »ñµÃÔÚ¿ªÊ¼µÈ¼¶ºÍ½áÊøµÈ¼¶Ö®¼äµÄÍæ¼Ò½ÇÉ«Êı,ÉÏÏßÍæ¼ÒµÈ¼¶¼à¿Ø.
-	 * 
-	 * @param startGrade
-	 *            ¿ªÊ¼µÈ¼¶
-	 * @param endGrade
-	 *            ½áÊøµÈ¼¶
-	 * @return
-	 */
-	public int getOnlinePlayerGrade(int startGrade, int endGrade)
-	{
-		int person_num = 0;
-		String sql = "select sum(1) as person_num from user_record_login where p_grade >"
-				+ startGrade
-				+ " and p_grade < "
-				+ endGrade
-				+ " and now() < (loginTime + INTERVAL 1 DAY)";
-		logger.debug("ÔÚÒ»ÌìÄÚÑ¡Ôñ¿ªÊ¼µÈ¼¶ºÍ½áÊøµÈ¼¶µÄÈËÊıÁ¿=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				person_num = rs.getInt("person_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return person_num;
-	}
-
-	/**
-	 * ²åÈëµ½Ã¿ÈÕÉÏÏßÍæ¼ÒµÈ¼¶±íÖĞ
-	 * 
-	 * @param grade1
-	 * @param grade2to9
-	 * @param grade10to19
-	 * @param grade20to29
-	 * @param grade30to39
-	 * @param grade40to49
-	 * @param grade50to59
-	 * @param grade60
-	 * @param today
-	 */
-	public void insertIntoOnlinePlayerGrade(int grade1to9, int grade10to19,
-			int grade20to29, int grade30to39, int grade40to49, int grade50to59,
-			int grade60, String today)
-	{
-		String sql = "insert into user_login_grade values (null," + grade1to9
-				+ "," + grade10to19 + "," + grade20to29 + "," + grade30to39
-				+ "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'"
-				+ today + "',now())";
-		logger.debug("²åÈëµ½Ã¿ÈÕÉÏÏßÍæ¼ÒµÈ¼¶ĞÅÏ¢±íÖĞ:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-	}
-
-	/**
-	 * »ñµÃÔÚ¿ªÊ¼µÈ¼¶ºÍ½áÊøµÈ¼¶Ö®¼äµÄÍæ¼Ò½ÇÉ«Êı,³ÁÄ¬Íæ¼ÒµÈ¼¶¼à¿Ø.
-	 * 
-	 * @param startGrade
-	 *            ¿ªÊ¼µÈ¼¶
-	 * @param endGrade
-	 *            ½áÊøµÈ¼¶
-	 * @return
-	 */
-	public int getSilverPlayerGrade(int startGrade, int endGrade)
-	{
-		int person_num = 0;
-		// ÁªºÏ²éÑ¯, È¡³öÔÚp_record_login±íÖĞµÇÂ½×îºóÊ±¼ä³¬¹ıÆßÌìµÄu_pkµÄ¼¯ºÏ£¬ÔÙÈ¡³ö
-		// u_part_info±íÖĞÔÚ´Ë¼¯ºÏÖĞµÄËùÓĞ½ÇÉ«µÄÊıÁ¿£¬´ËÊıÁ¿ÓÉÔÚ²ÎÊıËù¾ö¶¨µÄµÈ¼¶¶Î¾ö¶¨.
-		String sql = "select sum(1) as num from u_part_info u where p_grade > "
-				+ startGrade
-				+ " and p_grade < "
-				+ endGrade
-				+ " and u.u_pk in (select u_pk from (select p.u_pk from u_login_info p where now() > "
-				+ " (p.last_login_time + INTERVAL 7 DAY)) aaa)";
-		logger.debug("Ñ¡Ôñ¿ªÊ¼µÈ¼¶ºÍ½áÊøµÈ¼¶µÄ³ÁÄ¬½ÇÉ«ÊıÁ¿=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				person_num = rs.getInt("num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return person_num;
-	}
-
-	/**
-	 * ²åÈëµ½³ÁÄ¬Íæ¼ÒµÈ¼¶±íÖĞ
-	 * 
-	 * @param grade1to9
-	 * @param grade10to19
-	 * @param grade20to29
-	 * @param grade30to39
-	 * @param grade40to49
-	 * @param grade50to59
-	 * @param grade60
-	 * @param today
-	 */
-	public void insertIntoSilverPlayerGrade(int grade1to9, int grade10to19,
-			int grade20to29, int grade30to39, int grade40to49, int grade50to59,
-			int grade60, String today)
-	{
-		String sql = "insert into user_silence_grade values (null," + grade1to9
-				+ "," + grade10to19 + "," + grade20to29 + "," + grade30to39
-				+ "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'"
-				+ today + "',now())";
-		logger.debug("²åÈëµ½³ÁÄ¬Íæ¼ÒµÈ¼¶ĞÅÏ¢±íÖĞ:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * »ñµÃÔÚ×îÉÙÊ±¼äºÍ×î¶àÊ±¼äÖ®¼äµÄÍæ¼Ò½ÇÉ«Êı,Íæ¼ÒÉÏÏßÊ±¼ä¼à¿Ø.
-	 * 
-	 * @param least
-	 *            ×îÉÙÊ±¼ä
-	 * @param most
-	 *            ×î¶àÊ±¼ä
-	 * @return
-	 */
-	public int getOnlinePlayerTime(int least, int most)
-	{
-		int person_num = 0;
-		String sql = "select sum(1) as person_num from user_online_time where onlinetime > "
-				+ least * 60 + " and onlinetime < " + most * 60;
-		logger.debug("»ñµÃÔÚ×îÉÙÊ±¼äºÍ×î¶àÊ±¼äÖ®¼äµÄÍæ¼Ò½ÇÉ«Êı=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				person_num = rs.getInt("person_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return person_num;
-	}
-
-	/**
-	 * ²åÈëµ½Íæ¼ÒÉÏÏßÊ±¼ä±íÖĞ
-	 * 
-	 * @param time10min
-	 * @param time30min
-	 * @param time60min
-	 * @param time120min
-	 * @param time120minUp
-	 * @param today
-	 */
-	public void insertIntoOnlineTime(int time10min, int time30min,
-			int time60min, int time120min, int time120minUp, String today)
-	{
-		String sql = "insert into user_grade_statistics values (null,"
-				+ time10min + "," + time30min + "," + time60min + ","
-				+ time120min + "," + time120minUp + ",'" + today + "',now())";
-		logger.debug("²åÈëµ½Ã¿ÈÕÉÏÏßÊ±¼äĞÅÏ¢±íÖĞ:" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * »ñµÃ×¢²á×ÜÈËÊı
-	 * 
-	 * @return
-	 */
-	public int getAllRegistNum()
-	{
-		int allRegistNum = 0;
-		String sql = "select sum(1) as person_num from u_login_info";
-		logger.debug("»ñµÃ×¢²á×ÜÈËÊı=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				allRegistNum = rs.getInt("person_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return allRegistNum;
-	}
-
-	/**
-	 * »ñµÃ½ÇÉ«×ÜÊı
-	 * 
-	 * @return
-	 */
-	public int getAllUserNum()
-	{
-
-		int allUserNum = 0;
-		String sql = "select sum(1) as person_num from u_part_info";
-		logger.debug("»ñµÃ½ÇÉ«×ÜÊı=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				allUserNum = rs.getInt("person_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return allUserNum;
-	}
-
-	/**
-	 * »ñµÃ½ñÈÕ×¢²áÍæ¼ÒÊı
-	 * 
-	 * @return
-	 */
-	public int getTodayRegistNum(String date)
-	{
-		int allTodayRegistNum = 0;
-		String sql = "select sum(1) as person_num from u_login_info where create_time like '%"+date+"%'";
-		logger.debug("»ñµÃ½ñÈÕ×¢²áÍæ¼ÒÊı=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				allTodayRegistNum = rs.getInt("person_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return allTodayRegistNum;
-	}
-
-	/**
-	 * »ñµÃ½ñÈÕÔÚÏßÍæ¼Ò
-	 * 
-	 * @return
-	 */
-	public int getTodayOnlineNum()
-	{
-		int allTodayOnlineNum = 0;
-		String sql = "select sum(1) as all_num from u_login_info where now() < (last_login_time + INTERVAL 1 DAY)";
-		logger.debug("½ñÈÕÔÚÏßÍæ¼Ò=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				allTodayOnlineNum = rs.getInt("all_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return allTodayOnlineNum;
-	}
-
-	/**
-	 * »ñµÃ½ñÈÕ»îÔ¾ÓÃ»§
-	 * 
-	 * @return
-	 */
-	public int getTodayActiveNum(String today)
-	{
-		int allTodayActiveNum = 0;
-		String sql = "select sum(1) as active_num from user_online_time where onlinetime > 1800 and createTime like '%"+today+"%'";
-		logger.debug("½ñÈÕ»îÔ¾ÓÃ»§=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				allTodayActiveNum = rs.getInt("active_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return allTodayActiveNum;
-	}
-
-	/**
-	 * »ñµÃËùÓĞÓÃ»§ÔÚÏßÊ±¼ä.
-	 * 
-	 * @return
-	 */
-	public long getAllPlayerOnlineTime()
-	{
-		long allPlayerOnlineTime = 0L;
-		String sql = "select sum(onlinetime) as all_online_time from user_online_time where now() < (createTime + INTERVAL 1 DAY)";
-		logger.debug("»ñµÃËùÓĞÓÃ»§ÔÚÏßÊ±¼ä=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				allPlayerOnlineTime = rs.getInt("all_online_time");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return allPlayerOnlineTime;
-	}
-
-	/**
-	 * »ñµÃÆ½¾ù½ÇÉ«ÔÚÏßµÈ¼¶
-	 * 
-	 * @return
-	 */
-	public double getAvgPlayerOnlineGrade(int grade)
-	{
-		double avgPlayerOnlineGrade = 0L;
-		String sql = "select avg(p_grade) as avg_grade from user_record_login where p_grade > "
-				+ grade + " and now() < (loginTime + INTERVAL 1 DAY)";
-		logger.debug("»ñµÃÆ½¾ù½ÇÉ«ÔÚÏßµÈ¼¶=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				avgPlayerOnlineGrade = rs.getDouble("avg_grade");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return avgPlayerOnlineGrade;
-	}
-
-	/**
-	 * »ñµÃÆ½¾ùÔÚÏßÈËÊı
-	 * 
-	 * @return
-	 */
-	public double getAvgPlayerOnlineNum(String today)
-	{
-		double avgPlayerOnlineNum = 0;
-		String sql = "select (hour_0+hour_1+hour_2+hour_3+hour_4+hour_5+hour_6"
-				+ "+hour_7+hour_8+hour_9+hour_10+hour_11+hour_12+hour_13+hour_14+hour_15"
-				+ "+hour_16+hour_17+hour_18+hour_19+hour_20+hour_21+hour_22+hour_23) as "
-				+ "avg_player_num,createTime from user_online_num where createTime = '"+today+"'";
-		logger.debug("»ñµÃÆ½¾ùÔÚÏßÈËÊı=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				avgPlayerOnlineNum = rs.getDouble("avg_player_num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return avgPlayerOnlineNum;
-	}
-
-	/**
-	 * ²åÈëÍæ¼ÒÔÚÏßÊ±¼ä¶ÎÈËÊı, °´Ğ¡Ê±¼ÆËã.
-	 * 
-	 * @param nowOnlineNum
-	 *            ÔÚÏßÈËÊı
-	 * @param hours
-	 *            µ±Ç°Ğ¡Ê±
-	 * @param today
-	 *            µ±Ç°ÈÕÆÚ
-	 */
-	public void insertPlayerOnlineNumRecord(int nowOnlineNum, String hours,
-			String today)
-	{
-		String sql1 = "update user_online_num set hour_"
-				+ Integer.parseInt(hours) + " = " + nowOnlineNum
-				+ " where createTime='" + today + "'";
-		String sql2 = "insert into user_online_num(id,hour_"
-				+ Integer.parseInt(hours) + ",createTime) values(null,"
-				+ nowOnlineNum + ",date(now()))";
-		logger.debug(" ²åÈëÍæ¼ÒÔÚÏßÊ±¼ä¶ÎÈËÊı=" + sql1);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql1);
-			int i = ps.executeUpdate();
-			logger.debug("¸üĞÂµÄ·µ»ØÖµ=" + i);
-			if (i == 0)
-			{
-				ps = conn.prepareStatement(sql2);
-				int a = ps.executeUpdate();
-				logger.debug("²åÈëµÄ·µ»ØÖµ=" + a);
-			}
-
-			ps.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ²åÈëÍæ¼Ò×ÜÀÀ±í
-	 * 
-	 * @param allRegeistNum
-	 * @param allUserNum
-	 * @param todayRegistNum
-	 * @param todayOnlineNum
-	 * @param todayActiveNum
-	 * @param avgPlaerOnlineTime
-	 * @param avgPlayerOnlineGrade
-	 * @param avgPlayerOnlineNum
-	 * @param today
-	 */
-	public void insertPlayerInfoOverview(int allRegeistNum, int allUserNum,
-			int todayRegistNum, int todayOnlineNum, int todayActiveNum,
-			int avgPlaerOnlineTime, double avgPlayerOnlineGrade,
-			double avgPlayerOnlineNum,int grade9today, String today)
-	{
-		String sql = "insert into user_info_overview values (null,"
-				+ allRegeistNum + "," + allUserNum + "," + todayRegistNum + ","
-				+ todayOnlineNum + "," + todayActiveNum + ","
-				+ avgPlaerOnlineTime + "," + avgPlayerOnlineGrade + ","
-				+ avgPlayerOnlineNum + ","+grade9today+",'" + today + "',now())";
-		logger.debug(" ²åÈëÍæ¼Ò×ÜÀÀ±í=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-
-	}
-
-	/**
-	 * É¾³ı²»ĞèÒªµÄÊı¾İ
-	 */
-	public void deleteUnneedRecordData()
-	{
-		String sql = "delete from user_record_login where now() < (loginTime + INTERVAL 1 DAY)";
-		String sql1 = "delete from user_online_time where now() < (createTime + INTERVAL 1 DAY)";
-		logger.debug(" É¾³ı²»ĞèÒªµÄÊı¾İ=" + sql + " ,sql1=" + sql1);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps = conn.prepareStatement(sql1);
-			ps.executeUpdate();
-			ps.close();
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * »ñÈ¡Æ½¾ùµÈ¼¶
-	 * 
-	 * @param i
-	 * @return
-	 */
-	public int getAvgGrade(int minGrade)
-	{
-		int avg_grade = 0;
-		String sql = "select avg(p_grade) as avg_grade from u_part_info where p_grade > "
-				+ minGrade;
-		logger.debug("»ñÈ¡Æ½¾ùµÈ¼¶=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				avg_grade = rs.getInt("avg_grade");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return avg_grade;
-	}
-
-	/**
-	 * ·µ»Øµ±Ç°ÈÕÆÚµ±Ç°Ğ¡Ê±ÄÚµÄĞ¡Ê±ÈËÊı
-	 * 
-	 * @param nowHours
-	 * @param today
-	 * @return
-	 */
-	public int getNowHourNum(String nowHours, String today)
-	{
-
-		int nowNum = 0;
-		String sql = "select hour_" + Integer.parseInt(nowHours)
-				+ " as num from user_online_num where createTime = '" + today
-				+ "'";
-		logger.debug("»ñÈ¡Æ½¾ùµÈ¼¶=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				nowNum = rs.getInt("num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return nowNum;
-	}
-	
-	/**µÃµ½µ±ÌìÍæ¼Ò³¬¹ı9¼¶µÄÊıÁ¿*/
-	public int getGrade9today(int grade,String today){
-		int num = 0;
-		String sql = "select count(*) as num from u_part_info where p_grade > "+grade+" and create_time like '%"+today+"%'";
-		logger.debug("Ã¿Ìì³¬¹ı9¼¶µÄÍæ¼Ò=" + sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try
-		{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				num = rs.getInt("num");
-			}
-
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-		}
-		return num;
-	}
+public class StatisticsDao extends DaoBase {
+
+    /**
+     * è·å¾—åœ¨çº¿æ—¶é—´è¡¨ä¸­æ˜¯å¦æœ‰æ­¤uPkçš„è®°å½•
+     *
+     * @param pk
+     * @return
+     */
+    public int hasOnlineTimeRecord(String uPk, String today) {
+        int flag = 0;
+        String sql = "SELECT id from user_online_time where u_pk=" + uPk + " and recordTime = '" + today + "'";
+        logger.debug("æŸ¥è¯¢æ˜¯å¦æœ‰ç»Ÿè®¡è®°å½•:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                flag = rs.getInt("id");
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return flag;
+    }
+
+    /**
+     * æ›´æ–°ç©å®¶çš„åœ¨çº¿æ—¶é—´
+     *
+     * @param uPk
+     */
+    public void updateOnLineTime(String uPk, long onlinetime, String today) {
+
+        String sql = "update user_online_time set onlinetime = onlinetime + " + onlinetime + " where u_pk=" + uPk + " and recordTime = '" + today + "'";
+        logger.debug("æ›´æ–°ç©å®¶çš„åœ¨çº¿æ—¶é—´:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æŠŠç™»é™†æ¶ˆæ¯æ’å…¥åˆ°æ•°æ®åº“ä¸­
+     *
+     * @param uPk
+     */
+    public void insertToLoginInfo(int uPk) {
+        String sql = "INSERT INTO p_record_login values (null,'" + uPk + "',1,now())";
+        logger.debug("åˆ›å»ºè§’è‰²æ—¶åˆ›å»ºç³»ç»Ÿè®¾ç½®:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æŸ¥è¯¢ç©å®¶ç™»é™†æ—¶é—´è¡¨æ˜¯å¦æœ‰æ­¤uPkè®°å½•
+     *
+     * @param uPk
+     * @return
+     */
+    public int hasRecord(int uPk) {
+        int flag = 0;
+        String sql = "SELECT id from p_record_login where u_pk=" + uPk;
+        logger.debug("æŸ¥è¯¢æ˜¯å¦æœ‰ç»Ÿè®¡è®°å½•:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                flag = rs.getInt("id");
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return flag;
+    }
+
+    /**
+     * æ›´æ–°ç©å®¶çš„ç™»é™†æ—¶é—´
+     *
+     * @param uPk
+     */
+    public void updateLoginInfo(int uPk) {
+
+        String sql = "update p_record_login set loginTime = now(), loginStatus = 1 where u_pk=" + uPk;
+        logger.debug("åˆ›å»ºè§’è‰²æ—¶åˆ›å»ºç³»ç»Ÿè®¾ç½®:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æŸ¥çœ‹è§’è‰²ç™»é™†è¡¨æ˜¯å¦æœ‰ç›¸å…³è§’è‰²ä¿¡æ¯
+     *
+     * @param pPk
+     * @return
+     */
+    public int hasRecordPPk(String pPk) {
+        int flag = 0;
+        String sql = "SELECT id from user_record_login where p_pk=" + pPk;
+        logger.debug("æŸ¥è¯¢æ˜¯å¦æœ‰ç»Ÿè®¡è®°å½•:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                flag = rs.getInt("id");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return flag;
+    }
+
+    /**
+     * æ’å…¥è§’è‰²ä¿¡æ¯è®°å½•è¡¨
+     *
+     * @param pk
+     * @param p_grade
+     */
+    public void insertToPersonLoginInfo(String pPk, int p_grade) {
+        String sql = "INSERT INTO user_record_login values (null,'" + pPk + "','" + p_grade + "',1,now())";
+        logger.debug("æ’å…¥è§’è‰²ä¿¡æ¯è®°å½•è¡¨:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+    }
+
+    /**
+     * æ›´æ–°è§’è‰²ç™»é™†ä¿¡æ¯ç»Ÿè®¡è¡¨
+     *
+     * @param pk
+     * @param p_grade
+     */
+    public void updatePersonLoginInfo(String pPk, int p_grade) {
+        String sql = "update user_record_login set loginTime = now(), loginStatus = 1, p_grade = " + p_grade + " where p_pk=" + pPk;
+        logger.debug("æ›´æ–°è§’è‰²ç™»é™†ä¿¡æ¯ç»Ÿè®¡è¡¨:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+    }
+
+    /**
+     * æ’å…¥è§’è‰²åœ¨çº¿æ—¶é—´
+     *
+     * @param pk
+     * @param pk2
+     * @param onlineTime
+     */
+    public void insertOnLineTime(String uPk, String pPk, long onlineTime, String today) {
+        String sql = "INSERT INTO user_online_time values (null," + uPk + "," + pPk + "," + onlineTime + ",'" + today + "',now())";
+        logger.debug(" æ’å…¥åœ¨çº¿æ—¶é—´:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /***************************************************************************
+     * è·å¾—åœ¨å¼€å§‹ç­‰çº§å’Œç»“æŸç­‰çº§ä¹‹é—´çš„ç©å®¶è§’è‰²æ•°,æ—¥å¸¸ç­‰çº§ç›‘æ§.
+     *
+     * @param startGrade
+     *            å¼€å§‹ç­‰çº§
+     * @param endGrade
+     *            ç»“æŸç­‰çº§
+     * @return
+     */
+    public int getAllUserGradeInfo(int startGrade, int endGrade) {
+        int person_num = 0;
+        String sql = "SELECT sum(1) as person_num from u_part_info where p_grade >" + startGrade + " and p_grade < " + endGrade;
+        logger.debug("é€‰æ‹©å¼€å§‹ç­‰çº§å’Œç»“æŸç­‰çº§çš„äººæ•°é‡=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                person_num = rs.getInt("person_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return person_num;
+    }
+
+    /**
+     * æ’å…¥åˆ°æ¯æ—¥ç©å®¶ç­‰çº§ä¿¡æ¯è¡¨ä¸­
+     *
+     * @param grade1
+     * @param grade2to9
+     * @param grade10to19
+     * @param grade20to29
+     * @param grade30to39
+     * @param grade40to49
+     * @param grade50to59
+     * @param grade60
+     * @param today
+     */
+    public void insertEveryDayPlayerGrade(int grade1, int grade2to9, int grade10to19, int grade20to29, int grade30to39, int grade40to49, int grade50to59, int grade60, int avg_grade, String today) {
+        String sql = "INSERT INTO user_everyday_grade values (null," + grade1 + "," + grade2to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + "," + avg_grade + ",'" + today + "',now())";
+        logger.debug("æ’å…¥åˆ°æ¯æ—¥ç©å®¶ç­‰çº§ä¿¡æ¯è¡¨ä¸­:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * è·å¾—åœ¨å¼€å§‹ç­‰çº§å’Œç»“æŸç­‰çº§ä¹‹é—´çš„ç©å®¶è§’è‰²æ•°,ä¸Šçº¿ç©å®¶ç­‰çº§ç›‘æ§.
+     *
+     * @param startGrade å¼€å§‹ç­‰çº§
+     * @param endGrade   ç»“æŸç­‰çº§
+     * @return
+     */
+    public int getOnlinePlayerGrade(int startGrade, int endGrade) {
+        int person_num = 0;
+        String sql = "SELECT sum(1) as person_num from user_record_login where p_grade >" + startGrade + " and p_grade < " + endGrade + " and now() < (loginTime + INTERVAL 1 DAY)";
+        logger.debug("åœ¨ä¸€å¤©å†…é€‰æ‹©å¼€å§‹ç­‰çº§å’Œç»“æŸç­‰çº§çš„äººæ•°é‡=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                person_num = rs.getInt("person_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return person_num;
+    }
+
+    /**
+     * æ’å…¥åˆ°æ¯æ—¥ä¸Šçº¿ç©å®¶ç­‰çº§è¡¨ä¸­
+     *
+     * @param grade1
+     * @param grade2to9
+     * @param grade10to19
+     * @param grade20to29
+     * @param grade30to39
+     * @param grade40to49
+     * @param grade50to59
+     * @param grade60
+     * @param today
+     */
+    public void insertIntoOnlinePlayerGrade(int grade1to9, int grade10to19, int grade20to29, int grade30to39, int grade40to49, int grade50to59, int grade60, String today) {
+        String sql = "INSERT INTO user_login_grade values (null," + grade1to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'" + today + "',now())";
+        logger.debug("æ’å…¥åˆ°æ¯æ—¥ä¸Šçº¿ç©å®¶ç­‰çº§ä¿¡æ¯è¡¨ä¸­:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+    }
+
+    /**
+     * è·å¾—åœ¨å¼€å§‹ç­‰çº§å’Œç»“æŸç­‰çº§ä¹‹é—´çš„ç©å®¶è§’è‰²æ•°,æ²‰é»˜ç©å®¶ç­‰çº§ç›‘æ§.
+     *
+     * @param startGrade å¼€å§‹ç­‰çº§
+     * @param endGrade   ç»“æŸç­‰çº§
+     * @return
+     */
+    public int getSilverPlayerGrade(int startGrade, int endGrade) {
+        int person_num = 0;
+        // è”åˆæŸ¥è¯¢, å–å‡ºåœ¨p_record_loginè¡¨ä¸­ç™»é™†æœ€åæ—¶é—´è¶…è¿‡ä¸ƒå¤©çš„u_pkçš„é›†åˆï¼Œå†å–å‡º
+        // u_part_infoè¡¨ä¸­åœ¨æ­¤é›†åˆä¸­çš„æ‰€æœ‰è§’è‰²çš„æ•°é‡ï¼Œæ­¤æ•°é‡ç”±åœ¨å‚æ•°æ‰€å†³å®šçš„ç­‰çº§æ®µå†³å®š.
+        String sql = "SELECT sum(1) as num from u_part_info u where p_grade > " + startGrade + " and p_grade < " + endGrade + " and u.u_pk in (select u_pk from (select p.u_pk from u_login_info p where now() > " + " (p.last_login_time + INTERVAL 7 DAY)) aaa)";
+        logger.debug("é€‰æ‹©å¼€å§‹ç­‰çº§å’Œç»“æŸç­‰çº§çš„æ²‰é»˜è§’è‰²æ•°é‡=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                person_num = rs.getInt("num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return person_num;
+    }
+
+    /**
+     * æ’å…¥åˆ°æ²‰é»˜ç©å®¶ç­‰çº§è¡¨ä¸­
+     *
+     * @param grade1to9
+     * @param grade10to19
+     * @param grade20to29
+     * @param grade30to39
+     * @param grade40to49
+     * @param grade50to59
+     * @param grade60
+     * @param today
+     */
+    public void insertIntoSilverPlayerGrade(int grade1to9, int grade10to19, int grade20to29, int grade30to39, int grade40to49, int grade50to59, int grade60, String today) {
+        String sql = "INSERT INTO user_silence_grade values (null," + grade1to9 + "," + grade10to19 + "," + grade20to29 + "," + grade30to39 + "," + grade40to49 + "," + grade50to59 + "," + grade60 + ",'" + today + "',now())";
+        logger.debug("æ’å…¥åˆ°æ²‰é»˜ç©å®¶ç­‰çº§ä¿¡æ¯è¡¨ä¸­:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * è·å¾—åœ¨æœ€å°‘æ—¶é—´å’Œæœ€å¤šæ—¶é—´ä¹‹é—´çš„ç©å®¶è§’è‰²æ•°,ç©å®¶ä¸Šçº¿æ—¶é—´ç›‘æ§.
+     *
+     * @param least æœ€å°‘æ—¶é—´
+     * @param most  æœ€å¤šæ—¶é—´
+     * @return
+     */
+    public int getOnlinePlayerTime(int least, int most) {
+        int person_num = 0;
+        String sql = "SELECT sum(1) as person_num from user_online_time where onlinetime > " + least * 60 + " and onlinetime < " + most * 60;
+        logger.debug("è·å¾—åœ¨æœ€å°‘æ—¶é—´å’Œæœ€å¤šæ—¶é—´ä¹‹é—´çš„ç©å®¶è§’è‰²æ•°=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                person_num = rs.getInt("person_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return person_num;
+    }
+
+    /**
+     * æ’å…¥åˆ°ç©å®¶ä¸Šçº¿æ—¶é—´è¡¨ä¸­
+     *
+     * @param time10min
+     * @param time30min
+     * @param time60min
+     * @param time120min
+     * @param time120minUp
+     * @param today
+     */
+    public void insertIntoOnlineTime(int time10min, int time30min, int time60min, int time120min, int time120minUp, String today) {
+        String sql = "INSERT INTO user_grade_statistics values (null," + time10min + "," + time30min + "," + time60min + "," + time120min + "," + time120minUp + ",'" + today + "',now())";
+        logger.debug("æ’å…¥åˆ°æ¯æ—¥ä¸Šçº¿æ—¶é—´ä¿¡æ¯è¡¨ä¸­:" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * è·å¾—æ³¨å†Œæ€»äººæ•°
+     *
+     * @return
+     */
+    public int getAllRegistNum() {
+        int allRegistNum = 0;
+        String sql = "SELECT sum(1) as person_num from u_login_info";
+        logger.debug("è·å¾—æ³¨å†Œæ€»äººæ•°=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                allRegistNum = rs.getInt("person_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return allRegistNum;
+    }
+
+    /**
+     * è·å¾—è§’è‰²æ€»æ•°
+     *
+     * @return
+     */
+    public int getAllUserNum() {
+
+        int allUserNum = 0;
+        String sql = "SELECT sum(1) as person_num from u_part_info";
+        logger.debug("è·å¾—è§’è‰²æ€»æ•°=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                allUserNum = rs.getInt("person_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return allUserNum;
+    }
+
+    /**
+     * è·å¾—ä»Šæ—¥æ³¨å†Œç©å®¶æ•°
+     *
+     * @return
+     */
+    public int getTodayRegistNum(String date) {
+        int allTodayRegistNum = 0;
+        String sql = "SELECT sum(1) as person_num from u_login_info where create_time like '%" + date + "%'";
+        logger.debug("è·å¾—ä»Šæ—¥æ³¨å†Œç©å®¶æ•°=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                allTodayRegistNum = rs.getInt("person_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return allTodayRegistNum;
+    }
+
+    /**
+     * è·å¾—ä»Šæ—¥åœ¨çº¿ç©å®¶
+     *
+     * @return
+     */
+    public int getTodayOnlineNum() {
+        int allTodayOnlineNum = 0;
+        String sql = "SELECT sum(1) as all_num from u_login_info where now() < (last_login_time + INTERVAL 1 DAY)";
+        logger.debug("ä»Šæ—¥åœ¨çº¿ç©å®¶=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                allTodayOnlineNum = rs.getInt("all_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return allTodayOnlineNum;
+    }
+
+    /**
+     * è·å¾—ä»Šæ—¥æ´»è·ƒç”¨æˆ·
+     *
+     * @return
+     */
+    public int getTodayActiveNum(String today) {
+        int allTodayActiveNum = 0;
+        String sql = "SELECT sum(1) as active_num from user_online_time where onlinetime > 1800 and createTime like '%" + today + "%'";
+        logger.debug("ä»Šæ—¥æ´»è·ƒç”¨æˆ·=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                allTodayActiveNum = rs.getInt("active_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return allTodayActiveNum;
+    }
+
+    /**
+     * è·å¾—æ‰€æœ‰ç”¨æˆ·åœ¨çº¿æ—¶é—´.
+     *
+     * @return
+     */
+    public long getAllPlayerOnlineTime() {
+        long allPlayerOnlineTime = 0L;
+        String sql = "SELECT sum(onlinetime) as all_online_time from user_online_time where now() < (createTime + INTERVAL 1 DAY)";
+        logger.debug("è·å¾—æ‰€æœ‰ç”¨æˆ·åœ¨çº¿æ—¶é—´=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                allPlayerOnlineTime = rs.getInt("all_online_time");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return allPlayerOnlineTime;
+    }
+
+    /**
+     * è·å¾—å¹³å‡è§’è‰²åœ¨çº¿ç­‰çº§
+     *
+     * @return
+     */
+    public double getAvgPlayerOnlineGrade(int grade) {
+        double avgPlayerOnlineGrade = 0L;
+        String sql = "SELECT avg(p_grade) as avg_grade from user_record_login where p_grade > " + grade + " and now() < (loginTime + INTERVAL 1 DAY)";
+        logger.debug("è·å¾—å¹³å‡è§’è‰²åœ¨çº¿ç­‰çº§=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                avgPlayerOnlineGrade = rs.getDouble("avg_grade");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return avgPlayerOnlineGrade;
+    }
+
+    /**
+     * è·å¾—å¹³å‡åœ¨çº¿äººæ•°
+     *
+     * @return
+     */
+    public double getAvgPlayerOnlineNum(String today) {
+        double avgPlayerOnlineNum = 0;
+        String sql = "SELECT (hour_0+hour_1+hour_2+hour_3+hour_4+hour_5+hour_6" + "+hour_7+hour_8+hour_9+hour_10+hour_11+hour_12+hour_13+hour_14+hour_15" + "+hour_16+hour_17+hour_18+hour_19+hour_20+hour_21+hour_22+hour_23) as " + "avg_player_num,createTime from user_online_num where createTime = '" + today + "'";
+        logger.debug("è·å¾—å¹³å‡åœ¨çº¿äººæ•°=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                avgPlayerOnlineNum = rs.getDouble("avg_player_num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return avgPlayerOnlineNum;
+    }
+
+    /**
+     * æ’å…¥ç©å®¶åœ¨çº¿æ—¶é—´æ®µäººæ•°, æŒ‰å°æ—¶è®¡ç®—.
+     *
+     * @param nowOnlineNum åœ¨çº¿äººæ•°
+     * @param hours        å½“å‰å°æ—¶
+     * @param today        å½“å‰æ—¥æœŸ
+     */
+    public void insertPlayerOnlineNumRecord(int nowOnlineNum, String hours, String today) {
+        String sql1 = "UPDATE `user_online_num` SET hour_" + Integer.parseInt(hours) + " = " + nowOnlineNum
+                + " WHERE createTime = '" + today + "'";
+        String sql2 = "INSERT INTO `user_online_num` (id, hour_" + Integer.parseInt(hours) + ", createTime) VALUES"
+                + "(null, " + nowOnlineNum + ", date(now()))";
+        logger.debug(" æ’å…¥ç©å®¶åœ¨çº¿æ—¶é—´æ®µäººæ•°=" + sql1);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql1);
+            int i = ps.executeUpdate();
+            logger.debug("æ›´æ–°çš„è¿”å›å€¼=" + i);
+            if (i == 0) {
+                ps = conn.prepareStatement(sql2);
+                int a = ps.executeUpdate();
+                logger.debug("æ’å…¥çš„è¿”å›å€¼=" + a);
+            }
+
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ’å…¥ç©å®¶æ€»è§ˆè¡¨
+     *
+     * @param allRegeistNum
+     * @param allUserNum
+     * @param todayRegistNum
+     * @param todayOnlineNum
+     * @param todayActiveNum
+     * @param avgPlaerOnlineTime
+     * @param avgPlayerOnlineGrade
+     * @param avgPlayerOnlineNum
+     * @param today
+     */
+    public void insertPlayerInfoOverview(int allRegeistNum, int allUserNum, int todayRegistNum, int todayOnlineNum, int todayActiveNum, int avgPlaerOnlineTime, double avgPlayerOnlineGrade, double avgPlayerOnlineNum, int grade9today, String today) {
+        String sql = "INSERT INTO user_info_overview values (null," + allRegeistNum + "," + allUserNum + "," + todayRegistNum + "," + todayOnlineNum + "," + todayActiveNum + "," + avgPlaerOnlineTime + "," + avgPlayerOnlineGrade + "," + avgPlayerOnlineNum + "," + grade9today + ",'" + today + "',now())";
+        logger.debug(" æ’å…¥ç©å®¶æ€»è§ˆè¡¨=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+    }
+
+    /**
+     * åˆ é™¤ä¸éœ€è¦çš„æ•°æ®
+     */
+    public void deleteUnneedRecordData() {
+        String sql = "delete from user_record_login where now() < (loginTime + INTERVAL 1 DAY)";
+        String sql1 = "delete from user_online_time where now() < (createTime + INTERVAL 1 DAY)";
+        logger.debug(" åˆ é™¤ä¸éœ€è¦çš„æ•°æ®=" + sql + " ,sql1=" + sql1);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql1);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * è·å–å¹³å‡ç­‰çº§
+     *
+     * @param i
+     * @return
+     */
+    public int getAvgGrade(int minGrade) {
+        int avg_grade = 0;
+        String sql = "SELECT avg(p_grade) as avg_grade from u_part_info where p_grade > " + minGrade;
+        logger.debug("è·å–å¹³å‡ç­‰çº§=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                avg_grade = rs.getInt("avg_grade");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return avg_grade;
+    }
+
+    /**
+     * è¿”å›å½“å‰æ—¥æœŸå½“å‰å°æ—¶å†…çš„å°æ—¶äººæ•°
+     *
+     * @param nowHours
+     * @param today
+     * @return
+     */
+    public int getNowHourNum(String nowHours, String today) {
+
+        int nowNum = 0;
+        String sql = "SELECT hour_" + Integer.parseInt(nowHours) + " as num from user_online_num where createTime = '" + today + "'";
+        logger.debug("è·å–å¹³å‡ç­‰çº§=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                nowNum = rs.getInt("num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return nowNum;
+    }
+
+    /**
+     * å¾—åˆ°å½“å¤©ç©å®¶è¶…è¿‡9çº§çš„æ•°é‡
+     */
+    public int getGrade9today(int grade, String today) {
+        int num = 0;
+        String sql = "SELECT count(*) as num from u_part_info where p_grade > " + grade + " and create_time like '%" + today + "%'";
+        logger.debug("æ¯å¤©è¶…è¿‡9çº§çš„ç©å®¶=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                num = rs.getInt("num");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return num;
+    }
 }
 
 /**
- * ²é¿´Íæ¼ÒÔÚÏßÊ±¼ä¶Î±íÖĞÊÇ·ñÓĞµ±ÌìµÄ¼ÇÂ¼
- * 
- * @return
- * 
- * public int hasOnlineNumRecord(String today) { int flag = 0; String sql =
+ * æŸ¥çœ‹ç©å®¶åœ¨çº¿æ—¶é—´æ®µè¡¨ä¸­æ˜¯å¦æœ‰å½“å¤©çš„è®°å½•
+ *
+ * @return public int hasOnlineNumRecord(String today) { int flag = 0; String sql =
  * "select sum(1) as has_num from user_online_num where record_time =
- * '"+today+"'"; logger.debug("²é¿´Íæ¼ÒÔÚÏßÊ±¼ä¶Î±íÖĞÊÇ·ñÓĞµ±ÌìµÄ¼ÇÂ¼="+sql); DBConnection dbConn =
+ * '"+today+"'"; logger.debug("æŸ¥çœ‹ç©å®¶åœ¨çº¿æ—¶é—´æ®µè¡¨ä¸­æ˜¯å¦æœ‰å½“å¤©çš„è®°å½•="+sql); DBConnection dbConn =
  * new DBConnection(DBConnection.JYGAMEUSER_DB); try{ conn = dbConn.getConn();
  * stmt = conn.createStatement(); rs = stmt.executeQuery(sql); if (rs.next()) {
  * flag = rs.getInt("has_num"); }
- * 
+ * <p>
  * rs.close(); stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
  * finally { dbConn.closeConn(); } return flag; }
  */
 
 /**
- * ¸üĞÂ²åÈëÓÃ»§ÔÚÏßÊ±¼ä¶Î±í
- * 
+ * æ›´æ–°æ’å…¥ç”¨æˆ·åœ¨çº¿æ—¶é—´æ®µè¡¨
+ *
  * @param nowOnlineNum
  * @param nowHours
  * @param today
- * 
+ *
  * public void updatePlayerOnlineNumRecord(int nowOnlineNum, String nowHours,
  * String today) { String col = "hours"+nowHours; String sql = "update
  * user_online_num set hour_time = "+nowOnlineNum+" where record_time =
- * '"+today+"'"; logger.debug("¸üĞÂ²åÈëÓÃ»§ÔÚÏßÊ±¼ä¶Î±í="+sql); DBConnection dbConn = new
+ * '"+today+"'"; logger.debug("æ›´æ–°æ’å…¥ç”¨æˆ·åœ¨çº¿æ—¶é—´æ®µè¡¨="+sql); DBConnection dbConn = new
  * DBConnection(DBConnection.JYGAMEUSER_DB); try{ conn = dbConn.getConn(); ps =
  * conn.prepareStatement(sql); ps.executeUpdate(); ps.close();
- * 
+ *
  * }catch (SQLException e) { e.printStackTrace(); } finally {
  * dbConn.closeConn(); } }
  */

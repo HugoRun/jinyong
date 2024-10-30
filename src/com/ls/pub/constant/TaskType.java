@@ -1,30 +1,30 @@
 package com.ls.pub.constant;
 
 /**
- * ¹¦ÄÜ:ÈÎÎñÀàĞÍ
- * @author ÁõË§
+ * åŠŸèƒ½:ä»»åŠ¡ç±»å‹
+ * @author åˆ˜å¸…
  * Oct 20, 2008  5:37:11 PM
  */
 public class TaskType
 {
 	/**
-	 * ¶Ô»°Àà
+	 * å¯¹è¯ç±»
 	 */
 	public static final int DIALOG = 1;
 	/**
-	 * É±¹ÖÀà
+	 * æ€æ€ªç±»
 	 */
 	public static final int KILL = 2;
 	/**
-	 * Ğ¯´øÀà
+	 * æºå¸¦ç±»
 	 */
 	public static final int CARRY = 3;
 	/**
-	 * Ñ°ÎïÀà
+	 * å¯»ç‰©ç±»
 	 */
 	public static final int FIND = 4;
 	/**
-	 * ¸´ºÏÀà
+	 * å¤åˆç±»
 	 */
 	public static final int COMPLEX = 5;
 }

@@ -3,23 +3,23 @@ package com.ls.ben.vo.info.partinfo;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ:u_time_control±í
+ * åŠŸèƒ½:u_time_controlè¡¨
  * 
- * @author ÁõË§ Sep 25, 2008 11:47:38 AM
+ * @author åˆ˜å¸… Sep 25, 2008 11:47:38 AM
  */
 public class TimeControlVO
 {
 	/** id */
 	private int id;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/**ĞèÒª¿ØÖÆµÄ¶ÔÏó*/
+	/**éœ€è¦æ§åˆ¶çš„å¯¹è±¡*/
 	private int   objectId;
-	/**ĞèÒª¿ØÖÆµÄ¶ÔÏóµÄÀàĞÍ£¬Èç:µÀ¾ß£¬²Ëµ¥µÈ*/
+	/**éœ€è¦æ§åˆ¶çš„å¯¹è±¡çš„ç±»å‹ï¼Œå¦‚:é“å…·ï¼Œèœå•ç­‰*/
 	private int objectType;
-	/**¼ÇÂ¼×îºóÒ»´ÎµÄÊ¹ÓÃÊ±¼ä*/
+	/**è®°å½•æœ€åä¸€æ¬¡çš„ä½¿ç”¨æ—¶é—´*/
 	private Date useDatetime;
-	/**¼ÇÂ¼µ±ÌìµÄÊ¹ÓÃ´ÎÊı*/
+	/**è®°å½•å½“å¤©çš„ä½¿ç”¨æ¬¡æ•°*/
 	private int useTimes;
 	public int getId()
 	{

@@ -11,7 +11,7 @@ import com.pm.vo.field.FieldKillVO;
 
 public class FieldKillDao extends DaoBase {
 	/**
-	 * »ñµÃ´ËpPkÔÚ24Ğ¡Ê±ÄÚÉ±bPpkµÄ´ÎÊı
+	 * è·å¾—æ­¤pPkåœ¨24å°æ—¶å†…æ€bPpkçš„æ¬¡æ•°
 	 * @param fh_id
 	 * @param pPk
 	 * @param bPpk
@@ -19,10 +19,10 @@ public class FieldKillDao extends DaoBase {
 	 */
 	public int bykill_number( int pPk, int bPpk)
 	{
-		String sql = "select count(1) as numb from s_field_kill where p_pk = "+pPk+" and bp_pk = "
+		String sql = "SELECT count(1) as numb from s_field_kill where p_pk = "+pPk+" and bp_pk = "
 							+ bPpk + " and now() > (sf_create_time + INTERVAL 1 DAY)";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("»ñµÃ´ËpPkÔÚ24Ğ¡Ê±ÄÚÉ±bPpkµÄ´ÎÊı="+sql);
+		logger.debug("è·å¾—æ­¤pPkåœ¨24å°æ—¶å†…æ€bPpkçš„æ¬¡æ•°="+sql);
 		conn = dbConn.getConn();
 		int numb = 0;
 		try
@@ -48,16 +48,16 @@ public class FieldKillDao extends DaoBase {
 	}
 
 	/**
-	 * ½«É±ÈËĞÅÏ¢²åÈëµ½Õ½³¡É±ÈË±íÖĞ, ´Ë±í¼ÇÂ¼ĞÅÏ¢±È½ÏÏêÏ¸£¬µ«±£´æÊ±¼ä½Ï¶Ì¡£
+	 * å°†æ€äººä¿¡æ¯æ’å…¥åˆ°æˆ˜åœºæ€äººè¡¨ä¸­, æ­¤è¡¨è®°å½•ä¿¡æ¯æ¯”è¾ƒè¯¦ç»†ï¼Œä½†ä¿å­˜æ—¶é—´è¾ƒçŸ­ã€‚
 	 * @param pPk
 	 * @param bPpk
-	 * @param fh_id ³¡´Î
+	 * @param fh_id åœºæ¬¡
 	 */
 	public void insertIntoFieldKill(int pPk, int bPpk, int fh_sequence,String field_type)
 	{
-		String sql = "insert into s_field_kill values (null,"+pPk+","+bPpk+","+fh_sequence+","+field_type+",now())";
+		String sql = "INSERT INTO s_field_kill values (null,"+pPk+","+bPpk+","+fh_sequence+","+field_type+",now())";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("½«É±ÈËĞÅÏ¢²åÈëµ½Õ½³¡É±ÈË±íÖĞ="+sql);
+		logger.debug("å°†æ€äººä¿¡æ¯æ’å…¥åˆ°æˆ˜åœºæ€äººè¡¨ä¸­="+sql);
 		conn = dbConn.getConn();
 		try
 		{
@@ -76,7 +76,7 @@ public class FieldKillDao extends DaoBase {
 	}
 
 	/**
-	 * »ñµÃ±¾³¡µÄÅÅÃû°ñ
+	 * è·å¾—æœ¬åœºçš„æ’åæ¦œ
 	 * @param pPk
 	 * @param page_no
 	 * @return
@@ -96,7 +96,7 @@ public class FieldKillDao extends DaoBase {
 		try
 		{
 			stmt = conn.createStatement();
-			count_sql = "select count(*) as allnum from field_kill_num where field_type = "+field_type;
+			count_sql = "SELECT count(*) as allnum from field_kill_num where field_type = "+field_type;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -107,13 +107,13 @@ public class FieldKillDao extends DaoBase {
 
 			queryPage = new  QueryPage(page_no,count);
 			
-			page_sql = "select sfk.p_pk,p_grade,p_camp,p_name,count(1) as kill_num1 " +
+			page_sql = "SELECT sfk.p_pk,p_grade,p_camp,p_name,count(1) as kill_num1 " +
 					"from s_field_kill sfk,u_part_info upi " +
 					"where field_type = "+field_type+" and field_sequence = "+field_sequence+ 
 					"and sfk.p_pk = upi.p_pk group by p_pk order by kill_num1 desc,p_grade asc limit " + queryPage.getStartOfPage() 
 							+ ","+queryPage.getPageSize();
 			
-			logger.debug("²é¿´ÔÂ·İÅÅÃû°ñ="+page_sql);
+			logger.debug("æŸ¥çœ‹æœˆä»½æ’åæ¦œ="+page_sql);
 			
 			rs = stmt.executeQuery(page_sql);
 			while (rs.next())
@@ -128,7 +128,7 @@ public class FieldKillDao extends DaoBase {
 				list.add(fieldKillVO);
 				
 			}
-			logger.debug("²é¿´ÔÂ·İÅÅÃû°ñµÄ¶àÉÙ="+list.size());
+			logger.debug("æŸ¥çœ‹æœˆä»½æ’åæ¦œçš„å¤šå°‘="+list.size());
 			rs.close();
 			stmt.close();
 			

@@ -4,27 +4,27 @@ import com.ls.pub.constant.Equip;
 
 
 /**
- * ¹¦ÄÜ£ºÉíÉÏ×°±¸µÄÎ»ÖÃ
+ * åŠŸèƒ½ï¼šèº«ä¸Šè£…å¤‡çš„ä½ç½®
  * @author ls
  * Aug 18, 2009
  * 10:54:11 AM
  */
 public class PositionOnEquip
 {
-	public static final int EQUIP_NUM_ON_BODY = 8;//ÉíÉÏ¿ÉÒÔ´©µÄ×°±¸µÄÊıÁ¿
+	public static final int EQUIP_NUM_ON_BODY = 8;//èº«ä¸Šå¯ä»¥ç©¿çš„è£…å¤‡çš„æ•°é‡
 	
 	public final static int WEAPON = 1;
 	public final static int HAT = 2;
 	public final static int CLOTHING = 3;
-	public final static int TROUSERS = 4;//¿ã×Ó
+	public final static int TROUSERS = 4;//è£¤å­
 	public final static int SHOES = 5;
-	public final static int JEWELRY_1 = 6;//ÊÎÆ·1
-	public final static int JEWELRY_2 = 7;//ÊÎÆ·2
-	public final static int JEWELRY_3 = 8;//ÊÎÆ·3
+	public final static int JEWELRY_1 = 6;//é¥°å“1
+	public final static int JEWELRY_2 = 7;//é¥°å“2
+	public final static int JEWELRY_3 = 8;//é¥°å“3
 	
 	
 	/**
-	 * ¸ù¾İ²¿Î»µÃµ½×°±¸ÀàĞÍ
+	 * æ ¹æ®éƒ¨ä½å¾—åˆ°è£…å¤‡ç±»å‹
 	 * @return
 	 */
 	public static int getEquipByPosotion( int position )

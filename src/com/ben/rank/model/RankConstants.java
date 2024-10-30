@@ -9,50 +9,50 @@ public class RankConstants
 {
 	public static Map<String, Integer> FILED_TYPE = new HashMap<String, Integer>();
 
-	//ÅÅĞĞ¹æÔòÃèÊö
+	//æ’è¡Œè§„åˆ™æè¿°
 	public static Map<String,String> DETAIL = new HashMap<String, String>();
-	//¸ÃÅÅĞĞµÚÒ»µÄÃèÊö
+	//è¯¥æ’è¡Œç¬¬ä¸€çš„æè¿°
 	public static Map<String,String> FIRST_DES = new HashMap<String, String>();
 	
-	//¸öÈË°ñ
-	public final static String DENGJI = "r_p_exp";//µÈ¼¶
-	public final static String KILL = "r_kill";//É±ÊÖ°ñ
-	public final static String DEAR = "r_dear";//°®Çé
-	public final static String EVIL = "r_evil";//¶ñÈË°ñ
-	public final static String GLORY = "r_glory";//ÈÙÓş°ñ
-	public final static String MONEY = "r_money";//½ğÒø°ñ
-	public final static String YUANBAO = "r_yuanbao";//¸»ºÀ°ñ
-	public final static String CREDIT = "r_credit";//ÉùÍû°ñ
-	public final static String VIP = "r_vip";//×ğ¹ó°ñ
-	public final static String BANGKILL = "r_bangkill";//ÍÀÑª°ñ
-	public final static String KILLNPC = "r_killnpc";//É±¹Ö°ñ
-	public final static String WEI_TASK = "r_wei_task";//ÍşÍû°ñ
-	public final static String DEAD = "r_dead";//ËÀÍö°ñ
-	public final static String KILLBOSS = "r_killboss";//»÷É±°ñ
-	public final static String ZHONG = "r_zhong";//ÖÒÕê°ñ
-	public final static String SALE = "r_sale";//ÉúÒâ°ñ
-	public final static String YI = "r_yi";//ÒåÆø°ñ
-	public final static String MENG = "r_meng";//ÃÍ½«°ñ
-	public final static String SHENG = "r_sheng";//½­ºşÊ¥°ñ
-	public final static String BOYI = "r_boyi";//²©ŞÄ°ñ
-	public final static String LOST = "r_lost";//ÃÔ¹¬ÅÅĞĞ°ñ
-	public final static String KILLLANG = "r_killlang";//É±ËÀÇ§ÃæÀÉ¾ı
-	public final static String LANGJUN = "r_langjun";//³ÉÎªÇ§ÃæÀÉ¾ı
-	public final static String ANS = "r_ans";//ÉñËã°ñ
-	public final static String OPEN = "r_open";//¿ª¹â°ñ
+	//ä¸ªäººæ¦œ
+	public final static String DENGJI = "r_p_exp";//ç­‰çº§
+	public final static String KILL = "r_kill";//æ€æ‰‹æ¦œ
+	public final static String DEAR = "r_dear";//çˆ±æƒ…
+	public final static String EVIL = "r_evil";//æ¶äººæ¦œ
+	public final static String GLORY = "r_glory";//è£èª‰æ¦œ
+	public final static String MONEY = "r_money";//é‡‘é“¶æ¦œ
+	public final static String YUANBAO = "r_yuanbao";//å¯Œè±ªæ¦œ
+	public final static String CREDIT = "r_credit";//å£°æœ›æ¦œ
+	public final static String VIP = "r_vip";//å°Šè´µæ¦œ
+	public final static String BANGKILL = "r_bangkill";//å± è¡€æ¦œ
+	public final static String KILLNPC = "r_killnpc";//æ€æ€ªæ¦œ
+	public final static String WEI_TASK = "r_wei_task";//å¨æœ›æ¦œ
+	public final static String DEAD = "r_dead";//æ­»äº¡æ¦œ
+	public final static String KILLBOSS = "r_killboss";//å‡»æ€æ¦œ
+	public final static String ZHONG = "r_zhong";//å¿ è´æ¦œ
+	public final static String SALE = "r_sale";//ç”Ÿæ„æ¦œ
+	public final static String YI = "r_yi";//ä¹‰æ°”æ¦œ
+	public final static String MENG = "r_meng";//çŒ›å°†æ¦œ
+	public final static String SHENG = "r_sheng";//æ±Ÿæ¹–åœ£æ¦œ
+	public final static String BOYI = "r_boyi";//åšå¼ˆæ¦œ
+	public final static String LOST = "r_lost";//è¿·å®«æ’è¡Œæ¦œ
+	public final static String KILLLANG = "r_killlang";//æ€æ­»åƒé¢éƒå›
+	public final static String LANGJUN = "r_langjun";//æˆä¸ºåƒé¢éƒå›
+	public final static String ANS = "r_ans";//ç¥ç®—æ¦œ
+	public final static String OPEN = "r_open";//å¼€å…‰æ¦œ
 	
-	//³èÎï°ñ
-	public final static String CHONGWU = "p_chongwu";//³èÎï
-	public final static String PET = "p_pet";//¿ñ³è
-	//°ïÅÉ°ñ
-	public final static String F_PRESTIGE = "f_prestige";//°ïÅÉÉùÍû°ñ
-	public final static String F_ZHANLI = "f_zhanli";//°ïÅÉÕ½Á¦°ñ
-	public final static String F_RICH = "f_rich";//°ïÅÉ²Æ¸»°ñ
-	//×°±¸°ñ
-	public final static String SHENBING = "e_shenbing";//Éñ±ø°ñ
-	public final static String XIANJIA = "e_xianjia";//ÏÉ¼×°ñ
-	public final static String FABAO = "e_fabao";//·¨±¦°ñ
-	public final static String ZUOQI = "e_zuoqi";//×øÆï°ñ
+	//å® ç‰©æ¦œ
+	public final static String CHONGWU = "p_chongwu";//å® ç‰©
+	public final static String PET = "p_pet";//ç‹‚å® 
+	//å¸®æ´¾æ¦œ
+	public final static String F_PRESTIGE = "f_prestige";//å¸®æ´¾å£°æœ›æ¦œ
+	public final static String F_ZHANLI = "f_zhanli";//å¸®æ´¾æˆ˜åŠ›æ¦œ
+	public final static String F_RICH = "f_rich";//å¸®æ´¾è´¢å¯Œæ¦œ
+	//è£…å¤‡æ¦œ
+	public final static String SHENBING = "e_shenbing";//ç¥å…µæ¦œ
+	public final static String XIANJIA = "e_xianjia";//ä»™ç”²æ¦œ
+	public final static String FABAO = "e_fabao";//æ³•å®æ¦œ
+	public final static String ZUOQI = "e_zuoqi";//åéª‘æ¦œ
 
 	static
 	{
@@ -89,53 +89,53 @@ public class RankConstants
 		FILED_TYPE.put(FABAO, 30);
 		FILED_TYPE.put(ZUOQI, 31);
 		
-		DETAIL.put(DENGJI,"¡¾µÈ¼¶°ñ¡¿*ÒÀ¾İµÈ¼¶¸ßµÍ½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(KILL, "¡¾Õ½Á¦°ñ¡¿*ÒÀ¾İÉ±ÈËÊıÄ¿½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(DEAR, "¡¾°®Çé°ñ¡¿*ÒÀ¾İÇ×ÃÜ¶È½øĞĞË«ÈË×éºÏÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		DETAIL.put(EVIL, "¡¾ÑªÕ½°ñ¡¿*ÒÀ¾İ×ï¶ñÖµ½øĞĞÅÅĞĞµÄÑªÕ½°ñ£¡*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(GLORY, "¡¾ÈÙÓş°ñ¡¿*ÒÀ¾İ»÷É±¶Ô·½ÕóÓª»ñµÃÈÙÓşµã½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(MONEY, "¡¾ÏÉÊ¯°ñ¡¿*ÒÀ¾İ"+GameConfig.getMoneyUnitName()+"Êı½øĞĞÅÅĞĞ*");
-		DETAIL.put(YUANBAO, "¡¾ÏÉ¾§°ñ¡¿*ÒÀ¾İ"+GameConfig.getYuanbaoName()+"ÏûºÄ½øĞĞÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		DETAIL.put(CREDIT, "¡¾ÉùÍû°ñ¡¿*ÒÀ¾İÊ¦Í½¹ØÏµµÄÉùÍû½øĞĞÅÅĞĞ*");
+		DETAIL.put(DENGJI,"ã€ç­‰çº§æ¦œã€‘*ä¾æ®ç­‰çº§é«˜ä½è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(KILL, "ã€æˆ˜åŠ›æ¦œã€‘*ä¾æ®æ€äººæ•°ç›®è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(DEAR, "ã€çˆ±æƒ…æ¦œã€‘*ä¾æ®äº²å¯†åº¦è¿›è¡ŒåŒäººç»„åˆæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		DETAIL.put(EVIL, "ã€è¡€æˆ˜æ¦œã€‘*ä¾æ®ç½ªæ¶å€¼è¿›è¡Œæ’è¡Œçš„è¡€æˆ˜æ¦œï¼*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(GLORY, "ã€è£èª‰æ¦œã€‘*ä¾æ®å‡»æ€å¯¹æ–¹é˜µè¥è·å¾—è£èª‰ç‚¹è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(MONEY, "ã€ä»™çŸ³æ¦œã€‘*ä¾æ®"+GameConfig.getMoneyUnitName()+"æ•°è¿›è¡Œæ’è¡Œ*");
+		DETAIL.put(YUANBAO, "ã€ä»™æ™¶æ¦œã€‘*ä¾æ®"+GameConfig.getYuanbaoName()+"æ¶ˆè€—è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		DETAIL.put(CREDIT, "ã€å£°æœ›æ¦œã€‘*ä¾æ®å¸ˆå¾’å…³ç³»çš„å£°æœ›è¿›è¡Œæ’è¡Œ*");
 		
-		DETAIL.put(VIP, "¡¾×ğ¹ó°ñ¡¿*ÒÀ¾İ»áÔ±¼¶±ğºÍÊ±³¤½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(BANGKILL, "¡¾ÍÀÑª°ñ¡¿*ÒÀ¾İ°ïÅÉÉ±ÈËÊı×ÜºÍ½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(KILLNPC, "¡¾É±¹Ö°ñ¡¿*ÒÀ¾İÉ±¹ÖµãÊı½øĞĞÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		DETAIL.put(WEI_TASK, "¡¾ÍşÍû°ñ¡¿*ÒÀ¾İ»ñµÃµÄÍşÍû½øĞĞÅÅĞĞ*");
-		DETAIL.put(DEAD, "¡¾ËÀÍö°ñ¡¿*ÒÀ¾İ±»É±ËÀµÄ´ÎÊı½øĞĞÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		DETAIL.put(KILLBOSS,"¡¾»÷É±°ñ¡¿*ÒÀ¾İ»÷É±¸±±¾BossµÄµãÊı½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(ZHONG, "¡¾ÖÒÕê°ñ¡¿*ÒÀ¾İÔÚÏßÊ±³¤½øĞĞÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		DETAIL.put(SALE, "¡¾ÉúÒâ°ñ¡¿*ÒÀ¾İÅÄÂô³É¹¦´ÎÊı½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(YI, "¡¾ÒåÆø°ñ¡¿*ÒÀ¾İÒåÆø¶È½øĞĞË«ÈË×éºÏÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		DETAIL.put(MENG, "¡¾ÃÍ½«°ñ¡¿*ÒÀ¾İÍê³É¸±±¾µÄµãÊı½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(SHENG,"¡¾½­ºşÊ¥°ñ¡¿*ÒÀ¾İ¾­ÑéÖµ£¬ÔÚÏßÊ±¼ä¼°½­ºşÉùÍû½øĞĞÅÅĞĞ*");
-		DETAIL.put(BOYI, "¡¾²©²Ê°ñ¡¿*¸ù¾İ²ÊÆ±ÖĞ½±½ğ¶î½øĞĞÅÅĞĞ*");
-		DETAIL.put(LOST, "¡¾Ì½ÏÕ°ñ¡¿*ÒÀ¾İ±¾ÖÜÀÛ¼ÆÍê³ÉÃÔ¹¬µÄ²ãÊı½øĞĞÅÅĞĞ*£¨Ã¿ÔÂÖØÖÃ£©");
-		DETAIL.put(KILLLANG, "¡¾Éñ²¶°ñ¡¿*ÒÀ¾İÉ±ËÀÕæÇ§ÃæÀÉ¾ı´ÎÊı½øĞĞÅÅĞĞ*");
-		DETAIL.put(LANGJUN, "¡¾Éú´æ°ñ¡¿*ÒÀ¾İ³É¹¦¶ã¹ı×·É±´ÎÊı½øĞĞÅÅĞĞ*");
+		DETAIL.put(VIP, "ã€å°Šè´µæ¦œã€‘*ä¾æ®ä¼šå‘˜çº§åˆ«å’Œæ—¶é•¿è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(BANGKILL, "ã€å± è¡€æ¦œã€‘*ä¾æ®å¸®æ´¾æ€äººæ•°æ€»å’Œè¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(KILLNPC, "ã€æ€æ€ªæ¦œã€‘*ä¾æ®æ€æ€ªç‚¹æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		DETAIL.put(WEI_TASK, "ã€å¨æœ›æ¦œã€‘*ä¾æ®è·å¾—çš„å¨æœ›è¿›è¡Œæ’è¡Œ*");
+		DETAIL.put(DEAD, "ã€æ­»äº¡æ¦œã€‘*ä¾æ®è¢«æ€æ­»çš„æ¬¡æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		DETAIL.put(KILLBOSS,"ã€å‡»æ€æ¦œã€‘*ä¾æ®å‡»æ€å‰¯æœ¬Bossçš„ç‚¹æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(ZHONG, "ã€å¿ è´æ¦œã€‘*ä¾æ®åœ¨çº¿æ—¶é•¿è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		DETAIL.put(SALE, "ã€ç”Ÿæ„æ¦œã€‘*ä¾æ®æ‹å–æˆåŠŸæ¬¡æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(YI, "ã€ä¹‰æ°”æ¦œã€‘*ä¾æ®ä¹‰æ°”åº¦è¿›è¡ŒåŒäººç»„åˆæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		DETAIL.put(MENG, "ã€çŒ›å°†æ¦œã€‘*ä¾æ®å®Œæˆå‰¯æœ¬çš„ç‚¹æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(SHENG,"ã€æ±Ÿæ¹–åœ£æ¦œã€‘*ä¾æ®ç»éªŒå€¼ï¼Œåœ¨çº¿æ—¶é—´åŠæ±Ÿæ¹–å£°æœ›è¿›è¡Œæ’è¡Œ*");
+		DETAIL.put(BOYI, "ã€åšå½©æ¦œã€‘*æ ¹æ®å½©ç¥¨ä¸­å¥–é‡‘é¢è¿›è¡Œæ’è¡Œ*");
+		DETAIL.put(LOST, "ã€æ¢é™©æ¦œã€‘*ä¾æ®æœ¬å‘¨ç´¯è®¡å®Œæˆè¿·å®«çš„å±‚æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯æœˆé‡ç½®ï¼‰");
+		DETAIL.put(KILLLANG, "ã€ç¥æ•æ¦œã€‘*ä¾æ®æ€æ­»çœŸåƒé¢éƒå›æ¬¡æ•°è¿›è¡Œæ’è¡Œ*");
+		DETAIL.put(LANGJUN, "ã€ç”Ÿå­˜æ¦œã€‘*ä¾æ®æˆåŠŸèº²è¿‡è¿½æ€æ¬¡æ•°è¿›è¡Œæ’è¡Œ*");
 		
-		//×°±¸°ñ
-		DETAIL.put(SHENBING,"¡¾Éñ±ø°ñ¡¿*ÒÀ¾İÎäÆ÷µÄ¹¥»÷ºÍÊôĞÔ¹¥»÷½øĞĞÅÅĞĞµÄ*");
-		FIRST_DES.put(SHENBING,"¡ï»ìãçÉñ±ø¡ï");
-		DETAIL.put(FABAO,"¡¾·¨±¦°ñ¡¿*ÒÀ¾İ·¨±¦µÄ¹¥»÷·ÀÓùºÍÊôĞÔ¹¥»÷·ÀÓù½øĞĞÅÅĞĞµÄ*");
-		FIRST_DES.put(FABAO,"¡ï»ìãçÁé±¦¡ï");
-		DETAIL.put(XIANJIA,"¡¾ÏÉ¼×°ñ¡¿*ÒÀ¾İ·À¾ßµÄ·ÀÓùºÍÊôĞÔ·ÀÓù½øĞĞÅÅĞĞµÄ*");
-		FIRST_DES.put(XIANJIA,"¡ï»ìãçÏÉ¼×¡ï");
-		DETAIL.put(ZUOQI,"¡¾×øÆï°ñ¡¿*ÒÀ¾İ×øÆïµÄµÈ¼¶½øĞĞÅÅĞĞµÄ*");
-		FIRST_DES.put(ZUOQI,"¡ï»ìãçÏÉÆï¡ï");
+		//è£…å¤‡æ¦œ
+		DETAIL.put(SHENBING,"ã€ç¥å…µæ¦œã€‘*ä¾æ®æ­¦å™¨çš„æ”»å‡»å’Œå±æ€§æ”»å‡»è¿›è¡Œæ’è¡Œçš„*");
+		FIRST_DES.put(SHENBING,"â˜…æ··æ²Œç¥å…µâ˜…");
+		DETAIL.put(FABAO,"ã€æ³•å®æ¦œã€‘*ä¾æ®æ³•å®çš„æ”»å‡»é˜²å¾¡å’Œå±æ€§æ”»å‡»é˜²å¾¡è¿›è¡Œæ’è¡Œçš„*");
+		FIRST_DES.put(FABAO,"â˜…æ··æ²Œçµå®â˜…");
+		DETAIL.put(XIANJIA,"ã€ä»™ç”²æ¦œã€‘*ä¾æ®é˜²å…·çš„é˜²å¾¡å’Œå±æ€§é˜²å¾¡è¿›è¡Œæ’è¡Œçš„*");
+		FIRST_DES.put(XIANJIA,"â˜…æ··æ²Œä»™ç”²â˜…");
+		DETAIL.put(ZUOQI,"ã€åéª‘æ¦œã€‘*ä¾æ®åéª‘çš„ç­‰çº§è¿›è¡Œæ’è¡Œçš„*");
+		FIRST_DES.put(ZUOQI,"â˜…æ··æ²Œä»™éª‘â˜…");
 		
-		//°ïÅÉ°ñ
-		DETAIL.put(F_PRESTIGE,"¡¾ÉùÍû°ñ¡¿*ÒÀ¾İ°ï»áÉùÍûµÄ¶àÉÙ½øĞĞÅÅĞĞ*");
-		FIRST_DES.put(F_PRESTIGE, "¡ïËìÈËÊÏ¡ï");
-		DETAIL.put(F_ZHANLI,"¡¾Õ½Á¦°ñ¡¿*ÒÀ¾İÊÏ×åµÄµÈ¼¶¡¢Õ½¶·Á¦ºÍÈËÊı½øĞĞÅÅĞĞ*");
-		FIRST_DES.put(F_ZHANLI, "¡ïÅÌ¹ÅÊÏ¡ï");
-		DETAIL.put( F_RICH,"¡¾²Æ¸»°ñ¡¿*ÒÀ¾İ°ï»á²ÄÁÏµÄ¶àÉÙ½øĞĞÅÅĞĞ*");
-		FIRST_DES.put( F_RICH, "¡ï·üôËÊÏ¡ï");
-		//»î¶¯°ñ
-		DETAIL.put(OPEN, "¡¾¿ª¹â°ñ¡¿*ÒÀ¾İ¿ª»Æ½ğ±¦ÏäÊıÁ¿½øĞĞÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		FIRST_DES.put(OPEN, "¡ï¸£ÏÉ¡ï");
-		DETAIL.put(ANS, "¡¾ÉñËã°ñ¡¿*ÒÀ¾İ´ğÌâÕıÈ·ÌõÊı½øĞĞÅÅĞĞ*£¨Ã¿ÖÜÖØÖÃ£©");
-		FIRST_DES.put(ANS, "¡ïÌìÊ¦¡ï");
+		//å¸®æ´¾æ¦œ
+		DETAIL.put(F_PRESTIGE,"ã€å£°æœ›æ¦œã€‘*ä¾æ®å¸®ä¼šå£°æœ›çš„å¤šå°‘è¿›è¡Œæ’è¡Œ*");
+		FIRST_DES.put(F_PRESTIGE, "â˜…é‚äººæ°â˜…");
+		DETAIL.put(F_ZHANLI,"ã€æˆ˜åŠ›æ¦œã€‘*ä¾æ®æ°æ—çš„ç­‰çº§ã€æˆ˜æ–—åŠ›å’Œäººæ•°è¿›è¡Œæ’è¡Œ*");
+		FIRST_DES.put(F_ZHANLI, "â˜…ç›˜å¤æ°â˜…");
+		DETAIL.put( F_RICH,"ã€è´¢å¯Œæ¦œã€‘*ä¾æ®å¸®ä¼šææ–™çš„å¤šå°‘è¿›è¡Œæ’è¡Œ*");
+		FIRST_DES.put( F_RICH, "â˜…ä¼ç¾²æ°â˜…");
+		//æ´»åŠ¨æ¦œ
+		DETAIL.put(OPEN, "ã€å¼€å…‰æ¦œã€‘*ä¾æ®å¼€é»„é‡‘å®ç®±æ•°é‡è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		FIRST_DES.put(OPEN, "â˜…ç¦ä»™â˜…");
+		DETAIL.put(ANS, "ã€ç¥ç®—æ¦œã€‘*ä¾æ®ç­”é¢˜æ­£ç¡®æ¡æ•°è¿›è¡Œæ’è¡Œ*ï¼ˆæ¯å‘¨é‡ç½®ï¼‰");
+		FIRST_DES.put(ANS, "â˜…å¤©å¸ˆâ˜…");
 	}
 	
 	public static void main(String[] args)

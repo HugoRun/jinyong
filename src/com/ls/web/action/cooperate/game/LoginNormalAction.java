@@ -25,10 +25,10 @@ public class LoginNormalAction extends Action
 		String gameid = request.getParameter("gameid");
 		String login_ip = request.getRemoteAddr();
 		String login_params = request.getQueryString();
-		if (GameConfig.getGameState() == 2)// ÅĞ¶ÏÓÎÏ·µÄ×´Ì¬
+		if (GameConfig.getGameState() == 2)// åˆ¤æ–­æ¸¸æˆçš„çŠ¶æ€
 		{
-			// ÓÎÏ·×´Ì¬ÎªÉÏÏßÄÚ²¿²âÊÔ×´Ì¬
-			// ¶¯Ì¬¹«¸æ
+			// æ¸¸æˆçŠ¶æ€ä¸ºä¸Šçº¿å†…éƒ¨æµ‹è¯•çŠ¶æ€
+			// åŠ¨æ€å…¬å‘Š
 			SystemNotifyService systemNotifyService = new SystemNotifyService();
 			SystemNotifyVO first_notify_info = systemNotifyService
 					.getFirstNotifyInfo();
@@ -46,7 +46,7 @@ public class LoginNormalAction extends Action
 		session.setAttribute("uPk", u_pk + "");
 		session.setAttribute("user_name", account);
 		session.setAttribute("channel_id", gameid);
-		session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
+		session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
 		return mapping.findForward("success");
 	}
 

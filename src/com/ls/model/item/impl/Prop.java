@@ -8,7 +8,7 @@ import com.ls.web.service.goods.GoodsService;
 
 /**
  * @author ls
- * µÀ¾ß
+ * é“å…·
  */
 public class Prop extends Item
 {

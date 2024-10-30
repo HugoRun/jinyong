@@ -16,7 +16,7 @@ import com.ls.web.service.log.DataErrorLog;
 import com.pm.vo.passiveskill.PassSkillVO;
 
 /**
- *  ´æ´¢Íæ¼ÒµÄ ¼¼ÄÜĞÅÏ¢
+ *  å­˜å‚¨ç©å®¶çš„ æŠ€èƒ½ä¿¡æ¯
  * @author Administrator
  *
  */
@@ -26,7 +26,7 @@ public class RoleSkillInfo extends UserBase
 	private HashMap<Integer,PlayerSkillVO> skill;
 	private RoleSkillPropertyInfo roleSkillPropertyInfo;
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 * @param roleInfo
 	 */
 	public RoleSkillInfo(int p_pk)
@@ -39,22 +39,22 @@ public class RoleSkillInfo extends UserBase
 	
 	
 	/**
-	 * Çå¿Õ¼¼ÄÜ
+	 * æ¸…ç©ºæŠ€èƒ½
 	 */
 	public void clear()
 	{
 		if( skill.size()>0 )
 		{
 			skillDao.clear(p_pk);
-			skill.clear();//Çå¿Õ¹¥»÷¼¼ÄÜ
-			roleSkillPropertyInfo = new RoleSkillPropertyInfo(p_pk);//ÖØÔØ±»¶¯¼¼ÄÜ
+			skill.clear();//æ¸…ç©ºæ”»å‡»æŠ€èƒ½
+			roleSkillPropertyInfo = new RoleSkillPropertyInfo(p_pk);//é‡è½½è¢«åŠ¨æŠ€èƒ½
 		}
 	}
 	
 	
 
 	/**
-	 * µÃµ½Íæ¼ÒµÄ ¼¼ÄÜ ÁĞ±í
+	 * å¾—åˆ°ç©å®¶çš„ æŠ€èƒ½ åˆ—è¡¨
 	 * @return
 	 */
 	public List<PlayerSkillVO> getSkillList()
@@ -65,7 +65,7 @@ public class RoleSkillInfo extends UserBase
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒµÄÖ÷¶¯¹¥»÷¼¼ÄÜÁĞ±í
+	 * å¾—åˆ°ç©å®¶çš„ä¸»åŠ¨æ”»å‡»æŠ€èƒ½åˆ—è¡¨
 	 * @return
 	 */
 	public List<PlayerSkillVO> getAttackSkillList()
@@ -79,11 +79,11 @@ public class RoleSkillInfo extends UserBase
 			for( int i=list.size()-1;i>=0;i-- )
 			{
 				skill = list.get(i);
-				if( skill.getSkType()!=1 )//¹ıÂËµô·ÇÖ÷¶¯¹¥»÷¼¼ÄÜ
+				if( skill.getSkType()!=1 )//è¿‡æ»¤æ‰éä¸»åŠ¨æ”»å‡»æŠ€èƒ½
 				{
 					list.remove(i);
 				}
-				else if( skill.getSkType()==1 && skill.getSkId()==1 )//¹ıÂËµô·Ç²¶×½³èÎï¼¼ÄÜ
+				else if( skill.getSkType()==1 && skill.getSkId()==1 )//è¿‡æ»¤æ‰éæ•æ‰å® ç‰©æŠ€èƒ½
 				{
 					list.remove(i);
 				}
@@ -94,7 +94,7 @@ public class RoleSkillInfo extends UserBase
 	}
 	
 	/**
-	 * Ê¹ÓÃ ¼¼ÄÜidµÃµ½Íæ¼ÒµÄ ¾ßÌå¼¼ÄÜ, 
+	 * ä½¿ç”¨ æŠ€èƒ½idå¾—åˆ°ç©å®¶çš„ å…·ä½“æŠ€èƒ½, 
 	 * @return
 	 */
 	public PlayerSkillVO getSkillBySkId( String skId)
@@ -111,7 +111,7 @@ public class RoleSkillInfo extends UserBase
 	}
 
 	/**
-	 * Ê¹ÓÃ ¸öÈË¼¼ÄÜÖ÷¼ü 
+	 * ä½¿ç”¨ ä¸ªäººæŠ€èƒ½ä¸»é”® 
 	 * @param s_pk
 	 * @return
 	 */
@@ -120,7 +120,7 @@ public class RoleSkillInfo extends UserBase
 		return skill.get(s_pk);
 	}
 	/**
-	 * ĞŞ¸Ä¼¼ÄÜÃû³ÆºÍ ¿ì½İ¼ü Ãû³Æ
+	 * ä¿®æ”¹æŠ€èƒ½åç§°å’Œ å¿«æ·é”® åç§°
 	 */
 	public void updateSkillName(int p_pk,int s_pk,String s_name){
 		PlayerSkillDao playerSkillDao = new PlayerSkillDao();
@@ -132,12 +132,12 @@ public class RoleSkillInfo extends UserBase
 		
 		skill.put(s_pk, vo);
 		
-		//ÖØĞÂ¼ÓÔØ¿ì½İ¼ü
+		//é‡æ–°åŠ è½½å¿«æ·é”®
 		roleShortCutInfo.updateShortcutName(s_pk, s_name); 
 	}
 	
 	/**
-	 * Ñ§Ï°Ò»¸ö¼¼ÄÜ
+	 * å­¦ä¹ ä¸€ä¸ªæŠ€èƒ½
 	 */
 	public PlayerSkillVO study( int sId ) {
 		SkillVO skill = SkillCache.getById(sId);
@@ -146,20 +146,20 @@ public class RoleSkillInfo extends UserBase
 			PlayerSkillVO playerSkill = new PlayerSkillVO();
 			playerSkill.setPPk(p_pk);
 			playerSkill.setSkId(sId);
-			new SkillDao().loadPlayerSkillDetail(playerSkill);//¼ÓÔØ¼¼ÄÜĞÅÏ¢
-			this.skillDao.add(playerSkill);//Êı¾İ¿âÌí¼Ó
-			this.addSkillToPlayer(playerSkill);//ÄÚ´æÌí¼Ó
+			new SkillDao().loadPlayerSkillDetail(playerSkill);//åŠ è½½æŠ€èƒ½ä¿¡æ¯
+			this.skillDao.add(playerSkill);//æ•°æ®åº“æ·»åŠ 
+			this.addSkillToPlayer(playerSkill);//å†…å­˜æ·»åŠ 
 			return playerSkill;
 		}
 		else
 		{
-			DataErrorLog.debugData("RoleSkillInfo.study:ÎŞ¸Ã¼¼ÄÜ,sId="+sId);
+			DataErrorLog.debugData("RoleSkillInfo.study:æ— è¯¥æŠ€èƒ½,sId="+sId);
 			return null;
 		}
 	}
 	
 	/**
-	 * ¼ÓÈëÒ»¸ö¼¼ÄÜ
+	 * åŠ å…¥ä¸€ä¸ªæŠ€èƒ½
 	 */
 	public void addSkillToPlayer( PlayerSkillVO skillvo ) {
 		if(skillvo==null)
@@ -167,14 +167,14 @@ public class RoleSkillInfo extends UserBase
 			return;
 		}
 		skill.put(skillvo.getSPk(), skillvo);
-		if( skillvo.getSkType()==0||skillvo.getSkType()==4 )//Èç¹ûÊÇ±»¶¯¼¼ÄÜ£¬ÔòÖØÔØ±»¶¯¼¼ÄÜÊôĞÔ
+		if( skillvo.getSkType()==0||skillvo.getSkType()==4 )//å¦‚æœæ˜¯è¢«åŠ¨æŠ€èƒ½ï¼Œåˆ™é‡è½½è¢«åŠ¨æŠ€èƒ½å±æ€§
 		{
 			roleSkillPropertyInfo.loadPropertys(skillvo.getPPk());
 		}
 	}
 	
 	/**
-	 * ´ÓÉíÉÏÒÆ³ıÒ»¸ö¼¼ÄÜ
+	 * ä»èº«ä¸Šç§»é™¤ä¸€ä¸ªæŠ€èƒ½
 	 * 
 	 */
 	public void removeSkillFromPlayer ( int sPk ) {
@@ -182,7 +182,7 @@ public class RoleSkillInfo extends UserBase
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒµÄ±»¶¯¼¼ÄÜµÄÊôĞÔ
+	 * å¾—åˆ°ç©å®¶çš„è¢«åŠ¨æŠ€èƒ½çš„å±æ€§
 	 * **/
 	public PassSkillVO getPassSkillProperty(){
 		PassSkillVO vo = new PassSkillVO();

@@ -7,13 +7,13 @@ import com.ls.model.user.RoleEntity;
 
 /**
  * @author ls
- * ÉêÇëÈë°ïĞÅÏ¢
+ * ç”³è¯·å…¥å¸®ä¿¡æ¯
  */
 public class FApplyInfo
 {
 	private int id;
 	private int pPk;
-	private int fId;//°ïÅÉid
+	private int fId;//å¸®æ´¾id
 	private Date createTime;
 
 	public RoleEntity getRoleEntity()

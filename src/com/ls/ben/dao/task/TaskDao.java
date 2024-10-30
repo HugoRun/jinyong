@@ -5,18 +5,18 @@ import java.util.HashMap;
 
 import com.ben.vo.task.TaskVO;
 import com.ls.ben.vo.menu.OperateMenuVO;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 
 /**
- * ¹¦ÄÜ:
+ * åŠŸèƒ½:
  * 
- * @author ÁõË§ 10:36:42 AM
+ * @author åˆ˜å¸… 10:36:42 AM
  */
 public class TaskDao {
-	Jygamedb con;
+	JyGameDB con;
 	
 	/**
-	 * µÃµ½ËùÓĞÈÎÎñ
+	 * å¾—åˆ°æ‰€æœ‰ä»»åŠ¡
 	 */
 	public HashMap<String,TaskVO> getAllTask()  
 	{
@@ -25,10 +25,10 @@ public class TaskDao {
 		int count = 0;
 		
 		try {
-			con = new Jygamedb();
+			con = new JyGameDB();
 
-			String total_sql = "select count(t_id) from task";
-			String all_data_sql = "select * from task";
+			String total_sql = "SELECT COUNT(t_id) FROM `task`";
+			String all_data_sql = "SELECT * FROM `task`";
 			
 			ResultSet rs = con.query(total_sql);
 			
@@ -93,12 +93,12 @@ public class TaskDao {
 	} 
 	
 	/**
-	 * ²éÑ¯²Ëµ¥ËùÓµÓĞµÄÈÎÎñ
+	 * æŸ¥è¯¢èœå•æ‰€æ‹¥æœ‰çš„ä»»åŠ¡
 	 */
 	public String getMainMenuByMap(int id) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from  operate_menu_info where id=" + id + " ";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM `operate_menu_info` WHERE id = " + id + " ";
 			ResultSet rs = con.query(sql);
 			OperateMenuVO menu = new OperateMenuVO();
 			while (rs.next()) {
@@ -114,12 +114,12 @@ public class TaskDao {
 	}
 
 	/**
-	 * Í¨¹ı²Ëµ¥È»»áµÄÈÎÎñID È¡³öÈÎÎñÏà¹ØÌõ¼ş 
+	 * é€šè¿‡èœå•ç„¶ä¼šçš„ä»»åŠ¡ID å–å‡ºä»»åŠ¡ç›¸å…³æ¡ä»¶ 
 	 */
 	public TaskVO getTaskList(String rwpx,String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_zuxl='"+rwpx+"' and t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_zuxl='"+rwpx+"' and t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = new TaskVO();
 			while (rs.next()) { 
@@ -172,12 +172,12 @@ public class TaskDao {
 	} 
 	
 	/**
-	 * ÈÎÎñID È¡³öÈÎÎñÏà¹ØÌõ¼ş 
+	 * ä»»åŠ¡ID å–å‡ºä»»åŠ¡ç›¸å…³æ¡ä»¶ 
 	 */
 	public TaskVO getTaskView(String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = null;
 			while (rs.next()) { 
@@ -231,12 +231,12 @@ public class TaskDao {
 	} 
 	
 	/**
-	 * Í¨¹ıÈÎÎñID µÃµ½ÈÎÎñÅÅĞò
+	 * é€šè¿‡ä»»åŠ¡ID å¾—åˆ°ä»»åŠ¡æ’åº
 	 */
 	public String getTaskRwpx(String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = new TaskVO();
 			while (rs.next()) {  
@@ -251,13 +251,13 @@ public class TaskDao {
 		return null;
 	}
 	/**
-	 * Í¨¹ıÈÎÎñID µÃµ½ÈÎÎñÀàĞÍ
+	 * é€šè¿‡ä»»åŠ¡ID å¾—åˆ°ä»»åŠ¡ç±»å‹
 	 */
 	public String getTaskType(String tId) {
 		
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			String tZu = null;
 			while (rs.next()) {  
@@ -273,13 +273,13 @@ public class TaskDao {
 		
 	}
 	/**
-	 * Í¨¹ı×éºÍ×éĞòÁĞ»îµÄÈÎÎñID
+	 * é€šè¿‡ç»„å’Œç»„åºåˆ—æ´»çš„ä»»åŠ¡ID
 	 */
 	public int getTaskZUXl(String tZu,String tXuxl) {
 		
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_zu='" + tZu + "' and t_zuxl='"+tXuxl+"'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_zu='" + tZu + "' and t_zuxl='"+tXuxl+"'";
 			ResultSet rs = con.query(sql);
 			int tId = 0;
 			while (rs.next()) {  
@@ -295,12 +295,12 @@ public class TaskDao {
 		
 	}
 	/**
-	 * Í¨¹ıÈÎÎñID µÃµ½ÈÎÎñÅÅĞò
+	 * é€šè¿‡ä»»åŠ¡ID å¾—åˆ°ä»»åŠ¡æ’åº
 	 */
 	public int getTaskNext(String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select t_id from task where t_next='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT t_id from task where t_next='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			int Next=0;
 			while (rs.next()) {  

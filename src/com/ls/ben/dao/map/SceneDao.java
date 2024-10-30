@@ -10,13 +10,13 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- *	³¡¾°±í
+ *	åœºæ™¯è¡¨
  */
 public class SceneDao extends DaoBase {
 	
 	/**
-	 * »ñµÃËùÓĞbareaÏÂµÄÊı¾İ±íÊ¾
-	 * »ñµÃscene_IDµÄÊı¾İ,ÒÔ"(110£¬112£¬116)"ÕâÑùµÄĞÎÊ½À´±íÊ¾
+	 * è·å¾—æ‰€æœ‰bareaä¸‹çš„æ•°æ®è¡¨ç¤º
+	 * è·å¾—scene_IDçš„æ•°æ®,ä»¥"(110ï¼Œ112ï¼Œ116)"è¿™æ ·çš„å½¢å¼æ¥è¡¨ç¤º
 	 * @return
 	 */
 	public String getSceneIdByBarea(int barea_point)
@@ -52,8 +52,8 @@ public class SceneDao extends DaoBase {
 	}
 	
 	/**
-	 * »ñµÃËùÓĞmap_IDÏÂµÄÊı¾İ±íÊ¾
-	 * »ñµÃscene_IDµÄÊı¾İ,ÒÔ"(110£¬112£¬116)"ÕâÑùµÄĞÎÊ½À´±íÊ¾
+	 * è·å¾—æ‰€æœ‰map_IDä¸‹çš„æ•°æ®è¡¨ç¤º
+	 * è·å¾—scene_IDçš„æ•°æ®,ä»¥"(110ï¼Œ112ï¼Œ116)"è¿™æ ·çš„å½¢å¼æ¥è¡¨ç¤º
 	 * @return
 	 */
 	public String getSceneIdByMap(String map_ID)
@@ -61,9 +61,9 @@ public class SceneDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		
 		conn = dbConn.getConn();
-		String sql = "select scene.scene_ID from scene,map where  map.map_ID = scene.scene_mapqy " +
+		String sql = "SELECT scene.scene_ID from scene,map where  map.map_ID = scene.scene_mapqy " +
 				"and map_ID = "+map_ID;
-		logger.debug("* »ñµÃËùÓĞmap_IDÏÂµÄÊı¾İ±íÊ¾="+sql);
+		logger.debug("* è·å¾—æ‰€æœ‰map_IDä¸‹çš„æ•°æ®è¡¨ç¤º="+sql);
 		StringBuffer str = new StringBuffer("(");
 		try
 		{
@@ -91,8 +91,8 @@ public class SceneDao extends DaoBase {
 	
 	
 	/**
-	 * »ñµÃËùÓĞmap_IDÏÂµÄÊı¾İ±íÊ¾
-	 * »ñµÃscene_IDµÄÊı¾İ,ÒÔ"(110£¬112£¬116)"ÕâÑùµÄĞÎÊ½À´±íÊ¾
+	 * è·å¾—æ‰€æœ‰map_IDä¸‹çš„æ•°æ®è¡¨ç¤º
+	 * è·å¾—scene_IDçš„æ•°æ®,ä»¥"(110ï¼Œ112ï¼Œ116)"è¿™æ ·çš„å½¢å¼æ¥è¡¨ç¤º
 	 * @return
 	 */
 	public String getSceneIdByMap(String map_ID,String sceneName)
@@ -100,8 +100,8 @@ public class SceneDao extends DaoBase {
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		
 		conn = dbConn.getConn();
-		String sql = "select scene_ID from scene where  scene_mapqy = "+map_ID+" and scene_Name like '%"+sceneName+"%'";
-		logger.debug("* »ñµÃËùÓĞmap_IDÏÂµÄÊı¾İ±íÊ¾="+sql);
+		String sql = "SELECT scene_ID from scene where  scene_mapqy = "+map_ID+" and scene_Name like '%"+sceneName+"%'";
+		logger.debug("* è·å¾—æ‰€æœ‰map_IDä¸‹çš„æ•°æ®è¡¨ç¤º="+sql);
 		StringBuffer str = new StringBuffer("(");
 		try
 		{
@@ -128,7 +128,7 @@ public class SceneDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½ËùÓĞsceneĞÅÏ¢
+	 * å¾—åˆ°æ‰€æœ‰sceneä¿¡æ¯
 	 * @return
 	 * @throws Exception 
 	 */
@@ -140,10 +140,10 @@ public class SceneDao extends DaoBase {
 		SceneVO scene = null;
 		MapVO map = null;
 		
-		String total_num_sql = "select count(*) from scene";
-		String sql = "select * from scene";
+		String total_num_sql = "SELECT count(*) from `scene`";
+		String sql = "SELECT * FROM `scene`";
 		
-		logger.debug("µÃµ½ËùÓĞsceneĞÅÏ¢sql="+sql);
+		logger.debug("å¾—åˆ°æ‰€æœ‰sceneä¿¡æ¯sql = "+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
@@ -185,7 +185,7 @@ public class SceneDao extends DaoBase {
 				
 				if( map==null )
 				{
-					String errer = "SceneDao.getAllScene:¼ÓÔØ³¡¾°Êı¾İ´íÎó£¬ÎŞ¸Ã³¡¾°ËùÔÚµÄmap_id£¬scene_id="+scene.getSceneID()+";map_id="+scene.getSceneMapqy();
+					String errer = "SceneDao.getAllScene:åŠ è½½åœºæ™¯æ•°æ®é”™è¯¯ï¼Œæ— è¯¥åœºæ™¯æ‰€åœ¨çš„map_idï¼Œscene_id="+scene.getSceneID()+";map_id="+scene.getSceneMapqy();
 					throw new Exception(errer);
 				}
 				else
@@ -198,7 +198,7 @@ public class SceneDao extends DaoBase {
 			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception("sceneĞÅÏ¢¼ÓÔØÄÚ´æÊ§°Ü£¬µ±Ç°scene_idÎª£º"+scene.getSceneID()+";´íÎóĞÅÏ¢:"+e.getMessage());
+			throw new Exception("sceneä¿¡æ¯åŠ è½½å†…å­˜å¤±è´¥ï¼Œå½“å‰scene_idä¸ºï¼š"+scene.getSceneID()+";é”™è¯¯ä¿¡æ¯:"+e.getMessage());
 		}
 		finally
 		{
@@ -208,13 +208,13 @@ public class SceneDao extends DaoBase {
 	}
 	
 	/**
-	 * µÃµ½ËùÓĞsceneĞÅÏ¢
+	 * å¾—åˆ°æ‰€æœ‰sceneä¿¡æ¯
 	 * @return
 	 */
 	public SceneVO getByIdSceneView(String sceneID)
 	{ 
 		SceneVO scene = null; 
-		String sql = "select * from scene where scene_ID = '"+sceneID+"'";
+		String sql = "SELECT * FROM scene where scene_ID = '"+sceneID+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
@@ -244,7 +244,7 @@ public class SceneDao extends DaoBase {
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			logger.info("sceneĞÅÏ¢¼ÓÔØÄÚ´æÊ§°Ü£¬µ±Ç°scene_idÎª£º"+scene.getSceneID()+";´íÎóĞÅÏ¢:"+e.getMessage());
+			logger.info("sceneä¿¡æ¯åŠ è½½å†…å­˜å¤±è´¥ï¼Œå½“å‰scene_idä¸ºï¼š"+scene.getSceneID()+";é”™è¯¯ä¿¡æ¯:"+e.getMessage());
 		}
 		finally
 		{

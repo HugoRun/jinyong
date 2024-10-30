@@ -1,19 +1,19 @@
 <?xml version="1.0" ?>
-<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN"
-      "http://www.wapforum.org/DTD/wml_1.1.xml">
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
 <%@page contentType="text/vnd.wap.wml" import="java.util.*"
-	pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
+    pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="login" title="<s:message key = "gamename"/>">
 <p>
-	<s:message key = "gamename"/>4月3日更新，清明节活动上线！4月3日～4月10日，<br/>
-	10级以上的玩家每天可在临安天街广场王重阳处领取5次清明节活动任务，
-	<br/>
-	每完成一次任务即可获得【青团】×1（【青团】使用后可获得30分钟5倍经验祝福效果），<br/>
-	运气好的人还可以获得【<%=GameConfig.getYuanbaoName() %>】哦；
+    <s:message key = "gamename"/>4月3日更新，清明节活动上线！4月3日～4月10日，<br/>
+    10级以上的玩家每天可在临安天街广场王重阳处领取5次清明节活动任务，
+    <br/>
+    每完成一次任务即可获得【青团】×1（【青团】使用后可获得30分钟5倍经验祝福效果），<br/>
+    运气好的人还可以获得【<%=GameConfig.getYuanbaoName() %>】哦；
 	<br/>
 	朱仙镇战场掉落【阵亡将士的盔甲】和【敌人的头颅】，【阵亡将士的盔甲】×20可在岳飞处兑换【元宝】×1、<br/>
 	【敌人的头颅】】×5可在岳飞处兑换【清明礼盒】×1，

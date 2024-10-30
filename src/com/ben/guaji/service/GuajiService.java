@@ -1,8 +1,5 @@
 package com.ben.guaji.service;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import com.ben.guaji.dao.GuajiDao;
 import com.ben.guaji.vo.GetGoodVo;
 import com.ben.guaji.vo.GuaJiConstant;
@@ -20,373 +17,234 @@ import com.ls.pub.constant.GoodsType;
 import com.ls.web.service.goods.GoodsService;
 import com.ls.web.service.room.RoomService;
 
-public class GuajiService
-{
-	private GuajiDao guajiDao = new GuajiDao();
-	private RoomService roomService = new RoomService();
-	private GoodsService goodsService = new GoodsService();
+import java.sql.SQLException;
+import java.util.List;
 
-	// ∏˘æ›◊‘º∫µƒµ»º∂µ√µΩœ‡”¶π÷ŒÔÀ˘≥ˆœ÷µƒ≥°æ∞
-	public SceneVO findByOwnLevel(int level)
-	{
-		int scene_id = guajiDao.findNpcByLevel(level);
-		return roomService.getById(scene_id + "");
-	}
+public class GuajiService {
+    private final GuajiDao guajiDao = new GuajiDao();
+    private final RoomService roomService = new RoomService();
+    private final GoodsService goodsService = new GoodsService();
 
-	public NpcVO findSceneOgreBySceneId(Object scene_id,int roleLevel)
-	{
-		return guajiDao.findSceneOgreBySceneId(scene_id,roleLevel);
-	}
+    // Ê†πÊçÆËá™Â∑±ÁöÑÁ≠âÁ∫ßÂæóÂà∞Áõ∏Â∫îÊÄ™Áâ©ÊâÄÂá∫Áé∞ÁöÑÂú∫ÊôØ
+    public SceneVO findByOwnLevel(int level) {
+        int scene_id = guajiDao.findNpcByLevel(level);
+        return roomService.getById(scene_id + "");
+    }
 
-	public List<NpcdropVO> getNpcdropsByNpcID(int npc_ID, int start, int count)
-	{
-		return guajiDao.getNpcdropsByNpcID(npc_ID, start, count);
-	}
+    public NpcVO findSceneOgreBySceneId(Object scene_id, int roleLevel) {
+        return guajiDao.findSceneOgreBySceneId(scene_id, roleLevel);
+    }
 
-	public int getNpcdropsCountByNpcID(int npc_ID)
-	{
-		return guajiDao.getNpcdropsByNpcID(npc_ID, 0, 0).size();
-	}
+    public List<NpcdropVO> getNpcdropsByNpcID(int npc_ID, int start, int count) {
+        return guajiDao.getNpcdropsByNpcID(npc_ID, start, count);
+    }
 
-	public void addAuto(GuajiVo guajiVo) throws SQLException
-	{
-		guajiDao.addAuto(guajiVo);
-	}
+    public int getNpcdropsCountByNpcID(int npc_ID) {
+        return guajiDao.getNpcdropsByNpcID(npc_ID, 0, 0).size();
+    }
 
-	public int findIsGuaji(Object p_pk) throws SQLException
-	{
-		return guajiDao.findIsGuaji(p_pk);
-	}
+    public void addAuto(GuajiVo guajiVo) throws SQLException {
+        guajiDao.addAuto(guajiVo);
+    }
 
-	public GuajiVo findByPpk(Object p_pk) throws SQLException
-	{
-		return guajiDao.findByPpk(p_pk);
-	}
+    public int findIsGuaji(Object p_pk) throws SQLException {
+        return guajiDao.findIsGuaji(p_pk);
+    }
 
-	public int GetNpcJilv(Object npc_id) throws SQLException
-	{
-		return guajiDao.GetNpcJilv(npc_id);
-	}
+    public GuajiVo findByPpk(Object p_pk) throws SQLException {
+        return guajiDao.findByPpk(p_pk);
+    }
 
-	public List<NpcdropVO> getNpcdropsByNpcIDAndGood_id(int npc_id,
-			String good_id)
-	{
-		return guajiDao.getNpcdropsByNpcIDAndGood_id(npc_id, good_id);
-	}
+    public int GetNpcJilv(Object npc_id) throws SQLException {
+        return guajiDao.GetNpcJilv(npc_id);
+    }
 
-	public void updateEndTime(long id)
-	{
-		guajiDao.updateEndTime(id);
-	}
+    public List<NpcdropVO> getNpcdropsByNpcIDAndGood_id(int npc_id, String good_id) {
+        return guajiDao.getNpcdropsByNpcIDAndGood_id(npc_id, good_id);
+    }
 
-	public String giveGood(RoleEntity re,BasicInfo bi, List<GetGoodVo> list, int level)
-	{
-		StringBuffer sb = new StringBuffer();
-		if (bi != null)
-		{
-			if (list != null)
-			{
-				for (GetGoodVo ggv : list)
-				{
+    public void updateEndTime(long id) {
+        guajiDao.updateEndTime(id);
+    }
 
-					switch (level)
-					{
-						case 0:
-							if (ggv.getJi() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_JIPIN,
-										ggv.getJi());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(º´)*"
-											+ ggv.getJi() + ".");
-								}
-							}
-							if (ggv.getJing() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(),
-										Equip.Q_LIANGHAO, ggv.getJing());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(æ´)*"
-											+ ggv.getJing() + ".");
-								}
-							}
-							if (ggv.getYou() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_YOUXIU,
-										ggv.getYou());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(”≈)*"
-											+ ggv.getYou() + ".");
-								}
-							}
-							if (ggv.getCom() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_PUTONG,
-										ggv.getCom());
-								if (k != -1)
-								{
-									sb
-											.append(ggv.getGood_name()
-													+ (ggv.getGood_type() == GoodsType.PROP ? "*"
-															: "(∆’Õ®)*")
-													+ ggv.getCom() + ".");
-								}
-							}
-							break;
-						case GuaJiConstant.ALL:
-							if (ggv.getJi() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_JIPIN,
-										ggv.getJi());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(º´)*"
-											+ ggv.getJi() + ".");
-								}
-							}
-							if (ggv.getJing() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(),
-										Equip.Q_LIANGHAO, ggv.getJing());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(æ´)*"
-											+ ggv.getJing() + ".");
-								}
-							}
-							if (ggv.getYou() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_YOUXIU,
-										ggv.getYou());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(”≈)*"
-											+ ggv.getYou() + ".");
-								}
-							}
-							if (ggv.getCom() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_PUTONG,
-										ggv.getCom());
-								if (k != -1)
-								{
-									sb
-											.append(ggv.getGood_name()
-													+ (ggv.getGood_type() == GoodsType.PROP ? "*"
-															: "(∆’Õ®)*")
-													+ ggv.getCom() + ".");
-								}
-							}
-							break;
-						case GuaJiConstant.YOU:
-							if (ggv.getJi() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_JIPIN,
-										ggv.getJi());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(º´)*"
-											+ ggv.getJi() + ".");
-								}
-							}
-							if (ggv.getJing() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(),
-										Equip.Q_LIANGHAO, ggv.getJing());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(æ´)*"
-											+ ggv.getJing() + ".");
-								}
-							}
-							if (ggv.getYou() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_YOUXIU,
-										ggv.getYou());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(”≈)*"
-											+ ggv.getYou() + ".");
-								}
-							}
-							if (ggv.getGood_type() == GoodsType.PROP
-									&& ggv.getCom() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_PUTONG,
-										ggv.getCom());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "*"
-											+ ggv.getCom() + ".");
-								}
-							}
-							break;
-						case GuaJiConstant.JING:
-							if (ggv.getJi() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_JIPIN,
-										ggv.getJi());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(º´)*"
-											+ ggv.getJi() + ".");
-								}
-							}
-							if (ggv.getJing() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(),
-										Equip.Q_LIANGHAO, ggv.getJing());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(æ´)*"
-											+ ggv.getJing() + ".");
-								}
-							}
-							if (ggv.getGood_type() == GoodsType.PROP
-									&& ggv.getCom() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_PUTONG,
-										ggv.getCom());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "*"
-											+ ggv.getCom() + ".");
-								}
-							}
-							break;
-						case GuaJiConstant.JI:
-							if (ggv.getJi() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_JIPIN,
-										ggv.getJi());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(º´)*"
-											+ ggv.getJi() + ".");
-								}
-							}
-							if (ggv.getGood_type() == GoodsType.PROP
-									&& ggv.getCom() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_PUTONG,
-										ggv.getCom());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "*"
-											+ ggv.getCom() + ".");
-								}
-							}
-							break;
-						default:
-							if (ggv.getJi() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_JIPIN,
-										ggv.getJi());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(º´)*"
-											+ ggv.getJi() + ".");
-								}
-							}
-							if (ggv.getJing() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(),
-										Equip.Q_LIANGHAO, ggv.getJing());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(æ´)*"
-											+ ggv.getJing() + ".");
-								}
-							}
-							if (ggv.getYou() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_YOUXIU,
-										ggv.getYou());
-								if (k != -1)
-								{
-									sb.append(ggv.getGood_name() + "(”≈)*"
-											+ ggv.getYou() + ".");
-								}
-							}
-							if (ggv.getCom() != 0)
-							{
-								int k = give(re,bi,ggv.getNpcDropId(), ggv.getGood_id(), ggv
-												.getGood_type(), Equip.Q_PUTONG,
-										ggv.getCom());
-								if (k != -1)
-								{
-									sb
-											.append(ggv.getGood_name()
-													+ (ggv.getGood_type() == GoodsType.PROP ? "*"
-															: "(∆’Õ®)*")
-													+ ggv.getCom() + ".");
-								}
-							}
-							break;
-					}
-				}
+    public String giveGood(RoleEntity re, BasicInfo bi, List<GetGoodVo> list, int level) {
+        StringBuffer sb = new StringBuffer();
+        if (bi != null) {
+            if (list != null) {
+                for (GetGoodVo ggv : list) {
 
-			}
-		}
-		return sb.toString();
-	}
+                    switch (level) {
+                        case 0:
+                            if (ggv.getJi() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_JIPIN, ggv.getJi());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(ÊûÅ)*" + ggv.getJi() + ".");
+                                }
+                            }
+                            if (ggv.getJing() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_LIANGHAO, ggv.getJing());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(Á≤æ)*" + ggv.getJing() + ".");
+                                }
+                            }
+                            if (ggv.getYou() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_YOUXIU, ggv.getYou());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(‰ºò)*" + ggv.getYou() + ".");
+                                }
+                            }
+                            if (ggv.getCom() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_PUTONG, ggv.getCom());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + (ggv.getGood_type() == GoodsType.PROP ? "*" : "(ÊôÆÈÄö)*") + ggv.getCom() + ".");
+                                }
+                            }
+                            break;
+                        case GuaJiConstant.ALL:
+                            if (ggv.getJi() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_JIPIN, ggv.getJi());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(ÊûÅ)*" + ggv.getJi() + ".");
+                                }
+                            }
+                            if (ggv.getJing() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_LIANGHAO, ggv.getJing());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(Á≤æ)*" + ggv.getJing() + ".");
+                                }
+                            }
+                            if (ggv.getYou() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_YOUXIU, ggv.getYou());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(‰ºò)*" + ggv.getYou() + ".");
+                                }
+                            }
+                            if (ggv.getCom() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_PUTONG, ggv.getCom());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + (ggv.getGood_type() == GoodsType.PROP ? "*" : "(ÊôÆÈÄö)*") + ggv.getCom() + ".");
+                                }
+                            }
+                            break;
+                        case GuaJiConstant.YOU:
+                            if (ggv.getJi() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_JIPIN, ggv.getJi());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(ÊûÅ)*" + ggv.getJi() + ".");
+                                }
+                            }
+                            if (ggv.getJing() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_LIANGHAO, ggv.getJing());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(Á≤æ)*" + ggv.getJing() + ".");
+                                }
+                            }
+                            if (ggv.getYou() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_YOUXIU, ggv.getYou());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(‰ºò)*" + ggv.getYou() + ".");
+                                }
+                            }
+                            if (ggv.getGood_type() == GoodsType.PROP && ggv.getCom() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_PUTONG, ggv.getCom());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "*" + ggv.getCom() + ".");
+                                }
+                            }
+                            break;
+                        case GuaJiConstant.JING:
+                            if (ggv.getJi() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_JIPIN, ggv.getJi());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(ÊûÅ)*" + ggv.getJi() + ".");
+                                }
+                            }
+                            if (ggv.getJing() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_LIANGHAO, ggv.getJing());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(Á≤æ)*" + ggv.getJing() + ".");
+                                }
+                            }
+                            if (ggv.getGood_type() == GoodsType.PROP && ggv.getCom() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_PUTONG, ggv.getCom());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "*" + ggv.getCom() + ".");
+                                }
+                            }
+                            break;
+                        case GuaJiConstant.JI:
+                            if (ggv.getJi() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_JIPIN, ggv.getJi());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(ÊûÅ)*" + ggv.getJi() + ".");
+                                }
+                            }
+                            if (ggv.getGood_type() == GoodsType.PROP && ggv.getCom() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_PUTONG, ggv.getCom());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "*" + ggv.getCom() + ".");
+                                }
+                            }
+                            break;
+                        default:
+                            if (ggv.getJi() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_JIPIN, ggv.getJi());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(ÊûÅ)*" + ggv.getJi() + ".");
+                                }
+                            }
+                            if (ggv.getJing() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_LIANGHAO, ggv.getJing());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(Á≤æ)*" + ggv.getJing() + ".");
+                                }
+                            }
+                            if (ggv.getYou() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_YOUXIU, ggv.getYou());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + "(‰ºò)*" + ggv.getYou() + ".");
+                                }
+                            }
+                            if (ggv.getCom() != 0) {
+                                int k = give(re, bi, ggv.getNpcDropId(), ggv.getGood_id(), ggv.getGood_type(), Equip.Q_PUTONG, ggv.getCom());
+                                if (k != -1) {
+                                    sb.append(ggv.getGood_name() + (ggv.getGood_type() == GoodsType.PROP ? "*" : "(ÊôÆÈÄö)*") + ggv.getCom() + ".");
+                                }
+                            }
+                            break;
+                    }
+                }
 
-	private int give(RoleEntity re,BasicInfo bi,int npcdrop_id, int goods_id, int goods_type, int goods_quality,
-			int goods_num)
-	{
-		if(bi==null){
-			return -1;
-		}
-        int i = 0;
-		try
-		{
-			i = findTask(npcdrop_id);
-		}
-		catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        if(i==0){
-		return goodsService.putGoodsToWrap(bi.getPPk(), goods_id, goods_type,
-				goods_quality, goods_num,GameLogManager.G_SYSTEM);
-        }else{
-    		TaskVO taskVOCache = TaskCache.getById(i+"");
-    		String name = taskVOCache.getTZu();
-    		if(re.getTaskInfo().getTaskCompleteInfo().taskCompleteBoo(name)){
-    			return goodsService.putGoodsToWrap(bi.getPPk(), goods_id, goods_type,
-    					goods_quality, goods_num,GameLogManager.G_SYSTEM);
-    		}else{
-    			return -1;
-    		}
+            }
         }
-	}
+        return sb.toString();
+    }
 
-	public int findTask(int id) throws SQLException
-	{
-		return guajiDao.findTask(id);
-	}
+    private int give(RoleEntity re, BasicInfo bi, int npcdrop_id, int goods_id, int goods_type, int goods_quality, int goods_num) {
+        if (bi == null) {
+            return -1;
+        }
+        int i = 0;
+        try {
+            i = findTask(npcdrop_id);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (i == 0) {
+            return goodsService.putGoodsToWrap(bi.getPPk(), goods_id, goods_type, goods_quality, goods_num, GameLogManager.G_SYSTEM);
+        } else {
+            TaskVO taskVOCache = TaskCache.getById(i + "");
+            String name = taskVOCache.getTZu();
+            if (re.getTaskInfo().getTaskCompleteInfo().taskCompleteBoo(name)) {
+                return goodsService.putGoodsToWrap(bi.getPPk(), goods_id, goods_type, goods_quality, goods_num, GameLogManager.G_SYSTEM);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public int findTask(int id) throws SQLException {
+        return guajiDao.findTask(id);
+    }
 }

@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.ls.ben.vo.info.partinfo.PlayerPropGroupVO"%>
 <%@ page pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %>
-	<%
+    <%
 		RoleEntity roleInfo = (RoleEntity)request.getAttribute("roleInfo");
 		int wType = 1;
 		String playerPic = (String)request.getAttribute("playerPic");

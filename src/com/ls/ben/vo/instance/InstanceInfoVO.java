@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * @author ls
- * ¹¦ÄÜ:¸±±¾ĞÅÏ¢
+ * åŠŸèƒ½:å‰¯æœ¬ä¿¡æ¯
  * Feb 3, 2009
  */
 public class InstanceInfoVO
@@ -12,31 +12,31 @@ public class InstanceInfoVO
 	/**id*/
 	int id;   
 	
-	/**ÃèÊö*/
+	/**æè¿°*/
 	String display ;
 	
-	/**¸±±¾µØÍ¼id*/
+	/**å‰¯æœ¬åœ°å›¾id*/
     int mapId;
     
     /**
-     * Íæ¼Ò½øÈë¸±±¾Ê±µÄµØÖ·id
+     * ç©å®¶è¿›å…¥å‰¯æœ¬æ—¶çš„åœ°å€id
      */
     int enterSceneId;
     
-    /**ÖØÖÃÊ±¼ä¼ä¸ô£¬Ê±¼äµ¥Î»ÎªÌì*/
+    /**é‡ç½®æ—¶é—´é—´éš”ï¼Œæ—¶é—´å•ä½ä¸ºå¤©*/
     int resetTimeDistance;
     
-    /**ÉÏÒ»´ÎµÄÖØÖÃÊ±¼ä*/
+    /**ä¸Šä¸€æ¬¡çš„é‡ç½®æ—¶é—´*/
     Date preResetTime;
     
-    /**µÈ¼¶ÒªÇó*/
+    /**ç­‰çº§è¦æ±‚*/
     int levelLimit;  
     
-    /**×é¶Ó³ÉÔ±ÏŞÖÆ*/
+    /**ç»„é˜Ÿæˆå‘˜é™åˆ¶*/
     int groupLimit;
     
     /**
-     * ÓĞbossµØµãµÄÊıÁ¿
+     * æœ‰bossåœ°ç‚¹çš„æ•°é‡
      */
     int bossSceneNum;
 

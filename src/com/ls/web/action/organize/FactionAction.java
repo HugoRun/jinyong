@@ -20,12 +20,12 @@ import com.pm.service.mail.MailInfoService;
 
 /**
  * @author ls
- * °ïÅÉÏà¹Ø
+ * å¸®æ´¾ç›¸å…³
  */
 public class FactionAction extends ActionBase
 {
 	/**
-	 * °ïÅÉÊ×Ò³Ãæ
+	 * å¸®æ´¾é¦–é¡µé¢
 	 */
 	public ActionForward index(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +42,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * ÆäËû°ïÅÉÁĞ±í
+	 * å…¶ä»–å¸®æ´¾åˆ—è¡¨
 	 */
 	public ActionForward otherFList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -57,7 +57,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * °ïÅÉĞÅÏ¢
+	 * å¸®æ´¾ä¿¡æ¯
 	 */
 	public ActionForward des(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -65,7 +65,7 @@ public class FactionAction extends ActionBase
 		String fId = request.getParameter("fId");
 		request.setAttribute("pre", request.getParameter("pre"));
 		Faction faction = null ;
-		if( fId==null )//×Ô¼ºµÄ°ïÅÉĞÅÏ¢
+		if( fId==null )//è‡ªå·±çš„å¸®æ´¾ä¿¡æ¯
 		{
 			RoleEntity roleEntity = super.getRoleEntity(request);
 			faction = roleEntity.getBasicInfo().getFaction();
@@ -76,7 +76,7 @@ public class FactionAction extends ActionBase
 			request.setAttribute("faction", faction);
 			return mapping.findForward("faction_info");
 		}
-		else//²é¿´±ğÈËµÄ°ïÅÉĞÅÏ¢
+		else//æŸ¥çœ‹åˆ«äººçš„å¸®æ´¾ä¿¡æ¯
 		{
 			faction = FactionService.getById(Integer.parseInt(fId));
 			request.setAttribute("faction", faction);
@@ -87,9 +87,9 @@ public class FactionAction extends ActionBase
 	}
 	
 	
-	//***********************°ïÅÉ¹ÜÀí*****************************
+	//***********************å¸®æ´¾ç®¡ç†*****************************
 	/**
-	 * °ïÅÉ¹ÜÀíÊ×Ò³
+	 * å¸®æ´¾ç®¡ç†é¦–é¡µ
 	 */
 	public ActionForward manageIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -105,9 +105,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("manage_index_"+roleEntity.getBasicInfo().getFJob());
 	}
 	
-	//******************³ÉÔ±¹ÜÀí
+	//******************æˆå‘˜ç®¡ç†
 	/**
-	 * É¾³ı³ÉÔ±ÌáÊ¾
+	 * åˆ é™¤æˆå‘˜æç¤º
 	 */
 	public ActionForward delHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -118,7 +118,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("del_member_hint");
 	}
 	/**
-	 * É¾³ı³ÉÔ±
+	 * åˆ é™¤æˆå‘˜
 	 */
 	public ActionForward delMem(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -139,7 +139,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("del_member_end");
 	}
 	/**
-	 * °ïÅÉ³ÉÔ±ÁĞ±í
+	 * å¸®æ´¾æˆå‘˜åˆ—è¡¨
 	 */
 	public ActionForward memList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -168,9 +168,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("del_member_list");
 	}
 	
-	//******************°ïÅÉÉı¼¶
+	//******************å¸®æ´¾å‡çº§
 	/**
-	 * °ïÅÉÉı¼¶ÌáÊ¾
+	 * å¸®æ´¾å‡çº§æç¤º
 	 */
 	public ActionForward upgradeHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -189,7 +189,7 @@ public class FactionAction extends ActionBase
 		FUpgradeMaterial material = faction.getUpgradeMaterial(FUpgradeMaterial.F_UPGRADE);
 		if( material==null )
 		{
-			this.setHint(request, "ÊÏ×åÄ¿Ç°ÒÑ´ï×î¸ßµÈ¼¶");
+			this.setHint(request, "æ°æ—ç›®å‰å·²è¾¾æœ€é«˜ç­‰çº§");
 			return mapping.findForward("upgrade_end");
 		}
 		request.setAttribute("material", material);
@@ -197,7 +197,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * °ïÅÉÉı¼¶
+	 * å¸®æ´¾å‡çº§
 	 */
 	public ActionForward upgrade(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -215,9 +215,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("upgrade_end");
 	}
 	
-	//******************ìôÌÃÉı¼¶
+	//******************ç¥ å ‚å‡çº§
 	/**
-	 * ìôÌÃÉı¼¶ÌáÊ¾
+	 * ç¥ å ‚å‡çº§æç¤º
 	 */
 	public ActionForward upgradeCTHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -236,7 +236,7 @@ public class FactionAction extends ActionBase
 		FUpgradeMaterial material = faction.getUpgradeMaterial(FUpgradeMaterial.C_UPGRADE);
 		if( material==null )
 		{
-			this.setHint(request, "ìôÌÃÄ¿Ç°ÒÑ´ï×î¸ßµÈ¼¶");
+			this.setHint(request, "ç¥ å ‚ç›®å‰å·²è¾¾æœ€é«˜ç­‰çº§");
 			return mapping.findForward("upgrade_end");
 		}
 		request.setAttribute("material", material);
@@ -244,7 +244,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * ìôÌÃÉı¼¶
+	 * ç¥ å ‚å‡çº§
 	 */
 	public ActionForward upgradeCT(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -262,9 +262,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("upgrade_end");
 	}
 	
-	//*****************ÍË³ö°ïÅÉ
+	//*****************é€€å‡ºå¸®æ´¾
 	/**
-	 * ÍË³ö°ïÅÉ
+	 * é€€å‡ºå¸®æ´¾
 	 */
 	public ActionForward exit(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -277,11 +277,11 @@ public class FactionAction extends ActionBase
 		}
 		
 		faction.delMember(roleEntity);
-		this.setHint(request, "ÄúÒÑ³É¹¦ÍË³öÁËÊÏ×å!");
+		this.setHint(request, "æ‚¨å·²æˆåŠŸé€€å‡ºäº†æ°æ—!");
 		return mapping.findForward("return_manage_hint");
 	}
 	/**
-	 * ÍË³ö°ïÅÉÈ·ÈÏÒ³Ãæ
+	 * é€€å‡ºå¸®æ´¾ç¡®è®¤é¡µé¢
 	 */
 	public ActionForward exitHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -292,7 +292,7 @@ public class FactionAction extends ActionBase
 		{
 			return this.index(mapping, form, request, response);
 		}
-		if( roleEntity.getBasicInfo().getFJob()==Faction.ZUZHANG)//Èç¹ûÊÇ°ïÖ÷
+		if( roleEntity.getBasicInfo().getFJob()==Faction.ZUZHANG)//å¦‚æœæ˜¯å¸®ä¸»
 		{
 			return mapping.findForward("zuzhang_exit_hint");
 		}
@@ -303,9 +303,9 @@ public class FactionAction extends ActionBase
 	}
 	
 	
-	//*****************½âÉ¢°ïÅÉ
+	//*****************è§£æ•£å¸®æ´¾
 	/**
-	 * ½âÉ¢°ïÅÉÈ·ÈÏÒ³Ãæ
+	 * è§£æ•£å¸®æ´¾ç¡®è®¤é¡µé¢
 	 */
 	public ActionForward disbandHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -320,7 +320,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("disband_hint");
 	}
 	/**
-	 * ½âÉ¢°ïÅÉ
+	 * è§£æ•£å¸®æ´¾
 	 */
 	public ActionForward disband(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -339,7 +339,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("return_manage_hint");
 	}
 	/**
-	 * ½Ó¹Ü½âÉ¢µÄÊÏ×å
+	 * æ¥ç®¡è§£æ•£çš„æ°æ—
 	 */
 	public ActionForward assume(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -352,9 +352,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("return_manage_hint");
 	}
 	
-	//*****************×ªÈÃ×å³¤
+	//*****************è½¬è®©æ—é•¿
 	/**
-	 * ³¤ÀÏÁĞ±í
+	 * é•¿è€åˆ—è¡¨
 	 */
 	public ActionForward zlList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -381,7 +381,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("member_list");
 	}
 	/**
-	 * ×ªÈÃ×å³¤ÌáÊ¾
+	 * è½¬è®©æ—é•¿æç¤º
 	 */
 	public ActionForward changeZZHHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -396,16 +396,16 @@ public class FactionAction extends ActionBase
 		RoleEntity member = RoleService.getRoleInfoById(mId);
 		if( member==null )
 		{
-			this.setError(request, "ÎŞ¸Ã½ÇÉ«");
+			this.setError(request, "æ— è¯¥è§’è‰²");
 			return this.zlList(mapping, form, request, response);
 		}
-		this.setHint(request, "ÄúÈ·¶¨½«×å³¤Ò»Ö°×ªÈÃ¸ø"+member.getName()+"Âğ£¿");
+		this.setHint(request, "æ‚¨ç¡®å®šå°†æ—é•¿ä¸€èŒè½¬è®©ç»™"+member.getName()+"å—ï¼Ÿ");
 		request.setAttribute("faction", faction);
 		request.setAttribute("mId", mId);
 		return mapping.findForward("change_zuzhang_hint");
 	}
 	/**
-	 * ×ªÈÃ×å³¤
+	 * è½¬è®©æ—é•¿
 	 * @return
 	 */
 	public ActionForward changeZZH(ActionMapping mapping, ActionForm form,
@@ -421,7 +421,7 @@ public class FactionAction extends ActionBase
 		RoleEntity member = RoleService.getRoleInfoById(mId);
 		if( member==null )
 		{
-			this.setError(request, "ÎŞ¸Ã½ÇÉ«");
+			this.setError(request, "æ— è¯¥è§’è‰²");
 			return this.zlList(mapping, form, request, response);
 		}
 		
@@ -433,9 +433,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("change_zuzhang_end");
 	}
 	
-	//*****************ÕĞÄ¼
+	//*****************æ‹›å‹Ÿ
 	/**
-	 * ÊäÈëÕĞÄ¼ĞÅÏ¢
+	 * è¾“å…¥æ‹›å‹Ÿä¿¡æ¯
 	 */
 	public ActionForward inputRecruit(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -453,7 +453,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("input_recruit");
 	}
 	/**
-	 * ·¢²¼ÕĞÄ¼ĞÅÏ¢
+	 * å‘å¸ƒæ‹›å‹Ÿä¿¡æ¯
 	 */
 	public ActionForward recruit(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -474,15 +474,15 @@ public class FactionAction extends ActionBase
 		}
 		else
 		{
-			this.setHint(request,"¹§Ï²Äú,ÄúµÄÕĞÄ¼ĞÅÏ¢ÒÑ¾­·¢³ö,ÇëÄú¾´ºò¼ÑÒô!");
+			this.setHint(request,"æ­å–œæ‚¨,æ‚¨çš„æ‹›å‹Ÿä¿¡æ¯å·²ç»å‘å‡º,è¯·æ‚¨æ•¬å€™ä½³éŸ³!");
 			return mapping.findForward("recruit_end");
 		}
 	}
 	
 	
-	//****************ĞŞ¸Ä³ÆºÅ
+	//****************ä¿®æ”¹ç§°å·
 	/**
-	 * ±ä¸ü³ÆºÅ
+	 * å˜æ›´ç§°å·
 	 */
 	public ActionForward changeTitle(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -498,7 +498,7 @@ public class FactionAction extends ActionBase
 		
 		if( roleEntity.getBasicInfo().isOperateByFJob(Faction.ZHANGLAO)==false )
 		{
-			this.setError(request, "È¨ÏŞ²»¹»");
+			this.setError(request, "æƒé™ä¸å¤Ÿ");
 			return mapping.findForward("input_title");
 		}
 		
@@ -515,16 +515,16 @@ public class FactionAction extends ActionBase
 		RoleEntity member = RoleService.getRoleInfoById(mId);
 		if( member==null )
 		{
-			this.setError(request, "¸Ã½ÇÉ«²»´æÔÚ");
+			this.setError(request, "è¯¥è§’è‰²ä¸å­˜åœ¨");
 			return this.titleMList(mapping, form, request, response);
 		}
 		member.getBasicInfo().changeFTitle(fTitle);
-		this.setHint(request, "¹§Ï²Äú£¬"+member.getName()+"µÄ³ÆºÅÒÑ¸ü¸ÄÎª"+fTitle+"£¡");
+		this.setHint(request, "æ­å–œæ‚¨ï¼Œ"+member.getName()+"çš„ç§°å·å·²æ›´æ”¹ä¸º"+fTitle+"ï¼");
 		request.setAttribute("faction", faction);
 		return mapping.findForward("change_title_end");
 	}
 	/**
-	 * ±ä¸ü³ÆºÅÌáÊ¾
+	 * å˜æ›´ç§°å·æç¤º
 	 */
 	public ActionForward changeTitleHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -550,17 +550,17 @@ public class FactionAction extends ActionBase
 		RoleEntity member = RoleService.getRoleInfoById(request.getParameter("mId"));
 		if( member==null )
 		{
-			this.setError(request, "¸Ã½ÇÉ«²»´æÔÚ");
+			this.setError(request, "è¯¥è§’è‰²ä¸å­˜åœ¨");
 			request.setAttribute("mId", request.getParameter("mId"));
 			request.setAttribute("faction", faction);
 			return this.titleMList(mapping, form, request, response);
 		}
-		this.setHint(request, "ÄúÈ·¶¨Òª½«"+member.getName()+"µÄ³ÆºÅ¸ü¸ÄÎª"+fTitle+"Âğ£¿");
+		this.setHint(request, "æ‚¨ç¡®å®šè¦å°†"+member.getName()+"çš„ç§°å·æ›´æ”¹ä¸º"+fTitle+"å—ï¼Ÿ");
 		request.setAttribute("title", fTitle);
 		return mapping.findForward("change_title_hint");
 	}
 	/**
-	 * ÊäÈë³ÆºÅ
+	 * è¾“å…¥ç§°å·
 	 */
 	public ActionForward inputTitle(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -578,7 +578,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * ĞŞ¸Ä³ÆºÅ³ÉÔ±ÁĞ±í
+	 * ä¿®æ”¹ç§°å·æˆå‘˜åˆ—è¡¨
 	 */
 	public ActionForward titleMList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -605,9 +605,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("member_list");
 	}
 	
-	//***********¸ü¸ÄÖ°Î»
+	//***********æ›´æ”¹èŒä½
 	/**
-	 * Ñ¡ÔñÖ°Î»Ò³Ãæ
+	 * é€‰æ‹©èŒä½é¡µé¢
 	 */
 	public ActionForward selectJobHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -625,7 +625,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("select_job");
 	}
 	/**
-	 * Ñ¡ÔñÖ°Î»
+	 * é€‰æ‹©èŒä½
 	 */
 	public ActionForward selectJob(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -640,7 +640,7 @@ public class FactionAction extends ActionBase
 		String job_str = request.getParameter("job");
 		if( job_str==null || Integer.parseInt(job_str)<Faction.ZUZHONG && Integer.parseInt(job_str)>=Faction.ZUZHANG )
 		{
-			this.setError(request, "·Ç·¨Ö°Î»");
+			this.setError(request, "éæ³•èŒä½");
 			request.setAttribute("mId", request.getParameter("mId"));
 			request.setAttribute("basicInfo", roleEntity.getBasicInfo());
 			request.setAttribute("faction", faction);
@@ -650,17 +650,17 @@ public class FactionAction extends ActionBase
 		RoleEntity member = RoleService.getRoleInfoById(pPk);
 		if( member==null )
 		{
-			this.setError(request, "¸Ã½ÇÉ«²»´æÔÚ");
+			this.setError(request, "è¯¥è§’è‰²ä¸å­˜åœ¨");
 			return this.jobMList(mapping, form, request, response);
 		}
-		this.setHint(request, "ÄúÈ·¶¨½«"+member.getName()+"µÄÖ°Î»±ä¸üÎª"+ExchangeUtil.getFJobName(Integer.parseInt(job_str))+"£¿");
+		this.setHint(request, "æ‚¨ç¡®å®šå°†"+member.getName()+"çš„èŒä½å˜æ›´ä¸º"+ExchangeUtil.getFJobName(Integer.parseInt(job_str))+"ï¼Ÿ");
 		request.setAttribute("mId", pPk);
 		request.setAttribute("job", job_str);
 		request.setAttribute("faction", faction);
 		return mapping.findForward("change_job_hint");
 	}
 	/**
-	 * ¸Ä±äÖ°Î»
+	 * æ”¹å˜èŒä½
 	 */
 	public ActionForward changeJob(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -674,7 +674,7 @@ public class FactionAction extends ActionBase
 		String job_str = request.getParameter("job");
 		if( job_str==null || Integer.parseInt(job_str)<Faction.ZUZHONG && Integer.parseInt(job_str)>=Faction.ZUZHANG )
 		{
-			this.setError(request, "·Ç·¨Ö°Î»");
+			this.setError(request, "éæ³•èŒä½");
 			request.setAttribute("mId", request.getParameter("mId"));
 			request.setAttribute("basicInfo", roleEntity.getBasicInfo());
 			request.setAttribute("faction", faction);
@@ -690,7 +690,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("change_job_end");
 	}
 	/**
-	 * ±ä¸üÖ°Î»³ÉÔ±ÁĞ±í
+	 * å˜æ›´èŒä½æˆå‘˜åˆ—è¡¨
 	 */
 	public ActionForward jobMList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -717,9 +717,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("member_list");
 	}
 	
-	//************ÑûÇë¼ÓÈë°ïÅÉ
+	//************é‚€è¯·åŠ å…¥å¸®æ´¾
 	/**
-	 * ÑûÇëÈë°ïÌáÊ¾
+	 * é‚€è¯·å…¥å¸®æç¤º
 	 */
 	public ActionForward inviteHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -734,7 +734,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("invite_hint");
 	}
 	/**
-	 * ÑûÇë
+	 * é‚€è¯·
 	 */
 	public ActionForward invite(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -758,7 +758,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("invite_hint");
 	}
 	/**
-	 * Íæ¼Ò¶ÔÑûÇëµÄ´¦Àí
+	 * ç©å®¶å¯¹é‚€è¯·çš„å¤„ç†
 	 */
 	public ActionForward inviteResult(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -783,31 +783,31 @@ public class FactionAction extends ActionBase
 					}
 					else
 					{
-						this.setHint(request, "ÄãÒÑ³É¹¦¼ÓÈë¸ÃÊÏ×å");
+						this.setHint(request, "ä½ å·²æˆåŠŸåŠ å…¥è¯¥æ°æ—");
 					}
 				}
 				else
 				{
-					this.setHint(request, "¸ÃÊÏ×åÒÑ½âÉ¢");
+					this.setHint(request, "è¯¥æ°æ—å·²è§£æ•£");
 				}
 			}
 			else
 			{
-				this.setHint(request, "ÄãÒÑ¾Ü¾ø¼ÓÈë¸ÃÊÏ×å");
+				this.setHint(request, "ä½ å·²æ‹’ç»åŠ å…¥è¯¥æ°æ—");
 			}
 		}
 		else
 		{
-			this.setHint(request, "ÏµÍ³´íÎó");
+			this.setHint(request, "ç³»ç»Ÿé”™è¯¯");
 		}
 		MailInfoService mailInfoService = new MailInfoService(); 
 		mailInfoService.deleteMailByid(mailId, roleEntity.getPPk());
 		return mapping.findForward("return_hint");
 	}
 	
-	//************ÉêÇëÈë°ï¹ÜÀí
+	//************ç”³è¯·å…¥å¸®ç®¡ç†
 	/**
-	 * ÉêÇëÈë°ï£¬°ïÅÉÁĞ±í
+	 * ç”³è¯·å…¥å¸®ï¼Œå¸®æ´¾åˆ—è¡¨
 	 */
 	public ActionForward applyFList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -821,7 +821,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("apply_faction_list");
 	}
 	/**
-	 * ÉêÇëĞÅÏ¢ÁĞ±í
+	 * ç”³è¯·ä¿¡æ¯åˆ—è¡¨
 	 */
 	public ActionForward applyList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -846,7 +846,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("apply_list");
 	}
 	/**
-	 *  Í¬Òâ¼ÓÈë°ïÅÉ
+	 *  åŒæ„åŠ å…¥å¸®æ´¾
 	 */
 	public ActionForward agreeApply(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -866,7 +866,7 @@ public class FactionAction extends ActionBase
 		return this.applyList(mapping, form, request, response);
 	}
 	/**
-	 * É¾³ıÉêÇë
+	 * åˆ é™¤ç”³è¯·
 	 */
 	public ActionForward delApply(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -886,9 +886,9 @@ public class FactionAction extends ActionBase
 		return this.applyList(mapping, form, request, response);
 	}
 	
-	//****************************°ïÅÉ¹«¸æ
+	//****************************å¸®æ´¾å…¬å‘Š
 	/**
-	 * ¹«¸æÁĞ±í
+	 * å…¬å‘Šåˆ—è¡¨
 	 */
 	public ActionForward noticeList(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -920,7 +920,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("notice_list");
 	}
 	/**
-	 * É¾³ı¹«¸æÌáÊ¾
+	 * åˆ é™¤å…¬å‘Šæç¤º
 	 */
 	public ActionForward delNoticeHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -930,7 +930,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * É¾³ı¹«¸æ
+	 * åˆ é™¤å…¬å‘Š
 	 */
 	public ActionForward delNotice(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -950,7 +950,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * ÊäÈë¹«¸æÄÚÈİ
+	 * è¾“å…¥å…¬å‘Šå†…å®¹
 	 */
 	public ActionForward inputNotice(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -965,7 +965,7 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("input_notice");
 	}
 	/**
-	 * ·¢²¼¹«¸æ
+	 * å‘å¸ƒå…¬å‘Š
 	 */
 	public ActionForward publishNotice(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -992,9 +992,9 @@ public class FactionAction extends ActionBase
 	}
 	
 	
-	//****************************ÉêÇë¼ÓÈë°ïÅÉ
+	//****************************ç”³è¯·åŠ å…¥å¸®æ´¾
 	/**
-	 * ÉêÇë¼ÓÈë°ïÅÉ
+	 * ç”³è¯·åŠ å…¥å¸®æ´¾
 	 */
 	public ActionForward apply(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1011,9 +1011,9 @@ public class FactionAction extends ActionBase
 		return mapping.findForward("apply_hint");
 	}
 	
-	//****************************°ïÅÉ´´½¨
+	//****************************å¸®æ´¾åˆ›å»º
 	/**
-	 * ´´½¨°ïÅÉÊ×Ò³Ãæ
+	 * åˆ›å»ºå¸®æ´¾é¦–é¡µé¢
 	 */
 	public ActionForward createIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1022,7 +1022,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * ÊäÈë°ïÅÉÃû×Ö
+	 * è¾“å…¥å¸®æ´¾åå­—
 	 */
 	public ActionForward inputFName(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1033,7 +1033,7 @@ public class FactionAction extends ActionBase
 		String hint = factionService.isCreated(roleEntity);
 		if( hint!=null )
 		{
-			this.setHint(request,  "¶Ô²»Æğ£¬ÄúµÄµÈ¼¶²»¹»£¬»òÁéÊ¯²»×ã£¬»òÃ»ÓĞÊÏ×åÁî£¬²»¿É´´½¨ÊÏ×å£¡");
+			this.setHint(request,  "å¯¹ä¸èµ·ï¼Œæ‚¨çš„ç­‰çº§ä¸å¤Ÿï¼Œæˆ–çµçŸ³ä¸è¶³ï¼Œæˆ–æ²¡æœ‰æ°æ—ä»¤ï¼Œä¸å¯åˆ›å»ºæ°æ—ï¼");
 			return mapping.findForward("create_fail_hint");
 		}
 		
@@ -1041,7 +1041,7 @@ public class FactionAction extends ActionBase
 	}
 	
 	/**
-	 * ´´½¨°ïÅÉ
+	 * åˆ›å»ºå¸®æ´¾
 	 */
 	public ActionForward create(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -1060,7 +1060,7 @@ public class FactionAction extends ActionBase
 		String hint = factionService.create(roleEntity, f_name);
 		if( hint==null)
 		{
-			hint = "¹§Ï²Äú³É¹¦´´½¨ÁËÊÏ×å"+f_name+"£¬Çë¾¡¿ìÕĞÄÉÊÏ×å³ÉÔ±£¬ÈôÈıÈÕÄÚÊÏ×å³ÉÔ±Î´Âú10ÈË£¬ÔòÄúµÄÊÏ×å½«×Ô¶¯½â³ı£¡";
+			hint = "æ­å–œæ‚¨æˆåŠŸåˆ›å»ºäº†æ°æ—"+f_name+"ï¼Œè¯·å°½å¿«æ‹›çº³æ°æ—æˆå‘˜ï¼Œè‹¥ä¸‰æ—¥å†…æ°æ—æˆå‘˜æœªæ»¡10äººï¼Œåˆ™æ‚¨çš„æ°æ—å°†è‡ªåŠ¨è§£é™¤ï¼";
 			this.setHint(request, hint);
 			return mapping.findForward("return_faction_hint");
 		}

@@ -9,12 +9,12 @@ import com.lw.vo.systemnotify.SystemNotifyVO;
 
 public class SystemNotifyDao extends DaoBase
 {
-	/** µÃµ½¹«¸æµÄÀàÐÍ */
+	/** å¾—åˆ°å…¬å‘Šçš„ç±»åž‹ */
 	public List<SystemNotifyVO> getNotifyType(int type)
 	{
 		List<SystemNotifyVO> list = new ArrayList<SystemNotifyVO>();
 		SystemNotifyVO vo = null;
-		String sql = "select * from game_notify where isonline = 1 and type = "
+		String sql = "SELECT * FROM game_notify where isonline = 1 and type = "
 				+ type + " order by ordernum  ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -44,11 +44,11 @@ public class SystemNotifyDao extends DaoBase
 		return list;
 	}
 
-	/** µÃµ½¹«¸æµÄÄÚÈÝ */
+	/** å¾—åˆ°å…¬å‘Šçš„å†…å®¹ */
 	public String getNotifyContent(int id)
 	{
 		String content = null;
-		String sql = "select content from game_notify where id = " + id;
+		String sql = "SELECT content from game_notify where id = " + id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -75,14 +75,14 @@ public class SystemNotifyDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½µÚÒ»¸ö¹«¸æµÄÄÚÈÝ
+	 * å¾—åˆ°ç¬¬ä¸€ä¸ªå…¬å‘Šçš„å†…å®¹
 	 * 
 	 * @return
 	 */
 	public SystemNotifyVO getFirstNotifyInfo()
 	{
 		SystemNotifyVO vo = null;
-		String sql = "select * from game_notify where isonline = 1  order by ordernum  limit 1";
+		String sql = "SELECT * FROM game_notify where isonline = 1  order by ordernum  limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

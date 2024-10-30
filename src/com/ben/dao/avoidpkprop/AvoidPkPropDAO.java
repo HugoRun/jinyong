@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ben.dao.avoidpkprop;
 
@@ -9,120 +9,90 @@ import com.ben.vo.avoidpkprop.AvoidPkPropVO;
 import com.pub.db.mysql.SqlData;
 
 /**
- * @author ∫Ó∫∆æ¸
- * 
+ * @author ‰æØÊµ©ÂÜõ
+ *
  */
-public class AvoidPkPropDAO
-{
-	SqlData con;
+public class AvoidPkPropDAO {
+    SqlData con;
 
-	/**
-	 * ≤Â»Î√‚PKµ¿æﬂµƒ π”√ ±º‰
-	 */
-	public void addAvoidPkProp(int pPK, String beginTime, String endTime)
-	{
-		try
-		{
-			con = new SqlData();
-			String sql = "insert into u_avoidpkprop values(null,'" + pPK
-					+ "','" + beginTime + "','" + endTime + "')";
-			con.update(sql);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			con.close();
-		}
-	}
+    /**
+     * ÊèíÂÖ•ÂÖçPKÈÅìÂÖ∑ÁöÑ‰ΩøÁî®Êó∂Èó¥
+     */
+    public void addAvoidPkProp(int pPK, String beginTime, String endTime) {
+        try {
+            con = new SqlData();
+            String sql = "INSERT INTO `u_avoidpkprop` VALUES(null, '" + pPK + "', '" + beginTime + "', '" + endTime + "')";
+            con.update(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+    }
 
-	/**
-	 * …æ≥˝±£ª§ ±º‰
-	 * 
-	 * @param pPk
-	 */
-	public void deleteAvoidPkProp(int pPk)
-	{
-		try
-		{
-			con = new SqlData();
-			String sql = "delete from u_avoidpkprop where p_pk='" + pPk + "'";
-			con.update(sql);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			con.close();
-		}
-	}
+    /**
+     * Âà†Èô§‰øùÊä§Êó∂Èó¥
+     *
+     * @param pPk
+     */
+    public void deleteAvoidPkProp(int pPk) {
+        try {
+            con = new SqlData();
+            String sql = "DELETE FROM `u_avoidpkprop` WHERE p_pk='" + pPk + "'";
+            con.update(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+    }
 
-	/**
-	 * ≈–∂œ «∑Ò‘⁄±£ª§ ±º‰ƒ⁄
-	 * 
-	 * @param pPk
-	 * @param tim
-	 * @return
-	 */
-	public boolean isAvoidPkPropTime(int pPk)
-	{
-		try
-		{
-			con = new SqlData();
-			String sql = "select * from u_avoidpkprop where end_time > now() and p_pk='" + pPk + "'";
-			ResultSet rs = con.query(sql);
-			if (rs.next())
-			{
-				return true;
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			con.close();
-		}
-		return false;
-	}
+    /**
+     * Âà§Êñ≠ÊòØÂê¶Âú®‰øùÊä§Êó∂Èó¥ÂÜÖ
+     * @param pPk
+     * @return
+     */
+    public boolean isAvoidPkPropTime(int pPk) {
+        try {
+            con = new SqlData();
+            String sql = "SELECT * FROM `u_avoidpkprop` WHERE end_time > now() AND p_pk='" + pPk + "'";
+            ResultSet rs = con.query(sql);
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+        return false;
+    }
 
-	/**
-	 * ∑µªÿ «∑Ò‘⁄”––ß±£ª§∑∂Œßƒ⁄
-	 * @param pPk
-	 * @param time
-	 * @return
-	 */
-	public AvoidPkPropVO getAvoidPkProp(int pPk, String time)
-	{
-		try
-		{
-			con = new SqlData();
-			String sql = "select * from u_avoidpkprop where begin_time < '"+time+"' and end_time > '"+time+"' and p_pk='" + pPk + "'";
-			ResultSet rs = con.query(sql);
-			AvoidPkPropVO vo = null;
-			if (rs.next())
-			{
-				vo = new AvoidPkPropVO();
-				vo.setAPk(rs.getInt("a_pk"));
-				vo.setPPk(rs.getInt("p_pk"));
-				vo.setBeginTime(rs.getString("begin_time"));
-				vo.setEndTime(rs.getString("end_time"));
-			}
-			return vo;
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			con.close();
-		}
-		return null;
-	}
+    /**
+     * ËøîÂõûÊòØÂê¶Âú®ÊúâÊïà‰øùÊä§ËåÉÂõ¥ÂÜÖ
+     * @param pPk
+     * @param time
+     * @return
+     */
+    public AvoidPkPropVO getAvoidPkProp(int pPk, String time) {
+        try {
+            con = new SqlData();
+            String sql = "SELECT * FROM `u_avoidpkprop` WHERE begin_time < '" + time + "' AND end_time > '" + time + "' AND p_pk='" + pPk + "'";
+            ResultSet rs = con.query(sql);
+            AvoidPkPropVO vo = null;
+            if (rs.next()) {
+                vo = new AvoidPkPropVO();
+                vo.setAPk(rs.getInt("a_pk"));
+                vo.setPPk(rs.getInt("p_pk"));
+                vo.setBeginTime(rs.getString("begin_time"));
+                vo.setEndTime(rs.getString("end_time"));
+            }
+            return vo;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+        return null;
+    }
 }

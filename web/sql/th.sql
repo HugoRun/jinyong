@@ -1,152 +1,152 @@
 create database jygame_user;  
 
 
-/**********ÓÊ¼ş±í(u_mail_info)***************/
+/**********é‚®ä»¶è¡¨(u_mail_info)***************/
 
 create table u_mail_info ( 
-	mail_id 		mediumint unsigned not null auto_increment 		,	/*** ÓÊ¼ş±íid **/	
-	receive_pk 		int												,	/**  ÊÕĞÅÈËid **/
-	send_pk			int 											,	/**	 ·¢ĞÅÈËid **/
-	mail_type		int												,	/**  ÓÊ¼şÀàĞÍ£¬1ÎªÆÕÍ¨£¬2ÎªÏµÍ³**/
-	title 				varchar(200)									, 	/**  ±êÌâ  **/
-	content 			varchar(2000)									,	/**  ÓÊ¼şÄÚÈİ  **/
-	unread				int												,	/**	 ÊÇ·ñÔÄ¶Á¹ı£¬1ÎªÎ´¶Á£¬2Î´ÒÑ¶Á **/
-	improtant			int												,	/**  ÖØÒªĞÔ£¬ÔÚÍæ¼Ò¿´Ê±»áÒÔ´Ë×÷ÓÅÏÈÅÅĞò£¬Ä¬ÈÏÎª1£¬Êı×ÖÔ½´óÔ½¿¿Ç°  **/		
-	create_time			datetime										,	/**	 ÓÊ¼ş·¢ËÍÊ±¼ä£¬ÔÚÖØÒªĞÔÅÅĞòÒ»ÖÂµÄÇé¿öÏÂÒÔ´ËÅÅĞò  ***/
+	mail_id 		mediumint unsigned not null auto_increment 		,	/*** é‚®ä»¶è¡¨id **/	
+	receive_pk 		int												,	/**  æ”¶ä¿¡äººid **/
+	send_pk			int 											,	/**	 å‘ä¿¡äººid **/
+	mail_type		int												,	/**  é‚®ä»¶ç±»å‹ï¼Œ1ä¸ºæ™®é€šï¼Œ2ä¸ºç³»ç»Ÿ**/
+	title 				varchar(200)									, 	/**  æ ‡é¢˜  **/
+	content 			varchar(2000)									,	/**  é‚®ä»¶å†…å®¹  **/
+	unread				int												,	/**	 æ˜¯å¦é˜…è¯»è¿‡ï¼Œ1ä¸ºæœªè¯»ï¼Œ2æœªå·²è¯» **/
+	improtant			int												,	/**  é‡è¦æ€§ï¼Œåœ¨ç©å®¶çœ‹æ—¶ä¼šä»¥æ­¤ä½œä¼˜å…ˆæ’åºï¼Œé»˜è®¤ä¸º1ï¼Œæ•°å­—è¶Šå¤§è¶Šé å‰  **/		
+	create_time			datetime										,	/**	 é‚®ä»¶å‘é€æ—¶é—´ï¼Œåœ¨é‡è¦æ€§æ’åºä¸€è‡´çš„æƒ…å†µä¸‹ä»¥æ­¤æ’åº  ***/
 	primary key (mail_id));
 	
-	/**********³èÎïÅÄÂô³¡±í(u_auction_pet)***************/ 
+	/**********å® ç‰©æ‹å–åœºè¡¨(u_auction_pet)***************/ 
 create table u_auction_pet(
-	auction_id		 mediumint unsigned not null auto_increment ,/** ÅÄÂô³¡³èÎïid */
-	auction_status	 int 										,/** ³èÎïÅÄÂô×´Ì¬£¬1ÎªÕıÔÚÅÄÂô£¬2ÎªÅÄÂôÊ§°Ü,µÈ´ıÈ¡»Ø£¬3ÎªÍæ¼ÒÎ´È¡»Ø,µÈ´ıÉ¾³ı£¬4ÎªÅÄÂô³É¹¦£¬µÈ´ıÍæ¼ÒÈ¡»Ø½ğÇ®. */
-	pet_price		 int 										,/** ³èÎïÅÄÂô¼Û¸ñ  */
-	pet_auction_time datetime									,/** ³èÎïÅÄÂôÊ±¼ä */	
-	pet_pk			 int									   , /** ½ÇÉ«³èÎïID */
+	auction_id		 mediumint unsigned not null auto_increment ,/** æ‹å–åœºå® ç‰©id */
+	auction_status	 int 										,/** å® ç‰©æ‹å–çŠ¶æ€ï¼Œ1ä¸ºæ­£åœ¨æ‹å–ï¼Œ2ä¸ºæ‹å–å¤±è´¥,ç­‰å¾…å–å›ï¼Œ3ä¸ºç©å®¶æœªå–å›,ç­‰å¾…åˆ é™¤ï¼Œ4ä¸ºæ‹å–æˆåŠŸï¼Œç­‰å¾…ç©å®¶å–å›é‡‘é’±. */
+	pet_price		 int 										,/** å® ç‰©æ‹å–ä»·æ ¼  */
+	pet_auction_time datetime									,/** å® ç‰©æ‹å–æ—¶é—´ */	
+	pet_pk			 int									   , /** è§’è‰²å® ç‰©ID */
 	
-	p_pk			 int 					                   , /**½ÇÉ«id*/
-	pet_id			 int					                   , /**¶ÔÓ¦pet±íÀïµÄid*/
-	pet_name		 varchar(200)				               , /**³èÎïÃû³Æ*/
-	pet_nickname	 varchar(200)				               , /**³èÎïêÇ³Æ*/
-	pet_grade		 int					                   , /**µÈ¼¶*/
+	p_pk			 int 					                   , /**è§’è‰²id*/
+	pet_id			 int					                   , /**å¯¹åº”petè¡¨é‡Œçš„id*/
+	pet_name		 varchar(200)				               , /**å® ç‰©åç§°*/
+	pet_nickname	 varchar(200)				               , /**å® ç‰©æ˜µç§°*/
+	pet_grade		 int					                   , /**ç­‰çº§*/
 	
-	pet_exp			 varchar(200)			                   , /**¾­Ñé*/
-	pet_ben_exp		 varchar(200)			          default 0, /**µ±Ç°¾­Ñé¾­Ñé*/
-	pet_xia_exp		 varchar(200)                              , /**ÏÂ¼¶¾­Ñé´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé*/
-	pet_gj_xiao      int                     		           , /**×îĞ¡¹¥»÷*/
-	pet_gj_da        int					                   , /**×î´ó¹¥»÷*/
+	pet_exp			 varchar(200)			                   , /**ç»éªŒ*/
+	pet_ben_exp		 varchar(200)			          default 0, /**å½“å‰ç»éªŒç»éªŒ*/
+	pet_xia_exp		 varchar(200)                              , /**ä¸‹çº§ç»éªŒè¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ*/
+	pet_gj_xiao      int                     		           , /**æœ€å°æ”»å‡»*/
+	pet_gj_da        int					                   , /**æœ€å¤§æ”»å‡»*/
 	
-	pet_sale		 int			                           , /**Âô³ö¼Û¸ñ*/
-	pet_img			 varchar(200)                              , /**³èÎïÍ¼Æ¬*/
-	pet_grow	     double                                    , /**³èÎï³É³¤ÂÊ¡±*/
-	pet_wx           int                  			           , /**ÎåĞĞÊôĞÔ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
-    pet_wx_value     int           				               , /**ÎåĞĞÊôĞÔÖµ*/
+	pet_sale		 int			                           , /**å–å‡ºä»·æ ¼*/
+	pet_img			 varchar(200)                              , /**å® ç‰©å›¾ç‰‡*/
+	pet_grow	     double                                    , /**å® ç‰©æˆé•¿ç‡â€*/
+	pet_wx           int                  			           , /**äº”è¡Œå±æ€§é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
+    pet_wx_value     int           				               , /**äº”è¡Œå±æ€§å€¼*/
     
-    pet_skill_one	 int                                       , /**¼¼ÄÜ1	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_two	 int                          	           , /**¼¼ÄÜ2	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_three	 int                        	           , /**¼¼ÄÜ3	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_four	 int                          		       , /**¼¼ÄÜ4	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_five	 int                                  	   , /**¼¼ÄÜ5	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
+    pet_skill_one	 int                                       , /**æŠ€èƒ½1	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_two	 int                          	           , /**æŠ€èƒ½2	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_three	 int                        	           , /**æŠ€èƒ½3	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_four	 int                          		       , /**æŠ€èƒ½4	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_five	 int                                  	   , /**æŠ€èƒ½5	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
     
-    pet_life		 int			                           , /**ÊÙÃü**/
-    pet_isAutoGrow	 int									   , /** ÊÇ·ñ¿É×ÔÈ»Éı¼¶ **/
-    pet_type         int                                       , /**Éı¼¶	ÊÇ·ñ¿É×ÔÈ»Éı¼¶*/	
-    pet_isBring		 int					                   , /**ÊÇ·ñÔÚÉíÉÏ:1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ*/
-    pet_fatigue		 int			 	                       , /**Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã*/
-    pet_longe		 int			 	                       , /**³èÎïÊÙÃü*/
+    pet_life		 int			                           , /**å¯¿å‘½**/
+    pet_isAutoGrow	 int									   , /** æ˜¯å¦å¯è‡ªç„¶å‡çº§ **/
+    pet_type         int                                       , /**å‡çº§	æ˜¯å¦å¯è‡ªç„¶å‡çº§*/	
+    pet_isBring		 int					                   , /**æ˜¯å¦åœ¨èº«ä¸Š:1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦*/
+    pet_fatigue		 int			 	                       , /**ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹*/
+    pet_longe		 int			 	                       , /**å® ç‰©å¯¿å‘½*/
     
-    longe_number     int			 	                       , /**ÊÙÃüµÀ¾ßÊ¹ÓÃ´ÎÊı*/
-    longe_number_ok  int			 	                       , /**ÊÙÃüµÀ¾ßÒÑ¾­Ê¹ÓÃ´ÎÊı*/
-    skill_control    int			 	                       , /**Õâ¸ö³èÎï×î¶à¿ÉÒÔÑ§Ï°¶àÉÙ¸ö¼¼ÄÜ*/
-    pet_init_num	 int									   , /** ³èÎï³õÊ¼»¯´ÎÊı **/
+    longe_number     int			 	                       , /**å¯¿å‘½é“å…·ä½¿ç”¨æ¬¡æ•°*/
+    longe_number_ok  int			 	                       , /**å¯¿å‘½é“å…·å·²ç»ä½¿ç”¨æ¬¡æ•°*/
+    skill_control    int			 	                       , /**è¿™ä¸ªå® ç‰©æœ€å¤šå¯ä»¥å­¦ä¹ å¤šå°‘ä¸ªæŠ€èƒ½*/
+    pet_init_num	 int									   , /** å® ç‰©åˆå§‹åŒ–æ¬¡æ•° **/
  primary key (auction_id));
  
-   /*********³èÎïÅÄÂôĞÅÏ¢±í(u_auctionpet_info)******************************/
+   /*********å® ç‰©æ‹å–ä¿¡æ¯è¡¨(u_auctionpet_info)******************************/
   create table u_auctionpet_info(
-  	auctionpet_info_id			smallint unsigned not null auto_increment , /**³èÎïÅÄÂôĞÅÏ¢id */
-  	p_pk						int 									 ,	/** ¸öÈË½ÇÉ«id */
-  	auction_pet_info			varchar(200)							 ,	/** ³èÎïÅÄÂôĞÅÏ¢ÌáÊ¾ */
-  	addInfoTime					datetime 								,	/** Ôö¼ÓĞÅÏ¢Ê±¼ä */
+  	auctionpet_info_id			smallint unsigned not null auto_increment , /**å® ç‰©æ‹å–ä¿¡æ¯id */
+  	p_pk						int 									 ,	/** ä¸ªäººè§’è‰²id */
+  	auction_pet_info			varchar(200)							 ,	/** å® ç‰©æ‹å–ä¿¡æ¯æç¤º */
+  	addInfoTime					datetime 								,	/** å¢åŠ ä¿¡æ¯æ—¶é—´ */
   	primary key(auctionpet_info_id));
   	
-  	/*********ÏµÍ³ÉèÖÃ±í(s_setting_info)******************************/
+  	/*********ç³»ç»Ÿè®¾ç½®è¡¨(s_setting_info)******************************/
   	create table s_setting_info (
-  		setting_id			smallint unsigned not null auto_increment,	/** ÏµÍ³ÉèÖÃ±í */
-  		p_pk				int										,	/** ÈËÎï½ÇÉ«id */
-  		goods_pic			tinyint									,	/**  ÎïÆ·Í¼¿ª¹Ø,1Îª¿ªÆô£¬0Îª¹Ø±Õ */
-  		person_pic			tinyint									,	/**	 ½ÇÉ«ĞÎÏóÍ¼¿ª¹Ø,1Îª¿ªÆô£¬0Îª¹Ø±Õ */
-  		npc_pic				tinyint									,	/**  npc¹ÖÎïÍ¼¿ª¹Ø,1Îª¿ªÆô£¬0Îª¹Ø±Õ */
-  		pet_pic				tinyint									,	/**  ³èÎïÍ¼¿ª¹Ø,1Îª¿ªÆô£¬0Îª¹Ø±Õ */
-  		operate_pic			tinyint									,	/**  npcÈËÎïÍ¼¿ª¹Ø,1Îª¿ªÆô£¬0Îª¹Ø±Õ */
-  		deal_control		tinyint									,	/**  ½»Ò×¿ØÖÆ¿ª¹Ø,1Îª¿ªÆô£¬0Îª¹Ø±Õ */
+  		setting_id			smallint unsigned not null auto_increment,	/** ç³»ç»Ÿè®¾ç½®è¡¨ */
+  		p_pk				int										,	/** äººç‰©è§’è‰²id */
+  		goods_pic			tinyint									,	/**  ç‰©å“å›¾å¼€å…³,1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­ */
+  		person_pic			tinyint									,	/**	 è§’è‰²å½¢è±¡å›¾å¼€å…³,1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­ */
+  		npc_pic				tinyint									,	/**  npcæ€ªç‰©å›¾å¼€å…³,1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­ */
+  		pet_pic				tinyint									,	/**  å® ç‰©å›¾å¼€å…³,1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­ */
+  		operate_pic			tinyint									,	/**  npcäººç‰©å›¾å¼€å…³,1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­ */
+  		deal_control		tinyint									,	/**  äº¤æ˜“æ§åˆ¶å¼€å…³,1ä¸ºå¼€å¯ï¼Œ0ä¸ºå…³é—­ */
   	primary key(setting_id));
   		
- /**********½ÇÉ«²Ö¿â×°±¸±í(u_warehouse_equip)***************/
+ /**********è§’è‰²ä»“åº“è£…å¤‡è¡¨(u_warehouse_equip)***************/
 create table u_warehouse_equip ( 
-   w_pk		        smallint unsigned not null auto_increment ,	  /**½ÇÉ«×°±¸²Ö¿â±í*/
-   p_pk             int                                       ,	  /**½ÇÉ«id*/ 
-   table_type       int                                       ,   /**ÎïÆ·Ïà¹Ø±íÀàĞÍ*/
-   goods_type       int                                       ,   /**ÎïÆ·ÀàĞÍ*/
-   w_id             int                                       ,   /**ÎïÆ·ID*/
+   w_pk		        smallint unsigned not null auto_increment ,	  /**è§’è‰²è£…å¤‡ä»“åº“è¡¨*/
+   p_pk             int                                       ,	  /**è§’è‰²id*/ 
+   table_type       int                                       ,   /**ç‰©å“ç›¸å…³è¡¨ç±»å‹*/
+   goods_type       int                                       ,   /**ç‰©å“ç±»å‹*/
+   w_id             int                                       ,   /**ç‰©å“ID*/
    
-   w_name           varchar(200)                              ,   /**ÎïÆ·Ãû³Æ*/
-   w_durability     int                                       ,   /**ÄÍ¾Ã*/ 
-   w_dura_consume   int                                       ,   /**ÄÍ¾ÃÏûºÄ*/
-   w_Bonding        int                                       ,   /**°ó¶¨*/ 
-   w_protect        int                                       ,   /**±£»¤*/ 
+   w_name           varchar(200)                              ,   /**ç‰©å“åç§°*/
+   w_durability     int                                       ,   /**è€ä¹…*/ 
+   w_dura_consume   int                                       ,   /**è€ä¹…æ¶ˆè€—*/
+   w_Bonding        int                                       ,   /**ç»‘å®š*/ 
+   w_protect        int                                       ,   /**ä¿æŠ¤*/ 
    
-   w_isReconfirm    int                                       ,   /**¶ş´ÎÈ·ÈÏ*/ 
-   w_price          int                                       ,   /**Âô³ö¼ÛÇ®*/
-   w_fy_xiao        int                               default 0,  /**¸½¼ÓÊôĞÔ×îĞ¡·ÀÓù*/
-   w_fy_da          int                               default 0,  /**¸½¼ÓÊôĞÔ×î´ó·ÀÓù*/ 
-   w_gj_xiao        int                               default 0,  /**¸½¼ÓÊôĞÔ×îĞ¡¹¥»÷*/
+   w_isReconfirm    int                                       ,   /**äºŒæ¬¡ç¡®è®¤*/ 
+   w_price          int                                       ,   /**å–å‡ºä»·é’±*/
+   w_fy_xiao        int                               default 0,  /**é™„åŠ å±æ€§æœ€å°é˜²å¾¡*/
+   w_fy_da          int                               default 0,  /**é™„åŠ å±æ€§æœ€å¤§é˜²å¾¡*/ 
+   w_gj_xiao        int                               default 0,  /**é™„åŠ å±æ€§æœ€å°æ”»å‡»*/
    
-   w_gj_da          int                               default 0,  /**¸½¼ÓÊôĞÔ×î´ó¹¥»÷*/ 
-   w_hp             int                               default 0,  /**¸½¼ÓÊôĞÔÆøÑª*/
-   w_mp             int                               default 0,  /**¸½¼ÓÊôĞÔ·¨Á¦*/
-   w_jin_fy         int                               default 0,  /**¸½¼ÓÊôĞÔ½ğ·ÀÓùÁ¦*/
-   w_mu_fy          int                               default 0,  /**¸½¼ÓÊôĞÔÄ¾·ÀÓùÁ¦*/
+   w_gj_da          int                               default 0,  /**é™„åŠ å±æ€§æœ€å¤§æ”»å‡»*/ 
+   w_hp             int                               default 0,  /**é™„åŠ å±æ€§æ°”è¡€*/
+   w_mp             int                               default 0,  /**é™„åŠ å±æ€§æ³•åŠ›*/
+   w_jin_fy         int                               default 0,  /**é™„åŠ å±æ€§é‡‘é˜²å¾¡åŠ›*/
+   w_mu_fy          int                               default 0,  /**é™„åŠ å±æ€§æœ¨é˜²å¾¡åŠ›*/
    
-   w_shui_fy        int                               default 0,  /**¸½¼ÓÊôĞÔË®·ÀÓùÁ¦*/
-   w_huo_fy         int                               default 0,  /**¸½¼ÓÊôĞÔ»ğ·ÀÓùÁ¦*/
-   w_tu_fy          int                               default 0,  /**¸½¼ÓÊôĞÔÍÁ·ÀÓùÁ¦*/
-   w_jin_gj         int                               default 0,  /**¸½¼ÓÊôĞÔ½ğ¹¥»÷Á¦*/
-   w_mu_gj          int                               default 0,  /**¸½¼ÓÊôĞÔÄ¾¹¥»÷Á¦*/
+   w_shui_fy        int                               default 0,  /**é™„åŠ å±æ€§æ°´é˜²å¾¡åŠ›*/
+   w_huo_fy         int                               default 0,  /**é™„åŠ å±æ€§ç«é˜²å¾¡åŠ›*/
+   w_tu_fy          int                               default 0,  /**é™„åŠ å±æ€§åœŸé˜²å¾¡åŠ›*/
+   w_jin_gj         int                               default 0,  /**é™„åŠ å±æ€§é‡‘æ”»å‡»åŠ›*/
+   w_mu_gj          int                               default 0,  /**é™„åŠ å±æ€§æœ¨æ”»å‡»åŠ›*/
    
-   w_shui_gj        int                               default 0,  /**¸½¼ÓÊôĞÔË®¹¥»÷Á¦*/
-   w_huo_gj         int                               default 0,  /**¸½¼ÓÊôĞÔ»ğ¹¥»÷Á¦*/
-   w_tu_gj          int                               default 0,  /**¸½¼ÓÊôĞÔÍÁ¹¥»÷Á¦*/ 
-   w_type           int                               default 0,  /**ÊÇ·ñ±»×°±¸ 0 Ã»ÓĞ 1±»×°±¸ÁË*/
-   w_quality        int                                        ,  /**Æ·ÖÊ*/
+   w_shui_gj        int                               default 0,  /**é™„åŠ å±æ€§æ°´æ”»å‡»åŠ›*/
+   w_huo_gj         int                               default 0,  /**é™„åŠ å±æ€§ç«æ”»å‡»åŠ›*/
+   w_tu_gj          int                               default 0,  /**é™„åŠ å±æ€§åœŸæ”»å‡»åŠ›*/ 
+   w_type           int                               default 0,  /**æ˜¯å¦è¢«è£…å¤‡ 0 æ²¡æœ‰ 1è¢«è£…å¤‡äº†*/
+   w_quality        int                                        ,  /**å“è´¨*/
    
-   w_wx_type        int                                        ,  /** ×°±¸ÎåĞĞÀàĞÍ*/
-   suit_id			int								  default 0,	/** Ì××°id */
-   w_buff_isEffected  int                             default 0,  /**¸½¼ÓbuffÊÇ·ñÓĞĞ§£¬0±íÊ¾ÎŞĞ§£¬1±íÊ¾ÓĞĞ§*/
-   create_time      datetime                                   ,  /** ´´½¨Ê±¼ä*/ 
+   w_wx_type        int                                        ,  /** è£…å¤‡äº”è¡Œç±»å‹*/
+   suit_id			int								  default 0,	/** å¥—è£…id */
+   w_buff_isEffected  int                             default 0,  /**é™„åŠ buffæ˜¯å¦æœ‰æ•ˆï¼Œ0è¡¨ç¤ºæ— æ•ˆï¼Œ1è¡¨ç¤ºæœ‰æ•ˆ*/
+   create_time      datetime                                   ,  /** åˆ›å»ºæ—¶é—´*/ 
    primary key (w_pk)); 		
   			
 
    
    
-   /** pkÖµÏû³ıÈÕÖ¾ (u_pkvalue_elimination)*/
+   /** pkå€¼æ¶ˆé™¤æ—¥å¿— (u_pkvalue_elimination)*/
    create table u_pkvalue_elimination(
-   elimi_id 		int unsigned not null auto_increment		,	/**pkÖµÏû³ı±íid */
-   p_pk				int											,	/**½ÇÉ«id*/
-   pk_value			int											,	/**pkÖµ*/
-   is_prisonArea	int 										,	/**ÊÇ·ñÔÚ¼àÓüÇøÓò£¬1Îª²»ÔÚ£¬2ÎªÔÚ*/
-   last_time		datetime									,	/**ÉÏ´ÎÏû³ı×ï¶ñÖµµÄÊ±¼ä*/   
+   elimi_id 		int unsigned not null auto_increment		,	/**pkå€¼æ¶ˆé™¤è¡¨id */
+   p_pk				int											,	/**è§’è‰²id*/
+   pk_value			int											,	/**pkå€¼*/
+   is_prisonArea	int 										,	/**æ˜¯å¦åœ¨ç›‘ç‹±åŒºåŸŸï¼Œ1ä¸ºä¸åœ¨ï¼Œ2ä¸ºåœ¨*/
+   last_time		datetime									,	/**ä¸Šæ¬¡æ¶ˆé™¤ç½ªæ¶å€¼çš„æ—¶é—´*/   
     primary key (elimi_id));   
 
    
-  /*************ÏµÍ³ÏûÏ¢¿ØÖÆ±í(u_systeminof_control)*********/
+  /*************ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨(u_systeminof_control)*********/
   	create table u_systeminof_control(
-  control_id		 int unsigned not null auto_increment		,	    /**  ÏµÍ³¿ØÖÆÏûÏ¢±íid */
-  condition_type 	 int 										,		/** ¿ØÖÆÌõ¼şÀàĞÍ,1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.  */
-  player_grade		 int						   default 0	,		/**  Íæ¼ÒµÈ¼¶ */
-  task_id			 int 						   default 0	,		/**  ÈËÎïid */
-  popularity		 int 						   default 0	,		/**  ÉùÍû */
-  title 			 varchar(50) 					   			,		/**   ³ÆÎ½ */
-  send_time		     datetime									,		/**   ·¢ËÍÊ±¼ä */
-  send_content		varchar(1000)								,		/**  ·¢ËÍÄÚÈİ	*/
+  control_id		 int unsigned not null auto_increment		,	    /**  ç³»ç»Ÿæ§åˆ¶æ¶ˆæ¯è¡¨id */
+  condition_type 	 int 										,		/** æ§åˆ¶æ¡ä»¶ç±»å‹,1ä¸ºç©å®¶ç­‰çº§,2ä¸ºä»»åŠ¡,3ä¸ºå£°æœ›,4ä¸ºç§°è°“,5ä¸ºå‘é€æ—¶é—´.  */
+  player_grade		 int						   default 0	,		/**  ç©å®¶ç­‰çº§ */
+  task_id			 int 						   default 0	,		/**  äººç‰©id */
+  popularity		 int 						   default 0	,		/**  å£°æœ› */
+  title 			 varchar(50) 					   			,		/**   ç§°è°“ */
+  send_time		     datetime									,		/**   å‘é€æ—¶é—´ */
+  send_content		varchar(1000)								,		/**  å‘é€å†…å®¹	*/
   primary key(control_id));			
   
   
@@ -161,106 +161,106 @@ create table u_warehouse_equip (
   
   
   
-  /***********ÉÏÏßÍæ¼Ò¼ÇÂ¼±í*********************/
+  /***********ä¸Šçº¿ç©å®¶è®°å½•è¡¨*********************/
   create table p_record_login(
-  id				int unsigned not null auto_increment		,	    /**  ÉÏÏßÍæ¼Ò¼ÇÂ¼±íid */	
-  u_pk				int											,		/**  Íæ¼Òid  */
-  loginStatus		int											,		/**  µÇÂ½×´Ì¬ */
-  loginTime			datetime									,		/**  ×îºóÉÏÏßÊ±¼ä  */	
+  id				int unsigned not null auto_increment		,	    /**  ä¸Šçº¿ç©å®¶è®°å½•è¡¨id */	
+  u_pk				int											,		/**  ç©å®¶id  */
+  loginStatus		int											,		/**  ç™»é™†çŠ¶æ€ */
+  loginTime			datetime									,		/**  æœ€åä¸Šçº¿æ—¶é—´  */	
   primary key(id));
   
  
- /***********ÉÏÏßÍæ¼Ò½ÇÉ«¼ÇÂ¼±í*********************/
+ /***********ä¸Šçº¿ç©å®¶è§’è‰²è®°å½•è¡¨*********************/
   create table user_record_login(
-  id				int unsigned not null auto_increment		,	    /**  ÉÏÏßÍæ¼Ò¼ÇÂ¼±íid */	
-  p_pk				int											,		/**  Íæ¼Ò½ÇÉ«id  */
-  p_grade			int											,		/**  Íæ¼ÒµÈ¼¶   **/
-  loginStatus		int											,		/**  µÇÂ½×´Ì¬ */
-  loginTime			datetime									,		/**  ×îºóÉÏÏßÊ±¼ä  */	
+  id				int unsigned not null auto_increment		,	    /**  ä¸Šçº¿ç©å®¶è®°å½•è¡¨id */	
+  p_pk				int											,		/**  ç©å®¶è§’è‰²id  */
+  p_grade			int											,		/**  ç©å®¶ç­‰çº§   **/
+  loginStatus		int											,		/**  ç™»é™†çŠ¶æ€ */
+  loginTime			datetime									,		/**  æœ€åä¸Šçº¿æ—¶é—´  */	
   primary key(id));
   	
   	
  
-  /*************** Íæ¼ÒÔÚÏßÊ±³¤±í ***********************************/
+  /*************** ç©å®¶åœ¨çº¿æ—¶é•¿è¡¨ ***********************************/
   	create table user_online_time(
-  		id			int unsigned not null auto_increment		,	/**  Íæ¼ÒÔÚÏßÊ±³¤±íid **/
-  		u_pk		int											,	/*** Íæ¼Òid ***/
-  		p_pk		int											,	/**  ½ÇÉ«id  **/
-  		onlinetime	int											,	/*** ÔÚÏßÊ±¼ä³¤¶È **/
-  		createTime	datetime									,	/**  ´´½¨Ê±¼ä **/	
+  		id			int unsigned not null auto_increment		,	/**  ç©å®¶åœ¨çº¿æ—¶é•¿è¡¨id **/
+  		u_pk		int											,	/*** ç©å®¶id ***/
+  		p_pk		int											,	/**  è§’è‰²id  **/
+  		onlinetime	int											,	/*** åœ¨çº¿æ—¶é—´é•¿åº¦ **/
+  		createTime	datetime									,	/**  åˆ›å»ºæ—¶é—´ **/	
   	 primary key(id));
   	 
   	 
   
-  /***********ÉÏÏßÍæ¼ÒµÈ¼¶±í*********************/
+  /***********ä¸Šçº¿ç©å®¶ç­‰çº§è¡¨*********************/
   create table user_login_grade(
-  	id 				int unsigned not null auto_increment		,	/** ÉÏÏßÍæ¼ÒµÈ¼¶±íid **/
-  	grade1to9		int											,	/**  µÈ¼¶1µ½9Íæ¼ÒÊıÁ¿ **/
-  	grade10to19		int											,	/**  µÈ¼¶10µ½19Íæ¼ÒÊıÁ¿**/
-  	grade20to29		int											,	/**  µÈ¼¶20µ½29Íæ¼ÒÊıÁ¿**/
- 	grade30to39		int											,	/**  µÈ¼¶30µ½39Íæ¼ÒÊıÁ¿**/
-    grade40to49		int											,	/**  µÈ¼¶40µ½49Íæ¼ÒÊıÁ¿ **/
-  	grade50to59		int											,	/**  µÈ¼¶50µ½59Íæ¼ÒÊıÁ¿ **/
-    grade60			int											,	/**  µÈ¼¶60Íæ¼ÒÊıÁ¿ **/
-    record_date		varchar(50)									,	/**  ¼ÇÂ¼ÈÕÆÚ **/	
-    record_time		datetime									,	/**  Ö´ĞĞ¶¯×÷¾ßÌåÊ±¼ä. **/
+  	id 				int unsigned not null auto_increment		,	/** ä¸Šçº¿ç©å®¶ç­‰çº§è¡¨id **/
+  	grade1to9		int											,	/**  ç­‰çº§1åˆ°9ç©å®¶æ•°é‡ **/
+  	grade10to19		int											,	/**  ç­‰çº§10åˆ°19ç©å®¶æ•°é‡**/
+  	grade20to29		int											,	/**  ç­‰çº§20åˆ°29ç©å®¶æ•°é‡**/
+ 	grade30to39		int											,	/**  ç­‰çº§30åˆ°39ç©å®¶æ•°é‡**/
+    grade40to49		int											,	/**  ç­‰çº§40åˆ°49ç©å®¶æ•°é‡ **/
+  	grade50to59		int											,	/**  ç­‰çº§50åˆ°59ç©å®¶æ•°é‡ **/
+    grade60			int											,	/**  ç­‰çº§60ç©å®¶æ•°é‡ **/
+    record_date		varchar(50)									,	/**  è®°å½•æ—¥æœŸ **/	
+    record_time		datetime									,	/**  æ‰§è¡ŒåŠ¨ä½œå…·ä½“æ—¶é—´. **/
   primary key(id));			
   								
   								
-   /***********³ÁÄ¬Íæ¼ÒµÈ¼¶±í*********************/
+   /***********æ²‰é»˜ç©å®¶ç­‰çº§è¡¨*********************/
   create table user_silence_grade(
-  	id 				int unsigned not null auto_increment		,	/**  ³ÁÄ¬Íæ¼ÒµÈ¼¶±íid **/
-  	grade1to9		int											,	/**  µÈ¼¶1µ½9Íæ¼ÒÊıÁ¿ **/
-  	grade10to19		int											,	/**  µÈ¼¶10µ½19Íæ¼ÒÊıÁ¿**/
-  	grade20to29		int											,	/**  µÈ¼¶20µ½29Íæ¼ÒÊıÁ¿**/
- 	grade30to39		int											,	/**  µÈ¼¶30µ½39Íæ¼ÒÊıÁ¿**/
-    grade40to49		int											,	/**  µÈ¼¶40µ½49Íæ¼ÒÊıÁ¿ **/
-  	grade50to59		int											,	/**  µÈ¼¶50µ½59Íæ¼ÒÊıÁ¿ **/
-    grade60			int											,	/**  µÈ¼¶60Íæ¼ÒÊıÁ¿ **/
-    record_date		varchar(50)									,	/**  ¼ÇÂ¼ÈÕÆÚ **/	
-    record_time		datetime									,	/**  Ö´ĞĞ¶¯×÷¾ßÌåÊ±¼ä. **/
+  	id 				int unsigned not null auto_increment		,	/**  æ²‰é»˜ç©å®¶ç­‰çº§è¡¨id **/
+  	grade1to9		int											,	/**  ç­‰çº§1åˆ°9ç©å®¶æ•°é‡ **/
+  	grade10to19		int											,	/**  ç­‰çº§10åˆ°19ç©å®¶æ•°é‡**/
+  	grade20to29		int											,	/**  ç­‰çº§20åˆ°29ç©å®¶æ•°é‡**/
+ 	grade30to39		int											,	/**  ç­‰çº§30åˆ°39ç©å®¶æ•°é‡**/
+    grade40to49		int											,	/**  ç­‰çº§40åˆ°49ç©å®¶æ•°é‡ **/
+  	grade50to59		int											,	/**  ç­‰çº§50åˆ°59ç©å®¶æ•°é‡ **/
+    grade60			int											,	/**  ç­‰çº§60ç©å®¶æ•°é‡ **/
+    record_date		varchar(50)									,	/**  è®°å½•æ—¥æœŸ **/	
+    record_time		datetime									,	/**  æ‰§è¡ŒåŠ¨ä½œå…·ä½“æ—¶é—´. **/
   primary key(id));			
   
   
-  /*************** ÈÕ³£µÈ¼¶±í ***********************************/
+  /*************** æ—¥å¸¸ç­‰çº§è¡¨ ***********************************/
   	create table user_everyday_grade(
-  		id				int unsigned not null auto_increment		,	/** ÈÕ³£µÈ¼¶±íid **/
-  		grade1			int											,	/**  µÈ¼¶Îª1µÄµÈ¼¶ÊıÁ¿ */	
-  		grade2to9		int											,	/**  µÈ¼¶2µ½9Íæ¼ÒÊıÁ¿ **/
-  		grade10to19		int											,	/**  µÈ¼¶10µ½19Íæ¼ÒÊıÁ¿**/
-  		grade20to29		int											,	/**  µÈ¼¶20µ½29Íæ¼ÒÊıÁ¿**/
- 		grade30to39		int											,	/**  µÈ¼¶30µ½39Íæ¼ÒÊıÁ¿**/
-   		grade40to49		int											,	/**  µÈ¼¶40µ½49Íæ¼ÒÊıÁ¿ **/
-  		grade50to59		int											,	/**  µÈ¼¶50µ½59Íæ¼ÒÊıÁ¿ **/
-    	grade60			int											,	/**  µÈ¼¶60Íæ¼ÒÊıÁ¿ **/
-  		recordTime		varchar(50)									,	/*** Ëù¼ÇÂ¼ÈÕÆÚ **/
-  		createTime	datetime										,	/**  ´´½¨Ê±¼ä **/	
+  		id				int unsigned not null auto_increment		,	/** æ—¥å¸¸ç­‰çº§è¡¨id **/
+  		grade1			int											,	/**  ç­‰çº§ä¸º1çš„ç­‰çº§æ•°é‡ */	
+  		grade2to9		int											,	/**  ç­‰çº§2åˆ°9ç©å®¶æ•°é‡ **/
+  		grade10to19		int											,	/**  ç­‰çº§10åˆ°19ç©å®¶æ•°é‡**/
+  		grade20to29		int											,	/**  ç­‰çº§20åˆ°29ç©å®¶æ•°é‡**/
+ 		grade30to39		int											,	/**  ç­‰çº§30åˆ°39ç©å®¶æ•°é‡**/
+   		grade40to49		int											,	/**  ç­‰çº§40åˆ°49ç©å®¶æ•°é‡ **/
+  		grade50to59		int											,	/**  ç­‰çº§50åˆ°59ç©å®¶æ•°é‡ **/
+    	grade60			int											,	/**  ç­‰çº§60ç©å®¶æ•°é‡ **/
+  		recordTime		varchar(50)									,	/*** æ‰€è®°å½•æ—¥æœŸ **/
+  		createTime	datetime										,	/**  åˆ›å»ºæ—¶é—´ **/	
   	 primary key(id));	
   							
   		
   																																		
-   /*************** Íæ¼ÒÔÚÏßÊ±¼ä¶Î±í ***********************************/
+   /*************** ç©å®¶åœ¨çº¿æ—¶é—´æ®µè¡¨ ***********************************/
   	create table user_online_num(
-  		id				int unsigned not null auto_increment		,	/** ÈÕ³£µÈ¼¶±íid **/
-  		hour_time			int										,	/**	Ò»ÌìÖĞµãÊ± **/	
-  		player_num			int										,	/**	Ò»ÌìÖĞµãÊ±µÄÔÚÏßÈËÊı **/
-  		record_time		varchar(50)									,	/** ¼ÇÂ¼ÈÕÆÚ */
-  		insert_time		datetime									,	/** ²åÈëÊ±¼ä */ 
+  		id				int unsigned not null auto_increment		,	/** æ—¥å¸¸ç­‰çº§è¡¨id **/
+  		hour_time			int										,	/**	ä¸€å¤©ä¸­ç‚¹æ—¶ **/	
+  		player_num			int										,	/**	ä¸€å¤©ä¸­ç‚¹æ—¶çš„åœ¨çº¿äººæ•° **/
+  		record_time		varchar(50)									,	/** è®°å½•æ—¥æœŸ */
+  		insert_time		datetime									,	/** æ’å…¥æ—¶é—´ */ 
   	 primary key(id));
   	
   	
-  	/*************** Íæ¼ÒĞÅÏ¢×ÜÀÀ±í ***********************************/
+  	/*************** ç©å®¶ä¿¡æ¯æ€»è§ˆè¡¨ ***********************************/
   	create table user_info_overview(
-  		id						int unsigned not null auto_increment		,	/** ÈÕ³£µÈ¼¶±íid **/
-  		all_regist_num			int											,	/** ×Ü×¢²áÈËÊı **/	
-  		all_regist_user			int											,	/**	×Ü×¢²á½ÇÉ«  **/
-  		today_regist_num		int											,	/** ½ñÈÕ×¢²áÈËÊı */
-  		today_online_num		int											,	/** ½ñÈÕÉÏÏßÈËÊı */
-  		today_active_num		int											,	/** ½ñÈÕ»îÔ¾ÈËÊı */
-  		today_avg_time 			int											,	/** ½ñÈÕÆ½¾ùÔÚÏßÊ±¼ä */
-  		today_avg_grade 		int											,	/** ½ñÈÕÆ½¾ùÔÚÏßµÈ¼¶ */
-  		today_avg_num			int											,	/** ½ñÈÕÆ½¾ùÔÚÏßÈËÊı */
-  		insert_time		datetime											,	/** ²åÈëÊ±¼ä */ 
+  		id						int unsigned not null auto_increment		,	/** æ—¥å¸¸ç­‰çº§è¡¨id **/
+  		all_regist_num			int											,	/** æ€»æ³¨å†Œäººæ•° **/	
+  		all_regist_user			int											,	/**	æ€»æ³¨å†Œè§’è‰²  **/
+  		today_regist_num		int											,	/** ä»Šæ—¥æ³¨å†Œäººæ•° */
+  		today_online_num		int											,	/** ä»Šæ—¥ä¸Šçº¿äººæ•° */
+  		today_active_num		int											,	/** ä»Šæ—¥æ´»è·ƒäººæ•° */
+  		today_avg_time 			int											,	/** ä»Šæ—¥å¹³å‡åœ¨çº¿æ—¶é—´ */
+  		today_avg_grade 		int											,	/** ä»Šæ—¥å¹³å‡åœ¨çº¿ç­‰çº§ */
+  		today_avg_num			int											,	/** ä»Šæ—¥å¹³å‡åœ¨çº¿äººæ•° */
+  		insert_time		datetime											,	/** æ’å…¥æ—¶é—´ */ 
   	 primary key(id));
   	 
   	 
@@ -272,142 +272,142 @@ create table u_warehouse_equip (
   	
   	 
   	 
-  	 /*****************   °ïÅÉ¹¥³ÇÕ½±í  (ºóÌ¨)   ***************/
+  	 /*****************   å¸®æ´¾æ”»åŸæˆ˜è¡¨  (åå°)   ***************/
   	 create table tong_siege_battle (
-  	 		siege_id			int unsigned not null auto_increment  ,		/** ¹¥³ÇÕ½ID,´ú±í×ÅÄ³¸ö³ÇÊĞµÄ¹¥³Ç  */
-  	 		siege_name			varchar(100)						 						,		/**  ¹¥³ÇÕ½³¡µÄÃû×Ö ***/
-  	 		map_id				int 														,		/*** °ïÅÉ¹¥³ÇÕ½Ëù¶ÔÓ¦µÄmap_type  **/
-  	 		affect_map_id  int														,		/**   Ó°ÏìµÄµØÍ¼MAP_ID,ÔÚ´ËID ÄÚµÄÇøÓò¶¼ÊÜ´Ë³ÇÊĞ¹ÜÏ½,Èç¶àÓÚÒ»¸ö, ÒÔ¶ººÅÇø·Ö ***/
-  	 		tax					int														,		/*****   ´Ë¹¤³ÌÕ½³¡Ëù´ú±íÇøÓòµÄË°ÂÊË®Æ½,ÔÚ1µ½10Ö®¼ä   *****/
-  	 		tax_money		int														,		/**      ´Ë¹¥³ÇÕ½³¡Ëù´ú±íÇøÓòµÄË°½ğ      **/
-  	 		out_scene		int														,		/****   Ç¿ÖÆ´«³öÊ±µÄµØµã    */		
-  	 		relive_scene	varchar(20)											,		/****   Íæ¼Ò¸´»îµã,1Îª¹¥³Ç·½,2ÎªÊØ³Ç·½µÄ.    */		
+  	 		siege_id			int unsigned not null auto_increment  ,		/** æ”»åŸæˆ˜ID,ä»£è¡¨ç€æŸä¸ªåŸå¸‚çš„æ”»åŸ  */
+  	 		siege_name			varchar(100)						 						,		/**  æ”»åŸæˆ˜åœºçš„åå­— ***/
+  	 		map_id				int 														,		/*** å¸®æ´¾æ”»åŸæˆ˜æ‰€å¯¹åº”çš„map_type  **/
+  	 		affect_map_id  int														,		/**   å½±å“çš„åœ°å›¾MAP_ID,åœ¨æ­¤ID å†…çš„åŒºåŸŸéƒ½å—æ­¤åŸå¸‚ç®¡è¾–,å¦‚å¤šäºä¸€ä¸ª, ä»¥é€—å·åŒºåˆ† ***/
+  	 		tax					int														,		/*****   æ­¤å·¥ç¨‹æˆ˜åœºæ‰€ä»£è¡¨åŒºåŸŸçš„ç¨ç‡æ°´å¹³,åœ¨1åˆ°10ä¹‹é—´   *****/
+  	 		tax_money		int														,		/**      æ­¤æ”»åŸæˆ˜åœºæ‰€ä»£è¡¨åŒºåŸŸçš„ç¨é‡‘      **/
+  	 		out_scene		int														,		/****   å¼ºåˆ¶ä¼ å‡ºæ—¶çš„åœ°ç‚¹    */		
+  	 		relive_scene	varchar(20)											,		/****   ç©å®¶å¤æ´»ç‚¹,1ä¸ºæ”»åŸæ–¹,2ä¸ºå®ˆåŸæ–¹çš„.    */		
   	  primary key(siege_id));		  	 		
   	 
   	 
-  	  	 /*****************   °ïÅÉ¹¥³ÇÕ½¿ØÖÆ±í  (Ç°Ì¨)   ***************/
+  	  	 /*****************   å¸®æ´¾æ”»åŸæˆ˜æ§åˆ¶è¡¨  (å‰å°)   ***************/
   	 create table tong_siege_control (
-  	 		control_id			int unsigned not null auto_increment  ,		/** °ïÅÉ¹¥³ÇÕ½¿ØÖÆ±íID  */
-  	 		siege_id				int 														,		/*** ¹¥³ÇÕ½ID,´ú±í×ÅÄ³¸ö³ÇÊĞµÄ¹¥³Ç  **/
-  	 		siege_number  int														,			/**   siege_idËù´ú±íµÄ°ïÅÉÂíÉÏÒª¿ªÊ¼µÄÊÇµÚ¼¸´Î¹¥³ÇÕ½   ***/
-  	 		siege_start_time		datetime										,			/**   ÏÂ´Î¹¥³ÇÕ½¿ªÊ¼Ê±¼ä  */
-  	 		siege_sign_end		datetime										,  			/**   ÏÂ´Î¹¥³ÇÕ½±¨Ãû½ØÖ¹Ê±¼ä */
-  	 		last_win_tongid		int												,			/**    ´Ë¹¥³ÇÕ½³¡ÉÏ´ÎÊ¤Àû°ïÅÉID   **/
-  	 		now_phase				int												,			/**     µ±Ç°½×¶Î,0Îª¹¥³Ç½áÊøµÈ´ıÏÂ´Î¿ªÊ¼,1Îª¹¥³ÇµÚÒ»½×¶Î,2Îª³ÇÃÅ¿ªÊ¼±»ÈË´ò´ò,3Îª³ÇÃÅ±»´òÆÆ,,4ÎªÓ¢ĞÛµñÏñ±»´òÆÆ¹¥³Ç½øÈëµÚ¶ş½×¶Î   ***/
+  	 		control_id			int unsigned not null auto_increment  ,		/** å¸®æ´¾æ”»åŸæˆ˜æ§åˆ¶è¡¨ID  */
+  	 		siege_id				int 														,		/*** æ”»åŸæˆ˜ID,ä»£è¡¨ç€æŸä¸ªåŸå¸‚çš„æ”»åŸ  **/
+  	 		siege_number  int														,			/**   siege_idæ‰€ä»£è¡¨çš„å¸®æ´¾é©¬ä¸Šè¦å¼€å§‹çš„æ˜¯ç¬¬å‡ æ¬¡æ”»åŸæˆ˜   ***/
+  	 		siege_start_time		datetime										,			/**   ä¸‹æ¬¡æ”»åŸæˆ˜å¼€å§‹æ—¶é—´  */
+  	 		siege_sign_end		datetime										,  			/**   ä¸‹æ¬¡æ”»åŸæˆ˜æŠ¥åæˆªæ­¢æ—¶é—´ */
+  	 		last_win_tongid		int												,			/**    æ­¤æ”»åŸæˆ˜åœºä¸Šæ¬¡èƒœåˆ©å¸®æ´¾ID   **/
+  	 		now_phase				int												,			/**     å½“å‰é˜¶æ®µ,0ä¸ºæ”»åŸç»“æŸç­‰å¾…ä¸‹æ¬¡å¼€å§‹,1ä¸ºæ”»åŸç¬¬ä¸€é˜¶æ®µ,2ä¸ºåŸé—¨å¼€å§‹è¢«äººæ‰“æ‰“,3ä¸ºåŸé—¨è¢«æ‰“ç ´,,4ä¸ºè‹±é›„é›•åƒè¢«æ‰“ç ´æ”»åŸè¿›å…¥ç¬¬äºŒé˜¶æ®µ   ***/
   	  primary key(control_id));	
   	  
-  	   /*****************   °ïÅÉ¹¥³ÇÕ½²ÎÕ½°ïÅÉÁĞ±í  (Ç°Ì¨)   ***************/
+  	   /*****************   å¸®æ´¾æ”»åŸæˆ˜å‚æˆ˜å¸®æ´¾åˆ—è¡¨  (å‰å°)   ***************/
   	 create table tong_siege_list (
-  	 		list_id				int unsigned not null auto_increment  ,		/**  °ïÅÉ¹¥³ÇÕ½°ïÅÉ²ÎÕ½ÁĞ±í ID  */
-  	 		siege_id			int 														,		/*** ¹¥³ÇÕ½ID,´ú±í×ÅÄ³¸ö³ÇÊĞµÄ¹¥³Ç  **/
-  	 		siege_number  int														,			/**   siege_idËù´ú±íµÄ°ïÅÉÂíÉÏÒª¿ªÊ¼µÄÊÇµÚ¼¸´Î¹¥³ÇÕ½   ***/
-  	 		tong_pk			int														,			/****    ²ÎÕ½µÄ°ïÅÉid      ****/  	 		
-  	 		join_time			datetime												,			/**     °ïÅÉÕ½ ²ÎÓëÊ±¼ä     ***/
+  	 		list_id				int unsigned not null auto_increment  ,		/**  å¸®æ´¾æ”»åŸæˆ˜å¸®æ´¾å‚æˆ˜åˆ—è¡¨ ID  */
+  	 		siege_id			int 														,		/*** æ”»åŸæˆ˜ID,ä»£è¡¨ç€æŸä¸ªåŸå¸‚çš„æ”»åŸ  **/
+  	 		siege_number  int														,			/**   siege_idæ‰€ä»£è¡¨çš„å¸®æ´¾é©¬ä¸Šè¦å¼€å§‹çš„æ˜¯ç¬¬å‡ æ¬¡æ”»åŸæˆ˜   ***/
+  	 		tong_pk			int														,			/****    å‚æˆ˜çš„å¸®æ´¾id      ****/  	 		
+  	 		join_time			datetime												,			/**     å¸®æ´¾æˆ˜ å‚ä¸æ—¶é—´     ***/
   	  primary key(list_id));	
   	  
   	  
-  	  /***     °ïÅÉ¹¥³ÇÕ½É±ÈË¼ÇÂ¼±í   ******/
+  	  /***     å¸®æ´¾æ”»åŸæˆ˜æ€äººè®°å½•è¡¨   ******/
   	   create table tong_siege_pklog (
-  	 		pklog_id			int unsigned not null auto_increment  ,		/** °ïÅÉ¹¥³ÇÕ½É±ÈË¼ÇÂ¼±íID  */
-  	 		siege_id				int 													,		/*** ¹¥³ÇÕ½ID,´ú±í×ÅÄ³¸ö³ÇÊĞµÄ¹¥³Ç  **/
-  	 		siege_number  int														,			/**   siege_idËù´ú±íµÄ¹¥³ÇÕ½µÚ¼¸´ÎÕ½¶·   ***/
-  	 		tong_id			int														,			/**   °ïÅÉID  */
-  	 		p_pk					int														,  			/**   ½ÇÉ«id */
-  	 		pk_number		int												,			/**   ÔÚ´Ë´Î¹¥³ÇÕ½ÉËËùÉ±ÈËÊı  **/
-  	 		pk_add_glory int															,			/**    ´Ë´Î¹¥³ÇÕ½ËùÔö¼ÓµÄ°ïÅÉÈÙÓşÖµ   ***/
+  	 		pklog_id			int unsigned not null auto_increment  ,		/** å¸®æ´¾æ”»åŸæˆ˜æ€äººè®°å½•è¡¨ID  */
+  	 		siege_id				int 													,		/*** æ”»åŸæˆ˜ID,ä»£è¡¨ç€æŸä¸ªåŸå¸‚çš„æ”»åŸ  **/
+  	 		siege_number  int														,			/**   siege_idæ‰€ä»£è¡¨çš„æ”»åŸæˆ˜ç¬¬å‡ æ¬¡æˆ˜æ–—   ***/
+  	 		tong_id			int														,			/**   å¸®æ´¾ID  */
+  	 		p_pk					int														,  			/**   è§’è‰²id */
+  	 		pk_number		int												,			/**   åœ¨æ­¤æ¬¡æ”»åŸæˆ˜ä¼¤æ‰€æ€äººæ•°  **/
+  	 		pk_add_glory int															,			/**    æ­¤æ¬¡æ”»åŸæˆ˜æ‰€å¢åŠ çš„å¸®æ´¾è£èª‰å€¼   ***/
   	  primary key(pklog_id));	
   	  
   	  
   	  
-  	  /***  ¹¥³ÇÕ½¸öÈËĞÅÏ¢¼ÇÂ¼    ****/
+  	  /***  æ”»åŸæˆ˜ä¸ªäººä¿¡æ¯è®°å½•    ****/
   	  create table tong_siege_info (
-  	  		info_id				int unsigned not null auto_increment  ,		/** ¹¥³ÇÕ½¸öÈËĞÅÏ¢¼ÇÂ¼ID  */
-  	  		p_pk 				int														,		/***  ¸öÈËpPk   ****/	
-  	  		attack_type		int														,		/*** ²Î¼ÓÀàĞÍ,1Îª¸öÈË²ÎÕ½,2Îª°ïÅÉ²ÎÕ½  ****/
-  	  		join_type			int														,		/**   Õ½¶·ÀàĞÍ,1Îª¹¥³Ç,2ÎªÊØ³Ç   ****/
-  	  		tong_id			int														,			/**    °ïÅÉID  */
+  	  		info_id				int unsigned not null auto_increment  ,		/** æ”»åŸæˆ˜ä¸ªäººä¿¡æ¯è®°å½•ID  */
+  	  		p_pk 				int														,		/***  ä¸ªäººpPk   ****/	
+  	  		attack_type		int														,		/*** å‚åŠ ç±»å‹,1ä¸ºä¸ªäººå‚æˆ˜,2ä¸ºå¸®æ´¾å‚æˆ˜  ****/
+  	  		join_type			int														,		/**   æˆ˜æ–—ç±»å‹,1ä¸ºæ”»åŸ,2ä¸ºå®ˆåŸ   ****/
+  	  		tong_id			int														,			/**    å¸®æ´¾ID  */
   	  		
-  	  		dead_num		int														,		/**    ÔÚµÚ¶ş½×¶ÎËÀµÄ´ÎÊı   **/
-  	 		dead_limit		int														,		/**    ËÀÍö¼«ÏŞ´ÎÊı ***/
-  	 		siege_id			int														,		/**    Õ½³¡id  **/
-  	 		siege_number	int														,		/***  Õ½³¡´ÎĞòÊı  **/	
+  	  		dead_num		int														,		/**    åœ¨ç¬¬äºŒé˜¶æ®µæ­»çš„æ¬¡æ•°   **/
+  	 		dead_limit		int														,		/**    æ­»äº¡æé™æ¬¡æ•° ***/
+  	 		siege_id			int														,		/**    æˆ˜åœºid  **/
+  	 		siege_number	int														,		/***  æˆ˜åœºæ¬¡åºæ•°  **/	
   	 primary key(info_id));
   	 
   	 
-  	 /***°ïÅÉ·¢ËÍ Ë°ÊÕ ½±½ğ±í  ****/
+  	 /***å¸®æ´¾å‘é€ ç¨æ”¶ å¥–é‡‘è¡¨  ****/
   	  create table tong_money_info (
-  	  		info_id				int unsigned not null auto_increment  ,		/** ¹¥³ÇÕ½¸öÈËĞÅÏ¢¼ÇÂ¼ID  */
-  	  		p_pk 				int														,		/***  ¸öÈËpPk   ****/	
-  	  		tong_id			int														,		/***  °ïÅÉID **/	
-  	  		back_type		int														,		/**     ÊÇ·ñÄÇ»á±êÖ¾,1ÎªÎ´ÄÃ,2ÎªÒÑ¾­ÄÃ»Ø    **/
-  	  		money_num		int														,		/***   ½ğÇ®Êı¶î  ****/
-  	  		sendtime			datetime												,		/**    ½±½ğ·¢·ÅÊ±¼ä   ****/
+  	  		info_id				int unsigned not null auto_increment  ,		/** æ”»åŸæˆ˜ä¸ªäººä¿¡æ¯è®°å½•ID  */
+  	  		p_pk 				int														,		/***  ä¸ªäººpPk   ****/	
+  	  		tong_id			int														,		/***  å¸®æ´¾ID **/	
+  	  		back_type		int														,		/**     æ˜¯å¦é‚£ä¼šæ ‡å¿—,1ä¸ºæœªæ‹¿,2ä¸ºå·²ç»æ‹¿å›    **/
+  	  		money_num		int														,		/***   é‡‘é’±æ•°é¢  ****/
+  	  		sendtime			datetime												,		/**    å¥–é‡‘å‘æ”¾æ—¶é—´   ****/
   	 primary key(info_id));
   	 
   	 
   	 
   	 
   	 
-  	 /***  ´«ËÍ±í  ****/
+  	 /***  ä¼ é€è¡¨  ****/
   	  create table carry_table_info (
-  	  		carry_id			int unsigned not null auto_increment  ,		/** ´«ËÍ±íID  */
-  	  		carry_type_id		int														,		/***  µØµãÀàĞÍ   ****/	
-  	  		carry_type_name		varchar(50)												,		/***  µØµãÀàĞÍÃû³Æ **/	
-  	  		scene_id			int														,		/**   µØµãid    **/
-  	  		scene_name  		varchar(50)												,		/***  µØµãÃû³Æ  ****/
-  	  		carry_grade			int														,		/**   µØµã´«ËÍµÈ¼¶  **/
+  	  		carry_id			int unsigned not null auto_increment  ,		/** ä¼ é€è¡¨ID  */
+  	  		carry_type_id		int														,		/***  åœ°ç‚¹ç±»å‹   ****/	
+  	  		carry_type_name		varchar(50)												,		/***  åœ°ç‚¹ç±»å‹åç§° **/	
+  	  		scene_id			int														,		/**   åœ°ç‚¹id    **/
+  	  		scene_name  		varchar(50)												,		/***  åœ°ç‚¹åç§°  ****/
+  	  		carry_grade			int														,		/**   åœ°ç‚¹ä¼ é€ç­‰çº§  **/
   	 primary key(carry_id));
   	 
   	 
-  	  /***  ÉËº¦¼ÇÂ¼±í  ****/
+  	  /***  ä¼¤å®³è®°å½•è¡¨  ****/
   	  create table injure_recond_info (
-  	  		injure_id			int unsigned not null auto_increment 					 ,		/** ÉËº¦¼ÇÂ¼±íID  */
-  	  		tong_id				int																,		/***  °ïÅÉID   ****/	
-  	  		injure_number		int(50)													,		/***  ÉËº¦ÊıÖµ **/	
+  	  		injure_id			int unsigned not null auto_increment 					 ,		/** ä¼¤å®³è®°å½•è¡¨ID  */
+  	  		tong_id				int																,		/***  å¸®æ´¾ID   ****/	
+  	  		injure_number		int(50)													,		/***  ä¼¤å®³æ•°å€¼ **/	
   	  		npc_ID				int														,		/**   NPC_id    **/
-  	  		npc_Type  			smallint												,		/***  NPC_type,6´ú±íÓ¢ĞÛµñÏñ  ****/
+  	  		npc_Type  			smallint												,		/***  NPC_type,6ä»£è¡¨è‹±é›„é›•åƒ  ****/
   	 primary key(injure_id));
   	 
   	 
-  	   	  /***  ×°±¸Õ¹Ê¾±í  ****/
+  	   	  /***  è£…å¤‡å±•ç¤ºè¡¨  ****/
   	  create table zb_relela_info (
-  	  		relela_id			int unsigned not null auto_increment 					 ,		/** ÉËº¦¼ÇÂ¼±íID  */  	  		
-  	  		pwpk		int(11)													,		/***  ÉËº¦ÊıÖµ **/	
-  	  		relelavar			varchar(200)								,		/**   ×°±¸Õ¹Ê¾×Ö·û    **/
-  	  		relelatime			datetime												,		/**    ×°±¸Õ¹Ê¾Ê±¼ä   ****/
+  	  		relela_id			int unsigned not null auto_increment 					 ,		/** ä¼¤å®³è®°å½•è¡¨ID  */  	  		
+  	  		pwpk		int(11)													,		/***  ä¼¤å®³æ•°å€¼ **/	
+  	  		relelavar			varchar(200)								,		/**   è£…å¤‡å±•ç¤ºå­—ç¬¦    **/
+  	  		relelatime			datetime												,		/**    è£…å¤‡å±•ç¤ºæ—¶é—´   ****/
   	 primary key(relela_id));
   	 
   	 
-  	   	   	  /***  ÏµÍ³½±Àø±í  ****/
+  	   	   	  /***  ç³»ç»Ÿå¥–åŠ±è¡¨  ****/
   	  create table  system_hortation_info  (
-  	  		horta_id			int unsigned not null auto_increment 					 ,		/** ÏµÍ³½±Àø±íID  */  	 
+  	  		horta_id			int unsigned not null auto_increment 					 ,		/** ç³»ç»Ÿå¥–åŠ±è¡¨ID  */  	 
   	  		
-  	  		horta_type		int(11)													,		/*** ÏµÍ³½±ÀøÀàĞÍ **/	
-  	  		horta_name		varchar(100)										,		/**   ÏµÍ³½±ÀøÃû³Æ    **/
+  	  		horta_type		int(11)													,		/*** ç³»ç»Ÿå¥–åŠ±ç±»å‹ **/	
+  	  		horta_name		varchar(100)										,		/**   ç³»ç»Ÿå¥–åŠ±åç§°    **/
   	  		
-  	  		horta_son_id		int(11)										,		/**   ¾ßÌå½±Àø,¾ö¶¨ÁË½±ÀøÔÚÒ³ÃæÏÔÊ¾µÄË³Ğò    **/
-  	  		horta_son_name		varchar(100)									,		/**   ¾ßÌå½±ÀøÃû³Æ    **/
-  	  		
-  	  		
-  	  		vip_grade		varchar(10)													,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, »áÔ±µÈ¼¶ ,ÒÔÏÂÈç¹ûÃ»ÓĞÒªÇóÍ³Í³ÌîÈëÁã ,Êı¾İ¸ñÊ½Îª  ,2,3,    **/
-  	  		online_time		int(30)															,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, ÔÚÏßÊ±¼ä,ÒÔÃëÎªµ¥Î»   **/
-  	  		wj_grade			varchar(10)												    	,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, Íæ¼ÒµÈ¼¶    **/
-  	  		wj_sex			    Enum('0','1','2')										,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, Íæ¼ÒĞÔ±ğ   **/
-  	  		
-  	  		wj_menpai		 Enum('0','1','2','3')										,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, Íæ¼ÒÃÅÅÉ 1ÊÇÃ÷½Ì,2ÊÇØ¤°ï,3ÊÇÉÙÁÖ  **/
-  	  		wj_title			    varchar(100)									    	,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, Íæ¼Ò³ÆºÅ, Èç¹ûÓĞ¶à¸ö³ÆºÅ,ÒÔ","·Ö¸î   **/
-  	  		wj_credit			varchar(10)													,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, Íæ¼ÒÉùÍû,  ÒÔ"-"Á¬½Ó, ÈçÓĞ¶à¸ö,ÒÔ";"Á¬½Ó    **/
-  	  		wj_next			varchar(10)										 		,		/**   ÏµÍ³½±ÀøÌõ¼şÖ®, ¿ÕÓàµÈÏÂÒ»¸ö   **/
+  	  		horta_son_id		int(11)										,		/**   å…·ä½“å¥–åŠ±,å†³å®šäº†å¥–åŠ±åœ¨é¡µé¢æ˜¾ç¤ºçš„é¡ºåº    **/
+  	  		horta_son_name		varchar(100)									,		/**   å…·ä½“å¥–åŠ±åç§°    **/
   	  		
   	  		
-  	  		is_only_one		Enum('0','1','2','3','4','5','6','7','8','9')		,		/** ÊÇ·ñ½öÁìÈ¡Ò»´Î, Îª1±íÊ¾½öÁìÈ¡Ò»´Î,Îª0±íÊ¾¿ÉÒÔ²»Ö¹ÁìÈ¡Ò»´Î */
-  	  		onces				int(3) 														,		/**  Ò»ÌìÖ®ÄÚ×î¶àÄÜÁìÈ¡¼¸´Î  */
+  	  		vip_grade		varchar(10)													,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ä¼šå‘˜ç­‰çº§ ,ä»¥ä¸‹å¦‚æœæ²¡æœ‰è¦æ±‚ç»Ÿç»Ÿå¡«å…¥é›¶ ,æ•°æ®æ ¼å¼ä¸º  ,2,3,    **/
+  	  		online_time		int(30)															,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, åœ¨çº¿æ—¶é—´,ä»¥ç§’ä¸ºå•ä½   **/
+  	  		wj_grade			varchar(10)												    	,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ç©å®¶ç­‰çº§    **/
+  	  		wj_sex			    Enum('0','1','2')										,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ç©å®¶æ€§åˆ«   **/
+  	  		
+  	  		wj_menpai		 Enum('0','1','2','3')										,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ç©å®¶é—¨æ´¾ 1æ˜¯æ˜æ•™,2æ˜¯ä¸å¸®,3æ˜¯å°‘æ—  **/
+  	  		wj_title			    varchar(100)									    	,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ç©å®¶ç§°å·, å¦‚æœæœ‰å¤šä¸ªç§°å·,ä»¥","åˆ†å‰²   **/
+  	  		wj_credit			varchar(10)													,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ç©å®¶å£°æœ›,  ä»¥"-"è¿æ¥, å¦‚æœ‰å¤šä¸ª,ä»¥";"è¿æ¥    **/
+  	  		wj_next			varchar(10)										 		,		/**   ç³»ç»Ÿå¥–åŠ±æ¡ä»¶ä¹‹, ç©ºä½™ç­‰ä¸‹ä¸€ä¸ª   **/
   	  		
   	  		
-  	  		give_goods			varchar(100)												,		/**    ½±Àø×°±¸»òÎïÆ·, ÒÔ","·Ö¸î, ºÍ¶Ò»»²Ëµ¥µÄÖÆ×÷·½·¨ÏàÍ¬    ****/
-  	  		isuseable			int(3)											default 1		,		/**   ÊÇ·ñÓĞĞ§,ÎªÁã±íÊ¾ÎŞĞ§,²»»á±»ÏÔÊ¾³öÀ´. Îª1µÄ»°Ôò¿ÉÒÔÏÔÊ¾  **/
+  	  		is_only_one		Enum('0','1','2','3','4','5','6','7','8','9')		,		/** æ˜¯å¦ä»…é¢†å–ä¸€æ¬¡, ä¸º1è¡¨ç¤ºä»…é¢†å–ä¸€æ¬¡,ä¸º0è¡¨ç¤ºå¯ä»¥ä¸æ­¢é¢†å–ä¸€æ¬¡ */
+  	  		onces				int(3) 														,		/**  ä¸€å¤©ä¹‹å†…æœ€å¤šèƒ½é¢†å–å‡ æ¬¡  */
   	  		
-  	  		horta_display		varchar(100)												,		/**   ½±ÀøÃèÊö  **/
+  	  		
+  	  		give_goods			varchar(100)												,		/**    å¥–åŠ±è£…å¤‡æˆ–ç‰©å“, ä»¥","åˆ†å‰², å’Œå…‘æ¢èœå•çš„åˆ¶ä½œæ–¹æ³•ç›¸åŒ    ****/
+  	  		isuseable			int(3)											default 1		,		/**   æ˜¯å¦æœ‰æ•ˆ,ä¸ºé›¶è¡¨ç¤ºæ— æ•ˆ,ä¸ä¼šè¢«æ˜¾ç¤ºå‡ºæ¥. ä¸º1çš„è¯åˆ™å¯ä»¥æ˜¾ç¤º  **/
+  	  		
+  	  		horta_display		varchar(100)												,		/**   å¥–åŠ±æè¿°  **/
   	 primary key(horta_id));
   	 
   	 

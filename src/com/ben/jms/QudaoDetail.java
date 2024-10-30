@@ -29,13 +29,13 @@ public class  QudaoDetail{
 		if(now_peo>max_peo){
 			max_peo = now_peo;
 		}
-		System.out.println("ÉÏÏßÒ»¸ö£¬ÏÖÔÚµÄÈËÊıÎª £º "+now_peo+" ×î¸ßÈËÊıÎª : "+max_peo);
+		System.out.println("ä¸Šçº¿ä¸€ä¸ªï¼Œç°åœ¨çš„äººæ•°ä¸º ï¼š "+now_peo+" æœ€é«˜äººæ•°ä¸º : "+max_peo);
 	}
 	
 	public void delPeo(){
 		if(now_peo>0){
 		this.now_peo--;
 		}
-		System.out.println("ÏÂÏßÒ»¸ö£¬ÏÖÔÚµÄÈËÊıÎª £º "+now_peo+" ×î¸ßÈËÊıÎª : "+max_peo);
+		System.out.println("ä¸‹çº¿ä¸€ä¸ªï¼Œç°åœ¨çš„äººæ•°ä¸º ï¼š "+now_peo+" æœ€é«˜äººæ•°ä¸º : "+max_peo);
 	}
 }

@@ -18,12 +18,12 @@ import com.ls.web.action.ActionBase;
 import com.web.service.task.TaskVisitLeadService;
 
 /**
- * @author ºîºÆ¾ü 9¼¶ÈÎÎñÌø×ªÖ±½ÓÈÃÑ¡ÔñÃÅÅÉ
+ * @author ä¾¯æµ©å†› 9çº§ä»»åŠ¡è·³è½¬ç›´æ¥è®©é€‰æ‹©é—¨æ´¾
  */
 public class VisitLeadAction extends ActionBase
 {
 	/**
-	 * 9¼¶ÈÎÎñÌø×ªÖ±½ÓÈÃÑ¡ÔñÃÅÅÉ
+	 * 9çº§ä»»åŠ¡è·³è½¬ç›´æ¥è®©é€‰æ‹©é—¨æ´¾
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +33,7 @@ public class VisitLeadAction extends ActionBase
 	}
 
 	/**
-	 * 9¼¶ÈÎÎñÌø×ªÖ±½ÓÈÃÑ¡ÔñÃÅÅÉ type = 1Ø¤°ï 2ÉÙÁÖ 3Ã÷½Ì
+	 * 9çº§ä»»åŠ¡è·³è½¬ç›´æ¥è®©é€‰æ‹©é—¨æ´¾ type = 1ä¸å¸® 2å°‘æ— 3æ˜æ•™
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -42,18 +42,18 @@ public class VisitLeadAction extends ActionBase
 		RoleEntity roleEntity = this.getRoleEntity(request);
 		
 		TaskVisitLeadService taskVisitLeadService = new TaskVisitLeadService();
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		/** ÈÎÎñÁìÈ¡Ê±¼ä */
-		String createTime = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		/** ä»»åŠ¡é¢†å–æ—¶é—´ */
+		String createTime = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		String type = request.getParameter("type");
 		
 		String hint = null;
 		
-		//ÈÎÎñ×éµÄĞòÁĞÎª1 
+		//ä»»åŠ¡ç»„çš„åºåˆ—ä¸º1 
 		int t_zuxl = 1;
 		if (type.equals("1"))
-		{// Ø¤°ï
+		{// ä¸å¸®
 			String t_zu = "gb_yidaidizi";  
 			hint = taskVisitLeadService.acceptTask(roleEntity,t_zu);
 			String tId = taskVisitLeadService.getTaskPk(t_zu,t_zuxl,roleEntity.getPPk(),createTime,roleEntity.getName(),roleEntity.getUPk());
@@ -80,7 +80,7 @@ public class VisitLeadAction extends ActionBase
 			return null;
 		}
 		if (type.equals("2"))
-		{// ÉÙÁÖ
+		{// å°‘æ—
 			String t_zu = "sl_shaodiseng";
 			
 			hint = taskVisitLeadService.acceptTask(roleEntity,t_zu);
@@ -108,7 +108,7 @@ public class VisitLeadAction extends ActionBase
 			return null;
 		}
 		if (type.equals("3"))
-		{// Ã÷½Ì
+		{// æ˜æ•™
 			String t_zu = "mj_xunshandizi";
 			
 			hint = taskVisitLeadService.acceptTask(roleEntity,t_zu);
@@ -139,7 +139,7 @@ public class VisitLeadAction extends ActionBase
 	}
 	
 	/**
-	 * 9¼¶ÈÎÎñÌø×ªÖ±½ÓÈÃÑ¡ÔñÃÅÅÉ
+	 * 9çº§ä»»åŠ¡è·³è½¬ç›´æ¥è®©é€‰æ‹©é—¨æ´¾
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

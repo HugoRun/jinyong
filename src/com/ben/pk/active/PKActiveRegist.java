@@ -3,67 +3,64 @@ package com.ben.pk.active;
 import java.util.Date;
 
 /**
- * 
  * @author thomas.lei
- * ¹¦ÄÜ£ºPK»î¶¯±¨Ãû·â×°Àà
+ * åŠŸèƒ½ï¼šPKæ´»åŠ¨æŠ¥åå°è£…ç±»
  * 27/04/10 PM
- *
  */
-public class PKActiveRegist
-{
-	private int id;
-	private int roleID;//½ÇÉ«ID
-	private int roleLevel;//½ÇÉ«µÈ¼¶
-	private String roleName;//½ÇÉ«Ãû³Æ
-	private Date registTime;//±¨ÃûÊ±¼ä
-	private int isWin;//ÊÇ·ñÊ¤Àû
-	public int getId()
-	{
-		return id;
-	}
-	public void setId(int id)
-	{
-		this.id = id;
-	}
-	public int getRoleID()
-	{
-		return roleID;
-	}
-	public void setRoleID(int roleID)
-	{
-		this.roleID = roleID;
-	}
-	public int getRoleLevel()
-	{
-		return roleLevel;
-	}
-	public void setRoleLevel(int roleLevel)
-	{
-		this.roleLevel = roleLevel;
-	}
-	public String getRoleName()
-	{
-		return roleName;
-	}
-	public void setRoleName(String roleName)
-	{
-		this.roleName = roleName;
-	}
-	public Date getRegistTime()
-	{
-		return registTime;
-	}
-	public void setRoleTime(Date roleTime)
-	{
-		this.registTime = roleTime;
-	}
-	public int getIsWin()
-	{
-		return isWin;
-	}
-	public void setIsWin(int isWin)
-	{
-		this.isWin = isWin;
-	}
+public class PKActiveRegist {
+    private int id;
+    private int roleID; // è§’è‰²ID
+    private int roleLevel; // è§’è‰²ç­‰çº§
+    private String roleName; // è§’è‰²åç§°
+    private Date registTime; // æŠ¥åæ—¶é—´
+    private int isWin; // æ˜¯å¦èƒœåˆ©
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
+    }
+
+    public int getRoleLevel() {
+        return roleLevel;
+    }
+
+    public void setRoleLevel(int roleLevel) {
+        this.roleLevel = roleLevel;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public Date getRegistTime() {
+        return registTime;
+    }
+
+    public void setRoleTime(Date roleTime) {
+        this.registTime = roleTime;
+    }
+
+    public int getIsWin() {
+        return isWin;
+    }
+
+    public void setIsWin(int isWin) {
+        this.isWin = isWin;
+    }
 
 }

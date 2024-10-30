@@ -29,7 +29,7 @@ public class GroupChuanAction extends DispatchAction
 
 	/**
 	 * 
-	 * »ñµÃ¶ÓÔ±Ãûµ¥
+	 * è·å¾—é˜Ÿå‘˜åå•
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -49,17 +49,17 @@ public class GroupChuanAction extends DispatchAction
 		GroupModel group_info = roleInfo.getStateInfo().getGroupInfo();
 		
 		if ( group_info==null ) {
-			String hint = "Äã»¹Ã»ÓĞ¶ÓÎé£¡";
+			String hint = "ä½ è¿˜æ²¡æœ‰é˜Ÿä¼ï¼";
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
-			request.setAttribute("return_type", "2");	//1Îª·µ»Ø¶ÓÎé£¬2Î´·µ»ØÎïÆ·À¸
+			request.setAttribute("return_type", "2");	//1ä¸ºè¿”å›é˜Ÿä¼ï¼Œ2æœªè¿”å›ç‰©å“æ 
 			return mapping.findForward("hint");
 		}
 		
 		RoomService roomService = new RoomService();
 		String carry_hint = roomService.isCarryedOut(Integer.parseInt(roleInfo.getBasicInfo().getSceneId()));
 		if ( carry_hint != null && !carry_hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", carry_hint);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -69,7 +69,7 @@ public class GroupChuanAction extends DispatchAction
 		SuiBianChuanService suiBianChuanService = new SuiBianChuanService();
 		String hint = suiBianChuanService.checkIsUse(roleInfo, pg_pk);
 		if ( hint != null && !hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", hint);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -84,7 +84,7 @@ public class GroupChuanAction extends DispatchAction
 	
 	/**
 	 * 
-	 * ¿ªÊ¼½øĞĞ´«ËÍ
+	 * å¼€å§‹è¿›è¡Œä¼ é€
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -106,7 +106,7 @@ public class GroupChuanAction extends DispatchAction
 		SuiBianChuanService suiBianChuanService = new SuiBianChuanService();
 		String hint = suiBianChuanService.checkIsUse(roleInfo, pg_pk);
 		if ( hint != null && !hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", hint);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -117,7 +117,7 @@ public class GroupChuanAction extends DispatchAction
 		RoomService roomService = new RoomService();
 		String carry_hint = roomService.isCarryedOut(Integer.parseInt(roleInfo.getBasicInfo().getSceneId()));
 		if ( carry_hint != null && !carry_hint.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", carry_hint);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -127,7 +127,7 @@ public class GroupChuanAction extends DispatchAction
 		String hint2 = suiBianChuanService.useGroupChuan(roleInfo,pg_pk,friend_pk);
 		
 		if (hint2 != null && !hint2.equals("")) {
-			// Èç¹û²»ÄÜÊ¹ÓÃ£¬¸æËßÍæ¼ÒÔ­Òò
+			// å¦‚æœä¸èƒ½ä½¿ç”¨ï¼Œå‘Šè¯‰ç©å®¶åŸå› 
 			request.setAttribute("hint", hint2);
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("w_type", w_type);
@@ -135,7 +135,7 @@ public class GroupChuanAction extends DispatchAction
 			return mapping.findForward("hint");		
 		}
 		
-		request.setAttribute("hint", "´«ËÍÏûºÄÒ»ÕÅ¶ÓÓÑ´«ËÍ·û!");
+		request.setAttribute("hint", "ä¼ é€æ¶ˆè€—ä¸€å¼ é˜Ÿå‹ä¼ é€ç¬¦!");
 		
 		try
 		{

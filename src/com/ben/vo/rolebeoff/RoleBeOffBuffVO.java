@@ -5,17 +5,17 @@ package com.ben.vo.rolebeoff;
 
 /**
  * @author HHJ
- * 离线BUFF
+ * 绂荤嚎BUFF
  */
 public class RoleBeOffBuffVO
 {
-	/** 主键id */
+	/** 涓婚敭id */
 	private int bId;
-	/** 玩家ID */
+	/** 鐜╁ID */
 	private int pPk;
-	/** 上次离线时间 */
+	/** 涓婃绂荤嚎鏃堕棿 */
 	private String beOffTime;
-	/** 离线经验 */
+	/** 绂荤嚎缁忛獙 */
 	private String beOffExp;
 
 	public int getBId()

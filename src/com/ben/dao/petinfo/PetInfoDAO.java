@@ -14,7 +14,7 @@ import com.ben.vo.petsell.PetSellVO;
 import com.pub.db.mysql.SqlData;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 11:02:07 AM
  */
@@ -23,7 +23,7 @@ public class PetInfoDAO
 	SqlData con;
 
 	/**
-	 * ³èÎï³õÊ¼»¯
+	 * å® ç‰©åˆå§‹åŒ–
 	 */
 	public void getPetInfoAdd(String pPk, String petId, String petName,
 			String petNickname, String petGrade, String petExp,
@@ -38,7 +38,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "insert into p_pet_info(pet_pk,p_pk,pet_id,"
+			String sql = "INSERT INTO p_pet_info(pet_pk,p_pk,pet_id,"
 					+ "pet_name,pet_nickname,pet_grade,"
 					+ "pet_exp,pet_ben_exp,pet_xia_exp,pet_gj_xiao,"
 					+ "pet_gj_da,pet_sale,pet_img,pet_grow,pet_wx,"
@@ -117,7 +117,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ³èÎïÉı¼¶
+	 * å® ç‰©å‡çº§
 	 */
 	public void getPetInfoUpdate(PetInfoVO petInfoVO, PetShapeVO petShapeVO,
 			String BjExp)
@@ -126,16 +126,16 @@ public class PetInfoDAO
 		{
 			con = new SqlData();
 			DecimalFormat dfs = new DecimalFormat("0");
-			// ¹¥»÷Á¦³£Êı:³èÎïµÄ³É³¤ÂÊ * µÈ¼¶/3
+			// æ”»å‡»åŠ›å¸¸æ•°:å® ç‰©çš„æˆé•¿ç‡ * ç­‰çº§/3
 			double cc = petInfoVO.getPetGrow() * petInfoVO.getPetGrade() / 3;
 
-			// ¶Ô³èÎïÀàĞÍ×ö³öÅĞ¶Ï
+			// å¯¹å® ç‰©ç±»å‹åšå‡ºåˆ¤æ–­
 			if (petInfoVO.getPetType() == 1)
 			{
 				cc = cc * 0.81;
 			}
 
-			// (10+µÈ¼¶*5)+4*³É³¤ÂÊ
+			// (10+ç­‰çº§*5)+4*æˆé•¿ç‡
 			double gongji = 0.0;
 			// double gongjix=0.0;
 			if (petInfoVO.getPetGrade() < 9)
@@ -151,21 +151,21 @@ public class PetInfoDAO
 						* (3 * petInfoVO.getPetGrade() - petInfoVO
 								.getPetGrade()) / 2;
 			}
-			/** ¾­Ñé */
+			/** ç»éªŒ */
 			double petExps = Double.parseDouble(petShapeVO
 					.getShapeBenExperience())
 					* petInfoVO.getPetGrow();
 			String petExp = dfs.format(petExps);
 
 			// int dangqian = Integer.parseInt(BjExp)+Integer.parseInt(petExp);
-			/** ÏÂ¼¶¾­Ñé´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé */
+			/** ä¸‹çº§ç»éªŒè¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ */
 			double petXiaExps = Double.parseDouble(petShapeVO
 					.getShapeXiaExperience())
 					* petInfoVO.getPetGrow();
 			String petXiaExp = dfs.format(petXiaExps);
-			/** ×îĞ¡¹¥»÷ */
+			/** æœ€å°æ”»å‡» */
 
-			/** ×î´ó¹¥»÷ */
+			/** æœ€å¤§æ”»å‡» */
 			int petGjDa = Integer.parseInt(dfs.format(gongji))
 					+ Integer.parseInt(dfs.format(cc));
 
@@ -188,7 +188,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ³èÎïÉı¼¶
+	 * å® ç‰©å‡çº§
 	 */
 	public void getPetInfoBjExp(String BjExp, String PetPk)
 	{
@@ -210,7 +210,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ÒÅÆú³èÎï
+	 * é—å¼ƒå® ç‰©
 	 */
 	public void getPetInfoDelte(String PetPk)
 	{
@@ -231,7 +231,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * »ñµÃ³èÎïµÄ¼Û¸ñ
+	 * è·å¾—å® ç‰©çš„ä»·æ ¼
 	 */
 	public int getPetPriceByPetPk(String PetPk)
 	{
@@ -239,7 +239,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select pet_sale from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_sale from p_pet_info where pet_pk='"
 					+ PetPk + "'";
 			ResultSet rs = con.query(sql);
 			while (rs.next())
@@ -259,14 +259,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ»¹´æÔÚ¸Ã³èÎï
+	 * åˆ¤æ–­æ˜¯å¦è¿˜å­˜åœ¨è¯¥å® ç‰©
 	 */
 	public boolean isPetNot(int pet_pk, int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where pet_pk='" + pet_pk
+			String sql = "SELECT * FROM p_pet_info where pet_pk='" + pet_pk
 					+ "' and p_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			if (rs.next())
@@ -286,14 +286,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * Í¨¹ı½ÇÉ«PK²é³öÀ´½ÇÉ«ËùÓµÓĞµÄËùÓĞ³èÎï
+	 * é€šè¿‡è§’è‰²PKæŸ¥å‡ºæ¥è§’è‰²æ‰€æ‹¥æœ‰çš„æ‰€æœ‰å® ç‰©
 	 */
 	public List<PetInfoVO> getPetInfoList(String pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where p_pk='" + pPk
+			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk
 					+ "' order by pet_pk";
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
@@ -345,14 +345,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ²éÑ¯Ã»ÓĞ×´Ì¬³èÎï1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ
+	 * æŸ¥è¯¢æ²¡æœ‰çŠ¶æ€å® ç‰©1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦
 	 */
 	public List<PetInfoVO> getpetIsBringList(int petid, int pPk, int petIsBring)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where p_pk='" + pPk + "' "
+			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk + "' "
 					+ "and pet_id='" + petid + "' and pet_isBring='"
 					+ petIsBring + "'";
 			ResultSet rs = con.query(sql);
@@ -405,7 +405,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ²éÑ¯Ã»ÓĞ×´Ì¬³èÎï1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ
+	 * æŸ¥è¯¢æ²¡æœ‰çŠ¶æ€å® ç‰©1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦
 	 */
 	public List<PetInfoVO> getpetIsBringLists(int petid, int pPk,
 			int petIsBring, String petName)
@@ -413,7 +413,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where p_pk='" + pPk + "' "
+			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk + "' "
 					+ "and pet_id='" + petid + "' and pet_nickname='" + petName
 					+ "' and pet_isBring='" + petIsBring + "'";
 			ResultSet rs = con.query(sql);
@@ -466,14 +466,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ²éÑ¯Ã»ÓĞ×´Ì¬³èÎï1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ
+	 * æŸ¥è¯¢æ²¡æœ‰çŠ¶æ€å® ç‰©1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦
 	 */
 	public List<PetInfoVO> getpetIsBringList(int pPk, int petIsBring)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where p_pk='" + pPk + "' "
+			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk + "' "
 					+ " and pet_isBring='" + petIsBring + "'";
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();
@@ -525,7 +525,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ÒÅÆú³èÎï
+	 * é—å¼ƒå® ç‰©
 	 */
 	public void getDeltePetId(int PetId, int pPk, String petName)
 	{
@@ -548,14 +548,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * Í¨¹ı×¢²áID È¥ÕÒ½ÇÉ«ÃûÊÇ·ñ´æÔÚ
+	 * é€šè¿‡æ³¨å†ŒID å»æ‰¾è§’è‰²åæ˜¯å¦å­˜åœ¨
 	 */
 	public boolean pet_isBring(int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where p_pk='" + pPk
+			String sql = "SELECT * FROM p_pet_info where p_pk='" + pPk
 					+ "' and pet_isBring=1";
 			ResultSet rs = con.query(sql);
 			if (rs.next())
@@ -575,14 +575,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ³èÎïÏêÏ¸ĞÅÏ¢²é¿´
+	 * å® ç‰©è¯¦ç»†ä¿¡æ¯æŸ¥çœ‹
 	 */
 	public PetInfoVO getPetInfoView(String petPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where pet_pk='" + petPk
+			String sql = "SELECT * FROM p_pet_info where pet_pk='" + petPk
 					+ "'";
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
@@ -636,14 +636,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ³èÎïÏêÏ¸ĞÅÏ¢²é¿´
+	 * å® ç‰©è¯¦ç»†ä¿¡æ¯æŸ¥çœ‹
 	 */
 	public PetInfoVO getPetInfoView(String petPk, int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where pet_pk='" + petPk
+			String sql = "SELECT * FROM p_pet_info where pet_pk='" + petPk
 					+ "' and p_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
@@ -697,14 +697,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * Í¨¹ı½ÇÉ«ID ºÍ³èÎïÊ¦¸µ²Î¼ÓÕ½¶·È¡³ö³èÎïĞÅÏ¢
+	 * é€šè¿‡è§’è‰²ID å’Œå® ç‰©å¸ˆå‚…å‚åŠ æˆ˜æ–—å–å‡ºå® ç‰©ä¿¡æ¯
 	 */
 	public PetInfoVO getPetInfo(String pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where  p_pk='" + pPk
+			String sql = "SELECT * FROM p_pet_info where  p_pk='" + pPk
 					+ "' and pet_isBring = 1";
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
@@ -757,14 +757,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * Í¨¹ı½ÇÉ«ID ºÍ³èÎïÊ¦¸µ²Î¼ÓÕ½¶·È¡³ö³èÎïĞÅÏ¢
+	 * é€šè¿‡è§’è‰²ID å’Œå® ç‰©å¸ˆå‚…å‚åŠ æˆ˜æ–—å–å‡ºå® ç‰©ä¿¡æ¯
 	 */
 	public PetInfoVO getPetInfoshiyong(String pPk, String pet_pk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where pet_pk='" + pet_pk
+			String sql = "SELECT * FROM p_pet_info where pet_pk='" + pet_pk
 					+ "' and p_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PetInfoVO vo = null;
@@ -818,14 +818,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * Í¨¹ı½ÇÉ«ID ºÍ³èÎïÊ¦¸µ²Î¼ÓÕ½¶·È¡³ö³èÎïID
+	 * é€šè¿‡è§’è‰²ID å’Œå® ç‰©å¸ˆå‚…å‚åŠ æˆ˜æ–—å–å‡ºå® ç‰©ID
 	 */
 	public int getPetPk(int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where  p_pk='" + pPk
+			String sql = "SELECT * FROM p_pet_info where  p_pk='" + pPk
 					+ "' and pet_isBring = 1";
 			ResultSet rs = con.query(sql);
 			int petpk = 0;
@@ -847,7 +847,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ĞŞ¸Ä³èÎïÕ½¶·×´Ì¬
+	 * ä¿®æ”¹å® ç‰©æˆ˜æ–—çŠ¶æ€
 	 */
 	public void petIsBring(int pPk, int pet_pk, int petIsBring)
 	{
@@ -869,7 +869,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ĞŞ¸Ä³èÎïÌåÁ¦
+	 * ä¿®æ”¹å® ç‰©ä½“åŠ›
 	 */
 	public void petFatigue(int pPk, int petId, int petFatigue)
 	{
@@ -891,7 +891,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ĞŞ¸Ä³èÎïÊÙÃü
+	 * ä¿®æ”¹å® ç‰©å¯¿å‘½
 	 */
 	public void petLonge(int pPk, int petId, int petLonge, int longeNumberOk)
 	{
@@ -914,7 +914,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ĞŞ¸Ä³èÎïÖ÷ÈË
+	 * ä¿®æ”¹å® ç‰©ä¸»äºº
 	 */
 	public void getPetzhuren(String pPk, String BypPk, String petId)
 	{
@@ -936,7 +936,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ĞŞ¸Ä³èÎïÖ÷ÈË
+	 * ä¿®æ”¹å® ç‰©ä¸»äºº
 	 */
 	public void getPetzhuren(int pPk, int petId, String petName)
 	{
@@ -959,7 +959,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * É¾³ı³èÎï½»Ò×±í
+	 * åˆ é™¤å® ç‰©äº¤æ˜“è¡¨
 	 */
 	public void getPetSellDelete(String psPk)
 	{
@@ -980,14 +980,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ·µ»ØĞ¯´ø³èÎïµÄÊÙÃü
+	 * è¿”å›æºå¸¦å® ç‰©çš„å¯¿å‘½
 	 */
 	public int pet_longe(int pPk, int pet_pk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select pet_longe from p_pet_info where p_pk='" + pPk
+			String sql = "SELECT pet_longe from p_pet_info where p_pk='" + pPk
 					+ "' and pet_pk='" + pet_pk + "'";
 			int pet_longe = 0;
 			ResultSet rs = con.query(sql);
@@ -1009,14 +1009,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ·µ»ØĞ¯´ø³èÎïµÄÊÙÃü
+	 * è¿”å›æºå¸¦å® ç‰©çš„å¯¿å‘½
 	 */
 	public int pet_longeBring(int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select pet_longe from p_pet_info where p_pk='" + pPk
+			String sql = "SELECT pet_longe from p_pet_info where p_pk='" + pPk
 					+ "' and pet_isBring=1";
 			int pet_longe = 0;
 			ResultSet rs = con.query(sql);
@@ -1038,14 +1038,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ·µ»Ø³èÎïÊÇ·ñ²ÎÕ½
+	 * è¿”å›å® ç‰©æ˜¯å¦å‚æˆ˜
 	 */
 	public int isBring(int pet_pk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select pet_isBring from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_isBring from p_pet_info where pet_pk='"
 					+ pet_pk + "'";
 			int pet_isBring = 0;
 			ResultSet rs = con.query(sql);
@@ -1067,14 +1067,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ·µ»ØĞ¯´ø³èÎïµÄÊÙÃü
+	 * è¿”å›æºå¸¦å® ç‰©çš„å¯¿å‘½
 	 */
 	public int pet_longess(int petPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select pet_longe from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_longe from p_pet_info where pet_pk='"
 					+ petPk + "' ";
 			int pet_longe = 0;
 			ResultSet rs = con.query(sql);
@@ -1096,14 +1096,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ·µ»ØĞ¯´ø³èÎïµÄÃû³Æ
+	 * è¿”å›æºå¸¦å® ç‰©çš„åç§°
 	 */
 	public String pet_name(int petPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select pet_name from p_pet_info where pet_pk='"
+			String sql = "SELECT pet_name from p_pet_info where pet_pk='"
 					+ petPk + "' ";
 			String pet_name = null;
 			ResultSet rs = con.query(sql);
@@ -1125,7 +1125,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ĞŞ¸Ä³èÎïµÄÊÙÃü
+	 * ä¿®æ”¹å® ç‰©çš„å¯¿å‘½
 	 */
 	public void pet_life(int pPk)
 	{
@@ -1147,7 +1147,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ¸ø½»Ò×³èÎï±íÖĞÔö¼ÓĞÅÏ¢
+	 * ç»™äº¤æ˜“å® ç‰©è¡¨ä¸­å¢åŠ ä¿¡æ¯
 	 */
 	public void getPetSellAdd(String pPk, String pByPk, String petPk,
 			String pSilver, String pCopper,String Time)
@@ -1155,7 +1155,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "insert into u_pet_sell values(null,'" + pPk + "','"
+			String sql = "INSERT INTO u_pet_sell values(null,'" + pPk + "','"
 					+ pByPk + "','" + petPk + "','" + pSilver + "','" + pCopper + "','" + Time + "')";
 			con.update(sql);
 		}
@@ -1174,7 +1174,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from u_pet_sell where p_by_pk=" + pPk;
+			String sql = "SELECT * FROM u_pet_sell where p_by_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			PetSellVO vo = new PetSellVO();
 			while (rs.next())
@@ -1195,14 +1195,14 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * Í¨¹ı×¢²áID È¥ÕÒ½ÇÉ«ÃûÊÇ·ñ´æÔÚ
+	 * é€šè¿‡æ³¨å†ŒID å»æ‰¾è§’è‰²åæ˜¯å¦å­˜åœ¨
 	 */
 	public boolean getPetSellVs(String pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from u_pet_sell where p_by_pk=" + pPk;
+			String sql = "SELECT * FROM u_pet_sell where p_by_pk=" + pPk;
 			ResultSet rs = con.query(sql);
 			if (rs.next())
 			{
@@ -1225,7 +1225,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from u_pet_sell where p_pk='" + BypPk
+			String sql = "SELECT * FROM u_pet_sell where p_pk='" + BypPk
 					+ "' and p_by_pk='" + pPk + "'";
 			ResultSet rs = con.query(sql);
 			PetSellVO vo = new PetSellVO();
@@ -1256,7 +1256,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from u_pet_sell where ps_pk='" + ps_pk + "'";
+			String sql = "SELECT * FROM u_pet_sell where ps_pk='" + ps_pk + "'";
 			// //System.out.println("sql============= "+sql);
 			ResultSet rs = con.query(sql);
 			PetSellVO vo = null;
@@ -1284,7 +1284,7 @@ public class PetInfoDAO
 	}
 
 	/**
-	 * ²éÑ¯³èÎï½»Ò× Ã¿´ÎÖ»²éÑ¯Ò»Ìõ
+	 * æŸ¥è¯¢å® ç‰©äº¤æ˜“ æ¯æ¬¡åªæŸ¥è¯¢ä¸€æ¡
 	 * 
 	 * @return
 	 */
@@ -1293,7 +1293,7 @@ public class PetInfoDAO
 		try
 		{
 			con = new SqlData();
-			String sql = "select ps_pk from u_pet_sell where p_by_pk='" + pByPk
+			String sql = "SELECT ps_pk from u_pet_sell where p_by_pk='" + pByPk
 					+ "' limit 1";
 			ResultSet rs = con.query(sql);
 			int ps_pk = 0;
@@ -1315,13 +1315,13 @@ public class PetInfoDAO
 		return 0;
 	}
 
-	/** µÃµ½Íæ¼ÒÃ»ÓĞ¼¼ÄÜµÄ³èÎï */
+	/** å¾—åˆ°ç©å®¶æ²¡æœ‰æŠ€èƒ½çš„å® ç‰© */
 	public List<PetInfoVO> getPetInfoByTask(int petid, int pPk)
 	{
 		try
 		{
 			con = new SqlData();
-			String sql = "select * from p_pet_info where pet_isBring = 0 and pet_skill_one = 0 and pet_skill_two = 0 and pet_skill_three = 0 and pet_skill_four = 0 and pet_skill_five = 0 and p_pk = "
+			String sql = "SELECT * FROM p_pet_info where pet_isBring = 0 and pet_skill_one = 0 and pet_skill_two = 0 and pet_skill_three = 0 and pet_skill_four = 0 and pet_skill_five = 0 and p_pk = "
 					+ pPk + " and pet_id = " + petid;
 			ResultSet rs = con.query(sql);
 			List<PetInfoVO> list = new ArrayList<PetInfoVO>();

@@ -2,19 +2,19 @@ package com.pm.vo.forum;
 
 public class ForumBean {
 
-	private int id; /**Ìû×ÓID:Àà±ğÖ÷¼ü*/
-	private int classID;/**·ÖÀàID*/
-	private int UserID;/**·¢ÌûÈËID*/
-	private String UserName;/**·¢ÌûÈËÓÃ»§Ãû*/
-	private String title;/**±êÌâ*/
-	private String content; /**ÄÚÈİ*/	
-	private int readNum	;/**ÔÄ¶Á´ÎÊı*/
-	private int revertNum;/**»Ø¸´´ÎÊı*/
-	private int vouch;/**ÊÇ·ñÍÆ¼öÌù*/
-	private int taxis;/**Ìù×ÓÅÅĞò±ê¼Ç£¬ÓÃÓÚÊÇ·ñ ÖÃ¶¥*/
-	private String addTime;/**Ìí¼ÓÊ±¼ä*/
+	private int id; /**å¸–å­ID:ç±»åˆ«ä¸»é”®*/
+	private int classID;/**åˆ†ç±»ID*/
+	private int UserID;/**å‘å¸–äººID*/
+	private String UserName;/**å‘å¸–äººç”¨æˆ·å*/
+	private String title;/**æ ‡é¢˜*/
+	private String content; /**å†…å®¹*/	
+	private int readNum	;/**é˜…è¯»æ¬¡æ•°*/
+	private int revertNum;/**å›å¤æ¬¡æ•°*/
+	private int vouch;/**æ˜¯å¦æ¨èè´´*/
+	private int taxis;/**è´´å­æ’åºæ ‡è®°ï¼Œç”¨äºæ˜¯å¦ ç½®é¡¶*/
+	private String addTime;/**æ·»åŠ æ—¶é—´*/
 	
-	private String className;/**ÂÛÌ³·ÖÀàÃû³Æ*/
+	private String className;/**è®ºå›åˆ†ç±»åç§°*/
 	
 	public int getId() {
 		return id;
@@ -109,7 +109,7 @@ public class ForumBean {
 	public String getSmallMobile() {
 		if(UserName!=null&&UserName.length()==11)
 		{
-			return UserName.substring(0,3)+"¡Á¡Á¡Á"+UserName.substring(8);
+			return UserName.substring(0,3)+"Ã—Ã—Ã—"+UserName.substring(8);
 		}
 		return UserName;
 	}

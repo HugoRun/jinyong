@@ -1,24 +1,11 @@
 package com.ls.pub.listener;
 
 /**
- * ¹¦ÄÜ:ÓÎÏ·Æô¶¯
- * @author ÁõË§
+ * åŠŸèƒ½:æ¸¸æˆå¯åŠ¨
+ *
+ * @author åˆ˜å¸…
  * Oct 21, 2008  1:59:51 PM
  */
-import java.util.Hashtable;
-
-import javax.jms.Queue;
-import javax.jms.QueueConnection;
-import javax.jms.QueueConnectionFactory;
-import javax.jms.QueueReceiver;
-import javax.jms.QueueSession;
-import javax.jms.Session;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.apache.log4j.Logger;
 
 import com.ben.dao.logininfo.LoginInfoDAO;
 import com.ben.shitu.service.ShituService;
@@ -32,132 +19,125 @@ import com.lw.service.activities.ActivitiesService;
 import com.pm.service.job.DrawALotteryStartJob;
 import com.pm.service.job.SinaStartJob;
 import com.web.jieyi.util.Constant;
+import org.apache.log4j.Logger;
 
-public class ShutdownContextListener implements ServletContextListener
-{
+import javax.jms.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import java.util.Hashtable;
 
-	Logger logger = Logger.getLogger("log.service");
-	
-	public void contextInitialized(ServletContextEvent event)
-	{
-		logger.debug("###############ÓÎÏ·Æô¶¯###############");
-		try
-		{
-    		LoginInfoDAO loginInfoDAO = new LoginInfoDAO();
-    
-    		CacheService cacheService = new CacheService();
-    		GroupService groupService = new GroupService();
-    
-    		loginInfoDAO.updateLoginState("0"); // ÉèÖÃÓÃ»§Îª²»ÔÚÏß×´Ì¬
-    		logger.info("##############ÉèÖÃÍæ¼ÒµÇÂ½×´Ì¬#################");
-    		// ¸üĞÂµÇÂ½×´Ì¬
-    		PartInfoDao partInfoDao = new PartInfoDao();
-    		partInfoDao.updateLoginState("0"); // ÔOÖÃÍæ¼ÒµÇê‘²»ÔÚ¾€ î‘B
-    
-    		cacheService.initCache();// ³õÊ¼»¯»º´æ
-    
-    		groupService.initTempGroupInfo();// ³õÊ¼»¯×é¶ÓĞÅÏ¢
-    
-    		logger.info("##############³é½±ÖØÖÃ#################");
-    		DrawALotteryDao dao = new DrawALotteryDao();
-    		//¸ø³é½±ÖØÖÃ³ÉÎ´¶¨Òå×´Ì¬
-    		dao.updateIsRun(1, 0);
-    		dao.updateIsRun(2, 0);
-    
-    		//Ö´ĞĞ³é½±ĞÅÏ¢
-    		DrawALotteryStartJob drawALotteryStartJob = new DrawALotteryStartJob();
-    		
-    		logger.info("³é½±Ö´ĞĞ11111111111111111111111111111111111111111111111111111111111111111");
-    		drawALotteryStartJob.runScheduler();
-    		ActivitiesService as = new ActivitiesService();
-    		as.runActivities();
-    		if(Channel.SINA == GameConfig.getChannelId()){
-    			SinaStartJob sinaStartJob = new SinaStartJob();
-    			sinaStartJob.runScheduler();
-    			logger.info("ĞÂÀËÈÕÖ¾11111111111111111111111111111111111111111111111111111111111111111");
-    		}
-    		//³õÊ¼»¯NPC ÁĞ±í
-    		Constant.MENPAINPC.put(1, 0);
-    		// Ö´ĞĞ²ÊÆ±ĞÅÏ¢
-    		//NewLotteryStartJob newLotteryStartJob = new NewLotteryStartJob();
-    		//newLotteryStartJob.runSchedulerNewLottery();
-    
-    		// CommunionDAO communionDAO = new CommunionDAO();
-    		// communionDAO.clearCommList();//Çå³ıÁÄÌìĞÅÏ¢
-    		// Çå³şÊÓÒ°±í
-    		// PartAnnalDAO dao = new PartAnnalDAO();
-    		// dao.clearPartAnnal();
-    		// É¾³ıpkÍ¨Öª±í
-    		// PKNotifyDao pKNotifyDao = new PKNotifyDao();
-    		// pKNotifyDao.deleteByPlayer();
-    		// ÉèÖÃÉ¾³ı½ÇÉ«½»Á÷±í
-    		// //µ±·şÎñÆ÷Æô¶¯Ê±, ½«µ±Ç°ÔÚÏßÈËÊıÖÃÎªÁã
-    		// PlayerOnlineNumRecord playerOnlineNumRecord = new
-    		// PlayerOnlineNumRecord();
-    		// playerOnlineNumRecord.setOnlineNumToZero();
-    
-    		// Êı¾İÍ³¼ÆÆô¶¯³ÌĞò
-    		// StatisticsService statService = new StatisticsService();
-    		// statService.startJYGameRecord();
-    		// statService.startJYGameOnlineNumRecord();
-    		// statService.startJYGameOnlineTongKill();
-    		// statService.accoutFieldResult();
-    		// statService.sysLotteryNum();
-    		// statService.sysLotteryAndLaborage();
-    		
-    		logger.info("¼ÓÔØÊ¦Í½ÏµÍ³");
-    		ShituService ss = new ShituService();
-    		ss.loadAllStudent();
-    		ss.loadAllTeacher();
-    		logger.info("¼ÓÔØÊ¦Í½ÏµÍ³Íê³É");
-    		
-    		if (GameConfig.jmsIsOn())
-    		{
-    			init();
-    		}
-    		
-    		logger.info("###############ÓÎÏ·Æô¶¯Íê³É###############");
-		}
-		catch (Exception e)
-		{
-			logger.debug("###############ÓÎÏ·Æô¶¯Ê§°Ü###############");
-			logger.debug("Ê§°ÜÔ­Òò£º"+e.toString());
-			e.getStackTrace();
-		}
+public class ShutdownContextListener implements ServletContextListener {
 
-	}
+    Logger logger = Logger.getLogger("log.service");
 
-	public void contextDestroyed(ServletContextEvent event)
-	{
-		logger.info("###############¹Ø±ÕÓÎÏ·###############");
+    public void contextInitialized(ServletContextEvent event) {
+        logger.debug("###############æ¸¸æˆå¯åŠ¨###############");
+        try {
+            LoginInfoDAO loginInfoDAO = new LoginInfoDAO();
 
-		// ÈİÆ÷¹Ø±ÕÊ±Ê±Ö´ĞĞµÄ´úÂë
-	}
+            CacheService cacheService = new CacheService();
+            GroupService groupService = new GroupService();
 
-	public void init()
-	{
-		try
-		{
-			Hashtable properties = new Hashtable();
-			properties.put(Context.INITIAL_CONTEXT_FACTORY,
-					"org.exolab.jms.jndi.InitialContextFactory");
-			properties.put(Context.PROVIDER_URL, "rmi://"
-					+ GameConfig.getJmsUrl() + ":1099/");
-			Context context = new InitialContext(properties);
-			QueueConnectionFactory queueConnectionFactory = (QueueConnectionFactory) context
-					.lookup("JmsQueueConnectionFactory");
-			QueueConnection qCon = queueConnectionFactory
-					.createQueueConnection();
-			QueueSession qSession = qCon.createQueueSession(false,
-					Session.AUTO_ACKNOWLEDGE);
-			Queue queue = (Queue) context.lookup("queue3");
-			QueueReceiver qReceiver = qSession.createReceiver(queue);
-			qCon.start();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			System.err.println("JMS·şÎñÃ»ÓĞÆô¶¯");
-		}
-	}
+            // è®¾ç½®ç”¨æˆ·ä¸ºä¸åœ¨çº¿çŠ¶æ€
+            loginInfoDAO.updateLoginState("0");
+            logger.info("##############è®¾ç½®ç©å®¶ç™»é™†çŠ¶æ€#################");
+            // æ›´æ–°ç™»é™†çŠ¶æ€
+            PartInfoDao partInfoDao = new PartInfoDao();
+            // è¨­ç½®ç©å®¶ç™»é™¸ä¸åœ¨ç·šç‹€æ…‹
+            partInfoDao.updateLoginState("0");
+            // åˆå§‹åŒ–ç¼“å­˜
+            cacheService.initCache();
+            // åˆå§‹åŒ–ç»„é˜Ÿä¿¡æ¯
+            groupService.initTempGroupInfo();
+
+            logger.info("##############æŠ½å¥–é‡ç½®#################");
+            DrawALotteryDao dao = new DrawALotteryDao();
+            //ç»™æŠ½å¥–é‡ç½®æˆæœªå®šä¹‰çŠ¶æ€
+            dao.updateIsRun(1, 0);
+            dao.updateIsRun(2, 0);
+
+            //æ‰§è¡ŒæŠ½å¥–ä¿¡æ¯
+            DrawALotteryStartJob drawALotteryStartJob = new DrawALotteryStartJob();
+
+            logger.info("æŠ½å¥–æ‰§è¡Œ11111111111111111111111111111111111111111111111111111111111111111");
+            drawALotteryStartJob.runScheduler();
+            ActivitiesService as = new ActivitiesService();
+            as.runActivities();
+            if (Channel.SINA == GameConfig.getChannelId()) {
+                SinaStartJob sinaStartJob = new SinaStartJob();
+                sinaStartJob.runScheduler();
+                logger.info("æ–°æµªæ—¥å¿—11111111111111111111111111111111111111111111111111111111111111111");
+            }
+            //åˆå§‹åŒ–NPC åˆ—è¡¨
+            Constant.MENPAINPC.put(1, 0);
+            // æ‰§è¡Œå½©ç¥¨ä¿¡æ¯
+            //NewLotteryStartJob newLotteryStartJob = new NewLotteryStartJob();
+            //newLotteryStartJob.runSchedulerNewLottery();
+
+            // CommunionDAO communionDAO = new CommunionDAO();
+            // communionDAO.clearCommList();//æ¸…é™¤èŠå¤©ä¿¡æ¯
+            // æ¸…æ¥šè§†é‡è¡¨
+            // PartAnnalDAO dao = new PartAnnalDAO();
+            // dao.clearPartAnnal();
+            // åˆ é™¤pké€šçŸ¥è¡¨
+            // PKNotifyDao pKNotifyDao = new PKNotifyDao();
+            // pKNotifyDao.deleteByPlayer();
+            // è®¾ç½®åˆ é™¤è§’è‰²äº¤æµè¡¨
+            // //å½“æœåŠ¡å™¨å¯åŠ¨æ—¶, å°†å½“å‰åœ¨çº¿äººæ•°ç½®ä¸ºé›¶
+            // PlayerOnlineNumRecord playerOnlineNumRecord = new
+            // PlayerOnlineNumRecord();
+            // playerOnlineNumRecord.setOnlineNumToZero();
+
+            // æ•°æ®ç»Ÿè®¡å¯åŠ¨ç¨‹åº
+            // StatisticsService statService = new StatisticsService();
+            // statService.startJYGameRecord();
+            // statService.startJYGameOnlineNumRecord();
+            // statService.startJYGameOnlineTongKill();
+            // statService.accoutFieldResult();
+            // statService.sysLotteryNum();
+            // statService.sysLotteryAndLaborage();
+
+            logger.info("åŠ è½½å¸ˆå¾’ç³»ç»Ÿ");
+            ShituService ss = new ShituService();
+            ss.loadAllStudent();
+            ss.loadAllTeacher();
+            logger.info("åŠ è½½å¸ˆå¾’ç³»ç»Ÿå®Œæˆ");
+
+            if (GameConfig.jmsIsOn()) {
+                init();
+            }
+
+            logger.info("###############æ¸¸æˆå¯åŠ¨å®Œæˆ###############");
+        } catch (Exception e) {
+            logger.debug("###############æ¸¸æˆå¯åŠ¨å¤±è´¥###############");
+            logger.debug("å¤±è´¥åŸå› ï¼š" + e);
+            e.getStackTrace();
+        }
+
+    }
+
+    public void contextDestroyed(ServletContextEvent event) {
+        logger.info("###############å…³é—­æ¸¸æˆ###############");
+        // å®¹å™¨å…³é—­æ—¶æ—¶æ‰§è¡Œçš„ä»£ç 
+    }
+
+    public void init() {
+        try {
+            Hashtable<String, String> properties = new Hashtable();
+            properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.exolab.jms.jndi.InitialContextFactory");
+            properties.put(Context.PROVIDER_URL, "rmi://" + GameConfig.getJmsUrl() + ":1099/");
+            Context context = new InitialContext(properties);
+            QueueConnectionFactory queueConnectionFactory = (QueueConnectionFactory) context.lookup("JmsQueueConnectionFactory");
+            QueueConnection qCon = queueConnectionFactory.createQueueConnection();
+            QueueSession qSession = qCon.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+            Queue queue = (Queue) context.lookup("queue3");
+            QueueReceiver qReceiver = qSession.createReceiver(queue);
+            qCon.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("JMSæœåŠ¡æ²¡æœ‰å¯åŠ¨");
+        }
+    }
 }

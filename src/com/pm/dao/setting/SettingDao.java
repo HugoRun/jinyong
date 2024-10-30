@@ -10,13 +10,13 @@ public class SettingDao extends DaoBase
 {
 
 	/**
-	 * ¸ù¾İpPkÔÚ´´½¨½ÇÉ«Í¬Ê±´´½¨½ÇÉ«µÄÏµÍ³ÉèÖÃ±í
+	 * æ ¹æ®pPkåœ¨åˆ›å»ºè§’è‰²åŒæ—¶åˆ›å»ºè§’è‰²çš„ç³»ç»Ÿè®¾ç½®è¡¨
 	 * @param pPk
 	 */
 	public void createSysSetting (int pPk)
 	{
-		String sql = "insert into s_setting_info (p_pk) values ("+pPk+")";
-		logger.debug("´´½¨½ÇÉ«Ê±´´½¨ÏµÍ³ÉèÖÃ:"+sql);
+		String sql = "INSERT INTO s_setting_info (p_pk) values ("+pPk+")";
+		logger.debug("åˆ›å»ºè§’è‰²æ—¶åˆ›å»ºç³»ç»Ÿè®¾ç½®:"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try{
 			conn = dbConn.getConn();
@@ -34,16 +34,16 @@ public class SettingDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½ÏµÍ³ÉèÖÃ±íÖĞµÄ²ÎÊıÁĞ±í
+	 * å¾—åˆ°ç³»ç»Ÿè®¾ç½®è¡¨ä¸­çš„å‚æ•°åˆ—è¡¨
 	 * @param p_pk
 	 * @return
 	 */
 	public SettingVO getSettingInfo(String p_pk)
 	{
 		
-		String sql = "select * from s_setting_info where p_pk="+p_pk;
+		String sql = "SELECT * FROM s_setting_info where p_pk="+p_pk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("µÃµ½ÉèÖÃ²ÎÊı="+sql);
+		logger.debug("å¾—åˆ°è®¾ç½®å‚æ•°="+sql);
 		SettingVO vo = null;
 		try{
 			conn = dbConn.getConn();

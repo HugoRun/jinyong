@@ -20,29 +20,29 @@ import com.ls.pub.util.http.parseContent.ParseNormalContent;
 import com.ls.web.service.security.SecurityService;
 
 /**
- * @author ls ¹¦ÄÜ:µ±ÀÖÓÃ»§Í¨ĞĞÖ¤¹ÜÀí Jan 10, 2009
+ * @author ls åŠŸèƒ½:å½“ä¹ç”¨æˆ·é€šè¡Œè¯ç®¡ç† Jan 10, 2009
  */
 public class PassportService
 {
 	Logger logger = Logger.getLogger(PassportService.class);
 
 	/**
-	 * µÇÂ½url
+	 * ç™»é™†url
 	 */
 	// static String LOGIN_URL = "http://jy1.downjoy.com/dl/login.do";
 	// static String LOGIN_URL = "http://61.168.44.14:28081/gp/dl/login.do";
 	/**
-	 * µ±ÀÖ·ÖÅäµÄmd5ÃÜÔ¿
+	 * å½“ä¹åˆ†é…çš„md5å¯†é’¥
 	 */
 	static String MERCHANT_KEY = "xWx86231";
 	
-	/** ÓÆÀÖÇşµÀµÇÂ½¹ÜÀíºé»ÄµÚÒ»¸öÇşµÀ* */
+	/** æ‚ ä¹æ¸ é“ç™»é™†ç®¡ç†æ´ªè’ç¬¬ä¸€ä¸ªæ¸ é“* */
 	public PassportVO loginFromYoule(String youle_uid, String login_ip)
 	{
 		PassportVO passport = null;
 		int u_pk = -1;
 		passport = getPassportInfoByUserID(youle_uid, Channel.WANXIANG);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(youle_uid, youle_uid,Channel.WANXIANG, login_ip);
 			passport = new PassportVO();
@@ -60,7 +60,7 @@ public class PassportService
 
 
 	/**
-	 * ÓÃ»§´Óµ±ÀÖµÇÂ½µ½ÓÎÏ·Æ½Ì¨
+	 * ç”¨æˆ·ä»å½“ä¹ç™»é™†åˆ°æ¸¸æˆå¹³å°
 	 * 
 	 * @param user_id
 	 * @param user_name
@@ -87,12 +87,12 @@ public class PassportService
 
 		int u_pk = -1;
 
-		if (verify_string.equals(received_verify_string)) // ÑéÖ¤³É¹¦
+		if (verify_string.equals(received_verify_string)) // éªŒè¯æˆåŠŸ
 		{
-			logger.info("##############µ±ÀÖÓÃ»§ÑéÖ¤³É¹¦##################");
+			logger.info("##############å½“ä¹ç”¨æˆ·éªŒè¯æˆåŠŸ##################");
 			PassportVO passport = getPassportInfoByUserID(user_id,
 					Channel.DANGLE);
-			if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+			if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 			{
 				u_pk = addNewUser(user_id, user_name, Channel.DANGLE, ip);
 			}
@@ -104,14 +104,14 @@ public class PassportService
 		}
 		else
 		{
-			logger.info("##############µ±ÀÖÓÃ»§ÑéÖ¤Ê§°Ü##################");
+			logger.info("##############å½“ä¹ç”¨æˆ·éªŒè¯å¤±è´¥##################");
 		}
 
 		return u_pk;
 	}
 
 	/**
-	 * ´ÓÌøÍøµÇÂ½
+	 * ä»è·³ç½‘ç™»é™†
 	 */
 	public PassportVO loginFromTiao(String user_name,
 			String received_verify_string, String login_ip)
@@ -122,7 +122,7 @@ public class PassportService
 		{
 			int u_pk = -1;
 			passport = getPassportInfoByUserID(user_name, Channel.TIAO);
-			if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+			if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 			{
 				u_pk = addNewUser(user_name, user_name, Channel.TIAO, login_ip);
 				passport = new PassportVO();
@@ -141,17 +141,17 @@ public class PassportService
 	}
 
 	/**
-	 * ÑéÖ¤Íæ¼Ò´ÓskyÇşµÀµÇÂ½¹ıÀ´µÄºÏ·¨ĞÔ
+	 * éªŒè¯ç©å®¶ä»skyæ¸ é“ç™»é™†è¿‡æ¥çš„åˆæ³•æ€§
 	 * 
 	 * @param channel_params
-	 *            ÇşµÀ´«¹ıÀ´µÄ²ÎÊı
+	 *            æ¸ é“ä¼ è¿‡æ¥çš„å‚æ•°
 	 * @return u_pk
 	 */
 	public PassportVO loginFromSky(String ssid, String login_ip)
 	{
 		PassportVO passport = null;
 		/**
-		 * µÇÂ½ÑéÖ¤url
+		 * ç™»é™†éªŒè¯url
 		 */
 		String validate_url = ConfigOfSky.getUrlOfAuthSSID();
 
@@ -161,33 +161,33 @@ public class PassportService
 		HttpRespons response = null;
 		try
 		{
-			response = request.sendGet(validate_url + "?ssid=" + ssid);// Ìá½»ÑéÖ¤ÇëÇó
+			response = request.sendGet(validate_url + "?ssid=" + ssid);// æäº¤éªŒè¯è¯·æ±‚
 		}
 		catch (IOException e)
 		{
-			logger.debug("Ë¼¿­ssidÑéÖ¤Òì³£");
+			logger.debug("æ€å‡¯ssidéªŒè¯å¼‚å¸¸");
 			e.printStackTrace();
 			return passport;
 		}
 
-		if (response.getCode() != 200)// ¿­ssidÑéÖ¤ÇëÇóÊ§°Ü
+		if (response.getCode() != 200)// å‡¯ssidéªŒè¯è¯·æ±‚å¤±è´¥
 		{
-			logger.debug("Ë¼¿­ssidÑéÖ¤ÇëÇóÊ§°Ü£¬ÏìÓ¦´úÂëÎª£º" + response.getCode());
+			logger.debug("æ€å‡¯ssidéªŒè¯è¯·æ±‚å¤±è´¥ï¼Œå“åº”ä»£ç ä¸ºï¼š" + response.getCode());
 			return passport;
 		}
 
 		ParseNormalContent parseContent = new ParseNormalContent();
-		Map<String, String> result = parseContent.parse(response.getContent());// µÃµ½½âÎöºóµÄÏìÓ¦½á¹û
+		Map<String, String> result = parseContent.parse(response.getContent());// å¾—åˆ°è§£æåçš„å“åº”ç»“æœ
 
-		if (result.get("result").equals("0"))// ±íÊ¾ssidÑéÖ¤³É¹¦
+		if (result.get("result").equals("0"))// è¡¨ç¤ºssidéªŒè¯æˆåŠŸ
 		{
 			String skyid = result.get("skyid");
 			String nickname = result.get("nickname");
 
-			logger.info("##############Ë¼¿­ÓÃ»§ÑéÖ¤³É¹¦##################");
+			logger.info("##############æ€å‡¯ç”¨æˆ·éªŒè¯æˆåŠŸ##################");
 			int u_pk = -1;
 			passport = getPassportInfoByUserID(skyid, Channel.SKY);
-			if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+			if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 			{
 				u_pk = addNewUser(skyid, nickname, Channel.SKY, login_ip);
 				passport = new PassportVO();
@@ -203,20 +203,20 @@ public class PassportService
 		}
 		else
 		{
-			logger.debug("Ë¼¿­ssidÑéÖ¤Ê§°Ü£¬ssid£º" + ssid + "ÎŞĞ§");
+			logger.debug("æ€å‡¯ssidéªŒè¯å¤±è´¥ï¼Œssidï¼š" + ssid + "æ— æ•ˆ");
 			return passport;
 		}
 
 		return passport;
 	}
 
-	/** ĞÂÀËµÇÂ½¹ÜÀí* */
+	/** æ–°æµªç™»é™†ç®¡ç†* */
 	public PassportVO loginFromSina(String sina_uid, String login_ip,String wm)
 	{
 		PassportVO passport = null;
 		int u_pk = -1;
 		passport = getPassportInfoByUserID(sina_uid, Channel.SINA);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(sina_uid, sina_uid, "",Channel.SINA, login_ip,wm,wm);
 			passport = new PassportVO();
@@ -232,13 +232,13 @@ public class PassportService
 		return passport;
 	}
 
-	/** µçĞÅÇşµÀµÇÂ½¹ÜÀí* */
+	/** ç”µä¿¡æ¸ é“ç™»é™†ç®¡ç†* */
 	public PassportVO loginFromTele(String tele_uid, String login_ip)
 	{
 		PassportVO passport = null;
 		int u_pk = -1;
 		passport = getPassportInfoByUserID(tele_uid, Channel.TELE);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(tele_uid, tele_uid,Channel.TELE, login_ip);
 			passport = new PassportVO();
@@ -253,7 +253,7 @@ public class PassportService
 		passport.setUserId(tele_uid);
 		return passport;
 	}
-	/** JUUµÇÂ½¹ÜÀí* */
+	/** JUUç™»é™†ç®¡ç†* */
 	public PassportVO loginFromJuu(String account, String time, String sign,
 			String login_ip)
 	{
@@ -270,7 +270,7 @@ public class PassportService
 			if (sign.equals(sign_bak))
 			{
 				passport = getPassportInfoByUserID(account, Channel.JUU);
-				if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+				if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 				{
 					u_pk = addNewUser(account, account, Channel.JUU, login_ip);
 					passport = new PassportVO();
@@ -288,7 +288,7 @@ public class PassportService
 		return passport;
 	}
 	
-	/**´ó¼ÒÍøµÇÂ½¹ÜÀí**/
+	/**å¤§å®¶ç½‘ç™»é™†ç®¡ç†**/
 	public PassportVO loginFromDjw(String user_id, String timestamp, String receive_verify_string,
 			String login_ip)
 	{
@@ -301,17 +301,17 @@ public class PassportService
 		}
 		else
 		{
-			String key = "eielwek9nea2oll1";// ´ó¼ÒÍø·ÖÅäµÄÃÜÔ¿
-			String merchant_id = "oneshow";// ÉÌ»§±àºÅ
-			String game_id = "1";// ÓÎÏ·£É£Ä¡¡Ä¬ÈÏÎª£±
+			String key = "eielwek9nea2oll1";// å¤§å®¶ç½‘åˆ†é…çš„å¯†é’¥
+			String merchant_id = "oneshow";// å•†æˆ·ç¼–å·
+			String game_id = "1";// æ¸¸æˆï¼©ï¼¤ã€€é»˜è®¤ä¸ºï¼‘
 			String sign = "merchant.enter?"+"user-id="+user_id+
 					"&timestamp="+timestamp+"&merchant-id="+merchant_id+"&merchant-key="+key;
 			String verify_string = MD5Util.md5Hex(sign);
 			if (verify_string.equals(receive_verify_string))
 			{
-				logger.info("##############´ó¼ÒÍøÓÃ»§ÑéÖ¤³É¹¦##################");
+				logger.info("##############å¤§å®¶ç½‘ç”¨æˆ·éªŒè¯æˆåŠŸ##################");
 				passport = getPassportInfoByUserID(user_id, 99);
-				if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+				if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 				{
 					u_pk = addNewUser(user_id, user_id,"",99, login_ip,"1","djw");
 					passport = new PassportVO();
@@ -327,20 +327,20 @@ public class PassportService
 			}
 			else
 			{
-				logger.info("##############´ó¼ÒÍøÓÃ»§ÑéÖ¤Ê§°Ü##################");
+				logger.info("##############å¤§å®¶ç½‘ç”¨æˆ·éªŒè¯å¤±è´¥##################");
 			}			
 		}
 		return passport;
 	}
 	
 	
-	/** ¿ÕÖĞÍøµÇÂ½¹ÜÀí* */
+	/** ç©ºä¸­ç½‘ç™»é™†ç®¡ç†* */
 	public PassportVO loginFromAir(String userId, String login_ip)
 	{
 		PassportVO passport = null;
 		int u_pk = -1;
 		passport = getPassportInfoByUserID(userId, Channel.AIR);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(userId, userId, Channel.AIR, login_ip);
 			passport = new PassportVO();
@@ -356,13 +356,13 @@ public class PassportService
 		return passport;
 	}
 	
-	/** ÌìÏÂÍøµÇÂ½¹ÜÀí* */
+	/** å¤©ä¸‹ç½‘ç™»é™†ç®¡ç†* */
 	public PassportVO loginFromTxw(String userId, String login_ip)
 	{
 		PassportVO passport = null;
 		int u_pk = -1;
 		passport = getPassportInfoByUserID(userId, Channel.TXW);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(userId, userId, Channel.TXW, login_ip);
 			passport = new PassportVO();
@@ -378,13 +378,13 @@ public class PassportService
 		return passport;
 	}
 	
-	/** ÓĞÍæ°ÉµÇÂ½¹ÜÀí* */
+	/** æœ‰ç©å§ç™»é™†ç®¡ç†* */
 	public PassportVO loginFromYouvb(String youvb_id, String login_ip)
 	{
 		PassportVO passport = null;
 		int u_pk = -1;
 		passport = getPassportInfoByUserID(youvb_id, Channel.YOUVB);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(youvb_id, youvb_id, Channel.YOUVB, login_ip);
 			passport = new PassportVO();
@@ -401,7 +401,7 @@ public class PassportService
 	}
 
 	/**
-	 * ×ÔÖ÷¹ÜÀíÕËºÅ
+	 * è‡ªä¸»ç®¡ç†è´¦å·
 	 * 
 	 * @param user_name
 	 * @param user_pwd
@@ -418,7 +418,7 @@ public class PassportService
 		{
 			u_pk = addNewUser(user_name, user_name, user_pwd, Channel.WANXIANG,
 					login_ip, super_qudao, qudao);
-			// ·¢ËÍ×¢²á½ÇÉ«
+			// å‘é€æ³¨å†Œè§’è‰²
 			if (u_pk != -1)
 			{
 				JmsUtil.sendJmsRole(super_qudao, qudao, user_name, null, 1);
@@ -444,7 +444,7 @@ public class PassportService
 	}
 
 	/**
-	 * Æ½Ì¨ÑéÖ¤µÇÂ½
+	 * å¹³å°éªŒè¯ç™»é™†
 	 * 
 	 * @param channel
 	 * @param product
@@ -470,12 +470,12 @@ public class PassportService
 		RegisterDao dao = new RegisterDao();
 
 		int u_pk = -1;
-		if (verify_string.equals(received_verify_string)) // ÑéÖ¤³É¹¦
+		if (verify_string.equals(received_verify_string)) // éªŒè¯æˆåŠŸ
 		{
-			logger.info("##############Æ½Ì¨ÑéÖ¤µÇÂ½ÑéÖ¤³É¹¦##################");
+			logger.info("##############å¹³å°éªŒè¯ç™»é™†éªŒè¯æˆåŠŸ##################");
 			PassportVO passport = getPassportInfoByUserName(name, Integer
 					.parseInt(channel));
-			if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+			if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 			{
 				u_pk = addNewUser(null, name, Integer.parseInt(channel), ip);
 			}
@@ -487,14 +487,14 @@ public class PassportService
 		}
 		else
 		{
-			logger.info("##############µ±ÀÖÓÃ»§ÑéÖ¤Ê§°Ü##################");
+			logger.info("##############å½“ä¹ç”¨æˆ·éªŒè¯å¤±è´¥##################");
 		}
 
 		return u_pk;
 	}
 
 	/**
-	 * ÓÃ»§´Ó½ğÒøµºµÇÂ½µ½ÓÎÏ·Æ½Ì¨
+	 * ç”¨æˆ·ä»é‡‘é“¶å²›ç™»é™†åˆ°æ¸¸æˆå¹³å°
 	 * 
 	 * @param user_id
 	 * @param user_name
@@ -508,13 +508,13 @@ public class PassportService
 
 		if (user_id == null || user_name == null)
 		{
-			logger.info("ÎŞĞ§Êı¾İÑéÖ¤Ê§°Ü");
+			logger.info("æ— æ•ˆæ•°æ®éªŒè¯å¤±è´¥");
 			return u_pk;
 		}
 
 		PassportVO passport = getPassportInfoByUserID(user_id,
 				Channel.JINYINDAO);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(user_id, user_name, Channel.JINYINDAO, ip);
 		}
@@ -527,16 +527,16 @@ public class PassportService
 	}
 
 	/**
-	 * ÓÃ»§´ÓTOMÆ½Ì¨½øÈëÓÎÏ·
+	 * ç”¨æˆ·ä»TOMå¹³å°è¿›å…¥æ¸¸æˆ
 	 * 
 	 * @param lid
-	 *            TOMÆ½Ì¨ÇşµÀ±êÊ¾
+	 *            TOMå¹³å°æ¸ é“æ ‡ç¤º
 	 * @param name
-	 *            µÇÂ½ÓÃ»§Ãû
+	 *            ç™»é™†ç”¨æˆ·å
 	 * @param paw
-	 *            µÇÂ½ÃÜÂë
+	 *            ç™»é™†å¯†ç 
 	 * @param ip
-	 *            µÇÂ½IP
+	 *            ç™»é™†IP
 	 * @return
 	 */
 	public int loginFromTOM(String lid, String name, String pwass, String ip)
@@ -547,12 +547,12 @@ public class PassportService
 
 		if (lid == null || name == null)
 		{
-			logger.info("ÎŞĞ§Êı¾İÑéÖ¤Ê§°Ü");
+			logger.info("æ— æ•ˆæ•°æ®éªŒè¯å¤±è´¥");
 			return u_pk;
 		}
 
 		PassportVO passport = getPassportInfoByUserName(name, Channel.TOM);
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(lid, name, pwass, Channel.TOM, ip, null, null);
 		}
@@ -565,7 +565,7 @@ public class PassportService
 	}
 
 	/**
-	 * Ìí¼ÓĞÂÓÃ»§
+	 * æ·»åŠ æ–°ç”¨æˆ·
 	 */
 	public int addNewUser(String user_id, String user_name, int channel_id,
 			String ip)
@@ -574,7 +574,7 @@ public class PassportService
 		PassportDao passportDao = new PassportDao();
 
 		int u_pk = registerDao.addUser(user_name, ip);
-		if (u_pk != -1)// ²åÈëÊ§°Ü
+		if (u_pk != -1)// æ’å…¥å¤±è´¥
 		{
 			passportDao.addNewPassport(user_id, user_name, u_pk, channel_id);
 		}
@@ -582,7 +582,7 @@ public class PassportService
 	}
 
 	/**
-	 * Ìí¼ÓĞÂÓÃ»§
+	 * æ·»åŠ æ–°ç”¨æˆ·
 	 */
 	public int addNewUser(String user_id, String user_name, String pwass,
 			int channel_id, String ip, String super_qudao, String qudao)
@@ -600,7 +600,7 @@ public class PassportService
 	}
 
 	/**
-	 * Í¨¹ıÓÎÏ·u_pk£¬µÃµ½ÓÃ»§Í¨ĞĞÖ¤ĞÅÏ¢
+	 * é€šè¿‡æ¸¸æˆu_pkï¼Œå¾—åˆ°ç”¨æˆ·é€šè¡Œè¯ä¿¡æ¯
 	 */
 	public PassportVO getPassportInfoByUPk(int u_pk)
 	{
@@ -614,7 +614,7 @@ public class PassportService
 	}
 
 	/**
-	 * Í¨¹ıÓÎÏ·u_pk£¬µÃµ½ÓÃ»§Í¨ĞĞÖ¤ĞÅÏ¢
+	 * é€šè¿‡æ¸¸æˆu_pkï¼Œå¾—åˆ°ç”¨æˆ·é€šè¡Œè¯ä¿¡æ¯
 	 */
 	public PassportVO getPassportInfoByUPk(String u_pk_str)
 	{
@@ -625,7 +625,7 @@ public class PassportService
 		}
 		catch (Exception e)
 		{
-			logger.info("u_pk:" + u_pk_str + "£¬Îª·Ç·¨²ÎÊı");
+			logger.info("u_pk:" + u_pk_str + "ï¼Œä¸ºéæ³•å‚æ•°");
 			return null;
 		}
 
@@ -633,7 +633,7 @@ public class PassportService
 	}
 
 	/**
-	 * Í¨¹ıÍ¨ĞĞÖ¤ÓÃ»§id£¬µÃµ½ÓÃ»§Í¨ĞĞÖ¤ĞÅÏ¢
+	 * é€šè¿‡é€šè¡Œè¯ç”¨æˆ·idï¼Œå¾—åˆ°ç”¨æˆ·é€šè¡Œè¯ä¿¡æ¯
 	 */
 	public PassportVO getPassportInfoByUserID(String user_id, int channel_id)
 	{
@@ -647,7 +647,7 @@ public class PassportService
 	}
 
 	/**
-	 * Í¨¹ıÍ¨ĞĞÖ¤ÓÃ»§id£¬µÃµ½ÓÃ»§Í¨ĞĞÖ¤ĞÅÏ¢
+	 * é€šè¿‡é€šè¡Œè¯ç”¨æˆ·idï¼Œå¾—åˆ°ç”¨æˆ·é€šè¡Œè¯ä¿¡æ¯
 	 */
 	public PassportVO getPassportInfoByUserName(String user_name, int channel_id)
 	{
@@ -661,18 +661,18 @@ public class PassportService
 	}
 
 	/**
-	 * ÓÃ»§ÔÚÓÎÏ·Æ½Ì¨×¢Ïúµ±ÀÖÍ¨ĞĞÖ¤ÕËºÅ
+	 * ç”¨æˆ·åœ¨æ¸¸æˆå¹³å°æ³¨é”€å½“ä¹é€šè¡Œè¯è´¦å·
 	 * 
 	 * @param user_id
 	 */
 	public void logoutToDangLe(int u_pk)
 	{
 		PassportDao passportDao = new PassportDao();
-		// ÓÃ»§×¢Ïú
+		// ç”¨æˆ·æ³¨é”€
 		passportDao.updateState(u_pk, 2);
 	}
 
-	/*******************ÓÎÏ·Í¨ÓÃ½Ó¿Ú***********************/
+	/*******************æ¸¸æˆé€šç”¨æ¥å£***********************/
 	public int loginall(String account,String md5string,String timestamp,String gameid,String login_ip)
 	{
 		String key = getMD5str(account, md5string, timestamp, gameid);
@@ -682,7 +682,7 @@ public class PassportService
 		int u_pk = -1;
 		PassportVO passport = null;
 		passport = getPassportInfoByUserID(account, Integer.parseInt(gameid));
-		if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+		if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 		{
 			u_pk = addNewUser(account, account, Integer.parseInt(gameid), login_ip);
 			passport = new PassportVO();
@@ -698,8 +698,8 @@ public class PassportService
 		return u_pk;
 	}
 	
-	/***************µÃµ½×Ö·û´®****
-	 * ´Ë´¦ÓÃÀ´Ìí¼Ó ÓÃ»§ÇşµÀID ºÍ ÇşµÀ¼ÓÃÜKEY
+	/***************å¾—åˆ°å­—ç¬¦ä¸²****
+	 * æ­¤å¤„ç”¨æ¥æ·»åŠ  ç”¨æˆ·æ¸ é“ID å’Œ æ¸ é“åŠ å¯†KEY
 	 * *********/
 	private String getMD5str(String account,String md5string,String timestamp,String gameid){
 		String key = "";

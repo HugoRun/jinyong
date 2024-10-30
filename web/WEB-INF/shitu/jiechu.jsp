@@ -11,7 +11,7 @@ Object id = request.getAttribute("id");
 %>
 师傅主动解除与徒弟的师徒关系将增加<%=ShituConstant.TEA_ZUIE %>的罪恶值，你确定要解除与<%=stu_name %>的师徒关系吗？<br/>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>"> 
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>">
 	<postfield name="cmd" value="n8" />
 	<postfield name="stu_id" value="<%=stu_id %>" />
 	<postfield name="id" value="<%=id%>" />

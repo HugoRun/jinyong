@@ -26,11 +26,11 @@ public class HttpRequester {
     }   
     
     /**  
-     * ·¢ËÍGETÇëÇó  
+     * å‘é€GETè¯·æ±‚  
      *   
      * @param urlString  
-     *            URLµØÖ·  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            URLåœ°å€  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendGet(String urlString) throws IOException {   
@@ -38,13 +38,13 @@ public class HttpRequester {
     }   
     
     /**  
-     * ·¢ËÍGETÇëÇó  
+     * å‘é€GETè¯·æ±‚  
      *   
      * @param urlString  
-     *            URLµØÖ·  
+     *            URLåœ°å€  
      * @param params  
-     *            ²ÎÊı¼¯ºÏ  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            å‚æ•°é›†åˆ  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendGet(String urlString, Map<String, String> params)   
@@ -53,15 +53,15 @@ public class HttpRequester {
     }   
     
     /**  
-     * ·¢ËÍGETÇëÇó  
+     * å‘é€GETè¯·æ±‚  
      *   
      * @param urlString  
-     *            URLµØÖ·  
+     *            URLåœ°å€  
      * @param params  
-     *            ²ÎÊı¼¯ºÏ  
+     *            å‚æ•°é›†åˆ  
      * @param propertys  
-     *            ÇëÇóÊôĞÔ  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            è¯·æ±‚å±æ€§  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendGet(String urlString, Map<String, String> params,   
@@ -70,11 +70,11 @@ public class HttpRequester {
     }   
     
     /**  
-     * ·¢ËÍPOSTÇëÇó  
+     * å‘é€POSTè¯·æ±‚  
      *   
      * @param urlString  
-     *            URLµØÖ·  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            URLåœ°å€  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendPost(String urlString) throws IOException {   
@@ -82,13 +82,13 @@ public class HttpRequester {
     }   
     
     /**  
-     * ·¢ËÍPOSTÇëÇó  
+     * å‘é€POSTè¯·æ±‚  
      *   
      * @param urlString  
-     *            URLµØÖ·  
+     *            URLåœ°å€  
      * @param params  
-     *            ²ÎÊı¼¯ºÏ  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            å‚æ•°é›†åˆ  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendPost(String urlString, Map<String, String> params)   
@@ -96,13 +96,13 @@ public class HttpRequester {
         return this.send(urlString, "POST", params, null);   
     }   
     /**  
-     * ·¢ËÍPOSTÇëÇó  µçĞÅ×¨ÃÅÆµµÀ  
+     * å‘é€POSTè¯·æ±‚  ç”µä¿¡ä¸“é—¨é¢‘é“  
      *   
      * @param urlString  
-     *            URLµØÖ·  
+     *            URLåœ°å€  
      * @param params  
-     *            ²ÎÊı¼¯ºÏ  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            å‚æ•°é›†åˆ  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendPostTele(String urlString, Map<String, String> params)   
@@ -110,10 +110,10 @@ public class HttpRequester {
         return this.sendPost(urlString, "POST", params);   
     } 
     /**  
-     * ·¢ËÍHTTPÇëÇó  ×¨ÃÅÎªµçĞÅĞ´µÄ
+     * å‘é€HTTPè¯·æ±‚  ä¸“é—¨ä¸ºç”µä¿¡å†™çš„
      *   
      * @param urlString  
-     * @return ÏìÓ³¶ÔÏó  
+     * @return å“æ˜ å¯¹è±¡  
      * @throws IOException  
      */  
     private HttpRespons sendPost(String urlString, String method,   
@@ -145,15 +145,15 @@ public class HttpRequester {
         return this.makeContent(urlString, urlConnection);   
     }   
     /**  
-     * ·¢ËÍPOSTÇëÇó  
+     * å‘é€POSTè¯·æ±‚  
      *   
      * @param urlString  
-     *            URLµØÖ·  
+     *            URLåœ°å€  
      * @param params  
-     *            ²ÎÊı¼¯ºÏ  
+     *            å‚æ•°é›†åˆ  
      * @param propertys  
-     *            ÇëÇóÊôĞÔ  
-     * @return ÏìÓ¦¶ÔÏó  
+     *            è¯·æ±‚å±æ€§  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     public HttpRespons sendPost(String urlString, Map<String, String> params,   
@@ -162,10 +162,10 @@ public class HttpRequester {
     }   
     
     /**  
-     * ·¢ËÍHTTPÇëÇó  
+     * å‘é€HTTPè¯·æ±‚  
      *   
      * @param urlString  
-     * @return ÏìÓ³¶ÔÏó  
+     * @return å“æ˜ å¯¹è±¡  
      * @throws IOException  
      */  
     private HttpRespons send(String urlString, String method,   
@@ -214,10 +214,10 @@ public class HttpRequester {
     }   
     
     /**  
-     * µÃµ½ÏìÓ¦¶ÔÏó  
+     * å¾—åˆ°å“åº”å¯¹è±¡  
      *   
      * @param urlConnection  
-     * @return ÏìÓ¦¶ÔÏó  
+     * @return å“åº”å¯¹è±¡  
      * @throws IOException  
      */  
     private HttpRespons makeContent(String urlString,   
@@ -273,14 +273,14 @@ public class HttpRequester {
     }   
     
     /**  
-     * Ä¬ÈÏµÄÏìÓ¦×Ö·û¼¯  
+     * é»˜è®¤çš„å“åº”å­—ç¬¦é›†  
      */  
     public String getDefaultContentEncoding() {   
         return this.defaultContentEncoding;   
     }   
     
     /**  
-     * ÉèÖÃÄ¬ÈÏµÄÏìÓ¦×Ö·û¼¯  
+     * è®¾ç½®é»˜è®¤çš„å“åº”å­—ç¬¦é›†  
      */  
     public void setDefaultContentEncoding(String defaultContentEncoding) {   
         this.defaultContentEncoding = defaultContentEncoding;   
@@ -292,20 +292,20 @@ public class HttpRequester {
 	{
 		  try {   
 			  /**
-			   * ÌøÍøÉêÇëÓÎÏ·ÇëÇó
+			   * è·³ç½‘ç”³è¯·æ¸¸æˆè¯·æ±‚
 			   */
 	            HttpRequester request = new HttpRequester(); 
 	            request.setDefaultContentEncoding("utf-8");
 	            
 	           /* 
-	            GameName=ÓÎÏ·Ãû³Æ(not null)
-	            ImgUrl=ÓÎÏ·Í¼Ïñ(null)
-	            Summary=ÓÎÏ·¼ò½é(not null)
-	            HomePage=ÓÎÏ·Ö÷Ò³(ÎŞÖ÷Ò³¿ÉÌîÎªµÇÂ¼Ò³)(not null)
-	            LoginUrl=ÓÎÏ·µÇÂ¼Ò³(not null)
-	            LogoutUrl=ÓÎÏ·×¢ÏúÒ³(null)
-	            PayKey=ÓÎÏ·ÃÜ³×(not null)(Îª·À²»Í¬ÓïÑÔºÍÆ½Ì¨Ä¬ÈÏÖĞÎÄ±àÂë¸ñÊ½²»Í¬£¬²»ÒªÓÃÖĞÎÄ.)
-	            MoneyRate=ÓÎÏ·±Ò»ãÂÊ(<=0½«×ªÎª1)Èç1Ô²Ç®ÄÜ»»100¸öÓÎÏ·±Ò£¬´Ë´¦Ó¦ÌîĞ´100
+	            GameName=æ¸¸æˆåç§°(not null)
+	            ImgUrl=æ¸¸æˆå›¾åƒ(null)
+	            Summary=æ¸¸æˆç®€ä»‹(not null)
+	            HomePage=æ¸¸æˆä¸»é¡µ(æ— ä¸»é¡µå¯å¡«ä¸ºç™»å½•é¡µ)(not null)
+	            LoginUrl=æ¸¸æˆç™»å½•é¡µ(not null)
+	            LogoutUrl=æ¸¸æˆæ³¨é”€é¡µ(null)
+	            PayKey=æ¸¸æˆå¯†åŒ™(not null)(ä¸ºé˜²ä¸åŒè¯­è¨€å’Œå¹³å°é»˜è®¤ä¸­æ–‡ç¼–ç æ ¼å¼ä¸åŒï¼Œä¸è¦ç”¨ä¸­æ–‡.)
+	            MoneyRate=æ¸¸æˆå¸æ±‡ç‡(<=0å°†è½¬ä¸º1)å¦‚1åœ†é’±èƒ½æ¢100ä¸ªæ¸¸æˆå¸ï¼Œæ­¤å¤„åº”å¡«å†™100
 	            */
 	            Map<String,String> params = new HashMap<String,String>();
 	            params.put("GameName", "jinyong");
@@ -322,7 +322,7 @@ public class HttpRequester {
 	            System.out.println(hr.getContent());
 	    
 	            String result = hr.getContent();
-	           System.out.println("·µ»ØÓÎÏ·±êÊ¶´®:"+result);
+	           System.out.println("è¿”å›æ¸¸æˆæ ‡è¯†ä¸²:"+result);
 
 	        } catch (Exception e) {   
 	            e.printStackTrace();   

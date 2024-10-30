@@ -2,21 +2,21 @@ package com.lw.vo.gamesystemstatistics;
 
 public class GameSystemStatisticsVO
 {
-	/** Ö÷¼ü */
+	/** ä¸»é”® */
 	private int gameSystemStatisticsID;
-	/** ÎïÆ·ID */
+	/** ç‰©å“ID */
 	private int propID;
-	/** ÎïÆ·ÀàĞÍ */
+	/** ç‰©å“ç±»å‹ */
 	private int propType;
-	/** ÎïÆ·ÊıÁ¿ */
+	/** ç‰©å“æ•°é‡ */
 	private int propNum;
-	/** ÎïÆ·»ñµÃÍ¾¾¶ÀàĞÍ */
+	/** ç‰©å“è·å¾—é€”å¾„ç±»å‹ */
 	private String propApproachType;
-	/** ÅĞ¶ÏÎïÆ·ÊÇÏûºÄµÃµ½»¹ÊÇ¿â´æ */
+	/** åˆ¤æ–­ç‰©å“æ˜¯æ¶ˆè€—å¾—åˆ°è¿˜æ˜¯åº“å­˜ */
 	private String propApproach;
-	/** ÈÕÆÚ */
+	/** æ—¥æœŸ */
 	private String date;
-	/** Ê±¼ä */
+	/** æ—¶é—´ */
 	private String time;
 
 	public String getTime()

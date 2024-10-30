@@ -8,7 +8,7 @@ public class SecurityService {
 	private static String MERCHANT_KEY = "oneshow123";
 	
 	/**
-	 * ÓÃ»§Ãû¼ÓÃÜ
+	 * ç”¨æˆ·ååŠ å¯†
 	 */
 	public static String getVerifyString(String user_name)
 	{
@@ -20,7 +20,7 @@ public class SecurityService {
 	}
 	
 	/**
-	 * ÓÃ»§½âÃÜÈÏÖ¤
+	 * ç”¨æˆ·è§£å¯†è®¤è¯
 	 */
 	public  static  boolean validateName(String user_name ,String received_verify_string)
 	{

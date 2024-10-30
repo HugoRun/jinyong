@@ -1,23 +1,23 @@
 package com.ls.ben.vo.info.pet;
 
 /**
- * ¹¦ÄÜ:petÊµÀıÀà
+ * åŠŸèƒ½:petå®ä¾‹ç±»
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 9:05:32 AM
  */
 public class PetSkillControlVO
 {
-	/** ¼¼ÄÜid */
+	/** æŠ€èƒ½id */
 	private int controlId;
-	/** ³èÎïid */
+	/** å® ç‰©id */
 	private int petId;
-	/** ¼¼ÄÜid */
+	/** æŠ€èƒ½id */
 	private int petSkillId;
-	/** ³öÕĞ¼¸ÂÊ */
+	/** å‡ºæ‹›å‡ ç‡ */
 	private int controlDrop;
-	/** ³èÎï¼¼ÄÜ×é */
+	/** å® ç‰©æŠ€èƒ½ç»„ */
 	private int petSkGroup;
 
 	public int getPetSkGroup()

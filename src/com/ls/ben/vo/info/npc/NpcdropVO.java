@@ -5,40 +5,40 @@ import com.ls.pub.util.DateUtil;
 import com.ls.pub.util.MathUtil;
 import com.web.service.expnpcdrop.ExpnpcdropService;
 
-/**   npcµôÂä±í
- * @author ÁõË§
+/**   npcæ‰è½è¡¨
+ * @author åˆ˜å¸…
  */
 public class NpcdropVO {
-	/** npcµôÂä±íid */
+	/** npcæ‰è½è¡¨id */
 	private int npcdropID;
-	/** ¹ÖÎïid */
+	/** æ€ªç‰©id */
 	private int npcID;
-	/** ÎïÆ·ÀàĞÍ */
+	/** ç‰©å“ç±»å‹ */
 	private int goodsType;
-	/** ÎïÆ·id */
+	/** ç‰©å“id */
 	private int goodsId;
-	/** ÎïÆ·Ãû³Æ*/
+	/** ç‰©å“åç§°*/
 	private String goodsName;
-	/** Âä¼¸ÂÊ É±ËÀ¸ÃnpcµôÂä¸ÃÎïÆ·µÄ¼¸ÂÊ£¬100±íÊ¾Íò·ÖÖ®Ò»¼¸ÂÊ */
+	/** è½å‡ ç‡ æ€æ­»è¯¥npcæ‰è½è¯¥ç‰©å“çš„å‡ ç‡ï¼Œ100è¡¨ç¤ºä¸‡åˆ†ä¹‹ä¸€å‡ ç‡ */
 	private int npcdropProbability;
-	/** ´ó±©¼¸ÂÊ ´ó±©±íÊ¾ËùÓĞÎïÆ·µôÂä¼¸ÂÊÎªÔ­À´10±¶£¬10±íÊ¾É±ËÀ¸ÃnpcÓĞ10%µÄ¼¸ÂÊ´ó±© */
+	/** å¤§æš´å‡ ç‡ å¤§æš´è¡¨ç¤ºæ‰€æœ‰ç‰©å“æ‰è½å‡ ç‡ä¸ºåŸæ¥10å€ï¼Œ10è¡¨ç¤ºæ€æ­»è¯¥npcæœ‰10%çš„å‡ ç‡å¤§æš´ */
 	private int npcdropLuck;
 	/**
-	 * npcÊµ¼ÊµôÂäÎïÆ·µÄÊı·¶Î§×Ö·û´®
+	 * npcå®é™…æ‰è½ç‰©å“çš„æ•°èŒƒå›´å­—ç¬¦ä¸²
 	 * */
 	private String npcDropNumStr;
 	
-	/**npcÊµ¼ÊµôÂäÎïÆ·µÄÊıÁ¿*/
+	/**npcå®é™…æ‰è½ç‰©å“çš„æ•°é‡*/
 	private int npcDropNum;
 	
-	/** µôÂäÍ¾¾¶,1:ÔİÎŞÓÃ£»2:´ò¹ÖµÃµ½µÄÎïÆ·£»3:±¦ÏäµÃµ½µÄÎïÆ·£»4£º´ò¹ÖµÃµ½µÄÎïÆ·(ÌØÊâ)£» 5£º±íÊ¾±¦ÏäµôÂä*/
+	/** æ‰è½é€”å¾„,1:æš‚æ— ç”¨ï¼›2:æ‰“æ€ªå¾—åˆ°çš„ç‰©å“ï¼›3:å®ç®±å¾—åˆ°çš„ç‰©å“ï¼›4ï¼šæ‰“æ€ªå¾—åˆ°çš„ç‰©å“(ç‰¹æ®Š)ï¼› 5ï¼šè¡¨ç¤ºå®ç®±æ‰è½*/
 	private int npcDropImprot;
 
-	/**Ö¸¶¨µôÂäµÄÆ·ÖÊ,0ÆÕÍ¨1ÓÅĞã2Á¼ºÃ3¾«Æ·  -1±íÊ¾°´¸ÅÂÊÉú³ÉÆ·ÖÊ*/
+	/**æŒ‡å®šæ‰è½çš„å“è´¨,0æ™®é€š1ä¼˜ç§€2è‰¯å¥½3ç²¾å“  -1è¡¨ç¤ºæŒ‰æ¦‚ç‡ç”Ÿæˆå“è´¨*/
 	private int quality;
 	
 	/**
-	 * Ë¢ĞÂÊ±¼ä(ĞÇÆÚ¿ØÖÆ)
+	 * åˆ·æ–°æ—¶é—´(æ˜ŸæœŸæ§åˆ¶)
 	 */
 	private String weekStr;
 	
@@ -48,8 +48,8 @@ public class NpcdropVO {
 	}
 	
 	/**
-	 * ÊÇ·ñµôÂä
-	 * @param appendRate	×·¼ÓÍæ¼Ò¸½¼ÓµÄ¸ÅÂÊ
+	 * æ˜¯å¦æ‰è½
+	 * @param appendRate	è¿½åŠ ç©å®¶é™„åŠ çš„æ¦‚ç‡
 	 * @return
 	 */
 	public boolean isDrop( int appendRate )
@@ -59,19 +59,19 @@ public class NpcdropVO {
 			return false;
 		}
 		
-		int total_drop_rate = this.npcdropProbability;//×ÜµÄµôÂäÂÊ
+		int total_drop_rate = this.npcdropProbability;//æ€»çš„æ‰è½ç‡
 		
-		if (MathUtil.isAppearByPercentage(this.npcdropLuck,MathUtil.DENOMINATOR)) // ÅĞ¶Ï´ó±©ÊÇ·ñ²úÉú
+		if (MathUtil.isAppearByPercentage(this.npcdropLuck,MathUtil.DENOMINATOR)) // åˆ¤æ–­å¤§æš´æ˜¯å¦äº§ç”Ÿ
 		{
-			total_drop_rate *= 5;//Ôö¼Ó5±»¸ÅÂÊ
+			total_drop_rate *= 5;//å¢åŠ 5è¢«æ¦‚ç‡
 		}
-		//×·¼ÓÍæ¼Ò¸½¼ÓµÄ¸ÅÂÊ
+		//è¿½åŠ ç©å®¶é™„åŠ çš„æ¦‚ç‡
 		if(appendRate == 0){
 			appendRate = 100;
 		}
 		total_drop_rate = total_drop_rate+total_drop_rate*(appendRate-100)/100;
 		
-		// ×·¼ÓÏµÍ³ÏµÍ³µôÂä±¶Êı
+		// è¿½åŠ ç³»ç»Ÿç³»ç»Ÿæ‰è½å€æ•°
 		ExpnpcdropService expnpcdropService = new ExpnpcdropService(); 
 		int sys_rate = expnpcdropService.getCimeliaNpcdrop();
 		total_drop_rate *=sys_rate;

@@ -9,7 +9,7 @@ public class PlayerSynthesizeDao extends DaoBase
 	public int getPlayerSynthesize(int p_pk, int s_id)
 	{
 		int i = 0;
-		String sql = "select id from u_synthesize_info where p_pk =" + p_pk
+		String sql = "SELECT id from u_synthesize_info where p_pk =" + p_pk
 				+ " and s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

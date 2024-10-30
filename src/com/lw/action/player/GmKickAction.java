@@ -13,21 +13,21 @@ import com.pub.ben.info.Expression;
 
 public class GmKickAction extends DispatchAction
 {
-	/** Ìø×ª */
+	/** è·³è½¬ */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		return mapping.findForward("input");
 	}
 
-	/** ÌßÈË */
+	/** è¸¢äºº */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String p_name = request.getParameter("p_name");
 		if (Expression.hasPublish(p_name) == -1)
 		{
-			request.setAttribute("display", "ÊäÈëÓÐÎó");
+			request.setAttribute("display", "è¾“å…¥æœ‰è¯¯");
 			return mapping.findForward("display");
 		}
 		GmKickService gmKickService = new GmKickService();

@@ -4,7 +4,7 @@ import com.ls.web.service.player.RoleService;
 
 /**
  * @author ls
- * 玩家相关实体类的基类
+ * 鐜╁鐩稿叧瀹炰綋绫荤殑鍩虹被
  */
 public abstract class UserBase
 {

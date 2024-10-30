@@ -16,7 +16,7 @@ import com.ls.web.service.login.LoginService;
 import com.pm.dao.statistics.StatisticsDao;
 import com.pm.dao.systemInfo.SysInfoDao;
 /**
- * //ÔÚÏßÍæ¼ÒÈËÊıÍ³¼Æ
+ * //åœ¨çº¿ç©å®¶äººæ•°ç»Ÿè®¡
  * @author Administrator
  *
  */
@@ -24,7 +24,7 @@ public class GameOnlineNumRecordJob implements Job{
 	
 	 public void execute(JobExecutionContext context)  {
 		 
-		 int nowOnlineNum = LoginService.getOnlineNum();//µ±Ç°ÔÚÏßÈËÊı
+		 int nowOnlineNum = LoginService.getOnlineNum();//å½“å‰åœ¨çº¿äººæ•°
 		 
 			StatisticsDao statDao = new StatisticsDao();
 			
@@ -39,11 +39,11 @@ public class GameOnlineNumRecordJob implements Job{
 				statDao.insertPlayerOnlineNumRecord(nowOnlineNum, getNowHours(), getToday());
 			}
 			
-			//É¾³ı³¬¹ıÊ®Îå·ÖÖÓµÄÏµÍ³ÏûÏ¢
+			//åˆ é™¤è¶…è¿‡åäº”åˆ†é’Ÿçš„ç³»ç»Ÿæ¶ˆæ¯
 			SysInfoDao sysInfoDao = new SysInfoDao();
 			sysInfoDao.deleteMoreFifteenMinutes();
 			
-			//·¢ËÍjmsÏûÏ¢
+			//å‘é€jmsæ¶ˆæ¯
 			if(GameConfig.jmsIsOn()){
 				synchronized (JmsUtil.QYDAODETAIL_MAP)
 				{
@@ -64,7 +64,7 @@ public class GameOnlineNumRecordJob implements Job{
 	 
 	 
 	 	/**
-		 * »ñµÃµ±Ç°Ê±¼äµÄĞ¡Ê±¸ñÊ½»¯±íÊ¾
+		 * è·å¾—å½“å‰æ—¶é—´çš„å°æ—¶æ ¼å¼åŒ–è¡¨ç¤º
 		 * @return
 		 */
 		private static String getNowHours()
@@ -77,7 +77,7 @@ public class GameOnlineNumRecordJob implements Job{
 		}
 		
 		/**
-		 * »ñµÃÃ¿ÌìÊ±¼äµÄ¸ñÊ½»¯±íÊ¾
+		 * è·å¾—æ¯å¤©æ—¶é—´çš„æ ¼å¼åŒ–è¡¨ç¤º
 		 * @return
 		 */
 		private static String getToday()

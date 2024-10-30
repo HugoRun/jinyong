@@ -2,17 +2,17 @@ package com.lw.vo.wishingtree;
 
 public class WishingTreeVO
 {
-	// Ö÷¼ü
+	// ä¸»é”®
 	private int id;
-	// Ë­·¢µÄ
+	// è°å‘çš„
 	private int p_pk;
-	// Ãû×Ö
+	// åå­—
 	private String name;
-	// ÄÚÈİ
+	// å†…å®¹
 	private String wishing;
-	// ÊÇ·ñÖÃ¶¥
+	// æ˜¯å¦ç½®é¡¶
 	private int top;
-	// Ê±¼ä
+	// æ—¶é—´
 	private String time;
 
 	public int getId()

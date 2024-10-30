@@ -89,52 +89,52 @@ import com.web.service.friend.FriendService;
 import com.web.service.petservice.HhjPetService;
 
 /**
- * ¹¦ÄÜ:¹ÜÀíÍæ¼ÒµÀ¾ßµÄ²Ù×÷
+ * åŠŸèƒ½:ç®¡ç†ç©å®¶é“å…·çš„æ“ä½œ
  * 
- * @author ÁõË§ 3:54:58 PM
+ * @author åˆ˜å¸… 3:54:58 PM
  */
 public class PropUseService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Ê¹ÓÃµÀ¾ß²»Ö¸¶¨Ê¹ÓÃÄÄ¸öµÀ¾ß×é
+	 * ä½¿ç”¨é“å…·ä¸æŒ‡å®šä½¿ç”¨å“ªä¸ªé“å…·ç»„
 	 * 
 	 * @param prop_id
-	 *            µÀ¾ßid
+	 *            é“å…·id
 	 * @param object
-	 *            µÀ¾ß×÷ÓÃ¶ÔÏó
+	 *            é“å…·ä½œç”¨å¯¹è±¡
 	 * @param PropUseEffect
-	 *            ·µ»ØµÀ¾ßÊ¹ÓÃµÄĞ§¹û
+	 *            è¿”å›é“å…·ä½¿ç”¨çš„æ•ˆæœ
 	 */
 	public PropUseEffect usePropByPropID(RoleEntity role_info, int prop_id,
 			int use_num,HttpServletRequest request, HttpServletResponse response)
 	{
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 
-		PropVO prop = PropCache.getPropById(prop_id); // µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
-		// ÕÒµ½ÊıÁ¿×îÉÙµÄµÀ¾ß×é
+		PropVO prop = PropCache.getPropById(prop_id); // å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
+		// æ‰¾åˆ°æ•°é‡æœ€å°‘çš„é“å…·ç»„
 		PlayerPropGroupVO propGroup = propGroupDao.getPropGroupByPropID(role_info.getBasicInfo().getPPk(), prop_id);
-		if (propGroup == null)// ÎŞµÀ¾ß
+		if (propGroup == null)// æ— é“å…·
 		{
 			ShortcutService ShortcutService = new ShortcutService();
 			ShortcutService.clearShortcutoperate_id(role_info.getBasicInfo()
 					.getPPk(), prop_id);
 			PropUseEffect propUseEffect = new PropUseEffect();
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("µÀ¾ßÊıÁ¿²»¹»");
+			propUseEffect.setNoUseDisplay("é“å…·æ•°é‡ä¸å¤Ÿ");
 			return propUseEffect;
 		}
 		return useProp(role_info, prop, propGroup, use_num);
 	}
 
 	/**
-	 * Ê¹ÓÃpg_id×éµÄµÀ¾ß
+	 * ä½¿ç”¨pg_idç»„çš„é“å…·
 	 * 
 	 * @param p_pk
 	 * @param prop_id
 	 * @param pg_pk
-	 *            Îª-1Ê±£¬±íÊ¾²»Ö¸¶¨Ê¹ÓÃÊ¹ÓÃÄÄ¸öµÀ¾ß×éµÄµÀ¾ß£»
+	 *            ä¸º-1æ—¶ï¼Œè¡¨ç¤ºä¸æŒ‡å®šä½¿ç”¨ä½¿ç”¨å“ªä¸ªé“å…·ç»„çš„é“å…·ï¼›
 	 * @return
 	 */
 	public PropUseEffect usePropByPropGroupID(RoleEntity role_info, int pg_pk,
@@ -148,12 +148,12 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃpg_id×éµÄµÀ¾ß
+	 * ä½¿ç”¨pg_idç»„çš„é“å…·
 	 * 
 	 * @param p_pk
 	 * @param prop_id
 	 * @param pg_pk
-	 *            Îª-1Ê±£¬±íÊ¾²»Ö¸¶¨Ê¹ÓÃÊ¹ÓÃÄÄ¸öµÀ¾ß×éµÄµÀ¾ß£»
+	 *            ä¸º-1æ—¶ï¼Œè¡¨ç¤ºä¸æŒ‡å®šä½¿ç”¨ä½¿ç”¨å“ªä¸ªé“å…·ç»„çš„é“å…·ï¼›
 	 * @return
 	 */
 //	public String full_timeprop(int p_pk, int propID)
@@ -167,39 +167,39 @@ public class PropUseService
 //		RoleService roleService = new RoleService();
 //		RoleEntity role_info = roleService.getRoleInfoById(p_pk + "");
 //
-//		PropVO prop = PropCache.getPropById(propID); // µÃµ½µÀ¾ßÏêÏ¸ĞÅÏ¢
+//		PropVO prop = PropCache.getPropById(propID); // å¾—åˆ°é“å…·è¯¦ç»†ä¿¡æ¯
 //		PropUseEffect propUseEffect = new PropUseEffect();
 //
-//		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+//		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 //		String title_id = prop.getPropOperate1();
 //
 //		TitleInfoDao titleInfoDao = new TitleInfoDao();
 //		TitleInfoVO titleInfo = titleInfoDao.getByTilteId(title_id);
 //
-//		if (player.getPGrade() >= titleInfo.getTitleLevelDown())// ÅĞ¶ÏÊÇ·ñ×ª¹ıÖ°
+//		if (player.getPGrade() >= titleInfo.getTitleLevelDown())// åˆ¤æ–­æ˜¯å¦è½¬è¿‡èŒ
 //		{
-//			resutl = "ÄúÒÑ×ª¹ıÖ°,²»ÄÜÔÙÊ¹ÓÃÁË¡£";
+//			resutl = "æ‚¨å·²è½¬è¿‡èŒ,ä¸èƒ½å†ä½¿ç”¨äº†ã€‚";
 //			propUseEffect.setIsEffected(false);
 //			propUseEffect.setNoUseDisplay(resutl);
 //			return resutl;
 //		}
-//		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
-//		// ÔÚ³ÆÎ½×ª±äÊ±²éÑ¯ÏµÍ³ÏûÏ¢¿ØÖÆ±í£¬·¢ËÍºÏÊÊµÄĞÅÏ¢
+//		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
+//		// åœ¨ç§°è°“è½¬å˜æ—¶æŸ¥è¯¢ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨ï¼Œå‘é€åˆé€‚çš„ä¿¡æ¯
 //		SystemInfoService systemInfoService = new SystemInfoService();
 //		systemInfoService.sendSystemInfoByTitleInfo(p_pk, title_id);
-//		role_info.getBasicInfo().updateSchool(titleInfo.getSchoolId());// °İÊ¦
+//		role_info.getBasicInfo().updateSchool(titleInfo.getSchoolId());// æ‹œå¸ˆ
 //		growService.upgrade(player, role_info);
-//		resutl = "ÄúÒÑÉıµ½ÁË" + player.getPGrade() + "¼¶";
+//		resutl = "æ‚¨å·²å‡åˆ°äº†" + player.getPGrade() + "çº§";
 //		return resutl;
 //	}
 
 	/**
-	 * Ê¹ÓÃpg_id×éµÄµÀ¾ß³èÎïµÀ¾ßÊ¹ÓÃ
+	 * ä½¿ç”¨pg_idç»„çš„é“å…·å® ç‰©é“å…·ä½¿ç”¨
 	 * 
 	 * @param p_pk
 	 * @param prop_id
 	 * @param pg_pk
-	 *            Îª-1Ê±£¬±íÊ¾²»Ö¸¶¨Ê¹ÓÃÊ¹ÓÃÄÄ¸öµÀ¾ß×éµÄµÀ¾ß£»
+	 *            ä¸º-1æ—¶ï¼Œè¡¨ç¤ºä¸æŒ‡å®šä½¿ç”¨ä½¿ç”¨å“ªä¸ªé“å…·ç»„çš„é“å…·ï¼›
 	 * @return
 	 */
 	public PropUseEffect usePropByPropGroupIDpet(int p_pk, int pg_pk,
@@ -215,7 +215,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃµÀ¾ß
+	 * ä½¿ç”¨é“å…·
 	 * 
 	 * @param p_pk
 	 * @param prop_id
@@ -230,13 +230,13 @@ public class PropUseService
 				+ " ,propGourp=" + propGroup);
 		if (role_info == null || prop == null || propGroup == null)
 		{
-			logger.info("²ÎÊı´íÎó");
+			logger.info("å‚æ•°é”™è¯¯");
 			return null;
 		}
 
-		PropUseEffect propUseEffect = null;// Ê¹ÓÃĞ§¹û
+		PropUseEffect propUseEffect = null;// ä½¿ç”¨æ•ˆæœ
 
-		// Ã»ÓĞÖ¸¶¨ÊıÁ¿
+		// æ²¡æœ‰æŒ‡å®šæ•°é‡
 		if (use_num <= 0)
 		{
 			use_num = 1;
@@ -245,178 +245,178 @@ public class PropUseService
 		logger.info("propClass=" + prop.getPropClass());
 		switch (prop.getPropClass())
 		{
-			case PropType.ADDHP:// ¼ÓÑªµÀ¾ß
+			case PropType.ADDHP:// åŠ è¡€é“å…·
 				propUseEffect = useADDHP(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.ADDMP:// ¼ÓÀ¶µÀ¾ß
+			case PropType.ADDMP:// åŠ è“é“å…·
 				propUseEffect = useADDMP(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.CRUEALLHMP:// ¼ÓÑªµÀ¾ß
+			case PropType.CRUEALLHMP:// åŠ è¡€é“å…·
 				propUseEffect = useADDHMP(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.ZHUANZHI:// ×ªÖ°µÀ¾ß
+			case PropType.ZHUANZHI:// è½¬èŒé“å…·
 				propUseEffect = useZHUANZHI(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.GOBACKCITY:// »Ø³ÇµÀ¾ßÊ¹ÓÃ
+			case PropType.GOBACKCITY:// å›åŸé“å…·ä½¿ç”¨
 				propUseEffect = useGOBACKCITY(role_info, propGroup, prop,
 						use_num);
 				break;
-			case PropType.Carry:// »Ø³ÇµÀ¾ßÊ¹ÓÃ
+			case PropType.Carry:// å›åŸé“å…·ä½¿ç”¨
 				propUseEffect = useCarry(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.QUIZ:// ´ğÌâµÀ¾ß
+			case PropType.QUIZ:// ç­”é¢˜é“å…·
 				propUseEffect = useQUIZ(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.CONJURE:// ÕÙ»½µÀ¾ß
+			case PropType.CONJURE:// å¬å”¤é“å…·
 				propUseEffect = useCONJURE(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.MARKUP:// ±ê¼ÇµÀ¾ß
+			case PropType.MARKUP:// æ ‡è®°é“å…·
 				propUseEffect = useMARKUP(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.AVOIDPKPROP:// ÃâPKµÀ¾ß
+			case PropType.AVOIDPKPROP:// å…PKé“å…·
 				propUseEffect = useAVOIDPKPROP(role_info, propGroup, prop,
 						use_num);
 				break;
-			/*case PropType.ROLE_BEOFF_EXP:// ÕâÀïÊÇÖ±½Ó¸øÍæ¼Ò¼ÒµÀ¾ßÊ±¼ä
+			/*case PropType.ROLE_BEOFF_EXP:// è¿™é‡Œæ˜¯ç›´æ¥ç»™ç©å®¶å®¶é“å…·æ—¶é—´
 				propUseEffect = useRoleBeoffExp(role_info, propGroup, prop,
 						use_num);
 				break;*/
-			// case PropType.PETSINEW:// ³èÎï»Ø¸´ÌåÁ¦
+			// case PropType.PETSINEW:// å® ç‰©å›å¤ä½“åŠ›
 			// propUseEffect = petSINEW(player, propGroup, prop, use_num);
 			// break;
-			// case PropType.PETLONGE:// ³èÎï»Ø¸´ÊÙÃü
+			// case PropType.PETLONGE:// å® ç‰©å›å¤å¯¿å‘½
 			// propUseEffect = petLONGE(player, propGroup, prop, use_num);
 			// break;
 
-			case PropType.SKILLBOOK:// Ñ§Ï°¼¼ÄÜ
+			case PropType.SKILLBOOK:// å­¦ä¹ æŠ€èƒ½
 				propUseEffect = useSKILLBOOK(role_info, propGroup, prop,
 						use_num);
 				break;
-			case PropType.HONOUR:// ³ÆºÅ
+			case PropType.HONOUR:// ç§°å·
 				propUseEffect = useHONOUR(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.VIP:// ³ÉÎªVIPµÄµÀ¾ß
+			case PropType.VIP:// æˆä¸ºVIPçš„é“å…·
 				propUseEffect = useVIP(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.BUFF:// Ê¹ÓÃµÀ¾ßbuff
+			case PropType.BUFF:// ä½¿ç”¨é“å…·buff
 				propUseEffect = useBUFF(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.INIT_PET:// Ï´³èÎïµÀ¾ß
+			case PropType.INIT_PET:// æ´—å® ç‰©é“å…·
 				propUseEffect = useINITPET(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.PET_EGG:// ³èÎïµ°µÀ¾ß
+			case PropType.PET_EGG:// å® ç‰©è›‹é“å…·
 				propUseEffect = usePETEGG(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.ACCEPT_SPECIFY_TASK:// ½ÓÊÕÖ¸¶¨ÈÎÎñµÀ¾ß
+			case PropType.ACCEPT_SPECIFY_TASK:// æ¥æ”¶æŒ‡å®šä»»åŠ¡é“å…·
 				propUseEffect = acceptSpesifyTask(role_info, propGroup, prop,
 						use_num);
 				break;
-			case PropType.ACCEPT_TASK_FROM_LIST:// ´ÓÈÎÎñÁĞ±í½ÓÊÕÈÎÎñ
+			case PropType.ACCEPT_TASK_FROM_LIST:// ä»ä»»åŠ¡åˆ—è¡¨æ¥æ”¶ä»»åŠ¡
 				propUseEffect = acceptTaskFromList(role_info, propGroup, prop,
 						use_num);
 				break;
-			case PropType.RARE_BOX:// ±¦ÏäµÀ¾ß
+			case PropType.RARE_BOX:// å®ç®±é“å…·
 				propUseEffect = breakRareBox(role_info, propGroup, prop,
 						use_num);
 				break;
-			case PropType.NORMAL:// ÆÕÍ¨µÀ¾ß²»ÄÜÊ¹ÓÃ
+			case PropType.NORMAL:// æ™®é€šé“å…·ä¸èƒ½ä½¿ç”¨
 				propUseEffect = useNORMAL(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.BOX_CURE: // À¦×°Ò©Æ·
+			case PropType.BOX_CURE: // æ†è£…è¯å“
 				propUseEffect = useBoxCure(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.GEI_RARE_BOX: // ·¢½±±¦Ïä
+			case PropType.GEI_RARE_BOX: // å‘å¥–å®ç®±
 				propUseEffect = useGeiBoxCure(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.OUTPUBLISH: // Ä³Ê±¼äÄÚËÀÍöÎŞ³Í·£µÀ¾ß
+			case PropType.OUTPUBLISH: // æŸæ—¶é—´å†…æ­»äº¡æ— æƒ©ç½šé“å…·
 				propUseEffect = useDeadOutOfJinYang(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.LIVESKILLBOOK: // Éú»î¼¼ÄÜÊéµÄÊ¹ÓÃ
+			case PropType.LIVESKILLBOOK: // ç”Ÿæ´»æŠ€èƒ½ä¹¦çš„ä½¿ç”¨
 				propUseEffect = useLiveSkillBook(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.SYNTHESIZEBOOK: // Åä·½ÊéµÄÊ¹ÓÃ
+			case PropType.SYNTHESIZEBOOK: // é…æ–¹ä¹¦çš„ä½¿ç”¨
 				propUseEffect = useSynthesizeBook(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.REDUCEPKVALUE: // ¼õ×ï¶ñÖµµÀ¾ß
+			case PropType.REDUCEPKVALUE: // å‡ç½ªæ¶å€¼é“å…·
 				propUseEffect = useReducePkValue(role_info, propGroup, prop,
 						use_num);
 
 				break;
 
-			case PropType.GET_YUANBAO_BOX: // µôÂäÔª±¦µÄ±¦Ïä
+			case PropType.GET_YUANBAO_BOX: // æ‰è½å…ƒå®çš„å®ç®±
 				propUseEffect = useYuanbaoBox(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.PET_EGG_GUDING: // Ğ´ËÀ³èÎïµ°
+			case PropType.PET_EGG_GUDING: // å†™æ­»å® ç‰©è›‹
 				propUseEffect = usePetEggGuding(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.BOOK: // Êé¼®ÀàµÀ¾ß
+			case PropType.BOOK: // ä¹¦ç±ç±»é“å…·
 				propUseEffect = useBook(role_info, propGroup, prop, use_num);
 
 				break;
-			case PropType.XINYINDU: // ĞÄÓ¡·ûµÀ¾ß
+			case PropType.XINYINDU: // å¿ƒå°ç¬¦é“å…·
 				propUseEffect = useXInyinfu(role_info, propGroup, prop, use_num);
 
 				break;
-			case PropType.BROTHERFU: // ĞÖµÜÇéÉî·û
+			case PropType.BROTHERFU: // å…„å¼Ÿæƒ…æ·±ç¬¦
 				propUseEffect = useBrotherfu(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.MERRYFU: // ·òÆŞÇéÉî·û
+			case PropType.MERRYFU: // å¤«å¦»æƒ…æ·±ç¬¦
 				propUseEffect = useMerryFu(role_info, propGroup, prop, use_num);
 
 				break;
-			case PropType.ADD_LOVE_DEAR:// Ôö¼Ó·òÆŞÌğÃÛÖµµÀ¾ß
+			case PropType.ADD_LOVE_DEAR:// å¢åŠ å¤«å¦»ç”œèœœå€¼é“å…·
 				propUseEffect = useAddLoveDear(role_info, propGroup, prop,
 						use_num);
 
 				break;
-			case PropType.ADD_DEAR:// Ôö¼ÓÇ×ÃÜ¶ÈµÀ¾ß
+			case PropType.ADD_DEAR:// å¢åŠ äº²å¯†åº¦é“å…·
 				propUseEffect = useAddDear(role_info, propGroup, prop, use_num);
 
 				break;
-			case PropType.GOLD_BOX:// »Æ½ğ±¦ÏäµÀ¾ß
-				String noUseInfo = "ÇëÄúÊ¹ÓÃ½ğÔ¿³×À´´ò¿ª±¦Ïä!";
+			case PropType.GOLD_BOX:// é»„é‡‘å®ç®±é“å…·
+				String noUseInfo = "è¯·æ‚¨ä½¿ç”¨é‡‘é’¥åŒ™æ¥æ‰“å¼€å®ç®±!";
 				propUseEffect = useDefaultProp(role_info, propGroup, prop,
 						use_num, noUseInfo);
 
 				break;
-			case PropType.ARMBOX:// ÎäÆ÷±¦Ïä
+			case PropType.ARMBOX:// æ­¦å™¨å®ç®±
 				propUseEffect = useARMBOX(role_info, propGroup, prop, use_num);
 				break;
-			/*case PropType.YINSHEN:// ÒşÉíµÀ¾ß
+			/*case PropType.YINSHEN:// éšèº«é“å…·
 				propUseEffect = useYinshen(role_info, propGroup, prop, use_num);
 				break;*/
-			/*case PropType.FAN_YINSHEN:// ·´ÒşÉí·ûµÀ¾ß
+			/*case PropType.FAN_YINSHEN:// åéšèº«ç¬¦é“å…·
 				propUseEffect = useFanYinshen(role_info, propGroup, prop,
 						use_num);
 				break;*/
-			/*case PropType.QIANLIYAN:// Ç§ÀïÑÛ
+			/*case PropType.QIANLIYAN:// åƒé‡Œçœ¼
 				propUseEffect = useQianliyan(role_info, propGroup, prop,
 						use_num);
 				break;*/
-			/*case PropType.XIANHAI:// Ïİº¦·û
+			/*case PropType.XIANHAI:// é™·å®³ç¬¦
 				propUseEffect = useXianhai(role_info, propGroup, prop, use_num);
 				break;*/
-			case PropType.COMPASS:// Ö¸ÄÏÕë
+			case PropType.COMPASS:// æŒ‡å—é’ˆ
 				propUseEffect = useCompass(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.MIJING_MAP:// ÃØ¾³µØÍ¼
+			case PropType.MIJING_MAP:// ç§˜å¢ƒåœ°å›¾
 				propUseEffect = useMijing(role_info, propGroup, prop, use_num);
 				break;
-			case PropType.TIAOZHAN://ÌôÕ½Êé
+			case PropType.TIAOZHAN://æŒ‘æˆ˜ä¹¦
 				propUseEffect = useTIAOZHAN(role_info, propGroup, prop, use_num);
 				break;
 			default:
@@ -426,12 +426,12 @@ public class PropUseService
 
 		}
 
-		// ÓĞÃ¿ÌìÊ¹ÓÃ´ÎÊıÏŞÖÆ
+		// æœ‰æ¯å¤©ä½¿ç”¨æ¬¡æ•°é™åˆ¶
 		if (propUseEffect != null && propUseEffect.getIsEffected()
 				&& prop.getPropUsedegree() > 0)
 		{
 			TimeControlService timeControlService = new TimeControlService();
-			// ¸üĞÂµÀ¾ßÊ¹ÓÃ×´Ì¬
+			// æ›´æ–°é“å…·ä½¿ç”¨çŠ¶æ€
 			timeControlService.updateControlInfo(role_info.getBasicInfo()
 					.getPPk(), prop.getPropID(), TimeControlService.PROP);
 		}
@@ -440,7 +440,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃÌôÕ½Êé
+	 * ä½¿ç”¨æŒ‘æˆ˜ä¹¦
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -453,8 +453,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -465,7 +465,7 @@ public class PropUseService
 		int mapType = role_info.getBasicInfo().getSceneInfo().getMap().getMapType();
 		if(mapType!= MapType.SAFE && mapType!= MapType.DANGER){
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("¸ÃµÀ¾ßÎŞ·¨ÔÚ´ËµØÍ¼Ê¹ÓÃ");
+			propUseEffect.setNoUseDisplay("è¯¥é“å…·æ— æ³•åœ¨æ­¤åœ°å›¾ä½¿ç”¨");
 			return propUseEffect;
 		}
 		int curState = role_info.getStateInfo().getCurState();
@@ -474,7 +474,7 @@ public class PropUseService
 				|| curState == PlayerState.GROUP || curState == PlayerState.TALK))
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúÄ¿Ç°ÎŞ·¨Ê¹ÓÃ¸ÃµÀ¾ß");
+			propUseEffect.setNoUseDisplay("æ‚¨ç›®å‰æ— æ³•ä½¿ç”¨è¯¥é“å…·");
 			return propUseEffect;
 		}
 		propUseEffect.setPropType(prop.getPropClass());
@@ -483,7 +483,7 @@ public class PropUseService
 	}
 	
 	/**
-	 * Ê¹ÓÃÃØ¾³µØÍ¼
+	 * ä½¿ç”¨ç§˜å¢ƒåœ°å›¾
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -496,8 +496,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -509,7 +509,7 @@ public class PropUseService
 		if (scene.getMap().getMapType() != MapType.SAFE)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("¶Ô²»Æğ£¬¸ÃµÀ¾ß²»ÄÜÊ¹ÓÃ");
+			propUseEffect.setNoUseDisplay("å¯¹ä¸èµ·ï¼Œè¯¥é“å…·ä¸èƒ½ä½¿ç”¨");
 			return propUseEffect;
 		}
 		int state = role_info.getStateInfo().getCurState();
@@ -517,15 +517,15 @@ public class PropUseService
 				&& state != PlayerState.VIEWWRAP && state != PlayerState.TALK)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("¶Ô²»Æğ£¬¸ÃµÀ¾ß²»ÄÜÊ¹ÓÃ");
+			propUseEffect.setNoUseDisplay("å¯¹ä¸èµ·ï¼Œè¯¥é“å…·ä¸èƒ½ä½¿ç”¨");
 			return propUseEffect;
 		}
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		if (prop.getPropOperate1() == null
 				|| prop.getPropOperate1().trim().equals(""))
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("¶Ô²»Æğ£¬Êı¾İ´íÎó£¬ÇëÍ¨ÖªGM");
+			propUseEffect.setNoUseDisplay("å¯¹ä¸èµ·ï¼Œæ•°æ®é”™è¯¯ï¼Œè¯·é€šçŸ¥GM");
 			return propUseEffect;
 		}
 		new PlayerService().updateSceneAndView(role_info.getBasicInfo()
@@ -551,7 +551,7 @@ public class PropUseService
 						uif.setMsgPriority(PopUpMsgType.MIJING_MAP_FIRST);
 						uif.setMsgType(PopUpMsgType.MIJING_MAP);
 						uif.setPPk(re.getBasicInfo().getPPk());
-						uif.setResult("ÄúµÄ¶ÓÓÑÒª½«Äú´«ËÍµ½ÃØ¾³£¬ÄúÊÇ·ñ¾ö¶¨´«ËÍ£¿");
+						uif.setResult("æ‚¨çš„é˜Ÿå‹è¦å°†æ‚¨ä¼ é€åˆ°ç§˜å¢ƒï¼Œæ‚¨æ˜¯å¦å†³å®šä¼ é€ï¼Ÿ");
 						uif.setMsgOperate2(prop.getPropOperate1().trim());
 						uMsgService.sendPopUpMsg(uif);
 					}
@@ -567,7 +567,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃÖ¸ÄÏÕë
+	 * ä½¿ç”¨æŒ‡å—é’ˆ
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -580,8 +580,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -593,28 +593,28 @@ public class PropUseService
 		if (scene.getMap().getMapType() != MapType.COMPASS)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúÎŞ·¨ÔÚÃÔ¹¬ÍâÊ¹ÓÃ¸ÃÎïÆ·¡£");
+			propUseEffect.setNoUseDisplay("æ‚¨æ— æ³•åœ¨è¿·å®«å¤–ä½¿ç”¨è¯¥ç‰©å“ã€‚");
 			return propUseEffect;
 		}
 		Compass com = new CompassService().findById(scene.getSceneID());
 		if (com == null)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("¶Ô²»Æğ£¬Êı¾İ´íÎó£¬ÇëÍ¨ÖªGM");
+			propUseEffect.setNoUseDisplay("å¯¹ä¸èµ·ï¼Œæ•°æ®é”™è¯¯ï¼Œè¯·é€šçŸ¥GM");
 			return propUseEffect;
 		}
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 		propUseEffect.setPropType(prop.getPropClass());
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setNoUseDisplay("¸ù¾İÖ¸ÄÏÕëµÄÖ¸Ê¾£¬Äú½ÓÏÂÀ´µÄĞĞ½øÂ·ÏßÊÇ£º" + com.getDes()
-				+ "ÒÆ¶¯¡£");
+		propUseEffect.setNoUseDisplay("æ ¹æ®æŒ‡å—é’ˆçš„æŒ‡ç¤ºï¼Œæ‚¨æ¥ä¸‹æ¥çš„è¡Œè¿›è·¯çº¿æ˜¯ï¼š" + com.getDes()
+				+ "ç§»åŠ¨ã€‚");
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃÒşÉí·û
+	 * ä½¿ç”¨éšèº«ç¬¦
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -627,8 +627,8 @@ public class PropUseService
 //	{
 //		PropUseEffect propUseEffect = new PropUseEffect();
 //
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-//		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+//		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 //		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 //		if (resutl != null)
 //		{
@@ -636,28 +636,28 @@ public class PropUseService
 //			propUseEffect.setNoUseDisplay(resutl);
 //			return propUseEffect;
 //		}
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 //		if (role_info.getBasicInfo().getPPk() != LangjunConstants.LANGJUN_PPK)
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("¶Ô²»Æğ£¬Äú²»ÊÇÇ§ÃæÀÉ¾ı£¬Òò´Ë²»ÄÜÊ¹ÓÃ¸ÃµÀ¾ß");
+//			propUseEffect.setNoUseDisplay("å¯¹ä¸èµ·ï¼Œæ‚¨ä¸æ˜¯åƒé¢éƒå›ï¼Œå› æ­¤ä¸èƒ½ä½¿ç”¨è¯¥é“å…·");
 //			return propUseEffect;
 //		}
 ////		GoodsService goodsService = new GoodsService();
 ////		goodsService.removeProps(propGroup, use_num);
-//		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+//		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 //		// GoodsService goodsService = new GoodsService();
 //		// goodsService.removeProps(propGroup, use_num);
-//		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+//		// ç§»é™¤ä½¿ç”¨é“å…·
 //		propUseEffect.setPropType(prop.getPropClass());
 //		propUseEffect.setIsEffected(true);
-//		propUseEffect.setNoUseDisplay("ÄãÊ¹ÓÃÁË" + prop.getPropName()
-//				+ "£¬ÔÚ½ÓÏÂÀ´µÄ20ÃëÄÚÆäËûÍæ¼Ò½«ÎŞ·¨¿´¼ûÄãµÄĞĞ×Ù");
+//		propUseEffect.setNoUseDisplay("ä½ ä½¿ç”¨äº†" + prop.getPropName()
+//				+ "ï¼Œåœ¨æ¥ä¸‹æ¥çš„20ç§’å†…å…¶ä»–ç©å®¶å°†æ— æ³•çœ‹è§ä½ çš„è¡Œè¸ª");
 //		return propUseEffect;
 //	}
 
 //	/**
-//	 * Ê¹ÓÃÒşÉí·û
+//	 * ä½¿ç”¨éšèº«ç¬¦
 //	 * 
 //	 * @param player
 //	 * @param propGroup
@@ -670,8 +670,8 @@ public class PropUseService
 //	{
 //		PropUseEffect propUseEffect = new PropUseEffect();
 //
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-//		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+//		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 //		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 //		if (resutl != null)
 //		{
@@ -679,30 +679,30 @@ public class PropUseService
 //			propUseEffect.setNoUseDisplay(resutl);
 //			return propUseEffect;
 //		}
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 //		if (role_info.getBasicInfo().getPPk() != LangjunConstants.LANGJUN_PPK)
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("¶Ô²»Æğ£¬Äú²»ÊÇÇ§ÃæÀÉ¾ı£¬Òò´Ë²»ÄÜÊ¹ÓÃ¸ÃµÀ¾ß");
+//			propUseEffect.setNoUseDisplay("å¯¹ä¸èµ·ï¼Œæ‚¨ä¸æ˜¯åƒé¢éƒå›ï¼Œå› æ­¤ä¸èƒ½ä½¿ç”¨è¯¥é“å…·");
 //			return propUseEffect;
 //		}
-//		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+//		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 //		GoodsService goodsService = new GoodsService();
 //		goodsService.removeProps(propGroup, use_num);
 //		LangjunConstants.LANGJUN_YINSHEN = DateUtil.getDate(new Date());
-//		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+//		// ç§»é™¤ä½¿ç”¨é“å…·
 //		propUseEffect.setPropType(prop.getPropClass());
 //		propUseEffect.setIsEffected(true);
-//		propUseEffect.setNoUseDisplay("ÄãÊ¹ÓÃÁË" + prop.getPropName() + "£¬ÔÚ½ÓÏÂÀ´µÄ"
+//		propUseEffect.setNoUseDisplay("ä½ ä½¿ç”¨äº†" + prop.getPropName() + "ï¼Œåœ¨æ¥ä¸‹æ¥çš„"
 //				+ LangjunConstants.YINSHEN_CANNOTVIEW_SECOND
-//				+ "ÃëÄÚÆäËûÍæ¼Ò½«ÎŞ·¨¿´¼ûÄãµÄĞĞ×Ù");
+//				+ "ç§’å†…å…¶ä»–ç©å®¶å°†æ— æ³•çœ‹è§ä½ çš„è¡Œè¸ª");
 //		new SystemInfoService()
-//				.insertSystemInfoBySystem("¡¾Ç§ÃæÀÉ¾ı¡¿Ê¹ÓÃÁË¡¾ÒşÉí·û¡¿ºóÔİÊ±ÏûÊ§ÔÚºÚ°µÖ®ÖĞ£¬²»¼ûÁË×ÙÓ°£¡");
+//				.insertSystemInfoBySystem("ã€åƒé¢éƒå›ã€‘ä½¿ç”¨äº†ã€éšèº«ç¬¦ã€‘åæš‚æ—¶æ¶ˆå¤±åœ¨é»‘æš—ä¹‹ä¸­ï¼Œä¸è§äº†è¸ªå½±ï¼");
 //		return propUseEffect;
 //	}
 
 //	/**
-//	 * Ê¹ÓÃ·´ÒşÉí·û
+//	 * ä½¿ç”¨åéšèº«ç¬¦
 //	 * 
 //	 * @param player
 //	 * @param propGroup
@@ -715,8 +715,8 @@ public class PropUseService
 //	{
 //		PropUseEffect propUseEffect = new PropUseEffect();
 //
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-//		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+//		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 //		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 //		if (resutl != null)
 //		{
@@ -728,13 +728,13 @@ public class PropUseService
 //		if (second == null || "".equals(second.trim()))
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("Êı¾İ´íÎó£¬ÇëÁªÏµGM");
+//			propUseEffect.setNoUseDisplay("æ•°æ®é”™è¯¯ï¼Œè¯·è”ç³»GM");
 //			return propUseEffect;
 //		}
 //		if (LangjunConstants.LANGJUN_PPK == 0)
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("µ±Ç°Î´³öÏÖÇ§ÃæÀÉ¾ı,¸ÃµÀ¾ßÎŞ·¨Ê¹ÓÃ");
+//			propUseEffect.setNoUseDisplay("å½“å‰æœªå‡ºç°åƒé¢éƒå›,è¯¥é“å…·æ— æ³•ä½¿ç”¨");
 //			return propUseEffect;
 //		}
 //		int second1 = 0;
@@ -745,33 +745,33 @@ public class PropUseService
 //		catch (Exception e)
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("Êı¾İ´íÎó£¬ÇëÁªÏµGM");
+//			propUseEffect.setNoUseDisplay("æ•°æ®é”™è¯¯ï¼Œè¯·è”ç³»GM");
 //			return propUseEffect;
 //		}
 //		GoodsService goodsService = new GoodsService();
 //		goodsService.removeProps(propGroup, use_num);
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
-//		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
+//		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 //		LangjunConstants.FANYINSHEN.put(role_info.getBasicInfo().getPPk(),
 //				DateUtil.addSecond(second1));
-//		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+//		// ç§»é™¤ä½¿ç”¨é“å…·
 //		propUseEffect.setPropType(prop.getPropClass());
 //		propUseEffect.setIsEffected(true);
-//		propUseEffect.setNoUseDisplay("ÄúÏÖÔÚ¿ÉÒÔÔÚµØÍ¼ÖĞÕÒµ½´¦ÓÚÒşÉí×´Ì¬µÄ¡¾Ç§ÃæÀÉ¾ı¡¿ÁË£¬¸ÃĞ§¹û³ÖĞø"
-//				+ second1 + "Ãë¡£");
+//		propUseEffect.setNoUseDisplay("æ‚¨ç°åœ¨å¯ä»¥åœ¨åœ°å›¾ä¸­æ‰¾åˆ°å¤„äºéšèº«çŠ¶æ€çš„ã€åƒé¢éƒå›ã€‘äº†ï¼Œè¯¥æ•ˆæœæŒç»­"
+//				+ second1 + "ç§’ã€‚");
 //		return propUseEffect;
 //	}
 
 //	/**
-//	 * Ê¹ÓÃÇ§ÀïÑÛ
+//	 * ä½¿ç”¨åƒé‡Œçœ¼
 //	 */
 //	private PropUseEffect useQianliyan(RoleEntity role_info,
 //			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 //	{
 //		PropUseEffect propUseEffect = new PropUseEffect();
 //
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-//		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+//		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 //		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 //		if (resutl != null)
 //		{
@@ -783,7 +783,7 @@ public class PropUseService
 //		if (second == null || "".equals(second.trim()))
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("Êı¾İ´íÎó£¬ÇëÁªÏµGM");
+//			propUseEffect.setNoUseDisplay("æ•°æ®é”™è¯¯ï¼Œè¯·è”ç³»GM");
 //			return propUseEffect;
 //		}
 //		int second1 = 0;
@@ -794,25 +794,25 @@ public class PropUseService
 //		catch (Exception e)
 //		{
 //			propUseEffect.setIsEffected(false);
-//			propUseEffect.setNoUseDisplay("Êı¾İ´íÎó£¬ÇëÁªÏµGM");
+//			propUseEffect.setNoUseDisplay("æ•°æ®é”™è¯¯ï¼Œè¯·è”ç³»GM");
 //			return propUseEffect;
 //		}
 //		GoodsService goodsService = new GoodsService();
 //		goodsService.removeProps(propGroup, use_num);
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
-//		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
+//		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 //		LangjunConstants.QIANLIYAN.put(role_info.getBasicInfo().getPPk(),
 //				DateUtil.addSecond(second1));
-//		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+//		// ç§»é™¤ä½¿ç”¨é“å…·
 //		propUseEffect.setPropType(prop.getPropClass());
 //		propUseEffect.setIsEffected(true);
-//		propUseEffect.setNoUseDisplay("ÄúÏÖÔÚ¿ÉÒÔËæÊ±¿´µ½¡¾Ç§ÃæÀÉ¾ı¡¿µÄ²ØÉí´¦ÁË£¬¸ÃĞ§¹û³ÖĞø" + second
-//				+ "Ãë¡£");
+//		propUseEffect.setNoUseDisplay("æ‚¨ç°åœ¨å¯ä»¥éšæ—¶çœ‹åˆ°ã€åƒé¢éƒå›ã€‘çš„è—èº«å¤„äº†ï¼Œè¯¥æ•ˆæœæŒç»­" + second
+//				+ "ç§’ã€‚");
 //		return propUseEffect;
 //	}
 
 	/**
-	 * Ôö¼Ó·òÆŞÌğÃÛÖµµÀ¾ßµÄÊ¹ÓÃ
+	 * å¢åŠ å¤«å¦»ç”œèœœå€¼é“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -825,8 +825,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -834,19 +834,19 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 		int count = new FriendService().getFriendNum(role_info.getBasicInfo()
 				.getPPk());
 		if (count <= 0)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Äú»¹Ã»ÓĞºÃÓÑÄØ");
+			propUseEffect.setNoUseDisplay("æ‚¨è¿˜æ²¡æœ‰å¥½å‹å‘¢");
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		// GoodsService goodsService = new GoodsService();
 		// goodsService.removeProps(propGroup, use_num);
 		propUseEffect.setPropType(prop.getPropClass());
@@ -855,7 +855,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ôö¼Ó·òÆŞÌğÃÛÖµµÀ¾ßµÄÊ¹ÓÃ
+	 * å¢åŠ å¤«å¦»ç”œèœœå€¼é“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -868,8 +868,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -877,20 +877,20 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 		List<FriendVO> list = new FriendDAO().isMerry(role_info.getBasicInfo()
 				.getPPk()
 				+ "");
 		if (list == null || list.size() == 0)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Äú»¹Ã»ÓĞ½á»é");
+			propUseEffect.setNoUseDisplay("æ‚¨è¿˜æ²¡æœ‰ç»“å©š");
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 		propUseEffect.setPropType(prop.getPropClass());
@@ -899,7 +899,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ·òÆŞÇéÉî·ûµÀ¾ßµÄÊ¹ÓÃ
+	 * å¤«å¦»æƒ…æ·±ç¬¦é“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -912,8 +912,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -921,12 +921,12 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 		// List<FriendVO> list = new
 		// FriendDAO().isMerry(role_info.getBasicInfo().getPPk()+"");
 		// if(list==null||list.size()==0){
 		// propUseEffect.setIsEffected(false);
-		// propUseEffect.setNoUseDisplay("Äú»¹Ã»ÓĞ½á»é");
+		// propUseEffect.setNoUseDisplay("æ‚¨è¿˜æ²¡æœ‰ç»“å©š");
 		// return propUseEffect;
 		// }
 
@@ -935,7 +935,7 @@ public class PropUseService
 		if (list111 == null || list111.size() == 0)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Ã»ÓĞ¾­Ñé¿ÉÒÔÁìÈ¡");
+			propUseEffect.setNoUseDisplay("æ²¡æœ‰ç»éªŒå¯ä»¥é¢†å–");
 			return propUseEffect;
 		}
 		if (role_info.getBasicInfo().getGrade() == 39||role_info.getBasicInfo().getGrade() == 59
@@ -945,13 +945,13 @@ public class PropUseService
 						.getGradeUpperLimit())
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄãÄ¿Ç°ÔÚ×ªÖ°×´Ì¬²»ÄÜÁìÈ¡¾­Ñé");
+			propUseEffect.setNoUseDisplay("ä½ ç›®å‰åœ¨è½¬èŒçŠ¶æ€ä¸èƒ½é¢†å–ç»éªŒ");
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 		propUseEffect.setPropType(prop.getPropClass());
@@ -960,7 +960,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ĞÖµÜÇéÉî·ûµÀ¾ßµÄÊ¹ÓÃ
+	 * å…„å¼Ÿæƒ…æ·±ç¬¦é“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -973,8 +973,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -982,13 +982,13 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 		int count = new FriendService().findCanGetExpCount(role_info
 				.getBasicInfo().getPPk(), 1);
 		if (count <= 0)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Ã»ÓĞ¾­Ñé¿ÉÒÔÁìÈ¡");
+			propUseEffect.setNoUseDisplay("æ²¡æœ‰ç»éªŒå¯ä»¥é¢†å–");
 			return propUseEffect;
 		}
 		if (role_info.getBasicInfo().getGrade() == 39
@@ -996,7 +996,7 @@ public class PropUseService
 						.getGradeUpperLimit())
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄãÄ¿Ç°ÔÚ×ªÖ°×´Ì¬²»ÄÜÁìÈ¡¾­Ñé");
+			propUseEffect.setNoUseDisplay("ä½ ç›®å‰åœ¨è½¬èŒçŠ¶æ€ä¸èƒ½é¢†å–ç»éªŒ");
 			return propUseEffect;
 		}
 
@@ -1006,7 +1006,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ĞÄÓ¡·ûµÀ¾ßµÄÊ¹ÓÃ
+	 * å¿ƒå°ç¬¦é“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1019,8 +1019,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1028,12 +1028,12 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
 		String cur_scene_id = role_info.getBasicInfo().getSceneId();
 
 		int barea_point = 0;
-		// µÃµ½ÅäÅ¼ÖĞĞÄµãid
+		// å¾—åˆ°é…å¶ä¸­å¿ƒç‚¹id
 		FriendService fs = new FriendService();
 		List<FriendVO> list = fs
 				.isMerry(role_info.getBasicInfo().getPPk() + "");
@@ -1049,7 +1049,7 @@ public class PropUseService
 		{
 			propUseEffect.setPropType(prop.getPropClass());
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄÅäÅ¼µ±Ç°²»ÔÚÏß");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„é…å¶å½“å‰ä¸åœ¨çº¿");
 			return propUseEffect;
 		}
 		barea_point = Integer.parseInt(re.getBasicInfo().getSceneId().trim());
@@ -1064,25 +1064,25 @@ public class PropUseService
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
-		role_info.getBasicInfo().updateSceneId(barea_point + "");// ¸ü¸ÄÍæ¼Òscene_id
+		role_info.getBasicInfo().updateSceneId(barea_point + "");// æ›´æ”¹ç©å®¶scene_id
 		CompassService.removeMiJing(role_info.getBasicInfo().getPPk(),
-				propGroup.getPropType());// É¾³ıÃØ¾³µØÍ¼
+				propGroup.getPropType());// åˆ é™¤ç§˜å¢ƒåœ°å›¾
 		propUseEffect.setPropType(prop.getPropClass());
 		propUseEffect.setIsEffected(true);
 		propUseEffect.setEffectValue(barea_point + "");
-		propUseEffect.setNoUseDisplay("ÄúÊ¹ÓÃÁË" + prop.getPropName() + "´«ËÍµ½"
-				+ (re.getBasicInfo().getSex() == 1 ? "ÀÏ¹«" : "ÀÏÆÅ")
-				+ re.getBasicInfo().getName() + "µÄËùÔÚµØ!");
+		propUseEffect.setNoUseDisplay("æ‚¨ä½¿ç”¨äº†" + prop.getPropName() + "ä¼ é€åˆ°"
+				+ (re.getBasicInfo().getSex() == 1 ? "è€å…¬" : "è€å©†")
+				+ re.getBasicInfo().getName() + "çš„æ‰€åœ¨åœ°!");
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ Êé¼®ÀàµÀ¾ß
+	 * ä½¿ç”¨ ä¹¦ç±ç±»é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1095,8 +1095,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1104,10 +1104,10 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// »ñµÃÃØ¼®ID
+		// è·å¾—ç§˜ç±ID
 		String infoIdString = prop.getPropOperate1();
 
-		// »ñµÃÊÇ·ñÉ¾³ı±êÖ¾,1ÎªÉ¾³ı,2Îª²»É¾³ı
+		// è·å¾—æ˜¯å¦åˆ é™¤æ ‡å¿—,1ä¸ºåˆ é™¤,2ä¸ºä¸åˆ é™¤
 		String deleteflag = prop.getPropDrop();
 
 		MiJiDao mijiDao = new MiJiDao();
@@ -1116,7 +1116,7 @@ public class PropUseService
 		{
 			if (deleteflag.equals("1"))
 			{
-				// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+				// ç§»é™¤ä½¿ç”¨é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.removeProps(propGroup, use_num);
 			}
@@ -1127,14 +1127,14 @@ public class PropUseService
 		else
 		{
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("´ËÃØ¼®ÔİÊ±¿Õ°×!");
+			propUseEffect.setEffectDisplay("æ­¤ç§˜ç±æš‚æ—¶ç©ºç™½!");
 			return propUseEffect;
 
 		}
 	}
 
 	/**
-	 * Ê¹ÓÃ ¼õ×ï¶ñÖµµÀ¾ß
+	 * ä½¿ç”¨ å‡ç½ªæ¶å€¼é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1147,8 +1147,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1161,7 +1161,7 @@ public class PropUseService
 	}
 
 	/***************************************************************************
-	 * Ê¹ÓÃÆäËûµÀ¾ß
+	 * ä½¿ç”¨å…¶ä»–é“å…·
 	 */
 	private PropUseEffect useDefaultProp(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num,
@@ -1169,8 +1169,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1182,7 +1182,7 @@ public class PropUseService
 		if (noUseDisplay == null || noUseDisplay.equals("")
 				|| noUseDisplay.equals("null"))
 		{
-			propUseEffect.setNoUseDisplay("·ÇÊ¹ÓÃÎïÆ·!");
+			propUseEffect.setNoUseDisplay("éä½¿ç”¨ç‰©å“!");
 		}
 		else
 		{
@@ -1193,7 +1193,7 @@ public class PropUseService
 	}
 
 	/**
-	 * // Ä³Ê±¼äÄÚËÀÍöÎŞ³Í·£µÀ¾ß
+	 * // æŸæ—¶é—´å†…æ­»äº¡æ— æƒ©ç½šé“å…·
 	 */
 	private PropUseEffect useDeadOutOfJinYang(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
@@ -1201,8 +1201,8 @@ public class PropUseService
 
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1211,40 +1211,40 @@ public class PropUseService
 			return propUseEffect;
 		}
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î,µÚÒ»¹¦ÄÜ×Ö¶ÎÎªÓĞĞ§Ê±¼ä
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ,ç¬¬ä¸€åŠŸèƒ½å­—æ®µä¸ºæœ‰æ•ˆæ—¶é—´
 		String effect_time = prop.getPropOperate1();
-		// ÔÚÕâ¶ù,µÚ¶ş¸ö²ÎÊıÓ¦¸ÃÊÇid, Êµ¼ÊÉÏÊÇµÀ¾ßµÄÖÖÀà, Èç¹ûÓĞ¿ÉÊ¹ÓÃµÀ¾ßidÒ²µÈÓÚ´ËÖÖÀàµÄÊıÖµµÄ»°,¿ÉÄÜ»á³åÍ»
+		// åœ¨è¿™å„¿,ç¬¬äºŒä¸ªå‚æ•°åº”è¯¥æ˜¯id, å®é™…ä¸Šæ˜¯é“å…·çš„ç§ç±», å¦‚æœæœ‰å¯ä½¿ç”¨é“å…·idä¹Ÿç­‰äºæ­¤ç§ç±»çš„æ•°å€¼çš„è¯,å¯èƒ½ä¼šå†²çª
 		TimeControlService timeService = new TimeControlService();
 		timeService.updateControlInfoByTime(role_info.getBasicInfo().getPPk(),
 				prop.getPropClass(), TimeControlService.ANOTHERPROP, Integer
 						.valueOf(effect_time));
 
-		// ¼Óµ½buff±íÖĞ
+		// åŠ åˆ°buffè¡¨ä¸­
 		BuffEffectService buffEffectService = new BuffEffectService();
 		buffEffectService.createBuffEffect(role_info.getBasicInfo().getPPk(),
 				BuffSystem.PLAYER, Integer.parseInt(prop.getPropOperate2()),
 				Integer.parseInt(effect_time));
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË" + prop.getPropName() + ","
-				+ effect_time + "·ÖÖÓÄÚËÀÍö²»ËğÊ§¾­Ñé£¡");
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†" + prop.getPropName() + ","
+				+ effect_time + "åˆ†é’Ÿå†…æ­»äº¡ä¸æŸå¤±ç»éªŒï¼");
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ·¢½±±¦ÏäµÀ¾ß.
+	 * ä½¿ç”¨å‘å¥–å®ç®±é“å…·.
 	 */
 	private PropUseEffect useGeiBoxCure(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1257,25 +1257,25 @@ public class PropUseService
 		PlayerService playerService = new PlayerService();
 		PartInfoVO player = playerService.getPlayerByPpk(p_pk);
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String npc_id = prop.getPropOperate1();
 
 		NpcService npcService = new NpcService();
 		GoodsService goodsService = new GoodsService();
 
-		// Çå³şÔ­À´µÄµôÂäÎï
+		// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
 		role_info.getDropSet().clearDropItem();
 		
-		// µôÂäÎïÆ·
+		// æ‰è½ç‰©å“
 		npcService.dropGoodsByJiangRareBox(Integer.parseInt(npc_id), player);
 
-		// µÃµ½µôÂäÎï
+		// å¾—åˆ°æ‰è½ç‰©
 		List<DropGoodsVO> dropgoods = role_info.getDropSet().getList();
-		// ÅĞ¶Ï°ü¹ü¸÷Êı·ñ¹»
+		// åˆ¤æ–­åŒ…è£¹å„æ•°å¦å¤Ÿ
 		if (goodsService.isEnoughWrapSpace(p_pk, dropgoods.size()))
-		{// ¹»ÁË
+		{// å¤Ÿäº†
 
-			// µôÂä½ğÇ®
+			// æ‰è½é‡‘é’±
 			// NpcDao npcdao = new NpcDao();
 			// NpcVO npcvo = npcdao.getNpcById(Integer.parseInt(npc_id));
 			//			
@@ -1284,8 +1284,8 @@ public class PropUseService
 			if (dropmoney != 0)
 			{
 
-				role_info.getBasicInfo().addCopper(dropmoney);// ¸ø½ÇÉ«Ôö¼Ó½ğÇ®
-				// Ö´ĞĞÍ³¼Æ
+				role_info.getBasicInfo().addCopper(dropmoney);// ç»™è§’è‰²å¢åŠ é‡‘é’±
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, dropmoney,
 						StatisticsType.DEDAO, StatisticsType.BAOXIANG, p_pk);
@@ -1297,12 +1297,12 @@ public class PropUseService
 				// Integer.parseInt(role_info.getBasicInfo().getCurExp())
 				// + npcvo.getExp());
 
-				// ¼à¿Ø
+				// ç›‘æ§
 				LogService logService = new LogService();
 				logService.recordExpLog(role_info.getBasicInfo().getPPk(),
 						role_info.getBasicInfo().getName(), role_info
 								.getBasicInfo().getCurExp(), npcvo.getExp()
-								+ "", "±¦ÏäµÃµ½");
+								+ "", "å®ç®±å¾—åˆ°");
 
 				role_info.getBasicInfo().updateAddCurExp(npcvo.getExp());
 
@@ -1314,7 +1314,7 @@ public class PropUseService
 
 			propUseEffect.setPropType(PropType.GEI_RARE_BOX);
 			propUseEffect.setIsEffected(true);
-			// propUseEffect.setEffectDisplay("·¢½±±¦Ïä");
+			// propUseEffect.setEffectDisplay("å‘å¥–å®ç®±");
 			propUseEffect.setEffectValue(dropmoney + "");
 			propUseEffect.setEffectValue1(npcvo.getExp() + "");
 
@@ -1332,7 +1332,7 @@ public class PropUseService
 						dropGoods.getDropNum(),GameLogManager.G_BOX_DROP);
 				ss += dropGoods.getGoodsName() + "x" + dropGoods.getDropNum()
 						+ douhao;
-				// Ö´ĞĞÍ³¼Æ
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(dropGoods.getGoodsId(), dropGoods
 						.getGoodsType(), dropGoods.getDropNum(),
@@ -1343,24 +1343,24 @@ public class PropUseService
 			String hint = "";
 			if (dropmoney != 0)
 			{
-				hint = "Äú»ñµÃÁË½ğÇ®" + MoneyUtil.changeCopperToStr(dropmoney)
+				hint = "æ‚¨è·å¾—äº†é‡‘é’±" + MoneyUtil.changeCopperToStr(dropmoney)
 						+ "!<br/>";
 			}
 			hint = hint + ss + "";
 			propUseEffect.setEffectDisplay(hint);
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
 			role_info.getDropSet().clearDropItem();
 			role_info.getDropSet().clearExpAndMoney();
 			if(propGroup.getPropId() == 4228){
 				SystemInfoService systemInfoService = new SystemInfoService();
-				systemInfoService.insertSystemInfoBySystem(role_info.getBasicInfo().getName()+"´ò¿ªÁË°ïÖ÷»ØÀ¡´óÀñ°ü!");
+				systemInfoService.insertSystemInfoBySystem(role_info.getBasicInfo().getName()+"æ‰“å¼€äº†å¸®ä¸»å›é¦ˆå¤§ç¤¼åŒ…!");
 			}
 		}
 		else
 		{
 			role_info.getDropSet().clearDropItem();
-			resutl = "ÄúµÄ°ü¹ü¸ñÊı²»¹»!ÇëÇåÀí°ü¹ü!";
+			resutl = "æ‚¨çš„åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ!è¯·æ¸…ç†åŒ…è£¹!";
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
@@ -1369,7 +1369,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃÀ¦×°Ò©Æ·
+	 * ä½¿ç”¨æ†è£…è¯å“
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1383,7 +1383,7 @@ public class PropUseService
 		PropUseEffect propUseEffect = new PropUseEffect();
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1396,27 +1396,27 @@ public class PropUseService
 		PartInfoVO player = playerService.getPlayerByPpk(role_info
 				.getBasicInfo().getPPk());
 
-		// »ñµÃÀ¦×°Ò©Æ·Ê£ÓàµÄ´æÁ¿
+		// è·å¾—æ†è£…è¯å“å‰©ä½™çš„å­˜é‡
 		int surplus = propGroupDao.getSurplus(player.getPPk(), propGroup
 				.getPgPk(), SpecialNumber.KUNZHUANG);
 		if (surplus == 0)
 		{
-			// Èç¹ûÎªÁã£¬ÔòËµÃ÷´ËÀ¦×°Ò©Æ·Ã»ÓĞĞÅÏ¢ÔÚÌØÊâµÀ¾ßĞÅÏ¢±íÖĞ.²¢ÇÒ½«´ËÀ¦×°Ò©Æ·µÄ°ó¶¨±êÖ¾ÖÃÎª°ó¶¨×´Ì¬.
+			// å¦‚æœä¸ºé›¶ï¼Œåˆ™è¯´æ˜æ­¤æ†è£…è¯å“æ²¡æœ‰ä¿¡æ¯åœ¨ç‰¹æ®Šé“å…·ä¿¡æ¯è¡¨ä¸­.å¹¶ä¸”å°†æ­¤æ†è£…è¯å“çš„ç»‘å®šæ ‡å¿—ç½®ä¸ºç»‘å®šçŠ¶æ€.
 			propGroupDao.insertSpecial(player.getPPk(), propGroup.getPgPk(),
 					prop.getPropOperate2(), SpecialNumber.KUNZHUANG);
 			propGroupDao.updatePropToBonding(propGroup.getPgPk());
 			surplus = Integer.valueOf(prop.getPropOperate2());
 		}
 		logger.info("surplues=" + surplus);
-		// ÅĞ¶ÏÊÇ¼ÓÑªµÄÀ¦×°Ò©»¹ÊÇ¼ÓÄÚÁ¦µÄÀ¦×°Ò©£¬1Îª¼ÓÑªµÄ,2Îª¼ÓÀ¶µÄ
+		// åˆ¤æ–­æ˜¯åŠ è¡€çš„æ†è£…è¯è¿˜æ˜¯åŠ å†…åŠ›çš„æ†è£…è¯ï¼Œ1ä¸ºåŠ è¡€çš„,2ä¸ºåŠ è“çš„
 		int box_type = Integer.valueOf(prop.getPropOperate3());
 		if (box_type == 1)
 		{
-			// µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó
+			// é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚
 			if (player.getPHp() == player.getPMaxHp())
 			{
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄÑªÁ¿ÒÑ´ïÉÏÏŞ");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„è¡€é‡å·²è¾¾ä¸Šé™");
 				return propUseEffect;
 			}
 			int add_hp = 0;
@@ -1435,7 +1435,7 @@ public class PropUseService
 				add_hp = player.getPMaxHp() - player.getPHp();
 			}
 
-			logger.info("Ôö¼ÓÑªÁ¿=" + add_hp);
+			logger.info("å¢åŠ è¡€é‡=" + add_hp);
 
 			if (add_hp + player.getPHp() > player.getPMaxHp())
 			{
@@ -1445,7 +1445,7 @@ public class PropUseService
 
 			GoodsService goodsService = new GoodsService();
 
-			// µ±×ÜÑªÁ¿ÉÙÓÚÃ¿´Î¼ÓÑªÁ¿£¬ÇÒÉÙÓÚÈËÎïËùĞè¼ÓÑªÁ¿Ê±,ÒÆ³ıÊ¹ÓÃµÀ¾ß£¬·ñÔò¼õÉÙ¸ÃµÀ¾ßµÄ×Ü¿ÉÓÃ»Ø¸´Á¿
+			// å½“æ€»è¡€é‡å°‘äºæ¯æ¬¡åŠ è¡€é‡ï¼Œä¸”å°‘äºäººç‰©æ‰€éœ€åŠ è¡€é‡æ—¶,ç§»é™¤ä½¿ç”¨é“å…·ï¼Œå¦åˆ™å‡å°‘è¯¥é“å…·çš„æ€»å¯ç”¨å›å¤é‡
 			if (surplus <= requieHp
 					&& surplus <= Integer.parseInt(prop.getPropOperate1()))
 			{
@@ -1466,14 +1466,14 @@ public class PropUseService
 				goodsService.reduceBoxCure(propGroup, add_hp,
 						SpecialNumber.KUNZHUANG);
 			}
-			// ÑªÁ¿¸üĞÂ
+			// è¡€é‡æ›´æ–°
 			role_info.getBasicInfo().updateHp(player.getPHp());
 
 			propUseEffect.setPropType(PropType.ADDHP);
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-					+ StringUtil.isoToGBK(propGroup.getPropName()) + ",»Ö¸´ÁËÉúÃü"
-					+ add_hp + "µã.");
+			propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+					+ StringUtil.isoToGBK(propGroup.getPropName()) + ",æ¢å¤äº†ç”Ÿå‘½"
+					+ add_hp + "ç‚¹.");
 			propUseEffect.setEffectValue("" + add_hp);
 
 		}
@@ -1483,7 +1483,7 @@ public class PropUseService
 				if (player.getPMp() == player.getPMaxMp())
 				{
 					propUseEffect.setIsEffected(false);
-					propUseEffect.setNoUseDisplay("ÄúµÄÄÚÁ¦ÒÑ´ïÉÏÏŞ");
+					propUseEffect.setNoUseDisplay("æ‚¨çš„å†…åŠ›å·²è¾¾ä¸Šé™");
 					return propUseEffect;
 				}
 
@@ -1503,7 +1503,7 @@ public class PropUseService
 					add_mp = player.getPMaxMp() - player.getPMp();
 				}
 
-				logger.info("Ôö¼ÓÆøÑª=" + add_mp);
+				logger.info("å¢åŠ æ°”è¡€=" + add_mp);
 
 				if (add_mp + player.getPMp() > player.getPMaxMp())
 				{
@@ -1513,12 +1513,12 @@ public class PropUseService
 
 				GoodsService goodsService = new GoodsService();
 
-				// µ±×ÜÑªÁ¿ÉÙÓÚÃ¿´Î¼ÓÑªÁ¿£¬ÇÒÉÙÓÚÈËÎïËùĞè¼ÓÑªÁ¿Ê±,ÒÆ³ıÊ¹ÓÃµÀ¾ß£¬·ñÔò¼õÉÙ¸ÃµÀ¾ßµÄ×Ü¿ÉÓÃ»Ø¸´Á¿
+				// å½“æ€»è¡€é‡å°‘äºæ¯æ¬¡åŠ è¡€é‡ï¼Œä¸”å°‘äºäººç‰©æ‰€éœ€åŠ è¡€é‡æ—¶,ç§»é™¤ä½¿ç”¨é“å…·ï¼Œå¦åˆ™å‡å°‘è¯¥é“å…·çš„æ€»å¯ç”¨å›å¤é‡
 				if (surplus <= requieMp
 						&& surplus <= Integer.parseInt(prop.getPropOperate1()))
 				{
 					goodsService.removeProps(propGroup, 1);
-					logger.info("ÓÃÍêÒª»»£¡");
+					logger.info("ç”¨å®Œè¦æ¢ï¼");
 					boolean propGroupNot = propGroupDao.getUserHasProp(player
 							.getPPk(), prop.getPropID());
 
@@ -1534,24 +1534,24 @@ public class PropUseService
 					goodsService.reduceBoxCure(propGroup, add_mp,
 							SpecialNumber.KUNZHUANG);
 				}
-				// ·¨Á¦¸üĞÂ
+				// æ³•åŠ›æ›´æ–°
 				role_info.getBasicInfo().updateMp(player.getPMp());
 
 				propUseEffect.setPropType(PropType.ADDMP);
 				propUseEffect.setIsEffected(true);
-				propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
+				propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
 						+ StringUtil.isoToGBK(propGroup.getPropName())
-						+ ",»Ö¸´ÁËÄÚÁ¦" + add_mp + "µã.");
+						+ ",æ¢å¤äº†å†…åŠ›" + add_mp + "ç‚¹.");
 				propUseEffect.setEffectValue("" + add_mp);
 
 			}
-		logger.info("isEffected=" + propUseEffect.getIsEffected() + "Ò©Æ·ÃèÊö="
+		logger.info("isEffected=" + propUseEffect.getIsEffected() + "è¯å“æè¿°="
 				+ propUseEffect.getEffectDisplay());
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ×°±¸ĞŞ¸´µÀ¾ß
+	 * ä½¿ç”¨è£…å¤‡ä¿®å¤é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1563,7 +1563,7 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, propGroup.getPropInfo(), 1);
 		if (resutl != null)
 		{
@@ -1575,15 +1575,15 @@ public class PropUseService
 		
 		int total_endure = Integer.parseInt(propGroup.getPropInfo().getPropOperate1());
 		
-		int left_endure = role_info.getEquipOnBody().maintainAllByEndure(total_endure);//ĞŞÀí×°±¸
+		int left_endure = role_info.getEquipOnBody().maintainAllByEndure(total_endure);//ä¿®ç†è£…å¤‡
 		String hint = null;
-		if( left_endure<=0 )//ĞŞ¸´ÉíÉÏÈ«²¿×°±¸
+		if( left_endure<=0 )//ä¿®å¤èº«ä¸Šå…¨éƒ¨è£…å¤‡
 		{
-			hint = "ÄãÊ¹ÓÃ" + propGroup.getPropInfo().getPropName()+ "ĞŞ¸´ÉíÉÏ×°±¸È«²¿ÄÍ¾Ã£¡";
+			hint = "ä½ ä½¿ç”¨" + propGroup.getPropInfo().getPropName()+ "ä¿®å¤èº«ä¸Šè£…å¤‡å…¨éƒ¨è€ä¹…ï¼";
 		}
-		else//ĞŞ¸´²¿·Ö×°±¸
+		else//ä¿®å¤éƒ¨åˆ†è£…å¤‡
 		{
-			hint = "ÄãÊ¹ÓÃ"+propGroup.getPropInfo().getPropName()+"ĞŞ¸´ÉíÉÏ×°±¸ÄÍ¾Ã" + total_endure + "µã£¬»¹ÓĞ" + left_endure+ "µãÄÍ¾ÃÃ»ÓĞĞŞ¸´£¡";
+			hint = "ä½ ä½¿ç”¨"+propGroup.getPropInfo().getPropName()+"ä¿®å¤èº«ä¸Šè£…å¤‡è€ä¹…" + total_endure + "ç‚¹ï¼Œè¿˜æœ‰" + left_endure+ "ç‚¹è€ä¹…æ²¡æœ‰ä¿®å¤ï¼";
 		}
 		goodsService.removeProps(propGroup, 1);
 		propUseEffect.setIsEffected(false);
@@ -1592,7 +1592,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃµÀ¾ß³èÎï
+	 * ä½¿ç”¨é“å…·å® ç‰©
 	 * 
 	 * @param p_pk
 	 * @param prop_id
@@ -1605,13 +1605,13 @@ public class PropUseService
 	{
 		if (role_info == null || prop == null || propGroup == null)
 		{
-			logger.info("²ÎÊı´íÎó");
+			logger.info("å‚æ•°é”™è¯¯");
 			return null;
 		}
 
-		PropUseEffect propUseEffect = null;// Ê¹ÓÃĞ§¹û
+		PropUseEffect propUseEffect = null;// ä½¿ç”¨æ•ˆæœ
 
-		// Ã»ÓĞÖ¸¶¨ÊıÁ¿
+		// æ²¡æœ‰æŒ‡å®šæ•°é‡
 		if (use_num <= 0)
 		{
 			use_num = 1;
@@ -1619,36 +1619,36 @@ public class PropUseService
 
 		switch (prop.getPropClass())
 		{
-			case PropType.PETSINEW:// ³èÎï»Ø¸´ÌåÁ¦
+			case PropType.PETSINEW:// å® ç‰©å›å¤ä½“åŠ›
 				propUseEffect = petSINEW(role_info, propGroup, prop, use_num,
 						pet_pk);
 				break;
-			case PropType.PETLONGE:// ³èÎï»Ø¸´ÊÙÃü
+			case PropType.PETLONGE:// å® ç‰©å›å¤å¯¿å‘½
 				propUseEffect = petLONGE(role_info, propGroup, prop, use_num,
 						pet_pk);
 				break;
-			case PropType.PETEXP:// ³èÎï¾­ÑéµÀ¾ß
+			case PropType.PETEXP:// å® ç‰©ç»éªŒé“å…·
 				propUseEffect = petExp(role_info, propGroup, prop, use_num,
 						pet_pk);
 				break;
-			/** ³èÎïÑ§Ï°¼¼ÄÜ */
-			case PropType.PETSKILLBOOK:// ³èÎïÑ§Ï°¼¼ÄÜ
+			/** å® ç‰©å­¦ä¹ æŠ€èƒ½ */
+			case PropType.PETSKILLBOOK:// å® ç‰©å­¦ä¹ æŠ€èƒ½
 				propUseEffect = usePETSKILLBOOK(role_info, propGroup, prop,
 						use_num, pet_pk);
 				break;
 		}
 
-		// ¸üĞÂ³öÕ½³èÎïĞÅÏ¢
-		logger.info("¸üĞÂ³öÕ½³èÎïĞÅÏ¢");
+		// æ›´æ–°å‡ºæˆ˜å® ç‰©ä¿¡æ¯
+		logger.info("æ›´æ–°å‡ºæˆ˜å® ç‰©ä¿¡æ¯");
 		RolePetInfo userPet = role_info.getRolePetInfo();
 		userPet.initPet(Integer.parseInt(pet_pk), role_info.getBasicInfo()
 				.getPPk());
 
-		// ÓĞÃ¿ÌìÊ¹ÓÃ´ÎÊıÏŞÖÆ
+		// æœ‰æ¯å¤©ä½¿ç”¨æ¬¡æ•°é™åˆ¶
 		if (propUseEffect.getIsEffected() && prop.getPropUsedegree() > 0)
 		{
 			TimeControlService timeControlService = new TimeControlService();
-			// ¸üĞÂµÀ¾ßÊ¹ÓÃ×´Ì¬
+			// æ›´æ–°é“å…·ä½¿ç”¨çŠ¶æ€
 			timeControlService.updateControlInfo(role_info.getBasicInfo()
 					.getPPk(), prop.getPropID(), TimeControlService.PROP);
 		}
@@ -1656,7 +1656,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ÆÕÍ¨µÀ¾ß
+	 * æ™®é€šé“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1669,8 +1669,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1681,13 +1681,13 @@ public class PropUseService
 
 		propUseEffect.setPropType(PropType.NORMAL);
 		propUseEffect.setIsEffected(false);
-		propUseEffect.setEffectDisplay("ÆÕÍ¨µÀ¾ß");
+		propUseEffect.setEffectDisplay("æ™®é€šé“å…·");
 		propUseEffect.setEffectValue("");
 		return propUseEffect;
 	}
 
 	/**
-	 * ÔÒ±¦Ïä
+	 * ç ¸å®ç®±
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1701,8 +1701,8 @@ public class PropUseService
 		PropUseEffect propUseEffect = new PropUseEffect();
 		String hint = null;
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1715,28 +1715,28 @@ public class PropUseService
 		PlayerService playerService = new PlayerService();
 		PartInfoVO player = playerService.getPlayerByPpk(p_pk);
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String npc_id = prop.getPropOperate1();
-		// µÃµ½»áµô³ö¼¸¸öÎïÆ·
+		// å¾—åˆ°ä¼šæ‰å‡ºå‡ ä¸ªç‰©å“
 		String dropNum = prop.getPropOperate2();
 
 		NpcService npcService = new NpcService();
 		GoodsService goodsService = new GoodsService();
 
-		// Çå³şÔ­À´µÄµôÂäÎï
+		// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
 		role_info.getDropSet().clearDropItem();
 		
-		// µôÂäÎïÆ·
+		// æ‰è½ç‰©å“
 		npcService.dropGoodsByRareBox(Integer.parseInt(npc_id), player, dropNum);
 
-		// µÃµ½µôÂäÎï
+		// å¾—åˆ°æ‰è½ç‰©
 		List<DropGoodsVO> dropgoods = role_info.getDropSet().getList();
 
-		// ÅĞ¶Ï°ü¹ü¸÷Êı·ñ¹»
+		// åˆ¤æ–­åŒ…è£¹å„æ•°å¦å¤Ÿ
 		if (goodsService.isEnoughWrapSpace(player.getPPk(), dropgoods.size()))
-		{// ¹»ÁË
+		{// å¤Ÿäº†
 
-			// µôÂä½ğÇ®
+			// æ‰è½é‡‘é’±
 			// NpcDao npcdao = new NpcDao();
 			// NpcVO npcvo = npcdao.getNpcById(Integer.parseInt(npc_id));
 
@@ -1744,13 +1744,13 @@ public class PropUseService
 			int money = npcvo.getDropMoney();
 			if (money != 0)
 			{
-				role_info.getBasicInfo().addCopper(money);// ¸ø½ÇÉ«Ôö¼Ó½ğÇ®
-				// Ö´ĞĞÍ³¼Æ
+				role_info.getBasicInfo().addCopper(money);// ç»™è§’è‰²å¢åŠ é‡‘é’±
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, money,
 						StatisticsType.DEDAO, StatisticsType.BAOXIANG, player
 								.getPPk());
-				hint = "Äú»ñµÃÁË½ğÇ®" + MoneyUtil.changeCopperToStr(money) + "!<br/>";
+				hint = "æ‚¨è·å¾—äº†é‡‘é’±" + MoneyUtil.changeCopperToStr(money) + "!<br/>";
 
 			}
 			if (npcvo.getExp() != 0)
@@ -1759,12 +1759,12 @@ public class PropUseService
 				// .valueOf(player.getPExperience())
 				// + npcvo.getExp());
 
-				// ¼à¿Ø
+				// ç›‘æ§
 				LogService logService = new LogService();
 				logService.recordExpLog(role_info.getBasicInfo().getPPk(),
 						role_info.getBasicInfo().getName(), role_info
 								.getBasicInfo().getCurExp(), npcvo.getExp()
-								+ "", "ÔÒ±¦ÏäµÃµ½");
+								+ "", "ç ¸å®ç®±å¾—åˆ°");
 
 				role_info.getBasicInfo().updateAddCurExp(npcvo.getExp());
 			}
@@ -1775,7 +1775,7 @@ public class PropUseService
 
 			propUseEffect.setPropType(PropType.GEI_RARE_BOX);
 			propUseEffect.setIsEffected(true);
-			// propUseEffect.setEffectDisplay("·¢½±±¦Ïä");
+			// propUseEffect.setEffectDisplay("å‘å¥–å®ç®±");
 			propUseEffect.setEffectValue(money + "");
 			propUseEffect.setEffectValue1(npcvo.getExp() + "");
 
@@ -1793,7 +1793,7 @@ public class PropUseService
 						.getGoodsQuality(), dropGoods.getDropNum(),GameLogManager.G_BOX_DROP);
 				ss = dropGoods.getGoodsName() + "x" + dropGoods.getDropNum()
 						+ douhao;
-				// Ö´ĞĞÍ³¼Æ
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(dropGoods.getGoodsId(), dropGoods
 						.getGoodsType(), dropGoods.getDropNum(),
@@ -1803,7 +1803,7 @@ public class PropUseService
 				{
 					if (i == 0)
 					{
-						hint = "»ñµÃÁËÎïÆ·:" + ss + "";
+						hint = "è·å¾—äº†ç‰©å“:" + ss + "";
 					}
 					else
 					{
@@ -1812,17 +1812,17 @@ public class PropUseService
 				}
 				else
 				{
-					hint = "Äú»ñµÃÁËÎïÆ·:" + ss + "";
+					hint = "æ‚¨è·å¾—äº†ç‰©å“:" + ss + "";
 				}
 			}
 			hint = hint + "<br/>";
 			if(prop.getPropID() == 4092 || prop.getPropID() == 4093 || prop.getPropID() == 4094){
-			String info = role_info.getBasicInfo().getName()+"µãÈ¼ÁËè­è²Ò¹¿ÕÑÌ»¨Ê±,ÒâÍâµÃµ½ÁË"+ss+"!";
+			String info = role_info.getBasicInfo().getName()+"ç‚¹ç‡ƒäº†ç’€ç’¨å¤œç©ºçƒŸèŠ±æ—¶,æ„å¤–å¾—åˆ°äº†"+ss+"!";
 		    SystemInfoService infoService = new SystemInfoService();
 		    infoService.insertSystemInfoBySystem(info) ;
 			}
 			propUseEffect.setEffectDisplay(hint);
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
 			role_info.getDropSet().clearDropItem();
 			role_info.getDropSet().clearExpAndMoney();
@@ -1830,7 +1830,7 @@ public class PropUseService
 		else
 		{
 			role_info.getDropSet().clearDropItem();
-			resutl = "ÄúµÄ°ü¹ü¸ñÊı²»¹»!ÇëÇåÀí°ü¹ü!";
+			resutl = "æ‚¨çš„åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ!è¯·æ¸…ç†åŒ…è£¹!";
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
@@ -1838,14 +1838,14 @@ public class PropUseService
 		/*
 		 * propUseEffect.setPropType(PropType.RARE_BOX);
 		 * propUseEffect.setIsEffected(true);
-		 * propUseEffect.setEffectDisplay("ÔÒ±¦Ïä");
+		 * propUseEffect.setEffectDisplay("ç ¸å®ç®±");
 		 * propUseEffect.setEffectValue("");
 		 */
 		return propUseEffect;
 	}
 
 	/**
-	 * ´ÓÈÎÎñÁĞ±í½ÓÊÕÈÎÎñ
+	 * ä»ä»»åŠ¡åˆ—è¡¨æ¥æ”¶ä»»åŠ¡
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1858,8 +1858,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1870,13 +1870,13 @@ public class PropUseService
 
 		GoodsService goodsService = new GoodsService();
 		TaskSubService taskService = new TaskSubService();
-		int task_type = 1;// ´¥·¢ÀàĞÍ 1 µÀ¾ß´¥·¢ÈÎÎñ 2 ²Ëµ¥´¥·¢ÈÎÎñ
-		// ½ÓÊÜÈÎÎñ
+		int task_type = 1;// è§¦å‘ç±»å‹ 1 é“å…·è§¦å‘ä»»åŠ¡ 2 èœå•è§¦å‘ä»»åŠ¡
+		// æ¥å—ä»»åŠ¡
 		String hint = taskService.accectTaskFromList(role_info, prop
 				.getPropID(), propUseEffect, task_type);
 		if (hint == null)
 		{
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
 		}
 		else
@@ -1888,13 +1888,13 @@ public class PropUseService
 
 		propUseEffect.setPropType(PropType.ACCEPT_TASK_FROM_LIST);
 		propUseEffect.setIsEffected(true);
-		// propUseEffect.setEffectDisplay("Äú½ÓÊÕÁËÈÎÎñ");
+		// propUseEffect.setEffectDisplay("æ‚¨æ¥æ”¶äº†ä»»åŠ¡");
 		propUseEffect.setEffectValue("");
 		return propUseEffect;
 	}
 
 	/**
-	 * ½ÓÊÕÖ¸¶¨ÈÎÎñµÀ¾ß
+	 * æ¥æ”¶æŒ‡å®šä»»åŠ¡é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1907,8 +1907,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1917,26 +1917,26 @@ public class PropUseService
 			return propUseEffect;
 		}
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String task_id = prop.getPropOperate1();
 
 		GoodsService goodsService = new GoodsService();
 		TaskSubService taskService = new TaskSubService();
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
-		// ½ÓÊÜÈÎÎñ
+		// æ¥å—ä»»åŠ¡
 		taskService.acceptTask(role_info, Integer.parseInt(task_id));
 
 		propUseEffect.setPropType(PropType.ACCEPT_SPECIFY_TASK);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("Äú½ÓÊÕÁËÖ¸¶¨ÈÎÎñ");
+		propUseEffect.setEffectDisplay("æ‚¨æ¥æ”¶äº†æŒ‡å®šä»»åŠ¡");
 		propUseEffect.setEffectValue("");
 		return propUseEffect;
 	}
 
 	/**
-	 * ³èÎïµ°µÀ¾ßÊ¹ÓÃ
+	 * å® ç‰©è›‹é“å…·ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -1949,8 +1949,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -1961,7 +1961,7 @@ public class PropUseService
 
 		int p_pk = role_info.getBasicInfo().getPPk();
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String pet_id = prop.getPropOperate1();
 		String pet_name = "";
 
@@ -1971,30 +1971,30 @@ public class PropUseService
 		int pet_num = petService.getNumOfPet(p_pk);
 		if (pet_num > 5)
 		{
-			resutl = "³èÎïµÄÊıÁ¿ÒÑÂú";
+			resutl = "å® ç‰©çš„æ•°é‡å·²æ»¡";
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
 		else
 		{
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
-			// Éú³É³èÎï
+			// ç”Ÿæˆå® ç‰©
 			pet_name = petService.createPetByPetID(p_pk, Integer
 					.parseInt(pet_id));
 		}
 
 		propUseEffect.setPropType(PropType.PET_EGG);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË" + propGroup.getPropName()
-				+ ",»ñµÃÁË" + StringUtil.isoToGBK(pet_name));
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†" + propGroup.getPropName()
+				+ ",è·å¾—äº†" + StringUtil.isoToGBK(pet_name));
 		propUseEffect.setEffectValue("");
 		return propUseEffect;
 	}
 
 	/**
-	 * Ï´³èÎïµÀ¾ß
+	 * æ´—å® ç‰©é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2007,8 +2007,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2023,7 +2023,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃbuffµÀ¾ß
+	 * ä½¿ç”¨buffé“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2036,8 +2036,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2045,25 +2045,25 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
 		int p_pk = role_info.getBasicInfo().getPPk();
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String buff_id_s = prop.getPropOperate1();
 		String[] buff_id = null;
 		if (buff_id_s != null && !buff_id_s.equals(""))
 			buff_id = buff_id_s.split(",");
 
-		// É¾³ıÉíÉÏµÄÏàÍ¬ÀàĞÍµÄbuff
+		// åˆ é™¤èº«ä¸Šçš„ç›¸åŒç±»å‹çš„buff
 		// buffEffectService.deleteSameBuff(player, propGroup);
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 
 		BuffMenuService buffMenuService = new BuffMenuService();
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 		for (int i = 0; i < buff_id.length; i++)
 		{
 			buffMenuService.setBuffStatus(p_pk, Integer.parseInt(buff_id[i]));
@@ -2071,14 +2071,14 @@ public class PropUseService
 
 		propUseEffect.setPropType(PropType.BUFF);
 		propUseEffect.setIsEffected(true);
-		// propUseEffect.setEffectDisplay("buffĞ§¹ûÉúĞ§");
+		// propUseEffect.setEffectDisplay("buffæ•ˆæœç”Ÿæ•ˆ");
 		propUseEffect.setBuffType(buff_id);
 		propUseEffect.setEffectDisplay(prop);
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ¼¼ÄÜÊéµÀ¾ß
+	 * ä½¿ç”¨æŠ€èƒ½ä¹¦é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2092,8 +2092,8 @@ public class PropUseService
 		PropUseEffect propUseEffect = new PropUseEffect();
 		propUseEffect.setPropType(prop.getPropClass());
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2101,28 +2101,28 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
 		int p_pk = role_info.getBasicInfo().getPPk();
 
 		SkillService skillService = new SkillService();
 		String display = skillService.studySkillAll(p_pk, prop, propUseEffect);
 
-		if (display.contains("ÄúÒÑ¾­Ñ§Ï°¹ı")) // »¹Ã»ÓĞÑ§´Ë¼¼ÄÜ
+		if (display.contains("æ‚¨å·²ç»å­¦ä¹ è¿‡")) // è¿˜æ²¡æœ‰å­¦æ­¤æŠ€èƒ½
 		{
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(display);
 			return propUseEffect;
 		}
 		else
-			if (display.contains("Äú»¹Ã»ÓĞÑ§Ï°"))
+			if (display.contains("æ‚¨è¿˜æ²¡æœ‰å­¦ä¹ "))
 			{
 				propUseEffect.setIsEffected(false);
 				propUseEffect.setNoUseDisplay(display);
 				return propUseEffect;
 			}
 			else
-				if (display.contains("ÊìÁ·¶È"))
+				if (display.contains("ç†Ÿç»ƒåº¦"))
 				{
 					propUseEffect.setIsEffected(false);
 					propUseEffect.setNoUseDisplay(display);
@@ -2130,7 +2130,7 @@ public class PropUseService
 				}
 				else
 				{
-					// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+					// ç§»é™¤ä½¿ç”¨é“å…·
 					GoodsService goodsService = new GoodsService();
 					goodsService.removeProps(propGroup, use_num);
 
@@ -2142,7 +2142,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ³ÆºÅ
+	 * ç§°å·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2156,8 +2156,8 @@ public class PropUseService
 		PropUseEffect propUseEffect = new PropUseEffect();
 		propUseEffect.setPropType(prop.getPropClass());
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2165,46 +2165,46 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
 		RoleTitleSet role_title = role_info.getTitleSet();
 		
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
-		String conditions = prop.getPropOperate1();// µÃµ½³ÆºÅµÄÌõ¼ş
-		String t_id = prop.getPropOperate2();// µÃµ½³ÆºÅµÄID
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
+		String conditions = prop.getPropOperate1();// å¾—åˆ°ç§°å·çš„æ¡ä»¶
+		String t_id = prop.getPropOperate2();// å¾—åˆ°ç§°å·çš„ID
 		
 		TitleVO condi_title = TitleCache.getById(conditions);
 		TitleVO new_title = TitleCache.getById(t_id);
 		
-		// Ê×ÏÈÊÇ·ñÂú×ãµÃµ½Ìõ¼ş
-		if ( condi_title!=null && role_title.isHaveByTId(condi_title) == false)//ÊÇ·ñÓĞÌõ¼ş³ÆºÅ
-		{// ²»Âú×ãÌõ¼ş
+		// é¦–å…ˆæ˜¯å¦æ»¡è¶³å¾—åˆ°æ¡ä»¶
+		if ( condi_title!=null && role_title.isHaveByTId(condi_title) == false)//æ˜¯å¦æœ‰æ¡ä»¶ç§°å·
+		{// ä¸æ»¡è¶³æ¡ä»¶
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Äã±ØĞëÏÈ»ñµÃ" + condi_title.getName()
-					+ "³ÆºÅºó²ÅÄÜ»ñµÃ" + new_title.getName() + "³ÆºÅ");// Ã»ÓĞÂú×ã¸æËßÊ²Ã´»°
+			propUseEffect.setNoUseDisplay("ä½ å¿…é¡»å…ˆè·å¾—" + condi_title.getName()
+					+ "ç§°å·åæ‰èƒ½è·å¾—" + new_title.getName() + "ç§°å·");// æ²¡æœ‰æ»¡è¶³å‘Šè¯‰ä»€ä¹ˆè¯
 			return propUseEffect;
 		}
 		
 		
 		String hint = role_info.getTitleSet().gainTitle(new_title);
-		if( hint!=null )//»ñµÃ³ÆºÅÊ§°Ü
+		if( hint!=null )//è·å¾—ç§°å·å¤±è´¥
 		{
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(hint);
 			return propUseEffect;
 		}
 		
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 		propUseEffect.setIsEffected(false);
-		propUseEffect.setNoUseDisplay("Äú»ñµÃÁËĞÂµÄ³ÆºÅ:" + new_title.getName());
+		propUseEffect.setNoUseDisplay("æ‚¨è·å¾—äº†æ–°çš„ç§°å·:" + new_title.getName());
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ»áÔ±¿¨
+	 * ä½¿ç”¨ä¼šå‘˜å¡
 	 */
 	private PropUseEffect useVIP(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
@@ -2212,8 +2212,8 @@ public class PropUseService
 		PropUseEffect propUseEffect = new PropUseEffect();
 		propUseEffect.setPropType(prop.getPropClass());
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2221,12 +2221,12 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
-		String vip_title_id = prop.getPropOperate2().trim();// VIP³ÆºÅid
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
+		String vip_title_id = prop.getPropOperate2().trim();// VIPç§°å·id
 		TitleVO vip_title = TitleCache.getById(vip_title_id);
 		
-		// Ê×ÏÈÅĞ¶ÏÊÇ·ñ¿ÉÒÔÖ±½Ó»»È¡Ò»¸ö»áÔ±
+		// é¦–å…ˆåˆ¤æ–­æ˜¯å¦å¯ä»¥ç›´æ¥æ¢å–ä¸€ä¸ªä¼šå‘˜
 		String isGainNewVipTitle = role_info.getTitleSet().isGainNewVipTitle(vip_title);
 		if (isGainNewVipTitle != null )
 		{
@@ -2234,8 +2234,8 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(isGainNewVipTitle);
 			return propUseEffect;
 		}
-		// Âú×ãÌõ¼şÒÔºó
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// æ»¡è¶³æ¡ä»¶ä»¥å
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 		role_info.getTitleSet().gainTitle(vip_title);
@@ -2248,7 +2248,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ³èÎï»Ø¸´ÌåÁ¦
+	 * å® ç‰©å›å¤ä½“åŠ›
 	 * 
 	 * @param prop
 	 * @param object
@@ -2258,8 +2258,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2270,24 +2270,24 @@ public class PropUseService
 		int p_pk = role_info.getBasicInfo().getPPk();
 
 		/*
-		 * //µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó if( player.getPHp()==player.getPUpHp() ) {
+		 * //é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚ if( player.getPHp()==player.getPUpHp() ) {
 		 * propUseEffect.setIsEffected(false);
-		 * propUseEffect.setNoUseDisplay("ÄúµÄÑªÁ¿ÒÑ´ïÉÏÏŞ"); return propUseEffect; }
+		 * propUseEffect.setNoUseDisplay("æ‚¨çš„è¡€é‡å·²è¾¾ä¸Šé™"); return propUseEffect; }
 		 */
 
-		// Í¨¹ı½ÇÉ«ID È¡³ö½ÇÉ«ÓµÓĞµÄ³èÎï
+		// é€šè¿‡è§’è‰²ID å–å‡ºè§’è‰²æ‹¥æœ‰çš„å® ç‰©
 		PetInfoDAO dao = new PetInfoDAO();
 		PetInfoVO petInfoVO = (PetInfoVO) dao.getPetInfoshiyong(p_pk + "",
 				pet_pk);
 		if (petInfoVO == null)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄ³èÎïÃ»ÓĞÒ»¸ö²ÎÕ½");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©æ²¡æœ‰ä¸€ä¸ªå‚æˆ˜");
 			return propUseEffect;
 		}
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø
-		int add_hp = Integer.parseInt(prop.getPropOperate1());// ÌØÊâ×Ö¶Î //
-		// È¡³öµÄÊÇ³èÎï¼ÓÌåÁ¦µÄÖµ
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ
+		int add_hp = Integer.parseInt(prop.getPropOperate1());// ç‰¹æ®Šå­—æ®µ //
+		// å–å‡ºçš„æ˜¯å® ç‰©åŠ ä½“åŠ›çš„å€¼
 		int petFatigue = 0;
 
 		if (add_hp == 100)
@@ -2300,7 +2300,7 @@ public class PropUseService
 					+ petInfoVO.getPetFatigue();
 			propUseEffect.setPropType(PropType.ADDHP);
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("ÄúµÄ³èÎïÌåÁ¦ÒÑ¾­ÂúÁË,²»ĞèÒªÔÙÊ¹ÓÃ.");
+			propUseEffect.setEffectDisplay("æ‚¨çš„å® ç‰©ä½“åŠ›å·²ç»æ»¡äº†,ä¸éœ€è¦å†ä½¿ç”¨.");
 			propUseEffect.setEffectValue("" + add_hp);
 			return propUseEffect;
 		}
@@ -2315,16 +2315,16 @@ public class PropUseService
 		}
 
 		GoodsService goodsService = new GoodsService();
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
-		// ĞŞ¸Ä³èÎïÌåÁ¦
+		// ä¿®æ”¹å® ç‰©ä½“åŠ›
 		dao.petFatigue(p_pk, petInfoVO.getPetPk(), petFatigue);
 
 		propUseEffect.setPropType(PropType.ADDHP);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË" + propGroup.getPropName()
-				+ ",ÄúµÄ³èÎïÌåÁ¦Ôö¼Ó" + add_hp + "µã");
-		// ÅĞ¶ÏÊÇ·ñ¼ÓÂı ²»ÁË·µ»Ø ÏÔÊ¾¼ÌĞø¼ÓÂú
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†" + propGroup.getPropName()
+				+ ",æ‚¨çš„å® ç‰©ä½“åŠ›å¢åŠ " + add_hp + "ç‚¹");
+		// åˆ¤æ–­æ˜¯å¦åŠ æ…¢ ä¸äº†è¿”å› æ˜¾ç¤ºç»§ç»­åŠ æ»¡
 		if (petFatigue < 100)
 		{
 			int isPetFatigue = 1;
@@ -2335,7 +2335,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ³èÎï¾­ÑéµÀ¾ß
+	 * å® ç‰©ç»éªŒé“å…·
 	 * 
 	 * @param prop
 	 * @param object
@@ -2345,8 +2345,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2356,12 +2356,12 @@ public class PropUseService
 		}
 
 		/*
-		 * //µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó if( player.getPHp()==player.getPUpHp() ) {
+		 * //é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚ if( player.getPHp()==player.getPUpHp() ) {
 		 * propUseEffect.setIsEffected(false);
-		 * propUseEffect.setNoUseDisplay("ÄúµÄÑªÁ¿ÒÑ´ïÉÏÏŞ"); return propUseEffect; }
+		 * propUseEffect.setNoUseDisplay("æ‚¨çš„è¡€é‡å·²è¾¾ä¸Šé™"); return propUseEffect; }
 		 */
 
-		// Í¨¹ı½ÇÉ«ID È¡³ö½ÇÉ«ÓµÓĞµÄ³èÎï
+		// é€šè¿‡è§’è‰²ID å–å‡ºè§’è‰²æ‹¥æœ‰çš„å® ç‰©
 		PetInfoDAO dao = new PetInfoDAO();
 		PetInfoVO petInfoVO = (PetInfoVO) dao.getPetInfoshiyong(role_info
 				.getBasicInfo().getPPk()
@@ -2369,27 +2369,27 @@ public class PropUseService
 		if (petInfoVO == null)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄ³èÎïÃ»ÓĞÒ»¸ö²ÎÕ½");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©æ²¡æœ‰ä¸€ä¸ªå‚æˆ˜");
 			return propUseEffect;
 		}
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø
-		int add_hp = Integer.parseInt(prop.getPropOperate1());// ÌØÊâ×Ö¶Î //Ëù¼ÓµÄÌåÁ¦
-		int exp = Integer.parseInt(prop.getPropOperate2());// ÌØÊâ×Ö¶Î //Ëù¼ÓµÄ¾­Ñé
-		// È¡³öµÄÊÇ³èÎï¼ÓÌåÁ¦µÄÖµ
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ
+		int add_hp = Integer.parseInt(prop.getPropOperate1());// ç‰¹æ®Šå­—æ®µ //æ‰€åŠ çš„ä½“åŠ›
+		int exp = Integer.parseInt(prop.getPropOperate2());// ç‰¹æ®Šå­—æ®µ //æ‰€åŠ çš„ç»éªŒ
+		// å–å‡ºçš„æ˜¯å® ç‰©åŠ ä½“åŠ›çš„å€¼
 		int petFatigue = 0;
 
 		if (add_hp == 100)
 		{
 			petFatigue = 100;
 		}
-		//Ë®¾üËµÍæ¼ÒÏëÓÃ¾ÍÈÃËûÓÃ20091209
+		//æ°´å†›è¯´ç©å®¶æƒ³ç”¨å°±è®©ä»–ç”¨20091209
 		/*if (petInfoVO.getPetFatigue() == 100)
 		{
 			petFatigue = (100 - petInfoVO.getPetFatigue())
 					+ petInfoVO.getPetFatigue();
 			propUseEffect.setPropType(PropType.ADDHP);
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("ÄúµÄ³èÎï²»ÄÜÔÚ¼ÌĞøÎ¹Ê³ÁË.");
+			propUseEffect.setEffectDisplay("æ‚¨çš„å® ç‰©ä¸èƒ½åœ¨ç»§ç»­å–‚é£Ÿäº†.");
 			propUseEffect.setEffectValue("" + add_hp);
 			return propUseEffect;
 		}*/
@@ -2405,24 +2405,24 @@ public class PropUseService
 
 		GoodsService goodsService = new GoodsService();
 
-		// ĞŞ¸Ä³èÎï¾­Ñé
-		// ³èÎï³É³¤
+		// ä¿®æ”¹å® ç‰©ç»éªŒ
+		// å® ç‰©æˆé•¿
 		HhjPetService petService = new HhjPetService();
 		String pet_display = petService.getPetGrandirProp(petInfoVO.getPetPk(),
 				role_info.getBasicInfo().getGrade(), exp);
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
-		// ĞŞ¸Ä³èÎïÌåÁ¦
+		// ä¿®æ”¹å® ç‰©ä½“åŠ›
 		dao.petFatigue(role_info.getBasicInfo().getPPk(), petInfoVO.getPetPk(),
 				petFatigue);
 
 		propUseEffect.setPropType(PropType.ADDHP);
 		propUseEffect.setIsEffected(true);
-		// propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË" + propGroup.getPropName()+
-		// ",ÄúµÄ³èÎïÌåÁ¦Ôö¼Ó" + exp + "µã¾­Ñé");
+		// propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†" + propGroup.getPropName()+
+		// ",æ‚¨çš„å® ç‰©ä½“åŠ›å¢åŠ " + exp + "ç‚¹ç»éªŒ");
 		propUseEffect.setEffectDisplay(pet_display);
-		// ÅĞ¶ÏÊÇ·ñ¼ÓÂı ²»ÁË·µ»Ø ÏÔÊ¾¼ÌĞø¼ÓÂú
+		// åˆ¤æ–­æ˜¯å¦åŠ æ…¢ ä¸äº†è¿”å› æ˜¾ç¤ºç»§ç»­åŠ æ»¡
 		if (petFatigue < 100)
 		{
 			int isPetFatigue = 1;
@@ -2433,7 +2433,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ³èÎï»Ø¸´ÊÙÃü
+	 * å® ç‰©å›å¤å¯¿å‘½
 	 * 
 	 * @param prop
 	 * @param object
@@ -2443,8 +2443,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2455,25 +2455,25 @@ public class PropUseService
 
 		int p_pk = role_info.getBasicInfo().getPPk();
 
-		// Í¨¹ı½ÇÉ«ID È¡³ö½ÇÉ«ÓµÓĞµÄ³èÎï
+		// é€šè¿‡è§’è‰²ID å–å‡ºè§’è‰²æ‹¥æœ‰çš„å® ç‰©
 		PetInfoDAO dao = new PetInfoDAO();
 		PetInfoVO petInfoVO = (PetInfoVO) dao.getPetInfoshiyong(p_pk + "",
 				pet_pk);
 		if (petInfoVO == null)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄ³èÎïÃ»ÓĞÒ»¸ö²ÎÕ½");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©æ²¡æœ‰ä¸€ä¸ªå‚æˆ˜");
 			return propUseEffect;
 		}
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø
-		int add_hp = Integer.parseInt(prop.getPropOperate1());// ÌØÊâ×Ö¶Î
-		// È¡³öµÄÊÇ³èÎï¼ÓÌåÁ¦µÄÖµ
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ
+		int add_hp = Integer.parseInt(prop.getPropOperate1());// ç‰¹æ®Šå­—æ®µ
+		// å–å‡ºçš„æ˜¯å® ç‰©åŠ ä½“åŠ›çš„å€¼
 		int petLonge = add_hp + petInfoVO.getPetLonge();
-		// ÅĞ¶Ï³èÎïÊÙÃüÉÏÏß\
+		// åˆ¤æ–­å® ç‰©å¯¿å‘½ä¸Šçº¿\
 		if (petInfoVO.getPetLonge() == petInfoVO.getPetLife())
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄ³èÎïÊÙÃüÒÑ¾­µ½´ïÉÏÏŞÁË");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©å¯¿å‘½å·²ç»åˆ°è¾¾ä¸Šé™äº†");
 			return propUseEffect;
 		}
 		if (petLonge > petInfoVO.getPetLife())
@@ -2483,33 +2483,33 @@ public class PropUseService
 
 		GoodsService goodsService = new GoodsService();
 		/*
-		 * //TODPO È¡Ïû³èÎïÊÙÃüÊ¹ÓÃÏŞÖÆ if (petInfoVO.getLongeNumber() ==
+		 * //TODPO å–æ¶ˆå® ç‰©å¯¿å‘½ä½¿ç”¨é™åˆ¶ if (petInfoVO.getLongeNumber() ==
 		 * petInfoVO.getLongeNumberOk()) { propUseEffect.setIsEffected(false);
-		 * propUseEffect.setNoUseDisplay("ÒÑ¾­³¬¹ı¸ÃµÀ¾ßµÄÊ¹ÓÃ´ÎÊıÁË"); return propUseEffect; }
+		 * propUseEffect.setNoUseDisplay("å·²ç»è¶…è¿‡è¯¥é“å…·çš„ä½¿ç”¨æ¬¡æ•°äº†"); return propUseEffect; }
 		 */
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		int pet_longe = petInfoDAO.pet_longe(p_pk, Integer.parseInt(pet_pk));
 		if (pet_longe == 0)
 		{
-			propUseEffect.setNoUseDisplay("ÄúµÄ³èÎïÊÙÃüÎªÁã ²»ÄÜÔÚÊ¹ÓÃÒ©ÎïÔö¼ÓÊÙÃüÁË£¡");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©å¯¿å‘½ä¸ºé›¶ ä¸èƒ½åœ¨ä½¿ç”¨è¯ç‰©å¢åŠ å¯¿å‘½äº†ï¼");
 			return propUseEffect;
 		}
 		int longeNumberOk = petInfoVO.getLongeNumberOk() + 1;
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
-		// ĞŞ¸Ä³èÎïÊÙÃü
+		// ä¿®æ”¹å® ç‰©å¯¿å‘½
 		dao.petLonge(p_pk, petInfoVO.getPetPk(), petLonge, longeNumberOk);
 
 		propUseEffect.setPropType(PropType.ADDHP);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË" + propGroup.getPropName());
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†" + propGroup.getPropName());
 		propUseEffect.setEffectValue("" + add_hp);
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ±ê¼ÇµÀ¾ß
+	 * ä½¿ç”¨æ ‡è®°é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2523,8 +2523,8 @@ public class PropUseService
 
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2532,12 +2532,12 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
-		// ÎŞĞè¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
+		// æ— éœ€æ§åˆ¶å­—æ®µ
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 		int p_pk = role_info.getBasicInfo().getPPk();
 		String cur_scene_id_str = role_info.getBasicInfo().getSceneId();
 
@@ -2552,17 +2552,17 @@ public class PropUseService
 		RoomService roomService = new RoomService();
 
 		// logger.info("isUse="+isUse+" ,scene_id="+scene_id);
-		if (isUse != 1)// ±ê¼Ç
+		if (isUse != 1)// æ ‡è®°
 		{
-			if (roomService.isCarryedIn(current_scene_id) != null)// ²»ÄÜ´«ÈëµÄµØµã²»ÄÜ×ö±ê¼Ç
+			if (roomService.isCarryedIn(current_scene_id) != null)// ä¸èƒ½ä¼ å…¥çš„åœ°ç‚¹ä¸èƒ½åšæ ‡è®°
 			{
 				propUseEffect.setPropType(PropType.MARKUP);
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("´ËµØµã²»ÄÜÊ¹ÓÃ¸ÃµÀ¾ß");
+				propUseEffect.setNoUseDisplay("æ­¤åœ°ç‚¹ä¸èƒ½ä½¿ç”¨è¯¥é“å…·");
 				return propUseEffect;
 			}
 
-			if (scene_id == -1)// Ã»ÓĞ±ê¼Ç
+			if (scene_id == -1)// æ²¡æœ‰æ ‡è®°
 			{
 				CoordinateVO coordinate = new CoordinateVO();
 				coordinate.setPPk(p_pk);
@@ -2571,7 +2571,7 @@ public class PropUseService
 				coordinateDao.add(coordinate);
 			}
 			else
-			// ¸üĞÂ±ê¼Ç
+			// æ›´æ–°æ ‡è®°
 			{
 				coordinateDao.updateCoordinate(p_pk, prop.getPropID(),
 						current_scene_id);
@@ -2582,31 +2582,31 @@ public class PropUseService
 
 			propUseEffect.setPropType(PropType.MARKUP);
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÒÑ¾­ÔÚ" + sceneName + "×öÁË±ê¼Ç");
+			propUseEffect.setNoUseDisplay("å·²ç»åœ¨" + sceneName + "åšäº†æ ‡è®°");
 			return propUseEffect;
 		}
 		else
-		// Ê¹ÓÃ
+		// ä½¿ç”¨
 		{
-			// ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ´«ËÍ
+			// åˆ¤æ–­æ˜¯å¦å¯ä»¥ä¼ é€
 			if (roomService.isCarryFromSceneAToSceneB(current_scene_id,
 					scene_id) != null)
 			{
 				propUseEffect.setPropType(prop.getPropClass());
 				propUseEffect.setIsEffected(false);
-				// propUseEffect.setEffectValue("²»ÄÜ´«ËÍ");
+				// propUseEffect.setEffectValue("ä¸èƒ½ä¼ é€");
 				propUseEffect.setEffectValue(current_scene_id + "");
 				return propUseEffect;
 			}
 			else
 			{
-				// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+				// ç§»é™¤ä½¿ç”¨é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.removeProps(propGroup, use_num);
 				int prop_num = goodsService.getPropNum(p_pk, prop.getPropID());
-				if (prop_num == 0)// ±ê¼ÇµÀ¾ßÎª0Ê±É¾³ı±ê¼Ç
+				if (prop_num == 0)// æ ‡è®°é“å…·ä¸º0æ—¶åˆ é™¤æ ‡è®°
 				{
-					// É¾³ı±ê¼Ç
+					// åˆ é™¤æ ‡è®°
 					coordinateDao.delete(p_pk, prop.getPropID());
 				}
 				else
@@ -2614,23 +2614,23 @@ public class PropUseService
 					coordinateDao.updateNoUsed(p_pk, prop.getPropID());
 				}
 				role_info.getBasicInfo().updateSceneId(scene_id + "");
-				CompassService.removeMiJing(p_pk, propGroup.getPropType());// É¾³ıÃØ¾³µØÍ¼
+				CompassService.removeMiJing(p_pk, propGroup.getPropType());// åˆ é™¤ç§˜å¢ƒåœ°å›¾
 			}
 		}
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
-		// ÓÃ±ê¼ÇµÀ¾ß±ê¼ÇÊ±£¬²»ÓÃÒÆ³ıµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
+		// ç”¨æ ‡è®°é“å…·æ ‡è®°æ—¶ï¼Œä¸ç”¨ç§»é™¤é“å…·
 
 		propUseEffect.setPropType(PropType.MARKUP);
 		propUseEffect.setIsEffected(true);
 		scene_name = roomService.getName(scene_id);
-		propUseEffect.setEffectDisplay("ÒÑ¾­ÔÚ" + scene_name + "×öÁË±ê¼Ç");
+		propUseEffect.setEffectDisplay("å·²ç»åœ¨" + scene_name + "åšäº†æ ‡è®°");
 		propUseEffect.setEffectValue("" + scene_id);
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃÕÙ»½µÀ¾ß
+	 * ä½¿ç”¨å¬å”¤é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2644,8 +2644,8 @@ public class PropUseService
 
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2653,15 +2653,15 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 		String condition = prop.getPropOperate1();
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 		int p_pk = role_info.getBasicInfo().getPPk();
 		String cur_scene_id = role_info.getBasicInfo().getSceneId();
 
@@ -2676,7 +2676,7 @@ public class PropUseService
 	}
 
 	/**
-	 * ´ğÌâµÀ¾ßµÄÊ¹ÓÃ
+	 * ç­”é¢˜é“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2689,8 +2689,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2698,14 +2698,14 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
-		String quizs_str = prop.getPropOperate1();// È¡³öÌâÄ¿·¶Î§×Ö·û´®
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
+		String quizs_str = prop.getPropOperate1();// å–å‡ºé¢˜ç›®èŒƒå›´å­—ç¬¦ä¸²
 		QuizService quizService = new QuizService();
-		QuizVO quiz = quizService.getRandomQuizByConfine(quizs_str);// Ëæ»úµÃµ½Ò»¸öÌâÄ¿
+		QuizVO quiz = quizService.getRandomQuizByConfine(quizs_str);// éšæœºå¾—åˆ°ä¸€ä¸ªé¢˜ç›®
 
-		// ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ·ÅÏÂÌâÄ¿Ëù·¢µÀ¾ß»ò×°±¸
+		// åˆ¤æ–­æ˜¯å¦å¯ä»¥æ”¾ä¸‹é¢˜ç›®æ‰€å‘é“å…·æˆ–è£…å¤‡
 		String goodstr = quiz.getAwardGoods();
 		if (goodstr != null && !goodstr.equals("") && !goodstr.equals("null"))
 		{
@@ -2713,14 +2713,14 @@ public class PropUseService
 			if (role_info.getBasicInfo().getWrapSpare() < goodStrings.length)
 			{
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄ°ü¹ü¿Õ¼ä²»¹»!");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„åŒ…è£¹ç©ºé—´ä¸å¤Ÿ!");
 				return propUseEffect;
 			}
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		// GoodsService goodsService = new GoodsService();
 		// goodsService.removeProps(propGroup, use_num);
 
@@ -2733,7 +2733,7 @@ public class PropUseService
 	}
 
 	/**
-	 * »Ø³ÇµÀ¾ßµÄÊ¹ÓÃ
+	 * å›åŸé“å…·çš„ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2746,8 +2746,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2755,11 +2755,11 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
 		String cur_scene_id = role_info.getBasicInfo().getSceneId();
 
-		String new_scene_id = prop.getPropOperate1();// ĞÂµÄµØµãID
+		String new_scene_id = prop.getPropOperate1();// æ–°çš„åœ°ç‚¹ID
 		Pattern p = Pattern
 				.compile(Expression.positive_integer_contain0_regexp);
 		Matcher m = p.matcher(new_scene_id);
@@ -2768,7 +2768,7 @@ public class PropUseService
 		{
 			propUseEffect.setPropType(prop.getPropClass());
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("µÀ¾ß´íÎó,ÇëÖØĞÂÊ¹ÓÃ!");
+			propUseEffect.setNoUseDisplay("é“å…·é”™è¯¯,è¯·é‡æ–°ä½¿ç”¨!");
 			return propUseEffect;
 		}
 		RoomService roomService = new RoomService();
@@ -2782,28 +2782,28 @@ public class PropUseService
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
-		role_info.getBasicInfo().updateSceneId(new_scene_id + "");// ¸ü¸ÄÍæ¼Òscene_id
+		role_info.getBasicInfo().updateSceneId(new_scene_id + "");// æ›´æ”¹ç©å®¶scene_id
 		CompassService.removeMiJing(role_info.getBasicInfo().getPPk(),
-				propGroup.getPropType());// É¾³ıÃØ¾³µØÍ¼
+				propGroup.getPropType());// åˆ é™¤ç§˜å¢ƒåœ°å›¾
 		propUseEffect.setPropType(prop.getPropClass());
 		propUseEffect.setIsEffected(true);
 		propUseEffect.setEffectValue(new_scene_id + "");
 		return propUseEffect;
 	}
 
-	// ´«ËÍµÀ¾ß
+	// ä¼ é€é“å…·
 	private PropUseEffect useGOBACKCITY(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2811,12 +2811,12 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
 		String cur_scene_id = role_info.getBasicInfo().getSceneId();
 
 		int barea_point = 0;
-		// µÃµ½³ÇÊĞÖĞĞÄµãid
+		// å¾—åˆ°åŸå¸‚ä¸­å¿ƒç‚¹id
 		MapService mapService = new MapService();
 		barea_point = mapService.getBareaPointBySceneID(Integer
 				.parseInt(cur_scene_id));
@@ -2831,12 +2831,12 @@ public class PropUseService
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
-		role_info.getBasicInfo().updateSceneId(barea_point + "");// ¸ü¸ÄÍæ¼Òscene_id
+		role_info.getBasicInfo().updateSceneId(barea_point + "");// æ›´æ”¹ç©å®¶scene_id
 
 		propUseEffect.setPropType(prop.getPropClass());
 		propUseEffect.setIsEffected(true);
@@ -2845,7 +2845,7 @@ public class PropUseService
 	}
 
 	/**
-	 * Ê¹ÓÃ×ªÖ°µÀ¾ß
+	 * ä½¿ç”¨è½¬èŒé“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -2859,8 +2859,8 @@ public class PropUseService
 		GrowService growService = new GrowService();
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2868,70 +2868,70 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 		PlayerService playerService = new PlayerService();
 		PartInfoVO player = playerService.getPlayerByPpk(role_info.getBasicInfo().getPPk());
 		RoleTitleSet role_title = role_info.getTitleSet();
 
-		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
-		String conditions = prop.getPropOperate1();// µÃµ½³ÆºÅµÄÌõ¼ş
-		String t_id = prop.getPropOperate2();// µÃµ½³ÆºÅµÄID
+		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
+		String conditions = prop.getPropOperate1();// å¾—åˆ°ç§°å·çš„æ¡ä»¶
+		String t_id = prop.getPropOperate2();// å¾—åˆ°ç§°å·çš„ID
 		
 		TitleVO condi_title = TitleCache.getById(conditions);
 		TitleVO new_title = TitleCache.getById(t_id);
 		
-		// ÅĞ¶ÏÊÇ·ñ´ïµ½ÏÂ¼¶¾­Ñé
+		// åˆ¤æ–­æ˜¯å¦è¾¾åˆ°ä¸‹çº§ç»éªŒ
 		if (Integer.parseInt(role_info.getBasicInfo().getCurExp().trim()) < Integer.parseInt(role_info.getBasicInfo().getNextGradeExp().trim()))
 		{
-			resutl = "ÄúµÄ¾­Ñé²»×ã,²»ÄÜ×ªÖ°.";
+			resutl = "æ‚¨çš„ç»éªŒä¸è¶³,ä¸èƒ½è½¬èŒ.";
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
 		
-		// Ê×ÏÈÊÇ·ñÂú×ãµÃµ½Ìõ¼ş
-		if ( condi_title!=null && role_title.isHaveByTId(condi_title) == false)//ÊÇ·ñÓĞÌõ¼ş³ÆºÅ
-		{// ²»Âú×ãÌõ¼ş
+		// é¦–å…ˆæ˜¯å¦æ»¡è¶³å¾—åˆ°æ¡ä»¶
+		if ( condi_title!=null && role_title.isHaveByTId(condi_title) == false)//æ˜¯å¦æœ‰æ¡ä»¶ç§°å·
+		{// ä¸æ»¡è¶³æ¡ä»¶
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Äã±ØĞëÏÈ»ñµÃ" + condi_title.getName()
-					+ "³ÆºÅºó²ÅÄÜ×ªÖ°");// Ã»ÓĞÂú×ã¸æËßÊ²Ã´»°
+			propUseEffect.setNoUseDisplay("ä½ å¿…é¡»å…ˆè·å¾—" + condi_title.getName()
+					+ "ç§°å·åæ‰èƒ½è½¬èŒ");// æ²¡æœ‰æ»¡è¶³å‘Šè¯‰ä»€ä¹ˆè¯
 			return propUseEffect;
 		}
 		
-		// ÅĞ¶ÏÊÇ·ñÒÑ×ª¹ıÖ°
-		if (role_title.isHaveByTId(new_title) == true)//ÊÇ·ñÓĞÌõ¼ş³ÆºÅ
-		{// ²»Âú×ãÌõ¼ş
+		// åˆ¤æ–­æ˜¯å¦å·²è½¬è¿‡èŒ
+		if (role_title.isHaveByTId(new_title) == true)//æ˜¯å¦æœ‰æ¡ä»¶ç§°å·
+		{// ä¸æ»¡è¶³æ¡ä»¶
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúÒÑ×ª¹ıÖ°,²»ÄÜÔÙÊ¹ÓÃÁË.");// Ã»ÓĞÂú×ã¸æËßÊ²Ã´»°
+			propUseEffect.setNoUseDisplay("æ‚¨å·²è½¬è¿‡èŒ,ä¸èƒ½å†ä½¿ç”¨äº†.");// æ²¡æœ‰æ»¡è¶³å‘Šè¯‰ä»€ä¹ˆè¯
 			return propUseEffect;
 		}
 		
 		String hint = role_info.getTitleSet().gainTitle(new_title);
-		if( hint!=null )//»ñµÃ³ÆºÅÊ§°Ü
+		if( hint!=null )//è·å¾—ç§°å·å¤±è´¥
 		{
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(hint);
 			return propUseEffect;
 		}
 
-		// *************µÀ¾ßÊ¹ÓÃĞ§¹û*********************//
+		// *************é“å…·ä½¿ç”¨æ•ˆæœ*********************//
 		GoodsService goodsService = new GoodsService();
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
 		
-		// Íæ¼ÒÉı¼¶
+		// ç©å®¶å‡çº§
 		growService.upgrade(player, role_info);
 		propUseEffect.setTitle(t_id);
 		propUseEffect.setPropType(PropType.ZHUANZHI);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-				+ StringUtil.isoToGBK(propGroup.getPropName()) + "<br/>ÄúÒÑÉıµ½ÁË"
-				+ player.getPGrade() + "¼¶");
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+				+ StringUtil.isoToGBK(propGroup.getPropName()) + "<br/>æ‚¨å·²å‡åˆ°äº†"
+				+ player.getPGrade() + "çº§");
 		return propUseEffect;
 	}
 
 	/**
-	 * Ê¹ÓÃ¼ÓÑªµÀ¾ß
+	 * ä½¿ç”¨åŠ è¡€é“å…·
 	 * 
 	 * @param prop
 	 * @param object
@@ -2941,8 +2941,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -2955,15 +2955,15 @@ public class PropUseService
 		PartInfoVO player = playerService.getPlayerByPpk(role_info
 				.getBasicInfo().getPPk());
 
-		// µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó
+		// é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚
 		if (player.getPHp() == player.getPMaxHp())
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄÑªÁ¿ÒÑ´ïÉÏÏŞ");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„è¡€é‡å·²è¾¾ä¸Šé™");
 			return propUseEffect;
 		}
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ
 
 		int add_hp = Integer.parseInt(prop.getPropOperate1());
 		if (add_hp + player.getPHp() > player.getPMaxHp())
@@ -2975,9 +2975,9 @@ public class PropUseService
 
 		GoodsService goodsService = new GoodsService();
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
-		// ÑªÁ¿¸üĞÂ
+		// è¡€é‡æ›´æ–°
 		role_info.getBasicInfo().updateHp(player.getPHp());
 
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
@@ -2991,15 +2991,15 @@ public class PropUseService
 		}
 		propUseEffect.setPropType(PropType.ADDHP);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-				+ StringUtil.isoToGBK(propGroup.getPropName()) + ",Ôö¼ÓÁË"
-				+ add_hp + "µãÑªÁ¿!");
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+				+ StringUtil.isoToGBK(propGroup.getPropName()) + ",å¢åŠ äº†"
+				+ add_hp + "ç‚¹è¡€é‡!");
 		propUseEffect.setEffectValue("" + add_hp);
 		return propUseEffect;
 	}
 
 	/**
-	 * ÕâÀïÊÇÖ±½Ó¸øÍæ¼Ò¼ÒµÀ¾ßÊ±¼ä
+	 * è¿™é‡Œæ˜¯ç›´æ¥ç»™ç©å®¶å®¶é“å…·æ—¶é—´
 	 * 
 	 * @param prop
 	 * @param object
@@ -3009,8 +3009,8 @@ public class PropUseService
 //	{
 //		PropUseEffect propUseEffect = new PropUseEffect();
 //		propUseEffect.setPropType(prop.getPropClass());
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-//		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+//		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 //		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 //		if (resutl != null)
 //		{
@@ -3018,13 +3018,13 @@ public class PropUseService
 //			propUseEffect.setNoUseDisplay(resutl);
 //			return propUseEffect;
 //		}
-//		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+//		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 //		int p_pk = role_info.getBasicInfo().getPPk();
-//		// µÃµ½µÀ¾ß¹¦ÄÜ¿ØÖÆ×Ö¶Î
+//		// å¾—åˆ°é“å…·åŠŸèƒ½æ§åˆ¶å­—æ®µ
 //		RoleBeOffService roleBeOffService = new RoleBeOffService();
 //		String hint = roleBeOffService.addroleBeOffExpOfPropTime(p_pk, prop
 //				.getPropID(), use_num + "");
-//		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+//		// ç§»é™¤ä½¿ç”¨é“å…·
 //		GoodsService goodsService = new GoodsService();
 //		propUseEffect.setPropType(PropType.ROLE_BEOFF_EXP);
 //		goodsService.removeProps(propGroup, use_num);
@@ -3034,7 +3034,7 @@ public class PropUseService
 //	}
 
 	/**
-	 * Ê¹ÓÃ¼ÓÀ¶µÀ¾ß
+	 * ä½¿ç”¨åŠ è“é“å…·
 	 * 
 	 * @param prop
 	 * @param object
@@ -3044,8 +3044,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3059,21 +3059,21 @@ public class PropUseService
 		PartInfoVO player = playerService.getPlayerByPpk(role_info
 				.getBasicInfo().getPPk());
 
-		// µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó
+		// é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚
 		if (propGroup == null || propGroup.getPropNum() == 0)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÎïÆ·ÒÑÎŞ");
+			propUseEffect.setNoUseDisplay("ç‰©å“å·²æ— ");
 			return propUseEffect;
 		}
 		if (player.getPMp() == player.getPMaxMp())
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄÄÚÁ¦ÒÑ´ïÉÏÏŞ");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å†…åŠ›å·²è¾¾ä¸Šé™");
 			return propUseEffect;
 		}
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ
 
 		int add_mp = Integer.parseInt(prop.getPropOperate1());
 
@@ -3089,9 +3089,9 @@ public class PropUseService
 
 		GoodsService goodsService = new GoodsService();
 
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
-		// ·¨Á¦¸üĞÂ
+		// æ³•åŠ›æ›´æ–°
 		role_info.getBasicInfo().updateMp(player.getPMp());
 
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
@@ -3105,15 +3105,15 @@ public class PropUseService
 		}
 		propUseEffect.setPropType(PropType.ADDMP);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-				+ StringUtil.isoToGBK(propGroup.getPropName()) + ",Ôö¼ÓÁË"
-				+ add_mp + "µãÄÚÁ¦!");
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+				+ StringUtil.isoToGBK(propGroup.getPropName()) + ",å¢åŠ äº†"
+				+ add_mp + "ç‚¹å†…åŠ›!");
 		propUseEffect.setEffectValue("" + add_mp);
 		return propUseEffect;
 	}
 
 	/**
-	 * Âú²¹³äµÀ¾ß
+	 * æ»¡è¡¥å……é“å…·
 	 * 
 	 * @param prop
 	 * @param object
@@ -3129,11 +3129,11 @@ public class PropUseService
 		if(state == PlayerState.PKFIGHT || state == PlayerState.PKFIGHT || state == PlayerState.FIGHT){
 			propUseEffect.setPropType(prop.getPropClass());
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("PK×´Ì¬²»¿ÉÊ¹ÓÃ¸ÃµÀ¾ß");
+			propUseEffect.setNoUseDisplay("PKçŠ¶æ€ä¸å¯ä½¿ç”¨è¯¥é“å…·");
 			return propUseEffect;
 		}
 		
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3147,11 +3147,11 @@ public class PropUseService
 		PartInfoVO player = playerService.getPlayerByPpk(role_info
 				.getBasicInfo().getPPk());
 
-		// µÀ¾ßµÄÌØÓĞÊ¹ÓÃÒªÇó
+		// é“å…·çš„ç‰¹æœ‰ä½¿ç”¨è¦æ±‚
 		if (propGroup == null || propGroup.getPropNum() == 0)
 		{
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÎïÆ·ÒÑÎŞ");
+			propUseEffect.setNoUseDisplay("ç‰©å“å·²æ— ");
 			return propUseEffect;
 		}
 		if (prop.getPropOperate1().equals("1"))
@@ -3159,13 +3159,13 @@ public class PropUseService
 			if (player.getPHp() == player.getPMaxHp())
 			{
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄÑªÁ¿ÒÑ´ïÉÏÏŞ");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„è¡€é‡å·²è¾¾ä¸Šé™");
 				return propUseEffect;
 			}
 
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
-			// ÑªÁ¿¸üĞÂ
+			// è¡€é‡æ›´æ–°
 			role_info.getBasicInfo().updateHp(player.getPMaxHp());
 
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
@@ -3179,8 +3179,8 @@ public class PropUseService
 			}
 			propUseEffect.setPropType(PropType.CRUEALLHMP);
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-					+ StringUtil.isoToGBK(propGroup.getPropName()) + ",ÑªÁ¿²¹ÂúÁË!");
+			propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+					+ StringUtil.isoToGBK(propGroup.getPropName()) + ",è¡€é‡è¡¥æ»¡äº†!");
 			propUseEffect.setEffectValue("all");
 		}
 		if (prop.getPropOperate1().equals("2"))
@@ -3188,13 +3188,13 @@ public class PropUseService
 			if (player.getPMp() == player.getPMaxMp())
 			{
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄÄÚÁ¦ÒÑ´ïÉÏÏŞ");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„å†…åŠ›å·²è¾¾ä¸Šé™");
 				return propUseEffect;
 			}
 
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
-			// ·¨Á¦¸üĞÂ
+			// æ³•åŠ›æ›´æ–°
 			role_info.getBasicInfo().updateMp(player.getPMaxMp());
 
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
@@ -3208,15 +3208,15 @@ public class PropUseService
 			}
 			propUseEffect.setPropType(PropType.CRUEALLHMP);
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-					+ StringUtil.isoToGBK(propGroup.getPropName()) + ",ÄÚÁ¦²¹ÂúÁË!");
+			propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+					+ StringUtil.isoToGBK(propGroup.getPropName()) + ",å†…åŠ›è¡¥æ»¡äº†!");
 			propUseEffect.setEffectValue("all");
 		}
 		return propUseEffect;
 	}
 
 	/**
-	 * µÀ¾ßµÄ»ù±¾Ê¹ÓÃÌõ¼şÅĞ¶Ï,·µ»Ø¿Õ±íÊ¾ÄÜÊ¹ÓÃ
+	 * é“å…·çš„åŸºæœ¬ä½¿ç”¨æ¡ä»¶åˆ¤æ–­,è¿”å›ç©ºè¡¨ç¤ºèƒ½ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -3228,42 +3228,42 @@ public class PropUseService
 		StringBuffer result = new StringBuffer();
 		if (role_info == null || prop == null)
 		{
-			logger.info("²ÎÊıplayerÎª¿Õ");
+			logger.info("å‚æ•°playerä¸ºç©º");
 			return result.toString();
 		}
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 		int tatol_prop_num = propGroupDao.getPropNumByByPropID(role_info.getPPk(), prop.getPropID());
 
-		// ¸ù¾İµÀ¾ßÀàĞÍ£¬ÅĞ¶ÏÊÇ·ñÄÜÊ¹ÓÃ
+		// æ ¹æ®é“å…·ç±»å‹ï¼Œåˆ¤æ–­æ˜¯å¦èƒ½ä½¿ç”¨
 		if (prop.getPropClass() == PropType.NORMAL
 				|| prop.getPropClass() == PropType.EXONERATIVE)
 		{
-			result.append("·ÇÊ¹ÓÃÎïÆ·");
+			result.append("éä½¿ç”¨ç‰©å“");
 			return result.toString();
 		}
 
-		// ¸ù¾İÍæ¼Ò×´Ì¬£¬ÅĞ¶ÏÊÇ·ñÄÜÊ¹ÓÃ
+		// æ ¹æ®ç©å®¶çŠ¶æ€ï¼Œåˆ¤æ–­æ˜¯å¦èƒ½ä½¿ç”¨
 		// todo:
 
-		// ÓĞÃ¿ÌìÊ¹ÓÃ´ÎÊıÏŞÖÆ
+		// æœ‰æ¯å¤©ä½¿ç”¨æ¬¡æ•°é™åˆ¶
 		if (prop.getPropUsedegree() > 0)
 		{
 			TimeControlService timeControlService = new TimeControlService();
-			// ÅĞ¶ÏÊÇ·ñ¿ÉÓÃ
+			// åˆ¤æ–­æ˜¯å¦å¯ç”¨
 			if (!timeControlService.isUseable(
 					role_info.getPPk(), prop.getPropID(),
 					TimeControlService.PROP, prop.getPropUsedegree()))
 			{
-				result.append(prop.getPropName()).append("Ò»ÌìÖ»ÄÜÊ¹ÓÃ").append(prop.getPropUsedegree()).append("´Î,½ñÌìÒÑ²»ÄÜÊ¹ÓÃÁË.");
+				result.append(prop.getPropName()).append("ä¸€å¤©åªèƒ½ä½¿ç”¨").append(prop.getPropUsedegree()).append("æ¬¡,ä»Šå¤©å·²ä¸èƒ½ä½¿ç”¨äº†.");
 				return result.toString();
 			}
 		}
 
 		if (tatol_prop_num < use_num)
 		{
-			result.append("µÀ¾ßÊıÁ¿²»¹»");
+			result.append("é“å…·æ•°é‡ä¸å¤Ÿ");
 			return result.toString();
 		}
 
@@ -3272,31 +3272,31 @@ public class PropUseService
 				|| role_info.getBasicInfo().getGrade() > Integer.parseInt(grade_condition[1]))
 		{
 
-			result.append("ÄúµÄµÈ¼¶ÓëÊ¹ÓÃµÈ¼¶²»·û");
+			result.append("æ‚¨çš„ç­‰çº§ä¸ä½¿ç”¨ç­‰çº§ä¸ç¬¦");
 			return result.toString();
 		}
 
 		if (prop.getPropSex() != 0 && role_info.getBasicInfo().getSex() != prop.getPropSex())
 		{
-			result.append("ÄúµÄĞÔ±ğ²»·û");
+			result.append("æ‚¨çš„æ€§åˆ«ä¸ç¬¦");
 			return result.toString();
 		}
 
 		if (role_info.getTitleSet().isHaveByTitleStr(prop.getPropJob())==false )
 		{
-			result.append("³ÆºÅ²»·ûºÏ");
+			result.append("ç§°å·ä¸ç¬¦åˆ");
 			return result.toString();
 		}
 
-		if (prop.getMarriage() != 0 && role_info.getBasicInfo().getMarried() != prop.getMarriage()) // ÓĞ½á»éÒªÇó
+		if (prop.getMarriage() != 0 && role_info.getBasicInfo().getMarried() != prop.getMarriage()) // æœ‰ç»“å©šè¦æ±‚
 		{
-			result.append("½á»éÌõ¼ş²»·û");
+			result.append("ç»“å©šæ¡ä»¶ä¸ç¬¦");
 			return result.toString();
 		}
 		return null;
 	}
 
-	/** ³èÎï¼¼ÄÜÊéµÄÊ¹ÓÃ */
+	/** å® ç‰©æŠ€èƒ½ä¹¦çš„ä½¿ç”¨ */
 	private PropUseEffect usePETSKILLBOOK(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num, String pet_pk)
 	{
@@ -3322,7 +3322,7 @@ public class PropUseService
 			{
 				propUseEffect.setPropType(PropType.PETSKILLBOOK);
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄ³èÎï²»ÄÜÑ§Ï°¸Ã¼¼ÄÜ");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©ä¸èƒ½å­¦ä¹ è¯¥æŠ€èƒ½");
 				return propUseEffect;
 			}
 			if (dao.getPetGradeByPetpk(Integer.parseInt(pet_pk)) < dao
@@ -3330,7 +3330,7 @@ public class PropUseService
 			{
 				propUseEffect.setPropType(PropType.PETSKILLBOOK);
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄ³èÎï»¹Î´´ïµ½Ñ§Ï°¸Ã¼¼ÄÜµÄµÈ¼¶");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©è¿˜æœªè¾¾åˆ°å­¦ä¹ è¯¥æŠ€èƒ½çš„ç­‰çº§");
 				return propUseEffect;
 
 			}
@@ -3355,7 +3355,7 @@ public class PropUseService
 
 				propUseEffect.setPropType(PropType.PETSKILLBOOK);
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("Äú³èÎïµÄ¼¼ÄÜµÈ¼¶ÉĞÎ´´ïµ½ÒªÇó");
+				propUseEffect.setNoUseDisplay("æ‚¨å® ç‰©çš„æŠ€èƒ½ç­‰çº§å°šæœªè¾¾åˆ°è¦æ±‚");
 				return propUseEffect;
 			}
 			else
@@ -3394,21 +3394,21 @@ public class PropUseService
 		{
 			propUseEffect.setPropType(PropType.PETSKILLBOOK);
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúµÄ³èÎïÒÑ¾­Ñ§Ï°¹ı¸Ã¼¼ÄÜ");
+			propUseEffect.setNoUseDisplay("æ‚¨çš„å® ç‰©å·²ç»å­¦ä¹ è¿‡è¯¥æŠ€èƒ½");
 			return propUseEffect;
 
 		}
 	}
 
-	/** Ê¹ÓÃÉú»î¼¼ÄÜÊé */
+	/** ä½¿ç”¨ç”Ÿæ´»æŠ€èƒ½ä¹¦ */
 	private PropUseEffect useLiveSkillBook(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 		propUseEffect.setPropType(prop.getPropClass());
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3416,51 +3416,51 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		int sk_id1 = Integer.parseInt(prop.getPropOperate1());// ÉÏÒ»¼¶¼¼ÄÜµÄid
-		int sk_id2 = Integer.parseInt(prop.getPropOperate2());// Ñ§Ï°¼¼ÄÜµÄid
+		int sk_id1 = Integer.parseInt(prop.getPropOperate1());// ä¸Šä¸€çº§æŠ€èƒ½çš„id
+		int sk_id2 = Integer.parseInt(prop.getPropOperate2());// å­¦ä¹ æŠ€èƒ½çš„id
 		SkillUpService sus = new SkillUpService();
 		if (sus.isPlayerHaverThisSkill(role_info.getBasicInfo().getPPk(),
 				sk_id1) == false)
 		{
 			propUseEffect.setPropType(PropType.LIVESKILLBOOK);
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("Äú»¹Ã»ÓĞÑ§Ï°µÍµÈ¼¶¼¼ÄÜ!");
+			propUseEffect.setNoUseDisplay("æ‚¨è¿˜æ²¡æœ‰å­¦ä¹ ä½ç­‰çº§æŠ€èƒ½!");
 			return propUseEffect;
 		}
 		else
 		{
 			if (sus.ifAddSkill(sk_id1, role_info.getBasicInfo().getPPk()) == true)
 			{
-				// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+				// ç§»é™¤ä½¿ç”¨é“å…·
 				GoodsService goodsService = new GoodsService();
 				goodsService.removeProps(propGroup, use_num);
-				// Ñ§Ï°¸Ã¼¼ÄÜ
+				// å­¦ä¹ è¯¥æŠ€èƒ½
 				sus.studyLiveSkill(role_info.getBasicInfo().getPPk(), sk_id1,
 						sk_id2);
 				propUseEffect.setPropType(PropType.LIVESKILLBOOK);
 				propUseEffect.setIsEffected(true);
-				propUseEffect.setEffectDisplay("³É¹¦Ñ§Ï°!");
+				propUseEffect.setEffectDisplay("æˆåŠŸå­¦ä¹ !");
 				return propUseEffect;
 			}
 			else
 			{
 				propUseEffect.setPropType(PropType.LIVESKILLBOOK);
 				propUseEffect.setIsEffected(false);
-				propUseEffect.setNoUseDisplay("ÄúµÄÊìÁ·¶ÈÃ»ÓĞ´ïµ½ÒªÇó!");
+				propUseEffect.setNoUseDisplay("æ‚¨çš„ç†Ÿç»ƒåº¦æ²¡æœ‰è¾¾åˆ°è¦æ±‚!");
 				return propUseEffect;
 			}
 		}
 	}
 
-	/** Ê¹ÓÃÅä·½Êé */
+	/** ä½¿ç”¨é…æ–¹ä¹¦ */
 	private PropUseEffect useSynthesizeBook(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 		propUseEffect.setPropType(prop.getPropClass());
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3468,38 +3468,38 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		int s_id = Integer.parseInt(prop.getPropOperate1());// Ñ§Ï°Åä·½µÄid
+		int s_id = Integer.parseInt(prop.getPropOperate1());// å­¦ä¹ é…æ–¹çš„id
 		PlayerSynthesizeService pss = new PlayerSynthesizeService();
 		if (pss.isHaveSynthesize(role_info.getBasicInfo().getPPk(), s_id) == true)
 		{
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			GoodsService goodsService = new GoodsService();
 			goodsService.removeProps(propGroup, use_num);
-			// Ñ§Ï°¸ÃÅä·½
+			// å­¦ä¹ è¯¥é…æ–¹
 
 			propUseEffect.setPropType(PropType.SYNTHESIZEBOOK);
 			propUseEffect.setIsEffected(true);
-			propUseEffect.setEffectDisplay("ÄúÒÑ¾­Ñ§»á¸ÃÅä·½!");
+			propUseEffect.setEffectDisplay("æ‚¨å·²ç»å­¦ä¼šè¯¥é…æ–¹!");
 			return propUseEffect;
 		}
 		else
 		{
 			propUseEffect.setPropType(PropType.SYNTHESIZEBOOK);
 			propUseEffect.setIsEffected(false);
-			propUseEffect.setNoUseDisplay("ÄúÒÑ¾­Ñ§¹ı¸ÃÅä·½!");
+			propUseEffect.setNoUseDisplay("æ‚¨å·²ç»å­¦è¿‡è¯¥é…æ–¹!");
 			return propUseEffect;
 		}
 	}
 
-	/** Ê¹ÓÃÔª±¦±¦Ïä */
+	/** ä½¿ç”¨å…ƒå®å®ç®± */
 	private PropUseEffect useYuanbaoBox(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 		propUseEffect.setPropType(prop.getPropClass());
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3508,21 +3508,21 @@ public class PropUseService
 			return propUseEffect;
 		}
 		EconomyService es = new EconomyService();
-		int yuanbao = Integer.parseInt(prop.getPropOperate1());// Ôª±¦ÊıÁ¿
+		int yuanbao = Integer.parseInt(prop.getPropOperate1());// å…ƒå®æ•°é‡
 		es.addYuanbao(role_info.getBasicInfo().getPPk(), role_info
 				.getBasicInfo().getUPk(), yuanbao, StatisticsType.BAOXIANG);
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(propGroup, use_num);
 
 		propUseEffect.setPropType(PropType.GET_YUANBAO_BOX);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("Äú»ñµÃÁË¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á" + yuanbao + "!");
+		propUseEffect.setEffectDisplay("æ‚¨è·å¾—äº†ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—" + yuanbao + "!");
 		return propUseEffect;
 	}
 
 	/**
-	 * ³èÎïµ°µÀ¾ßÊ¹ÓÃ
+	 * å® ç‰©è›‹é“å…·ä½¿ç”¨
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -3535,8 +3535,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3556,29 +3556,29 @@ public class PropUseService
 		int pet_num = petService.getNumOfPet(p_pk);
 		if (pet_num > 5)
 		{
-			resutl = "³èÎïµÄÊıÁ¿ÒÑÂú";
+			resutl = "å® ç‰©çš„æ•°é‡å·²æ»¡";
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
 		else
 		{
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
-			// Éú³É³èÎï
+			// ç”Ÿæˆå® ç‰©
 			pet_name = petEggService.creatPetByEgg(prop, p_pk);
 		}
 
 		propUseEffect.setPropType(PropType.PET_EGG_GUDING);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË" + propGroup.getPropName()
-				+ ",»ñµÃÁË" + StringUtil.isoToGBK(pet_name));
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†" + propGroup.getPropName()
+				+ ",è·å¾—äº†" + StringUtil.isoToGBK(pet_name));
 		propUseEffect.setEffectValue("");
 		return propUseEffect;
 	}
 
 	/**
-	 * ÃâPK µÀ¾ß
+	 * å…PK é“å…·
 	 * 
 	 * @param player
 	 * @param propGroup
@@ -3591,8 +3591,8 @@ public class PropUseService
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï **************//
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ **************//
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3600,37 +3600,37 @@ public class PropUseService
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;
 		}
-		// ************µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï½áÊø**************//
+		// ************é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­ç»“æŸ**************//
 
-		// »ñÈ¡ÃâPKµÀ¾ßµÄÊ¹ÓÃÊ±¼ä ·ÖÖÓ¼ÆËã
+		// è·å–å…PKé“å…·çš„ä½¿ç”¨æ—¶é—´ åˆ†é’Ÿè®¡ç®—
 		String propTime = prop.getPropOperate1();
-		// »ñµÃµ±Ç°Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String beginTime = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// è·å¾—å½“å‰æ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String beginTime = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		TimeShow timeShow = new TimeShow();
-		String endTime = timeShow.endTime(Integer.parseInt(propTime));// È¡µÃµ±Ç°Ê±¼ä¼¸·ÖÖÓÖ®ºóµÄÊ±¼ä
+		String endTime = timeShow.endTime(Integer.parseInt(propTime));// å–å¾—å½“å‰æ—¶é—´å‡ åˆ†é’Ÿä¹‹åçš„æ—¶é—´
 
 		AvoidPkPropService avoidPkPropService = new AvoidPkPropService();
 		avoidPkPropService.addAvoidPkProp(role_info.getBasicInfo().getPPk(),
 				beginTime, endTime);
 		GoodsService goodsService = new GoodsService();
-		// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+		// ç§»é™¤ä½¿ç”¨é“å…·
 		goodsService.removeProps(propGroup, use_num);
 		propUseEffect.setIsEffected(true);
-		propUseEffect.setEffectDisplay("ÄúÊ¹ÓÃÁË"
-				+ StringUtil.isoToGBK(propGroup.getPropName()) + "<br/>Äú½«ÔÚ"
-				+ propTime + "·ÖÖÓÄÚ²»±»ÈËÉ±º¦");
+		propUseEffect.setEffectDisplay("æ‚¨ä½¿ç”¨äº†"
+				+ StringUtil.isoToGBK(propGroup.getPropName()) + "<br/>æ‚¨å°†åœ¨"
+				+ propTime + "åˆ†é’Ÿå†…ä¸è¢«äººæ€å®³");
 		return propUseEffect;
 	}
 
-	// ÎäÆ÷±¦Ïä
+	// æ­¦å™¨å®ç®±
 	private PropUseEffect useARMBOX(RoleEntity role_info,
 			PlayerPropGroupVO propGroup, PropVO prop, int use_num)
 	{
 		PropUseEffect propUseEffect = new PropUseEffect();
 
-		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
-		// µÀ¾ßÊ¹ÓÃ»ù±¾ÅĞ¶Ï
+		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
+		// é“å…·ä½¿ç”¨åŸºæœ¬åˆ¤æ–­
 		String resutl = isPropUseByBasicCondition(role_info, prop, use_num);
 		if (resutl != null)
 		{
@@ -3661,15 +3661,15 @@ public class PropUseService
 		NpcService npcService = new NpcService();
 		GoodsService goodsService = new GoodsService();
 
-		// Çå³şÔ­À´µÄµôÂäÎï
+		// æ¸…æ¥šåŸæ¥çš„æ‰è½ç‰©
 		role_info.getDropSet().clearDropItem();
 		
-		// µôÂäÎïÆ·
+		// æ‰è½ç‰©å“
 		npcService.dropGoodsByJiangRareBox(Integer.parseInt(npc_id), player);
 
-		// µÃµ½µôÂäÎï
+		// å¾—åˆ°æ‰è½ç‰©
 		List<DropGoodsVO> dropgoods = role_info.getDropSet().getList();
-		// ÅĞ¶Ï°ü¹ü¸÷Êı·ñ¹»
+		// åˆ¤æ–­åŒ…è£¹å„æ•°å¦å¤Ÿ
 		if (goodsService.isEnoughWrapSpace(p_pk, dropgoods.size()))
 		{
 			propUseEffect.setPropType(PropType.ARMBOX);
@@ -3689,7 +3689,7 @@ public class PropUseService
 						dropGoods.getDropNum(),GameLogManager.G_BOX_DROP);
 				ss += dropGoods.getGoodsName() + "x" + dropGoods.getDropNum()
 						+ douhao;
-				// Ö´ĞĞÍ³¼Æ
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(dropGoods.getGoodsId(), dropGoods
 						.getGoodsType(), dropGoods.getDropNum(),
@@ -3697,13 +3697,13 @@ public class PropUseService
 
 			}
 			propUseEffect.setEffectDisplay(ss);
-			// ÒÆ³ıÊ¹ÓÃµÀ¾ß
+			// ç§»é™¤ä½¿ç”¨é“å…·
 			goodsService.removeProps(propGroup, use_num);
 		}
 		else
 		{
 			role_info.getDropSet().clearDropItem();
-			resutl = "ÄúµÄ°ü¹ü¸ñÊı²»¹»!ÇëÇåÀí°ü¹ü!";
+			resutl = "æ‚¨çš„åŒ…è£¹æ ¼æ•°ä¸å¤Ÿ!è¯·æ¸…ç†åŒ…è£¹!";
 			propUseEffect.setIsEffected(false);
 			propUseEffect.setNoUseDisplay(resutl);
 			return propUseEffect;

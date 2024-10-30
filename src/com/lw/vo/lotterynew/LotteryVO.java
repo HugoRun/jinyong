@@ -4,23 +4,23 @@ public class LotteryVO
 {
 	// ID
 	private int id;
-	// ²ÊÆ±ÆÚºÅ
+	// å½©ç¥¨æœŸå·
 	private String lottery_date;
-	// ²ÊÆ±ÄÚÈİ
+	// å½©ç¥¨å†…å®¹
 	private String lottery_content;
-	// ÏúÊÛ×Ü¶î
+	// é”€å”®æ€»é¢
 	private long lottery_all_yb;
-	// Íæ¼ÒÁìÈ¡½±ÀøµÄÊıÁ¿
+	// ç©å®¶é¢†å–å¥–åŠ±çš„æ•°é‡
 	private long lottery_catch_yb;
-	// ÖĞ½±ÈËÊı
+	// ä¸­å¥–äººæ•°
 	private String lottery_catch_player;
-	// ¿ª½±Ê±¼ä
+	// å¼€å¥–æ—¶é—´
 	private String lottery_create_time;
-	// ½±³Ø½±ÀøÄÚÈİ
+	// å¥–æ± å¥–åŠ±å†…å®¹
 	private long sys_lottery_yb;
-	// ×·¼Ó½±ÀøÄÚÈİ
+	// è¿½åŠ å¥–åŠ±å†…å®¹
 	private String sys_lottery_bonus;
-	// Ë°½ğ
+	// ç¨é‡‘
 	private int sys_lottery_tax;
 
 	public int getId()

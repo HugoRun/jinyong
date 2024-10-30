@@ -17,14 +17,14 @@ import com.ls.pub.yeepay.HttpUtils;
  */
 public class SZFService {
 	Logger logger = Logger.getLogger("log.pay");
-	private static String szf_MerId 		= Configuration.getInstance().getValue("szf_MerId"); 	// ÉñÖİ¸¶ÉÌ»§idÇëÇóµØÖ·
-	private static String szf_keyValue 		= Configuration.getInstance().getValue("szf_keyValue"); 	// ÉñÖİ¸¶ÉÌ»§ÃÜÔ¿ÇëÇóµØÖ·
-	private static String szf_annulCardReqURL 		= Configuration.getInstance().getValue("szf_annulCardReqURL"); 	// ÉñÖİ¸¶ÇëÇóµØÖ·
-	private static String version  		= Configuration.getInstance().getValue("version"); 	// ÉñÖİ¸¶°æ±¾ºÅ
-	private static String merUserMail  		= Configuration.getInstance().getValue("merUserMail"); 	// ÉñÖİ¸¶ÓÊÏä
-	private static String des_key  		= Configuration.getInstance().getValue("des_key"); 	// desÃÜÔ¿
+	private static String szf_MerId 		= Configuration.getInstance().getValue("szf_MerId"); 	// ç¥å·ä»˜å•†æˆ·idè¯·æ±‚åœ°å€
+	private static String szf_keyValue 		= Configuration.getInstance().getValue("szf_keyValue"); 	// ç¥å·ä»˜å•†æˆ·å¯†é’¥è¯·æ±‚åœ°å€
+	private static String szf_annulCardReqURL 		= Configuration.getInstance().getValue("szf_annulCardReqURL"); 	// ç¥å·ä»˜è¯·æ±‚åœ°å€
+	private static String version  		= Configuration.getInstance().getValue("version"); 	// ç¥å·ä»˜ç‰ˆæœ¬å·
+	private static String merUserMail  		= Configuration.getInstance().getValue("merUserMail"); 	// ç¥å·ä»˜é‚®ç®±
+	private static String des_key  		= Configuration.getInstance().getValue("des_key"); 	// deså¯†é’¥
 	
-	//Ìí¼Ó ÉñÖİ¸¶µÄ³äÖµ·½·¨
+	//æ·»åŠ  ç¥å·ä»˜çš„å……å€¼æ–¹æ³•
 	public String payBySZF(String orderId,int money,String returnUrl,String pa_MP,String code,String psw,String cardTypeCombine){
 		DES des = new DES();
 		String cardInfo = des.getDesEncryptBase64String(money+"", code, psw, des_key);
@@ -46,7 +46,7 @@ public class SZFService {
 		reqParams.put("signString", "");
 		String szfResponseCode = null;
 		try {
-			// ·¢ÆğÖ§¸¶ÇëÇó
+			// å‘èµ·æ”¯ä»˜è¯·æ±‚
 			logger.debug("Begin http communications,request params[" + reqParams
 					+ "]");
 			szfResponseCode = HttpUtils.URLGetSZF(szf_annulCardReqURL, reqParams);

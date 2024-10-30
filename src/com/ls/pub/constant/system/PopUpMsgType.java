@@ -1,130 +1,130 @@
 package com.ls.pub.constant.system;
 
 /**
- * @author ls ¹¦ÄÜ:µ¯³öÏûÏ¢ÀàĞÍ Mar 9, 2009
+ * @author ls åŠŸèƒ½:å¼¹å‡ºæ¶ˆæ¯ç±»å‹ Mar 9, 2009
  */
 public class PopUpMsgType
 {
-	//****************ÏûÏ¢ÀàĞÍ
+	//****************æ¶ˆæ¯ç±»å‹
 	public final static int INSTANCE = 1;
-	// ×é¶ÓÏûÏ¢
+	// ç»„é˜Ÿæ¶ˆæ¯
 	public final static int MESSAGE_GROUP = 2;
-	// ½»Ò×ÏûÏ¢
+	// äº¤æ˜“æ¶ˆæ¯
 	public final static int MESSAGE_SWAP = 3;
-	// PKÏûÏ¢
+	// PKæ¶ˆæ¯
 	public final static int MESSAGE_PK = 4;
 
-	// ¹¥³ÇÕ½³¡µ¯³öÏûÏ¢
+	// æ”»åŸæˆ˜åœºå¼¹å‡ºæ¶ˆæ¯
 	public final static int TONGSIEGE = 5;
 
-	// ½áÒåµ¯³öÏûÏ¢
+	// ç»“ä¹‰å¼¹å‡ºæ¶ˆæ¯
 	public final static int JIEYI = 6;
 
-	// ½á»éµ¯³öÏûÏ¢
+	// ç»“å©šå¼¹å‡ºæ¶ˆæ¯
 	public final static int JIEHUN = 7;
 
-	// Àë»éµ¯³öÏûÏ¢
+	// ç¦»å©šå¼¹å‡ºæ¶ˆæ¯
 	public final static int LIHUN = 8;
 
-	// Í¬Òâ½á»éµ¯³öÏûÏ¢
+	// åŒæ„ç»“å©šå¼¹å‡ºæ¶ˆæ¯
 	public final static int MERRY_AGREE = 9;
 
-	// ½á»éÎïÆ·²»Âú×ã
+	// ç»“å©šç‰©å“ä¸æ»¡è¶³
 	public final static int CAN_NOT_MERRY = 10;
 
-	// ³öÊ¦ÏûÏ¢
+	// å‡ºå¸ˆæ¶ˆæ¯
 	public final static int CHUSHI = 11;
-	// ÏµÍ³ÌØÊâÏûÏ¢
+	// ç³»ç»Ÿç‰¹æ®Šæ¶ˆæ¯
 	public final static int SYS_TESHU_MSG = 12;
-	//µ¯³öÊ½ÏµÍ³ÏûÏ¢
+	//å¼¹å‡ºå¼ç³»ç»Ÿæ¶ˆæ¯
 	public final static int XITONG = 13;
-	//ÀŞÌ¨µ¯³öÏûÏ¢
+	//æ“‚å°å¼¹å‡ºæ¶ˆæ¯
 	public final static int LEITAI = 14;
-	//Ç§ÃæÀÉ¾ı
+	//åƒé¢éƒå›
 	public final static int LANGJUN = 15;
-	//ÃØ¾³µØÍ¼
+	//ç§˜å¢ƒåœ°å›¾
 	public final static int MIJING_MAP = 16;
-	//ÆÕÍ¨ÌáÊ¾ÏûÏ¢
+	//æ™®é€šæç¤ºæ¶ˆæ¯
 	public final static int COMMON = 17;
 	
-	//²åÆì×Ó
+	//æ’æ——å­
 	public final static int TIAOZHAN = 18;
 	
-	/** ************ÏûÏ¢ÓÅÏÈ¼¶*************** */
-	// ÏµÍ³ÌØÊâÏûÏ¢
+	/** ************æ¶ˆæ¯ä¼˜å…ˆçº§*************** */
+	// ç³»ç»Ÿç‰¹æ®Šæ¶ˆæ¯
 	public final static int SYS_TESHU_MSG_FIRST = 1;
-	// PKÏûÏ¢ÓÅÏÈ¼¶
-	public final static int MESSAGE_PK_FIRST = 0;//pkµÄµ¯³öÊ½ÏûÏ¢×î¸ß
-	// ½»Ò×ÏûÏ¢ÓÅÏÈ¼¶
+	// PKæ¶ˆæ¯ä¼˜å…ˆçº§
+	public final static int MESSAGE_PK_FIRST = 0;//pkçš„å¼¹å‡ºå¼æ¶ˆæ¯æœ€é«˜
+	// äº¤æ˜“æ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int MESSAGE_SWAP_FIRST = 3;
-	// ×é¶ÓÏûÏ¢ÓÅÏÈ¼¶
+	// ç»„é˜Ÿæ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int MESSAGE_GROUP_FIRST = 4;
 
-	// ½áÒåÏûÏ¢ÓÅÏÈ¼¶
+	// ç»“ä¹‰æ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int JIEYI_FIRST = 5;
 
-	// ½á»éÏûÏ¢ÓÅÏÈ¼¶
+	// ç»“å©šæ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int JIEHUN_FIRST = 6;
 
-	// Àë»éÏûÏ¢ÓÅÏÈ¼¶
+	// ç¦»å©šæ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int LIHUN_FIRST = 7;
 
-	// Í¬Òâ½á»éÏûÏ¢ÓÅÏÈ¼¶
+	// åŒæ„ç»“å©šæ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int MERRY_AGREE_FIRST = 8;
 
-	// ½á»éÎïÆ·²»Âú×ãÓÅÏÈ¼¶
+	// ç»“å©šç‰©å“ä¸æ»¡è¶³ä¼˜å…ˆçº§
 	public final static int CAN_NOT_MERRY_FIRST = 9;
 
-	// ³öÊ¦ÏûÏ¢ÓÅÏÈ¼¶
+	// å‡ºå¸ˆæ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int CHUSHI_FIRST = 10;
 	
-	//ÀŞÌ¨ÏûÏ¢ÓÅÏÈ¼¶
+	//æ“‚å°æ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int LEITAI_FIRST = 11;
 	
-	//¶ã¹ıÇ§ÃæÀÉ¾ı×·É±ÓÅÏÈ¼¶
+	//èº²è¿‡åƒé¢éƒå›è¿½æ€ä¼˜å…ˆçº§
 	public final static int XIAN_LANGJUN_FIRST = 0;
 	
-	//Ç§ÃæÀÉ¾ıÓÅÏÈ¼¶
+	//åƒé¢éƒå›ä¼˜å…ˆçº§
 	public final static int LANGJUN_FIRST = 13;
 	
-	//ÃØ¾³µØÍ¼ÓÅÏÈ¼¶
+	//ç§˜å¢ƒåœ°å›¾ä¼˜å…ˆçº§
 	public final static int MIJING_MAP_FIRST = 14;
 	
-	//ÆÕÍ¨ÏûÏ¢ÓÅÏÈ¼¶
+	//æ™®é€šæ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int COMMON_FIRST = 15;
 	
-	//²åÆì×ÓÏûÏ¢ÓÅÏÈ¼¶
+	//æ’æ——å­æ¶ˆæ¯ä¼˜å…ˆçº§
 	public final static int TIAOZHAN_FIRST = 16;
 
 	/** 
-	 *   µ¯³öÊ½ÏµÍ³ÏûÏ¢ÓÅÏÈ¼¶,´ËÓÅ»¯¼¶Ó¦¸Ã¼«Ğ¡, Ö»ÓĞÔÚÆ½³£×´Ì¬ÏÂ²ÅÄÜ½øĞĞ,²¢ÇÒÖ»¶Ô×Ô¼º¸ºÔğ.
-	 *	ÆäËûµ¯³öÊ½ÏûÏ¢Èç¹û²»ÊÇÌØÊâÇé¿ö,Çë´óÓÚ´ËÓÅÏÈ¼¶
+	 *   å¼¹å‡ºå¼ç³»ç»Ÿæ¶ˆæ¯ä¼˜å…ˆçº§,æ­¤ä¼˜åŒ–çº§åº”è¯¥æå°, åªæœ‰åœ¨å¹³å¸¸çŠ¶æ€ä¸‹æ‰èƒ½è¿›è¡Œ,å¹¶ä¸”åªå¯¹è‡ªå·±è´Ÿè´£.
+	 *	å…¶ä»–å¼¹å‡ºå¼æ¶ˆæ¯å¦‚æœä¸æ˜¯ç‰¹æ®Šæƒ…å†µ,è¯·å¤§äºæ­¤ä¼˜å…ˆçº§
 	 */
 	public final static int XITONG_FIRST = 30;
 	
 	public final static int NEWPLAYERGUIDEINFOMSG = 31;
 	
-	public final static int NOTIFY_KILL_OTHER = 32;//Í¨ÖªÄã°Ñ¶Ô·½´òËÀ
+	public final static int NOTIFY_KILL_OTHER = 32;//é€šçŸ¥ä½ æŠŠå¯¹æ–¹æ‰“æ­»
 	
-	public final static int NOTIFY_SELF_DEAD = 33;//Í¨Öª×Ô¼º±»´òËÀ
+	public final static int NOTIFY_SELF_DEAD = 33;//é€šçŸ¥è‡ªå·±è¢«æ‰“æ­»
 	
-	public final static int NOTIFY_OTHER_DEAD = 34;//Í¨Öª±ğÈË±»´òËÀ
+	public final static int NOTIFY_OTHER_DEAD = 34;//é€šçŸ¥åˆ«äººè¢«æ‰“æ­»
 	
 
-	/** ************ÏµÍ³ÌØÊâµ¯³öÊ½ÏûÏ¢ÀàĞÍ*************** */
-	public final static int GO_UP_GRADE = 1;//##µÈ¼¶Çé¿ö
-	public final static int WRAP_LOWER_LIMIT = 2;//##°ü¹üÇé¿ö
-	public final static int PET_FATIGUE = 3;//##³èÎïÇé¿ö
-	public final static int ATTAIN_PROP_TYPE = 4;//»ñµÃµÀ¾ßÇé¿ö 
-	public final static int TASK_INSTANCE = 5;//##¸±±¾ÈÎÎñÇé¿ö
-	public final static int TASK_30TONG = 6;//30¼¶°ïÅÉ½áÊøÈÎÎñÇé¿ö
-	public final static int TASK_30PK = 7;//30¼¶PK½áÊøÈÎÎñÇé¿ö
-	public final static int MENU_INSTANCE = 8;//¸±±¾²Ëµ¥
-	public final static int MENU_SIEGE = 9;//##¹¥³Ç²Ëµ¥Çé¿ö
-	public final static int PROP_GRADE = 10;//ÌØÊâµÀ¾ßÔÚÌØÊâµÈ¼¶µÄÇé¿ö
-	public final static int VIP_ENDTIME = 11;//VIP»áÔ±µ½ÆÚÒÔºó
-	public final static int PK_SWITCH = 12;//PK¿ª¹Ø µ±´ò¿ªµÄÊ±ºò
-	public final static int NEW_ROLE = 13;//ĞÂ½ÇÉ«½øÈëÓÎÏ·ÌáÊ¾
-	public final static int CNN_TODAY  = 14;//ÉÌ³Ç½ñÈÕ¿ìÑ¶
-	public final static int USE_PROP  = 15;//Ê¹ÓÃµÀ¾ß
+	/** ************ç³»ç»Ÿç‰¹æ®Šå¼¹å‡ºå¼æ¶ˆæ¯ç±»å‹*************** */
+	public final static int GO_UP_GRADE = 1;//##ç­‰çº§æƒ…å†µ
+	public final static int WRAP_LOWER_LIMIT = 2;//##åŒ…è£¹æƒ…å†µ
+	public final static int PET_FATIGUE = 3;//##å® ç‰©æƒ…å†µ
+	public final static int ATTAIN_PROP_TYPE = 4;//è·å¾—é“å…·æƒ…å†µ 
+	public final static int TASK_INSTANCE = 5;//##å‰¯æœ¬ä»»åŠ¡æƒ…å†µ
+	public final static int TASK_30TONG = 6;//30çº§å¸®æ´¾ç»“æŸä»»åŠ¡æƒ…å†µ
+	public final static int TASK_30PK = 7;//30çº§PKç»“æŸä»»åŠ¡æƒ…å†µ
+	public final static int MENU_INSTANCE = 8;//å‰¯æœ¬èœå•
+	public final static int MENU_SIEGE = 9;//##æ”»åŸèœå•æƒ…å†µ
+	public final static int PROP_GRADE = 10;//ç‰¹æ®Šé“å…·åœ¨ç‰¹æ®Šç­‰çº§çš„æƒ…å†µ
+	public final static int VIP_ENDTIME = 11;//VIPä¼šå‘˜åˆ°æœŸä»¥å
+	public final static int PK_SWITCH = 12;//PKå¼€å…³ å½“æ‰“å¼€çš„æ—¶å€™
+	public final static int NEW_ROLE = 13;//æ–°è§’è‰²è¿›å…¥æ¸¸æˆæç¤º
+	public final static int CNN_TODAY  = 14;//å•†åŸä»Šæ—¥å¿«è®¯
+	public final static int USE_PROP  = 15;//ä½¿ç”¨é“å…·
 }

@@ -2,7 +2,7 @@
 <%@page import="com.ben.vo.friend.FriendVO"%>
 <%@page import="java.util.List"%>
 <%@ page pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 <%
 	String pByName = (String) request.getAttribute("pByName");
 	String pByPk = (String) request.getAttribute("pByPk");

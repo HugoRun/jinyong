@@ -1,16 +1,5 @@
 package com.ls.web.action.cooperate.juu.bill;
 
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
-
 import com.ben.jms.JmsUtil;
 import com.ls.ben.dao.cooparate.bill.UAccountRecordDao;
 import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
@@ -24,141 +13,126 @@ import com.ls.web.service.cooperate.dangle.PassportService;
 import com.ls.web.service.player.EconomyService;
 import com.lw.service.gamesystemstatistics.GameSystemStatisticsService;
 import com.pm.service.mail.MailInfoService;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.DispatchAction;
 
-public class CallBackAction extends DispatchAction
-{
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
-	Logger logger = Logger.getLogger("log.pay");
+public class CallBackAction extends DispatchAction {
 
-	/**
-	 * Ó¦´ğ´¦Àí
-	 */
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
+    Logger logger = Logger.getLogger("log.pay");
 
-		logger.info("##########JUUÖ±½Ó»Øµ÷############");
+    /**
+     * åº”ç­”å¤„ç†
+     */
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
-		String resultWml = "";
+        logger.info("##########JUUç›´æ¥å›è°ƒ############");
 
-		// Ïû·Ñ½ğ¶î
-		String amount = formatString(request.getParameter("amount"));
-		// Ö§¸¶ÀàĞÍ
-		String card_type = formatString(request.getParameter("card_type"));
-		// ÓÎÏ·ÕÊºÅ
-		String account = formatString(request.getParameter("account"));
-		// ÉÌ»§¶©µ¥
-		String order_no = formatString(request.getParameter("order_no"));
-		// Ê±¼ä´Á
-		String time = formatString(request.getParameter("time"));
-		// ÑéÖ¤Âë
-		String sign = formatString(request.getParameter("sign"));
+        String resultWml = "";
 
-		logger.info("amount:" + amount);
-		logger.info("card_type:" + card_type);
-		logger.info("account:" + account);
-		logger.info("order_no:" + order_no);
-		logger.info("time:" + time);
-		logger.info("sign:" + sign);
+        // æ¶ˆè´¹é‡‘é¢
+        String amount = formatString(request.getParameter("amount"));
+        // æ”¯ä»˜ç±»å‹
+        String card_type = formatString(request.getParameter("card_type"));
+        // æ¸¸æˆå¸å·
+        String account = formatString(request.getParameter("account"));
+        // å•†æˆ·è®¢å•
+        String order_no = formatString(request.getParameter("order_no"));
+        // æ—¶é—´æˆ³
+        String time = formatString(request.getParameter("time"));
+        // éªŒè¯ç 
+        String sign = formatString(request.getParameter("sign"));
 
-		String key = "3IOJ3934KJ3493KJ94K";
-		String sign_bak = MD5Util.md5Hex(amount + card_type + account
-				+ order_no + time + key);
-		UAccountRecordVO accountRecord = new UAccountRecordVO();
-		UAccountRecordDao accRecordDao = new UAccountRecordDao();
+        logger.info("amount:" + amount);
+        logger.info("card_type:" + card_type);
+        logger.info("account:" + account);
+        logger.info("order_no:" + order_no);
+        logger.info("time:" + time);
+        logger.info("sign:" + sign);
 
-		long time_bak = new Date().getTime() / 1000;// Ê±¼ä
-		long time_long;
-		try
-		{
-			time_long = Long.parseLong(time);
-		}
-		catch (Exception e)
-		{
-			resultWml = "err_time";
-			request.setAttribute("resultWml", resultWml);
-			return mapping.findForward("success");
-		}
+        String key = "3IOJ3934KJ3493KJ94K";
+        String sign_bak = MD5Util.md5Hex(amount + card_type + account + order_no + time + key);
+        UAccountRecordVO accountRecord = new UAccountRecordVO();
+        UAccountRecordDao accRecordDao = new UAccountRecordDao();
 
-		if ((time_bak - time_long) > 900 || (time_long - time_bak) > 900)
-		{
-			resultWml = "err_time";
-			request.setAttribute("resultWml", resultWml);
-			return mapping.findForward("success");
-		}
+        long time_bak = new Date().getTime() / 1000;// æ—¶é—´
+        long time_long;
+        try {
+            time_long = Long.parseLong(time);
+        } catch (Exception e) {
+            resultWml = "err_time";
+            request.setAttribute("resultWml", resultWml);
+            return mapping.findForward("success");
+        }
 
-		UAccountRecordVO vo = accRecordDao
-				.getRecord(order_no, Channel.JUU + "");
-		if (vo != null)
-		{
-			resultWml = "err_repeat";
-			request.setAttribute("resultWml", resultWml);
-			return mapping.findForward("success");
-		}
+        if ((time_bak - time_long) > 900 || (time_long - time_bak) > 900) {
+            resultWml = "err_time";
+            request.setAttribute("resultWml", resultWml);
+            return mapping.findForward("success");
+        }
 
-		if (sign_bak.equals(sign))
-		{
-			PassportService passportService = new PassportService();
-			PassportVO passport = passportService.getPassportInfoByUserID(
-					account, Channel.JUU);
-			EconomyService economyService = new EconomyService();
-			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
-			MailInfoService mailInfoService = new MailInfoService();
-			// ³äÖµ³É¹¦ ¼ÇÂ¼
-			accountRecord.setMoney(Integer.parseInt(amount));
-			accountRecord.setUPk(passport.getUPk());
-			accountRecord.setChannel(Channel.JUU + "");
-			accountRecord.setAccountState("success");
-			accountRecord.setCode(order_no);
-			accRecordDao.insert(accountRecord);
-			// ¸øÍæ¼ÒÔö¼ÓÔª±¦
-			int yb_num = accountRecord.getMoney() * 100;// 1Ôª»ñµÃ10¸öÔª±¦
-			int jf_num = yb_num * GameConfig.getJifenNum();// 1Ôª»ñµÃ1¸ö»ı·Ö
+        UAccountRecordVO vo = accRecordDao.getRecord(order_no, Channel.JUU + "");
+        if (vo != null) {
+            resultWml = "err_repeat";
+            request.setAttribute("resultWml", resultWml);
+            return mapping.findForward("success");
+        }
 
-			economyService.addYuanbao(accountRecord.getPPk(), accountRecord
-					.getUPk(), yb_num, "chongzhi");
-			economyService.addJifen(accountRecord.getUPk(), jf_num);// Ôö¼Ó»ı·Ö£ºÃ¿³É¹¦³äÖµ1ÈËÃñ±Ò=1»ı·Ö
+        if (sign_bak.equals(sign)) {
+            PassportService passportService = new PassportService();
+            PassportVO passport = passportService.getPassportInfoByUserID(account, Channel.JUU);
+            EconomyService economyService = new EconomyService();
+            GameSystemStatisticsService gsss = new GameSystemStatisticsService();
+            MailInfoService mailInfoService = new MailInfoService();
+            // å……å€¼æˆåŠŸ è®°å½•
+            accountRecord.setMoney(Integer.parseInt(amount));
+            accountRecord.setUPk(passport.getUPk());
+            accountRecord.setChannel(Channel.JUU + "");
+            accountRecord.setAccountState("success");
+            accountRecord.setCode(order_no);
+            accRecordDao.insert(accountRecord);
+            // ç»™ç©å®¶å¢åŠ å…ƒå®
+            int yb_num = accountRecord.getMoney() * 100;// 1å…ƒè·å¾—10ä¸ªå…ƒå®
+            int jf_num = yb_num * GameConfig.getJifenNum();// 1å…ƒè·å¾—1ä¸ªç§¯åˆ†
 
-			gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",
-					accountRecord.getPPk());// Í³¼Æ³äÖµÈË´Î
-			// ·¢ÓÊ¼ş
-			String title = "³äÖµ³É¹¦";
-			String content = "";
-			String time_str = DateUtil.getCurrentTimeStr();
-			content = "ÄúÓÚ" + time_str + "³äÖµ" + accountRecord.getMoney()
-					+ "Ôª³äÖµ³É¹¦£¬»ñµÃ¡¾" + GameConfig.getYuanbaoName() + "¡¿¡Á" + yb_num
-					+ "£¡";
-			logger.info("ÓÊ¼ş±êÌâ£º" + title);
-			logger.info("ÓÊ¼şÄÚÈİ£º" + content);
-			mailInfoService.sendMailBySystem(accountRecord.getPPk(), title,
-					content);
+            economyService.addYuanbao(accountRecord.getPPk(), accountRecord.getUPk(), yb_num, "chongzhi");
+            economyService.addJifen(accountRecord.getUPk(), jf_num);// å¢åŠ ç§¯åˆ†ï¼šæ¯æˆåŠŸå……å€¼1äººæ°‘å¸=1ç§¯åˆ†
 
-			gsss.addPropNum(0, StatisticsType.RMB, accountRecord.getMoney(),
-					StatisticsType.DEDAO, Channel.JUU + "", accountRecord
-							.getPPk());// Í³¼ÆRMB
-			JmsUtil.chongzhi(accountRecord.getPPk(), accountRecord.getMoney(),
-					accountRecord.getChannel());
-			// Ó¦´ğ»úÖÆÊÕµ½Ö§¸¶½á¹ûÍ¨ÖªÊ±±ØĞë»ØĞ´ÒÔ"success"¿ªÍ·µÄ×Ö·û´®
-			resultWml = "success";
-			request.setAttribute("resultWml", resultWml);
-			return mapping.findForward("success");
-		}
-		else
-		{
-			// Ó¦´ğ»úÖÆÊÕµ½Ö§¸¶½á¹ûÍ¨ÖªÊ±±ØĞë»ØĞ´ÒÔ"success"¿ªÍ·µÄ×Ö·û´®
-			resultWml = "err_sign";
-			request.setAttribute("resultWml", resultWml);
-			return mapping.findForward("success");
-		}
-	}
+            gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi", accountRecord.getPPk());// ç»Ÿè®¡å……å€¼äººæ¬¡
+            // å‘é‚®ä»¶
+            String title = "å……å€¼æˆåŠŸ";
+            String content = "";
+            String time_str = DateUtil.getCurrentTimeStr();
+            content = "æ‚¨äº" + time_str + "å……å€¼" + accountRecord.getMoney() + "å…ƒå……å€¼æˆåŠŸï¼Œè·å¾—ã€" + GameConfig.getYuanbaoName() + "ã€‘Ã—" + yb_num + "ï¼";
+            logger.info("é‚®ä»¶æ ‡é¢˜ï¼š" + title);
+            logger.info("é‚®ä»¶å†…å®¹ï¼š" + content);
+            mailInfoService.sendMailBySystem(accountRecord.getPPk(), title, content);
 
-	String formatString(String text)
-	{
-		if (text == null)
-		{
-			return "";
-		}
-		return text;
-	}
+            gsss.addPropNum(0, StatisticsType.RMB, accountRecord.getMoney(), StatisticsType.DEDAO, Channel.JUU + "", accountRecord.getPPk());// ç»Ÿè®¡RMB
+            JmsUtil.chongzhi(accountRecord.getPPk(), accountRecord.getMoney(), accountRecord.getChannel());
+            // åº”ç­”æœºåˆ¶æ”¶åˆ°æ”¯ä»˜ç»“æœé€šçŸ¥æ—¶å¿…é¡»å›å†™ä»¥"success"å¼€å¤´çš„å­—ç¬¦ä¸²
+            resultWml = "success";
+            request.setAttribute("resultWml", resultWml);
+            return mapping.findForward("success");
+        } else {
+            // åº”ç­”æœºåˆ¶æ”¶åˆ°æ”¯ä»˜ç»“æœé€šçŸ¥æ—¶å¿…é¡»å›å†™ä»¥"success"å¼€å¤´çš„å­—ç¬¦ä¸²
+            resultWml = "err_sign";
+            request.setAttribute("resultWml", resultWml);
+            return mapping.findForward("success");
+        }
+    }
+
+    String formatString(String text) {
+        if (text == null) {
+            return "";
+        }
+        return text;
+    }
 }

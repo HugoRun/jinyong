@@ -21,14 +21,14 @@ import com.pm.service.mail.MailInfoService;
 import com.pm.vo.auction.AuctionYBVO;
 
 /**
- * ÅÄÂôÔª±¦µÄ action
+ * æ‹å–å…ƒå®çš„ action
  * @author Administrator
  *
  */
 public class AuctionYbAction extends DispatchAction{
 	Logger logger =  Logger.getLogger("log.action");
 
-	// ÅÄÂôÔª±¦ÁĞ±í
+	// æ‹å–å…ƒå®åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -61,7 +61,7 @@ public class AuctionYbAction extends DispatchAction{
 		
 	}
 	
-	// ×¼±¸¹ºÂòÔª±¦
+	// å‡†å¤‡è´­ä¹°å…ƒå®
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -78,7 +78,7 @@ public class AuctionYbAction extends DispatchAction{
 		
 	}
 	
-	// ¹ºÂòÔª±¦
+	// è´­ä¹°å…ƒå®
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -88,19 +88,19 @@ public class AuctionYbAction extends DispatchAction{
 		AuctionYBVO auctionYBVO = ybService.getAuctionYbByUybId(uyb_id,AuctionNumber.YUANSELLING);
 		String hint = null;
 		if ( auctionYBVO == null) {
-			hint = "¸Ã"+GameConfig.getYuanbaoName()+"ÒÑ¾­±»ÅÄÂô!";
+			hint = "è¯¥"+GameConfig.getYuanbaoName()+"å·²ç»è¢«æ‹å–!";
 		}
 		
 		RoleService roleService = new RoleService();
 		RoleEntity  roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		
-		// ±È½Ï¹ºÂòÔª±¦ĞèÒªµÄÇ® ÊÇ·ñĞ¡ÓÚÉíÉÏËùĞ¯´øµÄÇ®
+		// æ¯”è¾ƒè´­ä¹°å…ƒå®éœ€è¦çš„é’± æ˜¯å¦å°äºèº«ä¸Šæ‰€æºå¸¦çš„é’±
 		if ( roleInfo.getBasicInfo().getCopper() >= auctionYBVO.getYbPrice()) {
 			
 			hint = ybService.buyYuan(auctionYBVO,roleInfo,request,response);
 		} else {
 			
-			hint = "ÄúËùĞ¯´øµÄ½ğÇ®²»×ãÒÔ¹ºÂò´ËÉÌÆ·¡£";			
+			hint = "æ‚¨æ‰€æºå¸¦çš„é‡‘é’±ä¸è¶³ä»¥è´­ä¹°æ­¤å•†å“ã€‚";			
 		}
 		
 		
@@ -110,7 +110,7 @@ public class AuctionYbAction extends DispatchAction{
 	
 	
 	
-	// ½øÈëÅÄÂôÔª±¦Ò³Ãæ
+	// è¿›å…¥æ‹å–å…ƒå®é¡µé¢
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -125,7 +125,7 @@ public class AuctionYbAction extends DispatchAction{
 		return mapping.findForward("ready_auction");
 	}
 	
-	// ¿ªÊ¼ÅÄÂôÔª±¦,Íæ¼ÒÊäÈëÅÄÂôÔª±¦ÊıÁ¿,Èç¹ûÕı³£,×ªÈëÊäÈëÅÄÂô½ğÇ®ÊıÁ¿
+	// å¼€å§‹æ‹å–å…ƒå®,ç©å®¶è¾“å…¥æ‹å–å…ƒå®æ•°é‡,å¦‚æœæ­£å¸¸,è½¬å…¥è¾“å…¥æ‹å–é‡‘é’±æ•°é‡
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -143,26 +143,26 @@ public class AuctionYbAction extends DispatchAction{
 		}
 		catch (Exception e)
 		{
-			request.setAttribute("hint","ÄúÊäÈëµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»ºÏ·¨!<br/>");
+			request.setAttribute("hint","æ‚¨è¾“å…¥çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸åˆæ³•!<br/>");
 			request.setAttribute("yuanbao", yuanbao);			
 			return mapping.findForward("ready_auction");			
 		}
 		if (  paimaiYuanBao <= 0) {
-			request.setAttribute("hint","ÄúÊäÈëµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿±ØĞë´óÓÚÁã!<br/>");
+			request.setAttribute("hint","æ‚¨è¾“å…¥çš„"+GameConfig.getYuanbaoName()+"æ•°é‡å¿…é¡»å¤§äºé›¶!<br/>");
 			request.setAttribute("yuanbao", yuanbao);			
 			return mapping.findForward("ready_auction");			
 		} else if ( paimaiYuanBao <= yuanbao) {
-			// ÅÄÂôµÄÔª±¦ÊıÁ¿Ğ¡ÓÚÉíÉÏµÄÔª±¦ÊıÁ¿
+			// æ‹å–çš„å…ƒå®æ•°é‡å°äºèº«ä¸Šçš„å…ƒå®æ•°é‡
 			request.setAttribute("paimaiYuanBao", paimaiYuanBao);			
 			return mapping.findForward("paimaiYuanBao");		
 		} else {
-			request.setAttribute("hint","ÄúÉíÉÏµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»¹»!<br/>");
+			request.setAttribute("hint","æ‚¨èº«ä¸Šçš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸å¤Ÿ!<br/>");
 			request.setAttribute("yuanbao", yuanbao);			
 			return mapping.findForward("ready_auction");				
 		}
 	}
 		
-		// ¿ªÊ¼ÅÄÂôÔª±¦,Íæ¼Ò×ªÈëÊäÈëÅÄÂô½ğÇ®ÊıÁ¿,Èç¹ûÕı³££¬¿ªÊ¼½«Ôª±¦ÅÄÂô
+		// å¼€å§‹æ‹å–å…ƒå®,ç©å®¶è½¬å…¥è¾“å…¥æ‹å–é‡‘é’±æ•°é‡,å¦‚æœæ­£å¸¸ï¼Œå¼€å§‹å°†å…ƒå®æ‹å–
 		public ActionForward n7(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{
@@ -179,20 +179,20 @@ public class AuctionYbAction extends DispatchAction{
 				paimaiYuanBao = Integer.valueOf(yuanbaoString);
 			}catch (Exception e)
 			{
-				request.setAttribute("hint","ÄúÊäÈëµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»ºÏ·¨!<br/>");
+				request.setAttribute("hint","æ‚¨è¾“å…¥çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸åˆæ³•!<br/>");
 				request.setAttribute("yuanbao", yuanbao);			
 				return mapping.findForward("ready_auction");			
 			}
 			if (  paimaiYuanBao <= 0) {
-				request.setAttribute("hint","ÄúÊäÈëµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿±ØĞë´óÓÚÁã!<br/>");
+				request.setAttribute("hint","æ‚¨è¾“å…¥çš„"+GameConfig.getYuanbaoName()+"æ•°é‡å¿…é¡»å¤§äºé›¶!<br/>");
 				request.setAttribute("yuanbao", yuanbao);			
 				return mapping.findForward("ready_auction");			
 			} else if ( paimaiYuanBao >= yuanbao) {
-				request.setAttribute("hint","ÄúÉíÉÏµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»¹»!<br/>");
+				request.setAttribute("hint","æ‚¨èº«ä¸Šçš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸å¤Ÿ!<br/>");
 				request.setAttribute("yuanbao", yuanbao);			
 				return mapping.findForward("ready_auction");		
 			} else {
-				// ÅÄÂôµÄÔª±¦ÊıÁ¿Ğ¡ÓÚÉíÉÏµÄÔª±¦ÊıÁ¿,¼ÌĞøÏÂÈ¥
+				// æ‹å–çš„å…ƒå®æ•°é‡å°äºèº«ä¸Šçš„å…ƒå®æ•°é‡,ç»§ç»­ä¸‹å»
     			String copperString = request.getParameter("copperString");
     			int copper = 0;
     			try
@@ -200,14 +200,14 @@ public class AuctionYbAction extends DispatchAction{
     				copper = Integer.valueOf(copperString);
     			}catch (Exception e)
     			{
-    				request.setAttribute("hint","ÄúÊäÈëµÄ½ğÇ®ÊıÁ¿²»ºÏ·¨!<br/>");
+    				request.setAttribute("hint","æ‚¨è¾“å…¥çš„é‡‘é’±æ•°é‡ä¸åˆæ³•!<br/>");
     				request.setAttribute("yuanbao", yuanbao);			
     				return mapping.findForward("ready_auction");			
     			}
-    			long money = copper; 	// ÊäÈëµÄ½ğÇ®ÊıÁ¿
+    			long money = copper; 	// è¾“å…¥çš„é‡‘é’±æ•°é‡
     			long bodyMoney = roleInfo.getBasicInfo().getCopper();
     			if (  money <= 0) {
-    				request.setAttribute("hint","ÄúÊäÈëµÄ½ğÇ®ÊıÁ¿±ØĞë´óÓÚÁã!<br/>");
+    				request.setAttribute("hint","æ‚¨è¾“å…¥çš„é‡‘é’±æ•°é‡å¿…é¡»å¤§äºé›¶!<br/>");
     				request.setAttribute("yuanbao", yuanbao);			
     				return mapping.findForward("ready_auction");			
     			} else {
@@ -219,7 +219,7 @@ public class AuctionYbAction extends DispatchAction{
 			}	
 	}
 		
-		// ¿ªÊ¼ÅÄÂôÔª±¦,Íæ¼Ò×ªÈëÊäÈëÅÄÂô½ğÇ®ÊıÁ¿, ¿ªÊ¼ÅÄÂô
+		// å¼€å§‹æ‹å–å…ƒå®,ç©å®¶è½¬å…¥è¾“å…¥æ‹å–é‡‘é’±æ•°é‡, å¼€å§‹æ‹å–
 		public ActionForward n8(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{
@@ -236,20 +236,20 @@ public class AuctionYbAction extends DispatchAction{
 				paimaiYuanBao = Integer.valueOf(yuanbaoString);
 			}catch (Exception e)
 			{
-				request.setAttribute("hint","ÄúÊäÈëµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»ºÏ·¨!<br/>");
+				request.setAttribute("hint","æ‚¨è¾“å…¥çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸åˆæ³•!<br/>");
 				request.setAttribute("yuanbao", yuanbao);			
 				return mapping.findForward("ready_auction");			
 			}
 			if (  paimaiYuanBao <= 0) {
-				request.setAttribute("hint","ÄúÊäÈëµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿±ØĞë´óÓÚÁã!<br/>");
+				request.setAttribute("hint","æ‚¨è¾“å…¥çš„"+GameConfig.getYuanbaoName()+"æ•°é‡å¿…é¡»å¤§äºé›¶!<br/>");
 				request.setAttribute("yuanbao", yuanbao);			
 				return mapping.findForward("ready_auction");			
 			} else if ( paimaiYuanBao >= yuanbao) {
-				request.setAttribute("hint","ÄúÉíÉÏµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»¹»!<br/>");
+				request.setAttribute("hint","æ‚¨èº«ä¸Šçš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸å¤Ÿ!<br/>");
 				request.setAttribute("yuanbao", yuanbao);			
 				return mapping.findForward("ready_auction");		
 			} else {
-				// ÅÄÂôµÄÔª±¦ÊıÁ¿Ğ¡ÓÚÉíÉÏµÄÔª±¦ÊıÁ¿,¼ÌĞøÏÂÈ¥
+				// æ‹å–çš„å…ƒå®æ•°é‡å°äºèº«ä¸Šçš„å…ƒå®æ•°é‡,ç»§ç»­ä¸‹å»
     			String copperString = request.getParameter("copper");
     			int copper = 0;
     			if (copperString == null || copperString.equals("")) {
@@ -260,13 +260,13 @@ public class AuctionYbAction extends DispatchAction{
     				copper = Integer.valueOf(copperString);
     			}catch (Exception e)
     			{
-    				request.setAttribute("hint","ÄúÊäÈëµÄ½ğÇ®ÊıÁ¿²»ºÏ·¨!<br/>");
+    				request.setAttribute("hint","æ‚¨è¾“å…¥çš„é‡‘é’±æ•°é‡ä¸åˆæ³•!<br/>");
     				request.setAttribute("yuanbao", yuanbao);			
     				return mapping.findForward("ready_auction");			
     			}
-    			long money = copper; 	// ÊäÈëµÄ½ğÇ®ÊıÁ¿
+    			long money = copper; 	// è¾“å…¥çš„é‡‘é’±æ•°é‡
     			if (  money <= 0) {
-    				request.setAttribute("hint","ÄúÊäÈëµÄ½ğÇ®ÊıÁ¿±ØĞë´óÓÚÁã!<br/>");
+    				request.setAttribute("hint","æ‚¨è¾“å…¥çš„é‡‘é’±æ•°é‡å¿…é¡»å¤§äºé›¶!<br/>");
     				request.setAttribute("yuanbao", yuanbao);			
     				return mapping.findForward("ready_auction");			
     			} else {
@@ -279,7 +279,7 @@ public class AuctionYbAction extends DispatchAction{
 			}	
 	}
 		
-		// ¸ù¾İÓÊ¼ş£¬¿ªÊ¼È¡»ØËùµÃÒøÁ½
+		// æ ¹æ®é‚®ä»¶ï¼Œå¼€å§‹å–å›æ‰€å¾—é“¶ä¸¤
 		public ActionForward n9(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{	
@@ -293,21 +293,21 @@ public class AuctionYbAction extends DispatchAction{
 			AuctionYBVO auctionYBVO = ybService.getAuctionYbByUybIdAndPPk(uybId,AuctionNumber.YUANSELLED,roleInfo.getBasicInfo().getPPk());
 			
 			if ( auctionYBVO == null) {
-				request.setAttribute("hint", "¶Ô²»Æğ,ÄúÒÑ¾­È¡³öÁËÕâĞ©ÒøÁ½!");
+				request.setAttribute("hint", "å¯¹ä¸èµ·,æ‚¨å·²ç»å–å‡ºäº†è¿™äº›é“¶ä¸¤!");
 				return mapping.findForward("return_mail");
 			} else {
 				ybService.getMoneyByUybId(auctionYBVO,roleInfo,mailId);
 				if ( mailId != null && !mailId.equals("")) {
-    				// É¾³ıµô¸ÃÓÊ¼ş
+    				// åˆ é™¤æ‰è¯¥é‚®ä»¶
     				MailInfoService mailInfoService = new MailInfoService();
     				mailInfoService.deleteMailByid(mailId,roleInfo.getBasicInfo().getPPk());
 				}
-				request.setAttribute("hint", "ÄúÈ¡»ØÁËÒøÁ½"+MoneyUtil.changeCopperToStr(auctionYBVO.getYbPrice())+"!,¸ÃÓÊ¼şÒÑ¾­É¾³ı!");
+				request.setAttribute("hint", "æ‚¨å–å›äº†é“¶ä¸¤"+MoneyUtil.changeCopperToStr(auctionYBVO.getYbPrice())+"!,è¯¥é‚®ä»¶å·²ç»åˆ é™¤!");
 				return mapping.findForward("return_mail");
 			}
 		}
 		
-		// ¸ù¾İÓÊ¼ş£¬¿ªÊ¼È¡»ØËùµÃÒøÁ½
+		// æ ¹æ®é‚®ä»¶ï¼Œå¼€å§‹å–å›æ‰€å¾—é“¶ä¸¤
 		public ActionForward n10(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{	
@@ -321,16 +321,16 @@ public class AuctionYbAction extends DispatchAction{
 			AuctionYBVO auctionYBVO = ybService.getAuctionYbByUybIdAndPPk(uybId,AuctionNumber.YUANNOTSELL,roleInfo.getBasicInfo().getPPk());
 			
 			if ( auctionYBVO == null) {
-				request.setAttribute("hint", "¶Ô²»Æğ,ÄúÒÑ¾­È¡³öÁËÕâĞ©"+GameConfig.getYuanbaoName()+"!");
+				request.setAttribute("hint", "å¯¹ä¸èµ·,æ‚¨å·²ç»å–å‡ºäº†è¿™äº›"+GameConfig.getYuanbaoName()+"!");
 				return mapping.findForward("return_mail");
 			} else {	
 				if ( mailId != null && !mailId.equals("")) {
-    				// É¾³ıµô¸ÃÓÊ¼ş
+    				// åˆ é™¤æ‰è¯¥é‚®ä»¶
     				MailInfoService mailInfoService = new MailInfoService();
     				mailInfoService.deleteMailByid(mailId,roleInfo.getBasicInfo().getPPk());
 				}
 				ybService.getYuanBaoByUybId(auctionYBVO,roleInfo,mailId);
-				request.setAttribute("hint", "ÄúÈ¡»ØÁË"+GameConfig.getYuanbaoName()+""+auctionYBVO.getYbNum()+"!,¸ÃÓÊ¼şÒÑ¾­É¾³ı!");
+				request.setAttribute("hint", "æ‚¨å–å›äº†"+GameConfig.getYuanbaoName()+""+auctionYBVO.getYbNum()+"!,è¯¥é‚®ä»¶å·²ç»åˆ é™¤!");
 				return mapping.findForward("return_mail");
 			}			
 		}	

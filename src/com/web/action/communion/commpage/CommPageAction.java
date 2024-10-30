@@ -11,12 +11,12 @@ import com.ben.dao.communion.CommunionDAO;
 import com.ben.vo.communion.CommunionVO;
 
 /**
- * @author ��ƾ� ״̬
+ * @author 侯浩军 状态
  */
 public class CommPageAction extends DispatchAction
 {
 	/**
-	 * �鿴�Լ�״̬
+	 * 查看自己状态
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

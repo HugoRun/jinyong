@@ -3,8 +3,8 @@ package com.ls.ben.vo.info.attack;
 import java.util.List;
 
 /**
- * 功能:
- * @author 刘帅
+ * 鍔熻兘:
+ * @author 鍒樺竻
  * 2:05:26 PM
  */
 public class FightList {
@@ -13,8 +13,8 @@ public class FightList {
 	private int exp;
 	private int money;
 	private List<DropGoodsVO> dropGoods=null;
-	private String pet_display = null;//宠物提示
-	private String task_display;//任务提示
+	private String pet_display = null;//瀹犵墿鎻愮ず
+	private String task_display;//浠诲姟鎻愮ず
 	
 	public String getTask_display()
 	{

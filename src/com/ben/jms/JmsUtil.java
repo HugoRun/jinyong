@@ -64,8 +64,8 @@ public class JmsUtil
 			rj.setQudao(qudao);
 			rj.setSuper_qudao(super_qudao);
 			rj.setUserid(userid);
-			System.out.println("·¢ËÍ×¢²áÏûÏ¢ ÇşµÀ £º " + super_qudao + " ×ÓÇşµÀ £º " + qudao
-					+ " ·ÖÇø £º " + fenqu + " ÓÃ»§ID £º " + userid + " êÇ³Æ £º " + name);
+			System.out.println("å‘é€æ³¨å†Œæ¶ˆæ¯ æ¸ é“ ï¼š " + super_qudao + " å­æ¸ é“ ï¼š " + qudao
+					+ " åˆ†åŒº ï¼š " + fenqu + " ç”¨æˆ·ID ï¼š " + userid + " æ˜µç§° ï¼š " + name);
 			JmsSendQueue1.log(rj);
 		}
 	}
@@ -82,8 +82,8 @@ public class JmsUtil
 			rj.setUserid(userid);
 			rj.setName(name);
 			rj.setLevel(level);
-			System.out.println("·¢ËÍ×¢²áÏûÏ¢ ÇşµÀ £º " + super_qudao + " ×ÓÇşµÀ £º " + qudao
-					+ " ·ÖÇø £º " + FENQU + " ÓÃ»§ID £º " + userid + " êÇ³Æ £º " + name);
+			System.out.println("å‘é€æ³¨å†Œæ¶ˆæ¯ æ¸ é“ ï¼š " + super_qudao + " å­æ¸ é“ ï¼š " + qudao
+					+ " åˆ†åŒº ï¼š " + FENQU + " ç”¨æˆ·ID ï¼š " + userid + " æ˜µç§° ï¼š " + name);
 			JmsSendQueue1.log(rj);
 		}
 	}
@@ -101,9 +101,9 @@ public class JmsUtil
 			rj.setName(name);
 			rj.setLevel(level);
 			rj.setCaozuo(1);
-			System.out.println("·¢ËÍÉı¼¶ÏûÏ¢ ÇşµÀ £º " + super_qudao + " ×ÓÇşµÀ £º " + qudao
-					+ " ·ÖÇø £º " + FENQU + " ÓÃ»§ID £º " + userid + " êÇ³Æ £º " + name
-					+ " µÈ¼¶ £º " + level);
+			System.out.println("å‘é€å‡çº§æ¶ˆæ¯ æ¸ é“ ï¼š " + super_qudao + " å­æ¸ é“ ï¼š " + qudao
+					+ " åˆ†åŒº ï¼š " + FENQU + " ç”¨æˆ·ID ï¼š " + userid + " æ˜µç§° ï¼š " + name
+					+ " ç­‰çº§ ï¼š " + level);
 			JmsSendQueue1.log(rj);
 		}
 	}
@@ -121,8 +121,8 @@ public class JmsUtil
 			rj.setUserid(userid);
 			rj.setName(name);
 			rj.setCaozuo(2);
-			System.out.println("·¢ËÍ×îºóÊ±¼äÏûÏ¢ ÇşµÀ £º " + super_qudao + " ×ÓÇşµÀ £º "
-					+ qudao + " ·ÖÇø £º " + FENQU + " ÓÃ»§ID £º " + userid + " êÇ³Æ £º "
+			System.out.println("å‘é€æœ€åæ—¶é—´æ¶ˆæ¯ æ¸ é“ ï¼š " + super_qudao + " å­æ¸ é“ ï¼š "
+					+ qudao + " åˆ†åŒº ï¼š " + FENQU + " ç”¨æˆ·ID ï¼š " + userid + " æ˜µç§° ï¼š "
 					+ rj.getName());
 			JmsSendQueue1.log(rj);
 		}
@@ -132,9 +132,9 @@ public class JmsUtil
 	{
 		if (GameConfig.jmsIsOn())
 		{
-			System.out.println("·¢ËÍÏµÍ³Í³¼Æ ÇşµÀ £º " + qm.getSuper_qudao() + " ×ÓÇşµÀ £º "
-					+ qm.getQudao() + " ·ÖÇø £º " + qm.getFenqu() + " Æ½¾ùÔÚÏß £º "
-					+ qm.getNow_peo() + " ×î¶àÈËÊı £º " + qm.getMax_peo());
+			System.out.println("å‘é€ç³»ç»Ÿç»Ÿè®¡ æ¸ é“ ï¼š " + qm.getSuper_qudao() + " å­æ¸ é“ ï¼š "
+					+ qm.getQudao() + " åˆ†åŒº ï¼š " + qm.getFenqu() + " å¹³å‡åœ¨çº¿ ï¼š "
+					+ qm.getNow_peo() + " æœ€å¤šäººæ•° ï¼š " + qm.getMax_peo());
 			JmsSendQueue2.log(qm);
 		}
 	}
@@ -168,9 +168,9 @@ public class JmsUtil
 				cm.setQudao(re.getStateInfo().getQudao());
 				cm.setSuper_qudao(re.getStateInfo().getSuper_qudao());
 				cm.setUserid(re.getStateInfo().getUserid());
-				System.out.println("·¢ËÍ³äÖµÍ³¼Æ ÇşµÀ £º " + cm.getSuper_qudao()
-						+ " ×ÓÇşµÀ £º " + cm.getQudao() + " ·ÖÇø £º " + cm.getFenqu()
-						+ " ÓÃ»§ID £º " + cm.getUserid() + " ½ğ¶î £º "
+				System.out.println("å‘é€å……å€¼ç»Ÿè®¡ æ¸ é“ ï¼š " + cm.getSuper_qudao()
+						+ " å­æ¸ é“ ï¼š " + cm.getQudao() + " åˆ†åŒº ï¼š " + cm.getFenqu()
+						+ " ç”¨æˆ·ID ï¼š " + cm.getUserid() + " é‡‘é¢ ï¼š "
 						+ cm.getMoney());
 				JmsSendQueue3.log(cm);
 			}
@@ -189,7 +189,7 @@ public class JmsUtil
 	 cm.setShen(100);
 	 cm.setYi(100);
 	 cm.setZheng(100);
-	 System.out.println("·¢ËÍ³äÖµÍ³¼Æ ÇşµÀ £º "+cm.getSuper_qudao()+" ×ÓÇşµÀ £º "+cm.getQudao() +" ·ÖÇø £º "+cm.getFenqu()+" ÓÃ»§ID £º "+cm.getUserid()+" ½ğ¶î £º	 "+cm.getMoney());
+	 System.out.println("å‘é€å……å€¼ç»Ÿè®¡ æ¸ é“ ï¼š "+cm.getSuper_qudao()+" å­æ¸ é“ ï¼š "+cm.getQudao() +" åˆ†åŒº ï¼š "+cm.getFenqu()+" ç”¨æˆ·ID ï¼š "+cm.getUserid()+" é‡‘é¢ ï¼š	 "+cm.getMoney());
 	 JmsSendQueue3.log(cm);
      }
 	 }

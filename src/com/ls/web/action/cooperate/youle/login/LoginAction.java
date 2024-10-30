@@ -15,7 +15,7 @@ import com.ls.ben.vo.cooperate.dangle.PassportVO;
 import com.ls.web.service.cooperate.dangle.PassportService;
 
 /***
- * ÓÆÀÖÇşµÀµÇÂ½action
+ * æ‚ ä¹æ¸ é“ç™»é™†action
  * @author thomas.lei
  */
 public class LoginAction extends DispatchAction
@@ -34,15 +34,15 @@ public class LoginAction extends DispatchAction
 			try
 			{
 				response.getWriter().print(1);
-				System.out.println("µÇÂ½²ÎÊıÎªnull........");
+				System.out.println("ç™»é™†å‚æ•°ä¸ºnull........");
 				return null;
 			}
 			catch (IOException e)
 			{
-				System.out.println("·µ»ØÖµ·¢ËÍÊ§°Ü......");
+				System.out.println("è¿”å›å€¼å‘é€å¤±è´¥......");
 			}
 		}
-		/******µÇÂ½******/
+		/******ç™»é™†******/
 		PassportService ps=new PassportService();
 		PassportVO passportVo= ps.loginFromYoule(UserAccount, login_ip);
 		if(passportVo==null||passportVo.getUPk()==-1)
@@ -50,11 +50,11 @@ public class LoginAction extends DispatchAction
 			try
 			{
 				response.getWriter().print(1);
-				System.out.println("µÇÂ½Ê§°Ü......");
+				System.out.println("ç™»é™†å¤±è´¥......");
 			}
 			catch (IOException e)
 			{
-				System.out.println("µÇÂ½Ê§°Ü......");
+				System.out.println("ç™»é™†å¤±è´¥......");
 			}
 			return null;
 		}
@@ -70,7 +70,7 @@ public class LoginAction extends DispatchAction
 			session.setAttribute("MachineID",MachineID);
 			session.setAttribute("PartnerID","10006");
 			session.setAttribute("GameNO","2014");
-			/******Í¬²½¸øÓÆÀÖµÇÂ½ĞÅÏ¢******/
+			/******åŒæ­¥ç»™æ‚ ä¹ç™»é™†ä¿¡æ¯******/
 			loginService.synchronousLoginState(UserAccount, "1", "2006");
 			return mapping.findForward("success");
 		}

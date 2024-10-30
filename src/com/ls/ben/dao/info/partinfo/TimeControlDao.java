@@ -7,20 +7,20 @@ import com.ls.ben.vo.info.partinfo.TimeControlVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:u_time_control±í
- * @author ÁõË§
+ * åŠŸèƒ½:u_time_controlè¡¨
+ * @author åˆ˜å¸…
  * Sep 25, 2008  11:50:26 AM
  */
 public class TimeControlDao extends DaoBase
 {
 	/**
-	 * Ìí¼ÓÈÕÖ¾
+	 * æ·»åŠ æ—¥å¿—
 	 * @param p_pk
 	 * @param prop_id
 	 */
 	public void add( int p_pk,int object_id,int object_type )
 	{
-		String sql = "insert into u_time_control (p_pk,object_id,object_type,use_datetime,use_times) values (?,?,?,NOW(),1)";
+		String sql = "INSERT INTO u_time_control (p_pk,object_id,object_type,use_datetime,use_times) values (?,?,?,NOW(),1)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -44,13 +44,13 @@ public class TimeControlDao extends DaoBase
 	}
 	
 	/**
-	 * Ìí¼ÓÈÕÖ¾
+	 * æ·»åŠ æ—¥å¿—
 	 * @param p_pk
 	 * @param prop_id
 	 */
 	public void add( int p_pk,int object_id,int object_type,int minutes )
 	{
-		String sql = "insert into u_time_control (p_pk,object_id,object_type,use_datetime,use_times) values (?,?,?,NOW()+INTERVAL "+minutes+" minute,1)";
+		String sql = "INSERT INTO u_time_control (p_pk,object_id,object_type,use_datetime,use_times) values (?,?,?,NOW()+INTERVAL "+minutes+" minute,1)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -74,14 +74,14 @@ public class TimeControlDao extends DaoBase
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞµÀ¾ßÊ¹ÓÃÈÕÖ¾
+	 * åˆ¤æ–­æ˜¯å¦æœ‰é“å…·ä½¿ç”¨æ—¥å¿—
 	 * @param p_pk
 	 * @param object_id
 	 */
 	public boolean isHaveControlInfo(int p_pk,int object_id,int object_type)
 	{
 		boolean isHave = false;
-		String sql = "select id from u_time_control where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + "  and object_type = " + object_type + " limit 1";
+		String sql = "SELECT id from u_time_control where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + "  and object_type = " + object_type + " limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -107,12 +107,12 @@ public class TimeControlDao extends DaoBase
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒµÀ¾ßÊ¹ÓÃÈÕÖ¾
+	 * å¾—åˆ°ç©å®¶é“å…·ä½¿ç”¨æ—¥å¿—
 	 */
 	public TimeControlVO getControlInfo( int p_pk,int object_id,int object_type )
 	{
 		TimeControlVO propUseLog = null;
-		String sql = "select * from u_time_control where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + "  limit 1";
+		String sql = "SELECT * FROM u_time_control where p_pk="+p_pk +" and object_id="+object_id + " and object_type = " + object_type + "  limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -144,7 +144,7 @@ public class TimeControlDao extends DaoBase
 	}
 	
 	/**
-	 * µ±ÌìµÚÒ»´ÎÊ¹ÓÃ,¸üĞÂ×´Ì¬
+	 * å½“å¤©ç¬¬ä¸€æ¬¡ä½¿ç”¨,æ›´æ–°çŠ¶æ€
 	 * @param p_pk
 	 * @param object_id
 	 */
@@ -170,7 +170,7 @@ public class TimeControlDao extends DaoBase
 	}
 	
 	/**
-	 * µ±ÌìµÚÒ»´ÎÊ¹ÓÃ,¸üĞÂ×´Ì¬,ÓĞÊ±¼äÑÓ³Ù
+	 * å½“å¤©ç¬¬ä¸€æ¬¡ä½¿ç”¨,æ›´æ–°çŠ¶æ€,æœ‰æ—¶é—´å»¶è¿Ÿ
 	 * @param p_pk
 	 * @param object_id
 	 */
@@ -196,7 +196,7 @@ public class TimeControlDao extends DaoBase
 	}
 	
 	/**
-	 * µ±ÌìÊ¹ÓÃ,¸üĞÂ×´Ì¬,ÓĞÊ±¼äÑÓ³Ù
+	 * å½“å¤©ä½¿ç”¨,æ›´æ–°çŠ¶æ€,æœ‰æ—¶é—´å»¶è¿Ÿ
 	 * @param p_pk
 	 * @param object_id
 	 */
@@ -223,7 +223,7 @@ public class TimeControlDao extends DaoBase
 	
 	
 	/**
-	 * ¸üĞÂÊ¹ÓÃ×´Ì¬£¨Ê¹ÓÃÊ±¼äºÍÊ¹ÓÃ´ÎÊı£©
+	 * æ›´æ–°ä½¿ç”¨çŠ¶æ€ï¼ˆä½¿ç”¨æ—¶é—´å’Œä½¿ç”¨æ¬¡æ•°ï¼‰
 	 * @param p_pk
 	 * @param object_id
 	 */

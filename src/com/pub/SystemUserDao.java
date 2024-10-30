@@ -1,52 +1,51 @@
 /**
- * 
+ *
  */
 package com.pub;
-
-import java.sql.ResultSet;
 
 import com.ben.vo.info.partinfo.PartInfoVO;
 import com.pub.db.mysql.SqlData;
 
+import java.sql.ResultSet;
+
 /**
- * @author ºîºÆ¾ü
- * 
+ * @author ä¾¯æµ©å†›
+ *
  * 3:43:32 PM
  */
 public class SystemUserDao {
-	SqlData con;
+    SqlData con;
 
-	 
-	// ¸ÃÀàÊÇÅĞ¶Ï½ÇÉ«MONEYµÄÈç¹ûÍ­Ç®´óÓÚ100µÄÊ±ºò¾Í×ª»»100Í­Ç®==1Òø×Ó
-	public PartInfoVO getMoney(String pPk) {
-		try {
-			con = new SqlData();
-			String sql = "select * from u_part_info where p_pk='" + pPk + "'";
-			ResultSet rs = con.query(sql);
-			PartInfoVO vo = new PartInfoVO();
-			while (rs.next()) {
-				vo.setPCopper(rs.getString("p_copper"));
-			}
-			return vo;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			con.close();
-		}
-		return null;
-	}
 
-	public void getMoneyUpdate(String pSilver, String pCopper, String pPk) {
-		try {
-			con = new SqlData();
-			String sql = "update u_part_info set p_silver='" + pSilver
-					+ "',p_copper='" + pCopper + "' where p_pk='" + pPk + "'";
-			con.update(sql);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			con.close();
-		}
-	}
+    // è¯¥ç±»æ˜¯åˆ¤æ–­è§’è‰²MONEYçš„å¦‚æœé“œé’±å¤§äº100çš„æ—¶å€™å°±è½¬æ¢100é“œé’±==1é“¶å­
+    public PartInfoVO getMoney(String pPk) {
+        try {
+            con = new SqlData();
+            String sql = "SELECT * FROM `u_part_info` WHERE p_pk = '" + pPk + "'";
+            ResultSet rs = con.query(sql);
+            PartInfoVO vo = new PartInfoVO();
+            while (rs.next()) {
+                vo.setPCopper(rs.getString("p_copper"));
+            }
+            return vo;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+        return null;
+    }
+
+    public void getMoneyUpdate(String pSilver, String pCopper, String pPk) {
+        try {
+            con = new SqlData();
+            String sql = "UPDATE `u_part_info` SET `p_silver` = '" + pSilver + "', `p_copper` = '" + pCopper + "' WHERE `p_pk` = '" + pPk + "'";
+            con.update(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.close();
+        }
+    }
 
 }

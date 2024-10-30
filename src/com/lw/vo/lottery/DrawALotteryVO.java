@@ -2,27 +2,27 @@ package com.lw.vo.lottery;
 
 public class DrawALotteryVO
 {
-	// ³é½±Ö÷¼ü
+	// æŠ½å¥–ä¸»é”®
 	private int id;
-	// ³é½±ÀàĞÍ
+	// æŠ½å¥–ç±»å‹
 	private int type;
-	// ³é½±Ãû³Æ
+	// æŠ½å¥–åç§°
 	private String lotter_name;
-	// ³é½±ÈËÊı
+	// æŠ½å¥–äººæ•°
 	private int draw_people;
-	// µÈ¼¶·¶Î§
+	// ç­‰çº§èŒƒå›´
 	private String level_content;
-	// ½±Æ·ÊıÁ¿
+	// å¥–å“æ•°é‡
 	private String bonus_content;
-	// Ê±¼äÀàĞÍ
+	// æ—¶é—´ç±»å‹
 	private int timeType;
-	// Ğ¡Ê±
+	// å°æ—¶
 	private int timeHour;
-	// ·ÖÖÓ
+	// åˆ†é’Ÿ
 	private int timeminute;
-	// °´ÖÜ ´ÓÖÜ¼¸µ½ÖÜ¼¸
+	// æŒ‰å‘¨ ä»å‘¨å‡ åˆ°å‘¨å‡ 
 	private String timeweek;
-	// ÊÇ·ñ±»¼ÓÔØ
+	// æ˜¯å¦è¢«åŠ è½½
 	private int isRun;
 
 	public int getTimeType()

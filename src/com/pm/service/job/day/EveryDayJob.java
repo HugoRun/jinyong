@@ -8,15 +8,15 @@ import com.ls.web.service.faction.FactionService;
 
 /**
  * @author ls
- * Ã¿ÌìÍí3µã¶¨Ê±Ö´ĞĞµÄ²Ù×÷
+ * æ¯å¤©æ™š3ç‚¹å®šæ—¶æ‰§è¡Œçš„æ“ä½œ
  */
 public class EveryDayJob implements Job
 {
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{
-		//°ïÅÉ½âÉ¢¼ì²é
+		//å¸®æ´¾è§£æ•£æ£€æŸ¥
 		FactionService.checkDisband();
-		//½âÉ¢°ïÅÉÊÇ·ñÊÇ»îÔ¾°ïÅÉ
+		//è§£æ•£å¸®æ´¾æ˜¯å¦æ˜¯æ´»è·ƒå¸®æ´¾
 		FactionService.checkIsActived();
 	}
 

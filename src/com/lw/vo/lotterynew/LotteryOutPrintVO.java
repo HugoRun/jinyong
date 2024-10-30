@@ -2,15 +2,15 @@ package com.lw.vo.lotterynew;
 
 public class LotteryOutPrintVO
 {
-	// Íæ¼ÒPPK
+	// ç©å®¶PPK
 	private int p_pk;
-	// ²ÊÆ±ÆÚÊı
+	// å½©ç¥¨æœŸæ•°
 	private String lottery_date;
-	// Íæ¼Ò²ÊÆ±ºÅÂë
+	// ç©å®¶å½©ç¥¨å·ç 
 	private String player_lottery;
-	// ÏµÍ³ºÅÂë
+	// ç³»ç»Ÿå·ç 
 	private String sys_lottery;
-	// Íæ¼Ò»ñµÃµÄ½±Àø
+	// ç©å®¶è·å¾—çš„å¥–åŠ±
 	private long bonus;
 
 	public int getP_pk()

@@ -31,11 +31,11 @@ public class AuctionGetAction extends DispatchAction{
 	Logger logger =  Logger.getLogger("log.action");
 	
 
-	/************ÅÄÂô³¡¹ºÂòÎïÆ· Ò»¿Ú¼Û***************/
+	/************æ‹å–åœºè´­ä¹°ç‰©å“ ä¸€å£ä»·***************/
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		/*****1ÁéÊ¯ÅÄÂô2ÏÉ¾§ÅÄÂô********************/
+		/*****1çµçŸ³æ‹å–2ä»™æ™¶æ‹å–********************/
 		String pay_type=(String)request.getSession().getAttribute("pay_type");
 		/*****************************************/
 		RoleService roleService = new RoleService();
@@ -47,7 +47,7 @@ public class AuctionGetAction extends DispatchAction{
 		int auctionTypes = Integer.valueOf(request.getParameter("w_type"));
 		String auction_id = request.getParameter("auction_id");
 		
-		// Èç¹ûÃ»ÓĞÈ·ÈÏ,ÈÃÆäÈ·ÈÏ
+		// å¦‚æœæ²¡æœ‰ç¡®è®¤,è®©å…¶ç¡®è®¤
 		String code = (String) request.getParameter("code");
 		if (code == null || code.equals("")) {
 			request.setAttribute("w_type", auctionTypes+"");
@@ -58,9 +58,9 @@ public class AuctionGetAction extends DispatchAction{
 		AuctionVO auctionvo = auctionSerivce.getAuctinVOById(auction_id);
 		PartInfoVO partvo = auctionSerivce.getPartInfo(pPk);
 		
-		logger.info("pPk : "+pPk+"ÉíÉÏÓĞÇ®:"+partvo.getPCopper()+"ÅÄÂôĞèÒª : "+auctionvo.getGoodsPrice());
+		logger.info("pPk : "+pPk+"èº«ä¸Šæœ‰é’±:"+partvo.getPCopper()+"æ‹å–éœ€è¦ : "+auctionvo.getGoodsPrice());
 		if(roleInfo.getBasicInfo().getWrapSpare() > 1){
-			logger.info("ÉíÉÏÓĞ¿ÕÓà¿Õ¸ñ");
+			logger.info("èº«ä¸Šæœ‰ç©ºä½™ç©ºæ ¼");
 			if("1".equals(pay_type))
 			{
 				if(Long.valueOf(partvo.getPCopper())>=auctionvo.getGoodsPrice())
@@ -68,16 +68,16 @@ public class AuctionGetAction extends DispatchAction{
 					resultWml = auctionSerivce.setToWrap(pPk,auction_id,partvo);
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
-					logger.info("×°±¸µÄresultWml"+resultWml);
+					logger.info("è£…å¤‡çš„resultWml"+resultWml);
 					return mapping.findForward("auction_buy_info");
 				}
 				else
 				{
-					resultWml = "ÄúÉíÉÏµÄÁéÊ¯²»×ã£¡";
+					resultWml = "æ‚¨èº«ä¸Šçš„çµçŸ³ä¸è¶³ï¼";
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
 					request.setAttribute("auction_id", auction_id);
-					logger.info("ÁéÊ¯²»¹»resultWml"+resultWml);
+					logger.info("çµçŸ³ä¸å¤ŸresultWml"+resultWml);
 					return mapping.findForward("auction_buy_info");
 				}
 			}
@@ -90,36 +90,36 @@ public class AuctionGetAction extends DispatchAction{
 					resultWml = auctionSerivce.setToWrap(pPk,auction_id,partvo);
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
-					logger.info("×°±¸µÄresultWml"+resultWml);
+					logger.info("è£…å¤‡çš„resultWml"+resultWml);
 					return mapping.findForward("auction_buy_info");
 				}
 				else
 				{
-					resultWml = "ÄúÉíÉÏµÄÏÉ¾§²»×ã£¬ÇëÏÈ³äÖµÔÙÀ´¾ºÅÄ";
+					resultWml = "æ‚¨èº«ä¸Šçš„ä»™æ™¶ä¸è¶³ï¼Œè¯·å…ˆå……å€¼å†æ¥ç«æ‹";
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
 					request.setAttribute("auction_id", auction_id);
-					logger.info("ÏÉ¾§²»¹»resultWml"+resultWml);
+					logger.info("ä»™æ™¶ä¸å¤ŸresultWml"+resultWml);
 					return mapping.findForward("auction_buy_info");
 				}
 			}
 			
 		}else {
-			resultWml = "Äú²»ÄÜ¹»Ğ¯´ø¸ü¶àµÄÎïÆ·ÁË£¡";
+			resultWml = "æ‚¨ä¸èƒ½å¤Ÿæºå¸¦æ›´å¤šçš„ç‰©å“äº†ï¼";
 			request.setAttribute("resultWml", resultWml);
 			request.setAttribute("w_type", auctionTypes+"");
 			request.setAttribute("auction_id", auction_id);
-			logger.info("°ü¹ü²»¹»resultWml"+resultWml);
+			logger.info("åŒ…è£¹ä¸å¤ŸresultWml"+resultWml);
 			return mapping.findForward("auction_buy_info");
 		}
 	}
 	
-    	/****************ÅÄÂô³¡¹ºÂòÎïÆ· ¾ºÅÄ¼Û********************/
+    	/****************æ‹å–åœºè´­ä¹°ç‰©å“ ç«æ‹ä»·********************/
     	public ActionForward n8(ActionMapping mapping, ActionForm form,
     			HttpServletRequest request, HttpServletResponse response)
     	{
     		
-    		/*****1ÁéÊ¯ÅÄÂô2ÏÉ¾§ÅÄÂô********************/
+    		/*****1çµçŸ³æ‹å–2ä»™æ™¶æ‹å–********************/
     		String pay_type=(String)request.getSession().getAttribute("pay_type");
     		/*****************************************/
     		logger.info("leihaoyi"+pay_type);
@@ -137,7 +137,7 @@ public class AuctionGetAction extends DispatchAction{
     		String auctionprice=request.getParameter("auctionprice");
     		if(auctionprice==null||auctionprice.equals(""))
     		{
-    			resultWml="¾ºÅÄ¼Û¸ñ²»¿ÉÎª¿Õ£¬ÇëÊäÈëÕıÈ·µÄ¾ºÅÄ¼Û¸ñ";
+    			resultWml="ç«æ‹ä»·æ ¼ä¸å¯ä¸ºç©ºï¼Œè¯·è¾“å…¥æ­£ç¡®çš„ç«æ‹ä»·æ ¼";
     			request.setAttribute("resultWml", resultWml);
     			request.setAttribute("w_type", auctionTypes+"");
     			request.setAttribute("auction_id", auction_id);
@@ -145,20 +145,20 @@ public class AuctionGetAction extends DispatchAction{
     		}
     		if(!StringUtil.isNumber(auctionprice))
     		{
-    			resultWml="ÄúÊäÈëµÄ¾ºÅÄ¼Û¸ñ²»ÊÇÊı×Ö£¬ÇëÊäÈëÊı×Ö";
+    			resultWml="æ‚¨è¾“å…¥çš„ç«æ‹ä»·æ ¼ä¸æ˜¯æ•°å­—ï¼Œè¯·è¾“å…¥æ•°å­—";
     			request.setAttribute("resultWml", resultWml);
     			request.setAttribute("w_type", auctionTypes+"");
     			request.setAttribute("auction_id", auction_id);
     			return mapping.findForward("auction_buy_info");
     		}
     		long needprice=0;
-    		//Èç¹ûÒÑ¾­ÓĞÈË¾ºÅÄ´ËÎïÆ·
+    		//å¦‚æœå·²ç»æœ‰äººç«æ‹æ­¤ç‰©å“
     		if(auctionvo.getAuctionSell()==3)
     		{
     			needprice=auctionvo.getBuyPrice();
     			if(Integer.parseInt(auctionprice)<=needprice)
     			{
-    				resultWml="ÄúÒªÊäÈë±ÈËûÈË¸ü¸ßµÄ¾ºÅÄ¼Û¸ñ²ÅÄÜ¾ºÅÄ";
+    				resultWml="æ‚¨è¦è¾“å…¥æ¯”ä»–äººæ›´é«˜çš„ç«æ‹ä»·æ ¼æ‰èƒ½ç«æ‹";
         			request.setAttribute("resultWml", resultWml);
         			request.setAttribute("w_type", auctionTypes+"");
         			request.setAttribute("auction_id", auction_id);
@@ -170,16 +170,16 @@ public class AuctionGetAction extends DispatchAction{
     			needprice=auctionvo.getAuction_price();
     			if(Integer.parseInt(auctionprice)<needprice)
     			{
-    				resultWml="ÊäÈë¼Û¸ñ²»ÄÜµÍÓÚ¾ºÅÄ¼Û¸ñ";
+    				resultWml="è¾“å…¥ä»·æ ¼ä¸èƒ½ä½äºç«æ‹ä»·æ ¼";
         			request.setAttribute("resultWml", resultWml);
         			request.setAttribute("w_type", auctionTypes+"");
         			request.setAttribute("auction_id", auction_id);
         			return mapping.findForward("auction_buy_info");
     			}
     		}
-    		logger.info("¾ºÅÄµÄÖ§¸¶ÀàĞÍÎª"+pay_type+"ĞèÒªµÄµÄ¼Û¸ñÊÇ"+needprice);
+    		logger.info("ç«æ‹çš„æ”¯ä»˜ç±»å‹ä¸º"+pay_type+"éœ€è¦çš„çš„ä»·æ ¼æ˜¯"+needprice);
     		if(roleInfo.getBasicInfo().getWrapSpare() > 1){
-    			logger.info("ÉíÉÏÓĞ¿ÕÓà¿Õ¸ñ");
+    			logger.info("èº«ä¸Šæœ‰ç©ºä½™ç©ºæ ¼");
     			if("1".equals(pay_type))
     			{
     				if(Long.valueOf(partvo.getPCopper())>Integer.parseInt(auctionprice))
@@ -187,16 +187,16 @@ public class AuctionGetAction extends DispatchAction{
     					resultWml= auctionSerivce.setToWrapByAuction(pPk, auction_id,Integer.parseInt(auctionprice) );
     					request.setAttribute("resultWml", resultWml);
     					request.setAttribute("w_type", auctionTypes+"");
-    					logger.info("ÁéÊ¯¾ºÅÄ"+resultWml);
+    					logger.info("çµçŸ³ç«æ‹"+resultWml);
     					return mapping.findForward("auction_buy_info");
     				}
     				else
     				{
-    					resultWml = "ÄúÉíÉÏµÄÁéÊ¯²»×ã£¡";
+    					resultWml = "æ‚¨èº«ä¸Šçš„çµçŸ³ä¸è¶³ï¼";
     					request.setAttribute("resultWml", resultWml);
     					request.setAttribute("w_type", auctionTypes+"");
     					request.setAttribute("auction_id", auction_id);
-    					logger.info("ÁéÊ¯²»¹»resultWml"+resultWml);
+    					logger.info("çµçŸ³ä¸å¤ŸresultWml"+resultWml);
     					return mapping.findForward("auction_buy_info");
     				}
     			}
@@ -209,31 +209,31 @@ public class AuctionGetAction extends DispatchAction{
     					resultWml= auctionSerivce.setToWrapByAuction(pPk, auction_id,Integer.parseInt(auctionprice));
     					request.setAttribute("resultWml", resultWml);
     					request.setAttribute("w_type", auctionTypes+"");
-    					logger.info("ÏÉ¾§¾ºÅÄ"+resultWml);
+    					logger.info("ä»™æ™¶ç«æ‹"+resultWml);
     					return mapping.findForward("auction_buy_info");
     				}
     				else
     				{
-    					resultWml = "ÄúÉíÉÏµÄÏÉ¾§²»×ã£¬ÇëÏÈ³äÖµÔÙÀ´¾ºÅÄ";
+    					resultWml = "æ‚¨èº«ä¸Šçš„ä»™æ™¶ä¸è¶³ï¼Œè¯·å…ˆå……å€¼å†æ¥ç«æ‹";
     					request.setAttribute("resultWml", resultWml);
     					request.setAttribute("w_type", auctionTypes+"");
     					request.setAttribute("auction_id", auction_id);
-    					logger.info("ÏÉ¾§²»¹»resultWml"+resultWml);
+    					logger.info("ä»™æ™¶ä¸å¤ŸresultWml"+resultWml);
     					return mapping.findForward("auction_buy_info");
     				}
     			}
     			
     		}else {
-    			resultWml = "Äú²»ÄÜ¹»Ğ¯´ø¸ü¶àµÄÎïÆ·ÁË£¡";
+    			resultWml = "æ‚¨ä¸èƒ½å¤Ÿæºå¸¦æ›´å¤šçš„ç‰©å“äº†ï¼";
     			request.setAttribute("resultWml", resultWml);
     			request.setAttribute("w_type", auctionTypes+"");
     			request.setAttribute("auction_id", auction_id);
-    			logger.info("°ü¹ü²»¹»resultWml"+resultWml);
+    			logger.info("åŒ…è£¹ä¸å¤ŸresultWml"+resultWml);
     			return mapping.findForward("auction_buy_info");
     		}
     	}
 	
-    	/************ÅÄÂô³¡²Ö¿âĞÅÏ¢moneyºé»Ä°æ,ÏÂÃæÄÇ¸ö·½·¨½«²»ÔÙÊ¹ÓÃ******************/
+    	/************æ‹å–åœºä»“åº“ä¿¡æ¯moneyæ´ªè’ç‰ˆ,ä¸‹é¢é‚£ä¸ªæ–¹æ³•å°†ä¸å†ä½¿ç”¨******************/
     	
     	public ActionForward n9(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
@@ -249,14 +249,14 @@ public class AuctionGetAction extends DispatchAction{
 			AuctionService auctionSerivce = new AuctionService();
 			if(getType.equals("1"))
 			{
-				//µÃµ½ÅÄÂôºóµÄÇ®²Æ
+				//å¾—åˆ°æ‹å–åçš„é’±è´¢
 				List<AuctionVO> moneyList = auctionSerivce.getMoneyList(String.valueOf(pPk));
 				request.setAttribute("list", moneyList);
 				return mapping.findForward("house");
 			}
 			else
 			{
-				//µÃµ½Ã»ÓĞÂô³öÈ¥µÄÎïÆ·
+				//å¾—åˆ°æ²¡æœ‰å–å‡ºå»çš„ç‰©å“
 				List<AuctionVO> goodsList = auctionSerivce.getGoodsList(String.valueOf(pPk),Integer.parseInt(getType));
 				request.setAttribute("list", goodsList);
 				return mapping.findForward("house");
@@ -264,7 +264,7 @@ public class AuctionGetAction extends DispatchAction{
 			
 		}	
 		
-		// ÅÄÂô³¡²Ö¿âÈ¡ÎïÆ·
+		// æ‹å–åœºä»“åº“å–ç‰©å“
 		public ActionForward n3(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{
@@ -285,14 +285,14 @@ public class AuctionGetAction extends DispatchAction{
 			
 			String flag = request.getParameter("flag");
 			logger.info("flag : "+flag+"auctionType : "+auctionTypes);
-			/*******´ÓÅÄÂô²Ö¿âÈ¡³öÎïÆ·******/
+			/*******ä»æ‹å–ä»“åº“å–å‡ºç‰©å“******/
 			if(flag.equals("goods")){
 				if(roleInfo.getBasicInfo().getWrapSpare() > 1){
 					if(auctionTypes == AuctionType.ACCOUTE || auctionTypes == AuctionType.ARM || auctionTypes == AuctionType.JEWELRY){
 						
 						resultWml = auctionSerivce.setAuctionWrap(pPk,auctionvo,partvo);
 						request.setAttribute("resultWml", resultWml);
-						logger.info("×°±¸µÄresultWml"+resultWml);
+						logger.info("è£…å¤‡çš„resultWml"+resultWml);
 						request.setAttribute("w_type", auctionTypes+"");
 						return mapping.findForward("auction_hint");
 					}else {
@@ -302,46 +302,46 @@ public class AuctionGetAction extends DispatchAction{
 						return mapping.findForward("auction_hint");
 					}
 				} else {
-					resultWml = "Äú²»ÄÜÔÙĞ¯´ø¸ü¶àµÄÎïÆ·£¡";
+					resultWml = "æ‚¨ä¸èƒ½å†æºå¸¦æ›´å¤šçš„ç‰©å“ï¼";
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
 					request.setAttribute("auction_id", auction_id);
-					logger.info("°ü¹ü²»¹»resultWml"+resultWml);
+					logger.info("åŒ…è£¹ä¸å¤ŸresultWml"+resultWml);
 					return mapping.findForward("auction_hint");
 				}
 			}
-			/*********´ÓÅÄÂô²Ö¿âÈ¡³öÇ®²Æ********/
+			/*********ä»æ‹å–ä»“åº“å–å‡ºé’±è´¢********/
 			else if(flag.equals("money")){
-				//ÉíÉÏ×î¶àĞ¯´ø1000ÍòÒø
+				//èº«ä¸Šæœ€å¤šæºå¸¦1000ä¸‡é“¶
 				if(Long.valueOf(partvo.getPCopper())+auctionvo.getGoodsPrice() < 1000000000 ){
 					resultWml = auctionSerivce.getAuctionMoney(pPk,auctionvo,partvo);
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
 					request.setAttribute("auction_id", auction_id);
-					logger.info("³É¹¦resultWml"+resultWml);
+					logger.info("æˆåŠŸresultWml"+resultWml);
 					return mapping.findForward("auction_hint");
 					
 				}else {
-					resultWml = "Äú²»ÄÜÔÙĞ¯´ø¸ü¶àµÄ½ğÇ®£¡";
+					resultWml = "æ‚¨ä¸èƒ½å†æºå¸¦æ›´å¤šçš„é‡‘é’±ï¼";
 					request.setAttribute("resultWml", resultWml);
 					request.setAttribute("w_type", auctionTypes+"");
 					request.setAttribute("auction_id", auction_id);
-					logger.info("½ğÇ®¶àresultWml"+resultWml);
+					logger.info("é‡‘é’±å¤šresultWml"+resultWml);
 					return mapping.findForward("auction_hint");
 				}
 				
 			}else {
-				resultWml = "ÄúµÄÊäÈëÓĞÎó£¡";
+				resultWml = "æ‚¨çš„è¾“å…¥æœ‰è¯¯ï¼";
 				request.setAttribute("resultWml", resultWml);
 				request.setAttribute("w_type", auctionTypes+"");
 				request.setAttribute("auction_id", auction_id);
-				logger.info("ÊäÈëÓĞÎóresultWml"+resultWml);
+				logger.info("è¾“å…¥æœ‰è¯¯resultWml"+resultWml);
 				return mapping.findForward("auction_hint");
 			}
 		}
 		
 		
-		// ÅÄÂô³¡ÏûÏ¢ÖúÊÖ
+		// æ‹å–åœºæ¶ˆæ¯åŠ©æ‰‹
 		public ActionForward n4(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{
@@ -363,7 +363,7 @@ public class AuctionGetAction extends DispatchAction{
 			return mapping.findForward("auction_info");
 		}
 		
-		// ²éÑ¯ÅÄÂô³¡Ê±°ü¹üµÀ¾ßÎïÆ·ÏêÇé
+		// æŸ¥è¯¢æ‹å–åœºæ—¶åŒ…è£¹é“å…·ç‰©å“è¯¦æƒ…
 		public ActionForward n5(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response) {
 
@@ -382,7 +382,7 @@ public class AuctionGetAction extends DispatchAction{
 			String page_no = request.getParameter("page_no");
 
 			if (goods_id == null || auction_type == null || auction_id == null) {
-				////System.out.print("goods_id»òw_type»òauction_idÎª¿Õ");
+				////System.out.print("goods_idæˆ–w_typeæˆ–auction_idä¸ºç©º");
 			}
 
 			String prop_display = null;
@@ -398,7 +398,7 @@ public class AuctionGetAction extends DispatchAction{
 			return mapping.findForward("prop_display");
 		}
 		
-		// ²éÑ¯ÅÄÂô³¡Ê±°ü¹ü×°±¸ÎïÆ·ÏêÇé
+		// æŸ¥è¯¢æ‹å–åœºæ—¶åŒ…è£¹è£…å¤‡ç‰©å“è¯¦æƒ…
 		public ActionForward n6(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response) {
 			
@@ -435,11 +435,11 @@ public class AuctionGetAction extends DispatchAction{
 			return mapping.findForward("equip_display");
 		}
 		
-		// ÅÄÂòÈ·ÈÏ
+		// æ‹ä¹°ç¡®è®¤
 		public ActionForward n7(ActionMapping mapping, ActionForm form,
 				HttpServletRequest request, HttpServletResponse response)
 		{
-			/***type1±íÊ¾Ò»¿Ú¼Û2±íÊ¾¾ºÅÄ¼Û**/
+			/***type1è¡¨ç¤ºä¸€å£ä»·2è¡¨ç¤ºç«æ‹ä»·**/
 			String type=request.getParameter("type");
 			/****************************/
 			int auctionTypes = Integer.valueOf(request.getParameter("w_type"));

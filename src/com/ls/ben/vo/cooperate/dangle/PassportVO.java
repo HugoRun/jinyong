@@ -1,19 +1,19 @@
 package com.ls.ben.vo.cooperate.dangle;
 
 /**
- * @author ls ¹¦ÄÜ:µ±ÀÖÍ¨ĞĞÖ¤ĞÅÏ¢ Jan 10, 2009
+ * @author ls åŠŸèƒ½:å½“ä¹é€šè¡Œè¯ä¿¡æ¯ Jan 10, 2009
  */
 public class PassportVO
 {
 	/** ID */
 	private int id;
-	/** µ±ÀÖÓÃ»§id */
+	/** å½“ä¹ç”¨æˆ·id */
 	private String userId;
-	/** µ±ÀÖÓÃ»§Ãû³Æ */
+	/** å½“ä¹ç”¨æˆ·åç§° */
 	private String userName;
-	/** µ±ÀÖÓÃ»§ÔÚÆ½Ì¨µÄ×´Ì¬£¬1±íÊ¾×¢²áÓÃ»§£¬2±íÊ¾×¢ÏúÓÃ»§ */
+	/** å½“ä¹ç”¨æˆ·åœ¨å¹³å°çš„çŠ¶æ€ï¼Œ1è¡¨ç¤ºæ³¨å†Œç”¨æˆ·ï¼Œ2è¡¨ç¤ºæ³¨é”€ç”¨æˆ· */
 	private int userState;
-	/** ÓÎÏ·Íæ¼ÒÕËºÅid */
+	/** æ¸¸æˆç©å®¶è´¦å·id */
 	private int uPk;
 	private int channelId;
 

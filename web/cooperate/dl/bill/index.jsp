@@ -5,13 +5,14 @@
 <%@page import="com.ls.model.user.*,com.ls.web.service.player.*"%>
 
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
 <%
-	RoleService roleService = new RoleService();
-	RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
+    RoleService roleService = new RoleService();
+    RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="bill" title="充值">
 <p>
 <s:message key = "gamename"/>充值通道<br/>

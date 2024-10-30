@@ -11,7 +11,7 @@ import com.ls.pub.util.StringUtil;
 public class LiveSkillDao extends DaoBase
 {
 
-	/** µÃµ½Éú»î¼¼ÄÜ */
+	/** å¾—åˆ°ç”Ÿæ´»æŠ€èƒ½ */
 	public List<SkillVO> getLiveSkillInfo()
 	{
 		List<SkillVO> list = new ArrayList<SkillVO>();
@@ -19,7 +19,7 @@ public class LiveSkillDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select * from skill where sk_type = 2";
+			String sql = "SELECT * FROM skill where sk_type = 2";
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -69,7 +69,7 @@ public class LiveSkillDao extends DaoBase
 		return list;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜÃû³ÆµÃµ½Éú»î¼¼ÄÜËùÔÚ¼¼ÄÜ×é */
+	/** æ ¹æ®æŠ€èƒ½åç§°å¾—åˆ°ç”Ÿæ´»æŠ€èƒ½æ‰€åœ¨æŠ€èƒ½ç»„ */
 	public int getLiveSkillGroup(String sk_name)
 	{
 		int sk_group = 0;
@@ -77,7 +77,7 @@ public class LiveSkillDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select sk_group from skill where sk_name = '"
+			String sql = "SELECT sk_group from skill where sk_name = '"
 					+ sk_name + "'";
 			logger.debug(sql);
 			stmt = conn.createStatement();
@@ -100,7 +100,7 @@ public class LiveSkillDao extends DaoBase
 		return sk_group;
 	}
 
-	/** ¸ù¾İ¼¼ÄÜÃû³ÆµÃµ½Éú»î¼¼ÄÜID */
+	/** æ ¹æ®æŠ€èƒ½åç§°å¾—åˆ°ç”Ÿæ´»æŠ€èƒ½ID */
 	public int getLiveSkillID(String sk_name)
 	{
 		int sk_id = 0;
@@ -108,7 +108,7 @@ public class LiveSkillDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select sk_id from skill where sk_name = '" + sk_name
+			String sql = "SELECT sk_id from skill where sk_name = '" + sk_name
 					+ "'";
 			logger.debug(sql);
 			stmt = conn.createStatement();

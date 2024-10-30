@@ -13,7 +13,7 @@ public class MapDao extends DaoBase {
 	
 	
 	/**
-	 * ³õÊ¼»¯map±í£¬½« map±íÀïµÄÄÚÈİ¶¼·ÅÈëµ½ÄÚ´æ±íÀïÈ¥
+	 * åˆå§‹åŒ–mapè¡¨ï¼Œå°† mapè¡¨é‡Œçš„å†…å®¹éƒ½æ”¾å…¥åˆ°å†…å­˜è¡¨é‡Œå»
 	 * @throws Exception 
 	 * 
 	 */
@@ -24,8 +24,8 @@ public class MapDao extends DaoBase {
 		MapVO map_info = null;
 		BareaVO barea = null;
 		
-		String total_num_sql = "select count(*) from map";
-		String sql = "select * from map";
+		String total_num_sql = "SELECT count(*) from map";
+		String sql = "SELECT * FROM map";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -54,7 +54,7 @@ public class MapDao extends DaoBase {
 				
 				if( barea==null )
 				{
-					String errer = "MapDao.getAllMap:¼ÓÔØÇøÓòÊı¾İ´íÎó£¬ÎŞ¸ÃÇøÓòËùÔÚµÄbarea_id£¬scene_id="+map_info.getMapID()+";barea_id="+map_info.getMapFrom();
+					String errer = "MapDao.getAllMap:åŠ è½½åŒºåŸŸæ•°æ®é”™è¯¯ï¼Œæ— è¯¥åŒºåŸŸæ‰€åœ¨çš„barea_idï¼Œscene_id="+map_info.getMapID()+";barea_id="+map_info.getMapFrom();
 					throw new Exception(errer);
 				}
 				else
@@ -68,7 +68,7 @@ public class MapDao extends DaoBase {
 			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception("mapĞÅÏ¢¼ÓÔØÄÚ´æÊ§°Ü£¬µ±Ç°map_idÎª£º"+map_info.getMapID()+";´íÎóĞÅÏ¢:"+e.getMessage());
+			throw new Exception("mapä¿¡æ¯åŠ è½½å†…å­˜å¤±è´¥ï¼Œå½“å‰map_idä¸ºï¼š"+map_info.getMapID()+";é”™è¯¯ä¿¡æ¯:"+e.getMessage());
 		}
 		finally
 		{

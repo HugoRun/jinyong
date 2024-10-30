@@ -1,10 +1,5 @@
 package com.dp.dao.book;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.dp.vo.bzjvo.BookZJVO;
 import com.dp.vo.infovo.BookInfoVO;
 import com.dp.vo.mybookvo.BookMeVO;
@@ -13,987 +8,1003 @@ import com.dp.vo.phb.PhVO;
 import com.dp.vo.typevo.BookTypeVO;
 import com.ls.pub.db.DBConnection;
 
-public class BookProce
-{
-	 DBConnection dbcon;
-	/**
-	 * ªÒ»° ÈºÆ¿‡±–≈œ¢
-	 * */
-	public List<BookTypeVO> showTypes(){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-	    	Statement stmt= dbcon.getConn().createStatement();
-			String sql = "select * from book_type";
-			ResultSet rs = stmt.executeQuery(sql);
-			List<BookTypeVO> typelist=new ArrayList<BookTypeVO>();
-			while(rs.next()){
-				BookTypeVO type=new BookTypeVO();
-				type.setTypeid(rs.getInt(1));
-				type.setTypename(rs.getString(2));
-				typelist.add(type);
-			}
-			rs.close();
-			stmt.close();
-			return typelist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	
-	/**
-	 * ªÒ»°◊ÓΩ¸∏¸–¬ ÈºÆ–≈œ¢
-	 * */
-	public List<NewInfo> showNewInfo(){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-	    	Statement stmt= dbcon.getConn().createStatement();
-			String sql = "select * from (select bi.book_id,bt.type_name,bi.book_name," +
-					"bi.author,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " +
-					"from book_neirong nr,book_info bi,book_type bt  " +
-					"where bi.type_id=bt.type_id and bi.book_id=nr.book_id order by nr.gx_date desc)  " +
-					"tab group by book_id limit 10";
-			ResultSet rs = stmt.executeQuery(sql);
-			List<NewInfo> infolist=new ArrayList<NewInfo>();
-			while(rs.next()){
-				NewInfo info=new NewInfo();
-				info.setBookid(rs.getInt(1));
-				info.setTypename(rs.getString(2));
-				info.setBookname(rs.getString(3));
-				info.setAuthor(rs.getString(4));
-				info.setZjcount(rs.getInt(5));
-				info.setZjname(rs.getString(6));
-				info.setGxdate(rs.getDate(7));
-				info.setTypeid(rs.getInt(8));
-				infolist.add(info);
-			}
-			rs.close();
-			stmt.close();
-			return infolist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ≤È—Øƒ≥–°Àµµƒ◊ÓΩ¸∏¸–¬’¬Ω⁄–≈œ¢
-	 * */
-	public NewInfo getNewZjInfoByBookId(Integer bookid){
-		String sql="select * from  (select bi.book_id,nr.zj_count,nr.zj_name,nr.gx_date "+
-                    "from book_neirong nr,book_info bi,book_type bt "+
-                    "where bi.type_id=bt.type_id and bi.book_id=nr.book_id order by nr.gx_date desc) tab "+
-                    "where book_id="+bookid+" group by book_id ";
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			NewInfo info=new NewInfo();
-			if(rs.next()){
-				info.setBookid(rs.getInt(1));
-				info.setZjcount(rs.getInt(2));
-				info.setZjname(rs.getString(3));
-				info.setGxdate(rs.getDate(4));
-			}
-			rs.close();
-			stmt.close();
-			return info;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	
-	/**
-	 * ƒ£∫˝≤È—Ø ÈºÆ∏˘æ›–°Àµ√˚≥∆
-	 * */
-	public List<NewInfo> showSearchInfo(String novename){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql ="select bi.book_id,bi.author,bt.type_name,bi.book_name,bt.type_id "+
-			"from book_info bi,book_type bt where bi.type_id=bt.type_id and bi.book_name like '%"+novename.trim()+"%'";
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			List<NewInfo> infolist=new ArrayList<NewInfo>();
-			while(rs.next()){
-				NewInfo info=new NewInfo();
-				info.setBookid(rs.getInt(1));
-				info.setAuthor(rs.getString(2));
-				info.setTypename(rs.getString(3));
-				info.setBookname(rs.getString(4));
-				info.setTypeid(rs.getInt(5));
-				infolist.add(info);
-			}
-			rs.close();
-			stmt.close();
-			return infolist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ›–°Àµ¿‡±≤È—Ø–°Àµ
-	 * */
-	public List<NewInfo> getBookByType(Integer typeid,Integer typepage,Integer tpagesize){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql ="select * from (select bi.book_id,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id "+
-            "from book_neirong nr,book_info bi,book_type bt where bi.type_id=bt.type_id and bi.book_id=nr.book_id "+
-            "order by nr.gx_date desc) tab where tab.type_id="+typeid+" group by book_id limit "+tpagesize+" offset "+(typepage-1)*tpagesize;
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			List<NewInfo> infolist=new ArrayList<NewInfo>();
-			while(rs.next()){
-				NewInfo info=new NewInfo();
-				info.setBookid(rs.getInt(1));
-				info.setBookname(rs.getString(2));
-				info.setZjcount(rs.getInt(3));
-				info.setZjname(rs.getString(4));
-				info.setGxdate(rs.getDate(5));
-				info.setTypeid(rs.getInt(6));
-				infolist.add(info);
-			}
-			rs.close();
-			stmt.close();
-			return infolist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ›–°Àµ¿‡±≤È—Ø∑÷“≥”––°Àµµƒ◊‹“≥ ˝
-	 * */
-	public Integer getTypePageCount(Integer typeid,Integer tpsize){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql="select count(*) from (select * from (select bi.book_id,bi.book_name,nr.zj_count,nr.zj_name,"+
-                "nr.gx_date,bt.type_id from book_neirong nr,book_info bi,book_type bt where bi.type_id=bt.type_id "+
-                "and bi.book_id=nr.book_id order by nr.gx_date desc) tab where tab.type_id="+typeid+" group by book_id) tab1";
-			Statement stmt= dbcon.getConn().createStatement();ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer rowcount=rs.getInt(1);
-				Integer tpc=(rowcount/tpsize+(rowcount%tpsize==0?0:1));
-				rs.close();
-				stmt.close();
-				return  tpc;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ›TYPEIDªÒ»°TYPENAME
-	 * */
-	public String getTypeById(Integer typeid){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql ="select type_name from book_type where type_id="+typeid;
-			Statement stmt= dbcon.getConn().createStatement();
-    	    ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-    			String typename=rs.getString("type_name");
-    			rs.close();
-    			stmt.close();
-    			return typename;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ≤È—Øƒ≥¿‡–°Àµµƒ≈≈––∞Ò
-	 * */
-	public List<PhVO> getNoveSqu(Integer typeid,Integer squpage,Integer squpagesize){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-    		String sql="select bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow from book_info bi,book_type bt "+
-            "where bi.type_id="+typeid+" and bt.type_id=bi.type_id "+
-            "order by bi.book_stow desc limit "+squpagesize+" offset "+(squpage-1)*squpagesize;
-    	    Statement stmt= dbcon.getConn().createStatement();
-    	    ResultSet rs=stmt.executeQuery(sql);
-    	    List<PhVO> phlist=new ArrayList<PhVO>();
-    	    while(rs.next()){
-    	    	PhVO ph=new PhVO();
-    	    	ph.setBookid(rs.getInt(1));
-				ph.setTypeid(rs.getInt(2));
-				ph.setTypename(rs.getString(3));
-				ph.setBookname(rs.getString(4));
-				ph.setScount(rs.getInt(5));
-				phlist.add(ph);
-    	    }
-    	    rs.close();
-			stmt.close();
-    	    return phlist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ≤È—Øƒ≥¿‡–°Àµ≈≈––∞Ò∑÷“≥∫Ûµƒ◊‹“≥ ˝
-	 * */
-	public Integer getNoveSquCount(Integer typeid,Integer squpagesize){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql="select count(*) from book_info bi where bi.type_id="+typeid;
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer rowcount=rs.getInt(1);
-				Integer squpagecount=(rowcount/squpagesize+(rowcount%squpagesize==0?0:1));
-				rs.close();
-    			stmt.close();
-				return squpagecount;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∞¥–°Àµ√˚À—À˜
-	 * */
-	public List<NewInfo> getBookByTypeAndName(Integer typeid,String name){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-    		String sql ="select bi.book_id,bi.author,bt.type_name,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id "+
-    		"from book_neirong nr,book_info bi,book_type bt "+
-    		"where bi.type_id=bt.type_id and bi.book_id=nr.book_id and bi.book_name like '%"+name.trim()+"%' " +
-    	    "and bt.type_id="+typeid+" order by bi.book_id desc limit 10";
-    		Statement stmt= dbcon.getConn().createStatement();
-    		ResultSet rs=stmt.executeQuery(sql);
-     	    List<NewInfo> phlist=new ArrayList<NewInfo>();
-     	    while(rs.next()){
-     	    	NewInfo info=new NewInfo();
-				info.setBookid(rs.getInt(1));
-				info.setAuthor(rs.getString(2));
-				info.setTypename(rs.getString(3));
-				info.setBookname(rs.getString(4));
-				info.setZjcount(rs.getInt(5));
-				info.setZjname(rs.getString(6));
-				info.setGxdate(rs.getDate(7));
-				info.setTypeid(rs.getInt(8));
-				phlist.add(info);
-     	    }
-     	    rs.close();
-			stmt.close();
-     	    return phlist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * µ„ª˜ƒ≥≤ø–°Àµ≤Èø¥’¬Ω⁄¡–±Ì
-	 * */
-	public List<BookZJVO> getZJbyBookId(Integer bookid,Integer page,Integer pagesize){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-    		String sql ="select nr.nr_id,nr.zj_count,substring(nr.zj_neirong,1,8),zj_name from book_neirong nr where nr.book_id="+bookid+" limit "+pagesize+" offset "+(page-1)*pagesize;
-    		Statement stmt= dbcon.getConn().createStatement();
-    		ResultSet rs=stmt.executeQuery(sql);
-     	    List<BookZJVO> phlist=new ArrayList<BookZJVO>();
-     	    while(rs.next()){
-     	    	BookZJVO info=new BookZJVO();
-     	    	info.setNrid(rs.getInt(1));
-     	    	info.setBookzj(rs.getInt(2));
-     	    	info.setBookline(rs.getString(3));
-     	    	info.setZjname(rs.getString(4));
-     	    	phlist.add(info);
-     	    }
-     	    rs.close();
-			stmt.close();
-     	    return phlist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ’¬Ω⁄¡–±Ìæ≠∑÷“≥∫Ûµƒ◊‹“≥ ˝
-	 * **/
-	public Integer getZjListPageCount(Integer bookid,Integer pagesize){
-		try{
-			String sql="select count(*) from book_neirong where book_id="+bookid;
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer rowcount=rs.getInt(1);
-				Integer pagecount=(rowcount/pagesize+(rowcount%pagesize==0?0:1));
-				rs.close();
-				stmt.close();
-				return  pagecount;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	
-	/**
-	 * ∏˘æ›–°ÀµID≤È—Ø–°Àµƒ⁄»›
-	 * */
-	public BookInfoVO getBookInfoById(Integer bookid){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql="select bi.book_id,bi.book_name,bi.type_id,bi.author,bi.book_line,bt.type_name from book_info bi,book_type bt where bi.type_id=bt.type_id and book_id="+bookid;
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			BookInfoVO info=new BookInfoVO();
-			info.setBookid(rs.getInt(1));
-			info.setBookname(rs.getString(2));
-			info.setTypeid(rs.getInt(3));
-			info.setAuthor(rs.getString(4));
-			info.setBookline(rs.getString(5));
-			info.setTypename(rs.getString(6));
-			rs.close();
-			stmt.close();
-			return info;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ‘ƒ∂¡ ÈºÆID∫Õ’¬Ω⁄ ˝‘ƒ∂¡’¬Ω⁄ƒ⁄»›
-	 * */
-	public String getNeiRongByBidAndZid(Integer ppk,Integer bookid,Integer zjid,Integer pagesize){
-		try{
-			this.addBookReadCount(bookid);
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql="select substr(zj_neirong,1,"+pagesize+") from book_neirong where book_id="+bookid+" and zj_count="+zjid;
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			String neirong=rs.getString(1);
-			rs.close();
-			stmt.close();
-			return neirong;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * º”»ÎŒ“µƒ ’≤ÿº–
-	 * */
-	public void addToMyBox(BookMeVO booktome){
-		String sql="insert into book_mine values(null,"+booktome.getRoleid()+","+booktome.getBookid()+","+booktome.getTypeid()+",'"+booktome.getBookmark()+"')";
-		try{
-			this.addBookStow(booktome.getBookid());
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt=dbcon.getConn().createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-	}
-	/**
-	 * ≤Èø¥Œ“µƒ Èº‹
-	 * */
-    public List<BookMeVO> findMyBookBox(Integer roleid){
-    	String sql="select * from (select bm.my_id,bm.book_id,bt.type_name,bi.book_name,max(nr.zj_count) mcount,nr.zj_name,max(nr.gx_date),bm.book_mark,bm.role_id,bm.type_id "+
-            "from book_info bi,book_type bt,book_neirong nr,book_mine bm "+
-            "where bi.type_id=bt.type_id and bm.book_id=bi.book_id and nr.book_id=bi.book_id and bm.role_id="+roleid+
-            " group by bm.book_id,nr.zj_name  order by nr.gx_date desc) tab group by tab.book_id order by tab.mcount desc";
-    	try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			List<BookMeVO> mybox=new ArrayList<BookMeVO>();
-			while(rs.next()){
-				BookMeVO bm=new BookMeVO();
-				bm.setMyid(rs.getInt(1));
-				bm.setBookid(rs.getInt(2));
-				bm.setTypename(rs.getString(3));
-				bm.setBookname(rs.getString(4));
-				bm.setNewzjcount(rs.getInt(5));
-				bm.setZjname(rs.getString(6));
-				bm.setGxdate(rs.getDate(7));
-				bm.setBookmark(rs.getString(8));
-				bm.setRoleid(rs.getInt(9));
-				bm.setTypeid(rs.getInt(10));
-				mybox.add(bm);
-			}
-			rs.close();
-			stmt.close();
-			return mybox;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-    	return null;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookProce {
+    DBConnection dbcon;
+
+    /**
+     * Ëé∑Âèñ‰π¶Á±çÁ±ªÂà´‰ø°ÊÅØ
+     */
+    public List<BookTypeVO> showTypes() {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            String sql = "SELECT * FROM `book_type`";
+            ResultSet rs = stmt.executeQuery(sql);
+            List<BookTypeVO> typelist = new ArrayList<BookTypeVO>();
+            while (rs.next()) {
+                BookTypeVO type = new BookTypeVO();
+                type.setTypeid(rs.getInt(1));
+                type.setTypename(rs.getString(2));
+                typelist.add(type);
+            }
+            rs.close();
+            stmt.close();
+            return typelist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
     }
+
     /**
-     * ªÒ»°µ±«∞Œ“µƒ¥ÀΩ«…´¿Ôπ≤¥Ê¡À∂‡…Ÿ±æ È
-     * */
-    public Integer getMyBookCount(Integer roleid){
-    	String sql="select count(*) from book_mine where role_id="+roleid;
-    	try{
-    		dbcon=new DBConnection(DBConnection.GAME_DB);
-    		Statement stmt= dbcon.getConn().createStatement();
-    		ResultSet rs=stmt.executeQuery(sql);
-    		rs.next();
-    		Integer sc=rs.getInt(1);
-    		rs.close();
-			stmt.close();
-    		return sc;
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}finally{
-    		dbcon.closeConn();
-    	}
-    	return null;
+     * Ëé∑ÂèñÊúÄËøëÊõ¥Êñ∞‰π¶Á±ç‰ø°ÊÅØ
+     */
+    public List<NewInfo> showNewInfo() {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            String sql = "SELECT * FROM (SELECT bi.book_id, bt.type_name, bi.book_name, bi.author, nr.zj_count, nr.zj_name, nr.gx_date, bt.type_id FROM `book_neirong` nr, book_info bi, book_type bt WHERE bi.type_id = bt.type_id AND bi.book_id = nr.book_id ORDER BY nr.gx_date DESC) tab GROUP BY book_id LIMIT 10";
+            ResultSet rs = stmt.executeQuery(sql);
+            List<NewInfo> infolist = new ArrayList<NewInfo>();
+            while (rs.next()) {
+                NewInfo info = new NewInfo();
+                info.setBookid(rs.getInt(1));
+                info.setTypename(rs.getString(2));
+                info.setBookname(rs.getString(3));
+                info.setAuthor(rs.getString(4));
+                info.setZjcount(rs.getInt(5));
+                info.setZjname(rs.getString(6));
+                info.setGxdate(rs.getDate(7));
+                info.setTypeid(rs.getInt(8));
+                infolist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return infolist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
     }
+
     /**
-     * ∏˘æ›Œ“µƒ Èº‹¿Ôµƒ¥Ê¥¢ ÈºÆµƒ÷˜º¸…æ≥˝ ÈºÆ
-     * */
-    public void deleteMyBook(Integer myid){
-    	String sql="delete from book_mine where my_id="+myid;
-    	try{
-    		dbcon=new DBConnection(DBConnection.GAME_DB);
-    		Statement stmt=dbcon.getConn().createStatement();
-    		stmt.executeUpdate(sql);
-    		stmt.close();
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}finally{
-    		dbcon.closeConn();
-    	}
+     * Êü•ËØ¢ÊüêÂ∞èËØ¥ÁöÑÊúÄËøëÊõ¥Êñ∞Á´†ËäÇ‰ø°ÊÅØ
+     */
+    public NewInfo getNewZjInfoByBookId(Integer bookid) {
+        String sql = "SELECT * FROM  (SELECT bi.book_id,nr.zj_count,nr.zj_name,nr.gx_date " + "FROM book_neirong nr,book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id ORDER BY nr.gx_date desc) tab " + "WHERE book_id=" + bookid + " GROUP BY book_id ";
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            NewInfo info = new NewInfo();
+            if (rs.next()) {
+                info.setBookid(rs.getInt(1));
+                info.setZjcount(rs.getInt(2));
+                info.setZjname(rs.getString(3));
+                info.setGxdate(rs.getDate(4));
+            }
+            rs.close();
+            stmt.close();
+            return info;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
     }
+
     /**
-     * ≈–∂œŒ“ ’≤ÿµƒ ÈºÆ «∑Ò”–÷ÿ∏¥
-     * */
-    public boolean checkReplace(Integer roleid,Integer bookid){
-    	String sql="select * from book_mine where role_id="+roleid+" and book_id="+bookid;
-    	try{
-    		dbcon=new DBConnection(DBConnection.GAME_DB);
-    		Statement stmt= dbcon.getConn().createStatement();
-    		ResultSet rs=stmt.executeQuery(sql);
-    		boolean bool=rs.next();
-    		rs.close();
-			stmt.close();
-    		return bool;
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}finally{
-    		dbcon.closeConn();
-    	}
-    	return false;
+     * Ê®°Á≥äÊü•ËØ¢‰π¶Á±çÊ†πÊçÆÂ∞èËØ¥ÂêçÁß∞
+     */
+    public List<NewInfo> showSearchInfo(String novename) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT bi.book_id,bi.author,bt.type_name,bi.book_name,bt.type_id " + "FROM book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND bi.book_name LIKE '%" + novename.trim() + "%'";
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<NewInfo> infolist = new ArrayList<NewInfo>();
+            while (rs.next()) {
+                NewInfo info = new NewInfo();
+                info.setBookid(rs.getInt(1));
+                info.setAuthor(rs.getString(2));
+                info.setTypename(rs.getString(3));
+                info.setBookname(rs.getString(4));
+                info.setTypeid(rs.getInt(5));
+                infolist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return infolist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
     }
+
     /**
-     * ∞¥–°Àµ√˚∫ÕΩ«…´id≤È’“–°Àµ
-     * */
-	public List<NewInfo> getBookByRidAndName(Integer roleid,String name){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql ="select bi.author,bi.book_id,bt.type_name,bi.book_name,bt.type_id "+
-			"from book_info bi,book_type bt,book_mine bm "+
-			"where bi.type_id=bt.type_id and bm.book_id=bi.book_id and bi.book_name like '%"+name.trim()+"%' and bm.role_id="+roleid;
-			Statement stmt= dbcon.getConn().createStatement();
-    		ResultSet rs=stmt.executeQuery(sql);
-			List<NewInfo> infolist=new ArrayList<NewInfo>();
-			while(rs.next()){
-				NewInfo info=new NewInfo();
-				info.setAuthor(rs.getString(1));
-				info.setBookid(rs.getInt(2));
-				info.setTypename(rs.getString(3));
-				info.setBookname(rs.getString(4));
-				info.setTypeid(rs.getInt(5));
-				infolist.add(info);
-			}
-			rs.close();
-			stmt.close();
-			return infolist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∞¥◊˜’ﬂ≤È—Ø–°Àµ
-	 * */
-	public List<NewInfo> showSearchResult(String novename){
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			String sql ="select bi.author,bi.book_id,bt.type_name,bi.book_name,bt.type_id "+
-			"from book_info bi,book_type bt "+
-			"where bi.type_id=bt.type_id and bi.author like '%"+novename.trim()+"%'";
-			Statement stmt= dbcon.getConn().createStatement();
-    		ResultSet rs=stmt.executeQuery(sql);
-			List<NewInfo> infolist=new ArrayList<NewInfo>();
-			while(rs.next()){
-				NewInfo info=new NewInfo();
-				info.setAuthor(rs.getString(1));
-				info.setBookid(rs.getInt(2));
-				info.setTypename(rs.getString(3));
-				info.setBookname(rs.getString(4));
-				info.setTypeid(rs.getInt(5));
-				infolist.add(info);
-			}
-			rs.close();
-			stmt.close();
-			return infolist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ› ÈºÆ÷˜º¸ªÒ»° ÈºÆ√˚≥∆
-	 * */
-	public String getBookNameById(Integer bookid){
-		String sql="select book_name from book_info where book_id="+bookid;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			String bookname=rs.getString(1);
-			rs.close();
-			stmt.close();
-			return bookname;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ›’¬Ω⁄÷˜º¸∫Õ ÈºÆ÷˜º¸ªÒ»°’¬Ω⁄√˚≥∆
-	 * */
-	public String getZjNameById(Integer zjcount,Integer bookid){
-		String sql="select zj_name from book_neirong where zj_count="+zjcount+" and book_id="+bookid;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			String zjname=rs.getString(1);
-			rs.close();
-			stmt.close();
-			return zjname;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ› ÈºÆµƒ÷˜º¸≤È—Ø∏√ ÈºÆπ≤”–∂‡…Ÿ∏ˆ’¬Ω⁄
-	 * */
-	public Integer getZjCountByBookId(Integer bookid){
-		String sql="select count(*) from book_neirong where book_id="+bookid;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			Integer zjcount=rs.getInt(1);
-			rs.close();
-			stmt.close();
-			return zjcount;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ›–°Àµµƒ÷˜º¸ªÒ»°–°Àµµƒ¿‡±id
-	 * */
-	public Integer getTypeIdByBookId(Integer bookid){
-		String sql="select type_id from book_info where book_id="+bookid;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			Integer typeid=rs.getInt(1);
-			rs.close();
-			stmt.close();
-			return typeid;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ≤È—Ø«∞ Æ±æ ÈºÆµƒ≈≈––∞Ò∞¥ ’≤ÿ»À¥ŒΩµ–Ú≈≈¡–
-	 * */
-	public List<PhVO> getPhList(Integer phpage,Integer phpagesize){
-		String sql="select bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow from book_info bi,book_type bt "+
-				"where bt.type_id=bi.type_id and bi.book_stow!=0 order by bi.book_stow desc  limit "+phpagesize+" offset "+(phpage-1)*phpagesize;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			List<PhVO> phlist=new ArrayList<PhVO>();
-			while(rs.next()){
-				PhVO ph=new PhVO();
-				ph.setBookid(rs.getInt(1));
-				ph.setTypeid(rs.getInt(2));
-				ph.setTypename(rs.getString(3));
-				ph.setBookname(rs.getString(4));
-				ph.setScount(rs.getInt(5));
-				phlist.add(ph);
-			}
-			rs.close();
-			stmt.close();
-			return phlist;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ªÒ»°≈≈––∞Ò∑÷“≥∫Ûµƒ◊‹“≥ ˝
-	 * */
-	public Integer getPhPageCount(Integer phpagesize){
-		String sql="select count(*) from book_info bi,book_type bt where bt.type_id=bi.type_id";
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			Integer rowcount=rs.getInt(1);
-			Integer pagecount=(rowcount/phpagesize+(rowcount%phpagesize==0?0:1));
-			rs.close();
-			stmt.close();
-			return pagecount;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
+     * Ê†πÊçÆÂ∞èËØ¥Á±ªÂà´Êü•ËØ¢Â∞èËØ¥
+     */
+    public List<NewInfo> getBookByType(Integer typeid, Integer typepage, Integer tpagesize) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT * FROM (SELECT bi.book_id,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " + "FROM book_neirong nr,book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id " + "ORDER BY nr.gx_date desc) tab WHERE tab.type_id=" + typeid + " GROUP BY book_id limit " + tpagesize + " offset " + (typepage - 1) * tpagesize;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<NewInfo> infolist = new ArrayList<NewInfo>();
+            while (rs.next()) {
+                NewInfo info = new NewInfo();
+                info.setBookid(rs.getInt(1));
+                info.setBookname(rs.getString(2));
+                info.setZjcount(rs.getInt(3));
+                info.setZjname(rs.getString(4));
+                info.setGxdate(rs.getDate(5));
+                info.setTypeid(rs.getInt(6));
+                infolist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return infolist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
     /**
-     * ≈–∂œ¥ÀΩ«…´‘⁄Õ¨“ª±æ È÷–¥Ê≤ª¥Ê‘⁄
-     * */
-	public Integer isExistInAmark(Integer bookid,Integer roleid){
-		String sql="select * from book_mine where book_id="+bookid+" and role_id="+roleid;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer ss=rs.getInt(1);
-				rs.close();
-				stmt.close();
-				return ss;
-			}else{
-				rs.close();
-				stmt.close();
-				return 0;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ∏˘æ›µ±«∞ÕÊº“µƒΩ«…´ID∫Õ ÈºÆµƒIDªÚÃÌº”∏√Ω«…´µƒ È«©ªÚ–ﬁ∏ƒ∏√Ω«…´µƒ È«©
-	 * */
-	public void addOrupdateMyBookMark(Integer bookid,Integer roleid,String mark,Integer typeid){
-		try{
-			Integer markid=this.isExistInAmark(bookid, roleid);
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-    		if(markid.equals(0)||markid==0){
-    			String sql="update book_info set book_stow=book_stow+1 where book_id="+bookid;
-    			String sql1="insert into book_mine values(null,"+roleid+","+bookid+","+typeid+",'"+mark+"')";
-    			stmt.executeUpdate(sql1);
-    			stmt.executeUpdate(sql);
-    			stmt.close();
-    		}else{
-    			String sql2="update book_mine set book_mark='"+mark+"' where my_id="+markid;
-    			stmt.executeUpdate(sql2);
-    			stmt.close();
-    		}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-	}
-	/**
-	 * ∏˘æ›’¬Ω⁄±‡∫≈≤È—Ø≥ˆ’¬Ω⁄µ±«∞’¬Ω⁄ ˝
-	 * */
-	public Integer getZjCountByZjId(Integer zjid){
-		try{
-			String sql="select zj_count from book_neirong where nr_id="+zjid;
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			rs.next();
-			Integer zjc=rs.getInt(1);
-			rs.close();
-			stmt.close();
-			return zjc;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ≤È—Øƒ≥∏ˆ’¬Ω⁄π≤∂‡…Ÿ“≥
-	 * */
-	public Integer getZjPageCount(Integer bookid,Integer zjcount,Integer pagesize){
-		try{
-			String sql="select char_length(zj_neirong) from book_neirong where book_id="+bookid+" and zj_count="+zjcount;
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer allzs=rs.getInt(1);
-				Integer allcount=(allzs/pagesize+(allzs%pagesize==0?0:1));
-				rs.close();
-				stmt.close();
-				return allcount;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ≤È—Ø√ø“ª“≥µƒƒ⁄»›œ‘ æ∏¯ÕÊº“
-	 * **/
-	public String getZjPageLine(Integer bookid,Integer zjcount,Integer page,Integer pagesize){
-		try{
-			String sql="select substr(zj_neirong,"+((page-1)*pagesize+1)+","+pagesize+") from book_neirong where book_id="+bookid+" and zj_count="+zjcount;
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				String pageline=rs.getString(1);
-				rs.close();
-				stmt.close();
-				return pageline;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
-	/**
-	 * ÃÌº”–°Àµµƒ ’≤ÿ¥Œ ˝
-	 * **/
-	public void addBookStow(Integer bookid){
-		try{
-			String sql="update book_info set book_stow=book_stow+1 where book_id="+bookid;
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-	}
-	/**
-	 *ÃÌº”–°Àµµƒ‘ƒ∂¡¥Œ ˝ 
-	 * **/
-	public void addBookReadCount(Integer bookid){
-		String sql="update book_info set read_count=read_count+1 where book_id="+bookid;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-	}
-	/**
-	 * ÃÌº”‘ƒ∂¡º«¬º
-	 * **/
-	public void addReadRecord(Integer ppk,Integer bookid,Integer zjcount){
-		String sql="insert into book_read_record values(null,"+ppk+","+bookid+","+zjcount+",sysdate())";
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			stmt.executeUpdate(sql);
-			stmt.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-	}
-	/**
-	 * ≤È—ØÕÊº“ «∑Ò∂¡π˝¥À±æ Èµƒ¥À’¬Ω⁄
-	 * **/
-	public boolean checkIsReadTheBookZj(Integer ppk,Integer bookid,Integer zjcount){
-		String sql="select * from book_read_record where read_ppk="+ppk+" and read_bid="+bookid+" and read_zj="+zjcount;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			boolean bool=rs.next();
-			rs.close();
-			stmt.close();
-			return bool;
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return false;
-	}
-	/**
-	 * ∑—”√º¥:“¯¡Ω
-	 * √øµ±ø¥’¬Ω⁄ ±ø€∑—
-	 * Ω…ƒ…“¯¡Ω=2*ÕÊº“µ»º∂
-	 * **/
-	public void substrutTheRate(Integer ppk){
-		String sql="select p_grade from u_part_info where p_pk="+ppk;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_USER_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer grade=rs.getInt(1);
-				String sql1="update u_part_info set p_copper=p_copper-"+grade*2;
-				stmt.executeUpdate(sql1);
-			}
-			rs.close();
-			stmt.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-	}
-	/**
-	 * ≈–∂œÕÊº“ «∑Ò”–◊„πªµƒ“¯¡Ωø¥–°Àµ
-	 * */
-	public boolean checkHaveEnoughCopper(Integer ppk){
-		String sql="select p_grade,p_copper from u_part_info where p_pk="+ppk;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_USER_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				Integer rate=rs.getInt(1)*2;
-				Integer copper=rs.getInt(2);
-				if(copper>=rate){
-					rs.close();
-					stmt.close();
-					return true;
-				}else{
-					rs.close();
-					stmt.close();
-					return false;
-				}
-			}else{
-				rs.close();
-				stmt.close();
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return false;
-	}
-	/**
-	 * ≤È—ØÕÊº“±æΩ«…´µ»º∂
-	 * **/
-	public String getThePgradeByPpk(Integer ppk){
-		String sql="select p_grade,p_copper from u_part_info where p_pk="+ppk;
-		try{
-			dbcon=new DBConnection(DBConnection.GAME_USER_DB);
-			Statement stmt= dbcon.getConn().createStatement();
-			ResultSet rs=stmt.executeQuery(sql);
-			StringBuffer gcstr=new StringBuffer();
-			if(rs.next()){
-				Integer grade=rs.getInt(1);
-				Integer copper=rs.getInt(2);
-				if(grade==null){
-					gcstr.append(0);
-				}else{
-					gcstr.append(grade+",");
-				}
-				if(copper==null){
-					gcstr.append(0);
-				}else{
-					gcstr.append(copper);
-				}
-				rs.close();
-				stmt.close();
-				return gcstr.toString();
-			}else{
-				rs.close();
-				stmt.close();
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			dbcon.closeConn();
-		}
-		return null;
-	}
+     * Ê†πÊçÆÂ∞èËØ¥Á±ªÂà´Êü•ËØ¢ÂàÜÈ°µÊúâÂ∞èËØ¥ÁöÑÊÄªÈ°µÊï∞
+     */
+    public Integer getTypePageCount(Integer typeid, Integer tpsize) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT count(*) FROM (SELECT * FROM (SELECT bi.book_id,bi.book_name,nr.zj_count,nr.zj_name," + "nr.gx_date,bt.type_id FROM book_neirong nr,book_info bi,book_type bt WHERE bi.type_id=bt.type_id " + "and bi.book_id=nr.book_id ORDER BY nr.gx_date desc) tab WHERE tab.type_id=" + typeid + " GROUP BY book_id) tab1";
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer rowcount = rs.getInt(1);
+                Integer tpc = (rowcount / tpsize + (rowcount % tpsize == 0 ? 0 : 1));
+                rs.close();
+                stmt.close();
+                return tpc;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆTYPEIDËé∑ÂèñTYPENAME
+     */
+    public String getTypeById(Integer typeid) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT type_name FROM book_type WHERE type_id=" + typeid;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                String typename = rs.getString("type_name");
+                rs.close();
+                stmt.close();
+                return typename;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Êü•ËØ¢ÊüêÁ±ªÂ∞èËØ¥ÁöÑÊéíË°åÊ¶ú
+     */
+    public List<PhVO> getNoveSqu(Integer typeid, Integer squpage, Integer squpagesize) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow FROM book_info bi,book_type bt " + "WHERE bi.type_id=" + typeid + " AND bt.type_id=bi.type_id " + "ORDER BY bi.book_stow DESC LIMIT " + squpagesize + " offset " + (squpage - 1) * squpagesize;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<PhVO> phlist = new ArrayList<PhVO>();
+            while (rs.next()) {
+                PhVO ph = new PhVO();
+                ph.setBookid(rs.getInt(1));
+                ph.setTypeid(rs.getInt(2));
+                ph.setTypename(rs.getString(3));
+                ph.setBookname(rs.getString(4));
+                ph.setScount(rs.getInt(5));
+                phlist.add(ph);
+            }
+            rs.close();
+            stmt.close();
+            return phlist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Êü•ËØ¢ÊüêÁ±ªÂ∞èËØ¥ÊéíË°åÊ¶úÂàÜÈ°µÂêéÁöÑÊÄªÈ°µÊï∞
+     */
+    public Integer getNoveSquCount(Integer typeid, Integer squpagesize) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT count(*) FROM book_info bi WHERE bi.type_id=" + typeid;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer rowcount = rs.getInt(1);
+                Integer squpagecount = (rowcount / squpagesize + (rowcount % squpagesize == 0 ? 0 : 1));
+                rs.close();
+                stmt.close();
+                return squpagecount;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * ÊåâÂ∞èËØ¥ÂêçÊêúÁ¥¢
+     */
+    public List<NewInfo> getBookByTypeAndName(Integer typeid, String name) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT bi.book_id,bi.author,bt.type_name,bi.book_name,nr.zj_count,nr.zj_name,nr.gx_date,bt.type_id " + "FROM book_neirong nr,book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.book_id=nr.book_id AND bi.book_name LIKE '%" + name.trim() + "%' " + "and bt.type_id=" + typeid + " ORDER BY bi.book_id DESC LIMIT 10";
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<NewInfo> phlist = new ArrayList<NewInfo>();
+            while (rs.next()) {
+                NewInfo info = new NewInfo();
+                info.setBookid(rs.getInt(1));
+                info.setAuthor(rs.getString(2));
+                info.setTypename(rs.getString(3));
+                info.setBookname(rs.getString(4));
+                info.setZjcount(rs.getInt(5));
+                info.setZjname(rs.getString(6));
+                info.setGxdate(rs.getDate(7));
+                info.setTypeid(rs.getInt(8));
+                phlist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return phlist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * ÁÇπÂáªÊüêÈÉ®Â∞èËØ¥Êü•ÁúãÁ´†ËäÇÂàóË°®
+     */
+    public List<BookZJVO> getZJbyBookId(Integer bookid, Integer page, Integer pagesize) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT nr.nr_id,nr.zj_count,substring(nr.zj_neirong,1,8),zj_name FROM book_neirong nr WHERE nr.book_id=" + bookid + " limit " + pagesize + " offset " + (page - 1) * pagesize;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<BookZJVO> phlist = new ArrayList<BookZJVO>();
+            while (rs.next()) {
+                BookZJVO info = new BookZJVO();
+                info.setNrid(rs.getInt(1));
+                info.setBookzj(rs.getInt(2));
+                info.setBookline(rs.getString(3));
+                info.setZjname(rs.getString(4));
+                phlist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return phlist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Á´†ËäÇÂàóË°®ÁªèÂàÜÈ°µÂêéÁöÑÊÄªÈ°µÊï∞
+     **/
+    public Integer getZjListPageCount(Integer bookid, Integer pagesize) {
+        try {
+            String sql = "SELECT count(*) FROM book_neirong WHERE book_id=" + bookid;
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer rowcount = rs.getInt(1);
+                Integer pagecount = (rowcount / pagesize + (rowcount % pagesize == 0 ? 0 : 1));
+                rs.close();
+                stmt.close();
+                return pagecount;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆÂ∞èËØ¥IDÊü•ËØ¢Â∞èËØ¥ÂÜÖÂÆπ
+     */
+    public BookInfoVO getBookInfoById(Integer bookid) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT bi.book_id,bi.book_name,bi.type_id,bi.author,bi.book_line,bt.type_name FROM book_info bi,book_type bt WHERE bi.type_id=bt.type_id AND book_id=" + bookid;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            BookInfoVO info = new BookInfoVO();
+            info.setBookid(rs.getInt(1));
+            info.setBookname(rs.getString(2));
+            info.setTypeid(rs.getInt(3));
+            info.setAuthor(rs.getString(4));
+            info.setBookline(rs.getString(5));
+            info.setTypename(rs.getString(6));
+            rs.close();
+            stmt.close();
+            return info;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * ÈòÖËØª‰π¶Á±çIDÂíåÁ´†ËäÇÊï∞ÈòÖËØªÁ´†ËäÇÂÜÖÂÆπ
+     */
+    public String getNeiRongByBidAndZid(Integer ppk, Integer bookid, Integer zjid, Integer pagesize) {
+        try {
+            this.addBookReadCount(bookid);
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT substr(zj_neirong,1," + pagesize + ") FROM book_neirong WHERE book_id=" + bookid + " AND zj_count=" + zjid;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            String neirong = rs.getString(1);
+            rs.close();
+            stmt.close();
+            return neirong;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Âä†ÂÖ•ÊàëÁöÑÊî∂ËóèÂ§π
+     */
+    public void addToMyBox(BookMeVO booktome) {
+        String sql = "INSERT INTO book_mine values(null," + booktome.getRoleid() + "," + booktome.getBookid() + "," + booktome.getTypeid() + ",'" + booktome.getBookmark() + "')";
+        try {
+            this.addBookStow(booktome.getBookid());
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Êü•ÁúãÊàëÁöÑ‰π¶Êû∂
+     */
+    public List<BookMeVO> findMyBookBox(Integer roleid) {
+        String sql = "SELECT * FROM (SELECT bm.my_id,bm.book_id,bt.type_name,bi.book_name,max(nr.zj_count) mcount,nr.zj_name,max(nr.gx_date),bm.book_mark,bm.role_id,bm.type_id " + "FROM book_info bi,book_type bt,book_neirong nr,book_mine bm " + "WHERE bi.type_id=bt.type_id AND bm.book_id=bi.book_id AND nr.book_id=bi.book_id AND bm.role_id=" + roleid + " GROUP BY bm.book_id,nr.zj_name  ORDER BY nr.gx_date desc) tab GROUP BY tab.book_id ORDER BY tab.mcount desc";
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<BookMeVO> mybox = new ArrayList<BookMeVO>();
+            while (rs.next()) {
+                BookMeVO bm = new BookMeVO();
+                bm.setMyid(rs.getInt(1));
+                bm.setBookid(rs.getInt(2));
+                bm.setTypename(rs.getString(3));
+                bm.setBookname(rs.getString(4));
+                bm.setNewzjcount(rs.getInt(5));
+                bm.setZjname(rs.getString(6));
+                bm.setGxdate(rs.getDate(7));
+                bm.setBookmark(rs.getString(8));
+                bm.setRoleid(rs.getInt(9));
+                bm.setTypeid(rs.getInt(10));
+                mybox.add(bm);
+            }
+            rs.close();
+            stmt.close();
+            return mybox;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ëé∑ÂèñÂΩìÂâçÊàëÁöÑÊ≠§ËßíËâ≤ÈáåÂÖ±Â≠ò‰∫ÜÂ§öÂ∞ëÊú¨‰π¶
+     */
+    public Integer getMyBookCount(Integer roleid) {
+        String sql = "SELECT count(*) FROM book_mine WHERE role_id=" + roleid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            Integer sc = rs.getInt(1);
+            rs.close();
+            stmt.close();
+            return sc;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆÊàëÁöÑ‰π¶Êû∂ÈáåÁöÑÂ≠òÂÇ®‰π¶Á±çÁöÑ‰∏ªÈîÆÂà†Èô§‰π¶Á±ç
+     */
+    public void deleteMyBook(Integer myid) {
+        String sql = "delete FROM book_mine WHERE my_id=" + myid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Âà§Êñ≠ÊàëÊî∂ËóèÁöÑ‰π¶Á±çÊòØÂê¶ÊúâÈáçÂ§ç
+     */
+    public boolean checkReplace(Integer roleid, Integer bookid) {
+        String sql = "SELECT * FROM book_mine WHERE role_id=" + roleid + " AND book_id=" + bookid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            boolean bool = rs.next();
+            rs.close();
+            stmt.close();
+            return bool;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return false;
+    }
+
+    /**
+     * ÊåâÂ∞èËØ¥ÂêçÂíåËßíËâ≤idÊü•ÊâæÂ∞èËØ¥
+     */
+    public List<NewInfo> getBookByRidAndName(Integer roleid, String name) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT bi.author,bi.book_id,bt.type_name,bi.book_name,bt.type_id " + "FROM book_info bi,book_type bt,book_mine bm " + "WHERE bi.type_id=bt.type_id AND bm.book_id=bi.book_id AND bi.book_name LIKE '%" + name.trim() + "%' AND bm.role_id=" + roleid;
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<NewInfo> infolist = new ArrayList<NewInfo>();
+            while (rs.next()) {
+                NewInfo info = new NewInfo();
+                info.setAuthor(rs.getString(1));
+                info.setBookid(rs.getInt(2));
+                info.setTypename(rs.getString(3));
+                info.setBookname(rs.getString(4));
+                info.setTypeid(rs.getInt(5));
+                infolist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return infolist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Êåâ‰ΩúËÄÖÊü•ËØ¢Â∞èËØ¥
+     */
+    public List<NewInfo> showSearchResult(String novename) {
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            String sql = "SELECT bi.author,bi.book_id,bt.type_name,bi.book_name,bt.type_id " + "FROM book_info bi,book_type bt " + "WHERE bi.type_id=bt.type_id AND bi.author LIKE '%" + novename.trim() + "%'";
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<NewInfo> infolist = new ArrayList<NewInfo>();
+            while (rs.next()) {
+                NewInfo info = new NewInfo();
+                info.setAuthor(rs.getString(1));
+                info.setBookid(rs.getInt(2));
+                info.setTypename(rs.getString(3));
+                info.setBookname(rs.getString(4));
+                info.setTypeid(rs.getInt(5));
+                infolist.add(info);
+            }
+            rs.close();
+            stmt.close();
+            return infolist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆ‰π¶Á±ç‰∏ªÈîÆËé∑Âèñ‰π¶Á±çÂêçÁß∞
+     */
+    public String getBookNameById(Integer bookid) {
+        String sql = "SELECT book_name FROM book_info WHERE book_id=" + bookid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            String bookname = rs.getString(1);
+            rs.close();
+            stmt.close();
+            return bookname;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆÁ´†ËäÇ‰∏ªÈîÆÂíå‰π¶Á±ç‰∏ªÈîÆËé∑ÂèñÁ´†ËäÇÂêçÁß∞
+     */
+    public String getZjNameById(Integer zjcount, Integer bookid) {
+        String sql = "SELECT zj_name FROM book_neirong WHERE zj_count=" + zjcount + " AND book_id=" + bookid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            String zjname = rs.getString(1);
+            rs.close();
+            stmt.close();
+            return zjname;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆ‰π¶Á±çÁöÑ‰∏ªÈîÆÊü•ËØ¢ËØ•‰π¶Á±çÂÖ±ÊúâÂ§öÂ∞ë‰∏™Á´†ËäÇ
+     */
+    public Integer getZjCountByBookId(Integer bookid) {
+        String sql = "SELECT count(*) FROM book_neirong WHERE book_id=" + bookid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            Integer zjcount = rs.getInt(1);
+            rs.close();
+            stmt.close();
+            return zjcount;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆÂ∞èËØ¥ÁöÑ‰∏ªÈîÆËé∑ÂèñÂ∞èËØ¥ÁöÑÁ±ªÂà´id
+     */
+    public Integer getTypeIdByBookId(Integer bookid) {
+        String sql = "SELECT type_id FROM book_info WHERE book_id=" + bookid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            Integer typeid = rs.getInt(1);
+            rs.close();
+            stmt.close();
+            return typeid;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Êü•ËØ¢ÂâçÂçÅÊú¨‰π¶Á±çÁöÑÊéíË°åÊ¶úÊåâÊî∂Ëóè‰∫∫Ê¨°ÈôçÂ∫èÊéíÂàó
+     */
+    public List<PhVO> getPhList(Integer phpage, Integer phpagesize) {
+        String sql = "SELECT bi.book_id,bt.type_id,bt.type_name,bi.book_name,bi.book_stow FROM book_info bi,book_type bt " + "WHERE bt.type_id=bi.type_id AND bi.book_stow!=0 ORDER BY bi.book_stow desc  limit " + phpagesize + " offset " + (phpage - 1) * phpagesize;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            List<PhVO> phlist = new ArrayList<PhVO>();
+            while (rs.next()) {
+                PhVO ph = new PhVO();
+                ph.setBookid(rs.getInt(1));
+                ph.setTypeid(rs.getInt(2));
+                ph.setTypename(rs.getString(3));
+                ph.setBookname(rs.getString(4));
+                ph.setScount(rs.getInt(5));
+                phlist.add(ph);
+            }
+            rs.close();
+            stmt.close();
+            return phlist;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ëé∑ÂèñÊéíË°åÊ¶úÂàÜÈ°µÂêéÁöÑÊÄªÈ°µÊï∞
+     */
+    public Integer getPhPageCount(Integer phpagesize) {
+        String sql = "SELECT count(*) FROM book_info bi,book_type bt WHERE bt.type_id=bi.type_id";
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            Integer rowcount = rs.getInt(1);
+            Integer pagecount = (rowcount / phpagesize + (rowcount % phpagesize == 0 ? 0 : 1));
+            rs.close();
+            stmt.close();
+            return pagecount;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Âà§Êñ≠Ê≠§ËßíËâ≤Âú®Âêå‰∏ÄÊú¨‰π¶‰∏≠Â≠ò‰∏çÂ≠òÂú®
+     */
+    public Integer isExistInAmark(Integer bookid, Integer roleid) {
+        String sql = "SELECT * FROM book_mine WHERE book_id=" + bookid + " AND role_id=" + roleid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer ss = rs.getInt(1);
+                rs.close();
+                stmt.close();
+                return ss;
+            } else {
+                rs.close();
+                stmt.close();
+                return 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê†πÊçÆÂΩìÂâçÁé©ÂÆ∂ÁöÑËßíËâ≤IDÂíå‰π¶Á±çÁöÑIDÊàñÊ∑ªÂä†ËØ•ËßíËâ≤ÁöÑ‰π¶Á≠æÊàñ‰øÆÊîπËØ•ËßíËâ≤ÁöÑ‰π¶Á≠æ
+     */
+    public void addOrupdateMyBookMark(Integer bookid, Integer roleid, String mark, Integer typeid) {
+        try {
+            Integer markid = this.isExistInAmark(bookid, roleid);
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            if (markid.equals(0) || markid == 0) {
+                String sql = "update book_info set book_stow=book_stow+1 WHERE book_id=" + bookid;
+                String sql1 = "INSERT INTO book_mine values(null," + roleid + "," + bookid + "," + typeid + ",'" + mark + "')";
+                stmt.executeUpdate(sql1);
+                stmt.executeUpdate(sql);
+                stmt.close();
+            } else {
+                String sql2 = "update book_mine set book_mark='" + mark + "' WHERE my_id=" + markid;
+                stmt.executeUpdate(sql2);
+                stmt.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Ê†πÊçÆÁ´†ËäÇÁºñÂè∑Êü•ËØ¢Âá∫Á´†ËäÇÂΩìÂâçÁ´†ËäÇÊï∞
+     */
+    public Integer getZjCountByZjId(Integer zjid) {
+        try {
+            String sql = "SELECT zj_count FROM book_neirong WHERE nr_id=" + zjid;
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            Integer zjc = rs.getInt(1);
+            rs.close();
+            stmt.close();
+            return zjc;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Êü•ËØ¢Êüê‰∏™Á´†ËäÇÂÖ±Â§öÂ∞ëÈ°µ
+     */
+    public Integer getZjPageCount(Integer bookid, Integer zjcount, Integer pagesize) {
+        try {
+            String sql = "SELECT char_length(zj_neirong) FROM book_neirong WHERE book_id=" + bookid + " AND zj_count=" + zjcount;
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer allzs = rs.getInt(1);
+                Integer allcount = (allzs / pagesize + (allzs % pagesize == 0 ? 0 : 1));
+                rs.close();
+                stmt.close();
+                return allcount;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Êü•ËØ¢ÊØè‰∏ÄÈ°µÁöÑÂÜÖÂÆπÊòæÁ§∫ÁªôÁé©ÂÆ∂
+     **/
+    public String getZjPageLine(Integer bookid, Integer zjcount, Integer page, Integer pagesize) {
+        try {
+            String sql = "SELECT substr(zj_neirong," + ((page - 1) * pagesize + 1) + "," + pagesize + ") FROM book_neirong WHERE book_id=" + bookid + " AND zj_count=" + zjcount;
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                String pageline = rs.getString(1);
+                rs.close();
+                stmt.close();
+                return pageline;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
+
+    /**
+     * Ê∑ªÂä†Â∞èËØ¥ÁöÑÊî∂ËóèÊ¨°Êï∞
+     **/
+    public void addBookStow(Integer bookid) {
+        try {
+            String sql = "update book_info set book_stow=book_stow+1 WHERE book_id=" + bookid;
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Ê∑ªÂä†Â∞èËØ¥ÁöÑÈòÖËØªÊ¨°Êï∞
+     **/
+    public void addBookReadCount(Integer bookid) {
+        String sql = "update book_info set read_count=read_count+1 WHERE book_id=" + bookid;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Ê∑ªÂä†ÈòÖËØªËÆ∞ÂΩï
+     **/
+    public void addReadRecord(Integer ppk, Integer bookid, Integer zjcount) {
+        String sql = "INSERT INTO book_read_record values(null," + ppk + "," + bookid + "," + zjcount + ",sysdate())";
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Êü•ËØ¢Áé©ÂÆ∂ÊòØÂê¶ËØªËøáÊ≠§Êú¨‰π¶ÁöÑÊ≠§Á´†ËäÇ
+     **/
+    public boolean checkIsReadTheBookZj(Integer ppk, Integer bookid, Integer zjcount) {
+        String sql = "SELECT * FROM book_read_record WHERE read_ppk=" + ppk + " AND read_bid=" + bookid + " AND read_zj=" + zjcount;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            boolean bool = rs.next();
+            rs.close();
+            stmt.close();
+            return bool;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return false;
+    }
+
+    /**
+     * Ë¥πÁî®Âç≥:Èì∂‰∏§
+     * ÊØèÂΩìÁúãÁ´†ËäÇÊó∂Êâ£Ë¥π
+     * Áº¥Á∫≥Èì∂‰∏§=2*Áé©ÂÆ∂Á≠âÁ∫ß
+     **/
+    public void substrutTheRate(Integer ppk) {
+        String sql = "SELECT p_grade FROM u_part_info WHERE p_pk=" + ppk;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_USER_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer grade = rs.getInt(1);
+                String sql1 = "update u_part_info set p_copper=p_copper-" + grade * 2;
+                stmt.executeUpdate(sql1);
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+    }
+
+    /**
+     * Âà§Êñ≠Áé©ÂÆ∂ÊòØÂê¶ÊúâË∂≥Â§üÁöÑÈì∂‰∏§ÁúãÂ∞èËØ¥
+     */
+    public boolean checkHaveEnoughCopper(Integer ppk) {
+        String sql = "SELECT p_grade,p_copper FROM u_part_info WHERE p_pk=" + ppk;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_USER_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                Integer rate = rs.getInt(1) * 2;
+                Integer copper = rs.getInt(2);
+                if (copper >= rate) {
+                    rs.close();
+                    stmt.close();
+                    return true;
+                } else {
+                    rs.close();
+                    stmt.close();
+                    return false;
+                }
+            } else {
+                rs.close();
+                stmt.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return false;
+    }
+
+    /**
+     * Êü•ËØ¢Áé©ÂÆ∂Êú¨ËßíËâ≤Á≠âÁ∫ß
+     **/
+    public String getThePgradeByPpk(Integer ppk) {
+        String sql = "SELECT p_grade,p_copper FROM u_part_info WHERE p_pk=" + ppk;
+        try {
+            dbcon = new DBConnection(DBConnection.GAME_USER_DB);
+            Statement stmt = dbcon.getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            StringBuffer gcstr = new StringBuffer();
+            if (rs.next()) {
+                Integer grade = rs.getInt(1);
+                Integer copper = rs.getInt(2);
+                if (grade == null) {
+                    gcstr.append(0);
+                } else {
+                    gcstr.append(grade + ",");
+                }
+                if (copper == null) {
+                    gcstr.append(0);
+                } else {
+                    gcstr.append(copper);
+                }
+                rs.close();
+                stmt.close();
+                return gcstr.toString();
+            } else {
+                rs.close();
+                stmt.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbcon.closeConn();
+        }
+        return null;
+    }
 }
 
 

@@ -4,19 +4,19 @@ import java.util.Date;
 
 /**
  * @author ls
- * ¹¦ÄÜ:ĞèÒªµ¯³öÒ³ÃæµÄÏµÍ³ÏûÏ¢±í(u_popup_msg)
+ * åŠŸèƒ½:éœ€è¦å¼¹å‡ºé¡µé¢çš„ç³»ç»Ÿæ¶ˆæ¯è¡¨(u_popup_msg)
  * Mar 6, 2009
  */
 public class UMessageInfoVO
 {
-	private int id;/**Ö÷¼ü*/
-	private int pPk; /**½ÓÊÜÏûÏ¢Íæ¼ÒµÄid*/
-    private int msgType;/**ÏûÏ¢ÀàĞÍ*/
-    private String msgOperate1="";/**¹¦ÄÜ×Ö½Ú£¬´æ´¢¸ÃÏûÏ¢ĞèÒªµÄ²ÎÊıĞÅÏ¢*/
-    private String msgOperate2="";/**¹¦ÄÜ×Ö½Ú£¬´æ´¢¸ÃÏûÏ¢ĞèÒªµÄ²ÎÊıĞÅÏ¢*/
-    private int msgPriority=1;/**ÏûÏ¢µÄÓÅÏÈ¼¶*/
-    private Date createTime;/**´´½¨Ê±¼ä*/
-    private String result;/**·µ»ØÒ³ÃæÌáÊ¾ÏûÏ¢*/
+	private int id;/**ä¸»é”®*/
+	private int pPk; /**æ¥å—æ¶ˆæ¯ç©å®¶çš„id*/
+    private int msgType;/**æ¶ˆæ¯ç±»å‹*/
+    private String msgOperate1="";/**åŠŸèƒ½å­—èŠ‚ï¼Œå­˜å‚¨è¯¥æ¶ˆæ¯éœ€è¦çš„å‚æ•°ä¿¡æ¯*/
+    private String msgOperate2="";/**åŠŸèƒ½å­—èŠ‚ï¼Œå­˜å‚¨è¯¥æ¶ˆæ¯éœ€è¦çš„å‚æ•°ä¿¡æ¯*/
+    private int msgPriority=1;/**æ¶ˆæ¯çš„ä¼˜å…ˆçº§*/
+    private Date createTime;/**åˆ›å»ºæ—¶é—´*/
+    private String result;/**è¿”å›é¡µé¢æç¤ºæ¶ˆæ¯*/
     
     
 	public String getResult()

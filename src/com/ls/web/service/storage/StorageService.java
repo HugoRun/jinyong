@@ -29,7 +29,7 @@ import com.pm.constant.SpecialNumber;
 public class StorageService {
 	
 	/**
-	 * ¸ù¾İ²Ö¿âidµÃµ½²Ö¿âĞÅÏ¢ 
+	 * æ ¹æ®ä»“åº“idå¾—åˆ°ä»“åº“ä¿¡æ¯ 
 	 * @param p_pk
 	 * @return
 	 */
@@ -39,7 +39,7 @@ public class StorageService {
 	}
 	
 	
-	//´æ´¢½ğÇ®£¬´Ó°ü¹üµ½²Ö¿â
+	//å­˜å‚¨é‡‘é’±ï¼Œä»åŒ…è£¹åˆ°ä»“åº“
 	public String removeMoneyToWare(int pPk,long input_num){
 		String resultWml = "";
 		int inputNum = (int)input_num;
@@ -48,17 +48,17 @@ public class StorageService {
 		RoleEntity roleEntity = RoleService.getRoleInfoById(pPk+"");
 		roleEntity.getBasicInfo().addCopper(-inputNum);
 		
-		//Íù²Ö¿âÖĞ¼ÓÈëinput_num¸öÍ­°å
+		//å¾€ä»“åº“ä¸­åŠ å…¥input_numä¸ªé“œæ¿
 		wareHouse.addWareHouseMoney(pPk,inputNum);
 		
-		resultWml = "Äú±¾´ÎÔÚÇ®×¯´æ·ÅÁË½ğÇ®:"+MoneyUtil.changeCopperToStr(inputNum);
+		resultWml = "æ‚¨æœ¬æ¬¡åœ¨é’±åº„å­˜æ”¾äº†é‡‘é’±:"+MoneyUtil.changeCopperToStr(inputNum);
 		
 		return resultWml;
 	}	
 	
 	
 	/**
-	 * Ïò²Ö¿â´¢´æµÀ¾ß
+	 * å‘ä»“åº“å‚¨å­˜é“å…·
 	 * @param p_pk
 	 * @param prop_id
 	 * @param prop_num
@@ -72,22 +72,22 @@ public class StorageService {
 		SellInfoDAO sellInfoDAO = new SellInfoDAO();
 		
 		if(propGroup.getPPk() != roleInfo.getBasicInfo().getPPk()){
-			return "¸ÃÎïÆ·ÒÑ²»ÊôÓÚÄú!";
+			return "è¯¥ç‰©å“å·²ä¸å±äºæ‚¨!";
 		}
 		
 		if(propGroup.getPropType() == PropType.EQUIPPROP || propGroup.getPropType() == PropType.BOX_CURE) {
-			return "ÌØÊâµÀ¾ß,ÇëÎğ´æ½ø²Ö¿â!";
+			return "ç‰¹æ®Šé“å…·,è¯·å‹¿å­˜è¿›ä»“åº“!";
 		}
 		
-		//¼ì²éÊÇ·ñ´ËÎïÆ·ÒÑ¾­±»Âô³ö
+		//æ£€æŸ¥æ˜¯å¦æ­¤ç‰©å“å·²ç»è¢«å–å‡º
 		String result = sellInfoDAO.getSellExistByPPkAndGoodsId(propGroup.getPPk()+"", propGroup.getPropId()+"", GoodsType.PROP);
 		
 		if(result == null || result.equals("")) {
-			//´Ó°ü¹üĞ¶µôµÀ¾ß
+			//ä»åŒ…è£¹å¸æ‰é“å…·
 			removePropsFromWrap(propGroup, prop_num);
 			setStorageProp(propGroup,prop_num,roleInfo);
 			
-			resultWml.append("ÄúÒÑ¾­´¢´æ"+prop_num+"¸ö"+StringUtil.isoToGBK(propGroup.getPropName())+", Èç¹ûÒª´¢´æÇë¼ÌĞø");
+			resultWml.append("æ‚¨å·²ç»å‚¨å­˜"+prop_num+"ä¸ª"+StringUtil.isoToGBK(propGroup.getPropName())+", å¦‚æœè¦å‚¨å­˜è¯·ç»§ç»­");
 			return resultWml.toString();
 		} else {
 			
@@ -96,7 +96,7 @@ public class StorageService {
 	}
 	
 	/**
-	 * ²Ö¿âÈ¡³öµÀ¾ß²Ù×÷
+	 * ä»“åº“å–å‡ºé“å…·æ“ä½œ
 	 * @param p_pk
 	 * @param prop_id
 	 * @param prop_num
@@ -105,28 +105,28 @@ public class StorageService {
 	public String getStorageProps(int propId,int remove_num,RoleEntity roleEntity,WareHouseVO wareHouseVO)
 	{
 		if ( wareHouseVO == null) {
-			return "²Ö¿âÖĞÃ»ÓĞ´ËÎïÆ·!";
+			return "ä»“åº“ä¸­æ²¡æœ‰æ­¤ç‰©å“!";
 		}
 		StringBuffer resultWml = new StringBuffer();
 		
 		GoodsService goodsService = new GoodsService();
 		
-		//×°½ø°ü¹ü
+		//è£…è¿›åŒ…è£¹
 		goodsService.putPropToWrap(roleEntity.getBasicInfo().getPPk(), propId, remove_num,GameLogManager.G_STORAGE);
-		//É¾³ı²Ö¿â	
+		//åˆ é™¤ä»“åº“	
 		removePropsFromStorage(roleEntity.getBasicInfo().getPPk(),remove_num,wareHouseVO);
 	
-		//É¾³ı²Ö¿âµÀ¾ßÊıÁ¿ÎªÁãµÄÇé¿ö
+		//åˆ é™¤ä»“åº“é“å…·æ•°é‡ä¸ºé›¶çš„æƒ…å†µ
 		WareHouseDao wareHouse = new WareHouseDao();
 		wareHouse.deleteStorageZero(roleEntity.getBasicInfo().getPPk());
 		
 		
-		resultWml.append("ÄúÒÑ¾­È¡³öÁË"+remove_num+"¸ö"+StringUtil.isoToGBK(wareHouseVO.getUwArticle())+" !");
+		resultWml.append("æ‚¨å·²ç»å–å‡ºäº†"+remove_num+"ä¸ª"+StringUtil.isoToGBK(wareHouseVO.getUwArticle())+" !");
 		
 		return resultWml.toString();
 	}
 	
-	/** ´Ó°ü¹üÖĞĞ¶µôÒ»×éµÀ¾ß */
+	/** ä»åŒ…è£¹ä¸­å¸æ‰ä¸€ç»„é“å…· */
 	public boolean removePropsFromWrap(PlayerPropGroupVO propGroup,int remove_num)
 	{
 		boolean flag = false;
@@ -135,17 +135,17 @@ public class StorageService {
 			return false; 
 		}
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-		if( propGroup.getPropNum() == remove_num )  //ÒÆ³ıµÄÊıÁ¿µÈÓÚµÀ¾ß×éÊıÁ¿
+		if( propGroup.getPropNum() == remove_num )  //ç§»é™¤çš„æ•°é‡ç­‰äºé“å…·ç»„æ•°é‡
 		{
 			
 			propGroupDao.deletePropGroup(propGroup.getPgPk());
 			
-			//´ËÖÖÇé¿ö¸öÈË°ü¹üÔö¼ÓÒ»¸ö¿Õ¸ñ.
+			//æ­¤ç§æƒ…å†µä¸ªäººåŒ…è£¹å¢åŠ ä¸€ä¸ªç©ºæ ¼.
 			EquipService equipService = new EquipService();
 			equipService.addWrapSpare(propGroup.getPPk(),1);
 			flag = true;
 		}
-		else if( propGroup.getPropNum()>remove_num )// //ÒÆ³ıµÄÊıÁ¿Ğ¡ÓÚµÀ¾ß×éÊıÁ¿
+		else if( propGroup.getPropNum()>remove_num )// //ç§»é™¤çš„æ•°é‡å°äºé“å…·ç»„æ•°é‡
 		{
 			propGroupDao.updatePropGroupNum(propGroup.getPgPk(),propGroup.getPropNum()-remove_num);
 			flag = true;
@@ -155,14 +155,14 @@ public class StorageService {
 	
 	
 	/** 
-	 *  ´Ó²Ö¿âÀïÄÃµôremove_num¸öµÀ¾ß
+	 *  ä»ä»“åº“é‡Œæ‹¿æ‰remove_numä¸ªé“å…·
 	 * 	
 	 */
 	public void removePropsFromStorage(int pPk,int remove_num,WareHouseVO warehouseVO){
 		WareHouseDao warehouseDao = new WareHouseDao();
 		if(remove_num == warehouseVO.getUwPropNumber()){
 			warehouseDao.reduceWareHouseProp(pPk,remove_num,warehouseVO);
-			//´ËÖÖÇé¿öÔö¼Ó²Ö¿âÒ»¸ö¿Õ¸ñ
+			//æ­¤ç§æƒ…å†µå¢åŠ ä»“åº“ä¸€ä¸ªç©ºæ ¼
 			warehouseDao.reduceWareHouseSpare(pPk,-1);
 		}else {
 			warehouseDao.reduceWareHouseProp(pPk,remove_num,warehouseVO);
@@ -170,7 +170,7 @@ public class StorageService {
 	}
 	
 	/** 
-	 * °ÑµÀ¾ß×°½ø²Ö¿â
+	 * æŠŠé“å…·è£…è¿›ä»“åº“
 	 * 
 	 */
 	public boolean setStorageProp(PlayerPropGroupVO propGroup,int remove_num,RoleEntity roleEntity) {
@@ -187,34 +187,34 @@ public class StorageService {
 			return false;
 		}
 		
-		int accumulate_num = prop.getPropAccumulate();//¿ÉÒÔÖØµşµÄÊıÁ¿
-		int current_num = wareHouseDao.getPropNumByByPropID(roleEntity.getPPk(), propGroup.getPropId());//ÏÖÓĞµÄÊıÁ¿
-		int total_num = current_num + remove_num;//Ôö¼Ógoods_numºóµÄ×ÜÊı
-		int current_groups = 0;//ÏÖÓĞµÄ×éÊı
+		int accumulate_num = prop.getPropAccumulate();//å¯ä»¥é‡å çš„æ•°é‡
+		int current_num = wareHouseDao.getPropNumByByPropID(roleEntity.getPPk(), propGroup.getPropId());//ç°æœ‰çš„æ•°é‡
+		int total_num = current_num + remove_num;//å¢åŠ goods_numåçš„æ€»æ•°
+		int current_groups = 0;//ç°æœ‰çš„ç»„æ•°
 		if( current_num!=0 )
 		{
 			//current_groups =(current_num-1)/accumulate_num+1;
-			//ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			//å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			//current_groups =(current_num-1)/accumulate_num+1;
 			current_groups = wareHouseDao.getPropGroupNumByPropID(roleEntity.getPPk(), propGroup.getPropId());
 		}
 
-		int new_groups = (total_num-1)/accumulate_num+1;//Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num-1)/accumulate_num+1;//å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
 		
-		int need_groups = new_groups - current_groups;//ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı
+		int need_groups = new_groups - current_groups;//éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°
 		
-		int goodsgourp_goodsnum  =  total_num%accumulate_num;//²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum  =  total_num%accumulate_num;//ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 		
-		int wrap_spare = wareHouseDao.getEmptyNum(roleEntity.getPPk());//Ê£ÓàµÄ°ü¹ü¿Õ¼äÊı
+		int wrap_spare = wareHouseDao.getEmptyNum(roleEntity.getPPk());//å‰©ä½™çš„åŒ…è£¹ç©ºé—´æ•°
 		
 		if( need_groups>0 && wrap_spare<need_groups )
 		{
 			return false;
 		}
 		
-		if( need_groups>0 )//Ìí¼ÓĞÂµÄµÀ¾ß×é
+		if( need_groups>0 )//æ·»åŠ æ–°çš„é“å…·ç»„
 		{
-			//ÕÒµ½Ã»ÓĞÖØµşÂıµÄµÀ¾ß×é
+			//æ‰¾åˆ°æ²¡æœ‰é‡å æ…¢çš„é“å…·ç»„
 			WareHouseVO warevo = new WareHouseVO();
 			warevo.setPPk(roleEntity.getBasicInfo().getPPk());
 			warevo.setUPk(roleEntity.getBasicInfo().getUPk());
@@ -237,20 +237,20 @@ public class StorageService {
 			}
 			
 			
-			//Ìí¼ÓĞÂµÄµÀ¾ß×é£¬ÊıÁ¿¶¼ÊÇaccumulate_num
+			//æ·»åŠ æ–°çš„é“å…·ç»„ï¼Œæ•°é‡éƒ½æ˜¯accumulate_num
 			for( int i=0;i<need_groups;i++)
 			{
 				wareHouseDao.addPropGroup(warevo);
 			}
 		}
 		
-		if( need_groups<0)//É¾³ı¶àÓàµÄµÀ¾ß×é
+		if( need_groups<0)//åˆ é™¤å¤šä½™çš„é“å…·ç»„
 		{
 			int delete_group_num = -need_groups;
 			wareHouseDao.deleteStroagePropGroup(roleEntity.getPPk(),propGroup.getPropId(),delete_group_num);
 		}
 		
-		// ½«Íæ¼Ò´ËµÀ¾ßµÄÃ¿¸ñ×ÓÏÖÔÚ²Ö¿âµÀ¾ßÊıÁ¿¶¼ÖÃÎª×î´ó
+		// å°†ç©å®¶æ­¤é“å…·çš„æ¯æ ¼å­ç°åœ¨ä»“åº“é“å…·æ•°é‡éƒ½ç½®ä¸ºæœ€å¤§
 		wareHouseDao.updatePlayerWarehousePropNum(roleEntity.getPPk(),propGroup.getPropId(),accumulate_num);
 		
 		WareHouseVO warehousevo = null;
@@ -260,17 +260,17 @@ public class StorageService {
 			wareHouseDao.updatePropGroupNum(warehousevo.getUwId(), goodsgourp_goodsnum);
 		}
 		
-		// ¸üĞÂ²Ö¿â¿ÕÓà¸ñÊı 
+		// æ›´æ–°ä»“åº“ç©ºä½™æ ¼æ•° 
 		wareHouseDao.reduceWareHouseSpare(roleEntity.getPPk(),need_groups);
 		
 		return flag;
 	}
 	
 	/** 
-	 * ¸ù¾İidÀ´È¡µÃ¸Ã½ÇÉ«µÄ²Ö¿â¿ÕÓà¸ñÊı 
-	 * @param warehouseID	²Ö¿â±íµÄid
-	 * @param propGroup		PlayerGroupVOÀà
-	 * @return int 	½ÇÉ«²Ö¿â¿Õ¸ñÊı
+	 * æ ¹æ®idæ¥å–å¾—è¯¥è§’è‰²çš„ä»“åº“ç©ºä½™æ ¼æ•° 
+	 * @param warehouseID	ä»“åº“è¡¨çš„id
+	 * @param propGroup		PlayerGroupVOç±»
+	 * @return int 	è§’è‰²ä»“åº“ç©ºæ ¼æ•°
 	 */
 	public int getWareSpareById(int pPk){
 		WareHouseDao wareHouse = new WareHouseDao(); 
@@ -279,9 +279,9 @@ public class StorageService {
 	
 	
 	/**
-	 * ´¢´æ×°±¸µ½²Ö¿â
+	 * å‚¨å­˜è£…å¤‡åˆ°ä»“åº“
 	 * @param p_pk
-	 * @param pw_pk   ×°±¸id
+	 * @param pw_pk   è£…å¤‡id
 	 */
 	public String storeEquip(int p_pk,int pw_pk )
 	{
@@ -306,25 +306,25 @@ public class StorageService {
 			return result;
 		}
 		
-		//ĞŞ¸Ä×°±¸ËùÔÚµÄÎ»ÖÃµ½²Ö¿â
+		//ä¿®æ”¹è£…å¤‡æ‰€åœ¨çš„ä½ç½®åˆ°ä»“åº“
 		playerEquipDao.updatePosition(equip.getPwPk(), Equip.ON_STORAGE);
 		
-		//½«Êı¾İ¿âÖĞ²Ö¿â¿ÕÓà¸ñÊı¼õÒ»
+		//å°†æ•°æ®åº“ä¸­ä»“åº“ç©ºä½™æ ¼æ•°å‡ä¸€
 		wareHouse.reduceWareHouseSpare(p_pk,1);
 		
-		//Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿Ò»
+		//å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡ä¸€
 		equipService.addWrapSpare(p_pk, 1);			
 		
-		resultWml.append("Äú´¢´æÁË"+StringUtil.isoToGBK(equip.getFullName())+", ÈçÒª´¢´æÇë¼ÌĞø£¡");
+		resultWml.append("æ‚¨å‚¨å­˜äº†"+StringUtil.isoToGBK(equip.getFullName())+", å¦‚è¦å‚¨å­˜è¯·ç»§ç»­ï¼");
 		return resultWml.toString();
 	}
 	
 	
 	
 	/**
-	 * ´Ó²Ö¿âÀïÈ¡³ö×°±¸
+	 * ä»ä»“åº“é‡Œå–å‡ºè£…å¤‡
 	 * @param p_pk
-	 * @param WPk   ×°±¸id
+	 * @param WPk   è£…å¤‡id
 	 */
 	public String takeoutEquip(int p_pk,int WPk)
 	{
@@ -342,23 +342,23 @@ public class StorageService {
 			return hint;
 		}
 		
-		//ĞŞ¸Ä×°±¸ËùÔÚµÄÎ»ÖÃµ½°ü¹ü
+		//ä¿®æ”¹è£…å¤‡æ‰€åœ¨çš„ä½ç½®åˆ°åŒ…è£¹
 		playerEquipDao.updatePosition(equip.getPwPk(), Equip.ON_WRAP);
 		
-		//½«Êı¾İ¿âÖĞ²Ö¿â¿ÕÓà¸ñÊı¼ÓÒ»
+		//å°†æ•°æ®åº“ä¸­ä»“åº“ç©ºä½™æ ¼æ•°åŠ ä¸€
 		wareHouse.reduceWareHouseSpare(p_pk,-1);
-		//¼õÉÙÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿Ò»
+		//å‡å°‘ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡ä¸€
 		equipService.addWrapSpare(p_pk, -1);		
 		
-		resultWml.append("ÄúÈ¡³öÁË"+StringUtil.isoToGBK(equip.getFullName())+", ÈçÒªÈ¡³öÇë¼ÌĞø£¡");
+		resultWml.append("æ‚¨å–å‡ºäº†"+StringUtil.isoToGBK(equip.getFullName())+", å¦‚è¦å–å‡ºè¯·ç»§ç»­ï¼");
 		return resultWml.toString();
 	}
 	
 	
 	/**
-	 * µÃµ½½ÇÉ«²Ö¿âÖĞÄ³ÀàĞÍµÄµÀ¾ßlist
-	 * @param p_pk ½ÇÉ«id
-	 * @param type µÀ¾ßÔÚ²Ö¿âÖĞµÄ·ÖÀà
+	 * å¾—åˆ°è§’è‰²ä»“åº“ä¸­æŸç±»å‹çš„é“å…·list
+	 * @param p_pk è§’è‰²id
+	 * @param type é“å…·åœ¨ä»“åº“ä¸­çš„åˆ†ç±»
 	 * @return  
 	 */
 	public QueryPage getPagePropList(int pPk,int type,int page_no ){ 
@@ -367,7 +367,7 @@ public class StorageService {
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò²Ö¿âÀïµÄ×°±¸
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶ä»“åº“é‡Œçš„è£…å¤‡
 	 * @param p_pk
 	 * @return
 	 */
@@ -379,28 +379,28 @@ public class StorageService {
 	
 	
 	
-	/** È¡³ö²Ö¿âÀïµÄ½ğÇ® */
+	/** å–å‡ºä»“åº“é‡Œçš„é‡‘é’± */
 	public String removeMoneyToWrap(int pPk,long remove_money){
 		String resultWml = "";
 
 		WareHouseDao wareHouse = new WareHouseDao();
-		//´Ó°ü¹üÖĞ¼ÓÈëinput_num¸öÍ­°å
+		//ä»åŒ…è£¹ä¸­åŠ å…¥input_numä¸ªé“œæ¿
 		RoleEntity roleEntity = RoleService.getRoleInfoById(pPk+"");
 		roleEntity.getBasicInfo().addCopper((int)remove_money);
 		
-		//Íù²Ö¿âÖĞ¼õÉÙinput_num¸öÍ­°å 
+		//å¾€ä»“åº“ä¸­å‡å°‘input_numä¸ªé“œæ¿ 
 		wareHouse.addWareHouseMoney(pPk,-remove_money);
 		
-		resultWml = "Äú±¾´ÎÔÚÇ®×¯È¡³öÁË½ğÇ®:"+MoneyUtil.changeCopperToStr(remove_money);
+		resultWml = "æ‚¨æœ¬æ¬¡åœ¨é’±åº„å–å‡ºäº†é‡‘é’±:"+MoneyUtil.changeCopperToStr(remove_money);
 		
 		return resultWml;
 	
 	}
 	
 	/** 
-	 *	´Ó²Ö¿âÈ¡³ö³èÎï£¬¾ÍÊÇ½«ÈËÎï³èÎï±íÖĞ´ËĞĞµÄ-pPkÉèÖÃÎªpPk,
-	 *	Èç³É¹¦·µ»Ø1£¬·ñÔò·µ»Ø-1.Èç¹ûËù´«pPkÎª¸ºÊı£¬¿É±íÊ¾´Ó½«
-	 *	³èÎï´Ó²Ö¿â·Åµ½ÈË°ü¹üÖĞ
+	 *	ä»ä»“åº“å–å‡ºå® ç‰©ï¼Œå°±æ˜¯å°†äººç‰©å® ç‰©è¡¨ä¸­æ­¤è¡Œçš„-pPkè®¾ç½®ä¸ºpPk,
+	 *	å¦‚æˆåŠŸè¿”å›1ï¼Œå¦åˆ™è¿”å›-1.å¦‚æœæ‰€ä¼ pPkä¸ºè´Ÿæ•°ï¼Œå¯è¡¨ç¤ºä»å°†
+	 *	å® ç‰©ä»ä»“åº“æ”¾åˆ°äººåŒ…è£¹ä¸­
 	 */
 	public String putPetFromWare(int pPk,int petPk){
 		String diffent = "getOut";
@@ -416,14 +416,14 @@ public class StorageService {
 			wareHouse.updatePetNumber(pPk,-1);
 			return wareHouse.putPetFromPerson(-p_Pk,petPk,diffent);
 		}else {
-				return "Äú²»ÄÜÔÙĞ¯´ø¸ü¶àµÄ³èÎïÁË!";
+				return "æ‚¨ä¸èƒ½å†æºå¸¦æ›´å¤šçš„å® ç‰©äº†!";
 		}	
 	}
 	
 	
 	
 	/**
-	 * »ñÈ¡²Ö¿âÖĞÒÑ´¢´æ³èÎïµÄÊıÁ¿
+	 * è·å–ä»“åº“ä¸­å·²å‚¨å­˜å® ç‰©çš„æ•°é‡
 	 * @param pPk
 	 * @param uPk
 	 * @param warehouseId
@@ -436,9 +436,9 @@ public class StorageService {
 	
 	
 	/** 
-	 *	´ÓÉíÉÏÄÃÏÂ³èÎï£¬¾ÍÊÇ½«ÈËÎï³èÎï±íÖĞ´ËĞĞµÄpPkÉèÖÃÎª-pPk,
-	 *	Èç³É¹¦·µ»Ø1£¬·ñÔò·µ»Ø-1.Èç¹ûËù´«pPkÎª¸ºÊı£¬¿É±íÊ¾´Ó½«
-	 *	³èÎï´ÓÈË°ü¹ü·Åµ½²Ö¿âÖĞ
+	 *	ä»èº«ä¸Šæ‹¿ä¸‹å® ç‰©ï¼Œå°±æ˜¯å°†äººç‰©å® ç‰©è¡¨ä¸­æ­¤è¡Œçš„pPkè®¾ç½®ä¸º-pPk,
+	 *	å¦‚æˆåŠŸè¿”å›1ï¼Œå¦åˆ™è¿”å›-1.å¦‚æœæ‰€ä¼ pPkä¸ºè´Ÿæ•°ï¼Œå¯è¡¨ç¤ºä»å°†
+	 *	å® ç‰©ä»äººåŒ…è£¹æ”¾åˆ°ä»“åº“ä¸­
 	 */
 	public String putPetFromPerson(int pPk,int petPk){
 		String diffent = "setIn";
@@ -450,16 +450,16 @@ public class StorageService {
 		PetInfoDAO petInfoDao = new PetInfoDAO();
 		PetInfoVO petInfovo = petInfoDao.getPetInfoView(String.valueOf(petPk));
 		if(petInfovo.getPPk() != pPk){
-			return "¸Ã³èÎïÒÑ²»ÊôÓÚÄú!";
+			return "è¯¥å® ç‰©å·²ä¸å±äºæ‚¨!";
 		}
 		if(petInfovo.getPetIsBring() == 1){
-			return "Çë½«³èÎï½â³ıÕ½¶·×´Ì¬!";
+			return "è¯·å°†å® ç‰©è§£é™¤æˆ˜æ–—çŠ¶æ€!";
 		}else{
 			if(petNumber < 5){
 				wareHouse.updatePetNumber(pPk,1);
 				return wareHouse.putPetFromPerson(p_Pk,petPk,diffent);
 			}else {
-				return "²Ö¿âÒÑÂú£¬Äú×î¶àÖ»ÄÜ´æ·ÅÎåÖ»³èÎï!";
+				return "ä»“åº“å·²æ»¡ï¼Œæ‚¨æœ€å¤šåªèƒ½å­˜æ”¾äº”åªå® ç‰©!";
 			}
 		}
 	}

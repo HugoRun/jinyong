@@ -3,9 +3,10 @@
 <%@page contentType="text/vnd.wap.wml"  pageEncoding="UTF-8"%><%@page import="com.ls.pub.config.GameConfig" %> 
 <%@page import="com.ls.pub.util.encrypt.MD5Util,java.util.Date" %>
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="fail" title="<s:message key = "gamename"/>">
 <p>
 

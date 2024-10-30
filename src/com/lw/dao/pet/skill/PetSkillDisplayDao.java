@@ -10,13 +10,13 @@ import com.ls.pub.db.DBConnection;
 
 public class PetSkillDisplayDao extends DaoBase
 {
-	// 根据Skill_ID得到技能的描述
+	// 鏍规嵁Skill_ID寰楀埌鎶�鑳界殑鎻忚堪
 	public String getPlayerPetSkillDisplay(int skill_id)
 	{
 		String display = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_bewrite from pet_skill where pet_skill_id = "
+		String sql = "SELECT pet_skill_bewrite from pet_skill where pet_skill_id = "
 				+ skill_id;
 		logger.debug(sql);
 		try
@@ -41,13 +41,13 @@ public class PetSkillDisplayDao extends DaoBase
 		return display;
 	}
 
-	// 根据Skill_ID得到技能的名称
+	// 鏍规嵁Skill_ID寰楀埌鎶�鑳界殑鍚嶇О
 	public String getPlayerPetSkillName(int skill_id)
 	{
 		String display = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		Connection conn = dbConn.getConn();
-		String sql = "select pet_skill_name from pet_skill where pet_skill_id = "
+		String sql = "SELECT pet_skill_name from pet_skill where pet_skill_id = "
 				+ skill_id;
 		logger.debug(sql);
 		try

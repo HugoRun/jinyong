@@ -16,12 +16,12 @@ import com.pm.service.systemInfo.SystemInfoService;
 import com.pm.vo.sysInfo.SystemInfoVO;
 
 /**
- * @author ºîºÆ¾ü ÁÄÌì
+ * @author ä¾¯æµ©å†› èŠå¤©
  */
 public class SystemCommAction extends DispatchAction
 {
 	/**
-	 * ÏµÍ³ÁÄÌì 
+	 * ç³»ç»ŸèŠå¤© 
 	 * */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

@@ -13,7 +13,7 @@ public class ForBidNameDao extends DaoBase
 {
 
 	/**
-	 * 取得禁止取名名单
+	 * 鍙栧緱绂佹鍙栧悕鍚嶅崟
 	 * @return
 	 */
 	public HashMap<Integer, String> getForBidName()
@@ -21,12 +21,12 @@ public class ForBidNameDao extends DaoBase
 		HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
 		StringBuffer sBuffer = new StringBuffer();
 		StringBuffer commBuffer = new StringBuffer();
-		sBuffer.append("运营");
-		commBuffer.append("妈的");
-		String sql = "select onechar,str from jy_forbid_name";
+		sBuffer.append("杩愯惀");
+		commBuffer.append("濡堢殑");
+		String sql = "SELECT onechar,str from jy_forbid_name";
 		
         
-        logger.debug("执行数据库统计的="+sql);
+        logger.debug("鎵ц鏁版嵁搴撶粺璁＄殑="+sql);
         DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
         conn = dbConn.getConn();
         try

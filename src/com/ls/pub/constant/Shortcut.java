@@ -1,20 +1,20 @@
 package com.ls.pub.constant;
 
 /**
- * ¹¦ÄÜ:¿ì½İ¼üĞèÒª¹¦ÄÜurl
- * @author ÁõË§
+ * åŠŸèƒ½:å¿«æ·é”®éœ€è¦åŠŸèƒ½url
+ * @author åˆ˜å¸…
  * 4:17:13 PM
  */
 public class Shortcut {
 	/**
-	¼¼ÄÜ  
-	Ò©Æ·
-	¾íÖá  
-	²é¿´
-	¹¥»÷
-	³èÎï²¶×½
-	ÌÓÅÜ
-	²¹³äHPMPµÀ¾ß
+	æŠ€èƒ½  
+	è¯å“
+	å·è½´  
+	æŸ¥çœ‹
+	æ”»å‡»
+	å® ç‰©æ•æ‰
+	é€ƒè·‘
+	è¡¥å……HPMPé“å…·
 	*/
 	
 	public static final int DEFAULT=0;

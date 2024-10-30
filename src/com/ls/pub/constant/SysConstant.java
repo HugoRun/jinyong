@@ -1,8 +1,8 @@
 package com.ls.pub.constant;
 
 /**
- * 功能:系统常用常量
- * @author 刘帅
+ * 鍔熻兘:绯荤粺甯哥敤甯搁噺
+ * @author 鍒樺竻
  * 10:02:23 AM
  */
 public class SysConstant {

@@ -9,14 +9,14 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * ×°±¸»º´æ
+ * è£…å¤‡ç¼“å­˜
  */
 public class EquipCache extends CacheBase
 {
 	public static String EQUIP_BY_ID = "equip_by_id";
 	
     /**
-     * Í¨¹ıidµÃµ½ ×°±¸ĞÅÏ¢
+     * é€šè¿‡idå¾—åˆ° è£…å¤‡ä¿¡æ¯
      * @param equip_id
      * @return
      */
@@ -39,14 +39,14 @@ public class EquipCache extends CacheBase
     		}
     		else
     		{
-    			DataErrorLog.debugData("EquipCache.getById£ºÎŞ¸Ã×°±¸,equip_id="+equip_id);
+    			DataErrorLog.debugData("EquipCache.getByIdï¼šæ— è¯¥è£…å¤‡,equip_id="+equip_id);
     		}
     	}
     	return equip;
     }
     
     /**
-     * Í¨¹ı×°±¸Ãû×ÖµÃµ½ ×°±¸ĞÅÏ¢
+     * é€šè¿‡è£…å¤‡åå­—å¾—åˆ° è£…å¤‡ä¿¡æ¯
      * @param equip_name
      * @return
      */

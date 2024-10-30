@@ -30,17 +30,17 @@ public class InformationAction extends DispatchAction
 		InformationService se = new InformationService();
 		if (se.getInformationBy50(roleInfo.getBasicInfo().getUPk()) == false)
 		{
-			request.setAttribute("display", "Ò»¸öÕËºÅÖ»ÄÜ²Î¼ÓÒ»´Î¸Ã¼¶±ğ»î¶¯,ÄúµÄÕËºÅÒÑ¾­²Î¼Ó¹ı±¾´Î»î¶¯!");
+			request.setAttribute("display", "ä¸€ä¸ªè´¦å·åªèƒ½å‚åŠ ä¸€æ¬¡è¯¥çº§åˆ«æ´»åŠ¨,æ‚¨çš„è´¦å·å·²ç»å‚åŠ è¿‡æœ¬æ¬¡æ´»åŠ¨!");
 			return mapping.findForward("display");
 		}
 		else
 		{
 			if (roleInfo.getBasicInfo().getGrade() < 50)
 			{
-				request.setAttribute("display", "ÄúµÄµÈ¼¶²»¹»50¼¶!¼ÓÓÍ°¡!");
+				request.setAttribute("display", "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ50çº§!åŠ æ²¹å•Š!");
 				return mapping.findForward("display");
 			}
-			request.setAttribute("type", "50¼¶");
+			request.setAttribute("type", "50çº§");
 			return mapping.findForward("information_put");
 		}
 	}
@@ -54,17 +54,17 @@ public class InformationAction extends DispatchAction
 		InformationService se = new InformationService();
 		if (se.getInformationBy60(roleInfo.getBasicInfo().getUPk()) == false)
 		{
-			request.setAttribute("display", "Ò»¸öÕËºÅÖ»ÄÜ²Î¼ÓÒ»´Î¸Ã¼¶±ğ»î¶¯,ÄúµÄÕËºÅÒÑ¾­²Î¼Ó¹ı±¾´Î»î¶¯!");
+			request.setAttribute("display", "ä¸€ä¸ªè´¦å·åªèƒ½å‚åŠ ä¸€æ¬¡è¯¥çº§åˆ«æ´»åŠ¨,æ‚¨çš„è´¦å·å·²ç»å‚åŠ è¿‡æœ¬æ¬¡æ´»åŠ¨!");
 			return mapping.findForward("display");
 		}
 		else
 		{
 			if (roleInfo.getBasicInfo().getGrade() < 60)
 			{
-				request.setAttribute("display", "ÄúµÄµÈ¼¶²»¹»60¼¶!¼ÓÓÍ°¡!");
+				request.setAttribute("display", "æ‚¨çš„ç­‰çº§ä¸å¤Ÿ60çº§!åŠ æ²¹å•Š!");
 				return mapping.findForward("display");
 			}
-			request.setAttribute("type", "60¼¶");
+			request.setAttribute("type", "60çº§");
 			return mapping.findForward("information_put");
 		}
 	}
@@ -79,14 +79,14 @@ public class InformationAction extends DispatchAction
 		if (se.getInformationByTong(roleInfo.getBasicInfo().getUPk(), String.valueOf(roleInfo.getBasicInfo().getFaction().getId())) == false)
 		{
 			request.setAttribute("display",
-					"Ò»¸ö°ï»áÖ»ÄÜÓĞÒ»¸ö°ïÖ÷²Î¼Ó±¾´Î»î¶¯,ÄúËùÔÚµÄ°ï»áÒÑ¾­²Î¼Ó¹ı±¾´Î»î¶¯!");
+					"ä¸€ä¸ªå¸®ä¼šåªèƒ½æœ‰ä¸€ä¸ªå¸®ä¸»å‚åŠ æœ¬æ¬¡æ´»åŠ¨,æ‚¨æ‰€åœ¨çš„å¸®ä¼šå·²ç»å‚åŠ è¿‡æœ¬æ¬¡æ´»åŠ¨!");
 			return mapping.findForward("display");
 		}
 		else
 		{
 			if (se.getInformationByTong(roleInfo.getBasicInfo().getPPk()) == false)
 			{	
-				request.setAttribute("display", "Äú»¹²»ÊÇ°ïÖ÷!¼ÓÓÍ°¡!");
+				request.setAttribute("display", "æ‚¨è¿˜ä¸æ˜¯å¸®ä¸»!åŠ æ²¹å•Š!");
 				return mapping.findForward("display");
 			}
 			request.setAttribute("type", 3);
@@ -108,10 +108,10 @@ public class InformationAction extends DispatchAction
 		{
 			InformationDAO dao = new InformationDAO();
 			dao.setId(uPk, id, type);
-			request.setAttribute("display", "Ìá½»³É¹¦");
+			request.setAttribute("display", "æäº¤æˆåŠŸ");
 			return mapping.findForward("display");
 		}
-		request.setAttribute("display", "ÄúµÄÊäÈëÓĞÎóÇëÖØĞÂÊäÈë!");
+		request.setAttribute("display", "æ‚¨çš„è¾“å…¥æœ‰è¯¯è¯·é‡æ–°è¾“å…¥!");
 		return mapping.findForward("display");
 	}
 }

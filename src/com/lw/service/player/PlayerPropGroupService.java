@@ -10,38 +10,38 @@ import com.ls.web.service.player.EconomyService;
 
 public class PlayerPropGroupService
 {
-	// ÅĞ¶Ï°ü¹ü
+	// åˆ¤æ–­åŒ…è£¹
 	public String getPlayerPropGroupInfo(RoleEntity roleInfo)
 	{
 		int num = roleInfo.getBasicInfo().getWrapContent();
 		String display = null;
 		if (num == 50)
 		{
-			display = "µÚÒ»´Î¹ºÂòÔö¼Ó10¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á100!";
+			display = "ç¬¬ä¸€æ¬¡è´­ä¹°å¢åŠ 10ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—100!";
 			return display;
 		}
 		else
 			if (num == 60)
 			{
-				display = "µÚ¶ş´Î¹ºÂòÔö¼Ó10¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á300!";
+				display = "ç¬¬äºŒæ¬¡è´­ä¹°å¢åŠ 10ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—300!";
 				return display;
 			}
 			else
 				if (num == 70)
 				{
-					display = "µÚÈı´Î¹ºÂòÔö¼Ó10¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á500!";
+					display = "ç¬¬ä¸‰æ¬¡è´­ä¹°å¢åŠ 10ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—500!";
 					return display;
 				}
 				else
 					if (num == 80)
 					{
-						display = "µÚËÄ´Î¹ºÂòÔö¼Ó10¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á700!";
+						display = "ç¬¬å››æ¬¡è´­ä¹°å¢åŠ 10ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—700!";
 						return display;
 					}
 					else
 						if (num == 90)
 						{
-							display = "µÚÎå´Î¹ºÂòÔö¼Ó10¸öÀ¸Î»ĞèÒª»¨·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á1000!";
+							display = "ç¬¬äº”æ¬¡è´­ä¹°å¢åŠ 10ä¸ªæ ä½éœ€è¦èŠ±è´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—1000!";
 							return display;
 						}
 						else
@@ -51,7 +51,7 @@ public class PlayerPropGroupService
 						}
 	}
 
-	// ¹ºÂò°ü¹ü
+	// è´­ä¹°åŒ…è£¹
 	public String buyPropGroup(RoleEntity roleInfo)
 	{
 		LogService logService = new LogService();
@@ -66,18 +66,18 @@ public class PlayerPropGroupService
 			useyuanbao = 100;
 			if (useyuanbao > yuanbao)
 			{
-				display = "¶Ô²»Æğ£¬ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬Çë½øĞĞ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>³äÖµ</anchor><br/>";
+				display = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·è¿›è¡Œ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>å……å€¼</anchor><br/>";
 				return display;
 			}
 			else
 			{
-				roleInfo.getBasicInfo().addWrapContent(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
-				roleInfo.getBasicInfo().addWrapSpare(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
+				roleInfo.getBasicInfo().addWrapContent(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
+				roleInfo.getBasicInfo().addWrapSpare(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
 				
-				logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "¹ºÂò°ü¹ü");
+				logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "è´­ä¹°åŒ…è£¹");
 				economyService.spendYuanbao(u_pk, useyuanbao);
 				
-				display = "¹ºÂò³É¹¦,ÄúµÄ°ü¹ü¸ñÊıÔö¼ÓÁË10¸ö¸ñ×Ó,Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á100!<br/>";
+				display = "è´­ä¹°æˆåŠŸ,æ‚¨çš„åŒ…è£¹æ ¼æ•°å¢åŠ äº†10ä¸ªæ ¼å­,æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—100!<br/>";
 				return display;
 			}
 		}
@@ -87,18 +87,18 @@ public class PlayerPropGroupService
 				useyuanbao = 300;
 				if (useyuanbao > yuanbao)
 				{
-					display = "¶Ô²»Æğ£¬ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬Çë½øĞĞ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>³äÖµ</anchor><br/>";
+					display = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·è¿›è¡Œ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>å……å€¼</anchor><br/>";
 					return display;
 				}
 				else
 				{
-					roleInfo.getBasicInfo().addWrapContent(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
-					roleInfo.getBasicInfo().addWrapSpare(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
+					roleInfo.getBasicInfo().addWrapContent(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
+					roleInfo.getBasicInfo().addWrapSpare(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
 					
-					logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "¹ºÂò°ü¹ü");
+					logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "è´­ä¹°åŒ…è£¹");
 					economyService.spendYuanbao(u_pk, useyuanbao);
 					
-					display = "¹ºÂò³É¹¦,ÄúµÄ°ü¹ü¸ñÊıÔö¼ÓÁË10¸ö¸ñ×Ó,Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á300!<br/>";
+					display = "è´­ä¹°æˆåŠŸ,æ‚¨çš„åŒ…è£¹æ ¼æ•°å¢åŠ äº†10ä¸ªæ ¼å­,æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—300!<br/>";
 					return display;
 				}
 			}
@@ -108,18 +108,18 @@ public class PlayerPropGroupService
 					useyuanbao = 500;
 					if (useyuanbao > yuanbao)
 					{
-						display = "¶Ô²»Æğ£¬ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬Çë½øĞĞ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>³äÖµ</anchor><br/>";
+						display = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·è¿›è¡Œ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>å……å€¼</anchor><br/>";
 						return display;
 					}
 					else
 					{
-						roleInfo.getBasicInfo().addWrapContent(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
-						roleInfo.getBasicInfo().addWrapSpare(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
+						roleInfo.getBasicInfo().addWrapContent(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
+						roleInfo.getBasicInfo().addWrapSpare(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
 						
-						logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "¹ºÂò°ü¹ü");
+						logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "è´­ä¹°åŒ…è£¹");
 						economyService.spendYuanbao(u_pk, useyuanbao);
 						
-						display = "¹ºÂò³É¹¦,ÄúµÄ°ü¹ü¸ñÊıÔö¼ÓÁË10¸ö¸ñ×Ó,Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á500!<br/>";
+						display = "è´­ä¹°æˆåŠŸ,æ‚¨çš„åŒ…è£¹æ ¼æ•°å¢åŠ äº†10ä¸ªæ ¼å­,æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—500!<br/>";
 						return display;
 					}
 				}
@@ -128,18 +128,18 @@ public class PlayerPropGroupService
 			useyuanbao = 700;
 			if (useyuanbao > yuanbao)
 			{
-				display = "¶Ô²»Æğ£¬ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬Çë½øĞĞ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>³äÖµ</anchor><br/>";
+				display = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·è¿›è¡Œ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>å……å€¼</anchor><br/>";
 				return display;
 			}
 			else
 			{
-				roleInfo.getBasicInfo().addWrapContent(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
-				roleInfo.getBasicInfo().addWrapSpare(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
+				roleInfo.getBasicInfo().addWrapContent(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
+				roleInfo.getBasicInfo().addWrapSpare(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
 				
-				logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "¹ºÂò°ü¹ü");
+				logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "è´­ä¹°åŒ…è£¹");
 				economyService.spendYuanbao(u_pk, useyuanbao);
 				
-				display = "¹ºÂò³É¹¦,ÄúµÄ°ü¹ü¸ñÊıÔö¼ÓÁË10¸ö¸ñ×Ó,Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á700!<br/>";
+				display = "è´­ä¹°æˆåŠŸ,æ‚¨çš„åŒ…è£¹æ ¼æ•°å¢åŠ äº†10ä¸ªæ ¼å­,æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—700!<br/>";
 				return display;
 			}
 		}
@@ -149,29 +149,29 @@ public class PlayerPropGroupService
 				useyuanbao = 1000;
 				if (useyuanbao > yuanbao)
 				{
-					display = "¶Ô²»Æğ£¬ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã£¬Çë½øĞĞ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>³äÖµ</anchor><br/>";
+					display = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³ï¼Œè¯·è¿›è¡Œ<anchor><go method=\"get\" href=\""+GameConfig.getContextPath()+"/sky/bill.do?cmd=n0"+"\" ></go>å……å€¼</anchor><br/>";
 					return display;
 				}
 				else
 				{
-					roleInfo.getBasicInfo().addWrapContent(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
-					roleInfo.getBasicInfo().addWrapSpare(10);// Ôö¼Ó10¸ö°ü¹ü¸ñ×Ó
+					roleInfo.getBasicInfo().addWrapContent(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
+					roleInfo.getBasicInfo().addWrapSpare(10);// å¢åŠ 10ä¸ªåŒ…è£¹æ ¼å­
 					
-					logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "¹ºÂò°ü¹ü");
+					logService.recordYBLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), economyService.getYuanbao(roleInfo.getBasicInfo().getUPk())+"", useyuanbao+"", "è´­ä¹°åŒ…è£¹");
 
 					economyService.spendYuanbao(u_pk, useyuanbao);
-					display = "¹ºÂò³É¹¦,ÄúµÄ°ü¹ü¸ñÊıÔö¼ÓÁË10¸ö¸ñ×Ó,Ïû·Ñ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á1000!<br/>";
+					display = "è´­ä¹°æˆåŠŸ,æ‚¨çš„åŒ…è£¹æ ¼æ•°å¢åŠ äº†10ä¸ªæ ¼å­,æ¶ˆè´¹ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—1000!<br/>";
 					return display;
 				}
 			}
 			else
 			{
-				display = "°ü¹ü¸ñÊı´íÎóÇëÖØĞÂ¹ºÂò<br/>";
+				display = "åŒ…è£¹æ ¼æ•°é”™è¯¯è¯·é‡æ–°è´­ä¹°<br/>";
 			}
 		return display;
 	}
 	/**
-	 * ÎªÁË³ÌĞòµÄÍêÕûĞÔ¶ÔµçĞÅ×¨ÃÅĞ´Ò»¸ö·½·¨
+	 * ä¸ºäº†ç¨‹åºçš„å®Œæ•´æ€§å¯¹ç”µä¿¡ä¸“é—¨å†™ä¸€ä¸ªæ–¹æ³•
 	 */
 	public String buyPropGroup(HttpServletRequest request,RoleEntity roleInfo)
 	{
@@ -206,7 +206,7 @@ public class PlayerPropGroupService
 		}
 		else
 		{
-			display="¹ºÂò³É¹¦£¡ÄúµÄ°ü¹üÔö¼ÓÁË10¸ö¸ñ×Ó£¡";
+			display="è´­ä¹°æˆåŠŸï¼æ‚¨çš„åŒ…è£¹å¢åŠ äº†10ä¸ªæ ¼å­ï¼";
 		}
 		return display;
 }

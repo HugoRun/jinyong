@@ -3,25 +3,25 @@ package com.ls.ben.vo.info.partinfo;
 import java.util.Date;
 
 /**
- * ¹¦ÄÜ:u_wrap_info
+ * åŠŸèƒ½:u_wrap_info
  * 
- * @author ÁõË§ 9:13:48 AM
+ * @author åˆ˜å¸… 9:13:48 AM
  */
 public class PlayerWrapVO {
 
-	/** ½ÇÉ«°ü¸¤±í */
+	/** è§’è‰²åŒ…è¢±è¡¨ */
 	private int wPk;
-	/** ´´½¨ÈËÔ±ĞÅÏ¢id */
+	/** åˆ›å»ºäººå‘˜ä¿¡æ¯id */
 	private int uPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** °ü¸¤·ÖÀà */
+	/** åŒ…è¢±åˆ†ç±» */
 	private int wType;
-	/** °ü¹ü¸ñÊı */
+	/** åŒ…è£¹æ ¼æ•° */
 	private int wNumber;
-	/** °ü¹üÎïÆ· */
+	/** åŒ…è£¹ç‰©å“ */
 	private String wArticle;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private Date createTime;
 	public int getWPk() {
 		return wPk;

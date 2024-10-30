@@ -13,14 +13,14 @@ public class ClearJob implements Job
 
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{
-		logger.debug("¿ªÊ¼À¬»øÇåÀí");
-		logger.debug("¿ªÊ¼ÇåÀíÓÊ¼ş");
+		logger.debug("å¼€å§‹åƒåœ¾æ¸…ç†");
+		logger.debug("å¼€å§‹æ¸…ç†é‚®ä»¶");
 		
 		MailInfoDao mailInfoDao = new MailInfoDao();
 		mailInfoDao.deleteMailIfOutSeven();
 		
-		logger.debug("ÓÊ¼şÇåÀí½áÊø");
-		logger.debug("À¬»øÇåÀí½áÊø");
+		logger.debug("é‚®ä»¶æ¸…ç†ç»“æŸ");
+		logger.debug("åƒåœ¾æ¸…ç†ç»“æŸ");
 	}
 
 }

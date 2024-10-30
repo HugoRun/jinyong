@@ -2,19 +2,19 @@ package com.lw.vo.player;
 
 public class PlayerEnvelopPpkVO
 {
-	// 封号主键
+	// 灏佸彿涓婚敭
 	int envelopID;
-	// 封号ID
+	// 灏佸彿ID
 	int ppk;
-	// 封号名称
+	// 灏佸彿鍚嶇О
 	String pName;
-	// 封号创建时间
+	// 灏佸彿鍒涘缓鏃堕棿
 	String beginTime;
-	// 封号结束时间
+	// 灏佸彿缁撴潫鏃堕棿
 	String endTime;
-	// 封号时间
+	// 灏佸彿鏃堕棿
 	String envelopTime;
-	// 封号类型
+	// 灏佸彿绫诲瀷
 	int envelopType;
 	public int getEnvelopID()
 	{

@@ -2,27 +2,27 @@ package com.ls.model.organize.faction.game;
 
 /**
  * @author ls
- * £¨°ïÅÉ£¬ìôÌÃ£©°ïÅÉÉı¼¶ÓÃ²ÄÁÏ
+ * ï¼ˆå¸®æ´¾ï¼Œç¥ å ‚ï¼‰å¸®æ´¾å‡çº§ç”¨ææ–™
  */
 public class FUpgradeMaterial
 {
-	//²ÄÁÏÀàĞÍ
-	public static int F_UPGRADE=1;//°ïÅÉÉı¼¶²ÄÁÏ
-	public static int C_UPGRADE=2;//ìôÌÃÉı¼¶²ÄÁÏ
+	//ææ–™ç±»å‹
+	public static int F_UPGRADE=1;//å¸®æ´¾å‡çº§ææ–™
+	public static int C_UPGRADE=2;//ç¥ å ‚å‡çº§ææ–™
 	
-	private int grade;//µÈ¼¶
+	private int grade;//ç­‰çº§
 	
-	//ĞèÒª°ïÅÉ²ÄÁÏ
-	private String fMStr;//ĞèÒª°ïÅÉ²ÄÁÏ×Ö·û´®,ĞÎÊ½Èç£ºµÀ¾ßid-µÀ¾ßÊıÁ¿£¬µÀ¾ßid-µÀ¾ßÊıÁ¿£¬
-	private int prestige;//ÉùÍû
+	//éœ€è¦å¸®æ´¾ææ–™
+	private String fMStr;//éœ€è¦å¸®æ´¾ææ–™å­—ç¬¦ä¸²,å½¢å¼å¦‚ï¼šé“å…·id-é“å…·æ•°é‡ï¼Œé“å…·id-é“å…·æ•°é‡ï¼Œ
+	private int prestige;//å£°æœ›
 	
-	//ĞèÒª¸öÈË²ÄÁÏ
-	private int mId;//ĞèÒª¸öÈË²ÄÁÏµÀ¾ßid
-	private int mNum;//ĞèÒª¸öÈË²ÄÁÏÊıÁ¿
-	private String mDes;//ĞèÒª¸öÈË²ÄÁÏÃèÊö
-	private int money;//ĞèÒª¸öÈËµÄÇ®
+	//éœ€è¦ä¸ªäººææ–™
+	private int mId;//éœ€è¦ä¸ªäººææ–™é“å…·id
+	private int mNum;//éœ€è¦ä¸ªäººææ–™æ•°é‡
+	private String mDes;//éœ€è¦ä¸ªäººææ–™æè¿°
+	private int money;//éœ€è¦ä¸ªäººçš„é’±
 	
-	private String effectDes;//Ğ§¹ûÃèÊö
+	private String effectDes;//æ•ˆæœæè¿°
 	
 	public int getGrade()
 	{

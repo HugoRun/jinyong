@@ -14,10 +14,10 @@ public class LotteryDAO extends DaoBase
 {
 	Logger logger = Logger.getLogger(LotteryDAO.class);
 
-	/** ²åÈë²ÊÆ±µÄÄÚÈİ* */
+	/** æ’å…¥å½©ç¥¨çš„å†…å®¹* */
 	public void insertLotteryInfo(LotteryVO vo)
 	{
-		String sql = "insert into s_lottery_yuanbao values (null,'"
+		String sql = "INSERT INTO s_lottery_yuanbao values (null,'"
 				+ vo.getLottery_date() + "','0','0','"
 				+ vo.getLottery_content() + "','0,0,0',now())";
 		logger.debug(sql);
@@ -39,7 +39,7 @@ public class LotteryDAO extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂ²ÊÆ±µÄÍ¶×¢½ğ¶îºÍÖĞ½±Íæ¼Ò* */
+	/** æ›´æ–°å½©ç¥¨çš„æŠ•æ³¨é‡‘é¢å’Œä¸­å¥–ç©å®¶* */
 	public void updateLotteryAllybAndPlayer(String lottery_date, long yb,
 			String catch_player)
 	{
@@ -67,7 +67,7 @@ public class LotteryDAO extends DaoBase
 		}
 	}
 
-	/** ¸üĞÂ²ÊÆ±µÄÁìÈ¡½ğ¶î* */
+	/** æ›´æ–°å½©ç¥¨çš„é¢†å–é‡‘é¢* */
 	public void updateLotteryCatchyb(String lottery_date, long yb)
 	{
 		String sql = "update s_lottery_yuanbao set lottery_catch_yb = lottery_all_yb + "
@@ -91,11 +91,11 @@ public class LotteryDAO extends DaoBase
 		}
 	}
 
-	/** µÃµ½²ÊÆ±ĞÅÏ¢ µ±Ç°ÆÚ** */
+	/** å¾—åˆ°å½©ç¥¨ä¿¡æ¯ å½“å‰æœŸ** */
 	public LotteryVO selectLotteryInfoByDate(String lottery_date)
 	{
 		LotteryVO vo = new LotteryVO();
-		String sql = "select * from s_lottery_yuanbao where lottery_date = '"
+		String sql = "SELECT * FROM s_lottery_yuanbao where lottery_date = '"
 				+ lottery_date + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -126,11 +126,11 @@ public class LotteryDAO extends DaoBase
 		return vo;
 	}
 
-	/** µÃµ½½±ÀøÄÚÈİ */
+	/** å¾—åˆ°å¥–åŠ±å†…å®¹ */
 	public LotteryVO getBonusInfo()
 	{
 		LotteryVO vo = new LotteryVO();
-		String sql = "select * from lottery_new  ";
+		String sql = "SELECT * FROM lottery_new  ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -158,7 +158,7 @@ public class LotteryDAO extends DaoBase
 		return vo;
 	}
 
-	/** ¸üĞÂ½±³Ø */
+	/** æ›´æ–°å¥–æ±  */
 	public void updateLotteryBonus(long yb)
 	{
 		String sql = "update lottery_new set lottery_yb = " + yb;
@@ -181,12 +181,12 @@ public class LotteryDAO extends DaoBase
 		}
 	}
 
-	// ²ÊÆ±ÀúÊ·¼ÍÂ¼
+	// å½©ç¥¨å†å²çºªå½•
 	public List<LotteryVO> getLotteryHistory(int page, int perpage)
 	{
 		List<LotteryVO> list = new ArrayList<LotteryVO>();
 		LotteryVO vo = null;
-		String sql = "select * from s_lottery_yuanbao order by lottery_date desc limit "
+		String sql = "SELECT * FROM s_lottery_yuanbao order by lottery_date desc limit "
 				+ (page * perpage + 1) + "," + perpage;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -217,11 +217,11 @@ public class LotteryDAO extends DaoBase
 		return list;
 	}
 
-	// ²ÊÆ±ÀúÊ·¼ÍÂ¼
+	// å½©ç¥¨å†å²çºªå½•
 	public int getLotteryHistoryAllNum()
 	{
 		int num = 0;
-		String sql = "select count(*) as num from s_lottery_yuanbao";
+		String sql = "SELECT count(*) as num from s_lottery_yuanbao";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

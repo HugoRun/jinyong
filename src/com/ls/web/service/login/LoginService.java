@@ -1,12 +1,5 @@
 package com.ls.web.service.login;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.log4j.Logger;
-
 import com.ben.dao.logininfo.LoginInfoDAO;
 import com.ben.jms.JmsUtil;
 import com.ben.tiaozhan.TiaozhanConstant;
@@ -22,189 +15,180 @@ import com.lw.dao.player.PlayerStaDao;
 import com.pm.service.outLine.OutLineService;
 import com.pm.service.systemInfo.SystemInfoService;
 import com.pub.MD5;
+import org.apache.log4j.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * @author ls ¹¦ÄÜ£ºÍæ¼ÒµÇÂ½£¬½ÇÉ«µÇÂ½¹ÜÀí
+ * @author ls åŠŸèƒ½ï¼šç©å®¶ç™»é™†ï¼Œè§’è‰²ç™»é™†ç®¡ç†
  */
-public class LoginService
-{
-	Logger logger = Logger.getLogger("log.service");
+public class LoginService {
+    /**
+     * åœ¨çº¿è§’è‰²Map<è´¦å·id,è§’è‰²id>
+     */
+    public static Map<Integer, Integer> online_role = new HashMap<Integer, Integer>(GameConfig.getUserNumUpperLimit());
+    Logger logger = Logger.getLogger("log.service");
 
-	/**
-	 * ÔÚÏß½ÇÉ«Map<ÕËºÅid,½ÇÉ«id>
-	 */
-	public static Map<Integer, Integer> online_role = new HashMap<Integer, Integer>(GameConfig.getUserNumUpperLimit());
-	
-	/**
-	 * µÃµ½ÔÚÏßÍæ¼ÒÁĞ±í
-	 * @return
-	 */
-	public static Map<Integer, Integer> getOnlineRoleList()
-	{
-		return online_role;
-	}
-	
-	/**
-	 * µÃµ½µ±Ç°ÔÚÏßÈËÊı
-	 * @return
-	 */
-	public static int getOnlineNum()
-	{
-		return online_role.size();
-	}
-	
-	
-	/**
-	 * ÅĞ¶ÏÔÚÏßÈËÊıÊÇ·ñÒÑ´ïÉÏÏŞ
-	 * @return
-	 */
-	public boolean isFullOnlineRoleNum()
-	{
-		boolean result = false;
+    /**
+     * å¾—åˆ°åœ¨çº¿ç©å®¶åˆ—è¡¨
+     *
+     * @return
+     */
+    public static Map<Integer, Integer> getOnlineRoleList() {
+        return online_role;
+    }
 
-		int online_num = LoginService.online_role.size();// ÔÚÏßÈËÊı
-
-		int user_num_upper_limit = GameConfig.getUserNumUpperLimit();// ÏµÍ³ÏŞÖÆ×î´óÈËÊı
-
-		if (online_num >= user_num_upper_limit)
-		{
-			result = true;
-		}
-
-		return result;
-	}
-
-	/**
-	 * ×¢²áµÇÂ½ÕËºÅ
-	 * @param user_name
-	 * @param password
-	 * @param µÇÂ½IP
-	 * @return ·µ»ØÖµÎªuPk
-	 */
-	public int register(String user_name, String pwd, String login_ip)
-	{
-		logger.info("ÓÃ»§³É¹¦×¢²á£¬ÓÃ»§Ãû£º" + user_name + ";ÃÜÂë£º" + pwd + ";µÇÂ½IP£º"
-				+ login_ip);
-
-		int uPk = -1;
-
-		LoginDao loginDao = new LoginDao();
-
-		uPk = loginDao.incert(user_name, pwd, login_ip);
-
-		return uPk;
-	}
-
-	/**
-	 * ÓÃ»§³É¹¦µÇÂ½
-	 * @param u_pk 			ÕËºÅid
-	 * @param login_ip		µÇÂ½ip
-	 */
-	public void login(String u_pk, String login_ip)
-	{
-		logger.info("ÓÃ»§³É¹¦µÇÂ½ÕËºÅ£¬ÓÃ»§ÃûID£º" + u_pk + ";µÇÂ½IP£º" + login_ip);
-
-		LoginDao loginDao = new LoginDao();
-
-		loginDao.updateState(u_pk, login_ip);
-	}
-
-	/**
-	 * ÑéÖ¤ÓÃ»§ÃûÃÜÂëÊÇ·ñÕıÈ·
-	 * @param user_name
-	 * @param pwd
-	 * @return loginInfo ·µ»ØÎª¿Õ±íÊ¾ÑéÖ¤Ê§°Ü
-	 */
-	public LoginInfoVO validateLogin(String user_name, String pwd)
-	{
-		LoginInfoVO loginInfo = null;
-
-		String md5_paw = MD5.getInstance().getMD5ofStr(pwd);
-
-		LoginInfoDAO loginDao = new LoginInfoDAO();
-		loginInfo = loginDao.getUserInfoLoginPaw(user_name, md5_paw);
-
-		return loginInfo;
-	}
-
-	/**
-	 * Õı³£½ÇÉ«µÇÂ½
-	 * @param new_login_pPk
-	 * @param request
-	 * @return
-	 */
-	public RoleEntity loginRole(String new_login_pPk,HttpServletRequest request)
-	{
-		return this.loginRole(new_login_pPk, request, 0);
-	}
-	
-	/**
-	 * ĞÂÊÖ½ÇÉ«µÇÂ½
-	 * @param new_login_pPk
-	 * @param request
-	 * @return
-	 */
-	public RoleEntity loginRookieRole(String new_login_pPk,HttpServletRequest request)
-	{
-		RoleEntity role_info =  this.loginRole(new_login_pPk, request, 1);
-
-		if( role_info.getBasicInfo().getPlayer_state_by_new()==1 && role_info.getGrade()==GameConfig.getGradeUpperHighLimit() )
-		{
-			RoleService roleService = new RoleService();
-			roleService.initRoleLogic(role_info);//ĞÂÊÖµÇÂ½Ê±µÄ´¦Àí
-		}
-		
-		return role_info;
-	}
-	
-	/**
-	 * µÇÂ½½ÇÉ«
-	 * @param new_login_pPk
-	 * @param request
-	 * @param loginType				µÇÂ½ÀàĞÍ£º0£¬±íÊ¾Õı³£µÇÂ½£¬1±íÊ¾ĞÂÊÖµÇÂ½
-	 * @return
-	 */
-	private RoleEntity loginRole(String new_login_pPk,HttpServletRequest request,int loginType)
-	{
-		if (request == null )
-		{
-			return null;
-		}
-
-		RoleEntity roleInfo = RoleCache.getByPpk(new_login_pPk);
-		if( roleInfo==null )
-		{
-			//½ÇÉ«µÇÂ½Ê§°Ü
-			DataErrorLog.debugData("LoginService.loginRole£º½ÇÉ«µÇÂ½Ê§°Ü£¬ÎŞ¸Ã½ÇÉ«£¬p_pk="+new_login_pPk);
-			return null;
-		}
-		
-		int u_pk = roleInfo.getUPk();
-		Integer old_ppk = LoginService.online_role.get(u_pk);
-		if( old_ppk!=null )//¸ÃÕËºÅÒÑ¾­µÇÂ½ÁË½ÇÉ«old_ppk
-		{
-			//old_ppk½ÇÉ«ÏÂÏß´¦Àí
-			this.loginoutRole(old_ppk+"");
-		}
-		if( loginType==1 )
-		{
-			//ĞÂÊÖµÇÂ½
-			roleInfo.rookieLogin(request);
-		}
-		else
-		{
-			//Õı³£µÇÂ½
-			roleInfo.login(request);
-		}
-		
-		return roleInfo;
-	}
+    /**
+     * å¾—åˆ°å½“å‰åœ¨çº¿äººæ•°
+     *
+     * @return
+     */
+    public static int getOnlineNum() {
+        return online_role.size();
+    }
 
 
-	/**
-	 * ½ÇÉ«ÍË³ö´¦Àí, ÅĞ¶ÏsessionµÄÖµºÍroleEntityÖĞµÄsessionÊÇ²»ÊÇÍ¬Ò»¸ö, Èç¹ûÊÇÄÇÃ´Ïú»Ù
-	 * Èç¹û²»ÊÇ,ÅĞ¶ÏroleEntityÖĞµÄsessionËù¶ÔÓ¦µÄpPkÊÇ·ñ»¹´æÔÚ,Èç¹û²»´æÔÚ,ÄÇÃ´Ïú»Ù,·ñÔò²»Ïú»Ù.
-	 *//*
+    /**
+     * åˆ¤æ–­åœ¨çº¿äººæ•°æ˜¯å¦å·²è¾¾ä¸Šé™
+     *
+     * @return
+     */
+    public boolean isFullOnlineRoleNum() {
+        boolean result = false;
+
+        int online_num = LoginService.online_role.size();// åœ¨çº¿äººæ•°
+
+        int user_num_upper_limit = GameConfig.getUserNumUpperLimit();// ç³»ç»Ÿé™åˆ¶æœ€å¤§äººæ•°
+
+        if (online_num >= user_num_upper_limit) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    /**
+     * æ³¨å†Œç™»é™†è´¦å·
+     *
+     * @param user_name user_name
+     * @param pwd password
+     * @param login_ip ç™»é™†IP
+     * @return è¿”å›å€¼ä¸ºuPk
+     */
+    public int register(String user_name, String pwd, String login_ip) {
+        logger.info("ç”¨æˆ·æˆåŠŸæ³¨å†Œï¼Œç”¨æˆ·åï¼š" + user_name + ";å¯†ç ï¼š" + pwd + ";ç™»é™†IPï¼š" + login_ip);
+
+        int uPk = -1;
+
+        LoginDao loginDao = new LoginDao();
+
+        uPk = loginDao.incert(user_name, pwd, login_ip);
+
+        return uPk;
+    }
+
+    /**
+     * ç”¨æˆ·æˆåŠŸç™»é™†
+     *
+     * @param u_pk     è´¦å·id
+     * @param login_ip ç™»é™†ip
+     */
+    public void login(String u_pk, String login_ip) {
+        logger.info("ç”¨æˆ·æˆåŠŸç™»é™†è´¦å·ï¼Œç”¨æˆ·åIDï¼š" + u_pk + ";ç™»é™†IPï¼š" + login_ip);
+
+        LoginDao loginDao = new LoginDao();
+
+        loginDao.updateState(u_pk, login_ip);
+    }
+
+    /**
+     * éªŒè¯ç”¨æˆ·åå¯†ç æ˜¯å¦æ­£ç¡®
+     *
+     * @param user_name
+     * @param pwd
+     * @return loginInfo è¿”å›ä¸ºç©ºè¡¨ç¤ºéªŒè¯å¤±è´¥
+     */
+    public LoginInfoVO validateLogin(String user_name, String pwd) {
+        LoginInfoVO loginInfo = null;
+        String md5_paw = MD5.getInstance().getMD5ofStr(pwd);
+        LoginInfoDAO loginDao = new LoginInfoDAO();
+        return loginDao.getUserInfoLoginPaw(user_name, md5_paw);
+    }
+
+    /**
+     * æ­£å¸¸è§’è‰²ç™»é™†
+     *
+     * @param new_login_pPk
+     * @param request
+     * @return
+     */
+    public RoleEntity loginRole(String new_login_pPk, HttpServletRequest request) {
+        return this.loginRole(new_login_pPk, request, 0);
+    }
+
+    /**
+     * æ–°æ‰‹è§’è‰²ç™»é™†
+     *
+     * @param new_login_pPk
+     * @param request
+     * @return
+     */
+    public RoleEntity loginRookieRole(String new_login_pPk, HttpServletRequest request) {
+        RoleEntity role_info = this.loginRole(new_login_pPk, request, 1);
+
+        if (role_info.getBasicInfo().getPlayer_state_by_new() == 1 && role_info.getGrade() == GameConfig.getGradeUpperHighLimit()) {
+            RoleService roleService = new RoleService();
+            roleService.initRoleLogic(role_info);//æ–°æ‰‹ç™»é™†æ—¶çš„å¤„ç†
+        }
+
+        return role_info;
+    }
+
+    /**
+     * ç™»é™†è§’è‰²
+     *
+     * @param new_login_pPk
+     * @param request
+     * @param loginType     ç™»é™†ç±»å‹ï¼š0ï¼Œè¡¨ç¤ºæ­£å¸¸ç™»é™†ï¼Œ1è¡¨ç¤ºæ–°æ‰‹ç™»é™†
+     * @return
+     */
+    private RoleEntity loginRole(String new_login_pPk, HttpServletRequest request, int loginType) {
+        if (request == null) {
+            return null;
+        }
+
+        RoleEntity roleInfo = RoleCache.getByPpk(new_login_pPk);
+        if (roleInfo == null) {
+            //è§’è‰²ç™»é™†å¤±è´¥
+            DataErrorLog.debugData("LoginService.loginRoleï¼šè§’è‰²ç™»é™†å¤±è´¥ï¼Œæ— è¯¥è§’è‰²ï¼Œp_pk=" + new_login_pPk);
+            return null;
+        }
+
+        int u_pk = roleInfo.getUPk();
+        Integer old_ppk = LoginService.online_role.get(u_pk);
+        if (old_ppk != null)//è¯¥è´¦å·å·²ç»ç™»é™†äº†è§’è‰²old_ppk
+        {
+            //old_ppkè§’è‰²ä¸‹çº¿å¤„ç†
+            this.loginoutRole(old_ppk + "");
+        }
+        if (loginType == 1) {
+            //æ–°æ‰‹ç™»é™†
+            roleInfo.rookieLogin(request);
+        } else {
+            //æ­£å¸¸ç™»é™†
+            roleInfo.login(request);
+        }
+
+        return roleInfo;
+    }
+
+
+    /**
+     * è§’è‰²é€€å‡ºå¤„ç†, åˆ¤æ–­sessionçš„å€¼å’ŒroleEntityä¸­çš„sessionæ˜¯ä¸æ˜¯åŒä¸€ä¸ª, å¦‚æœæ˜¯é‚£ä¹ˆé”€æ¯
+     * å¦‚æœä¸æ˜¯,åˆ¤æ–­roleEntityä¸­çš„sessionæ‰€å¯¹åº”çš„pPkæ˜¯å¦è¿˜å­˜åœ¨,å¦‚æœä¸å­˜åœ¨,é‚£ä¹ˆé”€æ¯,å¦åˆ™ä¸é”€æ¯.
+     *//*
 	public void loginoutRole(String pPk, HttpSession session)
 	{
 		RoleEntity roleInfo = RoleCache.getByPpk(pPk);
@@ -230,54 +214,50 @@ public class LoginService
 		}
 	}*/
 
-	/**
-	 * ½ÇÉ«ÍË³ö´¦Àí,Ö±½ÓÍË³ö
-	 */
-	public void loginoutRole(String pPk)
-	{
-		RoleEntity roleInfo = RoleService.getRoleInfoById(pPk);
-		if (roleInfo != null)// ´¦ÀíÍË³ö½ÇÉ«
-		{
-			try
-			{
-				OutLineService outLineService = new OutLineService();
-    			outLineService.outLineClear(roleInfo);//½ÇÉ«ÀëÏß´¦Àí
-    			
-    			JmsUtil.delPeo(roleInfo.getStateInfo().getSuper_qudao(),roleInfo.getStateInfo().getQudao());
-    			BasicInfo bi = roleInfo.getBasicInfo();
-    			if(TiaozhanConstant.TIAOZHAN.containsKey(bi.getPPk())){
-    				TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
-    				int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
-    				TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
-    				TiaozhanConstant.TIAOZHAN.remove(pk);
-    				String tiao_name =new  RoleService().getName(pk+"")[0];
-    				new SystemInfoService().insertSystemInfoBySystem(bi.getName()+"±»"+tiao_name+"µÄ°ÔÆøËùÕğ£¬¾¹È»Ã»ÓĞµ¨Á¿½ÓÊÜÕ½Êé£¡");
-    			}
-			}
-			catch (Exception e) 
-			{
-				e.printStackTrace();
-				DataErrorLog.debugLogic("½ÇÉ«ÍË³öÒì³££º"+e.toString());
-			}
-			finally
-			{
-				roleInfo.save();
-			}
-		}
-	}
+    /**
+     * è§’è‰²é€€å‡ºå¤„ç†,ç›´æ¥é€€å‡º
+     */
+    public void loginoutRole(String pPk) {
+        RoleEntity roleInfo = RoleService.getRoleInfoById(pPk);
+        if (roleInfo != null)// å¤„ç†é€€å‡ºè§’è‰²
+        {
+            try {
+                OutLineService outLineService = new OutLineService();
+                outLineService.outLineClear(roleInfo);//è§’è‰²ç¦»çº¿å¤„ç†
 
-	/** Í³¼ÆÍæ¼ÒµÄÇşµÀ×¢²áĞÅÏ¢ */
-	public void insertPlayerSta(int u_pk, String channel_id)
-	{
-		PlayerStaDao dao = new PlayerStaDao();
-		dao.insertPlayerSta(u_pk, channel_id);
-	}
+                JmsUtil.delPeo(roleInfo.getStateInfo().getSuper_qudao(), roleInfo.getStateInfo().getQudao());
+                BasicInfo bi = roleInfo.getBasicInfo();
+                if (TiaozhanConstant.TIAOZHAN.containsKey(bi.getPPk())) {
+                    TiaozhanConstant.TIAOZHAN_TIME.remove(bi.getPPk());
+                    int pk = TiaozhanConstant.TIAOZHAN.get(bi.getPPk());
+                    TiaozhanConstant.TIAOZHAN.remove(bi.getPPk());
+                    TiaozhanConstant.TIAOZHAN.remove(pk);
+                    String tiao_name = new RoleService().getName(pk + "")[0];
+                    new SystemInfoService().insertSystemInfoBySystem(bi.getName() + "è¢«" + tiao_name + "çš„éœ¸æ°”æ‰€éœ‡ï¼Œç«Ÿç„¶æ²¡æœ‰èƒ†é‡æ¥å—æˆ˜ä¹¦ï¼");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                DataErrorLog.debugLogic("è§’è‰²é€€å‡ºå¼‚å¸¸ï¼š" + e);
+            } finally {
+                roleInfo.save();
+            }
+        }
+    }
 
-	/** ÅĞ¶ÏÕËºÅÊÇ·ñ´æÔÚ */
-	public LoginInfoVO getLoginInfo(String name)
-	{
-		LoginInfoDAO infodao = new LoginInfoDAO();
-		LoginInfoVO infovo = infodao.getUserInfoLoginName(name);
-		return infovo;
-	}
+    /**
+     * ç»Ÿè®¡ç©å®¶çš„æ¸ é“æ³¨å†Œä¿¡æ¯
+     */
+    public void insertPlayerSta(int u_pk, String channel_id) {
+        PlayerStaDao dao = new PlayerStaDao();
+        dao.insertPlayerSta(u_pk, channel_id);
+    }
+
+    /**
+     * åˆ¤æ–­è´¦å·æ˜¯å¦å­˜åœ¨
+     */
+    public LoginInfoVO getLoginInfo(String name) {
+        LoginInfoDAO infodao = new LoginInfoDAO();
+        LoginInfoVO infovo = infodao.getUserInfoLoginName(name);
+        return infovo;
+    }
 }

@@ -16,14 +16,14 @@ public class MenuCache extends CacheBase
 	public static String MENU_BY_ID = "menu_by_id";
 
 	/**
-	 * Í¨¹ıidµÃµ½menuĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ°menuä¿¡æ¯
 	 * 
 	 * @param menu_id
 	 * @return
 	 */
 	public OperateMenuVO getById(String menu_id)
 	{
-		logger.debug("Í¨¹ıidµÃµ½menuĞÅÏ¢:menu_id=" + menu_id);
+		logger.debug("é€šè¿‡idå¾—åˆ°menuä¿¡æ¯:menu_id=" + menu_id);
 
 		OperateMenuVO menu = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, MENU_BY_ID);
@@ -34,14 +34,14 @@ public class MenuCache extends CacheBase
 	}
 
 	/**
-	 * Í¨¹ıvIDµÄµÀpicĞÅÏ¢
+	 * é€šè¿‡vIDçš„é“picä¿¡æ¯
 	 * 
 	 * @param menu_id
 	 * @return
 	 */
 	public String getMenuPicStr(int menu_id)
 	{
-		logger.debug("Í¨¹ıidµÃµ½menuĞÅÏ¢:pic=" + menu_id);
+		logger.debug("é€šè¿‡idå¾—åˆ°menuä¿¡æ¯:pic=" + menu_id);
 
 		OperateMenuVO menu = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, MENU_BY_ID);
@@ -49,14 +49,14 @@ public class MenuCache extends CacheBase
 
 		if (menu == null)
 		{
-			logger.info("Í¨¹ıvID»ñµÃpicĞÅÏ¢Îª¿Õ");
+			logger.info("é€šè¿‡vIDè·å¾—picä¿¡æ¯ä¸ºç©º");
 			return "";
 		}
 
 		return menu.getMenuImg();
 	}
 	/**
-	 * µÃµ½ËùÓĞmenuĞÅÏ¢
+	 * å¾—åˆ°æ‰€æœ‰menuä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
@@ -68,7 +68,7 @@ public class MenuCache extends CacheBase
 	}
 	
 	/**
-	 * ÖØĞÂ¼ÓÔÚÒ»Ìõ²Ëµ¥
+	 * é‡æ–°åŠ åœ¨ä¸€æ¡èœå•
 	 */
 	public void reloadOneMenu(OperateMenuVO menu)
 	{
@@ -82,7 +82,7 @@ public class MenuCache extends CacheBase
 			HashMap<String,SceneVO> scene_list = sceneCache.getSceneList();
 			if( menu.getMenuMap()!=0 && menu.getMenuFatherId()==0 && menu.getMenuTaskFlag()==0 )
 			{
-				//Èç¹ûÊÇ¸¸²Ëµ¥£¬ÇÒ²»ÊÇÈÎÎñ²Ëµ¥
+				//å¦‚æœæ˜¯çˆ¶èœå•ï¼Œä¸”ä¸æ˜¯ä»»åŠ¡èœå•
 				//scene = scene_list.remove(""+oldMenu.getMenuMap());
 				scene = scene_list.get(""+menu.getMenuMap());
 				scene.getFatherMenuList().put(menu.getId()+"", menu);

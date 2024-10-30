@@ -6,22 +6,22 @@ import com.ls.ben.dao.DaoBase;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¼ÇÂ¼µ±³¡µÄÈÙÓşÖµ, ËæºóÔÚÈÃÍæ¼Ò²é¿´Ò»´Îºó¼´±»Çå³ş¡£
+ * è®°å½•å½“åœºçš„è£èª‰å€¼, éšååœ¨è®©ç©å®¶æŸ¥çœ‹ä¸€æ¬¡åå³è¢«æ¸…æ¥šã€‚
  * @author Administrator
  *
  */
 public class FieldRecordDao extends DaoBase {
 	
 	/**
-	 * Ìí¼ÓÕ½³¡ÈÙÓşµÄÊı¾İ
+	 * æ·»åŠ æˆ˜åœºè£èª‰çš„æ•°æ®
 	 * @param pPk
 	 * @param menuOperate3
 	 * @param previous
 	 */
 	public void addFieldGloryRecord(int pPk, String field_type,int sequence)
 	{
-		String sql = "insert into s_field_record values (null,"+pPk+","+sequence+","+field_type+",0,now())";
-		logger.debug("Ìí¼ÓÕ½³¡ÈÙÓşµÄÊı¾İ="+sql);
+		String sql = "INSERT INTO s_field_record values (null,"+pPk+","+sequence+","+field_type+",0,now())";
+		logger.debug("æ·»åŠ æˆ˜åœºè£èª‰çš„æ•°æ®="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -42,7 +42,7 @@ public class FieldRecordDao extends DaoBase {
 	}
 
 	/**
-	 * ¸üĞÂ±¾³¡ÈÙÓş
+	 * æ›´æ–°æœ¬åœºè£èª‰
 	 * @param pk
 	 * @param menu_operate3
 	 * @param fh_sequence
@@ -53,7 +53,7 @@ public class FieldRecordDao extends DaoBase {
 	{
 		String sql = "update s_field_record set sr_glory = sr_glory + "+intraday_value+" where p_pk = "+pk
 						+" and sr_type = "+field_type+" and sr_sequence = "+fh_sequence;
-		logger.debug("¸üĞÂ±¾³¡ÈÙÓş="+sql);
+		logger.debug("æ›´æ–°æœ¬åœºè£èª‰="+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try

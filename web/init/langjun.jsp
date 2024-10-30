@@ -1,5 +1,5 @@
 <%@page contentType="text/vnd.wap.wml" pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 <%@page import="com.ls.ben.vo.menu.OperateMenuVO"%>
 <%@page import="java.util.*"%>
 <%@page import="com.ben.langjun.util.LangjunConstants"%>
@@ -10,10 +10,10 @@
 <%@page import="com.ls.web.service.player.RoleService"%>
 <%@page import="com.ls.ben.vo.map.SceneVO"%>
 <%
-	String new_scene_id = request.getAttribute("new_scene_id")+""; 
-	RoleService roleService1122 = new RoleService();
-	RoleEntity roleInfo1122 = roleService1122.getRoleInfoBySession(request.getSession());
-	int my_p_pk1122 = roleInfo1122.getBasicInfo().getPPk();
+    String new_scene_id = request.getAttribute("new_scene_id")+"";
+    RoleService roleService1122 = new RoleService();
+    RoleEntity roleInfo1122 = roleService1122.getRoleInfoBySession(request.getSession());
+    int my_p_pk1122 = roleInfo1122.getBasicInfo().getPPk();
 %>
 <%if(LangjunConstants.LANGJUN_PPK!=0&&(Integer.parseInt((request.getSession().getAttribute("pPk")+"").trim())!=LangjunConstants.LANGJUN_PPK)){
 
@@ -26,7 +26,7 @@ SceneVO sv = roleInfo1123.getBasicInfo().getSceneInfo();
 <%}}
 boolean yinshenview = com.ben.shitu.model.DateUtil.checkSecond(LangjunConstants.LANGJUN_YINSHEN, LangjunConstants.YINSHEN_CANNOTVIEW_SECOND);
 boolean chushiView = com.ben.shitu.model.DateUtil.checkSecond(LangjunConstants.LANGJUN_TIME, LangjunConstants.LANGJUN_CANNOTVIEW_SECOND);
-		
+
 if(chushiView&&(yinshenview||LangjunUtil.isEff(my_p_pk1122))){
 RoleEntity lang = new RoleCache().getByPpk(LangjunConstants.LANGJUN_PPK);
 if(new_scene_id!=null&&lang!=null&&lang.getBasicInfo().getSceneId().trim().equals(new_scene_id.trim())){

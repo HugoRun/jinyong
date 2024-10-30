@@ -3,11 +3,11 @@ package com.pm.constant;
 public final class SpecialNumber
 {
 	/**
-	 * ,1ÎªÀ¦×°Ò©
+	 * ,1ä¸ºæ†è£…è¯
 	 */
 	public static final int KUNZHUANG = 1;
 	/**
-	 * ,2ÎªĞŞÀí×°±¸µÀ¾ß
+	 * ,2ä¸ºä¿®ç†è£…å¤‡é“å…·
 	 */
 	public static final int FIX_ARM_PROP = 2;
 }

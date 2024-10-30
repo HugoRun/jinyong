@@ -6,16 +6,17 @@
 <%@page import="com.ls.pub.config.sky.ConfigOfSky,com.ls.pub.config.GameConfig"%>
 
 <%
-	response.setContentType("text/vnd.wap.wml");
+    response.setContentType("text/vnd.wap.wml");
 %>
 <%
-	RoleService roleService = new RoleService();
-	RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
-	String skyid = (String)session.getAttribute("skyid");
-	String cpurl = GameConfig.getUrlOfGame()+"/returnMall.do";
+    RoleService roleService = new RoleService();
+    RoleEntity roleInfo = roleService.getRoleInfoBySession(session);
+    String skyid = (String)session.getAttribute("skyid");
+    String cpurl = GameConfig.getUrlOfGame()+"/returnMall.do";
 	String sky_url = ConfigOfSky.getUrlOfChongzhiKB();
 %>
-<wml><%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
+<wml>
+<%@taglib uri="/WEB-INF/tld/struts-bean.tld"  prefix="s" %>
 <card id="bill" title="充值">
 <p>
 <%@ include file="/init/system/error_hint.jsp"%>

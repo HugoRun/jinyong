@@ -18,23 +18,23 @@ if(message!=null&&!"".equals(message.trim())){
 for(Shitu st : list){
 %>
 <anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>"> 
-	<postfield name="cmd" value="n3" />
-	<postfield name="stu_id" value="<%=st.getStu_id() %>" />
-	<postfield name="id" value="<%=st.getId() %>" />
-	</go>
-	<%=st.getStu_name()%>(<%=st.getStu_level()%>)
-	</anchor> 
-	<br/>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>">
+    <postfield name="cmd" value="n3" />
+    <postfield name="stu_id" value="<%=st.getStu_id() %>" />
+    <postfield name="id" value="<%=st.getId() %>" />
+    </go>
+    <%=st.getStu_name()%>(<%=st.getStu_level()%>)
+    </anchor>
+    <br/>
 <%}
-	if(allPage>1){
-	if(allPage >nowPage){
-	%>
-	<anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>"> 
-	<postfield name="nowPage" value="<%=nowPage+1%>" />
-	<postfield name="cmd" value="n2" />
-	</go>
+    if(allPage>1){
+    if(allPage >nowPage){
+    %>
+    <anchor>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/shitu.do") %>">
+    <postfield name="nowPage" value="<%=nowPage+1%>" />
+    <postfield name="cmd" value="n2" />
+    </go>
 	下一页
 	</anchor> 
 	<anchor>

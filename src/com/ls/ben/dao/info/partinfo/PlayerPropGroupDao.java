@@ -20,9 +20,9 @@ import com.ls.web.service.player.RoleService;
 import com.pm.service.systemInfo.SystemInfoService;
 
 /**
- * ¹¦ÄÜ:u_propgroup_info±í²Ù×÷
+ * åŠŸèƒ½:u_propgroup_infoè¡¨æ“ä½œ
  * 
- * @author ÁõË§ 1:52:47 PM
+ * @author åˆ˜å¸… 1:52:47 PM
  */
 public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 {
@@ -34,7 +34,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 	
 	/**
-	 * Çå¿ÕÄ³ÈËµÄµÀ¾ß
+	 * æ¸…ç©ºæŸäººçš„é“å…·
 	 */
 	public void clear(int p_pk )
 	{
@@ -43,7 +43,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò°ü¹üÀïµÄprop_typeÀàĞÍµÄ²»ÖØ¸´µÄµÀ¾ß£¬ÇÒÕ½¶·¿ÉÒÔÊ¹ÓÃµÄµÀ¾ß
+	 * å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„prop_typeç±»å‹çš„ä¸é‡å¤çš„é“å…·ï¼Œä¸”æˆ˜æ–—å¯ä»¥ä½¿ç”¨çš„é“å…·
 	 * @param p_pk
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	{
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select * from u_propgroup_info where p_pk="
+		String sql = "SELECT * FROM u_propgroup_info where p_pk="
 				+ p_pk
 				+ " and pg_type="
 				+ pg_type
@@ -90,14 +90,14 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 	
 	/**
-	 * µÃµ½°ü¹üÀïµÀ¾ßËùÕ¼µÄ¿Õ¼ä
+	 * å¾—åˆ°åŒ…è£¹é‡Œé“å…·æ‰€å çš„ç©ºé—´
 	 * @param p_pk
 	 * @return
 	 */
 	public int getNumOnWrap(int pPk)
 	{
 		int num_on_wrap = 0;
-		String sql = "select count(*) from u_propgroup_info where p_pk="+ pPk;
+		String sql = "SELECT count(*) from u_propgroup_info where p_pk="+ pPk;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -123,7 +123,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		return num_on_wrap;
 	}
 	/**
-	 * ¸ù¾İµÀ¾ßÀàĞÍµÃµ½²»ÖØ¸´µÄµÀ¾ßÁĞ±í
+	 * æ ¹æ®é“å…·ç±»å‹å¾—åˆ°ä¸é‡å¤çš„é“å…·åˆ—è¡¨
 	 * @param p_pk
 	 * @param prop_type
 	 * @return
@@ -132,7 +132,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	{
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select prop_id,sum(prop_num) from u_propgroup_info where p_pk="
+		String sql = "SELECT prop_id,sum(prop_num) from u_propgroup_info where p_pk="
 				+ p_pk
 				+ " and prop_type="
 				+ prop_type
@@ -167,17 +167,17 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * Íù°ü¹üÀïÔö¼ÓµÀ¾ß
+	 * å¾€åŒ…è£¹é‡Œå¢åŠ é“å…·
 	 */
 	public int addPropGroup(PlayerPropGroupVO propGroup)
 	{
 		if (propGroup == null)
 		{
-			logger.debug("propGroup¿Õ");
+			logger.debug("propGroupç©º");
 			return -1;
 		}
 		int result = -1;
-		String sql = "insert into u_propgroup_info (p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) values (?,?,?,?,?,?,?,?,?,now())";
+		String sql = "INSERT INTO u_propgroup_info (p_pk,pg_type,prop_id,prop_type,prop_bonding,prop_protect,prop_isReconfirm,prop_use_control,prop_num,create_time) values (?,?,?,?,?,?,?,?,?,now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -208,7 +208,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		}
 		finally
 		{
-			// ¼ÓÈë»ñµÃÃØ¾³µØÍ¼ÏûÏ¢
+			// åŠ å…¥è·å¾—ç§˜å¢ƒåœ°å›¾æ¶ˆæ¯
 			if (propGroup.getPropType() == PropType.MIJING_MAP)
 			{
 				RoleEntity re = new RoleService().getRoleInfoById(propGroup
@@ -219,10 +219,10 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 					BasicInfo bi = re.getBasicInfo();
 					new SystemInfoService().insertSystemInfoBySystem(bi
 							.getSceneInfo().getSceneName()
-							+ "µÄ"
+							+ "çš„"
 							+ bi.getName()
-							+ "»ñµÃÁË"
-							+ propGroup.getPropName() + "£¡");
+							+ "è·å¾—äº†"
+							+ propGroup.getPropName() + "ï¼");
 				}
 			}
 			dbConn.closeConn();
@@ -231,7 +231,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ü¸ÄÃØ¾³µØÍ¼µÄÓµÓĞÕß
+	 * æ›´æ”¹ç§˜å¢ƒåœ°å›¾çš„æ‹¥æœ‰è€…
 	 */
 	public int updateMiJingOwner(int last_owner, int new_owner)
 	{
@@ -242,7 +242,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * É¾³ıÉíÉÏµÄÃØ¾³µØÍ¼
+	 * åˆ é™¤èº«ä¸Šçš„ç§˜å¢ƒåœ°å›¾
 	 */
 	public int removeMiJing(int ppk)
 	{
@@ -252,11 +252,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ²é¿´ÉíÉÏÊÇ·ñÓµÓĞÃØ¾³µØÍ¼
+	 * æŸ¥çœ‹èº«ä¸Šæ˜¯å¦æ‹¥æœ‰ç§˜å¢ƒåœ°å›¾
 	 */
 	public boolean haveMiJing(int ppk)
 	{
-		String sql = "select count(*) nu from u_propgroup_info u where u.prop_type = "
+		String sql = "SELECT count(*) nu from u_propgroup_info u where u.prop_type = "
 				+ PropType.MIJING_MAP
 				+ " and u.p_pk = "
 				+ ppk
@@ -293,11 +293,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸üĞÂµÀ¾ß×éÊıÁ¿
+	 * æ›´æ–°é“å…·ç»„æ•°é‡
 	 * 
 	 * @param pg_pk
 	 * @param prop_num
-	 *            ĞÂµÄµÀ¾ßÊıÁ¿
+	 *            æ–°çš„é“å…·æ•°é‡
 	 * @return
 	 */
 	public int updatePropGroupUpNum(int p_pk, int prop_id, int accumulate_num)
@@ -308,11 +308,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸üĞÂÍæ¼ÒµÄÖ¸¶¨µÀ¾ßµÄÒ»×éµÀ¾ßµÄÊıÁ¿
+	 * æ›´æ–°ç©å®¶çš„æŒ‡å®šé“å…·çš„ä¸€ç»„é“å…·çš„æ•°é‡
 	 * 
 	 * @param p_pk
 	 * @param prop_id
-	 *            µÀ¾ßid
+	 *            é“å…·id
 	 * @param prop_num
 	 * @return
 	 */
@@ -325,11 +325,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸üĞÂµÀ¾ß×éÊıÁ¿
+	 * æ›´æ–°é“å…·ç»„æ•°é‡
 	 * 
 	 * @param pg_pk
 	 * @param prop_num
-	 *            ĞÂµÄµÀ¾ßÊıÁ¿
+	 *            æ–°çš„é“å…·æ•°é‡
 	 * @return
 	 */
 	public int updatePropGroupNum(int pg_pk, int prop_num)
@@ -340,11 +340,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸üĞÂµÀ¾ß±àºÅÎªprop_idµÄµÀ¾ß×éÊıÁ¿
+	 * æ›´æ–°é“å…·ç¼–å·ä¸ºprop_idçš„é“å…·ç»„æ•°é‡
 	 * 
 	 * @param pg_pk
 	 * @param prop_num
-	 *            ĞÂµÄµÀ¾ßÊıÁ¿
+	 *            æ–°çš„é“å…·æ•°é‡
 	 * @return
 	 */
 	public int updatePropGroupNumByPropID(int p_pk, int prop_id, int prop_num)
@@ -356,7 +356,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µ±µÀ¾ßÊıÁ¿Îª0Ê±£¬É¾³ıÒ»×éµÀ¾ß
+	 * å½“é“å…·æ•°é‡ä¸º0æ—¶ï¼Œåˆ é™¤ä¸€ç»„é“å…·
 	 */
 	public int deletePropGroup(int pg_pk)
 	{
@@ -366,7 +366,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * É¾³ıdelete_group_num×é£¬ÊıÁ¿Îªprop_numµÄµÀ¾ß£¬
+	 * åˆ é™¤delete_group_numç»„ï¼Œæ•°é‡ä¸ºprop_numçš„é“å…·ï¼Œ
 	 */
 	public int deletePropGroup(int p_pk, int prop_id, int delete_group_num)
 	{
@@ -377,12 +377,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½Ä³Ò»ÖÖµÀ¾ßµÄ×ÜÊı
+	 * å¾—åˆ°æŸä¸€ç§é“å…·çš„æ€»æ•°
 	 */
 	public int getPropNumByByPropID(int p_pk, int prop_id)
 	{
 		int prop_num = 0;
-		String sql = "select sum(prop_num) as prop_sum from u_propgroup_info where p_pk="
+		String sql = "SELECT sum(prop_num) as prop_sum from u_propgroup_info where p_pk="
 				+ p_pk + " and prop_id=" + prop_id + "";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -438,7 +438,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 	public PlayerPropGroupVO findById(int id)
 	{
-		String sql = "select * from u_propgroup_info u where u.pg_pk = " + id;
+		String sql = "SELECT * FROM u_propgroup_info u where u.pg_pk = " + id;
 		List<PlayerPropGroupVO> list = new ArrayList<PlayerPropGroupVO>();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -493,10 +493,10 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		if (null != ids && !"".equals(ids.trim()))
 		{
 			List<PlayerPropGroupVO> list = new ArrayList<PlayerPropGroupVO>();
-			String sql = "select * from u_propgroup_info u where u.p_pk="
+			String sql = "SELECT * FROM u_propgroup_info u where u.p_pk="
 					+ p_pk + " and u.prop_id in (" + ids
 					+ ") and u.prop_num > 0";
-			log.info("²éÑ¯½áÒåËùĞèÎïÆ·sql £º " + sql);
+			log.info("æŸ¥è¯¢ç»“ä¹‰æ‰€éœ€ç‰©å“sql ï¼š " + sql);
 			DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 			conn = dbConn.getConn();
 			try
@@ -534,12 +534,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İprop_idµÃµ½ÊıÁ¿×îÉÙµÄÒ»×é
+	 * æ ¹æ®prop_idå¾—åˆ°æ•°é‡æœ€å°‘çš„ä¸€ç»„
 	 */
 	public PlayerPropGroupVO getPropGroupByPropID(int p_pk, int prop_id)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select * from u_propgroup_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk
 				+ " and prop_id=" + prop_id + " order by prop_num limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -569,12 +569,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İprop_idµÃµ½¸öÈË ÊÇ·ñÓµÓĞÄ³ÖÖµÀ¾ß
+	 * æ ¹æ®prop_idå¾—åˆ°ä¸ªäºº æ˜¯å¦æ‹¥æœ‰æŸç§é“å…·
 	 */
 	public boolean getUserHasProp(int p_pk, int prop_id)
 	{
 		boolean flag = false;
-		String sql = "select pg_pk from u_propgroup_info where p_pk=" + p_pk
+		String sql = "SELECT pg_pk from u_propgroup_info where p_pk=" + p_pk
 				+ " and prop_id=" + prop_id + " limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -604,12 +604,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İprop_idµÃµ½¸öÈË ÊÇ·ñÓµÓĞÄ³ÖÖµÀ¾ß
+	 * æ ¹æ®prop_idå¾—åˆ°ä¸ªäºº æ˜¯å¦æ‹¥æœ‰æŸç§é“å…·
 	 */
 	public int getPgpkByProp(int p_pk, int prop_id)
 	{
 		int pg_pk = -1;
-		String sql = "select pg_pk from u_propgroup_info where p_pk=" + p_pk
+		String sql = "SELECT pg_pk from u_propgroup_info where p_pk=" + p_pk
 				+ " and prop_id=" + prop_id + " limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -639,12 +639,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * »ñµÃÄ³¸öµÀ¾ßÓĞ¶àÉÙ×é
+	 * è·å¾—æŸä¸ªé“å…·æœ‰å¤šå°‘ç»„
 	 */
 	public int getPropGroupNumByPropID(int p_pk, int prop_id)
 	{
 		// PlayerPropGroupVO propGroup = null;
-		String sql = "select count(1) as prop_group from u_propgroup_info where p_pk="
+		String sql = "SELECT count(1) as prop_group from u_propgroup_info where p_pk="
 				+ p_pk + " and prop_id=" + prop_id + "";
 		logger.debug(sql);
 		int prop_group = 0;
@@ -675,12 +675,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İprop_idµÃµ½×î½ü²åÈëµÄÒ»×é
+	 * æ ¹æ®prop_idå¾—åˆ°æœ€è¿‘æ’å…¥çš„ä¸€ç»„
 	 */
 	public PlayerPropGroupVO getPropGroupByTime(int p_pk, int prop_id)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select * from u_propgroup_info where p_pk=" + p_pk
+		String sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk
 				+ " and prop_id=" + prop_id
 				+ " order by create_time desc limit 1";
 		logger.debug(sql);
@@ -711,12 +711,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İpg_pkµÃµ½µÀ¾ß×éĞÅÏ¢
+	 * æ ¹æ®pg_pkå¾—åˆ°é“å…·ç»„ä¿¡æ¯
 	 */
 	public PlayerPropGroupVO getByPgPk(int pg_pk)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select * from u_propgroup_info where pg_pk=" + pg_pk;
+		String sql = "SELECT * FROM u_propgroup_info where pg_pk=" + pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -745,12 +745,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İpg_pkºÍp_pkµÃµ½µÀ¾ß×éĞÅÏ¢
+	 * æ ¹æ®pg_pkå’Œp_pkå¾—åˆ°é“å…·ç»„ä¿¡æ¯
 	 */
 	public PlayerPropGroupVO getByPgPk(int pg_pk, int p_pk)
 	{
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select * from u_propgroup_info where pg_pk=" + pg_pk
+		String sql = "SELECT * FROM u_propgroup_info where pg_pk=" + pg_pk
 				+ " and p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -781,7 +781,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 
 	/**
-	 * ½«µÀ¾ß×ªÎª°ó¶¨×´Ì¬
+	 * å°†é“å…·è½¬ä¸ºç»‘å®šçŠ¶æ€
 	 */
 	public void updatePropToBonding(int pg_pk)
 	{
@@ -809,18 +809,18 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÄµÀ¾ß
+	 * å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰çš„é“å…·
 	 * 
 	 * @param p_pk
 	 * @param pg_type
-	 *            °ü¹üµÀ¾ß·ÖÀà
+	 *            åŒ…è£¹é“å…·åˆ†ç±»
 	 * @return
 	 */
 	public List<PlayerPropGroupVO> getPropsByPpk(int p_pk, int pg_type)
 	{
 		List<PlayerPropGroupVO> props = new ArrayList<PlayerPropGroupVO>();
 		PlayerPropGroupVO propGroup = null;
-		String sql = "select * from u_propgroup_info where p_pk=" + p_pk+ " order by prop_id,prop_num";
+		String sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk+ " order by prop_id,prop_num";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -859,11 +859,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÄµÀ¾ß
+	 * å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰çš„é“å…·
 	 * 
 	 * @param p_pk
 	 * @param pg_type
-	 *            °ü¹üµÀ¾ß·ÖÀà
+	 *            åŒ…è£¹é“å…·åˆ†ç±»
 	 * @return
 	 */
 	public QueryPage getPagePropsByPpk(int p_pk, int pg_type, int page_no)
@@ -874,11 +874,11 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 
 	/**
-	 * µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÄµÀ¾ß
+	 * å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰çš„é“å…·
 	 * 
 	 * @param p_pk
 	 * @param pg_type
-	 *            °ü¹üµÀ¾ß·ÖÀà
+	 *            åŒ…è£¹é“å…·åˆ†ç±»
 	 * @return
 	 */
 	public QueryPage getPagePropsByPpkpet(int p_pk, int pg_type, int page_no)
@@ -895,10 +895,10 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		try
 		{
 			stmt = conn.createStatement();
-			// count_sql = "select count(*) from u_propgroup_info where p_pk=" +
+			// count_sql = "SELECT count(*) from u_propgroup_info where p_pk=" +
 			// p_pk + " and pg_type=" + pg_type + " and (prop_type=20 or
 			// prop_type=21)";
-			count_sql = "select count(*) from u_propgroup_info where p_pk="
+			count_sql = "SELECT count(*) from u_propgroup_info where p_pk="
 					+ p_pk
 					+ " and (prop_type=20 or prop_type=21 or prop_type=48)";
 			logger.debug("lllllllllll " + count_sql);
@@ -911,12 +911,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 			queryPage = new QueryPage(page_no, count);
 
-			// page_sql = "select * from u_propgroup_info where p_pk=" + p_pk +
+			// page_sql = "SELECT * FROM u_propgroup_info where p_pk=" + p_pk +
 			// " and pg_type=" + pg_type + " and (prop_type=20 or prop_type=21)
 			// order by prop_id,prop_num " + "limit " +
 			// queryPage.getStartOfPage() + "," + queryPage.getPageSize();
 
-			page_sql = "select * from u_propgroup_info where p_pk="
+			page_sql = "SELECT * FROM u_propgroup_info where p_pk="
 					+ p_pk
 					+ " and (prop_type=20 or prop_type=21 or prop_type=48 ) order by prop_id,prop_num "
 					+ "limit " + queryPage.getStartOfPage() + ","
@@ -955,7 +955,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½µÀ¾ß¿ØÖÆĞÅÏ¢
+	 * å¾—åˆ°é“å…·æ§åˆ¶ä¿¡æ¯
 	 * 
 	 * @param acc_ID
 	 * @return
@@ -963,7 +963,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public GoodsControlVO getPropControl(int pg_pk)
 	{
 		GoodsControlVO goodsControl = null;
-		String sql = "select prop_protect,prop_bonding,prop_isReconfirm from u_propgroup_info where pg_pk="
+		String sql = "SELECT prop_protect,prop_bonding,prop_isReconfirm from u_propgroup_info where pg_pk="
 				+ pg_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -995,7 +995,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½µÀ¾ß¿ØÖÆĞÅÏ¢
+	 * å¾—åˆ°é“å…·æ§åˆ¶ä¿¡æ¯
 	 * 
 	 * @param acc_ID
 	 * @return
@@ -1003,7 +1003,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public GoodsControlVO getPropControlgoods(int goods)
 	{
 		GoodsControlVO goodsControl = null;
-		String sql = "select prop_bonding from prop where prop_ID=" + goods;
+		String sql = "SELECT prop_bonding from prop where prop_ID=" + goods;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -1031,7 +1031,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * µÃµ½Î´±»±£»¤µÄµÀ¾ßid,µ«ÊÇÉÌ³ÇÀëµÃ¶«Î÷²»µô
+	 * å¾—åˆ°æœªè¢«ä¿æŠ¤çš„é“å…·id,ä½†æ˜¯å•†åŸç¦»å¾—ä¸œè¥¿ä¸æ‰
 	 * 
 	 * @param pk
 	 * @return
@@ -1039,7 +1039,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public List<Integer> getNoProtectPropId(int pk)
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select pg_pk from u_propgroup_info where p_pk=" + pk
+		String sql = "SELECT pg_pk from u_propgroup_info where p_pk=" + pk
 				+ " and prop_protect = 0 and pg_type !=6";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1067,7 +1067,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¼õÉÙÀ¦×°Ò©Æ·µÄ×Ü¿ÉÖÎÁÆÁ¿
+	 * å‡å°‘æ†è£…è¯å“çš„æ€»å¯æ²»ç–—é‡
 	 * 
 	 * @param propGroup
 	 * @param add_mp
@@ -1098,7 +1098,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ²åÈëÌØÊâµÀ¾ß±í£¬
+	 * æ’å…¥ç‰¹æ®Šé“å…·è¡¨ï¼Œ
 	 * 
 	 * @param p_pk
 	 * @param pg_pk
@@ -1107,9 +1107,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public void insertSpecial(int p_pk, int pg_pk, String propOperate2,
 			int sp_type)
 	{
-		String sql = "insert into u_special_prop values(null," + p_pk + ","
+		String sql = "INSERT INTO u_special_prop values(null," + p_pk + ","
 				+ sp_type + "," + pg_pk + "," + propOperate2 + ",now())";
-		logger.debug("²åÈëÌØÊâµÀ¾ß±í=" + sql);
+		logger.debug("æ’å…¥ç‰¹æ®Šé“å…·è¡¨=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -1129,7 +1129,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * »ñµÃÌØÊâµÀ¾ßµÄÊ£Óà´æÁ¿
+	 * è·å¾—ç‰¹æ®Šé“å…·çš„å‰©ä½™å­˜é‡
 	 * 
 	 * @param pgPk
 	 * @return
@@ -1137,7 +1137,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getSurplus(int pPk, int pgPk, int sp_type)
 	{
 		int surplus = 0;
-		String sql = "select prop_stock from u_special_prop where pg_pk="
+		String sql = "SELECT prop_stock from u_special_prop where pg_pk="
 				+ pgPk + " and sp_type = " + sp_type + " and p_pk=" + pPk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1165,7 +1165,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * É¾³ıÌØÊâµÀ¾ßÖĞµÄ¼ÇÂ¼
+	 * åˆ é™¤ç‰¹æ®Šé“å…·ä¸­çš„è®°å½•
 	 * 
 	 * @param pgPk
 	 * @param pk
@@ -1175,7 +1175,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		String sql = "delete from u_special_prop where p_pk=" + pk
 				+ " and pg_pk=" + pgPk;
 		String sql2 = "delete from u_special_prop where prop_stock = 0";
-		logger.debug("É¾³ıÌØÊâµÀ¾ßÖĞµÄ¼ÇÂ¼=" + sql);
+		logger.debug("åˆ é™¤ç‰¹æ®Šé“å…·ä¸­çš„è®°å½•=" + sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
 		{
@@ -1196,7 +1196,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İppkºÍpgpk»ñµÃÌØÊâµÀ¾ßÊ¹ÓÃ±íµÄ
+	 * æ ¹æ®ppkå’Œpgpkè·å¾—ç‰¹æ®Šé“å…·ä½¿ç”¨è¡¨çš„
 	 * 
 	 * @param pPk
 	 * @param pgPk
@@ -1205,7 +1205,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getSpecialId(int pPk, int pgPk, int sp_type)
 	{
 		int specialId = 0;
-		String sql = "select id from u_special_prop where pg_pk=" + pgPk
+		String sql = "SELECT id from u_special_prop where pg_pk=" + pgPk
 				+ " and p_pk=" + pPk + " and sp_type=" + sp_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1233,7 +1233,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ¸ù¾İÎïÆ·ÀàĞÍµÃµ½ÎïÆ·µÄ·ÖÒ³ÁĞ±í
+	 * æ ¹æ®ç‰©å“ç±»å‹å¾—åˆ°ç‰©å“çš„åˆ†é¡µåˆ—è¡¨
 	 * @param pPk
 	 * @param prop_type
 	 * @param page_no
@@ -1247,7 +1247,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 
 	/**
-	 * »ñµÃÎïÆ·À¸ÖĞÄ³ÀàµÀ¾ßµÄ×ÜÊı
+	 * è·å¾—ç‰©å“æ ä¸­æŸç±»é“å…·çš„æ€»æ•°
 	 * @param p_pk
 	 * @param prop_type
 	 * @return
@@ -1255,7 +1255,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public int getPropNumByPropType(int p_pk, int prop_type)
 	{
 		int prop_num = 0;
-		String sql = "select sum(prop_num) as prop_num from u_propgroup_info where p_pk="
+		String sql = "SELECT sum(prop_num) as prop_num from u_propgroup_info where p_pk="
 				+ p_pk + " and prop_type=" + prop_type;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1285,7 +1285,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 
 	/**
-	 * »ñµÃ´ËÍæ¼Ò°ü¹üÀïµÄÖÃ¶¥prop_idµÀ¾ß
+	 * è·å¾—æ­¤ç©å®¶åŒ…è£¹é‡Œçš„ç½®é¡¶prop_idé“å…·
 	 * 
 	 * @param pPk
 	 * @return
@@ -1295,12 +1295,12 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		return  super.loadPageList("where p_pk="+ pPk + " and prop_id = " + prop_id, page_no);
 	}
 
-	/** ·¢ËÍ»Æ½ğ±¦ÏäµÄĞÅÏ¢ */
+	/** å‘é€é»„é‡‘å®ç®±çš„ä¿¡æ¯ */
 
 	public int sendGoldInfo(int prop_id)
 	{
 		int type = 0;
-		String sql = "select pg_type from u_propgroup_info where prop_id="
+		String sql = "SELECT pg_type from u_propgroup_info where prop_id="
 				+ prop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1330,7 +1330,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ·¢ËÍ»Æ½ğ±¦ÏäĞÅÏ¢
+	 * å‘é€é»„é‡‘å®ç®±ä¿¡æ¯
 	 * 
 	 * @param pPk
 	 * @param grade
@@ -1341,7 +1341,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	public void sendGoldInfo(int pPk, int grade, int goodsId, String goodsName,
 			int goodsQuality)
 	{
-		String sql = "insert into u_box_info values (null," + pPk + "," + grade
+		String sql = "INSERT INTO u_box_info values (null," + pPk + "," + grade
 				+ "," + goodsId + ",'" + goodsName + "'," + goodsQuality
 				+ ",now())";
 		logger.debug(sql);
@@ -1367,7 +1367,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * ·¢ËÍ»Æ½ğ±¦Ïä¼ÇÂ¼ĞÅÏ¢
+	 * å‘é€é»„é‡‘å®ç®±è®°å½•ä¿¡æ¯
 	 * 
 	 * @param pPk
 	 * @param grade
@@ -1377,7 +1377,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	 */
 	public void sendRecordGoldInfo(int pPk, int info_type, String content)
 	{
-		String sql = "insert into u_box_record values (null," + pPk + ","
+		String sql = "INSERT INTO u_box_record values (null," + pPk + ","
 				+ info_type + ",'" + content + "',now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -1402,7 +1402,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 	}
 
 	/**
-	 * É¾³ıµÀ¾ß
+	 * åˆ é™¤é“å…·
 	 */
 	public int removeByProp(int ppk, String propId)
 	{
@@ -1435,7 +1435,7 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 		}
 		catch (Exception e)
 		{
-			logger.info("É¾³ıÇ§ÃæÀÉ¾ıµÀ¾ßÊ±³ö´í");
+			logger.info("åˆ é™¤åƒé¢éƒå›é“å…·æ—¶å‡ºé”™");
 		}
 		finally
 		{
@@ -1445,9 +1445,9 @@ public class PlayerPropGroupDao extends BasicDaoSupport<PlayerPropGroupVO>
 
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄÖ¸¶¨ÀàĞÍµÄµÀ¾ß
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„æŒ‡å®šç±»å‹çš„é“å…·
 	 * @param p_pk
-	 * @param prop_type_str   			ÀàĞÍ×Ö·û´®
+	 * @param prop_type_str   			ç±»å‹å­—ç¬¦ä¸²
 	 * @param page_no
 	 * @return
 	 */

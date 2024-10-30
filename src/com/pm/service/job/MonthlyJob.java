@@ -13,7 +13,7 @@ public class MonthlyJob implements Job
 {
 
 	/**
-	 * Ã¿ÔÂÖ´ĞĞÒ»´Î
+	 * æ¯æœˆæ‰§è¡Œä¸€æ¬¡
 	 */
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{

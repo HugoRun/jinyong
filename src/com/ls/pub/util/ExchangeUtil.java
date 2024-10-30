@@ -7,14 +7,14 @@ import com.ls.pub.constant.Equip;
 import com.ls.pub.constant.WuXing;
 
 /**
- * ¹¦ÄÜ:ÏµÍ³³£ÓÃ×ª»»¹¤¾ß
- * @author ÁõË§
+ * åŠŸèƒ½:ç³»ç»Ÿå¸¸ç”¨è½¬æ¢å·¥å…·
+ * @author åˆ˜å¸…
  * 12:53:17 PM
  */
 public class ExchangeUtil {
 	
 	/**
-	 * Í¼Æ¬ÏÔÊ¾
+	 * å›¾ç‰‡æ˜¾ç¤º
 	 */
 	public static String getPicDisplay(String pic )
 	{
@@ -25,65 +25,65 @@ public class ExchangeUtil {
 	
 	
 	/**
-	 * °ïÅÉÖ°Î»Ãû×Ö
+	 * å¸®æ´¾èŒä½åå­—
 	 */
 	public static String getFJobName( int f_job )
 	{
 		switch(f_job)
 		{
-			case Faction.HUFA:return "»¤·¨";
-			case Faction.ZHANGLAO:return "³¤ÀÏ";
-			case Faction.ZUZHANG:return "×å³¤";
-			case Faction.ZUZHONG:return "×åÖÚ";
+			case Faction.HUFA:return "æŠ¤æ³•";
+			case Faction.ZHANGLAO:return "é•¿è€";
+			case Faction.ZUZHANG:return "æ—é•¿";
+			case Faction.ZUZHONG:return "æ—ä¼—";
 			default:return "";
 		}
 	}
 	
 	/**
-	 * ÖÖ×åÃû×Ö
+	 * ç§æ—åå­—
 	 */
 	public static String getRaceName( int race )
 	{
 		switch(race)
 		{
-			case 1:return "Ñı";
-			case 2:return "Î×";
-			default:return "ÎŞ";
+			case 1:return "å¦–";
+			case 2:return "å·«";
+			default:return "æ— ";
 		}
 	}
 	
 	/**
-	 * µÃµ½Æ·ÖÊµÄ¼òĞ´Ãû×Ö
+	 * å¾—åˆ°å“è´¨çš„ç®€å†™åå­—
 	 */
 	public static String getQualityName( int quality )
 	{
 		switch(quality)
 		{
-			case Equip.Q_YOUXIU:return "(À¶)";
-			case Equip.Q_LIANGHAO:return "(ÂÌ)";
-			case Equip.Q_JIPIN:return "(×Ï)";
-			case Equip.Q_ORANGE:return "(³È)";
+			case Equip.Q_YOUXIU:return "(è“)";
+			case Equip.Q_LIANGHAO:return "(ç»¿)";
+			case Equip.Q_JIPIN:return "(ç´«)";
+			case Equip.Q_ORANGE:return "(æ©™)";
 		}
 		return "";
 	}
 	
 	/**
-	 * µÃµ½Æ·ÖÊµÄÈ«Ãû
+	 * å¾—åˆ°å“è´¨çš„å…¨å
 	 */
 	public static String getQualityFullName( int quality )
 	{
 		switch(quality)
 		{
-			case Equip.Q_YOUXIU:return "¡ï±¦Æ÷¡ï";
-			case Equip.Q_LIANGHAO:return "¡ïºóÌìÁéÆ÷¡ï";
-			case Equip.Q_JIPIN:return "¡ïÏÈÌìÁé±¦¡ï";
-			case Equip.Q_ORANGE:return "¡ïÏÈÌìÖÁ±¦¡ï";
+			case Equip.Q_YOUXIU:return "â˜…å®å™¨â˜…";
+			case Equip.Q_LIANGHAO:return "â˜…åå¤©çµå™¨â˜…";
+			case Equip.Q_JIPIN:return "â˜…å…ˆå¤©çµå®â˜…";
+			case Equip.Q_ORANGE:return "â˜…å…ˆå¤©è‡³å®â˜…";
 		}
-		return "ÆÕÍ¨×°±¸";
+		return "æ™®é€šè£…å¤‡";
 	}
 	
 	/**
-	 * µÃµ½½ğÇ®ÃèÊö
+	 * å¾—åˆ°é‡‘é’±æè¿°
 	 * @return
 	 */
 	public static String getMoneyDes( int money)
@@ -92,7 +92,7 @@ public class ExchangeUtil {
 	}
 	
 	/**
-	 * °Ñ¿ª¹Ø»»³É×Ö·û´®ÀàĞÍ
+	 * æŠŠå¼€å…³æ¢æˆå­—ç¬¦ä¸²ç±»å‹
 	 * @param sex_id
 	 * @return
 	 */
@@ -100,16 +100,16 @@ public class ExchangeUtil {
 	{
 		if( -switch_control==1 )
 		{
-			return "¿ª";
+			return "å¼€";
 		}
 		else
 		{
-			return "¹Ø";
+			return "å…³";
 		}
 	}
 	
 	/**
-	 * °ÑÕûĞÎ×ª»»³É×Ö·û´®ÀàĞÍ
+	 * æŠŠæ•´å½¢è½¬æ¢æˆå­—ç¬¦ä¸²ç±»å‹
 	 * @param sex_id
 	 * @return
 	 */
@@ -117,20 +117,20 @@ public class ExchangeUtil {
 	{
 		if( sex_id==1 )
 		{
-			return "ÄĞ";
+			return "ç”·";
 		}
 		else if( sex_id==2 )
 		{
-			return "Å®";
+			return "å¥³";
 		}
 		else
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 	}
 	
 	/**
-	 * °ÑÃÅÅÉid×ª»»³Éºº×Ö
+	 * æŠŠé—¨æ´¾idè½¬æ¢æˆæ±‰å­—
 	 * @param sex
 	 * @return
 	 */
@@ -139,24 +139,24 @@ public class ExchangeUtil {
 
 		if( school_id.equals("shaolin") )
 		{
-			return "ÉÙÁÖ";
+			return "å°‘æ—";
 		}
 		else if( school_id.equals("mingjiao") )
 		{
-			return "Ã÷½Ì";
+			return "æ˜æ•™";
 		}
 		else if( school_id.equals("gaibang") )
 		{
-			return "Ø¤°ï";
+			return "ä¸å¸®";
 		}
 		else
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 	}
 	
 	/**
-	 * °ÑÃÅÅÉid×ª»»³Éºº×Ö
+	 * æŠŠé—¨æ´¾idè½¬æ¢æˆæ±‰å­—
 	 * @param sex
 	 * @return
 	 */
@@ -177,7 +177,7 @@ public class ExchangeUtil {
 		}
 		else
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 	}
 	
@@ -186,25 +186,25 @@ public class ExchangeUtil {
 	{
 		if( wx==WuXing.JIN )
 		{
-			return "½ğ";
+			return "é‡‘";
 		}
 		else if( wx==WuXing.MU )
 		{
-			return "Ä¾";
+			return "æœ¨";
 		}
 		else if( wx==WuXing.SHUI )
 		{
-			return "Ë®";
+			return "æ°´";
 		}
 		else if( wx==WuXing.HUO )
 		{
-			return "»ğ";
+			return "ç«";
 		}
 		else if( wx==WuXing.TU )
 		{
-			return "ÍÁ";
+			return "åœŸ";
 		}
-		return "ÎŞ";
+		return "æ— ";
 	}
 	
 	
@@ -212,22 +212,22 @@ public class ExchangeUtil {
 	{
 		if( pet_type==1 )
 		{
-			//ÆÕÍ¨
+			//æ™®é€š
 			return "";
 		}
 		else if( pet_type==2 )
 		{
-			return "ÒìÊŞ";
+			return "å¼‚å…½";
 		}
 		else if( pet_type==3 )
 		{
-			return "ÈğÊŞ";
+			return "ç‘å…½";
 		}
 		return "";
 	}
 	
 	/**
-	 * »ñÈ¡°ó¶¨µÄÀàĞÍ
+	 * è·å–ç»‘å®šçš„ç±»å‹
 	 * @param pet_type
 	 * @return
 	 */
@@ -235,25 +235,25 @@ public class ExchangeUtil {
 	{
 		if( bonding_type == BondingType.NOBOND )
 		{
-			//ÆÕÍ¨
-			return "²»°ó¶¨";
+			//æ™®é€š
+			return "ä¸ç»‘å®š";
 		}
 		else if( bonding_type==BondingType.PICKBOUND )
 		{
-			return "Ê°È¡°ó¶¨";
+			return "æ‹¾å–ç»‘å®š";
 		}
 		else if( bonding_type==BondingType.ARMBOND )
 		{
-			return "×°±¸°ó¶¨";
+			return "è£…å¤‡ç»‘å®š";
 		}else if( bonding_type==BondingType.EXCHANGEBOND )
 		{
-			return "½»Ò×°ó¶¨";
+			return "äº¤æ˜“ç»‘å®š";
 		}
 		return "";
 	}
 	
 	/**
-	 * ¸ù¾İÎåĞĞÀàĞÍºÍnpcÀàĞÍµÃµ½£¬Ãû×Öºó×º
+	 * æ ¹æ®äº”è¡Œç±»å‹å’Œnpcç±»å‹å¾—åˆ°ï¼Œåå­—åç¼€
 	 * @param wx
 	 * @param type
 	 * @return
@@ -261,7 +261,7 @@ public class ExchangeUtil {
 	public static String getSuffixOfNPCNameByWxAndType(int wx,int type)
 	{
 		String wx_str = ExchangeUtil.exchangeToWX(wx);
-		if( !wx_str.equals("ÎŞ"))
+		if( !wx_str.equals("æ— "))
 		{
 			wx_str = "(" + wx_str + ")";
 		}
@@ -274,47 +274,47 @@ public class ExchangeUtil {
 		pet_type_str = ExchangeUtil.exchangeToPetType(type);
 		if( !pet_type_str.equals(""))
 		{
-			pet_type_str = "¡¾" + pet_type_str + "¡¿";
+			pet_type_str = "ã€" + pet_type_str + "ã€‘";
 		}
 		String suffix = pet_type_str + wx_str;
 		return suffix;
 	}
 	
 	/**
-	 * ¸ù¾İÍæ¼ÒĞÔ±ğµÃµ½Íæ¼ÒµÄ³Æºô,1ÊÇÄĞ£¬2ÊÇÅ®
-	 * @param content                   ĞèÒªÌæ»»µÄÄÚÈİ
-	 * @param sex                       ĞÔ±ğ
+	 * æ ¹æ®ç©å®¶æ€§åˆ«å¾—åˆ°ç©å®¶çš„ç§°å‘¼,1æ˜¯ç”·ï¼Œ2æ˜¯å¥³
+	 * @param content                   éœ€è¦æ›¿æ¢çš„å†…å®¹
+	 * @param sex                       æ€§åˆ«
 	 * @return
 	 */
 	public static String getTitleBySex( String content,int sex )
 	{
 		String result = "";
 		
-		if( sex==1 )//ÄĞ
+		if( sex==1 )//ç”·
 		{
-			result = content.replaceAll("\\(xiao\\)","¹«×Ó");
-			result = result.replaceAll("\\(da\\)","ÀÏÒ¯");
-			result = result.replaceAll("\\(xia\\)","ÉÙÏÀ");
-			result = result.replaceAll("\\(ya\\)","Ğ¡×Ó");
-			result = result.replaceAll("\\(mm\\)","ĞÖµÜ");
-			result = result.replaceAll("\\(dd\\)","Ğ¡µÜ");
-			result = result.replaceAll("\\(shi\\)","Ê¦µÜ");
-			result = result.replaceAll("\\(gg\\)","¸ç¸ç");
-			result = result.replaceAll("\\(dm\\)","µÜ");
-			result = result.replaceAll("\\(gj\\)","¸ç");
+			result = content.replaceAll("\\(xiao\\)","å…¬å­");
+			result = result.replaceAll("\\(da\\)","è€çˆ·");
+			result = result.replaceAll("\\(xia\\)","å°‘ä¾ ");
+			result = result.replaceAll("\\(ya\\)","å°å­");
+			result = result.replaceAll("\\(mm\\)","å…„å¼Ÿ");
+			result = result.replaceAll("\\(dd\\)","å°å¼Ÿ");
+			result = result.replaceAll("\\(shi\\)","å¸ˆå¼Ÿ");
+			result = result.replaceAll("\\(gg\\)","å“¥å“¥");
+			result = result.replaceAll("\\(dm\\)","å¼Ÿ");
+			result = result.replaceAll("\\(gj\\)","å“¥");
 		}
-		else if( sex==2)//Å®
+		else if( sex==2)//å¥³
 		{
-			result = content.replaceAll("\\(xiao\\)","¹ÃÄï");
-			result = result.replaceAll("\\(da\\)","Ğ¡½ã");
-			result = result.replaceAll("\\(xia\\)","Å®ÏÀ");
-			result = result.replaceAll("\\(ya\\)","Ñ¾Í·");
-			result = result.replaceAll("\\(mm\\)","ÃÃÃÃ");
-			result = result.replaceAll("\\(dd\\)","Ğ¡ÃÃ");
-			result = result.replaceAll("\\(shi\\)","Ê¦ÃÃ");
-			result = result.replaceAll("\\(gg\\)","½ã½ã");
-			result = result.replaceAll("\\(dm\\)","ÃÃ");
-			result = result.replaceAll("\\(gj\\)","½ã");
+			result = content.replaceAll("\\(xiao\\)","å§‘å¨˜");
+			result = result.replaceAll("\\(da\\)","å°å§");
+			result = result.replaceAll("\\(xia\\)","å¥³ä¾ ");
+			result = result.replaceAll("\\(ya\\)","ä¸«å¤´");
+			result = result.replaceAll("\\(mm\\)","å¦¹å¦¹");
+			result = result.replaceAll("\\(dd\\)","å°å¦¹");
+			result = result.replaceAll("\\(shi\\)","å¸ˆå¦¹");
+			result = result.replaceAll("\\(gg\\)","å§å§");
+			result = result.replaceAll("\\(dm\\)","å¦¹");
+			result = result.replaceAll("\\(gj\\)","å§");
 		}
 		
 		return result;

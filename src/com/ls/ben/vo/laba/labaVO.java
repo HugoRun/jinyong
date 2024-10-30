@@ -4,8 +4,8 @@ import com.ls.ben.vo.info.npc.NpcdropVO;
 
 public class labaVO
 {
-	private int sNum;//ÓÃÀ´ÅĞ¶ÏºóÁ½¸öÎïÆ·
-	private NpcdropVO nvo;//µôÂäµÄÎïÆ·
+	private int sNum;//ç”¨æ¥åˆ¤æ–­åä¸¤ä¸ªç‰©å“
+	private NpcdropVO nvo;//æ‰è½çš„ç‰©å“
 	public int getSNum()
 	{
 		return sNum;

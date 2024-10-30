@@ -8,7 +8,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 
 /**
- * ���ܣ�˼��ͨ�������ļ�
+ * 功能：思凯通道配置文件
  * @author ls
  * Jun 27, 2009
  * 2:26:32 PM
@@ -17,7 +17,7 @@ public class ConfigOfSky
 {
 	/*http://localhost:40021/authssid?ssid=<ssid>
 	http://localhost:40022/paykb?
-	����ֵ����http://211.155.236.18:8081/pc?*/
+	而充值的是http://211.155.236.18:8081/pc?*/
 	
 	private static PropertiesConfiguration  config = null;
 	static
@@ -34,7 +34,7 @@ public class ConfigOfSky
 	}
 	
 	/**
-	 * �õ���֤ssid�Ƿ���Ч��url��ַ
+	 * 得到认证ssid是否有效的url地址
 	 * @return
 	 */
 	public static String getUrlOfAuthSSID()
@@ -43,7 +43,7 @@ public class ConfigOfSky
 	}
 	
 	/**
-	 * �õ�����K��url��ַ
+	 * 得到消耗K币url地址
 	 * @return
 	 */
 	public static String getUrlOfPayKB()
@@ -52,7 +52,7 @@ public class ConfigOfSky
 	}
 	
 	/**
-	 * �õ���ֵK�ҵ�url��ַ
+	 * 得到充值K币的url地址
 	 * @return
 	 */
 	public static String getUrlOfChongzhiKB()

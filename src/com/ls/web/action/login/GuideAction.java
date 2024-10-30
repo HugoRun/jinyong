@@ -14,7 +14,7 @@ import com.ls.web.service.login.LoginService;
 
 /**
  * @author ls
- * 新手引导
+ * 鏂版墜寮曞
  */
 public class GuideAction extends ActionBase
 {
@@ -41,8 +41,8 @@ public class GuideAction extends ActionBase
 		}
 		else if( step.equals("end"))
 		{
-			//新手引导结束
-			//登陆，初始化
+			//鏂版墜寮曞缁撴潫
+			//鐧婚檰锛屽垵濮嬪寲
 			return this.login(mapping, form, request, response);
 		}
 		
@@ -50,7 +50,7 @@ public class GuideAction extends ActionBase
 	}
 	
 	/**
-	 * 新手登陆
+	 * 鏂版墜鐧婚檰
 	 */
 	private ActionForward login(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {

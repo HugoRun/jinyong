@@ -32,14 +32,14 @@ public class ForumRevertDAOImpl extends DaoBase {
 	}
 	
 	/**
-	 * »Ø¸´Ìû×Ó
+	 * å›å¤å¸–å­
 	 * @param frb
 	 * @return
 	 * @throws Exception
 	 */
 	public int addForumRevert(ForumRevertBean frb) throws Exception {
 		
-		String sql="insert into g_forum_revert(fid,UserID,UserName,content,addTime) values(?,?,?,?,now())";			
+		String sql="INSERT INTO g_forum_revert(fid,UserID,UserName,content,addTime) values(?,?,?,?,now())";			
 		PreparedStatement ps = connection.prepareStatement(sql);
 		logger.debug(sql.toString());
 		int i=1;
@@ -54,7 +54,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	}
 	public void deleteForumRevert(int id) throws Exception {
 		// TODO Auto-generated method stub
-		//É¾³ıÁôÑÔ»Ø¸´
+		//åˆ é™¤ç•™è¨€å›å¤
 		StringBuffer sql=new StringBuffer("delete from g_forum_revert where id=").append(id);
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		int m=ps.executeUpdate();
@@ -62,7 +62,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * °´ÕÕÒ³Ãæ»ñÈ¡Ö¸¶¨µÄÎÄÕÂ»Ø¸´
+	 * æŒ‰ç…§é¡µé¢è·å–æŒ‡å®šçš„æ–‡ç« å›å¤
 	 * @param fid
 	 * @param page_no
 	 * @return
@@ -73,7 +73,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 		 int count = 0;
 		 
 		 stmt = connection.createStatement();
-			String count_sql = "select count(*) from g_forum_revert where fid=" + fid;
+			String count_sql = "SELECT count(*) from g_forum_revert where fid=" + fid;
 			logger.debug(count_sql);
 			rs = stmt.executeQuery(count_sql);
 			if( rs.next() )
@@ -95,7 +95,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 		}
 		
 		
-		String sql="select * from g_forum_revert where fid="+fid+" order by id desc limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
+		String sql="SELECT * FROM g_forum_revert where fid="+fid+" order by id desc limit " + queryPage.getStartOfPage() + ","+queryPage.getPageSize();
 		logger.debug(sql.toString());
 		Statement ps = connection.createStatement();		   
 		   ResultSet rs = ps.executeQuery(sql);
@@ -143,13 +143,13 @@ public class ForumRevertDAOImpl extends DaoBase {
 	}
 
 	/**
-	 * µÃµ½Ö¸¶¨µÄ»Ø¸´
+	 * å¾—åˆ°æŒ‡å®šçš„å›å¤
 	 * @param row
 	 * @param fid
 	 * @return
 	 */
 	public List<ForumRevertBean> getRowForumRevert(int row, int fid) throws Exception {
-		String sql="select * from g_forum_revert where fid="+fid+" order by id desc limit 0,"+row;
+		String sql="SELECT * FROM g_forum_revert where fid="+fid+" order by id desc limit 0,"+row;
 		logger.debug(sql.toString());
 		List<ForumRevertBean> v = new ArrayList<ForumRevertBean>();
 		Statement ps = connection.createStatement();		   
@@ -196,7 +196,7 @@ public class ForumRevertDAOImpl extends DaoBase {
 	 */
 	public ForumRevertBean getForumRevertById(String revertId)
 	{
-		String sql="select * from g_forum_revert where id="+ revertId;	
+		String sql="SELECT * FROM g_forum_revert where id="+ revertId;	
 	   ForumRevertBean revertbean = null;
 	   try {
 		   Statement ps = connection.createStatement();		   
@@ -220,15 +220,15 @@ public class ForumRevertDAOImpl extends DaoBase {
 
 	
 	/**
-	 * È·¶¨´ËÈËÊÇ·ñÔÚ¶ş·ÖÖÓÄÚ·¢¹ıÌû.Èç¹û·¢¹ı·µ»Øtrue,
-	 * ·ñÔò·µ»Øfalse.
+	 * ç¡®å®šæ­¤äººæ˜¯å¦åœ¨äºŒåˆ†é’Ÿå†…å‘è¿‡å¸–.å¦‚æœå‘è¿‡è¿”å›true,
+	 * å¦åˆ™è¿”å›false.
 	 * @param pk
 	 * @return
 	 */
 	public boolean isInTwoMinute(int p_pk)
 	{
-		String sql = "select * from g_forum_revert where UserID = "+p_pk+" and now() < (addTime + INTERVAL 1 minute)";
-		logger.debug("È·¶¨´ËÈËÊÇ·ñÔÚÊ®·ÖÖÓÖ®ÄÚ·¢¹ıÌûµÄsql :"+sql);
+		String sql = "SELECT * FROM g_forum_revert where UserID = "+p_pk+" and now() < (addTime + INTERVAL 1 minute)";
+		logger.debug("ç¡®å®šæ­¤äººæ˜¯å¦åœ¨ååˆ†é’Ÿä¹‹å†…å‘è¿‡å¸–çš„sql :"+sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		boolean flag = false;

@@ -12,7 +12,7 @@ import com.ls.pub.db.DBConnection;
 
 /**
  * @author ls
- * °ïÅÉĞÅÏ¢
+ * å¸®æ´¾ä¿¡æ¯
  */
 public class FactionDao extends BasicDaoSupport<Faction>
 {
@@ -23,7 +23,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 
 	/**
-	 * ¸üĞÂ×ªÈÃ×å³¤µÄÊ±¼ä
+	 * æ›´æ–°è½¬è®©æ—é•¿çš„æ—¶é—´
 	 */
 	public void updateChangeZZHTime( int fId )
 	{
@@ -51,7 +51,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		}
 	}
 	/**
-	 * ¸üĞÂ°ïÅÉ³ÉÔ±µÈ¼¶×ÜºÍ
+	 * æ›´æ–°å¸®æ´¾æˆå‘˜ç­‰çº§æ€»å’Œ
 	 */
 	public void updateMGradeTotal( int fId,int updateGrade )
 	{
@@ -81,7 +81,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * ±£´æ
+	 * ä¿å­˜
 	 */
 	public void save(Faction faction )
 	{
@@ -120,7 +120,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		}
 	}
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 * @param faction
 	 * @return
 	 */
@@ -132,7 +132,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 			return key;
 		}
 		
-		String sql = "insert into f_faction(name,race,createTime,mGradeTotal) values (?,?,now(),?)";
+		String sql = "INSERT INTO f_faction(name,race,createTime,mGradeTotal) values (?,?,now(),?)";
 
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -168,7 +168,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * µÃµ½ÉùÍûÅÅÃû
+	 * å¾—åˆ°å£°æœ›æ’å
 	 * @return
 	 */
 	public List<Faction> getPrestigeRank()
@@ -178,7 +178,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * µÃµ½Õ½Á¦ÅÅÃû
+	 * å¾—åˆ°æˆ˜åŠ›æ’å
 	 * @return
 	 */
 	public List<Faction> getZhanliRank()
@@ -187,7 +187,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		return super.getListBySql(condition_sql);
 	}
 	/**
-	 * µÃµ½²Æ¸»ÅÅÃû
+	 * å¾—åˆ°è´¢å¯Œæ’å
 	 * @return
 	 */
 	public List<Faction> getRichRank()
@@ -197,7 +197,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * Í¨¹ıidÉ¾³ı
+	 * é€šè¿‡idåˆ é™¤
 	 */
 	public int delById( int id )
 	{
@@ -206,14 +206,14 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * µÃµ½½âÉ¢°ïÅÉÁĞ±í
+	 * å¾—åˆ°è§£æ•£å¸®æ´¾åˆ—è¡¨
 	 * @param pName
 	 * @return
 	 */
 	public List<Integer> getDisbandList()
 	{
 		List<Integer> list = new ArrayList<Integer>();
-		String sql = "select id from f_faction where isDisband=1";
+		String sql = "SELECT id from f_faction where isDisband=1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -239,7 +239,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 
 	/**
-	 * ±£´æ²ÄÁÏ²Ö¿âĞÅÏ¢
+	 * ä¿å­˜ææ–™ä»“åº“ä¿¡æ¯
 	 */
 	public void saveStorageStr( int fId,String materialStr,int materialNum)
 	{
@@ -270,12 +270,12 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		}
 	}
 	/**
-	 *µÃµ½°ïÅÉ²ÄÁÏĞÅÏ¢
+	 *å¾—åˆ°å¸®æ´¾ææ–™ä¿¡æ¯
 	 */
 	public String getStorageStr( int fId )
 	{
 		String result=null;
-		String sql = "select storageStr from f_faction where id='"+fId+"'";
+		String sql = "SELECT storageStr from f_faction where id='"+fId+"'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -301,12 +301,12 @@ public class FactionDao extends BasicDaoSupport<Faction>
 		return result;
 	}
 	/**
-	 * ÊÇ·ñÓĞ¸ÃÃû×ÖµÄ°ïÅÉ
+	 * æ˜¯å¦æœ‰è¯¥åå­—çš„å¸®æ´¾
 	 */
 	public boolean isHaveName( String f_name )
 	{
 		boolean result = false;
-		String sql = "select id from f_faction where name='"+f_name+"' limit 1";
+		String sql = "SELECT id from f_faction where name='"+f_name+"' limit 1";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
 		try
@@ -333,7 +333,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * °ïÅÉĞÅÏ¢
+	 * å¸®æ´¾ä¿¡æ¯
 	 */
 	public Faction getById( int fId )
 	{
@@ -342,7 +342,7 @@ public class FactionDao extends BasicDaoSupport<Faction>
 	}
 	
 	/**
-	 * °ïÅÉ·ÖÒ³ÁĞ±í
+	 * å¸®æ´¾åˆ†é¡µåˆ—è¡¨
 	 */
 	public QueryPage getPageList(int page_no)
 	{

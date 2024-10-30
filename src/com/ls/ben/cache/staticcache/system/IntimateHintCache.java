@@ -11,13 +11,13 @@ public class IntimateHintCache extends CacheBase
 	public static String HINT_LIST = "hint_list";
 	
 	/**
-	 * Í¨¹ıidµÃµ½ Ëæ»úĞÅÏ¢
+	 * é€šè¿‡idå¾—åˆ° éšæœºä¿¡æ¯
 	 * @param scene_id
 	 * @return
 	 */
 	public IntimateHintVO getRandomIntimateHint()
 	{
-		logger.debug("µÃµ½Ò»¸öËæ»úµÄÎäÁÖĞ¡ÌùÊ¿");
+		logger.debug("å¾—åˆ°ä¸€ä¸ªéšæœºçš„æ­¦æ—å°è´´å£«");
 		IntimateHintVO hint = null;
 		List<IntimateHintVO> hint_list = getElementValueUseList(STATIC_CACHE_NAME, HINT_LIST);
 		

@@ -3,22 +3,22 @@ package com.pm.vo.question;
 public class QuestionVO
 {
 
-	 /**  ÓÃ»§´ğÌâ»ı·Ö±íid */
+	 /**  ç”¨æˆ·ç­”é¢˜ç§¯åˆ†è¡¨id */
 	public int id;		
-  	/**  ¸öÈË½ÇÉ«id   */
+  	/**  ä¸ªäººè§’è‰²id   */
   	public int p_pk;			
-	/**  ÓÃ»§»ı·Ö  **/
+	/**  ç”¨æˆ·ç§¯åˆ†  **/
 	public int integral;				
-  	/**  Á¬ĞøÕıÈ·´ÎÊı **/
+  	/**  è¿ç»­æ­£ç¡®æ¬¡æ•° **/
   	public int conunite_win;			
-  	/**  ÔÂ·İ  */
+  	/**  æœˆä»½  */
   	public String mouth;
-  	/**   Ã¿ÔÂ´ğÍêÊ®µÀÌâµÄÌìÊı  **/
+  	/**   æ¯æœˆç­”å®Œåé“é¢˜çš„å¤©æ•°  **/
   	public int conunite_day;			
-  	/**  ×îºó´ğÌâÊ±¼ä */
+  	/**  æœ€åç­”é¢˜æ—¶é—´ */
   	public String last_time;
   	
-  	/**  ÓÃ»§Ãû×Ö  */
+  	/**  ç”¨æˆ·åå­—  */
   	public String pName;
   	
   	

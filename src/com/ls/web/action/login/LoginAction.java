@@ -1,15 +1,5 @@
 package com.ls.web.action.login;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.dao.deletepart.DeletePartDAO;
 import com.ben.vo.intimatehint.IntimateHintVO;
 import com.ben.vo.logininfo.LoginInfoVO;
@@ -32,487 +22,458 @@ import com.lw.service.system.SystemAllkeyService;
 import com.lw.service.systemnotify.SystemNotifyService;
 import com.lw.vo.systemnotify.SystemNotifyVO;
 import com.web.service.checkpcrequest.CheckPcRequestService;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
-/** 
- * Íæ¼ÒµÇÂ½
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+/**
+ * ç©å®¶ç™»é™†
  */
-public class LoginAction  extends ActionBase {
-	/** 
-	 * ÇşµÀµÇÂ½
-	 */
-	public ActionForward channel(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		String lid = request.getParameter("lid");//ÇşµÀid 
-		
-		if( lid==null || lid.equals("") )
-		{
-			lid = "99";
-		}
-		request.setAttribute("lid", lid); 
-		return mapping.findForward("login_index");
-	}
+public class LoginAction extends ActionBase {
+    /**
+     * æ¸ é“ç™»é™†
+     */
+    public ActionForward channel(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("111111111111111111111111111111");
+        // æ¸ é“Id
+        String lid = request.getParameter("lid");
 
-	/** 
-	 * ÓÃ»§µÇÂ½Ò³Ãæ
-	 */
-	public ActionForward n0(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		String hint = request.getParameter("hint");
-		request.setAttribute("hint", hint);
-		return mapping.findForward("login_index");
-	}
-	/** 
-	 * ÓÃ»§µÇÂ½ÑéÖ¤
-	 */
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("paw");
-		String lid = request.getParameter("lid");
-		String hint = null;
-		ValidateService validateService = new ValidateService();
-		hint = validateService.validateUserName(name);
-		
-		if( hint !=null )//ÓÃ»§ÃûºÏ·¨ĞÔÑéÖ¤Ê§°Ü
-		{
-			request.setAttribute("hint", hint);
-			request.setAttribute("lid", lid);
-			return mapping.findForward("login_fail");
-		}
-		
-		hint = validateService.validatePwd(pwd);
-		
-		if( hint !=null )//ÃÜÂëºÏ·¨ĞÔÑéÖ¤Ê§°Ü
-		{
-			request.setAttribute("hint", hint);
-			request.setAttribute("lid", lid);
-			return mapping.findForward("login_fail");
-		}
-	
-		LoginService loginService = new LoginService();
-		LoginInfoVO loginInfo = loginService.validateLogin(name, pwd);
-		if( loginInfo !=null )//ÕËºÅÃÜÂëÑéÖ¤³É¹¦£¬µÇÂ½³É¹¦
-		{
-			loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
-			request.getSession().setAttribute("uPk", loginInfo.getUPk() + "");
-			request.getSession().setAttribute("user_name", name);
-			request.getSession().setAttribute("channel_id", lid);
-			//return mapping.findForward("area_list");
-			return n3(mapping, form, request, response);//µÇÂ½³É¹¦ºó£¬Ö±½Ó½øÈëÑ¡Ôñ½ÇÉ«Ò³Ãæ
-		} 
-		else
-		{
-			hint = "ÕËºÅ»òÃÜÂë²»¶Ô£¡";
-			request.setAttribute("hint", hint); 
-			request.setAttribute("lid", lid);
-			return mapping.findForward("login_fail");
-		}
-	}
-	
-	/**
-	 * ½øÈëÑ¡ÇøÒ³Ãæ
-	 */
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		if( request.getSession().getAttribute("uPk")==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		
-		return mapping.findForward("area_list");
-	}
-	
-	/**
-	 * ½øÈëÑ¡Ôñ½ÇÉ«Ò³Ãæ
-	 */
-	public ActionForward n3(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		String u_pk = (String)session.getAttribute("uPk");
-		if( u_pk==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		PlayerService playerService = new PlayerService();
-		IntimateHintService intimateHintService = new IntimateHintService();
-		
-		IntimateHintVO intimateHint = intimateHintService.getRandomIntimateHint();
-		List<PartInfoVO> role_list = playerService.getRoleList(u_pk);
-		//¶¯Ì¬¹«¸æ
-		SystemNotifyService systemNotifyService = new SystemNotifyService();
-		List<SystemNotifyVO> notifylist_gengxin = systemNotifyService.getNotifyTitle(1);
-		List<SystemNotifyVO> notifylist_huodong = systemNotifyService.getNotifyTitle(2);
-		request.setAttribute("notifylist_gengxin", notifylist_gengxin);
-		request.setAttribute("notifylist_huodong", notifylist_huodong);
-		request.setAttribute("intimateHint", intimateHint);
-		request.setAttribute("role_list", role_list);
-		return mapping.findForward("role_list");
-	}
-	
-	/**
-	 * µÇÂ½½ÇÉ«£º½øÈëÓÎÏ·Ò³Ãæ
-	 */
-	public ActionForward n4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("PreviourFile","");
-		
-		String u_pk = (String)session.getAttribute("uPk");
-		//ÅĞ¶ÏÕËºÅÊÇ·ñÒÑµÇÂ½
-		if(u_pk==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		
-		PlayerEnvelopService ps = new PlayerEnvelopService();
-		PlayerService playerService = new PlayerService();
-		
-		String pPk = request.getParameter("pPk");
-		
-		//ÅĞ¶Ï½ÇÉ«ÊÇ·ñ±»É¾³ı
-		PartInfoDao infoDao = new PartInfoDao(); 	
-		int delete_flag = infoDao.getDeleteState(pPk); 
-		if ( delete_flag == 1) 
-		{
-			request.setAttribute("display", "¶Ô²»Æğ£¬¸Ã½ÇÉ«ÒÑ¾­É¾³ı,ÈçÒª½øÈëÇëÏÈ»Ö¸´!"); 
-			return mapping.findForward("envelop");
-		}
-		
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñ±»·âºÅ
-		boolean envelop = ps.getPlayerEnvelopForever(Integer.parseInt(pPk));
-		if(envelop == true)
-		{
-			request.setAttribute("display", "¶Ô²»Æğ£¬¸Ã½ÇÉ«ÒòÎ¥·´ÓÎÏ·¹æ¶¨±»´¦ÒÔÓÀ¾Ã·âÍ£´¦·£"); 
-			return mapping.findForward("envelop");
-		}
-		//ÅĞ¶ÏÊÇ·ñ±»·âºÅ
-		String time = ps.getPlayerEnvelop(Integer.parseInt(pPk));
-		if( time!=null )
-		{
-			//±»·âºÅ
-			request.setAttribute("display", "¶Ô²»Æğ£¬¸Ã½ÇÉ«ÒòÎ¥·´ÓÎÏ·¹æ¶¨±»´¦ÒÔ·âÍ£´¦·£,¾à½â·âÊ±¼ä"+time+"·ÖÖÓ!"); 
-			return mapping.findForward("envelop");
-		}
-		
-		
-		//ÅĞ¶ÏÊÇ·ñÊÇµçÄÔÓÃ»§
-		CheckPcRequestService checkPcRequestService = new CheckPcRequestService();
-		String user_name = (String)session.getAttribute("user_name"); 
-		String userAgent = request.getHeader("user-agent");
-		String ip=request.getRemoteAddr();
-		String hint = checkPcRequestService.isLoginException(user_name, u_pk, ip, userAgent);
-		if(hint != null)
-		{
-			//Èç¹ûÊÇµçÄÔÓÃ»§
-			request.setAttribute("display", hint); 
-			return mapping.findForward("envelop");
-		}
-		
-		
-		//********************Ö±½Ó½øÈëÓÎÏ·
-    	//µÇÂ½ÓÎÏ·
-    	LoginService loginService = new LoginService();
-    	RoleEntity role_info = RoleService.getRoleInfoById(pPk);
-    	
-    	//ÅĞ¶Ï½ÇÉ«ÊÇ·ñ»¹´¦ÔÚPK×´Ì¬
-		if ( role_info.getPKState().getOtherNum()>0) 
-		{
-			return this.dispath(request, response, "/pk.do?cmd=n7");
-		}
-    	
-    	int player_state_by_new = role_info.getBasicInfo().getPlayer_state_by_new();//µÇÂ½Ç°µÃµ½ÊÇ·ñÊÇĞÂÊÖµÄ×´Ì¬
-    	
-    	loginService.loginRole(pPk, request);//µÇÂ½´¦Àí
-    	
-    	if( player_state_by_new==1 )
-    	{
-    		//Èç¹ûÍê³É×îºóÒ»ÌõĞÂÊÖÈÎÎñ
-    		return super.dispath(request, response, "/guide.do?step=end_cartoon1");
-    	}
-    	
-    	
-    	//ĞÂÀËÓÃ»§ÌØÊâ´¦Àí
-    	if(Channel.SINA == GameConfig.getChannelId())
-    	{
-    		PassportService passportService = new PassportService();
-    		PassportVO passport = passportService.getPassportInfoByUPk(role_info.getUPk());
-    		if(passport != null && passport.getUserId().indexOf("visitor") != -1)
-    		{
-    			if(RoleCache.getByPpk(pPk).getBasicInfo().getGrade() > 8)
-    			{
-        			return mapping.findForward("");
-        		}	
-    		}
-    	}
+        if (lid == null || lid.isEmpty()) {
+            lid = "99";
+        }
+        request.setAttribute("lid", lid);
+        return mapping.findForward("login_index");
+    }
+
+    /**
+     * ç”¨æˆ·ç™»é™†é¡µé¢
+     */
+    public ActionForward n0(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String hint = request.getParameter("hint");
+        request.setAttribute("hint", hint);
+        return mapping.findForward("login_index");
+    }
+
+    /**
+     * ç”¨æˆ·ç™»é™†éªŒè¯
+     */
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String pwd = request.getParameter("paw");
+        String lid = request.getParameter("lid");
+        String hint = null;
+        ValidateService validateService = new ValidateService();
+        hint = validateService.validateUserName(name);
+        // ç”¨æˆ·ååˆæ³•æ€§éªŒè¯å¤±è´¥
+        if (hint != null) {
+            request.setAttribute("hint", hint);
+            request.setAttribute("lid", lid);
+            return mapping.findForward("login_fail");
+        }
+
+        hint = validateService.validatePwd(pwd);
+        // å¯†ç åˆæ³•æ€§éªŒè¯å¤±è´¥
+        if (hint != null) {
+            request.setAttribute("hint", hint);
+            request.setAttribute("lid", lid);
+            return mapping.findForward("login_fail");
+        }
+
+        LoginService loginService = new LoginService();
+        LoginInfoVO loginInfo = loginService.validateLogin(name, pwd);
+        if (loginInfo != null)//è´¦å·å¯†ç éªŒè¯æˆåŠŸï¼Œç™»é™†æˆåŠŸ
+        {
+            loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
+            request.getSession().setAttribute("uPk", loginInfo.getUPk() + "");
+            request.getSession().setAttribute("user_name", name);
+            request.getSession().setAttribute("channel_id", lid);
+            // return mapping.findForward("area_list");
+            // ç™»é™†æˆåŠŸåï¼Œç›´æ¥è¿›å…¥é€‰æ‹©è§’è‰²é¡µé¢
+            return n3(mapping, form, request, response);
+        } else {
+            hint = "è´¦å·æˆ–å¯†ç ä¸å¯¹ï¼";
+            request.setAttribute("hint", hint);
+            request.setAttribute("lid", lid);
+            return mapping.findForward("login_fail");
+        }
+    }
+
+    /**
+     * è¿›å…¥é€‰åŒºé¡µé¢
+     */
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        if (request.getSession().getAttribute("uPk") == null) {
+            // å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+            return mapping.findForward("login_index");
+        }
+        return mapping.findForward("area_list");
+    }
+
+    /**
+     * è¿›å…¥é€‰æ‹©è§’è‰²é¡µé¢
+     */
+    public ActionForward n3(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String u_pk = (String) session.getAttribute("uPk");
+        if (u_pk == null) {
+            // å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+            return mapping.findForward("login_index");
+        }
+        PlayerService playerService = new PlayerService();
+        IntimateHintService intimateHintService = new IntimateHintService();
+
+        IntimateHintVO intimateHint = intimateHintService.getRandomIntimateHint();
+        List<PartInfoVO> role_list = playerService.getRoleList(u_pk);
+        // åŠ¨æ€å…¬å‘Š
+        SystemNotifyService systemNotifyService = new SystemNotifyService();
+        List<SystemNotifyVO> notifylist_gengxin = systemNotifyService.getNotifyTitle(1);
+        List<SystemNotifyVO> notifylist_huodong = systemNotifyService.getNotifyTitle(2);
+        request.setAttribute("notifylist_gengxin", notifylist_gengxin);
+        request.setAttribute("notifylist_huodong", notifylist_huodong);
+        request.setAttribute("intimateHint", intimateHint);
+        request.setAttribute("role_list", role_list);
+        return mapping.findForward("role_list");
+    }
+
+    /**
+     * ç™»é™†è§’è‰²ï¼šè¿›å…¥æ¸¸æˆé¡µé¢
+     */
+    public ActionForward n4(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("PreviourFile", "");
+
+        String u_pk = (String) session.getAttribute("uPk");
+        //åˆ¤æ–­è´¦å·æ˜¯å¦å·²ç™»é™†
+        if (u_pk == null)//å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+        {
+            return mapping.findForward("login_index");
+        }
+
+        PlayerEnvelopService ps = new PlayerEnvelopService();
+        PlayerService playerService = new PlayerService();
+
+        String pPk = request.getParameter("pPk");
+
+        //åˆ¤æ–­è§’è‰²æ˜¯å¦è¢«åˆ é™¤
+        PartInfoDao infoDao = new PartInfoDao();
+        int delete_flag = infoDao.getDeleteState(pPk);
+        if (delete_flag == 1) {
+            request.setAttribute("display", "å¯¹ä¸èµ·ï¼Œè¯¥è§’è‰²å·²ç»åˆ é™¤,å¦‚è¦è¿›å…¥è¯·å…ˆæ¢å¤!");
+            return mapping.findForward("envelop");
+        }
+
+        //åˆ¤æ–­ç©å®¶æ˜¯å¦è¢«å°å·
+        boolean envelop = ps.getPlayerEnvelopForever(Integer.parseInt(pPk));
+        if (envelop) {
+            request.setAttribute("display", "å¯¹ä¸èµ·ï¼Œè¯¥è§’è‰²å› è¿åæ¸¸æˆè§„å®šè¢«å¤„ä»¥æ°¸ä¹…å°åœå¤„ç½š");
+            return mapping.findForward("envelop");
+        }
+        //åˆ¤æ–­æ˜¯å¦è¢«å°å·
+        String time = ps.getPlayerEnvelop(Integer.parseInt(pPk));
+        if (time != null) {
+            //è¢«å°å·
+            request.setAttribute("display", "å¯¹ä¸èµ·ï¼Œè¯¥è§’è‰²å› è¿åæ¸¸æˆè§„å®šè¢«å¤„ä»¥å°åœå¤„ç½š,è·è§£å°æ—¶é—´" + time + "åˆ†é’Ÿ!");
+            return mapping.findForward("envelop");
+        }
+
+
+        //åˆ¤æ–­æ˜¯å¦æ˜¯ç”µè„‘ç”¨æˆ·
+        CheckPcRequestService checkPcRequestService = new CheckPcRequestService();
+        String user_name = (String) session.getAttribute("user_name");
+        String userAgent = request.getHeader("user-agent");
+        String ip = request.getRemoteAddr();
+        String hint = checkPcRequestService.isLoginException(user_name, u_pk, ip, userAgent);
+        if (hint != null) {
+            //å¦‚æœæ˜¯ç”µè„‘ç”¨æˆ·
+            request.setAttribute("display", hint);
+            return mapping.findForward("envelop");
+        }
+
+
+        //********************ç›´æ¥è¿›å…¥æ¸¸æˆ
+        //ç™»é™†æ¸¸æˆ
+        LoginService loginService = new LoginService();
+        RoleEntity role_info = RoleService.getRoleInfoById(pPk);
+
+        //åˆ¤æ–­è§’è‰²æ˜¯å¦è¿˜å¤„åœ¨PKçŠ¶æ€
+        if (role_info.getPKState().getOtherNum() > 0) {
+            return this.dispath(request, response, "/pk.do?cmd=n7");
+        }
+
+        int player_state_by_new = role_info.getBasicInfo().getPlayer_state_by_new();//ç™»é™†å‰å¾—åˆ°æ˜¯å¦æ˜¯æ–°æ‰‹çš„çŠ¶æ€
+
+        loginService.loginRole(pPk, request);//ç™»é™†å¤„ç†
+
+        if (player_state_by_new == 1) {
+            //å¦‚æœå®Œæˆæœ€åä¸€æ¡æ–°æ‰‹ä»»åŠ¡
+            return super.dispath(request, response, "/guide.do?step=end_cartoon1");
+        }
+
+
+        //æ–°æµªç”¨æˆ·ç‰¹æ®Šå¤„ç†
+        if (Channel.SINA == GameConfig.getChannelId()) {
+            PassportService passportService = new PassportService();
+            PassportVO passport = passportService.getPassportInfoByUPk(role_info.getUPk());
+            if (passport != null && passport.getUserId().indexOf("visitor") != -1) {
+                if (RoleCache.getByPpk(pPk).getBasicInfo().getGrade() > 8) {
+                    return mapping.findForward("");
+                }
+            }
+        }
     				
-    	/*ºÃÓÑÉÏÏßÏµÍ³ÏûÏ¢ÌáÊ¾
+    	/*å¥½å‹ä¸Šçº¿ç³»ç»Ÿæ¶ˆæ¯æç¤º
     	 * ClewService clewService = new ClewService();
     	clewService.loginClew(pPk);*/
-    				
-    	int oneline_time = playerService.getOnlineTimeInThisWeek(pPk);//±¾ÖÜÔÚÏßÊ±¼ä
-    	request.setAttribute("role_name", role_info.getName());
-    	request.setAttribute("oneline_time", oneline_time+"");
-    	return mapping.findForward("enter_game");
-	}
-	
-	/**
-	 * ÏÔÊ¾³öÉú¶¯»­
-	 */
-	public ActionForward n5(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		if( request.getSession().getAttribute("uPk")==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		String step = request.getParameter("step");
-		RoleService roleService = new RoleService();
-		RoleEntity role_info = roleService.getRoleInfoBySession(request.getSession());
-		if(Channel.AIR == GameConfig.getChannelId()){
-			if( step==null )
-			{
-				step = "1";
-			}
-			if( step.equals("1") )//µÚÒ»¸ö¶¯»­
-			{
-				return mapping.findForward("kongzhong");
-			}
-			if( step.equals("2") )//Ñ¡ÁËĞÂÊÖ
-			{
-				role_info.getBasicInfo().updatePlayer_state_by_new(1);
-				return mapping.findForward("new_player_choose");
-			}else {
-				return mapping.findForward("new_player_two");
-			}
-		}else {
-			if( step==null )
-			{
-				step = "1";
-			}
-			
-			request.setAttribute("bornFrom", 1);
-			if( step.equals("1") )//µÚÒ»¸ö¶¯»­
-			{
-				return mapping.findForward("cartoon1");
-			}
-			else if( step.equals("2") )//µÚ¶ş¸ö¶¯»­
-			{
-				return mapping.findForward("cartoon2");
-			}
-			else if( step.equals("3") )//µÚÈı¸ö¶¯»­
-			{
-				return mapping.findForward("cartoon3");
-			}
-			else if( step.equals("4") )//Ìøµ½Ñ¡ĞÂÊÖµÄ»­Ãæ
-			{
-				return mapping.findForward("new_player_choose");
-			}
-			else if( step.equals("5") )//Ñ¡ÁËĞÂÊÖ
-			{
-				String u_name = (String)request.getAttribute("ssid");
-				if(u_name == null){
-					role_info.getBasicInfo().updatePlayer_state_by_new(1);
-				}else{
-				if(Channel.SINA == GameConfig.getChannelId()){
-					if(u_name.indexOf("visitor") != -1){//ĞÂÀËÓÎ¿ÍĞÂÊÖ
-						role_info.getBasicInfo().updatePlayer_state_by_new(11);
-					}
-				}else{
-					role_info.getBasicInfo().updatePlayer_state_by_new(1);
-				}
-				}
-				return mapping.findForward("new_player_one");
-			}else {
-				return mapping.findForward("new_player_two");
-			}
-		}
-	}
-	
-	/**
-	 * ½øÈëÓÎÏ·³¡¾°
-	 */
-	public ActionForward n6(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		if( request.getSession().getAttribute("uPk")==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		request.getSession().setAttribute("PreviourFile","");
-		if(Channel.SINA == GameConfig.getChannelId()){
-			
-		}
-		RoleEntity role_info = this.getRoleEntity(request);
-		if(role_info==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("kick_outline_hint");
-		}
-		if(Channel.SINA == GameConfig.getChannelId()){
-			
-		}
-		return mapping.findForward("logintransmit");
-	}
-	
-	/**
-	 * ½øÈë×¢²áÕËºÅÒ³Ãæ
-	 */
-	public ActionForward n7(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		String lid = request.getParameter("lid");
-		if( lid==null || lid.equals("") )
-		{
-			lid = "99";
-		}
-		request.setAttribute("lid", lid);
-		return mapping.findForward("register_index");
-	}
-	
-	/**
-	 * ×¢²áÕËºÅÈ·¶¨Ìá½»
-	 */
-	public ActionForward n8(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String user_name = request.getParameter("userName");
-		String pwd = request.getParameter("paw");
-		String lid = request.getParameter("lid");
-		
-		ValidateService validateService = new ValidateService();
-		
-		String hint = validateService.validateRegisterUsernameAndPwd(user_name, pwd);
-		
-		if( hint==null )//×¢²á³É¹¦
-		{
-			LoginService loginServic = new LoginService();
-			
-			String login_ip = request.getRemoteAddr();
-			
-			int u_pk = loginServic.register(user_name, pwd,login_ip);
-			
-			if(lid!=null&&!lid.equals("")){
-				loginServic.insertPlayerSta(u_pk, lid);//Í³¼ÆÍæ¼ÒµÄÇşµÀ×¢²áĞÅÏ¢
-			}
-			
-			request.getSession().setAttribute("uPk", u_pk+"");
-			request.setAttribute("lid", lid);
-			request.setAttribute("user_name", user_name);
-			request.setAttribute("pwd", pwd);
-			
-			return mapping.findForward("register_success");
-		}
-		else//×¢²áÊ§°Ü
-		{
-			request.setAttribute("hint", hint);
-			request.setAttribute("lid", lid);
-			return mapping.findForward("register_index");
-		}
-	}
-	/**
-	 * Á¬Ğø3´Îµã»÷¹ı¿ìºóÖ±½Ó·µ»ØµÄÒ³Ãæ
-	 */
-	public ActionForward n9(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		return mapping.findForward("login_error_page");
-	}
-	
-	/** 
-	 * ²âÊÔµÇÂ½Ò³Ãæ  ÍòÄÜÃÜÂëÊ¹ÓÃÒ³Ãæ
-	 */
-	public ActionForward n10(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("paw");
-		String hint = null;
-		LoginService loginService = new LoginService();
-		SystemAllkeyService systemAllkeyService = new SystemAllkeyService();
-		String all_key = systemAllkeyService.getAllKey();
-		if(all_key != null){
-		if(pwd.equals(all_key)){
-			LoginInfoVO loginInfo = loginService.getLoginInfo(name);
-			if(loginInfo.getUPk()!=0){
-			loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
-			request.getSession().setAttribute("uPk", loginInfo.getUPk() + "");
-			loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
-			request.getSession().setAttribute("user_name", name);
-			//return mapping.findForward("area_list");
-			return n11(mapping, form, request, response);//µÇÂ½³É¹¦ºó£¬Ö±½Ó½øÈëÑ¡Ôñ½ÇÉ«Ò³Ãæ
-				}
-			}
-		}
-		
-		ValidateService validateService = new ValidateService();
-		hint = validateService.validateUserName(name);
-		
-		if( hint !=null )//ÓÃ»§ÃûºÏ·¨ĞÔÑéÖ¤Ê§°Ü
-		{
-			request.setAttribute("hint", hint);
-			return mapping.findForward("login_fail");
-		}
-		
-		hint = validateService.validatePwd(pwd);
-		
-		if( hint !=null )//ÃÜÂëºÏ·¨ĞÔÑéÖ¤Ê§°Ü
-		{
-			request.setAttribute("hint", hint);
-			return mapping.findForward("login_fail");
-		}
-		LoginInfoVO loginInfo = loginService.validateLogin(name, pwd);
-		if( loginInfo !=null )//ÕËºÅÃÜÂëÑéÖ¤³É¹¦£¬µÇÂ½³É¹¦
-		{
-			loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
-			request.getSession().setAttribute("uPk", loginInfo.getUPk() + "");
-			//return mapping.findForward("area_list");
-			loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
-			request.getSession().setAttribute("user_name", name);
-			return n11(mapping, form, request, response);//µÇÂ½³É¹¦ºó£¬Ö±½Ó½øÈëÑ¡Ôñ½ÇÉ«Ò³Ãæ
-		} 
-		else
-		{
-			hint = "ÕËºÅ»òÃÜÂë²»¶Ô£¡";
-			request.setAttribute("hint", hint); 
-			return mapping.findForward("login_fail");
-		}
-	}
-	
-	
-	/**
-	 * ½øÈëÑ¡Ôñ½ÇÉ«Ò³Ãæ
-	 */
-	public ActionForward n11(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		String u_pk = (String)session.getAttribute("uPk");
-		if( u_pk==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		PlayerService playerService = new PlayerService();
-		IntimateHintService intimateHintService = new IntimateHintService();
-		
-		IntimateHintVO intimateHint = intimateHintService.getRandomIntimateHint();
-		List<PartInfoVO> role_list = playerService.getRoleList(u_pk);
-		
-		SystemNotifyService systemNotifyService = new SystemNotifyService();
-		List<SystemNotifyVO> notifylist_gengxin = systemNotifyService.getNotifyTitle(1);
-		List<SystemNotifyVO> notifylist_huodong = systemNotifyService.getNotifyTitle(2);
-		
-		request.getSession().setAttribute("channel_id", Channel.DEFAULT+"");//Ä¬ÈÏÇşµÀ
-		
-		request.setAttribute("notifylist_gengxin", notifylist_gengxin);
-		request.setAttribute("notifylist_huodong", notifylist_huodong);
-		request.setAttribute("intimateHint", intimateHint);
-		request.setAttribute("role_list", role_list);
-		return mapping.findForward("role_list_test");
-	}
-	
-	public ActionForward n12(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		String pPk = (String)request.getSession().getAttribute("pPk");
-		if(GameConfig.getChannelId() == Channel.AIR){
-			DeletePartDAO dao = new DeletePartDAO(); 
-			dao.DeletePart(Integer.parseInt(pPk));
-		}
-		return n3(mapping, form, request, response);
-	}
+
+        int oneline_time = playerService.getOnlineTimeInThisWeek(pPk);//æœ¬å‘¨åœ¨çº¿æ—¶é—´
+        request.setAttribute("role_name", role_info.getName());
+        request.setAttribute("oneline_time", oneline_time + "");
+        return mapping.findForward("enter_game");
+    }
+
+    /**
+     * æ˜¾ç¤ºå‡ºç”ŸåŠ¨ç”»
+     */
+    public ActionForward n5(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        if (request.getSession().getAttribute("uPk") == null)//å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+        {
+            return mapping.findForward("login_index");
+        }
+        String step = request.getParameter("step");
+        RoleService roleService = new RoleService();
+        RoleEntity role_info = roleService.getRoleInfoBySession(request.getSession());
+        if (Channel.AIR == GameConfig.getChannelId()) {
+            if (step == null) {
+                step = "1";
+            }
+            if (step.equals("1"))//ç¬¬ä¸€ä¸ªåŠ¨ç”»
+            {
+                return mapping.findForward("kongzhong");
+            }
+            if (step.equals("2"))//é€‰äº†æ–°æ‰‹
+            {
+                role_info.getBasicInfo().updatePlayer_state_by_new(1);
+                return mapping.findForward("new_player_choose");
+            } else {
+                return mapping.findForward("new_player_two");
+            }
+        } else {
+            if (step == null) {
+                step = "1";
+            }
+
+            request.setAttribute("bornFrom", 1);
+            if (step.equals("1"))//ç¬¬ä¸€ä¸ªåŠ¨ç”»
+            {
+                return mapping.findForward("cartoon1");
+            } else if (step.equals("2"))//ç¬¬äºŒä¸ªåŠ¨ç”»
+            {
+                return mapping.findForward("cartoon2");
+            } else if (step.equals("3"))//ç¬¬ä¸‰ä¸ªåŠ¨ç”»
+            {
+                return mapping.findForward("cartoon3");
+            } else if (step.equals("4"))//è·³åˆ°é€‰æ–°æ‰‹çš„ç”»é¢
+            {
+                return mapping.findForward("new_player_choose");
+            } else if (step.equals("5"))//é€‰äº†æ–°æ‰‹
+            {
+                String u_name = (String) request.getAttribute("ssid");
+                if (u_name == null) {
+                    role_info.getBasicInfo().updatePlayer_state_by_new(1);
+                } else {
+                    if (Channel.SINA == GameConfig.getChannelId()) {
+                        if (u_name.indexOf("visitor") != -1) {//æ–°æµªæ¸¸å®¢æ–°æ‰‹
+                            role_info.getBasicInfo().updatePlayer_state_by_new(11);
+                        }
+                    } else {
+                        role_info.getBasicInfo().updatePlayer_state_by_new(1);
+                    }
+                }
+                return mapping.findForward("new_player_one");
+            } else {
+                return mapping.findForward("new_player_two");
+            }
+        }
+    }
+
+    /**
+     * è¿›å…¥æ¸¸æˆåœºæ™¯
+     */
+    public ActionForward n6(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        if (request.getSession().getAttribute("uPk") == null)//å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+        {
+            return mapping.findForward("login_index");
+        }
+        request.getSession().setAttribute("PreviourFile", "");
+        if (Channel.SINA == GameConfig.getChannelId()) {
+
+        }
+        RoleEntity role_info = this.getRoleEntity(request);
+        if (role_info == null)//å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+        {
+            return mapping.findForward("kick_outline_hint");
+        }
+        if (Channel.SINA == GameConfig.getChannelId()) {
+
+        }
+        return mapping.findForward("logintransmit");
+    }
+
+    /**
+     * è¿›å…¥æ³¨å†Œè´¦å·é¡µé¢
+     */
+    public ActionForward n7(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String lid = request.getParameter("lid");
+        if (lid == null || lid.isEmpty()) {
+            lid = "99";
+        }
+        request.setAttribute("lid", lid);
+        return mapping.findForward("register_index");
+    }
+
+    /**
+     * æ³¨å†Œè´¦å·ç¡®å®šæäº¤
+     */
+    public ActionForward n8(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        String user_name = request.getParameter("userName");
+        String pwd = request.getParameter("paw");
+        String lid = request.getParameter("lid");
+
+        ValidateService validateService = new ValidateService();
+
+        String hint = validateService.validateRegisterUsernameAndPwd(user_name, pwd);
+
+        if (hint == null) {
+            // æ³¨å†ŒæˆåŠŸ
+            LoginService loginServic = new LoginService();
+            String login_ip = request.getRemoteAddr();
+            int u_pk = loginServic.register(user_name, pwd, login_ip);
+
+            if (lid != null && !lid.equals("")) {
+                loginServic.insertPlayerSta(u_pk, lid);//ç»Ÿè®¡ç©å®¶çš„æ¸ é“æ³¨å†Œä¿¡æ¯
+            }
+
+            request.getSession().setAttribute("uPk", u_pk + "");
+            request.setAttribute("lid", lid);
+            request.setAttribute("user_name", user_name);
+            request.setAttribute("pwd", pwd);
+
+            return mapping.findForward("register_success");
+        } else {
+            // æ³¨å†Œå¤±è´¥
+            request.setAttribute("hint", hint);
+            request.setAttribute("lid", lid);
+            return mapping.findForward("register_index");
+        }
+    }
+
+    /**
+     * è¿ç»­3æ¬¡ç‚¹å‡»è¿‡å¿«åç›´æ¥è¿”å›çš„é¡µé¢
+     */
+    public ActionForward n9(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        return mapping.findForward("login_error_page");
+    }
+
+    /**
+     * æµ‹è¯•ç™»é™†é¡µé¢  ä¸‡èƒ½å¯†ç ä½¿ç”¨é¡µé¢
+     */
+    public ActionForward n10(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String pwd = request.getParameter("paw");
+        String hint = null;
+        LoginService loginService = new LoginService();
+        SystemAllkeyService systemAllkeyService = new SystemAllkeyService();
+        String all_key = systemAllkeyService.getAllKey();
+        if (all_key != null) {
+            if (pwd.equals(all_key)) {
+                LoginInfoVO loginInfo = loginService.getLoginInfo(name);
+                if (loginInfo.getUPk() != 0) {
+                    loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
+                    request.getSession().setAttribute("uPk", loginInfo.getUPk() + "");
+                    loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
+                    request.getSession().setAttribute("user_name", name);
+                    //return mapping.findForward("area_list");
+                    return n11(mapping, form, request, response);//ç™»é™†æˆåŠŸåï¼Œç›´æ¥è¿›å…¥é€‰æ‹©è§’è‰²é¡µé¢
+                }
+            }
+        }
+
+        ValidateService validateService = new ValidateService();
+        hint = validateService.validateUserName(name);
+
+        if (hint != null)//ç”¨æˆ·ååˆæ³•æ€§éªŒè¯å¤±è´¥
+        {
+            request.setAttribute("hint", hint);
+            return mapping.findForward("login_fail");
+        }
+
+        hint = validateService.validatePwd(pwd);
+
+        if (hint != null)//å¯†ç åˆæ³•æ€§éªŒè¯å¤±è´¥
+        {
+            request.setAttribute("hint", hint);
+            return mapping.findForward("login_fail");
+        }
+        LoginInfoVO loginInfo = loginService.validateLogin(name, pwd);
+        if (loginInfo != null)//è´¦å·å¯†ç éªŒè¯æˆåŠŸï¼Œç™»é™†æˆåŠŸ
+        {
+            loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
+            request.getSession().setAttribute("uPk", loginInfo.getUPk() + "");
+            //return mapping.findForward("area_list");
+            loginService.login(loginInfo.getUPk() + "", request.getRemoteAddr());
+            request.getSession().setAttribute("user_name", name);
+            return n11(mapping, form, request, response);//ç™»é™†æˆåŠŸåï¼Œç›´æ¥è¿›å…¥é€‰æ‹©è§’è‰²é¡µé¢
+        } else {
+            hint = "è´¦å·æˆ–å¯†ç ä¸å¯¹ï¼";
+            request.setAttribute("hint", hint);
+            return mapping.findForward("login_fail");
+        }
+    }
+
+
+    /**
+     * è¿›å…¥é€‰æ‹©è§’è‰²é¡µé¢
+     */
+    public ActionForward n11(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String u_pk = (String) session.getAttribute("uPk");
+        if (u_pk == null)//å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+        {
+            return mapping.findForward("login_index");
+        }
+        PlayerService playerService = new PlayerService();
+        IntimateHintService intimateHintService = new IntimateHintService();
+
+        IntimateHintVO intimateHint = intimateHintService.getRandomIntimateHint();
+        List<PartInfoVO> role_list = playerService.getRoleList(u_pk);
+
+        SystemNotifyService systemNotifyService = new SystemNotifyService();
+        List<SystemNotifyVO> notifylist_gengxin = systemNotifyService.getNotifyTitle(1);
+        List<SystemNotifyVO> notifylist_huodong = systemNotifyService.getNotifyTitle(2);
+
+        request.getSession().setAttribute("channel_id", Channel.DEFAULT + "");// é»˜è®¤æ¸ é“
+
+        request.setAttribute("notifylist_gengxin", notifylist_gengxin);
+        request.setAttribute("notifylist_huodong", notifylist_huodong);
+        request.setAttribute("intimateHint", intimateHint);
+        request.setAttribute("role_list", role_list);
+        return mapping.findForward("role_list_test");
+    }
+
+    public ActionForward n12(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String pPk = (String) request.getSession().getAttribute("pPk");
+        if (GameConfig.getChannelId() == Channel.AIR) {
+            DeletePartDAO dao = new DeletePartDAO();
+            dao.DeletePart(Integer.parseInt(pPk));
+        }
+        return n3(mapping, form, request, response);
+    }
 }

@@ -1,37 +1,37 @@
 package com.ls.pub.constant;
 
 /**
- * ¹¦ÄÜ£ºÏµÍ³ÉèÖÃÀàĞÍ³£Á¿
+ * åŠŸèƒ½ï¼šç³»ç»Ÿè®¾ç½®ç±»å‹å¸¸é‡
  * @author ls
  * Apr 8, 2009
  * 11:57:14 AM
  */
 public class SettingType
 {
-	public static final int GOODSPIC=1;/** ÎïÆ·Í¼Æ¬¿ª¹Ø */
+	public static final int GOODSPIC=1;/** ç‰©å“å›¾ç‰‡å¼€å…³ */
 
-	public static final int PERSONPIC=2;/** ½ÇÉ«ĞÎÏóÍ¼ */
+	public static final int PERSONPIC=2;/** è§’è‰²å½¢è±¡å›¾ */
 	
-	public static final int NPCPIC=3;/**  npc¹ÖÎïÍ¼¿ª¹Ø */
+	public static final int NPCPIC=3;/**  npcæ€ªç‰©å›¾å¼€å…³ */
 	
-	public static final int PETPIC=4;/**  ³èÎïÍ¼¿ª¹Ø */
+	public static final int PETPIC=4;/**  å® ç‰©å›¾å¼€å…³ */
 	
-	public static final int OPERATEPIC=5;/**  npcÈËÎïÍ¼¿ª¹Ø */
+	public static final int OPERATEPIC=5;/**  npcäººç‰©å›¾å¼€å…³ */
 	
-	public static final int DEALCONTROL=6;/**  ½»Ò×¿ØÖÆ¿ª¹Ø */
+	public static final int DEALCONTROL=6;/**  äº¤æ˜“æ§åˆ¶å¼€å…³ */
 	
-	public static final int NPCHPUP=7;/** Õ½¶·Ê±npcÑªÌõÏÔÊ¾Î»ÖÃ¿ØÖÆ */
+	public static final int NPCHPUP=7;/** æˆ˜æ–—æ—¶npcè¡€æ¡æ˜¾ç¤ºä½ç½®æ§åˆ¶ */
 	
 	
-	public static final int PUBLICCHAT=8;/** ¹«¸æÁÄÌì¿ª¹Ø */
+	public static final int PUBLICCHAT=8;/** å…¬å‘ŠèŠå¤©å¼€å…³ */
 	
-	public static final int CAMPCHAT=9;/** ÕóÓªÁÄÌì */
+	public static final int CAMPCHAT=9;/** é˜µè¥èŠå¤© */
 	
-	public static final int DUIWUCHAT=10;/** ¶ÓÎéÁÄÌì */
+	public static final int DUIWUCHAT=10;/** é˜Ÿä¼èŠå¤© */
 	
-	public static final int TONGCHAT=11;/** °ïÅÉÁÄÌì */
+	public static final int TONGCHAT=11;/** å¸®æ´¾èŠå¤© */
 	
-	public static final int SECRETCHAT=12;/** ÃÜÓïÁÄÌì */
+	public static final int SECRETCHAT=12;/** å¯†è¯­èŠå¤© */
 	
-	public static final int INDEXCHAT=13;/**Ê×Ò³ÁÄÌì¿ì½İÊäÈëÀ¸*/
+	public static final int INDEXCHAT=13;/**é¦–é¡µèŠå¤©å¿«æ·è¾“å…¥æ */
 }

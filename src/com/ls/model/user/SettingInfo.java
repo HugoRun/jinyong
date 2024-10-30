@@ -4,7 +4,7 @@ import com.pm.dao.setting.SettingDao;
 import com.pm.vo.setting.SettingVO;
 
 /**
- * ¹¦ÄÜ£º½ÇÉ«µÄÏµÍ³ÉèÖÃĞÅÏ¢
+ * åŠŸèƒ½ï¼šè§’è‰²çš„ç³»ç»Ÿè®¾ç½®ä¿¡æ¯
  * @author ls
  * Apr 8, 2009
  * 9:48:26 AM
@@ -13,34 +13,34 @@ public class SettingInfo extends UserBaseWithSave
 {
 	/** id */
 	private int id;
-	/** ÎïÆ·Í¼Æ¬¿ª¹Ø */
+	/** ç‰©å“å›¾ç‰‡å¼€å…³ */
 	private short goodsPic;
-	/** ½ÇÉ«ĞÎÏóÍ¼ */
+	/** è§’è‰²å½¢è±¡å›¾ */
 	private short personPic;
-	/**  npc¹ÖÎïÍ¼¿ª¹Ø */
+	/**  npcæ€ªç‰©å›¾å¼€å…³ */
 	private short npcPic;
-	/**  ³èÎïÍ¼¿ª¹Ø */
+	/**  å® ç‰©å›¾å¼€å…³ */
 	private short petPic;
-	/**  npcÈËÎïÍ¼¿ª¹Ø */
+	/**  npcäººç‰©å›¾å¼€å…³ */
 	private short operatePic;
-	/**  ½»Ò×¿ØÖÆ¿ª¹Ø */
+	/**  äº¤æ˜“æ§åˆ¶å¼€å…³ */
 	private short dealControl;
-	/** Õ½¶·Ê±npcÑªÌõÏÔÊ¾Î»ÖÃ¿ØÖÆ */
+	/** æˆ˜æ–—æ—¶npcè¡€æ¡æ˜¾ç¤ºä½ç½®æ§åˆ¶ */
 	private short npcHpUp;
 	
-	/** ¹«¸æÁÄÌì¿ª¹Ø */
+	/** å…¬å‘ŠèŠå¤©å¼€å…³ */
 	private short publicChat;
-	/** ÕóÓªÁÄÌì */
+	/** é˜µè¥èŠå¤© */
 	private short campChat;
-	/** ¶ÓÎéÁÄÌì */
+	/** é˜Ÿä¼èŠå¤© */
 	private short duiwuChat;
-	/** °ïÅÉÁÄÌì */
+	/** å¸®æ´¾èŠå¤© */
 	private short tongChat;
-	/** ÃÜÓïÁÄÌì */
+	/** å¯†è¯­èŠå¤© */
 	private short secretChat;
-	/**Ê×Ò³ÁÄÌì¿ì½İÊäÈëÀ¸*/
+	/**é¦–é¡µèŠå¤©å¿«æ·è¾“å…¥æ */
 	private short indexChat;
-	/**×Ô„Ó´ò¹ÖµÄÔOÖÃ*/
+	/**è‡ªå‹•æ‰“æ€ªçš„è¨­ç½®*/
 	private AutoAttackSetting autoAttackSetting;
 	
 	public SettingInfo( int p_pk )

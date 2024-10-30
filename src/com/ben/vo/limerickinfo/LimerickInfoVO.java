@@ -4,38 +4,38 @@
 package com.ben.vo.limerickinfo;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 3:34:37 PM
  */
 public class LimerickInfoVO {
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int lPk;
-	/** ´´½¨ÈËÔ±ĞÅÏ¢id */
+	/** åˆ›å»ºäººå‘˜ä¿¡æ¯id */
 	private int uPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ½ğ·ÀÓùÁ¦ */
+	/** é‡‘é˜²å¾¡åŠ› */
 	private int lJinFy;
-	/** Ä¾·ÀÓùÁ¦ */
+	/** æœ¨é˜²å¾¡åŠ› */
 	private int lMuFy;
-	/** Ë®·ÀÓùÁ¦ */
+	/** æ°´é˜²å¾¡åŠ› */
 	private int lShuiFy;
-	/** »ğ·ÀÓùÁ¦ */
+	/** ç«é˜²å¾¡åŠ› */
 	private int lHuoFy;
-	/** ÍÁ·ÀÓùÁ¦ */
+	/** åœŸé˜²å¾¡åŠ› */
 	private int lTuFy;
-	/** ½ğ¹¥»÷Á¦ */
+	/** é‡‘æ”»å‡»åŠ› */
 	private int lJinGj;
-	/** Ä¾¹¥»÷Á¦ */
+	/** æœ¨æ”»å‡»åŠ› */
 	private int lMuGj;
-	/** Ë®¹¥»÷Á¦ */
+	/** æ°´æ”»å‡»åŠ› */
 	private int lShuiGj;
-	/** »ğ¹¥»÷Á¦ */
+	/** ç«æ”»å‡»åŠ› */
 	private int lHuoGj;
-	/** ÍÁ¹¥»÷Á¦ */
+	/** åœŸæ”»å‡»åŠ› */
 	private int lTuGj;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getLPk() {

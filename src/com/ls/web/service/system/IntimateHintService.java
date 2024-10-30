@@ -7,7 +7,7 @@ import com.ben.vo.intimatehint.IntimateHintVO;
 import com.ls.ben.cache.staticcache.system.IntimateHintCache;
 
 /**
- * 功能：武林小贴士
+ * 鍔熻兘锛氭鏋楀皬璐村＋
  * @author ls
  * Apr 7, 2009
  * 2:57:17 PM
@@ -15,7 +15,7 @@ import com.ls.ben.cache.staticcache.system.IntimateHintCache;
 public class IntimateHintService
 {
 	/**
-	 * 随机得到一个武林小贴士
+	 * 闅忔満寰楀埌涓�涓鏋楀皬璐村＋
 	 */
 	public IntimateHintVO getRandomIntimateHint()
 	{

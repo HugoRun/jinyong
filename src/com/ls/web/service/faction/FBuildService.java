@@ -19,14 +19,14 @@ import com.ls.web.service.goods.GoodsService;
 
 /**
  * @author ls
- * °ïÅÉ½¨ÖşÏà¹Ø
+ * å¸®æ´¾å»ºç­‘ç›¸å…³
  */
 public class FBuildService
 {
 	private static Map<Integer,FGameBuild> build_cache = new HashMap<Integer,FGameBuild>();
 	
 	/**
-	 * µÃµ½ÓÎÏ·°ïÅÉ½¨ÖşĞÅÏ¢
+	 * å¾—åˆ°æ¸¸æˆå¸®æ´¾å»ºç­‘ä¿¡æ¯
 	 * @param bId
 	 * @return
 	 */
@@ -51,7 +51,7 @@ public class FBuildService
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉ½¨ÖşĞÅÏ¢
+	 * å¾—åˆ°å¸®æ´¾å»ºç­‘ä¿¡æ¯
 	 * @param bId
 	 * @return
 	 */
@@ -64,58 +64,58 @@ public class FBuildService
 	
 
 	/**
-	 * Éı¼¶Í¼ÌÚ
+	 * å‡çº§å›¾è…¾
 	 */
 	public String upgradeTuteng(RoleEntity operater,FBuild fBuild)
 	{
 		if( fBuild==null )
 		{
-			return "²ÎÊı´íÎó";
+			return "å‚æ•°é”™è¯¯";
 		}
 		Faction faciton = operater.getBasicInfo().getFaction();
 		
-		//¸ù¾İìôÌÃµÈ¼¶ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÉı¼¶
+		//æ ¹æ®ç¥ å ‚ç­‰çº§åˆ¤æ–­æ˜¯å¦å¯ä»¥å‡çº§
 		int citang_grade = faciton.getCitangGrade();
 		if( citang_grade <= (fBuild.getGameBuild().getGrade()+1) )
 		{
-			return fBuild.getGameBuild().getName()+"²»ÄÜÉı¼¶,ìôÌÃµÈ¼¶Îª"+citang_grade+"¼¶,Í¼ÌÚµÄµÈ¼¶×î¸ßÎª"+citang_grade+"¼¶";
+			return fBuild.getGameBuild().getName()+"ä¸èƒ½å‡çº§,ç¥ å ‚ç­‰çº§ä¸º"+citang_grade+"çº§,å›¾è…¾çš„ç­‰çº§æœ€é«˜ä¸º"+citang_grade+"çº§";
 		}
 		
 		FGameBuild next_grade_build = fBuild.getGameBuild().getNextGradeBuild();
 		String hint = this.buildTuteng(operater, next_grade_build);
-		if( hint==null )//´´½¨³É¹¦
+		if( hint==null )//åˆ›å»ºæˆåŠŸ
 		{
 			FBuildDao fBuildDao = new FBuildDao();
-			//½¨Ôì½¨Öş
+			//å»ºé€ å»ºç­‘
 			fBuildDao.upgrade(fBuild, next_grade_build.getId());
 		}
 		return hint;
 	}
 	/**
-	 * ´´½¨Í¼ÌÚ
+	 * åˆ›å»ºå›¾è…¾
 	 */
 	public String createTuteng(RoleEntity operater,FGameBuild gameBuild)
 	{
 		FBuildDao fBuildDao = new FBuildDao();
 		Faction faciton = operater.getBasicInfo().getFaction();
-		//¸ù¾İìôÌÃµÈ¼¶ÅĞ¶ÏÊÇ·ñ¿ÉÒÔ½¨ÔìÍ¼ÌÚ
+		//æ ¹æ®ç¥ å ‚ç­‰çº§åˆ¤æ–­æ˜¯å¦å¯ä»¥å»ºé€ å›¾è…¾
 		int citang_grade = faciton.getCitangGrade();
 		int cur_build_num = fBuildDao.getNumByFId(faciton.getId());
 		if( citang_grade <= (cur_build_num+1) )
 		{
-			return "²»ÄÜ½¨ÔìĞÂµÄÍ¼ÌÚ,ìôÌÃµÈ¼¶Îª"+citang_grade+"¼¶,ÇëÏÈÉı¼¶ìôÌÃ";
+			return "ä¸èƒ½å»ºé€ æ–°çš„å›¾è…¾,ç¥ å ‚ç­‰çº§ä¸º"+citang_grade+"çº§,è¯·å…ˆå‡çº§ç¥ å ‚";
 		}
 		String hint = this.buildTuteng(operater, gameBuild);
-		if( hint==null )//´´½¨³É¹¦
+		if( hint==null )//åˆ›å»ºæˆåŠŸ
 		{
-			//½¨Ôì½¨Öş
+			//å»ºé€ å»ºç­‘
 			fBuildDao.add(faciton.getId(), gameBuild.getId());
 		}
 		return hint;
 	}
 	
 	/**
-	 * ½¨ÔìÍ¼ÌÚ
+	 * å»ºé€ å›¾è…¾
 	 */
 	private String buildTuteng(RoleEntity operater,FGameBuild gameBuild)
 	{
@@ -133,31 +133,31 @@ public class FBuildService
 		FBuild f_build = fBuildDao.getBuild(faciton.getId(), gameBuild.getId());
 		if( f_build!=null )
 		{
-			return "¸ÃÍ¼ÌÚÒÑ¾­ĞŞ½¨¹ı";
+			return "è¯¥å›¾è…¾å·²ç»ä¿®å»ºè¿‡";
 		}
-		//ÅĞ¶ÏÊÇ°ïÅÉÉùÍûÊÇ·ñ×ã¹»
+		//åˆ¤æ–­æ˜¯å¸®æ´¾å£°æœ›æ˜¯å¦è¶³å¤Ÿ
 		if( faciton.getPrestige()<gameBuild.getPrestige())
 		{
-			return "°ïÅÉÉùÍû²»¹»";
+			return "å¸®æ´¾å£°æœ›ä¸å¤Ÿ";
 		}
-		//ÅĞ¶Á²ÄÁÏÊÇ·ñ×ã¹»
+		//åˆ¤è¯»ææ–™æ˜¯å¦è¶³å¤Ÿ
 		GoodsService goodsService = new GoodsService();
-		int cur_m_num = goodsService.getPropNum(operater.getPPk(), gameBuild.getMId());//µÃµ½µ±Ç°²ÄÁÏÊıÁ¿
+		int cur_m_num = goodsService.getPropNum(operater.getPPk(), gameBuild.getMId());//å¾—åˆ°å½“å‰ææ–™æ•°é‡
 		if( cur_m_num<gameBuild.getMNum() )
 		{
-			return "²ÄÁÏ²»×ã,ĞèÒª"+gameBuild.getMaterial().getPropName()+"¡Á"+gameBuild.getMNum();
+			return "ææ–™ä¸è¶³,éœ€è¦"+gameBuild.getMaterial().getPropName()+"Ã—"+gameBuild.getMNum();
 		}
 		
-		//¿Û³ı²ÄÁÏ
+		//æ‰£é™¤ææ–™
 		goodsService.removeProps(operater.getPPk(), gameBuild.getMId(), gameBuild.getMNum(),GameLogManager.R_MATERIAL_CONSUME);
-		//¿Û³ı°ïÅÉÉùÍû
+		//æ‰£é™¤å¸®æ´¾å£°æœ›
 		faciton.updatePrestige(-gameBuild.getPrestige());
 		return null;
 	}
 	
 	
 	/**
-	 * Ê¹ÓÃÍ¼ÌÚ
+	 * ä½¿ç”¨å›¾è…¾
 	 * @return
 	 */
 	public String useTuteng(RoleEntity operater,FBuild fBuild)
@@ -170,22 +170,22 @@ public class FBuildService
 			return hint;
 		}
 		TimeControlService timeControlService = new TimeControlService();
-		//ÅĞ¶Ï½ñÌìÊÇ·ñÒÑ¾­ÁìÈ¡¹ı£¨Ò»ÌìÖ»ÄÜÁìÈ¡Ò»´Î£©
-		int max_use_time = 1;//×î´óÊ¹ÓÃ´ÎÊı
+		//åˆ¤æ–­ä»Šå¤©æ˜¯å¦å·²ç»é¢†å–è¿‡ï¼ˆä¸€å¤©åªèƒ½é¢†å–ä¸€æ¬¡ï¼‰
+		int max_use_time = 1;//æœ€å¤§ä½¿ç”¨æ¬¡æ•°
 		if(!timeControlService.isUseable(operater.getPPk(), fBuild.getBId(), TimeControlService.F_USE_BUILD, max_use_time))
 		{
-			return "Ò»ÌìÖ»ÄÜÁìÈ¡"+max_use_time+"´Î£¬½ñÌìÄãÒÑ¾­ÁìÈ¡¹ı";
+			return "ä¸€å¤©åªèƒ½é¢†å–"+max_use_time+"æ¬¡ï¼Œä»Šå¤©ä½ å·²ç»é¢†å–è¿‡";
 		}
-		//ÅĞ¶Ï°ïÅÉ¹±Ï×ÊÇ·ñ×ã¹»
+		//åˆ¤æ–­å¸®æ´¾è´¡çŒ®æ˜¯å¦è¶³å¤Ÿ
 		if( operater.getBasicInfo().isEnoughFContribute(fBuild.getGameBuild().getContribute())==false)
 		{
-			return "°ïÅÉ¹±Ï×²»×ã";
+			return "å¸®æ´¾è´¡çŒ®ä¸è¶³";
 		}
 		
-		//¿Û³ı°ïÅÉ¹±Ï×
+		//æ‰£é™¤å¸®æ´¾è´¡çŒ®
 		operater.getBasicInfo().addFContribute(-fBuild.getGameBuild().getContribute());
 		
-		//ÁìÈ¡buffĞ§¹û£¬¼ÇÂ¼ÁìÈ¡ÊÂ¼ş
+		//é¢†å–buffæ•ˆæœï¼Œè®°å½•é¢†å–äº‹ä»¶
 		BuffEffectService buffEffectService = new BuffEffectService();
 		List<BuffVO> buff_list = fBuild.getGameBuild().getBuffList();
 		for(BuffVO buff:buff_list)
@@ -195,12 +195,12 @@ public class FBuildService
 		
 		timeControlService.updateControlInfo(operater.getPPk(), fBuild.getBId(), TimeControlService.F_USE_BUILD);
 		
-		return "¹§Ï²Äú³É¹¦ÁìÈ¡ÁË"+fBuild.getName()+"×£¸£,"+fBuild.getGameBuild().getBuffDisplay()+"£¡";
+		return "æ­å–œæ‚¨æˆåŠŸé¢†å–äº†"+fBuild.getName()+"ç¥ç¦,"+fBuild.getGameBuild().getBuffDisplay()+"ï¼";
 	}
 	
 	/**
-	 * µÃµ½»¹Ã»ÓĞ½¨ÔìµÄ°ïÅÉ½¨Öş·ÖÒ³ÁĞ±í
-	 * @param fId			°ïÅÉid
+	 * å¾—åˆ°è¿˜æ²¡æœ‰å»ºé€ çš„å¸®æ´¾å»ºç­‘åˆ†é¡µåˆ—è¡¨
+	 * @param fId			å¸®æ´¾id
 	 * @param page_no
 	 * @return
 	 */
@@ -214,7 +214,7 @@ public class FBuildService
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉËùÓĞ½¨ÖşµÄÁĞ±í
+	 * å¾—åˆ°å¸®æ´¾æ‰€æœ‰å»ºç­‘çš„åˆ—è¡¨
 	 */
 	public QueryPage getBuildPageList(int fId,int page_no)
 	{

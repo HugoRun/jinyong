@@ -21,7 +21,7 @@ import com.lw.service.skill.LiveSkillService;
 
 public class LiveSkillAction extends DispatchAction
 {
-	/** Éú»î¼¼ÄÜÁĞ±í */
+	/** ç”Ÿæ´»æŠ€èƒ½åˆ—è¡¨ */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -37,7 +37,7 @@ public class LiveSkillAction extends DispatchAction
 		return mapping.findForward("liveskill_list");
 	}
 
-	/** Íæ¼ÒÉú»î¼¼ÄÜÁĞ±í */
+	/** ç©å®¶ç”Ÿæ´»æŠ€èƒ½åˆ—è¡¨ */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -50,7 +50,7 @@ public class LiveSkillAction extends DispatchAction
 		List playerLiveSkill = se.getPlayerLiveSkill(roleInfo.getBasicInfo().getPPk());
 		if (playerLiveSkill.size() == 0)
 		{
-			request.setAttribute("display", "ÄúÃ»ÓĞÕÆÎÕÈÎºÎÉú»î¼¼ÄÜ!");
+			request.setAttribute("display", "æ‚¨æ²¡æœ‰æŒæ¡ä»»ä½•ç”Ÿæ´»æŠ€èƒ½!");
 			return mapping.findForward("display");
 		}
 		else
@@ -63,7 +63,7 @@ public class LiveSkillAction extends DispatchAction
 		}
 	}
 
-	/** Ñ§Ï°Éú»î¼¼ÄÜ */
+	/** å­¦ä¹ ç”Ÿæ´»æŠ€èƒ½ */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -75,13 +75,13 @@ public class LiveSkillAction extends DispatchAction
 		LiveSkillService se = new LiveSkillService();
 		if (se.isHaveLiveSkill(roleInfo.getBasicInfo().getPPk()) == false)
 		{
-			request.setAttribute("display", "¶Ô²»Æğ,ÄúÒÑ¾­Ñ§Ï°ÁË2¸öÉú»î¼¼ÄÜ!");
+			request.setAttribute("display", "å¯¹ä¸èµ·,æ‚¨å·²ç»å­¦ä¹ äº†2ä¸ªç”Ÿæ´»æŠ€èƒ½!");
 			return mapping.findForward("display");
 		}
 		else
 			if (se.isHaveThisLiveSkill(roleInfo.getBasicInfo().getPPk(), sk_id) == false)
 			{
-				request.setAttribute("display", "¶Ô²»Æğ,ÄúÒÑ¾­Ñ§Ï°¹ı¸Ã¼¼ÄÜ!");
+				request.setAttribute("display", "å¯¹ä¸èµ·,æ‚¨å·²ç»å­¦ä¹ è¿‡è¯¥æŠ€èƒ½!");
 				return mapping.findForward("display");
 			}
 			else
@@ -92,7 +92,7 @@ public class LiveSkillAction extends DispatchAction
 				long copper = Long.valueOf(partInfoVO.getPCopper());
 				if (copper < money)
 				{
-					request.setAttribute("display", "¶Ô²»Æğ,ÄúÉíÉÏµÄÒøÁ½²»¹»!");
+					request.setAttribute("display", "å¯¹ä¸èµ·,æ‚¨èº«ä¸Šçš„é“¶ä¸¤ä¸å¤Ÿ!");
 					return mapping.findForward("display");
 				}
 				else
@@ -102,13 +102,13 @@ public class LiveSkillAction extends DispatchAction
 					String name = skillCaChe.getNameById(Integer.parseInt(sk_id));
 					se.studyLiveSkill(roleInfo.getBasicInfo().getPPk(), Integer
 							.parseInt(sk_id), money);
-					request.setAttribute("display", "ÄúÒÑ¾­Ñ§»á" + name);
+					request.setAttribute("display", "æ‚¨å·²ç»å­¦ä¼š" + name);
 					return mapping.findForward("display");
 				}
 			}
 	}
 
-	/** ÒÅÍüÉú»î¼¼ÄÜ */
+	/** é—å¿˜ç”Ÿæ´»æŠ€èƒ½ */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -116,11 +116,11 @@ public class LiveSkillAction extends DispatchAction
 		String sk_name = request.getParameter("sk_name");
 		LiveSkillService se = new LiveSkillService();
 		se.delLiveSkill(s_pk);
-		request.setAttribute("display", "ÄúÒÑ¾­ÒÅÍüÁË" + sk_name + "Éú»î¼¼ÄÜ!");
+		request.setAttribute("display", "æ‚¨å·²ç»é—å¿˜äº†" + sk_name + "ç”Ÿæ´»æŠ€èƒ½!");
 		return mapping.findForward("display");
 	}
 
-	/** Ñ§Ï°ÒÅÍü¼¼ÄÜµÄÈ·ÈÏ */
+	/** å­¦ä¹ é—å¿˜æŠ€èƒ½çš„ç¡®è®¤ */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -137,8 +137,8 @@ public class LiveSkillAction extends DispatchAction
 			SkillCache skillCaChe = new SkillCache();		
 			String sk_name = skillCaChe.getNameById(sk_id);
 			
-			request.setAttribute("display", "ÄúÒªÑ§Ï°" + sk_name
-					+ "Éú»î¼¼ÄÜÂğ£¿Ñ§Ï°´Ë¼¼ÄÜĞè»¨·ÑÒøÁ½¡Á5");
+			request.setAttribute("display", "æ‚¨è¦å­¦ä¹ " + sk_name
+					+ "ç”Ÿæ´»æŠ€èƒ½å—ï¼Ÿå­¦ä¹ æ­¤æŠ€èƒ½éœ€èŠ±è´¹é“¶ä¸¤Ã—5");
 			request.setAttribute("p_pk", roleInfo.getBasicInfo().getPPk() + "");
 			request.setAttribute("id", sk_id + "");
 			request.setAttribute("type", type + "");
@@ -150,7 +150,7 @@ public class LiveSkillAction extends DispatchAction
 		{
 			int s_pk = Integer.parseInt(request.getParameter("s_pk"));
 			String sk_name = request.getParameter("sk_name");
-			request.setAttribute("display", "ÄúÈ·¶¨ÒªÒÅÍüµô" + sk_name + "Âğ?ÒÅÍüºó²»¿É»Ö¸´!");
+			request.setAttribute("display", "æ‚¨ç¡®å®šè¦é—å¿˜æ‰" + sk_name + "å—?é—å¿˜åä¸å¯æ¢å¤!");
 			request.setAttribute("p_pk", roleInfo.getBasicInfo().getPPk() + "");
 			request.setAttribute("id", s_pk + "");
 			request.setAttribute("type", type + "");

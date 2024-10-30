@@ -1,30 +1,30 @@
 package com.pm.vo.field;
 
 /**
- * ս��ɱ�˼�¼��,��Ҫ����ս������ɱ�����а�
+ * 战场杀人记录表,主要用于战场的月杀人排行榜
  * @author Administrator
  *
  */
 public class FieldKillNumVO
 {
-	/**  ɱ�˱�id  **/
+	/**  杀人表id  **/
 	public int	fk_id ;
-		/**  ����id  */
+		/**  个人id  */
 	public int	p_pk;
-  		/**     ���˴���ɱ����  **/
+  		/**     个人此日杀人数  **/
 	public int kill_num;
-  		/** ս�����  */		
+  		/** 战场序号  */		
 	public int		fieldtype;	
-  		/**    ����ʱ��  */	
+  		/**    创建时间  */	
 	public String	createTime ;
 	
-	/** ����ɱ����  */
+	/** 月总杀人数  */
 	public int mouthCountKill;
-	/** ���� */
+	/** 人名 */
 	public String pName;
-	/** ��Ӫ */
+	/** 阵营 */
 	public int pCamp;
-	/** �ȼ� */
+	/** 等级 */
 	public int pGrade;
 	
 		

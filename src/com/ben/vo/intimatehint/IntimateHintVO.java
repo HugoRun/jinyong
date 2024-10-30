@@ -4,17 +4,17 @@
 package com.ben.vo.intimatehint;
 
 /**
- * @author ºîºÆ¾ü
- * Ğ¡ÌùÊ¿
+ * @author ä¾¯æµ©å†›
+ * å°è´´å£«
  * 10:10:13 AM
  */
 public class IntimateHintVO
 {
-	/** Íæ¼ÒºÃÓÑid */
+	/** ç©å®¶å¥½å‹id */
 	private int hPk;
-	/** Ğ¡ÌùÊ¿µÄ±êÌâ */
+	/** å°è´´å£«çš„æ ‡é¢˜ */
 	private String hHint;
-	/** Ğ¡ÌùÊ¿µÄÄÚÈİ */
+	/** å°è´´å£«çš„å†…å®¹ */
 	private String hContent;
 
 	public int getHPk()

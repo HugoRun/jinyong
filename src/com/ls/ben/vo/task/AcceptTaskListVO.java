@@ -3,19 +3,19 @@ package com.ls.ben.vo.task;
 import com.ls.iface.function.Probability;
 
 /**
- * ¹¦ÄÜ:accept_task_list
- * @author ÁõË§
+ * åŠŸèƒ½:accept_task_list
+ * @author åˆ˜å¸…
  * Oct 20, 2008  6:19:47 PM
  */
 public class AcceptTaskListVO implements Probability
 {
-	/**ÈÎÎñID*/
+	/**ä»»åŠ¡ID*/
 	private int Id;
-	/**µÀ¾ßid*/
+	/**é“å…·id*/
 	private int  touchId;
-	/**ÈÎÎñ·¶Î§,Èç:1,5±íÊ¾ÈÎÎñÔÚ1µ½Ö®¼ä°üÀ¨1ºÍ5Ëæ»ú»ñµÃ*/
+	/**ä»»åŠ¡èŒƒå›´,å¦‚:1,5è¡¨ç¤ºä»»åŠ¡åœ¨1åˆ°ä¹‹é—´åŒ…æ‹¬1å’Œ5éšæœºè·å¾—*/
 	private String    taskArea;
-	/**´¥·¢ÀàĞÍ 1 µÀ¾ß´¥·¢ÈÎÎñ 2 ²Ëµ¥´¥·¢ÈÎÎñ*/
+	/**è§¦å‘ç±»å‹ 1 é“å…·è§¦å‘ä»»åŠ¡ 2 èœå•è§¦å‘ä»»åŠ¡*/
 	private int taskType;
 	
 	private int probability;

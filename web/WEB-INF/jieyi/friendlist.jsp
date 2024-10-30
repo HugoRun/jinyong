@@ -2,21 +2,21 @@
 <%@page import="com.ben.vo.friend.FriendVO"%>
 <%@page import="java.util.List"%>
 <%@ page pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 好友列表:
 <br />
 <% 
-		List friendlist = (List) request.getAttribute("friendlist");
-		if(friendlist == null){
-	%>
+        List friendlist = (List) request.getAttribute("friendlist");
+        if(friendlist == null){
+    %>
 您还没有好友！
 <br />
 <%
-		}else{
-		int pageall = Integer.parseInt(request.getAttribute("pageall").toString());
-		int pageno = Integer.parseInt(request.getAttribute("page").toString());
-		if (friendlist != null && friendlist.size()!=0) {
-			for (int i = 0; i < friendlist.size(); i++) {
+        }else{
+        int pageall = Integer.parseInt(request.getAttribute("pageall").toString());
+        int pageno = Integer.parseInt(request.getAttribute("page").toString());
+        if (friendlist != null && friendlist.size()!=0) {
+        	for (int i = 0; i < friendlist.size(); i++) {
 				FriendVO friendVO = (FriendVO) friendlist.get(i);
 	%>
 <anchor>

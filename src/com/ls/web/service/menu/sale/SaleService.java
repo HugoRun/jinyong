@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import com.ls.web.service.menu.MenuService;
 
 /**
- * 功能:卖出操作
- * @author 刘帅
+ * 鍔熻兘:鍗栧嚭鎿嶄綔
+ * @author 鍒樺竻
  * 8:28:00 AM
  */
 public class SaleService

@@ -8,39 +8,39 @@ import com.ls.ben.vo.info.partinfo.TimeControlVO;
 import com.ls.pub.util.DateUtil;
 
 /**
- * ¹¦ÄÜ:¿ØÖÆ±í£¨ĞèÒªÊ±¼ä»òÊ¹ÓÃ´ÎÊı¿ØÖÆµÄ¶ÔÏó£©
- * @author ÁõË§
+ * åŠŸèƒ½:æ§åˆ¶è¡¨ï¼ˆéœ€è¦æ—¶é—´æˆ–ä½¿ç”¨æ¬¡æ•°æ§åˆ¶çš„å¯¹è±¡ï¼‰
+ * @author åˆ˜å¸…
  * Sep 25, 2008  3:22:39 PM
  */
 public class TimeControlService
 {
-	//¿ØÖÆ¶ÔÏóÀàĞÍ
+	//æ§åˆ¶å¯¹è±¡ç±»å‹
 	public static final int PROP = 1;
 	public static final int MENU = 2;
 	
-	//µÀ¾ßÀàĞÍ
+	//é“å…·ç±»å‹
 	public static final int ANOTHERPROP = 3;
 	
-	//²Ëµ¥´¥·¢ÈÎÎñ
+	//èœå•è§¦å‘ä»»åŠ¡
 	public static final int MENUTOUCHTASK = 4;
-	//°ïÅÉÀàĞÍ
+	//å¸®æ´¾ç±»å‹
 	public static final int TONG  = 5;
-	//¼¼ÄÜÀàĞÍ
+	//æŠ€èƒ½ç±»å‹
 	public static final int SKILL  = 6;
-	//¼¼ÄÜÀàĞÍ
+	//æŠ€èƒ½ç±»å‹
 	public static final int VIPLABORAGE  = 7;
-	// ½±ÀøÀàĞÍ
+	// å¥–åŠ±ç±»å‹
 	public static final int JIANGLI  = 8;
-	//BUFFµÄµ¯³öÊ½ÏûÏ¢
+	//BUFFçš„å¼¹å‡ºå¼æ¶ˆæ¯
 	public static final int BUFFPOPMSG  = 9;
-	//ÁìÈ¡ĞÂÄêÀñ°ü»òÕßµÀ¾ß
+	//é¢†å–æ–°å¹´ç¤¼åŒ…æˆ–è€…é“å…·
 	public static final int GETNEWYEARPRIZE  = 10;
-	//°ïÅÉ½¨ÖşÊ¹ÓÃ(ÁìÈ¡Í¼ÌÚbuff)
+	//å¸®æ´¾å»ºç­‘ä½¿ç”¨(é¢†å–å›¾è…¾buff)
 	public static final int F_USE_BUILD  = 11;
 	
 	
 	/**
-	 * ¸üĞÂ¶ÔÏóÊ¹ÓÃĞÅÏ¢
+	 * æ›´æ–°å¯¹è±¡ä½¿ç”¨ä¿¡æ¯
 	 * @param p_pk
 	 * @param object_id
 	 * @param object_type
@@ -49,21 +49,21 @@ public class TimeControlService
 	{
 		TimeControlDao timeControlDao = new TimeControlDao();
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
-		//ÅĞ¶ÏÊÇ·ñÓĞ¿ØÖÆĞÅÏ¢
+		//åˆ¤æ–­æ˜¯å¦æœ‰æ§åˆ¶ä¿¡æ¯
 		if( timeControl==null )
 		{
 			timeControlDao.add(p_pk, object_id, object_type);
 		}
 		else
 		{
-			if( DateUtil.isSameDay(timeControl.getUseDatetime()) )//ÉÏ´ÎÊ¹ÓÃ¾ÍÊÇµ±Ìì
+			if( DateUtil.isSameDay(timeControl.getUseDatetime()) )//ä¸Šæ¬¡ä½¿ç”¨å°±æ˜¯å½“å¤©
 			{
-				//¸üĞÂÊ¹ÓÃ×´Ì¬£¨Ê¹ÓÃÊ±¼äºÍÊ¹ÓÃ´ÎÊı£©
+				//æ›´æ–°ä½¿ç”¨çŠ¶æ€ï¼ˆä½¿ç”¨æ—¶é—´å’Œä½¿ç”¨æ¬¡æ•°ï¼‰
 				timeControlDao.updateUseState(p_pk, object_id, object_type);
 			}
 			else
 			{
-				//µ±ÌìµÚÒ»´ÎÊ¹ÓÃ
+				//å½“å¤©ç¬¬ä¸€æ¬¡ä½¿ç”¨
 				timeControlDao.updateFirstTimeState(p_pk, object_id, object_type);
 			}
 		}
@@ -72,11 +72,11 @@ public class TimeControlService
 	
 	
 	/**
-	 * ¸ù¾İ¿ØÖÆĞÅÏ¢ÅĞ¶ÏÊÇ·ñ¿ÉÓÃ
+	 * æ ¹æ®æ§åˆ¶ä¿¡æ¯åˆ¤æ–­æ˜¯å¦å¯ç”¨
 	 * @param p_pk
 	 * @param object_id
 	 * @param object_type
-	 * @param max_use_times   Ã¿Ìì×î¶àÊ¹ÓÃ´ÎÊı
+	 * @param max_use_times   æ¯å¤©æœ€å¤šä½¿ç”¨æ¬¡æ•°
 	 * @return
 	 */
 	public boolean isUseable(int p_pk,int object_id,int object_type,int max_use_times )
@@ -86,7 +86,7 @@ public class TimeControlService
 		TimeControlDao timeControlDao = new TimeControlDao();
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
 		
-		//ÉÏ´ÎÊ¹ÓÃ¾ÍÊÇµ±Ìì,ÇÒÊ¹ÓÃ´ÎÊı¾ÍÊÇ×î´óÊ¹ÓÃ´ÎÊı
+		//ä¸Šæ¬¡ä½¿ç”¨å°±æ˜¯å½“å¤©,ä¸”ä½¿ç”¨æ¬¡æ•°å°±æ˜¯æœ€å¤§ä½¿ç”¨æ¬¡æ•°
 		if( timeControl!=null && DateUtil.isSameDay(timeControl.getUseDatetime()) && max_use_times<=timeControl.getUseTimes() )
 		{
 			isUseable =false;
@@ -96,11 +96,11 @@ public class TimeControlService
 	}
 	
 	/**
-	 * ¸ù¾İ¿ØÖÆĞÅÏ¢ÅĞ¶ÏÊÇ·ñ¿ÉÓÃ
+	 * æ ¹æ®æ§åˆ¶ä¿¡æ¯åˆ¤æ–­æ˜¯å¦å¯ç”¨
 	 * @param p_pk
 	 * @param object_id
 	 * @param object_type
-	 * @param max_use_time   Ã¿´ÎÊ¹ÓÃ¼ä¸ô´ÎÊı,µ¥Î»Îª·ÖÖÓ
+	 * @param max_use_time   æ¯æ¬¡ä½¿ç”¨é—´éš”æ¬¡æ•°,å•ä½ä¸ºåˆ†é’Ÿ
 	 * @return
 	 */
 	public boolean isUseableWithNum(int p_pk,int object_id,int object_type,int max_use_time )
@@ -110,7 +110,7 @@ public class TimeControlService
 		TimeControlDao timeControlDao = new TimeControlDao();
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
 		
-		//ÉÏ´ÎÊ¹ÓÃ¾ÍÊÇµ±Ìì,ÇÒÊ¹ÓÃ´ÎÊı¾ÍÊÇ×î´óÊ¹ÓÃ´ÎÊı
+		//ä¸Šæ¬¡ä½¿ç”¨å°±æ˜¯å½“å¤©,ä¸”ä½¿ç”¨æ¬¡æ•°å°±æ˜¯æœ€å¤§ä½¿ç”¨æ¬¡æ•°
 		if( timeControl!=null && DateUtil.isSameDay(timeControl.getUseDatetime())  )
 		{
 			Date dt = new Date();
@@ -125,7 +125,7 @@ public class TimeControlService
 	}
 	
 	/**
-	 * µÃµ½¸Ã¿ØÖÆ¶ÔÏóÒÑ¾­±»ÓÃÁË¶àÉÙ´Î.
+	 * å¾—åˆ°è¯¥æ§åˆ¶å¯¹è±¡å·²ç»è¢«ç”¨äº†å¤šå°‘æ¬¡.
 	 */
 	public int alreadyUseNumber(int p_pk,int object_id,int object_type) {
 		int num = 0;
@@ -138,7 +138,7 @@ public class TimeControlService
 	}
 	
 	/**
-	 * µÃµ½¸Ã¿ØÖÆ¶ÔÏó
+	 * å¾—åˆ°è¯¥æ§åˆ¶å¯¹è±¡
 	 */
 	public TimeControlVO getControlObject(int p_pk,int object_id,int object_type) {
 		TimeControlDao timeControlDao = new TimeControlDao();
@@ -147,31 +147,31 @@ public class TimeControlService
 	}
 	
 	/**
-	 * ¸üĞÂ¶ÔÏóÊ¹ÓÃĞÅÏ¢,Õâ¸öÀàÖ÷ÒªÊÇ¸ü¸ÄÕâ¸ö·½·¨ÒÔÊÊÓ¦ÒÔÏÂÕâÖÖĞèÇó£¬¼´:
-	 * 			ÒªÇóÄ³ÎïÆ·Ê¹ÓÃºó,ÔÚÒ»¶¨µÄÊ±¼äÄÚÓĞÄ³ÖÖ×÷ÓÃ,
-	 * ±ÈÈçÃâµô¾­ÑéµÀ¾ß,Ê¹ÓÃºóÔÚÄ³¶ÎÊ±¼äÄÚÈËËÀÍö¿ÉÒÔ²»µô¾­Ñé.
+	 * æ›´æ–°å¯¹è±¡ä½¿ç”¨ä¿¡æ¯,è¿™ä¸ªç±»ä¸»è¦æ˜¯æ›´æ”¹è¿™ä¸ªæ–¹æ³•ä»¥é€‚åº”ä»¥ä¸‹è¿™ç§éœ€æ±‚ï¼Œå³:
+	 * 			è¦æ±‚æŸç‰©å“ä½¿ç”¨å,åœ¨ä¸€å®šçš„æ—¶é—´å†…æœ‰æŸç§ä½œç”¨,
+	 * æ¯”å¦‚å…æ‰ç»éªŒé“å…·,ä½¿ç”¨ååœ¨æŸæ®µæ—¶é—´å†…äººæ­»äº¡å¯ä»¥ä¸æ‰ç»éªŒ.
 	 * @param p_pk
 	 * @param object_id
 	 * @param object_type
-	 * @param minutes ÒÔ·ÖÖÓÎªµ¥Î»£¬²åÈëµÄÊ±¼äÎªÏÖÔÚ¼ÓÉÏtime
+	 * @param minutes ä»¥åˆ†é’Ÿä¸ºå•ä½ï¼Œæ’å…¥çš„æ—¶é—´ä¸ºç°åœ¨åŠ ä¸Štime
 	 */
 	public void updateControlInfoByTime( int p_pk,int object_id,int object_type,int minutes )
 	{
 		TimeControlDao timeControlDao = new TimeControlDao();
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
-		//ÅĞ¶ÏÊÇ·ñÓĞ¿ØÖÆĞÅÏ¢
+		//åˆ¤æ–­æ˜¯å¦æœ‰æ§åˆ¶ä¿¡æ¯
 		if( timeControl==null )
 		{
 			timeControlDao.add(p_pk, object_id, object_type,minutes);
 		}
 		else
 		{
-			if( DateUtil.isSameDay(timeControl.getUseDatetime()) )//ÉÏ´ÎÊ¹ÓÃ¾ÍÊÇµ±Ìì
+			if( DateUtil.isSameDay(timeControl.getUseDatetime()) )//ä¸Šæ¬¡ä½¿ç”¨å°±æ˜¯å½“å¤©
 			{
-				//¸üĞÂÊ¹ÓÃ×´Ì¬£¨Ê¹ÓÃÊ±¼äºÍÊ¹ÓÃ´ÎÊı£©
+				//æ›´æ–°ä½¿ç”¨çŠ¶æ€ï¼ˆä½¿ç”¨æ—¶é—´å’Œä½¿ç”¨æ¬¡æ•°ï¼‰
 				//timeControlDao.updateUseState(p_pk, object_id, object_type);
 				Date dta = timeControl.getUseDatetime();
-				//Èç¹ûÊı¾İ¿âÖĞµÄÊ±¼ä±ÈÏÖÔÚµÄÊ±¼äÒªÍí, ¾ÍÔÚÊı¾İ¿âÖĞµÄÊ±¼ä»ù´¡¼ÓÉÏminute£¬·ñÔò¾ÍÔÚÏÖÔÚÊ±¼äÉÏ¼Óminute
+				//å¦‚æœæ•°æ®åº“ä¸­çš„æ—¶é—´æ¯”ç°åœ¨çš„æ—¶é—´è¦æ™š, å°±åœ¨æ•°æ®åº“ä¸­çš„æ—¶é—´åŸºç¡€åŠ ä¸Šminuteï¼Œå¦åˆ™å°±åœ¨ç°åœ¨æ—¶é—´ä¸ŠåŠ minute
 				if(dta.after(new Date())) {
 					
 					timeControlDao.updateTimeStateByTime(p_pk, object_id, object_type,minutes);
@@ -181,7 +181,7 @@ public class TimeControlService
 			}
 			else
 			{
-				//µ±ÌìµÚÒ»´ÎÊ¹ÓÃ
+				//å½“å¤©ç¬¬ä¸€æ¬¡ä½¿ç”¨
 				timeControlDao.updateFirstTimeStateByTime(p_pk, object_id, object_type,minutes);
 			}
 		}
@@ -189,11 +189,11 @@ public class TimeControlService
 	
 	
 	/**
-	 * ¸ù¾İ¿ØÖÆĞÅÏ¢ÅĞ¶ÏÊÇ·ñ¿ÉÓÃ
+	 * æ ¹æ®æ§åˆ¶ä¿¡æ¯åˆ¤æ–­æ˜¯å¦å¯ç”¨
 	 * @param p_pk
 	 * @param object_id
 	 * @param object_type
-	 * ÎªfalseÊ±ÒâÎªÔÚĞèÒª¿ØÖÆ, ÎªtrueÊ±ÒâÎª²»Òª¿ØÖÆ
+	 * ä¸ºfalseæ—¶æ„ä¸ºåœ¨éœ€è¦æ§åˆ¶, ä¸ºtrueæ—¶æ„ä¸ºä¸è¦æ§åˆ¶
 	 * @return
 	 */
 	public boolean isUseableToTimeControl(int p_pk,int object_id,int object_type )
@@ -203,7 +203,7 @@ public class TimeControlService
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
 		
 		Date dt = new Date();
-		//µ±timeControl²»Îª¿Õ,ÇÒµ±Ç°Ê±¼ä±ÈÊı¾İ¿âÀï´æµÄÊ±¼äÒªÔç.
+		//å½“timeControlä¸ä¸ºç©º,ä¸”å½“å‰æ—¶é—´æ¯”æ•°æ®åº“é‡Œå­˜çš„æ—¶é—´è¦æ—©.
 		if( timeControl!=null && dt.before(timeControl.getUseDatetime()) )
 		{
 			isUseable =false;
@@ -211,7 +211,7 @@ public class TimeControlService
 		return isUseable;
 	}
 	
-	/**ÅĞ¶ÏÊÇ·ñÊ¹ÓÃ¹ı¸ÃBUFF**/
+	/**åˆ¤æ–­æ˜¯å¦ä½¿ç”¨è¿‡è¯¥BUFF**/
 	public boolean isUseableByAll(int p_pk,int object_id,int object_type,int max_use_times )
 	{
 		boolean isUseable = true;
@@ -219,7 +219,7 @@ public class TimeControlService
 		TimeControlDao timeControlDao = new TimeControlDao();
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
 		
-		//ÉÏ´ÎÊ¹ÓÃ¾ÍÊÇµ±Ìì,ÇÒÊ¹ÓÃ´ÎÊı¾ÍÊÇ×î´óÊ¹ÓÃ´ÎÊı
+		//ä¸Šæ¬¡ä½¿ç”¨å°±æ˜¯å½“å¤©,ä¸”ä½¿ç”¨æ¬¡æ•°å°±æ˜¯æœ€å¤§ä½¿ç”¨æ¬¡æ•°
 		if( timeControl!=null)
 		{
 			isUseable =false;
@@ -228,12 +228,12 @@ public class TimeControlService
 		return isUseable;
 	}
 	
-	/**¸øÍæ¼Ò¸üĞÂÊ¹ÓÃ*/
+	/**ç»™ç©å®¶æ›´æ–°ä½¿ç”¨*/
 	public void updateControlInfoByAll( int p_pk,int object_id,int object_type )
 	{
 		TimeControlDao timeControlDao = new TimeControlDao();
 		TimeControlVO timeControl = timeControlDao.getControlInfo(p_pk, object_id, object_type);
-		//ÅĞ¶ÏÊÇ·ñÓĞ¿ØÖÆĞÅÏ¢
+		//åˆ¤æ–­æ˜¯å¦æœ‰æ§åˆ¶ä¿¡æ¯
 		if( timeControl==null )
 		{
 			timeControlDao.add(p_pk, object_id, object_type);

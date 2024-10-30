@@ -18,7 +18,7 @@ public class LotteryOutInfoService
 {
 	Logger logger = Logger.getLogger(LotteryOutInfoService.class);
 
-	// ²Ëµ¥ÏÔÊ¾
+	// èœå•æ˜¾ç¤º
 	public String getLotteryMenu()
 	{
 		StringBuffer sb = new StringBuffer();
@@ -28,17 +28,17 @@ public class LotteryOutInfoService
 		String lottery_date = ls.getSysLotteryDate();
 		String lottery_date_yes = ls.getSysLotteryYesdate();
 
-		// ±¾ÆÚ²ÊÆ±ÏÔÊ¾
+		// æœ¬æœŸå½©ç¥¨æ˜¾ç¤º
 		long zhu_all = playerLotteryService.getLotteryAllZhu(lottery_date);
 		String bonus_outprint = playerLotteryService.getLaborageView(vo
 				.getSys_lottery_bonus());
 
-		sb.append("µÚ" + lottery_date + "ÆÚ¾º²Â<br/>" + "±¾ÆÚÒÑÍ¶×¢:" + zhu_all
-				+ "×¢<br/>" + "±¾ÆÚ½±³ØÀÛ¼Æ½ğ¶î" + vo.getSys_lottery_yb() + ""+GameConfig.getYuanbaoName()+"<br/>"
-				+ "±¾ÆÚÍ·½±×·¼Ó½±Àø:" + bonus_outprint + "<br/>"
+		sb.append("ç¬¬" + lottery_date + "æœŸç«çŒœ<br/>" + "æœ¬æœŸå·²æŠ•æ³¨:" + zhu_all
+				+ "æ³¨<br/>" + "æœ¬æœŸå¥–æ± ç´¯è®¡é‡‘é¢" + vo.getSys_lottery_yb() + ""+GameConfig.getYuanbaoName()+"<br/>"
+				+ "æœ¬æœŸå¤´å¥–è¿½åŠ å¥–åŠ±:" + bonus_outprint + "<br/>"
 				+ "----------------------------------");
 
-		// ÉÏÆÚ²ÊÆ±ÏÔÊ¾
+		// ä¸ŠæœŸå½©ç¥¨æ˜¾ç¤º
 		LotteryVO vo_yes = ls.selectLotteryInfoByDate(lottery_date_yes);
 		if (vo_yes.getLottery_content() != null)
 		{
@@ -47,15 +47,15 @@ public class LotteryOutInfoService
 			long frist_bonus = playerLotteryService
 					.getLotteryFristBonus(lottery_date_yes);
 			long zhu = ls.getAllZhu(lottery_date_yes);
-			sb.append("<br/>µÚ" + lottery_date_yes + "ÆÚ¾º²Â<br/>" + "ÖĞ½±ºÅÂë:"
+			sb.append("<br/>ç¬¬" + lottery_date_yes + "æœŸç«çŒœ<br/>" + "ä¸­å¥–å·ç :"
 					+ lottery_num + "<br/>");
 			if (zhu == 0)
 			{
-				sb.append("Í·½±ÖĞ½±×¢Êı:ÎŞ<br/>" + "Í·½±Ã¿×¢½±Àø:ÎŞ<br/>");
+				sb.append("å¤´å¥–ä¸­å¥–æ³¨æ•°:æ— <br/>" + "å¤´å¥–æ¯æ³¨å¥–åŠ±:æ— <br/>");
 			}
 			else
 			{
-				sb.append("Í·½±½±×¢Êı:" + zhu + "×¢<br/>" + "Í·½±Ã¿×¢½±Àø:" + frist_bonus
+				sb.append("å¤´å¥–å¥–æ³¨æ•°:" + zhu + "æ³¨<br/>" + "å¤´å¥–æ¯æ³¨å¥–åŠ±:" + frist_bonus
 						+ ""+GameConfig.getYuanbaoName()+"<br/>");
 			}
 			sb.append("----------------------------------");
@@ -64,7 +64,7 @@ public class LotteryOutInfoService
 		return sb.toString();
 	}
 
-	// Íæ¼Ò¹ºÂò²ÊÆ±ÏÔÊ¾
+	// ç©å®¶è´­ä¹°å½©ç¥¨æ˜¾ç¤º
 	public String playerBuyLottery(RoleEntity role_info, String lottery_num,
 			int lottery_zhu)
 	{
@@ -74,17 +74,17 @@ public class LotteryOutInfoService
 		return display;
 	}
 
-	// Íæ¼ÒÁìÈ¡½±ÀøµÄÏÔÊ¾
+	// ç©å®¶é¢†å–å¥–åŠ±çš„æ˜¾ç¤º
 	public String playerCatchMenu(String action, String name, int p_pk,
 			int pageNO, HttpServletRequest request, HttpServletResponse response)
 	{
 		LotteryDAO dao = new LotteryDAO();
 		StringBuffer sb = new StringBuffer();
-		sb.append(name + ",»¶Ó­Äú²Î¼Ó¾º²Â»î¶¯!<br/>");
+		sb.append(name + ",æ¬¢è¿æ‚¨å‚åŠ ç«çŒœæ´»åŠ¨!<br/>");
 		int allnum = dao.getLotteryHistoryAllNum();
 		if (allnum == 0)
 		{
-			sb.append("ÎŞ");
+			sb.append("æ— ");
 		}
 		else
 		{
@@ -110,15 +110,15 @@ public class LotteryOutInfoService
 								+ "\" />");
 				sb.append("<postfield name=\"lottery_date\" value=\""
 						+ vo.getLottery_date() + "\" /> ");
-				sb.append("</go>µÚ" + vo.getLottery_date()
-						+ "ÆÚ¾º²ÂÁì½±Èë¿Ú</anchor><br/>");
+				sb.append("</go>ç¬¬" + vo.getLottery_date()
+						+ "æœŸç«çŒœé¢†å¥–å…¥å£</anchor><br/>");
 			}
 			sb.append(lotteryFoot("n4", pageall, pageNO, request, response));
 		}
 		return sb.toString();
 	}
 
-	// Íæ¼ÒÁìÈ¡½±Àø
+	// ç©å®¶é¢†å–å¥–åŠ±
 	public String playerCatchBonus(RoleEntity role_info, String lottery_date)
 	{
 		PlayerLotteryService playerLotteryService = new PlayerLotteryService();
@@ -127,7 +127,7 @@ public class LotteryOutInfoService
 		return display;
 	}
 
-	// ÅÅÃûÏÔÊ¾
+	// æ’åæ˜¾ç¤º
 	public List<LotteryOutPrintVO> playerLotteryRank()
 	{
 		PlayerLotteryDAO dao = new PlayerLotteryDAO();
@@ -136,18 +136,18 @@ public class LotteryOutInfoService
 		return dao.getPlayerRank(lottery_date);
 	}
 
-	// ÏµÍ³²ÊÆ±ÀúÊ·¼ÇÂ¼ÏÔÊ¾
+	// ç³»ç»Ÿå½©ç¥¨å†å²è®°å½•æ˜¾ç¤º
 	public String sysLotteryHistory(String action, String name, int pageNO,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		StringBuffer sb = new StringBuffer();
 		LotteryService ls = new LotteryService();
-		sb.append(name + ",»¶Ó­Äú½øÈë¾º²Â»î¶¯!<br/>");
+		sb.append(name + ",æ¬¢è¿æ‚¨è¿›å…¥ç«çŒœæ´»åŠ¨!<br/>");
 		LotteryDAO dao = new LotteryDAO();
 		int allnum = dao.getLotteryHistoryAllNum();
 		if (allnum == 0)
 		{
-			sb.append("ÔİÎŞ¼ÇÂ¼");
+			sb.append("æš‚æ— è®°å½•");
 		}
 		else
 		{
@@ -165,18 +165,18 @@ public class LotteryOutInfoService
 			{
 				LotteryVO vo = list.get(i);
 				String lottery = ls.getLotteryPerInfo(vo.getLottery_content());
-				sb.append(vo.getLottery_date() + "ÆÚÖĞ½±ºÅÂë:" + lottery + "<br/>");
+				sb.append(vo.getLottery_date() + "æœŸä¸­å¥–å·ç :" + lottery + "<br/>");
 			}
 			sb.append(lotteryFoot(action, pageall, pageNO, request, response));
 			sb.append("<anchor><go method=\"get\" href=\""
 					+ response.encodeURL(GameConfig.getContextPath()
 							+ "/newlottery.do?cmd=n9")
-					+ "\"></go>²éÑ¯×ÔÑ¡ÀúÊ·ºÅÂë</anchor>");
+					+ "\"></go>æŸ¥è¯¢è‡ªé€‰å†å²å·ç </anchor>");
 		}
 		return sb.toString();
 	}
 
-	// Íæ¼Ò²ÊÆ±ÀúÊ·¼ÇÂ¼ÏÔÊ¾
+	// ç©å®¶å½©ç¥¨å†å²è®°å½•æ˜¾ç¤º
 	public String playerLotteryHistory(String action, int p_pk, String name,
 			int pageNO, HttpServletRequest request, HttpServletResponse response)
 	{
@@ -185,10 +185,10 @@ public class LotteryOutInfoService
 		PlayerLotteryService playerLotteryService = new PlayerLotteryService();
 		int allnum = playerLotteryService.getPlayerLotteryAllNum(p_pk);
 
-		sb.append(name + ",»¶Ó­Äú½øÈë¾º²Â»î¶¯!<br/>");
+		sb.append(name + ",æ¬¢è¿æ‚¨è¿›å…¥ç«çŒœæ´»åŠ¨!<br/>");
 		if (allnum == 0)
 		{
-			sb.append("ÔİÎŞ¼ÇÂ¼");
+			sb.append("æš‚æ— è®°å½•");
 		}
 		else
 		{
@@ -212,24 +212,24 @@ public class LotteryOutInfoService
 				String display = "";
 				if (x > 1)
 				{
-					display = "(ÖĞ½±!)";
+					display = "(ä¸­å¥–!)";
 				}
 				else
 				{
-					display = "(Î´ÖĞ)";
+					display = "(æœªä¸­)";
 				}
-				sb.append(vo.getLottery_date() + "ÆÚ×ÔÑ¡ºÅÂë:" + lottery + ""
+				sb.append(vo.getLottery_date() + "æœŸè‡ªé€‰å·ç :" + lottery + ""
 						+ display + "<br/>");
 			}
 			sb.append(lotteryFoot(action, pageall, pageNO, request, response));
 			sb.append("<anchor><go method=\"get\" href=\""
 					+ response.encodeURL(GameConfig.getContextPath()
-							+ "/newlottery.do?cmd=n8") + "\"></go>·µ»ØÉÏÒ»¼¶</anchor>");
+							+ "/newlottery.do?cmd=n8") + "\"></go>è¿”å›ä¸Šä¸€çº§</anchor>");
 		}
 		return sb.toString();
 	}
 
-	// Ò³½Å
+	// é¡µè„š
 	private String lotteryFoot(String action, int pageall, int pageNO,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -246,7 +246,7 @@ public class LotteryOutInfoService
 				sb
 						.append("<postfield name=\"cmd\" value=\"" + action
 								+ "\" />");
-				sb.append("</go>ÏÂÒ»Ò³</anchor>");
+				sb.append("</go>ä¸‹ä¸€é¡µ</anchor>");
 			}
 			if (pageNO != 0)
 			{
@@ -258,9 +258,9 @@ public class LotteryOutInfoService
 				sb
 						.append("<postfield name=\"cmd\" value=\"" + action
 								+ "\" />");
-				sb.append("</go>ÉÏÒ»Ò³</anchor> ");
+				sb.append("</go>ä¸Šä¸€é¡µ</anchor> ");
 			}
-			sb.append("µÚ" + (pageNO + 1) + "Ò³/¹²" + pageall + "Ò³<br/>");
+			sb.append("ç¬¬" + (pageNO + 1) + "é¡µ/å…±" + pageall + "é¡µ<br/>");
 		}
 		return sb.toString();
 	}

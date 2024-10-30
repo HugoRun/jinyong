@@ -8,21 +8,21 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:
+ * åŠŸèƒ½:
  * 
- * @author ÁõË§ 10:36:42 AM
+ * @author åˆ˜å¸… 10:36:42 AM
  */
 public class PlayerTaskDao extends DaoBase {
 	
 	/**
-	 * ¸ù¾İpPkµÃµ½Íæ¼ÒËùÓĞÈÎÎñ
+	 * æ ¹æ®pPkå¾—åˆ°ç©å®¶æ‰€æœ‰ä»»åŠ¡
 	 * @param p_pk
 	 * @return
 	 */
 	public HashMap getPlayerAllTask (int p_pk)
 	{
 		HashMap tasks = new HashMap();
-		String sql = "select * from u_task where p_pk=" + p_pk;
+		String sql = "SELECT * FROM u_task where p_pk=" + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

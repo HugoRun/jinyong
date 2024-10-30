@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ben.vo.expnpcdrop.ExpNpcdropVO;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 
 public class ExpNpcdropDAO
 {
-	Jygamedb con;
+	JyGameDB con;
 
 
 	/**
-	 * 得到 所有的 npc 掉落经验倍数
+	 * 寰楀埌 鎵�鏈夌殑 npc 鎺夎惤缁忛獙鍊嶆暟
 	 * 
 	 * @return
 	 */
@@ -22,8 +22,8 @@ public class ExpNpcdropDAO
 		List<ExpNpcdropVO> list = new ArrayList<ExpNpcdropVO>();
 		ExpNpcdropVO expNpcdropVO = null;
 		try {
-			con = new Jygamedb();
-			String sql = "select * from exp_npcdrop ";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM exp_npcdrop ";
 			ResultSet rs = con.query(sql);
 			while(rs.next()) {
 				expNpcdropVO = new ExpNpcdropVO();

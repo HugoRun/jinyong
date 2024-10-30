@@ -4,19 +4,19 @@
 package com.ben.vo.friend;
 
 /**
- * @author ºîºÆ¾ü ºÚÃûµ¥ 4:42:06 PM
+ * @author ä¾¯æµ©å†› é»‘åå• 4:42:06 PM
  */
 public class BlacklistVO
 {
-	/** Íæ¼ÒºÃÓÑid */
+	/** ç©å®¶å¥½å‹id */
 	private int bPk;
-	/** Íæ¼Òid */
+	/** ç©å®¶id */
 	private int pPk;
-	/** ºÃÓÑID */
+	/** å¥½å‹ID */
 	private int blPk;
-	/** ºÃÓÑÃû³Æ */
+	/** å¥½å‹åç§° */
 	private String bName;
-	/** ¼ÓÈëÊ±¼ä */
+	/** åŠ å…¥æ—¶é—´ */
 	private String createTime;
 
 	public int getBPk()

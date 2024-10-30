@@ -2,9 +2,9 @@ package com.ls.model.user;
 
 public class AutoAttackSetting
 {
-	/** 类型,值为-1时表示没有设置快捷键 */
+	/** 绫诲瀷,鍊间负-1鏃惰〃绀烘病鏈夎缃揩鎹烽敭 */
 	private int attackType=-1;
-	/** 操作id */
+	/** 鎿嶄綔id */
 	private int uSkillId=0;
 
 	public int getAttackType()

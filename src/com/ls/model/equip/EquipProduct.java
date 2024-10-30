@@ -14,42 +14,42 @@ import com.ls.web.service.goods.GoodsService;
 
 /**
  * @author ls
- * ×°±¸¼Ó¹¤Éú²úÀà
+ * è£…å¤‡åŠ å·¥ç”Ÿäº§ç±»
  */
 abstract public class EquipProduct extends UserBase
 {
-	//¼Ó¹¤ÀàĞÍ
+	//åŠ å·¥ç±»å‹
 	public static final int upgrade=1;
 	public static final int change_wx=2;
 	
-	private String actionName;//²Ù×÷±êÌâ
+	private String actionName;//æ“ä½œæ ‡é¢˜
 	
-	//Òª¼Ó¹¤µÄ×°±¸
+	//è¦åŠ å·¥çš„è£…å¤‡
 	protected PlayerEquipVO equip = null;
 	
-	//±ØĞë²ÄÁÏ
-	private int[] material_id_list;//ĞèÒªµÄ²ÄÁÏÁĞ±í
-	private int[] need_materials_num;//ĞèÒªµÄ²ÄÁÏÊıÁ¿
-	private int[] cur_materials_num;//µ±Ç°ÓµÓĞµÄ£¨Ê¹ÓÃµÄ£©²ÄÁÏÊıÁ¿
+	//å¿…é¡»ææ–™
+	private int[] material_id_list;//éœ€è¦çš„ææ–™åˆ—è¡¨
+	private int[] need_materials_num;//éœ€è¦çš„ææ–™æ•°é‡
+	private int[] cur_materials_num;//å½“å‰æ‹¥æœ‰çš„ï¼ˆä½¿ç”¨çš„ï¼‰ææ–™æ•°é‡
 	
-	//³É¹¦ÂÊ±¦Ê¯
-	private  int rate_stone_id;//ÌáÉı³É¹¦ÂÊ²ÄÁÏid
-	private  int rate_stone_num;//ÌáÉı³É¹¦ÂÊ²ÄÁÏÊıÁ¿
-	private  int cur_rate_stone_num;//ÓµÓĞµÄ³É¹¦ÂÊ²ÄÁÏÊıÁ¿
-	private int stone_rate=0;//µ±Ç°±¦Ê¯³É¹¦ÂÊ
+	//æˆåŠŸç‡å®çŸ³
+	private  int rate_stone_id;//æå‡æˆåŠŸç‡ææ–™id
+	private  int rate_stone_num;//æå‡æˆåŠŸç‡ææ–™æ•°é‡
+	private  int cur_rate_stone_num;//æ‹¥æœ‰çš„æˆåŠŸç‡ææ–™æ•°é‡
+	private int stone_rate=0;//å½“å‰å®çŸ³æˆåŠŸç‡
 	
-	//±£µ×Ê¯£¨×÷ÓÃ£º¼Ó¹¤Ê§°Ü²»×ö´¦Àí£©
-	public static int protect_stone_id = 4;//±£»¤±¦Ê¯id
-	private boolean isCanUseProtectedStone = false;//ÊÇ·ñ¿ÉÒÔÊ¹ÓÃ±£µ×Ê¯
-	protected int cur_protect_stone_num = 0;//µ±Ç°ÓµÓĞ±£µ×Ê¯µÄÊıÁ¿
+	//ä¿åº•çŸ³ï¼ˆä½œç”¨ï¼šåŠ å·¥å¤±è´¥ä¸åšå¤„ç†ï¼‰
+	public static int protect_stone_id = 4;//ä¿æŠ¤å®çŸ³id
+	private boolean isCanUseProtectedStone = false;//æ˜¯å¦å¯ä»¥ä½¿ç”¨ä¿åº•çŸ³
+	protected int cur_protect_stone_num = 0;//å½“å‰æ‹¥æœ‰ä¿åº•çŸ³çš„æ•°é‡
 	
-	abstract public String selectEquip(PlayerEquipVO select_equip);//Ñ¡ÔñÒª¼Ó¹¤µÄ×°±¸
-	abstract public int getSuccessRate();//µÃµ½µ±Ç°³É¹¦ÂÊ
-	abstract public int getNeedMoney();//µÃµ½ĞèÒªµÄÇ®
-	abstract public String isProcessed();//ÊÇ·ñ¿ÉÒÔ¼Ó¹¤´¦ÀíµÄ»ù´¡Ìõ¼ş
-	abstract protected String processSuccess();//´¦Àí³É¹¦
-	protected abstract String processFail();//´¦ÀíÊ§°Ü
-	protected abstract void cleare();//ÇåÀí¹¤×÷
+	abstract public String selectEquip(PlayerEquipVO select_equip);//é€‰æ‹©è¦åŠ å·¥çš„è£…å¤‡
+	abstract public int getSuccessRate();//å¾—åˆ°å½“å‰æˆåŠŸç‡
+	abstract public int getNeedMoney();//å¾—åˆ°éœ€è¦çš„é’±
+	abstract public String isProcessed();//æ˜¯å¦å¯ä»¥åŠ å·¥å¤„ç†çš„åŸºç¡€æ¡ä»¶
+	abstract protected String processSuccess();//å¤„ç†æˆåŠŸ
+	protected abstract String processFail();//å¤„ç†å¤±è´¥
+	protected abstract void cleare();//æ¸…ç†å·¥ä½œ
 	
 	public EquipProduct(int pPk,String actionName,boolean isNeedProtectedStone )
 	{
@@ -59,7 +59,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * ¿É·ñÊ¹ÓÃ±£µ×±¦Ê¯
+	 * å¯å¦ä½¿ç”¨ä¿åº•å®çŸ³
 	 */
 	public boolean isCanUseProtectedStone()
 	{
@@ -67,15 +67,15 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * ¼Ó¹¤´¦Àí
+	 * åŠ å·¥å¤„ç†
 	 */
 	public String process()
 	{
 		String hint = null;
-		//ÅĞ¶ÏÊÇ·ñÄÜÉı¼¶
+		//åˆ¤æ–­æ˜¯å¦èƒ½å‡çº§
 		if( this.equip==null )
 		{
-			return "ÇëÑ¡ÔñÒª"+this.actionName+"×°±¸";
+			return "è¯·é€‰æ‹©è¦"+this.actionName+"è£…å¤‡";
 		}
 		hint =  equip.isOwnByPPk(this.p_pk);
 		if( hint!=null )
@@ -84,36 +84,36 @@ abstract public class EquipProduct extends UserBase
 		}
 		if( equip.isEffected()==false )
 		{
-			return "¸Ã×°±¸ÒÑËğ»µ";
+			return "è¯¥è£…å¤‡å·²æŸå";
 		}
 		if(equip.getWType()!=Equip.ON_WRAP)
 		{
-			return "¸Ã×°±¸²»ÔÚ°ü¹üÀï";
+			return "è¯¥è£…å¤‡ä¸åœ¨åŒ…è£¹é‡Œ";
 		}
 		
-		//ÊÇ·ñ¿ÉÒÔ¼Ó¹¤´¦ÀíµÄ»ù´¡Ìõ¼ş
+		//æ˜¯å¦å¯ä»¥åŠ å·¥å¤„ç†çš„åŸºç¡€æ¡ä»¶
 		hint = this.isProcessed();
 		if( hint!=null )
 		{
 			return hint;
 		}
 		
-		//ÅĞ¶ÏÉı¼¶²ÄÁÏÊÇ·ñ¹»
+		//åˆ¤æ–­å‡çº§ææ–™æ˜¯å¦å¤Ÿ
 		hint = isEnoughMaterials();
 		if( hint!=null )
 		{
 			return hint;
 		}
 		
-		//ÏûºÄÎïÆ·
+		//æ¶ˆè€—ç‰©å“
 		consumeMaterials();
 		
-		//×°±¸Éı¼¶
-		if( this.isSucessed() )//Éı¼¶³É¹¦
+		//è£…å¤‡å‡çº§
+		if( this.isSucessed() )//å‡çº§æˆåŠŸ
 		{
 			hint = processSuccess();
 		}
-		else//Éı¼¶Ê§°Ü
+		else//å‡çº§å¤±è´¥
 		{
 			hint = processFail();
 		}
@@ -124,8 +124,8 @@ abstract public class EquipProduct extends UserBase
 	
 	
 	/**
-	 * ±ØĞë²ÄÁÏÃèÊö
-	 * ²ÄÁÏ1¡­[0/0]
+	 * å¿…é¡»ææ–™æè¿°
+	 * ææ–™1â€¦[0/0]
 	 */
 	public String getNeedMaterialsDes()
 	{
@@ -140,7 +140,7 @@ abstract public class EquipProduct extends UserBase
 			PropVO prop = PropCache.getPropById(material_id_list[i]);
 			if( prop!=null )
 			{
-				des.append(prop.getPropName()).append("¡­[").append(cur_materials_num[i]);
+				des.append(prop.getPropName()).append("â€¦[").append(cur_materials_num[i]);
 				des.append("/").append(this.need_materials_num[i]).append("]").append("<br/>");
 			}
 		}
@@ -149,7 +149,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * ÉèÖÃĞèÒªµÄ²ÄÁÏ
+	 * è®¾ç½®éœ€è¦çš„ææ–™
 	 */
 	protected void setNeedMaterials(int[] need_material_id_list,int[] cur_need_materials_num)
 	{
@@ -164,7 +164,7 @@ abstract public class EquipProduct extends UserBase
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
 		for( int i=0;i< material_id_list.length;i++)
 		{
-			int cur_material_num = playerPropGroupDao.getPropNumByByPropID(p_pk,material_id_list[i]);//ÏÖÓĞ²ÄÁÏµÄÊıÁ¿
+			int cur_material_num = playerPropGroupDao.getPropNumByByPropID(p_pk,material_id_list[i]);//ç°æœ‰ææ–™çš„æ•°é‡
 			if( cur_material_num>need_materials_num[i])
 			{
 				cur_material_num = need_materials_num[i];
@@ -174,14 +174,14 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * ÅĞ¶Ï²ÄÁÏÊÇ·ñ×ã¹»
+	 * åˆ¤æ–­ææ–™æ˜¯å¦è¶³å¤Ÿ
 	 */
 	protected String isEnoughMaterials()
 	{
-		//ÅĞ¶ÏÊÇ·ñÓĞ×ã¹»µÄÇ®
+		//åˆ¤æ–­æ˜¯å¦æœ‰è¶³å¤Ÿçš„é’±
 		if( this.getRoleEntity().getBasicInfo().getCopper()<this.getNeedMoney() )
 		{
-			return "ÄãµÄÒøÁ½²»×ã";
+			return "ä½ çš„é“¶ä¸¤ä¸è¶³";
 		}
 		
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
@@ -189,20 +189,20 @@ abstract public class EquipProduct extends UserBase
 		{
 			for( int i=0;i< material_id_list.length;i++)
 			{
-				int cur_material_num = playerPropGroupDao.getPropNumByByPropID(p_pk,material_id_list[i]);//ÏÖÓĞ²ÄÁÏµÄÊıÁ¿
+				int cur_material_num = playerPropGroupDao.getPropNumByByPropID(p_pk,material_id_list[i]);//ç°æœ‰ææ–™çš„æ•°é‡
 				if( cur_material_num<need_materials_num[i])
 				{
-					return "²ÄÁÏ²»×ã";
+					return "ææ–™ä¸è¶³";
 				}
 			}
 		}
 		
-		if( isUseProtectedStone() )//Ê¹ÓÃ±£µ×Ê¯
+		if( isUseProtectedStone() )//ä½¿ç”¨ä¿åº•çŸ³
 		{
-			int cur_protected_stone_num = playerPropGroupDao.getPropNumByByPropID(p_pk,this.protect_stone_id);//ÏÖÓĞ±£µ×Ê¯µÄÊıÁ¿
+			int cur_protected_stone_num = playerPropGroupDao.getPropNumByByPropID(p_pk,this.protect_stone_id);//ç°æœ‰ä¿åº•çŸ³çš„æ•°é‡
 			if( cur_protected_stone_num<1 )
 			{
-				return "²ÄÁÏ²»×ã";
+				return "ææ–™ä¸è¶³";
 			}
 		}
 		
@@ -211,14 +211,14 @@ abstract public class EquipProduct extends UserBase
 	
 	
 	/**
-	 * ÊÇ·ñÊ¹ÓÃ±£µ×Ê¯
+	 * æ˜¯å¦ä½¿ç”¨ä¿åº•çŸ³
 	 * @return
 	 */
 	public boolean isUseProtectedStone()
 	{
-		if( isCanUseProtectedStone )//¿ÉÒÔÊ¹ÓÃ±£µ×Ê¯
+		if( isCanUseProtectedStone )//å¯ä»¥ä½¿ç”¨ä¿åº•çŸ³
 		{
-			if( cur_protect_stone_num>0 )//Ê¹ÓÃ±£µ×Ê¯
+			if( cur_protect_stone_num>0 )//ä½¿ç”¨ä¿åº•çŸ³
 			{
 				return true;
 			}
@@ -227,12 +227,12 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * ÏûºÄ²ÄÁÏ£¨±ØĞë²ÄÁÏ£¬ÌáÉı¸ÅÂÊ±¦Ê¯£¬½ğÇ®£©
+	 * æ¶ˆè€—ææ–™ï¼ˆå¿…é¡»ææ–™ï¼Œæå‡æ¦‚ç‡å®çŸ³ï¼Œé‡‘é’±ï¼‰
 	 */
 	protected void consumeMaterials()
 	{
 		GoodsService goodsService = new GoodsService();
-		//ÏûºÄ±ØĞë²ÄÁÏ
+		//æ¶ˆè€—å¿…é¡»ææ–™
 		if( material_id_list!=null && material_id_list.length>0 )
 		{
 			for( int i=0;i< material_id_list.length;i++)
@@ -240,23 +240,23 @@ abstract public class EquipProduct extends UserBase
 				goodsService.removeProps(p_pk,material_id_list[i], need_materials_num[i],GameLogManager.R_MATERIAL_CONSUME);
 			}
 		}
-		//ÏûºÄÌáÉı¸ÅÂÊ±¦Ê¯
+		//æ¶ˆè€—æå‡æ¦‚ç‡å®çŸ³
 		if( this.rate_stone_num>0)
 		{
 			goodsService.removeProps(p_pk, this.rate_stone_id, this.rate_stone_num,GameLogManager.R_MATERIAL_CONSUME);
 		}
 		
-		if( isUseProtectedStone() )//Ê¹ÓÃ±£µ×Ê¯
+		if( isUseProtectedStone() )//ä½¿ç”¨ä¿åº•çŸ³
 		{
-			//ÏûºÄ±£µ×Ê¯
+			//æ¶ˆè€—ä¿åº•çŸ³
 			goodsService.removeProps(p_pk, this.protect_stone_id, 1,GameLogManager.R_MATERIAL_CONSUME);
 		}
-		//ÏûºÄ½ğÇ®
+		//æ¶ˆè€—é‡‘é’±
 		this.getRoleEntity().getBasicInfo().addCopper(-this.getNeedMoney());
 	}
 	
 	/**
-	 * ¸ù¾İ¸ÅÂÊÅĞ¶ÏÊÇ·ñ³É¹¦
+	 * æ ¹æ®æ¦‚ç‡åˆ¤æ–­æ˜¯å¦æˆåŠŸ
 	 */
 	protected boolean isSucessed()
 	{
@@ -264,7 +264,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * µÃµ½ĞèÒª½ğÇ®ÃèÊö
+	 * å¾—åˆ°éœ€è¦é‡‘é’±æè¿°
 	 * @return
 	 */
 	public String getNeedMoneyDes()
@@ -273,7 +273,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * Ñ¡Ôñ±£µ×±¦Ê¯
+	 * é€‰æ‹©ä¿åº•å®çŸ³
 	 */
 	public String selectProtectStone( int protect_stone_id )
 	{
@@ -281,7 +281,7 @@ abstract public class EquipProduct extends UserBase
 		
 		if( this.protect_stone_id!=protect_stone_id)
 		{
-			return "ÇëÊ¹ÓÃ±£µ×±¦Ê¯";
+			return "è¯·ä½¿ç”¨ä¿åº•å®çŸ³";
 		}
 		
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
@@ -289,7 +289,7 @@ abstract public class EquipProduct extends UserBase
 		
 		if( have_num<1 )
 		{
-			return "ÄãÃ»ÓĞ×ã¹»µÄ±¦Ê¯";
+			return "ä½ æ²¡æœ‰è¶³å¤Ÿçš„å®çŸ³";
 		}
 		
 		this.cur_protect_stone_num = have_num;
@@ -298,7 +298,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * Ñ¡Ôñ³É¹¦ÂÊ±¦Ê¯
+	 * é€‰æ‹©æˆåŠŸç‡å®çŸ³
 	 */
 	public String selectRateStone( int rate_stone_id,int rate_stone_num )
 	{
@@ -307,12 +307,12 @@ abstract public class EquipProduct extends UserBase
 		PropVO rate_stone = PropCache.getPropById(rate_stone_id);
 		if( rate_stone.getPropClass()!=PropType.UPGRADEHELPPROP)
 		{
-			return "ÇëÊ¹ÓÃÕıÈ·µÄ±¦Ê¯";
+			return "è¯·ä½¿ç”¨æ­£ç¡®çš„å®çŸ³";
 		}
 		
 		if( rate_stone_num>5 )
 		{
-			return "×î¶àÖ»¿ÉÒÔÊ¹ÓÃ5¸ö±¦Ê¯";
+			return "æœ€å¤šåªå¯ä»¥ä½¿ç”¨5ä¸ªå®çŸ³";
 		}
 		
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
@@ -320,7 +320,7 @@ abstract public class EquipProduct extends UserBase
 		
 		if( have_num<rate_stone_num )
 		{
-			return "ÄãÃ»ÓĞ×ã¹»µÄ±¦Ê¯";
+			return "ä½ æ²¡æœ‰è¶³å¤Ÿçš„å®çŸ³";
 		}
 		
 		this.rate_stone_id = rate_stone_id;
@@ -333,20 +333,20 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * µÃµ½³É¹¦ÂÊµÀ¾ßÃû×Ö
+	 * å¾—åˆ°æˆåŠŸç‡é“å…·åå­—
 	 * @return
 	 */
 	public String getRateStoneName()
 	{
 		if( rate_stone_id==0 )
 		{
-			return "Ôö¼Ó³É¹¦ÂÊµÄ²ÄÁÏ";
+			return "å¢åŠ æˆåŠŸç‡çš„ææ–™";
 		}
 		PropVO rate_stone = PropCache.getPropById(rate_stone_id);
 		return rate_stone.getPropName();
 	}
 	/**
-	 * µÃµ½ÓµÓĞ³É¹¦ÂÊµÀ¾ßµÄÊıÁ¿
+	 * å¾—åˆ°æ‹¥æœ‰æˆåŠŸç‡é“å…·çš„æ•°é‡
 	 * @return
 	 */
 	public int getRateStoneNum()
@@ -355,7 +355,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * µÃµ½±¦Ê¯³É¹¦ÂÊ
+	 * å¾—åˆ°å®çŸ³æˆåŠŸç‡
 	 * @return
 	 */
 	protected int getStoneRate()
@@ -364,34 +364,34 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * µÃµ½×°±¸Ãû×Ö
+	 * å¾—åˆ°è£…å¤‡åå­—
 	 * @return
 	 */
 	public String getEquipName()
 	{
 		if( this.equip==null )
 		{
-			return "×°±¸";
+			return "è£…å¤‡";
 		}
 		return this.equip.getFullName();
 	}
 	
 	/**
-	 * µÃµ½±£µ×µÀ¾ßÃû×Ö
+	 * å¾—åˆ°ä¿åº•é“å…·åå­—
 	 * @return
 	 */
 	public String getProtectStoneName()
 	{
 		if( this.cur_protect_stone_num==0 )
 		{
-			return "±£µ×²ÄÁÏ";
+			return "ä¿åº•ææ–™";
 		}
 		PropVO protect_stone = PropCache.getPropById(protect_stone_id);
 		return protect_stone.getPropName();
 	}
 	
 	/**
-	 * µÃµ½±£µ×µÀ¾ßÊıÁ¿
+	 * å¾—åˆ°ä¿åº•é“å…·æ•°é‡
 	 * @return
 	 */
 	public int getProtectStoneNum()
@@ -400,7 +400,7 @@ abstract public class EquipProduct extends UserBase
 	}
 	
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 */
 	protected void init()
 	{

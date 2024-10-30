@@ -14,99 +14,99 @@ import com.ls.web.service.group.GroupService;
 import com.pub.ben.info.Expression;
 
 /**
- * Ê×Ò³ÁÄÌì
+ * é¦–é¡µèŠå¤©
  * 
- * @author ºîºÆ¾ü 11:13:44 AM
+ * @author ä¾¯æµ©å†› 11:13:44 AM
  */
 public class CommunionIndexService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * Ê×Ò³ÁÄÌì
+	 * é¦–é¡µèŠå¤©
 	 * @param roleInfo
 	 * @param type
 	 * @param title
-	 * @param usercommunionpub                ¹«ÁÄµÄµÈ¼¶ÏŞÖÆ
+	 * @param usercommunionpub                å…¬èŠçš„ç­‰çº§é™åˆ¶
 	 * @return
 	 */
 	public String Communion(RoleEntity roleInfo, int type, String title,
 			String usercommunionpub)
 	{
 		String hint = null;
-		if (type == 1)// ¹«¹²ÁÄÌì
+		if (type == 1)// å…¬å…±èŠå¤©
 		{
 			hint = CommPub(roleInfo, type, title, usercommunionpub);
 		}
-		if (type == 2)// ÕóÓªÁÄÌì
+		if (type == 2)// é˜µè¥èŠå¤©
 		{
 			hint = CommCamp(roleInfo, type, title);
 		}
-		if (type == 3)// ¶ÓÎéÁÄÌì
+		if (type == 3)// é˜Ÿä¼èŠå¤©
 		{
 			hint = CommDuiWu(roleInfo, type, title);
 		}
-		if (type == 4)// °ïÅÉÁÄÌì
+		if (type == 4)// å¸®æ´¾èŠå¤©
 		{
 			hint = CommTong(roleInfo, type, title);
 		}
 		if (type > 4)
-		{// ¹«¹²ÁÄÌì
+		{// å…¬å…±èŠå¤©
 			hint = CommPub(roleInfo, type, title, usercommunionpub);
 		}
 		if (type < 1)
-		{// ¹«¹²ÁÄÌì
+		{// å…¬å…±èŠå¤©
 			hint = CommPub(roleInfo, type, title, usercommunionpub);
 		}
 		return hint;
 	}
 
 	/**
-	 * ¹«¹²ÁÄÌì
+	 * å…¬å…±èŠå¤©
 	 */
 	public String CommPub(RoleEntity roleInfo, int type, String title,
 			String usercommunionpub)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		String hint = null;
 		/*Pattern p = Pattern.compile(Expression.chinese_regexp);
 		Matcher m = p.matcher(title);
 		boolean b = m.matches();
 		if (b == false)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}*/
 		int flag = Expression.hasPublish(title);
 		if (flag == -1)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}
 		if (title != null)
 		{
 			if (title.length() > 20)
 			{
-				hint = "ÄúÖ»ÄÜÊäÈë20¸ö×Ö·û";
+				hint = "æ‚¨åªèƒ½è¾“å…¥20ä¸ªå­—ç¬¦";
 				return hint;
 			}
 		}
 		if( roleInfo.getBasicInfo().getGrade() < Integer.parseInt(usercommunionpub))
 		{
-			hint = "¶Ô²»Æğ£¬Ö»ÓĞ" + usercommunionpub + "¼¶ÒÔÉÏµÄÍæ¼Ò²Å¿ÉÒÔÔÚ¹«¹²ÆµµÀ·¢ÑÔ£¡";
+			hint = "å¯¹ä¸èµ·ï¼Œåªæœ‰" + usercommunionpub + "çº§ä»¥ä¸Šçš„ç©å®¶æ‰å¯ä»¥åœ¨å…¬å…±é¢‘é“å‘è¨€ï¼";
 			return hint;
 		}
-		// ÅĞ¶ÏÊÇ·ñÖØ¸´·¢ÑÔ
+		// åˆ¤æ–­æ˜¯å¦é‡å¤å‘è¨€
 		EmbargoDAO embargoDAO = new EmbargoDAO();
 		String s = embargoDAO.isEmbargo(roleInfo.getBasicInfo().getPPk(), Time);
 		if (s != null)
 		{
-			hint = "Äú±»ÔÚ¹«¹²ÁÄÌìÆµµÀ½ûÑÔ" + s + "·ÖÖÓ£¡";
+			hint = "æ‚¨è¢«åœ¨å…¬å…±èŠå¤©é¢‘é“ç¦è¨€" + s + "åˆ†é’Ÿï¼";
 			return hint;
 		}
-		// ÁÄÌì¼ä¸ôÊ±¼ä
+		// èŠå¤©é—´éš”æ—¶é—´
 		if (title != null)
 		{
 			hint = roleInfo.getStateInfo().isPublicChat();
@@ -115,23 +115,23 @@ public class CommunionIndexService
 				return hint;
 			}
 		}
-		// ¼ì²âÊÇ·ñ»¹ÓĞ½ûÖ¹¹Ø¼ü´Ê
+		// æ£€æµ‹æ˜¯å¦è¿˜æœ‰ç¦æ­¢å…³é”®è¯
 		if (Expression.hasForbidChar(title,ForBidCache.FORBIDCOMM))
 		{
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if(title.trim().equals("")){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
-		if(title.indexOf("¡¡") != -1){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(title.indexOf("ã€€") != -1){
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if (title != null)
 		{
-			// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼
+			// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½•
 			CommunionVO communionVO = new CommunionVO();
 			communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 			communionVO.setPName(roleInfo.getBasicInfo().getName());
@@ -145,63 +145,63 @@ public class CommunionIndexService
 	}
 
 	/**
-	 * ÕóÓªÁÄÌì
+	 * é˜µè¥èŠå¤©
 	 */
 	public String CommCamp(RoleEntity roleInfo, int type, String title)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		String hint = null;
 		/*Pattern p = Pattern.compile(Expression.chinese_regexp);
 		Matcher m = p.matcher(title);
 		boolean b = m.matches();
 		if (b == false)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}*/
 		int flag = Expression.hasPublish(title);
 		if (flag == -1)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}
 		if (title != null)
 		{
 			if (title.length() > 20)
 			{
-				hint = "ÄúÖ»ÄÜÊäÈë20¸ö×Ö·û";
+				hint = "æ‚¨åªèƒ½è¾“å…¥20ä¸ªå­—ç¬¦";
 				return hint;
 			}
 		}
-		// Èç¹û½ÇÉ«Ã»ÓĞ¼ÓÈëÕóÓª¾Í²»ÄÜÁÄÌì
+		// å¦‚æœè§’è‰²æ²¡æœ‰åŠ å…¥é˜µè¥å°±ä¸èƒ½èŠå¤©
 		if (title != null)
 		{
 			if (roleInfo.getBasicInfo().getPRace() == 0)
 			{
-				hint = "¶Ô²»Æğ£¬ÄúÄ¿Ç°Ã»ÓĞ¼ÓÈëÕóÓª£¬ÎŞ·¨ÔÚÕóÓªÆµµÀ·¢ÑÔ£¡";
+				hint = "å¯¹ä¸èµ·ï¼Œæ‚¨ç›®å‰æ²¡æœ‰åŠ å…¥é˜µè¥ï¼Œæ— æ³•åœ¨é˜µè¥é¢‘é“å‘è¨€ï¼";
 				return hint;
 			}
 		}
-		// ¼ì²âÊÇ·ñ»¹ÓĞ½ûÖ¹¹Ø¼ü´Ê
+		// æ£€æµ‹æ˜¯å¦è¿˜æœ‰ç¦æ­¢å…³é”®è¯
 		if (Expression.hasForbidChar(title,ForBidCache.FORBIDCOMM))
 		{
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if(title.trim().equals("")){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
-		if(title.indexOf("¡¡") != -1){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(title.indexOf("ã€€") != -1){
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
-		// Ö´ĞĞ²åÈëÕóÓªÁÄÌì¼ÇÂ¼
+		// æ‰§è¡Œæ’å…¥é˜µè¥èŠå¤©è®°å½•
 		if (title != null)
 		{
-			// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼ c_pk,p_pk,p_name,c_zhen,c_title,c_type,create_time
+			// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½• c_pk,p_pk,p_name,c_zhen,c_title,c_type,create_time
 			CommunionVO communionVO = new CommunionVO();
 			communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 			communionVO.setPName(roleInfo.getBasicInfo().getName());
@@ -216,13 +216,13 @@ public class CommunionIndexService
 	}
 
 	/**
-	 * ¶ÓÎéÁÄÌì
+	 * é˜Ÿä¼èŠå¤©
 	 */
 	public String CommDuiWu(RoleEntity roleInfo, int type, String title)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 
 		GroupService groupService = new GroupService();
 		String hint = null;
@@ -231,45 +231,45 @@ public class CommunionIndexService
 		boolean b = m.matches();
 		if (b == false)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}*/
 		int flag = Expression.hasPublish(title);
 		if (flag == -1)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}
 		if (title != null)
 		{
 			if (title.length() > 20)
 			{
-				hint = "ÄúÖ»ÄÜÊäÈë20¸ö×Ö·û";
+				hint = "æ‚¨åªèƒ½è¾“å…¥20ä¸ªå­—ç¬¦";
 				return hint;
 			}
 			if (groupService.getCaptionPk(roleInfo.getBasicInfo().getPPk()) < 0)
 			{
-				hint = "¶Ô²»Æğ£¬ÄúÄ¿Ç°Ã»ÓĞ¼ÓÈë¶ÓÎé£¬ÎŞ·¨ÔÚ×é¶ÓÆµµÀ·¢ÑÔ£¡";
+				hint = "å¯¹ä¸èµ·ï¼Œæ‚¨ç›®å‰æ²¡æœ‰åŠ å…¥é˜Ÿä¼ï¼Œæ— æ³•åœ¨ç»„é˜Ÿé¢‘é“å‘è¨€ï¼";
 				return hint;
 			}
 		}
-		// ¼ì²âÊÇ·ñ»¹ÓĞ½ûÖ¹¹Ø¼ü´Ê
+		// æ£€æµ‹æ˜¯å¦è¿˜æœ‰ç¦æ­¢å…³é”®è¯
 		if (Expression.hasForbidChar(title,ForBidCache.FORBIDCOMM))
 		{
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if(title.trim().equals("")){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
-		if(title.indexOf("¡¡") != -1){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(title.indexOf("ã€€") != -1){
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if (title != null)
 		{
-			// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼ c_pk,p_pk,p_name,c_dui,c_title,c_type,create_time
+			// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½• c_pk,p_pk,p_name,c_dui,c_title,c_type,create_time
 			CommunionVO communionVO = new CommunionVO();
 			communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 			communionVO.setPName(roleInfo.getBasicInfo().getName());
@@ -284,13 +284,13 @@ public class CommunionIndexService
 	}
 
 	/**
-	 * °ïÅÉÁÄÌì
+	 * å¸®æ´¾èŠå¤©
 	 */
 	public String CommTong(RoleEntity roleInfo, int type, String title)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		String hint = null;
 
 		/*Pattern p = Pattern.compile(Expression.chinese_regexp);
@@ -298,45 +298,45 @@ public class CommunionIndexService
 		boolean b = m.matches();
 		if (b == false)
 		{  
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}*/
 		int flag = Expression.hasPublish(title);
 		if (flag == -1)
 		{
-			hint = "ÄúµÄÄÚÈİÀïÓĞ·Ç·¨×Ö·û£¡ÇëÖØĞÂÊäÈë£¡";
+			hint = "æ‚¨çš„å†…å®¹é‡Œæœ‰éæ³•å­—ç¬¦ï¼è¯·é‡æ–°è¾“å…¥ï¼";
 			return hint;
 		}
 		if (title != null)
 		{
 			if (title.length() > 20)
 			{
-				hint = "ÄúÖ»ÄÜÊäÈë20¸ö×Ö·û";
+				hint = "æ‚¨åªèƒ½è¾“å…¥20ä¸ªå­—ç¬¦";
 				return hint;
 			}
 			if (roleInfo.getBasicInfo().getFaction() == null)
 			{
-				hint = "¶Ô²»Æğ£¬ÄúÄ¿Ç°Ã»ÓĞ¼ÓÈë°ïÅÉ£¬ÎŞ·¨ÔÚ°ï»áÆµµÀ·¢ÑÔ£¡";
+				hint = "å¯¹ä¸èµ·ï¼Œæ‚¨ç›®å‰æ²¡æœ‰åŠ å…¥å¸®æ´¾ï¼Œæ— æ³•åœ¨å¸®ä¼šé¢‘é“å‘è¨€ï¼";
 				return hint;
 			}
 		}
-		// ¼ì²âÊÇ·ñ»¹ÓĞ½ûÖ¹¹Ø¼ü´Ê
+		// æ£€æµ‹æ˜¯å¦è¿˜æœ‰ç¦æ­¢å…³é”®è¯
 		if (Expression.hasForbidChar(title,ForBidCache.FORBIDCOMM))
 		{
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if(title.trim().equals("")){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
-		if(title.indexOf("¡¡") != -1){
-			hint = "¶Ô²»Æğ£¬ÄúµÄ·¢ÑÔÖĞ°üº¬½ûÖ¹×Ö·û!";
+		if(title.indexOf("ã€€") != -1){
+			hint = "å¯¹ä¸èµ·ï¼Œæ‚¨çš„å‘è¨€ä¸­åŒ…å«ç¦æ­¢å­—ç¬¦!";
 			return hint;
 		}
 		if (title != null)
 		{
-			// Ö´ĞĞ²åÈë¹«¹²ÁÄÌì¼ÇÂ¼ c_pk,p_pk,p_name,c_bang,c_title,c_type,create_time
+			// æ‰§è¡Œæ’å…¥å…¬å…±èŠå¤©è®°å½• c_pk,p_pk,p_name,c_bang,c_title,c_type,create_time
 			CommunionVO communionVO = new CommunionVO();
 			communionVO.setPPk(roleInfo.getBasicInfo().getPPk());
 			communionVO.setPName(roleInfo.getBasicInfo().getName());

@@ -41,19 +41,18 @@ public class LoginAction extends Action
 		HttpRespons response_yanzheng = null;
 		try
 		{
-			response_yanzheng = request_yanzheng
-					.sendGet("http://wapok.cn/n_gamecheck.php?osid=" + osid);// Ìá½»ÑéÖ¤ÇëÇó
+			response_yanzheng = request_yanzheng.sendGet("http://wapok.cn/n_gamecheck.php?osid=" + osid);// æäº¤éªŒè¯è¯·æ±‚
 		}
 		catch (IOException e)
 		{
-			logger.debug("okÆ½Ì¨osidÑéÖ¤Òì³£");
+			logger.debug("okå¹³å°osidéªŒè¯å¼‚å¸¸");
 			e.printStackTrace();
 			return mapping.findForward("fail");
 		}
 
 		ParseNormalContent parseContent = new ParseNormalContent();
 		Map<String, String> result = parseContent.parse(response_yanzheng
-				.getContent());// µÃµ½½âÎöºóµÄÏìÓ¦½á¹û
+				.getContent());// å¾—åˆ°è§£æåçš„å“åº”ç»“æœ
 		String account = null;
 		Set<String> keys = result.keySet();
 		for(String key:keys )
@@ -64,18 +63,18 @@ public class LoginAction extends Action
 			}
 		}
 
-		if (result != null && account != null)// ±íÊ¾osidÑéÖ¤³É¹¦
+		if (result != null && account != null)// è¡¨ç¤ºosidéªŒè¯æˆåŠŸ
 		{
 			if (!account.equals("") && !account.equals("null"))
 			{
-				// Õı³£µÇÂ½
+				// æ­£å¸¸ç™»é™†
 
 				PassportVO passport = null;
 				int u_pk = -1;
 				PassportService passportService = new PassportService();
 				passport = passportService.getPassportInfoByUserID(osid,
 						Channel.OKP);
-				if (passport == null)// Ìí¼ÓĞÂÓÃ»§
+				if (passport == null)// æ·»åŠ æ–°ç”¨æˆ·
 				{
 					u_pk = passportService.addNewUser(osid, account,
 							Channel.OKP, login_ip);
@@ -100,18 +99,18 @@ public class LoginAction extends Action
 				session.setAttribute("skyid", skyid);
 				session.setAttribute("user_name", passport.getUserName());
 				session.setAttribute("channel_id", Channel.OKP + "");
-				session.setAttribute("login_params", login_params);// µÇÂ½²ÎÊı
+				session.setAttribute("login_params", login_params);// ç™»é™†å‚æ•°
 				return mapping.findForward("success");
 			}
 			else
 			{
-				logger.debug("okÆ½Ì¨osidÑéÖ¤Òì³£,osid£º" + osid + "ÎŞĞ§");
+				logger.debug("okå¹³å°osidéªŒè¯å¼‚å¸¸,osidï¼š" + osid + "æ— æ•ˆ");
 				return mapping.findForward("fail");
 			}
 		}
 		else
 		{
-			logger.debug("okÆ½Ì¨osidÑéÖ¤Òì³£,osid£º" + osid + "ÎŞĞ§");
+			logger.debug("okå¹³å°osidéªŒè¯å¼‚å¸¸,osidï¼š" + osid + "æ— æ•ˆ");
 			return mapping.findForward("fail");
 		}
 	}

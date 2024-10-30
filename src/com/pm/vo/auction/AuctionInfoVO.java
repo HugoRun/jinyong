@@ -2,11 +2,11 @@ package com.pm.vo.auction;
 
 public class AuctionInfoVO {
 
-	/****拍卖信息id**********/
+	/****鎷嶅崠淇℃伅id**********/
 	private int auctionInfoId;
-	/******角色id***********/
+	/******瑙掕壊id***********/
 	private int pPk;
-	/*********拍卖信息**********/
+	/*********鎷嶅崠淇℃伅**********/
 	private String auctionInfo;
 	public int getAuctionInfoId() {
 		return auctionInfoId;

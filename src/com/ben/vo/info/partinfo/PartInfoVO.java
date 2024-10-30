@@ -6,103 +6,103 @@ package com.ben.vo.info.partinfo;
 import java.util.Date;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 7:51:14 PM
  */
 public class PartInfoVO {
 
-	public static final int P_GRADE = 1;// µÈ¼¶
-	public static final int P_HP = 230;// ÉúÃüÖµ
-	public static final int P_MP = 70;// ·¨Á¦Öµ
-	public static final int P_FORCE = 12;// Á¦
-	public static final int P_AGILE = 10;// Ãô
-	public static final int P_PHYSIQUE = 15;// ÌåÆÇ
-	public static final int P_SAVVY = 10;// ÎòĞÔ
-	public static final int P_GJ = 37;// ¹¥»÷
-	public static final int P_FY = 28;// ·ÀÓù
+	public static final int P_GRADE = 1;// ç­‰çº§
+	public static final int P_HP = 230;// ç”Ÿå‘½å€¼
+	public static final int P_MP = 70;// æ³•åŠ›å€¼
+	public static final int P_FORCE = 12;// åŠ›
+	public static final int P_AGILE = 10;// æ•
+	public static final int P_PHYSIQUE = 15;// ä½“é­„
+	public static final int P_SAVVY = 10;// æ‚Ÿæ€§
+	public static final int P_GJ = 37;// æ”»å‡»
+	public static final int P_FY = 28;// é˜²å¾¡
 
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ´´½¨ÈËÔ±ĞÅÏ¢id */
+	/** åˆ›å»ºäººå‘˜ä¿¡æ¯id */
 	private int uPk;
-	/** ½ÇÉ«Ãû */
+	/** è§’è‰²å */
 	private String pName;
-	/** ĞÔ±ğ */
+	/** æ€§åˆ« */
 	private int pSex;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int pGrade;
-	/** ÉúÃüÖµ */
+	/** ç”Ÿå‘½å€¼ */
 	private int pUpHp;
-	/** µ±Ç°HPÖµ */
+	/** å½“å‰HPå€¼ */
 	private int pHp;
-	/** ÉúÃüÖµ */
+	/** ç”Ÿå‘½å€¼ */
 	private int pUpMp;
-	/** ·¨Á¦Öµ */
+	/** æ³•åŠ›å€¼ */
 	private int pMp;
-	/** ¹¥»÷ */
+	/** æ”»å‡» */
 	private int pGj;
-	/** ·ÀÓù */
+	/** é˜²å¾¡ */
 	private int pFy;
-	/** ×îĞ¡¹¥»÷ */
+	/** æœ€å°æ”»å‡» */
 	private int pZbgjXiao;
-	/** ×î´ó¹¥»÷ */
+	/** æœ€å¤§æ”»å‡» */
 	private int pZbgjDa;
-	/** ×îĞ¡·ÀÓù */
+	/** æœ€å°é˜²å¾¡ */
 	private int pZbfyXiao;
-	/** ×î´ó·ÀÓù */
+	/** æœ€å¤§é˜²å¾¡ */
 	private int pZbfyDa;
-	/** Ê¦Í½1Ê¦¸µ2Í½µÜ */
+	/** å¸ˆå¾’1å¸ˆå‚…2å¾’å¼Ÿ */
 	private int pTeacherType;
-	/** Ê¦¸µµÄÃû³Æid */
+	/** å¸ˆå‚…çš„åç§°id */
 	private int pTeacher;
-	/** ÊÇ·ñÒÑ»é 1Ã»½á»é 2 ½á»é */
+	/** æ˜¯å¦å·²å©š 1æ²¡ç»“å©š 2 ç»“å©š */
 	private int pHarness;
-	/** °éÂÂID */
+	/** ä¼´ä¾£ID */
 	private int pFere;
-	/**ÖÖ×å1Ñı2Î×**/
+	/**ç§æ—1å¦–2å·«**/
 	private int pRace;
-	/** ¾­Ñé */
+	/** ç»éªŒ */
 	private String pExperience;
-	/** ÏÂ¾­Ñé */
+	/** ä¸‹ç»éªŒ */
 	private String pXiaExperience;
-	/**±¾¼¶¾­Ñé*/
+	/**æœ¬çº§ç»éªŒ*/
 	private int pBenJiExp;
-	/** Í­Ç® */
+	/** é“œé’± */
 	private String pCopper;
-	/** pkÖµ */
+	/** pkå€¼ */
 	private int pPkValue;
-	/** ¿ª¹Ø1¹Ø2¿ª */
+	/** å¼€å…³1å…³2å¼€ */
 	private int pPks;
-	/** ËùÔÚµØÍ¼×ø±ê */
+	/** æ‰€åœ¨åœ°å›¾åæ ‡ */
 	private String pMap;
-	/** ÊÇ·ñ×é¶Ó0ÎŞ1×é */
+	/** æ˜¯å¦ç»„é˜Ÿ0æ— 1ç»„ */
 	private int pProcession;
-	/** ¶ÓÎé±àºÅ */
+	/** é˜Ÿä¼ç¼–å· */
 	private String pProcessionNumner;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
-	/** °ü¹üÈİÁ¿ */
+	/** åŒ…è£¹å®¹é‡ */
 	private int pWrapContent;
-	/** É¾³ı±êÖ¾ */
+	/** åˆ é™¤æ ‡å¿— */
 	private int deleteFlag;
-	/**  É¾³ıÊ±¼ä */
+	/**  åˆ é™¤æ—¶é—´ */
 	private String deleteTime;
 
-	/** *****ÈËÎï±©»÷ÂÊ********** */
+	/** *****äººç‰©æš´å‡»ç‡********** */
 	private double pDropMultiple;
 	
 	
-	/**×÷ÎªÊ¦¸¸µÄµÈ¼¶*/
+	/**ä½œä¸ºå¸ˆçˆ¶çš„ç­‰çº§*/
 	private int te_level;
 	
-	/**ÉÏÒ»´Î´«¹¦Ê±¼ä*/
+	/**ä¸Šä¸€æ¬¡ä¼ åŠŸæ—¶é—´*/
 	private String chuangong;
 	
-	/**É±ÈËÊıÁ¿*/
+	/**æ€äººæ•°é‡*/
 	private int killNum;
 	
-	//×îºóÒ»´ÎÕĞÍ½»òÕß°İÊ¦µÄÊ±¼ä
+	//æœ€åä¸€æ¬¡æ‹›å¾’æˆ–è€…æ‹œå¸ˆçš„æ—¶é—´
 	private Date last_shoutu_time;
 	public Date getLast_shoutu_time()
 	{

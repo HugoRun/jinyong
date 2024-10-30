@@ -25,8 +25,8 @@ import com.ls.web.service.player.RoleService;
 
 /**
  *
- *¹¦ÄÜ:³èÎïÈ¡ÏûºÍ²Î¼ÓÕ½¶·
- * @author ºîºÆ¾ü
+ *åŠŸèƒ½:å® ç‰©å–æ¶ˆå’Œå‚åŠ æˆ˜æ–—
+ * @author ä¾¯æµ©å†›
  * 
  */
 public class PetBattleAction extends Action{
@@ -44,49 +44,49 @@ public class PetBattleAction extends Action{
 		String jumpterm = request.getParameter("jumpterm"); 
 		//String petGrade = request.getParameter("petGrade"); 
 		//String petFatigue = request.getParameter("petFatigue"); 
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øÐÐ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»Žé¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		PetService petService = new PetService();
 		
-		//µÃµ½³èÎï»ù±¾ÐÅÏ¢
+		//å¾—åˆ°å® ç‰©åŸºæœ¬ä¿¡æ¯
 		PetInfoDao petInfoDao = new PetInfoDao();
 		PetInfoVO pet = petInfoDao.getPet(Integer.parseInt(petPk));
 		
 		TimeShow timeShow = new TimeShow();
-		//È¡ÏûÕ½¶·
+		//å–æ¶ˆæˆ˜æ–—
 		if(Integer.parseInt(petIsBring) == 0){
 			//int petpk = dao.getPetPk(userTempBean.getPPk());
 			String pp = null ;
 			roleInfo.getRolePetInfo().setPetNextTime(pp);
 			petService.petIsBring(Integer.parseInt(pPk), Integer.parseInt(petPk), Integer.parseInt(petIsBring));
 		} else if(Integer.parseInt(petIsBring) == 1){
-		//²Î¼ÓÕ½¶·
+		//å‚åŠ æˆ˜æ–—
 		
 			String hint = null;
 			int pet_longe = petService.pet_longess(Integer.parseInt(petPk));
 			if(pet.getPetGrade() > (roleInfo.getBasicInfo().getGrade()+10)){
-				hint = "ÄúµÄ³èÎïµÈ¼¶¹ý¸ß";
+				hint = "æ‚¨çš„å® ç‰©ç­‰çº§è¿‡é«˜";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("success");
 			}else if(pet.getPetFatigue() < 10){
-				hint = "ÄúµÄ³èÎïÌåÁ¦²»×ã10µã";
+				hint = "æ‚¨çš„å® ç‰©ä½“åŠ›ä¸è¶³10ç‚¹";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("success");
 			}else  if(pet_longe == 0){
-				hint = "ÄúµÄ³èÎïÊÙÃüÎªÁã ²»ÄÜÔÚ³öÕ½ÁË£¡";
+				hint = "æ‚¨çš„å® ç‰©å¯¿å‘½ä¸ºé›¶ ä¸èƒ½åœ¨å‡ºæˆ˜äº†ï¼";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("success");  
 			}else{
-				//½«µ±Ç°Ê±¼ä·ÅÈë
-				int times = 5;// Á½¸öÐ¡Ê±
+				//å°†å½“å‰æ—¶é—´æ”¾å…¥
+				int times = 5;// ä¸¤ä¸ªå°æ—¶
 				roleInfo.getRolePetInfo().setPetAddTime(Time);
 				String ss = timeShow.time(times);
 				String dd = ss.replaceAll("-", "");
 				String ff = dd.replaceAll(" ", "");
 				String qq = ff.replaceAll(":", "");
 				roleInfo.getRolePetInfo().setPetNextTime(qq);
-				//½«5·ÖÖÓºóµÄÊ±¼ä·ÅÈë
+				//å°†5åˆ†é’ŸåŽçš„æ—¶é—´æ”¾å…¥
 				petService.petIsBring(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(petPk), Integer.parseInt(petIsBring));	
 			}	
 		}

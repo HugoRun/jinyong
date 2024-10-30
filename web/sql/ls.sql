@@ -1,271 +1,271 @@
 create database jygame_user;  
-/**********Íæ¼Ò×¢²á±í(u_login_info)***************/
+/**********ç©å®¶æ³¨å†Œè¡¨(u_login_info)***************/
 create table u_login_info ( 
-   u_pk             smallint unsigned not null auto_increment ,	 /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-   u_name           varchar(200)                              ,  /**¹ÜÀíÔ±µÇÂ¼Ãû*/ 
-   u_paw            varchar(200)                              ,  /**¹ÜÀíÔ±µÇÂ¼ÃÜÂë*/
-   login_state      int                                       ,  /**µÇÂ½×´Ì¬ 1ÎªµÇÂ½ 0 ÎªÎ´µÇÂ½*/ 
-   create_time      datetime                                  ,  /**´´½¨Ê±¼ä*/
+   u_pk             smallint unsigned not null auto_increment ,	 /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+   u_name           varchar(200)                              ,  /**ç®¡ç†å‘˜ç™»å½•å*/ 
+   u_paw            varchar(200)                              ,  /**ç®¡ç†å‘˜ç™»å½•å¯†ç */
+   login_state      int                                       ,  /**ç™»é™†çŠ¶æ€ 1ä¸ºç™»é™† 0 ä¸ºæœªç™»é™†*/ 
+   create_time      datetime                                  ,  /**åˆ›å»ºæ—¶é—´*/
    primary key (u_pk));
    
-/**********½ÇÉ«ĞÅÏ¢±í(u_part_info)***************/
+/**********è§’è‰²ä¿¡æ¯è¡¨(u_part_info)***************/
 create table u_part_info ( 
-   p_pk             smallint unsigned not null auto_increment ,	 /**½ÇÉ«id*/ 
-   u_pk             int                                       ,	 /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-   p_name           varchar(200)                              ,  /**½ÇÉ«Ãû*/
-   p_sex            int                                       ,  /**ĞÔ±ğ*/   
-   p_grade          int                                       ,  /**µÈ¼¶*/ 
-   p_up_hp          int                                       ,  /**ÉúÃüÖµ*/ 
-   p_hp             int                                       ,  /**µ±Ç°HPÖµ*/ 
-   p_up_mp          int                                       ,  /**ÉúÃüÖµ*/
-   p_mp             int                                       ,  /**·¨Á¦Öµ*/
-   p_force          int                                       ,  /**Á¦*/
-   p_agile          int                                       ,  /**Ãô*/
-   p_physique       int                                       ,  /**ÌåÆÇ	*/
-   p_savvy          int                                       ,  /**ÎòĞÔ	*/
-   p_gj             int                                       ,  /**¹¥»÷*/
-   p_fy             int                                       ,  /**·ÀÓù*/
-   p_zbgj_xiao      int                                       ,  /**×îĞ¡¹¥»÷*/
-   p_zbgj_da        int                                       ,  /**×î´ó¹¥»÷*/
-   p_zbfy_xiao      int                                       ,  /**×îĞ¡·ÀÓù*/
-   p_zbfy_da        int                                       ,  /**×î´ó·ÀÓù*/
-   p_teacher_type   int                                       ,  /**Ê¦Í½1Ê¦¸µ2Í½µÜ*/
-   p_teacher        int                                       ,  /**Ê¦¸µµÄÃû³Æid	*/
-   p_harness        int                                       ,  /**ÊÇ·ñÒÑ»é 1Ã»½á»é 2 ½á»é*/
-   p_fere           int                                       ,  /**°éÂÂID*/
-   p_title          int                                       ,  /**³ÆºÅ*/
-   p_title_name     varchar(500)                              ,  /**³ÆºÅÃû³Æ*/
-   p_born           int                                       ,  /**³öÉú*/
-   p_camp           int                                       ,  /**ÕóÓª*/
-   p_camp_name      varchar(500)                              ,  /**ÕóÓªÃû³Æ*/
-   p_school         int                                       ,  /**ÃÅÅÉ*/
-   p_school_name    varchar(500)                              ,  /**ÃÅÅÉÃû³Æ*/ 
-   p_experience     varchar(500)                              ,  /**¾­Ñé*/
-   p_benji_experience     varchar(500)                        ,  /**±¾¼¶¾­Ñé*/
-   p_xia_experience varchar(500)                              ,  /**ÏÂ¾­Ñé*/
-   p_silver         varchar(500)                              ,  /**Òø×Óµ¥Î» Á½*/
-   p_copper         varchar(500)                              ,  /**Í­Ç®µ¥Î» ÎÄ*/
-   p_depot          int                                       ,  /**²Ö¿â	*/
-   p_pk_value       int                                       ,  /**pkÖµ*/
-   p_pks            int                                       ,  /**¿ª¹Ø1¹Ø2¿ª*/
-   p_pk_changetime  datetime                                  ,  /**pk¿ª¹Ø¸Ä±äµÄÊ±¼ä*/
-   p_isInitiative	int								 default 0,  /**±êÊ¶ÊÇ·ñ´¦ÔÚÖ÷¶¯¹¥»÷×´Ì¬£¬0·ñ£»1ÊÇ*/
-   p_isPassivity	int								 default 0,  /**±êÊ¶ÊÇ·ñ´¦ÔÚ±»¶¯¹¥»÷×´Ì¬£¬0·ñ£»1ÊÇ*/	 
-   p_map            varchar(200)                              ,  /**ËùÔÚ³¡¾°ID*/
-   p_procession     int                                       ,  /**ÊÇ·ñ×é¶Ó0ÎŞ1×é*/
-   p_procession_numner  varchar(200)                          ,  /**¶ÓÎé±àºÅ*/
-   p_tong           int                                       ,  /**°ï»á*/
-   p_tong_name      varchar(500)                              ,  /**°ï»áÃû³Æ*/
+   p_pk             smallint unsigned not null auto_increment ,	 /**è§’è‰²id*/ 
+   u_pk             int                                       ,	 /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+   p_name           varchar(200)                              ,  /**è§’è‰²å*/
+   p_sex            int                                       ,  /**æ€§åˆ«*/   
+   p_grade          int                                       ,  /**ç­‰çº§*/ 
+   p_up_hp          int                                       ,  /**ç”Ÿå‘½å€¼*/ 
+   p_hp             int                                       ,  /**å½“å‰HPå€¼*/ 
+   p_up_mp          int                                       ,  /**ç”Ÿå‘½å€¼*/
+   p_mp             int                                       ,  /**æ³•åŠ›å€¼*/
+   p_force          int                                       ,  /**åŠ›*/
+   p_agile          int                                       ,  /**æ•*/
+   p_physique       int                                       ,  /**ä½“é­„	*/
+   p_savvy          int                                       ,  /**æ‚Ÿæ€§	*/
+   p_gj             int                                       ,  /**æ”»å‡»*/
+   p_fy             int                                       ,  /**é˜²å¾¡*/
+   p_zbgj_xiao      int                                       ,  /**æœ€å°æ”»å‡»*/
+   p_zbgj_da        int                                       ,  /**æœ€å¤§æ”»å‡»*/
+   p_zbfy_xiao      int                                       ,  /**æœ€å°é˜²å¾¡*/
+   p_zbfy_da        int                                       ,  /**æœ€å¤§é˜²å¾¡*/
+   p_teacher_type   int                                       ,  /**å¸ˆå¾’1å¸ˆå‚…2å¾’å¼Ÿ*/
+   p_teacher        int                                       ,  /**å¸ˆå‚…çš„åç§°id	*/
+   p_harness        int                                       ,  /**æ˜¯å¦å·²å©š 1æ²¡ç»“å©š 2 ç»“å©š*/
+   p_fere           int                                       ,  /**ä¼´ä¾£ID*/
+   p_title          int                                       ,  /**ç§°å·*/
+   p_title_name     varchar(500)                              ,  /**ç§°å·åç§°*/
+   p_born           int                                       ,  /**å‡ºç”Ÿ*/
+   p_camp           int                                       ,  /**é˜µè¥*/
+   p_camp_name      varchar(500)                              ,  /**é˜µè¥åç§°*/
+   p_school         int                                       ,  /**é—¨æ´¾*/
+   p_school_name    varchar(500)                              ,  /**é—¨æ´¾åç§°*/ 
+   p_experience     varchar(500)                              ,  /**ç»éªŒ*/
+   p_benji_experience     varchar(500)                        ,  /**æœ¬çº§ç»éªŒ*/
+   p_xia_experience varchar(500)                              ,  /**ä¸‹ç»éªŒ*/
+   p_silver         varchar(500)                              ,  /**é“¶å­å•ä½ ä¸¤*/
+   p_copper         varchar(500)                              ,  /**é“œé’±å•ä½ æ–‡*/
+   p_depot          int                                       ,  /**ä»“åº“	*/
+   p_pk_value       int                                       ,  /**pkå€¼*/
+   p_pks            int                                       ,  /**å¼€å…³1å…³2å¼€*/
+   p_pk_changetime  datetime                                  ,  /**pkå¼€å…³æ”¹å˜çš„æ—¶é—´*/
+   p_isInitiative	int								 default 0,  /**æ ‡è¯†æ˜¯å¦å¤„åœ¨ä¸»åŠ¨æ”»å‡»çŠ¶æ€ï¼Œ0å¦ï¼›1æ˜¯*/
+   p_isPassivity	int								 default 0,  /**æ ‡è¯†æ˜¯å¦å¤„åœ¨è¢«åŠ¨æ”»å‡»çŠ¶æ€ï¼Œ0å¦ï¼›1æ˜¯*/	 
+   p_map            varchar(200)                              ,  /**æ‰€åœ¨åœºæ™¯ID*/
+   p_procession     int                                       ,  /**æ˜¯å¦ç»„é˜Ÿ0æ— 1ç»„*/
+   p_procession_numner  varchar(200)                          ,  /**é˜Ÿä¼ç¼–å·*/
+   p_tong           int                                       ,  /**å¸®ä¼š*/
+   p_tong_name      varchar(500)                              ,  /**å¸®ä¼šåç§°*/
    
-   p_wrap_content		int									,  /**°ü¹üÈİÁ¿*/
-   p_wrap_spare			int									,  /**°ü¹üÊ£ÓàÊıÁ¿*/
+   p_wrap_content		int									,  /**åŒ…è£¹å®¹é‡*/
+   p_wrap_spare			int									,  /**åŒ…è£¹å‰©ä½™æ•°é‡*/
    
-   create_time      datetime                                  ,  /**´´½¨Ê±¼ä*/
+   create_time      datetime                                  ,  /**åˆ›å»ºæ—¶é—´*/
    primary key (p_pk));
     
-/**********½ÇÉ«µÇÂ½¼ÇÂ¼±í(u_part_annal)***************/
+/**********è§’è‰²ç™»é™†è®°å½•è¡¨(u_part_annal)***************/
 create table u_part_annal ( 
-   a_pk             smallint unsigned not null auto_increment ,	 /**½ÇÉ«µÇÂ½¼ÇÂ¼±íid*/  
-   u_pk             int                                       ,	 /**´´½¨ÈËÔ±ĞÅÏ¢id*/
-   p_pk             int                                       ,	 /**½ÇÉ«id*/
-   p_name           varchar(200)                              ,  /**½ÇÉ«Ãû*/  
-   p_map            varchar(200)                              ,  /**ËùÔÚ³¡¾°ID*/
-   a_ken            varchar(200)                              ,  /**ËùÔÚ³¡¾°ÊÓÒ°*/  
+   a_pk             smallint unsigned not null auto_increment ,	 /**è§’è‰²ç™»é™†è®°å½•è¡¨id*/  
+   u_pk             int                                       ,	 /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/
+   p_pk             int                                       ,	 /**è§’è‰²id*/
+   p_name           varchar(200)                              ,  /**è§’è‰²å*/  
+   p_map            varchar(200)                              ,  /**æ‰€åœ¨åœºæ™¯ID*/
+   a_ken            varchar(200)                              ,  /**æ‰€åœ¨åœºæ™¯è§†é‡*/  
    primary key (a_pk));
 
 
- /**********½ÇÉ«×°±¸±í(u_trait_info)***************/
+ /**********è§’è‰²è£…å¤‡è¡¨(u_trait_info)***************/
 create table u_trait_info ( 
-   t_pk             smallint unsigned not null auto_increment ,	 /**½ÇÉ«×°±¸id*/ 
-   u_pk             int                                       ,	 /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-   p_pk             int                                       ,	 /**½ÇÉ«id*/ 
-   t_caput          int                                       ,  /**Í·²¿×°±¸*/
-   t_toufy_xiao     int                                 default 0,  /**Í·²¿×°±¸×îĞ¡·ÀÓù*/
-   t_toufy_da       int                                 default 0,  /**Í·²¿×°±¸×î´ó·ÀÓù*/
-   t_tou_li         int                                 default 0,  /**Í·²¿Á¦Á¿*/
-   t_tou_min        int                                 default 0,  /**Í·²¿Ãô½İ*/
-   t_tou_ti         int                                 default 0,  /**Í·²¿ÆøÑª*/
-   t_tou_wu         int                                 default 0,  /**Í·²¿ÎòĞÔ*/  
-   t_body           int                                       ,   /**ÉíÌå×°±¸*/
-   t_tify_xiao      int                                 default 0,/**ÉíÌå×°±¸×îĞ¡·ÀÓù*/
-   t_tify_da        int                                 default 0,/**ÉíÌå×°±¸×î´ó·ÀÓù*/
-   t_ti_li          int                                 default 0,/**ÉíÌåÁ¦Á¿*/
-   t_ti_min         int                                 default 0,/**ÉíÌåÃô½İ*/
-   t_ti_ti          int                                 default 0,/**ÉíÌåÆøÑª*/
-   t_ti_wu          int                                 default 0,/**ÉíÌåÎòĞÔ*/  
-   t_crura          int                                 default 0,/**ÍÈ²¿×°±¸*/
-   t_tuify_xiao     int                                 default 0,/**ÍÈ²¿×°±¸×îĞ¡·ÀÓù*/
-   t_tuify_da       int                                 default 0,/**ÍÈ²¿×°±¸×î´ó·ÀÓù*/
-   t_tui_li         int                                 default 0,/**ÍÈ²¿Á¦Á¿*/
-   t_tui_min        int                                 default 0,/**ÍÈ²¿Ãô½İ*/
-   t_tui_ti         int                                 default 0,/**ÍÈ²¿ÆøÑª*/
-   t_tui_wu         int                                 default 0,/**ÍÈ²¿ÎòĞÔ*/  
-   t_feet           int                                       ,   /**½Å²¿×°±¸*/
-   t_jiaofy_xiao    int                                default 0, /**½Å²¿×°±¸×îĞ¡·ÀÓù*/
-   t_jiaofy_da      int                                default 0, /**½Å²¿×°±¸×î´ó·ÀÓù*/
-   t_jiao_li        int                                default 0, /**½Å²¿Á¦Á¿*/
-   t_jiao_min       int                                default 0, /**½Å²¿Ãô½İ*/
-   t_jiao_ti        int                                default 0, /**½Å²¿ÆøÑª*/
-   t_jiao_wu        int                                default 0, /**½Å²¿ÎòĞÔ*/  
-   t_necklace       int                                       ,   /**ÏîÁ´*/
-   t_xlfy_xiao      int                                default 0, /**ÏîÁ´×îĞ¡·ÀÓù*/
-   t_xlfy_da        int                                default 0, /**ÏîÁ´×î´ó·ÀÓù*/ 
-   t_xlgj_xiao      int                                default 0, /**ÏîÁ´×îĞ¡¹¥»÷*/
-   t_xlgj_da        int                                default 0, /**ÏîÁ´×î´ó¹¥»÷*/
-   t_xl_li          int                                default 0, /**ÏîÁ´Á¦Á¿*/
-   t_xl_min         int                                default 0, /**ÏîÁ´Ãô½İ*/
-   t_xl_ti          int                                default 0, /**ÏîÁ´ÆøÑª*/
-   t_xl_wu          int                                default 0, /**ÏîÁ´ÎòĞÔ*/ 
-   t_shouzhuo       int                                       ,   /**ÊÖïí*/
-   t_szfy_xiao      int                               default 0,  /**ÊÖïí×îĞ¡·ÀÓù*/
-   t_szfy_da        int                               default 0,  /**ÊÖïí×î´ó·ÀÓù*/ 
-   t_szgj_xiao      int                               default 0,  /**ÊÖïí×îĞ¡¹¥»÷*/
-   t_szgj_da        int                               default 0,  /**ÊÖïí×î´ó¹¥»÷*/
-   t_sz_li          int                               default 0,  /**ÊÖïíÁ¦Á¿*/
-   t_sz_min         int                               default 0,  /**ÊÖïíÃô½İ*/
-   t_sz_ti          int                               default 0,  /**ÊÖïíÆøÑª*/
-   t_sz_wu          int                               default 0,  /**ÊÖïíÎòĞÔ*/  
-   t_finger         int                                       ,   /**½äÖ¸*/
-   t_jzfy_xiao      int                               default 0,  /**½äÖ¸×îĞ¡·ÀÓù*/
-   t_jzfy_da        int                               default 0,  /**½äÖ¸×î´ó·ÀÓù*/ 
-   t_jzgj_xiao      int                               default 0,  /**½äÖ¸×îĞ¡¹¥»÷*/
-   t_jzgj_da        int                               default 0,  /**½äÖ¸×î´ó¹¥»÷*/
-   t_jz_li          int                               default 0,  /**½äÖ¸Á¦Á¿*/
-   t_jz_min         int                               default 0,  /**½äÖ¸Ãô½İ*/
-   t_jz_ti          int                               default 0,  /**½äÖ¸ÆøÑª*/
-   t_jz_wu          int                               default 0,  /**½äÖ¸ÎòĞÔ*/ 
-   t_arm            int                                       ,   /**ÎäÆ÷*/ 
-   t_wqgj_xiao      int                               default 0,  /**ÎäÆ÷×îĞ¡¹¥»÷*/
-   t_wqgj_da        int                               default 0,  /**ÎäÆ÷×î´ó¹¥»÷*/
-   t_wq_li          int                               default 0,  /**ÎäÆ÷Á¦Á¿*/
-   t_wq_min         int                               default 0,  /**ÎäÆ÷Ãô½İ*/
-   t_wq_ti          int                               default 0,  /**ÎäÆ÷ÆøÑª*/
-   t_wq_wu          int                               default 0,  /**ÎäÆ÷ÎòĞÔ*/  
-   t_zbgj_xiao      int                                       ,   /**×îĞ¡¹¥»÷*/
-   t_zbgj_da        int                                       ,   /**×î´ó¹¥»÷*/
-   t_zbfy_xiao      int                                       ,   /**×îĞ¡·ÀÓù*/
-   t_zbfy_da        int                                       ,   /**×î´ó·ÀÓù*/ 
-   t_li             int                                       ,   /**Á¦Á¿*/
-   t_min            int                                       ,   /**Ãô½İ*/
-   t_ti             int                                       ,   /**ÆøÑª*/
-   t_wu             int                                       ,   /**ÎòĞÔ*/ 
-   create_time      datetime                                  ,   /**´´½¨Ê±¼ä*/
+   t_pk             smallint unsigned not null auto_increment ,	 /**è§’è‰²è£…å¤‡id*/ 
+   u_pk             int                                       ,	 /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+   p_pk             int                                       ,	 /**è§’è‰²id*/ 
+   t_caput          int                                       ,  /**å¤´éƒ¨è£…å¤‡*/
+   t_toufy_xiao     int                                 default 0,  /**å¤´éƒ¨è£…å¤‡æœ€å°é˜²å¾¡*/
+   t_toufy_da       int                                 default 0,  /**å¤´éƒ¨è£…å¤‡æœ€å¤§é˜²å¾¡*/
+   t_tou_li         int                                 default 0,  /**å¤´éƒ¨åŠ›é‡*/
+   t_tou_min        int                                 default 0,  /**å¤´éƒ¨æ•æ·*/
+   t_tou_ti         int                                 default 0,  /**å¤´éƒ¨æ°”è¡€*/
+   t_tou_wu         int                                 default 0,  /**å¤´éƒ¨æ‚Ÿæ€§*/  
+   t_body           int                                       ,   /**èº«ä½“è£…å¤‡*/
+   t_tify_xiao      int                                 default 0,/**èº«ä½“è£…å¤‡æœ€å°é˜²å¾¡*/
+   t_tify_da        int                                 default 0,/**èº«ä½“è£…å¤‡æœ€å¤§é˜²å¾¡*/
+   t_ti_li          int                                 default 0,/**èº«ä½“åŠ›é‡*/
+   t_ti_min         int                                 default 0,/**èº«ä½“æ•æ·*/
+   t_ti_ti          int                                 default 0,/**èº«ä½“æ°”è¡€*/
+   t_ti_wu          int                                 default 0,/**èº«ä½“æ‚Ÿæ€§*/  
+   t_crura          int                                 default 0,/**è…¿éƒ¨è£…å¤‡*/
+   t_tuify_xiao     int                                 default 0,/**è…¿éƒ¨è£…å¤‡æœ€å°é˜²å¾¡*/
+   t_tuify_da       int                                 default 0,/**è…¿éƒ¨è£…å¤‡æœ€å¤§é˜²å¾¡*/
+   t_tui_li         int                                 default 0,/**è…¿éƒ¨åŠ›é‡*/
+   t_tui_min        int                                 default 0,/**è…¿éƒ¨æ•æ·*/
+   t_tui_ti         int                                 default 0,/**è…¿éƒ¨æ°”è¡€*/
+   t_tui_wu         int                                 default 0,/**è…¿éƒ¨æ‚Ÿæ€§*/  
+   t_feet           int                                       ,   /**è„šéƒ¨è£…å¤‡*/
+   t_jiaofy_xiao    int                                default 0, /**è„šéƒ¨è£…å¤‡æœ€å°é˜²å¾¡*/
+   t_jiaofy_da      int                                default 0, /**è„šéƒ¨è£…å¤‡æœ€å¤§é˜²å¾¡*/
+   t_jiao_li        int                                default 0, /**è„šéƒ¨åŠ›é‡*/
+   t_jiao_min       int                                default 0, /**è„šéƒ¨æ•æ·*/
+   t_jiao_ti        int                                default 0, /**è„šéƒ¨æ°”è¡€*/
+   t_jiao_wu        int                                default 0, /**è„šéƒ¨æ‚Ÿæ€§*/  
+   t_necklace       int                                       ,   /**é¡¹é“¾*/
+   t_xlfy_xiao      int                                default 0, /**é¡¹é“¾æœ€å°é˜²å¾¡*/
+   t_xlfy_da        int                                default 0, /**é¡¹é“¾æœ€å¤§é˜²å¾¡*/ 
+   t_xlgj_xiao      int                                default 0, /**é¡¹é“¾æœ€å°æ”»å‡»*/
+   t_xlgj_da        int                                default 0, /**é¡¹é“¾æœ€å¤§æ”»å‡»*/
+   t_xl_li          int                                default 0, /**é¡¹é“¾åŠ›é‡*/
+   t_xl_min         int                                default 0, /**é¡¹é“¾æ•æ·*/
+   t_xl_ti          int                                default 0, /**é¡¹é“¾æ°”è¡€*/
+   t_xl_wu          int                                default 0, /**é¡¹é“¾æ‚Ÿæ€§*/ 
+   t_shouzhuo       int                                       ,   /**æ‰‹é•¯*/
+   t_szfy_xiao      int                               default 0,  /**æ‰‹é•¯æœ€å°é˜²å¾¡*/
+   t_szfy_da        int                               default 0,  /**æ‰‹é•¯æœ€å¤§é˜²å¾¡*/ 
+   t_szgj_xiao      int                               default 0,  /**æ‰‹é•¯æœ€å°æ”»å‡»*/
+   t_szgj_da        int                               default 0,  /**æ‰‹é•¯æœ€å¤§æ”»å‡»*/
+   t_sz_li          int                               default 0,  /**æ‰‹é•¯åŠ›é‡*/
+   t_sz_min         int                               default 0,  /**æ‰‹é•¯æ•æ·*/
+   t_sz_ti          int                               default 0,  /**æ‰‹é•¯æ°”è¡€*/
+   t_sz_wu          int                               default 0,  /**æ‰‹é•¯æ‚Ÿæ€§*/  
+   t_finger         int                                       ,   /**æˆ’æŒ‡*/
+   t_jzfy_xiao      int                               default 0,  /**æˆ’æŒ‡æœ€å°é˜²å¾¡*/
+   t_jzfy_da        int                               default 0,  /**æˆ’æŒ‡æœ€å¤§é˜²å¾¡*/ 
+   t_jzgj_xiao      int                               default 0,  /**æˆ’æŒ‡æœ€å°æ”»å‡»*/
+   t_jzgj_da        int                               default 0,  /**æˆ’æŒ‡æœ€å¤§æ”»å‡»*/
+   t_jz_li          int                               default 0,  /**æˆ’æŒ‡åŠ›é‡*/
+   t_jz_min         int                               default 0,  /**æˆ’æŒ‡æ•æ·*/
+   t_jz_ti          int                               default 0,  /**æˆ’æŒ‡æ°”è¡€*/
+   t_jz_wu          int                               default 0,  /**æˆ’æŒ‡æ‚Ÿæ€§*/ 
+   t_arm            int                                       ,   /**æ­¦å™¨*/ 
+   t_wqgj_xiao      int                               default 0,  /**æ­¦å™¨æœ€å°æ”»å‡»*/
+   t_wqgj_da        int                               default 0,  /**æ­¦å™¨æœ€å¤§æ”»å‡»*/
+   t_wq_li          int                               default 0,  /**æ­¦å™¨åŠ›é‡*/
+   t_wq_min         int                               default 0,  /**æ­¦å™¨æ•æ·*/
+   t_wq_ti          int                               default 0,  /**æ­¦å™¨æ°”è¡€*/
+   t_wq_wu          int                               default 0,  /**æ­¦å™¨æ‚Ÿæ€§*/  
+   t_zbgj_xiao      int                                       ,   /**æœ€å°æ”»å‡»*/
+   t_zbgj_da        int                                       ,   /**æœ€å¤§æ”»å‡»*/
+   t_zbfy_xiao      int                                       ,   /**æœ€å°é˜²å¾¡*/
+   t_zbfy_da        int                                       ,   /**æœ€å¤§é˜²å¾¡*/ 
+   t_li             int                                       ,   /**åŠ›é‡*/
+   t_min            int                                       ,   /**æ•æ·*/
+   t_ti             int                                       ,   /**æ°”è¡€*/
+   t_wu             int                                       ,   /**æ‚Ÿæ€§*/ 
+   create_time      datetime                                  ,   /**åˆ›å»ºæ—¶é—´*/
    primary key (t_pk));
    
-/**********½ÇÉ«°ü¸¤±í(u_wrap_info)***************/
+/**********è§’è‰²åŒ…è¢±è¡¨(u_wrap_info)***************/
 create table u_wrap_info ( 
-   w_pk             smallint unsigned not null auto_increment ,	 /**½ÇÉ«°ü¸¤±í*/ 
-   u_pk             int                                       ,	 /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-   p_pk             int                                       ,	 /**½ÇÉ«id*/
-   w_type           int                                       ,	 /**°ü¸¤·ÖÀà*/ 
-   w_number         int                                       ,	 /**°ü¹ü¸ñÊı*/ 
-   w_article        varchar(500)                              ,  /**°ü¹üÎïÆ·*/
-   create_time      datetime                                  ,  /**´´½¨Ê±¼ä*/
+   w_pk             smallint unsigned not null auto_increment ,	 /**è§’è‰²åŒ…è¢±è¡¨*/ 
+   u_pk             int                                       ,	 /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+   p_pk             int                                       ,	 /**è§’è‰²id*/
+   w_type           int                                       ,	 /**åŒ…è¢±åˆ†ç±»*/ 
+   w_number         int                                       ,	 /**åŒ…è£¹æ ¼æ•°*/ 
+   w_article        varchar(500)                              ,  /**åŒ…è£¹ç‰©å“*/
+   create_time      datetime                                  ,  /**åˆ›å»ºæ—¶é—´*/
    primary key (w_pk));
  
-/**********½ÇÉ«ÎåĞĞ±í(u_limerick_info)***************/
+/**********è§’è‰²äº”è¡Œè¡¨(u_limerick_info)***************/
 create table u_limerick_info ( 
-   l_pk             smallint unsigned not null auto_increment ,	 /**½ÇÉ«id*/ 
-   u_pk             int                                       ,	 /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-   p_pk             int                                       ,	 /**½ÇÉ«id*/
-   l_jin_fy         int                                       ,	 /**½ğ·ÀÓùÁ¦*/
-   l_mu_fy          int                                       ,	 /**Ä¾·ÀÓùÁ¦*/
-   l_shui_fy        int                                       ,	 /**Ë®·ÀÓùÁ¦*/
-   l_huo_fy         int                                       ,	 /**»ğ·ÀÓùÁ¦*/
-   l_tu_fy          int                                       ,	 /**ÍÁ·ÀÓùÁ¦*/
-   l_jin_gj         int                                       ,	 /**½ğ¹¥»÷Á¦*/
-   l_mu_gj          int                                       ,	 /**Ä¾¹¥»÷Á¦*/
-   l_shui_gj        int                                       ,	 /**Ë®¹¥»÷Á¦*/
-   l_huo_gj         int                                       ,	 /**»ğ¹¥»÷Á¦*/
-   l_tu_gj          int                                       ,	 /**ÍÁ¹¥»÷Á¦*/
-   create_time      datetime                                  ,  /**´´½¨Ê±¼ä*/
+   l_pk             smallint unsigned not null auto_increment ,	 /**è§’è‰²id*/ 
+   u_pk             int                                       ,	 /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+   p_pk             int                                       ,	 /**è§’è‰²id*/
+   l_jin_fy         int                                       ,	 /**é‡‘é˜²å¾¡åŠ›*/
+   l_mu_fy          int                                       ,	 /**æœ¨é˜²å¾¡åŠ›*/
+   l_shui_fy        int                                       ,	 /**æ°´é˜²å¾¡åŠ›*/
+   l_huo_fy         int                                       ,	 /**ç«é˜²å¾¡åŠ›*/
+   l_tu_fy          int                                       ,	 /**åœŸé˜²å¾¡åŠ›*/
+   l_jin_gj         int                                       ,	 /**é‡‘æ”»å‡»åŠ›*/
+   l_mu_gj          int                                       ,	 /**æœ¨æ”»å‡»åŠ›*/
+   l_shui_gj        int                                       ,	 /**æ°´æ”»å‡»åŠ›*/
+   l_huo_gj         int                                       ,	 /**ç«æ”»å‡»åŠ›*/
+   l_tu_gj          int                                       ,	 /**åœŸæ”»å‡»åŠ›*/
+   create_time      datetime                                  ,  /**åˆ›å»ºæ—¶é—´*/
    primary key (l_pk)); 
    
-/**********½ÇÉ«³èÎï±í(p_pet_info)***************/ 
+/**********è§’è‰²å® ç‰©è¡¨(p_pet_info)***************/ 
 create table p_pet_info(
 	pet_pk			 smallint unsigned not null auto_increment , /**ID */
-	p_pk			 int 					                   , /**½ÇÉ«id*/
-	pet_id			 int					                   , /**¶ÔÓ¦pet±íÀïµÄid*/
-	pet_name		 varchar(200)				               , /**³èÎïÃû³Æ*/
-	pet_nickname	 varchar(200)				               , /**³èÎïêÇ³Æ*/
-	pet_grade		 int					                   , /**µÈ¼¶*/
-	pet_exp			 varchar(200)			                   , /**¾­Ñé*/
-	pet_xia_exp		 varchar(200)                              , /**ÏÂ¼¶¾­Ñé´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé*/
-	pet_gj_xiao      int                     		           , /**×îĞ¡¹¥»÷*/
-	pet_gj_da        int					                   , /**×î´ó¹¥»÷*/
-	pet_sale		 int			                           , /**Âô³ö¼Û¸ñ*/
-	pet_img			 varchar(200)                              , /**³èÎïÍ¼Æ¬*/
-	pet_grow	     int                                       , /**³èÎï³É³¤ÂÊ¡±*/
-	pet_wx           int                  			           , /**ÎåĞĞÊôĞÔ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
-    pet_wx_value     int           				               , /**ÎåĞĞÊôĞÔÖµ*/ 
-    pet_skill_one	 int                                       , /**¼¼ÄÜ1	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_two	 int                          	           , /**¼¼ÄÜ2	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_three	 int                        	           , /**¼¼ÄÜ3	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_four	 int                          		       , /**¼¼ÄÜ4	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_skill_five	 int                                  	   , /**¼¼ÄÜ5	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
-    pet_life		 int			                           , /**ÊÙÃü**/
-    pet_type         int                                       , /**Éı¼¶	ÊÇ·ñ¿É×ÔÈ»Éı¼¶*/	
-    pet_isBring		 int					                   , /**ÊÇ·ñÔÚÉíÉÏ:1±íÊ¾ÔÚÕ½¶·×´Ì¬£¬0±íÊ¾·ñ*/
-    pet_fatigue		 int			 	                       , /**Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã*/
+	p_pk			 int 					                   , /**è§’è‰²id*/
+	pet_id			 int					                   , /**å¯¹åº”petè¡¨é‡Œçš„id*/
+	pet_name		 varchar(200)				               , /**å® ç‰©åç§°*/
+	pet_nickname	 varchar(200)				               , /**å® ç‰©æ˜µç§°*/
+	pet_grade		 int					                   , /**ç­‰çº§*/
+	pet_exp			 varchar(200)			                   , /**ç»éªŒ*/
+	pet_xia_exp		 varchar(200)                              , /**ä¸‹çº§ç»éªŒè¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ*/
+	pet_gj_xiao      int                     		           , /**æœ€å°æ”»å‡»*/
+	pet_gj_da        int					                   , /**æœ€å¤§æ”»å‡»*/
+	pet_sale		 int			                           , /**å–å‡ºä»·æ ¼*/
+	pet_img			 varchar(200)                              , /**å® ç‰©å›¾ç‰‡*/
+	pet_grow	     int                                       , /**å® ç‰©æˆé•¿ç‡â€*/
+	pet_wx           int                  			           , /**äº”è¡Œå±æ€§é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
+    pet_wx_value     int           				               , /**äº”è¡Œå±æ€§å€¼*/ 
+    pet_skill_one	 int                                       , /**æŠ€èƒ½1	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_two	 int                          	           , /**æŠ€èƒ½2	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_three	 int                        	           , /**æŠ€èƒ½3	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_four	 int                          		       , /**æŠ€èƒ½4	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_skill_five	 int                                  	   , /**æŠ€èƒ½5	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
+    pet_life		 int			                           , /**å¯¿å‘½**/
+    pet_type         int                                       , /**å‡çº§	æ˜¯å¦å¯è‡ªç„¶å‡çº§*/	
+    pet_isBring		 int					                   , /**æ˜¯å¦åœ¨èº«ä¸Š:1è¡¨ç¤ºåœ¨æˆ˜æ–—çŠ¶æ€ï¼Œ0è¡¨ç¤ºå¦*/
+    pet_fatigue		 int			 	                       , /**ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹*/
  primary key (pet_pk));
   
-/**********½ÇÉ«¼¼ÄÜ±í(u_skill_info)***************/
+/**********è§’è‰²æŠ€èƒ½è¡¨(u_skill_info)***************/
 create table u_skill_info ( 
    s_pk             smallint unsigned not null auto_increment ,	 /**id*/ 
-   p_pk             int                                       ,	 /**½ÇÉ«id*/
-   sk_id         	int                                       ,	 /**¼¼ÄÜid*/ 
-   sk_name			varchar(200)										  ,	 /**¼¼ÄÜÃû×Ö*/ 
-   sk_usetime		datetime									,/**±¾¼¼ÄÜÉÏÒ»´ÎµÄÊ¹ÓÃµÄÊ±¼ä*/
-   create_time      datetime                                  ,  /**´´½¨Ê±¼ä*/
+   p_pk             int                                       ,	 /**è§’è‰²id*/
+   sk_id         	int                                       ,	 /**æŠ€èƒ½id*/ 
+   sk_name			varchar(200)										  ,	 /**æŠ€èƒ½åå­—*/ 
+   sk_usetime		datetime									,/**æœ¬æŠ€èƒ½ä¸Šä¸€æ¬¡çš„ä½¿ç”¨çš„æ—¶é—´*/
+   create_time      datetime                                  ,  /**åˆ›å»ºæ—¶é—´*/
    primary key (s_pk)); 
   
-/**********½ÇÉ«³èÎï½»Ò×±í(u_pet_sell)***************/ 
+/**********è§’è‰²å® ç‰©äº¤æ˜“è¡¨(u_pet_sell)***************/ 
 create table u_pet_sell(
 	ps_pk			     smallint unsigned not null auto_increment , /**ID */
-	p_pk			     int 					                   , /**ÇëÇó½ÇÉ«id*/
-	p_by_pk			     int 					                   , /**±»ÇëÇó½ÇÉ«id*/ 
-	pet_id			     int					                   , /**¶ÔÓ¦pet±íÀïµÄid*/
-	ps_silver_money      int                                       , /**·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÒø×Ó*/
-    ps_copper_money      int                                       , /**·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÍ­Ç®*/
+	p_pk			     int 					                   , /**è¯·æ±‚è§’è‰²id*/
+	p_by_pk			     int 					                   , /**è¢«è¯·æ±‚è§’è‰²id*/ 
+	pet_id			     int					                   , /**å¯¹åº”petè¡¨é‡Œçš„id*/
+	ps_silver_money      int                                       , /**å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“¶å­*/
+    ps_copper_money      int                                       , /**å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“œé’±*/
  primary key (ps_pk));
  
-/**********½ÇÉ«½»Ò×(u_sell_info)***************/
+/**********è§’è‰²äº¤æ˜“(u_sell_info)***************/
 create table u_sell_info ( 
    s_pk                   smallint unsigned not null auto_increment ,	 /**id*/
-   p_pk                   int                                       ,	 /**·¢³öÇëÇó½ÇÉ«id*/
-   p_by_pk                int                                       ,	 /**±»ÇëÇó½ÇÉ«id*/
-   s_wuping               int                                       ,    /**·¢³öÇëÇóÒª½»Ò×µÄÎïÆ·*/
-   s_wp_type              int                                       ,    /**·¢³öÇëÇóÒªÎïÆ·ÀàĞÍ*/
-   s_wp_number            int                                       ,    /**·¢³öÇëÇóÒªÎïÆ·µÄÊıÁ¿*/ 
-   s_wp_silver_money      int                                       ,    /**·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÒø×Ó*/
-   s_wp_copper_money      int                                       ,    /**·¢³öÇëÇóÒªÎïÆ·µÄ¼Û¸ñµÄÍ­Ç®*/ 
-   s_silver_money         int                                       ,    /**·¢³öÇëÇóÒª½»Ò×µÄÒø×Ó*/
-   s_copper_money         int                                       ,    /**·¢³öÇëÇóÒª½»Ò×µÄÍ­Ç®*/ 
-   s_sf_ok                int                                       ,    /**·¢³öÇëÇóµÄÍæ¼ÒÊÇ·ñÈ·ÈÏ0Ã»È·ÈÏ1È·ÈÏ*/ 
-   s_by_wuping            int                                       ,    /**±»ÇëÇóÒª½»Ò×µÄÎïÆ·*/
-   s_by_wp_type           int                                       ,    /**±»ÇëÇóÒªÎïÆ·ÀàĞÍ*/
-   s_by_wp_number         int                                       ,    /**±»ÇëÇóÒªÎïÆ·µÄÊıÁ¿*/ 
-   s_by_silver_money      int                                       ,    /**±»ÇëÇóÒªÎïÆ·µÄÒø×Ó*/
-   s_by_copper_money      int                                       ,    /**±»ÇëÇóÒªÎïÆ·µÄÍ­Ç®*/ 
-   s_by_silver            int                                       ,    /**±»ÇëÇóÒªÎïÆ·Òª½»Ò×µÄÒø×Ó*/
-   s_by_copper            int                                       ,    /**±»ÇëÇóÒªÎïÆ·Òª½»Ò×µÄÍ­Ç®*/ 
-   s_by_sf_ok             int                                       ,    /**±»ÇëÇóµÄÍæ¼ÒÊÇ·ñÈ·ÈÏ0Ã»È·ÈÏ1È·ÈÏ*/ 
-   create_time            datetime                                  ,    /**´´½¨Ê±¼ä*/
+   p_pk                   int                                       ,	 /**å‘å‡ºè¯·æ±‚è§’è‰²id*/
+   p_by_pk                int                                       ,	 /**è¢«è¯·æ±‚è§’è‰²id*/
+   s_wuping               int                                       ,    /**å‘å‡ºè¯·æ±‚è¦äº¤æ˜“çš„ç‰©å“*/
+   s_wp_type              int                                       ,    /**å‘å‡ºè¯·æ±‚è¦ç‰©å“ç±»å‹*/
+   s_wp_number            int                                       ,    /**å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„æ•°é‡*/ 
+   s_wp_silver_money      int                                       ,    /**å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“¶å­*/
+   s_wp_copper_money      int                                       ,    /**å‘å‡ºè¯·æ±‚è¦ç‰©å“çš„ä»·æ ¼çš„é“œé’±*/ 
+   s_silver_money         int                                       ,    /**å‘å‡ºè¯·æ±‚è¦äº¤æ˜“çš„é“¶å­*/
+   s_copper_money         int                                       ,    /**å‘å‡ºè¯·æ±‚è¦äº¤æ˜“çš„é“œé’±*/ 
+   s_sf_ok                int                                       ,    /**å‘å‡ºè¯·æ±‚çš„ç©å®¶æ˜¯å¦ç¡®è®¤0æ²¡ç¡®è®¤1ç¡®è®¤*/ 
+   s_by_wuping            int                                       ,    /**è¢«è¯·æ±‚è¦äº¤æ˜“çš„ç‰©å“*/
+   s_by_wp_type           int                                       ,    /**è¢«è¯·æ±‚è¦ç‰©å“ç±»å‹*/
+   s_by_wp_number         int                                       ,    /**è¢«è¯·æ±‚è¦ç‰©å“çš„æ•°é‡*/ 
+   s_by_silver_money      int                                       ,    /**è¢«è¯·æ±‚è¦ç‰©å“çš„é“¶å­*/
+   s_by_copper_money      int                                       ,    /**è¢«è¯·æ±‚è¦ç‰©å“çš„é“œé’±*/ 
+   s_by_silver            int                                       ,    /**è¢«è¯·æ±‚è¦ç‰©å“è¦äº¤æ˜“çš„é“¶å­*/
+   s_by_copper            int                                       ,    /**è¢«è¯·æ±‚è¦ç‰©å“è¦äº¤æ˜“çš„é“œé’±*/ 
+   s_by_sf_ok             int                                       ,    /**è¢«è¯·æ±‚çš„ç©å®¶æ˜¯å¦ç¡®è®¤0æ²¡ç¡®è®¤1ç¡®è®¤*/ 
+   create_time            datetime                                  ,    /**åˆ›å»ºæ—¶é—´*/
    primary key (s_pk));
  
- /**********½»Á÷ÆµµÀ(u_communion)***************/
+ /**********äº¤æµé¢‘é“(u_communion)***************/
  create table u_communion ( 
-   c_pk                   smallint unsigned not null auto_increment ,	 /**¹«¹²ÆµµÀid*/
-   p_pk                   int                                       ,	 /**·¢ËÍ½ÇÉ«id*/
-   p_name                 varchar(200)                              ,	 /**·¢ËÍ½ÇÉ«Ãû³Æ*/
-   p_pk_by                int                                       ,	 /**½ÓÊÕ½ÇÉ«id*/
-   p_name_by              varchar(200)                              ,	 /**½ÓÊÕ½ÇÉ«Ãû³Æ*/ 
-   c_bang                 int                                       ,	 /**ËùÊô°ï»á*/
-   c_dui                  int                                       ,	 /**ËùÊô×é¶Ó*/
-   c_zhen                 int                                       ,	 /**ËùÊôÕóÓª*/
-   c_title                varchar(500)                              ,    /**ÁÄÌìÀàÈİ*/ 
-   c_type                 int                                       ,    /**ÀàĞÍ*/ 
-   create_time            datetime                                  ,    /**´´½¨Ê±¼ä*/
+   c_pk                   smallint unsigned not null auto_increment ,	 /**å…¬å…±é¢‘é“id*/
+   p_pk                   int                                       ,	 /**å‘é€è§’è‰²id*/
+   p_name                 varchar(200)                              ,	 /**å‘é€è§’è‰²åç§°*/
+   p_pk_by                int                                       ,	 /**æ¥æ”¶è§’è‰²id*/
+   p_name_by              varchar(200)                              ,	 /**æ¥æ”¶è§’è‰²åç§°*/ 
+   c_bang                 int                                       ,	 /**æ‰€å±å¸®ä¼š*/
+   c_dui                  int                                       ,	 /**æ‰€å±ç»„é˜Ÿ*/
+   c_zhen                 int                                       ,	 /**æ‰€å±é˜µè¥*/
+   c_title                varchar(500)                              ,    /**èŠå¤©ç±»å®¹*/ 
+   c_type                 int                                       ,    /**ç±»å‹*/ 
+   create_time            datetime                                  ,    /**åˆ›å»ºæ—¶é—´*/
    primary key (c_pk)); 
    
    
@@ -273,56 +273,56 @@ create table u_sell_info (
    
 /****************************************LS****************************/
       
-/****************************************NPCÁÙÊ±±í****************************/
+/****************************************NPCä¸´æ—¶è¡¨****************************/
    
 create table n_attack_info (
-  n_pk              SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT , /**µ±Ç°Õ½¶·NPCID */
-  u_pk              int                                       , /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-  p_pk		        int					                      , /**½ÇÉ«id*/
-  n_current_HP	    varchar(200)      			              , /**npcµ±Ç°ÑªÖµ*/
-  n_attackswitch	int                                       , /**Ö÷¶¯¹¥»÷¿ª¹Ø	0±íÊ¾´ËµãË¢ĞÂ³öµÄnpc±»¶¯¹¥»÷Íæ¼Ò£¬1±íÊ¾´ËµãË¢ĞÂ³öµÄnpcÖ÷¶¯¹¥»÷Íæ¼Ò£¬*/
+  n_pk              SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT , /**å½“å‰æˆ˜æ–—NPCID */
+  u_pk              int                                       , /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+  p_pk		        int					                      , /**è§’è‰²id*/
+  n_current_HP	    varchar(200)      			              , /**npcå½“å‰è¡€å€¼*/
+  n_attackswitch	int                                       , /**ä¸»åŠ¨æ”»å‡»å¼€å…³	0è¡¨ç¤ºæ­¤ç‚¹åˆ·æ–°å‡ºçš„npcè¢«åŠ¨æ”»å‡»ç©å®¶ï¼Œ1è¡¨ç¤ºæ­¤ç‚¹åˆ·æ–°å‡ºçš„npcä¸»åŠ¨æ”»å‡»ç©å®¶ï¼Œ*/
   npc_ID            int					                      , /**npc */
-  npc_Name          varchar(200)                              , /**Ãû³Æ	npcÃû³Æ*/
-  npc_HP            varchar(200)                              , /**ÆøÑª	npcÆøÑªÖµ*/
-  npc_defence_da    int					                      , /**×î´ó·ÀÓù	npc·ÀÓù */
-  npc_defence_xiao  int					                      , /**×îĞ¡·ÀÓù	npc·ÀÓù*/
-  npc_jin_fy	    int					                      , /**½ğ·ÀÓù*/	
-  npc_mu_fy	        int					                      , /**Ä¾·ÀÓù*/	
-  npc_shui_fy	    int					                      , /**Ë®·ÀÓù*/	
-  npc_huo_fy	    int					                      , /**»ğ·ÀÓù*/
-  npc_tu_fy	        int					                      , /**ÍÁ·ÀÓù*/	
-  npc_drop          int					                      , /**±©»÷ÂÊ	±íÊ¾ÎªÕıÕûÊı£¬Èç20±íÊ¾20%µÄ±©»÷ÂÊ*/
-  npc_Level         int					                      , /**µÈ¼¶	npcµÈ¼¶ */
-  npc_EXP           double				                      , /**¾­Ñé	É±ËÀnpc»ñµÃ¾­Ñé*/
-  npc_money	        varchar(200)			                  , /**µôÂäÇ®Êı£ºÈçÉ±ËÀ¹Öºóµô20µ½30Ö®¼äËæ»úÈ¡£¬±íÊ¾Îª20,30*/
-  npc_take          int					                      , /**¿É·ñ²¶×½	0±íÊ¾²»¿É²¶×½£¬1±íÊ¾¿ÉÒÔ²¶×½*/
-  npc_refurbish_time   int				                      , /**Ë¢ĞÂÊ±¼ä¼ä¸ô	·ÖÖÓÎªµ¥Î»*/
-  scene_id          int                                       , /**Ë¢ĞÂµØµãid*/
-  npc_key		    varchar(200	)			                  , /** Éú³ÉÎ¨Ò»±êÊ¾ */
-  npc_isAttack		int				default 0                 , /**±êÊ¾npcÊÇ·ñ´¦ÓÚÕ½¶·×´Ì¬£»1±íÊ¾ÊÇ£¬0±íÊ¾·ñ£¬Ä¬ÈÏÎª0*/
-  npc_type           int                default 1               , /* npcÀàĞÍ£¬¿ÉÒÔ±»´ò°ÜµÄnpcÎª2£»ºÍ¿ÉÒÔ±»´òËÀµÄnpcÎª1 **/
-  dizzy_bout_num      int                              default 0, /** »÷ÔÎ×´Ì¬µÄÊ£Óà»ØºÏÊı */
-  poison_bout_num    int          default 0                     ,/**ÖĞ¶¾×´Ì¬µÄÊ£Óà»ØºÏÊı
-  create_time     	datetime				                  , /**´´½¨Ê±¼ä */
+  npc_Name          varchar(200)                              , /**åç§°	npcåç§°*/
+  npc_HP            varchar(200)                              , /**æ°”è¡€	npcæ°”è¡€å€¼*/
+  npc_defence_da    int					                      , /**æœ€å¤§é˜²å¾¡	npcé˜²å¾¡ */
+  npc_defence_xiao  int					                      , /**æœ€å°é˜²å¾¡	npcé˜²å¾¡*/
+  npc_jin_fy	    int					                      , /**é‡‘é˜²å¾¡*/	
+  npc_mu_fy	        int					                      , /**æœ¨é˜²å¾¡*/	
+  npc_shui_fy	    int					                      , /**æ°´é˜²å¾¡*/	
+  npc_huo_fy	    int					                      , /**ç«é˜²å¾¡*/
+  npc_tu_fy	        int					                      , /**åœŸé˜²å¾¡*/	
+  npc_drop          int					                      , /**æš´å‡»ç‡	è¡¨ç¤ºä¸ºæ­£æ•´æ•°ï¼Œå¦‚20è¡¨ç¤º20%çš„æš´å‡»ç‡*/
+  npc_Level         int					                      , /**ç­‰çº§	npcç­‰çº§ */
+  npc_EXP           double				                      , /**ç»éªŒ	æ€æ­»npcè·å¾—ç»éªŒ*/
+  npc_money	        varchar(200)			                  , /**æ‰è½é’±æ•°ï¼šå¦‚æ€æ­»æ€ªåæ‰20åˆ°30ä¹‹é—´éšæœºå–ï¼Œè¡¨ç¤ºä¸º20,30*/
+  npc_take          int					                      , /**å¯å¦æ•æ‰	0è¡¨ç¤ºä¸å¯æ•æ‰ï¼Œ1è¡¨ç¤ºå¯ä»¥æ•æ‰*/
+  npc_refurbish_time   int				                      , /**åˆ·æ–°æ—¶é—´é—´éš”	åˆ†é’Ÿä¸ºå•ä½*/
+  scene_id          int                                       , /**åˆ·æ–°åœ°ç‚¹id*/
+  npc_key		    varchar(200	)			                  , /** ç”Ÿæˆå”¯ä¸€æ ‡ç¤º */
+  npc_isAttack		int				default 0                 , /**æ ‡ç¤ºnpcæ˜¯å¦å¤„äºæˆ˜æ–—çŠ¶æ€ï¼›1è¡¨ç¤ºæ˜¯ï¼Œ0è¡¨ç¤ºå¦ï¼Œé»˜è®¤ä¸º0*/
+  npc_type           int                default 1               , /* npcç±»å‹ï¼Œå¯ä»¥è¢«æ‰“è´¥çš„npcä¸º2ï¼›å’Œå¯ä»¥è¢«æ‰“æ­»çš„npcä¸º1 **/
+  dizzy_bout_num      int                              default 0, /** å‡»æ™•çŠ¶æ€çš„å‰©ä½™å›åˆæ•° */
+  poison_bout_num    int          default 0                     ,/**ä¸­æ¯’çŠ¶æ€çš„å‰©ä½™å›åˆæ•°
+  create_time     	datetime				                  , /**åˆ›å»ºæ—¶é—´ */
   primary key (n_pk));
   
-  /**********************************´ò¹ÖµôÂäÎïÆ·±í***********************************************/
+  /**********************************æ‰“æ€ªæ‰è½ç‰©å“è¡¨***********************************************/
   create table n_dropgoods_info(
   d_pk						 SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT ,/**ID */
-  p_pk						 int					   				   ,/**½ÇÉ«id*/
-  drop_num					 int									   ,/*µôÂäÊıÁ¿*/
-  goods_id					 int 									   ,/*ÎïÆ·id*/
-  goods_name				 varchar(200)							   ,/*ÎïÆ·Ãû×Ö*/
-  goods_type				 int									   ,/*ÎïÆ·ÀàĞÍ*/
+  p_pk						 int					   				   ,/**è§’è‰²id*/
+  drop_num					 int									   ,/*æ‰è½æ•°é‡*/
+  goods_id					 int 									   ,/*ç‰©å“id*/
+  goods_name				 varchar(200)							   ,/*ç‰©å“åå­—*/
+  goods_type				 int									   ,/*ç‰©å“ç±»å‹*/
   primary key (d_pk));
   
-/**********************************´ò¹ÖÊ±npcµô¾­ÑéºÍÇ®µÄÁÙÊ±±í***********************************************/
+/**********************************æ‰“æ€ªæ—¶npcæ‰ç»éªŒå’Œé’±çš„ä¸´æ—¶è¡¨***********************************************/
     
  create table n_dropExpMoney_info(
    d_pk							 SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT ,/**ID */
-   p_pk							 int					   				   ,/**½ÇÉ«id*/
-   drop_exp					     int									   ,/*npcµôÂä¾­Ñé*/	
-   drop_money				     int									   ,/*npcµôÂäµÄÇ®Êı*/
+   p_pk							 int					   				   ,/**è§’è‰²id*/
+   drop_exp					     int									   ,/*npcæ‰è½ç»éªŒ*/	
+   drop_money				     int									   ,/*npcæ‰è½çš„é’±æ•°*/
    primary key (d_pk));
     
 
@@ -330,167 +330,167 @@ create table n_attack_info (
 
     
     
-/*************************Íæ¼Ò¿ì½İ¼üÉèÖÃ£¨u_shortcut_info£©********************************/
+/*************************ç©å®¶å¿«æ·é”®è®¾ç½®ï¼ˆu_shortcut_infoï¼‰********************************/
     create table u_shortcut_info(
     sc_pk							 smallint unsigned not null auto_increment   ,/**id*/ 
-    p_pk							 int										 ,/**Íæ¼Òid*/
-    sc_name							 varchar(200)                                ,/**¿ì½İ¼üÃû×Ö£¬±êºÅ*/
-    sc_display						 varchar(200)                                ,/**ÉèÖÃºóÏÔÊ¾µÄÃû×Ö£¬ÀıÈç£»¼¼ÄÜÃû³Æ,Ò©Æ·Ãû³Æ*/
-    sc_type							 int                                         ,/**ÀàĞÍ,ÖµÎª-1Ê±±íÊ¾Ã»ÓĞÉèÖÃ¿ì½İ¼ü*/
-    operate_id						 int                                         ,/**²Ù×÷id*/
-    object							 int                                         ,/**×÷ÓÃ¶ÔÏó*/          
+    p_pk							 int										 ,/**ç©å®¶id*/
+    sc_name							 varchar(200)                                ,/**å¿«æ·é”®åå­—ï¼Œæ ‡å·*/
+    sc_display						 varchar(200)                                ,/**è®¾ç½®åæ˜¾ç¤ºçš„åå­—ï¼Œä¾‹å¦‚ï¼›æŠ€èƒ½åç§°,è¯å“åç§°*/
+    sc_type							 int                                         ,/**ç±»å‹,å€¼ä¸º-1æ—¶è¡¨ç¤ºæ²¡æœ‰è®¾ç½®å¿«æ·é”®*/
+    operate_id						 int                                         ,/**æ“ä½œid*/
+    object							 int                                         ,/**ä½œç”¨å¯¹è±¡*/          
     primary key(sc_pk));
 
   
   
-   /*************************Íæ¼Ò°ü¹üÀïµÄµÀ¾ß£¨u_propgroup_info£©,Ã¿Ìõ¼ÇÂ¼£º¼ÇÂ¼µÄÊÇÒ»×éµÀ¾ß********************************/
+   /*************************ç©å®¶åŒ…è£¹é‡Œçš„é“å…·ï¼ˆu_propgroup_infoï¼‰,æ¯æ¡è®°å½•ï¼šè®°å½•çš„æ˜¯ä¸€ç»„é“å…·********************************/
   create table u_propgroup_info(
   	pg_pk	                         smallint unsigned not null auto_increment       ,   /**id*/ 
-    p_pk                             int                                             ,	 /**½ÇÉ«id*/
-    pg_type                          int                                             ,	 /**µÀ¾ß×é·ÖÀà*/ 
-    prop_id			                 int                                             ,	 /**µÀ¾ßid*/
-    prop_type						 int                                             ,   /**µÀ¾ßÀàĞÍ*/
-    prop_name	                     varchar(200)                                    ,   /**µÀ¾ßÃû×Ö*/
-    prop_price                       int                                             ,    /**Âô³ö¼ÛÇ®*/
-    prop_num                         int                                             ,	 /**µÀ¾ßÊıÁ¿£¬²»ÄÜ³¬¹ıÏŞÖÆ¸ñÊı*/ 
-    create_time                      datetime                                        ,  /**´´½¨Ê±¼ä*/
+    p_pk                             int                                             ,	 /**è§’è‰²id*/
+    pg_type                          int                                             ,	 /**é“å…·ç»„åˆ†ç±»*/ 
+    prop_id			                 int                                             ,	 /**é“å…·id*/
+    prop_type						 int                                             ,   /**é“å…·ç±»å‹*/
+    prop_name	                     varchar(200)                                    ,   /**é“å…·åå­—*/
+    prop_price                       int                                             ,    /**å–å‡ºä»·é’±*/
+    prop_num                         int                                             ,	 /**é“å…·æ•°é‡ï¼Œä¸èƒ½è¶…è¿‡é™åˆ¶æ ¼æ•°*/ 
+    create_time                      datetime                                        ,  /**åˆ›å»ºæ—¶é—´*/
     primary key(pg_pk));
     
-     /*************************¿ØÖÆ±í£¨ĞèÒªÊ±¼ä»òÊ¹ÓÃ´ÎÊı¿ØÖÆµÄ¶ÔÏó£©£¨u_time_control£©********************************************/
+     /*************************æ§åˆ¶è¡¨ï¼ˆéœ€è¦æ—¶é—´æˆ–ä½¿ç”¨æ¬¡æ•°æ§åˆ¶çš„å¯¹è±¡ï¼‰ï¼ˆu_time_controlï¼‰********************************************/
     create table u_time_control(
     id	                         smallint unsigned not null auto_increment       ,   /**id*/ 
-    p_pk                         int                                             ,   /**½ÇÉ«id*/
-    object_id                    int                                             ,	 /**ĞèÒª¿ØÖÆµÄ¶ÔÏó*/
-    object_type                  int                                             ,   /**ĞèÒª¿ØÖÆµÄ¶ÔÏóµÄÀàĞÍ£¬Èç£ºµÀ¾ß£¬²Ëµ¥µÈ*/
-    use_datetime                 datetime                                        ,   /**¼ÇÂ¼×îºóÒ»´ÎµÄÊ¹ÓÃÊ±¼ä*/
-    use_times                    int                                             ,   /**¼ÇÂ¼µ±ÌìµÄÊ¹ÓÃ´ÎÊı*/
+    p_pk                         int                                             ,   /**è§’è‰²id*/
+    object_id                    int                                             ,	 /**éœ€è¦æ§åˆ¶çš„å¯¹è±¡*/
+    object_type                  int                                             ,   /**éœ€è¦æ§åˆ¶çš„å¯¹è±¡çš„ç±»å‹ï¼Œå¦‚ï¼šé“å…·ï¼Œèœå•ç­‰*/
+    use_datetime                 datetime                                        ,   /**è®°å½•æœ€åä¸€æ¬¡çš„ä½¿ç”¨æ—¶é—´*/
+    use_times                    int                                             ,   /**è®°å½•å½“å¤©çš„ä½¿ç”¨æ¬¡æ•°*/
     primary key(id));
     
-  /*************************Íæ¼Ò×ø±ê±ê¼Ç¼ÇÂ¼_±ê¼ÇµÀ¾ßÓÃ£¨u_coordinate_info£©********************************/
+  /*************************ç©å®¶åæ ‡æ ‡è®°è®°å½•_æ ‡è®°é“å…·ç”¨ï¼ˆu_coordinate_infoï¼‰********************************/
   create table u_coordinate_info(
   c_pk	                         smallint unsigned not null auto_increment       , /**id*/
-  p_pk                           int                                             , /**½ÇÉ«id*/
-  coordinate_prop_id             int                                             , /**×ø±êµÀ¾ßid*/
-  coordinate                     int                                             , /**±ê¼Ç×ø±ê*/
-  prop_isUse                    int                                     default 0, /**±ê¼ÇµÀ¾ßÊÇ·ñÊ¹ÓÃ*/
+  p_pk                           int                                             , /**è§’è‰²id*/
+  coordinate_prop_id             int                                             , /**åæ ‡é“å…·id*/
+  coordinate                     int                                             , /**æ ‡è®°åæ ‡*/
+  prop_isUse                    int                                     default 0, /**æ ‡è®°é“å…·æ˜¯å¦ä½¿ç”¨*/
   primary key(c_pk));
  
   
-  /*******************************×é¶Ó±í£¨u_group_info£©************************************************************/
+  /*******************************ç»„é˜Ÿè¡¨ï¼ˆu_group_infoï¼‰************************************************************/
   create table u_group_info(
   g_pk                          smallint unsigned not null auto_increment       , /**id*/ 
-  p_pk                          int                                             , /**½ÇÉ«id*/
-  g_captain_pk                  int                                             , /**±íÊ¾ÊÇ¶Ó³¤id£¬£¨¶Ó³¤idºÍp_pkÏàÍ¬£©*/
+  p_pk                          int                                             , /**è§’è‰²id*/
+  g_captain_pk                  int                                             , /**è¡¨ç¤ºæ˜¯é˜Ÿé•¿idï¼Œï¼ˆé˜Ÿé•¿idå’Œp_pkç›¸åŒï¼‰*/
   primary key(g_pk));
    
    
-  /*******************************×é¶ÓÍ¨Öª±í£¨u_groupnotify_info£©************************************************************/
+  /*******************************ç»„é˜Ÿé€šçŸ¥è¡¨ï¼ˆu_groupnotify_infoï¼‰************************************************************/
   create table u_groupnotify_info(
   n_pk                                 smallint unsigned not null auto_increment        , /**id*/ 
-  notifyed_pk                          int                                              , /**±»Í¨ÖªµÄÍæ¼Òid*/
-  create_notify_pk                     int                                              , /**²úÉúÍ¨ÖªµÄÍæ¼Òid*/ 
-  notify_content                       varchar(200)                                     , /**Í¨ÖªµÄÄÚÈİ**/
-  notify_type                          int                                              , /**Í¨ÖªÀàĞÍ£º1£ºÍ¨ÖªÓĞÈËÉêÇë×é¶Ó£»2£ºÍ¨Öª¶ÓÎé½âÉ¢£»3.Í¨Öª¶Ô·½Í¬Òâ×é¶Ó£»4£º¡£¡£¡£***/
-  create_time                          datetime                                         , /**´´½¨Ê±¼ä*/
-  notify_flag                          int                                     default 0, /**Í¨Öª±êÊ¶£¬0±íÊ¾Ã»ÓĞÍ¨Öª£¬1±íÊ¾ÒÑÍ¨Öª*/
+  notifyed_pk                          int                                              , /**è¢«é€šçŸ¥çš„ç©å®¶id*/
+  create_notify_pk                     int                                              , /**äº§ç”Ÿé€šçŸ¥çš„ç©å®¶id*/ 
+  notify_content                       varchar(200)                                     , /**é€šçŸ¥çš„å†…å®¹**/
+  notify_type                          int                                              , /**é€šçŸ¥ç±»å‹ï¼š1ï¼šé€šçŸ¥æœ‰äººç”³è¯·ç»„é˜Ÿï¼›2ï¼šé€šçŸ¥é˜Ÿä¼è§£æ•£ï¼›3.é€šçŸ¥å¯¹æ–¹åŒæ„ç»„é˜Ÿï¼›4ï¼šã€‚ã€‚ã€‚***/
+  create_time                          datetime                                         , /**åˆ›å»ºæ—¶é—´*/
+  notify_flag                          int                                     default 0, /**é€šçŸ¥æ ‡è¯†ï¼Œ0è¡¨ç¤ºæ²¡æœ‰é€šçŸ¥ï¼Œ1è¡¨ç¤ºå·²é€šçŸ¥*/
   primary key(n_pk));
    
   
   
-  /***********************************************buffÊ¹ÓÃĞ§¹û(u_buffeffect_info)***********************************/
+  /***********************************************buffä½¿ç”¨æ•ˆæœ(u_buffeffect_info)***********************************/
   create table u_buffeffect_info  (
   bf_pk                       smallint unsigned not null auto_increment                  , /**id*/ 
   buff_id                     int                                                        , /**buff_id*/
-  buff_name                   varchar(200)                                               , /**Ãû³Æ*/	
-  buff_display                varchar(200)                                               , /**buffÃèÊö*/
-  buff_type                   int                                                        , /**buffÀàĞÍ*/  
-  buff_effect_value           int                                                        , /**buffĞ§¹ûÖµ£¬*/ 
+  buff_name                   varchar(200)                                               , /**åç§°*/	
+  buff_display                varchar(200)                                               , /**buffæè¿°*/
+  buff_type                   int                                                        , /**buffç±»å‹*/  
+  buff_effect_value           int                                                        , /**buffæ•ˆæœå€¼ï¼Œ*/ 
   
-  spare_bout                  int                                                        , /**Ê£ÏÂµÄÊ¹ÓÃ»ØºÏÊı*/
-  buff_bout                   int                                              default 0 , /**³ÖĞø»ØºÏ*/
-  buff_time                   int                                              default 0 , /**buff³ÖĞøÊ±¼ä£¬µ¥Î»Îª·ÖÖÓ*/
-  use_time                    datetime                                                   , /**Ê¹ÓÃbuffµÄÊ±¼ä*/
+  spare_bout                  int                                                        , /**å‰©ä¸‹çš„ä½¿ç”¨å›åˆæ•°*/
+  buff_bout                   int                                              default 0 , /**æŒç»­å›åˆ*/
+  buff_time                   int                                              default 0 , /**buffæŒç»­æ—¶é—´ï¼Œå•ä½ä¸ºåˆ†é’Ÿ*/
+  use_time                    datetime                                                   , /**ä½¿ç”¨buffçš„æ—¶é—´*/
   
-  buff_use_mode               int                                                        , /**Ê¹ÓÃ·½Ê½£¬1±íÊ¾ÔöÒæ£¬2±íÊ¾¼õÒæ*/
-  buff_bout_overlap           int                                              default 0 , /**ÊÇ·ñ»ØºÏµş¼Ó,0±íÊ¾²»ÄÜ£¬1±íÊ¾ÄÜ*/
-  buff_time_overlap           int                                              default 0 , /**ÊÇ·ñÊ±¼äµş¼Ó,0±íÊ¾²»ÄÜ£¬1±íÊ¾ÄÜ*/
+  buff_use_mode               int                                                        , /**ä½¿ç”¨æ–¹å¼ï¼Œ1è¡¨ç¤ºå¢ç›Šï¼Œ2è¡¨ç¤ºå‡ç›Š*/
+  buff_bout_overlap           int                                              default 0 , /**æ˜¯å¦å›åˆå åŠ ,0è¡¨ç¤ºä¸èƒ½ï¼Œ1è¡¨ç¤ºèƒ½*/
+  buff_time_overlap           int                                              default 0 , /**æ˜¯å¦æ—¶é—´å åŠ ,0è¡¨ç¤ºä¸èƒ½ï¼Œ1è¡¨ç¤ºèƒ½*/
   
   
-  effect_object               int                                                        , /**buffĞ§¹û×÷ÓÃ¶ÔÏó*/
-  effect_object_type          int                                                        , /**buffĞ§¹û×÷ÓÃ¶ÔÏó,11±íÊ¾Íæ¼Ò£¬12±íÊ¾npc*/
+  effect_object               int                                                        , /**buffæ•ˆæœä½œç”¨å¯¹è±¡*/
+  effect_object_type          int                                                        , /**buffæ•ˆæœä½œç”¨å¯¹è±¡,11è¡¨ç¤ºç©å®¶ï¼Œ12è¡¨ç¤ºnpc*/
   primary key(bf_pk));
    
        
-  /**********pk¿ØÖÆ±í±í(u_pk_control)****************/
+  /**********pkæ§åˆ¶è¡¨è¡¨(u_pk_control)****************/
   create table u_pk_control(
   	 id             	        smallint unsigned not null auto_increment 	,/**id*/  
-	 zd_pk						int											,/**Ö÷¶¯¹¥»÷µÄÍæ¼Òid*/
-	 zd_dead_flag				int								   default 0,/**Ö÷¶¯Íæ¼ÒµÄËÀÍö±êÖ¾*/	
-	 zd_attack_no				int											,/**Ö÷¶¯¹¥»÷ÕßË³Ğò,¸Ã×Ö¶ÎÓ°ÏìÊÜµ½¹¥»÷Íæ¼Ò·´»÷µÄÆµÂÊ*/ 
-	 /**±»¶¯¶¯Íæ¼Ò¹¥»÷Íæ¼Ò*/
-	 bd_pk						int								           ,/**±»¶¯¹¥»÷µÄÍæ¼Òid*/
-	 bd_dead_flag				int								  default 0,/**±»¶¯Íæ¼ÒµÄËÀÍö±êÖ¾*/	 
-	 dead_notify			    int								  default 0,/**ÊÇ·ñÍ¨Öª¶Ô·½ËÀÍö*/ 
-	 drop_exp				    int							      default 0,/**µôÂä¾­Ñé*/ 
-	 attack_map					int									       ,/**Õ½¶·³¡¾°id*/
-  	 create_time      datetime                                 	           ,/**Õ½¶·¿ªÊ¼Ê±¼ä*/
+	 zd_pk						int											,/**ä¸»åŠ¨æ”»å‡»çš„ç©å®¶id*/
+	 zd_dead_flag				int								   default 0,/**ä¸»åŠ¨ç©å®¶çš„æ­»äº¡æ ‡å¿—*/	
+	 zd_attack_no				int											,/**ä¸»åŠ¨æ”»å‡»è€…é¡ºåº,è¯¥å­—æ®µå½±å“å—åˆ°æ”»å‡»ç©å®¶åå‡»çš„é¢‘ç‡*/ 
+	 /**è¢«åŠ¨åŠ¨ç©å®¶æ”»å‡»ç©å®¶*/
+	 bd_pk						int								           ,/**è¢«åŠ¨æ”»å‡»çš„ç©å®¶id*/
+	 bd_dead_flag				int								  default 0,/**è¢«åŠ¨ç©å®¶çš„æ­»äº¡æ ‡å¿—*/	 
+	 dead_notify			    int								  default 0,/**æ˜¯å¦é€šçŸ¥å¯¹æ–¹æ­»äº¡*/ 
+	 drop_exp				    int							      default 0,/**æ‰è½ç»éªŒ*/ 
+	 attack_map					int									       ,/**æˆ˜æ–—åœºæ™¯id*/
+  	 create_time      datetime                                 	           ,/**æˆ˜æ–—å¼€å§‹æ—¶é—´*/
   
   primary key(id));
     
     
 
    
-   /*****************************pkÍ¨Öª(u_pk_notify)*****************************************/
+   /*****************************pké€šçŸ¥(u_pk_notify)*****************************************/
    create table u_pk_notify(
     n_pk                                 smallint unsigned not null auto_increment        , /**id*/
-    notifyed_pk                          int                                              , /**±»Í¨ÖªµÄÍæ¼Òid*/
-    create_notify_pk                     int                                              , /**²úÉúÍ¨ÖªµÄÍæ¼Òid*/ 
-    notify_content                       varchar(200)                                     , /**Í¨ÖªµÄÄÚÈİ**/
-    notify_type                          int                                              , /**Í¨ÖªÀàĞÍ£º1.ÊÜµ½¹¥»÷***/
-    create_time                          datetime                                         , /**´´½¨Ê±¼ä*/
+    notifyed_pk                          int                                              , /**è¢«é€šçŸ¥çš„ç©å®¶id*/
+    create_notify_pk                     int                                              , /**äº§ç”Ÿé€šçŸ¥çš„ç©å®¶id*/ 
+    notify_content                       varchar(200)                                     , /**é€šçŸ¥çš„å†…å®¹**/
+    notify_type                          int                                              , /**é€šçŸ¥ç±»å‹ï¼š1.å—åˆ°æ”»å‡»***/
+    create_time                          datetime                                         , /**åˆ›å»ºæ—¶é—´*/
    primary key(n_pk));
    
    
-     /**********pkÈÕÖ¾±í(u_pk_log)****************/
+     /**********pkæ—¥å¿—è¡¨(u_pk_log)****************/
   create table u_pk_log(
   	 id             	        smallint unsigned not null auto_increment 	, /**id*/
-	 zd_pk						int											, /**Ö÷¶¯¹¥»÷µÄÍæ¼Òid*/
-	 bd_pk						int								            , /**±»¶¯¹¥»÷µÄÍæ¼Òid*/
-	 create_time                datetime                                    , /**´´½¨Ê±¼ä*/
+	 zd_pk						int											, /**ä¸»åŠ¨æ”»å‡»çš„ç©å®¶id*/
+	 bd_pk						int								            , /**è¢«åŠ¨æ”»å‡»çš„ç©å®¶id*/
+	 create_time                datetime                                    , /**åˆ›å»ºæ—¶é—´*/
   primary key(id));
    
    
    
    create table u_wrap_info ( 
-   w_pk             smallint unsigned not null auto_increment ,	  /**½ÇÉ«°ü¸¤±í*/ 
-   u_pk             int                                       ,	  /**´´½¨ÈËÔ±ĞÅÏ¢id*/ 
-   p_pk             int                                       ,	  /**½ÇÉ«id*/ 
-   table_type       int                                       ,   /**ÎïÆ·Ïà¹Ø±íÀàĞÍ*/
-   goods_type       int                                       ,   /**ÎïÆ·ÀàĞÍ*/
-   w_id             int                                       ,   /**ÎïÆ·ID*/
-   w_name           varchar(200)                              ,   /**ÎïÆ·Ãû³Æ*/
-   w_durability     int                               default 0,  /*ÄÍ¾Ã*/ 
-   w_dura_consume   int                               default 0,  /*ÄÍ¾ÃÏûºÄ*/
-   w_Bonding        int                                        ,  /**°ó¶¨*/ 
-   t_fy_xiao        int                               default 0,  /**¸½¼ÓÊôĞÔ×îĞ¡·ÀÓù*/
-   t_fy_da          int                               default 0,  /**¸½¼ÓÊôĞÔ×î´ó·ÀÓù*/ 
-   t_gj_xiao        int                               default 0,  /**¸½¼ÓÊôĞÔ×îĞ¡¹¥»÷*/
-   t_gj_da          int                               default 0,  /**¸½¼ÓÊôĞÔ×î´ó¹¥»÷*/
-   t_mp             int                               default 0,  /**¸½¼ÓÊôĞÔ·¢Á¦*/
-   t_hp             int                               default 0,  /**¸½¼ÓÊôĞÔÆøÑª*/
+   w_pk             smallint unsigned not null auto_increment ,	  /**è§’è‰²åŒ…è¢±è¡¨*/ 
+   u_pk             int                                       ,	  /**åˆ›å»ºäººå‘˜ä¿¡æ¯id*/ 
+   p_pk             int                                       ,	  /**è§’è‰²id*/ 
+   table_type       int                                       ,   /**ç‰©å“ç›¸å…³è¡¨ç±»å‹*/
+   goods_type       int                                       ,   /**ç‰©å“ç±»å‹*/
+   w_id             int                                       ,   /**ç‰©å“ID*/
+   w_name           varchar(200)                              ,   /**ç‰©å“åç§°*/
+   w_durability     int                               default 0,  /*è€ä¹…*/ 
+   w_dura_consume   int                               default 0,  /*è€ä¹…æ¶ˆè€—*/
+   w_Bonding        int                                        ,  /**ç»‘å®š*/ 
+   t_fy_xiao        int                               default 0,  /**é™„åŠ å±æ€§æœ€å°é˜²å¾¡*/
+   t_fy_da          int                               default 0,  /**é™„åŠ å±æ€§æœ€å¤§é˜²å¾¡*/ 
+   t_gj_xiao        int                               default 0,  /**é™„åŠ å±æ€§æœ€å°æ”»å‡»*/
+   t_gj_da          int                               default 0,  /**é™„åŠ å±æ€§æœ€å¤§æ”»å‡»*/
+   t_mp             int                               default 0,  /**é™„åŠ å±æ€§å‘åŠ›*/
+   t_hp             int                               default 0,  /**é™„åŠ å±æ€§æ°”è¡€*/
  
-   w_jin_fy         int                               default 0,  /**¸½¼ÓÊôĞÔ½ğ·ÀÓùÁ¦*/
-   w_mu_fy          int                               default 0,  /**¸½¼ÓÊôĞÔÄ¾·ÀÓùÁ¦*/
-   w_shui_fy        int                               default 0,  /**¸½¼ÓÊôĞÔË®·ÀÓùÁ¦*/
-   w_huo_fy         int                               default 0,  /**¸½¼ÓÊôĞÔ»ğ·ÀÓùÁ¦*/
-   w_tu_fy          int                               default 0,  /**¸½¼ÓÊôĞÔÍÁ·ÀÓùÁ¦*/
-   w_jin_gj         int                               default 0,  /**¸½¼ÓÊôĞÔ½ğ¹¥»÷Á¦*/
-   w_mu_gj          int                               default 0,  /**¸½¼ÓÊôĞÔÄ¾¹¥»÷Á¦*/
-   w_shui_gj        int                               default 0,  /**¸½¼ÓÊôĞÔË®¹¥»÷Á¦*/
-   w_huo_gj         int                               default 0,  /**¸½¼ÓÊôĞÔ»ğ¹¥»÷Á¦*/
-   w_tu_gj          int                               default 0,  /**¸½¼ÓÊôĞÔÍÁ¹¥»÷Á¦*/ 
-   w_type           int                               default 0,  /**ÊÇ·ñ±»×°±¸ 0 Ã»ÓĞ 1±»×°±¸ÁË*/ 
-   create_time      datetime                                   ,  /**´´½¨Ê±¼ä*/
+   w_jin_fy         int                               default 0,  /**é™„åŠ å±æ€§é‡‘é˜²å¾¡åŠ›*/
+   w_mu_fy          int                               default 0,  /**é™„åŠ å±æ€§æœ¨é˜²å¾¡åŠ›*/
+   w_shui_fy        int                               default 0,  /**é™„åŠ å±æ€§æ°´é˜²å¾¡åŠ›*/
+   w_huo_fy         int                               default 0,  /**é™„åŠ å±æ€§ç«é˜²å¾¡åŠ›*/
+   w_tu_fy          int                               default 0,  /**é™„åŠ å±æ€§åœŸé˜²å¾¡åŠ›*/
+   w_jin_gj         int                               default 0,  /**é™„åŠ å±æ€§é‡‘æ”»å‡»åŠ›*/
+   w_mu_gj          int                               default 0,  /**é™„åŠ å±æ€§æœ¨æ”»å‡»åŠ›*/
+   w_shui_gj        int                               default 0,  /**é™„åŠ å±æ€§æ°´æ”»å‡»åŠ›*/
+   w_huo_gj         int                               default 0,  /**é™„åŠ å±æ€§ç«æ”»å‡»åŠ›*/
+   w_tu_gj          int                               default 0,  /**é™„åŠ å±æ€§åœŸæ”»å‡»åŠ›*/ 
+   w_type           int                               default 0,  /**æ˜¯å¦è¢«è£…å¤‡ 0 æ²¡æœ‰ 1è¢«è£…å¤‡äº†*/ 
+   create_time      datetime                                   ,  /**åˆ›å»ºæ—¶é—´*/
    primary key (w_pk));
    
    

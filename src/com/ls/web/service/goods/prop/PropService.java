@@ -5,12 +5,12 @@ import com.ls.model.user.RoleEntity;
 
 /**
  * @author ls
- * µÀ¾ßÏà¹Ø²Ù×÷
+ * é“å…·ç›¸å…³æ“ä½œ
  */
 public class PropService
 {
 	/**
-	 * ÅĞ¶ÏÖ¸¶¨µÄµ½µÀ¾ßµÄÊıÁ¿ÊÇ·ñ×ã¹»
+	 * åˆ¤æ–­æŒ‡å®šçš„åˆ°é“å…·çš„æ•°é‡æ˜¯å¦è¶³å¤Ÿ
 	 */
 	public boolean isEnoughProp( RoleEntity roleInfo,int prop_id,int need_num )
 	{
@@ -20,7 +20,7 @@ public class PropService
 		}
 		
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
-		int cur_num = playerPropGroupDao.getPropNumByByPropID(roleInfo.getPPk(),prop_id);//ÏÖÓĞ²ÄÁÏµÄÊıÁ¿
+		int cur_num = playerPropGroupDao.getPropNumByByPropID(roleInfo.getPPk(),prop_id);//ç°æœ‰ææ–™çš„æ•°é‡
 		if( cur_num<need_num)
 		{
 			return false;

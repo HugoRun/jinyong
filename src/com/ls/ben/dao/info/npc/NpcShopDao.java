@@ -9,14 +9,14 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:npcshop±í
+ * åŠŸèƒ½:npcshopè¡¨
  * 
- * @author ÁõË§ 3:04:17 PM
+ * @author åˆ˜å¸… 3:04:17 PM
  */
 public class NpcShopDao extends DaoBase
 {
 	/**
-	 * µÃµ½²Ëµ¥ÏÂËùÂòµÄËùÓĞÎïÆ·
+	 * å¾—åˆ°èœå•ä¸‹æ‰€ä¹°çš„æ‰€æœ‰ç‰©å“
 	 * 
 	 * @param menu_id
 	 * @return
@@ -24,7 +24,7 @@ public class NpcShopDao extends DaoBase
 	public List<NpcShopVO> getListByMenuId(int menu_id)
 	{
 		List<NpcShopVO> npcshops = new ArrayList<NpcShopVO>();
-		String sql = "select * from npcshop where npc_id=" + menu_id;
+		String sql = "SELECT * FROM npcshop where npc_id=" + menu_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -59,7 +59,7 @@ public class NpcShopDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½²Ëµ¥Ä³Ò»idÎïÆ·ĞÅÏ¢
+	 * å¾—åˆ°èœå•æŸä¸€idç‰©å“ä¿¡æ¯
 	 * 
 	 * @param menu_id
 	 * @return
@@ -67,7 +67,7 @@ public class NpcShopDao extends DaoBase
 	public NpcShopVO getNpcShopById(int npcshop_id)
 	{
 		NpcShopVO npcshop = null;
-		String sql = "select * from npcshop where npcshop_id=" + npcshop_id;
+		String sql = "SELECT * FROM npcshop where npcshop_id=" + npcshop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -101,7 +101,7 @@ public class NpcShopDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½²Ëµ¥ÏÂËùÂòµÄËùÓĞÎïÆ·
+	 * å¾—åˆ°èœå•ä¸‹æ‰€ä¹°çš„æ‰€æœ‰ç‰©å“
 	 * 
 	 * @param menu_id
 	 * @return
@@ -109,7 +109,7 @@ public class NpcShopDao extends DaoBase
 	public int getPriceById(int npcshop_id)
 	{
 		int price = -1;
-		String sql = "select npc_shop_goodsbuy from npcshop where npcshop_id="
+		String sql = "SELECT npc_shop_goodsbuy from npcshop where npcshop_id="
 				+ npcshop_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

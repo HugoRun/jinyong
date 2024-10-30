@@ -4,25 +4,25 @@
 package com.ls.ben.vo.map;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 1:50:25 PM
  */
 public class MapVO {
-	/** Ğ¡ÇøÓò */
+	/** å°åŒºåŸŸ */
 	private int mapID;
-	/** µØÍ¼Ãû³Æ */
+	/** åœ°å›¾åç§° */
 	private String mapName;
-	/** µØÍ¼½éÉÜ */
+	/** åœ°å›¾ä»‹ç» */
 	private String mapDisplay;
-	/** µØÍ¼¼¼ÄÜ */
+	/** åœ°å›¾æŠ€èƒ½ */
 	private String mapSkill;
-	/** ËùÊôÇøÓò */
+	/** æ‰€å±åŒºåŸŸ */
 	private int mapFrom;
-	/** µØÍ¼ÀàĞÍ */
+	/** åœ°å›¾ç±»å‹ */
 	private int mapType;
 	/**
-	 * mapËùÔÚ´óÇøÓò
+	 * mapæ‰€åœ¨å¤§åŒºåŸŸ
 	 */
 	private BareaVO barea = null;
 

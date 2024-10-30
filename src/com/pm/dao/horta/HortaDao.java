@@ -18,12 +18,12 @@ public class HortaDao extends DaoBase
 {
 
 	/**
-	 * 获得所有类型的奖励类型
+	 * 鑾峰緱鎵�鏈夌被鍨嬬殑濂栧姳绫诲瀷
 	 * @return
 	 */
 	public List<HortaVO> getMainList()
 	{
-		String sql = "select * from system_hortation_info group by horta_type";
+		String sql = "SELECT * FROM system_hortation_info group by horta_type";
 		List<HortaVO> list = new ArrayList<HortaVO>();
 		
 		HortaVO hortaVO = null;
@@ -31,7 +31,7 @@ public class HortaDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("获得所有类型的奖励类型="+sql);
+			logger.debug("鑾峰緱鎵�鏈夌被鍨嬬殑濂栧姳绫诲瀷="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next())
@@ -58,13 +58,13 @@ public class HortaDao extends DaoBase
 	}
 
 	/**
-	 * 获取某一奖励类型下所有的奖励内容
+	 * 鑾峰彇鏌愪竴濂栧姳绫诲瀷涓嬫墍鏈夌殑濂栧姳鍐呭
 	 * 
 	 * @return
 	 */
 	public List<HortaVO> getHortaSonList(String main_type)
 	{
-		String sql = "select * from system_hortation_info where isuseable != 0 and horta_type="+main_type  +" order by horta_son_id desc ";
+		String sql = "SELECT * FROM system_hortation_info where isuseable != 0 and horta_type="+main_type  +" order by horta_son_id desc ";
 		List<HortaVO> list = new ArrayList<HortaVO>();
 		
 		HortaVO hortaVO = null;
@@ -72,7 +72,7 @@ public class HortaDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("获取某一奖励类型下所有的奖励内容="+sql);
+			logger.debug("鑾峰彇鏌愪竴濂栧姳绫诲瀷涓嬫墍鏈夌殑濂栧姳鍐呭="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next())
@@ -108,20 +108,20 @@ public class HortaDao extends DaoBase
 	}
 
 	/**
-	 * 根据ID获得奖励具体内容
+	 * 鏍规嵁ID鑾峰緱濂栧姳鍏蜂綋鍐呭
 	 * @param hor_id
 	 * @return
 	 */
 	public HortaVO getHortaByHorId(String hor_id)
 	{
-		String sql = "select * from system_hortation_info where horta_id="+hor_id;
+		String sql = "SELECT * FROM system_hortation_info where horta_id="+hor_id;
 		
 		HortaVO hortaVO = null;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try
 		{
-			logger.debug("获取某一奖励类型下所有的奖励内容="+sql);
+			logger.debug("鑾峰彇鏌愪竴濂栧姳绫诲瀷涓嬫墍鏈夌殑濂栧姳鍐呭="+sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next())

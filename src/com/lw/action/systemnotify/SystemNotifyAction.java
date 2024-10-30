@@ -23,7 +23,7 @@ public class SystemNotifyAction extends DispatchAction
 		String display = systemNotifyService.getNotifyContent(id);
 		if (display == null)
 		{
-			display = "暂无公告";
+			display = "鏆傛棤鍏憡";
 		}
 		request.setAttribute("display", display);
 		return mapping.findForward("display");
@@ -46,7 +46,7 @@ public class SystemNotifyAction extends DispatchAction
 		String display = systemNotifyService.getNotifyContent(id);
 		if (display == null)
 		{
-			display = "暂无公告";
+			display = "鏆傛棤鍏憡";
 		}
 		request.setAttribute("display", display);
 		return mapping.findForward("display_game");

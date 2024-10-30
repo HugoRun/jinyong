@@ -17,12 +17,12 @@ import com.ls.web.service.faction.FBuildService;
 
 /**
  * @author ls
- * °ïÅÉ½¨Öş
+ * å¸®æ´¾å»ºç­‘
  */
 public class FBuildAction extends ActionBase
 {
 	/**
-	 * °ïÅÉ½¨ÖşÊ×Ò³Ãæ
+	 * å¸®æ´¾å»ºç­‘é¦–é¡µé¢
 	 */
 	public ActionForward buildIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -37,9 +37,9 @@ public class FBuildAction extends ActionBase
 		return mapping.findForward("build_index");
 	}
 	
-	//***************Í¼ÌÚ¹ÜÀí
+	//***************å›¾è…¾ç®¡ç†
 	/**
-	 * ½¨Ôì
+	 * å»ºé€ 
 	 */
 	public ActionForward create(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -75,7 +75,7 @@ public class FBuildAction extends ActionBase
 	}
 	
 	/**
-	 * ½¨ÔìÊ×Ò³Ãæ
+	 * å»ºé€ é¦–é¡µé¢
 	 */
 	public ActionForward createIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -97,7 +97,7 @@ public class FBuildAction extends ActionBase
 		return mapping.findForward("create_index");
 	}
 	/**
-	 * Éı¼¶
+	 * å‡çº§
 	 */
 	public ActionForward upgrade(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -132,7 +132,7 @@ public class FBuildAction extends ActionBase
 		}
 	}
 	/**
-	 * Éı¼¶Ê×Ò³Ãæ
+	 * å‡çº§é¦–é¡µé¢
 	 */
 	public ActionForward upgradeIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -154,7 +154,7 @@ public class FBuildAction extends ActionBase
 		return mapping.findForward("upgrade_index");
 	}
 	/**
-	 * Í¼ÌÚÊ×Ò³Ãæ
+	 * å›¾è…¾é¦–é¡µé¢
 	 */
 	public ActionForward ttIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -181,7 +181,7 @@ public class FBuildAction extends ActionBase
 	}
 	
 	/**
-	 * Í¼ÌÚÏêÏ¸ĞÅÏ¢
+	 * å›¾è…¾è¯¦ç»†ä¿¡æ¯
 	 */
 	public ActionForward ttDes(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -220,7 +220,7 @@ public class FBuildAction extends ActionBase
 	}
 	
 	/**
-	 * Ê¹ÓÃÍ¼ÌÚÌáÊ¾Ò³Ãæ
+	 * ä½¿ç”¨å›¾è…¾æç¤ºé¡µé¢
 	 */
 	public ActionForward useHint(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -243,7 +243,7 @@ public class FBuildAction extends ActionBase
 		return mapping.findForward("use_hint");
 	}
 	/**
-	 * Ê¹ÓÃÍ¼ÌÚ
+	 * ä½¿ç”¨å›¾è…¾
 	 */
 	public ActionForward use(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

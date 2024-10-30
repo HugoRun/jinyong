@@ -11,9 +11,9 @@ if(message==null||"".equals(message.trim())){
 <%=message %><br/>
 <%} %>
 请选择你要求婚的对象： 
-	<br/>
-	    <% 
-		List friendlist = (List) request.getAttribute("friendlist");
+    <br/>
+        <%
+        List friendlist = (List) request.getAttribute("friendlist");
 		if(friendlist == null){
 	%> 没有能和您结婚的对象！<br/><%
 		}else{

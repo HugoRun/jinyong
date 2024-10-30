@@ -1,29 +1,29 @@
 package com.ls.ben.vo.info.pet;
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  *
  * 9:45:55 AM
  */
 public class PetshapeVO {
-	/** ³èÎï³É³¤id */
+	/** å® ç‰©æˆé•¿id */
 	private int shapeId;
-	/**³èÎïid*/
+	/**å® ç‰©id*/
 	private int petId;
-	/**Âô³ö¼Û¸ñ*/
+	/**å–å‡ºä»·æ ¼*/
 	private int shapeSale;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int shapeRating;
-	/** ±¾¼¶¾­Ñé ´ïµ½¸ÄµÈ¼¶ĞèÒª¾­Ñé */
+	/** æœ¬çº§ç»éªŒ è¾¾åˆ°æ”¹ç­‰çº§éœ€è¦ç»éªŒ */
 	private String shapeBenExperience;
-	/** ÏÂ¼¶¾­Ñé ´ïµ½ÏÂÒ»¼¶ĞèÒªµÄ¾­Ñé */
+	/** ä¸‹çº§ç»éªŒ è¾¾åˆ°ä¸‹ä¸€çº§éœ€è¦çš„ç»éªŒ */
 	private String shapeXiaExperience;
-	/** ×îĞ¡¹¥»÷ */
+	/** æœ€å°æ”»å‡» */
 	private String shapeAttackXiao;
-	/** ×î´ó¹¥»÷ */
+	/** æœ€å¤§æ”»å‡» */
 	private String shapeAttackDa;
 
-	/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ */
+	/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ */
 	private int shapeType;
 
 	public int getPetId() {

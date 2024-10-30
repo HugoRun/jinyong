@@ -7,23 +7,23 @@ import com.ls.web.service.login.LoginService;
 
 public class GmKickService
 {
-	/** GMÌßÈËÁ÷³Ì */
+	/** GMè¸¢äººæµç¨‹ */
 	public String kickPlayer(String p_name)
 	{
-		// µÃµ½Íæ¼ÒµÄPPK
+		// å¾—åˆ°ç©å®¶çš„PPK
 		PartInfoDao partInfoDao = new PartInfoDao();
 		
 		int p_pk = partInfoDao.getByName(p_name);
 		if (p_pk == -1 || p_pk == 0)
 		{
-			return "²»´æÔÚ¸ÃÍæ¼Ò";
+			return "ä¸å­˜åœ¨è¯¥ç©å®¶";
 		}
 		else
 		{
 			RoleEntity roleInfo = RoleCache.getByPpk(p_pk);
 			if (roleInfo == null|| roleInfo.isOnline()==false)
 			{
-				return "¸ÃÍæ¼Ò²»ÔÚÏß";
+				return "è¯¥ç©å®¶ä¸åœ¨çº¿";
 			}
 			else
 			{
@@ -32,11 +32,11 @@ public class GmKickService
 				RoleEntity roleInfo1 = RoleCache.getByPpk(p_pk);
 				if (roleInfo1 == null|| roleInfo1.isOnline()==false)
 				{
-					return "¸ÃÍæ¼ÒÒÑ¾­±»ÌßÏÂÏß";
+					return "è¯¥ç©å®¶å·²ç»è¢«è¸¢ä¸‹çº¿";
 				}
 				else
 				{
-					return "ÇëÖØĞÂÔÙÊÔ";
+					return "è¯·é‡æ–°å†è¯•";
 				}
 			}
 		}

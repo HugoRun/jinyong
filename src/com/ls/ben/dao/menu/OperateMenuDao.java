@@ -1,11 +1,5 @@
 package com.ls.ben.dao.menu;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import com.ls.ben.dao.DaoBase;
 import com.ls.ben.vo.map.SceneVO;
 import com.ls.ben.vo.menu.OperateMenuVO;
@@ -13,882 +7,782 @@ import com.ls.pub.constant.MenuType;
 import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
- * ¹¦ÄÜ:npc²Ëµ¥±íµÄ²Ù×÷
- * 
- * @author ÁõË§ 12:54:24 PM
+ * åŠŸèƒ½:npcèœå•è¡¨çš„æ“ä½œ
+ *
+ * @author åˆ˜å¸… 12:54:24 PM
  */
-public class OperateMenuDao extends DaoBase
-{
-	/**
-	 * µÃµ½ËùÓĞmenu,²¢¹¹½¨³¡¾°ÏÂµÄ¸¸²Ëµ¥
-	 * @return
-	 * @throws Exception 
-	 */
-	public HashMap<String,OperateMenuVO> getAllMenu(HashMap<String,SceneVO> scene_list) throws Exception
-	{
-		HashMap<String,OperateMenuVO> menu_list = null;
-		OperateMenuVO menu = null;
-		SceneVO scene = null;
-		
-		String total_sql = "select count(id) from  operate_menu_info";
-		String all_data_sql = "select * from  operate_menu_info order by id, menu_order ";
-		logger.debug("total_sql:"+total_sql);
-		logger.debug("all_data_sql:"+all_data_sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			int total = 0;
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(total_sql);
-			if( rs.next() )
-			{
-				total = rs.getInt(1);
-			}
-			
-			menu_list = new HashMap<String,OperateMenuVO>(total);
-			
-			rs = stmt.executeQuery(all_data_sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs
-						.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-				
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
-				
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuTaskFlag(rs.getInt("menu_task_flag"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-				menu_list.put(menu.getId()+"", menu);
-				if( menu.getMenuMap()!=0 && menu.getMenuFatherId()==0 && menu.getMenuTaskFlag()==0 )
-				{
-					//Èç¹ûÊÇ¸¸²Ëµ¥£¬ÇÒ²»ÊÇÈÎÎñ²Ëµ¥
-					scene = scene_list.get(""+menu.getMenuMap());
-					if( scene==null )
-					{
-						throw new Exception("¸¸²Ëµ¥µÄÊı¾İ´íÎó£ºÎŞ¸Ã³¡¾°Êı¾İ, menu.getMenuMap()="+menu.getMenuMap());
-					}
-					scene.getFatherMenuList().put(menu.getId()+"", menu);
-				}
-			}
-			rs.close();
-			stmt.close();
-		} catch (Exception e)
-		{
-			e.getStackTrace();
-			throw new Exception("²Ëµ¥ĞÅÏ¢¼ÓÔØÄÚ´æÊ§°Ü£¬µ±Ç°²Ëµ¥Îª£º"+menu.getId()+";´íÎóĞÅÏ¢:"+e.getMessage());
-			
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return menu_list;
-	}
-	
-	
+public class OperateMenuDao extends DaoBase {
+    /**
+     * å¾—åˆ°æ‰€æœ‰menu,å¹¶æ„å»ºåœºæ™¯ä¸‹çš„çˆ¶èœå•
+     *
+     * @return
+     * @throws Exception
+     */
+    public HashMap<String, OperateMenuVO> getAllMenu(HashMap<String, SceneVO> scene_list) throws Exception {
+        HashMap<String, OperateMenuVO> menu_list = null;
+        OperateMenuVO menu = null;
+        SceneVO scene = null;
 
-	
-	/**
-	 * Í¨¹ıidµÃµ½ menu
-	 * 
-	 * @param map_id
-	 * @return
-	 */
-	public OperateMenuVO getMenuById(int id)
-	{
-		OperateMenuVO menu = null;
-		String sql = "select * from  operate_menu_info where id=" + id;
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuOrder(rs.getInt("menu_order"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuTaskFlag(rs.getInt("menu_task_flag"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-			}
-			rs.close();
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
+        String total_sql = "SELECT COUNT(id) FROM `operate_menu_info`";
+        String all_data_sql = "SELECT * FROM `operate_menu_info` ORDER BY id, menu_order ";
+        logger.debug("total_sql:" + total_sql);
+        logger.debug("all_data_sql:" + all_data_sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            int total = 0;
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(total_sql);
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
 
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return menu;
-	}
-	
-	
-	/**
-	 * ¸ù¾İmenu_typeÀ´»ñµÃ²Ëµ¥
-	 * 
-	 * @param map_id
-	 * @return
-	 */
-	public List<OperateMenuVO> getMainMenuByMenuType(int menu_type)
-	{
-		List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
-		OperateMenuVO menu = null;
-		String sql = "select * from  operate_menu_info where menu_type = "+menu_type;
-		logger.debug("¸ù¾İmenu_typeÀ´»ñµÃ²Ëµ¥="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
+            menu_list = new HashMap<String, OperateMenuVO>(total);
 
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs
-						.getString("menu_dialog")));
+            rs = stmt.executeQuery(all_data_sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
 
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
 
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
 
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-				list.add(menu);
-			}
-			rs.close();
-			stmt.close();
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuTaskFlag(rs.getInt("menu_task_flag"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+                menu_list.put(menu.getId() + "", menu);
+                if (menu.getMenuMap() != 0 && menu.getMenuFatherId() == 0 && menu.getMenuTaskFlag() == 0) {
+                    //å¦‚æœæ˜¯çˆ¶èœå•ï¼Œä¸”ä¸æ˜¯ä»»åŠ¡èœå•
+                    scene = scene_list.get("" + menu.getMenuMap());
+                    if (scene == null) {
+                        throw new Exception("çˆ¶èœå•çš„æ•°æ®é”™è¯¯ï¼šæ— è¯¥åœºæ™¯æ•°æ®, menu.getMenuMap()=" + menu.getMenuMap());
+                    }
+                    scene.getFatherMenuList().put(menu.getId() + "", menu);
+                }
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.getStackTrace();
+            throw new Exception("èœå•ä¿¡æ¯åŠ è½½å†…å­˜å¤±è´¥ï¼Œå½“å‰èœå•ä¸ºï¼š" + menu.getId() + ";é”™è¯¯ä¿¡æ¯:" + e.getMessage());
 
-			logger.debug("operateMenuDapÖĞµÄmenu¸öÊıÎª : " +list.size());
-			return list;
-		}
-		catch (Exception e)
-
-		{
-			e.getStackTrace();
-
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-	
-
-	/**
-	 * µÃµ½¸¸²Ëµ¥idÎªmenu_father_idµÄËùÓĞ×Ó²Ëµ¥
-	 * @param menu_father_id		¸¸²Ëµ¥id
-	 * @param race					ÖÖ×å
-	 * @return
-	 */
-	public List<OperateMenuVO> getSonMenuByMap(int menu_father_id,int race)
-	{
-		List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
-		OperateMenuVO menu = null;
-		String sql = "select * from  operate_menu_info where menu_father_id="
-				+ menu_father_id + " and menu_camp in (0,"+race+")  order by menu_order ";
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs
-						.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
-
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				menu.setMenuFatherId(menu_father_id);
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-				list.add(menu);
-			}
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-	
-	/**
-	 * Í¨¹ımenu_typeºÍÕóÓª¹éÊôµÃµ½µÃµ½ menuÀàĞÍ
-	 * 
-	 * @param menu_type Ä¿Â¼ÀàĞÍ
-	 * @param camp ÕóÓª¹éÊô
-	 * @return
-	 */
-	public List<OperateMenuVO> getMenuByMenuTypeAndCamp(int menu_type,int camp)
-	{
-		List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
-		OperateMenuVO menu = null;
-		String sql = "select * from operate_menu_info where menu_type = "+menu_type+" and menu_camp = "+camp;
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				//menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				//menu.setMenuImg(rs.getString("menu_img"));
-				//menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-				//menu.setMenuOperate1(rs.getString("menu_operate1"));
-				//menu.setMenuOperate2(rs.getString("menu_operate2"));
-				//menu.setMenuOperate3(rs.getString("menu_operate3"));
-
-				//menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				//menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				//menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				//menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				//menu.setMenuRefurbishTime(rs.getString("menu_refurbish_time"));
-				//menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				//menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				list.add(menu);
-			}
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return list;
-	}
-
-	/**
-	 * »ñµÃnpc_idÒÀ¿¿ÈÎÎñid
-	 * 
-	 * 03.25 ĞŞ¸Ä£¬Ôö¼ÓÁËÈÎÎñid Ç°ºóµÄ,
-	 * @param taskid
-	 * @return
-	 */
-	public OperateMenuVO getNpcIdByTaskId (String taskid)
-	{
-		OperateMenuVO vo = null;
-		String searchTask = ","+taskid+",";
-		String sql = "select id,menu_map from operate_menu_info where menu_tasks_id like '%"+searchTask+"%' ";
-		logger.debug("»ñµÃnpc_idÒÀ¿¿ÈÎÎñid="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try	
-		{
-			vo = new OperateMenuVO();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				vo.setId(rs.getInt("id"));
-				vo.setMenuMap(rs.getInt("menu_map"));
-			} 
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return vo;
-	}
-	
-	/**
-	 * »ñµÃmenuvoÒÀ¿¿ sceneIdºÍmenuOperate1
-	 * @param sceneId
-	 * @param menuOperate1
-	 * @return
-	 */
-	public OperateMenuVO getOperateMenuVOBySceneAndOperate1(String sceneId,
-			String menuOperate1)
-	{
-		
-		String sql = "select * from operate_menu_info where menu_map="+sceneId+" and menu_operate1="+menuOperate1;
-		
-		OperateMenuVO menu = null;
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
-
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-			}
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		
-		
-		
-		return menu;
-	}
-	
-	
-	/**
-	 * »ñµÃmenuvoÒÀ¿¿ sceneIdºÍmenu_type
-	 * @param sceneId
-	 * @param type
-	 * @return
-	 */
-	public OperateMenuVO getOperateMenuVOBySceneAndType(int sceneId,
-			int type)
-	{
-		
-		String sql = "select * from operate_menu_info where menu_map="+sceneId+" and menu_type="+type;
-		
-		OperateMenuVO menu = null;
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
-
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
-
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-			}
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		
-		
-		
-		return menu;
-	}
-
-	/**
-	 * ¸üĞÂÆì¸ËµÄÕóÓª¹éÊô
-	 * @param menu_id
-	 * @param p_camp
-	 */
-	public void updateOperateMenuCamp(String menu_id, int menu_camp)
-	{
-		String sql = "update operate_menu_info set menu_camp="+menu_camp+" where id=" + menu_id + "";
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-	}
-
-	/**
-	 * ¸ù¾İÑİÎä¹ÜÀíÔ±ÀàĞÍºÍËùÔÚµØÍ¼idÀ´È·¶¨menu_operate1
-	 * @param flag_type
-	 * @param map_ID
-	 * @return
-	 */
-	public String getJoinPointByFieldManager(int field_manager_type, int map_ID)
-	{
-		String sql = "select menu_operate1 from operate_menu_info where menu_type = "+field_manager_type
-						+ " and menu_operate2 like '%"+map_ID+"%'";
-		logger.debug("¸ù¾İÑİÎä¹ÜÀíÔ±ÀàĞÍºÍËùÔÚµØÍ¼idÀ´È·¶¨½øÈëµã="+sql);
-		String menu_operate1 = "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				menu_operate1 = rs.getString("menu_operate1");
-			} 
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return menu_operate1;
-	}
-	
-	/**
-	 * ¸ù¾İÑİÎä¹ÜÀíÔ±ÀàĞÍºÍËùÔÚµØÍ¼idÀ´È·¶¨menu_operate2
-	 * Ä¿µÄÊÇ»ñµÃ´ËÕ½³¡µÄ³öÈ¥µã
-	 * @param flag_type
-	 * @param map_ID
-	 * @return
-	 */
-	public String getOutPointByFieldManager(int field_manager_type, int map_ID)
-	{
-		String sql = "select menu_operate2 from operate_menu_info where menu_type = "+field_manager_type
-						+ " and menu_operate2 like '%"+map_ID+"%'";
-		
-		logger.debug("¸ù¾İÑİÎä¹ÜÀíÔ±ÀàĞÍºÍËùÔÚµØÍ¼idÀ´È·¶¨½øÈëµã="+sql);
-		String menu_operate2 = "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				menu_operate2 = rs.getString("menu_operate2");
-			} 
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return menu_operate2;
-	}
-	
-	/**
-	 * ¸ù¾İÑİÎä¹ÜÀíÔ±ÀàĞÍºÍËùÔÚµØÍ¼idÀ´È·¶¨menu_operate3
-	 * Ä¿µÄÊÇ»ñµÃ´ËÕ½³¡µÄ³öÈ¥µã
-	 * @param flag_type
-	 * @param map_ID
-	 * @return
-	 */
-	public String getFieldTypeByFieldManager(int field_manager_type, int map_ID)
-	{
-		String sql = "select menu_operate3 from operate_menu_info where menu_type = "+field_manager_type
-						+ " and menu_operate3 like '%"+map_ID+"%'";
-		
-		logger.debug("¸ù¾İÑİÎä¹ÜÀíÔ±ÀàĞÍºÍËùÔÚµØÍ¼idÀ´È·¶¨½øÈëµã="+sql);
-		String menu_operate3 = "";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-			{
-				menu_operate3 = rs.getString("menu_operate3");
-			} 
-			rs.close();
-			stmt.close();
-
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return menu_operate3;
-	}
-
-	/**
-	 * ÔÚÆì¸ËnpcËÀÍöºó£¬½«Æì¸ËµÄÕóÓª×ª»¯Îª¹¥»÷Æì¸ËÊ¤ÀûÕßµÄÕóÓª,Ò²¾ÍÊÇ¶ÔÁ¢ÕóÓª
-	 * @param npcID
-	 * @param camp
-	 */
-	public void updateMastCamp(int menu_type, int camp,int map)
-	{
-		String sql = "update operate_menu_info set menu_camp = "+camp 
-					+" where menu_type = "+menu_type+" and menu_map ="+map+"";
-		logger.debug("Æì¸ËnpcËÀÍö×ª»¯ÕóÓª="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-	}
-	
-	/**
-	 * ÔÚÕĞ»êá¦ËÀÍöºó,½«ÆäµÄµÄËùÊô°ïÅÉ×ª»¯
-	 * @param npcID
-	 * @param camp
-	 */
-	public int updateZHAOHUN(String sceneId, String menuOperate1, int tongPk)
-	{
-		menuOperate1 = menuOperate1 + ",1";
-		int menu_id = 0;
-		String sql = "update operate_menu_info set menu_operate3 = '"+tongPk 
-					+"' where menu_map = "+sceneId+" and menu_operate1 like '%"+menuOperate1+"%'";
-		logger.debug("Æì¸ËnpcËÀÍö×ª»¯ÕóÓª="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		}
-		
-		String sql2 = "select id from operate_menu_info where menu_map = "+sceneId+" and menu_operate1 ='"+menuOperate1+"'";
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql2);
-			if (rs.next()) {
-				menu_id = rs.getInt("id");
-			}
-			rs.close();
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		
-		return menu_id;
-	}
+        } finally {
+            dbConn.closeConn();
+        }
+        return menu_list;
+    }
 
 
+    /**
+     * é€šè¿‡idå¾—åˆ° menu
+     *
+     * @param map_id
+     * @return
+     */
+    public OperateMenuVO getMenuById(int id) {
+        OperateMenuVO menu = null;
+        String sql = "SELECT * FROM  `operate_menu_info` WHERE id = " + id;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuOrder(rs.getInt("menu_order"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuTaskFlag(rs.getInt("menu_task_flag"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
 
-	/**
-	 * ÕĞ»êá¦µÄ³õÊ¼»¯
-	 * @param npcID
-	 * @param camp
-	 */
-	public void updateZHAOHUN()
-	{
-		String sql = "update operate_menu_info set menu_operate3 = '-1' where menu_type = "+MenuType.ZHAOHUN;
-		logger.debug("ÕĞ»êá¦µÄ³õÊ¼»¯="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-	}
+        } finally {
+            dbConn.closeConn();
+        }
+        return menu;
+    }
 
-	/**
-	 * »ñµÃ²Ëµ¥ ÒÀ¿¿ÀàĞÍºÍÌØÊâÀàĞÍ3
-	 * @param menuType
-	 * @param menuoperate3
-	 * @return
-	 */
-	public List<OperateMenuVO> getOperateMenuByTypeAndOperate3(int menuType,
-			String menuoperate3)
-	{
-		String sql = "select * from operate_menu_info where menu_type="+menuType+" and menu_operate3='"+menuoperate3+"'";
-		List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
-		OperateMenuVO menu = null;
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
 
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
+    /**
+     * æ ¹æ®menu_typeæ¥è·å¾—èœå•
+     *
+     * @param map_id
+     * @return
+     */
+    public List<OperateMenuVO> getMainMenuByMenuType(int menu_type) {
+        List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
+        OperateMenuVO menu = null;
+        String sql = "SELECT * FROM `operate_menu_info` WHERE menu_type = " + menu_type;
+        logger.debug("æ ¹æ®menu_typeæ¥è·å¾—èœå•=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
 
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
 
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-				list.add(menu);
-			}
-			rs.close();
-			stmt.close();
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
 
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-		return list;		
-	}
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
 
-	private List<OperateMenuVO> getMenu(ResultSet rs) throws SQLException
-	{
-		List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
-		if (rs != null)
-		{
-			while (rs.next())
-			{
-				OperateMenuVO menu = new OperateMenuVO();
-				menu.setId(rs.getInt("id"));
-				menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
-				menu.setMenuMap(rs.getInt("menu_map"));
-				menu.setMenuType(rs.getInt("menu_type"));
-				menu.setMenuImg(rs.getString("menu_img"));
-				menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
-				menu.setMenuCamp(rs.getInt("menu_camp"));
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+                list.add(menu);
+            }
+            rs.close();
+            stmt.close();
 
-				menu.setMenuOperate1(rs.getString("menu_operate1"));
-				menu.setMenuOperate2(rs.getString("menu_operate2"));
-				menu.setMenuOperate3(rs.getString("menu_operate3"));
+            logger.debug("operateMenuDapä¸­çš„menuä¸ªæ•°ä¸º : " + list.size());
+            return list;
+        } catch (Exception e) {
+            e.getStackTrace();
 
-				menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
-				menu.setMenuTimeEnd(rs.getString("menu_time_end"));
-				menu.setMenuDayBegin(rs.getString("menu_day_begin"));
-				menu.setMenuDayEnd(rs.getString("menu_day_end"));
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
 
-				menu.setMenuFatherId(rs.getInt("menu_father_id"));
-				menu.setMenuTasksId(rs.getString("menu_tasks_id"));
-				menu.setMenuTaskFlag(rs.getInt("menu_task_flag"));
-				menu.setMenuOperate4(rs.getInt("menu_operate4"));
-				
-				menu.setWeekStr(rs.getString("week_str"));
-				list.add(menu);
-			}
-		}
-		return list;
-	}
-	
-	public List<OperateMenuVO> findAll_Sheare_menu()
-	{
-		String sql = "select * from operate_menu_info o where o.menu_type = "
-				+ MenuType.SHEARE;
-		List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			logger.debug(sql);
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			list = getMenu(rs);
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			dbConn.closeConn();
-			return list;
-		}
-	}
-	
-	public void updateOperateMenuMenpaiConstant(String menu_id, String menu_name)
-	{
-		String sql = "update operate_menu_info set menu_name= '"+menu_name+"' where id=" + menu_id + "";
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-	}
-	
-	public void updateOperateMenuMenpaiNpc(String menu_id, int menu_operate4)
-	{
-		String sql = "update operate_menu_info set menu_operate4="+menu_operate4+" where id=" + menu_id + "";
-		logger.debug(sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		conn = dbConn.getConn();
-		try
-		{
-			stmt = conn.createStatement();
-			stmt.execute(sql);
-			stmt.close();
-		} catch (Exception e)
-		{
-			logger.debug(e.getStackTrace());
-		} finally
-		{
-			dbConn.closeConn();
-		}
-	}
-	
-	
+
+    /**
+     * å¾—åˆ°çˆ¶èœå•idä¸ºmenu_father_idçš„æ‰€æœ‰å­èœå•
+     *
+     * @param menu_father_id çˆ¶èœå•id
+     * @param race           ç§æ—
+     * @return
+     */
+    public List<OperateMenuVO> getSonMenuByMap(int menu_father_id, int race) {
+        List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
+        OperateMenuVO menu = null;
+        String sql = "SELECT * FROM `operate_menu_info` WHERE `menu_father_id` = " + menu_father_id + " AND `menu_camp` IN (0," + race + ") ORDER BY `menu_order` ";
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
+
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                menu.setMenuFatherId(menu_father_id);
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+                list.add(menu);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    /**
+     * é€šè¿‡menu_typeå’Œé˜µè¥å½’å±å¾—åˆ°å¾—åˆ° menuç±»å‹
+     *
+     * @param menu_type ç›®å½•ç±»å‹
+     * @param camp      é˜µè¥å½’å±
+     * @return
+     */
+    public List<OperateMenuVO> getMenuByMenuTypeAndCamp(int menu_type, int camp) {
+        List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
+        OperateMenuVO menu = null;
+        String sql = "SELECT * FROM `operate_menu_info` WHERE `menu_type` = " + menu_type + " AND `menu_camp` = " + camp;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                //menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                //menu.setMenuImg(rs.getString("menu_img"));
+                //menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+                //menu.setMenuOperate1(rs.getString("menu_operate1"));
+                //menu.setMenuOperate2(rs.getString("menu_operate2"));
+                //menu.setMenuOperate3(rs.getString("menu_operate3"));
+
+                //menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                //menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                //menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                //menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                //menu.setMenuRefurbishTime(rs.getString("menu_refurbish_time"));
+                //menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                //menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                list.add(menu);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    /**
+     * è·å¾—npc_idä¾é ä»»åŠ¡id
+     * <p>
+     * 03.25 ä¿®æ”¹ï¼Œå¢åŠ äº†ä»»åŠ¡id å‰åçš„,
+     *
+     * @param taskid
+     * @return
+     */
+    public OperateMenuVO getNpcIdByTaskId(String taskid) {
+        OperateMenuVO vo = null;
+        String searchTask = "," + taskid + ",";
+        String sql = "SELECT id, menu_map FROM `operate_menu_info` WHERE menu_tasks_id LIKE '%" + searchTask + "%' ";
+        logger.debug("è·å¾—npc_idä¾é ä»»åŠ¡id=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            vo = new OperateMenuVO();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                vo.setId(rs.getInt("id"));
+                vo.setMenuMap(rs.getInt("menu_map"));
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return vo;
+    }
+
+    /**
+     * è·å¾—menuvoä¾é  sceneIdå’ŒmenuOperate1
+     *
+     * @param sceneId
+     * @param menuOperate1
+     * @return
+     */
+    public OperateMenuVO getOperateMenuVOBySceneAndOperate1(String sceneId, String menuOperate1) {
+
+        String sql = "SELECT * FROM `operate_menu_info` where menu_map=" + sceneId + " and menu_operate1=" + menuOperate1;
+
+        OperateMenuVO menu = null;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
+
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+
+
+        return menu;
+    }
+
+
+    /**
+     * è·å¾—menuvoä¾é  sceneIdå’Œmenu_type
+     *
+     * @param sceneId
+     * @param type
+     * @return
+     */
+    public OperateMenuVO getOperateMenuVOBySceneAndType(int sceneId, int type) {
+
+        String sql = "SELECT * FROM `operate_menu_info` WHERE `menu_map`=" + sceneId + " AND `menu_type` = " + type;
+
+        OperateMenuVO menu = null;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
+
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+
+
+        return menu;
+    }
+
+    /**
+     * æ›´æ–°æ——æ†çš„é˜µè¥å½’å±
+     *
+     * @param menu_id
+     * @param p_camp
+     */
+    public void updateOperateMenuCamp(String menu_id, int menu_camp) {
+        String sql = "update operate_menu_info set menu_camp=" + menu_camp + " where id=" + menu_id;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ ¹æ®æ¼”æ­¦ç®¡ç†å‘˜ç±»å‹å’Œæ‰€åœ¨åœ°å›¾idæ¥ç¡®å®šmenu_operate1
+     *
+     * @param flag_type
+     * @param map_ID
+     * @return
+     */
+    public String getJoinPointByFieldManager(int field_manager_type, int map_ID) {
+        String sql = "SELECT menu_operate1 from operate_menu_info where menu_type = " + field_manager_type + " and menu_operate2 like '%" + map_ID + "%'";
+        logger.debug("æ ¹æ®æ¼”æ­¦ç®¡ç†å‘˜ç±»å‹å’Œæ‰€åœ¨åœ°å›¾idæ¥ç¡®å®šè¿›å…¥ç‚¹=" + sql);
+        String menu_operate1 = "";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                menu_operate1 = rs.getString("menu_operate1");
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return menu_operate1;
+    }
+
+    /**
+     * æ ¹æ®æ¼”æ­¦ç®¡ç†å‘˜ç±»å‹å’Œæ‰€åœ¨åœ°å›¾idæ¥ç¡®å®šmenu_operate2
+     * ç›®çš„æ˜¯è·å¾—æ­¤æˆ˜åœºçš„å‡ºå»ç‚¹
+     *
+     * @param flag_type
+     * @param map_ID
+     * @return
+     */
+    public String getOutPointByFieldManager(int field_manager_type, int map_ID) {
+        String sql = "SELECT menu_operate2 from operate_menu_info where menu_type = " + field_manager_type + " and menu_operate2 like '%" + map_ID + "%'";
+
+        logger.debug("æ ¹æ®æ¼”æ­¦ç®¡ç†å‘˜ç±»å‹å’Œæ‰€åœ¨åœ°å›¾idæ¥ç¡®å®šè¿›å…¥ç‚¹=" + sql);
+        String menu_operate2 = "";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                menu_operate2 = rs.getString("menu_operate2");
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return menu_operate2;
+    }
+
+    /**
+     * æ ¹æ®æ¼”æ­¦ç®¡ç†å‘˜ç±»å‹å’Œæ‰€åœ¨åœ°å›¾idæ¥ç¡®å®šmenu_operate3
+     * ç›®çš„æ˜¯è·å¾—æ­¤æˆ˜åœºçš„å‡ºå»ç‚¹
+     *
+     * @param flag_type
+     * @param map_ID
+     * @return
+     */
+    public String getFieldTypeByFieldManager(int field_manager_type, int map_ID) {
+        String sql = "SELECT menu_operate3 from operate_menu_info where menu_type = " + field_manager_type + " and menu_operate3 like '%" + map_ID + "%'";
+
+        logger.debug("æ ¹æ®æ¼”æ­¦ç®¡ç†å‘˜ç±»å‹å’Œæ‰€åœ¨åœ°å›¾idæ¥ç¡®å®šè¿›å…¥ç‚¹=" + sql);
+        String menu_operate3 = "";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                menu_operate3 = rs.getString("menu_operate3");
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return menu_operate3;
+    }
+
+    /**
+     * åœ¨æ——æ†npcæ­»äº¡åï¼Œå°†æ——æ†çš„é˜µè¥è½¬åŒ–ä¸ºæ”»å‡»æ——æ†èƒœåˆ©è€…çš„é˜µè¥,ä¹Ÿå°±æ˜¯å¯¹ç«‹é˜µè¥
+     *
+     * @param npcID
+     * @param camp
+     */
+    public void updateMastCamp(int menu_type, int camp, int map) {
+        String sql = "update operate_menu_info set menu_camp = " + camp + " where menu_type = " + menu_type + " and menu_map =" + map;
+        logger.debug("æ——æ†npcæ­»äº¡è½¬åŒ–é˜µè¥=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * åœ¨æ‹›é­‚å¹¡æ­»äº¡å,å°†å…¶çš„çš„æ‰€å±å¸®æ´¾è½¬åŒ–
+     *
+     * @param npcID
+     * @param camp
+     */
+    public int updateZHAOHUN(String sceneId, String menuOperate1, int tongPk) {
+        menuOperate1 = menuOperate1 + ",1";
+        int menu_id = 0;
+        String sql = "update operate_menu_info set menu_operate3 = '" + tongPk + "' where menu_map = " + sceneId + " and menu_operate1 like '%" + menuOperate1 + "%'";
+        logger.debug("æ——æ†npcæ­»äº¡è½¬åŒ–é˜µè¥=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        }
+
+        String sql2 = "select id from operate_menu_info where menu_map = " + sceneId + " and menu_operate1 ='" + menuOperate1 + "'";
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql2);
+            if (rs.next()) {
+                menu_id = rs.getInt("id");
+            }
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return menu_id;
+    }
+
+
+    /**
+     * æ‹›é­‚å¹¡çš„åˆå§‹åŒ–
+     *
+     * @param npcID
+     * @param camp
+     */
+    public void updateZHAOHUN() {
+        String sql = "update operate_menu_info set menu_operate3 = '-1' where menu_type = " + MenuType.ZHAOHUN;
+        logger.debug("æ‹›é­‚å¹¡çš„åˆå§‹åŒ–=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * è·å¾—èœå• ä¾é ç±»å‹å’Œç‰¹æ®Šç±»å‹3
+     *
+     * @param menuType
+     * @param menuoperate3
+     * @return
+     */
+    public List<OperateMenuVO> getOperateMenuByTypeAndOperate3(int menuType, String menuoperate3) {
+        String sql = "SELECT * FROM `operate_menu_info` WHERE `menu_type` = " + menuType + " AND `menu_operate3` = '" + menuoperate3 + "'";
+        List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
+        OperateMenuVO menu = null;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
+
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+                list.add(menu);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    private List<OperateMenuVO> getMenu(ResultSet rs) throws SQLException {
+        List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
+        if (rs != null) {
+            while (rs.next()) {
+                OperateMenuVO menu = new OperateMenuVO();
+                menu.setId(rs.getInt("id"));
+                menu.setMenuName(StringUtil.isoToGBK(rs.getString("menu_name")));
+                menu.setMenuMap(rs.getInt("menu_map"));
+                menu.setMenuType(rs.getInt("menu_type"));
+                menu.setMenuImg(rs.getString("menu_img"));
+                menu.setMenuDialog(StringUtil.isoToGBK(rs.getString("menu_dialog")));
+                menu.setMenuCamp(rs.getInt("menu_camp"));
+
+                menu.setMenuOperate1(rs.getString("menu_operate1"));
+                menu.setMenuOperate2(rs.getString("menu_operate2"));
+                menu.setMenuOperate3(rs.getString("menu_operate3"));
+
+                menu.setMenuTimeBegin(rs.getString("menu_time_begin"));
+                menu.setMenuTimeEnd(rs.getString("menu_time_end"));
+                menu.setMenuDayBegin(rs.getString("menu_day_begin"));
+                menu.setMenuDayEnd(rs.getString("menu_day_end"));
+
+                menu.setMenuFatherId(rs.getInt("menu_father_id"));
+                menu.setMenuTasksId(rs.getString("menu_tasks_id"));
+                menu.setMenuTaskFlag(rs.getInt("menu_task_flag"));
+                menu.setMenuOperate4(rs.getInt("menu_operate4"));
+
+                menu.setWeekStr(rs.getString("week_str"));
+                list.add(menu);
+            }
+        }
+        return list;
+    }
+
+    public List<OperateMenuVO> findAll_Sheare_menu() {
+        String sql = "SELECT * FROM `operate_menu_info` o where o.menu_type = " + MenuType.SHEARE;
+        List<OperateMenuVO> list = new ArrayList<OperateMenuVO>();
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            logger.debug(sql);
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            list = getMenu(rs);
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+            return list;
+        }
+    }
+
+    public void updateOperateMenuMenpaiConstant(String menu_id, String menu_name) {
+        String sql = "update operate_menu_info set menu_name= '" + menu_name + "' where id=" + menu_id;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    public void updateOperateMenuMenpaiNpc(String menu_id, int menu_operate4) {
+        String sql = "update operate_menu_info set menu_operate4=" + menu_operate4 + " where id=" + menu_id;
+        logger.debug(sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        conn = dbConn.getConn();
+        try {
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (Exception e) {
+            logger.debug(e.getStackTrace());
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+
 }

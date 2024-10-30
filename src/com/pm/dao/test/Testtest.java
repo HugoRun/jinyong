@@ -12,14 +12,14 @@ public class Testtest extends DaoBase
 {
 
 	/**
-	 * »ñµÃÁ¬Ğø´ğ¶Ô´ÎÊı
+	 * è·å¾—è¿ç»­ç­”å¯¹æ¬¡æ•°
 	 * @param pk
 	 * @param nowMouth
 	 * @return
 	 */
 	public List getConuniteWinNum()
 	{
-		String sql = "select p_pk from u_part_info";
+		String sql = "SELECT p_pk from u_part_info";
 		List list = new ArrayList();
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		logger.debug("sql"+sql);
@@ -45,11 +45,11 @@ public class Testtest extends DaoBase
 	}
 	
 	public static void mian(String[] args) {
-		String title = "Í¨¸æ";
-		String content = "ÓÉÓÚÇ°¶ÎÊ±¼ä·¢ÏÖÒ»Ğ©ÓÎÏ·ÈÎÎñbug£¬" +
-				"Ê¹´ó¼Ò²úÉú´óÁ¿´íÎóµÄÈÎÎñÊı¾İ£¬" +
-				"¶Ô¸ø´ó¼ÒÔì³ÉµÄ²»±ãÉî±íÒÅº¶¡£" +
-				"Ä¿Ç°ÎÒÃÇÒÑ¾­ĞŞ¸ÄÁË²¿·ÖÈÎÎñbug£¬¶Ô´ó¼ÒµÄÈÎÎñ¼ÇÂ¼×ö³¹µ×É¾³ı´¦Àí£¬ÌØ´ËÍ¨¸æ£¡";
+		String title = "é€šå‘Š";
+		String content = "ç”±äºå‰æ®µæ—¶é—´å‘ç°ä¸€äº›æ¸¸æˆä»»åŠ¡bugï¼Œ" +
+				"ä½¿å¤§å®¶äº§ç”Ÿå¤§é‡é”™è¯¯çš„ä»»åŠ¡æ•°æ®ï¼Œ" +
+				"å¯¹ç»™å¤§å®¶é€ æˆçš„ä¸ä¾¿æ·±è¡¨é—æ†¾ã€‚" +
+				"ç›®å‰æˆ‘ä»¬å·²ç»ä¿®æ”¹äº†éƒ¨åˆ†ä»»åŠ¡bugï¼Œå¯¹å¤§å®¶çš„ä»»åŠ¡è®°å½•åšå½»åº•åˆ é™¤å¤„ç†ï¼Œç‰¹æ­¤é€šå‘Šï¼";
 		Testtest teset = new Testtest();
 		List alist = teset.getConuniteWinNum();
 		MailInfoService mailService = new MailInfoService();

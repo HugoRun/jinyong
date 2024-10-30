@@ -57,13 +57,13 @@ import com.web.jieyi.util.Constant;
 import com.web.service.petservice.HhjPetService;
 
 /**
- * ´ò¹Ö
+ * æ‰“æ€ª
  */
 public class NpcAttackAction extends ActionBase {
 	Logger logger = Logger.getLogger("log.action");
 
 
-	//Õ½¶·Ò³Ãæ
+	//æˆ˜æ–—é¡µé¢
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -72,7 +72,7 @@ public class NpcAttackAction extends ActionBase {
 		
 		Object[] attacklist = null;
 		List<NpcFighter> npcs = null;
-		// µÃµ½ËùÓĞÖ÷¶¯¹¥»÷µÄnpc
+		// å¾—åˆ°æ‰€æœ‰ä¸»åŠ¨æ”»å‡»çš„npc
 		AttacckCache attacckCache = new AttacckCache();
 		attacklist = attacckCache.getByPPkd(Integer.parseInt(pPk));
 		
@@ -90,13 +90,13 @@ public class NpcAttackAction extends ActionBase {
 			return mapping.findForward("display");
 		} else {
 				
-			// Ã»ÓĞ¹ÖµÄÊ±ºò£¬ ·µ»ØÖ÷Ò³Ãæ
+			// æ²¡æœ‰æ€ªçš„æ—¶å€™ï¼Œ è¿”å›ä¸»é¡µé¢
 			return mapping.findForward("fleeok");
 			
 		}	 
 	}	
 
-	// ¹¥»÷npc£¬Ò»¸ö»ØºÏ
+	// æ”»å‡»npcï¼Œä¸€ä¸ªå›åˆ
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -107,10 +107,10 @@ public class NpcAttackAction extends ActionBase {
 		FightService fightService = new FightService();
 		SkillService skillService = new SkillService();
 		NpcService npcService = new NpcService();
-		// ×°ÔØÓÃ»§ĞÅÏ¢
+		// è£…è½½ç”¨æˆ·ä¿¡æ¯
 		Fighter player = new Fighter();
 		player.setAppendAttributeDescribe(playerService.loadFighterByPpk(player,  roleEntity.getBasicInfo().getPPk()));
-		// ×°ÔØ npcĞÅÏ¢
+		// è£…è½½ npcä¿¡æ¯
 		List<NpcFighter> npcs = npcService.getAttackNPCs(roleEntity.getBasicInfo().getPPk(),roleEntity.getBasicInfo().getSceneId());
 		if(npcs.size() == 1){
 			NpcFighter nf = new NpcFighter();
@@ -132,24 +132,24 @@ public class NpcAttackAction extends ActionBase {
 				}
 				catch (Exception e)
 				{
-					request.setAttribute("display", "ÎŞ¸ÃNPC!");
+					request.setAttribute("display", "æ— è¯¥NPC!");
 		        	return mapping.findForward("display_bak");
 				}
 			}
 		}
-		//ÒÑÎŞnpc,±»±ğµÄÍæ¼Ò´òËÀ»òÖØ¸´Ë¢ĞÂ
+		//å·²æ— npc,è¢«åˆ«çš„ç©å®¶æ‰“æ­»æˆ–é‡å¤åˆ·æ–°
 		if( npcs==null || (npcs!=null && npcs.size()==0))
 		{
-			logger.info("ÒÑÎŞnpc");
+			logger.info("å·²æ— npc");
 		}else{
 			NpcVO vo = npcs.get(0);
 			roleEntity.getBasicInfo().setAttack_npc(vo.getNpcID());
 		}
-		//»ñÈ¡ÓĞÃ»ÓĞÆäËûµÄÏµÍ³ÏûÏ¢£¬ĞèÒªÔÚÕ½¶·Ê±ÏÔÊ¾µÄ
+		//è·å–æœ‰æ²¡æœ‰å…¶ä»–çš„ç³»ç»Ÿæ¶ˆæ¯ï¼Œéœ€è¦åœ¨æˆ˜æ–—æ—¶æ˜¾ç¤ºçš„
 		SysInfoDao sysInfoDao = new SysInfoDao();
 		List<SystemInfoVO> sysInfoVO = sysInfoDao.selectSysInfo(roleEntity.getBasicInfo().getPPk(),5,1);
 		request.setAttribute("sysInfoVO", sysInfoVO);
-		//ÅĞ¶ÏµÀ¾ßÊ¹ÓÃÊÇ·ñÎª0
+		//åˆ¤æ–­é“å…·ä½¿ç”¨æ˜¯å¦ä¸º0
 		SpecialPropService spss = new SpecialPropService();
 		String hint = spss.isUser(roleEntity);
 		if(hint !=null&&!hint.equals("")){
@@ -157,64 +157,64 @@ public class NpcAttackAction extends ActionBase {
         	request.setAttribute("p_pk", player.getPPk() + "");
         	return mapping.findForward("skillhint");
 		}
-		if( bout_type.equals("ÆÕÍ¨¹¥»÷"))
+		if( bout_type.equals("æ™®é€šæ”»å‡»"))
 		{
-			//¹¥»÷npc
+			//æ”»å‡»npc
 			fightService.attackNPC(player, npcs);
 		}		
-		else if( bout_type.equals("¼¼ÄÜ¹¥»÷"))
+		else if( bout_type.equals("æŠ€èƒ½æ”»å‡»"))
 		{
 			String s_pk = (String) request.getAttribute("s_pk");
 			if (s_pk == null) {
-				// Ã»ÓĞ·¢¶¯½öÄÜ¹¥»÷
+				// æ²¡æœ‰å‘åŠ¨ä»…èƒ½æ”»å‡»
 				s_pk = "-1";
 			}
-			// ÅĞ¶ÏÊÇ·ñÊÇ¼¼ÄÜ¹¥»÷
-			if (!s_pk.equals("-1"))//¼¼ÄÜ¹¥»÷
+			// åˆ¤æ–­æ˜¯å¦æ˜¯æŠ€èƒ½æ”»å‡»
+			if (!s_pk.equals("-1"))//æŠ€èƒ½æ”»å‡»
 			{
 				playerService.loadPlayerSkill(player, Integer.parseInt(s_pk));
 				String skill_hint = skillService.isUsabled(player, player.getSkill());
-				if ( skill_hint!=null )  //ÅĞ¶Ï¼¼ÄÜÊÇ·ñÄÜÊ¹ÓÃ
+				if ( skill_hint!=null )  //åˆ¤æ–­æŠ€èƒ½æ˜¯å¦èƒ½ä½¿ç”¨
 				{
 					request.setAttribute("hint", skill_hint);
 					request.setAttribute("p_pk", player.getPPk()+"");
 					return mapping.findForward("skillhint");
 				}
-				else//³É¹¦·¢¶¯¼¼ÄÜ¹¥»÷
+				else//æˆåŠŸå‘åŠ¨æŠ€èƒ½æ”»å‡»
 				{
-					//Èç¹û¼¼ÄÜ¿ÉÒÔÊ¹ÓÃÔò¿Û³ıMP
+					//å¦‚æœæŠ€èƒ½å¯ä»¥ä½¿ç”¨åˆ™æ‰£é™¤MP
 					PlayerSkillVO playerSkill = player.getSkill();
 					player.setExpendMP(playerSkill.getSkUsecondition());
 					RoleEntity roleInfo = roleService.getRoleInfoById(player.getPPk()+ "");
 					roleInfo.getBasicInfo().updateMp(player.getPMp());
-					//¹¥»÷npc
+					//æ”»å‡»npc
 					fightService.attackNPC(player, npcs);
 				}
 			}
 		}
-		else if( bout_type.equals("ÌÓÅÜ"))
+		else if( bout_type.equals("é€ƒè·‘"))
 		{
-			player.setSkillDisplay("ÌÓÅÜ,µ«Ê§°ÜÁË");
-		}else if( bout_type.equals("²»ÄÜÌÓÅÜ"))
+			player.setSkillDisplay("é€ƒè·‘,ä½†å¤±è´¥äº†");
+		}else if( bout_type.equals("ä¸èƒ½é€ƒè·‘"))
 		{
-			player.setSkillDisplay("ÌÓÅÜ,µ«Äú²»ÄÜÌÓÅÜ");
+			player.setSkillDisplay("é€ƒè·‘,ä½†æ‚¨ä¸èƒ½é€ƒè·‘");
 		}
 		String s = (String)request.getSession().getAttribute("getKillDisplay");
-		//npc¹¥»÷½ÇÉ« 
+		//npcæ”»å‡»è§’è‰² 
 		npcService.attackPlayer(npcs, player);
-		/***************¹¥»÷ÍêÒ»¸ö»ØºÏºóĞèÒª×öµÄ´¦Àí************/
+		/***************æ”»å‡»å®Œä¸€ä¸ªå›åˆåéœ€è¦åšçš„å¤„ç†************/
 		if(player.isDead()||npcs.size()==0)
 		{
 			AttackService.processAttackNPCOver(player, npcs, roleEntity, request);
-			if (player.isDead())// Íæ¼Ò±»´òËÀ
+			if (player.isDead())// ç©å®¶è¢«æ‰“æ­»
 			{
 				return mapping.findForward("dead_prop");
-			} else if (npcs.size() == 0)// Õ½¶·Ê¤Àû
+			} else if (npcs.size() == 0)// æˆ˜æ–—èƒœåˆ©
 			{
 				return mapping.findForward("win");
 			}
 		}
-		else// ¼ÌĞø¹¥»÷
+		else// ç»§ç»­æ”»å‡»
 		{			
 			ShortcutService shortcutService = new ShortcutService();
 			List<ShortcutVO> shortcuts = shortcutService.getByPpk( roleEntity.getBasicInfo().getPPk() );
@@ -239,17 +239,17 @@ public class NpcAttackAction extends ActionBase {
 		return null;
 	}
 
-	// ½øÈëÕ½¶·Ò³Ãæ£¬ÏÔÊ¾ÏêÇé
+	// è¿›å…¥æˆ˜æ–—é¡µé¢ï¼Œæ˜¾ç¤ºè¯¦æƒ…
 
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		RoleEntity me = this.getRoleEntity(request);
 		String nPk = request.getParameter("nPk");
 		if (nPk == null) {
-			logger.debug("¿ÕÖ¸Õë¡£¡£¡£¡£");
+			logger.debug("ç©ºæŒ‡é’ˆã€‚ã€‚ã€‚ã€‚");
 		}
 		PlayerService playerService = new PlayerService();		
-		//*******************ÅĞ¶ÏÊÇ·ñÓĞÈË¹¥»÷
+		//*******************åˆ¤æ–­æ˜¯å¦æœ‰äººæ”»å‡»
 		if( me.getPKState().getOtherNum()>0 )
 		{		
 			return super.dispath(request, response, "/pk.do?cmd=n7");
@@ -257,16 +257,16 @@ public class NpcAttackAction extends ActionBase {
 		me.getStateInfo().setCurState(PlayerState.NPCFIGHT);
 		ShortcutService shortcutService = new ShortcutService();
 		NpcService npcService = new NpcService();
-		// ×°ÔØÓÃ»§ĞÅÏ¢
+		// è£…è½½ç”¨æˆ·ä¿¡æ¯
 		Fighter player = new Fighter();
 		player.setAppendAttributeDescribe(playerService.loadFighterByPpk(player,  me.getBasicInfo().getPPk()));
 		NpcFighter npcFighter = null;
 		List<NpcFighter> bdnpcs = null;
 		List<NpcFighter> zdnpcs = null;
-		// Ê¹µ±Ç°npc´¦ÓÚÕ½¶·×´Ì¬
+		// ä½¿å½“å‰npcå¤„äºæˆ˜æ–—çŠ¶æ€
 		if (nPk != null) {
 			
-			// µÃµ½ËùÓĞÖ÷¶¯¹¥»÷µÄnpc
+			// å¾—åˆ°æ‰€æœ‰ä¸»åŠ¨æ”»å‡»çš„npc
 			Object[] attacklist = null;
 			AttacckCache attacckCache = new AttacckCache();
 			attacklist = attacckCache.getByPPkd(me.getBasicInfo().getPPk());
@@ -299,12 +299,12 @@ public class NpcAttackAction extends ActionBase {
 				}
 				catch (Exception e)
 				{
-					request.setAttribute("display", "ÎŞ¸ÃNPC!");
+					request.setAttribute("display", "æ— è¯¥NPC!");
 		        	return mapping.findForward("display_bak");
 				}
 			}
 		}
-		// ¿ì½İ¼üÀà±í
+		// å¿«æ·é”®ç±»è¡¨
 		List<ShortcutVO> shortcuts = shortcutService.getByPpk( me.getBasicInfo().getPPk() );
 		String displiey = (String)request.getSession().getAttribute("getKillDisplay");
 		player.appendKillDisplay(displiey);
@@ -314,7 +314,7 @@ public class NpcAttackAction extends ActionBase {
 		return mapping.findForward("display");
 	}
 
-	// Õ½¶·Ê¤Àû
+	// æˆ˜æ–—èƒœåˆ©
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -326,14 +326,14 @@ public class NpcAttackAction extends ActionBase {
 		return mapping.findForward("no_refurbish_scene");
 	}
 
-	// ¿ì½İ¼ü²Ù×÷
+	// å¿«æ·é”®æ“ä½œ
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		String pPk = (String) request.getSession().getAttribute("pPk");
 		RoleEntity me =this.getRoleEntity(request);
 
-		//*******************ÅĞ¶ÏÊÇ·ñÓĞÈË¹¥»÷
+		//*******************åˆ¤æ–­æ˜¯å¦æœ‰äººæ”»å‡»
 		if( me.getPKState().getOtherNum()>0 )
 		{	
 			return super.dispath(request, response, "/pk.do?cmd=n7");
@@ -342,7 +342,7 @@ public class NpcAttackAction extends ActionBase {
 		String sc_pk = request.getParameter("sc_pk");
 		String pk = request.getParameter("pk");
 		if (sc_pk == null) {
-			logger.debug("¿ÕÖ¸Õë¡£¡£¡£¡£");
+			logger.debug("ç©ºæŒ‡é’ˆã€‚ã€‚ã€‚ã€‚");
 		}
 		String shortType = request.getParameter("shortType");
 		request.setAttribute("shortType", request.getParameter("shortType"));
@@ -352,42 +352,42 @@ public class NpcAttackAction extends ActionBase {
 		logger.debug("sc_name="+shortcut.getScName());
 		logger.debug("sc_operateId="+shortcut.getOperateId());
 		logger.debug("sc_objectId="+shortcut.getObjectId());
-		if (shortcut.getScType() == Shortcut.ATTACK)// ÆÕÍ¨¹¥»÷
+		if (shortcut.getScType() == Shortcut.ATTACK)// æ™®é€šæ”»å‡»
 		{
-			request.setAttribute("bout_type", "ÆÕÍ¨¹¥»÷");
+			request.setAttribute("bout_type", "æ™®é€šæ”»å‡»");
 			return n3(mapping, form, request, response);
-		} else if (shortcut.getScType() == Shortcut.SKILL)// ¼¼ÄÜ¹¥»÷
+		} else if (shortcut.getScType() == Shortcut.SKILL)// æŠ€èƒ½æ”»å‡»
 		{
-			request.setAttribute("bout_type", "¼¼ÄÜ¹¥»÷");
+			request.setAttribute("bout_type", "æŠ€èƒ½æ”»å‡»");
 			request.setAttribute("s_pk", shortcut.getOperateId()+"");
 			return n3(mapping, form, request, response);
-		} else if (shortcut.getScType() == Shortcut.LOOKINFO)// ²é¿´npcÏêÇé
+		} else if (shortcut.getScType() == Shortcut.LOOKINFO)// æŸ¥çœ‹npcè¯¦æƒ…
 		{
 			return n7(mapping, form, request, response);
-		} else if (shortcut.getScType() == Shortcut.DEFAULT)// ÉèÖÃ¿ì½İ¼ü
+		} else if (shortcut.getScType() == Shortcut.DEFAULT)// è®¾ç½®å¿«æ·é”®
 		{
 			AttackShortcutAction attackShortcutAction = new AttackShortcutAction();
-			// Ö»ÓĞµ±²»ÊÇÔÚÆÕÍ¨Çé¿öÏÂ½øÈë¿ì½İ¼üÉèÖÃµÄ,²ÅĞèÒªÔÚsessionÉèÖÃ
+			// åªæœ‰å½“ä¸æ˜¯åœ¨æ™®é€šæƒ…å†µä¸‹è¿›å…¥å¿«æ·é”®è®¾ç½®çš„,æ‰éœ€è¦åœ¨sessionè®¾ç½®
 			if (shortType == null || shortType.equals("")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("retrun_url", "/attackNPC.do?cmd=n4&pPk=" + me.getBasicInfo().getPPk()+"&chair="+request.getParameter("chair"));
 			}
 			request.setAttribute("pk", pk);
 			return attackShortcutAction.n3(mapping, form, request, response);
-		}else if (shortcut.getScType() == Shortcut.FLEE)// ÌÓÅÜ
+		}else if (shortcut.getScType() == Shortcut.FLEE)// é€ƒè·‘
 		{	
 			return n16(mapping, form, request, response);
 		}
-		else if (shortcut.getScType() == Shortcut.CURE)// Ò©Æ·µÄÊ¹ÓÃ
+		else if (shortcut.getScType() == Shortcut.CURE)// è¯å“çš„ä½¿ç”¨
 		{
 			
 			PropUseEffect propUseEffect = null;
 			PropUseService propService = new PropUseService();
-			propUseEffect = propService.usePropByPropID(me, shortcut.getOperateId(),1, request, response);// Ê¹ÓÃÒ©Æ·
+			propUseEffect = propService.usePropByPropID(me, shortcut.getOperateId(),1, request, response);// ä½¿ç”¨è¯å“
 			request.setAttribute("propUseEffect", propUseEffect);
 			return n4(mapping, form, request, response);
 		}
-		else if (shortcut.getScType() == Shortcut.ATTACKPROP)// Ò©Æ·µÄÊ¹ÓÃ
+		else if (shortcut.getScType() == Shortcut.ATTACKPROP)// è¯å“çš„ä½¿ç”¨
 		{
 			request.getSession().setAttribute("prop_pet_id", shortcut.getOperateId());
 			return propn8(mapping, form, request, response);
@@ -397,7 +397,7 @@ public class NpcAttackAction extends ActionBase {
 	}
 
 	/**
-	 * ²é¿´npcÏêÇé 
+	 * æŸ¥çœ‹npcè¯¦æƒ… 
 	 * 
 	 * @param mapping
 	 * @param form
@@ -416,10 +416,10 @@ public class NpcAttackAction extends ActionBase {
 		NpcService npcService = new NpcService();
 		NpcAttackVO npc = npcService.getOneAttackNPCByPpk( roleInfo.getBasicInfo().getPPk(),Integer.parseInt(mapid));
 		npcService.loadNPCWx(npc);
-		//»ñµÃÎåĞĞ¹¥»÷µÄÏÔÊ¾
+		//è·å¾—äº”è¡Œæ”»å‡»çš„æ˜¾ç¤º
 		String wx = npcService.getWxNum(npc.getNpcID());
 		
-		//»ñµÃnpcÍ¼Æ¬ĞÅÏ¢
+		//è·å¾—npcå›¾ç‰‡ä¿¡æ¯
 		PicService picService = new PicService();
 		logger.info("pPk="+roleInfo.getBasicInfo().getPPk()+" ,mapid="+mapid);
 		logger.info("npcId="+npc.getNpcID());
@@ -432,7 +432,7 @@ public class NpcAttackAction extends ActionBase {
 	}
 	
 	/**
-	 * ²¶×½NPC
+	 * æ•æ‰NPC
 	 * 
 	 * @param mapping
 	 * @param form
@@ -449,7 +449,7 @@ public class NpcAttackAction extends ActionBase {
 		
 		PetNameBean petNameBean = new PetNameBean();
 		
-		//È¡³öµ±Ç°¹¥»÷NPCµÄĞÅÏ¢
+		//å–å‡ºå½“å‰æ”»å‡»NPCçš„ä¿¡æ¯
 		NpcService npcService = new NpcService();
 		String mapid = roleInfo.getBasicInfo().getSceneId();
 		
@@ -460,36 +460,36 @@ public class NpcAttackAction extends ActionBase {
 		logger.info("mapid="+mapid);
 		NpcAttackVO npc = npcService.getOneAttackNPCByPpk(roleInfo.getBasicInfo().getPPk(),Integer.parseInt(mapid));
 		if(npc == null){
-			request.setAttribute("display", "ÎŞ¸ÃNPC»òNPCËÀÍö±»²¶×½!");
+			request.setAttribute("display", "æ— è¯¥NPCæˆ–NPCæ­»äº¡è¢«æ•æ‰!");
 		   	return mapping.findForward("display_bak");
 		}
 		npcService.loadNPCWx(npc); 
-		//È¡³ö½ÇÉ«µÄĞÅÏ¢
+		//å–å‡ºè§’è‰²çš„ä¿¡æ¯
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> petInfoDAOlist = petInfoDAO.getPetInfoList(p_pk);
 		logger.info("npc.getNpcId()="+npc.getNpcID());
 		PetDAO petDAO = new PetDAO();
 		PetVO PetVO = (PetVO) petDAO.getPetView(npc.getNpcID());
 		if(PetVO == null ) {
-			String petInfolist = "²»ÊÇ³èÎï£¬ÎŞ·¨²¶×½£¡";
+			String petInfolist = "ä¸æ˜¯å® ç‰©ï¼Œæ— æ³•æ•æ‰ï¼";
 			request.setAttribute("petInfolist", petInfolist);
 			return n4(mapping, form, request, response);
 		}
 		
 		
-		int cur_mp = roleInfo.getBasicInfo().getMp();//µ±Ç°´òMPÖµ
+		int cur_mp = roleInfo.getBasicInfo().getMp();//å½“å‰æ‰“MPå€¼
 		if(npc.getNpcType() == NpcAttackVO.NIANSHOU){
 			int maxhp = player.getPMaxHp();
 			int cur_hp = player.getPHp();
 			if(maxhp != cur_hp){
-				String petInfolist = "ÄúµÄÑªÁ¿²»Âú";
+				String petInfolist = "æ‚¨çš„è¡€é‡ä¸æ»¡";
 				request.setAttribute("petInfolist", petInfolist);
 				return n4(mapping, form, request, response);
 			}
 			maxhp = player.getPMaxMp();
 			cur_hp = player.getPMp();
 			if(maxhp != cur_hp){
-				String petInfolist = "ÄúµÄÄÚÁ¦²»Âú";
+				String petInfolist = "æ‚¨çš„å†…åŠ›ä¸æ»¡";
 				request.setAttribute("petInfolist", petInfolist);
 				return n4(mapping, form, request, response); 	
 			}
@@ -502,26 +502,26 @@ public class NpcAttackAction extends ActionBase {
 			pp = MathUtil.getRandomBetweenXY(10, 50)*cur_mp/100;
 		}
 		if(cur_mp<pp){
-			String petInfolist = "ÄúµÄÄÚÁ¦²»¹»";
+			String petInfolist = "æ‚¨çš„å†…åŠ›ä¸å¤Ÿ";
 			request.setAttribute("petInfolist", petInfolist);
 			return n4(mapping, form, request, response); 
 		}
 		
 		
 		if(petInfoDAOlist.size()>5){
-			String petInfolist = "Äú²»ÄÜĞ¯´ø¸ü¶à³èÎïÁË£¡";
+			String petInfolist = "æ‚¨ä¸èƒ½æºå¸¦æ›´å¤šå® ç‰©äº†ï¼";
 			request.setAttribute("petInfolist", petInfolist);
 			return n4(mapping, form, request, response);
 		} else  {
-    		//½«100%±íÊ¾³É·ÖÄ¸·Ö×Ó¸ñÊ½ÔÚËæ»úÈ¡³öÒ»¸öËæ»úÊı
+    		//å°†100%è¡¨ç¤ºæˆåˆ†æ¯åˆ†å­æ ¼å¼åœ¨éšæœºå–å‡ºä¸€ä¸ªéšæœºæ•°
     		float dd = (float)npc.getCurrentHP()/npc.getNpcHP();
     		float ss = (float)((1-dd)/2)*100; 
     		int role_grade = roleInfo.getBasicInfo().getGrade();
     		float cc =(role_grade-npc.getLevel())*5*1+ss; 
-    		log.info("²¶×½¸ÅÂÊÖµ:"+cc); 
-    		//log.info("²¶×½¸ÅÂÊÖµ:"+ss); (Íæ¼ÒµÈ¼¶ - NPCµÈ¼¶)*5*1+((1-NPCÑªÁ¿)/2)*100
+    		log.info("æ•æ‰æ¦‚ç‡å€¼:"+cc); 
+    		//log.info("æ•æ‰æ¦‚ç‡å€¼:"+ss); (ç©å®¶ç­‰çº§ - NPCç­‰çº§)*5*1+((1-NPCè¡€é‡)/2)*100
     		
-    		//ÅĞ¶Ï°Ù·Ö¼¸ÂÊ
+    		//åˆ¤æ–­ç™¾åˆ†å‡ ç‡
     		HhjPetService petService = new HhjPetService();
     		
     		if(npc.getNpcType() == NpcAttackVO.NIANSHOU){
@@ -530,36 +530,36 @@ public class NpcAttackAction extends ActionBase {
     		
     		if(cc>100){
     			if(petService.PetSinewService(petNameBean,npc,p_pk)){ 
-    				npcService.capturePet(npc,mapid+"");//²¶×½³É¹¦É¾³ınpc
+    				npcService.capturePet(npc,mapid+"");//æ•æ‰æˆåŠŸåˆ é™¤npc
     			} else {
     				String notpet = "notpet";
     				request.setAttribute("notpet", notpet);
-    				request.setAttribute("bout_type", "²¶×½³èÎï");
+    				request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
     				return n3(mapping, form, request, response);
     			}
     		}else if(MathUtil.isAppearByPercentage(cc,100)){
     			
     			if(petService.PetSinewService(petNameBean,npc,p_pk)){
     				if(npc.getNpcType() == NpcAttackVO.NIANSHOU){
-    					npcService.getNpcByNianshouBuzhuo(npc.getNpcID(), "±»"+roleInfo.getBasicInfo().getName()+"²¶×½ÁË!");
+    					npcService.getNpcByNianshouBuzhuo(npc.getNpcID(), "è¢«"+roleInfo.getBasicInfo().getName()+"æ•æ‰äº†!");
     				}
-    				npcService.capturePet(npc,mapid+"");//²¶×½³É¹¦É¾³ınpc
+    				npcService.capturePet(npc,mapid+"");//æ•æ‰æˆåŠŸåˆ é™¤npc
     			}else{
     				String notpet = "notpet";
     				request.setAttribute("notpet", notpet); 
-    				request.setAttribute("bout_type", "²¶×½³èÎï");
+    				request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
     				return n3(mapping, form, request, response);
     			}
     		}else{
     			String notpet = "notpet";
     			request.setAttribute("notpet", notpet);
     			request.setAttribute("pp", pp);
-    			request.setAttribute("bout_type", "²¶×½³èÎï");
+    			request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
     			return n3(mapping, form, request, response);
     		}
 		}
 		
-		//Çå³ı±»²¶»ñµÄnpc 
+		//æ¸…é™¤è¢«æ•è·çš„npc 
 //		NpcAttackDao npcAttackDao = new NpcAttackDao();
 //			npcAttackDao.deleteNpcByMapNpcPPk(npc.getPPk(),npc.getNpcID(),mapid+"");
 		
@@ -572,7 +572,7 @@ public class NpcAttackAction extends ActionBase {
 	
 	
 	/**
-	 * ²¶×½NPCÊ¤Àû
+	 * æ•æ‰NPCèƒœåˆ©
 	 * 
 	 * @param mapping
 	 * @param form
@@ -587,14 +587,14 @@ public class NpcAttackAction extends ActionBase {
 				
 		NpcService npcService = new NpcService();
 		
-		if( npcService.isHaveAttackNPC(roleInfo) )//ÅĞ¶ÏÊÇ·ñÓĞÕ½¶·×´Ì¬µÄnpc
+		if( npcService.isHaveAttackNPC(roleInfo) )//åˆ¤æ–­æ˜¯å¦æœ‰æˆ˜æ–—çŠ¶æ€çš„npc
 		{
-			//ÓĞÕ½¶·×´Ì¬µÄnpc
+			//æœ‰æˆ˜æ–—çŠ¶æ€çš„npc
 			return n4(mapping, form, request, response);
 		}
 		else	
 		{
-			 //Õ½¶·Ê¤Àû
+			 //æˆ˜æ–—èƒœåˆ©
 			PlayerService playerService = new PlayerService();
 			FightService fightService = new FightService();
 			
@@ -610,7 +610,7 @@ public class NpcAttackAction extends ActionBase {
 		}
 	}
 	
-	// ×Ô¶¯´ò¹Ö¿ì½İ¼ü¼¼ÄÜÁĞ±í
+	// è‡ªåŠ¨æ‰“æ€ªå¿«æ·é”®æŠ€èƒ½åˆ—è¡¨
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -623,7 +623,7 @@ public class NpcAttackAction extends ActionBase {
 		return mapping.findForward("skilllist");
 	}
 	
-	// ×Ô¶¯´ò¹Ö¿ì½İ¼ü¼¼ÄÜÁĞ±í
+	// è‡ªåŠ¨æ‰“æ€ªå¿«æ·é”®æŠ€èƒ½åˆ—è¡¨
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) { 
 		  RoleService roleService = new RoleService();
@@ -639,7 +639,7 @@ public class NpcAttackAction extends ActionBase {
 		    return n12(mapping, form, request, response);
 	}
 	
-	// ×Ô¶¯´ò¹Ö¿ì½İ¼ü¼¼ÄÜÉè¶¨
+	// è‡ªåŠ¨æ‰“æ€ªå¿«æ·é”®æŠ€èƒ½è®¾å®š
 	public ActionForward n12(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {  
 		 
@@ -661,13 +661,13 @@ public class NpcAttackAction extends ActionBase {
 		    return null;
 	}
 	
-	// ×Ô¶¯´ò¹Ö¿ì½İ¼ü¼¼ÄÜÉè¶¨
+	// è‡ªåŠ¨æ‰“æ€ªå¿«æ·é”®æŠ€èƒ½è®¾å®š
 	public ActionForward n13(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {  
 		
 		 RoleEntity me = this.getRoleEntity(request);
 		
-		//*******************ÅĞ¶ÏÊÇ·ñÓĞÈË¹¥»÷
+		//*******************åˆ¤æ–­æ˜¯å¦æœ‰äººæ”»å‡»
 		if( me.getPKState().getOtherNum()>0 )
 		{	
 			return super.dispath(request, response, "/pk.do?cmd=n7");
@@ -676,20 +676,20 @@ public class NpcAttackAction extends ActionBase {
 		 
 		    int sctype = me.getSettingInfo().getAutoAttackSetting().getAttackType();
 		    int OperateId = me.getSettingInfo().getAutoAttackSetting().getUSkillId();
-		    if (sctype == Shortcut.ATTACK)// ÆÕÍ¨¹¥»÷
+		    if (sctype == Shortcut.ATTACK)// æ™®é€šæ”»å‡»
 			{
-				request.setAttribute("bout_type", "ÆÕÍ¨¹¥»÷");
+				request.setAttribute("bout_type", "æ™®é€šæ”»å‡»");
 				return n3(mapping, form, request, response);
-			} else if (sctype == Shortcut.SKILL)// ¼¼ÄÜ¹¥»÷
+			} else if (sctype == Shortcut.SKILL)// æŠ€èƒ½æ”»å‡»
 			{
-				request.setAttribute("bout_type", "¼¼ÄÜ¹¥»÷");
+				request.setAttribute("bout_type", "æŠ€èƒ½æ”»å‡»");
 				request.setAttribute("s_pk", OperateId+"");
 				return n3(mapping, form, request, response);
 			}
 		    return null;
 	}
 	
-	// ×Ô¶¯´ò¹Ö¿ì½İ¼ü¼¼ÄÜÉè¶¨
+	// è‡ªåŠ¨æ‰“æ€ªå¿«æ·é”®æŠ€èƒ½è®¾å®š
 	public ActionForward n14(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {  
 		
@@ -707,7 +707,7 @@ public class NpcAttackAction extends ActionBase {
 		    return null;
 	}
 	
-	// Ñ¡ÔñÊÇ·ñÊ¹ÓÃÃâËÀµÀ¾ß
+	// é€‰æ‹©æ˜¯å¦ä½¿ç”¨å…æ­»é“å…·
 	public ActionForward n15(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {  
 		  
@@ -715,7 +715,7 @@ public class NpcAttackAction extends ActionBase {
 		 RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		
 		 int pPk = roleInfo.getBasicInfo().getPPk();
-		//²é¿´ÆäÊÇ·ñÓĞÃâËÀ½ğÅÆ,Èç¹ûÃ»ÓĞ,¼´Ê¹µ½ÁËÕâ¸öactionÒ²Ã»ÓÃ
+		//æŸ¥çœ‹å…¶æ˜¯å¦æœ‰å…æ­»é‡‘ç‰Œ,å¦‚æœæ²¡æœ‰,å³ä½¿åˆ°äº†è¿™ä¸ªactionä¹Ÿæ²¡ç”¨
 		PlayerPropGroupDao ppgdao = new PlayerPropGroupDao();
 		int flag = ppgdao.getPropNumByPropType(pPk, PropType.EXONERATIVE);
 		long dropedExperience = 0;
@@ -729,14 +729,14 @@ public class NpcAttackAction extends ActionBase {
 		PlayerService playerService = new PlayerService();
 		playerService.clearTempData(pPk, "zd");
 				
-		//Ñ¡ÔñÊÇ·ñÊ¹ÓÃ,Îª1ÊÇÊ¹ÓÃ,Îª2ÊÇ²»Ê¹ÓÃ
+		//é€‰æ‹©æ˜¯å¦ä½¿ç”¨,ä¸º1æ˜¯ä½¿ç”¨,ä¸º2æ˜¯ä¸ä½¿ç”¨
 		String choice = request.getParameter("choice");		
 		if(choice.equals("2")) {
 			//playerService.initPosition(infovo);
 			if (flag1 ) {
-				hint = "Äú¶ªÊ§:¾­Ñé"+dropedExperience+"µã!";
+				hint = "æ‚¨ä¸¢å¤±:ç»éªŒ"+dropedExperience+"ç‚¹!";
 			} else {
-				hint = "ÃâËÀ·ûÍì»Ø¾­Ñé"+roleInfo.getStateInfo().getShouldDropExperience()+"µã!";
+				hint = "å…æ­»ç¬¦æŒ½å›ç»éªŒ"+roleInfo.getStateInfo().getShouldDropExperience()+"ç‚¹!";
 			}
 		} else if(choice.equals("1")) {
 			if(flag == 0){
@@ -750,18 +750,18 @@ public class NpcAttackAction extends ActionBase {
 			} else {
 				if (flag1 ) {
 					roleInfo.getBasicInfo().updateAddCurExp(dropedExperience);		
-					hint = "ÄúÊ¹ÓÃÁË¡¾ºèÃÉÔì»¯¹û¡¿³É¹¦ĞøÃü£¬Íì»Ø¾­Ñé"+dropedExperience+"µã!";
+					hint = "æ‚¨ä½¿ç”¨äº†ã€é¸¿è’™é€ åŒ–æœã€‘æˆåŠŸç»­å‘½ï¼ŒæŒ½å›ç»éªŒ"+dropedExperience+"ç‚¹!";
 				} else {
-					hint = "ÄúÊ¹ÓÃÁË¡¾ºèÃÉÔì»¯¹û¡¿³É¹¦ĞøÃü£¬Íì»Ø¾­Ñé"+roleInfo.getStateInfo().getShouldDropExperience()+"µã!";
+					hint = "æ‚¨ä½¿ç”¨äº†ã€é¸¿è’™é€ åŒ–æœã€‘æˆåŠŸç»­å‘½ï¼ŒæŒ½å›ç»éªŒ"+roleInfo.getStateInfo().getShouldDropExperience()+"ç‚¹!";
 				}
 				
 				int shouldScene = fightService.getShouldScene(roleInfo);
 				roleInfo.getBasicInfo().updateSceneId(shouldScene+"");				
 				
-				// ÒÆ³ıÒ»¸ö¡¾ºèÃÉÔì»¯¹û¡¿(ºĞ)
+				// ç§»é™¤ä¸€ä¸ªã€é¸¿è’™é€ åŒ–æœã€‘(ç›’)
 				PropDao propdao = new PropDao();
 				int prop_id = propdao.getPropIdByType(PropType.EXONERATIVE);
-				//Çå³ıÖ÷¶¯¹¥»÷¹Ö
+				//æ¸…é™¤ä¸»åŠ¨æ”»å‡»æ€ª
 				GoodsService goodsService = new GoodsService();
 			    goodsService.removeProps(pPk,prop_id ,1,GameLogManager.R_USE);
 			}
@@ -773,7 +773,7 @@ public class NpcAttackAction extends ActionBase {
 	}
 	
 	/**
-	 * ¹ºÂò¾Å×ª»¹»êÍê³ÉºóµÄ ´¦Àí
+	 * è´­ä¹°ä¹è½¬è¿˜é­‚å®Œæˆåçš„ å¤„ç†
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -806,19 +806,19 @@ public class NpcAttackAction extends ActionBase {
 		 if ( sussendString != null && sussendString .equals("sussend")) {
 			    if (flag1 ) {
 					roleInfo.getBasicInfo().updateAddCurExp(dropedExperience);
-					hint = "ÄúÊ¹ÓÃÁË¡¾ºèÃÉÔì»¯¹û¡¿³É¹¦ĞøÃü£¬Íì»Ø¾­Ñé"+dropedExperience+"µã!";
+					hint = "æ‚¨ä½¿ç”¨äº†ã€é¸¿è’™é€ åŒ–æœã€‘æˆåŠŸç»­å‘½ï¼ŒæŒ½å›ç»éªŒ"+dropedExperience+"ç‚¹!";
 				} else {
-					hint = "ÄúÊ¹ÓÃÁË¡¾ºèÃÉÔì»¯¹û¡¿³É¹¦ĞøÃü£¬Íì»Ø¾­Ñé"+roleInfo.getStateInfo().getShouldDropExperience()+"µã!";
+					hint = "æ‚¨ä½¿ç”¨äº†ã€é¸¿è’™é€ åŒ–æœã€‘æˆåŠŸç»­å‘½ï¼ŒæŒ½å›ç»éªŒ"+roleInfo.getStateInfo().getShouldDropExperience()+"ç‚¹!";
 				}
 			    int shouldScene = fightService.getShouldScene(roleInfo);
 				roleInfo.getBasicInfo().updateSceneId(shouldScene+"");
-				//Çå³ıÖ÷¶¯¹¥»÷¹Ö
+				//æ¸…é™¤ä¸»åŠ¨æ”»å‡»æ€ª
 		 } else {
 				//playerService.initPosition(infovo);
 				if (flag1 ) {
-					hint = "Äú¶ªÊ§:¾­Ñé"+dropedExperience+"µã!";
+					hint = "æ‚¨ä¸¢å¤±:ç»éªŒ"+dropedExperience+"ç‚¹!";
 				} else {
-					hint = "ÃâËÀ·ûÍì»Ø¾­Ñé"+roleInfo.getStateInfo().getShouldDropExperience()+"µã!";
+					hint = "å…æ­»ç¬¦æŒ½å›ç»éªŒ"+roleInfo.getStateInfo().getShouldDropExperience()+"ç‚¹!";
 				}
 		 }
 		 
@@ -829,7 +829,7 @@ public class NpcAttackAction extends ActionBase {
 		 return mapping.findForward("prop_effect");
 	}
 	/**
-	 * ÌÓÅÜ
+	 * é€ƒè·‘
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -843,30 +843,30 @@ public class NpcAttackAction extends ActionBase {
 		 RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());		
 		 int pPk = roleInfo.getBasicInfo().getPPk();
 		
-		//ÌÓÅÜ³É¹¦ÂÊ=0.8-£¨npcµÈ¼¶-Íæ¼ÒµÈ¼¶£©/50
-		//È¡³öµ±Ç°¹¥»÷NPCµÄĞÅÏ¢
+		//é€ƒè·‘æˆåŠŸç‡=0.8-ï¼ˆnpcç­‰çº§-ç©å®¶ç­‰çº§ï¼‰/50
+		//å–å‡ºå½“å‰æ”»å‡»NPCçš„ä¿¡æ¯
 		NpcService npcService = new NpcService();
 		int mapid = Integer.parseInt(roleInfo.getBasicInfo().getSceneId());
 		
 		logger.info("mapid="+mapid);
 		NpcAttackVO npc = npcService.getOneAttackNPCByPpk(pPk,mapid);
 		if ( npc.getNpcType() == NpcAttackVO.CITYDOOR ) {
-			request.setAttribute("bout_type", "²»ÄÜÌÓÅÜ"); 
+			request.setAttribute("bout_type", "ä¸èƒ½é€ƒè·‘"); 
 			return n3(mapping, form, request, response);
 		}
 		
 		
-		int partGrade = roleInfo.getBasicInfo().getGrade();//µÃµ½Íæ¼ÒµÈ¼¶
+		int partGrade = roleInfo.getBasicInfo().getGrade();//å¾—åˆ°ç©å®¶ç­‰çº§
 		
 		int d_value = npc.getLevel() - partGrade;
 		if(d_value < 0){
 			d_value = 0;
 		}
-		//ĞŞ¸ÄÌÓÅÜ¸ÅÂÊ ÓÉ0.8¸Ä³É0.5
+		//ä¿®æ”¹é€ƒè·‘æ¦‚ç‡ ç”±0.8æ”¹æˆ0.5
 		double fleeprobability = 0.5 - d_value / 50;
-		logger.info("Íæ¼ÒÌÓÅÜ¼¸ÂÊ  ===  "+(fleeprobability * 100));
-		if(MathUtil.PercentageRandomByParamdouble((fleeprobability * 100),100) == false){//ÎªTRUE ±íÊ¾ÌÓÅÜ³É¹¦
-			request.setAttribute("bout_type", "ÌÓÅÜ"); 
+		logger.info("ç©å®¶é€ƒè·‘å‡ ç‡  ===  "+(fleeprobability * 100));
+		if(MathUtil.PercentageRandomByParamdouble((fleeprobability * 100),100) == false){//ä¸ºTRUE è¡¨ç¤ºé€ƒè·‘æˆåŠŸ
+			request.setAttribute("bout_type", "é€ƒè·‘"); 
 			return n3(mapping, form, request, response);
 		}
 		if(roleInfo.getTaskInfo().getTaskId() != -1 
@@ -877,7 +877,7 @@ public class NpcAttackAction extends ActionBase {
 			roleInfo.getTaskInfo().setTaskMenu(-1);
 			roleInfo.getTaskInfo().setTaskPoint("");
 		}
-		//Çå³ıÖ÷¶¯¹¥»÷¹Ö
+		//æ¸…é™¤ä¸»åŠ¨æ”»å‡»æ€ª
 		PlayerService playerService = new PlayerService();
 		playerService.clearTempData(pPk, "zd");
 		request.getSession().setAttribute("getKillDisplay","");
@@ -885,7 +885,7 @@ public class NpcAttackAction extends ActionBase {
 	}
 	
 	/**
-	 * ²¶×½NPC
+	 * æ•æ‰NPC
 	 * 
 	 * @param mapping
 	 * @param form
@@ -908,7 +908,7 @@ public class NpcAttackAction extends ActionBase {
 		
 		PetNameBean petNameBean = new PetNameBean();
 		
-		//È¡³öµ±Ç°¹¥»÷NPCµÄĞÅÏ¢
+		//å–å‡ºå½“å‰æ”»å‡»NPCçš„ä¿¡æ¯
 		NpcService npcService = new NpcService();
 		String mapid = roleInfo.getBasicInfo().getSceneId();
 		
@@ -919,36 +919,36 @@ public class NpcAttackAction extends ActionBase {
 		logger.info("mapid="+mapid);
 		NpcAttackVO npc = npcService.getOneAttackNPCByPpk(roleInfo.getBasicInfo().getPPk(),Integer.parseInt(mapid));
 		if(npc == null){
-			request.setAttribute("display", "ÎŞ¸ÃNPC»òNPCËÀÍö±»²¶×½!");
+			request.setAttribute("display", "æ— è¯¥NPCæˆ–NPCæ­»äº¡è¢«æ•æ‰!");
 		   	return mapping.findForward("display_bak");
 		}
 		npcService.loadNPCWx(npc); 
-		//È¡³ö½ÇÉ«µÄĞÅÏ¢
+		//å–å‡ºè§’è‰²çš„ä¿¡æ¯
 		PetInfoDAO petInfoDAO = new PetInfoDAO();
 		List<PetInfoVO> petInfoDAOlist = petInfoDAO.getPetInfoList(p_pk);
 		logger.info("npc.getNpcId()="+npc.getNpcID());
 		PetDAO petDAO = new PetDAO();
 		PetVO PetVO = (PetVO) petDAO.getPetView(npc.getNpcID());
 		if(PetVO == null ) {
-			String petInfolist = "²»ÊÇ³èÎï£¬ÎŞ·¨²¶×½£¡";
+			String petInfolist = "ä¸æ˜¯å® ç‰©ï¼Œæ— æ³•æ•æ‰ï¼";
 			request.setAttribute("petInfolist", petInfolist);
 			return n4(mapping, form, request, response);
 		}
 		
 		
-		int cur_mp = roleInfo.getBasicInfo().getMp();//µ±Ç°´òMPÖµ
+		int cur_mp = roleInfo.getBasicInfo().getMp();//å½“å‰æ‰“MPå€¼
 		if(npc.getNpcType() == NpcAttackVO.NIANSHOU){
 			int maxhp = player.getPMaxHp();
 			int cur_hp = player.getPHp();
 			if(maxhp != cur_hp){
-				String petInfolist = "ÄúµÄÑªÁ¿²»Âú";
+				String petInfolist = "æ‚¨çš„è¡€é‡ä¸æ»¡";
 				request.setAttribute("petInfolist", petInfolist);
 				return n4(mapping, form, request, response);
 			}
 			maxhp = player.getPMaxMp();
 			cur_hp = player.getPMp();
 			if(maxhp != cur_hp){
-				String petInfolist = "ÄúµÄÄÚÁ¦²»Âú";
+				String petInfolist = "æ‚¨çš„å†…åŠ›ä¸æ»¡";
 				request.setAttribute("petInfolist", petInfolist);
 				return n4(mapping, form, request, response); 	
 			}
@@ -961,43 +961,43 @@ public class NpcAttackAction extends ActionBase {
 			pp = MathUtil.getRandomBetweenXY(10, 50)*cur_mp/100;
 		}
 		if(cur_mp<pp){
-			String petInfolist = "ÄúµÄÄÚÁ¦²»¹»";
+			String petInfolist = "æ‚¨çš„å†…åŠ›ä¸å¤Ÿ";
 			request.setAttribute("petInfolist", petInfolist);
 			return n4(mapping, form, request, response); 
 		}
 		
 		
 		if(petInfoDAOlist.size()>5){
-			String petInfolist = "Äú²»ÄÜĞ¯´ø¸ü¶à³èÎïÁË£¡";
+			String petInfolist = "æ‚¨ä¸èƒ½æºå¸¦æ›´å¤šå® ç‰©äº†ï¼";
 			request.setAttribute("petInfolist", petInfolist);
 			return n4(mapping, form, request, response);
 		} else  {
-    		//½«100%±íÊ¾³É·ÖÄ¸·Ö×Ó¸ñÊ½ÔÚËæ»úÈ¡³öÒ»¸öËæ»úÊı
+    		//å°†100%è¡¨ç¤ºæˆåˆ†æ¯åˆ†å­æ ¼å¼åœ¨éšæœºå–å‡ºä¸€ä¸ªéšæœºæ•°
     		float dd = (float)npc.getCurrentHP()/npc.getNpcHP();
     		float ss = (float)((1-dd)/2)*100; 
     		int role_grade = roleInfo.getBasicInfo().getGrade();
     		float cc =(role_grade-npc.getLevel())*5*1+ss; 
-    		log.info("²¶×½¸ÅÂÊÖµ:"+cc); 
-    		//log.info("²¶×½¸ÅÂÊÖµ:"+ss); (Íæ¼ÒµÈ¼¶ - NPCµÈ¼¶)*5*1+((1-NPCÑªÁ¿)/2)*100
+    		log.info("æ•æ‰æ¦‚ç‡å€¼:"+cc); 
+    		//log.info("æ•æ‰æ¦‚ç‡å€¼:"+ss); (ç©å®¶ç­‰çº§ - NPCç­‰çº§)*5*1+((1-NPCè¡€é‡)/2)*100
     		
-    		//ÅĞ¶Ï°Ù·Ö¼¸ÂÊ
+    		//åˆ¤æ–­ç™¾åˆ†å‡ ç‡
     		HhjPetService petService = new HhjPetService();
     		
     		
-    		// µÀ¾ßÊÇ·ñ¿ÉÒÔÊ¹ÓÃÅĞ¶Ï
+    		// é“å…·æ˜¯å¦å¯ä»¥ä½¿ç”¨åˆ¤æ–­
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 			int tatol_prop_num = propGroupDao.getPropNumByByPropID(roleInfo
 					.getBasicInfo().getPPk(), prop_id);
 			PropCache pc = new PropCache();
     		PropVO vo = pc.getPropById(prop_id);
 			if(!npcService.getCatchPetByNpc(vo.getPropOperate1(), npc.getNpcID())){
-    			String petInfolist = "Äú²»ÄÜ¶Ô"+npc.getNpcName()+"Ê¹ÓÃ¸ÃµÀ¾ß!";
+    			String petInfolist = "æ‚¨ä¸èƒ½å¯¹"+npc.getNpcName()+"ä½¿ç”¨è¯¥é“å…·!";
 				request.setAttribute("petInfolist", petInfolist);
 				return n4(mapping, form, request, response);
     		}
 			if (tatol_prop_num == 0)
 			{
-				String petInfolist = "ÄúµÄ°ü¹üÀïÃ»ÓĞ¸ÃµÀ¾ß»òÒÑÊ¹ÓÃÍê!";
+				String petInfolist = "æ‚¨çš„åŒ…è£¹é‡Œæ²¡æœ‰è¯¥é“å…·æˆ–å·²ä½¿ç”¨å®Œ!";
 				request.setAttribute("petInfolist", petInfolist);
 				return n4(mapping, form, request, response);
 			}
@@ -1018,43 +1018,43 @@ public class NpcAttackAction extends ActionBase {
     			String notpet = "notpet";
 				request.setAttribute("notpet", notpet);
 				request.setAttribute("pp", pp);
-				request.setAttribute("bout_type", "²¶×½³èÎï");
+				request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
 				return n3(mapping, form, request, response);
     		}
     		if(cc>100){
     			if(petService.PetSinewService(petNameBean,npc,p_pk)){ 
-    				npcService.capturePet(npc,mapid+"");//²¶×½³É¹¦É¾³ınpc
+    				npcService.capturePet(npc,mapid+"");//æ•æ‰æˆåŠŸåˆ é™¤npc
     			} else {
     				String notpet = "notpet";
     				request.setAttribute("notpet", notpet);
     				request.setAttribute("pp", pp);
-    				request.setAttribute("bout_type", "²¶×½³èÎï");
+    				request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
     				return n3(mapping, form, request, response);
     			}
     		}else if(MathUtil.isAppearByPercentage(Integer.parseInt(cc_bak[0]),Integer.parseInt(cc_bak[1]))){
     			
     			if(petService.PetSinewService(petNameBean,npc,p_pk)){
     				if(npc.getNpcType() == NpcAttackVO.NIANSHOU){
-    					npcService.getNpcByNianshouBuzhuo(npc.getNpcID(), "±»"+roleInfo.getBasicInfo().getName()+"²¶×½ÁË!");
+    					npcService.getNpcByNianshouBuzhuo(npc.getNpcID(), "è¢«"+roleInfo.getBasicInfo().getName()+"æ•æ‰äº†!");
     				}
-    				npcService.capturePet(npc,mapid+"");//²¶×½³É¹¦É¾³ınpc
+    				npcService.capturePet(npc,mapid+"");//æ•æ‰æˆåŠŸåˆ é™¤npc
     			}else{
     				String notpet = "notpet";
     				request.setAttribute("notpet", notpet); 
     				request.setAttribute("pp", pp);
-    				request.setAttribute("bout_type", "²¶×½³èÎï");
+    				request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
     				return n3(mapping, form, request, response);
     			}
     		}else{
     			String notpet = "notpet";
     			request.setAttribute("notpet", notpet);
     			request.setAttribute("pp", pp);
-    			request.setAttribute("bout_type", "²¶×½³èÎï");
+    			request.setAttribute("bout_type", "æ•æ‰å® ç‰©");
     			return n3(mapping, form, request, response);
     		}
 		}
 		
-		//Çå³ı±»²¶»ñµÄnpc 
+		//æ¸…é™¤è¢«æ•è·çš„npc 
 //		NpcAttackDao npcAttackDao = new NpcAttackDao();
 //			npcAttackDao.deleteNpcByMapNpcPPk(npc.getPPk(),npc.getNpcID(),mapid+"");
 		

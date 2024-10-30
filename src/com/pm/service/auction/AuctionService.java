@@ -42,13 +42,13 @@ public class AuctionService
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * ÅÄÂô×°±¸
+	 * æ‹å–è£…å¤‡
 	 * 
 	 * @param p_pk
 	 * @param accouter_id
-	 *            ×°±¸id
+	 *            è£…å¤‡id
 	 * @param accouter_num
-	 *            ×°±¸ÊıÁ¿
+	 *            è£…å¤‡æ•°é‡
 	 */
 	public String removeAccouters(int u_pk, int p_pk, int pwPk, int propPrice,
 			int payType, int auctionPrice)
@@ -60,7 +60,7 @@ public class AuctionService
 		PlayerEquipDao playerEquipDao = new PlayerEquipDao();
 		PlayerEquipVO equip = playerEquipDao.getByID(pwPk);
 		SellInfoDAO sellInfoDAO = new SellInfoDAO();
-		// ÅĞ¶ÏÒªÂô³öµÄÎïÆ·ÊÇ·ñÒÑ¾­ÊÇÔùËÍËûÈËµÄÎïÆ·
+		// åˆ¤æ–­è¦å–å‡ºçš„ç‰©å“æ˜¯å¦å·²ç»æ˜¯èµ é€ä»–äººçš„ç‰©å“
 		String result = sellInfoDAO.getSellExistByPPkAndGoodsId(p_pk + "",
 				equip.getEquipId() + "", GoodsType.EQUIP);
 
@@ -69,14 +69,14 @@ public class AuctionService
 			return result;
 		}
 
-		// ÅĞ¶Ï×°±¸ÄÍ¾ÃÎª0µÄ×°±¸²»¿ÉÅÄÂô
+		// åˆ¤æ–­è£…å¤‡è€ä¹…ä¸º0çš„è£…å¤‡ä¸å¯æ‹å–
 		if (equip.isEffected() == false)
 		{
-			return "ÆÆËğµÄ×°±¸²»¿ÉÅÄÂô£¡";
+			return "ç ´æŸçš„è£…å¤‡ä¸å¯æ‹å–ï¼";
 		}
 
 		GoodsService goodsService = new GoodsService();
-		// °ó¶¨µÄ×°±¸²»¿É½»Ò×²»¿ÉÅÄÂô
+		// ç»‘å®šçš„è£…å¤‡ä¸å¯äº¤æ˜“ä¸å¯æ‹å–
 		String flag = goodsService.isBinded(equip.getPwPk(), GoodsType.EQUIP,
 				ActionType.AUCTION);
 		if (flag == null)
@@ -86,48 +86,48 @@ public class AuctionService
 
 			int auctionType = equip.getAuctionType();
 
-			// ¸ü¸Ä°ü¹üÀïµÄÎ»ÖÃ
+			// æ›´æ”¹åŒ…è£¹é‡Œçš„ä½ç½®
 			PlayerEquipDao PlayerEquipDao = new PlayerEquipDao();
 			int deleteValue = PlayerEquipDao.updatePosition(pwPk,
 					Equip.ON_STORAGE);
 
 			if (deleteValue != 0)
 			{
-				// Ôö¼ÓÅÄÂô³¡ÀïµÄ×°±¸
+				// å¢åŠ æ‹å–åœºé‡Œçš„è£…å¤‡
 				auctionDao.addToAuction(u_pk, p_pk, equip, auctionType,
 						propPrice, payType, auctionPrice);
 
-				// ¸öÈË°ü¹üÈİÁ¿¼ÓÒ»
+				// ä¸ªäººåŒ…è£¹å®¹é‡åŠ ä¸€
 				EquipService equipService = new EquipService();
 				equipService.addWrapSpare(p_pk, 1);
 
-				// ¼à¿Ø
+				// ç›‘æ§
 				LogService logService = new LogService();
 				logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(),
 						roleInfo.getBasicInfo().getName(), roleInfo
 								.getBasicInfo().getCopper()
 								+ "",
 						-(int) (propPrice * (1 - AuctionNumber.AUCTIONNUMBER))
-								+ "", "ÅÄÂô½ÉË°");
+								+ "", "æ‹å–ç¼´ç¨");
 
-				// ´Ó¸öÈËÉíÉÏ³ıÈ¥Ó¦½ÉË°1ÎªÁéÊ¯2ÎªÔª±¦
+				// ä»ä¸ªäººèº«ä¸Šé™¤å»åº”ç¼´ç¨1ä¸ºçµçŸ³2ä¸ºå…ƒå®
 				if(payType==2)
 				{
-					//½øÈëÅÄÂô³¡ĞèÒªÏÈ½ÉÄÉ100ÏÉ¾§
+					//è¿›å…¥æ‹å–åœºéœ€è¦å…ˆç¼´çº³100ä»™æ™¶
 					EconomyService es = new EconomyService();
 					es.spendYuanbao(roleInfo.getBasicInfo().getUPk(),100);
 				}
 
-				String money = payType == 1 ? "ÁéÊ¯" : "ÏÉ¾§";
+				String money = payType == 1 ? "çµçŸ³" : "ä»™æ™¶";
 				int moneyNum=payType==1?0:100;
-				resultWml.append("ÄúÒÔ" + propPrice + "" + money + "µÄ¼Û¸ñÅÄÂôÁË"
-						+ StringUtil.isoToGBK(equip.getWName()) + ",ÊÕÈ¡ÊÖĞø·Ñ"
+				resultWml.append("æ‚¨ä»¥" + propPrice + "" + money + "çš„ä»·æ ¼æ‹å–äº†"
+						+ StringUtil.isoToGBK(equip.getWName()) + ",æ”¶å–æ‰‹ç»­è´¹"
 						+ moneyNum
-						+ "" + money + ", ÈçÒªÅÄÂôÇë¼ÌĞø£¡");
+						+ "" + money + ", å¦‚è¦æ‹å–è¯·ç»§ç»­ï¼");
 			}
 			else
 			{
-				resultWml.append("ÄúÅÄÂôµÄÎïÆ·ºÃÏñ²»ÊÇ¹éÄúËùÓĞ!");
+				resultWml.append("æ‚¨æ‹å–çš„ç‰©å“å¥½åƒä¸æ˜¯å½’æ‚¨æ‰€æœ‰!");
 			}
 		}
 		else
@@ -138,7 +138,7 @@ public class AuctionService
 	}
 
 	/**
-	 * Ôö¼ÓµÀ¾ßµ½ÅÄÂô³¡
+	 * å¢åŠ é“å…·åˆ°æ‹å–åœº
 	 * 
 	 * @param pg_pk
 	 * @param remove_num
@@ -149,7 +149,7 @@ public class AuctionService
 	public String addPropToAuction(int pg_pk, int remove_num,
 			RoleEntity roleEntity, int propPrice, int payType, int auctionPrice)
 	{
-		logger.info("auctionServiceÖĞµÄÒªÅÄÂôµÄµÀ¾ßÊıÁ¿Îª:" + remove_num);
+		logger.info("auctionServiceä¸­çš„è¦æ‹å–çš„é“å…·æ•°é‡ä¸º:" + remove_num);
 		AuctionDAO auctionDao = new AuctionDAO();
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 		PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(pg_pk);
@@ -170,17 +170,17 @@ public class AuctionService
 		// PropDao propDao = new PropDao();
 		PropCache propCache = new PropCache();
 		int auctionPosition = propCache.getPropAuctionPositionById(propId);
-		logger.info("µÀ¾ßÎ»ÖÃ:" + auctionPosition);
+		logger.info("é“å…·ä½ç½®:" + auctionPosition);
 
 		if (propGroup.getPropType() == PropType.EQUIPPROP
 				|| propGroup.getPropType() == PropType.BOX_CURE)
 		{
-			return "ÌØÊâµÀ¾ß,ÇëÎğ´æ½ø²Ö¿â!";
+			return "ç‰¹æ®Šé“å…·,è¯·å‹¿å­˜è¿›ä»“åº“!";
 		}
 
 		if (auctionPosition == 0)
 		{
-			resultWml.append("´ËµÀ¾ß²»ÔÊĞíÅÄÂô£¡");
+			resultWml.append("æ­¤é“å…·ä¸å…è®¸æ‹å–ï¼");
 		}
 		else
 		{
@@ -189,26 +189,26 @@ public class AuctionService
 					ActionType.EXCHANGE);
 			if (flag == null)
 			{
-				// É¾µô°ü¹üÀïµÄµÀ¾ß
+				// åˆ æ‰åŒ…è£¹é‡Œçš„é“å…·
 				removePropsFromWrap(propGroup, remove_num);
 
-				// Ôö¼ÓÅÄÂô³¡ÀïµÄµÀ¾ß
+				// å¢åŠ æ‹å–åœºé‡Œçš„é“å…·
 				auctionDao.addPropToAuction(roleEntity.getBasicInfo().getUPk(),
 						roleEntity.getBasicInfo().getPPk(), propGroup
 								.getPropId(), GoodsType.PROP, propPrice,
 						StringUtil.isoToGBK(propGroup.getPropName()),
 						remove_num, propGroup, payType, auctionPrice);
 
-				// ¼à¿Ø
+				// ç›‘æ§
 				LogService logService = new LogService();
 				logService.recordMoneyLog(roleEntity.getBasicInfo().getPPk(),
 						roleEntity.getBasicInfo().getName(), roleEntity
 								.getBasicInfo().getCopper()
 								+ "",
 						-(int) (propPrice * (1 - AuctionNumber.AUCTIONNUMBER))
-								+ "", "ÅÄÂô½ÉË°");
+								+ "", "æ‹å–ç¼´ç¨");
 
-				// ´Ó¸öÈËÉíÉÏ³ıÈ¥Ó¦½ÉË°1ÎªÁéÊ¯2ÎªÔª±¦
+				// ä»ä¸ªäººèº«ä¸Šé™¤å»åº”ç¼´ç¨1ä¸ºçµçŸ³2ä¸ºå…ƒå®
 				if(payType==2)
 				{
 					EconomyService es = new EconomyService();
@@ -218,13 +218,13 @@ public class AuctionService
 									(int) (propPrice * (1 - AuctionNumber.AUCTIONNUMBER)));
 				}
 
-				String money = payType == 1 ? "ÁéÊ¯" : "ÏÉ¾§";
+				String money = payType == 1 ? "çµçŸ³" : "ä»™æ™¶";
 				int moneyNum=payType==1?0:100;
-				resultWml.append("ÄúÒÔ" + propPrice + "" + money + "µÄ¼Û¸ñÅÄÂôÁË"
+				resultWml.append("æ‚¨ä»¥" + propPrice + "" + money + "çš„ä»·æ ¼æ‹å–äº†"
 						+ StringUtil.isoToGBK(propGroup.getPropName())
-						+ ",ÊÕÈ¡ÊÖĞø·Ñ"
+						+ ",æ”¶å–æ‰‹ç»­è´¹"
 						+ moneyNum
-						+ "" + money + ", ÈçÒªÅÄÂôÇë¼ÌĞø£¡");
+						+ "" + money + ", å¦‚è¦æ‹å–è¯·ç»§ç»­ï¼");
 			}
 			else
 			{
@@ -234,28 +234,28 @@ public class AuctionService
 		return resultWml.toString();
 	}
 
-	/** ´Ó°ü¹üÖĞĞ¶µôÒ»×éµÀ¾ß */
+	/** ä»åŒ…è£¹ä¸­å¸æ‰ä¸€ç»„é“å…· */
 	private boolean removePropsFromWrap(PlayerPropGroupVO propGroup,
 			int remove_num)
 	{
 		boolean flag = false;
 		if (propGroup == null)
 		{
-			logger.info("propGroupÎª¿Õ");
+			logger.info("propGroupä¸ºç©º");
 			return false;
 		}
-		logger.info("Ğ¶µôµÄµÀ¾ßÊıÁ¿:" + remove_num);
+		logger.info("å¸æ‰çš„é“å…·æ•°é‡:" + remove_num);
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-		if (propGroup.getPropNum() == remove_num) // ÒÆ³ıµÄÊıÁ¿µÈÓÚµÀ¾ß×éÊıÁ¿
+		if (propGroup.getPropNum() == remove_num) // ç§»é™¤çš„æ•°é‡ç­‰äºé“å…·ç»„æ•°é‡
 		{
 			propGroupDao.deletePropGroup(propGroup.getPgPk());
-			// ´ËÖÖÇé¿ö¸öÈË°ü¹üÔö¼ÓÒ»¸ö¿Õ¸ñ.
+			// æ­¤ç§æƒ…å†µä¸ªäººåŒ…è£¹å¢åŠ ä¸€ä¸ªç©ºæ ¼.
 			EquipService equipService = new EquipService();
 			equipService.addWrapSpare(propGroup.getPPk(), 1);
 			flag = true;
 		}
 		else
-			if (propGroup.getPropNum() > remove_num)// //ÒÆ³ıµÄÊıÁ¿Ğ¡ÓÚµÀ¾ß×éÊıÁ¿
+			if (propGroup.getPropNum() > remove_num)// //ç§»é™¤çš„æ•°é‡å°äºé“å…·ç»„æ•°é‡
 			{
 				propGroupDao.updatePropGroupNum(propGroup.getPgPk(), propGroup
 						.getPropNum()
@@ -271,7 +271,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ·ÖÒ³:µÃµ½ÅÄÂô³¡ÀïµÄauctionTypeÀàĞÍµÄËùÓĞµÀ¾ß
+	 * åˆ†é¡µ:å¾—åˆ°æ‹å–åœºé‡Œçš„auctionTypeç±»å‹çš„æ‰€æœ‰é“å…·
 	 * 
 	 * @param p_pk
 	 * @return
@@ -285,7 +285,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ·ÖÒ³:µÃµ½ÅÄÂô³¡ÀïµÄÌØ¶¨ÀàĞÍµÄÎïÆ·Ãû
+	 * åˆ†é¡µ:å¾—åˆ°æ‹å–åœºé‡Œçš„ç‰¹å®šç±»å‹çš„ç‰©å“å
 	 * 
 	 * @param p_pk
 	 * @return
@@ -299,7 +299,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ÅÄÂò×°±¸, ½«×°±¸´ÓÅÄÂô³¡×ªµ½Íæ¼ÒµÄ°ü¹ü
+	 * æ‹ä¹°è£…å¤‡, å°†è£…å¤‡ä»æ‹å–åœºè½¬åˆ°ç©å®¶çš„åŒ…è£¹
 	 * 
 	 */
 	public synchronized String setToWrap(int pPk, String auction_id,
@@ -314,26 +314,26 @@ public class AuctionService
 
 		if (roleInfo.getBasicInfo().getPPk() == vo.getPPk())
 		{
-			return "Äú²»ÄÜ¹ºÂò×Ô¼ºµÄÎïÆ·!";
+			return "æ‚¨ä¸èƒ½è´­ä¹°è‡ªå·±çš„ç‰©å“!";
 		}
 
 		if (vo.getAuctionSell() != 1)
 		{
-			return "¸ÃÎïÆ·ÕıÔÚ¾ºÅÄÖĞ£¬¼Û¸ßÕßµÃ!";
+			return "è¯¥ç‰©å“æ­£åœ¨ç«æ‹ä¸­ï¼Œä»·é«˜è€…å¾—!";
 		}
-		logger.info(" ÅÄÂô³¡id : " + vo.getGoodsId());
-		logger.info("¹ºÂòÕßµÄid:" + pPk + " ÎïÆ·ÅÄÂôÕßµÄid:" + vo.getPPk());
-		// ´ÓÅÄÂô³¡¸üĞÂÓÃ»§ÒªÂòµÄ×°±¸
+		logger.info(" æ‹å–åœºid : " + vo.getGoodsId());
+		logger.info("è´­ä¹°è€…çš„id:" + pPk + " ç‰©å“æ‹å–è€…çš„id:" + vo.getPPk());
+		// ä»æ‹å–åœºæ›´æ–°ç”¨æˆ·è¦ä¹°çš„è£…å¤‡
 		int buy = updateFromAuction(pPk, Integer.parseInt(auction_id));
 		if (buy == -1)
 		{
-			resultWml = "ÅÄÂòÊ§°Ü,´Ë×°±¸ÒÑ¾­Âô³ö";
+			resultWml = "æ‹ä¹°å¤±è´¥,æ­¤è£…å¤‡å·²ç»å–å‡º";
 			return resultWml;
 		}
 		else
 		{
-			resultWml = "ÅÄÂò³É¹¦,ÇëÄúÈ¥ÅÄÂô²Ö¿âÁìÈ¡×Ô¼ºµÄ×°±¸";
-			// ¸üĞÂ½ğÇ®
+			resultWml = "æ‹ä¹°æˆåŠŸ,è¯·æ‚¨å»æ‹å–ä»“åº“é¢†å–è‡ªå·±çš„è£…å¤‡";
+			// æ›´æ–°é‡‘é’±
 			int needmoney = vo.getGoodsPrice();
 			if (vo.getPay_type() == 1)
 			{
@@ -346,19 +346,19 @@ public class AuctionService
 			}
 		}
 
-		// ¼à¿Ø
+		// ç›‘æ§
 		LogService logService = new LogService();
 		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo
 				.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()
-				+ "", -vo.getGoodsPrice() + "", "ÅÄÂôÂò×°±¸");
+				+ "", -vo.getGoodsPrice() + "", "æ‹å–ä¹°è£…å¤‡");
 
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(vo.getPPk(), "sale", 1);
 
 		return resultWml;
 	}
 
-	/** ****Íæ¼ÒÓÃ¾ºÅÄ¼Û¹ºÂòÊ±¸üĞÂÅÄÂô³¡ÎïÆ·×´Ì¬ */
+	/** ****ç©å®¶ç”¨ç«æ‹ä»·è´­ä¹°æ—¶æ›´æ–°æ‹å–åœºç‰©å“çŠ¶æ€ */
 	public synchronized String setToWrapByAuction(int pPk, String auction_id,
 			int buyPrice)
 	{
@@ -371,39 +371,39 @@ public class AuctionService
 
 		if (roleInfo.getBasicInfo().getPPk() == vo.getPPk())
 		{
-			return "Äú²»ÄÜ¹ºÂò×Ô¼ºµÄÎïÆ·!";
+			return "æ‚¨ä¸èƒ½è´­ä¹°è‡ªå·±çš„ç‰©å“!";
 		}
 
 		if (vo.getAuctionSell() == 2)
 		{
-			return "¸ÃÎïÆ·ÕıÔÚ¾ºÅÄÖĞ£¬¼Û¸ßÕßµÃ!";
+			return "è¯¥ç‰©å“æ­£åœ¨ç«æ‹ä¸­ï¼Œä»·é«˜è€…å¾—!";
 		}
-		logger.info(" ÅÄÂô³¡id : " + vo.getGoodsId());
-		logger.info("¹ºÂòÕßµÄid:" + pPk + " ÎïÆ·ÅÄÂôÕßµÄid:" + vo.getPPk());
-		/** *Õâ¸öUPKÊÇÎªÁËÍË»¹¸øÉÏ´Î¾ºÅÄÕßÔª±¦ÓÃµÄ** */
+		logger.info(" æ‹å–åœºid : " + vo.getGoodsId());
+		logger.info("è´­ä¹°è€…çš„id:" + pPk + " ç‰©å“æ‹å–è€…çš„id:" + vo.getPPk());
+		/** *è¿™ä¸ªUPKæ˜¯ä¸ºäº†é€€è¿˜ç»™ä¸Šæ¬¡ç«æ‹è€…å…ƒå®ç”¨çš„** */
 		int u_pk = vo.getAuction_upk();
 		int p_pk = vo.getAuction_ppk();
 		int money = vo.getBuyPrice();
-		// ´ÓÅÄÂô³¡¸üĞÂÓÃ»§ÒªÂòµÄ×°±¸
+		// ä»æ‹å–åœºæ›´æ–°ç”¨æˆ·è¦ä¹°çš„è£…å¤‡
 		int buy = updateFromAuctionByAuction(Integer.parseInt(auction_id),
 				roleInfo.getBasicInfo().getUPk(), pPk, buyPrice, roleInfo
 						.getBasicInfo().getName());
 		if (buy == -1)
 		{
-			resultWml = "¾ºÅÄÊ§°ÜÊ§°Ü£¬¸ÃÎïÆ·ÒÑ¾­³öÊÛ";
+			resultWml = "ç«æ‹å¤±è´¥å¤±è´¥ï¼Œè¯¥ç‰©å“å·²ç»å‡ºå”®";
 			return resultWml;
 		}
 		else
 		{
-			resultWml = "ÄúÒÑÒÔ" + buyPrice + "ÁéÊ¯µÄ¼Û¸ñ¾ºÅÄ" + vo.getGoodsName()
-					+ "£¬ÈôÊ®·ÖÖÓÄÚÎŞÈË²ÎÓë¸ÃÎïµÄ¾ºÅÄ£¬Ôò¾ºÅÄ³É¹¦£¬Çë×¢Òâ²é¿´¾ºÅÄÓÊ¼ş";
-			// ¸üĞÂ½ğÇ®
+			resultWml = "æ‚¨å·²ä»¥" + buyPrice + "çµçŸ³çš„ä»·æ ¼ç«æ‹" + vo.getGoodsName()
+					+ "ï¼Œè‹¥ååˆ†é’Ÿå†…æ— äººå‚ä¸è¯¥ç‰©çš„ç«æ‹ï¼Œåˆ™ç«æ‹æˆåŠŸï¼Œè¯·æ³¨æ„æŸ¥çœ‹ç«æ‹é‚®ä»¶";
+			// æ›´æ–°é‡‘é’±
 			int needmoney =buyPrice;
 			if (vo.getPay_type() == 1)
 			{
-				// ¼õÈ¥ĞÂµÄ¾ºÅÄÕßµÄÁéÊ¯
+				// å‡å»æ–°çš„ç«æ‹è€…çš„çµçŸ³
 				roleInfo.getBasicInfo().addCopper(-needmoney);
-				// ·µ»¹Ô­À´¾ºÅÄÕßµÄÁéÊ¯
+				// è¿”è¿˜åŸæ¥ç«æ‹è€…çš„çµçŸ³
 				if(u_pk!=0&&p_pk!=0)
 				{
 					RoleEntity roleInfoFalse = RoleService.getRoleInfoById(p_pk
@@ -421,12 +421,12 @@ public class AuctionService
 			else
 			{
 				EconomyService es = new EconomyService();
-				// ¼õÈ¥ĞÂµÄ¾ºÅÄÕßµÄÔª±¦
+				// å‡å»æ–°çš„ç«æ‹è€…çš„å…ƒå®
 				es.spendYuanbao(roleInfo.getBasicInfo().getUPk(), needmoney);
-				// Ôö¼ÓÔ­À´¾ºÅÄÕßµÄÔª±¦
+				// å¢åŠ åŸæ¥ç«æ‹è€…çš„å…ƒå®
 				es.addYuanbao(u_pk, money);
 			}
-			// ·¢ËÍÓÊ¼ş¸øÉÏÒ»¸ö¾ºÅÄÕß¸æÖªÆä¾ºÅÄÊ§°ÜÇÒÇ®²ÆÒÑ¾­ÍË»¹
+			// å‘é€é‚®ä»¶ç»™ä¸Šä¸€ä¸ªç«æ‹è€…å‘ŠçŸ¥å…¶ç«æ‹å¤±è´¥ä¸”é’±è´¢å·²ç»é€€è¿˜
 			sendAuctionFalseMailAuction(vo, p_pk);
 
 		}
@@ -434,7 +434,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ´¦Àí¾ºÅÄ£¬ÓÉ¶¨Ê±Æ÷Ã¿5·ÖÖÓÖ´ĞĞÒ»´Î£¬µÃµ½10·ÖÖÓÄÚÃ»ÓĞ±ğÈË²ÎÓë¾ºÅÄµÄÎïÆ·Ôò¾ºÅÄ³É¹¦¸øÍæ¼Ò·¢ËÍÎïÆ··¢ËÍÓÊ¼ş¸ü¸ÄÎïÆ·ÎªÂô³ö×´Ì¬
+	 * å¤„ç†ç«æ‹ï¼Œç”±å®šæ—¶å™¨æ¯5åˆ†é’Ÿæ‰§è¡Œä¸€æ¬¡ï¼Œå¾—åˆ°10åˆ†é’Ÿå†…æ²¡æœ‰åˆ«äººå‚ä¸ç«æ‹çš„ç‰©å“åˆ™ç«æ‹æˆåŠŸç»™ç©å®¶å‘é€ç‰©å“å‘é€é‚®ä»¶æ›´æ”¹ç‰©å“ä¸ºå–å‡ºçŠ¶æ€
 	 */
 	public void processAuction()
 	{
@@ -448,38 +448,38 @@ public class AuctionService
 	}
 
 	/**
-	 * ´¦ÀíÅÄÂô£¬ÓÉ¶¨Ê±Æ÷Ã¿ÌìÖ´ĞĞÒ»´ÎÀ´´¦ÀíÅÄÂô³¡Á÷ÅÄ»òÕß¹ıÆÚµÄÎïÆ·
+	 * å¤„ç†æ‹å–ï¼Œç”±å®šæ—¶å™¨æ¯å¤©æ‰§è¡Œä¸€æ¬¡æ¥å¤„ç†æ‹å–åœºæµæ‹æˆ–è€…è¿‡æœŸçš„ç‰©å“
 	 */
 	public void processAuctionFalse()
 	{
-		/** ³¬¹ıÈıÌì»¹Î´±»ÂòµÄÏÂ¼Ü* */
+		/** è¶…è¿‡ä¸‰å¤©è¿˜æœªè¢«ä¹°çš„ä¸‹æ¶* */
 		updateThanThreeDay();
 
-		/** ×Ô¿ªÊ¼ÅÄÂôÁùÈÕÄÚÎ´È¡»ØµÄÁ÷ÅÄÎïÆ·£¬½«±»ÏµÍ³Ã»ÊÕ* */
+		/** è‡ªå¼€å§‹æ‹å–å…­æ—¥å†…æœªå–å›çš„æµæ‹ç‰©å“ï¼Œå°†è¢«ç³»ç»Ÿæ²¡æ”¶* */
 		updateThanSixDay();
 
-		/** ×ÔÅÄÂô³É¹¦ÆßÈÕÄÚ£¬Î´È¡»ØµÄÅÄÂô½ğÇ®±»ÏµÍ³Ã»ÊÕ* */
+		/** è‡ªæ‹å–æˆåŠŸä¸ƒæ—¥å†…ï¼Œæœªå–å›çš„æ‹å–é‡‘é’±è¢«ç³»ç»Ÿæ²¡æ”¶* */
 		updateMoneySevenDay();
 	}
 
-	// ×ÔÅÄÂô³É¹¦ÆßÈÕÄÚ£¬Î´È¡»ØµÄÅÄÂô½ğÇ®±»ÏµÍ³Ã»ÊÕ
+	// è‡ªæ‹å–æˆåŠŸä¸ƒæ—¥å†…ï¼Œæœªå–å›çš„æ‹å–é‡‘é’±è¢«ç³»ç»Ÿæ²¡æ”¶
 	private void updateMoneySevenDay()
 	{
 		AuctionInfoDAO auctionInfoDAO = new AuctionInfoDAO();
 		AuctionDAO auctionDao = new AuctionDAO();
 
-		// »ñµÃÅÄÂô³É¹¦ÆßÈÕÄÚÎ´È¡»ØÅÄÂô½ğÇ®µÄÁĞ±í
+		// è·å¾—æ‹å–æˆåŠŸä¸ƒæ—¥å†…æœªå–å›æ‹å–é‡‘é’±çš„åˆ—è¡¨
 		List<AuctionVO> list = auctionDao.getThanSevenDay();
 		MailInfoService mailInfo = new MailInfoService();
 
 		if (list != null || list.size() != 0)
 		{
-			// ¸øÅÄÂô³É¹¦ÆßÈÕÄÚÎ´È¡»ØÅÄÂô½ğÇ®µÄÅÄÂôÕß·¢ÅÄÂôÌáÊ¾µ½ÅÄÂôĞÅÏ¢Àï.
-			String info1 = "ÄúÅÄÂô";
-			String info2 = "³É¹¦ÒÑ¾­³¬¹ıÈıÌì£¬ÓÉÓÚÄúÃ»ÓĞ¼°Ê±µÄÈ¡»ØÒøÁ½£¬ÕâĞ©ÒøÁ½ÒÑ¾­±»ÏµÍ³ÊÕ»Ø£¡";
-			String star = "¡Á";
-			String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
-			String info3 = "ÏµÍ³ÏûÏ¢ÇëÎğ»Ø¸´£¡";
+			// ç»™æ‹å–æˆåŠŸä¸ƒæ—¥å†…æœªå–å›æ‹å–é‡‘é’±çš„æ‹å–è€…å‘æ‹å–æç¤ºåˆ°æ‹å–ä¿¡æ¯é‡Œ.
+			String info1 = "æ‚¨æ‹å–";
+			String info2 = "æˆåŠŸå·²ç»è¶…è¿‡ä¸‰å¤©ï¼Œç”±äºæ‚¨æ²¡æœ‰åŠæ—¶çš„å–å›é“¶ä¸¤ï¼Œè¿™äº›é“¶ä¸¤å·²ç»è¢«ç³»ç»Ÿæ”¶å›ï¼";
+			String star = "Ã—";
+			String title = "æ‹å–åœºä¿¡æ¯æç¤º";
+			String info3 = "ç³»ç»Ÿæ¶ˆæ¯è¯·å‹¿å›å¤ï¼";
 			AuctionVO vo = null;
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -487,7 +487,7 @@ public class AuctionService
 				auctionInfoDAO.insertAuctionInfo(vo, info1
 						+ StringUtil.isoToGBK(vo.getGoodsName()) + star
 						+ vo.getGoodsNumber() + info2);
-				// ¸øÅÄÂô³É¹¦ÆßÈÕµÄÅÄÂôÕß·¢ÓÊ¼ş
+				// ç»™æ‹å–æˆåŠŸä¸ƒæ—¥çš„æ‹å–è€…å‘é‚®ä»¶
 				mailInfo.sendMailBySystem(vo.getPPk(), title, info1
 						+ StringUtil.isoToGBK(vo.getGoodsName()) + info2 + info3);
 			}
@@ -496,24 +496,24 @@ public class AuctionService
 		auctionDao.updateMoneySevenDay();
 	}
 
-	// ×Ô¿ªÊ¼ÅÄÂôÁùÈÕÄÚÎ´È¡»ØµÄÁ÷ÅÄÎïÆ·£¬½«±»ÏµÍ³Ã»ÊÕ
+	// è‡ªå¼€å§‹æ‹å–å…­æ—¥å†…æœªå–å›çš„æµæ‹ç‰©å“ï¼Œå°†è¢«ç³»ç»Ÿæ²¡æ”¶
 	private void updateThanSixDay()
 	{
 		AuctionInfoDAO auctionInfoDAO = new AuctionInfoDAO();
 		AuctionDAO auctionDao = new AuctionDAO();
 
-		// »ñµÃÅÄÂôÁùÈÕÄÚÎ´È¡»ØµÄÅÄÂôÎïÆ·ÁĞ±í
+		// è·å¾—æ‹å–å…­æ—¥å†…æœªå–å›çš„æ‹å–ç‰©å“åˆ—è¡¨
 		List<AuctionVO> list = auctionDao.getThanSixDayList();
 		MailInfoService mailInfo = new MailInfoService();
 
 		if (list != null || list.size() != 0)
 		{
-			// ¸øÅÄÂôÁùÈÕÄÚÎ´È¡»ØÅÄÂôÆ·µÄÅÄÂôÕß·¢ÅÄÂôÌáÊ¾µ½ÅÄÂôĞÅÏ¢Àï.
-			String info1 = "ÄúËùÅÄÂôµÄ";
-			String info2 = "½øÈëÁ÷ÅÄÒÑ¾­³¬¹ıÈıÌì£¬ÓÉÓÚÄúÃ»ÓĞ¼°Ê±µÄÈ¡»ØÎïÆ·£¬¸ÃÎïÆ·ÒÑ¾­»á±»ÏµÍ³ÊÕ»Ø£¡";
-			String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
-			String star = "¡Á";
-			String info3 = "ÏµÍ³ÏûÏ¢ÇëÎğ»Ø¸´£¡";
+			// ç»™æ‹å–å…­æ—¥å†…æœªå–å›æ‹å–å“çš„æ‹å–è€…å‘æ‹å–æç¤ºåˆ°æ‹å–ä¿¡æ¯é‡Œ.
+			String info1 = "æ‚¨æ‰€æ‹å–çš„";
+			String info2 = "è¿›å…¥æµæ‹å·²ç»è¶…è¿‡ä¸‰å¤©ï¼Œç”±äºæ‚¨æ²¡æœ‰åŠæ—¶çš„å–å›ç‰©å“ï¼Œè¯¥ç‰©å“å·²ç»ä¼šè¢«ç³»ç»Ÿæ”¶å›ï¼";
+			String title = "æ‹å–åœºä¿¡æ¯æç¤º";
+			String star = "Ã—";
+			String info3 = "ç³»ç»Ÿæ¶ˆæ¯è¯·å‹¿å›å¤ï¼";
 			AuctionVO vo = null;
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -521,7 +521,7 @@ public class AuctionService
 				auctionInfoDAO.insertAuctionInfo(vo, info1
 						+ StringUtil.isoToGBK(vo.getGoodsName()) + star
 						+ vo.getGoodsNumber() + info2);
-				// ¸ø³¬¹ıÁùÈÕµÄÅÄÂôÕß·¢ÓÊ¼ş
+				// ç»™è¶…è¿‡å…­æ—¥çš„æ‹å–è€…å‘é‚®ä»¶
 				mailInfo.sendMailBySystem(vo.getPPk(), title, info1
 						+ StringUtil.isoToGBK(vo.getGoodsName())+ info2 + info3);
 			}
@@ -530,23 +530,23 @@ public class AuctionService
 		auctionDao.deleteThanSixDay();
 	}
 
-	// ³¬¹ıÈıÌì»¹Î´±»ÂòµÄÏÂ¼Ü,½«·¢ĞÅÏ¢µ½ÅÄÂôĞÅÏ¢±í£¬²¢·¢ÓÊ¼şµ½ÆäĞÅÏä
+	// è¶…è¿‡ä¸‰å¤©è¿˜æœªè¢«ä¹°çš„ä¸‹æ¶,å°†å‘ä¿¡æ¯åˆ°æ‹å–ä¿¡æ¯è¡¨ï¼Œå¹¶å‘é‚®ä»¶åˆ°å…¶ä¿¡ç®±
 	private void updateThanThreeDay()
 	{
 		AuctionInfoDAO auctionInfoDAO = new AuctionInfoDAO();
 		AuctionDAO auctionDao = new AuctionDAO();
-		// »ñµÃÈıÌìÎ´±»ÂòµÄÅÄÂôÎïÆ·ÁĞ±í
+		// è·å¾—ä¸‰å¤©æœªè¢«ä¹°çš„æ‹å–ç‰©å“åˆ—è¡¨
 		List<AuctionVO> list = auctionDao.getThanThreeDayList();
 		MailInfoService mailInfo = new MailInfoService();
 
 		if (list!=null || list.size() != 0)
 		{
-			// ¸ø³¬¹ıÈıÌìµÄÅÄÂôÆ·µÄÅÄÂôÕß·¢ÅÄÂôÌáÊ¾µ½ÅÄÂôĞÅÏ¢Àï.
-			String info1 = "ÄúËùÅÄÂôµÄ";
-			String info2 = "ÅÄÂôÊ±¼äÒÑ¾­³¬¹ıÁ½Ìì£¬ÏÖÒÑÍË³öÅÄÂô£¬ÇëÄúÓÚÈıÈÕÄÚµ½ÅÄÂô³¡²Ö¿âÈ¡»ØÎïÆ·£¡";
-			String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
-			String star = "¡Á";
-			String info3 = "ÏµÍ³ÏûÏ¢ÇëÎğ»Ø¸´£¡";
+			// ç»™è¶…è¿‡ä¸‰å¤©çš„æ‹å–å“çš„æ‹å–è€…å‘æ‹å–æç¤ºåˆ°æ‹å–ä¿¡æ¯é‡Œ.
+			String info1 = "æ‚¨æ‰€æ‹å–çš„";
+			String info2 = "æ‹å–æ—¶é—´å·²ç»è¶…è¿‡ä¸¤å¤©ï¼Œç°å·²é€€å‡ºæ‹å–ï¼Œè¯·æ‚¨äºä¸‰æ—¥å†…åˆ°æ‹å–åœºä»“åº“å–å›ç‰©å“ï¼";
+			String title = "æ‹å–åœºä¿¡æ¯æç¤º";
+			String star = "Ã—";
+			String info3 = "ç³»ç»Ÿæ¶ˆæ¯è¯·å‹¿å›å¤ï¼";
 			AuctionVO vo = null;
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -556,7 +556,7 @@ public class AuctionService
 					auctionInfoDAO.insertAuctionInfo(vo, info1
 							+ StringUtil.isoToGBK(vo.getGoodsName()) + star
 							+ vo.getGoodsNumber() + info2);
-					// ¸ø³¬¹ıÈıÌìµÄÅÄÂôÕß·¢ÓÊ¼ş
+					// ç»™è¶…è¿‡ä¸‰å¤©çš„æ‹å–è€…å‘é‚®ä»¶
 					mailInfo.sendMailBySystem(vo.getPPk(), title, info1
 							+ StringUtil.isoToGBK(vo.getGoodsName()) + info2 + info3);
 				}
@@ -568,10 +568,10 @@ public class AuctionService
 	}
 
 	/**
-	 * ¸üĞÂÓÃ»§ÂòµÄÎïÆ·£¬²¢·¢Ò»ÌõÏûÏ¢µ½ÅÄÂôĞÅÏ¢±í£¬£¨²¢·¢Ò»ÌõĞÅÏ¢µ½ËûµÄÓÊÏä,ÒÑ¾­Íê³É)
+	 * æ›´æ–°ç”¨æˆ·ä¹°çš„ç‰©å“ï¼Œå¹¶å‘ä¸€æ¡æ¶ˆæ¯åˆ°æ‹å–ä¿¡æ¯è¡¨ï¼Œï¼ˆå¹¶å‘ä¸€æ¡ä¿¡æ¯åˆ°ä»–çš„é‚®ç®±,å·²ç»å®Œæˆ)
 	 * 
 	 * @param pPk
-	 *            ¹ºÂòÕßid
+	 *            è´­ä¹°è€…id
 	 * @param auctionVO
 	 */
 	private int updateFromAuction(int pPk, int auction_id)
@@ -582,13 +582,13 @@ public class AuctionService
 		{
 			return -1;
 		}
-		// Ôö¼ÓÅÄÂôĞÅÏ¢
+		// å¢åŠ æ‹å–ä¿¡æ¯
 		addAuctionInfo(pPk, vo);
-		// ·¢ÓÊ¼ş¸øÂôÖ÷µ½ÆäÓÊÏä
+		// å‘é‚®ä»¶ç»™å–ä¸»åˆ°å…¶é‚®ç®±
 		sendAuctionSussendMail(vo);
 		if (vo.getAuctionSell() == 3)
 		{
-			// ·¢ÓÊ¼ş¸ø¾ºÅÄ³É¹¦Õß
+			// å‘é‚®ä»¶ç»™ç«æ‹æˆåŠŸè€…
 			sendAuctionSussendMailAuction(vo);
 		}
 		auctionDao.updateFromAuction(auction_id, pPk);
@@ -596,7 +596,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ¾ºÅÄºó¸üĞÂÅÄÂô³¡ÎïÆ·µÄ¾ºÅÄĞÅÏ¢
+	 * ç«æ‹åæ›´æ–°æ‹å–åœºç‰©å“çš„ç«æ‹ä¿¡æ¯
 	 * 
 	 * @param int
 	 *            auction_id,
@@ -623,53 +623,53 @@ public class AuctionService
 		return 1;
 	}
 
-	// µ±ÅÄÂô³É¹¦Ê±·¢ÓÊ¼şµ½ÆäÅÄÂôÕßÓÊÏä
+	// å½“æ‹å–æˆåŠŸæ—¶å‘é‚®ä»¶åˆ°å…¶æ‹å–è€…é‚®ç®±
 	private void sendAuctionSussendMail(AuctionVO auctionVO)
 	{
 		MailInfoService mail = new MailInfoService();
-		String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
+		String title = "æ‹å–åœºä¿¡æ¯æç¤º";
 		StringBuffer content = new StringBuffer();
-		content.append("ÄúÔÚÅÄÂô³¡¼ÄÂôµÄÎïÆ·").append(
-				StringUtil.isoToGBK(auctionVO.getGoodsName())).append("¡Á")
+		content.append("æ‚¨åœ¨æ‹å–åœºå¯„å–çš„ç‰©å“").append(
+				StringUtil.isoToGBK(auctionVO.getGoodsName())).append("Ã—")
 				.append(auctionVO.getGoodsNumber()).append(
-						"ÒÑ¾­±»ÈËÂò×ß£¬ÇëÄúÓÚÈıÈÕÄÚÈ¡»ØËùÂôÇ®²Æ.").append("ÏµÍ³ÓÊ¼ş,ÇëÎğ»Ø¸´!");
+						"å·²ç»è¢«äººä¹°èµ°ï¼Œè¯·æ‚¨äºä¸‰æ—¥å†…å–å›æ‰€å–é’±è´¢.").append("ç³»ç»Ÿé‚®ä»¶,è¯·å‹¿å›å¤!");
 		mail.sendMailBySystem(Integer.valueOf(auctionVO.getPPk()), title,
 				content.toString());
 
 	}
 
-	// µ±¾ºÅÄ³É¹¦ºó·¢ÓÊ¼şµ½ÆäÓÊÏäÍ¨ÖªÆä¾ºÅÄ³É¹¦
+	// å½“ç«æ‹æˆåŠŸåå‘é‚®ä»¶åˆ°å…¶é‚®ç®±é€šçŸ¥å…¶ç«æ‹æˆåŠŸ
 	private void sendAuctionSussendMailAuction(AuctionVO auctionVO)
 	{
 		MailInfoService mail = new MailInfoService();
-		String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
+		String title = "æ‹å–åœºä¿¡æ¯æç¤º";
 		StringBuffer content = new StringBuffer();
-		content.append("ÄúÔÚÅÄÂô³¡²Î¼Ó¾ºÅÄµÄ").append(
-				StringUtil.isoToGBK(auctionVO.getGoodsName())).append("¡Á")
-				.append(auctionVO.getGoodsNumber()).append("ÒÑ¾­¾ºÅÄ³É¹¦Çëµ½ÅÄÂô²Ö¿âÁìÈ¡.")
-				.append("ÏµÍ³ÓÊ¼ş,ÇëÎğ»Ø¸´!");
+		content.append("æ‚¨åœ¨æ‹å–åœºå‚åŠ ç«æ‹çš„").append(
+				StringUtil.isoToGBK(auctionVO.getGoodsName())).append("Ã—")
+				.append(auctionVO.getGoodsNumber()).append("å·²ç»ç«æ‹æˆåŠŸè¯·åˆ°æ‹å–ä»“åº“é¢†å–.")
+				.append("ç³»ç»Ÿé‚®ä»¶,è¯·å‹¿å›å¤!");
 		mail.sendMailBySystem(Integer.valueOf(auctionVO.getAuction_ppk()),
 				title, content.toString());
 	}
 
-	// ·¢ÓÊ¼ş¸ø¾ºÅÄÊ§°ÜÕß
+	// å‘é‚®ä»¶ç»™ç«æ‹å¤±è´¥è€…
 	private void sendAuctionFalseMailAuction(AuctionVO auctionVO, int ppk)
 	{
 		MailInfoService mail = new MailInfoService();
-		String title = "ÅÄÂô³¡ĞÅÏ¢ÌáÊ¾";
+		String title = "æ‹å–åœºä¿¡æ¯æç¤º";
 		StringBuffer content = new StringBuffer();
-		content.append("ÄúÔÚÅÄÂô³¡²Î¼Ó¾ºÅÄµÄ").append(
-				StringUtil.isoToGBK(auctionVO.getGoodsName())).append("¡Á")
+		content.append("æ‚¨åœ¨æ‹å–åœºå‚åŠ ç«æ‹çš„").append(
+				StringUtil.isoToGBK(auctionVO.getGoodsName())).append("Ã—")
 				.append(auctionVO.getGoodsNumber()).append(
-						"ÒÑ¾­±»±ğÈËÒÔ¸ü¸ßµÄ¼Û¸ñÂò×ß£¬ÄúµÄÇ®²ÆÒÑ¾­ÍË»¹Çë×¢Òâ²é¿´.").append("ÏµÍ³ÓÊ¼ş,ÇëÎğ»Ø¸´!");
+						"å·²ç»è¢«åˆ«äººä»¥æ›´é«˜çš„ä»·æ ¼ä¹°èµ°ï¼Œæ‚¨çš„é’±è´¢å·²ç»é€€è¿˜è¯·æ³¨æ„æŸ¥çœ‹.").append("ç³»ç»Ÿé‚®ä»¶,è¯·å‹¿å›å¤!");
 		mail.sendMailBySystem(ppk, title, content.toString());
 	}
 
 	/**
-	 * Èç¹ûÎïÆ·±»ÆäËûÍæ¼Ò¹ºÂò£¬ÏòÅÄÂôĞÅÏ¢±í²åÈëÒ»ÌõĞÅÏ¢
+	 * å¦‚æœç‰©å“è¢«å…¶ä»–ç©å®¶è´­ä¹°ï¼Œå‘æ‹å–ä¿¡æ¯è¡¨æ’å…¥ä¸€æ¡ä¿¡æ¯
 	 * 
 	 * @param pPk
-	 *            ¹ºÂòÕßid
+	 *            è´­ä¹°è€…id
 	 * @param auctionVO
 	 */
 	private void addAuctionInfo(int pPk, AuctionVO auctionVO)
@@ -679,15 +679,15 @@ public class AuctionService
 		PartInfoDao partInfoDao = new PartInfoDao();
 		PartInfoVO partvo = partInfoDao.getPartInfoByID(pPk);
 		String name = partvo.getPName();
-		StringBuffer con = new StringBuffer("ÄúµÄ");
-		con.append(StringUtil.isoToGBK(auctionVO.getGoodsName())).append("¡Á")
-				.append(auctionVO.getGoodsNumber()).append("ÒÑ¾­±»").append(
-						StringUtil.isoToGBK(name)).append("¹ºÂò");
+		StringBuffer con = new StringBuffer("æ‚¨çš„");
+		con.append(StringUtil.isoToGBK(auctionVO.getGoodsName())).append("Ã—")
+				.append(auctionVO.getGoodsNumber()).append("å·²ç»è¢«").append(
+						StringUtil.isoToGBK(name)).append("è´­ä¹°");
 		auctionInfoDao.insertAuctionInfo(auctionVO, con.toString());
 
 	}
 
-	/** ¸ù¾İ½ÇÉ«id²éÑ¯¸öÈËĞÅÏ¢ */
+	/** æ ¹æ®è§’è‰²idæŸ¥è¯¢ä¸ªäººä¿¡æ¯ */
 	public PartInfoVO getPartInfo(int pPk)
 	{
 		PartInfoDao partInfoDao = new PartInfoDao();
@@ -697,10 +697,10 @@ public class AuctionService
 	}
 
 	/**
-	 * ¸ù¾İauction_id ²éÑ¯ÅÄÂôĞÅÏ¢
+	 * æ ¹æ®auction_id æŸ¥è¯¢æ‹å–ä¿¡æ¯
 	 * 
 	 * @param auction_id
-	 *            ÅÄÂô±íid
+	 *            æ‹å–è¡¨id
 	 */
 	public AuctionVO getAuctinVOById(String auction_id)
 	{
@@ -710,7 +710,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ÅÄÂòµÀ¾ß,½«µÀ¾ß´ÓÅÄÂô³¡×ªµ½ÓÃ»§°ü¹üÖĞ
+	 * æ‹ä¹°é“å…·,å°†é“å…·ä»æ‹å–åœºè½¬åˆ°ç”¨æˆ·åŒ…è£¹ä¸­
 	 * 
 	 */
 	public synchronized String setToPG(int pPk, String auction_id,
@@ -724,54 +724,54 @@ public class AuctionService
 
 		if (roleInfo.getBasicInfo().getPPk() == vo.getPPk())
 		{
-			return "Äú²»ÄÜ¹ºÂò×Ô¼ºµÄÎïÆ·!";
+			return "æ‚¨ä¸èƒ½è´­ä¹°è‡ªå·±çš„ç‰©å“!";
 		}
 
 		if (vo.getAuctionSell() != 1)
 		{
-			return "¸ÃÎïÆ·ÒÑ¾­Âô³ö!";
+			return "è¯¥ç‰©å“å·²ç»å–å‡º!";
 		}
 
-		// ´ÓÅÄÂô³¡¸üĞÂÓÃ»§ÒªÂòµÄµÀ¾ß
+		// ä»æ‹å–åœºæ›´æ–°ç”¨æˆ·è¦ä¹°çš„é“å…·
 		int buy = updateFromAuction(pPk, Integer.parseInt(auction_id));
 
 		if (buy == -1)
 		{
-			resultWml = "ÅÄÂòÊ§°Ü";
+			resultWml = "æ‹ä¹°å¤±è´¥";
 			return resultWml;
 		}
 		else
 		{
-			resultWml = "ÅÄÂò³É¹¦";
-			// ¸üĞÂ½ğÇ®
+			resultWml = "æ‹ä¹°æˆåŠŸ";
+			// æ›´æ–°é‡‘é’±
 			roleInfo.getBasicInfo().addCopper(-vo.getGoodsPrice());
 		}
 
-		// Íù°ü¹üÀïÌí¼ÓµÀ¾ß
+		// å¾€åŒ…è£¹é‡Œæ·»åŠ é“å…·
 		int add = putPropToWrap(pPk, vo.getGoodsId(), vo.getGoodsNumber(), vo);
 		if (buy == -1 || add == -1)
 		{
-			resultWml = "ÅÄÂòÊ§°Ü";
+			resultWml = "æ‹ä¹°å¤±è´¥";
 			return resultWml;
 		}
 		else
 		{
-			resultWml = "ÅÄÂò³É¹¦";
+			resultWml = "æ‹ä¹°æˆåŠŸ";
 		}
-		// ¼õÉÙ°ü¹ü¿Õ¸ñ
-		// ¼à¿Ø
+		// å‡å°‘åŒ…è£¹ç©ºæ ¼
+		// ç›‘æ§
 		LogService logService = new LogService();
 		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo
 				.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()
-				+ "", -vo.getGoodsPrice() + "", "ÅÄÂô Âòµ½µÀ¾ß");
+				+ "", -vo.getGoodsPrice() + "", "æ‹å– ä¹°åˆ°é“å…·");
 
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(vo.getPPk(), "sale", 1);
 		return resultWml;
 	}
 
 	/**
-	 * °ÑµÀ¾ß·Åµ½°ü¹üÀï
+	 * æŠŠé“å…·æ”¾åˆ°åŒ…è£¹é‡Œ
 	 * 
 	 * @param p_pk
 	 * @param goods_id
@@ -788,38 +788,38 @@ public class AuctionService
 		PropVO prop = PropCache.getPropById(goods_id);
 		if (prop == null)
 		{
-			logger.debug("ÕÒ²»µ½Õâ¸öµÀ¾ß");
+			logger.debug("æ‰¾ä¸åˆ°è¿™ä¸ªé“å…·");
 			return -1;
 		}
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
-		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ÏÖÓĞµÄÊıÁ¿
-		int total_num = current_num + goods_num;// Ôö¼Ógoods_numºóµÄ×ÜÊı
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
+		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ç°æœ‰çš„æ•°é‡
+		int total_num = current_num + goods_num;// å¢åŠ goods_numåçš„æ€»æ•°
 
-		int current_groups = 0;// ÏÖÓĞµÄ×éÊı
+		int current_groups = 0;// ç°æœ‰çš„ç»„æ•°
 		if (current_num != 0)
 		{
-			// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			// current_groups =(current_num-1)/accumulate_num+1;
 			current_groups = propGroupDao.getPropGroupNumByPropID(p_pk,
 					goods_id);
 		}
 
-		int new_groups = (total_num - 1) / accumulate_num + 1;// Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num - 1) / accumulate_num + 1;// å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
 
-		int need_groups = new_groups - current_groups;// ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı
+		int need_groups = new_groups - current_groups;// éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°
 
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 
-		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// Ê£ÓàµÄ°ü¹ü¿Õ¼äÊı
+		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// å‰©ä½™çš„åŒ…è£¹ç©ºé—´æ•°
 
 		if (wrap_spare <= need_groups)
 		{
-			logger.debug("°ü¹ü¿Õ¼ä²»¹»");
+			logger.debug("åŒ…è£¹ç©ºé—´ä¸å¤Ÿ");
 			return -1;
 		}
 
-		// ÕÒµ½Ã»ÓĞÖØµşÂıµÄµÀ¾ß×é
+		// æ‰¾åˆ°æ²¡æœ‰é‡å æ…¢çš„é“å…·ç»„
 		PlayerPropGroupVO propGroup = new PlayerPropGroupVO();
 		propGroup.setPgType(prop.getPropPosition());
 		propGroup.setPPk(p_pk);
@@ -832,7 +832,7 @@ public class AuctionService
 		propGroup.setPropIsReconfirm(auctionVO.getWIsReconfirm());
 		propGroup.setPropUseControl(auctionVO.getPropUseControl());
 
-		// Ìí¼ÓĞÂµÄµÀ¾ß×é£¬ÊıÁ¿¶¼ÊÇaccumulate_num
+		// æ·»åŠ æ–°çš„é“å…·ç»„ï¼Œæ•°é‡éƒ½æ˜¯accumulate_num
 		propGroup.setPropNum(accumulate_num);
 		for (int i = 0; i < need_groups; i++)
 		{
@@ -845,14 +845,14 @@ public class AuctionService
 			propGroupDao.updatePropGroupNum(propGroup.getPgPk(),
 					goodsgourp_goodsnum);
 		}
-		// °ü¹ü¿Õ¼ä¼õÉÙneed_groups
+		// åŒ…è£¹ç©ºé—´å‡å°‘need_groups
 		EquipService equipService = new EquipService();
 		equipService.addWrapSpare(p_pk, -need_groups);
 		return 0;
 	}
 
 	/**
-	 * ¾ºÅÄ³É¹¦ºó°ÑµÀ¾ß·Å½ø°ü¹üÀï
+	 * ç«æ‹æˆåŠŸåæŠŠé“å…·æ”¾è¿›åŒ…è£¹é‡Œ
 	 */
 	public void putPropToWrap(AuctionVO auctionVO)
 	{
@@ -860,30 +860,30 @@ public class AuctionService
 		PropVO prop = PropCache.getPropById(auctionVO.getGoodsId());
 		if (prop == null)
 		{
-			logger.debug("ÕÒ²»µ½Õâ¸öµÀ¾ß");
+			logger.debug("æ‰¾ä¸åˆ°è¿™ä¸ªé“å…·");
 		}
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
 		int current_num = propGroupDao.getPropNumByByPropID(auctionVO
-				.getAuction_ppk(), auctionVO.getGoodsId());// ÏÖÓĞµÄÊıÁ¿
-		int total_num = current_num + auctionVO.getGoodsNumber();// Ôö¼Ógoods_numºóµÄ×ÜÊı
+				.getAuction_ppk(), auctionVO.getGoodsId());// ç°æœ‰çš„æ•°é‡
+		int total_num = current_num + auctionVO.getGoodsNumber();// å¢åŠ goods_numåçš„æ€»æ•°
 
-		int current_groups = 0;// ÏÖÓĞµÄ×éÊı
+		int current_groups = 0;// ç°æœ‰çš„ç»„æ•°
 		if (current_num != 0)
 		{
-			// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			// current_groups =(current_num-1)/accumulate_num+1;
 			current_groups = propGroupDao.getPropGroupNumByPropID(auctionVO
 					.getAuction_ppk(), auctionVO.getGoodsId());
 		}
 
-		int new_groups = (total_num - 1) / accumulate_num + 1;// Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num - 1) / accumulate_num + 1;// å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
 
-		int need_groups = new_groups - current_groups;// ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı
+		int need_groups = new_groups - current_groups;// éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°
 
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 
-		// ÕÒµ½Ã»ÓĞÖØµşÂıµÄµÀ¾ß×é
+		// æ‰¾åˆ°æ²¡æœ‰é‡å æ…¢çš„é“å…·ç»„
 		PlayerPropGroupVO propGroup = new PlayerPropGroupVO();
 		propGroup.setPgType(prop.getPropPosition());
 		propGroup.setPPk(auctionVO.getAuction_ppk());
@@ -896,7 +896,7 @@ public class AuctionService
 		propGroup.setPropIsReconfirm(auctionVO.getWIsReconfirm());
 		propGroup.setPropUseControl(auctionVO.getPropUseControl());
 
-		// Ìí¼ÓĞÂµÄµÀ¾ß×é£¬ÊıÁ¿¶¼ÊÇaccumulate_num
+		// æ·»åŠ æ–°çš„é“å…·ç»„ï¼Œæ•°é‡éƒ½æ˜¯accumulate_num
 		propGroup.setPropNum(accumulate_num);
 		for (int i = 0; i < need_groups; i++)
 		{
@@ -910,16 +910,16 @@ public class AuctionService
 			propGroupDao.updatePropGroupNum(propGroup.getPgPk(),
 					goodsgourp_goodsnum);
 		}
-		// °ü¹ü¿Õ¼ä¼õÉÙneed_groups
+		// åŒ…è£¹ç©ºé—´å‡å°‘need_groups
 		EquipService equipService = new EquipService();
 		equipService.addWrapSpare(auctionVO.getAuction_ppk(), -need_groups);
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎïÆ·Çé¿ö
+	 * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„ç‰©å“æƒ…å†µ
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @return list
 	 */
 	public List<AuctionVO> getGoodsList(String pPk, int auction_type)
@@ -931,10 +931,10 @@ public class AuctionService
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎïÆ·Âô³öºóµÄ½ğÇ®Çé¿ö
+	 * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„ç‰©å“å–å‡ºåçš„é‡‘é’±æƒ…å†µ
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @return list
 	 */
 	public List<AuctionVO> getMoneyList(String pPk)
@@ -946,7 +946,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ½«×°±¸´ÓÅÄÂô³¡²Ö¿â×ªµ½Íæ¼ÒµÄ°ü¹ü
+	 * å°†è£…å¤‡ä»æ‹å–åœºä»“åº“è½¬åˆ°ç©å®¶çš„åŒ…è£¹
 	 * 
 	 */
 	public String setAuctionWrap(int pPk, AuctionVO auctionVO,
@@ -954,10 +954,10 @@ public class AuctionService
 	{
 		String resultWml = "";
 
-		logger.info(" ÅÄÂô³¡id : " + auctionVO.getGoodsId() + " ,ÎïÆ·ÅÄÂôÕßµÄid:"
+		logger.info(" æ‹å–åœºid : " + auctionVO.getGoodsId() + " ,ç‰©å“æ‹å–è€…çš„id:"
 				+ auctionVO.getPPk());
-		// ¸ü¸Ä¹ºÂòÍæ¼ÒµÄppkÎª¸º ÔÚÂô¼ÒÁìÍêÇ®ºó´Ë¼ÇÂ¼²ÅÄÜÉ¾³ı
-		// Íù°ü¹üÀïÌí¼Ó×°±¸
+		// æ›´æ”¹è´­ä¹°ç©å®¶çš„ppkä¸ºè´Ÿ åœ¨å–å®¶é¢†å®Œé’±åæ­¤è®°å½•æ‰èƒ½åˆ é™¤
+		// å¾€åŒ…è£¹é‡Œæ·»åŠ è£…å¤‡
 		EquipService equipService = new EquipService();
 		PlayerEquipDao ped = new PlayerEquipDao();
 		PlayerEquipVO pev=ped.getByID(auctionVO.getGoodsId());
@@ -969,24 +969,24 @@ public class AuctionService
 			return resultWml;
 		}
 		int buy = 0;
-		//Âô¼ÒÃ»ÓĞÈ¡×ßÇ®²»ÄÜÉ¾³ı´ËÅÄÂôĞÅÏ¢£¬°Ñ×Ô¼ºµÄPPKÒ²¾ÍÊÇÂò¼ÒPPkÉèÎª¸ºÊı
+		//å–å®¶æ²¡æœ‰å–èµ°é’±ä¸èƒ½åˆ é™¤æ­¤æ‹å–ä¿¡æ¯ï¼ŒæŠŠè‡ªå·±çš„PPKä¹Ÿå°±æ˜¯ä¹°å®¶PPkè®¾ä¸ºè´Ÿæ•°
 		addUactionGetSuccessInfo(pPk, auctionVO);
 		if (auctionVO.getUPk()>0&&pPk!=auctionVO.getPPk())
 		{
 			buy = updateFromAuctions(pPk,"auction_ppk",auctionVO);
 		}
-		//Âô¼ÒÒÑ¾­È¡×ßÁËÇ®É¾³ı´ËÅÄÂô¼ÇÂ¼
+		//å–å®¶å·²ç»å–èµ°äº†é’±åˆ é™¤æ­¤æ‹å–è®°å½•
 		else
 		{
 			buy = deleteFromAuction(pPk, auctionVO);
 		}
 		if (buy == -1)
 		{
-			resultWml = "È¡³öÊ§°Ü";
+			resultWml = "å–å‡ºå¤±è´¥";
 		}
 		else
 		{
-			resultWml = "Äú³É¹¦È¡»ØÁË" + auctionVO.getGoodsName() + "x"
+			resultWml = "æ‚¨æˆåŠŸå–å›äº†" + auctionVO.getGoodsName() + "x"
 					+ auctionVO.getGoodsNumber() + "";
 			
 		}
@@ -995,7 +995,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ½«µÀ¾ß´ÓÅÄÂô³¡²Ö¿â×ªµ½ÓÃ»§°ü¹üÖĞ
+	 * å°†é“å…·ä»æ‹å–åœºä»“åº“è½¬åˆ°ç”¨æˆ·åŒ…è£¹ä¸­
 	 * 
 	 */
 	public String setAuctionPG(int pPk, AuctionVO auctionVO,
@@ -1003,20 +1003,20 @@ public class AuctionService
 	{
 		String resultWml = "";
 
-		// ¸üĞÂÂò¼ÒµÄppkÎª¸ºÊıµÈÂô¼ÒÁìÈ¡ÁËÇ®ÒÔºó²Å»áÉ¾³ı´Ë¼ÇÂ¼
+		// æ›´æ–°ä¹°å®¶çš„ppkä¸ºè´Ÿæ•°ç­‰å–å®¶é¢†å–äº†é’±ä»¥åæ‰ä¼šåˆ é™¤æ­¤è®°å½•
 		addUactionGetSuccessInfo(pPk, auctionVO);
 		int buy = updateFromAuction(pPk,"auction_ppk",auctionVO);
-		// Íù°ü¹üÀïÌí¼ÓµÀ¾ß
+		// å¾€åŒ…è£¹é‡Œæ·»åŠ é“å…·
 		int add = putPropToWrap(pPk, auctionVO.getGoodsId(), auctionVO
 				.getGoodsNumber(), auctionVO);
 
 		if (buy == -1 || add == -1)
 		{
-			resultWml = "È¡³öÊ§°Ü";
+			resultWml = "å–å‡ºå¤±è´¥";
 		}
 		else
 		{
-			resultWml = "Äú³É¹¦È¡»ØÁË" + auctionVO.getGoodsName() + "x"
+			resultWml = "æ‚¨æˆåŠŸå–å›äº†" + auctionVO.getGoodsName() + "x"
 					+ auctionVO.getGoodsNumber() + "";
 		}
 
@@ -1024,10 +1024,10 @@ public class AuctionService
 	}
 
 	/**
-	 * É¾³ıÓÃ»§ÂòµÄÎïÆ·£¬²¢·¢Ò»ÌõÏûÏ¢µ½ÅÄÂôĞÅÏ¢±í£¬£¨²¢·¢Ò»ÌõĞÅÏ¢µ½ËûµÄÓÊÏä,Î´Íê³É)
+	 * åˆ é™¤ç”¨æˆ·ä¹°çš„ç‰©å“ï¼Œå¹¶å‘ä¸€æ¡æ¶ˆæ¯åˆ°æ‹å–ä¿¡æ¯è¡¨ï¼Œï¼ˆå¹¶å‘ä¸€æ¡ä¿¡æ¯åˆ°ä»–çš„é‚®ç®±,æœªå®Œæˆ)
 	 * 
 	 * @param pPk
-	 *            ¹ºÂòÕßid
+	 *            è´­ä¹°è€…id
 	 * @param auctionVO
 	 */
 	private int deleteFromAuction(int pPk, AuctionVO auctionVO)
@@ -1040,7 +1040,7 @@ public class AuctionService
 	}
 
 	/***************************************************************************
-	 * ¸üĞÂ³É¹¦Âò¼ÒµÄppkÎª¸ºÊı
+	 * æ›´æ–°æˆåŠŸä¹°å®¶çš„ppkä¸ºè´Ÿæ•°
 	 */
 	private int updateFromAuction(int pPk,String fieldName, AuctionVO auctionVO)
 	{
@@ -1048,27 +1048,27 @@ public class AuctionService
 		int auction_id = auctionVO.getUAuctionId();
 		AuctionDAO auctionDao = new AuctionDAO();
 		int i=-1;
-		/***È¡»Ø¹ºÂòµÄÎïÆ·  Âô¼ÒÃ»ÓĞ°ÑÇ®È¡×ß***/
+		/***å–å›è´­ä¹°çš„ç‰©å“  å–å®¶æ²¡æœ‰æŠŠé’±å–èµ°***/
 		if(pPk!=auctionVO.getPPk()&&auctionVO.getUPk()>0)
 		{
 			i = auctionDao.updateFromAuction(fieldName,auction_id);
 		}
-		/***È¡»Ø¹ºÂòµÄÎïÆ·  Âô¼Ò°ÑÇ®È¡×ßÁË***/
+		/***å–å›è´­ä¹°çš„ç‰©å“  å–å®¶æŠŠé’±å–èµ°äº†***/
 		else if(pPk!=auctionVO.getPPk()&&auctionVO.getUPk()<0)
 		{
 			i=deleteFromAuction( pPk,auctionVO);
 		}
-		/***È¡»ØÃ»ÓĞÂô³öµÄÎïÆ·**/
+		/***å–å›æ²¡æœ‰å–å‡ºçš„ç‰©å“**/
 		else if(pPk==auctionVO.getPPk()&&auctionVO.getAuctionFailed()==2)
 		{
 			i=deleteFromAuction( pPk,auctionVO);
 		}
-		/***È¡»ØÂô³ö»ñµÃµÄÇ®²Æ   Âò¼ÒÈ¡×ßÎïÆ·**/
+		/***å–å›å–å‡ºè·å¾—çš„é’±è´¢   ä¹°å®¶å–èµ°ç‰©å“**/
 		else if(pPk==auctionVO.getPPk()&&auctionVO.getAuctionSell()==2&&auctionVO.getAuction_ppk()==-1)
 		{
 			i=deleteFromAuction( pPk,auctionVO);
 		}
-		/***È¡»ØÂô³ö»ñµÃµÄÇ®²Æ Âò¼ÒÃ»È¡×ßÎïÆ·**/
+		/***å–å›å–å‡ºè·å¾—çš„é’±è´¢ ä¹°å®¶æ²¡å–èµ°ç‰©å“**/
 		else if(pPk==auctionVO.getPPk()&&auctionVO.getAuctionSell()==2&&auctionVO.getAuction_ppk()!=-1)
 		{
 			i = auctionDao.updateFromAuction("u_pk",auction_id);
@@ -1076,7 +1076,7 @@ public class AuctionService
 		return i;
 	}
 	/**
-	 * ¸üĞÂ³É¹¦Âò¼ÒµÄppkÎª¸ºÊı È¡³öÇ®²ÆµÄÊ±ºò
+	 * æ›´æ–°æˆåŠŸä¹°å®¶çš„ppkä¸ºè´Ÿæ•° å–å‡ºé’±è´¢çš„æ—¶å€™
 	 */
 	private int updateFromAuctions(int pPk,String fieldName, AuctionVO auctionVO)
 	{
@@ -1088,27 +1088,27 @@ public class AuctionService
 	}
 
 	/**
-	 * ÏòÅÄÂôĞÅÏ¢±í²åÈëÒ»ÌõĞÅÏ¢
+	 * å‘æ‹å–ä¿¡æ¯è¡¨æ’å…¥ä¸€æ¡ä¿¡æ¯
 	 * 
 	 * @param pPk
-	 *            ¹ºÂòÕßid
+	 *            è´­ä¹°è€…id
 	 * @param auctionVO
 	 */
 	private void addAuctionDeleteInfo(int pPk, AuctionVO auctionVO)
 	{
 
 		AuctionInfoDAO auctionInfoDao = new AuctionInfoDAO();
-		String money = auctionVO.getPay_type() == 1 ? "ÁéÊ¯" : "ÏÉ¾§";
-		StringBuffer con = new StringBuffer("ÄúÈ¡»ØÁË");
+		String money = auctionVO.getPay_type() == 1 ? "çµçŸ³" : "ä»™æ™¶";
+		StringBuffer con = new StringBuffer("æ‚¨å–å›äº†");
 		con.append(StringUtil.isoToGBK(auctionVO.getGoodsName())).append("*")
-				.append(auctionVO.getGoodsNumber()).append("µÄÂôÇ®").append(
+				.append(auctionVO.getGoodsNumber()).append("çš„å–é’±").append(
 						auctionVO.getGoodsPrice()).append(money);
 		auctionInfoDao.insertAuctionInfo(auctionVO, con.toString());
 
 	}
 
 	/***************************************************************************
-	 * Íæ¼Ò¹ºÂò³É¹¦È¡»Ø²åÈëÒ»ÌøĞÅÏ¢
+	 * ç©å®¶è´­ä¹°æˆåŠŸå–å›æ’å…¥ä¸€è·³ä¿¡æ¯
 	 */
 	private void addUactionGetSuccessInfo(int pPk, AuctionVO auctionVO)
 	{
@@ -1116,11 +1116,11 @@ public class AuctionService
 		StringBuffer con = null;
 		if(pPk!=auctionVO.getPPk())
 		{
-			con = new StringBuffer("ÄúÈ¡»ØÁË¹ºÂò³É¹¦µÄ");
+			con = new StringBuffer("æ‚¨å–å›äº†è´­ä¹°æˆåŠŸçš„");
 		}
 		else
 		{
-			con = new StringBuffer("ÄúÈ¡»ØÁËÃ»ÓĞÂô³öµÄ");
+			con = new StringBuffer("æ‚¨å–å›äº†æ²¡æœ‰å–å‡ºçš„");
 		}
 		con.append(StringUtil.isoToGBK(auctionVO.getGoodsName())).append("*")
 				.append(auctionVO.getGoodsNumber());
@@ -1129,7 +1129,7 @@ public class AuctionService
 	}
 
 	/**
-	 * ½«½ğÇ®´ÓÅÄÂô³¡²Ö¿â×ªµ½ÓÃ»§°ü¹üÖĞ
+	 * å°†é‡‘é’±ä»æ‹å–åœºä»“åº“è½¬åˆ°ç”¨æˆ·åŒ…è£¹ä¸­
 	 * 
 	 */
 	public String getAuctionMoney(int pPk, AuctionVO auctionVO,
@@ -1137,14 +1137,14 @@ public class AuctionService
 	{
 		String resultWml = "";
 		RoleEntity roleInfo = RoleService.getRoleInfoById(pPk + "");
-		// ¼à¿Ø
+		// ç›‘æ§
 		LogService logService = new LogService();
 		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo
 				.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()
-				+ "", auctionVO.getGoodsPrice() + "", "ÅÄÂô×°±¸µÃµ½");
+				+ "", auctionVO.getGoodsPrice() + "", "æ‹å–è£…å¤‡å¾—åˆ°");
 
 		String displayMoney="";
-		// ¸üĞÂ½ğÇ®
+		// æ›´æ–°é‡‘é’±
 		if (auctionVO.getPay_type() == 1)
 		{
 			long copper=auctionVO.getBuyPrice()<=0?auctionVO.getGoodsPrice()*95/100:auctionVO.getBuyPrice()*95/100;
@@ -1153,48 +1153,48 @@ public class AuctionService
 		}
 		else
 		{
-			/********ÏÉ¾§ÅÄÂô¿Û³ıËùµÃµÄ10%µÄÊÖĞø·Ñ**************/
+			/********ä»™æ™¶æ‹å–æ‰£é™¤æ‰€å¾—çš„10%çš„æ‰‹ç»­è´¹**************/
 			EconomyService es = new EconomyService();
 			long addMoney=auctionVO.getBuyPrice()<=0?auctionVO.getGoodsPrice()*90/100:auctionVO.getAuction_price()*90/100;
 			es.addYuanbao(roleInfo.getBasicInfo().getUPk(), addMoney);
 			displayMoney=String.valueOf(addMoney);
 		}
-		// Ö´ĞĞÍ³¼Æ
+		// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(6, StatisticsType.MONEY, auctionVO.getGoodsPrice()
 				- (int) (auctionVO.getGoodsPrice()), StatisticsType.USED,
 				StatisticsType.SHUISHOU, pPk);
 		int buy=0;
-		//Âò¼ÒÃ»ÓĞÈ¡×ßÎïÆ·µÄÊ±ºò²»É¾³ı´Ë¼ÇÂ¼
+		//ä¹°å®¶æ²¡æœ‰å–èµ°ç‰©å“çš„æ—¶å€™ä¸åˆ é™¤æ­¤è®°å½•
 		addAuctionDeleteInfo(pPk, auctionVO);
 		if (auctionVO.getAuction_ppk()>0)
 		{
 			buy = updateFromAuction(pPk,"u_pk",auctionVO);
 		}
-		//Âò¼ÒÒÑ¾­È¡×ßÁËÎïÆ·É¾³ı¼ÇÂ¼
+		//ä¹°å®¶å·²ç»å–èµ°äº†ç‰©å“åˆ é™¤è®°å½•
 		else
 		{
 			buy = deleteFromAuction(pPk, auctionVO);
 		}
 		if (buy == -1)
 		{
-			resultWml = "È¡»ØÊ§°Ü";
+			resultWml = "å–å›å¤±è´¥";
 		}
 		else
 		{
-			String m = auctionVO.getPay_type() == 1 ? "ÁéÊ¯" : "ÏÉ¾§";
+			String m = auctionVO.getPay_type() == 1 ? "çµçŸ³" : "ä»™æ™¶";
 			String moneyTemp=auctionVO.getPay_type()==1?"5%":"10%";
-			resultWml = "È¡³ö³É¹¦,ÒÑ¿Û³ıÄú"+moneyTemp+"µÄÊÖĞø·ÑÄú³É¹¦È¡»ØÁË" + displayMoney + "" + m + "";
+			resultWml = "å–å‡ºæˆåŠŸ,å·²æ‰£é™¤æ‚¨"+moneyTemp+"çš„æ‰‹ç»­è´¹æ‚¨æˆåŠŸå–å›äº†" + displayMoney + "" + m + "";
 		}
 
 		return resultWml;
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄÎ´Âô³öµÄÎïÆ·Çé¿ö
+	 * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„æœªå–å‡ºçš„ç‰©å“æƒ…å†µ
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @return list
 	 */
 	public List<AuctionVO> getNotSellList(int pPk)
@@ -1206,10 +1206,10 @@ public class AuctionService
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡²Ö¿âÀïµÄ±»Ã»ÊÕµÄÇé¿ö
+	 * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä»“åº“é‡Œçš„è¢«æ²¡æ”¶çš„æƒ…å†µ
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @return list
 	 */
 	public List<AuctionVO> getLostGoodsList(int pPk)
@@ -1221,31 +1221,31 @@ public class AuctionService
 	}
 
 	/**
-	 * ¸ù¾İ½ÇÉ«id»ñµÃ¸öÈËÅÄÂô³¡ĞÅÏ¢±íÀïµÄĞÅÏ¢
+	 * æ ¹æ®è§’è‰²idè·å¾—ä¸ªäººæ‹å–åœºä¿¡æ¯è¡¨é‡Œçš„ä¿¡æ¯
 	 * 
 	 * @param pPk
-	 *            ¸öÈË½ÇÉ«id
+	 *            ä¸ªäººè§’è‰²id
 	 * @return list
 	 */
 	public QueryPage getAuctionInfoList(int pPk,int page_no)
 	{
 		List<AuctionInfoVO> goodsList = null;
 		AuctionInfoDAO auctionDao = new AuctionInfoDAO();
-		// »ñµÃ¸öÈËÅÄÂôĞÅÏ¢±íÀïµÄĞÅÏ¢
+		// è·å¾—ä¸ªäººæ‹å–ä¿¡æ¯è¡¨é‡Œçš„ä¿¡æ¯
 		QueryPage qp = auctionDao.getAuctionInfoList(pPk,page_no);
-		// É¾³ı¸öÈËÅÄÂôĞÅÏ¢±íµÄ100Ìõ¿ªÍâµÄĞÅÏ¢
+		// åˆ é™¤ä¸ªäººæ‹å–ä¿¡æ¯è¡¨çš„100æ¡å¼€å¤–çš„ä¿¡æ¯
 		auctionDao.clearAuctionInfo(pPk);
 		return qp;
 	}
 
 	/**
-	 * ¶ªÆú×°±¸
+	 * ä¸¢å¼ƒè£…å¤‡
 	 * 
 	 * @param p_pk
 	 * @param accouter_id
-	 *            ×°±¸
+	 *            è£…å¤‡
 	 * @param accouter_type
-	 *            ×°±¸ÀàĞÍ£¬ÈçÊÇÄÄ¸ö±íµÄ£¨×°±¸£¬ÎäÆ÷£¬ÊÎÆ·£©
+	 *            è£…å¤‡ç±»å‹ï¼Œå¦‚æ˜¯å“ªä¸ªè¡¨çš„ï¼ˆè£…å¤‡ï¼Œæ­¦å™¨ï¼Œé¥°å“ï¼‰
 	 * 
 	 * public void removeAccouter1(int p_pk,int accouter_id,int accouter_type) {
 	 * int accouter_class = -1; accouter_class =
@@ -1256,24 +1256,24 @@ public class AuctionService
 	 * 
 	 * //String accouters_str = wrap.getWArticle();
 	 * 
-	 * //logger.info("¸öÈË°ü¹üÀïµÄ×°±¸:"+accouters_str); //Éú³ÉÒª´¢´æµÄ×°±¸µÄ×Ö·û´® String
+	 * //logger.info("ä¸ªäººåŒ…è£¹é‡Œçš„è£…å¤‡:"+accouters_str); //ç”Ÿæˆè¦å‚¨å­˜çš„è£…å¤‡çš„å­—ç¬¦ä¸² String
 	 * accouter_str = accouter_id + "," + accouter_class + "," + accouter_type +
 	 * "-";
 	 * 
-	 * logger.info("×°±¸µÄ×Ö·û´®:"+accouter_str); //String accouters[] =
-	 * accouters_str.split(accouter_str,2);//°ÑÈÓµôµÄ×°±¸´Ó×Ö·û´®ÖĞÅÅ³ı
-	 * //logger.info("×°±¸µÄ×Ö·û´®[]"+accouters[0]+accouters[1]); //String
+	 * logger.info("è£…å¤‡çš„å­—ç¬¦ä¸²:"+accouter_str); //String accouters[] =
+	 * accouters_str.split(accouter_str,2);//æŠŠæ‰”æ‰çš„è£…å¤‡ä»å­—ç¬¦ä¸²ä¸­æ’é™¤
+	 * //logger.info("è£…å¤‡çš„å­—ç¬¦ä¸²[]"+accouters[0]+accouters[1]); //String
 	 * new_accouters_str = accouters[0] + accouters[1];
 	 * 
-	 * //·ÅÈë×°±¸Êı¾İ¿â¸üĞÂ // wrapDao.updateAccoutersOfWrap(p_pk, new_accouters_str);
+	 * //æ”¾å…¥è£…å¤‡æ•°æ®åº“æ›´æ–° // wrapDao.updateAccoutersOfWrap(p_pk, new_accouters_str);
 	 * 
 	 * 
-	 * PartInfoDao partInfoDAO = new PartInfoDao(); //Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+	 * PartInfoDao partInfoDAO = new PartInfoDao(); //å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 	 * partInfoDAO.addWrapSpare(p_pk, 1); }
 	 */
 
 	/**
-	 * µÃµ½ÎïÆ·ÀàĞÍ
+	 * å¾—åˆ°ç‰©å“ç±»å‹
 	 * 
 	 * @param goods_id
 	 * @param goods_type
@@ -1281,7 +1281,7 @@ public class AuctionService
 	 * 
 	 * private int getGoodsClass(int goods_id, int goods_type) {
 	 * 
-	 * int goods_class = -1; //×°±¸ÀàĞÍ if( goods_type==GoodsType.ACCOUTE ) {
+	 * int goods_class = -1; //è£…å¤‡ç±»å‹ if( goods_type==GoodsType.ACCOUTE ) {
 	 * AccouteDao accouteDao = new AccouteDao(); goods_class =
 	 * accouteDao.getClassById(goods_id); } else if( goods_type==GoodsType.ARM ) {
 	 * ArmDao armDao = new ArmDao(); goods_class =

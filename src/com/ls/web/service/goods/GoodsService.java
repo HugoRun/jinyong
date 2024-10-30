@@ -61,16 +61,16 @@ import com.web.service.friend.FriendService;
 import com.web.service.popupmsg.PopUpMsgService;
 
 /**
- * ¹¦ÄÜ:ÎïÆ··ÅÈë°ü¹ü£¬´Ó°ü¹üÀï¶ªÆú£¬ÂôÂòÎïÆ·£¬ÏÔÊ¾ÎïÆ·ÏêÇé
+ * åŠŸèƒ½:ç‰©å“æ”¾å…¥åŒ…è£¹ï¼Œä»åŒ…è£¹é‡Œä¸¢å¼ƒï¼Œå–ä¹°ç‰©å“ï¼Œæ˜¾ç¤ºç‰©å“è¯¦æƒ…
  * 
- * @author ÁõË§ 9:49:09 AM
+ * @author åˆ˜å¸… 9:49:09 AM
  */
 public class GoodsService
 {
 	Logger logger = Logger.getLogger("log.service");
 
 	/**
-	 * µÃµ½Íæ¼Ò°ü¹üÀïµÄprop_typeÀàĞÍµÄ²»ÖØ¸´µÄµÀ¾ß£¬ÇÒÕ½¶·¿ÉÒÔÊ¹ÓÃµÄµÀ¾ß
+	 * å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„prop_typeç±»å‹çš„ä¸é‡å¤çš„é“å…·ï¼Œä¸”æˆ˜æ–—å¯ä»¥ä½¿ç”¨çš„é“å…·
 	 * 
 	 * @param p_pk
 	 * @return
@@ -88,7 +88,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÀ¾ß
+	 * å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰é“å…·
 	 * 
 	 * @param p_pk
 	 * @return
@@ -101,7 +101,7 @@ public class GoodsService
 
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÀ¾ß
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰é“å…·
 	 * @param p_pk
 	 * @return
 	 */
@@ -112,7 +112,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄ¿ÉÒÔ½»Ò×µÄ£¨·ÇÆÆËğµÄ£©×°±¸
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„å¯ä»¥äº¤æ˜“çš„ï¼ˆéç ´æŸçš„ï¼‰è£…å¤‡
 	 * @param p_pk
 	 * @return
 	 */
@@ -123,7 +123,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄ×°±¸
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„è£…å¤‡
 	 * @param p_pk
 	 * @return
 	 */
@@ -134,7 +134,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄÖ¸¶¨ÀàĞÍµÄ×°±¸
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„æŒ‡å®šç±»å‹çš„è£…å¤‡
 	 * @param p_pk
 	 * @return
 	 */
@@ -144,7 +144,7 @@ public class GoodsService
 		return equipDao.getPageByTypeOnWrap(p_pk, equipType,page_no);
 	}
 	/**
-	 * ·ÖÒ³µÃµ½Íæ¼ÒµÄÄ³Àà×°±¸£¬ÎäÆ÷ ·À¾ß£¬·¨±¦
+	 * åˆ†é¡µå¾—åˆ°ç©å®¶çš„æŸç±»è£…å¤‡ï¼Œæ­¦å™¨ é˜²å…·ï¼Œæ³•å®
 	 */
 	public QueryPage getPageEquipOnWrap(int p_pk,int equip_type,int page_no)
 	{
@@ -153,7 +153,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄ×°±¸¿ÉÒÔÏâÇ¶µÄ±¦Ê¯ÁĞ±í
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„è£…å¤‡å¯ä»¥é•¶åµŒçš„å®çŸ³åˆ—è¡¨
 	 * @param equip
 	 * @param page_no
 	 * @return
@@ -171,7 +171,7 @@ public class GoodsService
 
 
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÀ¾ß
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰é“å…·
 	 * @param p_pk
 	 * @return
 	 */
@@ -182,7 +182,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * ·ÖÒ³:µÃµ½Íæ¼Ò°ü¹üÀïµÄpw_typeÀàĞÍµÄËùÓĞµÀ¾ß
+	 * åˆ†é¡µ:å¾—åˆ°ç©å®¶åŒ…è£¹é‡Œçš„pw_typeç±»å‹çš„æ‰€æœ‰é“å…·
 	 * @param p_pk
 	 * @return
 	 */
@@ -193,7 +193,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ¶ªÆúÎïÆ·µÀ¾ß,ÒÔÒ»×éÎªµ¥Î»£¬¶ªÆúÒ»×éÀïµÄµÀ¾ß
+	 * ä¸¢å¼ƒç‰©å“é“å…·,ä»¥ä¸€ç»„ä¸ºå•ä½ï¼Œä¸¢å¼ƒä¸€ç»„é‡Œçš„é“å…·
 	 * 
 	 * @return
 	 */
@@ -201,24 +201,24 @@ public class GoodsService
 	{
 		if (propGroup == null)
 		{
-			logger.debug("propGroupÎª¿Õ");
+			logger.debug("propGroupä¸ºç©º");
 			return -1;
 		}
 
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
-		if (propGroup.getPropNum() == remove_num) // ÒÆ³ıµÄÊıÁ¿µÈÓÚµÀ¾ß×éÊıÁ¿
+		if (propGroup.getPropNum() == remove_num) // ç§»é™¤çš„æ•°é‡ç­‰äºé“å…·ç»„æ•°é‡
 		{
 			propGroupDao.deletePropGroup(propGroup.getPgPk());
 			EquipService equipService = new EquipService();
-			equipService.addWrapSpare(propGroup.getPPk(), 1); // Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+			equipService.addWrapSpare(propGroup.getPPk(), 1); // å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 		}
 		else
-			if (propGroup.getPropNum() > remove_num)// //ÒÆ³ıµÄÊıÁ¿´óÓÚµÀ¾ß×éÊıÁ¿
+			if (propGroup.getPropNum() > remove_num)// //ç§»é™¤çš„æ•°é‡å¤§äºé“å…·ç»„æ•°é‡
 			{
 				propGroupDao.updatePropGroupNum(propGroup.getPgPk(), propGroup
 						.getPropNum()
 						- remove_num);
-				// Ö´ĞĞÍ³¼Æ
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(propGroup.getPropId(), StatisticsType.PROP,
 						remove_num, StatisticsType.USED,
@@ -227,45 +227,45 @@ public class GoodsService
 			}
 		if (propGroup.getPropType() == PropType.BOX_CURE
 				|| propGroup.getPropType() == PropType.FIX_ARM_PROP)
-		{ // Èç¹û¸ÃµÀ¾ßÊÇÀ¦×°Ò©Æ·,Ôò±ØĞë½«ÆäÒ²´ÓÌØÊâµÀ¾ß±íÖĞÒ²É¾³ı
+		{ // å¦‚æœè¯¥é“å…·æ˜¯æ†è£…è¯å“,åˆ™å¿…é¡»å°†å…¶ä¹Ÿä»ç‰¹æ®Šé“å…·è¡¨ä¸­ä¹Ÿåˆ é™¤
 			propGroupDao.deletePropBoxCure(propGroup.getPgPk(), propGroup
 					.getPPk());
 		}
 		return remove_num;
 	}
 
-	/** ×°±¸ÀàµÀ¾ßµÄ¶ªÆú */
+	/** è£…å¤‡ç±»é“å…·çš„ä¸¢å¼ƒ */
 	public void removeSpecialProp(int p_pk, int pg_pk, int prop_id)
 	{
 		PropVO prop = PropCache.getPropById(prop_id);
 		
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
 		dao.deletePropGroup(pg_pk);
-		// ¸øÍæ¼ÒÊÍ·Å°ü¹ü¿Õ¼ä
+		// ç»™ç©å®¶é‡Šæ”¾åŒ…è£¹ç©ºé—´
 		EquipService equipService = new EquipService();
 		equipService.addWrapSpare(p_pk, 1);
 
 		GameLogManager.getInstance().propLog(p_pk, prop, 1, GameLogManager.R_DROP);
 		
-		/*// Ö´ĞĞÍ³¼Æ
+		/*// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(prop_id, 4, 1, "used", "diuqi", 0);*/
 	}
 
 	/**
-	 * ¶ªÆúÎïÆ·µÀ¾ß,ÊÇÒÔµÀ¾ßµÄËùÓĞµÄÊıÁ¿À´´¦ÀíµÀ¾ßµÄ¶ªÆú
+	 * ä¸¢å¼ƒç‰©å“é“å…·,æ˜¯ä»¥é“å…·çš„æ‰€æœ‰çš„æ•°é‡æ¥å¤„ç†é“å…·çš„ä¸¢å¼ƒ
 	 * 
-	 * @return   ·µ»ØÒÆ³ıµÄÊıÁ¿£¬Èç¹û²»×ãÔò·µ»Ø-1
+	 * @return   è¿”å›ç§»é™¤çš„æ•°é‡ï¼Œå¦‚æœä¸è¶³åˆ™è¿”å›-1
 	 */
 	public int removeProps(int p_pk, int prop_id, int remove_num,int remove_type)
 	{
 		PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 		PropVO prop = PropCache.getPropById(prop_id);
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
 
-		int current_num = propGroupDao.getPropNumByByPropID(p_pk, prop_id);// ÏÖÓĞµÄÊıÁ¿
-		int total_num = current_num - remove_num;// ÒÆ³ıremove_numºóµÄ×ÜÊı
+		int current_num = propGroupDao.getPropNumByByPropID(p_pk, prop_id);// ç°æœ‰çš„æ•°é‡
+		int total_num = current_num - remove_num;// ç§»é™¤remove_numåçš„æ€»æ•°
 
 		if( total_num<0 )
 		{
@@ -273,35 +273,35 @@ public class GoodsService
 		}
 		
 		// int current_groups
-		// =(current_num+accumulate_num-1)/accumulate_num;;//ÏÖÓĞµÄ×éÊı
-		// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+		// =(current_num+accumulate_num-1)/accumulate_num;;//ç°æœ‰çš„ç»„æ•°
+		// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 		int current_groups = propGroupDao
-				.getPropGroupNumByPropID(p_pk, prop_id);// ÏÖÓĞµÄ×éÊı
+				.getPropGroupNumByPropID(p_pk, prop_id);// ç°æœ‰çš„ç»„æ•°
 
-		int new_groups = (total_num + accumulate_num - 1) / accumulate_num;// ¼õÉÙgoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num + accumulate_num - 1) / accumulate_num;// å‡å°‘goods_numä¸ªé“å…·åçš„ç»„æ•°
 
-		int release_groups = current_groups - new_groups;// ¿ÉÒÔÊÍ·ÅµÄµÀ¾ß×éÊı
+		int release_groups = current_groups - new_groups;// å¯ä»¥é‡Šæ”¾çš„é“å…·ç»„æ•°
 
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 
 		logger.info("current_groups=" + current_groups + " ,new_groups="
 				+ new_groups + " ,total_num=" + total_num);
 		if (release_groups > 0)
 		{
-			// ÊÍ·ÅÍæ¼Ò°ü¹üneed_groups¿Õ¼ä
+			// é‡Šæ”¾ç©å®¶åŒ…è£¹need_groupsç©ºé—´
 			propGroupDao.deletePropGroup(p_pk, prop_id, release_groups);
 		}
 
-		// ÌîÂúÍæ¼ÒËùÓĞ¸ÃµÀ¾ßµÄµÀ¾ß×é
+		// å¡«æ»¡ç©å®¶æ‰€æœ‰è¯¥é“å…·çš„é“å…·ç»„
 		propGroupDao.updatePropGroupUpNum(p_pk, prop_id, accumulate_num);
 
-		if (total_num > 0 && goodsgourp_goodsnum != 0)// Èç¹û»¹ÓĞÊ£ÓàµÀ¾ß,ÇÒÊ£ÓàµÀ¾ß²»Îª¿Éµş¼ÓµÄ±¶ÊıÊ±¡£
+		if (total_num > 0 && goodsgourp_goodsnum != 0)// å¦‚æœè¿˜æœ‰å‰©ä½™é“å…·,ä¸”å‰©ä½™é“å…·ä¸ä¸ºå¯å åŠ çš„å€æ•°æ—¶ã€‚
 		{
 			propGroupDao.updatePropGroupNumByPropID(p_pk, prop_id,
 					goodsgourp_goodsnum);
 		}
 
-		// ÊÍ·ÅÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+		// é‡Šæ”¾ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 		EquipService equipService = new EquipService();
 		equipService.addWrapSpare(p_pk, release_groups);
 		
@@ -310,7 +310,7 @@ public class GoodsService
 		return remove_num;
 	}
 
-	/*// É¾³ıËùÓĞÖ¸¶¨idµÄµÀ¾ß
+	/*// åˆ é™¤æ‰€æœ‰æŒ‡å®šidçš„é“å…·
 	public void removeProps(int p_pk)
 	{
 		RoleEntity roleInfo = RoleService.getRoleInfoById(p_pk + "");
@@ -322,19 +322,19 @@ public class GoodsService
 		}
 	}*/
 
-	/** Í³¼ÆµÀ¾ßµÄÏûºÄ *//*
+	/** ç»Ÿè®¡é“å…·çš„æ¶ˆè€— *//*
 	public void removePropsStatistics(int p_pk, int prop_id, int remove_num,
 			String type)
 	{
 		removeProps(p_pk, prop_id, remove_num);
-		// Ö´ĞĞÍ³¼Æ
+		// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(prop_id, StatisticsType.PROP, remove_num,StatisticsType.USED, type, 0);
 	}*/
 
 	
 	/**
-	 * µÃµ½ÎïÆ·Ãû×Ö
+	 * å¾—åˆ°ç‰©å“åå­—
 	 * @param goods_id
 	 * @param goods_type
 	 * @return
@@ -342,7 +342,7 @@ public class GoodsService
 	public String getGoodsName(int goods_id, int goods_type)
 	{
 
-		String goods_name = ""; // ×°±¸Ãû³Æ
+		String goods_name = ""; // è£…å¤‡åç§°
 
 		if (goods_type == GoodsType.EQUIP)
 		{
@@ -358,18 +358,18 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½ÎïÆ·¿ØÖÆĞÅÏ¢
+	 * å¾—åˆ°ç‰©å“æ§åˆ¶ä¿¡æ¯
 	 */
 	public GoodsControlVO getGoodsControl(int goods_id, int goods_type)
 	{
 
-		if (goods_type == GoodsType.PROP)// µÀ¾ß
+		if (goods_type == GoodsType.PROP)// é“å…·
 		{
 			PlayerPropGroupDao propGroupDao = new PlayerPropGroupDao();
 			return propGroupDao.getPropControl(goods_id);
 		}
 		else
-		// ×°±¸
+		// è£…å¤‡
 		{
 			PlayerEquipDao equipDao = new PlayerEquipDao();
 			PlayerEquipVO equip = equipDao.getByID(goods_id);
@@ -383,7 +383,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * Í¨¹ıÖ÷¼üµÃµ½µÀ¾ßĞÅÏ¢
+	 * é€šè¿‡ä¸»é”®å¾—åˆ°é“å…·ä¿¡æ¯
 	 */
 	public PlayerPropGroupVO getPropByPgPk(int pg_pk )
 	{
@@ -392,7 +392,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * µÃµ½Íæ¼ÒÖ¸¶¨ÀàĞÍµÄµÀ¾ßÁĞ±í
+	 * å¾—åˆ°ç©å®¶æŒ‡å®šç±»å‹çš„é“å…·åˆ—è¡¨
 	 */
 	public  List<PlayerPropGroupVO> getListByPropType( int p_pk,int prop_type)
 	{
@@ -401,7 +401,7 @@ public class GoodsService
 	}
 	
 	/**
-	 * µÃµ½°ü¹üÀïÏâÇ¶ÓÃµÄ±¦Ê¯ÁĞ±í
+	 * å¾—åˆ°åŒ…è£¹é‡Œé•¶åµŒç”¨çš„å®çŸ³åˆ—è¡¨
 	 */
 	public  QueryPage getPageInlayStoneList( int p_pk,int page_no)
 	{
@@ -420,19 +420,19 @@ public class GoodsService
 	
 	/*
 	 * 
-	 * ×°±¸id,×°±¸ÀàĞÍ£¨ÊôÓÚÍ·¿ø£¬Ğ¬×Ó£¬ÏîÁ´£¬½äÖ¸Ö®ÀàµÄ£©,ÊôÓÚÄÄ¸ö×°±¸±í£¨arm,accouter,Ojewely£© 1,2,1
+	 * è£…å¤‡id,è£…å¤‡ç±»å‹ï¼ˆå±äºå¤´ç›”ï¼Œé‹å­ï¼Œé¡¹é“¾ï¼Œæˆ’æŒ‡ä¹‹ç±»çš„ï¼‰,å±äºå“ªä¸ªè£…å¤‡è¡¨ï¼ˆarm,accouter,Ojewelyï¼‰ 1,2,1
 	 * 
-	 * Ò©Æ·-----1 Êé¾í-----2 ×°±¸-----3 ÈÎÎñ-----4 ÆäËû-----5
+	 * è¯å“-----1 ä¹¦å·-----2 è£…å¤‡-----3 ä»»åŠ¡-----4 å…¶ä»–-----5
 	 */
 
 	/**
-	 * Íæ¼Ò¼ñµ½ÎïÆ·,result=-1Ê±±íÊ¾°ü¹ü¸ñÊı²»¹»
+	 * ç©å®¶æ¡åˆ°ç‰©å“,result=-1æ—¶è¡¨ç¤ºåŒ…è£¹æ ¼æ•°ä¸å¤Ÿ
 	 * 
 	 * @param p_pk
 	 * @param goods_id
 	 * @param goods_type
 	 * @param sendInfo
-	 *            Èç¹ûÎªÒ»£¬¾Í¸ù¾İµôÂäÎïÆ·ÊÇ·ñÊÇÖØÒªÎïÆ··¢ËÍÏµÍ³ÏûÏ¢£¬Èç¹ûÎªÁã£¬Ôò²»·¢¡£
+	 *            å¦‚æœä¸ºä¸€ï¼Œå°±æ ¹æ®æ‰è½ç‰©å“æ˜¯å¦æ˜¯é‡è¦ç‰©å“å‘é€ç³»ç»Ÿæ¶ˆæ¯ï¼Œå¦‚æœä¸ºé›¶ï¼Œåˆ™ä¸å‘ã€‚
 	 */
 	public int pickupGoods(int p_pk, int drop_pk, int sendInfo,
 			HttpServletResponse response, HttpServletRequest request)
@@ -447,13 +447,13 @@ public class GoodsService
 				.getGoodsType(), dropGoods.getGoodsQuality(), dropGoods
 				.getDropNum(),GameLogManager.G_NPD_DROP);
 
-		// µÃµ½×°±¸µÄPWPKÌæ»»Íæ¼ÒµÄGOODINFOÖĞµÄÏÔÊ¾ĞÅÏ¢
+		// å¾—åˆ°è£…å¤‡çš„PWPKæ›¿æ¢ç©å®¶çš„GOODINFOä¸­çš„æ˜¾ç¤ºä¿¡æ¯
 
 		if (result != -1)
 		{
-			// ³É¹¦¼ñÆğÎïÆ·£¬É¾³ıÎïÆ·µôÂäÁÙÊ±±íµÄ¶ÔÓ¦µÄÊı¾İ
+			// æˆåŠŸæ¡èµ·ç‰©å“ï¼Œåˆ é™¤ç‰©å“æ‰è½ä¸´æ—¶è¡¨çš„å¯¹åº”çš„æ•°æ®
 			role_info.getDropSet().removeDropItem(drop_pk);
-			// Ö´ĞĞÍ³¼Æ
+			// æ‰§è¡Œç»Ÿè®¡
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(dropGoods.getGoodsId(), dropGoods.getGoodsType(),
 					dropGoods.getDropNum(), StatisticsType.DEDAO,
@@ -499,16 +499,16 @@ public class GoodsService
 
 
 	/**
-	 * °ÑÎïÆ··ÅÈë°ü¹ü
+	 * æŠŠç‰©å“æ”¾å…¥åŒ…è£¹
 	 * 
 	 * @param p_pk
 	 * @param goods_id
-	 *            ·ÅÈëÎïÆ·µÄid
+	 *            æ”¾å…¥ç‰©å“çš„id
 	 * @param goods_type
-	 *            ·ÅÈëÎïÆ·µÄÀàĞÍ£¨EQUIP£¬PROP£©
+	 *            æ”¾å…¥ç‰©å“çš„ç±»å‹ï¼ˆEQUIPï¼ŒPROPï¼‰
 	 * @param goods_num
-	 *            ·ÅÈëÎïÆ·µÄÊıÁ¿
-	 * @return ·µ»Ø-1±íÊ¾°ü¹ü¿Õ¼ä²»¹»£¬²»ÄÜ·ÅÈë
+	 *            æ”¾å…¥ç‰©å“çš„æ•°é‡
+	 * @return è¿”å›-1è¡¨ç¤ºåŒ…è£¹ç©ºé—´ä¸å¤Ÿï¼Œä¸èƒ½æ”¾å…¥
 	 */
 	public int putGoodsToWrap(int p_pk, int goods_id, int goods_type,int goods_num)
 	{
@@ -516,24 +516,24 @@ public class GoodsService
 	}
 
 	/**
-	 * °ÑÎïÆ··ÅÈë°ü¹ü
+	 * æŠŠç‰©å“æ”¾å…¥åŒ…è£¹
 	 * 
 	 * @param p_pk
-	 * @param goods_id ·ÅÈëÎïÆ·µÄid
-	 * @param goods_type ·ÅÈëÎïÆ·µÄÀàĞÍ£¨ACCOUTE£¬ARM£¬JEWELRY£¬PROP£©
-	 * @param goods_num   ·ÅÈëÎïÆ·µÄÊıÁ¿
-	 * @param goods_quality  ·ÅÈëÎïÆ·µÄÆ·ÖÊ
-	 * @return ·µ»Ø-1±íÊ¾°ü¹ü¿Õ¼ä²»¹»£¬²»ÄÜ·ÅÈë
+	 * @param goods_id æ”¾å…¥ç‰©å“çš„id
+	 * @param goods_type æ”¾å…¥ç‰©å“çš„ç±»å‹ï¼ˆACCOUTEï¼ŒARMï¼ŒJEWELRYï¼ŒPROPï¼‰
+	 * @param goods_num   æ”¾å…¥ç‰©å“çš„æ•°é‡
+	 * @param goods_quality  æ”¾å…¥ç‰©å“çš„å“è´¨
+	 * @return è¿”å›-1è¡¨ç¤ºåŒ…è£¹ç©ºé—´ä¸å¤Ÿï¼Œä¸èƒ½æ”¾å…¥
 	 */
 	public int putGoodsToWrap(int p_pk, int goods_id, int goods_type,int goods_quality, int goods_num,int gain_type)
 	{
 		int result = -1;
-		// Ê°È¡µÀ¾ß
+		// æ‹¾å–é“å…·
 		if (goods_type == GoodsType.PROP)
 		{
 			result = putPropToWrap(p_pk, goods_id, goods_num,gain_type);
 		}
-		else// Ê°È¡×°±¸
+		else// æ‹¾å–è£…å¤‡
 		{
 			result = putEquipToWrap(p_pk, goods_id, goods_quality,goods_num,gain_type);
 		}
@@ -541,44 +541,44 @@ public class GoodsService
 	}
 
 	/**
-	 * °ÑµÀ¾ß·Åµ½°ü¹üÀï£¬ÖØ×éµ±Ç°µÀ¾ß°ü¹ü¸öÊıµÄĞ§¹û
+	 * æŠŠé“å…·æ”¾åˆ°åŒ…è£¹é‡Œï¼Œé‡ç»„å½“å‰é“å…·åŒ…è£¹ä¸ªæ•°çš„æ•ˆæœ
 	 * @param p_pk
-	 * @param goods_id			µÀ¾ßid
-	 * @param goods_num			µÀ¾ßÊıÁ¿
+	 * @param goods_id			é“å…·id
+	 * @param goods_num			é“å…·æ•°é‡
 	 * @return
 	 */
 	public String putPropToWrap(String roleName, String propName, String propNum)
 	{
 		if( StringUtil.isNumber(propNum)==false )
 		{
-			return "ÊıÁ¿´íÎó";
+			return "æ•°é‡é”™è¯¯";
 		}
 		
 		int p_pk = new PartInfoDao().getByName(roleName);
 		if( p_pk==-1 )
 		{
-			return "ÎŞ¸Ã½ÇÉ«";
+			return "æ— è¯¥è§’è‰²";
 		}
 		int prop_id = new PropDao().getPropIdByName(propName);
 		if( prop_id==-1 )
 		{
-			return "ÎŞ¸ÃµÀ¾ß";
+			return "æ— è¯¥é“å…·";
 		}
 		
 		int hint = this.putPropToWrap(p_pk, prop_id, Integer.parseInt(propNum),GameLogManager.G_SYSTEM);
 		if( hint==-1 )
 		{
-			return "°ü¹ü¿Õ¼ä²»×ã";
+			return "åŒ…è£¹ç©ºé—´ä¸è¶³";
 		}
-		return "·ÅÖÃ³É¹¦";
+		return "æ”¾ç½®æˆåŠŸ";
 	}
 	
 	/**
-	 * °ÑµÀ¾ß·Åµ½°ü¹üÀï£¬ÖØ×éµ±Ç°µÀ¾ß°ü¹ü¸öÊıµÄĞ§¹û
+	 * æŠŠé“å…·æ”¾åˆ°åŒ…è£¹é‡Œï¼Œé‡ç»„å½“å‰é“å…·åŒ…è£¹ä¸ªæ•°çš„æ•ˆæœ
 	 * @param p_pk
-	 * @param goods_id			µÀ¾ßid
-	 * @param goods_num			µÀ¾ßÊıÁ¿
-	 * @param gain_type			»ñµÃµÀ¾ßµÄ²Ù×÷ÀàĞÍ
+	 * @param goods_id			é“å…·id
+	 * @param goods_num			é“å…·æ•°é‡
+	 * @param gain_type			è·å¾—é“å…·çš„æ“ä½œç±»å‹
 	 * @return
 	 */
 	public int putPropToWrap(int p_pk, int goods_id, int goods_num,int gain_type)
@@ -597,37 +597,37 @@ public class GoodsService
 
 		int prop_id = prop.getPropID();
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
 
-		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ÏÖÓĞµÄÊıÁ¿
+		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ç°æœ‰çš„æ•°é‡
 
-		int total_num = current_num + goods_num;// Ôö¼Ógoods_numºóµÄ×ÜÊı
+		int total_num = current_num + goods_num;// å¢åŠ goods_numåçš„æ€»æ•°
 
-		int current_groups = 0;// ÏÖÓĞµÄ×éÊı
+		int current_groups = 0;// ç°æœ‰çš„ç»„æ•°
 		if (current_num != 0)
 		{
-			// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			current_groups = propGroupDao.getPropGroupNumByPropID(p_pk,
 					goods_id);
 		}
 
-		int new_groups = (total_num - 1) / accumulate_num + 1;// Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num - 1) / accumulate_num + 1;// å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
 
-		int need_groups = new_groups - current_groups;// ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı,ĞèÒª°ü¹üµÄ¸öÊıÎª¸ºÊı±íÊ¾Ôö¼Ó°ü¹ü¸öÊı
+		int need_groups = new_groups - current_groups;// éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°,éœ€è¦åŒ…è£¹çš„ä¸ªæ•°ä¸ºè´Ÿæ•°è¡¨ç¤ºå¢åŠ åŒ…è£¹ä¸ªæ•°
 
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 
-		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// Ê£ÓàµÄ°ü¹ü¿Õ¼äÊı
+		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// å‰©ä½™çš„åŒ…è£¹ç©ºé—´æ•°
 
 		if (need_groups > 0 && wrap_spare < need_groups)
 		{
-			//°ü¹ü¿Õ¼ä²»¹»
+			//åŒ…è£¹ç©ºé—´ä¸å¤Ÿ
 			return -1;
 		}
 
-		if (need_groups > 0)// Ìí¼Ó²»×ãµÄµÀ¾ß×éµÄ¸öÊı
+		if (need_groups > 0)// æ·»åŠ ä¸è¶³çš„é“å…·ç»„çš„ä¸ªæ•°
 		{
-			// ÕÒµ½Ã»ÓĞÖØµşÂıµÄµÀ¾ß×é
+			// æ‰¾åˆ°æ²¡æœ‰é‡å æ…¢çš„é“å…·ç»„
 			PlayerPropGroupVO propGroup = new PlayerPropGroupVO();
 			propGroup.setPgType(prop.getPropPosition());
 			propGroup.setPropBonding(prop.getPropBonding());
@@ -640,7 +640,7 @@ public class GoodsService
 			propGroup.setPropId(prop.getPropID());
 			propGroup.setPropType(prop.getPropClass());
 
-			// Ìí¼ÓĞÂµÄµÀ¾ß×é£¬ÊıÁ¿¶¼ÊÇaccumulate_num
+			// æ·»åŠ æ–°çš„é“å…·ç»„ï¼Œæ•°é‡éƒ½æ˜¯accumulate_num
 			propGroup.setPropNum(accumulate_num);
 			for (int i = 0; i < need_groups; i++)
 			{
@@ -648,25 +648,25 @@ public class GoodsService
 			}
 		}
 
-		if (need_groups < 0)// ĞèÒªµÄµÀ¾ß×éÊıÎª¸ºÊı±íÊ¾£¬ÖØ×éÍêĞèÒªÊÍ·ÅµÄµÀ¾ß×éÊı
+		if (need_groups < 0)// éœ€è¦çš„é“å…·ç»„æ•°ä¸ºè´Ÿæ•°è¡¨ç¤ºï¼Œé‡ç»„å®Œéœ€è¦é‡Šæ”¾çš„é“å…·ç»„æ•°
 		{
 			int delete_group_num = -need_groups;
 			propGroupDao.deletePropGroup(p_pk, prop_id, delete_group_num);
 		}
 
-		// °ÑÍæ¼ÒÉíÉÏËùÓĞµÀ¾ßidÎªprop_idµÄµÀ¾ßµÄÊıÁ¿ÌîÂú
+		// æŠŠç©å®¶èº«ä¸Šæ‰€æœ‰é“å…·idä¸ºprop_idçš„é“å…·çš„æ•°é‡å¡«æ»¡
 		propGroupDao.updatePropGroupUpNum(p_pk, prop_id, accumulate_num);
 
-		if (goodsgourp_goodsnum != 0)// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿²»Îª0Ê±£¬¸üĞÂÆäÖĞµÄÒ»×éµÀ¾ßÎª£¨²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿£©
+		if (goodsgourp_goodsnum != 0)// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡ä¸ä¸º0æ—¶ï¼Œæ›´æ–°å…¶ä¸­çš„ä¸€ç»„é“å…·ä¸ºï¼ˆä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡ï¼‰
 		{
 			propGroupDao.updateOneGroupPropNum(p_pk, prop_id,
 					goodsgourp_goodsnum);
 		}
 
-		// ¸üĞÂÍæ¼ÒµÄÊ£Óà°ü¹ü¸öÊı
+		// æ›´æ–°ç©å®¶çš„å‰©ä½™åŒ…è£¹ä¸ªæ•°
 		equipService.addWrapSpare(p_pk, -need_groups);
 
-		// ÅĞ¶ÏÊÇ·ñÓĞÕâ¸öµÀ¾ß
+		// åˆ¤æ–­æ˜¯å¦æœ‰è¿™ä¸ªé“å…·
 		PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
 		String key_prop_id = GameConfig
 				.getPropertiesObject("attainprop_mallprop");
@@ -674,7 +674,7 @@ public class GoodsService
 				.parseInt(key_prop_id));
 		if (pg_pk == -1)
 		{
-			int digit = GameConfig.getAttainProp(prop_id, "attain_prop_id");// ·µ»ØÍæ¼ÒµÈ¼¶ÊÇ·ñÔÚÏµÍ³Éè¶¨Ö®ÄÚ
+			int digit = GameConfig.getAttainProp(prop_id, "attain_prop_id");// è¿”å›ç©å®¶ç­‰çº§æ˜¯å¦åœ¨ç³»ç»Ÿè®¾å®šä¹‹å†…
 			if (digit != -1)
 			{
 				new PopUpMsgService().addSysSpecialMsg(p_pk, prop_id, digit,
@@ -687,7 +687,7 @@ public class GoodsService
 	}
 
 	/**
-	 * °ÑµÀ¾ß·Åµ½°ü¹üÀï
+	 * æŠŠé“å…·æ”¾åˆ°åŒ…è£¹é‡Œ
 	 * 
 	 * @param p_pk
 	 * @param goods_id
@@ -702,45 +702,45 @@ public class GoodsService
 
 		PropVO prop = PropCache.getPropById(goods_id);
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
 
-		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ÏÖÓĞµÄÊıÁ¿
+		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ç°æœ‰çš„æ•°é‡
 		int current_groups_sql = propGroupDao.getPropGroupNumByPropID(p_pk,
-				goods_id); // µ±Ç°Êı¾İ¿âÖĞµÄ×éÊı
+				goods_id); // å½“å‰æ•°æ®åº“ä¸­çš„ç»„æ•°
 
-		int total_num = current_num + goods_num;// Ôö¼Ógoods_numºóµÄ×ÜÊı
+		int total_num = current_num + goods_num;// å¢åŠ goods_numåçš„æ€»æ•°
 
-		int current_groups = 0;// ÏÖÓĞµÄ×éÊı
+		int current_groups = 0;// ç°æœ‰çš„ç»„æ•°
 		if (current_num != 0)
 		{
-			// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			// current_groups =(current_num-1)/accumulate_num+1;
 			current_groups = propGroupDao.getPropGroupNumByPropID(p_pk,
 					goods_id);
 		}
 
-		int new_groups = (total_num - 1) / accumulate_num + 1;// Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num - 1) / accumulate_num + 1;// å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
 
-		int need_groups = new_groups - current_groups;// ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı
+		int need_groups = new_groups - current_groups;// éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°
 
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 
-		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// Ê£ÓàµÄ°ü¹ü¿Õ¼äÊı
+		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// å‰©ä½™çš„åŒ…è£¹ç©ºé—´æ•°
 
 		if (wrap_spare == 0)
 		{
-			if (current_num == 0) // Èç¹ûÃ»ÓĞ¿Õ¸ñ,ÇÒ°ü¹üÖĞÒ²ÎŞ´ËÎï,Ôò¿Ï¶¨·Å²»ÏÂ
+			if (current_num == 0) // å¦‚æœæ²¡æœ‰ç©ºæ ¼,ä¸”åŒ…è£¹ä¸­ä¹Ÿæ— æ­¤ç‰©,åˆ™è‚¯å®šæ”¾ä¸ä¸‹
 			{
-				logger.debug("°ü¹ü¿Õ¼ä²»¹»");
+				logger.debug("åŒ…è£¹ç©ºé—´ä¸å¤Ÿ");
 				return -1;
-				// Èô·Å½ø°ü¹üÖĞÊıÁ¿¼ÓÔ­ÓĞÊı³¬¹ı°ü¹üÖĞ´ËÎïÆ·ËùÕ¼¸ñÊıµÄ×î´óÈİÄÉÖµ,Ò²·Å²»ÏÂ
+				// è‹¥æ”¾è¿›åŒ…è£¹ä¸­æ•°é‡åŠ åŸæœ‰æ•°è¶…è¿‡åŒ…è£¹ä¸­æ­¤ç‰©å“æ‰€å æ ¼æ•°çš„æœ€å¤§å®¹çº³å€¼,ä¹Ÿæ”¾ä¸ä¸‹
 			}
 			else
 				if (current_num + goods_num > current_groups_sql
 						* accumulate_num)
 				{
 
-					logger.debug("°ü¹ü¿Õ¼ä²»¹»");
+					logger.debug("åŒ…è£¹ç©ºé—´ä¸å¤Ÿ");
 					return -1;
 				}
 		}
@@ -749,7 +749,7 @@ public class GoodsService
 
 			if (current_num == 0)
 			{
-				// Èç¹û°ü¹üÖĞÃ»ÓĞ´ËÎï,ÇÒ´ËÎïÆ·µÄÊıÁ¿´óÓÚ¿ÕÓà¸ñÊıµÄ×î´ó¿ÉÈİÄÉÖµ,Ò²·Å²»ÏÂ
+				// å¦‚æœåŒ…è£¹ä¸­æ²¡æœ‰æ­¤ç‰©,ä¸”æ­¤ç‰©å“çš„æ•°é‡å¤§äºç©ºä½™æ ¼æ•°çš„æœ€å¤§å¯å®¹çº³å€¼,ä¹Ÿæ”¾ä¸ä¸‹
 				if (goods_num > wrap_spare * accumulate_num)
 				{
 					return -1;
@@ -757,7 +757,7 @@ public class GoodsService
 			}
 			else
 			{
-				// Èô°ü¹üÖĞÎïÆ·µÄÊıÁ¿ºÍ¼ÓÈëÊıÁ¿³¬¹ıÔ­Õ¼¸ñÊıºÍ¿ÕÓà¸ñÊıÖ®ºÍµÄ×î´ó¿ÉÈİÄÉÖµ,Ò²·Å²»ÏÂ.
+				// è‹¥åŒ…è£¹ä¸­ç‰©å“çš„æ•°é‡å’ŒåŠ å…¥æ•°é‡è¶…è¿‡åŸå æ ¼æ•°å’Œç©ºä½™æ ¼æ•°ä¹‹å’Œçš„æœ€å¤§å¯å®¹çº³å€¼,ä¹Ÿæ”¾ä¸ä¸‹.
 				if ((current_num + goods_num) > (current_groups_sql + wrap_spare)
 						* accumulate_num)
 				{
@@ -771,86 +771,86 @@ public class GoodsService
 
 
 	/**
-	 * °Ñ×°±¸·ÅÈë°ü¹ü,·µ»Ø1´ú±í³É¹¦
-	 * @param roleName		½ÇÉ«Ãû
-	 * @param equipName		×°±¸Ãû
-	 * @param equipNum		×°±¸ÊıÁ¿
-	 * @param qulity		×°±¸Æ·ÖÊ
+	 * æŠŠè£…å¤‡æ”¾å…¥åŒ…è£¹,è¿”å›1ä»£è¡¨æˆåŠŸ
+	 * @param roleName		è§’è‰²å
+	 * @param equipName		è£…å¤‡å
+	 * @param equipNum		è£…å¤‡æ•°é‡
+	 * @param qulity		è£…å¤‡å“è´¨
 	 * @return
 	 */
 	public String putEquipToWrap(String roleName, String equipName,String equipNum,String qulity)
 	{
 		if( StringUtil.isNumber(equipNum)==false || Integer.parseInt(equipNum)<0 )
 		{
-			return "ÊıÁ¿´íÎó";
+			return "æ•°é‡é”™è¯¯";
 		}
 		if( StringUtil.isNumber(qulity)==false )
 		{
-			return "Æ·ÖÊ´íÎó";
+			return "å“è´¨é”™è¯¯";
 		}
 		
 		int p_pk = new PartInfoDao().getByName(roleName);
 		if( p_pk==-1 )
 		{
-			return "ÎŞ¸Ã½ÇÉ«";
+			return "æ— è¯¥è§’è‰²";
 		}
 		int equip_id = new GameEquipDao().getIdByName(equipName);
 		if( equip_id==-1 )
 		{
-			return "ÎŞ¸Ã×°±¸";
+			return "æ— è¯¥è£…å¤‡";
 		}
 		
 		int result = this.putEquipToWrap(p_pk, equip_id, Integer.parseInt(qulity), Integer.parseInt(equipNum),GameLogManager.G_SYSTEM);
 		
 		switch( result )
 		{
-			case -1:return "°ü¹ü¿Õ¼ä²»×ã";
-			case -2:return "Æ·ÖÊ´íÎó";
+			case -1:return "åŒ…è£¹ç©ºé—´ä¸è¶³";
+			case -2:return "å“è´¨é”™è¯¯";
 		}
-		return "·ÅÖÃ³É¹¦";
+		return "æ”¾ç½®æˆåŠŸ";
 	}
 	
 	/**
-	 * °Ñ×°±¸Ö±½Ó´©µ½Íæ¼ÒÉíÉÏ
+	 * æŠŠè£…å¤‡ç›´æ¥ç©¿åˆ°ç©å®¶èº«ä¸Š
 	 * @param roleInfo
 	 * @param equip_id
 	 * @param equip_quality
-	 * @return       ·µ»Ønull±íÊ¾³É¹¦£¬·ñÔò±íÊ¾Ê§°ÜÔ­Òò
+	 * @return       è¿”å›nullè¡¨ç¤ºæˆåŠŸï¼Œå¦åˆ™è¡¨ç¤ºå¤±è´¥åŸå› 
 	 */
 	public String giveEquipOnBody(RoleEntity roleInfo, int equip_id,int equip_quality)
 	{
 		EquipService equipService = new EquipService();
-		// Éú³É×°±¸·ÅÈë°ü¹ü
+		// ç”Ÿæˆè£…å¤‡æ”¾å…¥åŒ…è£¹
 		PlayerEquipVO equip = equipService.createEquipByQuality(roleInfo.getPPk(), equip_id, equip_quality,GameLogManager.G_SYSTEM);
 		if( equip==null )
 		{
 			DataErrorLog.debugData("GoodsService.giveEquipOnBody:equip_id="+equip_id+";equip_quality="+equip_quality);
-			return "×°±¸Éú³ÉÊ§°Ü";
+			return "è£…å¤‡ç”Ÿæˆå¤±è´¥";
 		}
 		return equipService.puton(roleInfo, equip);
 	}
 	
 	
 	/**
-	 * °Ñ×°±¸·ÅÈë°ü¹ü,·µ»Ø1´ú±í³É¹¦
+	 * æŠŠè£…å¤‡æ”¾å…¥åŒ…è£¹,è¿”å›1ä»£è¡¨æˆåŠŸ
 	 * @param p_pk
-	 * @param equip_id				×°±¸id
+	 * @param equip_id				è£…å¤‡id
 	 * @param goods_num
-	 * @param gain_type				»ñµÃ×°±¸µÄ²Ù×÷ÀàĞÍ
-	 * @return              ±íÊ¾·ÅÈë°ü¹üµÄÊıÁ¿£¬·µ»Ø-1´ú±íÊ§°Ü
+	 * @param gain_type				è·å¾—è£…å¤‡çš„æ“ä½œç±»å‹
+	 * @return              è¡¨ç¤ºæ”¾å…¥åŒ…è£¹çš„æ•°é‡ï¼Œè¿”å›-1ä»£è¡¨å¤±è´¥
 	 */
 	public int putEquipToWrap(int p_pk, int equip_id, int goods_num)
 	{
 		return this.putEquipToWrap(p_pk, equip_id, 0, goods_num,GameLogManager.NO_LOG);
 	}
 	/**
-	 * °Ñ×°±¸·ÅÈë°ü¹ü,·µ»Ø1´ú±í³É¹¦
+	 * æŠŠè£…å¤‡æ”¾å…¥åŒ…è£¹,è¿”å›1ä»£è¡¨æˆåŠŸ
 	 * @param p_pk
-	 * @param equip_id				×°±¸id
-	 * @param equip_quality			×°±¸Æ·ÖÊ
+	 * @param equip_id				è£…å¤‡id
+	 * @param equip_quality			è£…å¤‡å“è´¨
 	 * @param goods_num
-	 * @param gain_type				»ñµÃ×°±¸µÄ²Ù×÷ÀàĞÍ
-	 * @return              ±íÊ¾·ÅÈë°ü¹üµÄÊıÁ¿£¬·µ»Ø-1´ú±íÊ§°Ü,-2±íÊ¾·Ç·¨×°±¸Æ·ÖÊ
+	 * @param gain_type				è·å¾—è£…å¤‡çš„æ“ä½œç±»å‹
+	 * @return              è¡¨ç¤ºæ”¾å…¥åŒ…è£¹çš„æ•°é‡ï¼Œè¿”å›-1ä»£è¡¨å¤±è´¥,-2è¡¨ç¤ºéæ³•è£…å¤‡å“è´¨
 	 */
 	public int putEquipToWrap(int p_pk, int equip_id,int equip_quality, int goods_num,int gain_type)
 	{
@@ -858,7 +858,7 @@ public class GoodsService
 
 		if( equip_quality>Equip.Q_ORANGE || equip_quality < Equip.Q_PUTONG )
 		{
-			//·Ç·¨Æ·ÖÊ
+			//éæ³•å“è´¨
 			return -2;
 		}
 		
@@ -866,26 +866,26 @@ public class GoodsService
 		
 		RoleEntity roleInfo = RoleService.getRoleInfoById(p_pk);
 	
-		// µÃµ½°ü¹üÊ£ÓàµÄ¿Õ¼ä
+		// å¾—åˆ°åŒ…è£¹å‰©ä½™çš„ç©ºé—´
 		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();
 		PlayerEquipVO equip = null;
 
-		if (wrap_spare < goods_num)// ÅĞ¶Ï°ü¹üÓĞÃ»ÓĞÊ£Óà¿Õ¼ä
+		if (wrap_spare < goods_num)// åˆ¤æ–­åŒ…è£¹æœ‰æ²¡æœ‰å‰©ä½™ç©ºé—´
 		{
-			//°ü¹ü¿Õ¼ä²»×ã,ÎïÆ·ÀàĞÍÎª
+			//åŒ…è£¹ç©ºé—´ä¸è¶³,ç‰©å“ç±»å‹ä¸º
 			return -1;
 		}
 
 		for (int i = 0; i < goods_num; i++)
 		{
-			// Éú³É×°±¸·ÅÈë°ü¹ü
+			// ç”Ÿæˆè£…å¤‡æ”¾å…¥åŒ…è£¹
 			equip = equipService.createEquipByQuality(p_pk, equip_id, equip_quality,gain_type);
 			if( equip!=null )
 			{
 				result++;
 			}
 		}
-		// ×°±¸·ÅÈë°ü¹ü¸üĞÂÊ£Óà¸ñÊı
+		// è£…å¤‡æ”¾å…¥åŒ…è£¹æ›´æ–°å‰©ä½™æ ¼æ•°
 		equipService.addWrapSpare(p_pk, -goods_num);
 
 		return result;
@@ -893,9 +893,9 @@ public class GoodsService
 	}
 
 	/**
-	 * ¶ªÆú×°±¸
+	 * ä¸¢å¼ƒè£…å¤‡
 	 * @param p_pk     
-	 * @param equip_id      ×°±¸id
+	 * @param equip_id      è£…å¤‡id
 	 * @param equip_type
 	 */
 	public void removeEquipByEquipID(int p_pk, int equip_id)
@@ -903,33 +903,33 @@ public class GoodsService
 		PlayerEquipDao equipDao = new PlayerEquipDao();
 		equipDao.deleteByEquip(p_pk, equip_id);
 
-		// Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+		// å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 		EquipService equipService = new EquipService();
 		equipService.addWrapSpare(p_pk, 1);
 	}
 
 	/**
-	 * ÒÆ³ı×°±¸
+	 * ç§»é™¤è£…å¤‡
 	 * @param p_pk
-	 * @param pw_pk			×°±¸id	
-	 * @param remove_type	ÒÆ³ı²Ù×÷ÀàĞÍ
+	 * @param pw_pk			è£…å¤‡id	
+	 * @param remove_type	ç§»é™¤æ“ä½œç±»å‹
 	 */
 	public void removeEquipById(int p_pk, int pw_pk,int remove_type)
 	{
 		PlayerEquipDao equipDao = new PlayerEquipDao();
 		equipDao.deleteByID(p_pk, pw_pk);
 
-		// Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+		// å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 		EquipService equipService = new EquipService();
 		equipService.addWrapSpare(p_pk, 1);
 	}
 
-	/** Í³¼ÆÍæ¼Ò×°±¸ *//*
+	/** ç»Ÿè®¡ç©å®¶è£…å¤‡ *//*
 	public void removeEquipStatistics(int p_pk, int pw_pk, String type)
 	{
 		PlayerEquipDao dao = new PlayerEquipDao();
 		PlayerEquipVO vo = dao.getByID(pw_pk);
-		// Ö´ĞĞÍ³¼Æ
+		// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(vo.getEquipId(),GoodsType.EQUIP, 1, StatisticsType.USED,type, 0);
 
@@ -937,37 +937,37 @@ public class GoodsService
 	}
 */
 	/**
-	 * Âô×°±¸
+	 * å–è£…å¤‡
 	 * @param p_pk
-	 * @param pw_pk ×°±¸id
-	 * @param price  ¼ÛÇ®
+	 * @param pw_pk è£…å¤‡id
+	 * @param price  ä»·é’±
 	 */
 	public void saleEquip(RoleEntity roleInfo, int pw_pk, int price)
 	{
-		// É¾µô°ü¹üÀïµÄ×°±¸
+		// åˆ æ‰åŒ…è£¹é‡Œçš„è£…å¤‡
 		removeEquipById(roleInfo.getPPk(), pw_pk, GameLogManager.R_SHOP);
 
-		// ¸øÓÃ»§Ôö¼ÓÇ®Êı
+		// ç»™ç”¨æˆ·å¢åŠ é’±æ•°
 		roleInfo.getBasicInfo().addCopper(price);
 		
-		// ¼à¿Ø
+		// ç›‘æ§
 		LogService logService = new LogService();
-		logService.recordMoneyLog(roleInfo.getPPk(), roleInfo.getName(), roleInfo.getBasicInfo().getCopper()+ "", price + "", "Âô×°±¸");
+		logService.recordMoneyLog(roleInfo.getPPk(), roleInfo.getName(), roleInfo.getBasicInfo().getCopper()+ "", price + "", "å–è£…å¤‡");
 
-		/*// Ö´ĞĞÍ³¼Æ
+		/*// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(6, StatisticsType.MONEY, price, StatisticsType.DEDAO,StatisticsType.SELL, p_pk);*/
 	}
 
 	/**
-	 * ÅĞ¶ÏµÀ¾ßÊÇ·ñÊÇÊÜ±£»¤µÄ£¬°üÀ¨¶ş´ÎÈ·ÈÏ£¬ÊÇ·ñ±£»¤£¬ÊÇ·ñÊ°È¡°ó¶¨£¬ÊÇ·ñ×°±¸°ó¶¨
+	 * åˆ¤æ–­é“å…·æ˜¯å¦æ˜¯å—ä¿æŠ¤çš„ï¼ŒåŒ…æ‹¬äºŒæ¬¡ç¡®è®¤ï¼Œæ˜¯å¦ä¿æŠ¤ï¼Œæ˜¯å¦æ‹¾å–ç»‘å®šï¼Œæ˜¯å¦è£…å¤‡ç»‘å®š
 	 * 
 	 * @param goods_id
-	 *            ÎïÆ·id
+	 *            ç‰©å“id
 	 * @param protect
-	 *            ÊÇ·ñ±£»¤
+	 *            æ˜¯å¦ä¿æŠ¤
 	 * @param bonding
-	 *            ÊÇ·ñ×°±¸°ó¶¨
+	 *            æ˜¯å¦è£…å¤‡ç»‘å®š
 	 * @return
 	 */
 	public String isProtected(int goods_id, int goods_type)
@@ -977,13 +977,13 @@ public class GoodsService
 		GoodsControlVO goodsControl = getGoodsControl(goods_id, goods_type);
 		if (goodsControl == null)
 		{
-			hint = "ÎïÆ·³ö´í";
+			hint = "ç‰©å“å‡ºé”™";
 			return hint;
 		}
 
-		if (goodsControl.getProtect() == 1)// ÊÇ·ñÊÇÊÜ±£»¤µÄ
+		if (goodsControl.getProtect() == 1)// æ˜¯å¦æ˜¯å—ä¿æŠ¤çš„
 		{
-			hint = "ÊÜ±£»¤ÎïÆ·²»¿É½»Ò×,²»¿É¶ªÆú";
+			hint = "å—ä¿æŠ¤ç‰©å“ä¸å¯äº¤æ˜“,ä¸å¯ä¸¢å¼ƒ";
 			return hint;
 		}
 
@@ -991,14 +991,14 @@ public class GoodsService
 	}
 
 	/**
-	 * ÅĞ¶ÏÎïÆ·ÊÇ·ñ°ó¶¨
+	 * åˆ¤æ–­ç‰©å“æ˜¯å¦ç»‘å®š
 	 * 
 	 * @param goods_id
-	 *            ½ÇÉ«×°±¸»òµÀ¾ßµÄ±íid
+	 *            è§’è‰²è£…å¤‡æˆ–é“å…·çš„è¡¨id
 	 * @param goods_type
-	 *            ±íÊ¾ÊÇ×°±¸»¹ÊÇµÀ¾ß
+	 *            è¡¨ç¤ºæ˜¯è£…å¤‡è¿˜æ˜¯é“å…·
 	 * @param action
-	 *            ±íÊ¾Íæ¼ÒµÄĞĞÎª£¬Èç¶ªÆú£¬ÂòÂô£¬½»Ò×£¬×°±¸
+	 *            è¡¨ç¤ºç©å®¶çš„è¡Œä¸ºï¼Œå¦‚ä¸¢å¼ƒï¼Œä¹°å–ï¼Œäº¤æ˜“ï¼Œè£…å¤‡
 	 * @return
 	 */
 	public String isBinded(int goods_id, int goods_type, int action)
@@ -1008,7 +1008,7 @@ public class GoodsService
 		GoodsControlVO goodsControl = getGoodsControl(goods_id, goods_type);
 		if (goodsControl == null)
 		{
-			hint = "ÎïÆ·³ö´í";
+			hint = "ç‰©å“å‡ºé”™";
 			return hint;
 
 		}
@@ -1017,14 +1017,14 @@ public class GoodsService
 	}
 
 	/**
-	 * ÆÕÍ¨:¿É½»Ò×£¬¿ÉÂô³ö£¬¿É¶ªÆú£¬¿ÉÊ¹ÓÃ ±£»¤:²»¿É½»Ò×£¬²»¿ÉÂô³ö£¬²»¿É¶ªÆú£¬²»¿ÉÅÄÂô£¬¿ÉÊ¹ÓÃ
-	 * Ê°È¡°ó¶¨:ÎïÆ·½øÈëÎïÆ·À¸ºó¼´²»¿É½»Ò×,²»¿ÉÅÄÂô£¬µ«¿ÉÂô³ö£¬¿É¶ªÆú£¬¿ÉÊ¹ÓÃ ×°±¸°ó¶¨:ÎïÆ·×°±¸ºó¼´²»¿É½»Ò×£¬µ«¿ÉÂô³ö£¬¿É¶ªÆú£¬¿ÉÊ¹ÓÃ
-	 * ½»Ò×°ó¶¨:ÎïÆ·¿É½»Ò×£¬¿ÉÂô³ö£¬¿É¶ªÆú£¬×Ô¼º²»¿ÉÊ¹ÓÃ£»½»Ò×ºóÓë¶Ô·½Ê°È¡°ó¶¨
+	 * æ™®é€š:å¯äº¤æ˜“ï¼Œå¯å–å‡ºï¼Œå¯ä¸¢å¼ƒï¼Œå¯ä½¿ç”¨ ä¿æŠ¤:ä¸å¯äº¤æ˜“ï¼Œä¸å¯å–å‡ºï¼Œä¸å¯ä¸¢å¼ƒï¼Œä¸å¯æ‹å–ï¼Œå¯ä½¿ç”¨
+	 * æ‹¾å–ç»‘å®š:ç‰©å“è¿›å…¥ç‰©å“æ åå³ä¸å¯äº¤æ˜“,ä¸å¯æ‹å–ï¼Œä½†å¯å–å‡ºï¼Œå¯ä¸¢å¼ƒï¼Œå¯ä½¿ç”¨ è£…å¤‡ç»‘å®š:ç‰©å“è£…å¤‡åå³ä¸å¯äº¤æ˜“ï¼Œä½†å¯å–å‡ºï¼Œå¯ä¸¢å¼ƒï¼Œå¯ä½¿ç”¨
+	 * äº¤æ˜“ç»‘å®š:ç‰©å“å¯äº¤æ˜“ï¼Œå¯å–å‡ºï¼Œå¯ä¸¢å¼ƒï¼Œè‡ªå·±ä¸å¯ä½¿ç”¨ï¼›äº¤æ˜“åä¸å¯¹æ–¹æ‹¾å–ç»‘å®š
 	 * 
 	 * @param goods_id
 	 * @param goods_type
 	 * @param action
-	 *            ±íÊ¾Íæ¼ÒµÄĞĞÎª£¬Èç¶ªÆú£¬ÂòÂô£¬½»Ò×£¬×°±¸£¬Ê¹ÓÃ
+	 *            è¡¨ç¤ºç©å®¶çš„è¡Œä¸ºï¼Œå¦‚ä¸¢å¼ƒï¼Œä¹°å–ï¼Œäº¤æ˜“ï¼Œè£…å¤‡ï¼Œä½¿ç”¨
 	 * @return
 	 */
 	public String isBinded(GoodsControlVO goodsControl, int action)
@@ -1032,24 +1032,24 @@ public class GoodsService
 		String hint = null;
 		if (goodsControl == null)
 		{
-			hint = "ÎïÆ·´íÎó";
+			hint = "ç‰©å“é”™è¯¯";
 			return hint;
 		}
-		if (goodsControl.getProtect() == 1)// ÊÇ·ñÊÇÊÜ±£»¤µÄ
+		if (goodsControl.getProtect() == 1)// æ˜¯å¦æ˜¯å—ä¿æŠ¤çš„
 		{
 			if (action == ActionType.SALE || action == ActionType.EXCHANGE
 					|| action == ActionType.THROW
 					|| action == ActionType.AUCTION)
 			{
-				hint = "ÊÜ±£»¤ÎïÆ·²»¿É½»Ò×,²»¿ÉÅÄÂô,²»¿ÉÂòÂô,²»¿É¶ªÆú";
+				hint = "å—ä¿æŠ¤ç‰©å“ä¸å¯äº¤æ˜“,ä¸å¯æ‹å–,ä¸å¯ä¹°å–,ä¸å¯ä¸¢å¼ƒ";
 				return hint;
 			}
 		}
-		if (goodsControl.getBonding() == BondingType.PICKBOUND)// Ê°È¡°ó¶¨
+		if (goodsControl.getBonding() == BondingType.PICKBOUND)// æ‹¾å–ç»‘å®š
 		{
 			if (action == ActionType.EXCHANGE || action == ActionType.AUCTION)
 			{
-				hint = "Ê°È¡°ó¶¨ÎïÆ·²»¿É½»Ò×,²»¿ÉÅÄÂô";
+				hint = "æ‹¾å–ç»‘å®šç‰©å“ä¸å¯äº¤æ˜“,ä¸å¯æ‹å–";
 				return hint;
 			}
 			if (goodsControl.getBonding() == BondingType.ARMBOND)
@@ -1057,17 +1057,17 @@ public class GoodsService
 				if (action == ActionType.EXCHANGE
 						|| action == ActionType.AUCTION)
 				{
-					hint = "×°±¸°ó¶¨ÎïÆ·²»¿É½»Ò×,²»¿ÉÅÄÂô";
+					hint = "è£…å¤‡ç»‘å®šç‰©å“ä¸å¯äº¤æ˜“,ä¸å¯æ‹å–";
 					return hint;
 				}
 			}
 		}
 		else
-			if (goodsControl.getBonding() == BondingType.EXCHANGEBOND)// ½»Ò×°ó¶¨
+			if (goodsControl.getBonding() == BondingType.EXCHANGEBOND)// äº¤æ˜“ç»‘å®š
 			{
 				if (action == ActionType.USE)
 				{
-					hint = "½»Ò×°ó¶¨ÎïÆ·²»¿ÉÊ¹ÓÃ";
+					hint = "äº¤æ˜“ç»‘å®šç‰©å“ä¸å¯ä½¿ç”¨";
 					return hint;
 				}
 			}
@@ -1077,7 +1077,7 @@ public class GoodsService
 
 
 	/**
-	 * µÃµ½×°±¸¼Û¸ñ
+	 * å¾—åˆ°è£…å¤‡ä»·æ ¼
 	 * 
 	 * @param accouter_id
 	 * @param accouter_type
@@ -1090,7 +1090,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ÂôµÀ¾ß
+	 * å–é“å…·
 	 * 
 	 * @param p_pk
 	 * @param prop_id
@@ -1105,19 +1105,19 @@ public class GoodsService
 
 		RoleEntity roleInfo = RoleService.getRoleInfoById(propGroup.getPPk()+ "");
 
-		// Ğ¶µôµÀ¾ß
+		// å¸æ‰é“å…·
 		removeProps(propGroup, prop_num);
 
 		int price = propGroup.getPropPrice();
 
-		// ¼à¿Ø
+		// ç›‘æ§
 		LogService logService = new LogService();
 		logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo
 				.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()
-				+ "", price * prop_num + "", "ÂôµÀ¾ßID" + propGroup.getPropId()
-				+ "ÊıÁ¿" + prop_num);
+				+ "", price * prop_num + "", "å–é“å…·ID" + propGroup.getPropId()
+				+ "æ•°é‡" + prop_num);
 
-		// ¸øÓÃ»§Ôö¼ÓÇ®Êı
+		// ç»™ç”¨æˆ·å¢åŠ é’±æ•°
 		roleInfo.getBasicInfo().addCopper(price * prop_num);
 
 		if (propGroup.getPgType() == 41)
@@ -1130,10 +1130,10 @@ public class GoodsService
 				specialdao.delEquipItem(String.valueOf(pg_pk));
 			}
 		}
-		resultWml.append("ÄúÂô³ö" + StringUtil.isoToGBK(propGroup.getPropName())
-				+ ",»ñµÃ" + MoneyUtil.changeCopperToStr(price * prop_num));
+		resultWml.append("æ‚¨å–å‡º" + StringUtil.isoToGBK(propGroup.getPropName())
+				+ ",è·å¾—" + MoneyUtil.changeCopperToStr(price * prop_num));
 
-		// Ö´ĞĞÍ³¼Æ
+		// æ‰§è¡Œç»Ÿè®¡
 		GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 		gsss.addPropNum(6, StatisticsType.MONEY, price, StatisticsType.DEDAO,
 				StatisticsType.SELL, propGroup.getPPk());
@@ -1141,7 +1141,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½µÀ¾ß×é
+	 * å¾—åˆ°é“å…·ç»„
 	 * 
 	 * @param pg_pk
 	 * @return
@@ -1153,7 +1153,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½×°±¸ÏêÇé
+	 * å¾—åˆ°è£…å¤‡è¯¦æƒ…
 	 * @param pg_pk
 	 * @return
 	 */
@@ -1164,7 +1164,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½µÀ¾ßĞÅÏ¢
+	 * å¾—åˆ°é“å…·ä¿¡æ¯
 	 * @param goods_id
 	 * @return
 	 */
@@ -1174,7 +1174,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½ÂòµÀ¾ßĞÅÏ¢½Å±¾
+	 * å¾—åˆ°ä¹°é“å…·ä¿¡æ¯è„šæœ¬
 	 * @param goods_id
 	 * @return
 	 */
@@ -1189,29 +1189,29 @@ public class GoodsService
 		StringBuffer resultWml = new StringBuffer();
 		PropVO prop = getPropInfo(prop_id);
 		/*
-		 * ÉÙÁÖËÂµÄ¶ÀÃÅµ¤Ò©£¬¿ÉÔÚÕ½¶·ÖĞ»ò·ÇÕ½¶·ÖĞ»Ö¸´1000µãHP£¡ ------------------------ Âô³ö¼Û¸ñ:100Á½
-		 * Ê¹ÓÃ¼¶±ğ:99¼¶ ĞÔ±ğÒªÇó:ÎŞ Ö°ÒµÒªÇó:ÎŞ ÊÇ·ñ°ó¶¨:ÊÇ ÊÇ·ñ±£»¤:ÊÇ Ê¹ÓÃ ¶ªÆú
+		 * å°‘æ—å¯ºçš„ç‹¬é—¨ä¸¹è¯ï¼Œå¯åœ¨æˆ˜æ–—ä¸­æˆ–éæˆ˜æ–—ä¸­æ¢å¤1000ç‚¹HPï¼ ------------------------ å–å‡ºä»·æ ¼:100ä¸¤
+		 * ä½¿ç”¨çº§åˆ«:99çº§ æ€§åˆ«è¦æ±‚:æ—  èŒä¸šè¦æ±‚:æ—  æ˜¯å¦ç»‘å®š:æ˜¯ æ˜¯å¦ä¿æŠ¤:æ˜¯ ä½¿ç”¨ ä¸¢å¼ƒ
 		 */
 		resultWml.append(prop.getPropName()).append("<br/>");
 		resultWml.append(propPic);
 		resultWml.append(prop.getPropDisplay()).append("<br/>");
-		resultWml.append("Âô³ö¼Û¸ñ:").append( MoneyUtil.changeCopperToStr(prop.getPropSell())).append("<br/>");
-		resultWml.append("Ê¹ÓÃ¼¶±ğ:" + getPropDisplay(prop.getPropReLevel()) + "¼¶").append("<br/>");
+		resultWml.append("å–å‡ºä»·æ ¼:").append( MoneyUtil.changeCopperToStr(prop.getPropSell())).append("<br/>");
+		resultWml.append("ä½¿ç”¨çº§åˆ«:" + getPropDisplay(prop.getPropReLevel()) + "çº§").append("<br/>");
 
 		if (prop.getPropSex() != 0 && !(prop.getPropSex() + "").equals(""))
 		{
-			resultWml.append("ĞÔ±ğÒªÇó:").append( ExchangeUtil.exchangeToSex(prop.getPropSex())).append("<br/>");
+			resultWml.append("æ€§åˆ«è¦æ±‚:").append( ExchangeUtil.exchangeToSex(prop.getPropSex())).append("<br/>");
 		}
 		if (prop.getPropJob() != null && !prop.getPropJob().equals("")
 				&& !prop.getPropJob().equals("0"))
 		{
-			resultWml.append("Ö°ÒµÒªÇó:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob())).append("<br/>");
+			resultWml.append("èŒä¸šè¦æ±‚:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob())).append("<br/>");
 		}
 		return resultWml.toString();
 	}
 
 	/**
-	 * µÃµ½ÂòµÀ¾ßĞÅÏ¢½Å±¾,ÉÌµê×¨ÓÃ,ÏÔÊ¾ÂòÈë¼Û¸ñ
+	 * å¾—åˆ°ä¹°é“å…·ä¿¡æ¯è„šæœ¬,å•†åº—ä¸“ç”¨,æ˜¾ç¤ºä¹°å…¥ä»·æ ¼
 	 * @param goods_id
 	 * @return
 	 */
@@ -1226,22 +1226,22 @@ public class GoodsService
 		StringBuffer resultWml = new StringBuffer();
 		PropVO prop = getPropInfo(prop_id);
 		/*
-		 * ÉÙÁÖËÂµÄ¶ÀÃÅµ¤Ò©£¬¿ÉÔÚÕ½¶·ÖĞ»ò·ÇÕ½¶·ÖĞ»Ö¸´1000µãHP£¡ ------------------------ ÂòÈë¼Û¸ñ:100Á½
-		 * Ê¹ÓÃ¼¶±ğ:99¼¶ ĞÔ±ğÒªÇó:ÎŞ Ö°ÒµÒªÇó:ÎŞ ÊÇ·ñ°ó¶¨:ÊÇ ÊÇ·ñ±£»¤:ÊÇ Ê¹ÓÃ ¶ªÆú
+		 * å°‘æ—å¯ºçš„ç‹¬é—¨ä¸¹è¯ï¼Œå¯åœ¨æˆ˜æ–—ä¸­æˆ–éæˆ˜æ–—ä¸­æ¢å¤1000ç‚¹HPï¼ ------------------------ ä¹°å…¥ä»·æ ¼:100ä¸¤
+		 * ä½¿ç”¨çº§åˆ«:99çº§ æ€§åˆ«è¦æ±‚:æ—  èŒä¸šè¦æ±‚:æ—  æ˜¯å¦ç»‘å®š:æ˜¯ æ˜¯å¦ä¿æŠ¤:æ˜¯ ä½¿ç”¨ ä¸¢å¼ƒ
 		 */
 		resultWml.append(prop.getPropName()).append("<br/>");
 		resultWml.append(propPic);
 		resultWml.append(prop.getPropDisplay()).append("<br/>");
-		resultWml.append("Ê¹ÓÃ¼¶±ğ:").append(getPropDisplay(prop.getPropReLevel())).append("¼¶").append("<br/>");
-		resultWml.append("ĞÔ±ğÒªÇó:").append(ExchangeUtil.exchangeToSex(prop.getPropSex())).append("<br/>");
-		resultWml.append("Ö°ÒµÒªÇó:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob())).append("<br/>");
+		resultWml.append("ä½¿ç”¨çº§åˆ«:").append(getPropDisplay(prop.getPropReLevel())).append("çº§").append("<br/>");
+		resultWml.append("æ€§åˆ«è¦æ±‚:").append(ExchangeUtil.exchangeToSex(prop.getPropSex())).append("<br/>");
+		resultWml.append("èŒä¸šè¦æ±‚:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob())).append("<br/>");
 		resultWml.append("------------------------").append("<br/>");
-		resultWml.append("ÂòÈë¼Û¸ñ:").append(MoneyUtil.changeCopperToStr(prop_buy_price)).append("<br/>");
+		resultWml.append("ä¹°å…¥ä»·æ ¼:").append(MoneyUtil.changeCopperToStr(prop_buy_price)).append("<br/>");
 		return resultWml.toString();
 	}
 
 	/**
-	 * µÃµ½ÅÄÂô³¡µÀ¾ßÎïÆ·ÏÔÊ¾
+	 * å¾—åˆ°æ‹å–åœºé“å…·ç‰©å“æ˜¾ç¤º
 	 * @param goods_id
 	 * @return
 	 */
@@ -1252,7 +1252,7 @@ public class GoodsService
 		
 		if( prop==null )
 		{
-			return "ÏµÍ³ÔİÎŞ¸ÃµÀ¾ß,ÇëÁªÏµGM<br/>";
+			return "ç³»ç»Ÿæš‚æ— è¯¥é“å…·,è¯·è”ç³»GM<br/>";
 		}
 
 		TitleService titleService = new TitleService();
@@ -1261,8 +1261,8 @@ public class GoodsService
 
 		StringBuffer resultWml = new StringBuffer();
 		/*
-		 * ÉÙÁÖËÂµÄ¶ÀÃÅµ¤Ò©£¬¿ÉÔÚÕ½¶·ÖĞ»ò·ÇÕ½¶·ÖĞ»Ö¸´1000µãHP£¡ ------------------------ ÂòÈë¼Û¸ñ:100Á½
-		 * Ê¹ÓÃ¼¶±ğ:99¼¶ ĞÔ±ğÒªÇó:ÎŞ Ö°ÒµÒªÇó:ÎŞ ÊÇ·ñ°ó¶¨:ÊÇ ÊÇ·ñ±£»¤:ÊÇ Ê¹ÓÃ ¶ªÆú
+		 * å°‘æ—å¯ºçš„ç‹¬é—¨ä¸¹è¯ï¼Œå¯åœ¨æˆ˜æ–—ä¸­æˆ–éæˆ˜æ–—ä¸­æ¢å¤1000ç‚¹HPï¼ ------------------------ ä¹°å…¥ä»·æ ¼:100ä¸¤
+		 * ä½¿ç”¨çº§åˆ«:99çº§ æ€§åˆ«è¦æ±‚:æ—  èŒä¸šè¦æ±‚:æ—  æ˜¯å¦ç»‘å®š:æ˜¯ æ˜¯å¦ä¿æŠ¤:æ˜¯ ä½¿ç”¨ ä¸¢å¼ƒ
 		 */
 		resultWml.append(prop.getPropName());
 		resultWml.append("<br/>");
@@ -1271,20 +1271,20 @@ public class GoodsService
 		resultWml.append("<br/>");
 		resultWml.append("--------------------");
 		resultWml.append("<br/>");
-		resultWml.append("Âô³ö¼Û¸ñ:").append(prop.getPropSell());
-		resultWml.append("ÁéÊ¯");
+		resultWml.append("å–å‡ºä»·æ ¼:").append(prop.getPropSell());
+		resultWml.append("çµçŸ³");
 		resultWml.append("<br/>");
-		resultWml.append("Ê¹ÓÃ¼¶±ğ:").append(getPropDisplay(prop.getPropReLevel())).append("¼¶");
+		resultWml.append("ä½¿ç”¨çº§åˆ«:").append(getPropDisplay(prop.getPropReLevel())).append("çº§");
 		resultWml.append("<br/>");
-		resultWml.append("ĞÔ±ğÒªÇó:").append(ExchangeUtil.exchangeToSex(prop.getPropSex()));
+		resultWml.append("æ€§åˆ«è¦æ±‚:").append(ExchangeUtil.exchangeToSex(prop.getPropSex()));
 		resultWml.append("<br/>");
-		resultWml.append("Ö°ÒµÒªÇó:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
+		resultWml.append("èŒä¸šè¦æ±‚:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
 		resultWml.append("<br/>");
 		return resultWml.toString();
 	}
 
 	/**
-	 * µÃµ½×¨ÃÅµÄÓĞ¹ØÀ¦×°Ò©µÄ½éÉÜ
+	 * å¾—åˆ°ä¸“é—¨çš„æœ‰å…³æ†è£…è¯çš„ä»‹ç»
 	 * @param goods_id
 	 * @return
 	 */
@@ -1299,8 +1299,8 @@ public class GoodsService
 		StringBuffer resultWml = new StringBuffer();
 		PropVO prop = getPropInfo(prop_id);
 		/*
-		 * ÉÙÁÖËÂµÄ¶ÀÃÅµ¤Ò©£¬¿ÉÔÚÕ½¶·ÖĞ»ò·ÇÕ½¶·ÖĞ»Ö¸´1000µãHP£¡ ------------------------ Âô³ö¼Û¸ñ:100Á½
-		 * Ê¹ÓÃ¼¶±ğ:99¼¶ ĞÔ±ğÒªÇó:ÎŞ Ö°ÒµÒªÇó:ÎŞ ÊÇ·ñ°ó¶¨:ÊÇ ÊÇ·ñ±£»¤:ÊÇ Ê¹ÓÃ ¶ªÆú
+		 * å°‘æ—å¯ºçš„ç‹¬é—¨ä¸¹è¯ï¼Œå¯åœ¨æˆ˜æ–—ä¸­æˆ–éæˆ˜æ–—ä¸­æ¢å¤1000ç‚¹HPï¼ ------------------------ å–å‡ºä»·æ ¼:100ä¸¤
+		 * ä½¿ç”¨çº§åˆ«:99çº§ æ€§åˆ«è¦æ±‚:æ—  èŒä¸šè¦æ±‚:æ—  æ˜¯å¦ç»‘å®š:æ˜¯ æ˜¯å¦ä¿æŠ¤:æ˜¯ ä½¿ç”¨ ä¸¢å¼ƒ
 		 */
 		resultWml.append(prop.getPropName());
 		resultWml.append("<br/>");
@@ -1308,30 +1308,30 @@ public class GoodsService
 		resultWml.append(prop.getPropDisplay());
 		resultWml.append("<br/>");
 		if (prop.getPropClass() != PropType.BOX_CURE)
-		{ // Èç¹ûµÀ¾ßÊÇÀ¦×°ÀàÒ©Æ·, ¾ÍÈÃÆäÏÔÊ¾³öÊ£ÓàÑªÁ¿»òÄÚÁ¦Á¿
+		{ // å¦‚æœé“å…·æ˜¯æ†è£…ç±»è¯å“, å°±è®©å…¶æ˜¾ç¤ºå‡ºå‰©ä½™è¡€é‡æˆ–å†…åŠ›é‡
 			resultWml.append("------------------------");
 			resultWml.append("<br/>");
 		}
 		else
 		{
-			resultWml.append("Ê£Óà¿ÉÖÎÁÆÁ¿").append(
+			resultWml.append("å‰©ä½™å¯æ²»ç–—é‡").append(
 					getSpecialPropNum(pPk, pg_pk, prop.getPropOperate2(),
-							SpecialNumber.KUNZHUANG)).append("µã").append(
+							SpecialNumber.KUNZHUANG)).append("ç‚¹").append(
 					"<br/>");
 		}
-		resultWml.append("Âô³ö¼Û¸ñ:").append( MoneyUtil.changeCopperToStr(prop.getPropSell()));
+		resultWml.append("å–å‡ºä»·æ ¼:").append( MoneyUtil.changeCopperToStr(prop.getPropSell()));
 		resultWml.append("<br/>");
-		resultWml.append("Ê¹ÓÃ¼¶±ğ:").append(getPropDisplay(prop.getPropReLevel())).append( "¼¶");
+		resultWml.append("ä½¿ç”¨çº§åˆ«:").append(getPropDisplay(prop.getPropReLevel())).append( "çº§");
 		resultWml.append("<br/>");
-		resultWml.append("ĞÔ±ğÒªÇó:").append( ExchangeUtil.exchangeToSex(prop.getPropSex()));
+		resultWml.append("æ€§åˆ«è¦æ±‚:").append( ExchangeUtil.exchangeToSex(prop.getPropSex()));
 		resultWml.append("<br/>");
-		resultWml.append("Ö°ÒµÒªÇó:").append( titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
+		resultWml.append("èŒä¸šè¦æ±‚:").append( titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
 		resultWml.append("<br/>");
 		return resultWml.toString();
 	}
 
 	/**
-	 * µÃµ½µÀ¾ßĞÅÏ¢½Å±¾
+	 * å¾—åˆ°é“å…·ä¿¡æ¯è„šæœ¬
 	 * 
 	 * @param goods_id
 	 * @return
@@ -1347,8 +1347,8 @@ public class GoodsService
 		PropVO prop = getPropInfo(prop_id);
 
 		/*
-		 * ÉÙÁÖËÂµÄ¶ÀÃÅµ¤Ò©£¬¿ÉÔÚÕ½¶·ÖĞ»ò·ÇÕ½¶·ÖĞ»Ö¸´1000µãHP£¡ ------------------------ Âô³ö¼Û¸ñ:100Á½
-		 * Ê¹ÓÃ¼¶±ğ:99¼¶ ĞÔ±ğÒªÇó:ÎŞ Ö°ÒµÒªÇó:ÎŞ ÊÇ·ñ°ó¶¨:ÊÇ ÊÇ·ñ±£»¤:ÊÇ Ê¹ÓÃ ¶ªÆú
+		 * å°‘æ—å¯ºçš„ç‹¬é—¨ä¸¹è¯ï¼Œå¯åœ¨æˆ˜æ–—ä¸­æˆ–éæˆ˜æ–—ä¸­æ¢å¤1000ç‚¹HPï¼ ------------------------ å–å‡ºä»·æ ¼:100ä¸¤
+		 * ä½¿ç”¨çº§åˆ«:99çº§ æ€§åˆ«è¦æ±‚:æ—  èŒä¸šè¦æ±‚:æ—  æ˜¯å¦ç»‘å®š:æ˜¯ æ˜¯å¦ä¿æŠ¤:æ˜¯ ä½¿ç”¨ ä¸¢å¼ƒ
 		 */
 		resultWml.append(prop.getPropName());
 		resultWml.append("<br/>");
@@ -1364,25 +1364,25 @@ public class GoodsService
 		}
 		else
 		{
-			resultWml.append("Ê£Óà¿ÉÖÎÁÆÁ¿").append(
+			resultWml.append("å‰©ä½™å¯æ²»ç–—é‡").append(
 					getSpecialPropNum(pPk, pg_pk, prop.getPropOperate2(),
-							SpecialNumber.KUNZHUANG)).append("µã").append(
+							SpecialNumber.KUNZHUANG)).append("ç‚¹").append(
 					"<br/>");
 		}
-		resultWml.append("Âô³ö¼Û¸ñ:").append( MoneyUtil.changeCopperToStr(prop.getPropSell()));
+		resultWml.append("å–å‡ºä»·æ ¼:").append( MoneyUtil.changeCopperToStr(prop.getPropSell()));
 		resultWml.append("<br/>");
-		resultWml.append("Ê¹ÓÃ¼¶±ğ:" + getPropDisplay(prop.getPropReLevel()) + "¼¶");
+		resultWml.append("ä½¿ç”¨çº§åˆ«:" + getPropDisplay(prop.getPropReLevel()) + "çº§");
 		resultWml.append("<br/>");
-		resultWml.append("ĞÔ±ğÒªÇó:").append( ExchangeUtil.exchangeToSex(prop.getPropSex()));
+		resultWml.append("æ€§åˆ«è¦æ±‚:").append( ExchangeUtil.exchangeToSex(prop.getPropSex()));
 		resultWml.append("<br/>");
-		resultWml.append("Ö°ÒµÒªÇó:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
+		resultWml.append("èŒä¸šè¦æ±‚:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
 		resultWml.append("<br/>");
 		resultWml.append(prop.getStatusDisplay());
 		/*String datestr = dgdao.getUsePropTime(prop_id);
 		if (!datestr.equals("0"))
 		{
 			String newdatestr = datestr.replace(",", "~");
-			resultWml.append("Ê¹ÓÃÊ±ÏŞ:" + newdatestr);
+			resultWml.append("ä½¿ç”¨æ—¶é™:" + newdatestr);
 			resultWml.append("<br/>");
 		}*/
 		if (Integer.parseInt(w_type) != 4)
@@ -1397,7 +1397,7 @@ public class GoodsService
 			resultWml.append("<postfield name=\"goods_id\" value=\"").append(prop_id).append("\" /> ");
 			resultWml.append("<postfield name=\"goods_type\" value=\"").append(goods_type).append("\" /> ");
 			resultWml.append("</go>");
-			resultWml.append("Ê¹ÓÃ ");
+			resultWml.append("ä½¿ç”¨ ");
 			resultWml.append("</anchor> ");
 
 			resultWml.append("<anchor> ");
@@ -1409,7 +1409,7 @@ public class GoodsService
 			resultWml.append("<postfield name=\"goods_type\" value=\"").append(goods_type).append("\" /> ");
 			resultWml.append("<postfield name=\"isReconfirm\" value=\"").append(isReconfirm ).append("\" /> ");
 			resultWml.append("</go>");
-			resultWml.append("¶ªÆú");
+			resultWml.append("ä¸¢å¼ƒ");
 			resultWml.append("</anchor> ");
 			resultWml.append("<br/>");
 		}
@@ -1417,7 +1417,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½µÀ¾ßĞÅÏ¢½Å±¾
+	 * å¾—åˆ°é“å…·ä¿¡æ¯è„šæœ¬
 	 * 
 	 * @param goods_id
 	 * @return
@@ -1433,8 +1433,8 @@ public class GoodsService
 		PropVO prop = getPropInfo(prop_id);
 
 		/*
-		 * ÉÙÁÖËÂµÄ¶ÀÃÅµ¤Ò©£¬¿ÉÔÚÕ½¶·ÖĞ»ò·ÇÕ½¶·ÖĞ»Ö¸´1000µãHP£¡ ------------------------ Âô³ö¼Û¸ñ:100Á½
-		 * Ê¹ÓÃ¼¶±ğ:99¼¶ ĞÔ±ğÒªÇó:ÎŞ Ö°ÒµÒªÇó:ÎŞ ÊÇ·ñ°ó¶¨:ÊÇ ÊÇ·ñ±£»¤:ÊÇ Ê¹ÓÃ ¶ªÆú
+		 * å°‘æ—å¯ºçš„ç‹¬é—¨ä¸¹è¯ï¼Œå¯åœ¨æˆ˜æ–—ä¸­æˆ–éæˆ˜æ–—ä¸­æ¢å¤1000ç‚¹HPï¼ ------------------------ å–å‡ºä»·æ ¼:100ä¸¤
+		 * ä½¿ç”¨çº§åˆ«:99çº§ æ€§åˆ«è¦æ±‚:æ—  èŒä¸šè¦æ±‚:æ—  æ˜¯å¦ç»‘å®š:æ˜¯ æ˜¯å¦ä¿æŠ¤:æ˜¯ ä½¿ç”¨ ä¸¢å¼ƒ
 		 */
 		resultWml.append(prop.getPropName());
 		resultWml.append("<br/>");
@@ -1448,18 +1448,18 @@ public class GoodsService
 		}
 		else
 		{
-			resultWml.append("Ê£Óà¿ÉÖÎÁÆÁ¿").append(
+			resultWml.append("å‰©ä½™å¯æ²»ç–—é‡").append(
 					getSpecialPropNum(pPk, pg_pk, prop.getPropOperate2(),
-							SpecialNumber.KUNZHUANG)).append("µã").append(
+							SpecialNumber.KUNZHUANG)).append("ç‚¹").append(
 					"<br/>");
 		}
-		resultWml.append("Âô³ö¼Û¸ñ:").append(MoneyUtil.changeCopperToStr(prop.getPropSell()));
+		resultWml.append("å–å‡ºä»·æ ¼:").append(MoneyUtil.changeCopperToStr(prop.getPropSell()));
 		resultWml.append("<br/>");
-		resultWml.append("Ê¹ÓÃ¼¶±ğ:").append(getPropDisplay(prop.getPropReLevel()) + "¼¶");
+		resultWml.append("ä½¿ç”¨çº§åˆ«:").append(getPropDisplay(prop.getPropReLevel()) + "çº§");
 		resultWml.append("<br/>");
-		resultWml.append("ĞÔ±ğÒªÇó:").append(ExchangeUtil.exchangeToSex(prop.getPropSex()));
+		resultWml.append("æ€§åˆ«è¦æ±‚:").append(ExchangeUtil.exchangeToSex(prop.getPropSex()));
 		resultWml.append("<br/>");
-		resultWml.append("Ö°ÒµÒªÇó:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
+		resultWml.append("èŒä¸šè¦æ±‚:").append(titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
 		resultWml.append("<br/>");
 		resultWml.append(prop.getStatusDisplay());
 
@@ -1467,7 +1467,7 @@ public class GoodsService
 	}
 
 	/**
-	 * »ñµÃÀ¦×°Ò©Æ·µÄÊ£ÓàÊ¹ÓÃÁ¿
+	 * è·å¾—æ†è£…è¯å“çš„å‰©ä½™ä½¿ç”¨é‡
 	 * 
 	 * @param pk
 	 * @param pg_pk
@@ -1485,7 +1485,7 @@ public class GoodsService
 		return surplus;
 	}
 
-	/** ¶ÔµÀ¾ßÊ¹ÓÃµÈ¼¶µÄÃèÊö£¬Èç¹ûÊ¹ÓÃÉÏÏŞµÈ¼¶Îª1000¼¶, ¾Í²»ÓèÏÔÊ¾ */
+	/** å¯¹é“å…·ä½¿ç”¨ç­‰çº§çš„æè¿°ï¼Œå¦‚æœä½¿ç”¨ä¸Šé™ç­‰çº§ä¸º1000çº§, å°±ä¸äºˆæ˜¾ç¤º */
 	private String getPropDisplay(String propReLevel)
 	{
 		String[] maxLevel = propReLevel.split(",");
@@ -1500,7 +1500,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ÂòÎïÆ·
+	 * ä¹°ç‰©å“
 	 * 
 	 * @param p_pk
 	 * @param npcshop_id
@@ -1514,8 +1514,8 @@ public class GoodsService
 
 		if (goods_num == 0)
 		{
-			logger.info("¹ºÂòÊıÁ¿²»ÄÜÎª0");
-			resultWml.append("ÇëÖØĞÂÊäÈë!<br/>");
+			logger.info("è´­ä¹°æ•°é‡ä¸èƒ½ä¸º0");
+			resultWml.append("è¯·é‡æ–°è¾“å…¥!<br/>");
 			return resultWml.toString();
 		}
 
@@ -1531,32 +1531,32 @@ public class GoodsService
 
 		long money = roleInfo.getBasicInfo().getCopper();
 
-		// ½ğ¶î²»×ã
+		// é‡‘é¢ä¸è¶³
 		if (money < total_price)
 		{
-			resultWml.append("¹ºÂò" + goods_num + "¸ö" + npcshop.getGoodsName()
-					+ ",ĞèÒª" + MoneyUtil.changeCopperToStr(total_price)
-					+ ",ÄúµÄÇ®Êı²»¹»!<br/>");
+			resultWml.append("è´­ä¹°" + goods_num + "ä¸ª" + npcshop.getGoodsName()
+					+ ",éœ€è¦" + MoneyUtil.changeCopperToStr(total_price)
+					+ ",æ‚¨çš„é’±æ•°ä¸å¤Ÿ!<br/>");
 		}
 		else
 		{
-			// ¹ºÂò
+			// è´­ä¹°
 			if (putGoodsToWrap(roleInfo.getPPk(), npcshop.getGoodsId(), npcshop.getGoodsType(), goods_num) == -1)
 			{
-				resultWml.append("°ü¹üÊ£Óà¿Õ¼ä²»×ã!<br/>");
+				resultWml.append("åŒ…è£¹å‰©ä½™ç©ºé—´ä¸è¶³!<br/>");
 			}
 			else
 			{
 
-				// ¼à¿Ø
+				// ç›‘æ§
 				LogService logService = new LogService();
 				logService.recordMoneyLog(roleInfo.getPPk(),roleInfo.getName(), roleInfo.getBasicInfo().getCopper()+ ""
-						,-total_price + "", "ÂòµÀ¾ßID"+ npcshop.getGoodsName() + "ÊıÁ¿" + goods_num);
+						,-total_price + "", "ä¹°é“å…·ID"+ npcshop.getGoodsName() + "æ•°é‡" + goods_num);
 
 				roleInfo.getBasicInfo().addCopper(-total_price);
-				resultWml.append("Äú»¨·Ñ").append(MoneyUtil.changeCopperToStr(total_price)).append("¹ºÂòÁË");
-				resultWml.append(npcshop.getGoodsName()).append("¡Á").append(goods_num).append("<br/>");
-				// Ö´ĞĞÍ³¼Æ
+				resultWml.append("æ‚¨èŠ±è´¹").append(MoneyUtil.changeCopperToStr(total_price)).append("è´­ä¹°äº†");
+				resultWml.append(npcshop.getGoodsName()).append("Ã—").append(goods_num).append("<br/>");
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(6, StatisticsType.MONEY, total_price,StatisticsType.USED, StatisticsType.BUY, roleInfo.getPPk());
 
@@ -1568,7 +1568,7 @@ public class GoodsService
 	}
 
 	/**
-	 * µÃµ½µÀ¾ß×ÜÊı
+	 * å¾—åˆ°é“å…·æ€»æ•°
 	 * 
 	 * @param p_pk
 	 * @param prop_id
@@ -1581,7 +1581,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ÅĞ¶ÏµÀ¾ßÊÇ·ñĞèÒª¶ş´ÎÈ·ÈÏ
+	 * åˆ¤æ–­é“å…·æ˜¯å¦éœ€è¦äºŒæ¬¡ç¡®è®¤
 	 */
 	public boolean isReconfirmByPropId(int prop_id)
 	{
@@ -1599,52 +1599,52 @@ public class GoodsService
 
 
 	/**
-	 * µôÂäÎïÆ·,
-	 * @param loser Ê§°ÜÕß
-	 * @param winer  Ê¤ÀûÕß
+	 * æ‰è½ç‰©å“,
+	 * @param loser å¤±è´¥è€…
+	 * @param winer  èƒœåˆ©è€…
 	 */
 	public void dropGoods(Fighter loser, Fighter winer)
 	{
 		int drop_num = getDropNum(loser.getPPkValue());
 
-		logger.info(" ËÀÍöºóµôÂäµÄÎïÆ·ÊıÁ¿=" + drop_num);
+		logger.info(" æ­»äº¡åæ‰è½çš„ç‰©å“æ•°é‡=" + drop_num);
 		StringBuffer sb = new StringBuffer();
 		if( drop_num>0 )
 		{
 			PlayerPropGroupDao pgDao = new PlayerPropGroupDao();
 			PlayerEquipDao equipDao = new PlayerEquipDao();
-			//µÃµ½Î´ÊÜ±£»¤µÄµÀ¾ß
+			//å¾—åˆ°æœªå—ä¿æŠ¤çš„é“å…·
 			List<Integer> prop_key_list = pgDao.getNoProtectPropId(loser.getPPk());
-			//µÃµ½Î´ÊÜ±£»¤µÄ×°±¸
+			//å¾—åˆ°æœªå—ä¿æŠ¤çš„è£…å¤‡
 			List<Integer> equip_key_list = equipDao.getNoProtectEquipId(loser.getPPk());
 			
 			if( prop_key_list.size()==0 && equip_key_list.size()==0 )
 			{
-				//ÎŞÎïÆ·¿Éµô
+				//æ— ç‰©å“å¯æ‰
 				return;
 			}
 			ItemContainer drop_list = new ItemContainer();
 
-			sb.append("µôÂäµÄÎïÆ·ÓĞ:");
+			sb.append("æ‰è½çš„ç‰©å“æœ‰:");
 			for (int i = 0; i < drop_num; i++)
 			{
 				if( prop_key_list.size()==0 && equip_key_list.size()==0 )
 				{
-					//Èç¹ûÃ»ÓĞµôÂäÎïÆ·ÔòÍË³ö
+					//å¦‚æœæ²¡æœ‰æ‰è½ç‰©å“åˆ™é€€å‡º
 					break;
 				}
 				
 				if( prop_key_list.size()==0 )
 				{
-					//Èç¹ûÃ»ÓĞµÀ¾ßÔòµôÂä×°±¸
+					//å¦‚æœæ²¡æœ‰é“å…·åˆ™æ‰è½è£…å¤‡
 					drop_list.add(dropEquip(loser, equip_key_list));
 				}
 				else if( equip_key_list.size()==0 )
 				{
-					//Èç¹ûÃ»ÓĞ×°±¸ÔòµôÂäµÀ¾ß
+					//å¦‚æœæ²¡æœ‰è£…å¤‡åˆ™æ‰è½é“å…·
 					drop_list.add(dropProp(loser, prop_key_list));
 				}
-				else//Èç¹û×°±¸£¬µÀ¾ß¶¼ÓĞ£¬Ôò50%µÄ¸ÅÂÊÑ¡ÔñµôÂä×°±¸»òµÀ¾ß
+				else//å¦‚æœè£…å¤‡ï¼Œé“å…·éƒ½æœ‰ï¼Œåˆ™50%çš„æ¦‚ç‡é€‰æ‹©æ‰è½è£…å¤‡æˆ–é“å…·
 				{
 					if( MathUtil.isAppearByPercentage(50))
 					{
@@ -1659,16 +1659,16 @@ public class GoodsService
 			
 			if( drop_list.getItemGroupNum()>0 )
 			{
-				//Èç¹ûÓĞµôÂäÎïÆ·
-				//¸øÊ§°ÜÕßÌáÊ¾ĞÅÏ¢
-				loser.appendKillDisplay("µôÂäµÄÎïÆ·ÓĞ:").append(drop_list.getDes()).append("<br/>");
-				//¸øÊ¤ÀûÕß·¢ËÍÓÊ¼ş
-				winer.appendKillDisplay(loser.getPName()).append("ËÀÍöµôÂäµÄÎïÆ·Çëµ½ÓÊ¼şÖĞÌáÈ¡").append("<br/>");
+				//å¦‚æœæœ‰æ‰è½ç‰©å“
+				//ç»™å¤±è´¥è€…æç¤ºä¿¡æ¯
+				loser.appendKillDisplay("æ‰è½çš„ç‰©å“æœ‰:").append(drop_list.getDes()).append("<br/>");
+				//ç»™èƒœåˆ©è€…å‘é€é‚®ä»¶
+				winer.appendKillDisplay(loser.getPName()).append("æ­»äº¡æ‰è½çš„ç‰©å“è¯·åˆ°é‚®ä»¶ä¸­æå–").append("<br/>");
 				
 				MailInfoService mailInfoService = new MailInfoService();
 				MailInfoVO mail_info = new MailInfoVO();
-				StringBuffer title = new StringBuffer();//ÓÊ¼ş±êÌâ
-				title.append(loser.getPName()).append("±»ÄãÉ±ËÀµôÂäµÄÎïÆ·");
+				StringBuffer title = new StringBuffer();//é‚®ä»¶æ ‡é¢˜
+				title.append(loser.getPName()).append("è¢«ä½ æ€æ­»æ‰è½çš„ç‰©å“");
 				mail_info.createPKDropItemMail(winer.getPPk(), title.toString(),drop_list.getDes(), drop_list);
 				mailInfoService.sendMail(mail_info);
 			}
@@ -1679,9 +1679,9 @@ public class GoodsService
 
 
 	/**
-	 * Ëæ»úµôÂäÒ»¼ş×°±¸
+	 * éšæœºæ‰è½ä¸€ä»¶è£…å¤‡
 	 * @param loser
-	 * @param equip_key_list			¿ÉÒÔµôÂäµÄ×°±¸idÁĞ±í
+	 * @param equip_key_list			å¯ä»¥æ‰è½çš„è£…å¤‡idåˆ—è¡¨
 	 * @return
 	 */
 	private UEquip dropEquip(Fighter loser, List<Integer> equip_key_list)
@@ -1694,7 +1694,7 @@ public class GoodsService
 			EquipService equipService = new EquipService();
 			PlayerEquipDao playerEquipDao = new PlayerEquipDao();
 			PlayerEquipVO equipvo = playerEquipDao.getByID(pw_pk);
-			if ( equipvo.isProtectOnPK()==false)//²»ÊÜ±£»¤µÄ×°±¸
+			if ( equipvo.isProtectOnPK()==false)//ä¸å—ä¿æŠ¤çš„è£…å¤‡
 			{
 				if( equipvo.isOnBody() )
 				{
@@ -1703,10 +1703,10 @@ public class GoodsService
 				}
 				else
 				{
-					// Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+					// å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 					equipService.addWrapSpare(loser.getPPk(), 1);
 				}
-				equipvo.drop();//×°±¸µôÂä
+				equipvo.drop();//è£…å¤‡æ‰è½
 				u_equip = new UEquip(equipvo);
 			}
 		}
@@ -1714,18 +1714,18 @@ public class GoodsService
 	}
 
 	/**
-	 *  Ëæ»úµôÂäÒ»×éµÀ¾ß
+	 *  éšæœºæ‰è½ä¸€ç»„é“å…·
 	 * @param loser
-	 * @param prop_key_list			¿ÉÒÔµôÂäµÄµÀ¾ßidÁĞ±í
+	 * @param prop_key_list			å¯ä»¥æ‰è½çš„é“å…·idåˆ—è¡¨
 	 * @return
 	 */
 	private Prop dropProp(Fighter loser, List<Integer> prop_key_list)
 	{
-		Prop drop_prop = null;//µôÂäµÄµÀ¾ß
+		Prop drop_prop = null;//æ‰è½çš„é“å…·
 		
 		if (prop_key_list != prop_key_list && prop_key_list.size() != 0)
 		{
-			//µÃµ½Ëæ»úpg_pk
+			//å¾—åˆ°éšæœºpg_pk
 			int random_index = MathUtil.getRandomBetweenXY(0, prop_key_list.size()-1);
 			int pg_pk = prop_key_list.remove(random_index);
 			PlayerPropGroupDao playerPropGroupDao = new PlayerPropGroupDao();
@@ -1734,7 +1734,7 @@ public class GoodsService
 			{
 				drop_prop = new Prop(vo.getPropId(),vo.getPropNum());
 				playerPropGroupDao.deletePropGroup(pg_pk);
-				// Ôö¼ÓÍæ¼Ò°ü¹üÊ£Óà¿Õ¼äÊıÁ¿
+				// å¢åŠ ç©å®¶åŒ…è£¹å‰©ä½™ç©ºé—´æ•°é‡
 				EquipService equipService = new EquipService();
 				equipService.addWrapSpare(loser.getPPk(), 1);
 				
@@ -1746,7 +1746,7 @@ public class GoodsService
 	}
 
 	/**
-	 * »ñµÃµôÂäÎïÆ·µÄÊıÁ¿
+	 * è·å¾—æ‰è½ç‰©å“çš„æ•°é‡
 	 * @param pkValue
 	 * @return
 	 */
@@ -1775,7 +1775,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ¼õÉÙÀ¦×°Ò©Æ·µÄ×Ü¿ÉÖÎÁÆÁ¿
+	 * å‡å°‘æ†è£…è¯å“çš„æ€»å¯æ²»ç–—é‡
 	 * 
 	 * @param propGroup
 	 * @param add_mp
@@ -1788,7 +1788,7 @@ public class GoodsService
 	}
 
 	/**
-	 * Íæ¼Ò¼ñµ½È«²¿ÎïÆ·,result=-1Ê±±íÊ¾°ü¹ü¸ñÊı²»¹»
+	 * ç©å®¶æ¡åˆ°å…¨éƒ¨ç‰©å“,result=-1æ—¶è¡¨ç¤ºåŒ…è£¹æ ¼æ•°ä¸å¤Ÿ
 	 * @param p_pk
 	 * @param goods_id
 	 * @param goods_type
@@ -1802,9 +1802,9 @@ public class GoodsService
 		List<DropGoodsVO> dropGoods = roleInfo.getDropSet().getList();
 		DropGoodsVO dropGoodsVO = null;
 
-		logger.info("È¡³öÀ´µÄdropGoods.size=" + dropGoods.size());
+		logger.info("å–å‡ºæ¥çš„dropGoods.size=" + dropGoods.size());
 
-		// ´ËÈËÊ£ÓàµÄ¿Õ¸ñÊı
+		// æ­¤äººå‰©ä½™çš„ç©ºæ ¼æ•°
 		int wrapSpare = roleInfo.getBasicInfo().getWrapSpare();
 
 		if (wrapSpare < 0)
@@ -1827,13 +1827,13 @@ public class GoodsService
 		logger.info("equipGoods.size=" + equipGoods.size()
 				+ " ,dropGoods.size=" + dropGoods.size());
 		int handleWrapSpare = wrapSpare - equipGoods.size();
-		// ´ËÈË¼ñÆğ×°±¸ºóµÄ¿Õ¸ñÊı
+		// æ­¤äººæ¡èµ·è£…å¤‡åçš„ç©ºæ ¼æ•°
 		if (handleWrapSpare < 0)
 		{
 			return result;
 		}
 
-		// ÓÃÒÔ´¢´æÃ¿¸öµÀ¾ßµÄĞèÒªÕ¼¾İµÄ°ü¹ü¿Õ¼ä£¬Ç°Ò»¸ö²ÎÊıÎªµÀ¾ßid,ºóÒ»¸ö²ÎÊıÎª°ü¹ü¿Õ¼ä
+		// ç”¨ä»¥å‚¨å­˜æ¯ä¸ªé“å…·çš„éœ€è¦å æ®çš„åŒ…è£¹ç©ºé—´ï¼Œå‰ä¸€ä¸ªå‚æ•°ä¸ºé“å…·id,åä¸€ä¸ªå‚æ•°ä¸ºåŒ…è£¹ç©ºé—´
 		Map<Integer, Integer[]> map = new HashMap<Integer, Integer[]>();
 
 		Integer[] eachPropSpare = null;
@@ -1859,7 +1859,7 @@ public class GoodsService
 			}
 		}
 
-		logger.info("×îºóµÄÊ£Óà¿Õ¼ä=" + handleWrapSpare);
+		logger.info("æœ€åçš„å‰©ä½™ç©ºé—´=" + handleWrapSpare);
 
 		if (handleWrapSpare >= 0)
 		{
@@ -1874,7 +1874,7 @@ public class GoodsService
 				putGoodsToWrap(p_pk, dropGoodsVO.getGoodsId(), dropGoodsVO
 						.getGoodsType(), dropGoodsVO.getGoodsQuality(),
 						dropGoodsVO.getDropNum(),GameLogManager.G_NPD_DROP);
-				// Ö´ĞĞÍ³¼Æ
+				// æ‰§è¡Œç»Ÿè®¡
 				GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 				gsss.addPropNum(dropGoodsVO.getGoodsId(), dropGoodsVO
 						.getGoodsType(), dropGoodsVO.getDropNum(),
@@ -1887,17 +1887,17 @@ public class GoodsService
 			return -1;
 		}
 
-		// É¾³ıµô´ËÈËÔÚµôÂä±íÖĞµÄĞÅÏ¢
+		// åˆ é™¤æ‰æ­¤äººåœ¨æ‰è½è¡¨ä¸­çš„ä¿¡æ¯
 		roleInfo.getDropSet().clearDropItem();
 		return 1;
 
 	}
 
 	/**
-	 * ½«µÀ¾ß²åµ½°ü¹üÀï
+	 * å°†é“å…·æ’åˆ°åŒ…è£¹é‡Œ
 	 * @param dropGoodsVO
 	 * @param need_group
-	 *            µÚÒ»¸öÎªµÀ¾ßµÄÕ¼¾İ°ü¹ü¿Õ¼ä´óĞ¡, µÚ¶ş¸öÎª²åÈëÊ±Ê£ÓàµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+	 *            ç¬¬ä¸€ä¸ªä¸ºé“å…·çš„å æ®åŒ…è£¹ç©ºé—´å¤§å°, ç¬¬äºŒä¸ªä¸ºæ’å…¥æ—¶å‰©ä½™é“å…·ç»„çš„é“å…·æ•°é‡
 	 */
 	public void putInWareSpare(DropGoodsVO dropGoodsVO, Integer[] need_group)
 	{
@@ -1914,7 +1914,7 @@ public class GoodsService
 
 		int accumulate_num = prop.getPropAccumulate();
 
-		// ÕÒµ½Ã»ÓĞÖØµşÂıµÄµÀ¾ß×é
+		// æ‰¾åˆ°æ²¡æœ‰é‡å æ…¢çš„é“å…·ç»„
 		PlayerPropGroupVO propGroup = new PlayerPropGroupVO();
 		propGroup.setPgType(prop.getPropPosition());
 		propGroup.setPropBonding(prop.getPropBonding());
@@ -1927,7 +1927,7 @@ public class GoodsService
 		propGroup.setPropId(prop.getPropID());
 		propGroup.setPropType(prop.getPropClass());
 
-		// Ìí¼ÓĞÂµÄµÀ¾ß×é£¬ÊıÁ¿¶¼ÊÇaccumulate_num
+		// æ·»åŠ æ–°çš„é“å…·ç»„ï¼Œæ•°é‡éƒ½æ˜¯accumulate_num
 		propGroup.setPropNum(accumulate_num);
 		for (int i = 0; i < need_groups; i++)
 		{
@@ -1941,20 +1941,20 @@ public class GoodsService
 			propGroupDao.updatePropGroupNum(propGroup.getPgPk(),
 					goodsgourp_goodsnum);
 		}
-		if (need_groups == 0 && goodsgourp_goodsnum == 0 && goods_num != 0) // ²»ĞèÒª¼ÓµÀ¾ß×é£¬ÕıºÃ×°ÂúµÀ¾ß×é
+		if (need_groups == 0 && goodsgourp_goodsnum == 0 && goods_num != 0) // ä¸éœ€è¦åŠ é“å…·ç»„ï¼Œæ­£å¥½è£…æ»¡é“å…·ç»„
 		{
 			propGroupDao
 					.updatePropGroupNum(propGroup.getPgPk(), accumulate_num);
 		}
 
-		// °ü¹ü¿Õ¼ä¼õÉÙneed_groups
+		// åŒ…è£¹ç©ºé—´å‡å°‘need_groups
 		EquipService equipService =new EquipService();
 		equipService.addWrapSpare(p_pk, -need_groups);
 
 	}
 
 	/**
-	 * ²é¿´µôÂäµÄµÀ¾ßĞèÒª¶àÉÙ¸ñµÄ°ü¹ü¿Õ¼ä
+	 * æŸ¥çœ‹æ‰è½çš„é“å…·éœ€è¦å¤šå°‘æ ¼çš„åŒ…è£¹ç©ºé—´
 	 * 
 	 * @param dropGoodsVO
 	 * @return
@@ -1972,46 +1972,46 @@ public class GoodsService
 
 		PropVO prop = PropCache.getPropById(goods_id);
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
 
-		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ÏÖÓĞµÄÊıÁ¿
+		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ç°æœ‰çš„æ•°é‡
 		int current_groups_sql = propGroupDao.getPropGroupNumByPropID(p_pk,
-				goods_id); // µ±Ç°Êı¾İ¿âÖĞµÄ×éÊı
+				goods_id); // å½“å‰æ•°æ®åº“ä¸­çš„ç»„æ•°
 
-		int total_num = current_num + goods_num;// Ôö¼Ógoods_numºóµÄ×ÜÊı
+		int total_num = current_num + goods_num;// å¢åŠ goods_numåçš„æ€»æ•°
 
-		int current_groups = 0;// ÏÖÓĞµÄ×éÊı
+		int current_groups = 0;// ç°æœ‰çš„ç»„æ•°
 		if (current_num != 0)
 		{
-			// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			// current_groups =(current_num-1)/accumulate_num+1;
 			current_groups = propGroupDao.getPropGroupNumByPropID(p_pk,
 					goods_id);
 		}
 
-		int new_groups = (total_num - 1) / accumulate_num + 1;// Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
+		int new_groups = (total_num - 1) / accumulate_num + 1;// å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
 
-		int need_groups = new_groups - current_groups;// ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı
+		int need_groups = new_groups - current_groups;// éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°
 
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
 
-		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// Ê£ÓàµÄ°ü¹ü¿Õ¼äÊı
+		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// å‰©ä½™çš„åŒ…è£¹ç©ºé—´æ•°
 
 		if (wrap_spare == 0)
 		{
-			if (current_num == 0) // Èç¹ûÃ»ÓĞ¿Õ¸ñ,ÇÒ°ü¹üÖĞÒ²ÎŞ´ËÎï,Ôò¿Ï¶¨·Å²»ÏÂ
+			if (current_num == 0) // å¦‚æœæ²¡æœ‰ç©ºæ ¼,ä¸”åŒ…è£¹ä¸­ä¹Ÿæ— æ­¤ç‰©,åˆ™è‚¯å®šæ”¾ä¸ä¸‹
 			{
-				logger.debug("°ü¹ü¿Õ¼ä²»¹»");
+				logger.debug("åŒ…è£¹ç©ºé—´ä¸å¤Ÿ");
 				need_arg[0] = -1;
 				return need_arg;
-				// Èô·Å½ø°ü¹üÖĞÊıÁ¿¼ÓÔ­ÓĞÊı³¬¹ı°ü¹üÖĞ´ËÎïÆ·ËùÕ¼¸ñÊıµÄ×î´óÈİÄÉÖµ,Ò²·Å²»ÏÂ
+				// è‹¥æ”¾è¿›åŒ…è£¹ä¸­æ•°é‡åŠ åŸæœ‰æ•°è¶…è¿‡åŒ…è£¹ä¸­æ­¤ç‰©å“æ‰€å æ ¼æ•°çš„æœ€å¤§å®¹çº³å€¼,ä¹Ÿæ”¾ä¸ä¸‹
 			}
 			else
 				if (current_num + goods_num > current_groups_sql
 						* accumulate_num)
 				{
 
-					logger.debug("°ü¹ü¿Õ¼ä²»¹»");
+					logger.debug("åŒ…è£¹ç©ºé—´ä¸å¤Ÿ");
 					need_arg[0] = -1;
 					return need_arg;
 				}
@@ -2021,7 +2021,7 @@ public class GoodsService
 
 			if (current_num == 0)
 			{
-				// Èç¹û°ü¹üÖĞÃ»ÓĞ´ËÎï,ÇÒ´ËÎïÆ·µÄÊıÁ¿´óÓÚ¿ÕÓà¸ñÊıµÄ×î´ó¿ÉÈİÄÉÖµ,Ò²·Å²»ÏÂ
+				// å¦‚æœåŒ…è£¹ä¸­æ²¡æœ‰æ­¤ç‰©,ä¸”æ­¤ç‰©å“çš„æ•°é‡å¤§äºç©ºä½™æ ¼æ•°çš„æœ€å¤§å¯å®¹çº³å€¼,ä¹Ÿæ”¾ä¸ä¸‹
 				if (goods_num > wrap_spare * accumulate_num)
 				{
 					need_arg[0] = -1;
@@ -2030,7 +2030,7 @@ public class GoodsService
 			}
 			else
 			{
-				// Èô°ü¹üÖĞÎïÆ·µÄÊıÁ¿ºÍ¼ÓÈëÊıÁ¿³¬¹ıÔ­Õ¼¸ñÊıºÍ¿ÕÓà¸ñÊıÖ®ºÍµÄ×î´ó¿ÉÈİÄÉÖµ,Ò²·Å²»ÏÂ.
+				// è‹¥åŒ…è£¹ä¸­ç‰©å“çš„æ•°é‡å’ŒåŠ å…¥æ•°é‡è¶…è¿‡åŸå æ ¼æ•°å’Œç©ºä½™æ ¼æ•°ä¹‹å’Œçš„æœ€å¤§å¯å®¹çº³å€¼,ä¹Ÿæ”¾ä¸ä¸‹.
 				if ((current_num + goods_num) > (current_groups_sql + wrap_spare)
 						* accumulate_num)
 				{
@@ -2048,7 +2048,7 @@ public class GoodsService
 	}
 
 	/**
-	 * °ÑµÀ¾ß·Åµ½°ü¹üÀï£¬ÖØ×éµ±Ç°µÀ¾ß°ü¹ü¸öÊıµÄĞ§¹û
+	 * æŠŠé“å…·æ”¾åˆ°åŒ…è£¹é‡Œï¼Œé‡ç»„å½“å‰é“å…·åŒ…è£¹ä¸ªæ•°çš„æ•ˆæœ
 	 * 
 	 * @param p_pk
 	 * @param goods_id
@@ -2063,59 +2063,59 @@ public class GoodsService
 
 		PropVO prop = PropCache.getPropById(goods_id);
 
-		int accumulate_num = prop.getPropAccumulate();// ¿ÉÒÔÖØµşµÄÊıÁ¿
+		int accumulate_num = prop.getPropAccumulate();// å¯ä»¥é‡å çš„æ•°é‡
 
-		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ÏÖÓĞµÄÊıÁ¿
+		int current_num = propGroupDao.getPropNumByByPropID(p_pk, goods_id);// ç°æœ‰çš„æ•°é‡
 
-		int total_num = current_num + goods_num;// Ôö¼Ógoods_numºóµÄ×ÜÊı
+		int total_num = current_num + goods_num;// å¢åŠ goods_numåçš„æ€»æ•°
 
-		int current_groups = 0;// ÏÖÓĞµÄ×éÊı
+		int current_groups = 0;// ç°æœ‰çš„ç»„æ•°
 		if (current_num != 0)
 		{
-			// ÒòÎªÍæ¼ÒµÄ°ü¹ü¸ÃÎïÆ·¸ñ×Ó²»Ò»¶¨¶¼ÊÇÀíÏë×´Ì¬, ËùÒÔ¿ÉÄÜÓĞÁãÉ¢µÄ,¹ÊĞèÒª´ÓÊı¾İ¿âÖĞÈ¡ÏÖÓĞ×éÊı .
+			// å› ä¸ºç©å®¶çš„åŒ…è£¹è¯¥ç‰©å“æ ¼å­ä¸ä¸€å®šéƒ½æ˜¯ç†æƒ³çŠ¶æ€, æ‰€ä»¥å¯èƒ½æœ‰é›¶æ•£çš„,æ•…éœ€è¦ä»æ•°æ®åº“ä¸­å–ç°æœ‰ç»„æ•° .
 			// current_groups =(current_num-1)/accumulate_num+1;
 			current_groups = propGroupDao.getPropGroupNumByPropID(p_pk,
 					goods_id);
 		}
-		int new_groups = (total_num - 1) / accumulate_num + 1;// Ôö¼Ógoods_num¸öµÀ¾ßºóµÄ×éÊı
-		int need_groups = new_groups - current_groups;// ĞèÒªÔö¼ÓµÄµÀ¾ß×éÊı,ĞèÒª°ü¹üµÄ¸öÊıÎª¸ºÊı±íÊ¾Ôö¼Ó°ü¹ü¸öÊı
-		int goodsgourp_goodsnum = total_num % accumulate_num;// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿
-		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// Ê£ÓàµÄ°ü¹ü¿Õ¼äÊı
+		int new_groups = (total_num - 1) / accumulate_num + 1;// å¢åŠ goods_numä¸ªé“å…·åçš„ç»„æ•°
+		int need_groups = new_groups - current_groups;// éœ€è¦å¢åŠ çš„é“å…·ç»„æ•°,éœ€è¦åŒ…è£¹çš„ä¸ªæ•°ä¸ºè´Ÿæ•°è¡¨ç¤ºå¢åŠ åŒ…è£¹ä¸ªæ•°
+		int goodsgourp_goodsnum = total_num % accumulate_num;// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡
+		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();// å‰©ä½™çš„åŒ…è£¹ç©ºé—´æ•°
 		if (need_groups > 0 && wrap_spare < need_groups)
 		{
-			logger.debug("°ü¹ü¿Õ¼ä²»¹»");
+			logger.debug("åŒ…è£¹ç©ºé—´ä¸å¤Ÿ");
 			return -1;
 		}
 
-		if (need_groups > 0)// Ìí¼Ó²»×ãµÄµÀ¾ß×éµÄ¸öÊı
+		if (need_groups > 0)// æ·»åŠ ä¸è¶³çš„é“å…·ç»„çš„ä¸ªæ•°
 		{
 			for (int i = 0; i < need_groups; i++)
 			{
 			}
 		}
 
-		if (need_groups < 0)// ĞèÒªµÄµÀ¾ß×éÊıÎª¸ºÊı±íÊ¾£¬ÖØ×éÍêĞèÒªÊÍ·ÅµÄµÀ¾ß×éÊı
+		if (need_groups < 0)// éœ€è¦çš„é“å…·ç»„æ•°ä¸ºè´Ÿæ•°è¡¨ç¤ºï¼Œé‡ç»„å®Œéœ€è¦é‡Šæ”¾çš„é“å…·ç»„æ•°
 		{
 			int delete_group_num = -need_groups;
 		}
-		// °ÑÍæ¼ÒÉíÉÏËùÓĞµÀ¾ßidÎªprop_idµÄµÀ¾ßµÄÊıÁ¿ÌîÂú
+		// æŠŠç©å®¶èº«ä¸Šæ‰€æœ‰é“å…·idä¸ºprop_idçš„é“å…·çš„æ•°é‡å¡«æ»¡
 
-		if (goodsgourp_goodsnum != 0)// ²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿²»Îª0Ê±£¬¸üĞÂÆäÖĞµÄÒ»×éµÀ¾ßÎª£¨²»ÍêÕûµÀ¾ß×éµÄµÀ¾ßÊıÁ¿£©
+		if (goodsgourp_goodsnum != 0)// ä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡ä¸ä¸º0æ—¶ï¼Œæ›´æ–°å…¶ä¸­çš„ä¸€ç»„é“å…·ä¸ºï¼ˆä¸å®Œæ•´é“å…·ç»„çš„é“å…·æ•°é‡ï¼‰
 		{
 		}
-		// ¸üĞÂÍæ¼ÒµÄÊ£Óà°ü¹ü¸öÊı
+		// æ›´æ–°ç©å®¶çš„å‰©ä½™åŒ…è£¹ä¸ªæ•°
 		return need_groups;
 	}
 
 	/**
-	 * ·µ»Ø°ü¹ü¸÷ÊıÊÇ·ñ¹»²»¹»
+	 * è¿”å›åŒ…è£¹å„æ•°æ˜¯å¦å¤Ÿä¸å¤Ÿ
 	 */
 	public boolean isEnoughWrapSpace(int pPk, int number)
 	{
 
 		RoleEntity roleInfo = RoleService.getRoleInfoById(pPk + "");
 
-		// µÃµ½°ü¹üÊ£ÓàµÄ¿Õ¼ä
+		// å¾—åˆ°åŒ…è£¹å‰©ä½™çš„ç©ºé—´
 		int wrap_spare = roleInfo.getBasicInfo().getWrapSpare();
 
 		if ((wrap_spare - number) < 0)
@@ -2125,7 +2125,7 @@ public class GoodsService
 		return true;
 	}
 
-	/** ×°±¸ÀàµÀ¾ßµÄÃèÊö */
+	/** è£…å¤‡ç±»é“å…·çš„æè¿° */
 	public String getEquipPropInfoWml(int pPk, int prop_id, String w_type,
 			String pg_pk, String goods_type, String isReconfirm,
 			String wupinlan, HttpServletRequest request,
@@ -2172,7 +2172,7 @@ public class GoodsService
 		// time = sps.getUserTimeByPgpk(pPk,pg_pk);
 		// }
 		/*
-		 * Ê£ÓàHP:1000/10000 Ê£ÓàÊ±¼ä:240·ÖÖÓ/3600·ÖÖÓ Ê¹ÓÃ ¶ªÆú ²¹³ä
+		 * å‰©ä½™HP:1000/10000 å‰©ä½™æ—¶é—´:240åˆ†é’Ÿ/3600åˆ†é’Ÿ ä½¿ç”¨ ä¸¢å¼ƒ è¡¥å……
 		 */
 		if (prop.getPropClass() == PropType.EQUIPPROP
 				|| prop.getPropClass() == PropType.JIEHUN_JIEZHI)
@@ -2184,29 +2184,29 @@ public class GoodsService
 			resultWml.append("<br/>");
 			resultWml.append("------------------------");
 			resultWml.append("<br/>");
-			resultWml.append("Âô³ö¼Û¸ñ:"
+			resultWml.append("å–å‡ºä»·æ ¼:"
 					+ MoneyUtil.changeCopperToStr(prop.getPropSell()));
 			resultWml.append("<br/>");
-			resultWml.append("Ê¹ÓÃ¼¶±ğ:" + getPropDisplay(prop.getPropReLevel())
-					+ "¼¶");
+			resultWml.append("ä½¿ç”¨çº§åˆ«:" + getPropDisplay(prop.getPropReLevel())
+					+ "çº§");
 			resultWml.append("<br/>");
-			resultWml.append("ĞÔ±ğÒªÇó:"
+			resultWml.append("æ€§åˆ«è¦æ±‚:"
 					+ ExchangeUtil.exchangeToSex(prop.getPropSex()));
 			resultWml.append("<br/>");
-			resultWml.append("Ö°ÒµÒªÇó:"
+			resultWml.append("èŒä¸šè¦æ±‚:"
 					+ titleService.getTitleNamesByTitleIDs(prop.getPropJob()));
 			resultWml.append("<br/>");
 			if (prop.getPropClass() == PropType.JIEHUN_JIEZHI)
 			{
-				resultWml.append("°®ÇéÌğÃÛ:"
+				resultWml.append("çˆ±æƒ…ç”œèœœ:"
 						+ new FriendService().findLove_dear(pPk));
 				resultWml.append("<br/>");
 			}
 
 			/**
-			 * if(x1 != 0) { resultWml.append("Ê£ÓàHP:"+ x2 +"/"+ x3);
+			 * if(x1 != 0) { resultWml.append("å‰©ä½™HP:"+ x2 +"/"+ x3);
 			 * resultWml.append("<br/>"); } if(x4 != 0) {
-			 * resultWml.append("Ê£ÓàMP:"+ x5 +"/"+ x6); resultWml.append("<br/>"); }
+			 * resultWml.append("å‰©ä½™MP:"+ x5 +"/"+ x6); resultWml.append("<br/>"); }
 			 */
 			if (prop.getPropClass() == PropType.EQUIPPROP)
 			{
@@ -2219,8 +2219,8 @@ public class GoodsService
 				{
 					time = sps.getUserTimeByPgpk(pPk, pg_pk);
 				}
-				resultWml.append("Ê£ÓàÊ±¼ä:" + time + "·ÖÖÓ/"
-						+ prop.getPropOperate2() + "·ÖÖÓ");
+				resultWml.append("å‰©ä½™æ—¶é—´:" + time + "åˆ†é’Ÿ/"
+						+ prop.getPropOperate2() + "åˆ†é’Ÿ");
 				resultWml.append("<br/>");
 			}
 		}
@@ -2244,7 +2244,7 @@ public class GoodsService
 				resultWml
 						.append("<postfield name=\"goods_type\" value=\"2\" /> ");
 				resultWml.append("</go>");
-				resultWml.append("Ê¹ÓÃ ");
+				resultWml.append("ä½¿ç”¨ ");
 				resultWml.append("</anchor> |");
 
 				resultWml.append("<anchor> ");
@@ -2265,7 +2265,7 @@ public class GoodsService
 				resultWml.append("<postfield name=\"isReconfirm\" value=\""
 						+ isReconfirm + "\" /> ");
 				resultWml.append("</go>");
-				resultWml.append("¶ªÆú");
+				resultWml.append("ä¸¢å¼ƒ");
 				resultWml.append("</anchor> ");
 				resultWml.append("<br/>");
 			}
@@ -2290,7 +2290,7 @@ public class GoodsService
 					resultWml
 							.append("<postfield name=\"goods_type\" value=\"2\" /> ");
 					resultWml.append("</go>");
-					resultWml.append("Ê¹ÓÃ ");
+					resultWml.append("ä½¿ç”¨ ");
 					resultWml.append("</anchor> |");
 
 					resultWml.append("<anchor> ");
@@ -2312,7 +2312,7 @@ public class GoodsService
 					resultWml.append("<postfield name=\"isReconfirm\" value=\""
 							+ isReconfirm + "\" /> ");
 					resultWml.append("</go>");
-					resultWml.append("¶ªÆú");
+					resultWml.append("ä¸¢å¼ƒ");
 					resultWml.append("</anchor> ");
 					resultWml.append("<br/>");
 				}
@@ -2335,7 +2335,7 @@ public class GoodsService
 					resultWml
 							.append("<postfield name=\"wupinlan\" value=\"1\" /> ");
 					resultWml.append("</go>");
-					resultWml.append("¸ü»» ");
+					resultWml.append("æ›´æ¢ ");
 					resultWml.append("</anchor> ");
 				}
 			}
@@ -2360,7 +2360,7 @@ public class GoodsService
 				resultWml
 						.append("<postfield name=\"goods_type\" value=\"2\" /> ");
 				resultWml.append("</go>");
-				resultWml.append("Ê¹ÓÃ ");
+				resultWml.append("ä½¿ç”¨ ");
 				resultWml.append("</anchor> |");
 
 				resultWml.append("<anchor> ");
@@ -2381,7 +2381,7 @@ public class GoodsService
 				resultWml.append("<postfield name=\"isReconfirm\" value=\""
 						+ isReconfirm + "\" /> ");
 				resultWml.append("</go>");
-				resultWml.append("¶ªÆú");
+				resultWml.append("ä¸¢å¼ƒ");
 				resultWml.append("</anchor> ");
 				resultWml.append("<br/>");
 			}
@@ -2406,7 +2406,7 @@ public class GoodsService
 					resultWml
 							.append("<postfield name=\"goods_type\" value=\"2\" /> ");
 					resultWml.append("</go>");
-					resultWml.append("Ê¹ÓÃ");
+					resultWml.append("ä½¿ç”¨");
 					resultWml.append("</anchor> ");
 
 					resultWml.append("<anchor> ");
@@ -2428,7 +2428,7 @@ public class GoodsService
 					resultWml.append("<postfield name=\"isReconfirm\" value=\""
 							+ isReconfirm + "\" /> ");
 					resultWml.append("</go>");
-					resultWml.append("¶ªÆú");
+					resultWml.append("ä¸¢å¼ƒ");
 					resultWml.append("</anchor> ");
 					resultWml.append("<br/>");
 				}
@@ -2451,7 +2451,7 @@ public class GoodsService
 					resultWml
 							.append("<postfield name=\"wupinlan\" value=\"1\" /> ");
 					resultWml.append("</go>");
-					resultWml.append("¸ü»»");
+					resultWml.append("æ›´æ¢");
 					resultWml.append("</anchor> ");
 				}
 			}
@@ -2465,14 +2465,14 @@ public class GoodsService
 		 * prop_id + "\" /> "); resultWml.append("<postfield name=\"p_pk\"
 		 * value=\"" + pPk + "\" /> "); resultWml.append("<postfield
 		 * name=\"wupinlan\" value=\"" + wupinlan + "\" /> ");
-		 * resultWml.append("</go>"); resultWml.append("²¹³ä");
+		 * resultWml.append("</go>"); resultWml.append("è¡¥å……");
 		 * resultWml.append("</anchor> ");
 		 */
 		resultWml.append("<br/>");
 		return resultWml.toString();
 	}
 
-	/** µÃµ½Íæ¼ÒÒ©Æ·µÄÁĞ±í *//*
+	/** å¾—åˆ°ç©å®¶è¯å“çš„åˆ—è¡¨ *//*
 	public List getPropByHP(int p_pk)
 	{
 		PlayerPropGroupDao dao = new PlayerPropGroupDao();
@@ -2488,7 +2488,7 @@ public class GoodsService
 	}
 */
 	/**
-	 * µÃµ½ÏàÍ¬ÀàĞÍµÄµÀ¾ß
+	 * å¾—åˆ°ç›¸åŒç±»å‹çš„é“å…·
 	 * @param p_pk
 	 * @param prop_type
 	 * @return
@@ -2501,7 +2501,7 @@ public class GoodsService
 
 
 	/**
-	 * ÕÒµ½ÊıÁ¿×îÉÙµÄµÀ¾ß×é
+	 * æ‰¾åˆ°æ•°é‡æœ€å°‘çš„é“å…·ç»„
 	 * @return
 	 */
 	public PlayerPropGroupVO getPropGroupByPropID(int p_pk, int prop_id)
@@ -2511,7 +2511,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ¸ü¸ÄÃØ¾³µØÍ¼µÄÓµÓĞÕß
+	 * æ›´æ”¹ç§˜å¢ƒåœ°å›¾çš„æ‹¥æœ‰è€…
 	 */
 	public int updateMiJingOwner(int last_owner, int new_owner)
 	{
@@ -2528,7 +2528,7 @@ public class GoodsService
 	}
 
 	/**
-	 * ²é¿´ÉíÉÏÊÇ·ñÓµÓĞÃØ¾³µØÍ¼
+	 * æŸ¥çœ‹èº«ä¸Šæ˜¯å¦æ‹¥æœ‰ç§˜å¢ƒåœ°å›¾
 	 */
 	public boolean haveMiJing(int ppk)
 	{
@@ -2536,7 +2536,7 @@ public class GoodsService
 	}
 
 	/**
-	 * É¾³ıÉíÉÏµÄÃØ¾³µØÍ¼
+	 * åˆ é™¤èº«ä¸Šçš„ç§˜å¢ƒåœ°å›¾
 	 */
 	public void removeMiJing(int ppk)
 	{

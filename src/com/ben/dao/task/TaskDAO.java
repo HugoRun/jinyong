@@ -7,27 +7,27 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.ben.vo.task.TaskVO;
-import com.pub.db.jygamedb.Jygamedb;
+import com.pub.db.jygamedb.JyGameDB;
 import com.pub.db.mysql.SqlData;
 /**
- * ¹¦ÄÜ:
+ * åŠŸèƒ½:
  * 
- * @author ÁõË§ 10:36:42 AM
+ * @author åˆ˜å¸… 10:36:42 AM
  */
 public class TaskDAO {
-	Jygamedb con;
+	JyGameDB con;
 	SqlData conn;
 
 	Logger logger = Logger.getLogger("log.dao");
 	
 	/**
-	 * ²éÑ¯²Ëµ¥ËùÓµÓĞµÄÈÎÎñ
+	 * æŸ¥è¯¢èœå•æ‰€æ‹¥æœ‰çš„ä»»åŠ¡
 	 */
 	public String getMainMenuByMap(int id) {
 		String menu_tasks_id = "";
 		try {
-			con = new Jygamedb();
-			String sql = "select menu_tasks_id from  operate_menu_info where id=" + id + " ";
+			con = new JyGameDB();
+			String sql = "SELECT menu_tasks_id from  operate_menu_info where id=" + id + " ";
 			ResultSet rs = con.query(sql);
 			while (rs.next()) {
 				menu_tasks_id = rs.getString("menu_tasks_id");
@@ -47,12 +47,12 @@ public class TaskDAO {
 
 	
 	/**
-	 * ¸ù¾İÈÎÎñ×éºÍ×éĞòÁĞµÃµ½ÈÎÎñĞÅÏ¢
+	 * æ ¹æ®ä»»åŠ¡ç»„å’Œç»„åºåˆ—å¾—åˆ°ä»»åŠ¡ä¿¡æ¯
 	 */
 	public TaskVO getTaskByZuAndXulie(String t_zu,int t_zuxl) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_zu='"+t_zu+"' and t_zuxl='" + t_zuxl + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_zu='"+t_zu+"' and t_zuxl='" + t_zuxl + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = null;
 			if(rs.next()) {
@@ -112,12 +112,12 @@ public class TaskDAO {
 	} 
 	
 	/**
-	 * Í¨¹ı²Ëµ¥È»»áµÄÈÎÎñID È¡³öÈÎÎñÏà¹ØÌõ¼ş 
+	 * é€šè¿‡èœå•ç„¶ä¼šçš„ä»»åŠ¡ID å–å‡ºä»»åŠ¡ç›¸å…³æ¡ä»¶ 
 	 */
 	public List<TaskVO> getList(String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select t_id,t_name,t_level_xiao from task where t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT t_id,t_name,t_level_xiao from task where t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			List<TaskVO> list = new ArrayList<TaskVO>();
 			while (rs.next()) { 
@@ -136,12 +136,12 @@ public class TaskDAO {
 		return null;
 	} 
 	/**
-	 * Í¨¹ı²Ëµ¥È»»áµÄÈÎÎñID È¡³öÈÎÎñÏà¹ØÌõ¼ş 
+	 * é€šè¿‡èœå•ç„¶ä¼šçš„ä»»åŠ¡ID å–å‡ºä»»åŠ¡ç›¸å…³æ¡ä»¶ 
 	 */
 	public TaskVO getTaskView(String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = null;
 			while (rs.next()) {
@@ -197,12 +197,12 @@ public class TaskDAO {
 	
 	
 	/**
-	 * Í¨¹ı²Ëµ¥È»»áµÄÈÎÎñID È¡³öÈÎÎñÏà¹ØÌõ¼ş 
+	 * é€šè¿‡èœå•ç„¶ä¼šçš„ä»»åŠ¡ID å–å‡ºä»»åŠ¡ç›¸å…³æ¡ä»¶ 
 	 */
 	public String t_zjms(String tId) {
 		try {
-			con = new Jygamedb();
-			String sql = "select t_zjms from task where t_id='" + tId + "'";
+			con = new JyGameDB();
+			String sql = "SELECT t_zjms from task where t_id='" + tId + "'";
 			ResultSet rs = con.query(sql);
 			String t_zjms = null;
 			if (rs.next()) {  
@@ -218,13 +218,13 @@ public class TaskDAO {
 	} 
 	
 	/**
-	 * Í¨¹ı×éºÍ×éĞòÁĞ»îµÄÈÎÎñID
+	 * é€šè¿‡ç»„å’Œç»„åºåˆ—æ´»çš„ä»»åŠ¡ID
 	 */
 	public int getTaskZUXl(String tZu,String tXuxl) {
 		
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task where t_zu='" + tZu + "' and t_zuxl='"+tXuxl+"'";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task where t_zu='" + tZu + "' and t_zuxl='"+tXuxl+"'";
 			ResultSet rs = con.query(sql);
 			int tId = 0;
 			while (rs.next()) {  
@@ -241,16 +241,16 @@ public class TaskDAO {
 	}
 	
 	/**
-	 * ÔÚÖ¸¶¨ÈÎÎñid·¶Î§ÖĞËæ»úµÃµ½Ò»¸öÈÎÎñ
-	 * @param task_id_lower        ÈÎÎñidÏÂÏŞ
-	 * @param task_id_upper        ÈÎÎñidÉÏÏŞ
+	 * åœ¨æŒ‡å®šä»»åŠ¡idèŒƒå›´ä¸­éšæœºå¾—åˆ°ä¸€ä¸ªä»»åŠ¡
+	 * @param task_id_lower        ä»»åŠ¡idä¸‹é™
+	 * @param task_id_upper        ä»»åŠ¡idä¸Šé™
 	 * @return
 	 */
 	public TaskVO getTaskBySpacifyArea( String task_id_lower,String task_id_upper ) 
 	{
 		try {
-			con = new Jygamedb();
-			String sql = "select * from task  where t_id >="+task_id_lower+" and t_id <= "+task_id_upper+" and t_zuxl=1 group by t_zu order by rand() limit 1";
+			con = new JyGameDB();
+			String sql = "SELECT * FROM task  where t_id >="+task_id_lower+" and t_id <= "+task_id_upper+" and t_zuxl=1 group by t_zu order by rand() limit 1";
 			ResultSet rs = con.query(sql);
 			TaskVO vo = new TaskVO();
 			while (rs.next()) { 
@@ -301,7 +301,7 @@ public class TaskDAO {
 	}
 
 	/**
-	 * ²éÕÒÈÎÎñ¿ªÊ¼µÈ¼¶±ÈgradeÒªĞ¡µÄÈÎÎñ
+	 * æŸ¥æ‰¾ä»»åŠ¡å¼€å§‹ç­‰çº§æ¯”gradeè¦å°çš„ä»»åŠ¡
 	 * @param grade
 	 * @return
 	 */
@@ -309,17 +309,17 @@ public class TaskDAO {
 	{
 		List<TaskVO> list = new ArrayList<TaskVO>();
 		try {
-			con = new Jygamedb();
-			//String sql = "select distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school from task where t_level_xiao <= "+grade
+			con = new JyGameDB();
+			//String sql = "SELECT distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school from task where t_level_xiao <= "+grade
 			//				+" and (t_sex = 0 or t_sex ="+sex+") "
 			//				+" and t_zu not like '%meirirenwu%' and t_zu not like '%yabiao%' and t_zu not like '%songwaimai%' and (t_school like '%0%' or t_school like '%"+pSchool
 			//				+"%') group by t_zu order by t_zuxl asc,t_level_xiao desc";
-			String sql = "select distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school from task where t_level_xiao <= " +grade+
+			String sql = "SELECT distinct(t_zu),t_name,t_level_xiao,t_id,t_zuxl,t_school from task where t_level_xiao <= " +grade+
 					" and '"+grade+"' <= t_level_da " +
 					"and t_id in "+allTaskId+" group by t_zu order by t_zuxl asc,t_level_xiao desc ";
-			//System.out.println("Ñ°ÕÒÈÎÎñµÄsql="+sql);
+			//System.out.println("å¯»æ‰¾ä»»åŠ¡çš„sql="+sql);
 			ResultSet rs = con.query(sql); 
-			logger.info("Ñ°ÕÒÈÎÎñµÄsql="+sql);
+			logger.info("å¯»æ‰¾ä»»åŠ¡çš„sql="+sql);
 			TaskVO vo = null;
 			while (rs.next()) {
 				vo = new TaskVO();
@@ -343,7 +343,7 @@ public class TaskDAO {
 		List<String> list = null;
 		try {
 			conn = new SqlData();
-			String sql = "select * from u_task where p_pk ="+p_pk+"";
+			String sql = "SELECT * FROM u_task where p_pk ="+p_pk+"";
 			ResultSet rs = conn.query(sql);
 			list = new ArrayList<String>();
 			while (rs.next()) { 
@@ -359,16 +359,16 @@ public class TaskDAO {
 	}
 
 	/**
-	 * »ñµÃµ±Ç°ËùÓĞ²»ÊÇÓÉµÀ¾ßÒı·¢µÄÈÎÎñÁĞ±í
+	 * è·å¾—å½“å‰æ‰€æœ‰ä¸æ˜¯ç”±é“å…·å¼•å‘çš„ä»»åŠ¡åˆ—è¡¨
 	 * @return
 	 */
 	public String getAllTaskId()
 	{
 		StringBuffer allTaskId = new StringBuffer("(");
-		String sql = "select menu_tasks_id from operate_menu_info where menu_tasks_id != ''";
+		String sql = "SELECT menu_tasks_id from operate_menu_info where menu_tasks_id != ''";
 		String taskId = "";
 		try {
-			con = new Jygamedb();
+			con = new JyGameDB();
 			ResultSet rs = con.query(sql);
 			while (rs.next()) { 
 				taskId = rs.getString("menu_tasks_id");

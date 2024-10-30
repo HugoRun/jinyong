@@ -48,7 +48,7 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -70,7 +70,7 @@ public class GuajiAction extends BaseAction
 					&& curScene.getSceneLimit().indexOf(
 							roomService.NOT_CARRY_OUT) != -1)
 			{
-				setMessage(request, "¶Ô²»Æğ£¬Ä¿Ç°¸ÃµØµã²»ÔÊĞí´«³ö£¡");
+				setMessage(request, "å¯¹ä¸èµ·ï¼Œç›®å‰è¯¥åœ°ç‚¹ä¸å…è®¸ä¼ å‡ºï¼");
 				return mapping.findForward(ERROR);
 			}
 			SceneVO toScene = roomService.getById(scene_id);
@@ -79,8 +79,8 @@ public class GuajiAction extends BaseAction
 					&& toScene.getSceneLimit()
 							.indexOf(roomService.NOT_CARRY_IN) != -1)
 			{
-				setMessage(request, "¶Ô²»Æğ£¬" + toScene.getSceneName()
-						+ "µØµã²»ÔÊĞí´«Èë£¡");
+				setMessage(request, "å¯¹ä¸èµ·ï¼Œ" + toScene.getSceneName()
+						+ "åœ°ç‚¹ä¸å…è®¸ä¼ å…¥ï¼");
 				return mapping.findForward(ERROR);
 			}
 			bi.updateSceneId(scene_id);
@@ -89,12 +89,12 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ¹Ò»ú
+	// æŒ‚æœº
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -102,35 +102,35 @@ public class GuajiAction extends BaseAction
 		{
 			BasicInfo bi = getBasicInfo(request);
 			if(bi.getGrade()==19||bi.getGrade()==39||bi.getGrade()==59||bi.getGrade()==69||bi.getGrade()==79){
-				setMessage(request, "¶Ô²»Æğ£¬ÄúÕıÔÚ×ªÖ°×´Ì¬£¬²»ÄÜ¹Ò»ú£¡");
+				setMessage(request, "å¯¹ä¸èµ·ï¼Œæ‚¨æ­£åœ¨è½¬èŒçŠ¶æ€ï¼Œä¸èƒ½æŒ‚æœºï¼");
 				return mapping.findForward(ERROR);
 			}
 			SceneVO curScene = roomService.getById(bi.getSceneId());
 			if (curScene == null)
 			{
-				setMessage(request, "¶Ô²»Æğ£¬ÇëÖØĞÂ²Ù×÷£¡");
+				setMessage(request, "å¯¹ä¸èµ·ï¼Œè¯·é‡æ–°æ“ä½œï¼");
 				return mapping.findForward(ERROR);
 			}
 			if (curScene.getMap().getMapType() != 2)
 			{
-				setMessage(request, "¶Ô²»Æğ£¬¸ÃµØµã²»ÔÊĞí¹Ò»ú¡£ÇëÇ°ÍùÃ°ÏÕÇøÓòÀëÏß¹Ò»ú£¡");
+				setMessage(request, "å¯¹ä¸èµ·ï¼Œè¯¥åœ°ç‚¹ä¸å…è®¸æŒ‚æœºã€‚è¯·å‰å¾€å†’é™©åŒºåŸŸç¦»çº¿æŒ‚æœºï¼");
 				return mapping.findForward(ERROR);
 			}
 			if (!in(curScene))
 			{
-				setMessage(request, "¶Ô²»Æğ£¬¸ÃµØµã²»ÔÊĞí¹Ò»ú");
+				setMessage(request, "å¯¹ä¸èµ·ï¼Œè¯¥åœ°ç‚¹ä¸å…è®¸æŒ‚æœº");
 				return mapping.findForward(ERROR);
 			}
 			NpcVO npc = guajiService.findSceneOgreBySceneId(curScene.getSceneID(),bi.getGrade());
 			if (npc == null)
 			{
-				setMessage(request, "¶Ô²»Æğ,¸ÃµØµãÃ»ÓĞ¹ÖÎï,»òÕßÄúµÈ¼¶Ì«µÍ²»ÄÜ¹Ò»ú.ÇëÇ°ÍùÆäËûÇøÓòÀëÏß¹Ò»ú£¡");
+				setMessage(request, "å¯¹ä¸èµ·,è¯¥åœ°ç‚¹æ²¡æœ‰æ€ªç‰©,æˆ–è€…æ‚¨ç­‰çº§å¤ªä½ä¸èƒ½æŒ‚æœº.è¯·å‰å¾€å…¶ä»–åŒºåŸŸç¦»çº¿æŒ‚æœºï¼");
 				return mapping.findForward(ERROR);
 			}
 
 			if (npc.getLevel() > bi.getGrade())
 			{
-				setMessage(request, "ÄãµÈ¼¶Ì«µÍ£¬²»ÄÜÔÚ´Ë¹Ò»ú£¡ÄãÖ»ÄÜÔÚË¢ĞÂ¹ÖÎïµÈ¼¶²»¸ßÓÚ½ÇÉ«µÈ¼¶µÄµØµã½øĞĞÀëÏß¹Ò»ú£¡");
+				setMessage(request, "ä½ ç­‰çº§å¤ªä½ï¼Œä¸èƒ½åœ¨æ­¤æŒ‚æœºï¼ä½ åªèƒ½åœ¨åˆ·æ–°æ€ªç‰©ç­‰çº§ä¸é«˜äºè§’è‰²ç­‰çº§çš„åœ°ç‚¹è¿›è¡Œç¦»çº¿æŒ‚æœºï¼");
 				return mapping.findForward(ERROR);
 			}
 			GuajiVo guajiVo = new GuajiVo(bi.getPPk(), npc.getNpcID());
@@ -140,7 +140,7 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -199,7 +199,7 @@ public class GuajiAction extends BaseAction
 		return DateUtil.isFreeGuaji(guaji_weekI, guaji_begin_timeI, guaji_end_timeI,time);
 	}
 
-	// ¹Ò»úÀàĞÍÌø×ª
+	// æŒ‚æœºç±»å‹è·³è½¬
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -212,38 +212,38 @@ public class GuajiAction extends BaseAction
 			}
 			int needMoney = findCostByType(Integer.parseInt(type.trim()));
 			StringBuffer sb = new StringBuffer();
-			sb.append("ÄãÑ¡ÔñÁË").append(findByType(Integer.parseInt(type.trim())));
+			sb.append("ä½ é€‰æ‹©äº†").append(findByType(Integer.parseInt(type.trim())));
 
 			setAttribute(request, "sb", sb.toString());
 			BasicInfo bi = getBasicInfo(request);
 			if(isFree(new Date())){
-				//Ãâ·Ñ¹Ò»ú
+				//å…è´¹æŒ‚æœº
 				GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 				guajiVo.setGuaji_type(Integer.parseInt(type.trim()));
 				guajiVo.setTime(360);
-				setAttribute(request, "message", "Äã¿ÉÒÔÃâ·Ñ¹Ò»ú6Ğ¡Ê±¡££¨¹Ò»ú¿ªÊ¼Ç°ÇëÔ¤Áô³ö¾¡Á¿¶àµÄÎïÆ·À¸¿ÕÎ»ÒÔ·ÅÖÃ¹Ò»úËùµÃÎïÆ·£©");
+				setAttribute(request, "message", "ä½ å¯ä»¥å…è´¹æŒ‚æœº6å°æ—¶ã€‚ï¼ˆæŒ‚æœºå¼€å§‹å‰è¯·é¢„ç•™å‡ºå°½é‡å¤šçš„ç‰©å“æ ç©ºä½ä»¥æ”¾ç½®æŒ‚æœºæ‰€å¾—ç‰©å“ï¼‰");
 			}else{
 			long yuanbao = economyService.getYuanbao(bi.getUPk());
 			int can_GuaJi_time = (int) (yuanbao / needMoney > GuaJiConstant.MAX_GUAJI_TIME ? GuaJiConstant.MAX_GUAJI_TIME
 					: yuanbao / needMoney);
 			if (can_GuaJi_time < 1)
 			{
-				String message = "¶Ô²»Æğ£¬ÄãµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»×ãÒÔÖ§¸¶¹Ò»úÏûºÄ£¡<br/><anchor><go href=\""+ response.encodeURL(GameConfig.getContextPath()+"/sky/bill.do?cmd=n1\"") +" method=\"get\"></go>ÎÒÒª³äÖµ</anchor>";
+				String message = "å¯¹ä¸èµ·ï¼Œä½ çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸è¶³ä»¥æ”¯ä»˜æŒ‚æœºæ¶ˆè€—ï¼<br/><anchor><go href=\""+ response.encodeURL(GameConfig.getContextPath()+"/sky/bill.do?cmd=n1\"") +" method=\"get\"></go>æˆ‘è¦å……å€¼</anchor>";
 				setMessage(request, message);
 				return mapping.findForward(ERROR);
 			}
 			GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 			if (guajiVo == null)
 			{
-				setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+				setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 				return mapping.findForward(ERROR);
 			}
 			guajiVo.setGuaji_type(Integer.parseInt(type.trim()));
 			guajiVo.setTime(can_GuaJi_time);
-			String time = can_GuaJi_time > GuaJiConstant.MAX_GUAJI_TIME ? "6Ğ¡Ê±"
+			String time = can_GuaJi_time > GuaJiConstant.MAX_GUAJI_TIME ? "6å°æ—¶"
 					: minToString(can_GuaJi_time);
-			setAttribute(request, "message", "ÄãÏÖÓĞ"+GameConfig.getYuanbaoName()+"¡Á" + yuanbao + "£¬×î³¤¿É¹Ò»ú"
-					+ time + "¡££¨¹Ò»ú¿ªÊ¼Ç°ÇëÔ¤Áô³ö¾¡Á¿¶àµÄÎïÆ·À¸¿ÕÎ»ÒÔ·ÅÖÃ¹Ò»úËùµÃÎïÆ·£©");
+			setAttribute(request, "message", "ä½ ç°æœ‰"+GameConfig.getYuanbaoName()+"Ã—" + yuanbao + "ï¼Œæœ€é•¿å¯æŒ‚æœº"
+					+ time + "ã€‚ï¼ˆæŒ‚æœºå¼€å§‹å‰è¯·é¢„ç•™å‡ºå°½é‡å¤šçš„ç‰©å“æ ç©ºä½ä»¥æ”¾ç½®æŒ‚æœºæ‰€å¾—ç‰©å“ï¼‰");
 			}
 			setAttribute(request, "type", type.trim());
 			return mapping.findForward("chosegood");
@@ -251,7 +251,7 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -260,16 +260,16 @@ public class GuajiAction extends BaseAction
 	{
 		if (min <= 0)
 		{
-			return "0·ÖÖÓ";
+			return "0åˆ†é’Ÿ";
 		}
 		else
 		{
-			return ((min / 60 > 0 ? min / 60 + "Ğ¡Ê±" : "") + (min % 60 > 0 ? min
-					% 60 + "·ÖÖÓ" : ""));
+			return ((min / 60 > 0 ? min / 60 + "å°æ—¶" : "") + (min % 60 > 0 ? min
+					% 60 + "åˆ†é’Ÿ" : ""));
 		}
 	}
 
-	// ¹Ò»úÀàĞÍÌø×ª
+	// æŒ‚æœºç±»å‹è·³è½¬
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -279,7 +279,7 @@ public class GuajiAction extends BaseAction
 			GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 			if (guajiVo == null)
 			{
-				setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+				setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 				return mapping.findForward(ERROR);
 			}
 			int nowPage = Integer
@@ -295,12 +295,12 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Ê°È¡µôÂäÎïÆ·´¦Àí
+	// æ‹¾å–æ‰è½ç‰©å“å¤„ç†
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -317,32 +317,32 @@ public class GuajiAction extends BaseAction
 				GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 				if (guajiVo == null)
 				{
-					setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+					setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 					return mapping.findForward(ERROR);
 				}
 				Set<GoodVo> set = guajiVo.getGood();
 				// for (GoodVo it : set)
 				// {
-				// System.out.println("Ê°È¡µÄÎïÆ·id £º " + it.getGood_id()
-				// + " Ê°È¡ÎïÆ·Ãû³Æ " + it.getGood_name() + " Ê°È¡ÎïÆ·ÀàĞÍ "
+				// System.out.println("æ‹¾å–çš„ç‰©å“id ï¼š " + it.getGood_id()
+				// + " æ‹¾å–ç‰©å“åç§° " + it.getGood_name() + " æ‹¾å–ç‰©å“ç±»å‹ "
 				// + it.getGood_type());
 				// }
 				GoodVo goodVo1 = new GoodVo(Integer.parseInt(good_id.trim()),
 						good_name, Integer.parseInt(good_type.trim()));
 				set.add(goodVo1);
-				setMessage(request, "ÄúÑ¡ÔñÁËÊ°È¡" + good_name.trim());
+				setMessage(request, "æ‚¨é€‰æ‹©äº†æ‹¾å–" + good_name.trim());
 			}
 			return n5(mapping, form, request, response);
 		}
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Ê°È¡µôÂäÎïÆ·Æ·ÖÊ´¦Àí
+	// æ‹¾å–æ‰è½ç‰©å“å“è´¨å¤„ç†
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -353,7 +353,7 @@ public class GuajiAction extends BaseAction
 			GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 			if (guajiVo == null)
 			{
-				setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+				setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 				return mapping.findForward(ERROR);
 			}
 			Set<GoodVo> set = guajiVo.getGood();
@@ -379,12 +379,12 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Ê°È¡µôÂäÎïÆ·Æ·ÖÊ´¦Àí
+	// æ‹¾å–æ‰è½ç‰©å“å“è´¨å¤„ç†
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -399,7 +399,7 @@ public class GuajiAction extends BaseAction
 			GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 			if (guajiVo == null)
 			{
-				setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+				setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 				return mapping.findForward(ERROR);
 			}
 			guajiVo.setLevel(Integer.parseInt(type.trim()));
@@ -410,19 +410,19 @@ public class GuajiAction extends BaseAction
 			switch (Integer.parseInt(type.trim()))
 			{
 				case GuaJiConstant.YOU:
-					mess = "½öÊ°È¡¡°ÓÅ¡±ÒÔÉÏ";
+					mess = "ä»…æ‹¾å–â€œä¼˜â€ä»¥ä¸Š";
 					break;
 				case GuaJiConstant.JING:
-					mess = "½öÊ°È¡¡°¾«¡±ÒÔÉÏ";
+					mess = "ä»…æ‹¾å–â€œç²¾â€ä»¥ä¸Š";
 					break;
 				case GuaJiConstant.JI:
-					mess = "½öÊ°È¡¡°¼«¡±ÒÔÉÏ";
+					mess = "ä»…æ‹¾å–â€œæâ€ä»¥ä¸Š";
 					break;
 				case GuaJiConstant.ALL:
-					mess = "Ê°È¡È«²¿";
+					mess = "æ‹¾å–å…¨éƒ¨";
 					break;
 				default:
-					mess = "Ê°È¡È«²¿";
+					mess = "æ‹¾å–å…¨éƒ¨";
 					break;
 			}
 			request.setAttribute("mess", mess);
@@ -431,12 +431,12 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// Ê°È¡µôÂäÎïÆ·Æ·ÖÊ´¦Àí
+	// æ‹¾å–æ‰è½ç‰©å“å“è´¨å¤„ç†
 	public ActionForward n9(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -446,7 +446,7 @@ public class GuajiAction extends BaseAction
 			GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 			if (guajiVo == null)
 			{
-				setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+				setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 				return mapping.findForward(ERROR);
 			}
 			guajiVo.setGood(new TreeSet<GoodVo>());
@@ -455,12 +455,12 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ¿ªÊ¼¹Ò»ú
+	// å¼€å§‹æŒ‚æœº
 	public ActionForward n10(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -470,7 +470,7 @@ public class GuajiAction extends BaseAction
 			GuajiVo guajiVo = GuaJiConstant.GUAJIVO.get(bi.getPPk());
 			if (guajiVo == null)
 			{
-				setMessage(request, "ÇëÖØĞÂ²Ù×÷");
+				setMessage(request, "è¯·é‡æ–°æ“ä½œ");
 				return mapping.findForward(ERROR);
 			}
 			try
@@ -491,12 +491,12 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
 
-	// ¿ªÊ¼ÉÏÏß´¦Àí
+	// å¼€å§‹ä¸Šçº¿å¤„ç†
 	public ActionForward n11(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -525,10 +525,10 @@ public class GuajiAction extends BaseAction
 				if(isFree(DateUtil.getTimeFormat(gv.getStart_time()))){
 					gua_time = lookTime(gv, 0, GuaJiConstant.DUIYING
 							.get(gv.getGuaji_type()),true);
-					sb.append("Äã»ñµÃÃâ·Ñ¹Ò»ú" + minToString(gua_time) + "¹Ò»úĞ§¹û¡£");
-//					Èç¹ûÉÏÒ»´ÎÊÇÃâ·Ñ¹Ò»ú
+					sb.append("ä½ è·å¾—å…è´¹æŒ‚æœº" + minToString(gua_time) + "æŒ‚æœºæ•ˆæœã€‚");
+//					å¦‚æœä¸Šä¸€æ¬¡æ˜¯å…è´¹æŒ‚æœº
 				}else{
-				// µÃµ½¹Ò»úµÄÊ±¼ä
+				// å¾—åˆ°æŒ‚æœºçš„æ—¶é—´
 				long yuanbao = economyService.getYuanbao(bi.getUPk());
 				gua_time = lookTime(gv, yuanbao, GuaJiConstant.DUIYING
 						.get(gv.getGuaji_type()),false);
@@ -538,22 +538,22 @@ public class GuajiAction extends BaseAction
 							* GuaJiConstant.DUIYING.get(gv.getGuaji_type()));
 				}
 				sb.append(yuanbao < GuaJiConstant.DUIYING.get(gv
-						.getGuaji_type()) ? "ÄãÕÊºÅÄÚÃ»ÓĞ"+GameConfig.getYuanbaoName()+"Ö§¸¶´Ë´Î¹Ò»ú£¬¹Ò»úĞ§¹ûÏûÊ§£¡" : ("Ö§¸¶"
+						.getGuaji_type()) ? "ä½ å¸å·å†…æ²¡æœ‰"+GameConfig.getYuanbaoName()+"æ”¯ä»˜æ­¤æ¬¡æŒ‚æœºï¼ŒæŒ‚æœºæ•ˆæœæ¶ˆå¤±ï¼" : ("æ”¯ä»˜"
 						+ gua_time
 						* GuaJiConstant.DUIYING.get(gv.getGuaji_type())
-						+ ""+GameConfig.getYuanbaoName()+",»ñµÃ" + minToString(gua_time) + "¹Ò»úĞ§¹û¡£"));
+						+ ""+GameConfig.getYuanbaoName()+",è·å¾—" + minToString(gua_time) + "æŒ‚æœºæ•ˆæœã€‚"));
 				}
-				// ¸ÃnpcËùÓĞÎïÆ·µôÂÊ×ÜºÍ
+				// è¯¥npcæ‰€æœ‰ç‰©å“æ‰ç‡æ€»å’Œ
 				NpcVO npc = npcCache.getById(gv.getNpc_id());
 				String mess = "";
 				if (npc == null)
 				{
-					setMessage(request, "¹Ò»úÊ±£¬¹ÖÎïÏûÊ§£¬ÇëÁªÏµ¿Í·ş");
+					setMessage(request, "æŒ‚æœºæ—¶ï¼Œæ€ªç‰©æ¶ˆå¤±ï¼Œè¯·è”ç³»å®¢æœ");
 					return mapping.findForward(ERROR);
 				}
 				int guaji_type = gv.getGuaji_type();
 				int getExp = npc.getExp() * gua_time * 2;
-				if (npc.getLevel() < bi.getGrade())// npcµÄµÈ¼¶Ğ¡ÓÚÍæ¼ÒµÄµÈ¼¶Ê±£¬ÓĞ¾­ÑéË¥¼õ£¬·ñÔò¾ÍÊÇnpcµÄÔ­Ê¼¾­Ñé
+				if (npc.getLevel() < bi.getGrade())// npcçš„ç­‰çº§å°äºç©å®¶çš„ç­‰çº§æ—¶ï¼Œæœ‰ç»éªŒè¡°å‡ï¼Œå¦åˆ™å°±æ˜¯npcçš„åŸå§‹ç»éªŒ
 				{
 					getExp = getExp * (10 - (bi.getGrade() - npc.getLevel()))
 							/ 10;
@@ -585,12 +585,12 @@ public class GuajiAction extends BaseAction
 				if (bi.getGrade() != ShituConstant.MAX_LEVEL && getExp > 0)
 				{
 					bi.updateAddCurExp(getExp);
-					sb.append("»ñµÃ¾­Ñé" + getExp + ".");
+					sb.append("è·å¾—ç»éªŒ" + getExp + ".");
 				}
 				if (getMoney > 0)
 				{
 					bi.addCopper(getMoney);
-					sb.append("»ñµÃÒøÁ½" + MoneyUtil.changeCopperToStr(getMoney)
+					sb.append("è·å¾—é“¶ä¸¤" + MoneyUtil.changeCopperToStr(getMoney)
 							+ ".");
 				}
 				List<GetGoodVo> getGood = new ArrayList<GetGoodVo>();
@@ -610,7 +610,7 @@ public class GuajiAction extends BaseAction
 							goods_id = goods_id.substring(0,
 									goods_id.length() - 1);
 						}
-						// »ñµÃ½ÇÉ«ÏëÒªµÄÎïÆ·
+						// è·å¾—è§’è‰²æƒ³è¦çš„ç‰©å“
 						List<NpcdropVO> want = guajiService
 								.getNpcdropsByNpcIDAndGood_id(gv.getNpc_id(),
 										goods_id);
@@ -623,9 +623,9 @@ public class GuajiAction extends BaseAction
 							}
 							catch (SQLException e)
 							{
-								log.error("²éÑ¯npcµôÂäÎïÆ·×Ü¸ÅÂÊ³ö´í");
+								log.error("æŸ¥è¯¢npcæ‰è½ç‰©å“æ€»æ¦‚ç‡å‡ºé”™");
 							}
-							//ĞÒÔËgailv
+							//å¹¸è¿gailv
 							if (guaji_type == GuaJiConstant.DOUBLE_G)
 							{
 								gailv *= 2;
@@ -648,7 +648,7 @@ public class GuajiAction extends BaseAction
 							NpcdropVO model = want.get(0);
 							List<NpcdropVO> list = guajiService
 									.getNpcdropsByNpcID(gv.getNpc_id(), 0, 0);
-							// ¸ÃnpcËùÓĞÎïÆ·´ó±©ºóµôÂÊ×ÜºÍ
+							// è¯¥npcæ‰€æœ‰ç‰©å“å¤§æš´åæ‰ç‡æ€»å’Œ
 							int dabao = 0;
 							if (list != null)
 							{
@@ -658,7 +658,7 @@ public class GuajiAction extends BaseAction
 											: ndv.getNpcdropProbability() * 5);
 								}
 							}
-							// ÎïÆ·»ñµÃÊıÁ¿¼ÆËã¹«Ê½£º¹Ò»úÊ±¼ä·ÖÖÓ*2*£¨¸ÃnpcËùÓĞÎïÆ·µôÂÊ×ÜºÍ/1000000*£¨100-´ó±©¼¸ÂÊ£©/100+¸ÃnpcËùÓĞÎïÆ·´ó±©ºóµôÂÊ×ÜºÍ/1000000*´ó±©¼¸ÂÊ/100£©
+							// ç‰©å“è·å¾—æ•°é‡è®¡ç®—å…¬å¼ï¼šæŒ‚æœºæ—¶é—´åˆ†é’Ÿ*2*ï¼ˆè¯¥npcæ‰€æœ‰ç‰©å“æ‰ç‡æ€»å’Œ/1000000*ï¼ˆ100-å¤§æš´å‡ ç‡ï¼‰/100+è¯¥npcæ‰€æœ‰ç‰©å“å¤§æš´åæ‰ç‡æ€»å’Œ/1000000*å¤§æš´å‡ ç‡/100ï¼‰
 
 							int count = Math
 									.round((float) gua_time
@@ -673,7 +673,7 @@ public class GuajiAction extends BaseAction
 															.getNpcdropLuck())
 													/ 100));
 
-							int shengyu = bi.getWrapSpare();// Ê£Óà°ü¹ü¸ñÊı
+							int shengyu = bi.getWrapSpare();// å‰©ä½™åŒ…è£¹æ ¼æ•°
 							int huodeCount = 0;
 
 							for (NpcdropVO ndv : want)
@@ -690,7 +690,7 @@ public class GuajiAction extends BaseAction
 												.getNpcdropProbability() / (float) GuaJiConstant.BILV)));
 								if (getHuodeCount != 0)
 								{
-									int attri_bilv = (ndv.getGoodsType() == GoodsType.PROP ? 0:1);//¹æÔòÓĞ¸Ä±ä
+									int attri_bilv = (ndv.getGoodsType() == GoodsType.PROP ? 0:1);//è§„åˆ™æœ‰æ”¹å˜
 									if (guaji_type == GuaJiConstant.DOUBLE_G)
 									{
 										attri_bilv *= 2;
@@ -711,7 +711,7 @@ public class GuajiAction extends BaseAction
 													attri_bilv *= 10;
 												}
 									
-									// ÊôĞÔ×°±¸ÊıÁ¿
+									// å±æ€§è£…å¤‡æ•°é‡
 									int attriCount = getHuodeCount * attri_bilv
 											/ 100;
 									int youCount = 0;
@@ -811,7 +811,7 @@ public class GuajiAction extends BaseAction
 				}
 
 				setMessage(request, sb.toString()
-						+ (mess.equals("") ? "" : "»ñµÃÎïÆ·:" + mess));
+						+ (mess.equals("") ? "" : "è·å¾—ç‰©å“:" + mess));
 				return mapping.findForward(ERROR);
 
 			}
@@ -819,7 +819,7 @@ public class GuajiAction extends BaseAction
 		catch (Exception e)
 		{
 			log.info(e.getStackTrace());
-			setMessage(request, "³ö´íÁË");
+			setMessage(request, "å‡ºé”™äº†");
 			return mapping.findForward(ERROR);
 		}
 	}
@@ -879,7 +879,7 @@ public class GuajiAction extends BaseAction
 	
 	
 
-	// ²é¿´¹Ò»úÁË¶à³¤Ê±¼ä(·ÖÖÓ),³¬¹ı6Ğ¡Ê±°´6Ğ¡Ê±¼ÆËã
+	// æŸ¥çœ‹æŒ‚æœºäº†å¤šé•¿æ—¶é—´(åˆ†é’Ÿ),è¶…è¿‡6å°æ—¶æŒ‰6å°æ—¶è®¡ç®—
 	private int lookTime(GuajiVo gv, long yuanbao, int every_min_spend,boolean isFree)
 	{
 		int time1 = 0;
@@ -912,28 +912,28 @@ public class GuajiAction extends BaseAction
 		switch (type)
 		{
 			case GuaJiConstant.COMMON:
-				sb.append("ÆÕÍ¨ÀëÏß¹Ò»ú£¨×î»ù±¾µÄÀëÏß¹Ò»ú£¬Ã»ÓĞÈÎºÎÌØÊâĞ§¹û£¬Ã¿·ÖÖÓÏûºÄ"
-						+ GuaJiConstant.COMMON_YUANBAO + ""+GameConfig.getYuanbaoName()+"¡££©");
+				sb.append("æ™®é€šç¦»çº¿æŒ‚æœºï¼ˆæœ€åŸºæœ¬çš„ç¦»çº¿æŒ‚æœºï¼Œæ²¡æœ‰ä»»ä½•ç‰¹æ®Šæ•ˆæœï¼Œæ¯åˆ†é’Ÿæ¶ˆè€—"
+						+ GuaJiConstant.COMMON_YUANBAO + ""+GameConfig.getYuanbaoName()+"ã€‚ï¼‰");
 				break;
 			case GuaJiConstant.DOUBLE_G:
-				sb.append("Ë«±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú£¨ÏíÊÜ´ò¹ÖÊ±»ñµÃ2±¶¾­ÑéµÄĞ§¹û¼Ó³É,2±¶ÊıÁ¿µÄÎïÆ·µÄĞ§¹û¼Ó³É,2±¶ÊıÁ¿µÄÊôĞÔ×°±¸µÄĞ§¹û¼Ó³É,Ã¿·ÖÖÓÏûºÄ"
-						+ GuaJiConstant.DOUBLE_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"¡££©");
+				sb.append("åŒå€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœºï¼ˆäº«å—æ‰“æ€ªæ—¶è·å¾—2å€ç»éªŒçš„æ•ˆæœåŠ æˆ,2å€æ•°é‡çš„ç‰©å“çš„æ•ˆæœåŠ æˆ,2å€æ•°é‡çš„å±æ€§è£…å¤‡çš„æ•ˆæœåŠ æˆ,æ¯åˆ†é’Ÿæ¶ˆè€—"
+						+ GuaJiConstant.DOUBLE_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"ã€‚ï¼‰");
 				break;
 			case GuaJiConstant.FIVE_G:
-				sb.append("Îå±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú£¨ÏíÊÜ´ò¹ÖÊ±»ñµÃ5±¶¾­ÑéµÄĞ§¹û¼Ó³É,5±¶ÊıÁ¿µÄÎïÆ·µÄĞ§¹û¼Ó³É,5±¶ÊıÁ¿µÄÊôĞÔ×°±¸µÄĞ§¹û¼Ó³É,Ã¿·ÖÖÓÏûºÄ"
-						+ GuaJiConstant.FIVE_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"¡££©");
+				sb.append("äº”å€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœºï¼ˆäº«å—æ‰“æ€ªæ—¶è·å¾—5å€ç»éªŒçš„æ•ˆæœåŠ æˆ,5å€æ•°é‡çš„ç‰©å“çš„æ•ˆæœåŠ æˆ,5å€æ•°é‡çš„å±æ€§è£…å¤‡çš„æ•ˆæœåŠ æˆ,æ¯åˆ†é’Ÿæ¶ˆè€—"
+						+ GuaJiConstant.FIVE_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"ã€‚ï¼‰");
 				break;
 			case GuaJiConstant.EIGHT_G:
-				sb.append("°Ë±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú£¨ÏíÊÜ´ò¹ÖÊ±»ñµÃ8±¶¾­ÑéµÄĞ§¹û¼Ó³É,8±¶ÊıÁ¿µÄÎïÆ·µÄĞ§¹û¼Ó³É,8±¶ÊıÁ¿µÄÊôĞÔ×°±¸µÄĞ§¹û¼Ó³É,Ã¿·ÖÖÓÏûºÄ"
-						+ GuaJiConstant.EIGHT_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"¡££©");
+				sb.append("å…«å€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœºï¼ˆäº«å—æ‰“æ€ªæ—¶è·å¾—8å€ç»éªŒçš„æ•ˆæœåŠ æˆ,8å€æ•°é‡çš„ç‰©å“çš„æ•ˆæœåŠ æˆ,8å€æ•°é‡çš„å±æ€§è£…å¤‡çš„æ•ˆæœåŠ æˆ,æ¯åˆ†é’Ÿæ¶ˆè€—"
+						+ GuaJiConstant.EIGHT_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"ã€‚ï¼‰");
 				break;
 			case GuaJiConstant.TEN_G:
-				sb.append("Ê®±¶¾­Ñé,ĞÒÔË,µôÂÊÀëÏß¹Ò»ú£¨ÏíÊÜ´ò¹ÖÊ±»ñµÃ10±¶¾­ÑéµÄĞ§¹û¼Ó³É,10±¶ÊıÁ¿µÄÎïÆ·µÄĞ§¹û¼Ó³É,10±¶ÊıÁ¿µÄÊôĞÔ×°±¸µÄĞ§¹û¼Ó³É,Ã¿·ÖÖÓÏûºÄ"
-						+ GuaJiConstant.TEN_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"¡££©");
+				sb.append("åå€ç»éªŒ,å¹¸è¿,æ‰ç‡ç¦»çº¿æŒ‚æœºï¼ˆäº«å—æ‰“æ€ªæ—¶è·å¾—10å€ç»éªŒçš„æ•ˆæœåŠ æˆ,10å€æ•°é‡çš„ç‰©å“çš„æ•ˆæœåŠ æˆ,10å€æ•°é‡çš„å±æ€§è£…å¤‡çš„æ•ˆæœåŠ æˆ,æ¯åˆ†é’Ÿæ¶ˆè€—"
+						+ GuaJiConstant.TEN_G_YUANBAO + ""+GameConfig.getYuanbaoName()+"ã€‚ï¼‰");
 				break;
 			default:
-				sb.append("ÆÕÍ¨ÀëÏß¹Ò»ú£¨×î»ù±¾µÄÀëÏß¹Ò»ú£¬Ã»ÓĞÈÎºÎÌØÊâĞ§¹û£¬Ã¿·ÖÖÓÏûºÄ"
-						+ GuaJiConstant.COMMON_YUANBAO + ""+GameConfig.getYuanbaoName()+"¡££©");
+				sb.append("æ™®é€šç¦»çº¿æŒ‚æœºï¼ˆæœ€åŸºæœ¬çš„ç¦»çº¿æŒ‚æœºï¼Œæ²¡æœ‰ä»»ä½•ç‰¹æ®Šæ•ˆæœï¼Œæ¯åˆ†é’Ÿæ¶ˆè€—"
+						+ GuaJiConstant.COMMON_YUANBAO + ""+GameConfig.getYuanbaoName()+"ã€‚ï¼‰");
 				break;
 		}
 		return sb.toString();

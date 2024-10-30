@@ -7,23 +7,23 @@ import com.ls.pub.constant.buff.BuffType;
 import com.ls.web.service.log.DataErrorLog;
 
 /**
- * ¹¦ÄÜ£ºÍæ¼ÒÊôĞÔÄ£ĞÍ
+ * åŠŸèƒ½ï¼šç©å®¶å±æ€§æ¨¡å‹
  * @author ls
  * Aug 13, 2009
  * 3:08:51 PM
  */
 public class PropertyModel
 {
-	public static int ADD_PROPERTY = 1;// ¼Ó¹ØÊôĞÔ
-	public static int SUB_PROPERTY = -1;// ¼õÏà¹ØÊôĞÔ
+	public static int ADD_PROPERTY = 1;// åŠ å…³å±æ€§
+	public static int SUB_PROPERTY = -1;// å‡ç›¸å…³å±æ€§
 	
 	
-	public static final int HP_UP = 0;//hpÉÏÏŞ
-	public static final int MP_UP = 1;//mpÉÏÏŞ
-	public static final int ATTACK_UP = 2;//¹¥»÷´ó
-	public static final int ATTACK_LOW = 3;//¹¥»÷Ğ¡
-	public static final int DEFEND_UP = 4;//·ÀÓù
-	public static final int DEFEND_LOW= 5;//·ÀÓù
+	public static final int HP_UP = 0;//hpä¸Šé™
+	public static final int MP_UP = 1;//mpä¸Šé™
+	public static final int ATTACK_UP = 2;//æ”»å‡»å¤§
+	public static final int ATTACK_LOW = 3;//æ”»å‡»å°
+	public static final int DEFEND_UP = 4;//é˜²å¾¡
+	public static final int DEFEND_LOW= 5;//é˜²å¾¡
 	
 	public final static int JIN_DEFENCE = 6;
 	public final static int MU_DEFENCE = 7;
@@ -37,13 +37,13 @@ public class PropertyModel
 	public final static int HUO_ATTACK = 14;
 	public final static int TU_ATTACK = 15;
 	
-	public final static int CRIT = 16;//±©»÷ÂÊ
+	public final static int CRIT = 16;//æš´å‡»ç‡
 	
 	
-	private int[]  propertys = new int[17];//¸½¼ÓÊôĞÔÖµ
+	private int[]  propertys = new int[17];//é™„åŠ å±æ€§å€¼
 	
 	/**
-	 * ³õÊ¼»¯ÊôĞÔÖµ
+	 * åˆå§‹åŒ–å±æ€§å€¼
 	 */
 	public void init()
 	{
@@ -54,7 +54,7 @@ public class PropertyModel
 	}
 	
 	/**
-	 * µÃµ½Ö¸¶¨ÊôĞÔµÄÊôĞÔÖµ
+	 * å¾—åˆ°æŒ‡å®šå±æ€§çš„å±æ€§å€¼
 	 * @param property_type
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class PropertyModel
 	}
 	
 	/**
-	 * ¸üĞÂÖ¸¶¨ÊôĞÔµÄÊôĞÔÖµ
+	 * æ›´æ–°æŒ‡å®šå±æ€§çš„å±æ€§å€¼
 	 * @param property_type
 	 * @return
 	 */
@@ -85,7 +85,7 @@ public class PropertyModel
 	}
 	
 	/**
-	 * µÃµ½ËùÓĞÊôĞÔÖµ
+	 * å¾—åˆ°æ‰€æœ‰å±æ€§å€¼
 	 * @return
 	 */
 	public int[] getPropertys()
@@ -94,7 +94,7 @@ public class PropertyModel
 	}
 	
 	/**
-	 * ¸½¼ÓËùÓĞÊôĞÔ
+	 * é™„åŠ æ‰€æœ‰å±æ€§
 	 */
 	public void appendPropertysFromPropertyModel( PropertyModel new_property_model )
 	{
@@ -112,7 +112,7 @@ public class PropertyModel
 	
 	
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØÊôĞÔ
+	 * ç»™ç©å®¶åŠ è½½å±æ€§
 	 */
 	public void loadPropertys(PartInfoVO player)
 	{
@@ -145,7 +145,7 @@ public class PropertyModel
 		}
 	}
 	/**
-	 * Í¨¹ıÊôĞÔ×Ö·û´®¸½¼ÓÊôĞÔ
+	 * é€šè¿‡å±æ€§å­—ç¬¦ä¸²é™„åŠ å±æ€§
 	 */
 	public void appendPropertyByAttriStr(String attriStr,int flag )
 	{
@@ -164,7 +164,7 @@ public class PropertyModel
 					}
 					else
 					{
-						DataErrorLog.debugData("PropertyModel.appendPropertyByAttriStr:ÊôĞÔ×Ö·û´®´íÎó,attriStr="+attriStr);
+						DataErrorLog.debugData("PropertyModel.appendPropertyByAttriStr:å±æ€§å­—ç¬¦ä¸²é”™è¯¯,attriStr="+attriStr);
 					}
 				}
 			}
@@ -172,10 +172,10 @@ public class PropertyModel
 	}
 	
 	/**
-	 *  ¸ù¾İbuffÀàĞÍÉèÖÃ»ù±¾ÀàĞÍ
+	 *  æ ¹æ®buffç±»å‹è®¾ç½®åŸºæœ¬ç±»å‹
 	 * @param property_value
 	 * @param buff_type
-	 * @param flag			-1±íÊ¾¼Ó£¬1±íÊ¾¼õ
+	 * @param flag			-1è¡¨ç¤ºåŠ ï¼Œ1è¡¨ç¤ºå‡
 	 */
 	public void appendPropertyByBuffType( int property_value,int buff_type,int flag )
 	{
@@ -204,7 +204,7 @@ public class PropertyModel
 				updatePropertyByType(property_value,MP_UP);
 				return;
 			}
-			// *********************ÎåĞĞ¹¥»÷µÄbuff
+			// *********************äº”è¡Œæ”»å‡»çš„buff
 			case BuffType.JIN_ATTACK:
 			{
 				updatePropertyByType(property_value,JIN_ATTACK);
@@ -230,7 +230,7 @@ public class PropertyModel
 				updatePropertyByType(property_value,TU_ATTACK);
 				return;
 			}
-			//**********************ÎåĞĞ·ÀÓùµÄbuff
+			//**********************äº”è¡Œé˜²å¾¡çš„buff
 			case BuffType.JIN_DEFENCE:
 			{
 				updatePropertyByType(property_value,JIN_DEFENCE);
@@ -256,33 +256,33 @@ public class PropertyModel
 				updatePropertyByType(property_value,TU_DEFENCE);
 				return;
 			}
-			//******************ÆäËû
-			case BuffType.ADD_CATCH_PROBABILITY:// Ôö¼Ó²¶»ñ¸ÅÂÊ
+			//******************å…¶ä»–
+			case BuffType.ADD_CATCH_PROBABILITY:// å¢åŠ æ•è·æ¦‚ç‡
 			{
 				return;
 			}
-			case BuffType.ADD_DROP_PROBABILITY:// Ôö¼ÓµôÂä¸ÅÂÊ
+			case BuffType.ADD_DROP_PROBABILITY:// å¢åŠ æ‰è½æ¦‚ç‡
 			{
 				return;
 			}
-			case BuffType.ADD_EXP:// ¾­Ñé¼Ó³É
+			case BuffType.ADD_EXP:// ç»éªŒåŠ æˆ
 			{
 				return;
 			}
-			case BuffType.ADD_NONSUCH_PROBABILITY:// Ôö¼Ó¼«Æ·×°±¸µôÂä¸ÅÂÊ
+			case BuffType.ADD_NONSUCH_PROBABILITY:// å¢åŠ æå“è£…å¤‡æ‰è½æ¦‚ç‡
 			{
 				return;
 			}
 
-			case BuffType.IMMUNITY_POISON:// **ÊÇ·ñÃâÒßÖĞ¶¾
+			case BuffType.IMMUNITY_POISON:// **æ˜¯å¦å…ç–«ä¸­æ¯’
 			{
 				return;
 			}
-			case BuffType.IMMUNITY__DIZZY:// **ÊÇ·ñÃâÒß»÷ÔÎ
+			case BuffType.IMMUNITY__DIZZY:// **æ˜¯å¦å…ç–«å‡»æ™•
 			{
 				return;
 			}
-			case BuffType.CHANGER_BJ:// ±©»÷ÂÊ¼Ó³É
+			case BuffType.CHANGER_BJ:// æš´å‡»ç‡åŠ æˆ
 			{
 				return;
 			}

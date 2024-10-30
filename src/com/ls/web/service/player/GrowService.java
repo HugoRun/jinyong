@@ -14,26 +14,26 @@ import com.ls.web.service.rank.RankService;
 import com.pm.service.systemInfo.SystemInfoService;
 
 /**
- * @author ls ¹¦ÄÜ:Íæ¼Ò³É³¤µÄÏà¹ØÂß¼­ Mar 5, 2009
+ * @author ls åŠŸèƒ½:ç©å®¶æˆé•¿çš„ç›¸å…³é€»è¾‘ Mar 5, 2009
  */
 public class GrowService
 {
 
 	Logger logger = Logger.getLogger("log.service");
 
-	// ¾­Ñé±¶Êı
+	// ç»éªŒå€æ•°
 	public final static int EXP_MULTIPLE = 1;
-	// npcµôÂä¾­Ñé±¶Êı
+	// npcæ‰è½ç»éªŒå€æ•°
 	public final static int EXP_NPCDROP = 1;
 
 	/**
-	 * µÃµ½³É³¤ĞÅÏ¢
+	 * å¾—åˆ°æˆé•¿ä¿¡æ¯
 	 */
 	private UGrowVO getGrowInfo(RoleEntity roleEntity)
 	{
 		if (roleEntity == null)
 		{
-			logger.info("²ÎÊıÎª¿Õ");
+			logger.info("å‚æ•°ä¸ºç©º");
 			return null;
 		}
 		int grade = roleEntity.getBasicInfo().getGrade();
@@ -44,9 +44,9 @@ public class GrowService
 	}
 
 	/**
-	 * ½ÇÉ«¶ªÊ§¾­Ñé´¦ÀíÃ¿´Î¼õ(next_exp-benji_exp)/20µã¾­Ñé£¬Èç¹û¼õÈ¥Ö®ºóĞ¡ÓÚ±¾¼¶¾­ÑéÔò²»¼õ¾­Ñé
+	 * è§’è‰²ä¸¢å¤±ç»éªŒå¤„ç†æ¯æ¬¡å‡(next_exp-benji_exp)/20ç‚¹ç»éªŒï¼Œå¦‚æœå‡å»ä¹‹åå°äºæœ¬çº§ç»éªŒåˆ™ä¸å‡ç»éªŒ
 	 * 
-	 * 04.09 Íæ¼ÒµôÂä¾­Ñé¼õÎªÔ­À´µÄÒ»°ë,¼´2.5%
+	 * 04.09 ç©å®¶æ‰è½ç»éªŒå‡ä¸ºåŸæ¥çš„ä¸€åŠ,å³2.5%
 	 * 
 	 * @param player
 	 * @return
@@ -58,11 +58,11 @@ public class GrowService
 			return 0;
 		}
 
-		// pkÎª30¼¶ÒÔÏÂ²»µô¾­Ñé
+		// pkä¸º30çº§ä»¥ä¸‹ä¸æ‰ç»éªŒ
 		if (player.getPGrade() <= 29)
 			return 0;
 
-		// Êµ¼ÊµôÂäµÄ¾­Ñé
+		// å®é™…æ‰è½çš„ç»éªŒ
 		long dropedExp = 0;
 		if (player == null)
 		{
@@ -71,9 +71,9 @@ public class GrowService
 		long current_exp = Long.parseLong(player.getPExperience());
 		long benji_exp = Long.parseLong(player.getPBjExperience());
 		long next_exp = Long.parseLong(player.getPXiaExperience());
-		// ËÀÍöºóµôÂä±¾¼¶¾­ÑéµÄ5%
+		// æ­»äº¡åæ‰è½æœ¬çº§ç»éªŒçš„5%
 		long shouldDropExp = benji_exp*5/100;
-		/* µ±µ±Ç°¾­ÑéµÈÓÚ±¾¼¶¾­ÑéµÄÊ±ºò²»µô */
+		/* å½“å½“å‰ç»éªŒç­‰äºæœ¬çº§ç»éªŒçš„æ—¶å€™ä¸æ‰ */
 		if ((current_exp - shouldDropExp) < benji_exp)
 		{
 			dropedExp = 0;
@@ -89,19 +89,19 @@ public class GrowService
 		PropertyService propertyService = new PropertyService();
 		propertyService.updateExpProperty(player.getPPk(), current_exp);
 
-		logger.debug("½ÇÉ«µôÂä¾­Ñé:" + dropedExp);
+		logger.debug("è§’è‰²æ‰è½ç»éªŒ:" + dropedExp);
 		return dropedExp;
 	}
 
 	/**
-	 * ËÀÍöµôÂäµ±Ç°µÈ¼¶¾­ÑéµÄ10%
+	 * æ­»äº¡æ‰è½å½“å‰ç­‰çº§ç»éªŒçš„10%
 	 * 
 	 * @param player
 	 * @return
 	 */
 	public long dropPlayerExperience(PartInfoVO player)
 	{
-		// ºé»ÄÎª10¼¶ÒÔÏÂ²»µô¾­Ñé
+		// æ´ªè’ä¸º10çº§ä»¥ä¸‹ä¸æ‰ç»éªŒ
 		if (player.getPGrade() <= 10)
 			return 0;
 		long dropedExp = 0;
@@ -111,9 +111,9 @@ public class GrowService
 		}
 		long current_exp = Long.parseLong(player.getPExperience());
 		long benji_exp = Long.parseLong(player.getPBjExperience());
-		// ËÀÍöºóµôÂä±¾¼¶¾­ÑéµÄ5%
+		// æ­»äº¡åæ‰è½æœ¬çº§ç»éªŒçš„5%
 		long shouldDropExp = benji_exp*5/100;
-		/* µ±µ±Ç°¾­ÑéµÈÓÚ±¾¼¶¾­ÑéµÄÊ±ºò²»µô */
+		/* å½“å½“å‰ç»éªŒç­‰äºæœ¬çº§ç»éªŒçš„æ—¶å€™ä¸æ‰ */
 		if ((current_exp - shouldDropExp) < benji_exp)
 		{
 			dropedExp = current_exp-benji_exp;
@@ -129,12 +129,12 @@ public class GrowService
 		PropertyService propertyService = new PropertyService();
 		propertyService.updateExpProperty(player.getPPk(), current_exp);
 
-		logger.debug("½ÇÉ«µôÂä¾­Ñé:" + dropedExp);
+		logger.debug("è§’è‰²æ‰è½ç»éªŒ:" + dropedExp);
 		return dropedExp;
 	}
 
 	/**
-	 * ¸ø½ÇÉ«Ôö¼Ó¾­Ñé(½ÇÉ«µÄ³É³¤),£¬Èç¹ı½ÇÉ«Éı¼¶·µ»Ø³É³¤ÃèÊö
+	 * ç»™è§’è‰²å¢åŠ ç»éªŒ(è§’è‰²çš„æˆé•¿),ï¼Œå¦‚è¿‡è§’è‰²å‡çº§è¿”å›æˆé•¿æè¿°
 	 */
 	public String playerGrow(RoleEntity roleEntity, PartInfoVO player,
 			long experience)
@@ -143,17 +143,17 @@ public class GrowService
 		String grow_display = null;
 		PartInfoVO character = player;
 		long current_experience = Long.parseLong(character.getPExperience()
-				.trim());// µ±Ç°¾­ÑéÖµ
+				.trim());// å½“å‰ç»éªŒå€¼
 		long xia_experience = Long.parseLong(character.getPXiaExperience()
-				.trim());// ÏÂÒ»¼¶ËùĞè¾­ÑéÖµ
+				.trim());// ä¸‹ä¸€çº§æ‰€éœ€ç»éªŒå€¼
 
-		long last_experience = current_experience + experience;// Ôö¼ÓËùµÃ¾­ÑéºóµÄ¾­ÑéÖµ
+		long last_experience = current_experience + experience;// å¢åŠ æ‰€å¾—ç»éªŒåçš„ç»éªŒå€¼
 
-		if (player.getPGrade() == GameConfig.getGradeUpperLimit())// Èç¹ûµ½×î¸ß¼¶Ôò²»Éı¼¶
+		if (player.getPGrade() == GameConfig.getGradeUpperLimit())// å¦‚æœåˆ°æœ€é«˜çº§åˆ™ä¸å‡çº§
 		{
 			if (current_experience == xia_experience)
 			{
-				// µ½×î¸ß¼¶½øĞĞµÄ²Ù×÷
+				// åˆ°æœ€é«˜çº§è¿›è¡Œçš„æ“ä½œ
 				grow_display = maxGradeDoThing(roleEntity, experience, 1);
 				return grow_display;
 			}
@@ -170,7 +170,7 @@ public class GrowService
 					if (last_experience > xia_experience)
 					{
 						last_experience = xia_experience;
-						grow_display = "Äú»ñµÃÁË:¾­Ñé+" + experience + "µã";
+						grow_display = "æ‚¨è·å¾—äº†:ç»éªŒ+" + experience + "ç‚¹";
 					}
 				}
 			}
@@ -179,47 +179,47 @@ public class GrowService
 		{
 			if (character == null)
 			{
-				logger.info("½ÇÉ«Ôö¼Ó¾­ÑéÊ±³ö´í:½ÇÉ«ÀàÎª¿Õ¡£");
+				logger.info("è§’è‰²å¢åŠ ç»éªŒæ—¶å‡ºé”™:è§’è‰²ç±»ä¸ºç©ºã€‚");
 				return null;
 			}
 
-			if (last_experience > xia_experience)// µ±Ç°¾­ÑéÒÑµ½Éı¼¶¾­ÑéÒªÇó
+			if (last_experience > xia_experience)// å½“å‰ç»éªŒå·²åˆ°å‡çº§ç»éªŒè¦æ±‚
 			{
 
 				UGrowDao growDao = new UGrowDao();
 				boolean isAutoGrow = growDao.isAutogrow(character.getPGrade(),
 						character.getPRace());
 
-				if (!isAutoGrow)// ´óÓÚµÈÓÚ9¼¶Ê±£¬²»¿ÉÒÔ×ÔÈ»Éı¼¶
+				if (!isAutoGrow)// å¤§äºç­‰äº9çº§æ—¶ï¼Œä¸å¯ä»¥è‡ªç„¶å‡çº§
 				{
-					// µ±Ç°¾­ÑéÒÑµ½Éı¼¶¾­ÑéÒªÇó,µ«²»ÄÜ×ÔÈ»Éı¼¶£¬ĞèÒª×ªÖ°µÀ¾ßÉı¼¶
-					last_experience = xia_experience;// ²»ÄÜÉı¼¶Ê±¾­Ñé²»Ôö¼Ó£¬µ±Ç°¾­Ñé¾ÍÊÇÏÂ¼¶¾­Ñé
-					grow_display = "Éı¼¶¾­ÑéÒÑ´ïµ½,Íê³É×ªÖ°ÈÎÎñºó·½¿ÉÉı¼¶";
+					// å½“å‰ç»éªŒå·²åˆ°å‡çº§ç»éªŒè¦æ±‚,ä½†ä¸èƒ½è‡ªç„¶å‡çº§ï¼Œéœ€è¦è½¬èŒé“å…·å‡çº§
+					last_experience = xia_experience;// ä¸èƒ½å‡çº§æ—¶ç»éªŒä¸å¢åŠ ï¼Œå½“å‰ç»éªŒå°±æ˜¯ä¸‹çº§ç»éªŒ
+					grow_display = "å‡çº§ç»éªŒå·²è¾¾åˆ°,å®Œæˆè½¬èŒä»»åŠ¡åæ–¹å¯å‡çº§";
 				}
 				else
-				// ¿ÉÒÔ×ÔÈ»Éı¼¶
+				// å¯ä»¥è‡ªç„¶å‡çº§
 				{
-					grow_display = upgrade(character, roleEntity);// Íæ¼ÒÉı¼¶
+					grow_display = upgrade(character, roleEntity);// ç©å®¶å‡çº§
 				}
 			}
 			else
 			{
-				grow_display = "Äú»ñµÃÁË:¾­Ñé+" + experience + "µã";
+				grow_display = "æ‚¨è·å¾—äº†:ç»éªŒ+" + experience + "ç‚¹";
 			}
 		}
 
-		logger.info("¸ø½ÇÉ«Ôö¼Ó¾­Ñé:" + experience + "µã");
+		logger.info("ç»™è§’è‰²å¢åŠ ç»éªŒ:" + experience + "ç‚¹");
 
-		// ¼à¿Ø
+		// ç›‘æ§
 		LogService logService = new LogService();
 		logService.recordExpLog(roleEntity.getBasicInfo().getPPk(), roleEntity
 				.getBasicInfo().getName(), roleEntity.getBasicInfo()
-				.getCurExp(), experience + "", "´ò¹ÖµÃµ½");
+				.getCurExp(), experience + "", "æ‰“æ€ªå¾—åˆ°");
 
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(roleEntity.getBasicInfo().getPPk(),
 				"p_exp", experience);
-		// ¸øÍæ¼ÒÔö¼Ó¾­Ñé
+		// ç»™ç©å®¶å¢åŠ ç»éªŒ
 		updateExperience(character, last_experience);
 
 		character.setPExperience(last_experience + "");
@@ -232,7 +232,7 @@ public class GrowService
 	 * @param roleEntity
 	 * @param experience
 	 * @param type
-	 *            Îª1´ú±íÓĞ·µ»Ø,Îª0´ú±í·µ»ØnullÖµ
+	 *            ä¸º1ä»£è¡¨æœ‰è¿”å›,ä¸º0ä»£è¡¨è¿”å›nullå€¼
 	 * @return
 	 */
 	private String maxGradeDoThing(RoleEntity roleEntity, long experience,
@@ -247,8 +247,8 @@ public class GrowService
 			int translateExp = Math.round((float) ((float) experience / 1000));
 			roleEntity.getBasicInfo().addCopper(translateExp);
 
-			maxGradeDisplay = "ÓÉÓÚÄúÒÑ¾­µ½´ï×î¸ß¼¶,ËùÒÔËùµÃ¾­ÑéµÄÇ§·ÖÖ®Ò»×ª»¯Îª½ğÇ®!<br/>»ñµÃ"
-					+ translateExp+"ÁéÊ¯";
+			maxGradeDisplay = "ç”±äºæ‚¨å·²ç»åˆ°è¾¾æœ€é«˜çº§,æ‰€ä»¥æ‰€å¾—ç»éªŒçš„åƒåˆ†ä¹‹ä¸€è½¬åŒ–ä¸ºé‡‘é’±!<br/>è·å¾—"
+					+ translateExp+"çµçŸ³";
 		}
 
 		if (type == 1)
@@ -262,7 +262,7 @@ public class GrowService
 	}
 
 	/**
-	 * ¸øÍæ¼ÒÔö¼Ó¾­Ñé
+	 * ç»™ç©å®¶å¢åŠ ç»éªŒ
 	 * 
 	 * @param character
 	 * @param last_experience
@@ -275,7 +275,7 @@ public class GrowService
 	}
 
 	/**
-	 * ÈÎÎñ¸ø½ÇÉ«Ôö¼Ó¾­Ñé(½ÇÉ«µÄ³É³¤),£¬Èç¹ı½ÇÉ«Éı¼¶·µ»Ø³É³¤ÃèÊö
+	 * ä»»åŠ¡ç»™è§’è‰²å¢åŠ ç»éªŒ(è§’è‰²çš„æˆé•¿),ï¼Œå¦‚è¿‡è§’è‰²å‡çº§è¿”å›æˆé•¿æè¿°
 	 */
 	public String playerGrowTask(RoleEntity roleEntity, PartInfoVO player,
 			int experience)
@@ -285,20 +285,20 @@ public class GrowService
 
 		if (character == null)
 		{
-			logger.info("½ÇÉ«Ôö¼Ó¾­ÑéÊ±³ö´í:½ÇÉ«ÀàÎª¿Õ¡£");
+			logger.info("è§’è‰²å¢åŠ ç»éªŒæ—¶å‡ºé”™:è§’è‰²ç±»ä¸ºç©ºã€‚");
 			return null;
 		}
 
-		long current_experience = Long.parseLong(character.getPExperience());// µ±Ç°¾­ÑéÖµ
-		long xia_experience = Long.parseLong(character.getPXiaExperience());// ÏÂÒ»¼¶ËùĞè¾­ÑéÖµ
+		long current_experience = Long.parseLong(character.getPExperience());// å½“å‰ç»éªŒå€¼
+		long xia_experience = Long.parseLong(character.getPXiaExperience());// ä¸‹ä¸€çº§æ‰€éœ€ç»éªŒå€¼
 
-		long last_experience = current_experience + experience;// Ôö¼ÓËùµÃ¾­ÑéºóµÄ¾­ÑéÖµ
-		if (player.getPGrade() == GameConfig.getGradeUpperLimit())// Èç¹ûµ½×î¸ß¼¶Ôò²»Éı¼¶
+		long last_experience = current_experience + experience;// å¢åŠ æ‰€å¾—ç»éªŒåçš„ç»éªŒå€¼
+		if (player.getPGrade() == GameConfig.getGradeUpperLimit())// å¦‚æœåˆ°æœ€é«˜çº§åˆ™ä¸å‡çº§
 		{
 
 			if (current_experience == xia_experience)
 			{
-				// µ½×î¸ß¼¶½øĞĞµÄ²Ù×÷
+				// åˆ°æœ€é«˜çº§è¿›è¡Œçš„æ“ä½œ
 				grow_display = maxGradeDoThing(roleEntity, experience, 1);
 				return grow_display;
 			}
@@ -322,38 +322,38 @@ public class GrowService
 		}
 		else
 		{
-			if (last_experience > xia_experience)// µ±Ç°¾­ÑéÒÑµ½Éı¼¶¾­ÑéÒªÇó
+			if (last_experience > xia_experience)// å½“å‰ç»éªŒå·²åˆ°å‡çº§ç»éªŒè¦æ±‚
 			{
 
 				UGrowDao growDao = new UGrowDao();
 				boolean isAutoGrow = growDao.isAutogrow(character.getPGrade(),
 						character.getPRace());
 
-				if (!isAutoGrow)// ²»¿ÉÒÔ×ÔÈ»Éı¼¶
+				if (!isAutoGrow)// ä¸å¯ä»¥è‡ªç„¶å‡çº§
 				{
-					// µ±Ç°¾­ÑéÒÑµ½Éı¼¶¾­ÑéÒªÇó,µ«²»ÄÜ×ÔÈ»Éı¼¶£¬ĞèÒª×ªÖ°µÀ¾ßÉı¼¶
-					last_experience = xia_experience;// ²»ÄÜÉı¼¶Ê±¾­Ñé²»Ôö¼Ó£¬µ±Ç°¾­Ñé¾ÍÊÇÏÂ¼¶¾­Ñé
-					grow_display = "Éı¼¶¾­ÑéÒÑ´ïµ½,Íê³É×¨Ö°ÈÎÎñºó·½¿ÉÉı¼¶";
+					// å½“å‰ç»éªŒå·²åˆ°å‡çº§ç»éªŒè¦æ±‚,ä½†ä¸èƒ½è‡ªç„¶å‡çº§ï¼Œéœ€è¦è½¬èŒé“å…·å‡çº§
+					last_experience = xia_experience;// ä¸èƒ½å‡çº§æ—¶ç»éªŒä¸å¢åŠ ï¼Œå½“å‰ç»éªŒå°±æ˜¯ä¸‹çº§ç»éªŒ
+					grow_display = "å‡çº§ç»éªŒå·²è¾¾åˆ°,å®Œæˆä¸“èŒä»»åŠ¡åæ–¹å¯å‡çº§";
 				}
 				else
-				// ¿ÉÒÔ×ÔÈ»Éı¼¶
+				// å¯ä»¥è‡ªç„¶å‡çº§
 				{
-					grow_display = upgrade(character, roleEntity);// Íæ¼ÒÉı¼¶
+					grow_display = upgrade(character, roleEntity);// ç©å®¶å‡çº§
 				}
 			}
 			else
 			{
-				logger.info("¸ø½ÇÉ«Ôö¼Ó¾­Ñé" + experience + "µã");
+				logger.info("ç»™è§’è‰²å¢åŠ ç»éªŒ" + experience + "ç‚¹");
 			}
 		}
 
-		// ¼à¿Ø
+		// ç›‘æ§
 		LogService logService = new LogService();
 		logService.recordExpLog(roleEntity.getBasicInfo().getPPk(), roleEntity
 				.getBasicInfo().getName(), roleEntity.getBasicInfo()
-				.getCurExp(), experience + "", "ÈÎÎñµÃµ½");
+				.getCurExp(), experience + "", "ä»»åŠ¡å¾—åˆ°");
 
-		// Í³¼ÆĞèÒª
+		// ç»Ÿè®¡éœ€è¦
 		new RankService().updateAdd(roleEntity.getBasicInfo().getPPk(),
 				"p_exp", experience);
 		character.setPExperience(last_experience + "");
@@ -364,7 +364,7 @@ public class GrowService
 	}
 
 	/**
-	 * ½«µ±Ç°¾­ÑéµôÂäµ½¾­Ñé½ğÇ®±íÖĞ
+	 * å°†å½“å‰ç»éªŒæ‰è½åˆ°ç»éªŒé‡‘é’±è¡¨ä¸­
 	 */
 	/*
 	 * public void dropExpToExpTable(int p_pk, long exp) { RoleEntity roleEntity =
@@ -373,17 +373,17 @@ public class GrowService
 	 */
 
 	/**
-	 * Íæ¼ÒÉı¼¶£¬¸ù¾İ³É³¤±í£¬¸üĞÂu_part_info±í
+	 * ç©å®¶å‡çº§ï¼Œæ ¹æ®æˆé•¿è¡¨ï¼Œæ›´æ–°u_part_infoè¡¨
 	 * 
 	 * @param player
-	 * @return Éı¼¶ÃèÊö
+	 * @return å‡çº§æè¿°
 	 */
 	public String upgrade(PartInfoVO player, RoleEntity roleEntity)
 	{
 		String upgrade_display = "";
 		if (player == null)
 		{
-			logger.info("²ÎÊıÎª¿Õ");
+			logger.info("å‚æ•°ä¸ºç©º");
 			return upgrade_display;
 		}
 		if(player.getPGrade()==GameConfig.getGradeUpperHighLimit())
@@ -392,27 +392,27 @@ public class GrowService
 		}
 		SystemInfoService SystemInfoService = new SystemInfoService();
 
-		// Íæ¼ÒµÈ¼¶¼ÓÒ»
+		// ç©å®¶ç­‰çº§åŠ ä¸€
 		player.setPGrade(player.getPGrade() + 1);
-		// Éı¼¶´¦Àí
+		// å‡çº§å¤„ç†
 		roleEntity.getBasicInfo().addGrade();
 
-		// ·¢ËÍÉı¼¶ÏµÍ³ÏûÏ¢ 
+		// å‘é€å‡çº§ç³»ç»Ÿæ¶ˆæ¯ 
 		SystemInfoService.sendSystemInfoByPGrade(player.getPPk(), player.getPGrade());
-		// ·¢ËÍĞÂÊÖÒıµ¼
+		// å‘é€æ–°æ‰‹å¼•å¯¼
 		SystemInfoService.setNewPlayerGuideInfoMSG(roleEntity, 10 + "", player
 				.getPGrade()
 				+ "");
-		// ĞÂÀËµÄĞÂÊÖ
+		// æ–°æµªçš„æ–°æ‰‹
 		SystemInfoService.setNewPlayerGuideInfoMSG(roleEntity, 11 + "", player
 				.getPGrade()
 				+ "");
 
-		// µÃµ½³É³¤ĞÅÏ¢
+		// å¾—åˆ°æˆé•¿ä¿¡æ¯
 		UGrowVO grow = getGrowInfo(roleEntity);
-		upgrade_display = "¹§Ï²Äú,ÄúÉıµ½" + roleEntity.getBasicInfo().getGrade()
-		+ "¼¶!ÆøÑªÔö¼Ó" + grow.getGHP() + ",ÄÚÁ¦Ôö¼Ó" + grow.getGMP() + ",¹¥»÷Ôö¼Ó"
-		+ grow.getGGj() * SystemConfig.attackParameter + ",·ÀÓùÔö¼Ó"
+		upgrade_display = "æ­å–œæ‚¨,æ‚¨å‡åˆ°" + roleEntity.getBasicInfo().getGrade()
+		+ "çº§!æ°”è¡€å¢åŠ " + grow.getGHP() + ",å†…åŠ›å¢åŠ " + grow.getGMP() + ",æ”»å‡»å¢åŠ "
+		+ grow.getGGj() * SystemConfig.attackParameter + ",é˜²å¾¡å¢åŠ "
 		+ grow.getGFy() * SystemConfig.attackParameter + "!";
 		return upgrade_display;
 	}

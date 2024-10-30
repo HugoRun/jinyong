@@ -21,7 +21,7 @@ import com.ls.web.service.system.UMsgService;
 import com.pm.service.systemInfo.SystemInfoService;
 
 /**
- * ¹¦ÄÜ£º×é¶ÓÄ£ĞÍ
+ * åŠŸèƒ½ï¼šç»„é˜Ÿæ¨¡å‹
  * @author ls
  * Aug 10, 2009
  * 3:36:33 PM
@@ -36,7 +36,7 @@ public class GroupModel
 	private int captian_id = -1;
 	
 	/**
-	 * ¹¹ÔìÒ»¸ö¶ÓÎé
+	 * æ„é€ ä¸€ä¸ªé˜Ÿä¼
 	 * @param caption
 	 * @param member
 	 */
@@ -60,15 +60,15 @@ public class GroupModel
 		
 		this.captian_id = captian_id;
 		
-		// ¸ø¶Ó³¤·¢³öÍ¨Öª£¬¸æÖ®ÒÑ×é½¨¶ÓÎé
+		// ç»™é˜Ÿé•¿å‘å‡ºé€šçŸ¥ï¼Œå‘Šä¹‹å·²ç»„å»ºé˜Ÿä¼
 		groupNotifyService.addNotify(member_id, captian_id,GroupNotifyService.GROUPHINT);
-		sendAddNewMemberSysInfoToAllMembers(member_id);//ĞÂ¼ÓÈë³ÉÔ±ºó¸øËùÓĞ³ÉÔ±·¢ËÍÏµÍ³ÏûÏ¢
+		sendAddNewMemberSysInfoToAllMembers(member_id);//æ–°åŠ å…¥æˆå‘˜åç»™æ‰€æœ‰æˆå‘˜å‘é€ç³»ç»Ÿæ¶ˆæ¯
 		
-		GroupService.registerGroupInfo(this);//×¢²á¶ÓÎéĞÅÏ¢
+		GroupService.registerGroupInfo(this);//æ³¨å†Œé˜Ÿä¼ä¿¡æ¯
 	}
 	
 	/**
-	 * µÃµ½¶ÓÎéÁĞ±í
+	 * å¾—åˆ°é˜Ÿä¼åˆ—è¡¨
 	 */
 	public List<RoleEntity> getMemberList()
 	{
@@ -77,7 +77,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * µÃµ½¶Ó³¤id
+	 * å¾—åˆ°é˜Ÿé•¿id
 	 */
 	public int getCaptianID()
 	{
@@ -85,7 +85,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * µÃµ½¶Ó³¤ĞÅÏ¢
+	 * å¾—åˆ°é˜Ÿé•¿ä¿¡æ¯
 	 */
 	public RoleEntity getCaptianInfo()
 	{
@@ -93,7 +93,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * µÃµ½¶ÓÎé³ÉÔ±ĞÅÏ¢
+	 * å¾—åˆ°é˜Ÿä¼æˆå‘˜ä¿¡æ¯
 	 */
 	public RoleEntity getMemberInfo( int member_id )
 	{
@@ -101,7 +101,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * µÃµ½³ÉÔ±ÊıÁ¿
+	 * å¾—åˆ°æˆå‘˜æ•°é‡
 	 */
 	public int getMemberNum()
 	{
@@ -109,7 +109,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * Ìí¼Ó³ÉÔ±
+	 * æ·»åŠ æˆå‘˜
 	 * @param member_info
 	 */
 	public void addMember(RoleEntity new_member_info)
@@ -126,20 +126,20 @@ public class GroupModel
 		new_member_info.getStateInfo().setGroupInfo(this);
 		
 
-		if ( isFull() )//¶ÓÎéÒÑÂú
+		if ( isFull() )//é˜Ÿä¼å·²æ»¡
 		{
-			//¶ÓÎéÒÑÂúÊ±Çå³ı¶Ó³¤ËùÓĞµÄ×é¶ÓÍ¨Öª
+			//é˜Ÿä¼å·²æ»¡æ—¶æ¸…é™¤é˜Ÿé•¿æ‰€æœ‰çš„ç»„é˜Ÿé€šçŸ¥
 			groupNotifyService.clareNotify(captian_id);
 		}
-		// Íæ¼ÒA¼ÓÈë¶ÓÎé£¬Çå³şÍæ¼ÒAµÄËùÓĞ×é¶ÓÍ¨Öª
+		// ç©å®¶AåŠ å…¥é˜Ÿä¼ï¼Œæ¸…æ¥šç©å®¶Açš„æ‰€æœ‰ç»„é˜Ÿé€šçŸ¥
 		groupNotifyService.clareNotify(new_member_info_id);
 		
-		//ĞÂ¼ÓÈë³ÉÔ±ºó¸øËùÓĞ³ÉÔ±·¢ËÍÏµÍ³ÏûÏ¢
+		//æ–°åŠ å…¥æˆå‘˜åç»™æ‰€æœ‰æˆå‘˜å‘é€ç³»ç»Ÿæ¶ˆæ¯
 		sendAddNewMemberSysInfoToAllMembers(new_member_info_id);
 	}
 	
 	/**
-	 * Àë¿ª¶ÓÎé
+	 * ç¦»å¼€é˜Ÿä¼
 	 * @param member_info
 	 */
 	public void leaveGroup( int member_id )
@@ -149,7 +149,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * Àë¿ª¶ÓÎé
+	 * ç¦»å¼€é˜Ÿä¼
 	 * @param member_info
 	 */
 	public void leaveGroup( RoleEntity member )
@@ -159,11 +159,11 @@ public class GroupModel
 			return;
 		}
 		
-		String sysinfo_content = member.getBasicInfo().getName()+"Àë¿ª¶ÓÎé";
-		//¸ø¶ÓÎéËùÓĞÈË·¢ËÍÏµÍ³ÏûÏ¢
+		String sysinfo_content = member.getBasicInfo().getName()+"ç¦»å¼€é˜Ÿä¼";
+		//ç»™é˜Ÿä¼æ‰€æœ‰äººå‘é€ç³»ç»Ÿæ¶ˆæ¯
 		sendSysInfoToAllMembers(sysinfo_content);
 		
-		if(group_members.size()<=2 )//Èç¹û¶ÓÎéĞ¡ÓÚÁ½¸öÈË¾ÍÖ±½Ó½âÉ¢
+		if(group_members.size()<=2 )//å¦‚æœé˜Ÿä¼å°äºä¸¤ä¸ªäººå°±ç›´æ¥è§£æ•£
 		{
 			disbandGroup();
 		}
@@ -178,12 +178,12 @@ public class GroupModel
 			
 			group_members.remove(member_id+"");
 			member.getStateInfo().setGroupInfo(null);
-			if( member_id==this.captian_id )//Èç¹û¶Ó³¤Àë¿ªÔòÒÆ½»¶Ó³¤
+			if( member_id==this.captian_id )//å¦‚æœé˜Ÿé•¿ç¦»å¼€åˆ™ç§»äº¤é˜Ÿé•¿
 			{
 				changeCaption();
 			}
 			
-			if( roomService.isSpecifyMapType(scene_id, MapType.INSTANCE) )//Íæ¼ÒÔÚ¸±±¾Çø£¬µ¯³öÏûÏ¢ÍË³ö¸±±¾
+			if( roomService.isSpecifyMapType(scene_id, MapType.INSTANCE) )//ç©å®¶åœ¨å‰¯æœ¬åŒºï¼Œå¼¹å‡ºæ¶ˆæ¯é€€å‡ºå‰¯æœ¬
 			{
 				msgInfo.setMsgType(PopUpMsgType.INSTANCE);
 				msgInfo.setPPk(member.getBasicInfo().getPPk());
@@ -193,21 +193,21 @@ public class GroupModel
 	}
 	
 	/**
-	 * ÒÆ½»¶Ó³¤
+	 * ç§»äº¤é˜Ÿé•¿
 	 */
 	private void changeCaption()
 	{
 		List<RoleEntity> member_list = getMemberList();
 		if( member_list.size()>1 )
 		{
-			GroupService.cancelGroupInfo(this);//×¢Ïú×é¶ÓĞÅÏ¢£¨Ô­¶Ó³¤£©
+			GroupService.cancelGroupInfo(this);//æ³¨é”€ç»„é˜Ÿä¿¡æ¯ï¼ˆåŸé˜Ÿé•¿ï¼‰
 			this.captian_id = member_list.get(0).getBasicInfo().getPPk();
-			GroupService.registerGroupInfo(this);//µÇ¼Ç×é¶ÓĞÅÏ¢(¸ü»»¶Ó³¤)
+			GroupService.registerGroupInfo(this);//ç™»è®°ç»„é˜Ÿä¿¡æ¯(æ›´æ¢é˜Ÿé•¿)
 		}
 	}
 	
 	/**
-	 * ½âÉ¢¶ÓÎé
+	 * è§£æ•£é˜Ÿä¼
 	 */
 	public void disbandGroup()
 	{
@@ -223,7 +223,7 @@ public class GroupModel
 			{
 				member.getStateInfo().setGroupInfo(null);
 				int scene_id = Integer.parseInt(member.getBasicInfo().getSceneId());
-				if( roomService.isSpecifyMapType(scene_id, MapType.INSTANCE) )//Èç¹û¶ÓÎéÖĞÓĞÈËÔÚ¸±±¾ÇøÓòÔò£¬µ¯³öÏûÏ¢ÍË³ö¸±±¾
+				if( roomService.isSpecifyMapType(scene_id, MapType.INSTANCE) )//å¦‚æœé˜Ÿä¼ä¸­æœ‰äººåœ¨å‰¯æœ¬åŒºåŸŸåˆ™ï¼Œå¼¹å‡ºæ¶ˆæ¯é€€å‡ºå‰¯æœ¬
 				{
 					msgInfo.setMsgType(PopUpMsgType.INSTANCE);
 					msgInfo.setPPk(member.getBasicInfo().getPPk());
@@ -231,15 +231,15 @@ public class GroupModel
 				}
 			}
 		}
-		//Çå³ı¶ÓÎéµÄ¸±±¾Ğ¡¹ÖµÄËÀÍöËùÓĞ¼ÇÂ¼
+		//æ¸…é™¤é˜Ÿä¼çš„å‰¯æœ¬å°æ€ªçš„æ­»äº¡æ‰€æœ‰è®°å½•
 		instanceService.clearAllDeadRecord(captian_id);
-		GroupService.cancelGroupInfo(this);//×¢Ïú×é¶ÓĞÅÏ¢
+		GroupService.cancelGroupInfo(this);//æ³¨é”€ç»„é˜Ÿä¿¡æ¯
 	}
 	
 	/**
-	 * Íæ¼ÒÔÚ¸±±¾ÇøÓòÇÒ£¬ÓĞÁ½¸ö»òÕßÁ½¸öÒÔÉÏµÄÈËÔÚ¸±±¾ÇøÓòÊ±£¬µÄ×é¶ÓĞ§¹ûÖµ
-	 * ¼ÆËã¹«Ê½£ºÆ½¾ùµÈ¼¶*(1/Íæ¼Ò1µÈ¼¶+1/Íæ¼Ò2µÈ¼¶+1/Íæ¼Ò3µÈ¼¶¡£¡£¡£¡£)*20
-	 * @param member_num_in_instance      ÔÚ¸±±¾ÇøÓòµÄ³ÉÔ±Êı         
+	 * ç©å®¶åœ¨å‰¯æœ¬åŒºåŸŸä¸”ï¼Œæœ‰ä¸¤ä¸ªæˆ–è€…ä¸¤ä¸ªä»¥ä¸Šçš„äººåœ¨å‰¯æœ¬åŒºåŸŸæ—¶ï¼Œçš„ç»„é˜Ÿæ•ˆæœå€¼
+	 * è®¡ç®—å…¬å¼ï¼šå¹³å‡ç­‰çº§*(1/ç©å®¶1ç­‰çº§+1/ç©å®¶2ç­‰çº§+1/ç©å®¶3ç­‰çº§ã€‚ã€‚ã€‚ã€‚)*20
+	 * @param member_num_in_instance      åœ¨å‰¯æœ¬åŒºåŸŸçš„æˆå‘˜æ•°         
 	 * @return
 	 */
 	private int getGroupEffectValueByInstanceArea( List<RoleEntity> member_list_in_instance )
@@ -250,7 +250,7 @@ public class GroupModel
 			int member_num_in_instance = member_list_in_instance.size();
 			int grade_total = 0;
 			int role_grade = 1;
-			double fenshu_total = 0;//(1/Íæ¼Ò1µÈ¼¶+1/Íæ¼Ò2µÈ¼¶+1/Íæ¼Ò3µÈ¼¶¡£¡£¡£¡£)
+			double fenshu_total = 0;//(1/ç©å®¶1ç­‰çº§+1/ç©å®¶2ç­‰çº§+1/ç©å®¶3ç­‰çº§ã€‚ã€‚ã€‚ã€‚)
 			for( RoleEntity member:member_list_in_instance )
 			{
 				role_grade = member.getBasicInfo().getGrade();
@@ -264,7 +264,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * µÃµ½¸±±¾ÇøÓòµÄ³ÉÔ±µÄÊıÁ¿
+	 * å¾—åˆ°å‰¯æœ¬åŒºåŸŸçš„æˆå‘˜çš„æ•°é‡
 	 * @return
 	 */
 	private List<RoleEntity> getMemberListInInstance()
@@ -286,7 +286,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * ÆÕÍ¨Çé¿öÏÂµÄ×é¶ÓĞ§¹ûÖµ
+	 * æ™®é€šæƒ…å†µä¸‹çš„ç»„é˜Ÿæ•ˆæœå€¼
 	 * @return
 	 */
 	private int getGroupEffectValueByNormal()
@@ -296,25 +296,25 @@ public class GroupModel
 		{
 			case 2:
 			{
-				// 2ÈË×é¶Ó
+				// 2äººç»„é˜Ÿ
 				groupEffectValue = 5;
 				break;
 			}
 			case 3:
 			{
-				// 3ÈË×é¶Ó
+				// 3äººç»„é˜Ÿ
 				groupEffectValue = 10;
 				break;
 			}
 			case 4:
 			{
-				// 4ÈË×é¶Ó
+				// 4äººç»„é˜Ÿ
 				groupEffectValue = 15;
 				break;
 			}
 			case 5:
 			{
-				// 5ÈË×é¶Ó
+				// 5äººç»„é˜Ÿ
 				groupEffectValue = 20;
 				break;
 			}
@@ -323,13 +323,13 @@ public class GroupModel
 	}
 	
 	/**
-	 * ¸ù¾İĞ§¹ûÀàĞÍµÃµ½¸ÃÀàĞÍµÄĞ§¹ûÖµ
+	 * æ ¹æ®æ•ˆæœç±»å‹å¾—åˆ°è¯¥ç±»å‹çš„æ•ˆæœå€¼
 	 */
 	public int getGroupEffectValue(RoleEntity role_info)
 	{
 		if ( role_info == null )
 		{
-			logger.debug("½ÇÉ«ĞÅÏ¢Îª¿Õ");
+			logger.debug("è§’è‰²ä¿¡æ¯ä¸ºç©º");
 			return 0;
 		}
 		
@@ -340,14 +340,14 @@ public class GroupModel
 		
 		RoomService roomService = new RoomService();
 		
-		//ÅĞ¶Ï¸ÃµØµãÊÇ·ñÓĞ×é¶ÓÏŞÖÆ
+		//åˆ¤æ–­è¯¥åœ°ç‚¹æ˜¯å¦æœ‰ç»„é˜Ÿé™åˆ¶
 		if( roomService.isLimitedByAttribute(scene_id, RoomService.GROUP_EFFECT) )
 		{
-			return 0;//ÏŞÖÆ×é¶ÓÎŞĞ§¹û
+			return 0;//é™åˆ¶ç»„é˜Ÿæ— æ•ˆæœ
 		}
 		
 		List<RoleEntity> member_list_in_instance = getMemberListInInstance();
-		//ÅĞ¶ÏÊÇ·ñÊÇ¸±±¾×é¶Ó¼Ó³ÉĞ§¹û,Íæ¼ÒÔÚ¸±±¾ÇøÓòÇÒ£¬ÓĞÁ½¸ö»òÕßÁ½¸öÒÔÉÏµÄÈËÔÚ¸±±¾ÇøÓòÊ±£¬µÄ×é¶ÓĞ§¹ûÖµ
+		//åˆ¤æ–­æ˜¯å¦æ˜¯å‰¯æœ¬ç»„é˜ŸåŠ æˆæ•ˆæœ,ç©å®¶åœ¨å‰¯æœ¬åŒºåŸŸä¸”ï¼Œæœ‰ä¸¤ä¸ªæˆ–è€…ä¸¤ä¸ªä»¥ä¸Šçš„äººåœ¨å‰¯æœ¬åŒºåŸŸæ—¶ï¼Œçš„ç»„é˜Ÿæ•ˆæœå€¼
 		if( roomService.isSpecifyMapType(scene_id, MapType.INSTANCE) && member_list_in_instance.size()>=2)
 		{
 			groupEffectValue = getGroupEffectValueByInstanceArea(member_list_in_instance);
@@ -360,7 +360,7 @@ public class GroupModel
 		
 		if(groupEffectValue!=0)
 		{
-			//¼ÓÔØ½á»éºÍ½áÒåµÄ×é¶Ó¸½¼ÓÖµ
+			//åŠ è½½ç»“å©šå’Œç»“ä¹‰çš„ç»„é˜Ÿé™„åŠ å€¼
 			int spicEffect = new MyServiceImpl().addTeamEffect(p_pk);
 			groupEffectValue =groupEffectValue+ Math.round((float)((float)groupEffectValue*(float)spicEffect/100));
 		}
@@ -368,7 +368,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * ¸ù¾İ×é¶ÓĞ§¹ûµÄÏÔÊ¾
+	 * æ ¹æ®ç»„é˜Ÿæ•ˆæœçš„æ˜¾ç¤º
 	 */
 	public String getGroupEffectDisplay(RoleEntity role_info)
 	{
@@ -382,31 +382,31 @@ public class GroupModel
 		
 		if( roomService.isSpecifyMapType(scene_id, MapType.INSTANCE) )
 		{
-			result.append("×é¶Ó¹¥»÷Ğ§¹ûÔö¼Ó"+groupEffectValue+"%<br/>");
-			result.append("×é¶Ó·ÀÓùĞ§¹ûÔö¼Ó"+groupEffectValue+"%");
+			result.append("ç»„é˜Ÿæ”»å‡»æ•ˆæœå¢åŠ "+groupEffectValue+"%<br/>");
+			result.append("ç»„é˜Ÿé˜²å¾¡æ•ˆæœå¢åŠ "+groupEffectValue+"%");
 		}
 		else
 		{
-			result.append("×é¶Ó¹¥»÷Ğ§¹ûÔö¼Ó"+groupEffectValue+"%<br/>");
-			result.append("×é¶Ó·ÀÓùĞ§¹ûÔö¼Ó"+groupEffectValue+"%<br/>");
-			result.append("×é¶Ó¾­ÑéĞ§¹ûÔö¼Ó"+groupEffectValue+"%");
+			result.append("ç»„é˜Ÿæ”»å‡»æ•ˆæœå¢åŠ "+groupEffectValue+"%<br/>");
+			result.append("ç»„é˜Ÿé˜²å¾¡æ•ˆæœå¢åŠ "+groupEffectValue+"%<br/>");
+			result.append("ç»„é˜Ÿç»éªŒæ•ˆæœå¢åŠ "+groupEffectValue+"%");
 		}
 		
 		return result.toString();
 	}
 	
 	/**
-	 * ¸øÍæ¼Ò¼ÓÔØ×é¶ÓĞ§¹û
+	 * ç»™ç©å®¶åŠ è½½ç»„é˜Ÿæ•ˆæœ
 	 * @param player
 	 */
 	public void loadGroupEffect(PartInfoVO player)
 	{
 		if (player == null)
 		{
-			logger.info("²ÎÊıÎª¿Õ");
+			logger.info("å‚æ•°ä¸ºç©º");
 			return;
 		}
-		logger.debug("²é¿´ÓÃ»§ËùÔÚµØÍ¼ÊÇ·ñÓĞĞ§! "+player.getPMap());
+		logger.debug("æŸ¥çœ‹ç”¨æˆ·æ‰€åœ¨åœ°å›¾æ˜¯å¦æœ‰æ•ˆ! "+player.getPMap());
 
 		RoleEntity role_info = RoleService.getRoleInfoById(player.getPPk()+"");
 		
@@ -416,7 +416,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * Íæ¼ÒaºÍÍæ¼ÒbÊÇ·ñÔÚÍ¬Ò»¸ö¶ÓÎé
+	 * ç©å®¶aå’Œç©å®¶bæ˜¯å¦åœ¨åŒä¸€ä¸ªé˜Ÿä¼
 	 */
 	public boolean isCaptian(int p_pk )
 	{
@@ -431,7 +431,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * ÅĞ¶Ï¶ÓÎéÊÇ·ñÂúÁË
+	 * åˆ¤æ–­é˜Ÿä¼æ˜¯å¦æ»¡äº†
 	 */
 	public boolean isFull()
 	{
@@ -446,8 +446,8 @@ public class GroupModel
 	}
 	
 	/**
-	 * ·¢ËÍÏµÍ³ÏûÏ¢¸øËùÓĞ³ÉÔ±
-	 * @param systeminfo_content    ÏûÏ¢ÄÚÈİ
+	 * å‘é€ç³»ç»Ÿæ¶ˆæ¯ç»™æ‰€æœ‰æˆå‘˜
+	 * @param systeminfo_content    æ¶ˆæ¯å†…å®¹
 	 */
 	private void sendSysInfoToAllMembers(String systeminfo_content)
 	{
@@ -467,7 +467,7 @@ public class GroupModel
 	}
 	
 	/**
-	 * ĞÂ¼ÓÈë³ÉÔ±ºó¸øËùÓĞ³ÉÔ±·¢ËÍÏµÍ³ÏûÏ¢
+	 * æ–°åŠ å…¥æˆå‘˜åç»™æ‰€æœ‰æˆå‘˜å‘é€ç³»ç»Ÿæ¶ˆæ¯
 	 * @param new_member_id
 	 */
 	private void sendAddNewMemberSysInfoToAllMembers( int new_member_id )
@@ -481,8 +481,8 @@ public class GroupModel
 			RoleEntity new_member_info = getMemberInfo(new_member_id);
 			RoleEntity caption_info = getCaptianInfo();
 			
-			String to_new_member_sysinfo = "Äú¼ÓÈëÁË"+caption_info.getBasicInfo().getName()+"µÄ¶ÓÎé";//¸ø×Ô¼º·¢µÄÏûÏ¢
-			String to_other_member_sysinfo = new_member_info.getBasicInfo().getName()+"¼ÓÈë¶ÓÎé";//¸ø¶ÓÎéÆäËû³ÉÔ±µÄÏûÏ¢
+			String to_new_member_sysinfo = "æ‚¨åŠ å…¥äº†"+caption_info.getBasicInfo().getName()+"çš„é˜Ÿä¼";//ç»™è‡ªå·±å‘çš„æ¶ˆæ¯
+			String to_other_member_sysinfo = new_member_info.getBasicInfo().getName()+"åŠ å…¥é˜Ÿä¼";//ç»™é˜Ÿä¼å…¶ä»–æˆå‘˜çš„æ¶ˆæ¯
 			
 			int p_pk = 0;
 			String systeminfo_content = "";

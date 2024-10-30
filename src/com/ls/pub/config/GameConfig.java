@@ -1,750 +1,602 @@
 package com.ls.pub.config;
 
+import com.ls.ben.cache.staticcache.expNpcDrop.ExpNpcDropCache;
+import com.ls.pub.constant.Channel;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 
-import com.ls.ben.cache.staticcache.expNpcDrop.ExpNpcDropCache;
-import com.ls.pub.constant.Channel;
-
 /**
- * ¹¦ÄÜ£ºÓÎÏ·ÅäÖÃÎÄ¼ş
- * 
+ * åŠŸèƒ½ï¼šæ¸¸æˆé…ç½®æ–‡ä»¶
+ *
  * @author ls Jun 27, 2009 4:40:51 PM
  */
-public class GameConfig
-{
-	private static PropertiesConfiguration config = null;
-	
-	static
-	{
-		try
-		{
-			config = new PropertiesConfiguration("game.properties");
-			config.setReloadingStrategy(new FileChangedReloadingStrategy());
-		}
-		catch (ConfigurationException e)
-		{
-			e.printStackTrace();
-		}
-	}
+public class GameConfig {
+    private static PropertiesConfiguration config = null;
 
-	
-	/**
-	 * µÃµ½ÓÎÏ·µÄ¾ø¶ÔÂ·¾¶
-	 * 
-	 * @return
-	 */
-	public static String getGameUrl()
-	{
-		return config.getString("game_server_url");
-	}
+    static {
+        try {
+            // config = new PropertiesConfiguration("game.properties");
+            config = new PropertiesConfiguration("game_for_hzmobile.properties");
+            config.setReloadingStrategy(new FileChangedReloadingStrategy());
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * µÃµ½ÏîÄ¿Â·¾¶
-	 * 
-	 * @return
-	 */
-	public static String getContextPath()
-	{
-		if (Channel.AIR == getChannelId() || Channel.TXW == getChannelId())
-		{
-			return config.getString("context_path");
-		}
-		else
-		{
-			return "";
-		}
-	}
-	
-	public static String getChongzhiPath()
-	{
-		String context_path = config.getString("context_path");
-		if (context_path != null)
-		{
-			return context_path;
-		}
-		else
-		{
-			return "";
-		}
-	}
 
-	/**
-	 * #·ÀPCµÇÂ½°×Ãûµ¥ID 1¿ª 0¹Ø
-	 * 
-	 * @return
-	 */
-	public static boolean isForbidPcWhiteListSwitch()
-	{
-		if (config.getInt("forbid_pc_white_list_switch") == 1)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆçš„ç»å¯¹è·¯å¾„
+     *
+     * @return
+     */
+    public static String getGameUrl() {
+        return config.getString("game_server_url");
+    }
 
-	/**
-	 * #·ÀPCµÇÂ½ºÚÃûµ¥IP 1¿ª 0¹Ø
-	 * 
-	 * @return
-	 */
-	public static boolean isForbidPcBlackListSwitch()
-	{
-		if (config.getInt("forbid_pc_black_list_switch") == 1)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/**
-	 * µÃµ½½ğÇ®µ¥Î»Ãû³Æ
-	 */
-	public static String getMoneyUnitName()
-	{
-		return "ÁéÊ¯";
-	}
-	
-	/**
-	 * »ñÈ¡Ôª±¦Ãû³Æ
-	 */
-	public static String getYuanbaoName(){
-		if(config.containsKey("yuanbao_name")){
-			return config.getString("yuanbao_name");
-		}else if(getChannelId()==Channel.TELE){
-			return "µãÊı";
-		}else
-		{
-			return "ÏÉ¾§";
-		}
-	}
-	/**
-	 * »ñÈ¡µÀ¾ßÏû·Ñ´úÂë  µçĞÅ×¨ÓÃ
-	 */
-	public static String getPropCode(String propId)
-	{
-		return config.getString(propId);
-	}
-	
-	/**
-	 * »ñÈ¡Ôª±¦È¯Ãû³Æ
-	 */
-	public static String getYuanbaoQuanName(){
-		if(config.containsKey("yuanbao_quan")){
-			return config.getString("yuanbao_quan");
-		}else{
-			return "Ôª±¦È¯";
-		}
-	}
+    /**
+     * å¾—åˆ°é¡¹ç›®è·¯å¾„
+     *
+     * @return
+     */
+    public static String getContextPath() {
+        if (Channel.AIR == getChannelId() || Channel.TXW == getChannelId()) {
+            return config.getString("context_path");
+        } else {
+            return "";
+        }
+    }
 
-	/**
-	 * #·ÀPCµÇÂ½UA 1¿ª 0¹Ø
-	 * 
-	 * @return
-	 */
-	public static boolean isForbidPcUASwitch()
-	{
-		if (config.getInt("forbid_pc_ua_switch") == 1)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+    public static String getChongzhiPath() {
+        String context_path = config.getString("context_path");
+        if (context_path != null) {
+            return context_path;
+        } else {
+            return "";
+        }
+    }
 
-	/**
-	 * #ÊÇ·ñ¶ÔÒì³£µã»÷ËÙ¶ÈµÄÍæ¼Ò´¦ÀíµÄ¿ª¹Ø 1¿ª 0¹Ø
-	 * 
-	 * @return
-	 */
-	public static boolean isDealExceptionUserSwitch()
-	{
-		if (config.getInt("deal_exception_user_switch") == 1)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+    /**
+     * #é˜²PCç™»é™†ç™½åå•ID 1å¼€ 0å…³
+     *
+     * @return
+     */
+    public static boolean isForbidPcWhiteListSwitch() {
+        return config.getInt("forbid_pc_white_list_switch") == 1;
+    }
 
-	/**
-	 * µ±Ç°µÈ¼¶ÉÏÏŞ
-	 * 
-	 * @return
-	 */
-	public static int getGradeUpperLimit()
-	{
-		return config.getInt("grade_curren_limit");
-	}
+    /**
+     * #é˜²PCç™»é™†é»‘åå•IP 1å¼€ 0å…³
+     *
+     * @return
+     */
+    public static boolean isForbidPcBlackListSwitch() {
+        return config.getInt("forbid_pc_black_list_switch") == 1;
+    }
 
-	/****
-	 * ×î¸ßµÈ¼¶ÉÏÏŞ
-	 */
-	public static int getGradeUpperHighLimit()
-	{
-		return config.getInt("grade_upper_limit");
-	}
-	/**
-	 * ¹«¹²ÁÄÌìµÄµÈ¼¶ÏŞÖÆ
-	 * 
-	 * @return
-	 */
-	public static int getPublicChatGradeLimit()
-	{
-		return config.getInt("public_chat_grade_limit");
-	}
+    /**
+     * å¾—åˆ°é‡‘é’±å•ä½åç§°
+     */
+    public static String getMoneyUnitName() {
+        return "çµçŸ³";
+    }
 
-	/**
-	 * ÓÎÏ·×´Ì¬,¸üĞÂ·şÎñÆ÷Ê±ÓÃµ½µÄ²ÎÊı£¬1±íÊ¾¿ª·ş£¬2±íÊ¾Ã»¿ª¸øÓÃ»§ÌáÊ¾ÓÎÏ·¸üĞÂÎ¬»¤ÖĞµÄÌáÊ¾
-	 * 
-	 * @return
-	 */
-	public static int getGameState()
-	{
-		return config.getInt("game_state");
-	}
+    /**
+     * è·å–å…ƒå®åç§°
+     */
+    public static String getYuanbaoName() {
+        if (config.containsKey("yuanbao_name")) {
+            return config.getString("yuanbao_name");
+        } else if (getChannelId() == Channel.TELE) {
+            return "ç‚¹æ•°";
+        } else {
+            return "ä»™æ™¶";
+        }
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ·µÄÈËÊıÉÏÏŞ
-	 * 
-	 * @return
-	 */
-	public static int getUserNumUpperLimit()
-	{
-		return config.getInt("user_num_upper_limit");
-	}
+    /**
+     * è·å–é“å…·æ¶ˆè´¹ä»£ç   ç”µä¿¡ä¸“ç”¨
+     */
+    public static String getPropCode(String propId) {
+        return config.getString(propId);
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ·µÄÃû×Ö
-	 * 
-	 * @return
-	 */
-	public static String getGameName()
-	{
-		return config.getString("game_name");
-	}
+    /**
+     * è·å–å…ƒå®åˆ¸åç§°
+     */
+    public static String getYuanbaoQuanName() {
+        if (config.containsKey("yuanbao_quan")) {
+            return config.getString("yuanbao_quan");
+        } else {
+            return "å…ƒå®åˆ¸";
+        }
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ·µÄchannel_id
-	 * 
-	 * @return
-	 */
-	public static int getChannelId()
-	{
-		return config.getInt("channel_id");
-	}
+    /**
+     * #é˜²PCç™»é™†UA 1å¼€ 0å…³
+     *
+     * @return
+     */
+    public static boolean isForbidPcUASwitch() {
+        return config.getInt("forbid_pc_ua_switch") == 1;
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ··ÖÇøid
-	 * 
-	 * @return
-	 */
-	public static String getAreaId()
-	{
-		return config.getString("area_id");
-	}
+    /**
+     * #æ˜¯å¦å¯¹å¼‚å¸¸ç‚¹å‡»é€Ÿåº¦çš„ç©å®¶å¤„ç†çš„å¼€å…³ 1å¼€ 0å…³
+     *
+     * @return
+     */
+    public static boolean isDealExceptionUserSwitch() {
+        return config.getInt("deal_exception_user_switch") == 1;
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ·µÄurlµØÖ·
-	 * 
-	 * @return
-	 */
-	public static String getUrlOfGame()
-	{
-		return config.getString("game_url");
-	}
+    /**
+     * å½“å‰ç­‰çº§ä¸Šé™
+     *
+     * @return
+     */
+    public static int getGradeUpperLimit() {
+        return config.getInt("grade_curren_limit");
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ·µÄµÇÂ½Æ½Ì¨µÄurlµØÖ·
-	 * 
-	 * @return
-	 */
-	public static String getUrlOfLoginPlatform()
-	{
-		return config.getString("login_platform_url");
-	}
+    /****
+     * æœ€é«˜ç­‰çº§ä¸Šé™
+     */
+    public static int getGradeUpperHighLimit() {
+        return config.getInt("grade_upper_limit");
+    }
 
-	/**
-	 * Á¬½Ó³¬Ê±µÄ³¬Á´½ÓÌáÊ¾
-	 * 
-	 * @return
-	 */
-	public static String getReturnZhuanquHint()
-	{
-		return config.getString("return_zhuanqu_hint");
-	}
+    /**
+     * å…¬å…±èŠå¤©çš„ç­‰çº§é™åˆ¶
+     *
+     * @return
+     */
+    public static int getPublicChatGradeLimit() {
+        return config.getInt("public_chat_grade_limit");
+    }
 
-	/**
-	 * µÃµ½×Ô¼ºµÄ×¨ÇøµØÖ·
-	 * 
-	 * @return
-	 */
-	public static String getUrlOfLoginServer()
-	{
-		return config.getString("login_server_url");
-	}
+    /**
+     * æ¸¸æˆçŠ¶æ€,æ›´æ–°æœåŠ¡å™¨æ—¶ç”¨åˆ°çš„å‚æ•°ï¼Œ1è¡¨ç¤ºå¼€æœï¼Œ2è¡¨ç¤ºæ²¡å¼€ç»™ç”¨æˆ·æç¤ºæ¸¸æˆæ›´æ–°ç»´æŠ¤ä¸­çš„æç¤º
+     *
+     * @return
+     */
+    public static int getGameState() {
+        return config.getInt("game_state");
+    }
 
-	/**
-	 * µÃµ½ÂÛÌ³µÄurlµØÖ·
-	 * 
-	 * @return
-	 */
-	public static String getUrlOfForum()
-	{
-		return config.getString("forum_url");
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆçš„äººæ•°ä¸Šé™
+     *
+     * @return
+     */
+    public static int getUserNumUpperLimit() {
+        return config.getInt("user_num_upper_limit");
+    }
 
-	/**
-	 * jms·şÎñÊÇ·ñ¿ªÆô 0¹Ø1¿ª
-	 */
-	public static int getJmsSwitch()
-	{
-		return config.getInt("jms_switch");
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆçš„åå­—
+     *
+     * @return
+     */
+    public static String getGameName() {
+        return config.getString("game_name");
+    }
 
-	public static boolean jmsIsOn()
-	{
-		if (getJmsSwitch() == 0)
-		{
-			return false;
-		}
-		return true;
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆçš„channel_id
+     *
+     * @return
+     */
+    public static int getChannelId() {
+        return config.getInt("channel_id");
+    }
 
-	/**
-	 * jms·şÎñÆ÷µØÖ·
-	 */
-	public static String getJmsUrl()
-	{
-		String url = config.getString("jms_url");
-		return url == null || "".equals(url.trim()) ? "localhost" : url.trim();
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆåˆ†åŒºid
+     *
+     * @return
+     */
+    public static String getAreaId() {
+        return config.getString("area_id");
+    }
 
-	/**
-	 * µÃµ½ÓÎÏ·×¨ÇøµÄurlµØÖ·
-	 * 
-	 * @return
-	 */
-	public static String getUrlOfZhuanqu()
-	{
-		return config.getString("zhuanqu_url");
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆçš„urlåœ°å€
+     *
+     * @return
+     */
+    public static String getUrlOfGame() {
+        return config.getString("game_url");
+    }
 
-	/**
-	 * µÃµ½³¬Ê±ÌáÊ¾
-	 * 
-	 * @return
-	 */
-	public static String getTimeoutHint()
-	{
-		return config.getString("timeout_hint");
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆçš„ç™»é™†å¹³å°çš„urlåœ°å€
+     *
+     * @return
+     */
+    public static String getUrlOfLoginPlatform() {
+        return config.getString("login_platform_url");
+    }
 
-	/**
-	 * #³äÖµ½±Àø¿ªÊ¼Ê±¼ä
-	 * 
-	 * @return
-	 */
-	public static String getChongzhijiangliBeginTime()
-	{
-		return config.getString("chongzhijiangli_begin_time");
-	}
+    /**
+     * è¿æ¥è¶…æ—¶çš„è¶…é“¾æ¥æç¤º
+     *
+     * @return
+     */
+    public static String getReturnZhuanquHint() {
+        return config.getString("return_zhuanqu_hint");
+    }
 
-	/**
-	 * #³äÖµ½±Àø½áÊøÊ±¼ä
-	 * 
-	 * @return
-	 */
-	public static String getChongzhijiangliEndTime()
-	{
-		return config.getString("chongzhijiangli_end_time");
-	}
+    /**
+     * å¾—åˆ°è‡ªå·±çš„ä¸“åŒºåœ°å€
+     *
+     * @return
+     */
+    public static String getUrlOfLoginServer() {
+        return config.getString("login_server_url");
+    }
 
-	/**
-	 * #³äÖµ½±ÀøÉÌ³ÇµÀ¾ßID
-	 * 
-	 * @return
-	 */
-	public static String getChongzhijiangliCommodityinfoId()
-	{
-		String result = config.getString("chongzhijiangli_commodityinfo_id");
-		return result;
-	}
+    /**
+     * å¾—åˆ°è®ºå›çš„urlåœ°å€
+     *
+     * @return
+     */
+    public static String getUrlOfForum() {
+        return config.getString("forum_url");
+    }
 
-	/**
-	 * #ÏµÍ³¾­Ñé±¶Êı ÊÇ·ñÖØÔØ 0 Ä¬ÈÏ²»ÖØÔØ 1ÖØÔØ
-	 * 
-	 * @return
-	 */
-	public static void reloadSysExpMultiple()
-	{
-		int is_reload_exp = config.getInt("is_reload_exp");
-		if (is_reload_exp == 1)
-		{
-			config.setAutoSave(true);
-			config.setProperty("is_reload_exp", "0");
-			ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
-			expNpcDropCache.reloadDrop();
-		}
-	}
+    /**
+     * jmsæœåŠ¡æ˜¯å¦å¼€å¯ 0å…³1å¼€
+     */
+    public static int getJmsSwitch() {
+        return config.getInt("jms_switch");
+    }
 
-	/**
-	 * #ÏµÍ³µô±¦±¶Êı ÊÇ·ñÖØÔØ 0 Ä¬ÈÏ²»ÖØÔØ 1ÖØÔØ
-	 * 
-	 * @return
-	 */
-	public static void reloadSysDropMultiple()
-	{
-		int is_reload_cimelia = config.getInt("is_reload_cimelia");
-		if (is_reload_cimelia == 1)
-		{
-			config.setAutoSave(true);
-			config.setProperty("is_reload_cimelia", "0");
-			ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
-			expNpcDropCache.reloadDrop();
-		}
-	}
+    public static boolean jmsIsOn() {
+        return getJmsSwitch() != 0;
+    }
 
-	/**
-	 * »ñÈ¡×ÊÔ´ÎÄ¼ş¶ÔÏóÖµ
-	 * 
-	 * @param object
-	 * @return
-	 */
-	public static String getPropertiesObject(String object)
-	{
-		return config.getString(object);
-	}
+    /**
+     * jmsæœåŠ¡å™¨åœ°å€
+     */
+    public static String getJmsUrl() {
+        String url = config.getString("jms_url");
+        return url == null || "".equals(url.trim()) ? "localhost" : url.trim();
+    }
 
-	public static String[] getPropertiesObjectArray(String object)
-	{
-		return config.getStringArray(object);
-	}
+    /**
+     * å¾—åˆ°æ¸¸æˆä¸“åŒºçš„urlåœ°å€
+     *
+     * @return
+     */
+    public static String getUrlOfZhuanqu() {
+        return config.getString("zhuanqu_url");
+    }
 
-	/**
-	 * ·µ»ØÍæ¼ÒµÈ¼¶ÊÇ·ñÔÚÏµÍ³Éè¶¨Ö®ÄÚ
-	 * 
-	 * @param rolegrade
-	 * @param object
-	 * @return
-	 */
-	public static int getGoUpGrade(int rolegrade, String object)
-	{
-		String[] grade = config.getStringArray(object);
-		int digit = -1;
-		for (int i = 0; i < grade.length; i++)
-		{
-			if (Integer.parseInt(grade[i]) == rolegrade)
-			{
-				return digit = i;
-			}
-		}
-		return digit;
-	}
+    /**
+     * å¾—åˆ°è¶…æ—¶æç¤º
+     *
+     * @return
+     */
+    public static String getTimeoutHint() {
+        return config.getString("timeout_hint");
+    }
 
-	/**
-	 * »ñµÃ¸±±¾·ñÔÚÏµÍ³Éè¶¨Ö®ÄÚ
-	 * 
-	 * @param task_zu
-	 * @param object
-	 * @return
-	 */
-	public static int getTaskInstanceZu(String task_zu, String object)
-	{
-		String[] instancezu = config.getStringArray(object);
-		int digit = -1;
-		for (int i = 0; i < instancezu.length; i++)
-		{
-			if (task_zu.equals(instancezu[i]))
-			{
-				return digit = i;
-			}
-		}
-		return digit;
-	}
+    /**
+     * #å……å€¼å¥–åŠ±å¼€å§‹æ—¶é—´
+     *
+     * @return
+     */
+    public static String getChongzhijiangliBeginTime() {
+        return config.getString("chongzhijiangli_begin_time");
+    }
 
-	/***************************************************************************
-	 * I ¸±±¾²Ëµ¥µÈ¼¶
-	 */
-	public static int getMenuInstance(String rolegrade, String object)
-	{
-		String[] instancegrade = config.getStringArray(object);// È¡µÃµÈ¼¶
-		int digit = -1;
-		for (int i = 0; i < instancegrade.length; i++)
-		{
-			if (rolegrade.equals(instancegrade[i]))
-			{
-				return digit = i;
-			}
-		}
-		return digit;
-	}
+    /**
+     * #å……å€¼å¥–åŠ±ç»“æŸæ—¶é—´
+     *
+     * @return
+     */
+    public static String getChongzhijiangliEndTime() {
+        return config.getString("chongzhijiangli_end_time");
+    }
 
-	/**
-	 * »ñµÃµÀ¾ß
-	 * 
-	 * @param prop_id
-	 * @param object
-	 * @return
-	 */
-	public static int getAttainProp(int prop_id, String object)
-	{
-		String[] instancegrade = config.getStringArray(object);// È¡µÃµÈ¼¶
-		int digit = -1;
-		for (int i = 0; i < instancegrade.length; i++)
-		{
-			if (prop_id == Integer.parseInt(instancegrade[i]))
-			{
-				return digit = i;
-			}
-		}
-		return digit;
-	}
+    /**
+     * #å……å€¼å¥–åŠ±å•†åŸé“å…·ID
+     *
+     * @return
+     */
+    public static String getChongzhijiangliCommodityinfoId() {
+        String result = config.getString("chongzhijiangli_commodityinfo_id");
+        return result;
+    }
 
-	/**
-	 * Ê¹ÓÃµÀ¾ß
-	 * 
-	 * @param prop_id
-	 * @param object
-	 * @return
-	 */
-	public static int useProp(int prop_id, String object)
-	{
-		String[] instancegrade = config.getStringArray(object);// È¡µÃµÈ¼¶
-		int digit = -1;
-		for (int i = 0; i < instancegrade.length; i++)
-		{
-			if (prop_id == Integer.parseInt(instancegrade[i]))
-			{
-				return digit = i;
-			}
-		}
-		return digit;
-	}
+    /**
+     * #ç³»ç»Ÿç»éªŒå€æ•° æ˜¯å¦é‡è½½ 0 é»˜è®¤ä¸é‡è½½ 1é‡è½½
+     *
+     * @return
+     */
+    public static void reloadSysExpMultiple() {
+        int is_reload_exp = config.getInt("is_reload_exp");
+        if (is_reload_exp == 1) {
+            config.setAutoSave(true);
+            config.setProperty("is_reload_exp", "0");
+            ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
+            expNpcDropCache.reloadDrop();
+        }
+    }
 
-	public static void main(String args[])
-	{
-		// String begintime = GameConfig.getChongzhijiangliBeginTime();
-		// String endtime = GameConfig.getChongzhijiangliEndTime();
-		//
-		// Date nowTime = new Date();
-		// Date begin = DateUtil.strToDate(begintime);
-		// Date end = DateUtil.strToDate(endtime);
-		// if (nowTime.after(begin) && nowTime.before(end))
-		// {
-		// System.out.println("ssssssssssssss");
-		// }
-		// else
-		// {
-		// System.out.println("vvvvvvvvvvvvv");
-		// }
-		System.out.println(jmsIsOn());
-	}
+    /**
+     * #ç³»ç»Ÿæ‰å®å€æ•° æ˜¯å¦é‡è½½ 0 é»˜è®¤ä¸é‡è½½ 1é‡è½½
+     *
+     * @return
+     */
+    public static void reloadSysDropMultiple() {
+        int is_reload_cimelia = config.getInt("is_reload_cimelia");
+        if (is_reload_cimelia == 1) {
+            config.setAutoSave(true);
+            config.setProperty("is_reload_cimelia", "0");
+            ExpNpcDropCache expNpcDropCache = new ExpNpcDropCache();
+            expNpcDropCache.reloadDrop();
+        }
+    }
 
-	// ¾øÑ§µÄÅäÖÃ
-	public static int getJuexuePropID()
-	{
-		int juexue_prop_id = config.getInt("juexue_prop_id");
-		return juexue_prop_id;
-	}
+    /**
+     * è·å–èµ„æºæ–‡ä»¶å¯¹è±¡å€¼
+     *
+     * @param object
+     * @return
+     */
+    public static String getPropertiesObject(String object) {
+        return config.getString(object);
+    }
 
-	public static int getJuexuePropType()
-	{
-		int juexue_prop_type = config.getInt("juexue_prop_type");
-		return juexue_prop_type;
-	}
+    public static String[] getPropertiesObjectArray(String object) {
+        return config.getStringArray(object);
+    }
 
-	public static String getRankPath()
-	{
-		return config.getString("rank_path");
-	}
+    /**
+     * è¿”å›ç©å®¶ç­‰çº§æ˜¯å¦åœ¨ç³»ç»Ÿè®¾å®šä¹‹å†…
+     *
+     * @param rolegrade
+     * @param object
+     * @return
+     */
+    public static int getGoUpGrade(int rolegrade, String object) {
+        String[] grade = config.getStringArray(object);
+        int digit = -1;
+        for (int i = 0; i < grade.length; i++) {
+            if (Integer.parseInt(grade[i]) == rolegrade) {
+                return digit = i;
+            }
+        }
+        return digit;
+    }
 
-	// µÃµ½Ëæ»úÊı
-	public static int getlotteryMinYB()
-	{
-		int lottery_min_yuanbao = config.getInt("lottery_min_yuanbao");
-		return lottery_min_yuanbao;
-	}
+    /**
+     * è·å¾—å‰¯æœ¬å¦åœ¨ç³»ç»Ÿè®¾å®šä¹‹å†…
+     *
+     * @param task_zu
+     * @param object
+     * @return
+     */
+    public static int getTaskInstanceZu(String task_zu, String object) {
+        String[] instancezu = config.getStringArray(object);
+        int digit = -1;
+        for (int i = 0; i < instancezu.length; i++) {
+            if (task_zu.equals(instancezu[i])) {
+                return digit = i;
+            }
+        }
+        return digit;
+    }
 
-	// µÃµ½Ëæ»úÊı
-	public static int getlotteryMaxYB()
-	{
-		int lottery_max_yuanbao = config.getInt("lottery_max_yuanbao");
-		return lottery_max_yuanbao;
-	}
+    /***************************************************************************
+     * I å‰¯æœ¬èœå•ç­‰çº§
+     */
+    public static int getMenuInstance(String rolegrade, String object) {
+        String[] instancegrade = config.getStringArray(object);// å–å¾—ç­‰çº§
+        int digit = -1;
+        for (int i = 0; i < instancegrade.length; i++) {
+            if (rolegrade.equals(instancegrade[i])) {
+                return digit = i;
+            }
+        }
+        return digit;
+    }
 
-	// µÃµ½×î´óÈÎÎñÊıÁ¿
-	public static int getTaskMaxNum()
-	{
-		return 20;
-	}
+    /**
+     * è·å¾—é“å…·
+     *
+     * @param prop_id
+     * @param object
+     * @return
+     */
+    public static int getAttainProp(int prop_id, String object) {
+        String[] instancegrade = config.getStringArray(object);// å–å¾—ç­‰çº§
+        int digit = -1;
+        for (int i = 0; i < instancegrade.length; i++) {
+            if (prop_id == Integer.parseInt(instancegrade[i])) {
+                return digit = i;
+            }
+        }
+        return digit;
+    }
 
-	public static int getJifenNum()
-	{
-		String jifen = config.getString("jifen_num");
-		if (jifen != null)
-		{
-			return Integer.parseInt(jifen);
-		}
-		else
-		{
-			return 1;
-		}
-	}
+    /**
+     * ä½¿ç”¨é“å…·
+     *
+     * @param prop_id
+     * @param object
+     * @return
+     */
+    public static int useProp(int prop_id, String object) {
+        String[] instancegrade = config.getStringArray(object);// å–å¾—ç­‰çº§
+        int digit = -1;
+        for (int i = 0; i < instancegrade.length; i++) {
+            if (prop_id == Integer.parseInt(instancegrade[i])) {
+                return digit = i;
+            }
+        }
+        return digit;
+    }
 
-	public static int getTongHonourId()
-	{
-		String tong_honour_id = config.getString("tong_honour_id");
-		if (tong_honour_id != null)
-		{
-			return Integer.parseInt(tong_honour_id);
-		}
-		else
-		{
-			return 0;
-		}
-	}
+    public static void main(String[] args) {
+        // String begintime = GameConfig.getChongzhijiangliBeginTime();
+        // String endtime = GameConfig.getChongzhijiangliEndTime();
+        //
+        // Date nowTime = new Date();
+        // Date begin = DateUtil.strToDate(begintime);
+        // Date end = DateUtil.strToDate(endtime);
+        // if (nowTime.after(begin) && nowTime.before(end))
+        // {
+        // System.out.println("ssssssssssssss");
+        // }
+        // else
+        // {
+        // System.out.println("vvvvvvvvvvvvv");
+        // }
+        System.out.println(jmsIsOn());
+    }
 
-	public static int getTongHonourIdLegender()
-	{
-		String tong_honour_id = config.getString("tong_honour_id_legender");
-		if (tong_honour_id != null)
-		{
-			return Integer.parseInt(tong_honour_id);
-		}
-		else
-		{
-			return 0;
-		}
-	}
+    // ç»å­¦çš„é…ç½®
+    public static int getJuexuePropID() {
+        int juexue_prop_id = config.getInt("juexue_prop_id");
+        return juexue_prop_id;
+    }
 
-	public static String getShenzhoufuUrl()
-	{
-		return config.getString("shenzhoufu_url");
-	}
+    public static int getJuexuePropType() {
+        int juexue_prop_type = config.getInt("juexue_prop_type");
+        return juexue_prop_type;
+    }
 
-	// ×°±¸Éı¼¶µÄ×î´óÏµÊı
-	public static int getZbGrade()
-	{
-		return 13;
-	}
+    public static String getRankPath() {
+        return config.getString("rank_path");
+    }
 
-	public static int getPlayerGetOnlinePrizeSwitch()
-	{
-		String Player_OnlinePrize_Switch = config
-				.getString("player_onlineprize_switch");
-		if (Player_OnlinePrize_Switch != null)
-		{
-			return Integer.parseInt(Player_OnlinePrize_Switch);
-		}
-		else
-		{
-			return 0;
-		}
-	}
+    // å¾—åˆ°éšæœºæ•°
+    public static int getlotteryMinYB() {
+        int lottery_min_yuanbao = config.getInt("lottery_min_yuanbao");
+        return lottery_min_yuanbao;
+    }
 
-	public static int getPlayerGetOnlinePrizeProp()
-	{
-		String Player_OnlinePrize_prop = config
-				.getString("player_onlineprize_prop");
-		if (Player_OnlinePrize_prop != null)
-		{
-			return Integer.parseInt(Player_OnlinePrize_prop);
-		}
-		else
-		{
-			return 0;
-		}
-	}
+    // å¾—åˆ°éšæœºæ•°
+    public static int getlotteryMaxYB() {
+        int lottery_max_yuanbao = config.getInt("lottery_max_yuanbao");
+        return lottery_max_yuanbao;
+    }
 
-	public static int getPlayerNum()
-	{
-		String player_num = config.getString("player_num");
-		if (player_num != null)
-		{
-			return Integer.parseInt(player_num);
-		}
-		else
-		{
-			return 1;
-		}
-	}
+    // å¾—åˆ°æœ€å¤§ä»»åŠ¡æ•°é‡
+    public static int getTaskMaxNum() {
+        return 20;
+    }
 
-	public static String getPlayerGetMenpaiContestProp(int type)
-	{
-		String Player_menpaicontest_prop = "";
-		if (type == 1)
-		{
-			Player_menpaicontest_prop = config
-					.getString("player_menpaicontest_prop_m");
-			if (Player_menpaicontest_prop != null)
-			{
-				return Player_menpaicontest_prop;
-			}
-		}
-		if (type == 2)
-		{
-			Player_menpaicontest_prop = config
-					.getString("player_menpaicontest_prop_g");
-			if (Player_menpaicontest_prop != null)
-			{
-				return Player_menpaicontest_prop;
-			}
-		}
-		if (type == 3)
-		{
-			Player_menpaicontest_prop = config
-					.getString("player_menpaicontest_prop_s");
-			if (Player_menpaicontest_prop != null)
-			{
-				return Player_menpaicontest_prop;
-			}
-		}
-		return Player_menpaicontest_prop;
-	}
+    public static int getJifenNum() {
+        String jifen = config.getString("jifen_num");
+        if (jifen != null) {
+            return Integer.parseInt(jifen);
+        } else {
+            return 1;
+        }
+    }
 
-	public static String getPlayerGetMenpaiContestbulid(int type)
-	{
-		String player_menpaicontest_build = "";
-		if (type == 1)
-		{
-			player_menpaicontest_build = config
-					.getString("player_menpaicontest_build_m");
-			if (player_menpaicontest_build != null)
-			{
-				return player_menpaicontest_build;
-			}
-		}
-		if (type == 2)
-		{
-			player_menpaicontest_build = config
-					.getString("player_menpaicontest_build_g");
-			if (player_menpaicontest_build != null)
-			{
-				return player_menpaicontest_build;
-			}
-		}
-		if (type == 3)
-		{
-			player_menpaicontest_build = config
-					.getString("player_menpaicontest_build_s");
-			if (player_menpaicontest_build != null)
-			{
-				return player_menpaicontest_build;
-			}
-		}
-		return player_menpaicontest_build;
-	}
+    public static int getTongHonourId() {
+        String tong_honour_id = config.getString("tong_honour_id");
+        if (tong_honour_id != null) {
+            return Integer.parseInt(tong_honour_id);
+        } else {
+            return 0;
+        }
+    }
+
+    public static int getTongHonourIdLegender() {
+        String tong_honour_id = config.getString("tong_honour_id_legender");
+        if (tong_honour_id != null) {
+            return Integer.parseInt(tong_honour_id);
+        } else {
+            return 0;
+        }
+    }
+
+    public static String getShenzhoufuUrl() {
+        return config.getString("shenzhoufu_url");
+    }
+
+    // è£…å¤‡å‡çº§çš„æœ€å¤§ç³»æ•°
+    public static int getZbGrade() {
+        return 13;
+    }
+
+    public static int getPlayerGetOnlinePrizeSwitch() {
+        String Player_OnlinePrize_Switch = config.getString("player_onlineprize_switch");
+        if (Player_OnlinePrize_Switch != null) {
+            return Integer.parseInt(Player_OnlinePrize_Switch);
+        } else {
+            return 0;
+        }
+    }
+
+    public static int getPlayerGetOnlinePrizeProp() {
+        String Player_OnlinePrize_prop = config.getString("player_onlineprize_prop");
+        if (Player_OnlinePrize_prop != null) {
+            return Integer.parseInt(Player_OnlinePrize_prop);
+        } else {
+            return 0;
+        }
+    }
+
+    public static int getPlayerNum() {
+        String player_num = config.getString("player_num");
+        if (player_num != null) {
+            return Integer.parseInt(player_num);
+        } else {
+            return 1;
+        }
+    }
+
+    public static String getPlayerGetMenpaiContestProp(int type) {
+        String Player_menpaicontest_prop = "";
+        if (type == 1) {
+            Player_menpaicontest_prop = config.getString("player_menpaicontest_prop_m");
+            if (Player_menpaicontest_prop != null) {
+                return Player_menpaicontest_prop;
+            }
+        }
+        if (type == 2) {
+            Player_menpaicontest_prop = config.getString("player_menpaicontest_prop_g");
+            if (Player_menpaicontest_prop != null) {
+                return Player_menpaicontest_prop;
+            }
+        }
+        if (type == 3) {
+            Player_menpaicontest_prop = config.getString("player_menpaicontest_prop_s");
+            if (Player_menpaicontest_prop != null) {
+                return Player_menpaicontest_prop;
+            }
+        }
+        return Player_menpaicontest_prop;
+    }
+
+    public static String getPlayerGetMenpaiContestbulid(int type) {
+        String player_menpaicontest_build = "";
+        if (type == 1) {
+            player_menpaicontest_build = config.getString("player_menpaicontest_build_m");
+            if (player_menpaicontest_build != null) {
+                return player_menpaicontest_build;
+            }
+        }
+        if (type == 2) {
+            player_menpaicontest_build = config.getString("player_menpaicontest_build_g");
+            if (player_menpaicontest_build != null) {
+                return player_menpaicontest_build;
+            }
+        }
+        if (type == 3) {
+            player_menpaicontest_build = config.getString("player_menpaicontest_build_s");
+            if (player_menpaicontest_build != null) {
+                return player_menpaicontest_build;
+            }
+        }
+        return player_menpaicontest_build;
+    }
 
 }

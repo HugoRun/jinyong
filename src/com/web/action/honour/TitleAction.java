@@ -14,12 +14,12 @@ import com.ls.model.user.RoleEntity;
 import com.ls.web.action.ActionBase;
 
 /**
- * ³ÆºÅÏà¹Ø²Ù×÷
+ * ç§°å·ç›¸å…³æ“ä½œ
  */
 public class TitleAction extends ActionBase
 {
 	/**
-	 * ²é¿´×Ô¼ºµÄ³ÆºÅÁĞ±í
+	 * æŸ¥çœ‹è‡ªå·±çš„ç§°å·åˆ—è¡¨
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +31,7 @@ public class TitleAction extends ActionBase
 	}
 
 	/**
-	 * ²é¿´×Ô¼ºµÄ³ÆºÅ
+	 * æŸ¥çœ‹è‡ªå·±çš„ç§°å·
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +45,7 @@ public class TitleAction extends ActionBase
 	}
 
 	/**
-	 * ÊÇ·ñÏÔÊ¾
+	 * æ˜¯å¦æ˜¾ç¤º
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)

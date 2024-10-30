@@ -16,7 +16,7 @@ public class BillService
 	Logger logger = Logger.getLogger("log.pay");
 
 //	/**
-//	 * ĞèÒªPOSTÌá½»µÄ²ÎÊı
+//	 * éœ€è¦POSTæäº¤çš„å‚æ•°
 //	 * @param role_info
 //	 * @param user_name
 //	 * @param amount
@@ -41,7 +41,7 @@ public class BillService
 //
 //		String url = "http://kong.net/apps/service/pay";
 //
-//		logger.debug("url£º" + url + ";user_name=" + user_name + ";Amount="
+//		logger.debug("urlï¼š" + url + ";user_name=" + user_name + ";Amount="
 //				+ amount);
 //
 //		UPayRecordDao uPayRecordDao = new UPayRecordDao();
@@ -58,12 +58,12 @@ public class BillService
 //	}
 
 	/**
-	 * ³äÖµÔª±¦
+	 * å……å€¼å…ƒå®
 	 * 
 	 * @param u_pk
 	 * @param p_pk
 	 * @param amount
-	 * @return ·µ»Ø³äÖµÌáÊ¾
+	 * @return è¿”å›å……å€¼æç¤º
 	 */
 	public String chongzhiYuanbao(int u_pk, int p_pk, int orderId, int amount)
 	{
@@ -73,36 +73,36 @@ public class BillService
 		String apiSecret = "YCJNv4i9r6VaRSd25ytfJWDW5LjTwHqY";
 		AirImpl ai = new AirImpl(apiKey, apiSecret, sessionKey);
 		
-		// Èç¹û³äÖµÍê³É
+		// å¦‚æœå……å€¼å®Œæˆ
 		if (ai.pay_isCompleted(orderId))
 		{
 			EconomyService economyService = new EconomyService();
 
-			int yb_num = amount;// 1K½ğ»ñµÃ1¸öÔª±¦
-			int jf_num = yb_num * GameConfig.getJifenNum();// 1K½ğ»ñµÃ1¸ö»ı·Ö
-			// ¸øÍæ¼ÒÔö¼ÓÔª±¦
+			int yb_num = amount;// 1Ké‡‘è·å¾—1ä¸ªå…ƒå®
+			int jf_num = yb_num * GameConfig.getJifenNum();// 1Ké‡‘è·å¾—1ä¸ªç§¯åˆ†
+			// ç»™ç©å®¶å¢åŠ å…ƒå®
 			economyService.addYuanbao(p_pk, u_pk, yb_num, "chongzhi");
-			// ¸øÍæ¼ÒÔö¼Ó»ı·Ö Ã¿³É¹¦¶Ò»»1KB»ñµÃ1¸ö»ı·Ö
+			// ç»™ç©å®¶å¢åŠ ç§¯åˆ† æ¯æˆåŠŸå…‘æ¢1KBè·å¾—1ä¸ªç§¯åˆ†
 			economyService.addJifen(u_pk, jf_num);
 
 			GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 			gsss.addPropNum(0, StatisticsType.PLAYER, 1, "player", "chongzhi",
-					u_pk);// Í³¼Æ³äÖµÈË´Î
+					u_pk);// ç»Ÿè®¡å……å€¼äººæ¬¡
 			long yuanbao_total = economyService.getYuanbao(u_pk);
-			return hint = "¶Ò»»³É¹¦,Äú»ñµÃÁË" + amount + "¸ö¡¾Ôª±¦¡¿,Ä¿Ç°Äú¹²ÓĞ¡¾Ôª±¦¡¿¡Á"
+			return hint = "å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†" + amount + "ä¸ªã€å…ƒå®ã€‘,ç›®å‰æ‚¨å…±æœ‰ã€å…ƒå®ã€‘Ã—"
 					+ yuanbao_total + "!";
 
 		}*/
-		return "¶Ò»»Ê§°Ü£¡";
+		return "å…‘æ¢å¤±è´¥ï¼";
 
 	}
 	
 	/**
-	 * Ìí¼ÓÏû·Ñ¼ÇÂ¼
+	 * æ·»åŠ æ¶ˆè´¹è®°å½•
 	 * @param skyid
 	 * @param kbamt
 	 * @param p_pk
-	 * @return ÌõÊı
+	 * @return æ¡æ•°
 	 */
 	public int addPayRecord(String skyid,String kbamt,int p_pk)
 	{
@@ -111,7 +111,7 @@ public class BillService
 	}
 	
 	/**
-	 * ¸ù¾İtoken·µ»Ø³äÖµÌáÊ¾
+	 * æ ¹æ®tokenè¿”å›å……å€¼æç¤º
 	 * @return
 	 */
 	public String getPayHintByToken(Map<String,String> token)
@@ -123,6 +123,6 @@ public class BillService
 	// {
 	// BillService air = new BillService();
 	//		
-	// System.out.print("Ïû·Ñ½á¹û="+air.pay(null, null, null));
+	// System.out.print("æ¶ˆè´¹ç»“æœ="+air.pay(null, null, null));
 	//	}
 }

@@ -5,8 +5,8 @@ import org.apache.log4j.Logger;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:buff
- * @author ÁõË§
+ * åŠŸèƒ½:buff
+ * @author åˆ˜å¸…
  * 10:14:53 AM
  */
 public class BuffVO {
@@ -15,23 +15,23 @@ public class BuffVO {
 	
 	 /**id*/
 	private int buffId;	
-	/**buffÀàĞÍ*/
+	/**buffç±»å‹*/
     private int buffType;  
-    /**Ãû³Æ*/
+    /**åç§°*/
 	private String buffName;
-	/** buffÃèÊö*/
+	/** buffæè¿°*/
 	private String buffDisplay;
-	/**³ÖĞøÊ±¼ä£¬µ¥Î»ÎªÃë*/
+	/**æŒç»­æ—¶é—´ï¼Œå•ä½ä¸ºç§’*/
 	private int buffTime;
-	/**³ÖĞø»ØºÏ*/
+	/**æŒç»­å›åˆ*/
 	private int buffBout;
-	/**buffĞ§¹ûÖµ*/
+	/**buffæ•ˆæœå€¼*/
 	private int buffEffectValue;
-	/**ÊÇ·ñ»ØºÏµş¼Ó,0±íÊ¾²»ÄÜ£¬1±íÊ¾ÄÜ*/
+	/**æ˜¯å¦å›åˆå åŠ ,0è¡¨ç¤ºä¸èƒ½ï¼Œ1è¡¨ç¤ºèƒ½*/
 	private int buffBoutOverlap;
-	/**ÊÇ·ñÊ±¼äµş¼Ó,0±íÊ¾²»ÄÜ£¬1±íÊ¾ÄÜ*/
+	/**æ˜¯å¦æ—¶é—´å åŠ ,0è¡¨ç¤ºä¸èƒ½ï¼Œ1è¡¨ç¤ºèƒ½*/
 	private int buffTimeOverlap;
-	/**Ê¹ÓÃ·½Ê½£¬1±íÊ¾ÔöÒæ£¬2±íÊ¾¼õÒæ*/
+	/**ä½¿ç”¨æ–¹å¼ï¼Œ1è¡¨ç¤ºå¢ç›Šï¼Œ2è¡¨ç¤ºå‡ç›Š*/
 	private int buffUseMode;  
 	
 	

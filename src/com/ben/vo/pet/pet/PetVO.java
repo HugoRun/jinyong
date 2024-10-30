@@ -4,51 +4,51 @@
 package com.ben.vo.pet.pet;
 
 /**
- * @author ºîºÆ¾ü
- * ¹¦ÄÜ:³èÎï±í
+ * @author ä¾¯æµ©å†›
+ * åŠŸèƒ½:å® ç‰©è¡¨
  * 10:31:57 AM
  */
 public class PetVO {
-	/** ³èÎïid */
+	/** å® ç‰©id */
 	private int petId;
-	/** Ïà¹ØNPCID */
+	/** ç›¸å…³NPCID */
 	private int npcId;
-	/** ³èÎïÃû³Æ */
+	/** å® ç‰©åç§° */
 	private String petName;
-	/** ³èÎïÍ¼Æ¬ */
+	/** å® ç‰©å›¾ç‰‡ */
 	private String petImg;
-	/** ³èÎï³É³¤ÂÊ*/
+	/** å® ç‰©æˆé•¿ç‡*/
 	private double petDropDa;
-	/** ³èÎï³É³¤ÂÊ */
+	/** å® ç‰©æˆé•¿ç‡ */
 	private double petDropXiao;
-	/** ÎåĞĞÊôĞÔ ½ğ=1£¬Ä¾=2£¬Ë®=3£¬»ğ=4£¬ÍÁ=5 */
+	/** äº”è¡Œå±æ€§ é‡‘=1ï¼Œæœ¨=2ï¼Œæ°´=3ï¼Œç«=4ï¼ŒåœŸ=5 */
 	private String petWx;
-	/** ÎåĞĞÊôĞÔÖµ */
+	/** äº”è¡Œå±æ€§å€¼ */
 	private String petWxValue;
-	/** Éı¼¶ ÊÇ·ñ¿É×ÔÈ»Éı¼¶ */
+	/** å‡çº§ æ˜¯å¦å¯è‡ªç„¶å‡çº§ */
 	private int petIsAutoGrow;
-	/** Æ£ÀÍ¶È0-100,³öÕ½×´Ì¬ÏÂÔö¼ÓÆ£ÀÍ¶È£¬Ò»¸öĞ¡Ê±¼Ó10µã */
+	/** ç–²åŠ³åº¦0-100,å‡ºæˆ˜çŠ¶æ€ä¸‹å¢åŠ ç–²åŠ³åº¦ï¼Œä¸€ä¸ªå°æ—¶åŠ 10ç‚¹ */
 	private int petFatigue;
-	/** ³èÎïÊÙÃü */
+	/** å® ç‰©å¯¿å‘½ */
 	private int petLonge;
-	/** ÊÙÃüµÀ¾ßÊ¹ÓÃ´ÎÊı */
+	/** å¯¿å‘½é“å…·ä½¿ç”¨æ¬¡æ•° */
 	private int longeNumber;
-	/** Õâ¸ö³èÎï×î¶à¿ÉÒÔÑ§Ï°¶àÉÙ¸ö¼¼ÄÜ */
+	/** è¿™ä¸ªå® ç‰©æœ€å¤šå¯ä»¥å­¦ä¹ å¤šå°‘ä¸ªæŠ€èƒ½ */
 	private int skillControl;
-	/**¼¼ÄÜ1	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
+	/**æŠ€èƒ½1	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
 	private int petSkillOne;
-	/**¼¼ÄÜ2	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
+	/**æŠ€èƒ½2	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
     private int petSkillTwo;
-    /**¼¼ÄÜ3	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
+    /**æŠ€èƒ½3	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
     private int petSkillThree;
-    /**¼¼ÄÜ4	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
+    /**æŠ€èƒ½4	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
     private int petSkillFour;
-    /**¼¼ÄÜ5	¿ÉÑ§Ï°µÄ¼¼ÄÜid*/
+    /**æŠ€èƒ½5	å¯å­¦ä¹ çš„æŠ€èƒ½id*/
     private int petSkillFive;
     
     private int petType;
     
-    /** ³èÎï±©»÷ÂÊ */
+    /** å® ç‰©æš´å‡»ç‡ */
     private double petViolenceDorp;
     
 	public double getPetViolenceDorp()

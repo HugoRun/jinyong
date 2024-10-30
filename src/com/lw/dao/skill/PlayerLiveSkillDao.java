@@ -11,11 +11,11 @@ import com.ls.pub.db.DBConnection;
 public class PlayerLiveSkillDao extends DaoBase
 {
 
-	/** 统计玩家生活技能的数量 */
+	/** 缁熻鐜╁鐢熸椿鎶�鑳界殑鏁伴噺 */
 	public int PlayerLiveSkillNum(int p_pk)
 	{
 		int num = 0;
-		String sql = "select count(*) from u_skill_info  where p_pk = " + p_pk
+		String sql = "SELECT count(*) from u_skill_info  where p_pk = " + p_pk
 				+ " and sk_type = 2 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -46,7 +46,7 @@ public class PlayerLiveSkillDao extends DaoBase
 	{
 		List list = new ArrayList();
 		PlayerSkillVO vo = new PlayerSkillVO();
-		String sql = "select * from u_skill_info where p_pk = " + p_pk
+		String sql = "SELECT * FROM u_skill_info where p_pk = " + p_pk
 				+ " and sk_type = 2";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);

@@ -10,7 +10,7 @@ import com.ls.pub.util.encrypt.MD5Util;
 public class SendPostXml
 {
 	/***
-	 * ·¢ËÍÇëÇóÖÁ¿ÕÖĞÍøµÃµ½·µ»ØµÄXMLÎÄ¼ş
+	 * å‘é€è¯·æ±‚è‡³ç©ºä¸­ç½‘å¾—åˆ°è¿”å›çš„XMLæ–‡ä»¶
 	 * @param urlString
 	 * @param params
 	 * @param method
@@ -49,7 +49,7 @@ public class SendPostXml
 
 			if (!isGet)
 			{
-				// Ğ´Èëxml²ÎÊı
+				// å†™å…¥xmlå‚æ•°
 				xmlOut = new java.io.PrintWriter(acon.getOutputStream());
 				xmlOut.write(params);
 				xmlOut.flush();
@@ -65,7 +65,7 @@ public class SendPostXml
 			}
 			else
 			{
-				// ¶Á³ö½á¹û
+				// è¯»å‡ºç»“æœ
 				StringBuffer sb = new StringBuffer();
 				int c;
 				InputStream in = acon.getInputStream();
@@ -88,7 +88,7 @@ public class SendPostXml
 		return rtn;
 	}	
 
-	// ·¢ËÍxml¸ñÊ½ÎÄ¼ş
+	// å‘é€xmlæ ¼å¼æ–‡ä»¶
 	public static String send(String urlString, String params, String method)
 	{
 
@@ -121,7 +121,7 @@ public class SendPostXml
 
 			if (acon.getResponseCode() == 200)
 			{
-				// ¶Á³ö½á¹û
+				// è¯»å‡ºç»“æœ
 				StringBuffer sb = new StringBuffer();
 				InputStream in = acon.getInputStream();
 				int c;
@@ -148,14 +148,14 @@ public class SendPostXml
 	}
 
 	/**
-	 * ¸ø¿ÕÖĞÍø·¢ËÍ³äÖµÈ·ÈÏ
+	 * ç»™ç©ºä¸­ç½‘å‘é€å……å€¼ç¡®è®¤
 	 * 
-	 * @param order_id ¶©µ¥ºÅ            
-	 * @param amount Ïû·ÑÊı¶î
-	 * @param pay_type Ïû·ÑÀàĞÍ 1 - K½ğ
-	 * @param desc ÓÃ»§¹ºÂòµÄĞéÄâÎïÆ·µÄÃû³Æ           
-	 * @param v APIµÄ°æ±¾ºÅ£¬ÇëÉèÖÃ³É 1.0            
-	 * @return Ó¦ÓÃÖĞÖ§¸¶°²È«ĞÔToken
+	 * @param order_id è®¢å•å·            
+	 * @param amount æ¶ˆè´¹æ•°é¢
+	 * @param pay_type æ¶ˆè´¹ç±»å‹ 1 - Ké‡‘
+	 * @param desc ç”¨æˆ·è´­ä¹°çš„è™šæ‹Ÿç‰©å“çš„åç§°           
+	 * @param v APIçš„ç‰ˆæœ¬å·ï¼Œè¯·è®¾ç½®æˆ 1.0            
+	 * @return åº”ç”¨ä¸­æ”¯ä»˜å®‰å…¨æ€§Token
 	 */
 	public static String sendPostToAir(String userName, String amount,
 			String pc_id, String unique_str)
@@ -165,26 +165,26 @@ public class SendPostXml
 
 		String merchant_key = "xWx86231";
 
-		// ÉÌ»§±àºÅ,ÉÌ»§ÔÚµ±ÀÖµÄÉí·İ±êÊ¶£¬ÓÉµ±ÀÖ¸æÖªÉÌ»§
+		// å•†æˆ·ç¼–å·,å•†æˆ·åœ¨å½“ä¹çš„èº«ä»½æ ‡è¯†ï¼Œç”±å½“ä¹å‘ŠçŸ¥å•†æˆ·
 		String merchant_id = "17";
-		// ÓÎÏ·±àºÅ
+		// æ¸¸æˆç¼–å·
 		String game_id = "1";
-		// ÓÃ»§ËùÔÚµÄÓÎÏ··şÎñÆ÷ID£¬Ä¬ÈÏÎª1
+		// ç”¨æˆ·æ‰€åœ¨çš„æ¸¸æˆæœåŠ¡å™¨IDï¼Œé»˜è®¤ä¸º1
 		String server_id = "1";
-		// ÓÃ»§ÔÚµ±ÀÖ×¢²áµÄÓÃ»§Ãû
+		// ç”¨æˆ·åœ¨å½“ä¹æ³¨å†Œçš„ç”¨æˆ·å
 		// String userName = "";
-		// ÓÃ»§Ö§¸¶µÄÊµ¼Ê½ğ¶î£¬µ¥Î»ÎªÔª
+		// ç”¨æˆ·æ”¯ä»˜çš„å®é™…é‡‘é¢ï¼Œå•ä½ä¸ºå…ƒ
 		// String amount = "";
-		// ÓÃ»§Ö§¸¶Ê¹ÓÃµÄÍ¨µÀID£¬Ö§¸¶Í¨µÀ¶ÔÕÕ±íÓÉµ±ÀÖÌá¹©¸øÉÌ»§,Ïê¼û:±í¸ñ 3 pc-id£¨¸¶¿îÇşµÀ£©¶ÔÕÕ±í
+		// ç”¨æˆ·æ”¯ä»˜ä½¿ç”¨çš„é€šé“IDï¼Œæ”¯ä»˜é€šé“å¯¹ç…§è¡¨ç”±å½“ä¹æä¾›ç»™å•†æˆ·,è¯¦è§:è¡¨æ ¼ 3 pc-idï¼ˆä»˜æ¬¾æ¸ é“ï¼‰å¯¹ç…§è¡¨
 		// String pc_id = "";
-		// Î¨Ò»±àºÅ,¶©µ¥ºÅ»òÏµÍ³Éú³ÉµÄÎ¨Ò»ĞòÁĞºÅ£¬ÓÉÓÎÏ·³§ÉÌÉú³É(·ÀÖ¹ÖØ¸´Ìá½»)ÏµÍ³ÖĞ»á¸ù¾İmerchant-idgame-idserver-idseq-strÎ¨Ò»Æ¥ÅäÊı¾İ
+		// å”¯ä¸€ç¼–å·,è®¢å•å·æˆ–ç³»ç»Ÿç”Ÿæˆçš„å”¯ä¸€åºåˆ—å·ï¼Œç”±æ¸¸æˆå‚å•†ç”Ÿæˆ(é˜²æ­¢é‡å¤æäº¤)ç³»ç»Ÿä¸­ä¼šæ ¹æ®merchant-idgame-idserver-idseq-strå”¯ä¸€åŒ¹é…æ•°æ®
 		// String unique_str = "";
-		// Ê±¼ä±êÇ©£¬¸ñÊ½:yyyymmddHH24mmss£¬ÓĞĞ§Ê±¼ä£¨Ôİ¶¨Îª°ëĞ¡Ê±£©£¬×¢ÒâË«·½·şÎñÆ÷Ê±¼äÍ³Ò»£¬ÔÂ£¬ÈÕĞ¡Ê±£¬·Ö£¬ÃëĞ¡ÓÚ10Ç°Ãæ²¹³ä0£¬ÀıÈç:200901011208
+		// æ—¶é—´æ ‡ç­¾ï¼Œæ ¼å¼:yyyymmddHH24mmssï¼Œæœ‰æ•ˆæ—¶é—´ï¼ˆæš‚å®šä¸ºåŠå°æ—¶ï¼‰ï¼Œæ³¨æ„åŒæ–¹æœåŠ¡å™¨æ—¶é—´ç»Ÿä¸€ï¼Œæœˆï¼Œæ—¥å°æ—¶ï¼Œåˆ†ï¼Œç§’å°äº10å‰é¢è¡¥å……0ï¼Œä¾‹å¦‚:200901011208
 		String timestamp = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
 				.format(new java.util.Date());
-		// MD5ÑéÖ¤´®,32Î»Ğ¡Ğ´MD5ÑéÖ¤´®£¬Éú³É¹æÔò²Î¼ûÏÂ·½ËµÃ÷
+		// MD5éªŒè¯ä¸²,32ä½å°å†™MD5éªŒè¯ä¸²ï¼Œç”Ÿæˆè§„åˆ™å‚è§ä¸‹æ–¹è¯´æ˜
 		String verify_string = "";
-		// ¼ÓÃÜÀàĞÍ,Ä¬ÈÏÎª0£¬ËùÓĞ×Ö¶Î¾ù²»¼ÓÃÜ
+		// åŠ å¯†ç±»å‹,é»˜è®¤ä¸º0ï¼Œæ‰€æœ‰å­—æ®µå‡ä¸åŠ å¯†
 		String verify_type = "0";
 
 		String callback = "merchant-id=" + merchant_id + "&game-id=" + game_id

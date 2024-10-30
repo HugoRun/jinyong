@@ -9,7 +9,7 @@ import com.lw.vo.UnchartedRoom.UnchartedRoomVO;
 
 public class UnchartedRoomService
 {
-	// Íæ¼ÒµÄµØÍ¼¸üĞÂ ¸üĞÂÃØ¾³×´Ì¬
+	// ç©å®¶çš„åœ°å›¾æ›´æ–° æ›´æ–°ç§˜å¢ƒçŠ¶æ€
 	public void updatePlayerUnchartedRoomState(RoleEntity roleinfo,
 			String new_scene_id)
 	{
@@ -47,7 +47,7 @@ public class UnchartedRoomService
 		}
 	}
 
-	// ´¦ÀíÍæ¼ÒÉÏÏßºóµÄÃØ¾³µØÍ¼ĞÅÏ¢
+	// å¤„ç†ç©å®¶ä¸Šçº¿åçš„ç§˜å¢ƒåœ°å›¾ä¿¡æ¯
 	public void updateOfflinePlayerUnchartedRoomState(RoleEntity roleinfo)
 	{
 		String scene_id = roleinfo.getBasicInfo().getSceneId();
@@ -68,7 +68,7 @@ public class UnchartedRoomService
 		}
 	}
 	
-	// ´¦ÀíÍæ¼ÒÉÏÏßºóµÄÃØ¾³µØÍ¼ĞÅÏ¢
+	// å¤„ç†ç©å®¶ä¸Šçº¿åçš„ç§˜å¢ƒåœ°å›¾ä¿¡æ¯
 	public void updateOfflinePlayerTianguanState(RoleEntity roleinfo)
 	{
 		String scene_id = roleinfo.getBasicInfo().getSceneId();
@@ -88,14 +88,14 @@ public class UnchartedRoomService
 		}
 	}
 
-	// µÃµ½Íæ¼Ò¸öÊı
+	// å¾—åˆ°ç©å®¶ä¸ªæ•°
 	private int getUnchartedRoomNum()
 	{
 		UnchartedRoomDAO dao = new UnchartedRoomDAO();
 		return dao.getUnchartedRoomPlayerNum();
 	}
 
-	// ÊÇ·ñÓĞ¸ÃÍæ¼ÒµÄ¼ÇÂ¼
+	// æ˜¯å¦æœ‰è¯¥ç©å®¶çš„è®°å½•
 	private UnchartedRoomVO getUnchartedRoomRecord(int p_pk)
 	{
 		UnchartedRoomDAO dao = new UnchartedRoomDAO();
@@ -103,7 +103,7 @@ public class UnchartedRoomService
 		return vo;
 	}
 
-	// ¸üĞÂÍæ¼Ò½øÈëÃØ¾³µÄÊ±¼ä ´ÎÊı
+	// æ›´æ–°ç©å®¶è¿›å…¥ç§˜å¢ƒçš„æ—¶é—´ æ¬¡æ•°
 	private boolean inUnchartedRoom(int p_pk)
 	{
 		UnchartedRoomDAO dao = new UnchartedRoomDAO();
@@ -119,7 +119,7 @@ public class UnchartedRoomService
 		return true;
 	}
 
-	// ¸üĞÂÍæ¼ÒÀë¿ªÃØ¾³µÄÊ±¼äµÄ×´Ì¬
+	// æ›´æ–°ç©å®¶ç¦»å¼€ç§˜å¢ƒçš„æ—¶é—´çš„çŠ¶æ€
 	private boolean outUnchartedRoom(int p_pk)
 	{
 		UnchartedRoomDAO dao = new UnchartedRoomDAO();

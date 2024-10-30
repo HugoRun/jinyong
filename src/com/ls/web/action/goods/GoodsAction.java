@@ -31,13 +31,13 @@ import com.lw.service.player.PlayerPropGroupService;
 import com.web.service.task.TaskPageService;
 
 /**
- * µôÂäÎïÆ·Ê°È¡
+ * æ‰è½ç‰©å“æ‹¾å–
  */
 public class GoodsAction extends DispatchAction
 {
 	Logger logger = Logger.getLogger("log.action");
 
-	// ¼ñÆğÎïÆ·
+	// æ¡èµ·ç‰©å“
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -51,7 +51,7 @@ public class GoodsAction extends DispatchAction
 
 		if (p_pk == null || drop_pk == null)
 		{
-			// //System.out.println("²ÎÊı´«µİ´íÎó");
+			// //System.out.println("å‚æ•°ä¼ é€’é”™è¯¯");
 		}
 
 		
@@ -65,7 +65,7 @@ public class GoodsAction extends DispatchAction
 		String hint = "";
 		if (result != -1)
 		{
-			logger.info("³É¹¦·ÅÈë°ü¹ü");
+			logger.info("æˆåŠŸæ”¾å…¥åŒ…è£¹");
 			TaskPageService taskPageService = new TaskPageService();
 			List<DropGoodsVO> dropgoods = roleInfo.getDropSet().getList();
 			if (roleInfo.getTaskInfo().getTaskId() != -1
@@ -73,11 +73,11 @@ public class GoodsAction extends DispatchAction
 					&& !roleInfo.getTaskInfo().getTaskPoint().equals("")
 					&& roleInfo.getTaskInfo().getTaskMenu() != -1)
 			{
-				/** ÈÎÎñID */
+				/** ä»»åŠ¡ID */
 				int tPk = roleInfo.getTaskInfo().getTaskId();
-				/** ÈÎÎñÖĞ¼äµãDI */
+				/** ä»»åŠ¡ä¸­é—´ç‚¹DI */
 				String taskPorint = roleInfo.getTaskInfo().getTaskPoint();
-				/** ²Ëµ¥ID */
+				/** èœå•ID */
 				UTaskDAO uTaskDAO = new UTaskDAO();
 				int menuID = roleInfo.getTaskInfo().getTaskMenu();
 				String tPoint[] = taskPorint.split(",");
@@ -104,27 +104,27 @@ public class GoodsAction extends DispatchAction
 		}
 		else
 		{
-			hint = "ÄúµÄ°ü¹ü¸ñÊıÒÑÂú,ÎŞ·¨Ê°È¡.ÊÇ·ñ¹ºÂò°ü¹ü¸ñÊı.ÕıÔÚ´òÕÛ³öÊÛ!";
+			hint = "æ‚¨çš„åŒ…è£¹æ ¼æ•°å·²æ»¡,æ— æ³•æ‹¾å–.æ˜¯å¦è´­ä¹°åŒ…è£¹æ ¼æ•°.æ­£åœ¨æ‰“æŠ˜å‡ºå”®!";
 			request.setAttribute("display", hint);
 			return mapping.findForward("hint");
 		}
 	}
 
-	// µôÂäÎïÆ·ÁĞ±íÎïÆ·
+	// æ‰è½ç‰©å“åˆ—è¡¨ç‰©å“
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 
-		// µÃµ½µôÂäÎï
+		// å¾—åˆ°æ‰è½ç‰©
 		List<DropGoodsVO> dropgoods = roleInfo.getDropSet().getList();
 
 		request.setAttribute("dropgoods", dropgoods);
 		return mapping.findForward("list");
 	}
 
-	// ¼ÌĞø,Çå³ıµôÂäÎï
+	// ç»§ç»­,æ¸…é™¤æ‰è½ç‰©
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -134,7 +134,7 @@ public class GoodsAction extends DispatchAction
 		String p_pk = roleInfo.getBasicInfo().getPPk() + "";
 		if (p_pk == null)
 		{
-			// //System.out.println("²ÎÊı´«µİ´íÎó");
+			// //System.out.println("å‚æ•°ä¼ é€’é”™è¯¯");
 		}
 
 		roleInfo.getDropSet().clearDropItem();
@@ -145,10 +145,10 @@ public class GoodsAction extends DispatchAction
 					&& !roleInfo.getTaskInfo().getTaskPoint().equals("")
 					&& roleInfo.getTaskInfo().getTaskMenu() != -1)
 			{
-				int tPk = roleInfo.getTaskInfo().getTaskId();// ÈÎÎñID
-				String taskPorint = roleInfo.getTaskInfo().getTaskPoint();// ÈÎÎñÖĞ¼äµãDI
+				int tPk = roleInfo.getTaskInfo().getTaskId();// ä»»åŠ¡ID
+				String taskPorint = roleInfo.getTaskInfo().getTaskPoint();// ä»»åŠ¡ä¸­é—´ç‚¹DI
 				UTaskDAO uTaskDAO = new UTaskDAO();
-				int menuID = roleInfo.getTaskInfo().getTaskMenu();// ²Ëµ¥ID
+				int menuID = roleInfo.getTaskInfo().getTaskMenu();// èœå•ID
 				String tPoint[] = taskPorint.split(",");
 				String ddc11 = "";
 				for (int i = 0; i < tPoint.length; i++)
@@ -181,7 +181,7 @@ public class GoodsAction extends DispatchAction
 		return null;
 	}
 
-	// ÎïÆ·ÁĞ±í
+	// ç‰©å“åˆ—è¡¨
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -192,7 +192,7 @@ public class GoodsAction extends DispatchAction
 		DropExpMoneyVO dropExpMoney = roleInfo.getDropSet().getExpAndMoney();
 		roleInfo.getDropSet().clearExpAndMoney();
 
-		// µÃµ½µôÂäÎï
+		// å¾—åˆ°æ‰è½ç‰©
 		List<DropGoodsVO> dropgoods =  roleInfo.getDropSet().getList();
 
 		request.setAttribute("dropgoods", dropgoods);
@@ -200,7 +200,7 @@ public class GoodsAction extends DispatchAction
 		return mapping.findForward("box_list");
 	}
 
-	// È«²¿Ê°È¡µôÂäÎïÆ·
+	// å…¨éƒ¨æ‹¾å–æ‰è½ç‰©å“
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -211,7 +211,7 @@ public class GoodsAction extends DispatchAction
 
 		if (roleInfo == null)
 		{
-			logger.info("²ÎÊı´«µİ´íÎó");
+			logger.info("å‚æ•°ä¼ é€’é”™è¯¯");
 		}
 
 		GoodsService goodsService = new GoodsService();
@@ -221,7 +221,7 @@ public class GoodsAction extends DispatchAction
 
 		if (result != -1)
 		{
-			logger.info("³É¹¦·ÅÈë°ü¹ü");
+			logger.info("æˆåŠŸæ”¾å…¥åŒ…è£¹");
 			List<DropGoodsVO> dropgoods = roleInfo.getDropSet().getList();
 			if (dropgoods.size() == 0)
 			{
@@ -231,9 +231,9 @@ public class GoodsAction extends DispatchAction
 						&& !roleInfo.getTaskInfo().getTaskPoint().equals("")
 						&& roleInfo.getTaskInfo().getTaskMenu() != -1)
 				{
-					int tPk = roleInfo.getTaskInfo().getTaskId();// ÈÎÎñID
-					String taskPorint = roleInfo.getTaskInfo().getTaskPoint();// ÈÎÎñÖĞ¼äµãDI
-					int menuID = roleInfo.getTaskInfo().getTaskMenu();// ²Ëµ¥ID
+					int tPk = roleInfo.getTaskInfo().getTaskId();// ä»»åŠ¡ID
+					String taskPorint = roleInfo.getTaskInfo().getTaskPoint();// ä»»åŠ¡ä¸­é—´ç‚¹DI
+					int menuID = roleInfo.getTaskInfo().getTaskMenu();// èœå•ID
 					UTaskDAO uTaskDAO = new UTaskDAO();
 					String tPoint[] = taskPorint.split(",");
 					String ddc11 = "";
@@ -272,14 +272,14 @@ public class GoodsAction extends DispatchAction
 		}
 		else
 		{
-			hint = "ÄúµÄ°ü¹ü¸ñÊıÒÑÂú,ÎŞ·¨Ê°È¡.ÊÇ·ñ¹ºÂò°ü¹ü¸ñÊı.ÕıÔÚ´òÕÛ³öÊÛ!";
+			hint = "æ‚¨çš„åŒ…è£¹æ ¼æ•°å·²æ»¡,æ— æ³•æ‹¾å–.æ˜¯å¦è´­ä¹°åŒ…è£¹æ ¼æ•°.æ­£åœ¨æ‰“æŠ˜å‡ºå”®!";
 			request.setAttribute("display", hint);
 			return mapping.findForward("hint");
 		}
 
 	}
 
-	// ¼ñÈ¡Ê±ºòÔö¼Ó°ü¹ü
+	// æ¡å–æ—¶å€™å¢åŠ åŒ…è£¹
 	public ActionForward n6(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -291,7 +291,7 @@ public class GoodsAction extends DispatchAction
 				.getPlayerPropGroupInfo(roleInfo);
 		if (display == null)
 		{
-			request.setAttribute("display", "ÄúµÄÎïÆ·À¸Î»ÒÑ¾­Îª×î´óÁË!<br/>");
+			request.setAttribute("display", "æ‚¨çš„ç‰©å“æ ä½å·²ç»ä¸ºæœ€å¤§äº†!<br/>");
 			return mapping.findForward("display");
 		}
 		else
@@ -301,7 +301,7 @@ public class GoodsAction extends DispatchAction
 		}
 	}
 
-	// ¹ºÂò°ü¹ü·µ»Ø
+	// è´­ä¹°åŒ…è£¹è¿”å›
 	public ActionForward n7(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -324,7 +324,7 @@ public class GoodsAction extends DispatchAction
 				request.setAttribute("uPk", roleInfo.getBasicInfo().getUPk());
 				return mapping.findForward("chongzhi");
 			}else{
-				request.setAttribute("display", "ÄúµÄ"+GameConfig.getYuanbaoName()+"ÊıÁ¿²»×ã,½«·ÅÆú±¾´ÎÊ°È¡!");
+				request.setAttribute("display", "æ‚¨çš„"+GameConfig.getYuanbaoName()+"æ•°é‡ä¸è¶³,å°†æ”¾å¼ƒæœ¬æ¬¡æ‹¾å–!");
 				return mapping.findForward("display");
 			}
 		}
@@ -332,7 +332,7 @@ public class GoodsAction extends DispatchAction
 		return mapping.findForward("display");
 	}
 
-	// ³äÖµ²¢¹ºÂò°ü¹ü
+	// å……å€¼å¹¶è´­ä¹°åŒ…è£¹
 	public ActionForward n8(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -340,7 +340,7 @@ public class GoodsAction extends DispatchAction
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
-		String kbamt_str = request.getParameter("kbamt");// ÓÃ»§Ìá½»¿Û·Ñ½ğ¶î
+		String kbamt_str = request.getParameter("kbamt");// ç”¨æˆ·æäº¤æ‰£è´¹é‡‘é¢
 
 		ValidateService validateService = new ValidateService();
 		String hint = validateService
@@ -356,7 +356,7 @@ public class GoodsAction extends DispatchAction
 
 		if (kbamt > 500)
 		{
-			hint = "Ã¿´Î¶Ò»»KBµÄÊıÁ¿²»µÃ³¬¹ı500KB,¿É½øĞĞ¶à´Î¶Ò»»";
+			hint = "æ¯æ¬¡å…‘æ¢KBçš„æ•°é‡ä¸å¾—è¶…è¿‡500KB,å¯è¿›è¡Œå¤šæ¬¡å…‘æ¢";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("chongzhidisplay");
 		}
@@ -374,8 +374,8 @@ public class GoodsAction extends DispatchAction
 		{
 			EconomyService economyService = new EconomyService();
 			long yuanbao = economyService.getYuanbao(Integer.parseInt(uPk));
-			// ¶Ò»»³É¹¦,Äú»ñµÃÁË50¸ö¡¾Ôª±¦¡¿£¬Ä¿Ç°Äú¹²ÓĞ¡¾Ôª±¦¡¿¡Á120£¡
-			hint = "¶Ò»»³É¹¦,Äú»ñµÃÁË" + kbamt + "¸ö¡¾"+GameConfig.getYuanbaoName()+"¡¿,Ä¿Ç°Äú¹²ÓĞ¡¾"+GameConfig.getYuanbaoName()+"¡¿¡Á" + yuanbao + "£¡";
+			// å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†50ä¸ªã€å…ƒå®ã€‘ï¼Œç›®å‰æ‚¨å…±æœ‰ã€å…ƒå®ã€‘Ã—120ï¼
+			hint = "å…‘æ¢æˆåŠŸ,æ‚¨è·å¾—äº†" + kbamt + "ä¸ªã€"+GameConfig.getYuanbaoName()+"ã€‘,ç›®å‰æ‚¨å…±æœ‰ã€"+GameConfig.getYuanbaoName()+"ã€‘Ã—" + yuanbao + "ï¼";
 			PlayerPropGroupService playerPropGroupService = new PlayerPropGroupService();
 			String display = null;
 			if(GameConfig.getChannelId()==Channel.TELE)
@@ -387,7 +387,7 @@ public class GoodsAction extends DispatchAction
 				display=playerPropGroupService.buyPropGroup(roleInfo);
 			}
 			if(display == null){
-				display = "³äÖµ³É¹¦,ÄúµÄ"+GameConfig.getYuanbaoName()+"²»×ã¹ºÂò°ü¹üÇë¼ÌĞø³äÖµ!";
+				display = "å……å€¼æˆåŠŸ,æ‚¨çš„"+GameConfig.getYuanbaoName()+"ä¸è¶³è´­ä¹°åŒ…è£¹è¯·ç»§ç»­å……å€¼!";
 			}
 			request.setAttribute("hint", display);
 			return mapping.findForward("chongzhidisplay");

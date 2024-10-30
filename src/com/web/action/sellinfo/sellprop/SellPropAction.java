@@ -31,12 +31,12 @@ import com.ls.web.service.system.UMsgService;
 import com.pub.ben.info.Expression;
 
 /**
- * @author ºîºÆ¾ü ¹¦ÄÜ:µÀ¾ß½»Ò× 9:40:46 AM 
+ * @author ä¾¯æµ©å†› åŠŸèƒ½:é“å…·äº¤æ˜“ 9:40:46 AM 
  */
 public class SellPropAction extends ActionBase
 {
 	/**
-	 * µÀ¾ß½»Ò×
+	 * é“å…·äº¤æ˜“
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +52,7 @@ public class SellPropAction extends ActionBase
 		String pByPk = request.getParameter("pByPk");
 		
 		if (goods_id == null || w_type == null || pg_pk == null) {
-			////System.out.print("goods_id»òw_type»òpg_pkÎª¿Õ");
+			////System.out.print("goods_idæˆ–w_typeæˆ–pg_pkä¸ºç©º");
 		}
 
 		GoodsService goodsService = new GoodsService(); 
@@ -70,7 +70,7 @@ public class SellPropAction extends ActionBase
 		return mapping.findForward("propview");
 	} 
 	/**
-	 * µÀ¾ß½»Ò×
+	 * é“å…·äº¤æ˜“
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -91,17 +91,17 @@ public class SellPropAction extends ActionBase
 		return mapping.findForward("propnumber");
 	} 
 	/**
-	 * µÀ¾ß½»Ò×
+	 * é“å…·äº¤æ˜“
 	 */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{ 
 		RoleEntity roleInfo = this.getRoleEntity(request);
 		
-		//Èç¹ûÊÇĞÂÊÖ
+		//å¦‚æœæ˜¯æ–°æ‰‹
 		if( roleInfo.getBasicInfo().getPlayer_state_by_new()==1)
 		{
-			this.setHint(request, "ÄãÏÖÔÚ´¦ÔÚĞÂÊÖÒıµ¼×´Ì¬,ÎŞ·¨½»Ò×");
+			this.setHint(request, "ä½ ç°åœ¨å¤„åœ¨æ–°æ‰‹å¼•å¯¼çŠ¶æ€,æ— æ³•äº¤æ˜“");
 			return mapping.findForward("return_hint");
 		}
 		
@@ -113,16 +113,16 @@ public class SellPropAction extends ActionBase
 		String w_type = request.getParameter("w_type");
 		String pSilver = request.getParameter("pSilver");
 		String number = request.getParameter("number");
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		
 		
 		
-		//ÅĞ¶ÏÍæ¼ÒÊÇ·ñÔÚÏß
+		//åˆ¤æ–­ç©å®¶æ˜¯å¦åœ¨çº¿
 		RoleEntity roleInfo1pByuPk = RoleService.getRoleInfoById(pByPk);
 		if(roleInfo1pByuPk == null){
 			try{
-				String hint = "¸ÃÍæ¼ÒÒÑÏÂÏß!";
+				String hint = "è¯¥ç©å®¶å·²ä¸‹çº¿!";
 				if(hint != null ){
 					request.getRequestDispatcher("/pubbuckaction.do?hint="+hint).forward(request, response);
 					return null;
@@ -139,7 +139,7 @@ public class SellPropAction extends ActionBase
 		 Matcher m = p.matcher(pSilver);
 		 boolean b = m.matches();
 		 if(b==false){
-			    hint = "ÇëÊäÈëÕıÈ·ÒøÁ½¸ñÊ½";
+			    hint = "è¯·è¾“å…¥æ­£ç¡®é“¶ä¸¤æ ¼å¼";
 			    request.setAttribute("hint", hint);
 				request.setAttribute("w_type", w_type);
 				request.setAttribute("pByuPk", pByuPk);
@@ -151,14 +151,14 @@ public class SellPropAction extends ActionBase
 			pSilver = "0";
 		}
 		if(number == null || number.equals("") || Integer.parseInt(number) == 0){
-			hint = "ÇëÊäÈëÄúÒª½»Ò×µÄÎïÆ·ÊıÁ¿";
+			hint = "è¯·è¾“å…¥æ‚¨è¦äº¤æ˜“çš„ç‰©å“æ•°é‡";
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pByuPk", pByuPk);
 			request.setAttribute("pByPk", pByPk); 
 			return mapping.findForward("propmoneyover");
 		}
-		//ÅĞ¶ÏÊÇ·ñÖØ¸´½»Ò×
+		//åˆ¤æ–­æ˜¯å¦é‡å¤äº¤æ˜“
 		SellInfoDAO dao = new SellInfoDAO();
 		String ss = dao.getSellExistByPPkAndGoodsId(roleInfo.getBasicInfo().getPPk()+"", goods_id, GoodsType.PROP);
 		if(ss != null && !ss.equals("")){
@@ -170,7 +170,7 @@ public class SellPropAction extends ActionBase
 			return mapping.findForward("propmoneyover");
 		}
 		
-		//ÅĞ¶ÏµÀ¾ßÊıÁ¿¹»²»¹»
+		//åˆ¤æ–­é“å…·æ•°é‡å¤Ÿä¸å¤Ÿ
 		GoodsService goodsService = new GoodsService();
 		hint = goodsService.isBinded(Integer.parseInt(pg_pk), GoodsType.PROP, ActionType.EXCHANGE);
 		if(hint != null){
@@ -181,7 +181,7 @@ public class SellPropAction extends ActionBase
 			return mapping.findForward("propmoneyover");
 		}
 		if (goodsService.getPropNum(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(goods_id)) < Integer.parseInt(number)) {
-			hint = "ÄúÃ»ÓĞ"+number+"¸ö"+goodsName+"";
+			hint = "æ‚¨æ²¡æœ‰"+number+"ä¸ª"+goodsName+"";
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pByuPk", pByuPk);
@@ -192,7 +192,7 @@ public class SellPropAction extends ActionBase
 		 Matcher sum2 = sum1.matcher(number);
 		 boolean sum3 = sum2.matches();
 		 if(sum3==false){
-			    hint = "ÇëÊäÈëÕıÈ·Êı×Ö!";
+			    hint = "è¯·è¾“å…¥æ­£ç¡®æ•°å­—!";
 			    request.setAttribute("hint", hint);
 				request.setAttribute("w_type", w_type);
 				request.setAttribute("pByuPk", pByuPk);
@@ -213,13 +213,13 @@ public class SellPropAction extends ActionBase
 		
 		int s = goodsService.isPropToWrap(Integer.parseInt(pByPk), Integer.parseInt(goods_id), Integer.parseInt(number));
 		if(s != -1){ 
-		//if(goodsService.isEnoughWrapSpace(Integer.parseInt(pByPk),Integer.parseInt(number))){//¹»ÁË
+		//if(goodsService.isEnoughWrapSpace(Integer.parseInt(pByPk),Integer.parseInt(number))){//å¤Ÿäº†
 			//getSellArmAdd
 			dao.getSellArmAdd(roleInfo.getBasicInfo().getPPk(), pByPk, goods_id, GoodsType.PROP, Integer.parseInt(number), pSilver, "0", SellInfoVO.SELLPROP, Time);
 			//dao.getSellWuPingAdd(goods_id, Integer.parseInt(w_type), Integer.parseInt(number), pSilver, pCopper, SfOk, userTempBean.getPPk(), pByPk); 
-			hint = "ÄúÒÑ¾­Óë"+name+"½»Ò×ÁË"+number+"¸ö"+goodsName+",ÇëµÈ´ı¶Ô·½½ÓÊÕ£¡";
+			hint = "æ‚¨å·²ç»ä¸"+name+"äº¤æ˜“äº†"+number+"ä¸ª"+goodsName+",è¯·ç­‰å¾…å¯¹æ–¹æ¥æ”¶ï¼";
 			
-			//ÔÚÕâÀï²åÈëµ¯³öÊ½ÏûÏ¢ÄÚÈİ
+			//åœ¨è¿™é‡Œæ’å…¥å¼¹å‡ºå¼æ¶ˆæ¯å†…å®¹
 			UMsgService uMsgService = new UMsgService();
 			UMessageInfoVO msgInfo = new UMessageInfoVO();
 			msgInfo.setMsgType(PopUpMsgType.MESSAGE_SWAP);
@@ -228,7 +228,7 @@ public class SellPropAction extends ActionBase
 			uMsgService.sendPopUpMsg(msgInfo);
 			
 		}else{
-			hint = name+"Ã»ÓĞ×ã¹»µÄ°ü¹ü¸ñÊı!";
+			hint = name+"æ²¡æœ‰è¶³å¤Ÿçš„åŒ…è£¹æ ¼æ•°!";
 		}
 		
 		request.setAttribute("hint", hint);
@@ -239,7 +239,7 @@ public class SellPropAction extends ActionBase
 	} 
 	
 	/**
-	 * µÀ¾ß½»Ò×
+	 * é“å…·äº¤æ˜“
 	 */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -255,7 +255,7 @@ public class SellPropAction extends ActionBase
 		String number = request.getParameter("number");
 		String hint = null;
 		if(number.length() > 4){
-			hint = "ÇëÕıÈ·ÊäÈëÄúÒª½»Ò×µÄÎïÆ·ÊıÁ¿";
+			hint = "è¯·æ­£ç¡®è¾“å…¥æ‚¨è¦äº¤æ˜“çš„ç‰©å“æ•°é‡";
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pByuPk", pByuPk);
@@ -263,7 +263,7 @@ public class SellPropAction extends ActionBase
 			return mapping.findForward("propmoneyover");
 		}
 		if(number == null || number.equals("") || Integer.parseInt(number) == 0){
-			hint = "ÇëÊäÈëÄúÒª½»Ò×µÄÎïÆ·ÊıÁ¿";
+			hint = "è¯·è¾“å…¥æ‚¨è¦äº¤æ˜“çš„ç‰©å“æ•°é‡";
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pByuPk", pByuPk);
@@ -272,7 +272,7 @@ public class SellPropAction extends ActionBase
 		}
 		GoodsService goodsService = new GoodsService();
 		if (goodsService.getPropNum(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(goods_id)) < Integer.parseInt(number)) {
-			hint = "ÄúÃ»ÓĞ"+number+"¸ö"+goodsName+"";
+			hint = "æ‚¨æ²¡æœ‰"+number+"ä¸ª"+goodsName+"";
 			request.setAttribute("hint", hint);
 			request.setAttribute("w_type", w_type);
 			request.setAttribute("pByuPk", pByuPk);

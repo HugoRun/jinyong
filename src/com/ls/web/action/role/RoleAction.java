@@ -1,15 +1,5 @@
 package com.ls.web.action.role;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-
 import com.ben.dao.deletepart.DeletePartDAO;
 import com.ben.jms.JmsUtil;
 import com.ls.ben.dao.info.partinfo.PartInfoDao;
@@ -23,259 +13,250 @@ import com.pm.dao.secondpass.SecondPassDao;
 import com.pm.service.secondpass.SecondPassService;
 import com.pm.vo.passsecond.SecondPassVO;
 import com.pub.MD5;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author ls
- * ½ÇÉ«´´½¨£¬µÇÂ½£¬ĞÅÏ¢²é¿´
+ * è§’è‰²åˆ›å»ºï¼Œç™»é™†ï¼Œä¿¡æ¯æŸ¥çœ‹
  */
 public class RoleAction extends ActionBase {
 
-	Logger logger = Logger.getLogger("log.");
-	
-	/**
-	 * ²é¿´½ÇÉ«ĞÅÏ¢
-	 */
-	public ActionForward des(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String p_pk = request.getParameter("pPk");
-		RoleEntity other = RoleService.getRoleInfoById(p_pk);
-		
-		String pre = request.getParameter("pre");
-		
-		request.setAttribute("other", other);
-		request.setAttribute("pre", pre);
-		return mapping.findForward("role_des");
-	}
-	
-	/** 
-	 * ½ÇÉ«³öÉúÁĞ±íÒ³Ãæ
-	 */
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		return mapping.findForward("born_list");
-	}
-	
-	/** 
-	 * ½øÈëÊäÈë½ÇÉ«ĞÅÏ¢Ò³Ãæ
-	 */
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String race =  request.getParameter("race");
-		
-		String hint = ValidateService.validateRace(race);
-		if( hint!=null )
-		{
-			this.setHint(request, hint);
-			return mapping.findForward("born_list");
-		}
-		
-		request.setAttribute("raceDes",ExchangeUtil.getRaceName(Integer.parseInt(race)));
-		request.setAttribute("race",race);
-		return mapping.findForward("input_role_info");
-	}
-	
-	/** 
-	 * ´´½¨½ÇÉ«´¦Àí
-	 */
-	public ActionForward n3(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
+    Logger logger = Logger.getLogger("log.");
 
-		HttpSession session = request.getSession();
-		
-		String race = request.getParameter("race");
-		String pName = request.getParameter("name");
-		String pSex = request.getParameter("sex");
-		String uPk = (String)session.getAttribute("uPk");
-		
-		if( uPk==null )//Èç¹ûuPkÎª¿ÕÖØĞÂµÇÂ½
-		{
-			return mapping.findForward("login_index");
-		}
-		
-		RoleService roleService = new RoleService();
-		
-		String hint = ValidateService.validateCreateRole(uPk, pName,pSex,race);
-		
-		if( hint!=null )//ÑéÖ¤Íæ¼ÒµÄÊäÈëÊ§°Ü
-		{
-			this.setHint(request, hint);
-			request.setAttribute("race",race);
-			request.setAttribute("raceDes",ExchangeUtil.getRaceName(Integer.parseInt(race)));
-			return mapping.findForward("input_role_info");
-		}
-		
-		RoleEntity role_info = roleService.createRole(uPk, pName, pSex, race);
-		if( role_info==null )
-		{
-			this.setHint(request, "´´½¨½ÇÉ«Ê§°Ü,ÇëÖØÊÔ");
-			request.setAttribute("race",race);
-			request.setAttribute("raceDes",ExchangeUtil.getRaceName(Integer.parseInt(race)));
-			return mapping.findForward("input_role_info");
-		}
-		
-		JmsUtil.sendJmsRole((String)session.getAttribute("super_qudao"),(String)session.getAttribute("qudao"), (String)session.getAttribute("user_name"), pName, 1);
-		//Èç¹ûÊÇĞÂÊÖÔò½øÈëÒıµ¼Ò³Ãæ
-		request.getSession().setAttribute("pPk", role_info.getPPk()+"");
-		return super.dispath(request, response, "/guide.do");
-	}
-	
-	/** 
-	 * É¾³ı½ÇÉ«´¦Àí
-	 */
-	public ActionForward n4(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String pPk = request.getParameter("pPk");
-		RoleService roleService = new RoleService();
-		roleService.setRoleDeleteState(Integer.parseInt(pPk));
-		
-		return mapping.findForward("role_list");
-	}
-	
-	/** 
-	 * »Ö¸´É¾³ı½ÇÉ«´¦Àí
-	 */
-	public ActionForward n5(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String pPk = request.getParameter("pPk");
-		RoleService roleService = new RoleService();
-		roleService.resumeRole(Integer.parseInt(pPk));
-		
-		return mapping.findForward("role_list");
-	}	
-	
-	/**
-	 * É¾³ı½ÇÉ«È·ÈÏÒ³Ãæ
-	 */
-	public ActionForward n6(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		request.setAttribute("pPk", request.getParameter("pPk"));
-		request.setAttribute("pName", request.getParameter("pName"));
-		request.setAttribute("pGrade", request.getParameter("pGrade"));
-		return mapping.findForward("delete_role_comfirm");
-	}
-	
-	/**
-	 * 
-	 * ÇëÇó»Ö¸´½ÇÉ«£¬»á×ªÖÁÈ·¶¨ÊÇ·ñ»Ö¸´Ò³Ãæ
-	 * 
-	 */
-	public ActionForward n7(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		
-		String pPk = request.getParameter("pPk");
-		request.setAttribute("uPk", request.getParameter("uPk"));
-		request.setAttribute("pPk", pPk);
-		
-		PartInfoDao infodao = new PartInfoDao();
-		String pName = infodao.getNameByPpk(Integer.parseInt(pPk));
-		request.setAttribute("pName", pName);
-		
-		return mapping.findForward("resumepartpage");
-	}
-	
-	/**
-	 * ÇëÇóÉ¾³ı½ÇÉ«,ÒªÇóÊäÈë¶ş¼¶ÃÜÂë½øĞĞºË¶Ô.
-	 */
-	public ActionForward n8(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{	
-		String second_pass = request.getParameter("second_pass");
-		String uPk = (String) request.getSession().getAttribute("uPk");
-		if (uPk == null || uPk.equals("")) {			
-			uPk = request.getParameter("uPk");
-		}			
-		String pPk = request.getParameter("pPk");
+    /**
+     * æŸ¥çœ‹è§’è‰²ä¿¡æ¯
+     */
+    public ActionForward des(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
-		if(pPk == null){
-			return mapping.findForward("login_index");
-		}
+        String p_pk = request.getParameter("pPk");
+        RoleEntity other = RoleService.getRoleInfoById(p_pk);
 
-		
-		request.setAttribute("uPk", uPk);
-		request.setAttribute("pPk", pPk);	
-		request.setAttribute("pGrade", request.getParameter("pGrade"));
-							
-		SecondPassService secondPassService = new SecondPassService();
-		
-		if(second_pass != null && !second_pass.equals("")) {	//¼ì²éÆäÊÇ·ñÎª¿Õ
-			if(StringUtil.isNumber(second_pass)) {				//¼ì²âÆäÊÇ²»ÊÇ¶¼ÊÇÓÉÊı×Ö×é³É.
-				if(second_pass.length() == 6) {					//¼ì²éÆäÊÇ²»ÊÇÁùÎ»
-					SecondPassDao seconddao = new SecondPassDao();
-					//ËÑË÷³öÊı¾İ¿âÖĞµÄ¶ş¼¶ÃÜÂë
-					SecondPassVO secondPassVO = seconddao.getSecondPassTime(Integer.parseInt(uPk));
-					if(secondPassVO == null || secondPassVO.getSecondPass() == null || secondPassVO.getSecondPass().equals("")) {
-						String hint = "Äú»¹Ã»ÓĞÉèÖÃ¶ş¼¶ÃÜÂë, ²»ÄÜĞŞ¸ÄµÇÂ¼ÃÜÂë£¡";
-						request.setAttribute("hint", hint);
-						return mapping.findForward("failedPass");
-					}	
-					//Èç¹û¶ş¼¶ÃÜÂë´íÎó´ÎÊıĞ¡ÓÚ3,ÔòÈÃÆä¼ÌĞøºË¶Ô.
-					if(!secondPassService.checkSeconePass(Integer.parseInt(uPk),secondPassVO)) {
-						if(secondPassVO.getSecondPass().equals(MD5.getMD5Str(second_pass))) {
-							//È·¶¨É¾³ıÊ±¼ä.
-							DeletePartDAO deletePartDAO = new DeletePartDAO();
-							//deletePartDAO.delete(pPk,uPk);
-							
-							PartInfoDao infoDao = new PartInfoDao();
-							String pName = infoDao.getNameByPpk(Integer.parseInt(pPk));
-							request.setAttribute("pName", pName);
-							return mapping.findForward("sussendPass");
-						} else {	
-							secondPassService.insertErrorSecondPsw(Integer.parseInt(uPk)); 
-							String hint = "";
-							//Èç¹ûÒÑ¾­´íÁ½´Î,ÄÇÃ´¸øÍæ¼Ò¿´µÄÌáÊ¾Ò²»á²»Ò»Ñù.
-							if(secondPassVO.getPassWrongFlag() == 2) {
-								hint = "ÄúÒÑ¾­ÔÚ24Ğ¡Ê±ÄÚÈı´ÎÊäÈë´íÎóµÄÕÊºÅ¶ş¼¶ÃÜÂë£¬ÎªÁË±£»¤¸ÃÕÊºÅµÄ°²È«£¬24Ğ¡Ê±ÄÚ¸ÃÕÊºÅ²»¿ÉÔÙÊ¹ÓÃ¶ş¼¶ÃÜÂë½øĞĞÉ¾³ı½ÇÉ«²Ù×÷!!";
-								
-							} else {	
-								hint = "¶Ô²»Æğ£¬ÄúÊäÈëµÄ¶ş¼¶ÃÜÂëÓĞÎó£¬24Ğ¡Ê±ÄÚÈı´ÎÊäÈë´íÎóµÄ¶ş¼¶ÃÜÂë½«±»¶³½áĞŞ¸ÄÃÜÂë¹¦ÄÜÒ»Ìì£¡";
-							}	
-							request.setAttribute("hint", hint);
-							return mapping.findForward("failedPass");
-						}
-					//Èç¹ûÒÑ¾­´óÓÚ3,¾Í¸æËßÍæ¼Ò²»ÄÜÔÙºË¶ÔÁË.	
-					} else {
-						secondPassService.insertErrorSecondPsw(Integer.parseInt(uPk)); 
-						String hint = "ÄúÒÑ¾­ÔÚ24Ğ¡Ê±ÄÚÈı´ÎÊäÈë´íÎóµÄÕÊºÅ¶ş¼¶ÃÜÂë£¬ÎªÁË±£»¤¸ÃÕÊºÅµÄ°²È«£¬24Ğ¡Ê±ÄÚ¸ÃÕÊºÅ²»¿ÉÔÙÊ¹ÓÃ¶ş¼¶ÃÜÂë½øĞĞÉ¾³ı½ÇÉ«²Ù×÷!!";
-						request.setAttribute("hint", hint);
-						return mapping.findForward("failedPass");
-					}	
-				}
-			}
-			String hint = "¶Ô²»Æğ£¬ÄúÊäÈëµÄ¶ş¼¶ÃÜÂë¸ñÊ½²»ÕıÈ·,¶ş¼¶ÃÜÂëÎªÁùÎ»Êı×Ö×é³É£¡";
-			request.setAttribute("hint", hint);
-			return mapping.findForward("failedPass");
-		}
-		String hint = "¶Ô²»Æğ£¬Çë²»ÒªÊäÈë¿ÕÃÜÂë£¡";
-		request.setAttribute("hint", hint);
-		return mapping.findForward("failedPass");
-	}
-	
-	/**
-	 * ÇëÇóÉ¾³ı½ÇÉ«,²»ÒªÇóÊäÈë¶ş¼¶ÃÜÂë½øĞĞºË¶Ô.
-	 */
-	public ActionForward n9(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{	
-		String uPk = (String) request.getSession().getAttribute("uPk");
-		if ( StringUtils.isEmpty(uPk)==true) 
-		{			
-			return this.dispath(request, response, "/login.do?cmd=n0");
-		}			
-		String pPk = request.getParameter("pPk");
-		
-		//É¾³ı½ÇÉ«
-		RoleService roleService = new RoleService();
-		boolean result = roleService.delRole(uPk,pPk);
-		if( result==false )
-		{
-			//É¾³ıÊ§°Ü
-			this.setHint(request, "É¾³ı½ÇÉ«Ê§°Ü");
-		}
-		return this.dispath(request, response, "/login.do?cmd=n3");
-	}
+        String pre = request.getParameter("pre");
+
+        request.setAttribute("other", other);
+        request.setAttribute("pre", pre);
+        return mapping.findForward("role_des");
+    }
+
+    /**
+     * è§’è‰²å‡ºç”Ÿåˆ—è¡¨é¡µé¢
+     */
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        return mapping.findForward("born_list");
+    }
+
+    /**
+     * è¿›å…¥è¾“å…¥è§’è‰²ä¿¡æ¯é¡µé¢
+     */
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        String race = request.getParameter("race");
+
+        String hint = ValidateService.validateRace(race);
+        if (hint != null) {
+            this.setHint(request, hint);
+            return mapping.findForward("born_list");
+        }
+
+        request.setAttribute("raceDes", ExchangeUtil.getRaceName(Integer.parseInt(race)));
+        request.setAttribute("race", race);
+        return mapping.findForward("input_role_info");
+    }
+
+    /**
+     * åˆ›å»ºè§’è‰²å¤„ç†
+     */
+    public ActionForward n3(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        HttpSession session = request.getSession();
+
+        String race = request.getParameter("race");
+        String pName = request.getParameter("name");
+        String pSex = request.getParameter("sex");
+        String uPk = (String) session.getAttribute("uPk");
+
+        if (uPk == null)//å¦‚æœuPkä¸ºç©ºé‡æ–°ç™»é™†
+        {
+            return mapping.findForward("login_index");
+        }
+
+        RoleService roleService = new RoleService();
+
+        String hint = ValidateService.validateCreateRole(uPk, pName, pSex, race);
+
+        if (hint != null)//éªŒè¯ç©å®¶çš„è¾“å…¥å¤±è´¥
+        {
+            this.setHint(request, hint);
+            request.setAttribute("race", race);
+            request.setAttribute("raceDes", ExchangeUtil.getRaceName(Integer.parseInt(race)));
+            return mapping.findForward("input_role_info");
+        }
+
+        RoleEntity role_info = roleService.createRole(uPk, pName, pSex, race);
+        if (role_info == null) {
+            this.setHint(request, "åˆ›å»ºè§’è‰²å¤±è´¥,è¯·é‡è¯•");
+            request.setAttribute("race", race);
+            request.setAttribute("raceDes", ExchangeUtil.getRaceName(Integer.parseInt(race)));
+            return mapping.findForward("input_role_info");
+        }
+
+        JmsUtil.sendJmsRole((String) session.getAttribute("super_qudao"), (String) session.getAttribute("qudao"), (String) session.getAttribute("user_name"), pName, 1);
+        //å¦‚æœæ˜¯æ–°æ‰‹åˆ™è¿›å…¥å¼•å¯¼é¡µé¢
+        request.getSession().setAttribute("pPk", role_info.getPPk() + "");
+        return super.dispath(request, response, "/guide.do");
+    }
+
+    /**
+     * åˆ é™¤è§’è‰²å¤„ç†
+     */
+    public ActionForward n4(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        String pPk = request.getParameter("pPk");
+        RoleService roleService = new RoleService();
+        roleService.setRoleDeleteState(Integer.parseInt(pPk));
+
+        return mapping.findForward("role_list");
+    }
+
+    /**
+     * æ¢å¤åˆ é™¤è§’è‰²å¤„ç†
+     */
+    public ActionForward n5(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        String pPk = request.getParameter("pPk");
+        RoleService roleService = new RoleService();
+        roleService.resumeRole(Integer.parseInt(pPk));
+
+        return mapping.findForward("role_list");
+    }
+
+    /**
+     * åˆ é™¤è§’è‰²ç¡®è®¤é¡µé¢
+     */
+    public ActionForward n6(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        request.setAttribute("pPk", request.getParameter("pPk"));
+        request.setAttribute("pName", request.getParameter("pName"));
+        request.setAttribute("pGrade", request.getParameter("pGrade"));
+        return mapping.findForward("delete_role_comfirm");
+    }
+
+    /**
+     * è¯·æ±‚æ¢å¤è§’è‰²ï¼Œä¼šè½¬è‡³ç¡®å®šæ˜¯å¦æ¢å¤é¡µé¢
+     */
+    public ActionForward n7(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+
+        String pPk = request.getParameter("pPk");
+        request.setAttribute("uPk", request.getParameter("uPk"));
+        request.setAttribute("pPk", pPk);
+
+        PartInfoDao infodao = new PartInfoDao();
+        String pName = infodao.getNameByPpk(Integer.parseInt(pPk));
+        request.setAttribute("pName", pName);
+
+        return mapping.findForward("resumepartpage");
+    }
+
+    /**
+     * è¯·æ±‚åˆ é™¤è§’è‰²,è¦æ±‚è¾“å…¥äºŒçº§å¯†ç è¿›è¡Œæ ¸å¯¹.
+     */
+    public ActionForward n8(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String second_pass = request.getParameter("second_pass");
+        String uPk = (String) request.getSession().getAttribute("uPk");
+        if (uPk == null || uPk.equals("")) {
+            uPk = request.getParameter("uPk");
+        }
+        String pPk = request.getParameter("pPk");
+
+        if (pPk == null) {
+            return mapping.findForward("login_index");
+        }
+
+
+        request.setAttribute("uPk", uPk);
+        request.setAttribute("pPk", pPk);
+        request.setAttribute("pGrade", request.getParameter("pGrade"));
+
+        SecondPassService secondPassService = new SecondPassService();
+
+        if (second_pass != null && !second_pass.equals("")) {    //æ£€æŸ¥å…¶æ˜¯å¦ä¸ºç©º
+            if (StringUtil.isNumber(second_pass)) {                //æ£€æµ‹å…¶æ˜¯ä¸æ˜¯éƒ½æ˜¯ç”±æ•°å­—ç»„æˆ.
+                if (second_pass.length() == 6) {                    //æ£€æŸ¥å…¶æ˜¯ä¸æ˜¯å…­ä½
+                    SecondPassDao seconddao = new SecondPassDao();
+                    //æœç´¢å‡ºæ•°æ®åº“ä¸­çš„äºŒçº§å¯†ç 
+                    SecondPassVO secondPassVO = seconddao.getSecondPassTime(Integer.parseInt(uPk));
+                    if (secondPassVO == null || secondPassVO.getSecondPass() == null || secondPassVO.getSecondPass().equals("")) {
+                        String hint = "æ‚¨è¿˜æ²¡æœ‰è®¾ç½®äºŒçº§å¯†ç , ä¸èƒ½ä¿®æ”¹ç™»å½•å¯†ç ï¼";
+                        request.setAttribute("hint", hint);
+                        return mapping.findForward("failedPass");
+                    }
+                    //å¦‚æœäºŒçº§å¯†ç é”™è¯¯æ¬¡æ•°å°äº3,åˆ™è®©å…¶ç»§ç»­æ ¸å¯¹.
+                    if (!secondPassService.checkSeconePass(Integer.parseInt(uPk), secondPassVO)) {
+                        if (secondPassVO.getSecondPass().equals(MD5.getMD5Str(second_pass))) {
+                            //ç¡®å®šåˆ é™¤æ—¶é—´.
+                            DeletePartDAO deletePartDAO = new DeletePartDAO();
+                            //deletePartDAO.delete(pPk,uPk);
+
+                            PartInfoDao infoDao = new PartInfoDao();
+                            String pName = infoDao.getNameByPpk(Integer.parseInt(pPk));
+                            request.setAttribute("pName", pName);
+                            return mapping.findForward("sussendPass");
+                        } else {
+                            secondPassService.insertErrorSecondPsw(Integer.parseInt(uPk));
+                            String hint = "";
+                            //å¦‚æœå·²ç»é”™ä¸¤æ¬¡,é‚£ä¹ˆç»™ç©å®¶çœ‹çš„æç¤ºä¹Ÿä¼šä¸ä¸€æ ·.
+                            if (secondPassVO.getPassWrongFlag() == 2) {
+                                hint = "æ‚¨å·²ç»åœ¨24å°æ—¶å†…ä¸‰æ¬¡è¾“å…¥é”™è¯¯çš„å¸å·äºŒçº§å¯†ç ï¼Œä¸ºäº†ä¿æŠ¤è¯¥å¸å·çš„å®‰å…¨ï¼Œ24å°æ—¶å†…è¯¥å¸å·ä¸å¯å†ä½¿ç”¨äºŒçº§å¯†ç è¿›è¡Œåˆ é™¤è§’è‰²æ“ä½œ!!";
+
+                            } else {
+                                hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„äºŒçº§å¯†ç æœ‰è¯¯ï¼Œ24å°æ—¶å†…ä¸‰æ¬¡è¾“å…¥é”™è¯¯çš„äºŒçº§å¯†ç å°†è¢«å†»ç»“ä¿®æ”¹å¯†ç åŠŸèƒ½ä¸€å¤©ï¼";
+                            }
+                            request.setAttribute("hint", hint);
+                            return mapping.findForward("failedPass");
+                        }
+                        //å¦‚æœå·²ç»å¤§äº3,å°±å‘Šè¯‰ç©å®¶ä¸èƒ½å†æ ¸å¯¹äº†.
+                    } else {
+                        secondPassService.insertErrorSecondPsw(Integer.parseInt(uPk));
+                        String hint = "æ‚¨å·²ç»åœ¨24å°æ—¶å†…ä¸‰æ¬¡è¾“å…¥é”™è¯¯çš„å¸å·äºŒçº§å¯†ç ï¼Œä¸ºäº†ä¿æŠ¤è¯¥å¸å·çš„å®‰å…¨ï¼Œ24å°æ—¶å†…è¯¥å¸å·ä¸å¯å†ä½¿ç”¨äºŒçº§å¯†ç è¿›è¡Œåˆ é™¤è§’è‰²æ“ä½œ!!";
+                        request.setAttribute("hint", hint);
+                        return mapping.findForward("failedPass");
+                    }
+                }
+            }
+            String hint = "å¯¹ä¸èµ·ï¼Œæ‚¨è¾“å…¥çš„äºŒçº§å¯†ç æ ¼å¼ä¸æ­£ç¡®,äºŒçº§å¯†ç ä¸ºå…­ä½æ•°å­—ç»„æˆï¼";
+            request.setAttribute("hint", hint);
+            return mapping.findForward("failedPass");
+        }
+        String hint = "å¯¹ä¸èµ·ï¼Œè¯·ä¸è¦è¾“å…¥ç©ºå¯†ç ï¼";
+        request.setAttribute("hint", hint);
+        return mapping.findForward("failedPass");
+    }
+
+    /**
+     * è¯·æ±‚åˆ é™¤è§’è‰²,ä¸è¦æ±‚è¾“å…¥äºŒçº§å¯†ç è¿›è¡Œæ ¸å¯¹.
+     */
+    public ActionForward n9(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        String uPk = (String) request.getSession().getAttribute("uPk");
+        if (StringUtils.isEmpty(uPk)) {
+            return this.dispath(request, response, "/login.do?cmd=n0");
+        }
+        String pPk = request.getParameter("pPk");
+
+        //åˆ é™¤è§’è‰²
+        RoleService roleService = new RoleService();
+        boolean result = roleService.delRole(uPk, pPk);
+        if (!result) {
+            //åˆ é™¤å¤±è´¥
+            this.setHint(request, "åˆ é™¤è§’è‰²å¤±è´¥");
+        }
+        return this.dispath(request, response, "/login.do?cmd=n3");
+    }
 }

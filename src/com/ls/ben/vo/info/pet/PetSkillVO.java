@@ -1,51 +1,51 @@
 package com.ls.ben.vo.info.pet;
 
 /**
- * ¹¦ÄÜ:
+ * åŠŸèƒ½:
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 9:45:55 AM
  */
 public class PetSkillVO
 {
-	/** ¼¼ÄÜid */
+	/** æŠ€èƒ½id */
 	private int petSkillId;
-	/** ¼¼ÄÜÃû³Æ */
+	/** æŠ€èƒ½åç§° */
 	private String petSkillName;
-	/** ¼¼ÄÜÃèÊö */
+	/** æŠ€èƒ½æè¿° */
 	private String petSkillBewrite;
-	/** ¼¼ÄÜÀàĞÍ */
+	/** æŠ€èƒ½ç±»å‹ */
 	private int petSkillType;
 
-	/** ×îĞ¡ÉËº¦Öµ */
+	/** æœ€å°ä¼¤å®³å€¼ */
 	private int petSkillGjXiao;
-	/** ×î´óÉËº¦Öµ */
+	/** æœ€å¤§ä¼¤å®³å€¼ */
 	private int petSkillGjDa;
 
-	/** Ê¹ÓÃ·¶Î§ */
+	/** ä½¿ç”¨èŒƒå›´ */
 	private int petSkillArea;
 
-	/** ±©»÷ÂÊ¼Ó³É */
+	/** æš´å‡»ç‡åŠ æˆ */
 	// private int petViolenceDropMultiple;
-	/** ¹¥»÷´ÎÊı */
+	/** æ”»å‡»æ¬¡æ•° */
 	private int petSkillSeveral;
 
-	/** ¹¥»÷±¶ÂÊ */
+	/** æ”»å‡»å€ç‡ */
 	private double petSkillMultiple;
 
-	/** ±©»÷ÂÊ¼Ó³É */
+	/** æš´å‡»ç‡åŠ æˆ */
 	private double petViolenceDropMultiple;
 
-	/** ÎïÀí¹¥»÷Á¦¼Ó³É */
+	/** ç‰©ç†æ”»å‡»åŠ›åŠ æˆ */
 	private double petInjureMultiple;
-	/** ³èÎï¼¼ÄÜ×é */
+	/** å® ç‰©æŠ€èƒ½ç»„ */
 	private int petSkGroup;
 
-	/** ³èÎï¼¼ÄÜµÈ¼¶ */
+	/** å® ç‰©æŠ€èƒ½ç­‰çº§ */
 	private int petSkLevel;
 
-	/** ³èÎïÑ§Ï°¸Ã¼¼ÄÜËùĞèÒªµÄµÈ¼¶ */
+	/** å® ç‰©å­¦ä¹ è¯¥æŠ€èƒ½æ‰€éœ€è¦çš„ç­‰çº§ */
 	private int petGrade;
 
 	public int getPetGrade()

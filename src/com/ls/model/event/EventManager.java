@@ -6,11 +6,11 @@ import java.util.concurrent.DelayQueue;
 
 /**
  * @author handan
- * ¶¨Ê±ÊÂ¼ş¹ÜÀíÆ÷
+ * å®šæ—¶äº‹ä»¶ç®¡ç†å™¨
  */
 public class EventManager
 {
-	private static int process_event_num;//Ã¿´Î´¦ÀíÊÂ¼şµÄÊıÁ¿
+	private static int process_event_num;//æ¯æ¬¡å¤„ç†äº‹ä»¶çš„æ•°é‡
 	
 	 private DelayQueue<TimerEvent> timer_events = new DelayQueue<TimerEvent>();
 	 
@@ -31,7 +31,7 @@ public class EventManager
 	 }
 	 
 	 /**
-	  * ¼àÌıÊÇ·ñÓĞÊÂ¼ş¸ÃÖ´ĞĞĞÔ£¬Èç¹ûÓĞÔò´¦Àí
+	  * ç›‘å¬æ˜¯å¦æœ‰äº‹ä»¶è¯¥æ‰§è¡Œæ€§ï¼Œå¦‚æœæœ‰åˆ™å¤„ç†
 	  */
 	 public void listener()
 	 {

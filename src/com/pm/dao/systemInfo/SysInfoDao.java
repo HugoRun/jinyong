@@ -1,938 +1,927 @@
 package com.pm.dao.systemInfo;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.ls.ben.dao.DaoBase;
 import com.ls.ben.dao.info.partinfo.PartInfoDao;
 import com.ls.pub.db.DBConnection;
 import com.pm.vo.sysInfo.SystemControlInfoVO;
 import com.pm.vo.sysInfo.SystemInfoVO;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class SysInfoDao extends DaoBase {
-	/**
-	 * ²åÈëÏµÍ³ÏûÏ¢
-	 * @param p_pk ¸öÈË½ÇÉ«id£¬Èç¹ûÊÇÏµÍ³¹«¸æºÍÌØ±ğÍ¨ÖªÖ±½ÓĞ´Áã¡£
-	 * @param info_type ÏûÏ¢ÀàĞÍ 1ÊÇ¸öÈËÏûÏ¢£¬2ÊÇÏµÍ³¹«¸æ£¬3ÊÇÌØ±ğÍ¨Öª,4ÊÇĞ¡À®°È¡£ 10°ï»á½áÊøÏûÏ¢,5ÊÇpkÍ¨ÖªÏûÏ¢,7ÊÇ×°±¸Õ¹Ê¾ĞÅÏ¢
-	 * @param info ĞèÒª²åÈëµÄÏûÏ¢
-	 * @return if sussend return 1,else return -1
-	 */
-	public int insertSysInfo(int p_pk,int info_type,String info){
-		int i = -1;
-		String sql = "insert into s_system_info values (null,'"+p_pk+"','"+info_type+"','"+info+"',now())";
-		logger.debug("SysInfoDao insertSysInfo :sql="+sql);
-		
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-			i = 1;
+    /**
+     * æ’å…¥ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param p_pk      ä¸ªäººè§’è‰²idï¼Œå¦‚æœæ˜¯ç³»ç»Ÿå…¬å‘Šå’Œç‰¹åˆ«é€šçŸ¥ç›´æ¥å†™é›¶ã€‚
+     * @param info_type æ¶ˆæ¯ç±»å‹ 1æ˜¯ä¸ªäººæ¶ˆæ¯ï¼Œ2æ˜¯ç³»ç»Ÿå…¬å‘Šï¼Œ3æ˜¯ç‰¹åˆ«é€šçŸ¥,4æ˜¯å°å–‡å­ã€‚ 10å¸®ä¼šç»“æŸæ¶ˆæ¯,5æ˜¯pké€šçŸ¥æ¶ˆæ¯,7æ˜¯è£…å¤‡å±•ç¤ºä¿¡æ¯
+     * @param info      éœ€è¦æ’å…¥çš„æ¶ˆæ¯
+     * @return if sussend return 1,else return -1
+     */
+    public int insertSysInfo(int p_pk, int info_type, String info) {
+        int i = -1;
+        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "',now())";
+        logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
 
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-			
-		return i;
-	}
-	
-	/**
-	 * ²åÈëÏµÍ³ÏûÏ¢
-	 * @param p_pk ¸öÈË½ÇÉ«id£¬Èç¹ûÊÇÏµÍ³¹«¸æºÍÌØ±ğÍ¨ÖªÖ±½ÓĞ´Áã¡£
-	 * @param info_type ÏûÏ¢ÀàĞÍ 1ÊÇ¸öÈËÏûÏ¢£¬2ÊÇÏµÍ³¹«¸æ£¬3ÊÇÌØ±ğÍ¨Öª,4ÊÇĞ¡À®°È¡£ 10°ï»á½áÊøÏûÏ¢,5ÊÇpkÍ¨ÖªÏûÏ¢,7ÊÇ×°±¸Õ¹Ê¾ĞÅÏ¢
-	 * @param info ĞèÒª²åÈëµÄÏûÏ¢
-	 * @return if sussend return 1,else return -1
-	 */
-	public int insertSysInfoTongTime(int p_pk,int info_type,String info,String time){
-		int i = -1;
-		String sql = "insert into s_system_info values (null,'"+p_pk+"','"+info_type+"','"+info+"','"+time+"')";
-		logger.debug("SysInfoDao insertSysInfo :sql="+sql);
-		
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-			i = 1;
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+            i = 1;
 
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-			
-		return i;
-	}
-	
-	/**
-	 * ²åÈëÏµÍ³ÏûÏ¢
-	 * @param p_pk ¸öÈË½ÇÉ«id£¬Èç¹ûÊÇÏµÍ³¹«¸æºÍÌØ±ğÍ¨ÖªÖ±½ÓĞ´Áã¡£
-	 * @param info_type ÏûÏ¢ÀàĞÍ 1ÊÇ¸öÈËÏûÏ¢£¬2ÊÇÏµÍ³¹«¸æ£¬3ÊÇÌØ±ğÍ¨Öª,4ÊÇĞ¡À®°È¡£ 10°ï»á½áÊøÏûÏ¢,5ÊÇpkÍ¨ÖªÏûÏ¢,7ÊÇ×°±¸Õ¹Ê¾ĞÅÏ¢
-	 * @param info ĞèÒª²åÈëµÄÏûÏ¢
-	 * @return if sussend return 1,else return -1
-	 */
-	public int insertSysInfo(int p_pk,int info_type,String info,int second){
-		int i = -1;
-		String sql = "insert into s_system_info values (null,'"+p_pk+"','"+info_type+"','"+info+"',NOW()+INTERVAL "+second+" second)";
-		logger.debug("SysInfoDao insertSysInfo :sql="+sql);
-		
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-			i = 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
 
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-			
-		return i;
-	}
-	
-	/**
-	 * ²åÈëÏµÍ³ÏûÏ¢
-	 * @param p_pk ¸öÈË½ÇÉ«id£¬Èç¹ûÊÇÏµÍ³¹«¸æºÍÌØ±ğÍ¨ÖªÖ±½ÓĞ´Áã¡£
-	 * @param info_type ÏûÏ¢ÀàĞÍ 1ÊÇ¸öÈËÏûÏ¢£¬2ÊÇÏµÍ³¹«¸æ£¬3ÊÇÌØ±ğÍ¨Öª,4ÊÇĞ¡À®°È¡£ 10°ï»á½áÊøÏûÏ¢,5ÊÇpkÍ¨ÖªÏûÏ¢,7ÊÇ×°±¸Õ¹Ê¾ĞÅÏ¢
-	 * @param info ĞèÒª²åÈëµÄÏûÏ¢
-	 * @return if sussend return 1,else return -1
-	 */
-	public int insertSysInfo(int p_pk,int info_type,String info,String sendTime){
-		int i = -1;
-		String sql = "insert into s_system_info values (null,'"+p_pk+"','"+info_type+"','"+info+"','"+sendTime+"')";
-		logger.debug("SysInfoDao insertSysInfo :sql="+sql);
-		
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
-			i = 1;
+        return i;
+    }
 
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-			
-		return i;
-	}
-	
-	/**
-	 * Ñ¡ÔñÏµÍ³ĞÅÏ¢±íµÄÏûÏ¢ÌõÊı
-	 * @param p_pk
-	 * @param number ÒªÑ¡ÔñÏûÏ¢ÊıÄ¿
-	 * @param info_type ÏûÏ¢ÀàĞÍ 1ÊÇ¸öÈËÏûÏ¢£¬2ÊÇÏµÍ³¹«¸æ£¬3ÊÇÌØ±ğÍ¨Öª,4ÊÇĞ¡À®°È¡£ 10°ï»á½áÊøÏûÏ¢,5ÊÇpkÍ¨ÖªÏûÏ¢,7ÊÇ×°±¸Õ¹Ê¾ĞÅÏ¢
-	 * @return if sussend return 1,else return -1
-	 */
-	public List<SystemInfoVO> selectSysInfo(int p_pk,int info_type,int number){
-		List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
-		String sql = "select * from s_system_info where p_pk="+p_pk+" and info_type='"+info_type+"' limit "+number;
-		logger.debug("Ñ¡ÔñÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		
-		SystemInfoVO sIvo = null;
-		try{
-			
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				sIvo = new SystemInfoVO();
-				sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
-				sIvo.setPPk(rs.getInt("p_pk"));
-				sIvo.setInfoType(rs.getInt("info_type"));
-				sIvo.setSystemInfo(rs.getString("system_info"));
-				sIvo.setCreateTime(rs.getString("happen_time"));
-				list.add(sIvo);				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		
-		return list;
-	}
-	
-	
-	
-	
-	/**
-	 *  ²éÑ¯ÏµÍ³ÏûÏ¢±íÖĞ¸öÈËÓĞ¹ØµÄÏµÍ³ÏûÏ¢
-	 *  @param pPk ¸öÈË½ÇÉ«id. 
-	 *  @return SystemInfoVO
-	 */
-	public SystemInfoVO getSystemSelfInfo(String pPk){
-		String sql = "select * from s_system_info where sysInfo_id = (select min(sysInfo_id) from s_system_info " +
-				"where NOW() >= happen_time and (happen_time + INTERVAL 10 second) >= NOW() and p_pk="+pPk+" )";
-		//logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		SystemInfoVO sIvo = null;
-		logger.debug(" ²éÑ¯ÏµÍ³ÏûÏ¢±íÖĞ¸öÈËÓĞ¹ØµÄÏµÍ³ÏûÏ¢="+sql);
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				sIvo = new SystemInfoVO();
-				sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
-				sIvo.setPPk(rs.getInt("p_pk"));
-				sIvo.setInfoType(rs.getInt("info_type"));
-				sIvo.setSystemInfo(rs.getString("system_info"));
-				sIvo.setCreateTime(rs.getString("happen_time"));
-			}
-			rs.close();
-			stmt.close();
-		}catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return sIvo;
-	}
-	
-	
-	/**
-	 * »ñµÃÈıÌõÏµÍ³ÏûÏ¢
-	 * @return
-	 */
-	public List<SystemInfoVO> getSystemInfoThree(int p_pk)
-	{
-		List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
-		/*String sql = "select * from s_system_info where NOW() > happen_time and " +
+    /**
+     * æ’å…¥ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param p_pk      ä¸ªäººè§’è‰²idï¼Œå¦‚æœæ˜¯ç³»ç»Ÿå…¬å‘Šå’Œç‰¹åˆ«é€šçŸ¥ç›´æ¥å†™é›¶ã€‚
+     * @param info_type æ¶ˆæ¯ç±»å‹ 1æ˜¯ä¸ªäººæ¶ˆæ¯ï¼Œ2æ˜¯ç³»ç»Ÿå…¬å‘Šï¼Œ3æ˜¯ç‰¹åˆ«é€šçŸ¥,4æ˜¯å°å–‡å­ã€‚ 10å¸®ä¼šç»“æŸæ¶ˆæ¯,5æ˜¯pké€šçŸ¥æ¶ˆæ¯,7æ˜¯è£…å¤‡å±•ç¤ºä¿¡æ¯
+     * @param info      éœ€è¦æ’å…¥çš„æ¶ˆæ¯
+     * @return if sussend return 1,else return -1
+     */
+    public int insertSysInfoTongTime(int p_pk, int info_type, String info, String time) {
+        int i = -1;
+        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "','" + time + "')";
+        logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+            i = 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return i;
+    }
+
+    /**
+     * æ’å…¥ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param p_pk      ä¸ªäººè§’è‰²idï¼Œå¦‚æœæ˜¯ç³»ç»Ÿå…¬å‘Šå’Œç‰¹åˆ«é€šçŸ¥ç›´æ¥å†™é›¶ã€‚
+     * @param info_type æ¶ˆæ¯ç±»å‹ 1æ˜¯ä¸ªäººæ¶ˆæ¯ï¼Œ2æ˜¯ç³»ç»Ÿå…¬å‘Šï¼Œ3æ˜¯ç‰¹åˆ«é€šçŸ¥,4æ˜¯å°å–‡å­ã€‚ 10å¸®ä¼šç»“æŸæ¶ˆæ¯,5æ˜¯pké€šçŸ¥æ¶ˆæ¯,7æ˜¯è£…å¤‡å±•ç¤ºä¿¡æ¯
+     * @param info      éœ€è¦æ’å…¥çš„æ¶ˆæ¯
+     * @return if sussend return 1,else return -1
+     */
+    public int insertSysInfo(int p_pk, int info_type, String info, int second) {
+        int i = -1;
+        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "',NOW()+INTERVAL " + second + " second)";
+        logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+            i = 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return i;
+    }
+
+    /**
+     * æ’å…¥ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param p_pk      ä¸ªäººè§’è‰²idï¼Œå¦‚æœæ˜¯ç³»ç»Ÿå…¬å‘Šå’Œç‰¹åˆ«é€šçŸ¥ç›´æ¥å†™é›¶ã€‚
+     * @param info_type æ¶ˆæ¯ç±»å‹ 1æ˜¯ä¸ªäººæ¶ˆæ¯ï¼Œ2æ˜¯ç³»ç»Ÿå…¬å‘Šï¼Œ3æ˜¯ç‰¹åˆ«é€šçŸ¥,4æ˜¯å°å–‡å­ã€‚ 10å¸®ä¼šç»“æŸæ¶ˆæ¯,5æ˜¯pké€šçŸ¥æ¶ˆæ¯,7æ˜¯è£…å¤‡å±•ç¤ºä¿¡æ¯
+     * @param info      éœ€è¦æ’å…¥çš„æ¶ˆæ¯
+     * @return if sussend return 1,else return -1
+     */
+    public int insertSysInfo(int p_pk, int info_type, String info, String sendTime) {
+        int i = -1;
+        String sql = "INSERT INTO s_system_info values (null,'" + p_pk + "','" + info_type + "','" + info + "','" + sendTime + "')";
+        logger.debug("SysInfoDao insertSysInfo :sql=" + sql);
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+            i = 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return i;
+    }
+
+    /**
+     * é€‰æ‹©ç³»ç»Ÿä¿¡æ¯è¡¨çš„æ¶ˆæ¯æ¡æ•°
+     *
+     * @param p_pk
+     * @param number    è¦é€‰æ‹©æ¶ˆæ¯æ•°ç›®
+     * @param info_type æ¶ˆæ¯ç±»å‹ 1æ˜¯ä¸ªäººæ¶ˆæ¯ï¼Œ2æ˜¯ç³»ç»Ÿå…¬å‘Šï¼Œ3æ˜¯ç‰¹åˆ«é€šçŸ¥,4æ˜¯å°å–‡å­ã€‚ 10å¸®ä¼šç»“æŸæ¶ˆæ¯,5æ˜¯pké€šçŸ¥æ¶ˆæ¯,7æ˜¯è£…å¤‡å±•ç¤ºä¿¡æ¯
+     * @return if sussend return 1,else return -1
+     */
+    public List<SystemInfoVO> selectSysInfo(int p_pk, int info_type, int number) {
+        List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
+        String sql = "SELECT * FROM s_system_info where p_pk=" + p_pk + " and info_type='" + info_type + "' limit " + number;
+        logger.debug("é€‰æ‹©ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+
+        SystemInfoVO sIvo = null;
+        try {
+
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                sIvo = new SystemInfoVO();
+                sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
+                sIvo.setPPk(rs.getInt("p_pk"));
+                sIvo.setInfoType(rs.getInt("info_type"));
+                sIvo.setSystemInfo(rs.getString("system_info"));
+                sIvo.setCreateTime(rs.getString("happen_time"));
+                list.add(sIvo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+        return list;
+    }
+
+
+    /**
+     * æŸ¥è¯¢ç³»ç»Ÿæ¶ˆæ¯è¡¨ä¸­ä¸ªäººæœ‰å…³çš„ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param pPk ä¸ªäººè§’è‰²id.
+     * @return SystemInfoVO
+     */
+    public SystemInfoVO getSystemSelfInfo(String pPk) {
+        String sql = "SELECT * FROM s_system_info where sysInfo_id = (select min(sysInfo_id) from s_system_info " +
+                "where NOW() >= happen_time and (happen_time + INTERVAL 10 second) >= NOW() and p_pk=" + pPk + " )";
+        //logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql="+sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        SystemInfoVO sIvo = null;
+        logger.debug(" æŸ¥è¯¢ç³»ç»Ÿæ¶ˆæ¯è¡¨ä¸­ä¸ªäººæœ‰å…³çš„ç³»ç»Ÿæ¶ˆæ¯=" + sql);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                sIvo = new SystemInfoVO();
+                sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
+                sIvo.setPPk(rs.getInt("p_pk"));
+                sIvo.setInfoType(rs.getInt("info_type"));
+                sIvo.setSystemInfo(rs.getString("system_info"));
+                sIvo.setCreateTime(rs.getString("happen_time"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return sIvo;
+    }
+
+
+    /**
+     * è·å¾—ä¸‰æ¡ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @return
+     */
+    public List<SystemInfoVO> getSystemInfoThree(int p_pk) {
+        List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
+		/*String sql = "SELECT * FROM s_system_info where NOW() > happen_time and " +
 				"(happen_time + INTERVAL 10 second) > NOW() and ( p_pk=0 or p_pk="
 				+p_pk+" ) order by info_type desc,happen_time asc limit 3";*/
-		String sql = "select * from s_system_info where NOW() >= happen_time and (happen_time + INTERVAL 10 second) >= NOW() " +
-				"and ( (info_type = 1 and p_pk = "+p_pk+") or info_type not in (1,5) ) order by happen_time desc limit 3";
+        String sql = "SELECT * FROM s_system_info where NOW() >= happen_time and (happen_time + INTERVAL 10 second) >= NOW() " +
+                "and ( (info_type = 1 and p_pk = " + p_pk + ") or info_type not in (1,5) ) order by happen_time desc limit 3";
 
-		
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug(" »ñµÃÈıÌõÏµÍ³ÏûÏ¢="+sql);
-		//System.out.println(" »ñµÃÈıÌõÏµÍ³ÏûÏ¢="+sql);
-		SystemInfoVO sIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				sIvo = new SystemInfoVO();
-				sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
-				sIvo.setPPk(rs.getInt("p_pk"));
-				sIvo.setInfoType(rs.getInt("info_type"));
-				sIvo.setSystemInfo(rs.getString("system_info"));
-				sIvo.setCreateTime(rs.getString("happen_time"));
-				list.add(sIvo); 
-			}
-			rs.close();
-			stmt.close();
-		}catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		
-		return list;		
-	}
 
-	/**
-	 * ÔÚÁÄÌìÀ¹¿´ÏµÍ³ÏûÏ¢Ê±¼ä¶¨Òå20·ÖÖÓ
-	 * @return
-	 */
-	public List<SystemInfoVO> getSystemInfoThreeTime(String p_pk)
-	{
-		List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
-		String sql = "select * from s_system_info where NOW() > happen_time and " +
-				"(happen_time + INTERVAL 20 minute) > NOW() and ( (info_type = 1 and p_pk = "+p_pk
-				+") or info_type not in (1,5) ) order by happen_time desc limit 5";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug(" »ñµÃÈıÌõÏµÍ³ÏûÏ¢="+sql);
-		SystemInfoVO sIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				sIvo = new SystemInfoVO();
-				sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
-				sIvo.setPPk(rs.getInt("p_pk"));
-				sIvo.setInfoType(rs.getInt("info_type"));
-				sIvo.setSystemInfo(rs.getString("system_info"));
-				sIvo.setCreateTime(rs.getString("happen_time"));
-				list.add(sIvo);
-			}
-			rs.close();
-			stmt.close();
-		}catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		
-		return list;		
-	}
-	/**
-	 *  ²éÑ¯ÏµÍ³ÏûÏ¢±íÖĞµÄÏµÍ³ÏûÏ¢
-	 *  @param pPk ¸öÈË½ÇÉ«id. 
-	 *  @return SystemInfoVO
-	 */
-	public SystemInfoVO getSystemInfo(){
-		String sql = "select * from s_system_info where sysInfo_id = (select min(sysInfo_id) from s_system_info where NOW() > happen_time and (happen_time + INTERVAL 10 second) > NOW() and p_pk=0 group by info_type desc)";
-		logger.debug("²éÑ¯ÏµÍ³ÏûÏ¢±íÖĞµÄÏµÍ³ÏûÏ¢sql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		SystemInfoVO sIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				sIvo = new SystemInfoVO();
-				sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
-				sIvo.setPPk(rs.getInt("p_pk"));
-				sIvo.setInfoType(rs.getInt("info_type"));
-				sIvo.setSystemInfo(rs.getString("system_info"));
-				sIvo.setCreateTime(rs.getString("happen_time"));
-			}
-			rs.close();
-			stmt.close();
-		}catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return sIvo;
-	}
-	
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug(" è·å¾—ä¸‰æ¡ç³»ç»Ÿæ¶ˆæ¯=" + sql);
+        //System.out.println(" è·å¾—ä¸‰æ¡ç³»ç»Ÿæ¶ˆæ¯="+sql);
+        SystemInfoVO sIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                sIvo = new SystemInfoVO();
+                sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
+                sIvo.setPPk(rs.getInt("p_pk"));
+                sIvo.setInfoType(rs.getInt("info_type"));
+                sIvo.setSystemInfo(rs.getString("system_info"));
+                sIvo.setCreateTime(rs.getString("happen_time"));
+                list.add(sIvo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
 
-	/**
-	 * °´ÏµÍ³ÏûÏ¢IdÀ´Ñ¡ÔñÒ»ÌõÏµÍ³ÏûÏ¢
-	 * @param sysInfoId ÏµÍ³ÏûÏ¢id
-	 * @return SystemInfoVO 
-	 */
-	public SystemInfoVO getSystemInfo(int sysInfoId){
-		String sql = "select * from s_system_info where sysInfo_id="+sysInfoId;
-		logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		SystemInfoVO sIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				sIvo = new SystemInfoVO();
-				sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
-				sIvo.setPPk(rs.getInt("p_pk"));
-				sIvo.setInfoType(rs.getInt("info_type"));
-				sIvo.setSystemInfo(rs.getString("system_info"));
-				sIvo.setCreateTime(rs.getString("happen_time"));
-			}
-			rs.close();
-			stmt.close();
-		}catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return sIvo;
-	}
-	
-	/**
-	 * É¾³ı³¬¹ı15·ÖÖÓµÄÏµÍ³ÏûÏ¢
-	 */
-	public void deleteMoreFifteenMinutes(){
-		String sql = "delete from s_system_info where now() > (happen_time + INTERVAL 15 minute)";
-		logger.debug("É¾³ı³¬¹ı15·ÖÖÓµÄsql="+sql);
-		
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-			ps.close();
+        return list;
+    }
 
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-	}
+    /**
+     * åœ¨èŠå¤©æ‹¦çœ‹ç³»ç»Ÿæ¶ˆæ¯æ—¶é—´å®šä¹‰20åˆ†é’Ÿ
+     *
+     * @return
+     */
+    public List<SystemInfoVO> getSystemInfoThreeTime(String p_pk) {
+        List<SystemInfoVO> list = new ArrayList<SystemInfoVO>();
+        String sql = "SELECT * FROM s_system_info where NOW() > happen_time and " +
+                "(happen_time + INTERVAL 20 minute) > NOW() and ( (info_type = 1 and p_pk = " + p_pk
+                + ") or info_type not in (1,5) ) order by happen_time desc limit 5";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug(" è·å¾—ä¸‰æ¡ç³»ç»Ÿæ¶ˆæ¯=" + sql);
+        SystemInfoVO sIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                sIvo = new SystemInfoVO();
+                sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
+                sIvo.setPPk(rs.getInt("p_pk"));
+                sIvo.setInfoType(rs.getInt("info_type"));
+                sIvo.setSystemInfo(rs.getString("system_info"));
+                sIvo.setCreateTime(rs.getString("happen_time"));
+                list.add(sIvo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
 
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚµÈ¼¶¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public List<SystemControlInfoVO> getSystemInfoControlByPGrade()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 1";
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		SystemControlInfoVO scIvo = null;
-		try {
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				scIvo = new SystemControlInfoVO();
-				scIvo.setControlId(rs.getInt("control_id"));
-				scIvo.setCondition(rs.getInt("condition_type"));
-				scIvo.setPlayerGrade(rs.getString("player_grade"));
-				//scIvo.setTaskId(rs.getInt("task_id"));
-				//scIvo.setPopularity(rs.getInt("popularity"));
-				//scIvo.setTitle(rs.getString("title"));
-				//scIvo.setSendTime(rs.getString("send_time"));
-				scIvo.setSendContent(rs.getString("send_content"));
-				scIvo.setSendType(rs.getInt("send_type"));
-				list.add(scIvo);
-				//	map.put(rs.getString("player_grade"), rs.getString("send_content"));
-				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-	
-	
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚÈÎÎñ¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public Map<Integer,String> getSystemInfoControlByTaskId()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 2";
-		Map<Integer,String> map = new HashMap<Integer,String>();
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				map.put(rs.getInt("task_id"), rs.getString("send_content"));
-				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return map;
-	}
-	
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚÈÎÎñ¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public List<SystemControlInfoVO> getSystemInfoControlListByTaskId()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 2";
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				scIvo = new SystemControlInfoVO();
-				scIvo.setControlId(rs.getInt("control_id"));
-				scIvo.setCondition(rs.getInt("condition_type"));
-				scIvo.setPlayerGrade(rs.getString("player_grade"));
-				scIvo.setTaskId(rs.getInt("task_id"));
+        return list;
+    }
+
+    /**
+     * æŸ¥è¯¢ç³»ç»Ÿæ¶ˆæ¯è¡¨ä¸­çš„ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @return SystemInfoVO
+     */
+    public SystemInfoVO getSystemInfo() {
+        String sql = "SELECT * FROM s_system_info " +
+                "where sysInfo_id = (select min(sysInfo_id) from s_system_info where NOW() > happen_time " +
+                "AND (happen_time + INTERVAL 10 second) > NOW() " +
+                "AND p_pk=0 " +
+                "GROUP BY info_type DESC)";
+        logger.debug("æŸ¥è¯¢ç³»ç»Ÿæ¶ˆæ¯è¡¨ä¸­çš„ç³»ç»Ÿæ¶ˆæ¯sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        SystemInfoVO sIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                sIvo = new SystemInfoVO();
+                sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
+                sIvo.setPPk(rs.getInt("p_pk"));
+                sIvo.setInfoType(rs.getInt("info_type"));
+                sIvo.setSystemInfo(rs.getString("system_info"));
+                sIvo.setCreateTime(rs.getString("happen_time"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return sIvo;
+    }
+
+
+    /**
+     * æŒ‰ç³»ç»Ÿæ¶ˆæ¯Idæ¥é€‰æ‹©ä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param sysInfoId ç³»ç»Ÿæ¶ˆæ¯id
+     * @return SystemInfoVO
+     */
+    public SystemInfoVO getSystemInfo(int sysInfoId) {
+        String sql = "SELECT * FROM s_system_info where sysInfo_id=" + sysInfoId;
+        logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        SystemInfoVO sIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                sIvo = new SystemInfoVO();
+                sIvo.setSysInfoId(rs.getInt("sysInfo_id"));
+                sIvo.setPPk(rs.getInt("p_pk"));
+                sIvo.setInfoType(rs.getInt("info_type"));
+                sIvo.setSystemInfo(rs.getString("system_info"));
+                sIvo.setCreateTime(rs.getString("happen_time"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return sIvo;
+    }
+
+    /**
+     * åˆ é™¤è¶…è¿‡15åˆ†é’Ÿçš„ç³»ç»Ÿæ¶ˆæ¯
+     */
+    public void deleteMoreFifteenMinutes() {
+        String sql = "DELETE FROM `s_system_info` WHERE now() > (happen_time + INTERVAL 15 minute)";
+        logger.debug("åˆ é™¤è¶…è¿‡15åˆ†é’Ÿçš„sql=" + sql);
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºç­‰çº§æ§åˆ¶çš„æ¡ä»¶
+     */
+    public List<SystemControlInfoVO> getSystemInfoControlByPGrade() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 1";
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                scIvo = new SystemControlInfoVO();
+                scIvo.setControlId(rs.getInt("control_id"));
+                scIvo.setCondition(rs.getInt("condition_type"));
+                scIvo.setPlayerGrade(rs.getString("player_grade"));
+                //scIvo.setTaskId(rs.getInt("task_id"));
+                //scIvo.setPopularity(rs.getInt("popularity"));
+                //scIvo.setTitle(rs.getString("title"));
+                //scIvo.setSendTime(rs.getString("send_time"));
+                scIvo.setSendContent(rs.getString("send_content"));
+                scIvo.setSendType(rs.getInt("send_type"));
+                list.add(scIvo);
+                //	map.put(rs.getString("player_grade"), rs.getString("send_content"));
+
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºä»»åŠ¡æ§åˆ¶çš„æ¡ä»¶
+     */
+    public Map<Integer, String> getSystemInfoControlByTaskId() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 2";
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                map.put(rs.getInt("task_id"), rs.getString("send_content"));
+
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return map;
+    }
+
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºä»»åŠ¡æ§åˆ¶çš„æ¡ä»¶
+     */
+    public List<SystemControlInfoVO> getSystemInfoControlListByTaskId() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 2";
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                scIvo = new SystemControlInfoVO();
+                scIvo.setControlId(rs.getInt("control_id"));
+                scIvo.setCondition(rs.getInt("condition_type"));
+                scIvo.setPlayerGrade(rs.getString("player_grade"));
+                scIvo.setTaskId(rs.getInt("task_id"));
 //				scIvo.setPopularity(rs.getInt("popularity"));
 //				scIvo.setTitle(rs.getString("title"));
 //				scIvo.setSendTime(rs.getString("send_time"));
-				scIvo.setSendContent(rs.getString("send_content"));
-				scIvo.setSendType(rs.getInt("send_type"));
-				list.add(scIvo);
-				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-			
-	
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚÉùÍû¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public Map<Integer,String> getSystemInfoControlByPopularity()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 3";
-		Map<Integer,String> map = new HashMap<Integer,String>();
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				map.put(rs.getInt("popularity"), rs.getString("send_content"));
-				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return map;
-	}
-	
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚ³ÆÎ½¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public Map<String,String> getSystemInfoControlByTitle()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 4";
-		Map<String,String> map = new HashMap<String,String>();
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				map.put(rs.getString("title"), rs.getString("send_content"));
-				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return map;
-	}
-	
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚ³ÆÎ½¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public Map<String,String> getSystemInfoControlByTitle(String title_id)
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 4 and title ='"+title_id+"'";
-		Map<String,String> map = new HashMap<String,String>();
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				map.put(rs.getString("title"), rs.getString("send_content"));
-				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return map;
-	}
-	
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚ³ÆÎ½¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 * @param type ¿ØÖÆ±íÖĞµÄÀàĞÍ¡£1ÎªÍæ¼ÒµÈ¼¶,2ÎªÈÎÎñ,3ÎªÉùÍû,4Îª³ÆÎ½,5Îª·¢ËÍÊ±¼ä.
-	 */
-	public List<SystemControlInfoVO> getSystemInfoControlListByTitle(String title_id)
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 4 and title ='"+title_id+"'";
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		
-		logger.debug("²éÕÒÏµÍ³ÏûÏ¢¿ØÖÆ±íµÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				scIvo = new SystemControlInfoVO();
-				scIvo.setControlId(rs.getInt("control_id"));
-				scIvo.setCondition(rs.getInt("condition_type"));
-				scIvo.setPlayerGrade(rs.getString("player_grade"));
-				scIvo.setTaskId(rs.getInt("task_id"));
-				scIvo.setPopularity(rs.getInt("popularity"));
-				scIvo.setTitle(rs.getString("title"));
-				scIvo.setSendTime(rs.getString("send_time"));
-				scIvo.setSendContent(rs.getString("send_content"));
-				scIvo.setSendType(rs.getInt("send_type"));
-				list.add(scIvo);				
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-	
+                scIvo.setSendContent(rs.getString("send_content"));
+                scIvo.setSendType(rs.getInt("send_type"));
+                list.add(scIvo);
 
-	/**
-	 * »ñµÃÏµÍ³¿ØÖÆ±íÖĞµÄ¿ØÖÆÌõ¼şµÄ¹ØÓÚ×ÛºÏ¿ØÖÆµÄÌõ¼ş
-	 * @param pk
-	 */
-	public List<SystemControlInfoVO> getSystemInfoControlByPCollage()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 6 ";
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		SystemControlInfoVO infovo = null;
-		logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				infovo = new SystemControlInfoVO();
-				infovo.setControlId(rs.getInt("control_id"));
-				infovo.setCondition(rs.getInt("condition_type"));
-				infovo.setPlayerGrade(rs.getString("player_grade"));
-				infovo.setTaskId(rs.getInt("task_id"));
-				infovo.setPopularity(rs.getInt("popularity"));
-				infovo.setTitle(rs.getString("title"));
-				infovo.setSendTime(rs.getString("send_time"));
-				infovo.setSendContent(rs.getString("send_content"));
-				infovo.setSendType(rs.getInt("send_type"));
-				list.add(infovo);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-	
-	
-	public List<SystemControlInfoVO> getSystemInfoControlByNewPlayer()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 7 ";
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		SystemControlInfoVO infovo = null;
-		logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				infovo = new SystemControlInfoVO();
-				infovo.setControlId(rs.getInt("control_id"));
-				infovo.setCondition(rs.getInt("condition_type"));
-				infovo.setPlayerGrade(rs.getString("player_grade"));
-				infovo.setTaskId(rs.getInt("task_id"));
-				infovo.setPopularity(rs.getInt("popularity"));
-				infovo.setTitle(rs.getString("title"));
-				infovo.setSendTime(rs.getString("send_time"));
-				infovo.setSendContent(rs.getString("send_content"));
-				infovo.setSendType(rs.getInt("send_type"));
-				list.add(infovo);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-	
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
 
-	/**
-	 * »ñµÃ¶¨Ê±·¢ËÍÏµÍ³ÏûÏ¢µÄËùÓĞĞÅÏ¢
-	 * @return
-	 */
-	public List getSystemInfoCOntrolByTime()
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = 5 ";
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		SystemControlInfoVO infovo = null;
-		logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				infovo = new SystemControlInfoVO();
-				infovo.setControlId(rs.getInt("control_id"));
-				infovo.setSendTime(rs.getString("send_time"));
-				infovo.setSendContent(rs.getString("send_content"));
-				infovo.setSendType(rs.getInt("send_type"));
-				list.add(infovo);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-	
-	/**
-	 * »ñµÃ¶¨Ê±·¢ËÍÏµÍ³ÏûÏ¢µÄËùÓĞĞÅÏ¢
-	 * @return
-	 */
-	public SystemControlInfoVO getSystemInfoByTypeAndID(String type,String id)
-	{
-		String sql = "select * from u_systeminfo_control where condition_type = '"+type+"' and task_id = '"+id+"' limit 1";
-		SystemControlInfoVO infovo = null;
-		logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				infovo = new SystemControlInfoVO();
-				infovo.setControlId(rs.getInt("control_id"));
-				infovo.setSendTime(rs.getString("send_time"));
-				infovo.setSendContent(rs.getString("send_content"));
-				infovo.setSendType(rs.getInt("send_type"));
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return infovo;
-	}
-	
-	/**
-	 * »ñµÃ¶¨Ê±·¢ËÍÏµÍ³ÏûÏ¢µÄËùÓĞĞÅÏ¢
-	 * @return
-	 */
-	public List<SystemControlInfoVO> getSystemInfoByNewPlayerGuide(String type,String id)
-	{
-		List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
-		String sql = "select * from u_systeminfo_control where condition_type = '"+type+"' and task_id = '"+id+"'";
-		SystemControlInfoVO infovo = null;
-		logger.debug("Ñ¡ÔñÈ·¶¨Ò»ÌõÏµÍ³ÏûÏ¢µÄsql="+sql);
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
-		//SystemControlInfoVO scIvo = null;
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				infovo = new SystemControlInfoVO();
-				infovo.setControlId(rs.getInt("control_id"));
-				infovo.setSendTime(rs.getString("send_time"));
-				infovo.setSendContent(rs.getString("send_content"));
-				infovo.setPopularity(rs.getInt("popularity"));
-				infovo.setSendType(rs.getInt("send_type"));
-				list.add(infovo);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return list;
-	}
-	
 
-	/**
-	 * ¸øËùÓĞÔÚsceneStrÖĞÈË·¢ĞÅÏ¢
-	 * sceneStrÊÇĞÎÈç(111,112,113,115)ÀàµÄscene_name¼¯ºÏ
-	 * systemInfo ÏûÏ¢
-	 * @param systemInfo
-	 * @param sceneStr
-	 */
-	public void insertSysInfo(String systemInfo, String sceneStr)
-	{
-		PartInfoDao partInfoDao = new PartInfoDao();
-		List<Integer> list = partInfoDao.getPPkListBySceneStr(sceneStr);
-						
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		
-		String sql = "insert into s_system_info values (null,?,1,'"+systemInfo+"',now())";
-		logger.debug("¸øËùÓĞÔÚsceneStrÖĞÈË·¢ĞÅÏ¢="+sql);		
-		try{
-			conn = dbConn.getConn();
-			ps = conn.prepareStatement(sql);
-			conn.setAutoCommit(false);
-			
-			if(list != null ){
-				logger.debug("×ÜÈËÊı="+list.size());
-			} else {
-				logger.debug("¿ÕµÄ");
-			}
-			for(int i=0; i < list.size();i++) {
-				int p_pk = list.get(i);
-				 ps.setInt(1, p_pk);  
-				 //stmt.addBatch(); 
-				 ps.addBatch();
-			}
-			ps.executeBatch();	
-			conn.commit();
-			ps.close();
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºå£°æœ›æ§åˆ¶çš„æ¡ä»¶
+     */
+    public Map<Integer, String> getSystemInfoControlByPopularity() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 3";
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                map.put(rs.getInt("popularity"), rs.getString("send_content"));
 
-			
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-	}
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return map;
+    }
 
-	/**
-	 * ¸üĞÂÊ±¼ä×ï¶ñÖµµÈµÄÏµÍ³ÏûÏ¢ÏÔÊ¾Ê±¼ä
-	 * @param p_pk
-	 * @param buffEffectValue
-	 * @param propName
-	 */
-	public void updateTimeReducePkValue(int p_pk, int buffEffectTime,
-			String propName)
-	{
-		String sql = "update s_system_info set happen_time = (happen_time +  INTERVAL "+buffEffectTime
-						+" minute) where p_pk = "+p_pk + " and info_type = 1 and system_info like '%"+propName+"%'";
-		logger.debug("="+sql);				
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			stmt.execute(sql);			
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-	}
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºç§°è°“æ§åˆ¶çš„æ¡ä»¶
+     */
+    public Map<String, String> getSystemInfoControlByTitle() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 4";
+        Map<String, String> map = new HashMap<String, String>();
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                map.put(rs.getString("title"), rs.getString("send_content"));
 
-	/**
-	 * ¸ù¾İpPkºÍÏµÍ³ÏûÏ¢µÄÒ»Ğ©¹Ø¼ü´ÊÀ´É¾³ı²»ĞèÒªµÄÏµÍ³ÏûÏ¢
-	 * @param pPk
-	 * @param propName
-	 */
-	public void deleteByPPkInfo(int pPk, String propName)
-	{
-		String sql = "delete from s_system_info where info_type = 1 and p_pk="+pPk+" and system_info like '%"+propName+"%' ";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("¸ù¾İpPkºÍÏµÍ³ÏûÏ¢µÄÒ»Ğ©¹Ø¼ü´ÊÀ´É¾³ı²»ĞèÒªµÄÏµÍ³ÏûÏ¢="+sql);		
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			stmt.execute(sql);			
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		
-	}
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return map;
+    }
 
-	/**
-	 *  ²éÑ¯ÊÇ·ñÓĞ ÌØ¶¨µÄ ÏµÍ³ÏûÏ¢
-	 * @param pPk
-	 * @param propName
-	 * @return
-	 */
-	public boolean selectByPPkInfo(int pPk, String propName)
-	{
-		boolean flag = false;
-		String sql = "select * from s_system_info where info_type = 1 and p_pk="+pPk+" and system_info like '%"+propName+"%' ";
-		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
-		logger.debug("²éÑ¯ÊÇ·ñÓĞ ÌØ¶¨µÄ ÏµÍ³ÏûÏ¢="+sql);		
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				flag = true;	
-			}		
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		return flag;
-	}
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºç§°è°“æ§åˆ¶çš„æ¡ä»¶
+     *
+     * @param title_id
+     */
+    public Map<String, String> getSystemInfoControlByTitle(String title_id) {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 4 and title ='" + title_id + "'";
+        Map<String, String> map = new HashMap<String, String>();
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                map.put(rs.getString("title"), rs.getString("send_content"));
 
-	/**
-	 * ¸ù¾İpPkºÍÏµÍ³ÏûÏ¢µÄÒ»Ğ©¹Ø¼ü´ÊÀ´¸üĞÂÏµÍ³ÏûÏ¢µÄÊ±¼ä
-	 * @param pPk
-	 * @param propName
-	
-	public void updateByPPkInfo(int pPk, String propName,int buffTime)
-	{
-		String sql = "update s_system_info set happen_time = happen_time + "+  +" where info_type = 1 and p_pk="+pPk+" and system_info like '%"+propName+"%' ";
-		DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
-		logger.debug("¸ù¾İpPkºÍÏµÍ³ÏûÏ¢µÄÒ»Ğ©¹Ø¼ü´ÊÀ´É¾³ı²»ĞèÒªµÄÏµÍ³ÏûÏ¢="+sql);		
-		try{
-			conn = dbConn.getConn();
-			stmt = conn.createStatement();
-			stmt.execute(sql);			
-			stmt.close();
-		} catch (SQLException e) {
-				e.printStackTrace();
-		} finally {
-				dbConn.closeConn();
-		}
-		
-	} */
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return map;
+    }
+
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºç§°è°“æ§åˆ¶çš„æ¡ä»¶
+     *
+     * @param title_id
+     */
+    public List<SystemControlInfoVO> getSystemInfoControlListByTitle(String title_id) {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 4 and title ='" + title_id + "'";
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+
+        logger.debug("æŸ¥æ‰¾ç³»ç»Ÿæ¶ˆæ¯æ§åˆ¶è¡¨çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                scIvo = new SystemControlInfoVO();
+                scIvo.setControlId(rs.getInt("control_id"));
+                scIvo.setCondition(rs.getInt("condition_type"));
+                scIvo.setPlayerGrade(rs.getString("player_grade"));
+                scIvo.setTaskId(rs.getInt("task_id"));
+                scIvo.setPopularity(rs.getInt("popularity"));
+                scIvo.setTitle(rs.getString("title"));
+                scIvo.setSendTime(rs.getString("send_time"));
+                scIvo.setSendContent(rs.getString("send_content"));
+                scIvo.setSendType(rs.getInt("send_type"));
+                list.add(scIvo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+
+    /**
+     * è·å¾—ç³»ç»Ÿæ§åˆ¶è¡¨ä¸­çš„æ§åˆ¶æ¡ä»¶çš„å…³äºç»¼åˆæ§åˆ¶çš„æ¡ä»¶
+     */
+    public List<SystemControlInfoVO> getSystemInfoControlByPCollage() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 6 ";
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+        SystemControlInfoVO infovo = null;
+        logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                infovo = new SystemControlInfoVO();
+                infovo.setControlId(rs.getInt("control_id"));
+                infovo.setCondition(rs.getInt("condition_type"));
+                infovo.setPlayerGrade(rs.getString("player_grade"));
+                infovo.setTaskId(rs.getInt("task_id"));
+                infovo.setPopularity(rs.getInt("popularity"));
+                infovo.setTitle(rs.getString("title"));
+                infovo.setSendTime(rs.getString("send_time"));
+                infovo.setSendContent(rs.getString("send_content"));
+                infovo.setSendType(rs.getInt("send_type"));
+                list.add(infovo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+
+    public List<SystemControlInfoVO> getSystemInfoControlByNewPlayer() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 7 ";
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+        SystemControlInfoVO infovo = null;
+        logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                infovo = new SystemControlInfoVO();
+                infovo.setControlId(rs.getInt("control_id"));
+                infovo.setCondition(rs.getInt("condition_type"));
+                infovo.setPlayerGrade(rs.getString("player_grade"));
+                infovo.setTaskId(rs.getInt("task_id"));
+                infovo.setPopularity(rs.getInt("popularity"));
+                infovo.setTitle(rs.getString("title"));
+                infovo.setSendTime(rs.getString("send_time"));
+                infovo.setSendContent(rs.getString("send_content"));
+                infovo.setSendType(rs.getInt("send_type"));
+                list.add(infovo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+
+    /**
+     * è·å¾—å®šæ—¶å‘é€ç³»ç»Ÿæ¶ˆæ¯çš„æ‰€æœ‰ä¿¡æ¯
+     *
+     * @return
+     */
+    public List getSystemInfoCOntrolByTime() {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = 5 ";
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+        SystemControlInfoVO infovo = null;
+        logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                infovo = new SystemControlInfoVO();
+                infovo.setControlId(rs.getInt("control_id"));
+                infovo.setSendTime(rs.getString("send_time"));
+                infovo.setSendContent(rs.getString("send_content"));
+                infovo.setSendType(rs.getInt("send_type"));
+                list.add(infovo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+    /**
+     * è·å¾—å®šæ—¶å‘é€ç³»ç»Ÿæ¶ˆæ¯çš„æ‰€æœ‰ä¿¡æ¯
+     *
+     * @return
+     */
+    public SystemControlInfoVO getSystemInfoByTypeAndID(String type, String id) {
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = '" + type + "' and task_id = '" + id + "' limit 1";
+        SystemControlInfoVO infovo = null;
+        logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                infovo = new SystemControlInfoVO();
+                infovo.setControlId(rs.getInt("control_id"));
+                infovo.setSendTime(rs.getString("send_time"));
+                infovo.setSendContent(rs.getString("send_content"));
+                infovo.setSendType(rs.getInt("send_type"));
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return infovo;
+    }
+
+    /**
+     * è·å¾—å®šæ—¶å‘é€ç³»ç»Ÿæ¶ˆæ¯çš„æ‰€æœ‰ä¿¡æ¯
+     *
+     * @return
+     */
+    public List<SystemControlInfoVO> getSystemInfoByNewPlayerGuide(String type, String id) {
+        List<SystemControlInfoVO> list = new ArrayList<SystemControlInfoVO>();
+        String sql = "SELECT * FROM u_systeminfo_control where condition_type = '" + type + "' and task_id = '" + id + "'";
+        SystemControlInfoVO infovo = null;
+        logger.debug("é€‰æ‹©ç¡®å®šä¸€æ¡ç³»ç»Ÿæ¶ˆæ¯çš„sql=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
+        //SystemControlInfoVO scIvo = null;
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                infovo = new SystemControlInfoVO();
+                infovo.setControlId(rs.getInt("control_id"));
+                infovo.setSendTime(rs.getString("send_time"));
+                infovo.setSendContent(rs.getString("send_content"));
+                infovo.setPopularity(rs.getInt("popularity"));
+                infovo.setSendType(rs.getInt("send_type"));
+                list.add(infovo);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return list;
+    }
+
+
+    /**
+     * ç»™æ‰€æœ‰åœ¨sceneSträ¸­äººå‘ä¿¡æ¯
+     * sceneStræ˜¯å½¢å¦‚(111,112,113,115)ç±»çš„scene_nameé›†åˆ
+     * systemInfo æ¶ˆæ¯
+     *
+     * @param systemInfo
+     * @param sceneStr
+     */
+    public void insertSysInfo(String systemInfo, String sceneStr) {
+        PartInfoDao partInfoDao = new PartInfoDao();
+        List<Integer> list = partInfoDao.getPPkListBySceneStr(sceneStr);
+
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+
+        String sql = "INSERT INTO s_system_info values (null,?,1,'" + systemInfo + "',now())";
+        logger.debug("ç»™æ‰€æœ‰åœ¨sceneSträ¸­äººå‘ä¿¡æ¯=" + sql);
+        try {
+            conn = dbConn.getConn();
+            ps = conn.prepareStatement(sql);
+            conn.setAutoCommit(false);
+
+            if (list != null) {
+                logger.debug("æ€»äººæ•°=" + list.size());
+            } else {
+                logger.debug("ç©ºçš„");
+            }
+            for (int i = 0; i < list.size(); i++) {
+                int p_pk = list.get(i);
+                ps.setInt(1, p_pk);
+                //stmt.addBatch();
+                ps.addBatch();
+            }
+            ps.executeBatch();
+            conn.commit();
+            ps.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ›´æ–°æ—¶é—´ç½ªæ¶å€¼ç­‰çš„ç³»ç»Ÿæ¶ˆæ¯æ˜¾ç¤ºæ—¶é—´
+     *
+     * @param p_pk
+     * @param buffEffectTime
+     * @param propName
+     */
+    public void updateTimeReducePkValue(int p_pk, int buffEffectTime, String propName) {
+        String sql = "update s_system_info set happen_time = (happen_time +  INTERVAL " + buffEffectTime
+                + " minute) where p_pk = " + p_pk + " and info_type = 1 and system_info like '%" + propName + "%'";
+        logger.debug("=" + sql);
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+    }
+
+    /**
+     * æ ¹æ®pPkå’Œç³»ç»Ÿæ¶ˆæ¯çš„ä¸€äº›å…³é”®è¯æ¥åˆ é™¤ä¸éœ€è¦çš„ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param pPk
+     * @param propName
+     */
+    public void deleteByPPkInfo(int pPk, String propName) {
+        String sql = "DELETE FROM `s_system_info` WHERE `info_type` = 1 AND p_pk = " + pPk + " AND `system_info` LIKE '%" + propName + "%' ";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug("æ ¹æ®pPkå’Œç³»ç»Ÿæ¶ˆæ¯çš„ä¸€äº›å…³é”®è¯æ¥åˆ é™¤ä¸éœ€è¦çš„ç³»ç»Ÿæ¶ˆæ¯=" + sql);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+
+    }
+
+    /**
+     * æŸ¥è¯¢æ˜¯å¦æœ‰ ç‰¹å®šçš„ ç³»ç»Ÿæ¶ˆæ¯
+     *
+     * @param pPk
+     * @param propName
+     * @return
+     */
+    public boolean selectByPPkInfo(int pPk, String propName) {
+        boolean flag = false;
+        String sql = "SELECT * FROM s_system_info where info_type = 1 and p_pk=" + pPk + " and system_info like '%" + propName + "%' ";
+        DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
+        logger.debug("æŸ¥è¯¢æ˜¯å¦æœ‰ ç‰¹å®šçš„ ç³»ç»Ÿæ¶ˆæ¯=" + sql);
+        try {
+            conn = dbConn.getConn();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                flag = true;
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConn();
+        }
+        return flag;
+    }
+
+    /**
+     * æ ¹æ®pPkå’Œç³»ç»Ÿæ¶ˆæ¯çš„ä¸€äº›å…³é”®è¯æ¥æ›´æ–°ç³»ç»Ÿæ¶ˆæ¯çš„æ—¶é—´
+     * @param pPk
+     * @param propName
+
+    public void updateByPPkInfo(int pPk, String propName,int buffTime)
+    {
+    String sql = "update s_system_info set happen_time = happen_time + "+  +" where info_type = 1 and p_pk="+pPk+" and system_info like '%"+propName+"%' ";
+    DBConnection dbConn = new DBConnection(DBConnection.JYGAMEUSER_DB);
+    logger.debug("æ ¹æ®pPkå’Œç³»ç»Ÿæ¶ˆæ¯çš„ä¸€äº›å…³é”®è¯æ¥åˆ é™¤ä¸éœ€è¦çš„ç³»ç»Ÿæ¶ˆæ¯="+sql);
+    try{
+    conn = dbConn.getConn();
+    stmt = conn.createStatement();
+    stmt.execute(sql);
+    stmt.close();
+    } catch (SQLException e) {
+    e.printStackTrace();
+    } finally {
+    dbConn.closeConn();
+    }
+
+    } */
 }

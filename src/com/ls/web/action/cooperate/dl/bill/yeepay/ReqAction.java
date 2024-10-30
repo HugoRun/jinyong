@@ -1,149 +1,137 @@
 package com.ls.web.action.cooperate.dl.bill.yeepay;
 
-import java.io.UnsupportedEncodingException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
+import com.ls.pub.config.GameConfig;
+import com.ls.pub.yeepay.nonbankcard.NonBankcardPaymentResult;
+import com.ls.pub.yeepay.nonbankcard.NonBankcardService;
+import com.ls.web.service.cooperate.bill.BillService;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
-import com.ls.pub.config.GameConfig;
-import com.ls.pub.yeepay.nonbankcard.NonBankcardPaymentResult;
-import com.ls.pub.yeepay.nonbankcard.NonBankcardService;
-import com.ls.web.service.cooperate.bill.BillService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 
 
 /**
  * @author ls
- * ¹¦ÄÜ:ÉñÖİĞĞ³äÖµ
+ * åŠŸèƒ½:ç¥å·è¡Œå……å€¼
  * Jan 12, 2009
  */
 public class ReqAction extends DispatchAction {
-	
-	Logger logger = Logger.getLogger("log.pay");
-	
-	/**
-	 * ³äÖµ
-	 */
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		
-		String p_pk = (String)session.getAttribute("pPk");
-		String u_pk = (String)session.getAttribute("uPk");
-		
-		if( p_pk==null || u_pk==null  )
-		{
-			logger.info("sessionÖĞÒÑÎŞÓĞĞ§µÄpPkºÍuPk");
-			return null;
-		}
-		
-		BillService billService = new BillService();
-		
-		String resultWml = null;
-		
-		try
-		{
-			request.setCharacterEncoding("GBK");
-		}
-		catch (UnsupportedEncodingException e1)
-		{
-			e1.printStackTrace();
-		}
-		// ÉÌ»§¶©µ¥ºÅ
-		String addtime = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
-		String order_id="017001"+addtime;
-		//String p2_Order = formatString(request.getParameter("p2_Order"));
-		String p2_Order=order_id;
-		// ¶©µ¥½ğ¶î
-		String p3_Amt = formatString(request.getParameter("pay"));
 
-		// ¿¨ºÅ
-		String pa7_cardNo = formatString(request.getParameter("code"));
+    Logger logger = Logger.getLogger("log.pay");
 
-		// ¿¨ÃÜÂë
-		String pa8_cardPwd = formatString(request.getParameter("psw"));
+    /**
+     * å……å€¼
+     */
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+
+        String p_pk = (String) session.getAttribute("pPk");
+        String u_pk = (String) session.getAttribute("uPk");
+
+        if (p_pk == null || u_pk == null) {
+            logger.info("sessionä¸­å·²æ— æœ‰æ•ˆçš„pPkå’ŒuPk");
+            return null;
+        }
+
+        BillService billService = new BillService();
+
+        String resultWml = null;
+
+        try {
+            request.setCharacterEncoding("GBK");
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        // å•†æˆ·è®¢å•å·
+        String addtime = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
+        String order_id = "017001" + addtime;
+        //String p2_Order = formatString(request.getParameter("p2_Order"));
+        String p2_Order = order_id;
+        // è®¢å•é‡‘é¢
+        String p3_Amt = formatString(request.getParameter("pay"));
+
+        // å¡å·
+        String pa7_cardNo = formatString(request.getParameter("code"));
+
+        // å¡å¯†ç 
+        String pa8_cardPwd = formatString(request.getParameter("psw"));
 
 
-		// ¾ßÌåÍ¨µÀ
-		String pd_FrpId = formatString(request.getParameter("pd_FrpId"));
-		
-		// ½»Ò×³É¹¦Í¨ÖªµØÖ·
-		String p8_Url = formatString("http://189hi.cn/orderrcv/yeepayszx_feed.do");//ÕıÊ½µÄÉñÖİĞĞµØÖ·
-		if( pd_FrpId.equals("SNDACARD"))
-		{
-			p8_Url = "http://189hi.cn/orderrcv/yeepaysnda_feed.do";//ÕıÊ½µÄÊ¢´óµØÖ·
-		}
-		//"http://219.239.94.130:8080/orderrcv/yeepaysnda_feed.do"                             //ÕıÊ½µÄÊ¢´óµØÖ·
-		//String p8_Url = formatString("http://203.86.68.248:8888/orderrcv/yeepayszx_feed.do");//²âÊÔµØÖ·
-		
-		//¼ÇÂ¼Íæ¼Ò³äÖµĞÅÏ¢
-		UAccountRecordVO account_record = new UAccountRecordVO();
-		account_record.setUPk(Integer.parseInt(u_pk));
-		account_record.setPPk(Integer.parseInt(p_pk));
-		account_record.setCode(pa7_cardNo);
-		account_record.setPwd(pa8_cardPwd);
-		account_record.setMoney(Integer.parseInt(p3_Amt));
-		account_record.setChannel(pd_FrpId);
-		account_record.setAccountState("·¢ËÍ³äÖµÇëÇó");
-		
-		logger.info("Ò×±¦("+pd_FrpId+")Í¨µÀ");
-		int record_id = billService.account(account_record);
-		
-		String area_id = GameConfig.getAreaId();
-		
-		// ÉÌ»§À©Õ¹ĞÅÏ¢
-		//String pa_MP = formatString(request.getParameter("pa_MP"));
-		String pa_MP = area_id+"and"+record_id;
-		
-		try {
-			NonBankcardPaymentResult rs = NonBankcardService.pay(p2_Order,p3_Amt,p8_Url,pa_MP,pa7_cardNo,pa8_cardPwd,pd_FrpId);
-			//³äÖµµÄ³É¹¦
-			if("1".equals(rs.getR1_Code()))
-			{
-				resultWml = billService.getSuccessHint();
-				//resultWml = resultWml+"Äã½«µÃµ½"+p3_Amt+"¸öÔª±¦<br/>";
-			}else
-			{
-				logger.info("Ò×±¦("+pd_FrpId+")Í¨µÀÌá½»³äÖµÇëÇó£ºÌá½»³äÖµÇëÇóÊ§°Ü,´íÎó´úÂë"+rs.getR1_Code());
-				resultWml = billService.getFailHint(rs.getR1_Code());
+        // å…·ä½“é€šé“
+        String pd_FrpId = formatString(request.getParameter("pd_FrpId"));
 
-				//out.println("ÇëÖØÊÔ<a href='"+response.encodeURL("index.jsp")+"'>·µ»Ø³äÖµ</a><br/>");
-			}
-			billService.updateState(record_id, rs.getR1_Code());
-			
-			/* 	¸Ã·½·¨ÊÇ¸ù¾İ¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·Éú³ÉÒ»¸öÄ£ÄâµÄ½»Ò×½á¹ûÍ¨Öª´®.
-			 * 	ÉÌ»§Ê¹ÓÃÄ£ÄâµÄ½»Ò×½á¹ûÍ¨Öª´®¿ÉÒÔÖ±½Ó²âÊÔ×Ô¼ºµÄ½»Ò×½á¹û½ÓÊÕ³ÌĞò(callback)µÄÕıÈ·ĞÔ.
-			 * 	Êµ¼ÊµÄ½»Ò×½á¹ûÍ¨Öª»úÖÆÒÔ¡¶Ò×±¦Ö§¸¶·ÇÒøĞĞ¿¨Ö§¸¶×¨Òµ°æ½Ó¿ÚÎÄµµ v3.0¡·Îª×¼£¬¸Ã·½·¨Ö»ÊÇ
-			 * 	Ä£ÄâÁË½»Ò×½á¹ûÍ¨Öª´®.ÕıÊ½ÉÏÏßÊ±Çë²»Òªµ÷ÓÃ´Ë·½·¨. 
-			 */
-			
-			//NonBankcardService.generationTestCallback(p2_Order,p3_Amt,p8_Url,pa7_cardNo,pa8_cardPwd,pa_MP);
-		}
-		catch(Exception e )
-		{
-			e.printStackTrace();
-			logger.info("Ò×±¦("+pd_FrpId+")Í¨µÀÌá½»³äÖµÇëÇó£º³äÖµÊ§°Ü,´íÎó´úÂë"+e.toString());
-			resultWml = billService.getFailHint(e.toString());
-			billService.updateState(record_id, e.toString());
-		}
-		//logger.info(resultWml);
-		request.setAttribute("resultWml", resultWml);
-		return mapping.findForward("success");
-	}
-	
-	private  String formatString(String text){ 
-		if(text == null) {
-			return "";  
-		}
-		return text;
-		
-	}
+        // äº¤æ˜“æˆåŠŸé€šçŸ¥åœ°å€
+        String p8_Url = formatString("http://189hi.cn/orderrcv/yeepayszx_feed.do");//æ­£å¼çš„ç¥å·è¡Œåœ°å€
+        if (pd_FrpId.equals("SNDACARD")) {
+            p8_Url = "http://189hi.cn/orderrcv/yeepaysnda_feed.do";//æ­£å¼çš„ç››å¤§åœ°å€
+        }
+        //"http://219.239.94.130:8080/orderrcv/yeepaysnda_feed.do"                             //æ­£å¼çš„ç››å¤§åœ°å€
+        //String p8_Url = formatString("http://203.86.68.248:8888/orderrcv/yeepayszx_feed.do");//æµ‹è¯•åœ°å€
+
+        //è®°å½•ç©å®¶å……å€¼ä¿¡æ¯
+        UAccountRecordVO account_record = new UAccountRecordVO();
+        account_record.setUPk(Integer.parseInt(u_pk));
+        account_record.setPPk(Integer.parseInt(p_pk));
+        account_record.setCode(pa7_cardNo);
+        account_record.setPwd(pa8_cardPwd);
+        account_record.setMoney(Integer.parseInt(p3_Amt));
+        account_record.setChannel(pd_FrpId);
+        account_record.setAccountState("å‘é€å……å€¼è¯·æ±‚");
+
+        logger.info("æ˜“å®(" + pd_FrpId + ")é€šé“");
+        int record_id = billService.account(account_record);
+
+        String area_id = GameConfig.getAreaId();
+
+        // å•†æˆ·æ‰©å±•ä¿¡æ¯
+        //String pa_MP = formatString(request.getParameter("pa_MP"));
+        String pa_MP = area_id + "and" + record_id;
+
+        try {
+            NonBankcardPaymentResult rs = NonBankcardService.pay(p2_Order, p3_Amt, p8_Url, pa_MP, pa7_cardNo, pa8_cardPwd, pd_FrpId);
+            //å……å€¼çš„æˆåŠŸ
+            if ("1".equals(rs.getR1_Code())) {
+                resultWml = billService.getSuccessHint();
+                //resultWml = resultWml+"ä½ å°†å¾—åˆ°"+p3_Amt+"ä¸ªå…ƒå®<br/>";
+            } else {
+                logger.info("æ˜“å®(" + pd_FrpId + ")é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šæäº¤å……å€¼è¯·æ±‚å¤±è´¥,é”™è¯¯ä»£ç " + rs.getR1_Code());
+                resultWml = billService.getFailHint(rs.getR1_Code());
+
+                //out.println("è¯·é‡è¯•<a href='"+response.encodeURL("index.jsp")+"'>è¿”å›å……å€¼</a><br/>");
+            }
+            billService.updateState(record_id, rs.getR1_Code());
+
+            /* 	è¯¥æ–¹æ³•æ˜¯æ ¹æ®ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹ç”Ÿæˆä¸€ä¸ªæ¨¡æ‹Ÿçš„äº¤æ˜“ç»“æœé€šçŸ¥ä¸².
+             * 	å•†æˆ·ä½¿ç”¨æ¨¡æ‹Ÿçš„äº¤æ˜“ç»“æœé€šçŸ¥ä¸²å¯ä»¥ç›´æ¥æµ‹è¯•è‡ªå·±çš„äº¤æ˜“ç»“æœæ¥æ”¶ç¨‹åº(callback)çš„æ­£ç¡®æ€§.
+             * 	å®é™…çš„äº¤æ˜“ç»“æœé€šçŸ¥æœºåˆ¶ä»¥ã€Šæ˜“å®æ”¯ä»˜éé“¶è¡Œå¡æ”¯ä»˜ä¸“ä¸šç‰ˆæ¥å£æ–‡æ¡£ v3.0ã€‹ä¸ºå‡†ï¼Œè¯¥æ–¹æ³•åªæ˜¯
+             * 	æ¨¡æ‹Ÿäº†äº¤æ˜“ç»“æœé€šçŸ¥ä¸².æ­£å¼ä¸Šçº¿æ—¶è¯·ä¸è¦è°ƒç”¨æ­¤æ–¹æ³•.
+             */
+
+            //NonBankcardService.generationTestCallback(p2_Order,p3_Amt,p8_Url,pa7_cardNo,pa8_cardPwd,pa_MP);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("æ˜“å®(" + pd_FrpId + ")é€šé“æäº¤å……å€¼è¯·æ±‚ï¼šå……å€¼å¤±è´¥,é”™è¯¯ä»£ç " + e);
+            resultWml = billService.getFailHint(e.toString());
+            billService.updateState(record_id, e.toString());
+        }
+        //logger.info(resultWml);
+        request.setAttribute("resultWml", resultWml);
+        return mapping.findForward("success");
+    }
+
+    private String formatString(String text) {
+        if (text == null) {
+            return "";
+        }
+        return text;
+
+    }
 }

@@ -9,7 +9,7 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * 记录日志
+ * 璁板綍鏃ュ織
  */
 public class GameLogDao extends DaoBase
 {
@@ -23,8 +23,8 @@ public class GameLogDao extends DaoBase
 	}
 	
 	/**
-	 * 根据sql插入日志
-	 * @param log_sql	sql语句
+	 * 鏍规嵁sql鎻掑叆鏃ュ織
+	 * @param log_sql	sql璇彞
 	 */
 	public void incertBySql(String log_sql)
 	{
@@ -50,8 +50,8 @@ public class GameLogDao extends DaoBase
 		}
 	}
 	/**
-	 * 通过文件记录日志
-	 * @param buffer		文件缓存
+	 * 閫氳繃鏂囦欢璁板綍鏃ュ織
+	 * @param buffer		鏂囦欢缂撳瓨
 	 */
 	public void incertByBufferedReader(BufferedReader buffer)
 	{
@@ -71,7 +71,7 @@ public class GameLogDao extends DaoBase
 					}
 					catch (SQLException e)
 					{
-						DataErrorLog.debugLogic("gamelog语句问题，sql="+sql);
+						DataErrorLog.debugLogic("gamelog璇彞闂锛宻ql="+sql);
 					}
 				}
 				

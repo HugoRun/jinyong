@@ -11,13 +11,13 @@ public class ForBidCache extends CacheBase
 	public static int FORBIDNAME = 1;
 	public static int FORBIDCOMM = 2;
 	/**
-	 * Í¨¹ıÀàĞÍµÃµ½½ûÖ¹×Ö·û´®£¬1ÎªÈ¡Ãû½ûÖ¹£¬2Îª½»Á÷½ûÖ¹
+	 * é€šè¿‡ç±»å‹å¾—åˆ°ç¦æ­¢å­—ç¬¦ä¸²ï¼Œ1ä¸ºå–åç¦æ­¢ï¼Œ2ä¸ºäº¤æµç¦æ­¢
 	 * @param scene_id
 	 * @return
 	 */
 	public String getById( int forbid_type )
 	{
-		logger.debug("Í¨¹ıÀàĞÍµÃµ½½ûÖ¹×Ö·û´®="+forbid_type);
+		logger.debug("é€šè¿‡ç±»å‹å¾—åˆ°ç¦æ­¢å­—ç¬¦ä¸²="+forbid_type);
 		String typeForbid = null;
 		HashMap result = getElementValue(STATIC_CACHE_NAME, FORBID_BY_TYPE);
 		typeForbid = (String)result.get(forbid_type);

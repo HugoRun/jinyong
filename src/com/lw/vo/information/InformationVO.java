@@ -2,11 +2,11 @@ package com.lw.vo.information;
 
 public class InformationVO
 {
-	/** 账号ID */
+	/** 璐﹀彿ID */
 	private int uPk;
-	/** 获得大礼包的当乐ID */
+	/** 鑾峰緱澶хぜ鍖呯殑褰撲箰ID */
 	private String id;
-	/** 获得大礼包的类型 */
+	/** 鑾峰緱澶хぜ鍖呯殑绫诲瀷 */
 	private String type;
 
 	public int getUPk()

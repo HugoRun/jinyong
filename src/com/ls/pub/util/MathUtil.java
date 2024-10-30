@@ -8,25 +8,25 @@ import com.ls.iface.function.Probability;
 
 
 /**
- * ¹¦ÄÜ:ÊıÑ§¹¤¾ßÀà
- * @author ÁõË§
+ * åŠŸèƒ½:æ•°å­¦å·¥å…·ç±»
+ * @author åˆ˜å¸…
  * 8:47:25 AM
  */
 public class MathUtil {
 	
-	//ÆÕÍ¨¸ÅÂÊ·ÖÄ¸100
+	//æ™®é€šæ¦‚ç‡åˆ†æ¯100
 	public static final int DENOMINATOR=100;
 	
-	//µôÂä¸ÅÂÊ·ÖÄ¸1°ÙÍò
+	//æ‰è½æ¦‚ç‡åˆ†æ¯1ç™¾ä¸‡
 	public static final int DROPDENOMINATOR=1000000;
 	
 	public static Logger logger =  Logger.getLogger("log.service");
 	
 	/**
-	 * µÃµ½oldValueÔö¼Órate°Ù·Ö±ÈºóµÄÖµ
+	 * å¾—åˆ°oldValueå¢åŠ rateç™¾åˆ†æ¯”åçš„å€¼
 	 * @param oldValue
-	 * @param rate		rateÎª°Ù·Ö±ÈµÄ·Ö×Ó
-	 * @return				·µ»ØdoubleÀàĞÍµÄÖµ
+	 * @param rate		rateä¸ºç™¾åˆ†æ¯”çš„åˆ†å­
+	 * @return				è¿”å›doubleç±»å‹çš„å€¼
 	 */
 	public static double getDoubleValueByAddRate( double oldValue,int rate )
 	{
@@ -34,10 +34,10 @@ public class MathUtil {
 	}
 	
 	/**
-	 * µÃµ½oldValueÔö¼Órate°Ù·Ö±ÈºóµÄÖµ(ËÄÉáÎåÈë)
+	 * å¾—åˆ°oldValueå¢åŠ rateç™¾åˆ†æ¯”åçš„å€¼(å››èˆäº”å…¥)
 	 * @param oldValue
-	 * @param rate		rateÎª°Ù·Ö±ÈµÄ·Ö×Ó
-	 * @return			·µ»ØintÀàĞÍµÄÖµ
+	 * @param rate		rateä¸ºç™¾åˆ†æ¯”çš„åˆ†å­
+	 * @return			è¿”å›intç±»å‹çš„å€¼
 	 */
 	public static int getIntegetValueByAddRate(double oldValue,int rate)
 	{
@@ -46,37 +46,37 @@ public class MathUtil {
 	}
 	
 	/**
-	 * x,yÖ®¼ä²úÉúËæ»úÊı,°üÀ¨xºÍy;x<y
+	 * x,yä¹‹é—´äº§ç”Ÿéšæœºæ•°,åŒ…æ‹¬xå’Œy;x<y
 	 */
 	public static int getRandomBetweenXY(int x, int y) {
 
 		//logger.debug("x="+x+";y="+y);
-		y = y + 1;//y+1±£Ö¤ËùÈ¡µÄÊıÖµ°üÀ¨y
+		y = y + 1;//y+1ä¿è¯æ‰€å–çš„æ•°å€¼åŒ…æ‹¬y
 		return (int) (x + Math.random() * (y - x));
 	}
 
 	/**
-	 * x,yÖ®¼ä²úÉúËæ»úÊı,°üÀ¨xºÍy;x<y
+	 * x,yä¹‹é—´äº§ç”Ÿéšæœºæ•°,åŒ…æ‹¬xå’Œy;x<y
 	 */
 	public static double getRandomDoubleXY(double x, double y) {
 
 		//logger.debug("x="+x+";y="+y);
-		//y = y + 1;//y+1±£Ö¤ËùÈ¡µÄÊıÖµ°üÀ¨y
+		//y = y + 1;//y+1ä¿è¯æ‰€å–çš„æ•°å€¼åŒ…æ‹¬y
 		return (x + Math.random()* (y - x));
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ°´(·Ö×Ó/·ÖÄ¸)µÄ¸ÅÂÊ³öÏÖ isAppearByPercentage
+	 * åˆ¤æ–­æ˜¯å¦æŒ‰(åˆ†å­/åˆ†æ¯)çš„æ¦‚ç‡å‡ºç° isAppearByPercentage
 	 * 
-	 * @numerator  ·Ö×Ó PercentageRandomByParam
-	 * denominator ·ÖÄ¸
+	 * @numerator  åˆ†å­ PercentageRandomByParam
+	 * denominator åˆ†æ¯
 	 * @return boolean
 	 */
 	public static boolean isAppearByPercentage(int numerator,int denominator) {
 		
-		logger.debug("·Ö×Ó:"+numerator+";·ÖÄ¸:" + denominator);
+		logger.debug("åˆ†å­:"+numerator+";åˆ†æ¯:" + denominator);
 		int random = (int) (Math.random() * denominator);
 		
-		logger.debug("²úÉúµÄËæ»úÊıÊÇ:"+random);
+		logger.debug("äº§ç”Ÿçš„éšæœºæ•°æ˜¯:"+random);
 		if ( numerator>=denominator || (0 <= random && random < numerator)) {
 			return true;
 		}
@@ -84,17 +84,17 @@ public class MathUtil {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ°´(·Ö×Ó/·ÖÄ¸)µÄ¸ÅÂÊ³öÏÖ isAppearByPercentage
-	 * ·ÖÄ¸Îª100
-	 * @numerator  ·Ö×Ó PercentageRandomByParam
+	 * åˆ¤æ–­æ˜¯å¦æŒ‰(åˆ†å­/åˆ†æ¯)çš„æ¦‚ç‡å‡ºç° isAppearByPercentage
+	 * åˆ†æ¯ä¸º100
+	 * @numerator  åˆ†å­ PercentageRandomByParam
 	 * @return boolean
 	 */
 	public static boolean isAppearByPercentage(int numerator) {
 		
-		logger.debug("·Ö×Ó:"+numerator+";·ÖÄ¸:" + DENOMINATOR);
+		logger.debug("åˆ†å­:"+numerator+";åˆ†æ¯:" + DENOMINATOR);
 		int random = (int) (Math.random() * DENOMINATOR);
 		
-		logger.debug("²úÉúµÄËæ»úÊıÊÇ:"+random);
+		logger.debug("äº§ç”Ÿçš„éšæœºæ•°æ˜¯:"+random);
 		if (0 <= random && random < numerator) {
 			return true;
 		}
@@ -103,44 +103,44 @@ public class MathUtil {
 	
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ°´(·Ö×Ó/·ÖÄ¸)µÄ¸ÅÂÊ³öÏÖ
+	 * åˆ¤æ–­æ˜¯å¦æŒ‰(åˆ†å­/åˆ†æ¯)çš„æ¦‚ç‡å‡ºç°
 	 * 
-	 * @numerator  ·Ö×Ó
-	 * denominator ·ÖÄ¸
+	 * @numerator  åˆ†å­
+	 * denominator åˆ†æ¯
 	 * @return boolean
 	 */
 	public static boolean isAppearByPercentage(float numerator,int denominator) {
 		
-		logger.debug("·Ö×Ó:"+numerator+";·ÖÄ¸:" + denominator);
+		logger.debug("åˆ†å­:"+numerator+";åˆ†æ¯:" + denominator);
 		float random = (float) (Math.random() * denominator);
 		
-		logger.debug("²úÉúµÄËæ»úÊıÊÇ:"+random);
+		logger.debug("äº§ç”Ÿçš„éšæœºæ•°æ˜¯:"+random);
 		if (0 <= random && random < numerator) {
 			return true;
 		}
 		return false;
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ°´·Ö×Ó/·ÖÄ¸µÄ¸ÅÂÊ³öÏÖ
+	 * åˆ¤æ–­æ˜¯å¦æŒ‰åˆ†å­/åˆ†æ¯çš„æ¦‚ç‡å‡ºç°
 	 * 
-	 * @numerator  ·Ö×Ó
-	 * denominator ·ÖÄ¸
+	 * @numerator  åˆ†å­
+	 * denominator åˆ†æ¯
 	 * @return boolean
 	 */
 	public static boolean PercentageRandomByParamdouble(double numerator,int denominator) {
 		
-		logger.debug("·Ö×Ó:"+numerator+";·ÖÄ¸:" + denominator);
+		logger.debug("åˆ†å­:"+numerator+";åˆ†æ¯:" + denominator);
 		double random = (Math.random() * denominator);
 		
-		logger.debug("²úÉúµÄËæ»úÊıÊÇ:"+random);
+		logger.debug("äº§ç”Ÿçš„éšæœºæ•°æ˜¯:"+random);
 		if (0 <= random && random < numerator) {
 			return true;
 		}
 		return false;
 	}
 	/**
-	 * ´Ó×Ö·û´®ÖĞÈ¡³öÒ»¸öËæ»úÊı
-	 * ×Ö·û´®Èç:1,5;ÔòÈ¡³ö1µ½5Ö®¼äµÄËæ»úÊı£¬ÒªÇóÇ°ÃæµÄÊı±ÈºóÃæµÄÊıĞ¡
+	 * ä»å­—ç¬¦ä¸²ä¸­å–å‡ºä¸€ä¸ªéšæœºæ•°
+	 * å­—ç¬¦ä¸²å¦‚:1,5;åˆ™å–å‡º1åˆ°5ä¹‹é—´çš„éšæœºæ•°ï¼Œè¦æ±‚å‰é¢çš„æ•°æ¯”åé¢çš„æ•°å°
 	 * @param str
 	 * @return
 	 */
@@ -150,12 +150,12 @@ public class MathUtil {
 		{
 			return 0;
 		}
-		logger.debug("ÊıÁ¿·¶Î§×Ö·û´®:"+str);
+		logger.debug("æ•°é‡èŒƒå›´å­—ç¬¦ä¸²:"+str);
 		int result = -1;
 		String temp[] = str.split(",");
 		if( temp.length != 2 )
 		{
-			logger.debug("×Ö·û´®¸ñÊ½´íÎó£¬×Ö·û´®Îª:"+str);
+			logger.debug("å­—ç¬¦ä¸²æ ¼å¼é”™è¯¯ï¼Œå­—ç¬¦ä¸²ä¸º:"+str);
 			return result;
 		}
 		int x,y;
@@ -166,31 +166,31 @@ public class MathUtil {
 		}
 		catch(Exception e)
 		{
-			logger.debug("×Ö·û´®¸ñÊ½´íÎó£¬×Ö·û´®Îª:"+str);
+			logger.debug("å­—ç¬¦ä¸²æ ¼å¼é”™è¯¯ï¼Œå­—ç¬¦ä¸²ä¸º:"+str);
 			return result;
 		}
 		result = MathUtil.getRandomBetweenXY(x, y);
-		logger.debug("´Ó×Ö·û´®ÖĞÈ¡³öÒ»¸öËæ»úÊı:"+result);
+		logger.debug("ä»å­—ç¬¦ä¸²ä¸­å–å‡ºä¸€ä¸ªéšæœºæ•°:"+result);
 		return result;
 	}
 	
 	
 	/**
-	 * probalilityEntitysÎªÒ»×é¸ÅÂÊÊµÌå£¬ËÑÓĞ¸ÅÂÊÏà¼ÓÎª100,°´ËüÃÇµÄ¸ÅÂÊÖµÈ¡³öÒ»¸ö
+	 * probalilityEntitysä¸ºä¸€ç»„æ¦‚ç‡å®ä½“ï¼Œæœæœ‰æ¦‚ç‡ç›¸åŠ ä¸º100,æŒ‰å®ƒä»¬çš„æ¦‚ç‡å€¼å–å‡ºä¸€ä¸ª
 	 * @param probalilityEntitys 
-	 * £¨12.18ºÅĞŞ¸Ä, ½«´Ë¸ÅÂÊ¸ü¸ÄÎªÓÉ²ÎÊıprobalilityvÀ´¿ØÖÆ£©
+	 * ï¼ˆ12.18å·ä¿®æ”¹, å°†æ­¤æ¦‚ç‡æ›´æ”¹ä¸ºç”±å‚æ•°probalilityvæ¥æ§åˆ¶ï¼‰
 	 * @return
 	 */
 	public static Probability getRandomEntityFromList( List probalilityEntitys,int probalility )
 	{
 		if( probalilityEntitys==null || probalilityEntitys.size()==0 )
 		{
-			logger.debug("listÎª¿Õ");
+			logger.debug("listä¸ºç©º");
 			return null;
 		}
 		Probability probalilityEntity = null;
 		int random = (int) (Math.random() * probalility);
-		logger.debug("²úÉúËæ»úÊı:"+random);
+		logger.debug("äº§ç”Ÿéšæœºæ•°:"+random);
 		int min_limit = 0;
 		int max_limit = 0;
 		
@@ -200,7 +200,7 @@ public class MathUtil {
 			
 			min_limit = max_limit;
 			max_limit = max_limit + probalilityEntity.getProbability();
-			logger.debug("µ±Ç°·¶Î§,ÏÂÏŞ:"+min_limit+";ÉÏÏŞ:"+max_limit);
+			logger.debug("å½“å‰èŒƒå›´,ä¸‹é™:"+min_limit+";ä¸Šé™:"+max_limit);
 			if( random>min_limit && random <= max_limit )
 			{
 				return probalilityEntity;
@@ -211,7 +211,7 @@ public class MathUtil {
 	}
 	
 	/**
-	 * valuesÊÇÖµÁĞ±í£¬probalilitysÊÇ¸ÅÂÊ²ÎÕÕ±í
+	 * valuesæ˜¯å€¼åˆ—è¡¨ï¼Œprobalilitysæ˜¯æ¦‚ç‡å‚ç…§è¡¨
 	 * @param values               
 	 * @param probalilitys
 	 * @return
@@ -220,19 +220,19 @@ public class MathUtil {
 	{
 		if( values==null || probalilitys==null )
 		{
-			logger.debug("²ÎÊıÎª¿Õ");
+			logger.debug("å‚æ•°ä¸ºç©º");
 			return null;
 		}
 		
 		if( values.length <=0 || probalilitys.length <= 0 || values.length!=probalilitys.length )
 		{
-			logger.debug("²ÎÊı´íÎó");
+			logger.debug("å‚æ•°é”™è¯¯");
 			return null;
 		}
 		
 		int probalility = 0;
 		int random = (int) (Math.random() * 100);
-		logger.debug("²úÉúËæ»úÊı:"+random);
+		logger.debug("äº§ç”Ÿéšæœºæ•°:"+random);
 		int min_limit = 0;
 		int max_limit = 0;
 		
@@ -242,7 +242,7 @@ public class MathUtil {
 			
 			min_limit = max_limit;
 			max_limit = max_limit + probalility;
-			logger.debug("µ±Ç°·¶Î§,ÏÂÏŞ:"+min_limit+";ÉÏÏŞ:"+max_limit);
+			logger.debug("å½“å‰èŒƒå›´,ä¸‹é™:"+min_limit+";ä¸Šé™:"+max_limit);
 			if( random>min_limit && random<max_limit )
 			{
 				return values[i];
@@ -252,16 +252,16 @@ public class MathUtil {
 		return null;
 	}
 	/**
-	 * È¡³öÒ»¸ö1¡ª100µÄËæ»úÊı×Ö
+	 * å–å‡ºä¸€ä¸ª1â€”100çš„éšæœºæ•°å­—
 	 * @numerator  100
 	 * @return int
 	 */
 	public static int getRandomNum() {
 		
-		logger.debug("µÃµ½Ò»¸ö1-100µÄËæ»úÊı×Ö");
+		logger.debug("å¾—åˆ°ä¸€ä¸ª1-100çš„éšæœºæ•°å­—");
 		int random = (int) (Math.random() * DENOMINATOR);
 		
-		logger.debug("²úÉúµÄËæ»úÊıÊÇ:"+random);
+		logger.debug("äº§ç”Ÿçš„éšæœºæ•°æ˜¯:"+random);
 		return random;
 	}
 	

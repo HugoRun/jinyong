@@ -34,29 +34,29 @@ import com.pm.service.chuansong.SuiBianChuanService;
 import com.pm.vo.chuansong.SuiBianChuanVO;
 
 /**
- * ´¦Àí×øÆïserviceÀà
+ * å¤„ç†åéª‘serviceç±»
  * @author Thomas.lei
  */
 public class MountsService
 {
 	MountsDao md=new MountsDao();
 	
-	/**********µÃµ½¿É¹©¹ºÂòµÄ×øÆï********** */
+	/**********å¾—åˆ°å¯ä¾›è´­ä¹°çš„åéª‘********** */
 	public List<MountsVO> getCanSentMounts()
 	{
 		return md.getCanSentMounts();
 	}
-	/** **********¸ù¾İ×øÆïID²éÑ¯×øÆïµÄÏêÏ¸ĞÅÏ¢**************** */
+	/** **********æ ¹æ®åéª‘IDæŸ¥è¯¢åéª‘çš„è¯¦ç»†ä¿¡æ¯**************** */
 	public MountsVO getMountsInfo(int mountID)
 	{
 		return md.getMountsInfo(mountID);
 	}
-	/*******ÏµÍ³ËÍ¸øÍæ¼ÒµÄÃâ·Ñ×øÆï*********/
+	/*******ç³»ç»Ÿé€ç»™ç©å®¶çš„å…è´¹åéª‘*********/
 	public MountsVO getMountsInfoBySystem(int mountsType)
 	{
 		return md.getMountsInfoBySystem(mountsType);
 	}
-	/*********µÃµ½ÊÊºÏµ±Ç°Íæ¼ÒÁ·¼¶µÄÁ·¼¶µØ********/
+	/*********å¾—åˆ°é€‚åˆå½“å‰ç©å®¶ç»ƒçº§çš„ç»ƒçº§åœ°********/
 	public List<SuiBianChuanVO> getCurLianji(int prace,int pGrade)
 	{
 		SuiBianChuanService scs=new SuiBianChuanService();
@@ -77,12 +77,12 @@ public class MountsService
 		}
 		return isList;
 	}
-	/*****µÃµ½Á·¼¶ĞÅÏ¢µÄ×Ö·û´®******/
+	/*****å¾—åˆ°ç»ƒçº§ä¿¡æ¯çš„å­—ç¬¦ä¸²******/
 	public String getStrForLianji(List<SuiBianChuanVO> list,int pGrade,String mountID)
 	{
 		NpcrefurbishDao nfd=new NpcrefurbishDao();
 		StringBuffer sb=new StringBuffer();
-		sb.append("ÄúÄ¿Ç°µÄµÈ¼¶Îª"+pGrade+"¼¶£¬ÊÊºÏÔÚ");
+		sb.append("æ‚¨ç›®å‰çš„ç­‰çº§ä¸º"+pGrade+"çº§ï¼Œé€‚åˆåœ¨");
 		for (int i = 0; i <list.size(); i++)
 		{
 			SuiBianChuanVO scv=list.get(i);
@@ -93,7 +93,7 @@ public class MountsService
 			}
 			else
 			{
-				sb.append("ÇøÓòÁ·¼¶£¡");
+				sb.append("åŒºåŸŸç»ƒçº§ï¼");
 			}
 		}
 		sb.append("<br/>");
@@ -101,7 +101,7 @@ public class MountsService
 		{
 			SuiBianChuanVO scv=list.get(i);
 			sb.append(scv.getSceneName());
-			sb.append(" Ë¢ĞÂ ");
+			sb.append(" åˆ·æ–° ");
 			List<NpcrefurbishVO> nvList=nfd.getNPCsBySenceId(scv.getSceneId());
 			int temp=nvList.size();
 			String tempStr="";
@@ -115,7 +115,7 @@ public class MountsService
 					sb.append(NpcCache.getNpcNameById(nv.getNpcId()));
 					sb.append("(");
 					sb.append(NpcCache.getNpcGradeById(nv.getNpcId()));
-					sb.append("¼¶)");
+					sb.append("çº§)");
 					sb.append("<go href=");
 					sb.append(GameConfig.getContextPath());
 					sb.append("\"/mounts.do?cmd=n20&amp;npcId=");
@@ -134,7 +134,7 @@ public class MountsService
 				}
 				else
 				{
-					sb.append("ÒÔ¼°BOSS");
+					sb.append("ä»¥åŠBOSS");
 					if(!tempStr.equals(""))
 					{
 						sb.append("<anchor>");
@@ -147,14 +147,14 @@ public class MountsService
 					}
 					else
 					{
-						sb.append(" ÎŞ");
+						sb.append(" æ— ");
 					}
 					sb.append("!");
 					sb.append("<br/>");
 				}
 			}
 			sb.append("<anchor>");
-			sb.append("Ç°Íù");
+			sb.append("å‰å¾€");
 			sb.append("<go href=");
 			sb.append(GameConfig.getContextPath());
 			sb.append("\"/mounts.do?cmd=n8&amp;scenceID=");
@@ -167,7 +167,7 @@ public class MountsService
 		}
 		return sb.toString();
 	}
-	/*****µÃµ½NPCĞÅÏ¢µÄ×Ö·û´®******/
+	/*****å¾—åˆ°NPCä¿¡æ¯çš„å­—ç¬¦ä¸²******/
 	public String getStrForNpc(int npcId,int npcPic)
 	{
 		
@@ -188,9 +188,9 @@ public class MountsService
 		sb.append(NpcCache.getNpcNameById(npcId));
 		sb.append(",");
 		sb.append(NpcCache.getNpcGradeById(npcId));
-		sb.append("¼¶<br/>");
+		sb.append("çº§<br/>");
 		sb.append(buff.toString());
-		sb.append("¿ÉµôÂä£º");
+		sb.append("å¯æ‰è½ï¼š");
 		List<NpcdropVO> list=nd.getNpcDropByNpcId(npcId);
 		if(list!=null&&list.size()!=0)
 		{
@@ -218,21 +218,21 @@ public class MountsService
 		
 		return sb.toString();
 	}
-	/*****µÃµ½NPCµôÂäÎïÆ·ĞÅÏ¢µÄ×Ö·û´®******/
+	/*****å¾—åˆ°NPCæ‰è½ç‰©å“ä¿¡æ¯çš„å­—ç¬¦ä¸²******/
 	public String getStrForNpcDrop(int goodId,int goodType)
 	{
 		StringBuffer sb=new StringBuffer();
 		if(goodType==1)
 		{
 			GameEquip gequip= EquipCache.getById(goodId);
-			sb.append("¡¼");
+			sb.append("ã€–");
 			sb.append(gequip.getName());
-			sb.append("¡½");
+			sb.append("ã€—");
 			sb.append("<br/>");
-			sb.append("µÈ¼¶£º");
+			sb.append("ç­‰çº§ï¼š");
 			sb.append(gequip.getGrade());
 			sb.append("<br/>");
-			sb.append("¼ÛÇ®£º");
+			sb.append("ä»·é’±ï¼š");
 			sb.append(gequip.getPrice());
 			sb.append("<br/>");
 			sb.append(gequip.getDes());
@@ -243,21 +243,21 @@ public class MountsService
 			PropVO  pv=PropCache.getPropById(goodId);
 			sb.append(pv.getPropName());
 			sb.append("<br/>");
-			sb.append("Ê¹ÓÃµÈ¼¶£º");
+			sb.append("ä½¿ç”¨ç­‰çº§ï¼š");
 			sb.append(pv.getPropReLevel());
 			sb.append("<br/>");
-			sb.append("Âô³ö¼ÛÇ®£º");
+			sb.append("å–å‡ºä»·é’±ï¼š");
 			sb.append(pv.getPropSell());
 			sb.append("<br/>");
 			sb.append(pv.getPropDisplay());
 		}
 		else
 		{
-			sb.append("Ã»ÓĞ¸ÃÎïÆ·ĞÅÏ¢");
+			sb.append("æ²¡æœ‰è¯¥ç‰©å“ä¿¡æ¯");
 		}
 		return sb.toString();
 	}
-	/*********ÆäËû·½Ê½µÄ×øÆïÊ¹ÓÃÀıÈçÈÎÎñ´«ËÍ******/
+	/*********å…¶ä»–æ–¹å¼çš„åéª‘ä½¿ç”¨ä¾‹å¦‚ä»»åŠ¡ä¼ é€******/
 	public String useMountsByTask(RoleEntity roleInfo,String scene_id)
 	{
 		String hint="";
@@ -271,13 +271,13 @@ public class MountsService
 		MountsVO mv=null;
 		if(umv==null)
 		{
-			hint="Çëµã»÷×øÆï½øĞĞ³ËÆï";
+			hint="è¯·ç‚¹å‡»åéª‘è¿›è¡Œä¹˜éª‘";
 			return hint;
 		}
 		mv=umv.getMountInfo();
 		if(mv!=null)
 		{
-			/*********ºìÃû´«ËÍÒª¸½¼Ó´¦Àí********/
+			/*********çº¢åä¼ é€è¦é™„åŠ å¤„ç†********/
 			int needCopper=roleInfo.isRedname()?roleInfo.getBasicInfo().getGrade()/2*2:roleInfo.getBasicInfo().getGrade()/2;
 			int carryNum=roleInfo.isRedname()?mv.getCarryNum1()/2:mv.getCarryNum1();
 			if(mv.getLevel()==1)
@@ -288,17 +288,17 @@ public class MountsService
 					long haveCopper=roleInfo.getBasicInfo().getCopper();
 					if(needCopper>haveCopper)
 					{
-						hint="½ñÈÕ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´Î£¬ÄúÁéÊ¯²»×ã²»ÄÜ´«ËÍ";
+						hint="ä»Šæ—¥ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡ï¼Œæ‚¨çµçŸ³ä¸è¶³ä¸èƒ½ä¼ é€";
 						return hint;
 					}
 					else
 					{
-						hint="ÄúµÄ×øÆï½ñÈÕÃâ·Ñ´«ËÍ´ÎÊıÒÑÂú"+carryNum+"´Î¿Û³ı"+needCopper+"ÁéÊ¯";
-						//¼à¿Ø
+						hint="æ‚¨çš„åéª‘ä»Šæ—¥å…è´¹ä¼ é€æ¬¡æ•°å·²æ»¡"+carryNum+"æ¬¡æ‰£é™¤"+needCopper+"çµçŸ³";
+						//ç›‘æ§
 						LogService logService = new LogService();
-						logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", "-"+needCopper, "´«ËÍ");
+						logService.recordMoneyLog(roleInfo.getBasicInfo().getPPk(), roleInfo.getBasicInfo().getName(), roleInfo.getBasicInfo().getCopper()+"", "-"+needCopper, "ä¼ é€");
 						roleInfo.getBasicInfo().addCopper(-needCopper);
-						//Ö´ĞĞÍ³¼Æ
+						//æ‰§è¡Œç»Ÿè®¡
 						GameSystemStatisticsService gsss = new GameSystemStatisticsService();
 						gsss.addPropNum(6, StatisticsType.MONEY, roleInfo.getBasicInfo().getCopper(), StatisticsType.USED, StatisticsType.CHUANSONG,roleInfo.getBasicInfo().getPPk());
 					}
@@ -309,27 +309,27 @@ public class MountsService
 		roleInfo.getBasicInfo().updateSceneId(scene_id); 
 		return hint;
 	}
-	/*********µÃµ½×øÆïµÄÃèÊöĞÅÏ¢*********/
+	/*********å¾—åˆ°åéª‘çš„æè¿°ä¿¡æ¯*********/
 	public String getMountsDisplay(int mountsID)
 	{
 		MountsVO mv=getMountsInfo(mountsID);
 		String type="";
 		if(mv.getType()==1)
 		{
-			type="×ßÊŞ";
+			type="èµ°å…½";
 		}
 		else if(mv.getType()==2)
 		{
-			type="·ÉÇİ";
+			type="é£ç¦½";
 		}
 		else
 		{
-			type="ÁÛ¼×";
+			type="é³ç”²";
 		}
 		StringBuffer sb=new StringBuffer();
-		sb.append("¡¾");
+		sb.append("ã€");
 		sb.append(mv.getName());
-		sb.append("¡¿");
+		sb.append("ã€‘");
 		sb.append("(");
 		sb.append(type);
 		sb.append(")");
@@ -338,23 +338,23 @@ public class MountsService
 		sb.append("<br/>");
 		sb.append(mv.getDisplay());
 		sb.append("<br/>");
-		sb.append("µÈ¼¶£º"+mv.getLevel()+"¼¶");
+		sb.append("ç­‰çº§ï¼š"+mv.getLevel()+"çº§");
 		sb.append("<br/>");
 		return sb.toString();
 	}
-	/************É¾³ıÍæ¼ÒËùÓĞµÄ×øÆï*******/
+	/************åˆ é™¤ç©å®¶æ‰€æœ‰çš„åéª‘*******/
 	public void removeMountsInfo(int ppk)
 	{
 		md.removeMountsInfo(ppk);
 	}
-	/*****µçĞÅÇşµÀ×¨ÓÃ´«ËÍ¿Û·Ñ0¿Û·Ñ³É¹¦1¿Û·ÑÊ§°Ü****/
+	/*****ç”µä¿¡æ¸ é“ä¸“ç”¨ä¼ é€æ‰£è´¹0æ‰£è´¹æˆåŠŸ1æ‰£è´¹å¤±è´¥****/
 	public boolean mountCarryForTele(HttpServletRequest request,RoleEntity role,String mountsId,String mountLevel)
 	{
 		boolean can=true;
 		MallService ms=new MallService();
 		String consumeCode=mountsId+mountLevel+mountLevel+mountLevel;
 		String hint= ms.consumeForTele(request, role, consumeCode, "1");
-		/**¿Û·ÑÊ§°Ü**/
+		/**æ‰£è´¹å¤±è´¥**/
 		if(hint!=null)
 		{
 			can=false;

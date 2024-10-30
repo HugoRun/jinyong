@@ -15,24 +15,24 @@ public class WeeklyGongZiJob implements Job
 	Logger logger = Logger.getLogger("log.rank");
 
 	/**
-	 * ÔİÊ±²»ÉÏ£ºËùÓĞ½ÇÉ«¼¸Ê®ÍòµÄ·¢ÓÊ¼ş£¬ÑÏÖØÓ°ÏìĞÔÄÜ
-	 * Ö´ĞĞÃ¿ÖÜÒ»Áè³¿ÁãµãµÄ¸øJOB
+	 * æš‚æ—¶ä¸ä¸Šï¼šæ‰€æœ‰è§’è‰²å‡ åä¸‡çš„å‘é‚®ä»¶ï¼Œä¸¥é‡å½±å“æ€§èƒ½
+	 * æ‰§è¡Œæ¯å‘¨ä¸€å‡Œæ™¨é›¶ç‚¹çš„ç»™JOB
 	 */
 	public void execute(JobExecutionContext arg0) throws JobExecutionException
 	{
-		logger.debug("¿ªÊ¼·¢ËÍÁìÈ¡¹¤×ÊÓÊ¼ş");
+		logger.debug("å¼€å§‹å‘é€é¢†å–å·¥èµ„é‚®ä»¶");
 		sendGongZiMail();
-		logger.debug("·¢ËÍÁìÈ¡¹¤×ÊÓÊ¼ş½áÊø");
+		logger.debug("å‘é€é¢†å–å·¥èµ„é‚®ä»¶ç»“æŸ");
 	}
 
 	/**
-	 * Ö´ĞĞÃ¿ÖÜÒ»Áè³¿ÁãµãµÄ¸øÍæ¼Ò·¢ÓÊ¼ş
+	 * æ‰§è¡Œæ¯å‘¨ä¸€å‡Œæ™¨é›¶ç‚¹çš„ç»™ç©å®¶å‘é‚®ä»¶
 	 */
 	private void sendGongZiMail() {
 
 		MailInfoService mailInfoService = new MailInfoService();
-		String mailContent = "Ò»ÖÜÄÚÔÚÏßÊ±¼ä´ïµ½210·ÖÖÓÒÔÉÏ¼´¿ÉÇ°Íù·üôË(Ñı)»òºóÍÁ(Î×)ÁìÈ¡¹¤×Ê!";
-		String title = "ÏµÍ³¹¤×ÊÍ¨Öª";
+		String mailContent = "ä¸€å‘¨å†…åœ¨çº¿æ—¶é—´è¾¾åˆ°210åˆ†é’Ÿä»¥ä¸Šå³å¯å‰å¾€ä¼ç¾²(å¦–)æˆ–ååœŸ(å·«)é¢†å–å·¥èµ„!";
+		String title = "ç³»ç»Ÿå·¥èµ„é€šçŸ¥";
 		PartInfoDao partInfoDao = new PartInfoDao();
 		List<Integer> allPPkList  = partInfoDao.getAllPPkList();
 		int p_pk = 0;

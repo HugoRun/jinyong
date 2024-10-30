@@ -4,7 +4,7 @@ import com.lw.dao.synthesize.PlayerSynthesizeDao;
 
 public class PlayerSynthesizeService
 {
-	// Íæ¼ÒÊÇ·ñ¾ßÓĞ´ËÅä·½
+	// ç©å®¶æ˜¯å¦å…·æœ‰æ­¤é…æ–¹
 	public boolean isHaveSynthesize(int p_pk, int s_id)
 	{
 		PlayerSynthesizeDao dao = new PlayerSynthesizeDao();

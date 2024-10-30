@@ -16,16 +16,16 @@ import com.ls.pub.db.DBConnection;
 import com.ls.pub.util.StringUtil;
 
 /**
- * ¹¦ÄÜ:pet_skill
+ * åŠŸèƒ½:pet_skill
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 9:39:25 AM
  */
 public class PetSkillDao extends DaoBase
 {
 	/**
-	 * Í¨¹ıidµÃµ½Ò»¸ö¼¼ÄÜ
+	 * é€šè¿‡idå¾—åˆ°ä¸€ä¸ªæŠ€èƒ½
 	 * 
 	 * @param pet_skill_id
 	 * @return
@@ -33,7 +33,7 @@ public class PetSkillDao extends DaoBase
 	public PetSkillVO getById1(int pet_skill_id)
 	{
 		PetSkillVO petSkill = null;
-		String sql = "select * from pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -81,7 +81,7 @@ public class PetSkillDao extends DaoBase
 
 	
 	/**
-	 * µÃµ½ËùÓĞ¼¼ÄÜ,½ö³õÊ¼»¯ Ê±Ê¹ÓÃ
+	 * å¾—åˆ°æ‰€æœ‰æŠ€èƒ½,ä»…åˆå§‹åŒ– æ—¶ä½¿ç”¨
 	 * 
 	 * @param pet_skill_id
 	 * @return	
@@ -90,13 +90,13 @@ public class PetSkillDao extends DaoBase
 	{
 		HashMap<Integer,PetSkillVO> map = null;
 		int total_num = 0;
-		String total_num_sql = "select count(*) from pet_skill";
+		String total_num_sql = "SELECT count(*) from pet_skill";
 		
 		PetSkillVO petSkill = null;
-		String sql = "select * from pet_skill";
+		String sql = "SELECT * FROM pet_skill";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 	
-		logger.debug("µÃµ½ËùÓĞ¼¼ÄÜ="+sql);
+		logger.debug("å¾—åˆ°æ‰€æœ‰æŠ€èƒ½="+sql);
 		conn = dbConn.getConn();
 		try
 		{
@@ -149,7 +149,7 @@ public class PetSkillDao extends DaoBase
 	}
 	
 	/**
-	 * Í¨¹ıidµÃµ½³èÎï¼¼ÄÜÃû³Æ
+	 * é€šè¿‡idå¾—åˆ°å® ç‰©æŠ€èƒ½åç§°
 	 * 
 	 * @param pet_skill_id
 	 * @return
@@ -157,7 +157,7 @@ public class PetSkillDao extends DaoBase
 	public String getName1(int pet_skill_id)
 	{
 		String petSkillName = null;
-		String sql = "select * from pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -190,12 +190,12 @@ public class PetSkillDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½³èÎï¹¥»÷¼Ó³Ë
+	 * å¾—åˆ°å® ç‰©æ”»å‡»åŠ ä¹˜
 	 */
 	public double getInjureMultiple1(int pet_skill_id)
 	{
 		double petSkillInjureMultiple = 0;
-		String sql = "select * from pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -224,12 +224,12 @@ public class PetSkillDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½³èÎï¹¥»÷ÀàĞÍ ¹¥»÷´ÎÊı
+	 * å¾—åˆ°å® ç‰©æ”»å‡»ç±»å‹ æ”»å‡»æ¬¡æ•°
 	 */
 	public int getSeveral(int pet_skill_id)
 	{
 		int petSkillSeveral = 0;
-		String sql = "select * from pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -257,12 +257,12 @@ public class PetSkillDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½³èÎï¹¥»÷ÀàĞÍ ¹¥»÷´ÎÊı
+	 * å¾—åˆ°å® ç‰©æ”»å‡»ç±»å‹ æ”»å‡»æ¬¡æ•°
 	 */
 	public int getSeveral(String pet_skill_name)
 	{
 		int petSkillSeveral = 0;
-		String sql = "select * from pet_skill where  pet_skill_name='"
+		String sql = "SELECT * FROM pet_skill where  pet_skill_name='"
 				+ StringUtil.gbToISO(pet_skill_name) + "'";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -290,12 +290,12 @@ public class PetSkillDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½³èÎï¼¼ÄÜËùÔÚµÄ×éid
+	 * å¾—åˆ°å® ç‰©æŠ€èƒ½æ‰€åœ¨çš„ç»„id
 	 */
 	public int getGroupID1(int pet_skill_id)
 	{
 		int pet_skill_group = 1;
-		String sql = "select pet_skill_group from pet_skill where  pet_skill_id="
+		String sql = "SELECT pet_skill_group from pet_skill where  pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -323,12 +323,12 @@ public class PetSkillDao extends DaoBase
 	}
 
 	/**
-	 * µÃµ½³èÎï¼¼ÄÜÀàĞÍ ·µ»Ø -1Ã»ÓĞ¼¼ÄÜ 0 Îª±»¶¯¼¼ÄÜ 1ÎªÖ÷¶¯¼¼ÄÜ
+	 * å¾—åˆ°å® ç‰©æŠ€èƒ½ç±»å‹ è¿”å› -1æ²¡æœ‰æŠ€èƒ½ 0 ä¸ºè¢«åŠ¨æŠ€èƒ½ 1ä¸ºä¸»åŠ¨æŠ€èƒ½
 	 */
 	public int getType1(int pet_skill_id)
 	{
 		int petSkillType = -1;
-		String sql = "select * from pet_skill where  pet_skill_id="
+		String sql = "SELECT * FROM pet_skill where  pet_skill_id="
 				+ pet_skill_id;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
@@ -355,13 +355,13 @@ public class PetSkillDao extends DaoBase
 		return petSkillType;
 	}
 
-	/** µÃµ½³èÎïÉíÉÏµÄ±»¶¯¼¼ÄÜ */
+	/** å¾—åˆ°å® ç‰©èº«ä¸Šçš„è¢«åŠ¨æŠ€èƒ½ */
 	public List<PetSkillVO> getPassSkill(int skill_one, int skill_two,
 			int skill_three, int skill_four, int skill_five)
 	{
 		PetSkillVO vo = null;
 		List<PetSkillVO> list = new ArrayList<PetSkillVO>();
-		String sql = "select * from pet_skill where pet_skill_id in ("
+		String sql = "SELECT * FROM pet_skill where pet_skill_id in ("
 				+ skill_one + "," + skill_two + "," + skill_three + ","
 				+ skill_four + "," + skill_five + ") and pet_skill_type = 0";
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

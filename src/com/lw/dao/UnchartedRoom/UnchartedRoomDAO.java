@@ -10,7 +10,7 @@ import com.lw.vo.UnchartedRoom.UnchartedRoomVO;
 
 public class UnchartedRoomDAO extends DaoBase
 {
-	/** µÃµ½Íæ¼ÒĞÅÏ¢ */
+	/** å¾—åˆ°ç©å®¶ä¿¡æ¯ */
 	public List<UnchartedRoomVO> getUnchartedRoomPlayer()
 	{
 		List<UnchartedRoomVO> list = new ArrayList<UnchartedRoomVO>();
@@ -44,10 +44,10 @@ public class UnchartedRoomDAO extends DaoBase
 		return list;
 	}
 
-	// µÚÒ»´Î½øÈëÃØ¾³
+	// ç¬¬ä¸€æ¬¡è¿›å…¥ç§˜å¢ƒ
 	public void insertInUnchartedRoomState(int p_pk)
 	{
-		String sql = "insert into p_unchartedroom (id,p_pk,into_state,into_num,into_time,out_time) values (null,"
+		String sql = "INSERT INTO p_unchartedroom (id,p_pk,into_state,into_num,into_time,out_time) values (null,"
 				+ p_pk + ",1,1,now(),now())";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -68,7 +68,7 @@ public class UnchartedRoomDAO extends DaoBase
 		}
 	}
 
-	// ¸üĞÂÍæ¼ÒÌø³öÃØ¾³µÄ×´Ì¬
+	// æ›´æ–°ç©å®¶è·³å‡ºç§˜å¢ƒçš„çŠ¶æ€
 	public void updateInUnchartedRoomState(int p_pk)
 	{
 		String sql = "update p_unchartedroom set into_time = now(),into_state = 1,into_num = into_num + 1 where p_pk = "
@@ -92,7 +92,7 @@ public class UnchartedRoomDAO extends DaoBase
 		}
 	}
 
-	// ¸üĞÂÍæ¼Ò½øÈëÃØ¾³µÄ×´Ì¬
+	// æ›´æ–°ç©å®¶è¿›å…¥ç§˜å¢ƒçš„çŠ¶æ€
 	public void updateOutUnchartedRoomState(int p_pk)
 	{
 		String sql = "update p_unchartedroom set out_time = now(),into_state = 0 where p_pk = "
@@ -116,11 +116,11 @@ public class UnchartedRoomDAO extends DaoBase
 		}
 	}
 
-	// µÃµ½Íæ¼ÒÔÚÃØ¾³ÀïµÄÈËÊı
+	// å¾—åˆ°ç©å®¶åœ¨ç§˜å¢ƒé‡Œçš„äººæ•°
 	public int getUnchartedRoomPlayerNum()
 	{
 		int num = 0;
-		String sql = "select count(*) as num from p_unchartedroom where into_state = 1";
+		String sql = "SELECT count(*) as num from p_unchartedroom where into_state = 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try
@@ -146,11 +146,11 @@ public class UnchartedRoomDAO extends DaoBase
 		return num;
 	}
 
-	// µÃµ½Íæ¼ÒÔÚÃØ¾³µÄĞÅÏ¢
+	// å¾—åˆ°ç©å®¶åœ¨ç§˜å¢ƒçš„ä¿¡æ¯
 	public UnchartedRoomVO getUnchartedRoomPlayerVO(int p_pk)
 	{
 		UnchartedRoomVO vo = null;
-		String sql = "select * from p_unchartedroom where p_pk = " + p_pk;
+		String sql = "SELECT * FROM p_unchartedroom where p_pk = " + p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		try

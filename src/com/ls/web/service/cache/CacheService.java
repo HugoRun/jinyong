@@ -60,19 +60,19 @@ import com.pm.dao.forbid.ForBidNameDao;
 
 /**
  * @author ls
- * ¹¦ÄÜ£ºÏµÍ³»º´æ×ÊÔ´¹ÜÀí
+ * åŠŸèƒ½ï¼šç³»ç»Ÿç¼“å­˜èµ„æºç®¡ç†
  */
 public class CacheService
 {
 	Logger logger = Logger.getLogger("log.cache");
 	
 	/**
-	 * ³õÊ¼»¯»º´æ
+	 * åˆå§‹åŒ–ç¼“å­˜
 	 * @throws Exception 
 	 */
 	public void initCache() throws Exception
 	{
-		logger.info("³õÊ¼»¯»º´æ¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–ç¼“å­˜ã€‚ã€‚ã€‚");
 		CacheManager manager = CacheManager.create();
 		
 		initBareaCache(manager);
@@ -104,184 +104,184 @@ public class CacheService
 		initForbid(manager);
 		initTitle(manager);
 		//initVip(manager);
-		logger.info("³õÊ¼»¯»º´æ½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–ç¼“å­˜ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	/**
-	 * ³õÊ¼»¯ÄÜ±»´ó¼Ò¶¼´òµÄnpc²Ëµ¥
+	 * åˆå§‹åŒ–èƒ½è¢«å¤§å®¶éƒ½æ‰“çš„npcèœå•
 	 * @param manager
 	 
 	private void initAllAttackNpc(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯ÄÜ±»´ó¼Ò¶¼´òµÄnpc²Ëµ¥¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–èƒ½è¢«å¤§å®¶éƒ½æ‰“çš„npcèœå•ã€‚ã€‚ã€‚");
 		ForBidNameDao forBidNameDao = new ForBidNameDao();
 		HashMap<Integer,String> allNpc = new HashMap<Integer, String>();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(NpcCache.FORBID_BY_TYPE, allNpc);
 		cache.put(element);
-		logger.info("³õÊ¼»¯ÄÜ±»´ó¼Ò¶¼´òµÄnpc²Ëµ¥¡£¡£¡£");		
+		logger.info("åˆå§‹åŒ–èƒ½è¢«å¤§å®¶éƒ½æ‰“çš„npcèœå•ã€‚ã€‚ã€‚");		
 	}*/
 	
 	/**
-	 * ³õÊ¼»¯½ûÖ¹Ãûµ¥
+	 * åˆå§‹åŒ–ç¦æ­¢åå•
 	 * @param manager
 	 */
 	private void initForbid(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯½ûÖ¹Ãûµ¥¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–ç¦æ­¢åå•å¼€å§‹ã€‚ã€‚ã€‚");
 		ForBidNameDao forBidNameDao = new ForBidNameDao();
 		HashMap<Integer,String> forbidName =forBidNameDao.getForBidName();
 		Cache cache = manager.getCache(ForBidCache.STATIC_CACHE_NAME);
 		Element element = new Element(ForBidCache.FORBID_BY_TYPE, forbidName);
 		cache.put(element);
-		logger.info("³õÊ¼»¯½ûÖ¹Ãûµ¥½áÊø¡£¡£¡£");		
+		logger.info("åˆå§‹åŒ–ç¦æ­¢åå•ç»“æŸã€‚ã€‚ã€‚");		
 	}
 
 	/**
-	 * ³õÊ¼»¯µÀ¾ßlist
+	 * åˆå§‹åŒ–é“å…·list
 	 * @param manager
 	 */
 	public void initPropCache(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯µÀ¾ßlist¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–é“å…·listå¼€å§‹ã€‚ã€‚ã€‚");
 		PropDao propDao = new PropDao();
 		HashMap<Integer,PropVO> prop_list =propDao.getPropList();
 		Cache cache = manager.getCache(PropCache.STATIC_CACHE_NAME);
 		Element element = new Element(PropCache.PROP_BY_ID, prop_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯µÀ¾ßlist½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–é“å…·listç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	/**
-	 * ³õÊ¼»¯×°±¸»º´æ
+	 * åˆå§‹åŒ–è£…å¤‡ç¼“å­˜
 	 * @param manager
 	 */
 	public void initEquipCache(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯×°±¸list¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–è£…å¤‡listå¼€å§‹ã€‚ã€‚ã€‚");
 		GameEquipDao equipDao = new GameEquipDao();
 		HashMap<Integer,GameEquip> equip_list =equipDao.findAll();
 		Cache cache = manager.getCache(EquipCache.STATIC_CACHE_NAME);
 		Element element = new Element(EquipCache.EQUIP_BY_ID, equip_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯×°±¸list½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–è£…å¤‡listç»“æŸã€‚ã€‚ã€‚");
 	}
 
 	/**
-	 * ³õÊ¼»¯pkList
+	 * åˆå§‹åŒ–pkList
 	 * @param manager
 	 *//*
 	private void initPkListCache(CacheManager manager)
 	{	
-		logger.info("³õÊ¼»¯pkList¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–pkListå¼€å§‹ã€‚ã€‚ã€‚");
 		HashMap<String,PKLogVO> pk_list = new HashMap<String,PKLogVO>(300);
 		Cache cache = manager.getCache(PkCache.DYNAMIC_MANUAL_CACHE);
 		Element element = new Element(PkCache.PKING_BY_PPK, pk_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯pkList½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–pkListç»“æŸã€‚ã€‚ã€‚");
 	}*/	
 	
 	/**
-	 * ³õÊ¼»¯ÁÄÌìĞÅÏ¢»º´æ
+	 * åˆå§‹åŒ–èŠå¤©ä¿¡æ¯ç¼“å­˜
 	 * @param manager
 	 */
 	private void initChatInfoCache(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯ÁÄÌì¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–èŠå¤©å¼€å§‹ã€‚ã€‚ã€‚");
 		HashMap<String,LinkedHashSet> public_list = new HashMap<String,LinkedHashSet>(2000);
 		Cache cache = manager.getCache(ChatInfoCahe.DYNAMIC_MANUAL_CACHE);
 		Element element = new Element(ChatInfoCahe.CHAT_PUBLIC_CACHE, public_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯ÁÄÌì»º´æ½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–èŠå¤©ç¼“å­˜ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	
 	/**
-	 * ³õÊ¼»¯ÊÓÒ°ĞÅÏ¢»º´æ
+	 * åˆå§‹åŒ–è§†é‡ä¿¡æ¯ç¼“å­˜
 	 * @param manager
 	 */
 	private void initViewCache(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯ÊÓÒ°»º´æ¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–è§†é‡ç¼“å­˜å¼€å§‹ã€‚ã€‚ã€‚");
 		HashMap<String,LinkedHashSet> view_list = new HashMap<String,LinkedHashSet>(2000);
 		Cache cache = manager.getCache(ViewCache.DYNAMIC_MANUAL_CACHE);
 		Element element = new Element(ViewCache.VIEW_INFO_CACHE, view_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯ÊÓÒ°»º´æ½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–è§†é‡ç¼“å­˜ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	/**
-	 * ³õÊ¼»¯³èÎï¼¼ÄÜ¿ØÖÆÏûÏ¢
+	 * åˆå§‹åŒ–å® ç‰©æŠ€èƒ½æ§åˆ¶æ¶ˆæ¯
 	 * @param manager
 	 
 	private void initPetSkillControl(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯³èÎï¼¼ÄÜ¿ØÖÆÏûÏ¢¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–å® ç‰©æŠ€èƒ½æ§åˆ¶æ¶ˆæ¯ã€‚ã€‚ã€‚");
 		PetSkillControlDao petSkillDao = new PetSkillControlDao();
 		HashMap<Integer,PetSkillVO> pet_skill_list = petSkillDao();
 		Cache cache = manager.getCache(IntimateHintCache.STATIC_CACHE_NAME);
 		Element element = new Element(PetSkillCache.PETSKILL, pet_skill_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯³èÎï¼¼ÄÜ¿ØÖÆÏûÏ¢¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–å® ç‰©æŠ€èƒ½æ§åˆ¶æ¶ˆæ¯ã€‚ã€‚ã€‚");
 		
 	}*/
 
 
 	/**
-	 * ³õÊ¼»¯³èÎïĞÅÏ¢
+	 * åˆå§‹åŒ–å® ç‰©ä¿¡æ¯
 	 */
 	private void initPet(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯³èÎïĞÅÏ¢¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–å® ç‰©ä¿¡æ¯ã€‚ã€‚ã€‚");
 		PetDAO petDao = new PetDAO();
 		HashMap<Integer,PetVO> pet_map = petDao.getAllPet();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME); 
 		Element element = new Element(PetCache.PET_BY_ID, pet_map);
 		cache.put(element);
-		logger.info("³õÊ¼»¯³èÎïĞÅÏ¢¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–å® ç‰©ä¿¡æ¯ã€‚ã€‚ã€‚");
 	}
 
 	/**
-	 * ³õÊ¼»¯³èÎï¼¼ÄÜĞÅÏ¢
+	 * åˆå§‹åŒ–å® ç‰©æŠ€èƒ½ä¿¡æ¯
 	 * @param manager
 	 */
 	private void initPetSkill(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯³èÎï¼¼ÄÜĞÅÏ¢¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–å® ç‰©æŠ€èƒ½ä¿¡æ¯ã€‚ã€‚ã€‚");
 		PetSkillDao petSkillDao = new PetSkillDao();
 		HashMap<Integer,PetSkillVO> pet_skill_list = petSkillDao.getAllPetSkill();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(PetSkillCache.PETSKILL, pet_skill_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯³èÎï¼¼ÄÜĞÅÏ¢¡£¡£¡£");		
+		logger.info("åˆå§‹åŒ–å® ç‰©æŠ€èƒ½ä¿¡æ¯ã€‚ã€‚ã€‚");		
 	}
 
 
 	/**
-	 * ³õÊ¼»¯ÎäÁÖĞ¡ÌùÊ¿ĞÅÏ¢»º´æ
+	 * åˆå§‹åŒ–æ­¦æ—å°è´´å£«ä¿¡æ¯ç¼“å­˜
 	 * @param manager
 	 */
 	private void initIntimateHintCache(CacheManager manager)
 	{
-		logger.info("³õÊ¼»¯ÎäÁÖĞ¡ÌùÊ¿»º´æ¿ªÊ¼¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–æ­¦æ—å°è´´å£«ç¼“å­˜å¼€å§‹ã€‚ã€‚ã€‚");
 		IntimateHintDAO intimateHintDAO = new IntimateHintDAO();
 		List<IntimateHintVO> hint_list = intimateHintDAO.getAllIntimateHint();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(IntimateHintCache.HINT_LIST, hint_list);
 		cache.put(element);
-		logger.info("³õÊ¼»¯ÎäÁÖĞ¡ÌùÊ¿»º´æ½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–æ­¦æ—å°è´´å£«ç¼“å­˜ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	
 	
 	/**
-	 * menu»º´æ³õÊ¼»¯
+	 * menuç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 * @throws Exception 
 	 */
 	public void initMenuCache(CacheManager manager) throws Exception
 	{
-		logger.info("menu»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("menuç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		SceneCache sceneCache = new SceneCache();
 		HashMap<String,SceneVO> scene_list = sceneCache.getSceneList();
 		
@@ -290,32 +290,32 @@ public class CacheService
 	    Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 	    Element element = new Element(MenuCache.MENU_BY_ID, tbl_menu_by_id);
         cache.put(element);
-        logger.info("menu»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+        logger.info("menuç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	/**
-	 * task»º´æ³õÊ¼»¯
+	 * taskç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 */
 	public void initTaskCache(CacheManager manager)
 	{
-		logger.info("task»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("taskç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		TaskDao taskDao = new TaskDao();
 		HashMap<String,TaskVO> tbl_task_by_id = taskDao.getAllTask();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(TaskCache.TASK_BY_ID, tbl_task_by_id);
 		cache.put(element);
-		logger.info("task»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("taskç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 
 	/**
-	 * scene»º´æ³õÊ¼»¯
+	 * sceneç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 * @throws Exception 
 	 */
 	private void initSceneCache(CacheManager manager) throws Exception
 	{
-		logger.info("scene»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("sceneç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		
 		MapCache mapCache = new MapCache();
 		HashMap<String,MapVO> map_list = mapCache.getMapList();
@@ -326,17 +326,17 @@ public class CacheService
 	    Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 	    Element element = new Element(SceneCache.SCENE_BY_ID, tbl_scene_by_id);
         cache.put(element);
-        logger.info("scene»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+        logger.info("sceneç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	/**
-	 * map»º´æ³õÊ¼»¯
+	 * mapç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 * @throws Exception 
 	 */
 	private void initMapCache(CacheManager manager) throws Exception
 	{
-		logger.info("map»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("mapç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		BareaCache bareaCache = new BareaCache();
 		HashMap<String,BareaVO> barea_list = bareaCache.getBareaList();
 		
@@ -345,64 +345,64 @@ public class CacheService
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(MapCache.MAP_BY_ID, tbl_map_by_id);
 		cache.put(element);
-		logger.info("map»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("mapç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	/**
-	 * ´óÇøÓò»º´æ³õÊ¼»¯
+	 * å¤§åŒºåŸŸç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 * @throws Exception 
 	 */
 	private void initBareaCache(CacheManager manager) throws Exception
 	{
-		logger.info("Barea»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("Bareaç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		BareaDao bareaDao = new BareaDao();
 		HashMap<String,BareaVO> tbl_barea_by_id = bareaDao.getAllBarea();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(BareaCache.BAREA_BY_ID, tbl_barea_by_id);
 		cache.put(element);
-		logger.info("Barea»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("Bareaç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	
 	/**
-	 * npc»º´æ³õÊ¼»¯
+	 * npcç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 */
 	public void initNpcCache(CacheManager manager)
 	{
-		logger.info("npc»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£"); 
+		logger.info("npcç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚"); 
 		NpcDao npcDao = new NpcDao();
 		HashMap<String,NpcVO> tbl_npc_by_id = npcDao.getAllNpc();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(NpcCache.NPC_BY_ID, tbl_npc_by_id);
 		cache.put(element);
-		logger.info("npc»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("npcç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	
 	/**
-	 * skill»º´æ³õÊ¼»¯
+	 * skillç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 */
 	private void initSkillCache(CacheManager manager)
 	{
-		logger.info("skill»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("skillç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		SkillDao skillDao = new SkillDao();
 		HashMap<String,SkillVO> tbl_skill_by_id = skillDao.getAllSkill();
 		
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(SkillCache.SKILL_BY_ID, tbl_skill_by_id);
 		cache.put(element);
-		logger.info("skill»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("skillç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	/**
-	 * attack_info»º´æ³õÊ¼»¯
+	 * attack_infoç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 */
 	private void initAttackInfoCache(CacheManager manager)
 	{
-		logger.info("attack_info»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("attack_infoç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		
 		HashMap<String,Object[]> tbl_attack_by_PPk = new HashMap<String,Object[]>(10000);
 		HashMap<String,Object> tbl_attack_by_scene = new HashMap<String,Object>(20);
@@ -411,63 +411,63 @@ public class CacheService
 		Element element1 = new Element(AttacckCache.ATTACKING_BY_SCENE, tbl_attack_by_scene);
 		cache.put(element);
 		cache.put(element1);
-		logger.info("attack_info»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("attack_infoç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	
 	
 	/**
-	 * npc µôÂä¾­Ñé »º´æ³õÊ¼»¯
+	 * npc æ‰è½ç»éªŒ ç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 */
 	public void initExpNpcDropCache(CacheManager manager)
 	{ 
-		logger.info("npcµôÂä¾­Ñé»º´æ³õÊ¼»¯¿ªÊ¼¡£¡£¡£");
+		logger.info("npcæ‰è½ç»éªŒç¼“å­˜åˆå§‹åŒ–å¼€å§‹ã€‚ã€‚ã€‚");
 		ExpNpcdropDAO expNpcDropDao = new ExpNpcdropDAO();
 		List<ExpNpcdropVO> npc_dropExp_by_id = expNpcDropDao.getAllExpNpcDrop();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(ExpNpcDropCache.NPC_DROPEXP_BY_ID, npc_dropExp_by_id);
 		cache.put(element);
-		logger.info("npcµôÂä¾­Ñé»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("npcæ‰è½ç»éªŒç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}
 	/**
-	 * ³õÊ¼»¯³ÆºÅ
+	 * åˆå§‹åŒ–ç§°å·
 	 * @param manager
 	 */
 	public void initTitle(CacheManager manager){
-		logger.info("³õÊ¼»¯³ÆºÅ¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–ç§°å·ã€‚ã€‚ã€‚");
 		HashMap<String,TitleVO> title_cache = new HashMap<String, TitleVO>();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(TitleCache.HONOUR_BY_ID, title_cache);
 		cache.put(element);
-		logger.info("³õÊ¼»¯³ÆºÅ½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–ç§°å·ç»“æŸã€‚ã€‚ã€‚");
 	}
 	/**
-	 * ³õÊ¼»¯VIP
+	 * åˆå§‹åŒ–VIP
 	 * @param manager
 	 *//*
 	public void initVip(CacheManager manager){
-		logger.info("³õÊ¼»¯VIP¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–VIPã€‚ã€‚ã€‚");
 		VipDao vipDao = new VipDao();
 		HashMap vip_by_id = vipDao.getVip();
 		Cache cache = manager.getCache(CacheBase.STATIC_CACHE_NAME);
 		Element element = new Element(VipCach.VIP_BY_ID, vip_by_id);
 		cache.put(element);
-		logger.info("³õÊ¼»¯VIP½áÊø¡£¡£¡£");
+		logger.info("åˆå§‹åŒ–VIPç»“æŸã€‚ã€‚ã€‚");
 	}*/
 	
 	/**
-	 * ÁÄÌì »º´æ³õÊ¼»¯
+	 * èŠå¤© ç¼“å­˜åˆå§‹åŒ–
 	 * @param manager
 	 */
 	/*private void initChatCache(CacheManager manager)
 	{ 
-		logger.info("ÁÄÌìÈİÆ÷»º´æ³õÊ¼¿ªÊ¼");
+		logger.info("èŠå¤©å®¹å™¨ç¼“å­˜åˆå§‹å¼€å§‹");
 		CommunionDAO communionDAO = new CommunionDAO();
 		List<ExpNpcdropVO> npc_dropExp_by_id = communionDAO.getAllExpNpcDrop();
 		Cache cache = manager.getCache(ExpNpcDropCache.STATIC_CACHE_NAME);
 		Element element = new Element(ExpNpcDropCache.NPC_DROPEXP_BY_ID, npc_dropExp_by_id);
 		cache.put(element);
-		logger.info("npcµôÂä¾­Ñé»º´æ³õÊ¼»¯½áÊø¡£¡£¡£");
+		logger.info("npcæ‰è½ç»éªŒç¼“å­˜åˆå§‹åŒ–ç»“æŸã€‚ã€‚ã€‚");
 	}*/
 	
 }

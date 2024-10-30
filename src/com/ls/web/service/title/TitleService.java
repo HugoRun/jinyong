@@ -7,8 +7,8 @@ import com.ls.pub.util.StringUtil;
 
 
 /**
- * ¹¦ÄÜ:³ÆÎ½£¬ÃÅÅÉ¹ÜÀí
- * @author ÁõË§
+ * åŠŸèƒ½:ç§°è°“ï¼Œé—¨æ´¾ç®¡ç†
+ * @author åˆ˜å¸…
  * Oct 22, 2008  11:14:29 AM
  */
 public class TitleService
@@ -16,7 +16,7 @@ public class TitleService
 	Logger logger = Logger.getLogger("log.service");
 	
 	/**
-	 * ¸ù¾İ¶à³ÆÎ½id£¬µÃµ½³ÆÎ½Ãû³Æ×Ö·û´®
+	 * æ ¹æ®å¤šç§°è°“idï¼Œå¾—åˆ°ç§°è°“åç§°å­—ç¬¦ä¸²
 	 * @param title_ids
 	 * @return
 	 */
@@ -24,14 +24,14 @@ public class TitleService
 	{
 		if( title_ids==null || title_ids.equals("") || title_ids.equals("0") )
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 		TitleDAO titleDao = new TitleDAO();
 		title_ids = StringUtil.processStringCondition(title_ids);
 		String title_names = titleDao.getTitleNamesByTitleIDs(title_ids);
 		if( title_names==null || title_ids.equals("") )
 		{
-			return "ÎŞ";
+			return "æ— ";
 		}
 		
 		return title_names;

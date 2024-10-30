@@ -1,106 +1,90 @@
 package com.ls.web.action.cooperate.youvb.bill;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.ls.ben.dao.cooparate.bill.UAccountRecordDao;
+import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
+import com.ls.pub.constant.Channel;
+import com.ls.pub.util.encrypt.MD5Util;
+import com.ls.web.service.cooperate.bill.BillService;
 import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.ls.ben.dao.cooparate.bill.UAccountRecordDao;
-import com.ls.ben.vo.cooperate.bill.UAccountRecordVO;
-import com.ls.pub.constant.Channel;
-import com.ls.pub.util.encrypt.MD5Util;
-import com.ls.web.service.cooperate.bill.BillService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class CallBackAction extends DispatchAction
-{
-	Logger logger = Logger.getLogger("log.pay");
+public class CallBackAction extends DispatchAction {
+    Logger logger = Logger.getLogger("log.pay");
 
-	/**
-	 * ”¶¥¥¶¿Ì
-	 */
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-	{
+    /**
+     * Â∫îÁ≠îÂ§ÑÁêÜ
+     */
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 
-		logger.info("##########youvb÷±Ω”ªÿµ˜############");
+        logger.info("##########youvbÁõ¥Êé•ÂõûË∞É############");
 
-		String resultWml = "";
+        String resultWml = "";
 
-		// “µŒÒ¿‡–Õ
-		String amount = formatString(request.getParameter("amount"));
-		// ”Œœ∑’ ∫≈
-		String account = formatString(request.getParameter("account"));
-		// …Ãªß∂©µ•∫≈
-		String order_no = formatString(request.getParameter("order_no"));
-		// …Ãªß∂©µ•∫≈
-		String time = formatString(request.getParameter("time"));
-		// “◊±¶÷ß∏∂Ωª“◊¡˜ÀÆ∫≈
-		String sign = formatString(request.getParameter("sign"));
+        // ‰∏öÂä°Á±ªÂûã
+        String amount = formatString(request.getParameter("amount"));
+        // Ê∏∏ÊàèÂ∏êÂè∑
+        String account = formatString(request.getParameter("account"));
+        // ÂïÜÊà∑ËÆ¢ÂçïÂè∑
+        String order_no = formatString(request.getParameter("order_no"));
+        // ÂïÜÊà∑ËÆ¢ÂçïÂè∑
+        String time = formatString(request.getParameter("time"));
+        // ÊòìÂÆùÊîØ‰ªò‰∫§ÊòìÊµÅÊ∞¥Âè∑
+        String sign = formatString(request.getParameter("sign"));
 
-		String key = "2ikdwjcw0923jd34fgg34fgas242441";
+        String key = "2ikdwjcw0923jd34fgg34fgas242441";
 
-		String sign_bak = MD5Util.md5Hex(amount + account + order_no + time
-				+ key);
-		if (sign.equals(sign_bak))
-		{
-			// ≈–∂œ «∑Ò”–∏ƒ∂©µ•∫≈
-			UAccountRecordDao dao = new UAccountRecordDao();
-			UAccountRecordVO vo = dao.getRecord(order_no, Channel.YOUVB + "");
-			String[] pk = account.split("@@@@@");
-			if (pk.length > 1)
-			{
-				if (vo == null)
-				{
-					// ∏¯ÕÊº“≥‰÷µº”‘™±¶
-					UAccountRecordVO new_vo = new UAccountRecordVO();
-					new_vo.setUPk(Integer.parseInt(pk[0]));
-					new_vo.setPPk(Integer.parseInt(pk[1]));
-					new_vo.setChannel(Channel.YOUVB + "");
-					new_vo.setCode(order_no);
-					new_vo.setMoney(((int) Double.parseDouble(amount)));
-					new_vo.setAccountState(1 + "");
-					new_vo.setId(dao.insert(new_vo));
-					BillService bs = new BillService();
-					bs.accountSuccessNotify(new_vo);
+        String sign_bak = MD5Util.md5Hex(amount + account + order_no + time + key);
+        if (sign.equals(sign_bak)) {
+            // Âà§Êñ≠ÊòØÂê¶ÊúâÊîπËÆ¢ÂçïÂè∑
+            UAccountRecordDao dao = new UAccountRecordDao();
+            UAccountRecordVO vo = dao.getRecord(order_no, Channel.YOUVB + "");
+            String[] pk = account.split("@@@@@");
+            if (pk.length > 1) {
+                if (vo == null) {
+                    // ÁªôÁé©ÂÆ∂ÂÖÖÂÄºÂä†ÂÖÉÂÆù
+                    UAccountRecordVO new_vo = new UAccountRecordVO();
+                    new_vo.setUPk(Integer.parseInt(pk[0]));
+                    new_vo.setPPk(Integer.parseInt(pk[1]));
+                    new_vo.setChannel(Channel.YOUVB + "");
+                    new_vo.setCode(order_no);
+                    new_vo.setMoney(((int) Double.parseDouble(amount)));
+                    new_vo.setAccountState(1 + "");
+                    new_vo.setId(dao.insert(new_vo));
+                    BillService bs = new BillService();
+                    bs.accountSuccessNotify(new_vo);
 
-					resultWml = "success";
-					request.setAttribute("resultWml", resultWml);
-					return mapping.findForward("success");
-				}
-				else
-				{
-					resultWml = "fail";
-					request.setAttribute("resultWml", resultWml);
-					return mapping.findForward("success");
-				}
-			}
-			else
-			{
-				resultWml = "fail";
-				request.setAttribute("resultWml", resultWml);
-				return mapping.findForward("success");
-			}
+                    resultWml = "success";
+                    request.setAttribute("resultWml", resultWml);
+                    return mapping.findForward("success");
+                } else {
+                    resultWml = "fail";
+                    request.setAttribute("resultWml", resultWml);
+                    return mapping.findForward("success");
+                }
+            } else {
+                resultWml = "fail";
+                request.setAttribute("resultWml", resultWml);
+                return mapping.findForward("success");
+            }
 
-		}
-		else
-		{
-			resultWml = "fail";
-			request.setAttribute("resultWml", resultWml);
-			return mapping.findForward("success");
-		}
-	}
+        } else {
+            resultWml = "fail";
+            request.setAttribute("resultWml", resultWml);
+            return mapping.findForward("success");
+        }
+    }
 
-	String formatString(String text)
-	{
-		if (text == null)
-		{
-			return "";
-		}
-		return text;
-	}
+    String formatString(String text) {
+        if (text == null) {
+            return "";
+        }
+        return text;
+    }
 }

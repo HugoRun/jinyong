@@ -12,23 +12,23 @@ import com.ls.web.service.goods.GoodsService;
 
 /**
  * @author ls
- * 宝石加工
+ * 瀹濈煶鍔犲伐
  */
 public class StoneProduct extends UserBase 
 {
 	
-	private static int material1_id = 3;//升级石id
+	private static int material1_id = 3;//鍗囩骇鐭砳d
 	
-	private int stone_id = 0;//要加工的宝石id
-	private int stone_num = 0;//要升级的宝石数量
-	private int cur_stone_num = 0;//现有宝石的数量
+	private int stone_id = 0;//瑕佸姞宸ョ殑瀹濈煶id
+	private int stone_num = 0;//瑕佸崌绾х殑瀹濈煶鏁伴噺
+	private int cur_stone_num = 0;//鐜版湁瀹濈煶鐨勬暟閲�
 	
-	private int cur_material1_num = 0;//升级石的数量
+	private int cur_material1_num = 0;//鍗囩骇鐭崇殑鏁伴噺
 	
-	private  int rate_stone_id;//提升成功率材料id
-	private  int rate_stone_num;//提升成功率材料数量
+	private  int rate_stone_id;//鎻愬崌鎴愬姛鐜囨潗鏂檌d
+	private  int rate_stone_num;//鎻愬崌鎴愬姛鐜囨潗鏂欐暟閲�
 	
-	private int stone_rate=0;//当前宝石成功率
+	private int stone_rate=0;//褰撳墠瀹濈煶鎴愬姛鐜�
 	
 	public StoneProduct(int pPk )
 	{
@@ -36,7 +36,7 @@ public class StoneProduct extends UserBase
 	}
 	
 	/**
-	 * 初始化
+	 * 鍒濆�鍖�
 	 */
 	public void init()
 	{
@@ -55,7 +55,7 @@ public class StoneProduct extends UserBase
 	
 	
 	/**
-	 * 选择要升级的宝石
+	 * 閫夋嫨瑕佸崌绾х殑瀹濈煶
 	 * @param equip
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public class StoneProduct extends UserBase
 		
 		if( upgrade_num<=0 || upgrade_num%2!=0 )
 		{
-			return "宝石必须为偶数";
+			return "瀹濈煶蹇呴』涓哄伓鏁�";
 		}
 		
 		GoodsService goodsService = new GoodsService();
@@ -74,17 +74,17 @@ public class StoneProduct extends UserBase
 		int stone_grade = getStoneGrade(select_stone_id);
 		if( stone_grade>=10 )
 		{
-			return "宝石已是最高等级,不能升级";
+			return "瀹濈煶宸叉槸鏈€楂樼瓑绾�,涓嶈兘鍗囩骇";
 		}
 		
 		int have_stone_num = goodsService.getPropNum(p_pk, select_stone_id);
 		
 		if( have_stone_num<upgrade_num )
 		{
-			return "你没有足够的宝石";
+			return "浣犳病鏈夎冻澶熺殑瀹濈煶";
 		}
 		
-		cur_material1_num = playerPropGroupDao.getPropNumByByPropID(p_pk,material1_id);//现有升级石的数量
+		cur_material1_num = playerPropGroupDao.getPropNumByByPropID(p_pk,material1_id);//鐜版湁鍗囩骇鐭崇殑鏁伴噺
 		
 		this.stone_id = select_stone_id;
 		this.stone_num = upgrade_num;
@@ -94,50 +94,50 @@ public class StoneProduct extends UserBase
 	
 	
 	/**
-	 * 升级
+	 * 鍗囩骇
 	 */
 	public String upgrade()
 	{
 		String hint = null;
-		//判断是否能升级
+		//鍒ゆ柇鏄�惁鑳藉崌绾�
 		if( this.stone_id==0 )
 		{
-			return "请选择要升级的宝石";
+			return "璇烽€夋嫨瑕佸崌绾х殑瀹濈煶";
 		}
-		String next_grade_stone_id = PropCache.getPropById(this.stone_id).getPropOperate2();//下一级宝石id
+		String next_grade_stone_id = PropCache.getPropById(this.stone_id).getPropOperate2();//涓嬩竴绾у疂鐭砳d
 		if( next_grade_stone_id==null && next_grade_stone_id.equals(""))
 		{
-			return "宝石已不能升级";
+			return "瀹濈煶宸蹭笉鑳藉崌绾�";
 		}
 		
-		//判断升级材料是否够
+		//鍒ゆ柇鍗囩骇鏉愭枡鏄�惁澶�
 		if( this.getCurMaterial1Num()<this.getMaterial1Num() )
 		{
-			return "对不起，您升级所需的材料不足，无法升级！";
+			return "瀵逛笉璧凤紝鎮ㄥ崌绾ф墍闇€鐨勬潗鏂欎笉瓒筹紝鏃犳硶鍗囩骇锛�";
 		}
-		//判断是否有足够的钱
+		//鍒ゆ柇鏄�惁鏈夎冻澶熺殑閽�
 		if( this.getRoleEntity().getBasicInfo().getCopper()<this.getNeedMoney() )
 		{
-			return "你的银两不足，不能升级";
+			return "浣犵殑閾朵袱涓嶈冻锛屼笉鑳藉崌绾�";
 		}
 		
-		//消耗物品
+		//娑堣€楃墿鍝�
 		GoodsService goodsService = new GoodsService();
 		goodsService.removeProps(p_pk, this.material1_id, this.getMaterial1Num(),GameLogManager.R_MATERIAL_CONSUME);
 		goodsService.removeProps(p_pk, this.stone_id, this.getStoneNum(),GameLogManager.R_MATERIAL_CONSUME);
 		
-		//扣除升级费用
+		//鎵ｉ櫎鍗囩骇璐圭敤
 		this.getRoleEntity().getBasicInfo().addCopper(-this.getNeedMoney());
 		
-		//宝石升级
-		if( MathUtil.isAppearByPercentage(this.getSuccessRate()) )//升级成功
+		//瀹濈煶鍗囩骇
+		if( MathUtil.isAppearByPercentage(this.getSuccessRate()) )//鍗囩骇鎴愬姛
 		{
 			goodsService.putPropToWrap(p_pk, Integer.parseInt(next_grade_stone_id), this.stone_num/2,GameLogManager.G_UPGRADE);
-			hint = "恭喜您，宝石合成成功，请再接再厉！";
+			hint = "鎭�枩鎮�紝瀹濈煶鍚堟垚鎴愬姛锛岃�鍐嶆帴鍐嶅帀锛�";
 		}
-		else//升级失败不消耗宝石
+		else//鍗囩骇澶辫触涓嶆秷鑰楀疂鐭�
 		{
-			hint = "太不幸了，您宝石合成失败，请继续努力！";
+			hint = "澶�笉骞镐簡锛屾偍瀹濈煶鍚堟垚澶辫触锛岃�缁х画鍔�姏锛�";
 		}
 		
 		this.init();
@@ -146,21 +146,21 @@ public class StoneProduct extends UserBase
 	
 	
 	/**
-	 * 得到宝石名字
+	 * 寰楀埌瀹濈煶鍚嶅瓧
 	 * @return
 	 */
 	public String getStoneName()
 	{
 		if( stone_id==0 )
 		{
-			return "选择要升级的宝石";
+			return "閫夋嫨瑕佸崌绾х殑瀹濈煶";
 		}
 		PropVO rate_stone = PropCache.getPropById(this.stone_id);
 		return rate_stone.getPropName();
 	}
 	
 	/**
-	 * 得到要升级的宝石数量
+	 * 寰楀埌瑕佸崌绾х殑瀹濈煶鏁伴噺
 	 * @return
 	 */
 	public int getStoneNum()
@@ -168,7 +168,7 @@ public class StoneProduct extends UserBase
 		return this.stone_num;
 	}
 	/**
-	 * 得到要升级的宝石数量
+	 * 寰楀埌瑕佸崌绾х殑瀹濈煶鏁伴噺
 	 * @return
 	 */
 	public int getCurStoneNum()
@@ -178,14 +178,14 @@ public class StoneProduct extends UserBase
 	
 	
 	/**
-	 * 需要升级石的数量
+	 * 闇€瑕佸崌绾х煶鐨勬暟閲�
 	 */
 	public int getMaterial1Num()
 	{
 		return stone_num/2;
 	}
 	/**
-	 * 当前升级石的数量
+	 * 褰撳墠鍗囩骇鐭崇殑鏁伴噺
 	 */
 	public int getCurMaterial1Num()
 	{
@@ -193,7 +193,7 @@ public class StoneProduct extends UserBase
 	}
 	
 	/**
-	 * 当前成功率
+	 * 褰撳墠鎴愬姛鐜�
 	 */
 	public int getSuccessRate()
 	{
@@ -205,14 +205,14 @@ public class StoneProduct extends UserBase
 		return (10-stone_grade)*10+stone_rate;
 	}
 	/**
-	 * 需要的钱描述
+	 * 闇€瑕佺殑閽辨弿杩�
 	 */
 	public String getNeedMoneyDes()
 	{
 		return ExchangeUtil.getMoneyDes(this.getNeedMoney());
 	}
 	/**
-	 * 需要的钱
+	 * 闇€瑕佺殑閽�
 	 */
 	public int getNeedMoney()
 	{
@@ -224,7 +224,7 @@ public class StoneProduct extends UserBase
 		return stone_grade*50*stone_num;
 	}
 	/**
-	 * 得到宝石的等级
+	 * 寰楀埌瀹濈煶鐨勭瓑绾�
 	 */
 	private int getStoneGrade(int stoneID)
 	{

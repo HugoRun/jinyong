@@ -7,7 +7,7 @@ public class JmsThread1 extends Thread
 //		int i = 1;
 //         while(true){
 //        	JmsUtil.chongzhi(1, 5);
-//        	System.out.println("³äÖµ  :  "+i);
+//        	System.out.println("å……å€¼  :  "+i);
 //        	i++;
 //         }
 //	}

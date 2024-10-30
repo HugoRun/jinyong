@@ -9,14 +9,14 @@ import com.ls.ben.vo.info.npc.NpcVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * 功能:
- * @author 刘帅
+ * 鍔熻兘:
+ * @author 鍒樺竻
  * 3:15:41 PM
  */
 public class NpcDao extends DaoBase
 {
 	/**
-	 * 根据id得到一个npc
+	 * 鏍规嵁id寰楀埌涓�涓猲pc
 	 * @param id
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class NpcDao extends DaoBase
 		conn = dbConn.getConn();
 		try
 		{
-			String sql = "select * from npc where npc_ID=" + id;
+			String sql = "SELECT * FROM npc where npc_ID=" + id;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -56,8 +56,8 @@ public class NpcDao extends DaoBase
 		int total_num = 0;
 		NpcVO npc = null;
 		
-		String total_num_sql = "select count(*) from npc";
-		String sql = "select * from npc";
+		String total_num_sql = "SELECT count(*) from npc";
+		String sql = "SELECT * FROM npc";
 		logger.debug(sql);
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);

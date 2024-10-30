@@ -1,28 +1,28 @@
 package com.pm.vo.auction;
 
 /**
- * ÅÄÂôÔª±¦µÄÀà
+ * æ‹å–å…ƒå®çš„ç±»
  * @author Administrator
  *
  */
 public class AuctionYBVO
 {
-	/** Ôª±¦id **/
+	/** å…ƒå®id **/
 	public int uybId 	;
 	
-	/** ÅÄÂôÔª±¦ÕßµÄp_pk */	
+	/** æ‹å–å…ƒå®è€…çš„p_pk */	
 	public int pPk	;
 	
-	/** Ôª±¦ÅÜÂôµÄ×´Ì¬,1ÎªÕıÔÚÂô³ö×´Ì¬£¬2ÎªÒÑ¾­Âô³ö×´Ì¬£¬3ÎªÎ´Âô³öÏÂ¼Ü×´Ì¬   */
+	/** å…ƒå®è·‘å–çš„çŠ¶æ€,1ä¸ºæ­£åœ¨å–å‡ºçŠ¶æ€ï¼Œ2ä¸ºå·²ç»å–å‡ºçŠ¶æ€ï¼Œ3ä¸ºæœªå–å‡ºä¸‹æ¶çŠ¶æ€   */
 	public int uybState   ;
 	
-	/** ÅÄÂôÔª±¦ÊıÁ¿ */
+	/** æ‹å–å…ƒå®æ•°é‡ */
 	public int ybNum;
 	
-	/** Ï£ÍûÅÄÂôµÄ¼Û¸ñ */
+	/** å¸Œæœ›æ‹å–çš„ä»·æ ¼ */
 	public int ybPrice;
 	
-	/** ÅÄÂôÊ±¼ä */
+	/** æ‹å–æ—¶é—´ */
 	public String auctionTime;
 
 	public int getUybId()

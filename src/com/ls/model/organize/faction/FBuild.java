@@ -5,16 +5,16 @@ import com.ls.web.service.faction.FBuildService;
 
 /**
  * @author ls
- * °ïÅÉ½¨Öş
+ * å¸®æ´¾å»ºç­‘
  */
 public class FBuild
 {
-	private int fId;//°ïÅÉid
-	private int bId;//½¨Öşid
+	private int fId;//å¸®æ´¾id
+	private int bId;//å»ºç­‘id
 	
 	
 	/**
-	 * ÏêÏ¸ĞÅÏ¢
+	 * è¯¦ç»†ä¿¡æ¯
 	 * @return
 	 */
 	public String getDisplay()
@@ -23,13 +23,13 @@ public class FBuild
 	}
 	
 	/**
-	 * ¼òµ¥ÃèÊöĞÅÏ¢
+	 * ç®€å•æè¿°ä¿¡æ¯
 	 * @return
 	 */
 	public String getSimpleDes()
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("(").append(this.getGameBuild().getGrade()).append("¼¶,×£¸£:").append(this.getGameBuild().getBuffName()).append(")");
+		sb.append("(").append(this.getGameBuild().getGrade()).append("çº§,ç¥ç¦:").append(this.getGameBuild().getBuffName()).append(")");
 		return sb.toString();
 	}
 	
@@ -39,7 +39,7 @@ public class FBuild
 	}
 	
 	/**
-	 * ÊÇ·ñ¿ÉÉı¼¶
+	 * æ˜¯å¦å¯å‡çº§
 	 * @return
 	 */
 	public boolean getIsUpgraded()
@@ -53,7 +53,7 @@ public class FBuild
 	}
 	
 	/**
-	 * µÃµ½°ïÅÉ½¨ÖşĞÅÏ¢
+	 * å¾—åˆ°å¸®æ´¾å»ºç­‘ä¿¡æ¯
 	 * @return
 	 */
 	public FGameBuild getGameBuild()

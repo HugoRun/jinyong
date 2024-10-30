@@ -34,7 +34,7 @@ public class BySellMoneyAction extends Action {
 		String silverMoney = request.getParameter("silverMoney");
 		String copperMoney = request.getParameter("copperMoney");
 		 
-		// È·¶¨½»Ò×ºóÉ¾³ı
+		// ç¡®å®šäº¤æ˜“ååˆ é™¤
 		SellInfoDAO dao = new SellInfoDAO();
 		 
 		dao.deleteSelleInfo(sPk);
@@ -45,8 +45,8 @@ public class BySellMoneyAction extends Action {
 
 		PartInfoDAO daos = new PartInfoDAO();
 		/*PartInfoVO vo = daos.getPartView(p_pk+"");
-		int ss = Integer.parseInt(silverMoney)+ Integer.parseInt(vo.getPSilver());// Ôö¼ÓµÄÒø×Ó
-		int aa = Integer.parseInt(copperMoney)+ Integer.parseInt(vo.getPCopper());// Ôö¼ÓµÄÍ­Ç®
+		int ss = Integer.parseInt(silverMoney)+ Integer.parseInt(vo.getPSilver());// å¢åŠ çš„é“¶å­
+		int aa = Integer.parseInt(copperMoney)+ Integer.parseInt(vo.getPCopper());// å¢åŠ çš„é“œé’±
 		daos.getUpdateMoney(ss + "", aa + "", p_pk+"");
 		*/
 		return mapping.findForward("success");

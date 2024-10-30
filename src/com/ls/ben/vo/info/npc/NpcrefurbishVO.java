@@ -7,8 +7,8 @@ import com.ls.pub.util.DateUtil;
 import com.ls.pub.util.MathUtil;
 
 /**
- * ¹¦ÄÜ:
- * @author ÁõË§
+ * åŠŸèƒ½:
+ * @author åˆ˜å¸…
  * 12:29:11 AM
  */
 public class NpcrefurbishVO {
@@ -16,48 +16,48 @@ public class NpcrefurbishVO {
 	 * id
 	 */
 	private int id;
-	/**¹ÖÎïid*/
+	/**æ€ªç‰©id*/
 	private int npcId;
-	/**µØµãid*/
+	/**åœ°ç‚¹id*/
 	private int sceneId;
 	
-	/** Ë¢ĞÂÊıÁ¿×Ö·û´®·¶Î§Èç:2,4*/
+	/** åˆ·æ–°æ•°é‡å­—ç¬¦ä¸²èŒƒå›´å¦‚:2,4*/
 	private String number;
 	
-	/**Ëæ»úµÃµ½Ë¢ĞÂÊıÁ¿*/
+	/**éšæœºå¾—åˆ°åˆ·æ–°æ•°é‡*/
 	private int randomNum;
 	
 	
-	/**Ö÷¶¯¹¥»÷¿ª¹Ø	0±íÊ¾´ËµãË¢ĞÂ³öµÄnpc±»¶¯¹¥»÷Íæ¼Ò£¬1±íÊ¾´ËµãË¢ĞÂ³öµÄnpcÖ÷¶¯¹¥»÷Íæ¼Ò*/
+	/**ä¸»åŠ¨æ”»å‡»å¼€å…³	0è¡¨ç¤ºæ­¤ç‚¹åˆ·æ–°å‡ºçš„npcè¢«åŠ¨æ”»å‡»ç©å®¶ï¼Œ1è¡¨ç¤ºæ­¤ç‚¹åˆ·æ–°å‡ºçš„npcä¸»åŠ¨æ”»å‡»ç©å®¶*/
 	private int attackswitch;
-	/**Ë¢ĞÂ¸ÅÂÊ	´ËµãÃ¿¸ö¹ÖÎïË¢ĞÂ³öÏÖµÄ¼¸ÂÊ£¬ÒÔ10000Îª·ÖÄ¸£¬ÕûÊıÖµ±íÊ¾·Ö×Ó*/
+	/**åˆ·æ–°æ¦‚ç‡	æ­¤ç‚¹æ¯ä¸ªæ€ªç‰©åˆ·æ–°å‡ºç°çš„å‡ ç‡ï¼Œä»¥10000ä¸ºåˆ†æ¯ï¼Œæ•´æ•°å€¼è¡¨ç¤ºåˆ†å­*/
 	private int probability;
 	
-	/**Ë¢ĞÂÊ±¼ä1	´ÓÄ³¸öÊ±¼äµ½ÁíÒ»¸öÊ±¼äÖ®¼ä³öÏÖ  ¿ªÊ¼Ê±¼ä*/
+	/**åˆ·æ–°æ—¶é—´1	ä»æŸä¸ªæ—¶é—´åˆ°å¦ä¸€ä¸ªæ—¶é—´ä¹‹é—´å‡ºç°  å¼€å§‹æ—¶é—´*/
 	private String timeKs="";
-	 /**Ë¢ĞÂÊ±¼ä1	´ÓÄ³¸öÊ±¼äµ½ÁíÒ»¸öÊ±¼äÖ®¼ä³öÏÖ  ½áÊøÊ±¼ä*/
+	 /**åˆ·æ–°æ—¶é—´1	ä»æŸä¸ªæ—¶é—´åˆ°å¦ä¸€ä¸ªæ—¶é—´ä¹‹é—´å‡ºç°  ç»“æŸæ—¶é—´*/
 	private String timeJs="";
-	/**Ë¢ĞÂÊ±¼ä2	Ã¿ÌìµÄÄ³¸öÊ±¼äµ½ÁíÒ»¸öÊ±¼ä³öÏÖ*/
+	/**åˆ·æ–°æ—¶é—´2	æ¯å¤©çš„æŸä¸ªæ—¶é—´åˆ°å¦ä¸€ä¸ªæ—¶é—´å‡ºç°*/
 	private String dayTimeKs="";
-	/**Ë¢ĞÂÊ±¼ä2	Ã¿ÌìµÄÄ³¸öÊ±¼äµ½ÁíÒ»¸öÊ±¼ä³öÏÖ*/
+	/**åˆ·æ–°æ—¶é—´2	æ¯å¤©çš„æŸä¸ªæ—¶é—´åˆ°å¦ä¸€ä¸ªæ—¶é—´å‡ºç°*/
 	private String dayTimeJs="";
 	/**
-	 * Ë¢ĞÂÊ±¼ä(ĞÇÆÚ¿ØÖÆ)
+	 * åˆ·æ–°æ—¶é—´(æ˜ŸæœŸæ§åˆ¶)
 	 */
 	private String weekStr;
 	
 	
-	 /**×îºóÒ»´ÎËÀÍöÊ±¼ä*/
+	 /**æœ€åä¸€æ¬¡æ­»äº¡æ—¶é—´*/
 	private Date deadTime;
 	
-	/**ÊÇ·ñÒÑËÀ£¬1±íÊ¾ÊÇ£¬0±íÊ¾Ã»ËÀ*/
+	/**æ˜¯å¦å·²æ­»ï¼Œ1è¡¨ç¤ºæ˜¯ï¼Œ0è¡¨ç¤ºæ²¡æ­»*/
 	private int isDead;
 	
-	/**±íÊ¾npcÊÇ·ñÊÇboss£¬0±íÊ¾²»ÊÇ£¬1±íÊ¾ÊÇ*/
+	/**è¡¨ç¤ºnpcæ˜¯å¦æ˜¯bossï¼Œ0è¡¨ç¤ºä¸æ˜¯ï¼Œ1è¡¨ç¤ºæ˜¯*/
 	private int isBoss;
 	
 	/**
-	 * µÃµ½ÏÂ´ÎË¢ĞÂ¸Ãboss¹Ö£¨ÓĞË¢ĞÂÊ±¼ä¿ØÖÆµÄnpc£©µÄË¢ĞÂÌáÊ¾
+	 * å¾—åˆ°ä¸‹æ¬¡åˆ·æ–°è¯¥bossæ€ªï¼ˆæœ‰åˆ·æ–°æ—¶é—´æ§åˆ¶çš„npcï¼‰çš„åˆ·æ–°æç¤º
 	 * @return
 	 */
 	public String getBossRefHint()
@@ -65,18 +65,18 @@ public class NpcrefurbishVO {
 		StringBuffer result = new StringBuffer();;
 		int refurbish_time = 0;
 		NpcVO npc = getNpc();
-		refurbish_time = npc.getNpcRefurbishTime();//Ë¢ĞÂÊ±¼ä¼ä¸ô
-		//ÓĞË¢ĞÂÊ±¼äÇÒÊ±¼ä»¹Ã»µ½
+		refurbish_time = npc.getNpcRefurbishTime();//åˆ·æ–°æ—¶é—´é—´éš”
+		//æœ‰åˆ·æ–°æ—¶é—´ä¸”æ—¶é—´è¿˜æ²¡åˆ°
 		if( this.getIsBoss()==1&&refurbish_time>0 && !DateUtil.isOverdue(this.getDeadTime(),refurbish_time * 60))
 		{
 			int timeDifference = DateUtil.getTimeDifference(this.getDeadTime(), (long) refurbish_time * 60000);
-			result.append("¾à").append(npc.getNpcName()).append("³öÏÖ»¹Ê£").append(timeDifference).append("·ÖÖÓ<br/>");
+			result.append("è·").append(npc.getNpcName()).append("å‡ºç°è¿˜å‰©").append(timeDifference).append("åˆ†é’Ÿ<br/>");
 		}
 		return result.toString();
 	}
 	
 	/**
-	 * µÃµ½npcĞÅÏ¢
+	 * å¾—åˆ°npcä¿¡æ¯
 	 * @return
 	 */
 	public NpcVO getNpc()

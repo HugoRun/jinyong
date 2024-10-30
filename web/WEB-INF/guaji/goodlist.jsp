@@ -28,24 +28,24 @@ for(NpcdropVO nv : list){
 
 <%}
 if(allPage>1){
-	if(allPage >nowPage){
-	%>
-	<anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/guaji.do") %>"> 
-	<postfield name="nowPage" value="<%=nowPage+1%>" />
-	<postfield name="cmd" value="n5" />
-	</go>
-	下一页
-	</anchor> 
-	<%
-	}
-	if(nowPage > 1){
-	%>
-	<anchor>
-	<go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/guaji.do") %>"> 
-	<postfield name="nowPage" value="<%=nowPage-1%>" />
-	<postfield name="cmd" value="n5" />
-	</go>
+    if(allPage >nowPage){
+    %>
+    <anchor>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/guaji.do") %>">
+    <postfield name="nowPage" value="<%=nowPage+1%>" />
+    <postfield name="cmd" value="n5" />
+    </go>
+    下一页
+    </anchor>
+    <%
+    }
+    if(nowPage > 1){
+    %>
+    <anchor>
+    <go method="post"   href="<%=response.encodeURL(GameConfig.getContextPath()+"/guaji.do") %>">
+    <postfield name="nowPage" value="<%=nowPage-1%>" />
+    <postfield name="cmd" value="n5" />
+    </go>
 	上一页
 	</anchor> 
 	<%

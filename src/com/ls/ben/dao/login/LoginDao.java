@@ -6,15 +6,15 @@ import com.ls.pub.db.DBConnection;
 public class LoginDao extends DaoBase
 {
 	/**
-	 * ²åÈëÒ»¸öĞÂµÄÕËºÅ
+	 * æ’å…¥ä¸€ä¸ªæ–°çš„è´¦å·
 	 * @param user_name
 	 * @param pwd
-	 * @return    ·µ»Øu_pk 
+	 * @return    è¿”å›u_pk 
 	 */
 	public int incert( String user_name ,String pwd,String login_ip )
 	{
 		int u_pk = -1;
-		String sql = "insert into u_login_info values(null,'" + user_name+ "',MD5('" + pwd + "'),'" + 1 + "',now(),'"+login_ip+"',now(),0,0)";
+		String sql = "INSERT INTO u_login_info values(null,'" + user_name+ "',MD5('" + pwd + "'),'" + 1 + "',now(),'"+login_ip+"',now(),0,0)";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -40,14 +40,14 @@ public class LoginDao extends DaoBase
 	}
 	
 	/**
-	 * ¸üĞÂÕËºÅµÇÂ½×´Ì¬
+	 * æ›´æ–°è´¦å·ç™»é™†çŠ¶æ€
 	 * @param user_name
 	 * @param pwd
-	 * @return    ·µ»Øu_pk
+	 * @return    è¿”å›u_pk
 	 */
 	public void updateState( String u_pk,String login_ip )
 	{
-		String sql = "update u_login_info set login_state='1',last_login_ip = '"+login_ip+"',last_login_time = now() where u_pk="+u_pk;
+		String sql = "UPDATE `u_login_info` SET login_state = '1',last_login_ip = '"+login_ip+"',last_login_time = now() where u_pk="+u_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
@@ -67,14 +67,14 @@ public class LoginDao extends DaoBase
 	
 	
 	/**
-	 * ÅĞ¶Ï¸ÃÓÃ»§ÃûÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­è¯¥ç”¨æˆ·åæ˜¯å¦å­˜åœ¨
 	 * @param user_name
 	 * @return
 	 */
 	public boolean isHaveName(String user_name )
 	{
 		boolean result = false;
-		String sql = "select u_pk from  u_login_info where u_name = '"+user_name+"'";
+		String sql = "SELECT u_pk from  u_login_info where u_name = '"+user_name+"'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();

@@ -8,14 +8,14 @@ import com.ls.ben.vo.task.AcceptTaskListVO;
 import com.ls.pub.db.DBConnection;
 
 /**
- * ¹¦ÄÜ:accept_task_list
- * @author ÁõË§
+ * åŠŸèƒ½:accept_task_list
+ * @author åˆ˜å¸…
  * Oct 20, 2008  6:22:43 PM
  */
 public class AcceptTaskListDao extends DaoBase
 {
 	/**
-	 * ¸ü¾ßµÀ¾ßidµÃµ½±¸Ñ¡ÈÎÎñÁĞ±í
+	 * æ›´å…·é“å…·idå¾—åˆ°å¤‡é€‰ä»»åŠ¡åˆ—è¡¨
 	 * @param prop_id
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public class AcceptTaskListDao extends DaoBase
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
 		try {
-			String sql = "select * from accept_task_list where touch_id='"+touch_id+"' and task_type="+task_type;
+			String sql = "SELECT * FROM accept_task_list where touch_id='"+touch_id+"' and task_type="+task_type;
 			logger.debug(sql);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);

@@ -17,7 +17,7 @@ import com.lw.dao.pet.skill.PetSkillLevelUpDao;
 
 public class PetSkillLevelUpService
 {
-	/** µÃµ½³èÎïÉíÉÏ¼¼ÄÜµÄÏÂÒ»¼¶¼¼ÄÜID */
+	/** å¾—åˆ°å® ç‰©èº«ä¸ŠæŠ€èƒ½çš„ä¸‹ä¸€çº§æŠ€èƒ½ID */
 	public int getNextSkId(int pet_skill_id)
 	{
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();
@@ -28,7 +28,7 @@ public class PetSkillLevelUpService
 		return id;
 	}
 
-	/** µÃµ½³èÎïÄÜÑ§µ½µÄ1¼¶¼¼ÄÜ */
+	/** å¾—åˆ°å® ç‰©èƒ½å­¦åˆ°çš„1çº§æŠ€èƒ½ */
 	public List<Integer> getPetAllSkillLvOne(int pet_pk)
 	{
 		PetSkillLevelUpDao pdao = new PetSkillLevelUpDao();
@@ -66,7 +66,7 @@ public class PetSkillLevelUpService
 
 	}
 
-	/** µÃµ½³èÎï¿ØÖÆ±íÀïÄÜ·¢³öµÄ¼¼ÄÜ* */
+	/** å¾—åˆ°å® ç‰©æ§åˆ¶è¡¨é‡Œèƒ½å‘å‡ºçš„æŠ€èƒ½* */
 	public List<Integer> getPetSkillControl(int pet_id)
 	{
 		PetSkillLevelUpDao pdao = new PetSkillLevelUpDao();
@@ -74,7 +74,7 @@ public class PetSkillLevelUpService
 		return list;
 	}
 
-	/** ÅĞ¶Ï³èÎïÄÜÎò³öµÄÒ»¼¶¼¼ÄÜ */
+	/** åˆ¤æ–­å® ç‰©èƒ½æ‚Ÿå‡ºçš„ä¸€çº§æŠ€èƒ½ */
 	public int getPetSkillLvOne(int pet_pk)
 	{
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();
@@ -112,7 +112,7 @@ public class PetSkillLevelUpService
 		return -1;
 	}
 
-	/** ÅĞ¶Ï³èÎï¼¼ÄÜÊÇ·ñÎª³èÎïÒÑÓĞ¼¼ÄÜµÄ¼¼ÄÜ×éÀïµÄ¼¼ÄÜ TRUEÎªÓĞ falseÎªÃ»ÓĞ */
+	/** åˆ¤æ–­å® ç‰©æŠ€èƒ½æ˜¯å¦ä¸ºå® ç‰©å·²æœ‰æŠ€èƒ½çš„æŠ€èƒ½ç»„é‡Œçš„æŠ€èƒ½ TRUEä¸ºæœ‰ falseä¸ºæ²¡æœ‰ */
 	public boolean petSkillByGroup(int pet_pk, int pet_skill_id)
 	{
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();
@@ -134,7 +134,7 @@ public class PetSkillLevelUpService
 		return true;
 	}
 
-	/** ³èÎïÕ½¶·ºóµÄÁìÎòµ½ĞÂ¼¼ÄÜºÍ¼¼ÄÜÉı¼¶ */
+	/** å® ç‰©æˆ˜æ–—åçš„é¢†æ‚Ÿåˆ°æ–°æŠ€èƒ½å’ŒæŠ€èƒ½å‡çº§ */
 	public String petSkillLevelUp(int pet_pk)
 	{
 		if (MathUtil.PercentageRandomByParamdouble(2.5, 100))
@@ -146,10 +146,10 @@ public class PetSkillLevelUpService
 		return "";
 	}
 
-	/** ³èÎïÑ§Ï°ĞÂ¼¼ÄÜ»òÕßÒÑÓĞ¼¼ÄÜÉı¼‰ */
+	/** å® ç‰©å­¦ä¹ æ–°æŠ€èƒ½æˆ–è€…å·²æœ‰æŠ€èƒ½å‡ç´š */
 	public String petgetNewSkill(PetInfoVO petInfoVO)
 	{
-		int skill_lv = 4;// ³èÎï¼¼ÄÜµÈ¼¶µÄ×î´óÖµ
+		int skill_lv = 4;// å® ç‰©æŠ€èƒ½ç­‰çº§çš„æœ€å¤§å€¼
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();
 		// PetSkillDao ps = new PetSkillDao();
 		PetSkillCache petSkillCache = new PetSkillCache();
@@ -168,18 +168,18 @@ public class PetSkillLevelUpService
 			String name = petSkillCache.getName(sk1);
 			dao.updatePetSkOne(petInfoVO.getPetPk(), dao.getSkillIDByLevel(gp1,
 					lv1));
-			return "<br/>Äú³èÎïµÄ¼¼ÄÜ" + name + "Éı¼¶ÁË";
+			return "<br/>æ‚¨å® ç‰©çš„æŠ€èƒ½" + name + "å‡çº§äº†";
 
 		}
 		else
 		{
-			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // Èç¹ûÃ»ÓĞ¼¼ÄÜ,Ôò»ñÈ¡µÄĞÂ¼¼ÄÜid
+			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // å¦‚æœæ²¡æœ‰æŠ€èƒ½,åˆ™è·å–çš„æ–°æŠ€èƒ½id
 			if (sk1 == 0 && petSkillLvOne != -1)
 			{
 				String name = petSkillCache.getName(petSkillLvOne);
 				dao.updatePetSkOne(petInfoVO.getPetPk(), petSkillLvOne);
 				petService.addSkillFlag(petInfoVO.getPetPk() + "");
-				return "<br/>ÄúµÄ³èÎïÎò³öÁË¼¼ÄÜ:" + name;
+				return "<br/>æ‚¨çš„å® ç‰©æ‚Ÿå‡ºäº†æŠ€èƒ½:" + name;
 			}
 		}
 
@@ -196,18 +196,18 @@ public class PetSkillLevelUpService
 			String name = petSkillCache.getName(sk2);
 			dao.updatePetSkTwo(petInfoVO.getPetPk(), dao.getSkillIDByLevel(gp2,
 					lv2));
-			return "<br/>Äú³èÎïµÄ¼¼ÄÜ" + name + "Éı¼¶ÁË";
+			return "<br/>æ‚¨å® ç‰©çš„æŠ€èƒ½" + name + "å‡çº§äº†";
 
 		}
 		else
 		{
-			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // Èç¹ûÃ»ÓĞ¼¼ÄÜ,Ôò»ñÈ¡µÄĞÂ¼¼ÄÜid
+			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // å¦‚æœæ²¡æœ‰æŠ€èƒ½,åˆ™è·å–çš„æ–°æŠ€èƒ½id
 			if (sk2 == 0 && petSkillLvOne != -1)
 			{
 				String name = petSkillCache.getName(petSkillLvOne);
 				dao.updatePetSkTwo(petInfoVO.getPetPk(), petSkillLvOne);
 				petService.addSkillFlag(petInfoVO.getPetPk() + "");
-				return "<br/>ÄúµÄ³èÎïÎò³öÁË¼¼ÄÜ:" + name;
+				return "<br/>æ‚¨çš„å® ç‰©æ‚Ÿå‡ºäº†æŠ€èƒ½:" + name;
 			}
 		}
 
@@ -223,18 +223,18 @@ public class PetSkillLevelUpService
 			String name = petSkillCache.getName(sk3);
 			dao.updatePetSkThree(petInfoVO.getPetPk(), dao.getSkillIDByLevel(
 					gp3, lv3));
-			return "<br/>Äú³èÎïµÄ¼¼ÄÜ" + name + "Éı¼¶ÁË";
+			return "<br/>æ‚¨å® ç‰©çš„æŠ€èƒ½" + name + "å‡çº§äº†";
 
 		}
 		else
 		{
-			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // Èç¹ûÃ»ÓĞ¼¼ÄÜ,Ôò»ñÈ¡µÄĞÂ¼¼ÄÜid
+			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // å¦‚æœæ²¡æœ‰æŠ€èƒ½,åˆ™è·å–çš„æ–°æŠ€èƒ½id
 			if (sk3 == 0 && petSkillLvOne != -1)
 			{
 				String name = petSkillCache.getName(petSkillLvOne);
 				dao.updatePetSkThree(petInfoVO.getPetPk(), petSkillLvOne);
 				petService.addSkillFlag(petInfoVO.getPetPk() + "");
-				return "<br/>ÄúµÄ³èÎïÎò³öÁË¼¼ÄÜ:" + name;
+				return "<br/>æ‚¨çš„å® ç‰©æ‚Ÿå‡ºäº†æŠ€èƒ½:" + name;
 			}
 		}
 
@@ -250,18 +250,18 @@ public class PetSkillLevelUpService
 			String name = petSkillCache.getName(sk4);
 			dao.updatePetSkFour(petInfoVO.getPetPk(), dao.getSkillIDByLevel(
 					gp4, lv4));
-			return "<br/>Äú³èÎïµÄ¼¼ÄÜ" + name + "Éı¼¶ÁË";
+			return "<br/>æ‚¨å® ç‰©çš„æŠ€èƒ½" + name + "å‡çº§äº†";
 
 		}
 		else
 		{
-			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // Èç¹ûÃ»ÓĞ¼¼ÄÜ,Ôò»ñÈ¡µÄĞÂ¼¼ÄÜid
+			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // å¦‚æœæ²¡æœ‰æŠ€èƒ½,åˆ™è·å–çš„æ–°æŠ€èƒ½id
 			if (sk4 == 0 && petSkillLvOne != -1)
 			{
 				String name = petSkillCache.getName(petSkillLvOne);
 				dao.updatePetSkFour(petInfoVO.getPetPk(), petSkillLvOne);
 				petService.addSkillFlag(petInfoVO.getPetPk() + "");
-				return "<br/>ÄúµÄ³èÎïÎò³öÁË¼¼ÄÜ:" + name;
+				return "<br/>æ‚¨çš„å® ç‰©æ‚Ÿå‡ºäº†æŠ€èƒ½:" + name;
 			}
 		}
 
@@ -277,24 +277,24 @@ public class PetSkillLevelUpService
 			String name = petSkillCache.getName(sk5);
 			dao.updatePetSkFive(petInfoVO.getPetPk(), dao.getSkillIDByLevel(
 					gp5, lv5));
-			return "<br/>Äú³èÎïµÄ¼¼ÄÜ" + name + "Éı¼¶ÁË";
+			return "<br/>æ‚¨å® ç‰©çš„æŠ€èƒ½" + name + "å‡çº§äº†";
 
 		}
 		else
 		{
-			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // Èç¹ûÃ»ÓĞ¼¼ÄÜ,Ôò»ñÈ¡µÄĞÂ¼¼ÄÜid
+			int petSkillLvOne = getPetSkillLvOne(petInfoVO.getPetPk()); // å¦‚æœæ²¡æœ‰æŠ€èƒ½,åˆ™è·å–çš„æ–°æŠ€èƒ½id
 			if (sk5 == 0 && petSkillLvOne != -1)
 			{
 				String name = petSkillCache.getName(petSkillLvOne);
 				dao.updatePetSkFive(petInfoVO.getPetPk(), petSkillLvOne);
 				petService.addSkillFlag(petInfoVO.getPetPk() + "");
-				return "<br/>ÄúµÄ³èÎïÎò³öÁË¼¼ÄÜ:" + name;
+				return "<br/>æ‚¨çš„å® ç‰©æ‚Ÿå‡ºäº†æŠ€èƒ½:" + name;
 			}
 		}
 		return "";
 	}
 
-	/** ³èÎïËæ»úÍüÈ´Ò»¼¶¼¼ÄÜ */
+	/** å® ç‰©éšæœºå¿˜å´ä¸€çº§æŠ€èƒ½ */
 	public String petSkillForget(int pet_pk)
 	{
 		if (MathUtil.isAppearByPercentage(20))
@@ -304,7 +304,7 @@ public class PetSkillLevelUpService
 		return "";
 	}
 
-	/** ³èÎïÍü¼Ç¼¼ÄÜ */
+	/** å® ç‰©å¿˜è®°æŠ€èƒ½ */
 	public String petDelSkillOne(int pet_pk)
 	{
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();
@@ -317,7 +317,7 @@ public class PetSkillLevelUpService
 		{
 			String name = petSkillCache.getName(sk1);
 			dao.deletePetSkOne(pet_pk);
-			return "<br/>ÄúµÄ³èÎïÍü¼ÇÁË¼¼ÄÜ:" + name;
+			return "<br/>æ‚¨çš„å® ç‰©å¿˜è®°äº†æŠ€èƒ½:" + name;
 
 		}
 
@@ -327,7 +327,7 @@ public class PetSkillLevelUpService
 		{
 			String name = petSkillCache.getName(sk2);
 			dao.deletePetSkTwo(pet_pk);
-			return "<br/>ÄúµÄ³èÎïÍü¼ÇÁË¼¼ÄÜ:" + name;
+			return "<br/>æ‚¨çš„å® ç‰©å¿˜è®°äº†æŠ€èƒ½:" + name;
 
 		}
 
@@ -337,7 +337,7 @@ public class PetSkillLevelUpService
 		{
 			String name = petSkillCache.getName(sk3);
 			dao.deletePetSkThree(pet_pk);
-			return "<br/>ÄúµÄ³èÎïÍü¼ÇÁË¼¼ÄÜ:" + name;
+			return "<br/>æ‚¨çš„å® ç‰©å¿˜è®°äº†æŠ€èƒ½:" + name;
 
 		}
 
@@ -347,7 +347,7 @@ public class PetSkillLevelUpService
 		{
 			String name = petSkillCache.getName(sk4);
 			dao.deletePetSkFour(pet_pk);
-			return "<br/>ÄúµÄ³èÎïÍü¼ÇÁË¼¼ÄÜ:" + name;
+			return "<br/>æ‚¨çš„å® ç‰©å¿˜è®°äº†æŠ€èƒ½:" + name;
 
 		}
 
@@ -357,12 +357,12 @@ public class PetSkillLevelUpService
 		{
 			String name = petSkillCache.getName(sk5);
 			dao.deletePetSkFive(pet_pk);
-			return "<br/>ÄúµÄ³èÎïÍü¼ÇÁË¼¼ÄÜ:" + name;
+			return "<br/>æ‚¨çš„å® ç‰©å¿˜è®°äº†æŠ€èƒ½:" + name;
 		}
 		return "";
 	}
 
-	/** ³èÎïÑ§Ï°¼¼ÄÜ */
+	/** å® ç‰©å­¦ä¹ æŠ€èƒ½ */
 	public String petAddSkill(int pet_pk, int pet_skill_id)
 	{
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();
@@ -377,32 +377,32 @@ public class PetSkillLevelUpService
 					&& petSkillByGroup(pet_pk, pet_skill_id) == false)
 			{
 				dao.updatePetSkOne(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 			}
 
 			if (infovo.getPetSkillTwo() == 0
 					&& petSkillByGroup(pet_pk, pet_skill_id) == false)
 			{
 				dao.updatePetSkTwo(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 			}
 			if (infovo.getPetSkillThree() == 0
 					&& petSkillByGroup(pet_pk, pet_skill_id) == false)
 			{
 				dao.updatePetSkThree(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 			}
 			if (infovo.getPetSkillFour() == 0
 					&& petSkillByGroup(pet_pk, pet_skill_id) == false)
 			{
 				dao.updatePetSkFour(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 			}
 			if (infovo.getPetSkillFive() == 0
 					&& petSkillByGroup(pet_pk, pet_skill_id) == false)
 			{
 				dao.updatePetSkFive(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 			}
 		}
 		else
@@ -413,7 +413,7 @@ public class PetSkillLevelUpService
 							.getPetSkLevel(infovo.getPetSkillOne()) + 1))
 			{
 				dao.updatePetSkOne(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 
 			}
 			if (petSkillCache.getGroupID(pet_skill_id) == petSkillCache
@@ -422,7 +422,7 @@ public class PetSkillLevelUpService
 							.getPetSkLevel(infovo.getPetSkillTwo()) + 1))
 			{
 				dao.updatePetSkTwo(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 
 			}
 			if (petSkillCache.getGroupID(pet_skill_id) == petSkillCache
@@ -431,7 +431,7 @@ public class PetSkillLevelUpService
 							.getPetSkLevel(infovo.getPetSkillThree()) + 1))
 			{
 				dao.updatePetSkThree(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 
 			}
 			if (petSkillCache.getGroupID(pet_skill_id) == petSkillCache
@@ -440,7 +440,7 @@ public class PetSkillLevelUpService
 							.getPetSkLevel(infovo.getPetSkillFour()) + 1))
 			{
 				dao.updatePetSkFour(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 
 			}
 			if (petSkillCache.getGroupID(pet_skill_id) == petSkillCache
@@ -449,19 +449,19 @@ public class PetSkillLevelUpService
 							.getPetSkLevel(infovo.getPetSkillFive()) + 1))
 			{
 				dao.updatePetSkFive(pet_pk, pet_skill_id);
-				return "ÄúµÄ³èÎïÑ§»áÁË¼¼ÄÜ:" + petSkillCache.getName(pet_skill_id);
+				return "æ‚¨çš„å® ç‰©å­¦ä¼šäº†æŠ€èƒ½:" + petSkillCache.getName(pet_skill_id);
 			}
 
 			else
 			{
-				return "±§Ç¸Ñ§Ï°¼¼ÄÜÊ§°Ü";
+				return "æŠ±æ­‰å­¦ä¹ æŠ€èƒ½å¤±è´¥";
 			}
 
 		}
-		return "±§Ç¸Ñ§Ï°¼¼ÄÜÊ§°Ü";
+		return "æŠ±æ­‰å­¦ä¹ æŠ€èƒ½å¤±è´¥";
 	}
 
-	/** ¸ù¾İ¼¼ÄÜIDÅĞ¶Ï³èÎïÊÇ·ñÓĞ¸Ã¼¼ÄÜ×é trueÎªÓĞ falseÎªÃ»ÓĞ */
+	/** æ ¹æ®æŠ€èƒ½IDåˆ¤æ–­å® ç‰©æ˜¯å¦æœ‰è¯¥æŠ€èƒ½ç»„ trueä¸ºæœ‰ falseä¸ºæ²¡æœ‰ */
 	public boolean getPetGpBySk(int pet_skill_id, int pet_pk)
 	{
 		PetSkillLevelUpDao dao = new PetSkillLevelUpDao();

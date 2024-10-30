@@ -25,7 +25,7 @@ public class ForumService {
 	DBConnection dbConn = null;
 	
 	/**
-	 * ¼ÓÈëÒ»¸ö·¢ÑÔ
+	 * åŠ å…¥ä¸€ä¸ªå‘è¨€
 	 * @param fb
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class ForumService {
 		}
 	}
 	/**
-	 * ¸ù¾İÀàĞÍ²»Í¬¸üĞÂÆäÊıÁ¿
+	 * æ ¹æ®ç±»å‹ä¸åŒæ›´æ–°å…¶æ•°é‡
 	 * @param id
 	 * @param name
 	 * @return
@@ -115,7 +115,7 @@ public class ForumService {
 			return wg.getAllForum(typeid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 		} finally {
 			dbConn.closeConn();
 		}
@@ -123,7 +123,7 @@ public class ForumService {
 	}
 	
 	/**
-	 * ¸ù¾İ°å¿éµÄ²»Í¬»ñÈ¡²»Í¬µÄÌû×ÓÁĞ±í
+	 * æ ¹æ®æ¿å—çš„ä¸åŒè·å–ä¸åŒçš„å¸–å­åˆ—è¡¨
 	 * @param typeid
 	 * @return
 	 */
@@ -137,7 +137,7 @@ public class ForumService {
 			return wg.getAllForumByClassId(classId,page_no);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 		} finally {
 			dbConn.closeConn();
 		}
@@ -153,7 +153,7 @@ public class ForumService {
 			return wg.getForumByClassID(classid,typeid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 		} finally {
 			dbConn.closeConn();
 		}
@@ -169,7 +169,7 @@ public class ForumService {
 			return wg.getRowForum(row,typeid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 		} finally {
 			dbConn.closeConn();
 		}
@@ -185,7 +185,7 @@ public class ForumService {
 			return wg.getByID(id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.info("»ñµÃÍøÓÎ³ö´í£¡");
+			logger.info("è·å¾—ç½‘æ¸¸å‡ºé”™ï¼");
 		} finally {
 			dbConn.closeConn();
 		}
@@ -193,21 +193,21 @@ public class ForumService {
 	}
 	
 	/**
-	 * »ñÈ¡ÂÛÌ³µÄÂÛÌ³Ãû
+	 * è·å–è®ºå›çš„è®ºå›å
 	 */
 	public String getForumNameById(String id) {
 		return wg.getForumNameById(id);
 	}
 	
 	/**
-	 * È·¶¨´ËÈËÊÇ·ñÔÚÊ®·ÖÖÓÖ®ÄÚ·¢¹ıÌû, Èç¹û·¢¹ı·µ»Øtrue,
-	 * Èç¹ûÃ»·¢·µ»Øfalse.
+	 * ç¡®å®šæ­¤äººæ˜¯å¦åœ¨ååˆ†é’Ÿä¹‹å†…å‘è¿‡å¸–, å¦‚æœå‘è¿‡è¿”å›true,
+	 * å¦‚æœæ²¡å‘è¿”å›false.
 	 * @param pk
 	 * @return
 	 */
 	public boolean isInTenMinute(int p_pk)
 	{
-		// Èç¹ûÊÇ¹ÜÀíÔ±,ÄÇ¾Í²»¼ÆËã»ØÌûºÍ·¢ÌûÊ±¼äÏŞÖÆ.
+		// å¦‚æœæ˜¯ç®¡ç†å‘˜,é‚£å°±ä¸è®¡ç®—å›å¸–å’Œå‘å¸–æ—¶é—´é™åˆ¶.
 		boolean isManager = this.isManager(p_pk);
 		if (isManager) {
 			return false;
@@ -216,7 +216,7 @@ public class ForumService {
 	}
 	
 	/**
-	 * ²é¿´´ËÌùÊÇ·ñÒÑ¾­ÓĞÏàÍ¬ÄÚÈİµÄÌû×ÓÁË£¬Ê±¼äÏÖÔÚÎªÊ®·ÖÖÓ.
+	 * æŸ¥çœ‹æ­¤è´´æ˜¯å¦å·²ç»æœ‰ç›¸åŒå†…å®¹çš„å¸–å­äº†ï¼Œæ—¶é—´ç°åœ¨ä¸ºååˆ†é’Ÿ.
 	 * @param pk
 	 * @param content
 	 */
@@ -225,9 +225,9 @@ public class ForumService {
 		//boolean flag = wg.haveSameContent(content);
 		if(wg.haveSameContent(content) == true ){
 			if(content.equals("content")) {
-				return "ÔÚÊ®·ÖÖÓÄÚÓĞÏàÍ¬ÄÚÈİµÄÌû×ÓÁË,Çë²»ÒªÁ¬Ğø·¢ÏàÍ¬ÄÚÈİµÄÌû×Ó!";
+				return "åœ¨ååˆ†é’Ÿå†…æœ‰ç›¸åŒå†…å®¹çš„å¸–å­äº†,è¯·ä¸è¦è¿ç»­å‘ç›¸åŒå†…å®¹çš„å¸–å­!";
 			}else {
-				return "ÔÚÊ®·ÖÖÓÄÚÓĞÏàÍ¬ÌâÄ¿µÄÌû×ÓÁË,Çë²»ÒªÁ¬Ğø·¢ÏàÍ¬ÌâÄ¿µÄÌû×Ó!";
+				return "åœ¨ååˆ†é’Ÿå†…æœ‰ç›¸åŒé¢˜ç›®çš„å¸–å­äº†,è¯·ä¸è¦è¿ç»­å‘ç›¸åŒé¢˜ç›®çš„å¸–å­!";
 			}
 		} else {
 			return "";
@@ -235,7 +235,7 @@ public class ForumService {
 	}
 	
 	/**
-	 * µÃµ½¹ÜÀíÔ±ÁĞ±í
+	 * å¾—åˆ°ç®¡ç†å‘˜åˆ—è¡¨
 	 * @param classId
 	 * @return
 	 */
@@ -245,7 +245,7 @@ public class ForumService {
 	}
 	
 	/**
-	 * ²é¿´×Ô¼ºÊÇ·ñÊÇ¹ÜÀíÔ±
+	 * æŸ¥çœ‹è‡ªå·±æ˜¯å¦æ˜¯ç®¡ç†å‘˜
 	 * @param pk
 	 * @return
 	 */
@@ -255,7 +255,7 @@ public class ForumService {
 	}
 	
 	/**
-	 * ¼ì²éÊÇ·ñ±»½ûÖ¹·¢Ìû,Èç¹û²»½ûÖ¹·µ»Øfalse,Èç¹û½ûÖ¹·µ»Øtrue
+	 * æ£€æŸ¥æ˜¯å¦è¢«ç¦æ­¢å‘å¸–,å¦‚æœä¸ç¦æ­¢è¿”å›false,å¦‚æœç¦æ­¢è¿”å›true
 	 * @param pk
 	 * @return
 	 */

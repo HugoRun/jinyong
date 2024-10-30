@@ -3,7 +3,7 @@ package com.ls.pub.yeepay;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 /**
- * log工具
+ * log宸ュ叿
  * @author lu.li
  *
  */

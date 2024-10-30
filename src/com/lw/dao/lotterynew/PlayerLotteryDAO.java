@@ -15,10 +15,10 @@ public class PlayerLotteryDAO extends DaoBase
 {
 	Logger logger = Logger.getLogger(PlayerLotteryDAO.class);
 
-	/** ²åÈëÍæ¼Ò²ÊÆ±ĞÅÏ¢* */
+	/** æ’å…¥ç©å®¶å½©ç¥¨ä¿¡æ¯* */
 	public void insertPlayerLotteryInfo(PlayerLotteryVO vo)
 	{
-		String sql = "insert into u_lottery_yuanbao values (null,'"
+		String sql = "INSERT INTO u_lottery_yuanbao values (null,'"
 				+ vo.getP_pk() + "','" + vo.getLottery_date() + "','"
 				+ vo.getLottery_content() + "','" + vo.getLottery_zhu()
 				+ "',now(),'" + vo.getLottery_bonus_lv() + "','"
@@ -42,7 +42,7 @@ public class PlayerLotteryDAO extends DaoBase
 		}
 	}
 
-	/** Íæ¼ÒÁìÈ¡²ÊÆ±µÄ±ê¼Ç* */
+	/** ç©å®¶é¢†å–å½©ç¥¨çš„æ ‡è®°* */
 	public void updatePlayerCatchBonus(int p_pk, String lottery_date)
 	{
 		String sql = "update u_lottery_yuanbao set is_have = 1,have_time = now() where p_pk = "
@@ -66,11 +66,11 @@ public class PlayerLotteryDAO extends DaoBase
 		}
 	}
 
-	/** µÃµ½Íæ¼ÒµÄĞÅÏ¢* */
+	/** å¾—åˆ°ç©å®¶çš„ä¿¡æ¯* */
 	public PlayerLotteryVO getPlayerLotteryInfo(int p_pk, String lottery_date)
 	{
 		PlayerLotteryVO vo = null;
-		String sql = "select * from u_lottery_yuanbao where p_pk = " + p_pk
+		String sql = "SELECT * FROM u_lottery_yuanbao where p_pk = " + p_pk
 				+ " and lottery_date = '" + lottery_date + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -102,11 +102,11 @@ public class PlayerLotteryDAO extends DaoBase
 		return vo;
 	}
 
-	// µÃµ½Í·½±½±½ğ½ğ¶î
+	// å¾—åˆ°å¤´å¥–å¥–é‡‘é‡‘é¢
 	public long getLotteryFristBonus(String lottery_date)
 	{
 		long num = 0;
-		String sql = "select lottery_bonus as num from u_lottery_yuanbao where lottery_date = '"
+		String sql = "SELECT lottery_bonus as num from u_lottery_yuanbao where lottery_date = '"
 				+ lottery_date + "' and lottery_bonus_lv = 4 limit 1";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -133,7 +133,7 @@ public class PlayerLotteryDAO extends DaoBase
 		return num;
 	}
 
-	// ¸üĞÂÍ·½±½±½ğ
+	// æ›´æ–°å¤´å¥–å¥–é‡‘
 	public void updateFristBonus(int lv, long bonus, String lottery_date)
 	{
 		String sql = "update u_lottery_yuanbao set lottery_bonus = '" + bonus
@@ -158,11 +158,11 @@ public class PlayerLotteryDAO extends DaoBase
 		}
 	}
 
-	// µÃµ½×ÜÍ¶×¢ÊıÁ¿
+	// å¾—åˆ°æ€»æŠ•æ³¨æ•°é‡
 	public long getLotteryAllZhu(String lottery_date)
 	{
 		long num = 0;
-		String sql = "select sum(lottery_zhu) as num from u_lottery_yuanbao where lottery_date = '"
+		String sql = "SELECT sum(lottery_zhu) as num from u_lottery_yuanbao where lottery_date = '"
 				+ lottery_date + "' ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -189,7 +189,7 @@ public class PlayerLotteryDAO extends DaoBase
 		return num;
 	}
 
-	// µÃµ½ÅÅÃûÁì½±µÈĞÅÏ¢
+	// å¾—åˆ°æ’åé¢†å¥–ç­‰ä¿¡æ¯
 	public List<LotteryOutPrintVO> getPlayerLotteryAndSysLotteryInfo(
 			int pageNO, int perPage)
 	{
@@ -222,12 +222,12 @@ public class PlayerLotteryDAO extends DaoBase
 		return list;
 	}
 
-	// µÃµ½ÅÅÃû
+	// å¾—åˆ°æ’å
 	public List<LotteryOutPrintVO> getPlayerRank(String date)
 	{
 		List<LotteryOutPrintVO> list = new ArrayList<LotteryOutPrintVO>();
 		LotteryOutPrintVO vo = null;
-		String sql = "select sum(lottery_zhu*lottery_bonus) as num,p_pk from u_lottery_yuanbao where lottery_date != '"
+		String sql = "SELECT sum(lottery_zhu*lottery_bonus) as num,p_pk from u_lottery_yuanbao where lottery_date != '"
 				+ date + "' group by p_pk order by num desc limit 10 ";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -257,13 +257,13 @@ public class PlayerLotteryDAO extends DaoBase
 		return list;
 	}
 
-	// Íæ¼ÒµÄÀúÊ·¼ÍÂ¼
+	// ç©å®¶çš„å†å²çºªå½•
 	public List<LotteryOutPrintVO> getPlayerLotteryHistory(int p_pk, int page,
 			int perpage)
 	{
 		List<LotteryOutPrintVO> list = new ArrayList<LotteryOutPrintVO>();
 		LotteryOutPrintVO vo = null;
-		String sql = "select a.lottery_date as lottery_date,a.lottery_content as player_lottery,b.lottery_content as sys_lottery from u_lottery_yuanbao as a ,s_lottery_yuanbao as b where a.lottery_date = b.lottery_date and p_pk = '"
+		String sql = "SELECT a.lottery_date as lottery_date,a.lottery_content as player_lottery,b.lottery_content as sys_lottery from u_lottery_yuanbao as a ,s_lottery_yuanbao as b where a.lottery_date = b.lottery_date and p_pk = '"
 				+ p_pk
 				+ "' order by lottery_date desc limit "
 				+ (page * perpage) + "," + perpage;
@@ -299,7 +299,7 @@ public class PlayerLotteryDAO extends DaoBase
 	public int getPlayerLotteryAllNum(int p_pk)
 	{
 		int num = 0;
-		String sql = "select count(*) as num from u_lottery_yuanbao where p_pk = "
+		String sql = "SELECT count(*) as num from u_lottery_yuanbao where p_pk = "
 				+ p_pk;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
@@ -326,11 +326,11 @@ public class PlayerLotteryDAO extends DaoBase
 		return num;
 	}
 
-	// µÃµ½×¢Êı ½ñÌì
+	// å¾—åˆ°æ³¨æ•° ä»Šå¤©
 	public int getPlayerLotteryNumToday(int p_pk, String lottery_date, int lv)
 	{
 		int num = 0;
-		String sql = "select count(*) as num from u_lottery_yuanbao where p_pk = '"
+		String sql = "SELECT count(*) as num from u_lottery_yuanbao where p_pk = '"
 				+ p_pk
 				+ "' and lottery_date like '%"
 				+ lottery_date

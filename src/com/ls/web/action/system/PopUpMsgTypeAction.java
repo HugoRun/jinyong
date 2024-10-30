@@ -48,7 +48,7 @@ public class PopUpMsgTypeAction extends DispatchAction {
 		UMessageInfoVO result = null; 
 		UMsgService uMsgService = new UMsgService(); 
 		result = uMsgService.processMsg(uMsgInfo, roleInfo,request,response);
-		if(result.equals(PopUpMsgType.MESSAGE_SWAP)){//Èç¹ûÊÇ½»Ò×ÀàĞÍ ÄÇÃ´Ìø×ªµ½½»Ò×Ò³Ãæ
+		if(result.equals(PopUpMsgType.MESSAGE_SWAP)){//å¦‚æœæ˜¯äº¤æ˜“ç±»å‹ é‚£ä¹ˆè·³è½¬åˆ°äº¤æ˜“é¡µé¢
 			
 		}
 		request.setAttribute("result", result.getResult());

@@ -22,7 +22,7 @@ public class GameOnlineNumRecordService  extends TimerTask {
 	public void run()
 	{
 		StatisticsDao statDao = new StatisticsDao();
-		//在线玩家人数统计
+		//鍦ㄧ嚎鐜╁浜烘暟缁熻
 		int nowOnlineNum = LoginService.getOnlineNum();;
 		
 		int nowNum = statDao.getNowHourNum(getNowHours(),getToday());
@@ -37,7 +37,7 @@ public class GameOnlineNumRecordService  extends TimerTask {
 	}
 	
 	/**
-	 * 获得当前时间的小时格式化表示
+	 * 鑾峰緱褰撳墠鏃堕棿鐨勫皬鏃舵牸寮忓寲琛ㄧず
 	 * @return
 	 */
 	private static String getNowHours()
@@ -49,7 +49,7 @@ public class GameOnlineNumRecordService  extends TimerTask {
 	}
 	
 	/**
-	 * 获得每天时间的格式化表示
+	 * 鑾峰緱姣忓ぉ鏃堕棿鐨勬牸寮忓寲琛ㄧず
 	 * @return
 	 */
 	private static String getToday()

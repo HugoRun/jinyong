@@ -2,15 +2,15 @@ package com.lw.vo.laborage;
 
 public class PlayerLaborageVO
 {
-	/** Íæ¼ÒÊ±¼ä±í */
+	/** ç©å®¶æ—¶é—´è¡¨ */
 	private int laborageId;
-	/** Íæ¼ÒPPK */
+	/** ç©å®¶PPK */
 	private int pPk;
-	/** Íæ¼Ò»î¶¯Ê±¼äÍ³¼Æ±í */
+	/** ç©å®¶æ´»åŠ¨æ—¶é—´ç»Ÿè®¡è¡¨ */
 	private int laborageThisTime;
-	/** Íæ¼ÒÉÏÖÜ×ÜÊ±¼ä±í */
+	/** ç©å®¶ä¸Šå‘¨æ€»æ—¶é—´è¡¨ */
 	private int laborageOldtime;
-	/** Áì¹¤×ÊµÄÁìÈ¡×Ö½Ú */
+	/** é¢†å·¥èµ„çš„é¢†å–å­—èŠ‚ */
 	private int laboragecatch;
 
 	public int getLaborageId()

@@ -10,11 +10,11 @@ import com.lw.vo.synthesize.SynthesizeVO;
 public class SynthesizeDao extends DaoBase
 {
 
-	/** µÃµ½Åä·½µÄĞÅÏ¢ */
+	/** å¾—åˆ°é…æ–¹çš„ä¿¡æ¯ */
 	public SynthesizeVO getSynthesize(int s_id)
 	{
 		SynthesizeVO vo = null;
-		String sql = "select * from synthesize where  s_id = " + s_id;
+		String sql = "SELECT * FROM synthesize where  s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -47,12 +47,12 @@ public class SynthesizeDao extends DaoBase
 		return vo;
 	}
 
-	/** ¸ù¾İÉú»î¼¼ÄÜÀàĞÍµÃµ½Åä·½±í */
+	/** æ ¹æ®ç”Ÿæ´»æŠ€èƒ½ç±»å‹å¾—åˆ°é…æ–¹è¡¨ */
 	public List<SynthesizeVO> getSynthesize(int s_type, int s_level)
 	{
 		List<SynthesizeVO> list = new ArrayList<SynthesizeVO>();
 		SynthesizeVO vo = null;
-		String sql = "select * from synthesize where  s_type = " + s_type
+		String sql = "SELECT * FROM synthesize where  s_type = " + s_type
 				+ " and s_level <= " + s_level;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -87,11 +87,11 @@ public class SynthesizeDao extends DaoBase
 		return list;
 	}
 
-	/** ¸ù¾İÅä·½IDµÃµ½×î´ó¼¼ÄÜÊìÁ·¶È */
+	/** æ ¹æ®é…æ–¹IDå¾—åˆ°æœ€å¤§æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public int getSynthesizeMaxSleight(int s_id)
 	{
 		int s_max_sleight = 0;
-		String sql = "select s_max_sleight from synthesize where  s_id = "
+		String sql = "SELECT s_max_sleight from synthesize where  s_id = "
 				+ s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -118,11 +118,11 @@ public class SynthesizeDao extends DaoBase
 		return s_max_sleight;
 	}
 
-	/** ¸ù¾İÅä·½IDµÃµ½ĞèÒª¼¼ÄÜÊìÁ·¶È */
+	/** æ ¹æ®é…æ–¹IDå¾—åˆ°éœ€è¦æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public int getSynthesizeMinSleight(int s_id)
 	{
 		int s_min_sleight = 0;
-		String sql = "select s_min_sleight from synthesize where  s_id = "
+		String sql = "SELECT s_min_sleight from synthesize where  s_id = "
 				+ s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -149,11 +149,11 @@ public class SynthesizeDao extends DaoBase
 		return s_min_sleight;
 	}
 
-	/** ¸ù¾İÅä·½IDµÃµ½¼¼ÄÜÊìÁ·¶È */
+	/** æ ¹æ®é…æ–¹IDå¾—åˆ°æŠ€èƒ½ç†Ÿç»ƒåº¦ */
 	public int getSynthesizeSleight(int s_id)
 	{
 		int s_sleight = 0;
-		String sql = "select s_sleight from synthesize where  s_id = " + s_id;
+		String sql = "SELECT s_sleight from synthesize where  s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -179,11 +179,11 @@ public class SynthesizeDao extends DaoBase
 		return s_sleight;
 	}
 
-	/** ¸ù¾İÅä·½IDÅĞ¶ÏÊÇ·ñĞèÒªÅä·½Êé */
+	/** æ ¹æ®é…æ–¹IDåˆ¤æ–­æ˜¯å¦éœ€è¦é…æ–¹ä¹¦ */
 	public int getSynthesizeHaveBook(int s_id)
 	{
 		int s_book = 0;
-		String sql = "select s_book from synthesize where  s_id = " + s_id;
+		String sql = "SELECT s_book from synthesize where  s_id = " + s_id;
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		try
@@ -209,11 +209,11 @@ public class SynthesizeDao extends DaoBase
 		return s_book;
 	}
 
-	/** ¸ù¾İÎïÆ·Ãû³ÆµÃµ½ÎïÆ·µÄĞÅÏ¢ */
+	/** æ ¹æ®ç‰©å“åç§°å¾—åˆ°ç‰©å“çš„ä¿¡æ¯ */
 	public String getPropInfo(String prop_name)
 	{
 		String info = null;
-		String sql = "select prop_display from prop where  prop_name = '"
+		String sql = "SELECT prop_display from prop where  prop_name = '"
 				+ prop_name + "'";
 		logger.debug(sql);
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
@@ -240,13 +240,13 @@ public class SynthesizeDao extends DaoBase
 		return info;
 	}
 
-	/** Åä·½·ÖÒ³´¦Àí */
+	/** é…æ–¹åˆ†é¡µå¤„ç† */
 	public List<SynthesizeVO> getSynthesizeList(int s_type, int s_level,
 			int thispage, int perpagenum)
 	{
 		List<SynthesizeVO> list = new ArrayList<SynthesizeVO>();
 		SynthesizeVO vo = null;
-		String sql = "select * from synthesize where  s_type = " + s_type
+		String sql = "SELECT * FROM synthesize where  s_type = " + s_type
 				+ " and s_level <= " + s_level + " limit " + perpagenum
 				+ " offset " + perpagenum * (thispage - 1);
 		logger.debug(sql);

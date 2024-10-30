@@ -23,7 +23,7 @@ import com.pub.ben.info.Expression;
 
 public class WishingTreeAction extends DispatchAction
 {
-	// ²é¿´ĞÅÏ¢
+	// æŸ¥çœ‹ä¿¡æ¯
 	public ActionForward index(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -31,7 +31,7 @@ public class WishingTreeAction extends DispatchAction
 		String hint = (String) request.getAttribute("hint");
 		String page_no_str = request.getParameter("page_no");
 
-		// µÃµ½ÖÃ¶¥ĞÅÏ¢
+		// å¾—åˆ°ç½®é¡¶ä¿¡æ¯
 		List<WishingTreeVO> list = ws.getTopWishing();
 
 		int page_no = 1;
@@ -48,7 +48,7 @@ public class WishingTreeAction extends DispatchAction
 		return mapping.findForward("wishing_index");
 	}
 
-	// Ğ´ĞÅÏ¢
+	// å†™ä¿¡æ¯
 	public ActionForward write(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -71,7 +71,7 @@ public class WishingTreeAction extends DispatchAction
 				.getBasicInfo().getPPk(), 4116);
 		if (prop_num < 1)
 		{
-			request.setAttribute("display", "ÄúÃ»ÓĞ" + prop_name + "Õâ¸öÎïÆ·!");
+			request.setAttribute("display", "æ‚¨æ²¡æœ‰" + prop_name + "è¿™ä¸ªç‰©å“!");
 			return display(mapping, form, request, response);
 		}
 		return mapping.findForward("write");
@@ -92,7 +92,7 @@ public class WishingTreeAction extends DispatchAction
 				.getBasicInfo().getPPk(), 4117);
 		if (prop_num < 1)
 		{
-			request.setAttribute("display", "ÄúÃ»ÓĞ" + prop_name + "Õâ¸öÎïÆ·!");
+			request.setAttribute("display", "æ‚¨æ²¡æœ‰" + prop_name + "è¿™ä¸ªç‰©å“!");
 			return display(mapping, form, request, response);
 		}
 		return mapping.findForward("set_top");
@@ -107,7 +107,7 @@ public class WishingTreeAction extends DispatchAction
 		String wishing = (String) request.getParameter("wishing");
 		if (Expression.hasPublishWithMail(wishing) == -1)
 		{
-			request.setAttribute("hint", "ÄúÊäÈëÁË·Ç·¨×Ö·û!");
+			request.setAttribute("hint", "æ‚¨è¾“å…¥äº†éæ³•å­—ç¬¦!");
 			return write(mapping, form, request, response);
 		}
 		WishingTreeService ws = new WishingTreeService();
@@ -115,7 +115,7 @@ public class WishingTreeAction extends DispatchAction
 				.getBasicInfo().getName(), wishing);
 		GoodsService gs = new GoodsService();
 		gs.removeProps(roleInfo.getBasicInfo().getPPk(), 4116, 1,GameLogManager.R_USE);
-		request.setAttribute("display", "·¢ËÍ³É¹¦!");
+		request.setAttribute("display", "å‘é€æˆåŠŸ!");
 		return mapping.findForward("display");
 	}
 
@@ -130,7 +130,7 @@ public class WishingTreeAction extends DispatchAction
 		ws.setTopWishing(Integer.parseInt(id));
 		GoodsService gs = new GoodsService();
 		gs.removeProps(roleInfo.getBasicInfo().getPPk(), 4117, 1,GameLogManager.R_USE);
-		request.setAttribute("display", "ÖÃ¶¥³É¹¦!");
+		request.setAttribute("display", "ç½®é¡¶æˆåŠŸ!");
 		return mapping.findForward("display");
 	}
 
@@ -142,7 +142,7 @@ public class WishingTreeAction extends DispatchAction
 		return mapping.findForward("display");
 	}
 
-	// ²é¿´ĞÅÏ¢
+	// æŸ¥çœ‹ä¿¡æ¯
 	public ActionForward indexGM(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -150,7 +150,7 @@ public class WishingTreeAction extends DispatchAction
 		String hint = (String) request.getAttribute("hint");
 		String page_no_str = request.getParameter("page_no");
 
-		// µÃµ½ÖÃ¶¥ĞÅÏ¢
+		// å¾—åˆ°ç½®é¡¶ä¿¡æ¯
 		List<WishingTreeVO> list = ws.getTopWishing();
 
 		int page_no = 1;
@@ -167,7 +167,7 @@ public class WishingTreeAction extends DispatchAction
 		return mapping.findForward("wishing_index_gm");
 	}
 
-	// ²é¿´ĞÅÏ¢
+	// æŸ¥çœ‹ä¿¡æ¯
 	public ActionForward delete(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -178,7 +178,7 @@ public class WishingTreeAction extends DispatchAction
 		String id = request.getParameter("id");
 		ws.deleteWishing(Integer.parseInt(id));
 
-		// µÃµ½ÖÃ¶¥ĞÅÏ¢
+		// å¾—åˆ°ç½®é¡¶ä¿¡æ¯
 		List<WishingTreeVO> list = ws.getTopWishing();
 
 		int page_no = 1;

@@ -10,20 +10,20 @@ import org.apache.oro.text.regex.*;
 import com.ls.pub.util.WmParser;
 
 /**
- * @author ºîºÆ¾ü 11:45:46 AM 
- * Àà¼ò½é: Ê¹ÓÃÕıÔò±í´ïÊ½ÑéÖ¤Êı¾İ»òÌáÈ¡Êı¾İ,ÀàÖĞµÄ·½·¨È«Îª¾²Ì¬µÄ Ö÷Òª·½·¨: 
- * 1.isHardRegexpValidate(String source, String regexp) Çø·Ö´óĞ¡Ğ´Ãô¸ĞµÄÕı¹æ±í´ïÊ½ÅúÅä 
- * 2.isSoftRegexpValidate(String source, String regexp) ²»Çø·Ö´óĞ¡Ğ´µÄÕı¹æ±í´ïÊ½ÅúÅä 
- * 3.getHardRegexpMatchResult(String source, String regexp)·µ»ØĞíÒªµÄÅúÅä½á¹û¼¯(´óĞ¡Ğ´Ãô¸ĞµÄÕı¹æ±í´ïÊ½ÅúÅä) 
- * 4.getSoftRegexpMatchResult(String source,String regexp) ·µ»ØĞíÒªµÄÅúÅä½á¹û¼¯(²»Çø·Ö´óĞ¡Ğ´µÄÕı¹æ±í´ïÊ½ÅúÅä) 
- * 5 getHardRegexpArray(String source, String regexp) ·µ»ØĞíÒªµÄÅúÅä½á¹û¼¯(´óĞ¡Ğ´Ãô¸ĞµÄÕı¹æ±í´ïÊ½ÅúÅä) 
- * 6.getSoftRegexpMatchResult(String source, String regexp) ·µ»ØĞíÒªµÄÅúÅä½á¹û¼¯(²»Çø·Ö´óĞ¡Ğ´µÄÕı¹æ±í´ïÊ½ÅúÅä) 
- * 7.getBetweenSeparatorStr(final String originStr,final char leftSeparator,final char rightSeparator)µÃµ½Ö¸¶¨·Ö¸ô·ûÖĞ¼äµÄ×Ö·û´®µÄ¼¯ºÏ
+ * @author ä¾¯æµ©å†› 11:45:46 AM 
+ * ç±»ç®€ä»‹: ä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼éªŒè¯æ•°æ®æˆ–æå–æ•°æ®,ç±»ä¸­çš„æ–¹æ³•å…¨ä¸ºé™æ€çš„ ä¸»è¦æ–¹æ³•: 
+ * 1.isHardRegexpValidate(String source, String regexp) åŒºåˆ†å¤§å°å†™æ•æ„Ÿçš„æ­£è§„è¡¨è¾¾å¼æ‰¹é… 
+ * 2.isSoftRegexpValidate(String source, String regexp) ä¸åŒºåˆ†å¤§å°å†™çš„æ­£è§„è¡¨è¾¾å¼æ‰¹é… 
+ * 3.getHardRegexpMatchResult(String source, String regexp)è¿”å›è®¸è¦çš„æ‰¹é…ç»“æœé›†(å¤§å°å†™æ•æ„Ÿçš„æ­£è§„è¡¨è¾¾å¼æ‰¹é…) 
+ * 4.getSoftRegexpMatchResult(String source,String regexp) è¿”å›è®¸è¦çš„æ‰¹é…ç»“æœé›†(ä¸åŒºåˆ†å¤§å°å†™çš„æ­£è§„è¡¨è¾¾å¼æ‰¹é…) 
+ * 5 getHardRegexpArray(String source, String regexp) è¿”å›è®¸è¦çš„æ‰¹é…ç»“æœé›†(å¤§å°å†™æ•æ„Ÿçš„æ­£è§„è¡¨è¾¾å¼æ‰¹é…) 
+ * 6.getSoftRegexpMatchResult(String source, String regexp) è¿”å›è®¸è¦çš„æ‰¹é…ç»“æœé›†(ä¸åŒºåˆ†å¤§å°å†™çš„æ­£è§„è¡¨è¾¾å¼æ‰¹é…) 
+ * 7.getBetweenSeparatorStr(final String originStr,final char leftSeparator,final char rightSeparator)å¾—åˆ°æŒ‡å®šåˆ†éš”ç¬¦ä¸­é—´çš„å­—ç¬¦ä¸²çš„é›†åˆ
  * 
  */
 public class Expression
 {
-	/** ±£·ÅÓĞËÄ×é¶ÔÓ¦·Ö¸ô·û */
+	/** ä¿æ”¾æœ‰å››ç»„å¯¹åº”åˆ†éš”ç¬¦ */
 	static final Set<String> SEPARATOR_SET = new TreeSet<String>();
 	{
 		SEPARATOR_SET.add("(");
@@ -36,10 +36,10 @@ public class Expression
 		SEPARATOR_SET.add(">");
 	}
 
-	/** ´æ·Å¸÷ÖÖÕı¹æ±í´ïÊ½(ÒÔkey->valueµÄĞÎÊ½) */
+	/** å­˜æ”¾å„ç§æ­£è§„è¡¨è¾¾å¼(ä»¥key->valueçš„å½¢å¼) */
 	public static HashMap<String, String> regexpHash = new HashMap<String, String>();
 
-	/** ´æ·Å¸÷ÖÖÕı¹æ±í´ïÊ½(ÒÔkey->valueµÄĞÎÊ½) */
+	/** å­˜æ”¾å„ç§æ­£è§„è¡¨è¾¾å¼(ä»¥key->valueçš„å½¢å¼) */
 	public static List matchingResultList = new ArrayList();
 
 	private Expression()
@@ -48,7 +48,7 @@ public class Expression
 	}
 
 	/**
-	 * ·µ»Ø Regexp ÊµÀı
+	 * è¿”å› Regexp å®ä¾‹
 	 * 
 	 * @return
 	 */
@@ -58,290 +58,290 @@ public class Expression
 	}
 
 	/**
-	 * Æ¥ÅäÍ¼Ïó
+	 * åŒ¹é…å›¾è±¡
 	 * 
 	 * 
-	 * ¸ñÊ½: /Ïà¶ÔÂ·¾¶/ÎÄ¼şÃû.ºó×º (ºó×ºÎªgif,dmp,png)
+	 * æ ¼å¼: /ç›¸å¯¹è·¯å¾„/æ–‡ä»¶å.åç¼€ (åç¼€ä¸ºgif,dmp,png)
 	 * 
-	 * Æ¥Åä : /forum/head_icon/admini2005111_ff.gif »ò admini2005111.dmp
+	 * åŒ¹é… : /forum/head_icon/admini2005111_ff.gif æˆ– admini2005111.dmp
 	 * 
 	 * 
-	 * ²»Æ¥Åä: c:/admins4512.gif
+	 * ä¸åŒ¹é…: c:/admins4512.gif
 	 * 
 	 */
 	public static final String icon_regexp = "^(/{0,1}\\w){1,}\\.(gif|dmp|png|jpg)$|^\\w{1,}\\.(gif|dmp|png|jpg)$";
 
 	/**
-	 * Æ¥ÅäemailµØÖ·
+	 * åŒ¹é…emailåœ°å€
 	 * 
 	 * 
-	 * ¸ñÊ½: XXX@XXX.XXX.XX
+	 * æ ¼å¼: XXX@XXX.XXX.XX
 	 * 
-	 * Æ¥Åä : foo@bar.com »ò foobar@foobar.com.au
+	 * åŒ¹é… : foo@bar.com æˆ– foobar@foobar.com.au
 	 * 
 	 * 
-	 * ²»Æ¥Åä: foo@bar »ò $$$@bar.com
+	 * ä¸åŒ¹é…: foo@bar æˆ– $$$@bar.com
 	 * 
 	 */
 	public static final String email_regexp = "(?:\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3}$)";
 
 	/**
-	 * Æ¥ÅäÆ¥Åä²¢ÌáÈ¡url
+	 * åŒ¹é…åŒ¹é…å¹¶æå–url
 	 * 
 	 * 
-	 * ¸ñÊ½: XXXX://XXX.XXX.XXX.XX/XXX.XXX?XXX=XXX
+	 * æ ¼å¼: XXXX://XXX.XXX.XXX.XX/XXX.XXX?XXX=XXX
 	 * 
-	 * Æ¥Åä : http://www.suncer.com »ònews://www
+	 * åŒ¹é… : http://www.suncer.com æˆ–news://www
 	 * 
 	 * 
-	 * ÌáÈ¡(MatchResult matchResult=matcher.getMatch()): matchResult.group(0)=
+	 * æå–(MatchResult matchResult=matcher.getMatch()): matchResult.group(0)=
 	 * http://www.suncer.com:8080/index.html?login=true matchResult.group(1) =
 	 * http matchResult.group(2) = www.suncer.com matchResult.group(3) = :8080
 	 * matchResult.group(4) = /index.html?login=true
 	 * 
-	 * ²»Æ¥Åä: c:\window
+	 * ä¸åŒ¹é…: c:\window
 	 * 
 	 */
 	public static final String url_regexp = "(\\w+)://([^/:]+)(:\\d*)?([^#\\s]*)";
 
 	/**
-	 * Æ¥Åä²¢ÌáÈ¡http
+	 * åŒ¹é…å¹¶æå–http
 	 * 
 	 * 
-	 * ¸ñÊ½: http://XXX.XXX.XXX.XX/XXX.XXX?XXX=XXX »ò ftp://XXX.XXX.XXX »ò
+	 * æ ¼å¼: http://XXX.XXX.XXX.XX/XXX.XXX?XXX=XXX æˆ– ftp://XXX.XXX.XXX æˆ–
 	 * https://XXX
 	 * 
-	 * Æ¥Åä : http://www.suncer.com:8080/index.html?login=true
+	 * åŒ¹é… : http://www.suncer.com:8080/index.html?login=true
 	 * 
 	 * 
-	 * ÌáÈ¡(MatchResult matchResult=matcher.getMatch()): matchResult.group(0)=
+	 * æå–(MatchResult matchResult=matcher.getMatch()): matchResult.group(0)=
 	 * http://www.suncer.com:8080/index.html?login=true matchResult.group(1) =
 	 * http matchResult.group(2) = www.suncer.com matchResult.group(3) = :8080
 	 * matchResult.group(4) = /index.html?login=true
 	 * 
-	 * ²»Æ¥Åä: news://www
+	 * ä¸åŒ¹é…: news://www
 	 * 
 	 */
 	public static final String http_regexp = "(http|https|ftp)://([^/:]+)(:\\d*)?([^#\\s]*)";
 
 	/**
-	 * Æ¥ÅäÈÕÆÚ
+	 * åŒ¹é…æ—¥æœŸ
 	 * 
 	 * 
-	 * ¸ñÊ½(Ê×Î»²»Îª0): XXXX-XX-XX »ò XXXX XX XX »ò XXXX-X-X
+	 * æ ¼å¼(é¦–ä½ä¸ä¸º0): XXXX-XX-XX æˆ– XXXX XX XX æˆ– XXXX-X-X
 	 * 
 	 * 
-	 * ·¶Î§:1900--2099
+	 * èŒƒå›´:1900--2099
 	 * 
 	 * 
-	 * Æ¥Åä : 2005-04-04
+	 * åŒ¹é… : 2005-04-04
 	 * 
 	 * 
-	 * ²»Æ¥Åä: 01-01-01
+	 * ä¸åŒ¹é…: 01-01-01
 	 * 
 	 */
-	public static final String date_regexp = "^((((19){1}|(20){1})d{2})|d{2})[-\\s]{1}[01]{1}d{1}[-\\s]{1}[0-3]{1}d{1}$";// Æ¥ÅäÈÕÆÚ
+	public static final String date_regexp = "^((((19){1}|(20){1})d{2})|d{2})[-\\s]{1}[01]{1}d{1}[-\\s]{1}[0-3]{1}d{1}$";// åŒ¹é…æ—¥æœŸ
 
 	/**
-	 * Æ¥Åäµç»°
+	 * åŒ¹é…ç”µè¯
 	 * 
 	 * 
-	 * ¸ñÊ½Îª: 0XXX-XXXXXX(10-13Î»Ê×Î»±ØĞëÎª0) »ò0XXX XXXXXXX(10-13Î»Ê×Î»±ØĞëÎª0) »ò
+	 * æ ¼å¼ä¸º: 0XXX-XXXXXX(10-13ä½é¦–ä½å¿…é¡»ä¸º0) æˆ–0XXX XXXXXXX(10-13ä½é¦–ä½å¿…é¡»ä¸º0) æˆ–
 	 * 
-	 * (0XXX)XXXXXXXX(11-14Î»Ê×Î»±ØĞëÎª0) »ò XXXXXXXX(6-8Î»Ê×Î»²»Îª0) »ò
-	 * XXXXXXXXXXX(11Î»Ê×Î»²»Îª0)
-	 * 
-	 * 
-	 * Æ¥Åä : 0371-123456 »ò (0371)1234567 »ò (0371)12345678 »ò 010-123456 »ò
-	 * 010-12345678 »ò 12345678912
+	 * (0XXX)XXXXXXXX(11-14ä½é¦–ä½å¿…é¡»ä¸º0) æˆ– XXXXXXXX(6-8ä½é¦–ä½ä¸ä¸º0) æˆ–
+	 * XXXXXXXXXXX(11ä½é¦–ä½ä¸ä¸º0)
 	 * 
 	 * 
-	 * ²»Æ¥Åä: 1111-134355 »ò 0123456789
+	 * åŒ¹é… : 0371-123456 æˆ– (0371)1234567 æˆ– (0371)12345678 æˆ– 010-123456 æˆ–
+	 * 010-12345678 æˆ– 12345678912
+	 * 
+	 * 
+	 * ä¸åŒ¹é…: 1111-134355 æˆ– 0123456789
 	 * 
 	 */
 	public static final String phone_regexp = "^(?:0[0-9]{2,3}[-\\s]{1}|\\(0[0-9]{2,4}\\))[0-9]{6,8}$|^[1-9]{1}[0-9]{5,7}$|^[1-9]{1}[0-9]{10}$";
 
 	/**
-	 * Æ¥ÅäÉí·İÖ¤
+	 * åŒ¹é…èº«ä»½è¯
 	 * 
 	 * 
-	 * ¸ñÊ½Îª: XXXXXXXXXX(10Î») »ò XXXXXXXXXXXXX(13Î») »ò XXXXXXXXXXXXXXX(15Î») »ò
-	 * XXXXXXXXXXXXXXXXXX(18Î»)
+	 * æ ¼å¼ä¸º: XXXXXXXXXX(10ä½) æˆ– XXXXXXXXXXXXX(13ä½) æˆ– XXXXXXXXXXXXXXX(15ä½) æˆ–
+	 * XXXXXXXXXXXXXXXXXX(18ä½)
 	 * 
 	 * 
-	 * Æ¥Åä : 0123456789123
+	 * åŒ¹é… : 0123456789123
 	 * 
 	 * 
-	 * ²»Æ¥Åä: 0123456
+	 * ä¸åŒ¹é…: 0123456
 	 * 
 	 */
 	public static final String ID_card_regexp = "^\\d{10}|\\d{13}|\\d{15}|\\d{18}$";
 
 	/**
-	 * Æ¥ÅäÓÊ±à´úÂë
+	 * åŒ¹é…é‚®ç¼–ä»£ç 
 	 * 
 	 * 
-	 * ¸ñÊ½Îª: XXXXXX(6Î»)
+	 * æ ¼å¼ä¸º: XXXXXX(6ä½)
 	 * 
 	 * 
-	 * Æ¥Åä : 012345
+	 * åŒ¹é… : 012345
 	 * 
 	 * 
-	 * ²»Æ¥Åä: 0123456
-	 * 
-	 */
-	public static final String ZIP_regexp = "^[0-9]{6}$";// Æ¥ÅäÓÊ±à´úÂë
-
-	/**
-	 * ²»°üÀ¨ÌØÊâ×Ö·ûµÄÆ¥Åä (×Ö·û´®ÖĞ²»°üÀ¨·ûºÅ ÊıÑ§´Î·½ºÅ^ µ¥ÒıºÅ' Ë«ÒıºÅ" ·ÖºÅ; ¶ººÅ, Ã±ºÅ: ÊıÑ§¼õºÅ- ÓÒ¼âÀ¨ºÅ> ×ó¼âÀ¨ºÅ<
-	 * ·´Ğ±¸Ü\ ¼´¿Õ¸ñ,ÖÆ±í·û,»Ø³µ·ûµÈ )
-	 * 
-	 * 
-	 * ¸ñÊ½Îª: x »ò Ò»¸öÒ»ÉÏµÄ×Ö·û
-	 * 
-	 * 
-	 * Æ¥Åä : 012345
-	 * 
-	 * 
-	 * ²»Æ¥Åä: 0123456
+	 * ä¸åŒ¹é…: 0123456
 	 * 
 	 */
-	public static final String non_special_char_regexp = "^[^'\"\\;,:-<>\\s].+$";// Æ¥ÅäÓÊ±à´úÂë
+	public static final String ZIP_regexp = "^[0-9]{6}$";// åŒ¹é…é‚®ç¼–ä»£ç 
 
 	/**
-	 * Æ¥Åä·Ç¸ºÕûÊı£¨ÕıÕûÊı + 0)
+	 * ä¸åŒ…æ‹¬ç‰¹æ®Šå­—ç¬¦çš„åŒ¹é… (å­—ç¬¦ä¸²ä¸­ä¸åŒ…æ‹¬ç¬¦å· æ•°å­¦æ¬¡æ–¹å·^ å•å¼•å·' åŒå¼•å·" åˆ†å·; é€—å·, å¸½å·: æ•°å­¦å‡å·- å³å°–æ‹¬å·> å·¦å°–æ‹¬å·<
+	 * åæ–œæ \ å³ç©ºæ ¼,åˆ¶è¡¨ç¬¦,å›è½¦ç¬¦ç­‰ )
+	 * 
+	 * 
+	 * æ ¼å¼ä¸º: x æˆ– ä¸€ä¸ªä¸€ä¸Šçš„å­—ç¬¦
+	 * 
+	 * 
+	 * åŒ¹é… : 012345
+	 * 
+	 * 
+	 * ä¸åŒ¹é…: 0123456
+	 * 
+	 */
+	public static final String non_special_char_regexp = "^[^'\"\\;,:-<>\\s].+$";// åŒ¹é…é‚®ç¼–ä»£ç 
+
+	/**
+	 * åŒ¹é…éè´Ÿæ•´æ•°ï¼ˆæ­£æ•´æ•° + 0)
 	 */
 	public static final String non_negative_integers_regexp = "^\\d+$";
 
 	/**
-	 * Æ¥Åä²»°üÀ¨ÁãµÄ·Ç¸ºÕûÊı£¨ÕıÕûÊı > 0)
+	 * åŒ¹é…ä¸åŒ…æ‹¬é›¶çš„éè´Ÿæ•´æ•°ï¼ˆæ­£æ•´æ•° > 0)
 	 */
 	public static final String non_zero_negative_integers_regexp = "^[1-9]+\\d*$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÕıÕûÊı
+	 * åŒ¹é…æ­£æ•´æ•°
 	 * 
 	 */
 	public static final String positive_integer_regexp = "^[0-9]*[1-9][0-9]*$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÕıÕûÊı£¨ÕıÕûÊı + 0£©
+	 * åŒ¹é…æ­£æ•´æ•°ï¼ˆæ­£æ•´æ•° + 0ï¼‰
 	 * 
 	 */
 	public static final String positive_integer_contain0_regexp = "^[0-9]+$";
 	
 	/**
 	 * 
-	 * Æ¥Åä·ÇÕıÕûÊı£¨¸ºÕûÊı + 0£©
+	 * åŒ¹é…éæ­£æ•´æ•°ï¼ˆè´Ÿæ•´æ•° + 0ï¼‰
 	 * 
 	 */
 	public static final String non_positive_integers_regexp = "^((-\\d+)|(0+))$";
 
 	/**
 	 * 
-	 * Æ¥Åä¸ºÕûÊı
+	 * åŒ¹é…è´Ÿæ•´æ•°
 	 * 
 	 */
 	public static final String negative_integers_regexp = "^-[0-9]*[1-9][0-9]*$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÕûÊı
+	 * åŒ¹é…æ•´æ•°
 	 * 
 	 */
 	public static final String integer_regexp = "^-?\\d+$";
 
 	/**
 	 * 
-	 * Æ¥Åä·Ç¸º¸¡µãÊı£¨Õı¸¡µãÊı + 0£©
+	 * åŒ¹é…éè´Ÿæµ®ç‚¹æ•°ï¼ˆæ­£æµ®ç‚¹æ•° + 0ï¼‰
 	 * 
 	 */
 	public static final String non_negative_rational_numbers_regexp = "^\\d+(\\.\\d+)?$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÕı¸¡µãÊı
+	 * åŒ¹é…æ­£æµ®ç‚¹æ•°
 	 * 
 	 */
 	public static final String positive_rational_numbers_regexp = "^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
 
 	/**
 	 * 
-	 * Æ¥Åä·ÇÕı¸¡µãÊı£¨¸º¸¡µãÊı + 0£©
+	 * åŒ¹é…éæ­£æµ®ç‚¹æ•°ï¼ˆè´Ÿæµ®ç‚¹æ•° + 0ï¼‰
 	 * 
 	 */
 	public static final String non_positive_rational_numbers_regexp = "^((-\\d+(\\.\\d+)?)|(0+(\\.0+)?))$";
 
 	/**
 	 * 
-	 * Æ¥Åä¸º¸¡µãÊı
+	 * åŒ¹é…è´Ÿæµ®ç‚¹æ•°
 	 * 
 	 */
 	public static final String negative_rational_numbers_regexp = "^(-(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*)))$";
 
 	/**
 	 * 
-	 * Æ¥Åä¸¡µãÊı
+	 * åŒ¹é…æµ®ç‚¹æ•°
 	 * 
 	 */
 	public static final String rational_numbers_regexp = "^(-?\\d+)(\\.\\d+)?$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÓÉ26¸öÓ¢ÎÄ×ÖÄ¸×é³ÉµÄ×Ö·û´®
+	 * åŒ¹é…ç”±26ä¸ªè‹±æ–‡å­—æ¯ç»„æˆçš„å­—ç¬¦ä¸²
 	 * 
 	 */
 	public static final String letter_regexp = "^[A-Za-z]+$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÓÉ26¸öÓ¢ÎÄ,0-9Êı×ÖºÍºº×Ö×é³ÉµÄ×Ö·û´®
+	 * åŒ¹é…ç”±26ä¸ªè‹±æ–‡,0-9æ•°å­—å’Œæ±‰å­—ç»„æˆçš„å­—ç¬¦ä¸²
 	 * 
 	 */
-	public static final String chinese_regexp = "^[A-Za-z0-9Ò»-\u9FA5]+$";
+	public static final String chinese_regexp = "^[A-Za-z0-9ä¸€-\u9FA5]+$";
 	
 	/**
 	 * 
-	 * Æ¥ÅäÓÉ26¸öÓ¢ÎÄ×ÖÄ¸µÄ´óĞ´×é³ÉµÄ×Ö·û´®
+	 * åŒ¹é…ç”±26ä¸ªè‹±æ–‡å­—æ¯çš„å¤§å†™ç»„æˆçš„å­—ç¬¦ä¸²
 	 * 
 	 */
 	public static final String upward_letter_regexp = "^[A-Z]+$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÓÉ26¸öÓ¢ÎÄ×ÖÄ¸µÄĞ¡Ğ´×é³ÉµÄ×Ö·û´®
+	 * åŒ¹é…ç”±26ä¸ªè‹±æ–‡å­—æ¯çš„å°å†™ç»„æˆçš„å­—ç¬¦ä¸²
 	 * 
 	 */
 	public static final String lower_letter_regexp = "^[a-z]+$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÓÉÊı×ÖºÍ26¸öÓ¢ÎÄ×ÖÄ¸×é³ÉµÄ×Ö·û´®
+	 * åŒ¹é…ç”±æ•°å­—å’Œ26ä¸ªè‹±æ–‡å­—æ¯ç»„æˆçš„å­—ç¬¦ä¸²
 	 * 
 	 */
 	public static final String letter_number_regexp = "^[A-Za-z0-9]+$";
 
 	/**
 	 * 
-	 * Æ¥ÅäÓÉÊı×Ö¡¢26¸öÓ¢ÎÄ×ÖÄ¸»òÕßÏÂ»®Ïß×é³ÉµÄ×Ö·û´®
+	 * åŒ¹é…ç”±æ•°å­—ã€26ä¸ªè‹±æ–‡å­—æ¯æˆ–è€…ä¸‹åˆ’çº¿ç»„æˆçš„å­—ç¬¦ä¸²
 	 * 
 	 */
 	public static final String letter_number_underline_regexp = "^\\w+$";
 
 	/**
-	 * Æ¥ÅäÇ®9Î»Êı×Ö
+	 * åŒ¹é…é’±9ä½æ•°å­—
 	 */
 	public static final String positive_integer_money = "^[0-9]{0,9}(\\.[0-9]{1,2})?$";
 	
 	/**
-	 * Ìí¼ÓÕı¹æ±í´ïÊ½ (ÒÔkey->valueµÄĞÎÊ½´æ´¢)
+	 * æ·»åŠ æ­£è§„è¡¨è¾¾å¼ (ä»¥key->valueçš„å½¢å¼å­˜å‚¨)
 	 * 
 	 * @param regexpName
-	 *            ¸ÃÕı¹æ±í´ïÊ½Ãû³Æ `
+	 *            è¯¥æ­£è§„è¡¨è¾¾å¼åç§° `
 	 * @param regexp
-	 *            ¸ÃÕı¹æ±í´ïÊ½ÄÚÈİ
+	 *            è¯¥æ­£è§„è¡¨è¾¾å¼å†…å®¹
 	 */
 	public void putRegexpHash(String regexpName, String regexp)
 	{
@@ -349,12 +349,12 @@ public class Expression
 	}
 
 	/**
-	 * µÃµ½Õı¹æ±í´ïÊ½ÄÚÈİ (Í¨¹ıkeyÃûÌáÈ¡³övalue[Õı¹æ±í´ïÊ½ÄÚÈİ])
+	 * å¾—åˆ°æ­£è§„è¡¨è¾¾å¼å†…å®¹ (é€šè¿‡keyåæå–å‡ºvalue[æ­£è§„è¡¨è¾¾å¼å†…å®¹])
 	 * 
 	 * @param regexpName
-	 *            Õı¹æ±í´ïÊ½Ãû³Æ
+	 *            æ­£è§„è¡¨è¾¾å¼åç§°
 	 * 
-	 * @return Õı¹æ±í´ïÊ½ÄÚÈİ
+	 * @return æ­£è§„è¡¨è¾¾å¼å†…å®¹
 	 */
 	public String getRegexpHash(String regexpName)
 	{
@@ -364,13 +364,13 @@ public class Expression
 		}
 		else
 		{
-			////System.out.println("ÔÚregexpHashÖĞÃ»ÓĞ´ËÕı¹æ±í´ïÊ½");
+			////System.out.println("åœ¨regexpHashä¸­æ²¡æœ‰æ­¤æ­£è§„è¡¨è¾¾å¼");
 			return "";
 		}
 	}
 
 	/**
-	 * Çå³ıÕı¹æ±í´ïÊ½´æ·Åµ¥Ôª
+	 * æ¸…é™¤æ­£è§„è¡¨è¾¾å¼å­˜æ”¾å•å…ƒ
 	 */
 	public void clearRegexpHash()
 	{
@@ -379,32 +379,32 @@ public class Expression
 	}
 
 	/**
-	 * ´óĞ¡Ğ´Ãô¸ĞµÄÕı¹æ±í´ïÊ½ÅúÅä
+	 * å¤§å°å†™æ•æ„Ÿçš„æ­£è§„è¡¨è¾¾å¼æ‰¹é…
 	 * 
 	 * @param source
-	 *            ÅúÅäµÄÔ´×Ö·û´®
+	 *            æ‰¹é…çš„æºå­—ç¬¦ä¸²
 	 * 
 	 * @param regexp
-	 *            ÅúÅäµÄÕı¹æ±í´ïÊ½
+	 *            æ‰¹é…çš„æ­£è§„è¡¨è¾¾å¼
 	 * 
-	 * @return Èç¹ûÔ´×Ö·û´®·ûºÏÒªÇó·µ»ØÕæ,·ñÔò·µ»Ø¼Ù Èç:
-	 *         Regexp.isHardRegexpValidate("ygj@suncer.com.cn",email_regexp) ·µ»ØÕæ
+	 * @return å¦‚æœæºå­—ç¬¦ä¸²ç¬¦åˆè¦æ±‚è¿”å›çœŸ,å¦åˆ™è¿”å›å‡ å¦‚:
+	 *         Regexp.isHardRegexpValidate("ygj@suncer.com.cn",email_regexp) è¿”å›çœŸ
 	 */
 	public static boolean isHardRegexpValidate(String source, String regexp)
 	{
 
 		try
 		{
-			// ÓÃÓÚ¶¨ÒåÕı¹æ±í´ïÊ½¶ÔÏóÄ£°åÀàĞÍ
+			// ç”¨äºå®šä¹‰æ­£è§„è¡¨è¾¾å¼å¯¹è±¡æ¨¡æ¿ç±»å‹
 			PatternCompiler compiler = new Perl5Compiler();
 
-			// Õı¹æ±í´ïÊ½±È½ÏÅúÅä¶ÔÏó
+			// æ­£è§„è¡¨è¾¾å¼æ¯”è¾ƒæ‰¹é…å¯¹è±¡
 			PatternMatcher matcher = new Perl5Matcher();
 
-			// ÊµÀı´óĞ¡´óĞ¡Ğ´Ãô¸ĞµÄÕı¹æ±í´ïÊ½Ä£°å
+			// å®ä¾‹å¤§å°å¤§å°å†™æ•æ„Ÿçš„æ­£è§„è¡¨è¾¾å¼æ¨¡æ¿
 			Pattern hardPattern = compiler.compile(regexp);
 
-			// ·µ»ØÅúÅä½á¹û
+			// è¿”å›æ‰¹é…ç»“æœ
 			return matcher.contains(source, hardPattern);
 
 		}
@@ -417,7 +417,7 @@ public class Expression
 	}
 
 	/**
-	 * @param ×Ö·û¹ıÂË
+	 * @param å­—ç¬¦è¿‡æ»¤
 	 */
 	public static String encoding(String src)
 	{
@@ -469,7 +469,7 @@ public class Expression
 	}
 
 	/**
-	 * ·´¹ıÂËÌØÊâ×Ö·û
+	 * åè¿‡æ»¤ç‰¹æ®Šå­—ç¬¦
 	 */
 	public static String decoding(String src)
 	{
@@ -485,7 +485,7 @@ public class Expression
 	}
 	
 	/**
-	 * @param ×Ö·û¹ıÂË,µ±ÓĞÒÔÏÂµÄ ×Ö·ûÊ±,¾Í·µ»Ø-1
+	 * @param å­—ç¬¦è¿‡æ»¤,å½“æœ‰ä»¥ä¸‹çš„ å­—ç¬¦æ—¶,å°±è¿”å›-1
 	 */
 	public static int hasPublish(String src)
 	{
@@ -527,7 +527,7 @@ public class Expression
 	
 	
 	/**
-	 * @param ×Ö·û¹ıÂË,µ±ÓĞÒÔÏÂµÄ ×Ö·ûÊ±,¾Í·µ»Ø-1
+	 * @param å­—ç¬¦è¿‡æ»¤,å½“æœ‰ä»¥ä¸‹çš„ å­—ç¬¦æ—¶,å°±è¿”å›-1
 	 */
 	public static int hasPublishWithMail(String src)
 	{
@@ -568,21 +568,21 @@ public class Expression
 	} 
 	
 	/**
-	 * »ñµÃ¸öÈËµÄÕóÓª±íÊ¾£¬1ÎªÕıÅÉ£¬2ÎªĞ°ÅÉ
+	 * è·å¾—ä¸ªäººçš„é˜µè¥è¡¨ç¤ºï¼Œ1ä¸ºæ­£æ´¾ï¼Œ2ä¸ºé‚ªæ´¾
 	 * @param 
 	 */
 	public static String getCampName(int camp) {
 		if(camp == 1) {
-			return "ÕıÅÉ";
+			return "æ­£æ´¾";
 		} else if (camp == 2 ) {
-			return "Ğ°ÅÉ";
+			return "é‚ªæ´¾";
 		} else {
-			return "ÎŞ";
+			return "æ— ";
 		}
 	}
 
 	/**
-	 * Ãû×Ö²»ÄÜÓĞ µÄÎ¥·¨ ×Ö·û
+	 * åå­—ä¸èƒ½æœ‰ çš„è¿æ³• å­—ç¬¦
 	 * @param name
 	 * @return
 	 */
@@ -595,15 +595,15 @@ public class Expression
 			return true;
 		}
 		
-		if ( (name.indexOf("¿Í") > -1) && (name.indexOf("·ş") > -1) ) {
+		if ( (name.indexOf("å®¢") > -1) && (name.indexOf("æœ") > -1) ) {
 			return true;
 		}
 		
-		if ( (name.indexOf("¹Ü") > -1) && (name.indexOf("Àí") > -1) ) {
+		if ( (name.indexOf("ç®¡") > -1) && (name.indexOf("ç†") > -1) ) {
 			return true;
 		}
 		
-		if ( (name.indexOf("Ïµ") > -1) && (name.indexOf("Í³") > -1) ) {
+		if ( (name.indexOf("ç³»") > -1) && (name.indexOf("ç»Ÿ") > -1) ) {
 			return true;
 		}
 		
@@ -612,7 +612,7 @@ public class Expression
 	}
 	
 	
-	/**ÅĞ¶ÏÊäÈëÊÇ·ñÎª¿Õ*/
+	/**åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºç©º*/
 	public static boolean hasSpace(String str){
 		if(str.trim().equals("")){
 			return true;
@@ -622,9 +622,9 @@ public class Expression
 	}
 
 	/**
-	 * ¼ì²â½ÇÉ«ÃûÀïÊÇ·ñº¬ÓĞ±»½ûÖ¹´Ê£¬Èç¹ûÓĞ,·µ»Øtrue£¬Èç¹ûÃ»ÓĞ,·µ»Øfalse
-	 * @param checkStr ±»¼ì²éµÄ´Ê
-	 * @param forbid_type	Òª¼ì²âµÄÀàĞÍ
+	 * æ£€æµ‹è§’è‰²åé‡Œæ˜¯å¦å«æœ‰è¢«ç¦æ­¢è¯ï¼Œå¦‚æœæœ‰,è¿”å›trueï¼Œå¦‚æœæ²¡æœ‰,è¿”å›false
+	 * @param checkStr è¢«æ£€æŸ¥çš„è¯
+	 * @param forbid_type	è¦æ£€æµ‹çš„ç±»å‹
 	 * @return
 	 */
 	public static boolean hasForbidChar(String checkStr,int forbid_type)

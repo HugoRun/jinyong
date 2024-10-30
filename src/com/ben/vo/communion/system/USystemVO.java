@@ -4,20 +4,20 @@
 package com.ben.vo.communion.system;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 6:06:16 PM
  */
 public class USystemVO {
-	/** ¹«¹²ÆµµÀid */
+	/** å…¬å…±é¢‘é“id */
 	private int usPk;
-	/** ½ÇÉ«id */
+	/** è§’è‰²id */
 	private int pPk;
-	/** ½ÇÉ«Ãû³Æ */
+	/** è§’è‰²åç§° */
 	private String pName;
-	/** ¹«¹²ÁÄÌìÀàÈİ */
+	/** å…¬å…±èŠå¤©ç±»å®¹ */
 	private String usTitle;
-	/** ´´½¨Ê±¼ä */
+	/** åˆ›å»ºæ—¶é—´ */
 	private String createTime;
 
 	public int getUsPk() {

@@ -13,25 +13,25 @@ import com.ls.web.service.log.DataErrorLog;
 
 /**
  * @author ls
- * °ïÅÉ½¨Öş
+ * å¸®æ´¾å»ºç­‘
  */
 public class FGameBuild
 {
 	private int id;
-	private int grade;//µÈ¼¶
-	private String name;//Ãû×Ö
-	private String pic;//Í¼Æ¬
+	private int grade;//ç­‰çº§
+	private String name;//åå­—
+	private String pic;//å›¾ç‰‡
 	
-	private String des;//ĞèÒª²ÄÁÏÃèÊö
-	private int prestige;//ĞŞ½¨ĞèÒªµÄ°ïÅÉÉùÍû
-	private int mId;//ĞŞ½¨ĞèÒªµÄ²ÄÁÏid
-	private int mNum;//ĞŞ½¨ĞèÒªµÄ²ÄÁÏÊıÁ¿
+	private String des;//éœ€è¦ææ–™æè¿°
+	private int prestige;//ä¿®å»ºéœ€è¦çš„å¸®æ´¾å£°æœ›
+	private int mId;//ä¿®å»ºéœ€è¦çš„ææ–™id
+	private int mNum;//ä¿®å»ºéœ€è¦çš„ææ–™æ•°é‡
 	
-	private int contribute;//ÁìÈ¡ÏûºÄµÄ°ïÅÉ¹±Ï×
-	private String buffIdStr;//¹¦ÄÜ×Ö½Ú£ºbuffid×Ö·û´®,1-2
+	private int contribute;//é¢†å–æ¶ˆè€—çš„å¸®æ´¾è´¡çŒ®
+	private String buffIdStr;//åŠŸèƒ½å­—èŠ‚ï¼šbuffidå­—ç¬¦ä¸²,1-2
 	private List<BuffVO> buff_list = null;
 	
-	private int nextGradeId;//ÏÂÒ»¼¶id£¬ÎŞÏÂÒ»¼¶Ìí0
+	private int nextGradeId;//ä¸‹ä¸€çº§idï¼Œæ— ä¸‹ä¸€çº§æ·»0
 	
 	public List<BuffVO> getBuffList()
 	{
@@ -56,7 +56,7 @@ public class FGameBuild
 	}
 	
 	/**
-	 * µÃµ½ËùĞè²ÄÁÏĞÅÏ¢
+	 * å¾—åˆ°æ‰€éœ€ææ–™ä¿¡æ¯
 	 * @return
 	 */
 	public PropVO getMaterial()
@@ -65,7 +65,7 @@ public class FGameBuild
 	}
 	
 	/**
-	 * ¼òµ¥ÃèÊöĞÅÏ¢
+	 * ç®€å•æè¿°ä¿¡æ¯
 	 * @return
 	 */
 	public String getSimpleDes()
@@ -76,7 +76,7 @@ public class FGameBuild
 	}
 	
 	/**
-	 * µÃµ½ÏÂÒ»µÈ¼¶µÄÏêÏ¸ĞÅÏ¢
+	 * å¾—åˆ°ä¸‹ä¸€ç­‰çº§çš„è¯¦ç»†ä¿¡æ¯
 	 * @return
 	 */
 	public FGameBuild getNextGradeBuild()
@@ -85,7 +85,7 @@ public class FGameBuild
 	}
 	
 	/**
-	 * µÃµ½buffĞ§¹ûÃèÊö
+	 * å¾—åˆ°buffæ•ˆæœæè¿°
 	 * @return
 	 */
 	public String getBuffName()
@@ -96,13 +96,13 @@ public class FGameBuild
 		}
 		catch (Exception e)
 		{
-			DataErrorLog.debugData("FGameBuild.getBuffName£¬Í¼ÌÚbuffÊı¾İ´íÎó£ºid="+id+";buffIdStr="+buffIdStr);
+			DataErrorLog.debugData("FGameBuild.getBuffNameï¼Œå›¾è…¾buffæ•°æ®é”™è¯¯ï¼šid="+id+";buffIdStr="+buffIdStr);
 			return "";
 		}
 		
 	}
 	/**
-	 * µÃµ½buffĞ§¹ûÏêÏ¸ÃèÊö
+	 * å¾—åˆ°buffæ•ˆæœè¯¦ç»†æè¿°
 	 * @return
 	 */
 	public String getBuffDisplay()
@@ -119,7 +119,7 @@ public class FGameBuild
 	
 	
 	/**
-	 * ÏêÇéÃèÊö
+	 * è¯¦æƒ…æè¿°
 	 */
 	public String getDisplay()
 	{
@@ -130,13 +130,13 @@ public class FGameBuild
 			sb.append(ExchangeUtil.getPicDisplay(pic)).append("<br/>");
 		}
 		sb.append(this.des).append("<br/>");
-		sb.append("µÈ¼¶:").append(this.grade).append("¼¶").append("<br/>");
-		sb.append("×£¸£Ğ§¹û:").append("<br/>");
+		sb.append("ç­‰çº§:").append(this.grade).append("çº§").append("<br/>");
+		sb.append("ç¥ç¦æ•ˆæœ:").append("<br/>");
 		
 		FGameBuild next_grade_build = this;
 		do
 		{
-			sb.append(next_grade_build.getGrade()).append("¼¶,").append(next_grade_build.getBuffDisplay()).append(",Ğè").append(next_grade_build.getDes()).append("<br/>");
+			sb.append(next_grade_build.getGrade()).append("çº§,").append(next_grade_build.getBuffDisplay()).append(",éœ€").append(next_grade_build.getDes()).append("<br/>");
 		}
 		while( (next_grade_build = next_grade_build.getNextGradeBuild())!=null );
 		return sb.toString();

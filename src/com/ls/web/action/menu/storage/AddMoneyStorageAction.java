@@ -21,7 +21,7 @@ public class AddMoneyStorageAction extends DispatchAction{
 
 		Logger logger =  Logger.getLogger("log.action");
 	
-		// ½ğÇ®²Ö¿âÁĞ±í
+		// é‡‘é’±ä»“åº“åˆ—è¡¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 		HttpServletRequest request, HttpServletResponse response)
 			{
@@ -31,7 +31,7 @@ public class AddMoneyStorageAction extends DispatchAction{
 			return mapping.findForward("money_list");
 		}
 	
-	//´¢´æ½ğÇ®
+	//å‚¨å­˜é‡‘é’±
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 				{
@@ -43,26 +43,26 @@ public class AddMoneyStorageAction extends DispatchAction{
 			
 			request.setAttribute("id", uPk + "");
 			
-			//°ü¹üÀïÓĞµÄÇ®
+			//åŒ…è£¹é‡Œæœ‰çš„é’±
 			long partCopper = roleInfo.getBasicInfo().getCopper();
 			
 			
-			//²Ö¿âÀïµÄÇ®
+			//ä»“åº“é‡Œçš„é’±
 			 WareHouseDao storageDao = new WareHouseDao();
 			 WareHouseVO wareHouseVO = storageDao.getWareHouseIdBypPk(pPk+"",Wrap.COPPER);
 			 long warehouseMoney = Long.valueOf(wareHouseVO.getUwMoneyNumber()); 
 			
-			 //ÓÃ»§ÊäÈëµÄÇ®
-			 String copper_num = request.getParameter("copper_num");		//Í­
+			 //ç”¨æˆ·è¾“å…¥çš„é’±
+			 String copper_num = request.getParameter("copper_num");		//é“œ
 			 
 			 if(copper_num == null || copper_num == "" || copper_num.equals("")){
 				 copper_num = "0";
 			 }
 			 
-			 logger.info("°ü¹üÀïÓĞµÄÇ®"+partCopper);
-			 logger.info("²Ö¿âÀïµÄÇ®"+warehouseMoney);
+			 logger.info("åŒ…è£¹é‡Œæœ‰çš„é’±"+partCopper);
+			 logger.info("ä»“åº“é‡Œçš„é’±"+warehouseMoney);
 			
-			 //½ğÇ®´æÈëÉÏÏŞ
+			 //é‡‘é’±å­˜å…¥ä¸Šé™
 			 long warehouseMoneyLimit = Long.valueOf(wareHouseVO.getUwMoney());
 			 StringBuffer resultWml = new StringBuffer("");
 			 try{ 
@@ -70,25 +70,25 @@ public class AddMoneyStorageAction extends DispatchAction{
 				long input_money = Integer.valueOf(copper_num);
 				if(input_money < 0) {
 					input_money = 0;
-					resultWml.append("ĞÂ½ğ¾¯¸æÄú,Ë¢Ç®ÊÇÒ»¼şÎ¥·¨ĞĞÎª£¡");
+					resultWml.append("æ–°é‡‘è­¦å‘Šæ‚¨,åˆ·é’±æ˜¯ä¸€ä»¶è¿æ³•è¡Œä¸ºï¼");
 					request.setAttribute("resultWml", resultWml.toString());
 					return mapping.findForward("input_num");
 				}
 				
 				if(input_money + warehouseMoney > warehouseMoneyLimit){
-					resultWml.append("¶Ô²»Æğ£¬Ç®×¯ÖĞ×î¶àÖ»¿É´æ·ÅÒ»ÒÚ"+GameConfig.getMoneyUnitName()+"£¡");
+					resultWml.append("å¯¹ä¸èµ·ï¼Œé’±åº„ä¸­æœ€å¤šåªå¯å­˜æ”¾ä¸€äº¿"+GameConfig.getMoneyUnitName()+"ï¼");
 					request.setAttribute("resultWml", resultWml.toString());
 					return mapping.findForward("input_num");
 				}else if(input_money > partCopper){
-					resultWml.append("¶Ô²»Æğ£¬ÄúĞ¯´øµÄ½ğÇ®²»¹»£¡");
+					resultWml.append("å¯¹ä¸èµ·ï¼Œæ‚¨æºå¸¦çš„é‡‘é’±ä¸å¤Ÿï¼");
 					request.setAttribute("resultWml", resultWml.toString());
 					
 					return mapping.findForward("input_num");
 				}else {		
 					StorageService storageService = new StorageService();
 					resultWml.append(storageService.removeMoneyToWare(pPk,input_money)); 
-					resultWml.append("<br/>ÄúÇ®×¯ÖĞ´æ·Å½ğÇ®:"+MoneyUtil.changeCopperToStr((input_money + warehouseMoney)));
-					resultWml.append("<br/>Äú°ü¹üÖĞĞ¯´ø½ğÇ®:"+MoneyUtil.changeCopperToStr((Long.valueOf(partCopper) - input_money)));
+					resultWml.append("<br/>æ‚¨é’±åº„ä¸­å­˜æ”¾é‡‘é’±:"+MoneyUtil.changeCopperToStr((input_money + warehouseMoney)));
+					resultWml.append("<br/>æ‚¨åŒ…è£¹ä¸­æºå¸¦é‡‘é’±:"+MoneyUtil.changeCopperToStr((Long.valueOf(partCopper) - input_money)));
 					
 					request.setAttribute("resultWml", resultWml.toString());
 					return mapping.findForward("sussend");
@@ -96,10 +96,10 @@ public class AddMoneyStorageAction extends DispatchAction{
 				
 			}catch (NumberFormatException e)
 			{
-				// ÊıÁ¿µÄ¸ñÊ½²»ÕıÈ·
-				resultWml.append("ÕıÈ·ÊäÈë½ğÇ®ÊıÁ¿");
+				// æ•°é‡çš„æ ¼å¼ä¸æ­£ç¡®
+				resultWml.append("æ­£ç¡®è¾“å…¥é‡‘é’±æ•°é‡");
 				request.setAttribute("resultWml", resultWml.toString());
-				logger.info("ÕıÈ·ÊäÈë½ğÇ®ÊıÁ¿");
+				logger.info("æ­£ç¡®è¾“å…¥é‡‘é’±æ•°é‡");
 				return mapping.findForward("input_num");
 			}
 			

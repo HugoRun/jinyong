@@ -4,7 +4,7 @@
 package com.ben.vo.automatism;
 
 /**
- * @author ºîºÆ¾ü
+ * @author ä¾¯æµ©å†›
  * 
  * 5:16:22 PM
  */
@@ -12,13 +12,13 @@ public class AutomatismVO
 { 
 	/** id *//*
 	private int aPk;
-	*//** Íæ¼Òid *//*
+	*//** ç©å®¶id *//*
 	private int pPk; 
-	*//** ÀàĞÍ,ÖµÎª-1Ê±±íÊ¾Ã»ÓĞÉèÖÃ¿ì½İ¼ü *//*
+	*//** ç±»å‹,å€¼ä¸º-1æ—¶è¡¨ç¤ºæ²¡æœ‰è®¾ç½®å¿«æ·é”® *//*
 	private int scType;
-	*//** ²Ù×÷id *//*
+	*//** æ“ä½œid *//*
 	private int operateId;
-	*//** ×÷ÓÃ¶ÔÏó *//*
+	*//** ä½œç”¨å¯¹è±¡ *//*
 	private int object;
 
 	public int getAPk()

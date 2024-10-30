@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.ls.ben.vo.info.partinfo.PlayerPropGroupVO"%>
 <%@ page pageEncoding="UTF-8"%><%@page
-	import="com.ls.pub.config.GameConfig"%>
+    import="com.ls.pub.config.GameConfig"%>
 <%
 	UMessageInfoVO hint = (UMessageInfoVO)request.getAttribute("result");
 	String name = (String)request.getAttribute("name");

@@ -4,63 +4,61 @@
  */
 package com.ls.web.action.login;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.ls.web.service.login.LoginService;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.ls.pub.config.GameConfig;
-import com.ls.pub.constant.Channel;
-import com.ls.web.service.login.LoginService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/** 
+/**
  * MyEclipse Struts
  * Creation date: 03-31-2009
- * 
+ * <p>
  * XDoclet definition:
+ *
  * @struts.action parameter="cmd" validate="true"
  */
-public class LoginOutAction  extends DispatchAction {
-	/*
-	 * Generated Methods
-	 */
+public class LoginOutAction extends DispatchAction {
+    /*
+     * Generated Methods
+     */
 
-	/** 
-	 * Ω«…´ÕÀ≥ˆ
-	 * Method execute
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return ActionForward
-	 */
-	public ActionForward n1(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		String pPk = (String)session.getAttribute("pPk");
-		LoginService loginService = new LoginService();
-		loginService.loginoutRole(pPk);
-		session.removeAttribute("pPk");
-		return mapping.findForward("role_loginout");
-	}	
-	
-	/**
-	 * ’À∫≈ÕÀ≥ˆ
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	public ActionForward n2(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return mapping.findForward("user_loginout");
-	}
-	
+    /**
+     * ËßíËâ≤ÈÄÄÂá∫
+     * Method execute
+     *
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return ActionForward
+     */
+    public ActionForward n1(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String pPk = (String) session.getAttribute("pPk");
+        LoginService loginService = new LoginService();
+        loginService.loginoutRole(pPk);
+        session.removeAttribute("pPk");
+        return mapping.findForward("role_loginout");
+    }
+
+    /**
+     * Ë¥¶Âè∑ÈÄÄÂá∫
+     *
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     */
+    public ActionForward n2(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return mapping.findForward("user_loginout");
+    }
+
 }

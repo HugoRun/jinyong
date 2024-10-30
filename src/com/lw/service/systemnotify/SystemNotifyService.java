@@ -7,7 +7,7 @@ import com.lw.vo.systemnotify.SystemNotifyVO;
 
 public class SystemNotifyService
 {
-	/** 得到公告标题 */
+	/** 寰楀埌鍏憡鏍囬 */
 	public List<SystemNotifyVO> getNotifyTitle(int type)
 	{
 		SystemNotifyDao dao = new SystemNotifyDao();
@@ -15,7 +15,7 @@ public class SystemNotifyService
 		return list;
 	}
 
-	/** 得到公告内容 */
+	/** 寰楀埌鍏憡鍐呭 */
 	public String getNotifyContent(int id)
 	{
 		SystemNotifyDao dao = new SystemNotifyDao();
@@ -23,7 +23,7 @@ public class SystemNotifyService
 	}
 	
 	/**
-	 * 得到第一条公告的内容
+	 * 寰楀埌绗竴鏉″叕鍛婄殑鍐呭
 	 * @return
 	 */
 	public SystemNotifyVO getFirstNotifyInfo()

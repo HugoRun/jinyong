@@ -16,7 +16,7 @@ public class QuestionService
 
 	
 	/**
-	 * ¸üĞÂÓÃ»§´ğÌâ»ı·Ö±í
+	 * æ›´æ–°ç”¨æˆ·ç­”é¢˜ç§¯åˆ†è¡¨
 	 * @param pk
 	 */
 	public void updateIntegral(int pk) {
@@ -25,7 +25,7 @@ public class QuestionService
 	}
 
 	/**
-	 * »ñµÃµ±Ç°ÔÂ·İµÄ±íÊ¾
+	 * è·å¾—å½“å‰æœˆä»½çš„è¡¨ç¤º
 	 * @return
 	 */
 	private String getNowMouth()
@@ -37,7 +37,7 @@ public class QuestionService
 	}
 
 	/**
-	 * »ñµÃÁ¬Ğø´ğ¶Ô´ÎÊı
+	 * è·å¾—è¿ç»­ç­”å¯¹æ¬¡æ•°
 	 * @param pk
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class QuestionService
 		QuestionDao questionDao = new QuestionDao();
 		win_num = questionDao.getConuniteWinNum(pk,getNowMouth());
 		logger.info("win_num="+win_num);
-		//Èç¹ûÃ»ÓĞ£¬¾Í²åÈëÒ»¸ö
+		//å¦‚æœæ²¡æœ‰ï¼Œå°±æ’å…¥ä¸€ä¸ª
 		if(win_num == 0) {
 			if(questionDao.getHasThisMouth(pk,getNowMouth()) == 0){
 				questionDao.insertQiueInfo(pk,getNowMouth());
@@ -57,11 +57,11 @@ public class QuestionService
 	}					
 
 	/**
-	 * ¼ÆËãÓÃ»§ËùÓ¦¸ÃµÃµ½µÄ¾­Ñé,»ñµÃ¾­Ñé¹«Ê½=»ù±¾¾­Ñé¡Á´ğÌâÈËµÈ¼¶ÏµÊı¡ÁÁ¬Ğø´ğ¶Ô½±ÀøÏµÊı
-	 *	´ğÌâÈËµÈ¼¶ÏµÊı=´ğÌâÈËµÈ¼¶/grade_arg,Á¬Ğø´ğ¶Ô½±ÀøÏµÊı=1+Á¬Ğø´ğ¶Ô´ÎÊı/10
+	 * è®¡ç®—ç”¨æˆ·æ‰€åº”è¯¥å¾—åˆ°çš„ç»éªŒ,è·å¾—ç»éªŒå…¬å¼=åŸºæœ¬ç»éªŒÃ—ç­”é¢˜äººç­‰çº§ç³»æ•°Ã—è¿ç»­ç­”å¯¹å¥–åŠ±ç³»æ•°
+	 *	ç­”é¢˜äººç­‰çº§ç³»æ•°=ç­”é¢˜äººç­‰çº§/grade_arg,è¿ç»­ç­”å¯¹å¥–åŠ±ç³»æ•°=1+è¿ç»­ç­”å¯¹æ¬¡æ•°/10
 	 * @param player
 	 * @param conuniteWinNum
-	 * @param grade_arg µÈ¼¶ÏµÍ³
+	 * @param grade_arg ç­‰çº§ç³»ç»Ÿ
 	 * @return
 	 */
 	public int getAddExperience(int p_grade, int conuniteWinNum,long experience,int grade_arg)
@@ -74,7 +74,7 @@ public class QuestionService
 	}
 
 	/**
-	 * »ñµÃµÚÊ®ÌâÊ±µÄÏÔÊ¾ĞÅÏ¢
+	 * è·å¾—ç¬¬åé¢˜æ—¶çš„æ˜¾ç¤ºä¿¡æ¯
 	 * @param pk
 	 * @return
 	 */
@@ -83,16 +83,16 @@ public class QuestionService
 		QuestionDao questionDao = new QuestionDao();
 		
 		StringBuffer resultWml = new StringBuffer();
-		resultWml.append("ÄúÒÑ¾­Íê³ÉÁË½ñÈÕµÄ10µÀ´ğÌâ£¡<br/>");
+		resultWml.append("æ‚¨å·²ç»å®Œæˆäº†ä»Šæ—¥çš„10é“ç­”é¢˜ï¼<br/>");
 		String integral = questionDao.getIntegral(pk,getNowMouth())+"";
-		resultWml.append("±¾ÔÂÎÄ±È»ı·Ö:").append(integral).append("·Ö£¡");
+		resultWml.append("æœ¬æœˆæ–‡æ¯”ç§¯åˆ†:").append(integral).append("åˆ†ï¼");
 		String paiming = questionDao.getIntegralPaiMing(pk,getNowMouth())+"";
-		resultWml.append("±¾ÔÂÎÄ±ÈÅÅÎ»:µÚ").append(paiming).append("Ãû£¡");
+		resultWml.append("æœ¬æœˆæ–‡æ¯”æ’ä½:ç¬¬").append(paiming).append("åï¼");
 		return resultWml.toString();
 	}
 	
 	/**
-	 * »ñµÃ´ğÌâµÄÅÅÃû
+	 * è·å¾—ç­”é¢˜çš„æ’å
 	 * @return
 	 */
 	public List<QuestionVO> getQuestionRanking()
@@ -103,7 +103,7 @@ public class QuestionService
 	}
 
 	/**
-	 * ½«Á¬Ğø´ğÌâÕıÈ·ÊıÖÃÎª0.
+	 * å°†è¿ç»­ç­”é¢˜æ­£ç¡®æ•°ç½®ä¸º0.
 	 * @param pk
 	 */
 	public void updateConutiuteWinToZero(int pk)
@@ -113,19 +113,19 @@ public class QuestionService
 	}
 
 	/**
-	 * ½«Ã¿ÔÂÁ¬ĞøÃ¿ÈÕ¶¼´ğÍêÊ®µÀÌâµÄÌìÊı¼ÆËãÏÂÀ´.
+	 * å°†æ¯æœˆè¿ç»­æ¯æ—¥éƒ½ç­”å®Œåé“é¢˜çš„å¤©æ•°è®¡ç®—ä¸‹æ¥.
 	 * @param pk
 	 */
 	public void addCouniuteDay(int pk)
 	{
-		//Ã¿ÓĞÈ«´ğÍêÊ®µÀÌâ,¾Í¼ÓÒ»
+		//æ¯æœ‰å…¨ç­”å®Œåé“é¢˜,å°±åŠ ä¸€
 		QuestionDao questionDao = new QuestionDao();
 		questionDao.updateupdateTenAll(pk,getNowMouth());
 		
 	}
 	
 	/**
-	 * ½«µ±Ç°Ê±¼ä´æÈëÊı¾İ¿â²¢½«´ğÌâ±êÖ¾ÖÃÎª1 
+	 * å°†å½“å‰æ—¶é—´å­˜å…¥æ•°æ®åº“å¹¶å°†ç­”é¢˜æ ‡å¿—ç½®ä¸º1 
 	 * @param pk
 	 */
 	public void updateQuestionTimeAndFlag(int pk)
@@ -135,7 +135,7 @@ public class QuestionService
 	}
 
 	/**
-	 * ½«µ±Ç°Íæ¼ÒµÄ´ğÌâ±êÖ¾ÖÃÎª0
+	 * å°†å½“å‰ç©å®¶çš„ç­”é¢˜æ ‡å¿—ç½®ä¸º0
 	 * @param pk
 	 */
 	public void updateQuestionFlagByPPk(int pk)
@@ -146,7 +146,7 @@ public class QuestionService
 	}
 
 	/**
-	 * ¸ù¾İ´ğÌâ±êÖ¾²Ù×÷Á¬Ó®Êı
+	 * æ ¹æ®ç­”é¢˜æ ‡å¿—æ“ä½œè¿èµ¢æ•°
 	 * @param pk
 	 */
 	public void operateCountieWin(int pk)

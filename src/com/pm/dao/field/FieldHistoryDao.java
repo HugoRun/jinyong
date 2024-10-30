@@ -14,16 +14,16 @@ import com.pm.constant.FinalNumber;
 
 public class FieldHistoryDao extends DaoBase {
 	/**
-	 * »ñµÃÉÏ³¡Õ½¶·µÄÊ¤ÀûÕß
-	 * @param field_type Õ½³¡µÄ±àºÅ,ÒÔÊ¾Çø·Ö
+	 * è·å¾—ä¸Šåœºæˆ˜æ–—çš„èƒœåˆ©è€…
+	 * @param field_type æˆ˜åœºçš„ç¼–å·,ä»¥ç¤ºåŒºåˆ†
 	 * @return
 	 */
 	public int getPreviousVictor(String field_type)
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select fh_victor from s_field_history where fh_type = "+field_type+" order by fh_id desc limit 1";
-		logger.debug("»ñµÃÉÏ³¡Õ½¶·µÄÊ¤ÀûÕß="+sql);
+		String sql = "SELECT fh_victor from s_field_history where fh_type = "+field_type+" order by fh_id desc limit 1";
+		logger.debug("è·å¾—ä¸Šåœºæˆ˜æ–—çš„èƒœåˆ©è€…="+sql);
 		int victor = 0;
 		try
 		{
@@ -47,8 +47,8 @@ public class FieldHistoryDao extends DaoBase {
 	}
 	
 	/**
-	 * »ñµÃÉÏ³¡Õ½¶·µÄÊ¤ÀûÕß
-	 * @param field_type Õ½³¡µÄ±àºÅ,ÒÔÊ¾Çø·Ö
+	 * è·å¾—ä¸Šåœºæˆ˜æ–—çš„èƒœåˆ©è€…
+	 * @param field_type æˆ˜åœºçš„ç¼–å·,ä»¥ç¤ºåŒºåˆ†
 	 * @return
 	 */
 	public int getPreviousVictorByScene(String sceneID)
@@ -63,15 +63,15 @@ public class FieldHistoryDao extends DaoBase {
 	}
 	
 	/**
-	 * »ñµÃÉÏ³¡Õ½¶·µÄ³¡´ÎĞòºÅ
+	 * è·å¾—ä¸Šåœºæˆ˜æ–—çš„åœºæ¬¡åºå·
 	 * @return
 	 */
 	public int getPreviousID( String field_type)
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "select fh_sequence from s_field_history where fh_type = "+field_type+" order by fh_create_time desc limit 1";
-		logger.debug("»ñµÃÉÏ³¡Õ½¶·µÄ³¡´ÎĞòºÅ="+sql);
+		String sql = "SELECT fh_sequence from s_field_history where fh_type = "+field_type+" order by fh_create_time desc limit 1";
+		logger.debug("è·å¾—ä¸Šåœºæˆ˜æ–—çš„åœºæ¬¡åºå·="+sql);
 		int fh_id = 0;
 		try
 		{
@@ -95,7 +95,7 @@ public class FieldHistoryDao extends DaoBase {
 	}
 
 	/**
-	 * °ÑÕâ³¡Õ½¶·µÄÊ¤ÀûÕß¼ÇÂ¼ÏÂÀ´ÒÔ¹©²éÑ¯
+	 * æŠŠè¿™åœºæˆ˜æ–—çš„èƒœåˆ©è€…è®°å½•ä¸‹æ¥ä»¥ä¾›æŸ¥è¯¢
 	 * @param fh_victor
 	 * @param date
 	 * @param field_type
@@ -105,8 +105,8 @@ public class FieldHistoryDao extends DaoBase {
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "insert into s_field_history value (null,"+fh_sequence+",null,'"+date+"',"+fh_victor+","+field_type+",now())";
-		logger.debug("°ÑÕâ³¡Õ½¶·µÄÊ¤ÀûÕß¼ÇÂ¼ÏÂÀ´ÒÔ¹©²éÑ¯="+sql);
+		String sql = "INSERT INTO s_field_history value (null,"+fh_sequence+",null,'"+date+"',"+fh_victor+","+field_type+",now())";
+		logger.debug("æŠŠè¿™åœºæˆ˜æ–—çš„èƒœåˆ©è€…è®°å½•ä¸‹æ¥ä»¥ä¾›æŸ¥è¯¢="+sql);
 		try
 		{
 			stmt = conn.createStatement();
@@ -124,8 +124,8 @@ public class FieldHistoryDao extends DaoBase {
 	}
 	
 	/**
-	 * ¼ì²éÆäÊÇ·ñ»¹ÔÚÕ½³¡ÄÚ
-	 * ·µ»Ø0´ú±í²»ÔÚÕ½³¡ÄÚ, 1´ú±íÔÚÕ½³¡ÄÚ
+	 * æ£€æŸ¥å…¶æ˜¯å¦è¿˜åœ¨æˆ˜åœºå†…
+	 * è¿”å›0ä»£è¡¨ä¸åœ¨æˆ˜åœºå†…, 1ä»£è¡¨åœ¨æˆ˜åœºå†…
 	 * @param pPk
 	 * @return
 	 */
@@ -133,21 +133,21 @@ public class FieldHistoryDao extends DaoBase {
 	public int checkInFieldByPPk(int pPk) {
 		
 		int field_barea = FinalNumber.FIELDBAREA;
-		//ÕâÊÇ²ÉÈ¡¿ç¿â²éÑ¯µÄ·½·¨Ğ´µÄ,Ğ§ÂÊ¸ß, µ«ÒÆÖ²ĞÔ²î
-		//String sql = "select count(1) as has_exist from jygame_user_test.u_part_info where p_pk = "+pPk+" and p_map in " +
+		//è¿™æ˜¯é‡‡å–è·¨åº“æŸ¥è¯¢çš„æ–¹æ³•å†™çš„,æ•ˆç‡é«˜, ä½†ç§»æ¤æ€§å·®
+		//String sql = "SELECT count(1) as has_exist from jygame_user_test.u_part_info where p_pk = "+pPk+" and p_map in " +
 		//		"(select scene_ID from jygame_test.scene,jygame_test.map,jygame_test.barea where " +
 		//		"map.map_from = barea.barea_ID and scene.scene_mapqy = map.map_ID and barea.barea_ID = "+field_barea+")";
 		
 		PartInfoDAO partInfoDao = new PartInfoDAO();
 		int p_map = partInfoDao.getPartMap(pPk);
 
-		String sql = "select count(1) as has_exist from scene where scene_ID = "+p_map+" and "+p_map+" in (select scene_ID from scene,map, " +
+		String sql = "SELECT count(1) as has_exist from scene where scene_ID = "+p_map+" and "+p_map+" in (select scene_ID from scene,map, " +
 				"barea where map.map_from = barea.barea_ID " +
 				"and scene.scene_mapqy = map.map_ID and barea_ID = "+field_barea+" ) ";
 		
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_DB);
 		conn = dbConn.getConn();
-		logger.debug("¼ì²éÆäÊÇ·ñ»¹ÔÚÕ½³¡ÄÚ="+sql);
+		logger.debug("æ£€æŸ¥å…¶æ˜¯å¦è¿˜åœ¨æˆ˜åœºå†…="+sql);
 		int has_exist = 0;
 		try
 		{
@@ -172,17 +172,17 @@ public class FieldHistoryDao extends DaoBase {
 	}
 
 	/**
-	 * »ñµÃÄ³Ò»ÕóÓªµÄÊ¤Àû´ÎÊı
+	 * è·å¾—æŸä¸€é˜µè¥çš„èƒœåˆ©æ¬¡æ•°
 	 * @param camp
 	 * @return
 	 */
 	public int getCampWinNum(int camp)
 	{
 		
-		String sql = "select count(1) as win_num from s_field_history where fh_victor = "+camp;
+		String sql = "SELECT count(1) as win_num from s_field_history where fh_victor = "+camp;
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		logger.debug("»ñµÃÄ³Ò»ÕóÓªµÄÊ¤Àû´ÎÊı="+sql);
+		logger.debug("è·å¾—æŸä¸€é˜µè¥çš„èƒœåˆ©æ¬¡æ•°="+sql);
 		int has_exist = 0;
 		try
 		{

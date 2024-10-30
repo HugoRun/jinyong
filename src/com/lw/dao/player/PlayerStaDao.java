@@ -9,7 +9,7 @@ public class PlayerStaDao extends DaoBase
 	{
 		DBConnection dbConn = new DBConnection(DBConnection.GAME_USER_DB);
 		conn = dbConn.getConn();
-		String sql = "insert into u_passport_info set create_time = now(), channel_id = '" + channel_id + "' , u_pk = " + u_pk;
+		String sql = "INSERT INTO u_passport_info set create_time = now(), channel_id = '" + channel_id + "' , u_pk = " + u_pk;
 		try
 		{
 			stmt = conn.createStatement();

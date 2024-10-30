@@ -1,7 +1,7 @@
 package com.ls.pub.constant;
 
 /**
- * npcÀàĞÍ
+ * npcç±»å‹
  * 
  * @author Administrator
  * 
@@ -9,7 +9,7 @@ package com.ls.pub.constant;
 public class NpcType
 {
 	/**
-	 * Æì¸ËÀà
+	 * æ——æ†ç±»
 	 */
 	public static final int MAST = 11;
 	public static final int MENPAINPC = 9;

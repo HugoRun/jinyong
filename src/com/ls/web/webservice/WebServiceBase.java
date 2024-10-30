@@ -13,12 +13,12 @@ import org.apache.struts.action.ActionForward;
 
 /**
  * @author ls
- * webserviceµÄ¸¸Àà£¬Ìá¹©ÁËÒ»Ğ©·¢ËÍjsonÊı¾İµÄ»ù´¡¹¦ÄÜ
+ * webserviceçš„çˆ¶ç±»ï¼Œæä¾›äº†ä¸€äº›å‘é€jsonæ•°æ®çš„åŸºç¡€åŠŸèƒ½
  */
 public class WebServiceBase extends Action
 {
 	/**
-	 * ·¢ËÍÊı¾İ
+	 * å‘é€æ•°æ®
 	 * @param response
 	 * @param data
 	 * @return
@@ -37,7 +37,7 @@ public class WebServiceBase extends Action
 	}
 	
 	/**
-	 * ·¢ËÍobjectÊı¾İ
+	 * å‘é€objectæ•°æ®
 	 * @param response
 	 * @param object
 	 * @return
@@ -49,7 +49,7 @@ public class WebServiceBase extends Action
 	}
 	
 	/**
-	 * ·¢ËÍ¼¯ºÏÊı¾İ
+	 * å‘é€é›†åˆæ•°æ®
 	 * @param response
 	 * @param list
 	 * @return

@@ -22,23 +22,23 @@ public class Constant
 	
 	public static String JIEHUN_IDS = "";
 
-	// ½áÒåËùĞèÇ×ÃÜ¶È
+	// ç»“ä¹‰æ‰€éœ€äº²å¯†åº¦
 	public final static int JIEYI_DEAR_NEED = 500;
 
-	// ½á»éËùĞèÇ×ÃÜ¶È
+	// ç»“å©šæ‰€éœ€äº²å¯†åº¦
 	public final static int JIEHUN_DEAR_NEED = 1500;
 
-	// ½á»éËùĞèÒøÁ½
+	// ç»“å©šæ‰€éœ€é“¶ä¸¤
 	public final static int JIEHUN_MONEY_NEED = 88800;
 
-	public final static String CAN_NOT_USE_XINYINFU = "¶Ô²»Æğ£¬Äú»¹Ã»ÓĞ½á»é£¬²»ÄÜÊ¹ÓÃĞÄÓ¡·û";
+	public final static String CAN_NOT_USE_XINYINFU = "å¯¹ä¸èµ·ï¼Œæ‚¨è¿˜æ²¡æœ‰ç»“å©šï¼Œä¸èƒ½ä½¿ç”¨å¿ƒå°ç¬¦";
 
-	//½á»é½äÖ¸id
+	//ç»“å©šæˆ’æŒ‡id
 	public final static int MERRY_GIFT = 846;
 	
 	public final static String OTHER_MERRY_GIFT = "846,3028,4207,4208,2125,0,0";
 	
-	//½á»é³ÆºÅ
+	//ç»“å©šç§°å·
 	public final static int MAN_HONOR = 30;
 	
 	public final static int WOMAN_HONOR = 31;
@@ -52,7 +52,7 @@ public class Constant
 	
 	public final static int JIEHUN_LEVEL_LIMIT = 20;
 	
-	//Ç¿ÖÆÀë»éÏû·ÑÔª±¦
+	//å¼ºåˆ¶ç¦»å©šæ¶ˆè´¹å…ƒå®
 	public final static int LIHUN_YUANBAO_COST = 1000;
 	
 	
@@ -67,16 +67,16 @@ public class Constant
 		EXP_SHARE.put(500, 100);
 	}
 	
-	//·òÆŞ×é¶ÓÔö¼ÓÆøÑªÖµ
+	//å¤«å¦»ç»„é˜Ÿå¢åŠ æ°”è¡€å€¼
 	public final static int FUQI_TEAM_ADD_PUPHP = 5;
 	
-	//µ¯³öÏûÏ¢¼¯ºÏ
+	//å¼¹å‡ºæ¶ˆæ¯é›†åˆ
 	public static Map<Integer, List<UMessageInfoVO>> UMESSAGE = new LinkedHashMap<Integer, List<UMessageInfoVO>>(1500);
-	//¹Î¹ÎÀÖ
+	//åˆ®åˆ®ä¹
 	public static Map<Integer, Map<Integer, String>> SCRTCHTICKETMAP = new HashMap<Integer, Map<Integer, String>>();
-	//Â½ÌÎĞÂ±¦Ïä
+	//é™†æ¶›æ–°å®ç®±
 	public static Map<Integer, Map<Integer, TTBOXVO>> TTBOXMAP = new HashMap<Integer, Map<Integer, TTBOXVO>>();
-	//ÎåĞĞ×ª»¯
+	//äº”è¡Œè½¬åŒ–
 	public static Map<Integer, Map<Integer, TTBOXVO>> WXCONVERSION = new HashMap<Integer, Map<Integer, TTBOXVO>>();
 	/*//u_pkp_pk
 	public static Map<Integer, Integer> U_PK_P_PK = new HashMap<Integer, Integer>();*/

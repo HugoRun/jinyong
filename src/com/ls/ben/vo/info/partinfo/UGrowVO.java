@@ -4,9 +4,9 @@
 package com.ls.ben.vo.info.partinfo;
 
 /**
- * ¹¦ÄÜ:¶ÔÓ¦u_grow_info±í
+ * åŠŸèƒ½:å¯¹åº”u_grow_infoè¡¨
  * 
- * @author ÁõË§
+ * @author åˆ˜å¸…
  * 
  * 6:20:50 PM
  */
@@ -14,28 +14,28 @@ public class UGrowVO
 {
 	/** id */
 	private int gPk;
-	/** µÈ¼¶ */
+	/** ç­‰çº§ */
 	private int gGrade;
-	/** ÖÖ×å */
+	/** ç§æ— */
 	private int gRace;
-	/** ±¾¼¶¾­Ñé */
+	/** æœ¬çº§ç»éªŒ */
 	private String gExp;
-	/** ÏÂ¼¶¾­Ñé */
+	/** ä¸‹çº§ç»éªŒ */
 	private String gNextExp;
-	/** ÑªÁ¿Öµ */
+	/** è¡€é‡å€¼ */
 	private int gHP;
-	/** ·¨Á¦Öµ */
+	/** æ³•åŠ›å€¼ */
 	private int gMP;
-	/** ¹¥»÷ */
+	/** æ”»å‡» */
 	private int gGj;
 
-	/** ·ÀÓù */
+	/** é˜²å¾¡ */
 	private int gFy;
 
-	/** ÊÇ·ñ¿É×ÔÈ»Éı¼¶ 1±íÊ¾¿ÉÒÔ×ÔÈ»Éı¼¶£¬0±íÊ¾²»¿ÉÒÔ×ÔÈ»Éı¼¶ */
+	/** æ˜¯å¦å¯è‡ªç„¶å‡çº§ 1è¡¨ç¤ºå¯ä»¥è‡ªç„¶å‡çº§ï¼Œ0è¡¨ç¤ºä¸å¯ä»¥è‡ªç„¶å‡çº§ */
 	private int gIsAutogrow;
 
-	/** ***ÈËÎï±©»÷ÂÊ**** */
+	/** ***äººç‰©æš´å‡»ç‡**** */
 
 	private double gDropMultiple;
 

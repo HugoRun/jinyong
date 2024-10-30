@@ -25,14 +25,14 @@ import com.ls.web.service.player.RoleService;
 import com.web.service.vip.VipService;
 
 /**
- * »áÔ±Âß¼­
+ * ä¼šå‘˜é€»è¾‘
  */
 public class VipAction extends ActionBase
 {
 	public static Logger logger = Logger.getLogger("log.action");
 
 	/**
-	 * Ê¹ÓÃ»áÔ±¿¨
+	 * ä½¿ç”¨ä¼šå‘˜å¡
 	 */
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -40,15 +40,15 @@ public class VipAction extends ActionBase
 		RoleEntity roleInfo = this.getRoleEntity(request);
 		String prop_id = request.getParameter("prop_id").trim();
 		
-		// ¶ªÆúÕâ¸öµÀ¾ß
+		// ä¸¢å¼ƒè¿™ä¸ªé“å…·
 		GoodsService goodsService = new GoodsService();
 		int del_num = goodsService.removeProps(roleInfo.getBasicInfo().getPPk(), Integer.parseInt(prop_id), 1,GameLogManager.R_USE);
 		if( del_num>0 )
 		{
 			PropVO prop = PropCache.getPropById(Integer.parseInt(prop_id));
-			String vip_title_id = prop.getPropOperate2().trim();// VIP³ÆºÅid
+			String vip_title_id = prop.getPropOperate2().trim();// VIPç§°å·id
 			TitleVO vip_title = TitleCache.getById(vip_title_id);
-			roleInfo.getTitleSet().gainTitle(vip_title);//»ñµÃ»áÔ±³ÆºÅ
+			roleInfo.getTitleSet().gainTitle(vip_title);//è·å¾—ä¼šå‘˜ç§°å·
 		}
 
 		request.setAttribute("hint", roleInfo.getTitleSet().getVIP().getHint());
@@ -56,7 +56,7 @@ public class VipAction extends ActionBase
 	}
 
 	/**
-	 * ¹ºÂòVIPµÀ¾ß
+	 * è´­ä¹°VIPé“å…·
 	 */
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -65,13 +65,13 @@ public class VipAction extends ActionBase
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request.getSession());
 		
 		String prop_id = request.getParameter("prop_id").trim();
-		// Ê×ÏÈÍ¨¹ıµÀ¾ßID µÃµ½ÉÌ³ÇµÄĞÅÏ¢
+		// é¦–å…ˆé€šè¿‡é“å…·ID å¾—åˆ°å•†åŸçš„ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(prop_id);
 		if (commodityVO != null)
 		{
 			commodityVO.setDiscount(80);
-			String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// ¹ºÂò
+			String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// è´­ä¹°
 			if (hint != null)
 			{
 				request.setAttribute("hint", hint);
@@ -79,16 +79,16 @@ public class VipAction extends ActionBase
 			}
 			else
 			{
-				hint = "Äã¹ºÂò" + commodityVO.getPropName() + "¡Á1£¬Ô­¼Û"
-						+ commodityVO.getOriginalPrice() + ""+GameConfig.getYuanbaoName()+"£¬8ÕÛÓÅ»İºó"
-						+ (commodityVO.getOriginalPrice() * 80 / 100) + ""+GameConfig.getYuanbaoName()+"£¡";
+				hint = "ä½ è´­ä¹°" + commodityVO.getPropName() + "Ã—1ï¼ŒåŸä»·"
+						+ commodityVO.getOriginalPrice() + ""+GameConfig.getYuanbaoName()+"ï¼Œ8æŠ˜ä¼˜æƒ å"
+						+ (commodityVO.getOriginalPrice() * 80 / 100) + ""+GameConfig.getYuanbaoName()+"ï¼";
 				request.setAttribute("hint", hint);
 				return mapping.findForward("mallvipprop");
 			}
 		}
 		else
 		{
-			String hint = "Êı¾İ´íÎóÇëÁªÏµ¹ÜÀíÔ±";
+			String hint = "æ•°æ®é”™è¯¯è¯·è”ç³»ç®¡ç†å‘˜";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("mallvipprop");
 		}
@@ -96,9 +96,9 @@ public class VipAction extends ActionBase
 	}
 
 	/***************************************************************************
-	 * ÁìÈ¡VIP¹¤×ÊÓÃ
+	 * é¢†å–VIPå·¥èµ„ç”¨
 	 **************************************************************************/
-	/** Ìø×ªµ½ÁìÈ¡VIP¹¤×ÊµÄÒ³Ãæ */
+	/** è·³è½¬åˆ°é¢†å–VIPå·¥èµ„çš„é¡µé¢ */
 	public ActionForward n3(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -108,7 +108,7 @@ public class VipAction extends ActionBase
 		return mapping.findForward("getlaorage");
 	}
 
-	/** *Íæ¼ÒÃ»²»ÊÇVIP»áÔ±¹ºÂòµÄÌø×ª* */
+	/** *ç©å®¶æ²¡ä¸æ˜¯VIPä¼šå‘˜è´­ä¹°çš„è·³è½¬* */
 	public ActionForward n4(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -116,13 +116,13 @@ public class VipAction extends ActionBase
 		RoleEntity roleInfo = roleService.getRoleInfoBySession(request
 				.getSession());
 		String prop_id = request.getParameter("prop_id").trim();
-		// Ê×ÏÈÍ¨¹ıµÀ¾ßID µÃµ½ÉÌ³ÇµÄĞÅÏ¢
+		// é¦–å…ˆé€šè¿‡é“å…·ID å¾—åˆ°å•†åŸçš„ä¿¡æ¯
 		MallService mallService = new MallService();
 		CommodityVO commodityVO = mallService.getPropCommodityInfo(prop_id);
 		if (commodityVO != null)
 		{
 			commodityVO.setDiscount(80);
-			String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// ¹ºÂò
+			String hint = mallService.buy(roleInfo, commodityVO, 1 + "");// è´­ä¹°
 			if (hint != null)
 			{
 				EconomyService economyService = new EconomyService();
@@ -141,28 +141,28 @@ public class VipAction extends ActionBase
 			else
 			{
 				if(GameConfig.getChannelId() == Channel.AIR){
-					request.setAttribute("hint", "Äú»¨·Ñ"+GameConfig.getYuanbaoName()+"¡Á"
-							+ commodityVO.getOriginalPrice() + "¹ºÂòÁË"
-							+ commodityVO.getPropName() + "¡Á1!ÇëÔÚ½ÇÉ«°ü¹üÉÌ³ÇÀ¸ÀàÊ¹ÓÃ"
-							+ commodityVO.getPropName() + "¼´¿É³ÉÎªÇ¬À¤»áÔ±!");
+					request.setAttribute("hint", "æ‚¨èŠ±è´¹"+GameConfig.getYuanbaoName()+"Ã—"
+							+ commodityVO.getOriginalPrice() + "è´­ä¹°äº†"
+							+ commodityVO.getPropName() + "Ã—1!è¯·åœ¨è§’è‰²åŒ…è£¹å•†åŸæ ç±»ä½¿ç”¨"
+							+ commodityVO.getPropName() + "å³å¯æˆä¸ºä¹¾å¤ä¼šå‘˜!");
 				}else{
-					request.setAttribute("hint", "Äú»¨·Ñ"+GameConfig.getYuanbaoName()+"¡Á"
-							+ commodityVO.getOriginalPrice() + "¹ºÂòÁË"
-							+ commodityVO.getPropName() + "¡Á1!ÇëÔÚ½ÇÉ«°ü¹üÉÌ³ÇÀ¸ÀàÊ¹ÓÃ"
-							+ commodityVO.getPropName() + "¼´¿É³ÉÎªÌúÑª»áÔ±!");
+					request.setAttribute("hint", "æ‚¨èŠ±è´¹"+GameConfig.getYuanbaoName()+"Ã—"
+							+ commodityVO.getOriginalPrice() + "è´­ä¹°äº†"
+							+ commodityVO.getPropName() + "Ã—1!è¯·åœ¨è§’è‰²åŒ…è£¹å•†åŸæ ç±»ä½¿ç”¨"
+							+ commodityVO.getPropName() + "å³å¯æˆä¸ºé“è¡€ä¼šå‘˜!");
 				}
 				return mapping.findForward("mallvipprop");
 			}
 		}
 		else
 		{
-			String hint = "Êı¾İ´íÎóÇëÁªÏµ¹ÜÀíÔ±";
+			String hint = "æ•°æ®é”™è¯¯è¯·è”ç³»ç®¡ç†å‘˜";
 			request.setAttribute("hint", hint);
 			return mapping.findForward("mallvipprop");
 		}
 	}
 
-	/** ***Íæ¼ÒÁìÈ¡¹¤×ÊÁ÷³Ì***** */
+	/** ***ç©å®¶é¢†å–å·¥èµ„æµç¨‹***** */
 	public ActionForward n5(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -171,20 +171,20 @@ public class VipAction extends ActionBase
 				.getSession());
 		VipService vs = new VipService();
 		String result = vs.playerGetVipMoney(roleInfo);
-		if (result == null)// ÁìÈ¡¹ıÒ»´Î
+		if (result == null)// é¢†å–è¿‡ä¸€æ¬¡
 		{
-			request.setAttribute("hint", "ÄúÒÑ¾­ÁìÈ¡¹ı½ñÌìµÄ¹¤×ÊÁË,ÇëÃ÷ÌìÔÙÀ´!");
+			request.setAttribute("hint", "æ‚¨å·²ç»é¢†å–è¿‡ä»Šå¤©çš„å·¥èµ„äº†,è¯·æ˜å¤©å†æ¥!");
 			return mapping.findForward("mallvipprop");
 		}
 		else
 		{
-			if (result.equals("nomoney"))// ²»ÊÇ»áÔ±Ã»ÓĞ¹¤×ÊÁìÈ¡
+			if (result.equals("nomoney"))// ä¸æ˜¯ä¼šå‘˜æ²¡æœ‰å·¥èµ„é¢†å–
 			{
 				String outprint = vs.getPlayerGetVipMoneyByBuyVip(response,
 						request);
 				if (outprint == null)
 				{
-					request.setAttribute("hint", "Ã»ÓĞ»áÔ±ÎïÆ·,ÇëÓëGMÁªÏµ!");
+					request.setAttribute("hint", "æ²¡æœ‰ä¼šå‘˜ç‰©å“,è¯·ä¸GMè”ç³»!");
 					return mapping.findForward("mallvipprop");
 				}
 				else

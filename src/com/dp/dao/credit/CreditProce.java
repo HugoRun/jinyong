@@ -1,140 +1,130 @@
 package com.dp.dao.credit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.dp.service.credit.CreaditService;
 import com.dp.vo.credit.PlayerCreditVO;
 
-public class CreditProce implements CreaditService
-{
-	/**
-	 * ²éÑ¯Íæ¼Ò½ÇÉ«ËùÓµÓÐµÄÉùÍû
-	 */
-	public List<PlayerCreditVO> getPlayerCredit(Integer ppk)
-	{
- 		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		List list = creditProceDAO.getPlayerCredit(ppk);
-		List arrList = new ArrayList();
-		if(list != null && list.size() > 0){
-			for(int i = 0 ; i < list.size() ; i++){
-				PlayerCreditVO vo = (PlayerCreditVO)list.get(i);
-				PlayerCreditVO backvo = creditProceDAO.getPcvDisplay(vo.getPcid());
-				if(backvo == null){
-					continue;
-				}
-				vo.setCreditname(backvo.getCreditname());
-				vo.setCreditdisplay(backvo.getCreditdisplay());
-				arrList.add(vo);
-			}
-		}
-		return arrList;
-	}
+import java.util.ArrayList;
+import java.util.List;
 
-	/***************************************************************************
-	 * ¸ù¾ÝÉùÍûID²éÑ¯ÉùÍû
-	 **************************************************************************/
-	public PlayerCreditVO getPcvDisplay(Integer pcid)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.getPcvDisplay(pcid);
-	}
+public class CreditProce implements CreaditService {
+    /**
+     * æŸ¥è¯¢çŽ©å®¶è§’è‰²æ‰€æ‹¥æœ‰çš„å£°æœ›
+     */
+    public List<PlayerCreditVO> getPlayerCredit(Integer ppk) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        List<PlayerCreditVO> list = creditProceDAO.getPlayerCredit(ppk);
+        List arrList = new ArrayList();
+        if (list != null && !list.isEmpty()) {
+            for (int i = 0; i < list.size(); i++) {
+                PlayerCreditVO vo = (PlayerCreditVO) list.get(i);
+                PlayerCreditVO backvo = creditProceDAO.getPcvDisplay(vo.getPcid());
+                if (backvo == null) {
+                    continue;
+                }
+                vo.setCreditname(backvo.getCreditname());
+                vo.setCreditdisplay(backvo.getCreditdisplay());
+                arrList.add(vo);
+            }
+        }
+        return arrList;
+    }
 
-	/***************************************************************************
-	 * ÅÐ¶ÏÍæ¼ÒÊÇ·ñÓÐÌõ¼þ¶Ò»»ÎïÆ·
-	 **************************************************************************/
-	public Integer checkHaveCondition(Integer ppk, Integer cid, Integer ncount)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.checkHaveCondition(ppk, cid, ncount);
-	}
+    /***************************************************************************
+     * æ ¹æ®å£°æœ›IDæŸ¥è¯¢å£°æœ›
+     **************************************************************************/
+    public PlayerCreditVO getPcvDisplay(Integer pcid) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.getPcvDisplay(pcid);
+    }
 
-	/***************************************************************************
-	 * ¶Ò»»³É¹¦ºó¼õµôÍæ¼ÒµÄÉùÍû
-	 **************************************************************************/
-	public void subtractCredit(Integer ppk, Integer cid, Integer ncount)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		creditProceDAO.subtractCredit(ppk, cid, ncount);
-	}
+    /***************************************************************************
+     * åˆ¤æ–­çŽ©å®¶æ˜¯å¦æœ‰æ¡ä»¶å…‘æ¢ç‰©å“
+     **************************************************************************/
+    public Integer checkHaveCondition(Integer ppk, Integer cid, Integer ncount) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.checkHaveCondition(ppk, cid, ncount);
+    }
 
-	/**
-	 * Ìí¼ÓÍæ¼Ò½ÇÉ«ÉùÍû
-	 */
-	public void addPlayerCredit(Integer ppk, Integer cid, Integer ncount)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		creditProceDAO.addPlayerCredit(ppk, cid, ncount);
-	}
-	/**
-	 * É¾³ýÉùÍû
-	 * @param ppk
-	 * @param cid
-	 */
-	public void deletePlayerCredit(int ppk,int cid){
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		creditProceDAO.deletePlayerCredit(ppk, cid);
-	}
-	/***************************************************************************
-	 * ÅÐ¶ÏÍæ¼ÒÊÇ·ñÓÐ¸ÃÉùÍû
-	 **************************************************************************/
-	public Integer checkPlayerHasTheCredit(Integer ppk, Integer cid)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.checkPlayerHasTheCredit(ppk, cid);
-	}
+    /***************************************************************************
+     * å…‘æ¢æˆåŠŸåŽå‡æŽ‰çŽ©å®¶çš„å£°æœ›
+     **************************************************************************/
+    public void subtractCredit(Integer ppk, Integer cid, Integer ncount) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        creditProceDAO.subtractCredit(ppk, cid, ncount);
+    }
 
-	/***************************************************************************
-	 * ÅÐ¶ÏÈÙÓþÌõ¼þÊÇ·ñÂú×ã
-	 **************************************************************************/
-	public Integer checkHonorCondition(Integer ppk, Integer excount)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.checkHonorCondition(ppk, excount);
-	}
+    /**
+     * æ·»åŠ çŽ©å®¶è§’è‰²å£°æœ›
+     */
+    public void addPlayerCredit(Integer ppk, Integer cid, Integer ncount) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        creditProceDAO.addPlayerCredit(ppk, cid, ncount);
+    }
 
-	/**
-	 * Ìí¼ÓÍæ¼ÒµÄÈÙÓþÖµ
-	 */
-	public void addPlayerHonor(Integer ppk, Integer excount)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		creditProceDAO.addPlayerHonor(ppk, excount);
-	}
+    /**
+     * åˆ é™¤å£°æœ›
+     *
+     * @param ppk
+     * @param cid
+     */
+    public void deletePlayerCredit(int ppk, int cid) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        creditProceDAO.deletePlayerCredit(ppk, cid);
+    }
 
-	/**
-	 * ¼õµôÍæ¼ÒµÄÈÙÓþÖµ
-	 */
-	public void subtractHonor(Integer ppk, Integer excount)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		creditProceDAO.subtractHonor(ppk, excount);
-	}
+    /***************************************************************************
+     * åˆ¤æ–­çŽ©å®¶æ˜¯å¦æœ‰è¯¥å£°æœ›
+     **************************************************************************/
+    public Integer checkPlayerHasTheCredit(Integer ppk, Integer cid) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.checkPlayerHasTheCredit(ppk, cid);
+    }
 
-	/***************************************************************************
-	 * »ñÈ¡½ÇÉ«µÄ°ï»áID
-	 **************************************************************************/
-	public Integer getRoleTpk(Integer ppk)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.getRoleTpk(ppk);
-	}
+    /***************************************************************************
+     * åˆ¤æ–­è£èª‰æ¡ä»¶æ˜¯å¦æ»¡è¶³
+     **************************************************************************/
+    public Integer checkHonorCondition(Integer ppk, Integer excount) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.checkHonorCondition(ppk, excount);
+    }
 
-	/***************************************************************************
-	 * ÅÐ¶Ï¸Ã½ÇÉ«ÊÇ·ñÓÐÈÙÓþ
-	 **************************************************************************/
-	public Integer checkRoleHaveTheHoner(Integer ppk)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.checkRoleHaveTheHoner(ppk);
-	}
+    /**
+     * æ·»åŠ çŽ©å®¶çš„è£èª‰å€¼
+     */
+    public void addPlayerHonor(Integer ppk, Integer excount) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        creditProceDAO.addPlayerHonor(ppk, excount);
+    }
 
-	/***************************************************************************
-	 * ²éÑ¯¸Ã½ÇÉ«µÄ½ÇÉ«Ãû
-	 **************************************************************************/
-	public String getTheRoleName(Integer ppk)
-	{
-		CreditProceDAO creditProceDAO = new CreditProceDAO();
-		return creditProceDAO.getTheRoleName(ppk);
-	}
+    /**
+     * å‡æŽ‰çŽ©å®¶çš„è£èª‰å€¼
+     */
+    public void subtractHonor(Integer ppk, Integer excount) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        creditProceDAO.subtractHonor(ppk, excount);
+    }
+
+    /***************************************************************************
+     * èŽ·å–è§’è‰²çš„å¸®ä¼šID
+     **************************************************************************/
+    public Integer getRoleTpk(Integer ppk) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.getRoleTpk(ppk);
+    }
+
+    /***************************************************************************
+     * åˆ¤æ–­è¯¥è§’è‰²æ˜¯å¦æœ‰è£èª‰
+     **************************************************************************/
+    public Integer checkRoleHaveTheHoner(Integer ppk) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.checkRoleHaveTheHoner(ppk);
+    }
+
+    /***************************************************************************
+     * æŸ¥è¯¢è¯¥è§’è‰²çš„è§’è‰²å
+     **************************************************************************/
+    public String getTheRoleName(Integer ppk) {
+        CreditProceDAO creditProceDAO = new CreditProceDAO();
+        return creditProceDAO.getTheRoleName(ppk);
+    }
 }

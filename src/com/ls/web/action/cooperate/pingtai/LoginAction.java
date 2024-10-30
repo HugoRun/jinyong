@@ -34,19 +34,19 @@ public class LoginAction extends Action
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
-		// ´´½¨Ê±¼ä
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String Time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		// åˆ›å»ºæ—¶é—´
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String Time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		String ip=request.getRemoteAddr();
 		
-		logger.info("############Æ½Ì¨µÇÂ½##############");
-		String channel = request.getParameter("channel");//ÇşµÀ
-		String product = request.getParameter("product");//²úÆ·±àÂë
-		String timestamp = request.getParameter("timestamp");//Ê±¼ä
-		String loginType = request.getParameter("loginType");//µÇÂ½ÀàĞÍ
-		String name = request.getParameter("name");//ÓÃ»§Ãû
-		String received_verify_string = request.getParameter("received_verify_string");// MD5Âë
-		String key = request.getParameter("key");//ÇşµÀÑéÖ¤Âë
+		logger.info("############å¹³å°ç™»é™†##############");
+		String channel = request.getParameter("channel");//æ¸ é“
+		String product = request.getParameter("product");//äº§å“ç¼–ç 
+		String timestamp = request.getParameter("timestamp");//æ—¶é—´
+		String loginType = request.getParameter("loginType");//ç™»é™†ç±»å‹
+		String name = request.getParameter("name");//ç”¨æˆ·å
+		String received_verify_string = request.getParameter("received_verify_string");// MD5ç 
+		String key = request.getParameter("key");//æ¸ é“éªŒè¯ç 
 		//String user_id = request.getParameter("user_id");
 		
 		String verify_string = "channel="+channel+"&username="+name+"&key="+key+"&timestamp="+timestamp+"&product="+product;
@@ -60,9 +60,9 @@ public class LoginAction extends Action
 		PassportService passportService = new PassportService();
 		u_pk = passportService.loginFromPingTai(channel, product, timestamp, loginType, name,received_verify_string,key,ip);
 		
-		if( u_pk ==-1 )//µÇÂ½ÑéÖ¤Ê§°Ü
+		if( u_pk ==-1 )//ç™»é™†éªŒè¯å¤±è´¥
 		{
-			logger.info("ÓÃ»§ÑéÖ¤Ê§°Ü");
+			logger.info("ç”¨æˆ·éªŒè¯å¤±è´¥");
 			return mapping.findForward("fail");
 		} 
 		
@@ -76,7 +76,7 @@ public class LoginAction extends Action
 		session.setAttribute("timestamp", Time);
 		session.setAttribute("key", key);
 		session.setAttribute("received_verify_string", verify_string);
-		//session.setAttribute("login_params", login_params);//µÇÂ½²ÎÊı 
+		//session.setAttribute("login_params", login_params);//ç™»é™†å‚æ•° 
 		return mapping.findForward("success");
 	}
 }

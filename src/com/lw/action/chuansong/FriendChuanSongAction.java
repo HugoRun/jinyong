@@ -23,7 +23,7 @@ import com.web.service.friend.FriendService;
 
 public class FriendChuanSongAction extends DispatchAction
 {
-	// ÅĞ¶ÏÎïÆ·ÊÇ·ñ¿ÉÒÔÊ¹ÓÃ
+	// åˆ¤æ–­ç‰©å“æ˜¯å¦å¯ä»¥ä½¿ç”¨
 	public ActionForward n1(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
@@ -39,7 +39,7 @@ public class FriendChuanSongAction extends DispatchAction
 		String hint = roomService.isCarryedOut(Integer.parseInt(scene_id));
 		if (hint != null)
 		{
-			request.setAttribute("display", "¶Ô²»Æğ,¸ÃÍæ¼ÒµØµã²»ÔÊĞí´«³ö!");
+			request.setAttribute("display", "å¯¹ä¸èµ·,è¯¥ç©å®¶åœ°ç‚¹ä¸å…è®¸ä¼ å‡º!");
 			return mapping.findForward("display");
 		}
 		else
@@ -60,7 +60,7 @@ public class FriendChuanSongAction extends DispatchAction
 			{
 				pageall = size / queryPage.getPageSize()
 						+ (size % queryPage.getPageSize() == 0 ? 0 : 1);
-				// ²éÑ¯ÔÚÏßÍæ¼Ò
+				// æŸ¥è¯¢åœ¨çº¿ç©å®¶
 				friendlist = friendService.listfriendOnline(roleInfo
 						.getBasicInfo().getPPk(), page
 						* queryPage.getPageSize(), queryPage.getPageSize());
@@ -69,7 +69,7 @@ public class FriendChuanSongAction extends DispatchAction
 
 			if (friendlist == null)
 			{
-				request.setAttribute("display", "¶Ô²»Æğ,ÄúÃ»ÓĞºÃÓÑÔÚÏß!");
+				request.setAttribute("display", "å¯¹ä¸èµ·,æ‚¨æ²¡æœ‰å¥½å‹åœ¨çº¿!");
 				return mapping.findForward("display");
 			}
 			else
@@ -86,21 +86,21 @@ public class FriendChuanSongAction extends DispatchAction
 		}
 	}
 
-	// ÅĞ¶ÏÍæ¼ÒÑ¡ÔñµÄºÃÓÑÊÇ·ñ¿ÉÒÔ´«ËÍ¹ıÈ¥
+	// åˆ¤æ–­ç©å®¶é€‰æ‹©çš„å¥½å‹æ˜¯å¦å¯ä»¥ä¼ é€è¿‡å»
 	public ActionForward n2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 	{
 		String p_pk = request.getParameter("p_pk");
 		if (p_pk == null)
 		{
-			request.setAttribute("display", "ºÃÓÑ´íÎó!");
+			request.setAttribute("display", "å¥½å‹é”™è¯¯!");
 			return mapping.findForward("display");
 		}
 		RoleService roleService = new RoleService();
 		RoleEntity roleInfo = roleService.getRoleInfoById(p_pk);
 		if (roleInfo == null || roleInfo.isOnline()==false)
 		{
-			request.setAttribute("display", "ºÃÓÑ²»ÔÚÏß»òÒÑ¾­ÏÂÏß!");
+			request.setAttribute("display", "å¥½å‹ä¸åœ¨çº¿æˆ–å·²ç»ä¸‹çº¿!");
 			return mapping.findForward("display");
 		}
 		FriendService friendService = new FriendService();
@@ -110,7 +110,7 @@ public class FriendChuanSongAction extends DispatchAction
 				.getBasicInfo().getPPk()
 				+ "") == true)
 		{
-			request.setAttribute("display", "¶Ô·½Ã»ÓĞ¼ÓÄúÎªºÃÓÑ,²»ÄÜÊ¹ÓÃ¸ÃÎïÆ·!");
+			request.setAttribute("display", "å¯¹æ–¹æ²¡æœ‰åŠ æ‚¨ä¸ºå¥½å‹,ä¸èƒ½ä½¿ç”¨è¯¥ç‰©å“!");
 			return mapping.findForward("display");
 		}
 		String scene_id = roleInfo.getBasicInfo().getSceneId();
@@ -126,7 +126,7 @@ public class FriendChuanSongAction extends DispatchAction
 			request.setAttribute("pg_pk", pg_pk);
 			request.setAttribute("goods_id", prop_id);
 			request.setAttribute("goods_type", goods_type);
-			request.setAttribute("display", "¶Ô²»Æğ,¸ÃÍæ¼ÒµØµã²»ÔÊĞí´«Èë!");
+			request.setAttribute("display", "å¯¹ä¸èµ·,è¯¥ç©å®¶åœ°ç‚¹ä¸å…è®¸ä¼ å…¥!");
 			return mapping.findForward("hint");
 		}
 		else
@@ -141,22 +141,22 @@ public class FriendChuanSongAction extends DispatchAction
 			catch (Exception e)
 			{
 				e.printStackTrace();
-				request.setAttribute("display", "ÎïÆ·Ê¹ÓÃ´íÎó!");
+				request.setAttribute("display", "ç‰©å“ä½¿ç”¨é”™è¯¯!");
 				return mapping.findForward("display");
 
 			}
 			if (p == 0)
 			{
-				request.setAttribute("display", "ÎïÆ·Ê¹ÓÃ´íÎó!");
+				request.setAttribute("display", "ç‰©å“ä½¿ç”¨é”™è¯¯!");
 				return mapping.findForward("display");
 			}
 			PlayerPropGroupVO propGroup = propGroupDao.getByPgPk(p);
 			role_info.getBasicInfo().updateSceneId(scene_id + "");
-			CompassService.removeMiJing(roleInfo.getBasicInfo().getPPk(), propGroup.getPropType());//É¾³ıÃØ¾³µØÍ¼
+			CompassService.removeMiJing(roleInfo.getBasicInfo().getPPk(), propGroup.getPropType());//åˆ é™¤ç§˜å¢ƒåœ°å›¾
 			GoodsService goodsService = new GoodsService();
 			goodsService.removeProps(propGroup, 1);
-			request.setAttribute("display", "ÄúÊ¹ÓÃÁË" + propGroup.getPropName()
-					+ "´«ËÍµ½ºÃÓÑ" + roleInfo.getBasicInfo().getName() + "µÄËùÔÚµØ!");
+			request.setAttribute("display", "æ‚¨ä½¿ç”¨äº†" + propGroup.getPropName()
+					+ "ä¼ é€åˆ°å¥½å‹" + roleInfo.getBasicInfo().getName() + "çš„æ‰€åœ¨åœ°!");
 			return mapping.findForward("display");
 		}
 	}

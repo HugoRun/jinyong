@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 
 
 /**
- * ¹¦ÄÜ:u_buffeffect_info
- * @author buffĞ§¹û 
+ * åŠŸèƒ½:u_buffeffect_info
+ * @author buffæ•ˆæœ 
  * 11:11:09 AM
  */
 public class BuffEffectVO extends BuffVO {
@@ -18,15 +18,15 @@ public class BuffEffectVO extends BuffVO {
 	 private int bfPk; 
 	 
 	 
-	 /**Ê£ÏÂµÄÊ¹ÓÃ»ØºÏÊı*/
+	 /**å‰©ä¸‹çš„ä½¿ç”¨å›åˆæ•°*/
 	 private int spareBout;
-	 /**Ê¹ÓÃbuffµÄÊ±¼ä*/
+	 /**ä½¿ç”¨buffçš„æ—¶é—´*/
 	 private Date useTime;
 	 
 	 
-	 /**buffĞ§¹û×÷ÓÃ¶ÔÏó*/
+	 /**buffæ•ˆæœä½œç”¨å¯¹è±¡*/
 	 private int  effectObject;
-	 /**buffĞ§¹û×÷ÓÃ¶ÔÏó,1±íÊ¾Íæ¼Ò£¬2±íÊ¾npc*/
+	 /**buffæ•ˆæœä½œç”¨å¯¹è±¡,1è¡¨ç¤ºç©å®¶ï¼Œ2è¡¨ç¤ºnpc*/
 	 private int effectObjectType;
 	 
 	public int getBfPk() {

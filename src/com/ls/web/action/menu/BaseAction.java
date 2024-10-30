@@ -73,98 +73,98 @@ public class BaseAction extends DispatchAction
 	
 	protected final String LOVE_DEAR = "lovedear";
 	
-	protected final String HINT1 = "½áÒåÊ±³ö´í£¬ÇëÁªÏµ¿Í·ş";
+	protected final String HINT1 = "ç»“ä¹‰æ—¶å‡ºé”™ï¼Œè¯·è”ç³»å®¢æœ";
 	
-	protected final String HINT2 = "½áÒåÎïÆ·ĞèÇó²»Âú×ã";
+	protected final String HINT2 = "ç»“ä¹‰ç‰©å“éœ€æ±‚ä¸æ»¡è¶³";
 	
-	protected final String HINT24 = "¶Ô²»Æğ£¬¶Ô·½²»ÄÜºÍÄã½áÒå";
+	protected final String HINT24 = "å¯¹ä¸èµ·ï¼Œå¯¹æ–¹ä¸èƒ½å’Œä½ ç»“ä¹‰";
 	
-	protected final String HINT3 = "½áÒåËùĞèÎïÆ·²»¹»£¬µÈÊÕ¼¯ÍêÈ«ÁËÔÙÀ´°É£¡";
+	protected final String HINT3 = "ç»“ä¹‰æ‰€éœ€ç‰©å“ä¸å¤Ÿï¼Œç­‰æ”¶é›†å®Œå…¨äº†å†æ¥å§ï¼";
 	
-	protected final String HINT4 = "½áÒåÎïÆ·µÄÎ»ÖÃ¶¼°Ú·Å´íÎó£¬·ÖÃ÷ĞÄÒâ²»³Ï£¡";
+	protected final String HINT4 = "ç»“ä¹‰ç‰©å“çš„ä½ç½®éƒ½æ‘†æ”¾é”™è¯¯ï¼Œåˆ†æ˜å¿ƒæ„ä¸è¯šï¼";
 	
-	protected final String HINT5 = "¶Ô²»Æğ£¬ÄúÑ¡ÔñµÄºÃÓÑ²»ÔÚÏß£¡";
+	protected final String HINT5 = "å¯¹ä¸èµ·ï¼Œæ‚¨é€‰æ‹©çš„å¥½å‹ä¸åœ¨çº¿ï¼";
 	
-	protected final String HINT6 = "µÇ¼ÇÒªÇó²»Âú×ã£¬Ë«·½¾ùÔÚ40¼¶ÒÔÉÏ£¡";
+	protected final String HINT6 = "ç™»è®°è¦æ±‚ä¸æ»¡è¶³ï¼ŒåŒæ–¹å‡åœ¨40çº§ä»¥ä¸Šï¼";
 	
-	protected final String HINT7 = "ÕóÓªÒªÇó²»Âú×ã£¬Ë«·½ĞèÎªÍ¬Ò»ÕóÓª£¡";
+	protected final String HINT7 = "é˜µè¥è¦æ±‚ä¸æ»¡è¶³ï¼ŒåŒæ–¹éœ€ä¸ºåŒä¸€é˜µè¥ï¼";
 	
-	protected final String HINT8 = "ÒªÇó²»Âú×ã£¬ĞèË«·½»¥ÎªºÃÓÑ£¡";
+	protected final String HINT8 = "è¦æ±‚ä¸æ»¡è¶³ï¼Œéœ€åŒæ–¹äº’ä¸ºå¥½å‹ï¼";
 	
-	protected final String HINT9 = "Ç×ÃÜ¶ÈÒªÇó²»Âú×ã£¬ĞèË«·½Ç×ÃÜ¶È´ïµ½"+Constant.JIEYI_DEAR_NEED+"µã£¡";
+	protected final String HINT9 = "äº²å¯†åº¦è¦æ±‚ä¸æ»¡è¶³ï¼Œéœ€åŒæ–¹äº²å¯†åº¦è¾¾åˆ°"+Constant.JIEYI_DEAR_NEED+"ç‚¹ï¼";
 	
-	protected final String HINT10 = "ÄúÒÑ¾­½á»éÁË!";
+	protected final String HINT10 = "æ‚¨å·²ç»ç»“å©šäº†!";
 	
-	protected final String HINT11 = "½á»éÊ±³ö´í£¬ÇëÁªÏµ¿Í·ş";
+	protected final String HINT11 = "ç»“å©šæ—¶å‡ºé”™ï¼Œè¯·è”ç³»å®¢æœ";
 	
-	protected final String HINT12 = "½á»éÎïÆ·ĞèÇó²»Âú×ã";
+	protected final String HINT12 = "ç»“å©šç‰©å“éœ€æ±‚ä¸æ»¡è¶³";
 	
-	protected final String HINT13 = "½á»éËùĞèÎïÆ·²»¹»£¬µÈÊÕ¼¯ÍêÈ«ÁËÔÙÀ´°É£¡";
+	protected final String HINT13 = "ç»“å©šæ‰€éœ€ç‰©å“ä¸å¤Ÿï¼Œç­‰æ”¶é›†å®Œå…¨äº†å†æ¥å§ï¼";
 	
-	protected final String HINT14 = "½á»éÎïÆ·µÄÎ»ÖÃ¶¼°Ú·Å´íÎó£¬·ÖÃ÷ĞÄÒâ²»³Ï£¡";
+	protected final String HINT14 = "ç»“å©šç‰©å“çš„ä½ç½®éƒ½æ‘†æ”¾é”™è¯¯ï¼Œåˆ†æ˜å¿ƒæ„ä¸è¯šï¼";
 	
-	protected final String HINT15 = "¶Ô²»Æğ£¬ÄúÑ¡ÔñµÄºÃÓÑ²»ÔÚÏß£¡";
+	protected final String HINT15 = "å¯¹ä¸èµ·ï¼Œæ‚¨é€‰æ‹©çš„å¥½å‹ä¸åœ¨çº¿ï¼";
 	
-	protected final String HINT16 = "µÇ¼ÇÒªÇó²»Âú×ã£¬Ë«·½¾ùÔÚ40¼¶ÒÔÉÏ£¡";
+	protected final String HINT16 = "ç™»è®°è¦æ±‚ä¸æ»¡è¶³ï¼ŒåŒæ–¹å‡åœ¨40çº§ä»¥ä¸Šï¼";
 	
-	protected final String HINT17 = "ÕóÓªÒªÇó²»Âú×ã£¬Ë«·½ĞèÎªÍ¬Ò»ÕóÓª£¡";
+	protected final String HINT17 = "é˜µè¥è¦æ±‚ä¸æ»¡è¶³ï¼ŒåŒæ–¹éœ€ä¸ºåŒä¸€é˜µè¥ï¼";
 	
-	protected final String HINT18 = "ÒªÇó²»Âú×ã£¬ĞèË«·½»¥ÎªºÃÓÑ£¡";
+	protected final String HINT18 = "è¦æ±‚ä¸æ»¡è¶³ï¼Œéœ€åŒæ–¹äº’ä¸ºå¥½å‹ï¼";
 	
-	protected final String HINT19 = "Ç×ÃÜ¶ÈÒªÇó²»Âú×ã£¬ĞèË«·½Ç×ÃÜ¶È´ïµ½"+Constant.JIEYI_DEAR_NEED+"µã£¡";
+	protected final String HINT19 = "äº²å¯†åº¦è¦æ±‚ä¸æ»¡è¶³ï¼Œéœ€åŒæ–¹äº²å¯†åº¦è¾¾åˆ°"+Constant.JIEYI_DEAR_NEED+"ç‚¹ï¼";
 	
-	protected final String HINT20 = "¶Ô·½ÒÑ¾­½á»éÁË!";
+	protected final String HINT20 = "å¯¹æ–¹å·²ç»ç»“å©šäº†!";
 	
-	protected final String HINT23 = "ÒøÁ½²»¹»!";
+	protected final String HINT23 = "é“¶ä¸¤ä¸å¤Ÿ!";
 	
-	protected final String HINT21 = "¶Ô·½²»ÔÚÏß";
+	protected final String HINT21 = "å¯¹æ–¹ä¸åœ¨çº¿";
 	
-	protected final String HINT22 = "¶Ô²»Æğ£¬ÄãÃÇ²»Âú×ã½áÒåµÄÌõ¼ş£¡Çë×ĞÏ¸ÔÄ¶Á½áÒåÌõ¼ş£¡";
+	protected final String HINT22 = "å¯¹ä¸èµ·ï¼Œä½ ä»¬ä¸æ»¡è¶³ç»“ä¹‰çš„æ¡ä»¶ï¼è¯·ä»”ç»†é˜…è¯»ç»“ä¹‰æ¡ä»¶ï¼";
 	
 	
 	protected String getMerryHint(String name){
-		return "ºìÄï£ºÔ­À´¹«×ÓÊÇ¿´ÉÏÁË"+name.trim()+"¹ÃÄï°¡£¬µ«ÎÒ¾õµÃ"+name.trim()+"¹ÃÄïÓ¦¸Ã¶Ô¹«×ÓÄãÃ»ĞËÈ¤£¬Äã»¹ÊÇÖØĞÂÔÙÌôÒ»¸ö°É£¡";
+		return "çº¢å¨˜ï¼šåŸæ¥å…¬å­æ˜¯çœ‹ä¸Šäº†"+name.trim()+"å§‘å¨˜å•Šï¼Œä½†æˆ‘è§‰å¾—"+name.trim()+"å§‘å¨˜åº”è¯¥å¯¹å…¬å­ä½ æ²¡å…´è¶£ï¼Œä½ è¿˜æ˜¯é‡æ–°å†æŒ‘ä¸€ä¸ªå§ï¼";
 	}
 	
 	protected String jieYISuccessMes(String name,String detail){
-		return "ÄúÒÑÉêÇëÓë"+name+"½á"+detail.trim();
+		return "æ‚¨å·²ç”³è¯·ä¸"+name+"ç»“"+detail.trim();
 	}
 	
 	protected String getSysInfo(String name1,String name2){
-		return name1.trim()+"Óë"+name2.trim()+"½áÒå½ğÀ¼£¬´ó¼Ò×£ºØËûÃÇ£¡";
+		return name1.trim()+"ä¸"+name2.trim()+"ç»“ä¹‰é‡‘å…°ï¼Œå¤§å®¶ç¥è´ºä»–ä»¬ï¼";
 	}
 	
 	protected String jieYIFailMes(String name,String detail){
-		return name+"¾Ü¾øÓëÄú½á"+detail.trim();
+		return name+"æ‹’ç»ä¸æ‚¨ç»“"+detail.trim();
 	}
 	
 	protected String jieYISuccMes(String name,String detail){
 		
-		return name+"ÒÑÍ¬ÒâÓëÄú½á"+detail.trim();
+		return name+"å·²åŒæ„ä¸æ‚¨ç»“"+detail.trim();
 	}
 	
 	protected String jieYISuccMes(String name){
-		return "¹§Ï²Äã£¡ÄãÓë"+name+"½áÒå½ğÀ¼£¬´Ó´ËÄãÃÇ½«¸Îµ¨ÏàÕÕ£¬Í¬Éú¹²ËÀ¡£";
+		return "æ­å–œä½ ï¼ä½ ä¸"+name+"ç»“ä¹‰é‡‘å…°ï¼Œä»æ­¤ä½ ä»¬å°†è‚èƒ†ç›¸ç…§ï¼ŒåŒç”Ÿå…±æ­»ã€‚";
 	}
 	
 	protected String jiechuJieyi(String name){
-		return "ÄúÒÑ¾­ºÍ"+name+"¸îÅÛ¶Ï½»ÁË£¡";
+		return "æ‚¨å·²ç»å’Œ"+name+"å‰²è¢æ–­äº¤äº†ï¼";
 	}
 	
 	protected String jiechuJieyiMes(String name){
-		return name+"ÒÑ¾­ºÍÄú¸îÅÛ¶Ï½»ÁË£¡";
+		return name+"å·²ç»å’Œæ‚¨å‰²è¢æ–­äº¤äº†ï¼";
 	}
 	
 	protected String lihun(String name){
-		return "ÄúÒÑ¾­ºÍ"+name+"Àë»éÁË£¡";
+		return "æ‚¨å·²ç»å’Œ"+name+"ç¦»å©šäº†ï¼";
 	}
 	
 	protected String lihunMes(String name){
-		return name+"ÒÑ¾­ºÍÄúÀë»éÁË£¡";
+		return name+"å·²ç»å’Œæ‚¨ç¦»å©šäº†ï¼";
 	}
 	
 	protected String notAgree(String name){
-		return name+"²»Í¬ÒâºÍÄúÀë»é£¡";
+		return name+"ä¸åŒæ„å’Œæ‚¨ç¦»å©šï¼";
 	}
 	
 	protected RoleService roleService = new RoleService();
@@ -236,8 +236,8 @@ public class BaseAction extends DispatchAction
 	}
 	
 	protected String getTime(){
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ¶ÔÊ±¼ä½øĞĞ¸ñÊ½»¯
-		String time = formatter.format(new Date());// ´ÓÒ³ÃæµÃµ½µ±Ç°Ê±¼ä,²¢ÇÒ¸³¸øÒ»¸ö±äÁ¿
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// å¯¹æ—¶é—´è¿›è¡Œæ ¼å¼åŒ–
+		String time = formatter.format(new Date());// ä»é¡µé¢å¾—åˆ°å½“å‰æ—¶é—´,å¹¶ä¸”èµ‹ç»™ä¸€ä¸ªå˜é‡
 		return time;
 	}
 	
